@@ -17,7 +17,7 @@ type (
 	Gint32        int // ANOMALLY size?
 	Gint64        int64
 	Gint8         int8
-	Glong         int32 // CHECK
+	Glong         int32 //TODO(t): CHECK
 	Goffset       Gint64
 	Gpointer      *struct{}
 	Gshort        int16
@@ -37,27 +37,32 @@ type (
 	Time_t        int
 	Unsigned_long uint
 
-	GCacheDestroyFunc func(value Gpointer)
-	GCacheDupFunc     func(value Gpointer) Gpointer
-	GCacheNewFunc     func(key Gpointer) Gpointer
-	GDateDay          Guint8
-	GDateTime         Gint32
-	GDateYear         Guint16
-	GdkAtom           *struct{}
-	GdkBitmap         GdkDrawable
-	GdkNativeWindow   Gpointer
-	GdkPixmap         GdkDrawable
-	GdkWindow         GdkDrawable
-	GInitiallyUnowned GObject
-	GPid              *struct{}
-	GQuark            Guint32
-	GSequenceIter     GSequenceNode
-	GStaticMutex      *GMutex
-	GTime             Gint32
-	GTimeSpan         Gint64
-	GtkAllocation     GdkRectangle
-	GType             Gsize
-	GVoidFunc         func()
+	GCacheDestroyFunc      func(value Gpointer)
+	GCacheDupFunc          func(value Gpointer) Gpointer
+	GCacheNewFunc          func(key Gpointer) Gpointer
+	GDateDay               Guint8
+	GDateTime              Gint32
+	GDateYear              Guint16
+	GdkAtom                *struct{}
+	GdkBitmap              GdkDrawable
+	GdkNativeWindow        Gpointer
+	GdkPixmap              GdkDrawable
+	GdkWindow              GdkDrawable
+	GInitiallyUnowned      GObject
+	GInitiallyUnownedClass GObjectClass
+	GPid                   *struct{}
+	GQuark                 Guint32
+	GSequenceIter          GSequenceNode
+	GSignalCMarshaller     GClosureMarshal
+	GStaticMutex           *GMutex
+	GTime                  Gint32
+	GTimeSpan              Gint64
+	GtkAllocation          GdkRectangle
+	GtkClassInitFunc       GBaseInitFunc
+	GtkObjectInitFunc      GInstanceInitFunc
+	GtkType                GType
+	GType                  Gsize
+	GVoidFunc              func()
 
 	Cairo_font_options_t        struct{}
 	GAllocator                  struct{}
@@ -69,7 +74,9 @@ type (
 	GData                       struct{}
 	GDir                        struct{}
 	GdkPixbuf                   struct{}
+	GdkPixbufAnimation          struct{}
 	GdkRegion                   struct{}
+	GFile                       struct{}
 	GHashTable                  struct{}
 	GIcon                       struct{}
 	GIConv                      struct{}
@@ -98,14 +105,36 @@ type (
 	GTestSuite                  struct{}
 	GTimer                      struct{}
 	GTimeZone                   struct{}
+	GtkAccelMap                 struct{}
 	GtkActionGroupPrivate       struct{}
 	GtkActionPrivate            struct{}
+	GtkActivatable              struct{}
+	GtkAssistantPrivate         struct{}
+	GtkBuildable                struct{}
+	GtkBuilderPrivate           struct{}
+	GtkCalendarPrivate          struct{}
+	GtkCellEditable             struct{}
+	GtkCellLayout               struct{}
+	GtkCellViewPrivate          struct{}
 	GtkClipboard                struct{}
+	GtkColorButtonPrivate       struct{}
+	GtkComboBoxEntryPrivate     struct{}
+	GtkComboBoxPrivate          struct{}
+	GtkComboBoxTextPrivate      struct{}
+	GtkEditable                 struct{}
+	GtkEntryBufferPrivate       struct{}
+	GtkEntryCompletionPrivate   struct{}
+	GtkExpanderPrivate          struct{}
+	GtkFileChooser              struct{}
+	GtkFileChooserButtonPrivate struct{}
+	GtkFileFilter               struct{}
+	GtkFontButtonPrivate        struct{}
 	GtkIconInfo                 struct{}
 	GtkIconSet                  struct{}
 	GtkIconSource               struct{}
 	GtkIconThemePrivate         struct{}
 	GtkIconViewPrivate          struct{}
+	GtkImage                    struct{}
 	GtkIMMulticontextPrivate    struct{}
 	GtkInfoBarPrivate           struct{}
 	GtkLabelSelectionInfo       struct{}
@@ -115,12 +144,15 @@ type (
 	GtkNotebookPage             struct{}
 	GtkOrientable               struct{}
 	GtkPageSetup                struct{}
+	GtkPanedPrivate             struct{}
 	GtkPaperSize                struct{}
 	GtkPrintContext             struct{}
 	GtkPrintOperationPreview    struct{}
 	GtkPrintOperationPrivate    struct{}
 	GtkPrintSettings            struct{}
 	GtkRadioActionPrivate       struct{}
+	GtkRangeLayout              struct{}
+	GtkRangeStepTimer           struct{}
 	GtkRcContext                struct{}
 	GtkRecentActionPrivate      struct{}
 	GtkRecentChooser            struct{}
@@ -149,7 +181,11 @@ type (
 	GtkTreeDragDest             struct{}
 	GtkTreeDragSource           struct{}
 	GtkTreeModel                struct{}
+	GtkTreeModelFilterPrivate   struct{}
 	GtkTreePath                 struct{}
+	GtkTreeRowReference         struct{}
+	GtkTreeSortable             struct{}
+	GtkTreeViewColumn           struct{}
 	GtkTreeViewPrivate          struct{}
 	GtkUIManagerPrivate         struct{}
 	GtkWindowGeometryInfo       struct{}
@@ -159,6 +195,8 @@ type (
 	PangoAttrList               struct{}
 	PangoContext                struct{}
 	PangoFontDescription        struct{}
+	PangoFontFace               struct{}
+	PangoFontFamily             struct{}
 	PangoFontMap                struct{}
 	PangoLanguage               struct{}
 	PangoLayout                 struct{}
@@ -4313,185 +4351,389 @@ const (
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
 )
 
-type GChildWatchFunc func(pid GPid, status Gint, data Gpointer)
+type (
+	GChildWatchFunc func(pid GPid, status Gint, data Gpointer)
 
-type GtkTranslateFunc func(path *Gchar, func_data Gpointer) *Gchar
+	GtkTranslateFunc func(path *Gchar, func_data Gpointer) *Gchar
 
-type GClosureNotify func(data Gpointer, closure *GClosure)
+	GClosureNotify func(data Gpointer, closure *GClosure)
 
-type GtkItemFactoryCallback func()
+	GtkItemFactoryCallback func()
 
-type GtkMenuCallback func(widget *GtkWidget, user_data Gpointer)
+	GtkMenuCallback func(widget *GtkWidget, user_data Gpointer)
 
-type GtkCListCompareFunc func(clist *GtkCList,
-	ptr1 Gconstpointer, ptr2 Gconstpointer) Gint
+	GtkCListCompareFunc func(clist *GtkCList,
+		ptr1 Gconstpointer, ptr2 Gconstpointer) Gint
 
-type GtkCTreeCompareDragFunc func(ctree *GtkCTree,
-	source_node *GtkCTreeNode, new_parent *GtkCTreeNode,
-	new_sibling *GtkCTreeNode) Gboolean
+	GtkCTreeCompareDragFunc func(ctree *GtkCTree,
+		source_node *GtkCTreeNode, new_parent *GtkCTreeNode,
+		new_sibling *GtkCTreeNode) Gboolean
 
-type GtkCTreeGNodeFunc func(ctree *GtkCTree, depth Guint,
-	gnode *GNode, cnode *GtkCTreeNode,
-	data Gpointer) Gboolean
+	GtkCTreeGNodeFunc func(ctree *GtkCTree, depth Guint,
+		gnode *GNode, cnode *GtkCTreeNode,
+		data Gpointer) Gboolean
 
-type GtkCTreeFunc func(ctree *GtkCTree, node *GtkCTreeNode,
-	data Gpointer)
+	GtkCTreeFunc func(ctree *GtkCTree, node *GtkCTreeNode,
+		data Gpointer)
 
-type GCallback func()
+	GCallback func()
 
-type GtkTreeIterCompareFunc func(model *GtkTreeModel,
-	a, b *GtkTreeIter, user_data Gpointer) Gint
+	GtkTreeIterCompareFunc func(model *GtkTreeModel,
+		a, b *GtkTreeIter, user_data Gpointer) Gint
 
-type GtkTreeSelectionFunc func(selection *GtkTreeSelection,
-	model *GtkTreeModel, path *GtkTreePath,
-	path_currently_selected Gboolean, data Gpointer) Gboolean
+	GtkTreeSelectionFunc func(selection *GtkTreeSelection,
+		model *GtkTreeModel, path *GtkTreePath,
+		path_currently_selected Gboolean, data Gpointer) Gboolean
 
-type GtkTreeSelectionForeachFunc func(model *GtkTreeModel,
-	path *GtkTreePath, iter *GtkTreeIter, data Gpointer)
+	GtkTreeSelectionForeachFunc func(model *GtkTreeModel,
+		path *GtkTreePath, iter *GtkTreeIter, data Gpointer)
 
-type GtkIconViewForeachFunc func(icon_view *GtkIconView,
-	path *GtkTreePath, data Gpointer)
+	GtkIconViewForeachFunc func(icon_view *GtkIconView,
+		path *GtkTreePath, data Gpointer)
 
-type GtkFunction func(data Gpointer) Gboolean
+	GtkFunction func(data Gpointer) Gboolean
 
-type GtkLinkButtonUriFunc func(button *GtkLinkButton,
-	link_ *Gchar, user_data Gpointer)
+	GtkLinkButtonUriFunc func(button *GtkLinkButton,
+		link_ *Gchar, user_data Gpointer)
 
-type GtkCallbackMarshal func(object *GtkObject,
-	data Gpointer, n_args Guint, args *GtkArg)
+	GtkCallbackMarshal func(object *GtkObject,
+		data Gpointer, n_args Guint, args *GtkArg)
 
-type GdkInputFunction func(data Gpointer,
-	source Gint, condition GdkInputCondition)
+	GdkInputFunction func(data Gpointer,
+		source Gint, condition GdkInputCondition)
 
-type GtkKeySnoopFunc func(grab_widget *GtkWidget,
-	event *GdkEventKey, func_data Gpointer) Gint
+	GtkKeySnoopFunc func(grab_widget *GtkWidget,
+		event *GdkEventKey, func_data Gpointer) Gint
 
-type GtkNotebookWindowCreationFunc func(source *GtkNotebook,
-	page *GtkWidget, x Gint, y Gint, data Gpointer) *GtkNotebook
+	GtkNotebookWindowCreationFunc func(source *GtkNotebook,
+		page *GtkWidget, x Gint, y Gint, data Gpointer) *GtkNotebook
 
-type GtkPrintSettingsFunc func(key, value *Gchar,
-	user_data Gpointer)
+	GtkPrintSettingsFunc func(key, value *Gchar,
+		user_data Gpointer)
 
-type GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
-	data Gpointer)
+	GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
+		data Gpointer)
 
-type GtkRecentFilterFunc func(
-	filter_info *GtkRecentFilterInfo,
-	user_data Gpointer) Gboolean
+	GtkRecentFilterFunc func(
+		filter_info *GtkRecentFilterInfo,
+		user_data Gpointer) Gboolean
 
-type GtkMenuPositionFunc func(menu *GtkMenu,
-	x, y *Gint, push_in *Gboolean, user_data Gpointer)
+	GtkMenuPositionFunc func(menu *GtkMenu,
+		x, y *Gint, push_in *Gboolean, user_data Gpointer)
 
-type GtkRecentSortFunc func(
-	a, b *GtkRecentInfo, user_data Gpointer) Gint
+	GtkRecentSortFunc func(
+		a, b *GtkRecentInfo, user_data Gpointer) Gint
 
-type GtkTextTagTableForeach func(tag *GtkTextTag, data Gpointer)
+	GtkTextTagTableForeach func(tag *GtkTextTag, data Gpointer)
 
-type GtkTextBufferSerializeFunc func(
-	register_buffer, content_buffer *GtkTextBuffer,
-	start, end *GtkTextIter,
-	length *Gsize, user_data Gpointer) *Guint8
+	GtkTextBufferSerializeFunc func(
+		register_buffer, content_buffer *GtkTextBuffer,
+		start, end *GtkTextIter,
+		length *Gsize, user_data Gpointer) *Guint8
 
-type GtkTextBufferDeserializeFunc func(
-	register_buffer, content_buffer *GtkTextBuffer,
-	iter *GtkTextIter, data *Guint8, length Gsize,
-	create_tags Gboolean, user_data Gpointer, e **GError) Gboolean
+	GtkTextBufferDeserializeFunc func(
+		register_buffer, content_buffer *GtkTextBuffer,
+		iter *GtkTextIter, data *Guint8, length Gsize,
+		create_tags Gboolean, user_data Gpointer, e **GError) Gboolean
 
-type GCompareDataFunc func(
-	a, b Gconstpointer, user_data Gpointer) Gint
+	GCompareDataFunc func(
+		a, b Gconstpointer, user_data Gpointer) Gint
 
-type GCompareFunc func(a, b Gconstpointer) Gint
+	GCompareFunc func(a, b Gconstpointer) Gint
 
-type GCompletionFunc func(Gpointer) *Gchar
+	GCompletionFunc func(Gpointer) *Gchar
 
-type GCompletionStrncmpFunc func(s1, s2 *Gchar, n Gsize) Gint
+	GCompletionStrncmpFunc func(s1, s2 *Gchar, n Gsize) Gint
 
-type GCopyFunc func(src Gconstpointer, data Gpointer) Gpointer
+	GCopyFunc func(src Gconstpointer, data Gpointer) Gpointer
 
-type GDataForeachFunc func(
-	key_id GQuark, data Gpointer, user_data Gpointer)
+	GDataForeachFunc func(
+		key_id GQuark, data Gpointer, user_data Gpointer)
 
-type GDestroyNotify func(data Gpointer)
+	GDestroyNotify func(data Gpointer)
 
-type GEqualFunc func(a, b Gconstpointer) Gboolean
+	GEqualFunc func(a, b Gconstpointer) Gboolean
 
-type GFunc func(data Gpointer, user_data Gpointer)
+	GFunc func(data Gpointer, user_data Gpointer)
 
-type GHashFunc func(key Gconstpointer) Guint
+	GHashFunc func(key Gconstpointer) Guint
 
-type GHFunc func(key, value, user_data Gpointer)
+	GHFunc func(key, value, user_data Gpointer)
 
-type GHookCheckMarshaller func(
-	hook *GHook, marshal_data Gpointer) Gboolean
+	GHookCheckMarshaller func(
+		hook *GHook, marshal_data Gpointer) Gboolean
 
-type GHookCompareFunc func(new_hook, sibling *GHook) Gint
+	GHookCompareFunc func(new_hook, sibling *GHook) Gint
 
-type GHookFinalizeFunc func(hook_list *GHookList, hook *GHook)
+	GHookFinalizeFunc func(hook_list *GHookList, hook *GHook)
 
-type GHookFindFunc func(hook *GHook, data Gpointer) Gboolean
+	GHookFindFunc func(hook *GHook, data Gpointer) Gboolean
 
-type GHookMarshaller func(hook *GHook, marshal_data Gpointer)
+	GHookMarshaller func(hook *GHook, marshal_data Gpointer)
 
-type GHRFunc func(key, value, user_data Gpointer) Gboolean
+	GHRFunc func(key, value, user_data Gpointer) Gboolean
 
-type GIOFunc func(source *GIOChannel,
-	condition GIOCondition, data Gpointer) Gboolean
+	GIOFunc func(source *GIOChannel,
+		condition GIOCondition, data Gpointer) Gboolean
 
-type GLogFunc func(
-	log_domain *Gchar,
-	log_level GLogLevelFlags,
-	message *Gchar,
-	user_data Gpointer)
+	GLogFunc func(
+		log_domain *Gchar,
+		log_level GLogLevelFlags,
+		message *Gchar,
+		user_data Gpointer)
 
-type GNodeForeachFunc func(node *GNode, data Gpointer)
+	GNodeForeachFunc func(node *GNode, data Gpointer)
 
-type GNodeTraverseFunc func(node *GNode, data Gpointer) Gboolean
+	GNodeTraverseFunc func(node *GNode, data Gpointer) Gboolean
 
-type GOptionErrorFunc func(
-	context *GOptionContext,
-	group *GOptionGroup,
-	data Gpointer,
-	err **GError)
+	GOptionErrorFunc func(
+		context *GOptionContext,
+		group *GOptionGroup,
+		data Gpointer,
+		err **GError)
 
-type GOptionParseFunc func(
-	context *GOptionContext,
-	group *GOptionGroup,
-	data Gpointer,
-	err **GError) Gboolean
+	GOptionParseFunc func(
+		context *GOptionContext,
+		group *GOptionGroup,
+		data Gpointer,
+		err **GError) Gboolean
 
-type GPollFunc func(
-	ufds *GPollFD, nfsd Guint, timeout_ Gint) Gint
+	GPollFunc func(
+		ufds *GPollFD, nfsd Guint, timeout_ Gint) Gint
 
-type GPrintFunc func(str *Gchar)
+	GPrintFunc func(str *Gchar)
 
-type GRegexEvalCallback func(match_info *GMatchInfo,
-	result *GString, user_data Gpointer) Gboolean
+	GRegexEvalCallback func(match_info *GMatchInfo,
+		result *GString, user_data Gpointer) Gboolean
 
-type GScannerMsgFunc func(
-	scanner *GScanner, message *Gchar, err Gboolean)
+	GScannerMsgFunc func(
+		scanner *GScanner, message *Gchar, err Gboolean)
 
-type GSequenceIterCompareFunc func(
-	a, b *GSequenceIter, data Gpointer) Gint
+	GSequenceIterCompareFunc func(
+		a, b *GSequenceIter, data Gpointer) Gint
 
-type GSourceFunc func(data Gpointer) Gboolean
+	GSourceFunc func(data Gpointer) Gboolean
 
-type GSourceDummyMarshal func()
+	GSourceDummyMarshal func()
 
-type GSpawnChildSetupFunc func(user_data Gpointer)
+	GSpawnChildSetupFunc func(user_data Gpointer)
 
-type GTestDataFunc func(user_data Gconstpointer)
+	GTestDataFunc func(user_data Gconstpointer)
 
-type GTestFixtureFunc func(
-	fixture Gpointer, user_data Gconstpointer)
+	GTestFixtureFunc func(
+		fixture Gpointer, user_data Gconstpointer)
 
-type GTestFunc func()
+	GTestFunc func()
 
-type GTestLogFatalFunc func(
-	log_domain *Gchar, log_level GLogLevelFlags,
-	message *Gchar, user_data Gpointer) Gboolean
+	GTestLogFatalFunc func(
+		log_domain *Gchar, log_level GLogLevelFlags,
+		message *Gchar, user_data Gpointer) Gboolean
 
-type GThreadFunc func(data Gpointer) Gpointer
+	GThreadFunc func(data Gpointer) Gpointer
 
-type GTranslateFunc func(str *Gchar, data Gpointer) *Gchar
+	GTranslateFunc func(str *Gchar, data Gpointer) *Gchar
 
-type GTraverseFunc func(key, value, data Gpointer) Gboolean
+	GTraverseFunc func(key, value, data Gpointer) Gboolean
+
+	GClosureMarshal func(
+		closure *GClosure,
+		return_value *GValue,
+		n_param_values Guint,
+		param_values *GValue,
+		invocation_hint, marshal_data Gpointer)
+
+	GtkAboutDialogActivateLinkFunc func(
+		about *GtkAboutDialog, link_ *Gchar, data Gpointer)
+
+	GtkAccelGroupFindFunc func(
+		key *GtkAccelKey,
+		closure *GClosure,
+		data Gpointer) Gboolean
+
+	GtkAccelMapForeach func(
+		data Gpointer,
+		accel_path *Gchar,
+		accel_key Guint,
+		accel_mods GdkModifierType,
+		changed Gboolean)
+
+	GtkCallback func(
+		widget *GtkWidget,
+		data Gpointer)
+
+	GBaseInitFunc func(
+		g_class Gpointer)
+
+	GInstanceInitFunc func(
+		instance *GTypeInstance,
+		g_class Gpointer)
+
+	GtkAssistantPageFunc func(
+		current_page Gint,
+		data Gpointer) Gint
+
+	GtkBuilderConnectFunc func(
+		builder *GtkBuilder,
+		object *GObject,
+		signal_name *Gchar,
+		handler_name *Gchar,
+		connect_object *GObject,
+		flags GConnectFlags,
+		user_data Gpointer)
+
+	GtkCalendarDetailFunc func(
+		calendar *GtkCalendar,
+		year Guint,
+		month Guint,
+		day Guint,
+		user_data Gpointer) *Gchar
+
+	GtkCellLayoutDataFunc func(
+		cell_layout *GtkCellLayout,
+		cell *GtkCellRenderer,
+		tree_model *GtkTreeModel,
+		iter *GtkTreeIter,
+		data Gpointer)
+
+	GtkClipboardClearFunc func(
+		clipboard *GtkClipboard,
+		user_data_or_owner Gpointer)
+
+	GtkClipboardGetFunc func(
+		clipboard *GtkClipboard,
+		selection_data *GtkSelectionData,
+		info Guint,
+		user_data_or_owner Gpointer)
+
+	GtkClipboardImageReceivedFunc func(
+		clipboard *GtkClipboard,
+		pixbuf *GdkPixbuf,
+		data Gpointer)
+
+	GtkClipboardReceivedFunc func(
+		clipboard *GtkClipboard,
+		selection_data *GtkSelectionData,
+		data Gpointer)
+
+	GtkClipboardRichTextReceivedFunc func(
+		clipboard *GtkClipboard,
+		format GdkAtom,
+		text *Guint8,
+		length Gsize,
+		data Gpointer)
+
+	GtkClipboardTargetsReceivedFunc func(
+		clipboard *GtkClipboard,
+		atoms *GdkAtom,
+		n_atoms Gint,
+		data Gpointer)
+
+	GtkClipboardTextReceivedFunc func(
+		clipboard *GtkClipboard,
+		text *Gchar,
+		data Gpointer)
+
+	GtkClipboardURIReceivedFunc func(
+		clipboard *GtkClipboard,
+		uris **Gchar,
+		data Gpointer)
+
+	GtkColorSelectionChangePaletteFunc func(
+		colors *GdkColor,
+		n_colors Gint)
+
+	GtkColorSelectionChangePaletteWithScreenFunc func(
+		screen *GdkScreen,
+		colors *GdkColor,
+		n_colors Gint)
+
+	GtkEntryCompletionMatchFunc func(
+		completion *GtkEntryCompletion,
+		key *Gchar,
+		iter *GtkTreeIter,
+		user_data Gpointer) Gboolean
+
+	GtkFileFilterFunc func(
+		filter_info *GtkFileFilterInfo,
+		data Gpointer) Gboolean
+
+	GtkMenuDetachFunc func(
+		attach_widget *GtkWidget,
+		menu *GtkMenu)
+
+	GtkRcPropertyParser func(
+		pspec *GParamSpec,
+		rc_string *GString,
+		property_value *GValue) Gboolean
+
+	GtkTextCharPredicate func(
+		ch Gunichar,
+		user_data Gpointer) Gboolean
+
+	GtkTreeCellDataFunc func(
+		tree_column *GtkTreeViewColumn,
+		cell *GtkCellRenderer,
+		tree_model *GtkTreeModel,
+		iter *GtkTreeIter,
+		data Gpointer)
+
+	GtkTreeDestroyCountFunc func(
+		tree_view *GtkTreeView,
+		path *GtkTreePath,
+		children Gint,
+		user_data Gpointer)
+
+	GtkTreeModelFilterModifyFunc func(
+		model *GtkTreeModel,
+		iter *GtkTreeIter,
+		value *GValue,
+		column Gint,
+		data Gpointer)
+
+	GtkTreeModelFilterVisibleFunc func(
+		model *GtkTreeModel,
+		iter *GtkTreeIter,
+		data Gpointer) Gboolean
+
+	GtkTreeModelForeachFunc func(
+		model *GtkTreeModel,
+		path *GtkTreePath,
+		iter *GtkTreeIter,
+		data Gpointer) Gboolean
+
+	GtkTreeViewColumnDropFunc func(
+		tree_view *GtkTreeView,
+		column *GtkTreeViewColumn,
+		prev_column *GtkTreeViewColumn,
+		next_column *GtkTreeViewColumn,
+		data Gpointer) Gboolean
+
+	GtkTreeViewMappingFunc func(
+		tree_view *GtkTreeView,
+		path *GtkTreePath,
+		user_data Gpointer)
+
+	GtkTreeViewRowSeparatorFunc func(
+		model *GtkTreeModel,
+		iter *GtkTreeIter,
+		data Gpointer) Gboolean
+
+	GtkTreeViewSearchEqualFunc func(
+		model *GtkTreeModel,
+		column Gint,
+		key *Gchar,
+		iter *GtkTreeIter,
+		search_data Gpointer) Gboolean
+
+	GtkTreeViewSearchPositionFunc func(
+		tree_view *GtkTreeView,
+		search_dialog *GtkWidget,
+		user_data Gpointer)
+
+	GtkWindowKeysForeachFunc func(
+		window *GtkWindow,
+		keyval Guint,
+		modifiers GdkModifierType,
+		is_mnemonic Gboolean,
+		data Gpointer)
+)
