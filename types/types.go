@@ -164,45 +164,6 @@ type (
 	PangoLayout                 struct{}
 	PangoTabArray               struct{}
 
-	GCompareDataFunc         fix
-	GCompareFunc             fix
-	GCompletionFunc          fix
-	GCompletionStrncmpFunc   fix
-	GCopyFunc                fix
-	GDataForeachFunc         fix
-	GDestroyNotify           fix
-	GEqualFunc               fix
-	GFunc                    fix
-	GHashFunc                fix
-	GHFunc                   fix
-	GHookCheckMarshaller     fix
-	GHookCompareFunc         fix
-	GHookFinalizeFunc        fix
-	GHookFindFunc            fix
-	GHookMarshaller          fix
-	GHRFunc                  fix
-	GIOFunc                  fix
-	GLogFunc                 fix
-	GNodeForeachFunc         fix
-	GNodeTraverseFunc        fix
-	GOptionErrorFunc         fix
-	GOptionParseFunc         fix
-	GPollFunc                fix
-	GPrintFunc               fix
-	GRegexEvalCallback       fix
-	GScannerMsgFunc          fix
-	GSequenceIterCompareFunc fix
-	GSourceFunc              fix
-	GSourceFuncs             fix
-	GSpawnChildSetupFunc     fix
-	GTestDataFunc            fix
-	GTestFixtureFunc         fix
-	GTestFunc                fix
-	GTestLogFatalFunc        fix
-	GThreadFunc              fix
-	GTranslateFunc           fix
-	GTraverseFunc            fix
-
 	Long_double fix
 	Va_list     fix
 )
@@ -4379,7 +4340,7 @@ type GtkCTreeFunc func(ctree *GtkCTree, node *GtkCTreeNode,
 type GCallback func()
 
 type GtkTreeIterCompareFunc func(model *GtkTreeModel,
-	a *GtkTreeIter, b *GtkTreeIter, user_data Gpointer) Gint
+	a, b *GtkTreeIter, user_data Gpointer) Gint
 
 type GtkTreeSelectionFunc func(selection *GtkTreeSelection,
 	model *GtkTreeModel, path *GtkTreePath,
@@ -4435,3 +4396,102 @@ type GtkTextBufferDeserializeFunc func(
 	register_buffer, content_buffer *GtkTextBuffer,
 	iter *GtkTextIter, data *Guint8, length Gsize,
 	create_tags Gboolean, user_data Gpointer, e **GError) Gboolean
+
+type GCompareDataFunc func(
+	a, b Gconstpointer, user_data Gpointer) Gint
+
+type GCompareFunc func(a, b Gconstpointer) Gint
+
+type GCompletionFunc func(Gpointer) *Gchar
+
+type GCompletionStrncmpFunc func(s1, s2 *Gchar, n Gsize) Gint
+
+type GCopyFunc func(src Gconstpointer, data Gpointer) Gpointer
+
+type GDataForeachFunc func(
+	key_id GQuark, data Gpointer, user_data Gpointer)
+
+type GDestroyNotify func(data Gpointer)
+
+type GEqualFunc func(a, b Gconstpointer) Gboolean
+
+type GFunc func(data Gpointer, user_data Gpointer)
+
+type GHashFunc func(key Gconstpointer) Guint
+
+type GHFunc func(key, value, user_data Gpointer)
+
+type GHookCheckMarshaller func(
+	hook *GHook, marshal_data Gpointer) Gboolean
+
+type GHookCompareFunc func(new_hook, sibling *GHook) Gint
+
+type GHookFinalizeFunc func(hook_list *GHookList, hook *GHook)
+
+type GHookFindFunc func(hook *GHook, data Gpointer) Gboolean
+
+type GHookMarshaller func(hook *GHook, marshal_data Gpointer)
+
+type GHRFunc func(key, value, user_data Gpointer) Gboolean
+
+type GIOFunc func(source *GIOChannel,
+	condition GIOCondition, data Gpointer) Gboolean
+
+type GLogFunc func(
+	log_domain *Gchar,
+	log_level GLogLevelFlags,
+	message *Gchar,
+	user_data Gpointer)
+
+type GNodeForeachFunc func(node *GNode, data Gpointer)
+
+type GNodeTraverseFunc func(node *GNode, data Gpointer) Gboolean
+
+type GOptionErrorFunc func(
+	context *GOptionContext,
+	group *GOptionGroup,
+	data Gpointer,
+	err **GError)
+
+type GOptionParseFunc func(
+	context *GOptionContext,
+	group *GOptionGroup,
+	data Gpointer,
+	err **GError) Gboolean
+
+type GPollFunc func(
+	ufds *GPollFD, nfsd Guint, timeout_ Gint) Gint
+
+type GPrintFunc func(str *Gchar)
+
+type GRegexEvalCallback func(match_info *GMatchInfo,
+	result *GString, user_data Gpointer) Gboolean
+
+type GScannerMsgFunc func(
+	scanner *GScanner, message *Gchar, err Gboolean)
+
+type GSequenceIterCompareFunc func(
+	a, b *GSequenceIter, data Gpointer) Gint
+
+type GSourceFunc func(data Gpointer) Gboolean
+
+type GSourceDummyMarshal func()
+
+type GSpawnChildSetupFunc func(user_data Gpointer)
+
+type GTestDataFunc func(user_data Gconstpointer)
+
+type GTestFixtureFunc func(
+	fixture Gpointer, user_data Gconstpointer)
+
+type GTestFunc func()
+
+type GTestLogFatalFunc func(
+	log_domain *Gchar, log_level GLogLevelFlags,
+	message *Gchar, user_data Gpointer) Gboolean
+
+type GThreadFunc func(data Gpointer) Gpointer
+
+type GTranslateFunc func(str *Gchar, data Gpointer) *Gchar
+
+type GTraverseFunc func(key, value, data Gpointer) Gboolean

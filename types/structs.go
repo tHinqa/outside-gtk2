@@ -477,6 +477,22 @@ type GObject struct {
 	qdata           *GData
 }
 
+type GSourceFuncs struct {
+	prepare func(
+		source *GSource,
+		timeout_ *Gint) Gboolean
+	check func(
+		source *GSource) Gboolean
+	dispatch func(
+		source *GSource,
+		callback GSourceFunc,
+		user_data Gpointer) Gboolean
+	finalize func(
+		source *GSource)
+	closure_callback GSourceFunc
+	closure_marshal  GSourceDummyMarshal
+}
+
 type GtkObject struct {
 	parent_instance GInitiallyUnowned
 	flags           Guint32
@@ -2274,3 +2290,4 @@ type PangoLogAttr struct {
 	   is_word_boundary : 1
 	*/
 }
+
