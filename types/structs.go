@@ -3259,4 +3259,208 @@ type (
 		tooltip     *Gchar
 		value       Gint
 	}
+
+	GCancellable struct {
+		parent_instance GObject
+		priv            *GCancellablePrivate
+	}
+
+	GdkAppLaunchContext struct {
+		parent_instance GAppLaunchContext
+		priv            *GdkAppLaunchContextPrivate
+	}
+
+	GdkKeymap struct {
+		parent_instance GObject
+		display         *GdkDisplay
+	}
+
+	GdkKeymapKey struct {
+		keycode Guint
+		group   Gint
+		level   Gint
+	}
+
+	GdkPangoRenderer struct {
+		parent_instance PangoRenderer
+		priv            *GdkPangoRendererPrivate
+	}
+
+	GdkPixbufLoader struct {
+		parent_instance GObject
+		priv            Gpointer
+	}
+
+	GAppLaunchContext struct {
+		parent_instance GObject
+		priv            *GAppLaunchContextPrivate
+	}
+
+	PangoRenderer struct {
+		parent_instance GObject
+		underline       PangoUnderline
+		strikethrough   Gboolean
+		active_count    int
+		matrix          *PangoMatrix
+		priv            *PangoRendererPrivate
+	}
+
+	PangoMatrix struct {
+		xx Double
+		xy Double
+		yx Double
+		yy Double
+		x0 Double
+		y0 Double
+	}
+
+	PangoAttrShape struct {
+		attr         PangoAttribute
+		ink_rect     PangoRectangle
+		logical_rect PangoRectangle
+		data         Gpointer
+		copy_func    PangoAttrDataCopyFunc
+		destroy_func GDestroyNotify
+	}
+
+	PangoRectangle struct {
+		x      int
+		y      int
+		width  int
+		height int
+	}
+
+	GdkPointerHooks struct {
+		get_pointer func(
+			window *GdkWindow,
+			x *Gint,
+			y *Gint,
+			mask *GdkModifierType) *GdkWindow
+		window_at_pointer func(screen *GdkScreen,
+			win_x *Gint,
+			win_y *Gint) *GdkWindow
+	}
+
+	GdkRgbCmap struct {
+		colors    [256]Guint32
+		n_colors  Gint
+		info_list *GSList
+	}
+
+	GdkSegment struct {
+		x1 Gint
+		y1 Gint
+		x2 Gint
+		y2 Gint
+	}
+
+	GdkSpan struct {
+		x     Gint
+		y     Gint
+		width Gint
+	}
+
+	GdkTimeCoord struct {
+		time Guint32
+		axes [128]Gdouble
+	}
+
+	GdkTrapezoid struct {
+		y1, x11, x21, y2, x12, x22 Double
+	}
+
+	GdkWindowAttr struct {
+		title             *Gchar
+		event_mask        Gint
+		x, y              Gint
+		width             Gint
+		height            Gint
+		wclass            GdkWindowClass
+		visual            *GdkVisual
+		colormap          *GdkColormap
+		window_type       GdkWindowType
+		cursor            *GdkCursor
+		wmclass_name      *Gchar
+		wmclass_class     *Gchar
+		override_redirect Gboolean
+		type_hint         GdkWindowTypeHint
+	}
+
+	GInputStream struct {
+		parent_instance GObject
+		priv            *GInputStreamPrivate
+	}
+
+	PangoAttribute struct {
+		klass       *PangoAttrClass
+		start_index Guint
+		end_index   Guint
+	}
+
+	PangoAttrClass struct {
+		Type PangoAttrType
+		Copy func(
+			attr *PangoAttribute) *PangoAttribute
+		Destroy func(
+			attr *PangoAttribute)
+		Equal func(
+			attr1, attr2 *PangoAttribute) Gboolean
+	}
+
+	PangoGlyphItem struct {
+		item   *PangoItem
+		glyphs *PangoGlyphString
+	}
+
+	PangoItem struct {
+		offset    Gint
+		length    Gint
+		num_chars Gint
+		analysis  PangoAnalysis
+	}
+
+	PangoAnalysis struct {
+		shape_engine *PangoEngineShape
+		lang_engine  *PangoEngineLang
+		font         *PangoFont
+		level        Guint8
+		gravity      Guint8
+		flags        Guint8
+		script       Guint8
+		language     *PangoLanguage
+		extra_attrs  *GSList
+	}
+
+	PangoGlyphString struct {
+		num_glyphs   Gint
+		glyphs       *PangoGlyphInfo
+		log_clusters *Gint
+		space        Gint
+	}
+
+	PangoLayoutLine struct {
+		layout      *PangoLayout
+		start_index Gint
+		length      Gint
+		runs        *GSList
+		bits        Guint
+		// is_paragraph_start : 1
+		// resolved_dir : 3
+	}
+
+	PangoGlyphInfo struct {
+		glyph    PangoGlyph
+		geometry PangoGlyphGeometry
+		attr     PangoGlyphVisAttr
+	}
+
+	PangoGlyphGeometry struct {
+		width    PangoGlyphUnit
+		x_offset PangoGlyphUnit
+		y_offset PangoGlyphUnit
+	}
+
+	PangoGlyphVisAttr struct {
+		is_cluster_start Guint // : 1
+	}
 )

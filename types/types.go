@@ -3,11 +3,12 @@ package types
 type (
 	fix uintptr
 
-	Cairo_t       struct{}
+	Long_double fix
+	Va_list     fix
+
 	Char          int8
 	Double        float64
 	Enum          int
-	Gboolean      Gint
 	Gchar         int8
 	Gconstpointer *struct{}
 	Gdouble       float64
@@ -18,7 +19,6 @@ type (
 	Gint64        int64
 	Gint8         int8
 	Glong         int32 //TODO(t): CHECK
-	Goffset       Gint64
 	Gpointer      *struct{}
 	Gshort        int16
 	Gsize         uint
@@ -29,14 +29,12 @@ type (
 	Guint32       uint // ANOMALLY size?
 	Guint64       uint64
 	Guint8        uint8
-	Gulong        Unsigned_long
-	Gunichar      Guint32
-	Gunichar2     Guint16
 	Gushort       uint16
 	Size_t        uint
 	Time_t        int
 	Unsigned_long uint
 
+	Gulong                 Unsigned_long
 	GCacheDestroyFunc      func(value Gpointer)
 	GCacheDupFunc          func(value Gpointer) Gpointer
 	GCacheNewFunc          func(key Gpointer) Gpointer
@@ -46,7 +44,9 @@ type (
 	GdkAtom                *struct{}
 	GdkBitmap              GdkDrawable
 	GdkNativeWindow        Gpointer
+	Gboolean               Gint
 	GdkPixmap              GdkDrawable
+	GdkWChar               Guint32
 	GdkWindow              GdkDrawable
 	GInitiallyUnowned      GObject
 	GInitiallyUnownedClass GObjectClass
@@ -55,6 +55,7 @@ type (
 	GSequenceIter          GSequenceNode
 	GSignalCMarshaller     GClosureMarshal
 	GStaticMutex           *GMutex
+	Goffset                Gint64
 	GTime                  Gint32
 	GTimeSpan              Gint64
 	GtkAllocation          GdkRectangle
@@ -63,19 +64,43 @@ type (
 	GtkType                GType
 	GType                  Gsize
 	GVoidFunc              func()
+	PangoGlyph             Guint32
+	PangoGlyphUnit         Gint32
+	Gunichar               Guint32
+	Gunichar2              Guint16
 
+	GdkPixbufSimpleAnim         struct{}
+	PangoCairoFont              struct{}
+	PangoCairoFontMap           struct{}
+	PangoFont                   struct{}
+	GInputStreamPrivate         struct{}
+	PangoEngineShape            struct{}
+	PangoEngineLang             struct{}
 	Cairo_font_options_t        struct{}
+	Cairo_pattern_t             struct{}
+	Cairo_scaled_font_t         struct{}
+	Cairo_surface_t             struct{}
+	Cairo_t                     struct{}
 	GAllocator                  struct{}
+	GAppLaunchContextPrivate    struct{}
 	GAsyncQueue                 struct{}
+	GAsyncResult                struct{}
 	GBookmarkFile               struct{}
 	GCache                      struct{}
+	GCancellablePrivate         struct{}
 	GChecksum                   struct{}
 	GCond                       struct{}
 	GData                       struct{}
 	GDir                        struct{}
+	GdkAppLaunchContextPrivate  struct{}
+	GdkDisplayManager           struct{}
+	GdkPangoRendererPrivate     struct{}
 	GdkPixbuf                   struct{}
 	GdkPixbufAnimation          struct{}
+	GdkPixbufAnimationIter      struct{}
+	GdkPixbufFormat             struct{}
 	GdkRegion                   struct{}
+	GdkXEvent                   struct{}
 	GFile                       struct{}
 	GHashTable                  struct{}
 	GIcon                       struct{}
@@ -200,10 +225,8 @@ type (
 	PangoFontMap                struct{}
 	PangoLanguage               struct{}
 	PangoLayout                 struct{}
+	PangoRendererPrivate        struct{}
 	PangoTabArray               struct{}
-
-	Long_double fix
-	Va_list     fix
 )
 
 type GBookmarkFileError Enum
@@ -4736,4 +4759,40 @@ type (
 		modifiers GdkModifierType,
 		is_mnemonic Gboolean,
 		data Gpointer)
+
+	GAsyncReadyCallback func(
+		source_object *GObject,
+		res *GAsyncResult,
+		user_data Gpointer)
+
+	GdkEventFunc func(
+		event *GdkEvent,
+		data Gpointer)
+
+	GdkFilterFunc func(
+		xevent *GdkXEvent,
+		event *GdkEvent,
+		data Gpointer) GdkFilterReturn
+
+	GdkPixbufDestroyNotify func(
+		pixels *Guchar,
+		data Gpointer)
+
+	GdkPixbufSaveFunc func(
+		buf *Gchar,
+		count Gsize,
+		error **GError,
+		data Gpointer) Gboolean
+
+	GdkSpanFunc func(
+		span *GdkSpan,
+		data Gpointer)
+
+	PangoCairoShapeRendererFunc func(
+		cr *Cairo_t,
+		attr *PangoAttrShape,
+		do_path Gboolean,
+		data Gpointer)
+
+	PangoAttrDataCopyFunc func(data Gconstpointer) Gpointer
 )
