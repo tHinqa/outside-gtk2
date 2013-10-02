@@ -4374,6 +4374,47 @@ const (
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
 )
 
+type GdkPixdataType Enum
+
+const (
+	GDK_PIXDATA_COLOR_TYPE_RGB GdkPixdataType = 0x01 << iota
+	GDK_PIXDATA_COLOR_TYPE_RGBA
+	GDK_PIXDATA_COLOR_TYPE_MASK GdkPixdataType = 0xff
+)
+const (
+	GDK_PIXDATA_SAMPLE_WIDTH_8    GdkPixdataType = 0x01 << 16
+	GDK_PIXDATA_SAMPLE_WIDTH_MASK GdkPixdataType = 0x0f << 16
+)
+const (
+	GDK_PIXDATA_ENCODING_RAW GdkPixdataType = 0x01 << (24 + iota)
+	GDK_PIXDATA_ENCODING_RLE
+	GDK_PIXDATA_ENCODING_MASK GdkPixdataType = 0x0f << 24
+)
+
+type GdkPixdataDumpType Enum
+
+const (
+	GDK_PIXDATA_DUMP_PIXDATA_STRUCT GdkPixdataDumpType = 1 << iota
+	GDK_PIXDATA_DUMP_MACROS                            = 2
+	_
+	_
+	_
+	_
+	_
+	_
+	GDK_PIXDATA_DUMP_CTYPES
+	GDK_PIXDATA_DUMP_STATIC
+	GDK_PIXDATA_DUMP_CONST
+	_
+	_
+	_
+	_
+	_
+	GDK_PIXDATA_DUMP_RLE_DECODER
+	GDK_PIXDATA_DUMP_PIXDATA_STREAM GdkPixdataDumpType = 0
+	GDK_PIXDATA_DUMP_GTYPES         GdkPixdataDumpType = 0
+)
+
 type (
 	GChildWatchFunc func(pid GPid, status Gint, data Gpointer)
 

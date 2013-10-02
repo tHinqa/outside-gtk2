@@ -10,6 +10,13 @@ func init() {
 	outside.AddDllApis(dllPixbuf, false, apiListPixbuf)
 }
 
+type (
+	HICON   uint32
+	HGDIOBJ uint32
+	HWND    uint32
+	HDC     uint32
+)
+
 var (
 	Gdk_colormap_get_type func() GType
 
@@ -832,17 +839,17 @@ var (
 		width int,
 		height int) *GdkPixbuf
 
-	Gdk_pixbuf_new_from_file_utf8 func(
+	Gdk_pixbuf_new_from_file func(
 		filename *Char,
 		error **GError) *GdkPixbuf
 
-	Gdk_pixbuf_new_from_file_at_size_utf8 func(
+	Gdk_pixbuf_new_from_file_at_size func(
 		filename *Char,
 		width int,
 		height int,
 		error **GError) *GdkPixbuf
 
-	Gdk_pixbuf_new_from_file_at_scale_utf8 func(
+	Gdk_pixbuf_new_from_file_at_scale func(
 		filename *Char,
 		width int,
 		height int,
@@ -873,6 +880,7 @@ var (
 		pixbuf *GdkPixbuf,
 		pixel Guint32)
 
+	//TODO(t):Variant
 	//gdk_pixbuf_save_utf8 func( pixbuf  *GdkPixbuf, filename  *Char, typ  *Char, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_savev_utf8 func(
@@ -883,6 +891,7 @@ var (
 		option_values **Char,
 		error **GError) Gboolean
 
+	//TODO(t):Variant
 	//gdk_pixbuf_save_to_callback func(pixbuf  *GdkPixbuf, save_func  GdkPixbufSaveFunc, user_data  Gpointer, typ  *Char, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_save_to_callbackv func(
@@ -894,6 +903,7 @@ var (
 		option_values **Char,
 		error **GError) Gboolean
 
+	//TODO(t):Variant
 	//gdk_pixbuf_save_to_buffer func(pixbuf  *GdkPixbuf, buffer  **Gchar, buffer_size  *Gsize, typ  *Char, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_save_to_bufferv func(
@@ -937,8 +947,8 @@ var (
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
 
+	//TODO(t):Variant
 	//gdk_pixbuf_save_to_stream func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  *Char, cancellable  *GCancellable, error  **GError, ...) Gboolean
-
 	//gdk_pixbuf_save_to_stream_async func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  *Gchar, cancellable  *GCancellable, callback  GAsyncReadyCallback, user_data  Gpointer, ...)
 
 	Gdk_pixbuf_save_to_stream_finish func(
@@ -1271,89 +1281,6 @@ var (
 		dest_y int,
 		width int,
 		height int) *GdkPixbuf
-	pango_cairo_font_map_get_type          func() GType
-	pango_cairo_font_map_new               func() *PangoFontMap
-	pango_cairo_font_map_new_for_font_type func(
-		fonttype Cairo_font_type_t) *PangoFontMap
-	pango_cairo_font_map_get_default func() *PangoFontMap
-	pango_cairo_font_map_set_default func(
-		fontmap *PangoCairoFontMap)
-	pango_cairo_font_map_get_font_type func(
-		fontmap *PangoCairoFontMap) Cairo_font_type_t
-	pango_cairo_font_map_set_resolution func(
-		fontmap *PangoCairoFontMap,
-		dpi Double)
-	pango_cairo_font_map_get_resolution func(
-		fontmap *PangoCairoFontMap) Double
-	pango_cairo_font_map_create_context func(
-		fontmap *PangoCairoFontMap) *PangoContext
-	pango_cairo_font_get_type        func() GType
-	pango_cairo_font_get_scaled_font func(
-		font *PangoCairoFont) *Cairo_scaled_font_t
-	pango_cairo_update_context func(
-		cr *Cairo_t,
-		context *PangoContext)
-	pango_cairo_context_set_font_options func(
-		context *PangoContext,
-		options *Cairo_font_options_t)
-	pango_cairo_context_get_font_options func(
-		context *PangoContext) *Cairo_font_options_t
-	pango_cairo_context_set_resolution func(
-		context *PangoContext,
-		dpi Double)
-	pango_cairo_context_get_resolution func(
-		context *PangoContext) Double
-	pango_cairo_context_set_shape_renderer func(
-		context *PangoContext,
-		f PangoCairoShapeRendererFunc,
-		data Gpointer,
-		dnotify GDestroyNotify)
-	pango_cairo_context_get_shape_renderer func(
-		context *PangoContext,
-		data *Gpointer) PangoCairoShapeRendererFunc
-	pango_cairo_create_context func(
-		cr *Cairo_t) *PangoContext
-	pango_cairo_create_layout func(
-		cr *Cairo_t) *PangoLayout
-	pango_cairo_update_layout func(
-		cr *Cairo_t,
-		layout *PangoLayout)
-	pango_cairo_show_glyph_string func(
-		cr *Cairo_t,
-		font *PangoFont,
-		glyphs *PangoGlyphString)
-	pango_cairo_show_glyph_item func(
-		cr *Cairo_t,
-		text *Char,
-		glyph_item *PangoGlyphItem)
-	pango_cairo_show_layout_line func(
-		cr *Cairo_t,
-		line *PangoLayoutLine)
-	pango_cairo_show_layout func(
-		cr *Cairo_t,
-		layout *PangoLayout)
-	pango_cairo_show_error_underline func(
-		cr *Cairo_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double)
-	pango_cairo_glyph_string_path func(
-		cr *Cairo_t,
-		font *PangoFont,
-		glyphs *PangoGlyphString)
-	pango_cairo_layout_line_path func(
-		cr *Cairo_t,
-		line *PangoLayoutLine)
-	pango_cairo_layout_path func(
-		cr *Cairo_t,
-		layout *PangoLayout)
-	pango_cairo_error_underline_path func(
-		cr *Cairo_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double)
 
 	Gdk_cairo_create func(
 		drawable *GdkDrawable) *Cairo_t
@@ -3436,6 +3363,108 @@ var (
 		interval Guint,
 		function GSourceFunc,
 		data Gpointer) Guint
+
+	Gdk_pixbuf_non_anim_get_type func() GType
+
+	Gdk_pixbuf_non_anim_new func(
+		pixbuf *GdkPixbuf) *GdkPixbufAnimation
+
+	Gdk_pixbuf_animation_new_from_file func(
+		filename *Char,
+		error **GError) *GdkPixbufAnimation
+
+	Gdk_pixdata_serialize func(
+		pixdata *GdkPixdata,
+		stream_length_p *Guint) *Guint8
+
+	Gdk_pixdata_deserialize func(
+		pixdata *GdkPixdata,
+		stream_length Guint,
+		stream *Guint8,
+		error **GError) Gboolean
+
+	Gdk_pixdata_from_pixbuf func(
+		pixdata *GdkPixdata,
+		pixbuf *GdkPixbuf,
+		use_rle Gboolean) Gpointer
+
+	Gdk_pixbuf_from_pixdata func(
+		pixdata *GdkPixdata,
+		copy_pixels Gboolean,
+		error **GError) *GdkPixbuf
+
+	Gdk_pixdata_to_csource func(
+		pixdata *GdkPixdata,
+		name *Gchar,
+		dump_type GdkPixdataDumpType) *GString
+
+	Gdk_pixbuf_set_option func(
+		pixbuf *GdkPixbuf,
+		key *Gchar,
+		value *Gchar) Gboolean
+
+	Gdk_window_destroy_notify func(
+		window *GdkWindow)
+
+	Gdk_synthesize_window_state func(
+		window *GdkWindow,
+		unset_flags GdkWindowState,
+		set_flags GdkWindowState)
+
+	Gdk_win32_window_is_win32 func(
+		window *GdkWindow) Gboolean
+
+	Gdk_win32_window_get_impl_hwnd func(
+		window *GdkWindow) HWND
+
+	Gdk_win32_handle_table_lookup func(
+		handle GdkNativeWindow) Gpointer
+
+	Gdk_win32_drawable_get_handle func(
+		drawable *GdkDrawable) HGDIOBJ
+
+	Gdk_win32_hdc_get func(
+		drawable *GdkDrawable,
+		gc *GdkGC,
+		usage GdkGCValuesMask) HDC
+
+	Gdk_win32_hdc_release func(
+		drawable *GdkDrawable,
+		gc *GdkGC,
+		usage GdkGCValuesMask)
+
+	Gdk_win32_selection_add_targets func(
+		owner *GdkWindow,
+		selection GdkAtom,
+		n_targets Gint,
+		targets *GdkAtom)
+
+	Gdk_win32_icon_to_pixbuf_libgtk_only func(
+		hicon HICON) *GdkPixbuf
+
+	Gdk_win32_pixbuf_to_hicon_libgtk_only func(
+		pixbuf *GdkPixbuf) HICON
+
+	Gdk_win32_set_modal_dialog_libgtk_only func(
+		window HWND)
+
+	Gdk_win32_begin_direct_draw_libgtk_only func(
+		drawable *GdkDrawable,
+		gc *GdkGC,
+		priv_data *Gpointer,
+		x_offset_out *Gint,
+		y_offset_out *Gint) *GdkDrawable
+
+	Gdk_win32_end_direct_draw_libgtk_only func(
+		priv_data Gpointer)
+
+	Gdk_win32_window_foreign_new_for_display func(
+		display *GdkDisplay,
+		anid GdkNativeWindow) *GdkWindow
+
+	Gdk_win32_window_lookup_for_display func(
+		display *GdkDisplay,
+		anid GdkNativeWindow) *GdkWindow
 )
 
 var dll = "libgdk-win32-2.0-0.dll"
@@ -3789,13 +3818,13 @@ var apiList = outside.Apis{
 	{"gdk_list_visuals", &Gdk_list_visuals},
 	{"gdk_mbstowcs", &Gdk_mbstowcs},
 	{"gdk_modifier_type_get_type", &Gdk_modifier_type_get_type},
-	// {"gdk_net_wm_supports", &Gdk_net_wm_supports},
+	// Undocumented {"gdk_net_wm_supports", &Gdk_net_wm_supports},
 	{"gdk_notify_startup_complete", &Gdk_notify_startup_complete},
 	{"gdk_notify_startup_complete_with_id", &Gdk_notify_startup_complete_with_id},
 	{"gdk_notify_type_get_type", &Gdk_notify_type_get_type},
 	{"gdk_offscreen_window_get_embedder", &Gdk_offscreen_window_get_embedder},
 	{"gdk_offscreen_window_get_pixmap", &Gdk_offscreen_window_get_pixmap},
-	// {"gdk_offscreen_window_get_type", &Gdk_offscreen_window_get_type},
+	// Undocumented {"gdk_offscreen_window_get_type", &Gdk_offscreen_window_get_type},
 	{"gdk_offscreen_window_set_embedder", &Gdk_offscreen_window_set_embedder},
 	{"gdk_overlap_type_get_type", &Gdk_overlap_type_get_type},
 	{"gdk_owner_change_get_type", &Gdk_owner_change_get_type},
@@ -3955,7 +3984,7 @@ var apiList = outside.Apis{
 	{"gdk_string_to_compound_text_for_display", &Gdk_string_to_compound_text_for_display},
 	{"gdk_string_width", &Gdk_string_width},
 	{"gdk_subwindow_mode_get_type", &Gdk_subwindow_mode_get_type},
-	// {"gdk_synthesize_window_state", &Gdk_synthesize_window_state},
+	{"gdk_synthesize_window_state", &Gdk_synthesize_window_state},
 	{"gdk_test_render_sync", &Gdk_test_render_sync},
 	{"gdk_test_simulate_button", &Gdk_test_simulate_button},
 	{"gdk_test_simulate_key", &Gdk_test_simulate_key},
@@ -3978,10 +4007,10 @@ var apiList = outside.Apis{
 	{"gdk_threads_enter", &Gdk_threads_enter},
 	{"gdk_threads_init", &Gdk_threads_init},
 	{"gdk_threads_leave", &Gdk_threads_leave},
-	// {"gdk_threads_lock", &Gdk_threads_lock},
-	// {"gdk_threads_mutex", &Gdk_threads_mutex},
+	// Data {"gdk_threads_lock", &Gdk_threads_lock},
+	// Data {"gdk_threads_mutex", &Gdk_threads_mutex},
 	{"gdk_threads_set_lock_functions", &Gdk_threads_set_lock_functions},
-	// {"gdk_threads_unlock", &Gdk_threads_unlock},
+	// Data {"gdk_threads_unlock", &Gdk_threads_unlock},
 	{"gdk_unicode_to_keyval", &Gdk_unicode_to_keyval},
 	{"gdk_utf8_to_compound_text", &Gdk_utf8_to_compound_text},
 	{"gdk_utf8_to_compound_text_for_display", &Gdk_utf8_to_compound_text_for_display},
@@ -4006,20 +4035,20 @@ var apiList = outside.Apis{
 	{"gdk_visual_get_visual_type", &Gdk_visual_get_visual_type},
 	{"gdk_visual_type_get_type", &Gdk_visual_type_get_type},
 	{"gdk_wcstombs", &Gdk_wcstombs},
-	// {"gdk_win32_begin_direct_draw_libgtk_only", &Gdk_win32_begin_direct_draw_libgtk_only},
-	// {"gdk_win32_drawable_get_handle", &Gdk_win32_drawable_get_handle},
-	// {"gdk_win32_end_direct_draw_libgtk_only", &Gdk_win32_end_direct_draw_libgtk_only},
-	// {"gdk_win32_handle_table_lookup", &Gdk_win32_handle_table_lookup},
-	// {"gdk_win32_hdc_get", &Gdk_win32_hdc_get},
-	// {"gdk_win32_hdc_release", &Gdk_win32_hdc_release},
-	// {"gdk_win32_icon_to_pixbuf_libgtk_only", &Gdk_win32_icon_to_pixbuf_libgtk_only},
-	// {"gdk_win32_pixbuf_to_hicon_libgtk_only", &Gdk_win32_pixbuf_to_hicon_libgtk_only},
-	// {"gdk_win32_selection_add_targets", &Gdk_win32_selection_add_targets},
-	// {"gdk_win32_set_modal_dialog_libgtk_only", &Gdk_win32_set_modal_dialog_libgtk_only},
-	// {"gdk_win32_window_foreign_new_for_display", &Gdk_win32_window_foreign_new_for_display},
-	// {"gdk_win32_window_get_impl_hwnd", &Gdk_win32_window_get_impl_hwnd},
-	// {"gdk_win32_window_is_win32", &Gdk_win32_window_is_win32},
-	// {"gdk_win32_window_lookup_for_display", &Gdk_win32_window_lookup_for_display},
+	{"gdk_win32_begin_direct_draw_libgtk_only", &Gdk_win32_begin_direct_draw_libgtk_only},
+	{"gdk_win32_drawable_get_handle", &Gdk_win32_drawable_get_handle},
+	{"gdk_win32_end_direct_draw_libgtk_only", &Gdk_win32_end_direct_draw_libgtk_only},
+	{"gdk_win32_handle_table_lookup", &Gdk_win32_handle_table_lookup},
+	{"gdk_win32_hdc_get", &Gdk_win32_hdc_get},
+	{"gdk_win32_hdc_release", &Gdk_win32_hdc_release},
+	{"gdk_win32_icon_to_pixbuf_libgtk_only", &Gdk_win32_icon_to_pixbuf_libgtk_only},
+	{"gdk_win32_pixbuf_to_hicon_libgtk_only", &Gdk_win32_pixbuf_to_hicon_libgtk_only},
+	{"gdk_win32_selection_add_targets", &Gdk_win32_selection_add_targets},
+	{"gdk_win32_set_modal_dialog_libgtk_only", &Gdk_win32_set_modal_dialog_libgtk_only},
+	{"gdk_win32_window_foreign_new_for_display", &Gdk_win32_window_foreign_new_for_display},
+	{"gdk_win32_window_get_impl_hwnd", &Gdk_win32_window_get_impl_hwnd},
+	{"gdk_win32_window_is_win32", &Gdk_win32_window_is_win32},
+	{"gdk_win32_window_lookup_for_display", &Gdk_win32_window_lookup_for_display},
 	{"gdk_window_add_filter", &Gdk_window_add_filter},
 	{"gdk_window_at_pointer", &Gdk_window_at_pointer},
 	{"gdk_window_attributes_type_get_type", &Gdk_window_attributes_type_get_type},
@@ -4039,7 +4068,7 @@ var apiList = outside.Apis{
 	{"gdk_window_create_similar_surface", &Gdk_window_create_similar_surface},
 	{"gdk_window_deiconify", &Gdk_window_deiconify},
 	{"gdk_window_destroy", &Gdk_window_destroy},
-	// {"gdk_window_destroy_notify", &Gdk_window_destroy_notify},
+	{"gdk_window_destroy_notify", &Gdk_window_destroy_notify},
 	{"gdk_window_edge_get_type", &Gdk_window_edge_get_type},
 	{"gdk_window_enable_synchronized_configure", &Gdk_window_enable_synchronized_configure},
 	{"gdk_window_end_paint", &Gdk_window_end_paint},
@@ -4090,7 +4119,7 @@ var apiList = outside.Apis{
 	{"gdk_window_hide", &Gdk_window_hide},
 	{"gdk_window_hints_get_type", &Gdk_window_hints_get_type},
 	{"gdk_window_iconify", &Gdk_window_iconify},
-	// {"gdk_window_impl_get_type", &Gdk_window_impl_get_type},
+	// Undocumented {"gdk_window_impl_get_type", &Gdk_window_impl_get_type},
 	{"gdk_window_input_shape_combine_mask", &Gdk_window_input_shape_combine_mask},
 	{"gdk_window_input_shape_combine_region", &Gdk_window_input_shape_combine_region},
 	{"gdk_window_invalidate_maybe_recurse", &Gdk_window_invalidate_maybe_recurse},
@@ -4191,7 +4220,7 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_animation_iter_get_pixbuf", &Gdk_pixbuf_animation_iter_get_pixbuf},
 	{"gdk_pixbuf_animation_iter_get_type", &Gdk_pixbuf_animation_iter_get_type},
 	{"gdk_pixbuf_animation_iter_on_currently_loading_frame", &Gdk_pixbuf_animation_iter_on_currently_loading_frame},
-	// {"gdk_pixbuf_animation_new_from_file", &Gdk_pixbuf_animation_new_from_file},
+	{"gdk_pixbuf_animation_new_from_file", &Gdk_pixbuf_animation_new_from_file},
 	{"gdk_pixbuf_animation_new_from_file_utf8", &Gdk_pixbuf_animation_new_from_file_utf8},
 	{"gdk_pixbuf_animation_ref", &Gdk_pixbuf_animation_ref},
 	{"gdk_pixbuf_animation_unref", &Gdk_pixbuf_animation_unref},
@@ -4217,7 +4246,7 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_format_is_scalable", &Gdk_pixbuf_format_is_scalable},
 	{"gdk_pixbuf_format_is_writable", &Gdk_pixbuf_format_is_writable},
 	{"gdk_pixbuf_format_set_disabled", &Gdk_pixbuf_format_set_disabled},
-	// {"gdk_pixbuf_from_pixdata", &Gdk_pixbuf_from_pixdata},
+	{"gdk_pixbuf_from_pixdata", &Gdk_pixbuf_from_pixdata},
 	{"gdk_pixbuf_get_bits_per_sample", &Gdk_pixbuf_get_bits_per_sample},
 	{"gdk_pixbuf_get_colorspace", &Gdk_pixbuf_get_colorspace},
 	{"gdk_pixbuf_get_file_info", &Gdk_pixbuf_get_file_info},
@@ -4230,7 +4259,7 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_get_rowstride", &Gdk_pixbuf_get_rowstride},
 	{"gdk_pixbuf_get_type", &Gdk_pixbuf_get_type},
 	{"gdk_pixbuf_get_width", &Gdk_pixbuf_get_width},
-	// {"gdk_pixbuf_gettext", &Gdk_pixbuf_gettext},
+	// Undocumented {"gdk_pixbuf_gettext", &Gdk_pixbuf_gettext},
 	{"gdk_pixbuf_loader_close", &Gdk_pixbuf_loader_close},
 	{"gdk_pixbuf_loader_get_animation", &Gdk_pixbuf_loader_get_animation},
 	{"gdk_pixbuf_loader_get_format", &Gdk_pixbuf_loader_get_format},
@@ -4241,17 +4270,17 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_loader_new_with_type", &Gdk_pixbuf_loader_new_with_type},
 	{"gdk_pixbuf_loader_set_size", &Gdk_pixbuf_loader_set_size},
 	{"gdk_pixbuf_loader_write", &Gdk_pixbuf_loader_write},
-	// {"gdk_pixbuf_major_version", &Gdk_pixbuf_major_version},
-	// {"gdk_pixbuf_micro_version", &Gdk_pixbuf_micro_version},
-	// {"gdk_pixbuf_minor_version", &Gdk_pixbuf_minor_version},
+	// Data {"gdk_pixbuf_major_version", &Gdk_pixbuf_major_version},
+	// Data {"gdk_pixbuf_micro_version", &Gdk_pixbuf_micro_version},
+	// Data {"gdk_pixbuf_minor_version", &Gdk_pixbuf_minor_version},
 	{"gdk_pixbuf_new", &Gdk_pixbuf_new},
 	{"gdk_pixbuf_new_from_data", &Gdk_pixbuf_new_from_data},
-	// {"gdk_pixbuf_new_from_file", &Gdk_pixbuf_new_from_file},
-	// {"gdk_pixbuf_new_from_file_at_scale", &Gdk_pixbuf_new_from_file_at_scale},
-	{"gdk_pixbuf_new_from_file_at_scale_utf8", &Gdk_pixbuf_new_from_file_at_scale_utf8},
-	// {"gdk_pixbuf_new_from_file_at_size", &Gdk_pixbuf_new_from_file_at_size},
-	{"gdk_pixbuf_new_from_file_at_size_utf8", &Gdk_pixbuf_new_from_file_at_size_utf8},
-	{"gdk_pixbuf_new_from_file_utf8", &Gdk_pixbuf_new_from_file_utf8},
+	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file", &Gdk_pixbuf_new_from_file},
+	// Win32 uese _utf8 {"gdk_pixbuf_new_from_file_at_scale", &Gdk_pixbuf_new_from_file_at_scale},
+	{"gdk_pixbuf_new_from_file_at_scale_utf8", &Gdk_pixbuf_new_from_file_at_scale},
+	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file_at_size", &Gdk_pixbuf_new_from_file_at_size},
+	{"gdk_pixbuf_new_from_file_at_size_utf8", &Gdk_pixbuf_new_from_file_at_size},
+	{"gdk_pixbuf_new_from_file_utf8", &Gdk_pixbuf_new_from_file},
 	{"gdk_pixbuf_new_from_inline", &Gdk_pixbuf_new_from_inline},
 	{"gdk_pixbuf_new_from_stream", &Gdk_pixbuf_new_from_stream},
 	{"gdk_pixbuf_new_from_stream_async", &Gdk_pixbuf_new_from_stream_async},
@@ -4260,28 +4289,28 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_new_from_stream_finish", &Gdk_pixbuf_new_from_stream_finish},
 	{"gdk_pixbuf_new_from_xpm_data", &Gdk_pixbuf_new_from_xpm_data},
 	{"gdk_pixbuf_new_subpixbuf", &Gdk_pixbuf_new_subpixbuf},
-	// {"gdk_pixbuf_non_anim_get_type", &Gdk_pixbuf_non_anim_get_type},
-	// {"gdk_pixbuf_non_anim_new", &Gdk_pixbuf_non_anim_new},
+	{"gdk_pixbuf_non_anim_get_type", &Gdk_pixbuf_non_anim_get_type},
+	{"gdk_pixbuf_non_anim_new", &Gdk_pixbuf_non_anim_new},
 	{"gdk_pixbuf_ref", &Gdk_pixbuf_ref},
 	{"gdk_pixbuf_rotate_simple", &Gdk_pixbuf_rotate_simple},
 	{"gdk_pixbuf_rotation_get_type", &Gdk_pixbuf_rotation_get_type},
 	{"gdk_pixbuf_saturate_and_pixelate", &Gdk_pixbuf_saturate_and_pixelate},
-	// {"gdk_pixbuf_save", &Gdk_pixbuf_save},
-	// {"gdk_pixbuf_save_to_buffer", &Gdk_pixbuf_save_to_buffer},
+	// Win32 uses _utf8 {"gdk_pixbuf_save", &Gdk_pixbuf_save},
+	// TODO(t):Variant {"gdk_pixbuf_save_to_buffer", &Gdk_pixbuf_save_to_buffer},
 	{"gdk_pixbuf_save_to_bufferv", &Gdk_pixbuf_save_to_bufferv},
-	// {"gdk_pixbuf_save_to_callback", &Gdk_pixbuf_save_to_callback},
+	// TODO(t):Variant {"gdk_pixbuf_save_to_callback", &Gdk_pixbuf_save_to_callback},
 	{"gdk_pixbuf_save_to_callbackv", &Gdk_pixbuf_save_to_callbackv},
-	// {"gdk_pixbuf_save_to_stream", &Gdk_pixbuf_save_to_stream},
-	// {"gdk_pixbuf_save_to_stream_async", &Gdk_pixbuf_save_to_stream_async},
+	// TODO(t):Variant {"gdk_pixbuf_save_to_stream", &Gdk_pixbuf_save_to_stream},
+	// TODO(t):Variant {"gdk_pixbuf_save_to_stream_async", &Gdk_pixbuf_save_to_stream_async},
 	{"gdk_pixbuf_save_to_stream_finish", &Gdk_pixbuf_save_to_stream_finish},
-	// {"gdk_pixbuf_save_utf8", &Gdk_pixbuf_save_utf8},
-	// {"gdk_pixbuf_savev", &Gdk_pixbuf_savev},
+	// TODO(t):Variant {"gdk_pixbuf_save_utf8", &Gdk_pixbuf_save_utf8},
+	// Win32 uses _utf8 {"gdk_pixbuf_savev", &Gdk_pixbuf_savev},
 	{"gdk_pixbuf_savev_utf8", &Gdk_pixbuf_savev_utf8},
 	{"gdk_pixbuf_scale", &Gdk_pixbuf_scale},
 	{"gdk_pixbuf_scale_simple", &Gdk_pixbuf_scale_simple},
-	// {"gdk_pixbuf_scaled_anim_get_type", &Gdk_pixbuf_scaled_anim_get_type},
-	// {"gdk_pixbuf_scaled_anim_iter_get_type", &Gdk_pixbuf_scaled_anim_iter_get_type},
-	// {"gdk_pixbuf_set_option", &Gdk_pixbuf_set_option},
+	// Undocumented {"gdk_pixbuf_scaled_anim_get_type", &Gdk_pixbuf_scaled_anim_get_type},
+	// Undocumented {"gdk_pixbuf_scaled_anim_iter_get_type", &Gdk_pixbuf_scaled_anim_iter_get_type},
+	{"gdk_pixbuf_set_option", &Gdk_pixbuf_set_option},
 	{"gdk_pixbuf_simple_anim_add_frame", &Gdk_pixbuf_simple_anim_add_frame},
 	{"gdk_pixbuf_simple_anim_get_loop", &Gdk_pixbuf_simple_anim_get_loop},
 	{"gdk_pixbuf_simple_anim_get_type", &Gdk_pixbuf_simple_anim_get_type},
@@ -4289,9 +4318,9 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_simple_anim_new", &Gdk_pixbuf_simple_anim_new},
 	{"gdk_pixbuf_simple_anim_set_loop", &Gdk_pixbuf_simple_anim_set_loop},
 	{"gdk_pixbuf_unref", &Gdk_pixbuf_unref},
-	// {"gdk_pixbuf_version", &Gdk_pixbuf_version},
-	// {"gdk_pixdata_deserialize", &Gdk_pixdata_deserialize},
-	// {"gdk_pixdata_from_pixbuf", &Gdk_pixdata_from_pixbuf},
-	// {"gdk_pixdata_serialize", &Gdk_pixdata_serialize},
-	// {"gdk_pixdata_to_csource", &Gdk_pixdata_to_csource},
+	// DATA {"gdk_pixbuf_version", &Gdk_pixbuf_version},
+	{"gdk_pixdata_deserialize", &Gdk_pixdata_deserialize},
+	{"gdk_pixdata_from_pixbuf", &Gdk_pixdata_from_pixbuf},
+	{"gdk_pixdata_serialize", &Gdk_pixdata_serialize},
+	{"gdk_pixdata_to_csource", &Gdk_pixdata_to_csource},
 }

@@ -3463,4 +3463,14 @@ type (
 	PangoGlyphVisAttr struct {
 		is_cluster_start Guint // : 1
 	}
+
+	GdkPixdata struct {
+		magic        Guint32
+		length       Gint32
+		pixdata_type GdkPixdataType
+		rowstride    Guint32
+		width        Guint32
+		height       Guint32
+		pixel_data   *Guint8
+	}
 )
