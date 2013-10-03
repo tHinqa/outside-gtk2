@@ -38,6 +38,7 @@ type (
 	Unsigned_int  uint
 	Unsigned_long uint32 //TODO(t):check  size
 
+	AtkAttributeSet        GSList
 	Gboolean               Gint
 	GCacheDestroyFunc      func(value Gpointer)
 	GCacheDupFunc          func(value Gpointer) Gpointer
@@ -4430,6 +4431,14 @@ const (
 	GDK_PIXDATA_DUMP_RLE_DECODER
 	GDK_PIXDATA_DUMP_PIXDATA_STREAM GdkPixdataDumpType = 0
 	GDK_PIXDATA_DUMP_GTYPES         GdkPixdataDumpType = 0
+)
+
+type GailOffsetType Enum
+
+const (
+	GAIL_BEFORE_OFFSET GailOffsetType = iota
+	GAIL_AT_OFFSET
+	GAIL_AFTER_OFFSET
 )
 
 type (

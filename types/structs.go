@@ -3583,4 +3583,9 @@ type (
 	GTrashStack struct {
 		next *GTrashStack
 	}
+
+	GailTextUtil struct {
+		parent GObject
+		buffer *GtkTextBuffer
+	}
 )
