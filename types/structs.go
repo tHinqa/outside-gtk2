@@ -3673,4 +3673,420 @@ type (
 		ligID      Gushort
 		internal   Guint
 	}
+
+	FT_FaceRec struct {
+		num_faces           FT_Long
+		face_index          FT_Long
+		face_flags          FT_Long
+		style_flags         FT_Long
+		num_glyphs          FT_Long
+		family_name         *FT_String
+		style_name          *FT_String
+		num_fixed_sizes     FT_Int
+		available_sizes     *FT_Bitmap_Size
+		num_charmaps        FT_Int
+		charmaps            *FT_CharMap
+		generic             FT_Generic
+		bbox                FT_BBox
+		units_per_EM        FT_UShort
+		ascender            FT_Short
+		descender           FT_Short
+		height              FT_Short
+		max_advance_width   FT_Short
+		max_advance_height  FT_Short
+		underline_position  FT_Short
+		underline_thickness FT_Short
+		glyph               FT_GlyphSlot
+		size                FT_Size
+		charmap             FT_CharMap
+		driver              FT_Driver
+		memory              FT_Memory
+		stream              FT_Stream
+		sizes_list          FT_ListRec
+		autohint            FT_Generic
+		extensions          *Void
+		internal            FT_Face_Internal
+	}
+
+	FT_Bitmap_Size struct {
+		height FT_Short
+		width  FT_Short
+		size   FT_Pos
+		x_ppem FT_Pos
+		y_ppem FT_Pos
+	}
+
+	FT_Generic_Finalizer func(
+		object *Void)
+
+	FT_Open_Args struct {
+		flags       FT_UInt
+		memory_base *FT_Byte
+		memory_size FT_Long
+		pathname    *FT_String
+		stream      FT_Stream
+		driver      FT_Module
+		num_params  FT_Int
+		params      *FT_Parameter
+	}
+
+	FT_StreamDesc struct {
+		//Union
+		value   Long
+		pointer *Void
+	}
+
+	FT_Parameter struct {
+		tag  FT_ULong
+		data FT_Pointer
+	}
+
+	FT_Size_RequestRec struct {
+		Type           FT_Size_Request_Type
+		width          FT_Long
+		height         FT_Long
+		horiResolution FT_UInt
+		vertResolution FT_UInt
+	}
+
+	FT_Matrix struct {
+		xx, xy FT_Fixed
+		yx, yy FT_Fixed
+	}
+
+	FT_Vector struct {
+		x FT_Pos
+		y FT_Pos
+	}
+
+	FT_CharMapRec struct {
+		face        FT_Face
+		encoding    FT_Encoding
+		platform_id FT_UShort
+		encoding_id FT_UShort
+	}
+
+	FT_GlyphSlotRec struct {
+		library           FT_Library
+		face              FT_Face
+		next              FT_GlyphSlot
+		reserved          FT_UInt
+		generic           FT_Generic
+		metrics           FT_Glyph_Metrics
+		linearHoriAdvance FT_Fixed
+		linearVertAdvance FT_Fixed
+		advance           FT_Vector
+		format            FT_Glyph_Format
+		bitmap            FT_Bitmap
+		bitmap_left       FT_Int
+		bitmap_top        FT_Int
+		outline           FT_Outline
+		num_subglyphs     FT_UInt
+		subglyphs         FT_SubGlyph
+		control_data      *Void
+		control_len       Long
+		lsb_delta         FT_Pos
+		rsb_delta         FT_Pos
+		other             *Void
+		internal          FT_Slot_Internal
+	}
+
+	FT_Generic struct {
+		data      *Void
+		finalizer FT_Generic_Finalizer
+	}
+
+	FT_Glyph_Metrics struct {
+		width        FT_Pos
+		height       FT_Pos
+		horiBearingX FT_Pos
+		horiBearingY FT_Pos
+		horiAdvance  FT_Pos
+		vertBearingX FT_Pos
+		vertBearingY FT_Pos
+		vertAdvance  FT_Pos
+	}
+
+	FT_Outline struct {
+		n_contours Short
+		n_points   Short
+		points     *FT_Vector
+		tags       *Char
+		contours   *Short
+		flags      int
+	}
+
+	FT_BBox struct {
+		xMin, yMin FT_Pos
+		xMax, yMax FT_Pos
+	}
+
+	FT_SizeRec struct {
+		face     FT_Face
+		generic  FT_Generic
+		metrics  FT_Size_Metrics
+		internal FT_Size_Internal
+	}
+
+	FT_MemoryRec struct {
+		user    *Void
+		alloc   FT_Alloc_Func
+		free    FT_Free_Func
+		realloc FT_Realloc_Func
+	}
+
+	FT_Size_Metrics struct {
+		x_ppem      FT_UShort
+		y_ppem      FT_UShort
+		x_scale     FT_Fixed
+		y_scale     FT_Fixed
+		ascender    FT_Pos
+		descender   FT_Pos
+		height      FT_Pos
+		max_advance FT_Pos
+	}
+
+	FT_ListRec struct {
+		head FT_ListNode
+		tail FT_ListNode
+	}
+
+	FT_ListNodeRec struct {
+		prev FT_ListNode
+		next FT_ListNode
+		data *Void
+	}
+
+	FT_GlyphRec struct {
+		library FT_Library
+		clazz   *FT_Glyph_Class
+		format  FT_Glyph_Format
+		advance FT_Vector
+	}
+
+	FT_Glyph_Class struct {
+		glyph_size      FT_Long
+		glyph_format    FT_Glyph_Format
+		glyph_init      FT_Glyph_InitFunc
+		glyph_done      FT_Glyph_DoneFunc
+		glyph_copy      FT_Glyph_CopyFunc
+		glyph_transform FT_Glyph_TransformFunc
+		glyph_bbox      FT_Glyph_GetBBoxFunc
+		glyph_prepare   FT_Glyph_PrepareFunc
+	}
+
+	PS_FontInfoRec struct {
+		version             *FT_String
+		notice              *FT_String
+		full_name           *FT_String
+		family_name         *FT_String
+		weight              *FT_String
+		italic_angle        FT_Long
+		is_fixed_pitch      FT_Bool
+		underline_position  FT_Short
+		underline_thickness FT_UShort
+	}
+
+	PS_PrivateRec struct {
+		unique_id              FT_Int
+		lenIV                  FT_Int
+		num_blue_values        FT_Byte
+		num_other_blues        FT_Byte
+		num_family_blues       FT_Byte
+		num_family_other_blues FT_Byte
+		blue_values            [14]FT_Short
+		other_blues            [10]FT_Short
+		family_blues           [14]FT_Short
+		family_other_blues     [10]FT_Short
+		blue_scale             FT_Fixed
+		blue_shift             FT_Int
+		blue_fuzz              FT_Int
+		standard_width         [1]FT_UShort
+		standard_height        [1]FT_UShort
+		num_snap_widths        FT_Byte
+		num_snap_heights       FT_Byte
+		force_bold             FT_Bool
+		round_stem_up          FT_Bool
+		snap_widths            [13]FT_Short
+		snap_heights           [13]FT_Short
+		expansion_factor       FT_Fixed
+		language_group         FT_Long
+		password               FT_Long
+		min_feature            [2]FT_Short
+	}
+
+	FT_Module_Class struct {
+		module_flags     FT_ULong
+		module_size      FT_Long
+		module_name      *FT_String
+		module_version   FT_Fixed
+		module_requires  FT_Fixed
+		module_interface *Void
+		module_init      FT_Module_Constructor
+		module_done      FT_Module_Destructor
+		get_interface    FT_Module_Requester
+	}
+
+	FT_Multi_Master struct {
+		num_axis    FT_UInt
+		num_designs FT_UInt
+		axis        [4]FT_MM_Axis
+	}
+
+	FT_MM_Axis struct {
+		name    *FT_String
+		minimum FT_Long
+		maximum FT_Long
+	}
+
+	FT_MM_Var struct {
+		num_axis        FT_UInt
+		num_designs     FT_UInt
+		num_namedstyles FT_UInt
+		axis            *FT_Var_Axis
+		namedstyle      *FT_Var_Named_Style
+	}
+
+	FT_Var_Axis struct {
+		name    *FT_String
+		minimum FT_Fixed
+		def     FT_Fixed
+		maximum FT_Fixed
+		tag     FT_ULong
+		strid   FT_UInt
+	}
+
+	FT_Var_Named_Style struct {
+		coords *FT_Fixed
+		strid  FT_UInt
+	}
+
+	FT_Outline_Funcs struct {
+		move_to  FT_Outline_MoveToFunc
+		line_to  FT_Outline_LineToFunc
+		conic_to FT_Outline_ConicToFunc
+		cubic_to FT_Outline_CubicToFunc
+		shift    int
+		delta    FT_Pos
+	}
+
+	FT_Raster_Params struct {
+		target      *FT_Bitmap
+		source      *Void
+		flags       int
+		gray_spans  FT_SpanFunc
+		black_spans FT_SpanFunc
+		bit_test    FT_Raster_BitTest_Func
+		bit_set     FT_Raster_BitSet_Func
+		user        *Void
+		clip_box    FT_BBox
+	}
+
+	FT_Span struct {
+		x        Short
+		len      Unsigned_short
+		coverage Unsigned_char
+	}
+
+	BDF_PropertyRec struct {
+		Type BDF_PropertyType
+		// Union
+		atom *Char
+		// integer  FT_Int32
+		// cardinal FT_UInt32
+	}
+
+	FT_WinFNT_HeaderRec struct {
+		version               FT_UShort
+		file_size             FT_ULong
+		copyright             [60]FT_Byte
+		file_type             FT_UShort
+		nominal_point_size    FT_UShort
+		vertical_resolution   FT_UShort
+		horizontal_resolution FT_UShort
+		ascent                FT_UShort
+		internal_leading      FT_UShort
+		external_leading      FT_UShort
+		italic                FT_Byte
+		underline             FT_Byte
+		strike_out            FT_Byte
+		weight                FT_UShort
+		charset               FT_Byte
+		pixel_width           FT_UShort
+		pixel_height          FT_UShort
+		pitch_and_family      FT_Byte
+		avg_width             FT_UShort
+		max_width             FT_UShort
+		first_char            FT_Byte
+		last_char             FT_Byte
+		default_char          FT_Byte
+		break_char            FT_Byte
+		bytes_per_row         FT_UShort
+		device_offset         FT_ULong
+		face_name_offset      FT_ULong
+		bits_pointer          FT_ULong
+		bits_offset           FT_ULong
+		reserved              FT_Byte
+		flags                 FT_ULong
+		A_space               FT_UShort
+		B_space               FT_UShort
+		C_space               FT_UShort
+		color_table_offset    FT_UShort
+		reserved1             [4]FT_ULong
+	}
+
+	FT_SfntName struct {
+		platform_id FT_UShort
+		encoding_id FT_UShort
+		language_id FT_UShort
+		name_id     FT_UShort
+		string      *FT_Byte
+		string_len  FT_UInt
+	}
+
+	FTC_ScalerRec struct {
+		face_id FTC_FaceID
+		width   FT_UInt
+		height  FT_UInt
+		pixel   FT_Int
+		x_res   FT_UInt
+		y_res   FT_UInt
+	}
+
+	FTC_ImageTypeRec struct {
+		face_id FTC_FaceID
+		width   FT_Int
+		height  FT_Int
+		flags   FT_Int32
+	}
+
+	FTC_SBitRec struct {
+		width     FT_Byte
+		height    FT_Byte
+		left      FT_Char
+		top       FT_Char
+		format    FT_Byte
+		max_grays FT_Byte
+		pitch     FT_Short
+		xadvance  FT_Char
+		yadvance  FT_Char
+		buffer    *FT_Byte
+	}
+
+	FTC_FontRec struct {
+		face_id    FTC_FaceID
+		pix_width  FT_UShort
+		pix_height FT_UShort
+	}
+
+	FT_Bitmap struct {
+		rows         int
+		width        int
+		pitch        int
+		buffer       *Unsigned_char
+		num_grays    Short
+		pixel_mode   Char
+		palette_mode Char
+		palette      *Void
+	}
 )

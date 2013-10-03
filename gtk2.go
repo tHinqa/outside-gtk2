@@ -4,6 +4,7 @@ package gtk2
 import (
 	_ "github.com/tHinqa/outside-gtk2/atk"
 	_ "github.com/tHinqa/outside-gtk2/cairo"
+	_ "github.com/tHinqa/outside-gtk2/freetype2"
 	_ "github.com/tHinqa/outside-gtk2/gail"
 	_ "github.com/tHinqa/outside-gtk2/gdk"
 	_ "github.com/tHinqa/outside-gtk2/gio"
