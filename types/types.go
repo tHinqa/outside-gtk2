@@ -6,6 +6,10 @@ type (
 	Long_double fix
 	Va_list     fix
 
+	//TODO(t):Add
+	FT_Bitmap  struct{}
+	FT_FaceRec struct{}
+
 	Cairo_bool_t  int
 	Char          int8
 	Double        float64
@@ -39,6 +43,7 @@ type (
 	Unsigned_long uint32 //TODO(t):check  size
 
 	AtkAttributeSet        GSList
+	FT_Face                *FT_FaceRec
 	Gboolean               Gint
 	GCacheDestroyFunc      func(value Gpointer)
 	GCacheDupFunc          func(value Gpointer) Gpointer
@@ -74,7 +79,33 @@ type (
 	PangoGlyph             Guint32
 	PangoGlyphUnit         Gint32
 	PangoLayoutRun         PangoGlyphItem
+	PangoOTTag             Guint32
 
+	simpleObject struct{ parent GObject }
+
+	AtkHyperlink     simpleObject
+	AtkMisc          simpleObject
+	AtkObjectFactory simpleObject
+	AtkStateSet      simpleObject
+	GdkDrawable      simpleObject
+	GtkIMContext     simpleObject
+	PangoFcDecoder   simpleObject
+
+	AtkAction                   struct{}
+	AtkComponent                struct{}
+	AtkDocument                 struct{}
+	AtkEditableText             struct{}
+	AtkHyperlinkImpl            struct{}
+	AtkHypertext                struct{}
+	AtkImage                    struct{}
+	AtkImplementor              struct{}
+	AtkSelection                struct{}
+	AtkSocket                   struct{}
+	AtkState                    struct{}
+	AtkStreamableContent        struct{}
+	AtkTable                    struct{}
+	AtkText                     struct{}
+	AtkValue                    struct{}
 	Cairo_device_t              struct{}
 	Cairo_font_face_t           struct{}
 	Cairo_font_options_t        struct{}
@@ -84,6 +115,7 @@ type (
 	Cairo_script_interpreter_t  struct{}
 	Cairo_surface_t             struct{}
 	Cairo_t                     struct{}
+	FcCharSet                   struct{}
 	FcPattern                   struct{}
 	GAllocator                  struct{}
 	GAppLaunchContextPrivate    struct{}
@@ -231,6 +263,9 @@ type (
 	PangoCoverage               struct{}
 	PangoEngineLang             struct{}
 	PangoEngineShape            struct{}
+	PangoFcFontKey              struct{}
+	PangoFcFontMapPrivate       struct{}
+	PangoFcFontsetKey           struct{}
 	PangoFont                   struct{}
 	PangoFontDescription        struct{}
 	PangoFontFace               struct{}
@@ -238,9 +273,13 @@ type (
 	PangoFontMap                struct{}
 	PangoFontMetrics            struct{}
 	PangoFontset                struct{}
+	PangoFT2FontMap             struct{}
 	PangoLanguage               struct{}
 	PangoLayout                 struct{}
 	PangoLayoutIter             struct{}
+	PangoOTBuffer               struct{}
+	PangoOTInfo                 struct{}
+	PangoOTRuleset              struct{}
 	PangoRendererPrivate        struct{}
 	PangoScriptIter             struct{}
 	PangoTabArray               struct{}
@@ -4441,6 +4480,13 @@ const (
 	GAIL_AFTER_OFFSET
 )
 
+type PangoOTTableType Enum
+
+const (
+	PANGO_OT_TABLE_GSUB PangoOTTableType = iota
+	PANGO_OT_TABLE_GPOS
+)
+
 type (
 	GChildWatchFunc func(pid GPid, status Gint, data Gpointer)
 
@@ -4923,11 +4969,32 @@ type (
 		closure *Void,
 		surface *Cairo_surface_t) *Cairo_t
 
-	Csi_show_page_func_t func(
-		closure *Void,
-		cr *Cairo_t)
+	Csi_show_page_func_t func(closure *Void, cr *Cairo_t)
 
-	Csi_copy_page_func_t func(
-		closure *Void,
-		cr *Cairo_t)
+	Csi_copy_page_func_t func(closure *Void, cr *Cairo_t)
+
+	AtkEventListener func(obj *AtkObject)
+
+	GSignalEmissionHook func(
+		ihint *GSignalInvocationHint,
+		n_param_values Guint,
+		param_values *GValue,
+		data Gpointer) Gboolean
+
+	AtkKeySnoopFunc func(
+		event *AtkKeyEventStruct, func_data Gpointer) Gint
+
+	AtkPropertyChangeHandler func(*AtkObject, *AtkPropertyValues)
+
+	AtkEventListenerInit func()
+
+	AtkFocusHandler func(*AtkObject, Gboolean)
+
+	PangoFcDecoderFindFunc func(
+		pattern *FcPattern,
+		user_data Gpointer) *PangoFcDecoder
+
+	PangoFT2SubstituteFunc func(
+		pattern *FcPattern,
+		data Gpointer)
 )

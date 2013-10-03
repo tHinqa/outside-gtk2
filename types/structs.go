@@ -444,10 +444,6 @@ type (
 		parent        *GtkWidget
 	}
 
-	GdkDrawable struct {
-		parent_instance GObject
-	}
-
 	GtkRequisition struct {
 		width  Gint
 		height Gint
@@ -1213,10 +1209,6 @@ type (
 	GtkTextMark struct {
 		parent_instance GObject
 		segment         Gpointer
-	}
-
-	GtkIMContext struct {
-		parent_instance GObject
 	}
 
 	GtkTextIter struct {
@@ -3587,5 +3579,98 @@ type (
 	GailTextUtil struct {
 		parent GObject
 		buffer *GtkTextBuffer
+	}
+
+	AtkKeyEventStruct struct {
+		Type      Gint
+		state     Guint
+		keyval    Guint
+		length    Gint
+		string    *Gchar
+		keycode   Guint16
+		timestamp Guint32
+	}
+
+	AtkRegistry struct {
+		parent                  GObject
+		factory_type_registry   *GHashTable
+		factory_singleton_cache *GHashTable
+	}
+
+	AtkRelation struct {
+		parent       GObject
+		target       *GPtrArray
+		relationship AtkRelationType
+	}
+
+	AtkPropertyValues struct {
+		property_name *Gchar
+		old_value     GValue
+		new_value     GValue
+	}
+
+	AtkGObjectAccessible struct {
+		parent AtkObject
+	}
+
+	AtkTextRectangle struct {
+		x      Gint
+		y      Gint
+		width  Gint
+		height Gint
+	}
+
+	AtkTextRange struct {
+		bounds       AtkTextRectangle
+		start_offset Gint
+		end_offset   Gint
+		content      *Gchar
+	}
+
+	AtkPlug struct {
+		parent AtkObject
+	}
+
+	PangoFcFont struct {
+		parent_instance PangoFont
+		font_pattern    *FcPattern
+		fontmap         *PangoFontMap
+		priv            Gpointer
+		matrix          PangoMatrix
+		description     *PangoFontDescription
+		metrics_by_lang *GSList
+		bits            Guint
+		// is_hinted : 1
+		// is_transformed : 1
+	}
+
+	PangoFcFontMap struct {
+		parent_instance PangoFontMap
+		priv            *PangoFcFontMapPrivate
+	}
+
+	PangoOTRulesetDescription struct {
+		script                 PangoScript
+		language               *PangoLanguage
+		static_gsub_features   *PangoOTFeatureMap
+		n_static_gsub_features Guint
+		static_gpos_features   *PangoOTFeatureMap
+		n_static_gpos_features Guint
+		other_features         *PangoOTFeatureMap
+		n_other_features       Guint
+	}
+
+	PangoOTFeatureMap struct {
+		feature_name [5]Char
+		property_bit Gulong
+	}
+
+	PangoOTGlyph struct {
+		glyph      Guint32
+		properties Guint
+		cluster    Guint
+		component  Gushort
+		ligID      Gushort
+		internal   Guint
 	}
 )
