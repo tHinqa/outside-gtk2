@@ -7,12 +7,10 @@ import (
 
 type (
 	//TODO(t):Fix
-	FILE       uintptr
-	FT_FaceRec struct{} // Real
-	FT_Face    *FT_FaceRec
-	HDC        uint32
-	HFONT      uint32
-	LOGFONTW   struct{}
+	FILE     uintptr
+	HDC      uint32
+	HFONT    uint32
+	LOGFONTW struct{}
 )
 
 type Cairo_pdf_version_t Enum

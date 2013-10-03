@@ -3955,32 +3955,6 @@ var (
 
 	G_settings_bind_flags_get_type func() GType
 
-	G_module_supported func() Gboolean
-
-	G_module_open_utf8 func(
-		file_name *Gchar,
-		flags GModuleFlags) *GModule
-
-	G_module_close func(
-		module *GModule) Gboolean
-
-	G_module_make_resident func(
-		module *GModule)
-
-	G_module_error func() *Gchar
-
-	G_module_symbol func(
-		module *GModule,
-		symbol_name *Gchar,
-		symbol *Gpointer) Gboolean
-
-	G_module_name_utf8 func(
-		module *GModule) *Gchar
-
-	G_module_build_path func(
-		directory *Gchar,
-		module_name *Gchar) *Gchar
-
 	G_io_module_get_type func() GType
 
 	G_io_module_new func(
