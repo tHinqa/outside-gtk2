@@ -9,6 +9,14 @@ func init() {
 	outside.AddDllApis(dll, false, apiList)
 }
 
+type (
+	//TODO(t):Fix (stat/stat32)
+	GStatBuf         struct{}
+	FILE             struct{}
+	Utimbuf          struct{}
+	G_thread_gettime func() Guint64
+)
+
 var (
 	G_array_new func(zero_terminated Gboolean,
 		clear_ Gboolean,
@@ -161,6 +169,7 @@ var (
 
 	G_intern_static_string func(str *Gchar) *Gchar
 
+	//TODO(t):Variant
 	//G_error_new func(domain GQuark, code Gint, format *Gchar, ...)*GError
 
 	G_error_new_literal func(domain GQuark,
@@ -180,6 +189,7 @@ var (
 		domain GQuark,
 		code Gint) Gboolean
 
+	//TODO(t):Variant
 	// G_set_error func(err **GError, domain GQuark, code Gint, format *Gchar, ...)
 
 	G_set_error_literal func(err **GError,
@@ -192,17 +202,17 @@ var (
 
 	G_clear_error func(err **GError)
 
+	//TODO(t):Variant
 	// G_prefix_error func(err **GError, format *Gchar, ...)
-
 	// G_propagate_prefixed_error func(dest **GError, src *GError, format *Gchar, ...)
 
-	G_get_user_name_utf8 func() *Gchar
+	G_get_user_name func() *Gchar
 
-	G_get_real_name_utf8 func() *Gchar
+	G_get_real_name func() *Gchar
 
-	G_get_home_dir_utf8 func() *Gchar
+	G_get_home_dir func() *Gchar
 
-	G_get_tmp_dir_utf8 func() *Gchar
+	G_get_tmp_dir func() *Gchar
 
 	G_get_host_name func() *Gchar
 
@@ -224,14 +234,13 @@ var (
 
 	G_get_system_data_dirs func() **Gchar
 
-	g_win32_get_system_data_dirs_for_module func(
+	G_win32_get_system_data_dirs_for_module func(
 		f func()) **Gchar
 
-	g_parse_debug_string func(
-		str *Gchar,
-		keys *GDebugKey,
-		nkeys Guint) Guint
+	G_parse_debug_string func(
+		str *Gchar, keys *GDebugKey, nkeys Guint) Guint
 
+	//TODO(t):Variant
 	// G_snprintf func(str *Gchar, n Gulong, format *Gchar, ...) Gint
 
 	G_vsnprintf func(str *Gchar,
@@ -245,7 +254,7 @@ var (
 
 	G_basename func(file_name *Gchar) *Gchar
 
-	G_get_current_dir_utf8 func() *Gchar
+	G_get_current_dir func() *Gchar
 
 	G_path_get_basename func(file_name *Gchar) *Gchar
 
@@ -253,13 +262,13 @@ var (
 
 	G_nullify_pointer func(nullify_location *Gpointer)
 
-	G_getenv_utf8 func(variable *Gchar) *Gchar
+	G_getenv func(variable *Gchar) *Gchar
 
-	G_setenv_utf8 func(variable *Gchar,
+	G_setenv func(variable *Gchar,
 		value *Gchar,
 		overwrite Gboolean) Gboolean
 
-	G_unsetenv_utf8 func(variable *Gchar)
+	G_unsetenv func(variable *Gchar)
 
 	G_listenv func() **Gchar
 
@@ -976,23 +985,23 @@ var (
 		bytes_written *Gsize,
 		e **GError) *Gchar
 
-	G_filename_to_utf8_utf8 func(opsysstr *Gchar,
+	G_filename_to_utf8 func(opsysstr *Gchar,
 		leng Gssize,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
 		e **GError) *Gchar
 
-	G_filename_from_utf8_utf8 func(utf8str *Gchar,
+	G_filename_from_utf8 func(utf8str *Gchar,
 		leng Gssize,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
 		e **GError) *Gchar
 
-	G_filename_from_uri_utf8 func(uri *Gchar,
+	G_filename_from_uri func(uri *Gchar,
 		hostname **Gchar,
 		e **GError) *Gchar
 
-	G_filename_to_uri_utf8 func(filename *Gchar,
+	G_filename_to_uri func(filename *Gchar,
 		hostname *Gchar,
 		e **GError) *Gchar
 
@@ -1349,10 +1358,10 @@ var (
 
 	G_file_error_from_errno func(err_no Gint) GFileError
 
-	G_file_test_utf8 func(filename *Gchar,
+	G_file_test func(filename *Gchar,
 		test GFileTest) Gboolean
 
-	G_file_get_contents_utf8 func(filename *Gchar,
+	G_file_get_contents func(filename *Gchar,
 		contents **Gchar,
 		length *Gsize,
 		e **GError) Gboolean
@@ -1365,23 +1374,25 @@ var (
 	G_file_read_link func(filename *Gchar,
 		e **GError) *Gchar
 
-	G_mkstemp_utf8 func(tmpl *Gchar) Gint
+	G_mkstemp func(tmpl *Gchar) Gint
 
 	G_mkstemp_full func(tmpl *Gchar,
 		flags int,
 		mode int) Gint
 
-	G_file_open_tmp_utf8 func(tmpl *Gchar,
+	G_file_open_tmp func(tmpl *Gchar,
 		name_used **Gchar,
 		e **GError) Gint
 
 	G_format_size_for_display func(size Goffset) *Char
 
+	//TODO(t):Variant
 	// G_build_path func(separator *Gchar, first_element *Gchar, ...)*Gchar
 
 	G_build_pathv func(separator *Gchar,
 		args **Gchar) *Gchar
 
+	//TODO(t):Variant
 	// G_build_filename func(first_element *Gchar, ...)*Gchar
 
 	G_build_filenamev func(args **Gchar) *Gchar
@@ -2173,12 +2184,14 @@ var (
 		format *Gchar,
 		args Va_list)
 
+	//TODO(t): Variant
 	// G_string_printf func(str *GString, format *Gchar, ...)void
 
 	G_string_append_vprintf func(str *GString,
 		format *Gchar,
 		args Va_list)
 
+	//TODO(t): Variant
 	// G_string_append_printf func(str *GString, format *Gchar, ...)void
 
 	G_string_append_uri_escaped func(str *GString,
@@ -2307,7 +2320,7 @@ var (
 		typ GSeekType,
 		e **GError) GIOStatus
 
-	G_io_channel_new_file_utf8 func(filename *Gchar,
+	G_io_channel_new_file func(filename *Gchar,
 		mode *Gchar,
 		e **GError) *GIOChannel
 
@@ -2626,6 +2639,7 @@ var (
 	G_log_set_default_handler func(log_func GLogFunc,
 		user_data Gpointer) GLogFunc
 
+	//TODO(t):Variant
 	// G_log func(log_domain *Gchar, log_level GLogLevelFlags, format *Gchar, ...)void
 
 	G_logv func(log_domain *Gchar,
@@ -2659,10 +2673,12 @@ var (
 		pretty_function *Char,
 		expression *Char)
 
+	//TODO(t):Variant
 	// G_print func(format *Gchar, ...)void
 
 	G_set_print_handler func(f GPrintFunc) GPrintFunc
 
+	//TODO(t):Variant
 	// G_printerr func(format *Gchar, ...)void
 
 	G_set_printerr_handler func(f GPrintFunc) GPrintFunc
@@ -3015,6 +3031,7 @@ var (
 		hash_func GHashFunc,
 		key_equal_func GEqualFunc)
 
+	//TODO(t):Variant
 	// G_relation_insert func(relation *GRelation, ...)void
 
 	G_relation_delete func(relation *GRelation,
@@ -3029,6 +3046,7 @@ var (
 		key Gconstpointer,
 		field Gint) Gint
 
+	//TODO(t):Variant
 	// G_relation_exists func(relation *GRelation, ...)Gboolean
 
 	G_relation_print func(relation *GRelation)
@@ -3237,8 +3255,8 @@ var (
 		message *Gchar,
 		is_error Gint)
 
+	//TODO(t):Variant
 	// G_scanner_error func(scanner *GScanner, format *Gchar, ...)void
-
 	// G_scanner_warn func(scanner *GScanner, format *Gchar, ...)void
 
 	G_sequence_new func(data_destroy GDestroyNotify) *GSequence
@@ -3373,7 +3391,7 @@ var (
 
 	G_spawn_error_quark func() GQuark
 
-	G_spawn_async_utf8 func(working_directory *Gchar,
+	G_spawn_async func(working_directory *Gchar,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3382,7 +3400,7 @@ var (
 		child_pid *GPid,
 		e **GError) Gboolean
 
-	G_spawn_async_with_pipes_utf8 func(working_directory *Gchar,
+	G_spawn_async_with_pipes func(working_directory *Gchar,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3394,7 +3412,7 @@ var (
 		standard_error *Gint,
 		e **GError) Gboolean
 
-	G_spawn_sync_utf8 func(working_directory *Gchar,
+	G_spawn_sync func(working_directory *Gchar,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3405,13 +3423,13 @@ var (
 		exit_status *Gint,
 		e **GError) Gboolean
 
-	G_spawn_command_line_sync_utf8 func(command_line *Gchar,
+	G_spawn_command_line_sync func(command_line *Gchar,
 		standard_output **Gchar,
 		standard_error **Gchar,
 		exit_status *Gint,
 		e **GError) Gboolean
 
-	G_spawn_command_line_async_utf8 func(command_line *Gchar,
+	G_spawn_command_line_async func(command_line *Gchar,
 		e **GError) Gboolean
 
 	G_spawn_close_pid func(pid GPid)
@@ -3516,6 +3534,7 @@ var (
 
 	G_strdup func(str *Gchar) *Gchar
 
+	//TODO(t): Variant
 	// G_strdup_printf func(format *Gchar, ...)* Gchar
 
 	G_strdup_vprintf func(format *Gchar,
@@ -3527,8 +3546,8 @@ var (
 	G_strnfill func(length Gsize,
 		fill_char Gchar) *Gchar
 
+	//TODO(t): Variant
 	// G_strconcat func(string1 *Gchar, ...)* Gchar
-
 	// G_strjoin func(separator *Gchar, ...)* Gchar
 
 	G_strcompress func(source *Gchar) *Gchar
@@ -3585,10 +3604,9 @@ var (
 	G_strcmp0 func(str1 *Char,
 		str2 *Char) int
 
+	//TODO(t):Variant
 	// G_test_minimized_result func(minimized_quantity double, format *Char, ...)void
-
 	// G_test_maximized_result func(maximized_quantity double, format *Char, ...)void
-
 	// G_test_init func(argc *int, argv ***Char, ...)void
 
 	G_test_run func() int
@@ -3600,6 +3618,7 @@ var (
 		test_data Gconstpointer,
 		test_func GTestDataFunc)
 
+	//TODO(t):Variant
 	// G_test_message func(format *Char, ...)void
 
 	G_test_bug_base func(uri_pattern *Char)
@@ -3931,11 +3950,11 @@ var (
 
 	G_variant_is_floating func(value *GVariant) Gboolean
 
-	G_variant_get_typ func(value *GVariant) *GVariantType
+	G_variant_get_type func(value *GVariant) *GVariantType
 
 	G_variant_get_type_string func(value *GVariant) *Gchar
 
-	G_variant_is_of_typ func(value *GVariant,
+	G_variant_is_of_type func(value *GVariant,
 		typ *GVariantType) Gboolean
 
 	G_variant_is_container func(value *GVariant) Gboolean
@@ -4044,11 +4063,13 @@ var (
 
 	G_variant_n_children func(value *GVariant) Gsize
 
+	//TODO(t): Variant
 	// G_variant_get_child func(value *GVariant, index_ Gsize, format_string *Gchar, ...)void
 
 	G_variant_get_child_value func(value *GVariant,
 		index_ Gsize) *GVariant
 
+	//TODO(t): Variant
 	// G_variant_lookup func(dictionary *GVariant, key *Gchar, format_string *Gchar, ...)Gboolean
 
 	G_variant_lookup_value func(dictionary *GVariant,
@@ -4104,8 +4125,8 @@ var (
 
 	G_variant_iter_next_value func(iter *GVariantIter) *GVariant
 
+	//TODO(t): Variant
 	// G_variant_iter_next func(iter *GVariantIter, format_string *Gchar, ...)Gboolean
-
 	// G_variant_iter_loop func(iter *GVariantIter, format_string *Gchar, ...)Gboolean
 
 	G_variant_parser_get_error_quark func() GQuark
@@ -4131,12 +4152,10 @@ var (
 	G_variant_builder_add_value func(builder *GVariantBuilder,
 		value *GVariant)
 
+	//TODO(t): Variant
 	// G_variant_builder_add func(builder *GVariantBuilder, format_string *Gchar, ...)void
-
 	// G_variant_builder_add_parsed func(builder *GVariantBuilder, format *Gchar, ...)void
-
 	// G_variant_new func(format_string *Gchar, ...)*GVariant
-
 	// G_variant_get func(value *GVariant, format_string *Gchar, ...)void
 
 	G_variant_new_va func(format_string *Gchar,
@@ -4169,10 +4188,10 @@ var (
 
 	G_win32_error_message func(err Gint) *Gchar
 
-	G_win32_get_package_installation_directory_utf8 func(pkg *Gchar,
+	G_win32_get_package_installation_directory func(pkg *Gchar,
 		dll_name *Gchar) *Gchar
 
-	G_win32_get_package_installation_subdirectory_utf8 func(pkg *Gchar,
+	G_win32_get_package_installation_subdirectory func(pkg *Gchar,
 		dll_name *Gchar,
 		subdir *Gchar) *Gchar
 
@@ -4181,14 +4200,117 @@ var (
 	G_win32_get_windows_version func() Guint
 
 	G_win32_locale_filename_from_utf8 func(utf8filename *Gchar) *Gchar
+
+	G_access func(filename *Gchar, mode int) int
+
+	G_chmod func(filename *Gchar, mode int) int
+
+	G_open func(filename *Gchar, flags int, mode int) int
+
+	G_creat func(filename *Gchar, mode int) int
+
+	G_rename func(oldfilename *Gchar, newfilename *Gchar) int
+
+	G_mkdir func(filename *Gchar, mode int) int
+
+	G_chdir func(path *Gchar) int
+
+	G_stat func(filename *Gchar, buf *GStatBuf) int
+
+	G_lstat func(filename *Gchar, buf *GStatBuf) int
+
+	G_unlink func(filename *Gchar) int
+
+	G_remove func(filename *Gchar) int
+
+	G_rmdir func(filename *Gchar) int
+
+	G_fopen func(filename *Gchar, mode *Gchar) *FILE
+
+	G_freopen func(
+		filename *Gchar, mode *Gchar, stream *FILE) *FILE
+
+	G_utime func(filename *Gchar, utb *Utimbuf) int
+
+	G_find_program_in_path func(program *Gchar) *Gchar
+
+	//TODO(t):Variant
+	//G_printf func(format *Gchar, ...) Gint
+	//G_fprintf func(file *FILE, format *Gchar, ...) Gint
+	//G_sprintf func(string *Gchar,format *Gchar, ...) Gint
+
+	G_vprintf func(format *Gchar, args Va_list) Gint
+
+	G_vfprintf func(
+		file *FILE, format *Gchar, args Va_list) Gint
+
+	G_vsprintf func(
+		string *Gchar, format *Gchar, args Va_list) Gint
+
+	G_vasprintf func(
+		string **Gchar, format *Gchar, args Va_list) Gint
+
+	G_get_user_special_dir func(directory GUserDirectory) *Gchar
+
+	G_key_file_error_quark func() GQuark
+
+	//TODO(t):Variant
+	//G_markup_collect_attributes func(element_name *Gchar, attribute_names **Gchar, attribute_values **Gchar, error **GError, first_type GMarkupCollectType, first_attr *Gchar, ...)Gboolean
+
+	G_markup_error_quark func() GQuark
+
+	G_mem_set_vtable func(vtable *GMemVTable)
+
+	G_option_error_quark func() GQuark
+
+	G_printf_string_upper_bound func(
+		format *Gchar,
+		args Va_list) Gsize
+
+	G_regex_error_quark func() GQuark
+
+	G_static_private_free func(
+		private_key *GStaticPrivate)
+
+	G_static_private_get func(
+		private_key *GStaticPrivate) Gpointer
+
+	G_static_private_init func(
+		private_key *GStaticPrivate)
+
+	G_static_private_set func(
+		private_key *GStaticPrivate,
+		data Gpointer,
+		notify GDestroyNotify)
+
+	G_string_chunk_insert_const func(
+		chunk *GStringChunk,
+		string *Gchar) *Gchar
+
+	G_string_down func(string *GString) *GString
+
+	G_string_up func(string *GString) *GString
+
+	G_trash_stack_push func(
+		stack_p **GTrashStack,
+		data_p Gpointer)
+
+	G_trash_stack_pop func(
+		stack_p **GTrashStack) Gpointer
+
+	G_trash_stack_peek func(
+		stack_p **GTrashStack) Gpointer
+
+	G_trash_stack_height func(
+		stack_p **GTrashStack) Guint
 )
 
 var dll = "libglib-2.0-0.dll"
 
 var apiList = outside.Apis{
-	// {"_g_debug_flags", &_g_debug_flags},
-	// {"_g_debug_initialized", &_g_debug_initialized},
-	// {"g_access", &G_access},
+	// Undocumented {"_g_debug_flags", &_g_debug_flags},
+	// Undocumented {"_g_debug_initialized", &_g_debug_initialized},
+	{"g_access", &G_access},
 	{"g_allocator_free", &G_allocator_free},
 	{"g_allocator_new", &G_allocator_new},
 	{"g_array_append_vals", &G_array_append_vals},
@@ -4216,7 +4338,7 @@ var apiList = outside.Apis{
 	{"g_ascii_strtoll", &G_ascii_strtoll},
 	{"g_ascii_strtoull", &G_ascii_strtoull},
 	{"g_ascii_strup", &G_ascii_strup},
-	// {"g_ascii_table", &G_ascii_table},
+	// Data {"g_ascii_table", &G_ascii_table},
 	{"g_ascii_tolower", &G_ascii_tolower},
 	{"g_ascii_toupper", &G_ascii_toupper},
 	{"g_ascii_xdigit_value", &G_ascii_xdigit_value},
@@ -4265,9 +4387,9 @@ var apiList = outside.Apis{
 	{"g_base64_encode_step", &G_base64_encode_step},
 	{"g_basename", &G_basename},
 	{"g_bit_lock", &G_bit_lock},
-	// {"g_bit_nth_lsf", &G_bit_nth_lsf},
-	// {"g_bit_nth_msf", &G_bit_nth_msf},
-	// {"g_bit_storage", &G_bit_storage},
+	// Inline {"g_bit_nth_lsf", &G_bit_nth_lsf},
+	// Inline {"g_bit_nth_msf", &G_bit_nth_msf},
+	// Inline {"g_bit_storage", &G_bit_storage},
 	{"g_bit_trylock", &G_bit_trylock},
 	{"g_bit_unlock", &G_bit_unlock},
 	{"g_blow_chunks", &G_blow_chunks},
@@ -4311,9 +4433,9 @@ var apiList = outside.Apis{
 	{"g_bookmark_file_set_visited", &G_bookmark_file_set_visited},
 	{"g_bookmark_file_to_data", &G_bookmark_file_to_data},
 	{"g_bookmark_file_to_file", &G_bookmark_file_to_file},
-	// {"g_build_filename", &G_build_filename},
+	//TODO(t):Variant {"g_build_filename", &G_build_filename},
 	{"g_build_filenamev", &G_build_filenamev},
-	// {"g_build_path", &G_build_path},
+	//TODO(t):Variant {"g_build_path", &G_build_path},
 	{"g_build_pathv", &G_build_pathv},
 	{"g_byte_array_append", &G_byte_array_append},
 	{"g_byte_array_free", &G_byte_array_free},
@@ -4334,7 +4456,7 @@ var apiList = outside.Apis{
 	{"g_cache_new", &G_cache_new},
 	{"g_cache_remove", &G_cache_remove},
 	{"g_cache_value_foreach", &G_cache_value_foreach},
-	// {"g_chdir", &G_chdir},
+	{"g_chdir", &G_chdir},
 	{"g_checksum_copy", &G_checksum_copy},
 	{"g_checksum_free", &G_checksum_free},
 	{"g_checksum_get_digest", &G_checksum_get_digest},
@@ -4345,9 +4467,9 @@ var apiList = outside.Apis{
 	{"g_checksum_update", &G_checksum_update},
 	{"g_child_watch_add", &G_child_watch_add},
 	{"g_child_watch_add_full", &G_child_watch_add_full},
-	// {"g_child_watch_funcs", &G_child_watch_funcs},
+	// Data {"g_child_watch_funcs", &G_child_watch_funcs},
 	{"g_child_watch_source_new", &G_child_watch_source_new},
-	// {"g_chmod", &G_chmod},
+	{"g_chmod", &G_chmod},
 	{"g_clear_error", &G_clear_error},
 	{"g_completion_add_items", &G_completion_add_items},
 	{"g_completion_clear_items", &G_completion_clear_items},
@@ -4363,7 +4485,7 @@ var apiList = outside.Apis{
 	{"g_convert_error_quark", &G_convert_error_quark},
 	{"g_convert_with_fallback", &G_convert_with_fallback},
 	{"g_convert_with_iconv", &G_convert_with_iconv},
-	// {"g_creat", &G_creat},
+	{"g_creat", &G_creat},
 	{"g_datalist_clear", &G_datalist_clear},
 	{"g_datalist_foreach", &G_datalist_foreach},
 	{"g_datalist_get_flags", &G_datalist_get_flags},
@@ -4476,9 +4598,9 @@ var apiList = outside.Apis{
 	{"g_dcgettext", &G_dcgettext},
 	{"g_dgettext", &G_dgettext},
 	{"g_dir_close", &G_dir_close},
-	// {"g_dir_open", &G_dir_open},
+	// Windows: _utf8 {"g_dir_open", &G_dir_open},
 	{"g_dir_open_utf8", &G_dir_open_utf8},
-	// {"g_dir_read_name", &G_dir_read_name},
+	// Windows: _utf8 {"g_dir_read_name", &G_dir_read_name},
 	{"g_dir_read_name_utf8", &G_dir_read_name_utf8},
 	{"g_dir_rewind", &G_dir_rewind},
 	{"g_direct_equal", &G_direct_equal},
@@ -4491,67 +4613,67 @@ var apiList = outside.Apis{
 	{"g_error_copy", &G_error_copy},
 	{"g_error_free", &G_error_free},
 	{"g_error_matches", &G_error_matches},
-	// {"g_error_new", &G_error_new},
+	//TODO(t):Variant {"g_error_new", &G_error_new},
 	{"g_error_new_literal", &G_error_new_literal},
 	{"g_error_new_valist", &G_error_new_valist},
 	{"g_file_error_from_errno", &G_file_error_from_errno},
 	{"g_file_error_quark", &G_file_error_quark},
-	// {"g_file_get_contents", &G_file_get_contents},
-	{"g_file_get_contents_utf8", &G_file_get_contents_utf8},
-	// {"g_file_open_tmp", &G_file_open_tmp},
-	{"g_file_open_tmp_utf8", &G_file_open_tmp_utf8},
+	// Windows: _utf8 {"g_file_get_contents", &G_file_get_contents},
+	{"g_file_get_contents_utf8", &G_file_get_contents},
+	// Windows: _utf8 {"g_file_open_tmp", &G_file_open_tmp},
+	{"g_file_open_tmp_utf8", &G_file_open_tmp},
 	{"g_file_read_link", &G_file_read_link},
 	{"g_file_set_contents", &G_file_set_contents},
-	// {"g_file_test", &G_file_test},
-	{"g_file_test_utf8", &G_file_test_utf8},
+	// Windows: _utf8 {"g_file_test", &G_file_test},
+	{"g_file_test_utf8", &G_file_test},
 	{"g_filename_display_basename", &G_filename_display_basename},
 	{"g_filename_display_name", &G_filename_display_name},
-	// {"g_filename_from_uri", &G_filename_from_uri},
-	{"g_filename_from_uri_utf8", &G_filename_from_uri_utf8},
-	// {"g_filename_from_utf8", &G_filename_from_utf8},
-	{"g_filename_from_utf8_utf8", &G_filename_from_utf8_utf8},
-	// {"g_filename_to_uri", &G_filename_to_uri},
-	{"g_filename_to_uri_utf8", &G_filename_to_uri_utf8},
-	// {"g_filename_to_utf8", &G_filename_to_utf8},
-	{"g_filename_to_utf8_utf8", &G_filename_to_utf8_utf8},
-	// {"g_find_program_in_path", &G_find_program_in_path},
-	// {"g_find_program_in_path_utf8", &G_find_program_in_path_utf8},
-	// {"g_fopen", &G_fopen},
+	// Windows: _utf8 {"g_filename_from_uri", &G_filename_from_uri},
+	{"g_filename_from_uri_utf8", &G_filename_from_uri},
+	// Windows: _utf8 {"g_filename_from_utf8", &G_filename_from_utf8},
+	{"g_filename_from_utf8_utf8", &G_filename_from_utf8},
+	// Windows: _utf8 {"g_filename_to_uri", &G_filename_to_uri},
+	{"g_filename_to_uri_utf8", &G_filename_to_uri},
+	// Windows: _utf8 {"g_filename_to_utf8", &G_filename_to_utf8},
+	{"g_filename_to_utf8_utf8", &G_filename_to_utf8},
+	// Windows: _utf8 {"g_find_program_in_path", &G_find_program_in_path},
+	{"g_find_program_in_path_utf8", &G_find_program_in_path},
+	{"g_fopen", &G_fopen},
 	{"g_format_size_for_display", &G_format_size_for_display},
-	// {"g_fprintf", &G_fprintf},
+	//TODO(t):Variant {"g_fprintf", &G_fprintf},
 	{"g_free", &G_free},
-	// {"g_freopen", &G_freopen},
+	{"g_freopen", &G_freopen},
 	{"g_get_application_name", &G_get_application_name},
 	{"g_get_charset", &G_get_charset},
-	// {"g_get_codeset", &G_get_codeset},
-	// {"g_get_current_dir", &G_get_current_dir},
-	{"g_get_current_dir_utf8", &G_get_current_dir_utf8},
+	// Undocumented {"g_get_codeset", &G_get_codeset},
+	// Windows: _utf8 {"g_get_current_dir", &G_get_current_dir},
+	{"g_get_current_dir_utf8", &G_get_current_dir},
 	{"g_get_current_time", &G_get_current_time},
 	{"g_get_environ", &G_get_environ},
 	{"g_get_filename_charsets", &G_get_filename_charsets},
-	// {"g_get_home_dir", &G_get_home_dir},
-	{"g_get_home_dir_utf8", &G_get_home_dir_utf8},
+	// Windows: _utf8 {"g_get_home_dir", &G_get_home_dir},
+	{"g_get_home_dir_utf8", &G_get_home_dir},
 	{"g_get_host_name", &G_get_host_name},
 	{"g_get_language_names", &G_get_language_names},
 	{"g_get_locale_variants", &G_get_locale_variants},
 	{"g_get_monotonic_time", &G_get_monotonic_time},
 	{"g_get_prgname", &G_get_prgname},
-	// {"g_get_real_name", &G_get_real_name},
-	{"g_get_real_name_utf8", &G_get_real_name_utf8},
+	// Windows: _utf8 {"g_get_real_name", &G_get_real_name},
+	{"g_get_real_name_utf8", &G_get_real_name},
 	{"g_get_real_time", &G_get_real_time},
 	{"g_get_system_config_dirs", &G_get_system_config_dirs},
 	{"g_get_system_data_dirs", &G_get_system_data_dirs},
-	// {"g_get_tmp_dir", &G_get_tmp_dir},
-	{"g_get_tmp_dir_utf8", &G_get_tmp_dir_utf8},
+	// Windows: _utf8 {"g_get_tmp_dir", &G_get_tmp_dir},
+	{"g_get_tmp_dir_utf8", &G_get_tmp_dir},
 	{"g_get_user_cache_dir", &G_get_user_cache_dir},
 	{"g_get_user_config_dir", &G_get_user_config_dir},
 	{"g_get_user_data_dir", &G_get_user_data_dir},
-	// {"g_get_user_name", &G_get_user_name},
-	{"g_get_user_name_utf8", &G_get_user_name_utf8},
+	// Windows: _utf8 {"g_get_user_name", &G_get_user_name},
+	{"g_get_user_name_utf8", &G_get_user_name},
 	{"g_get_user_runtime_dir", &G_get_user_runtime_dir},
-	// {"g_get_user_special_dir", &G_get_user_special_dir},
-	// {"g_getenv", &G_getenv},
-	{"g_getenv_utf8", &G_getenv_utf8},
+	{"g_get_user_special_dir", &G_get_user_special_dir},
+	// Windows: _utf8 {"g_getenv", &G_getenv},
+	{"g_getenv_utf8", &G_getenv},
 	{"g_hash_table_destroy", &G_hash_table_destroy},
 	{"g_hash_table_find", &G_hash_table_find},
 	{"g_hash_table_foreach", &G_hash_table_foreach},
@@ -4610,7 +4732,7 @@ var apiList = outside.Apis{
 	{"g_iconv_open", &G_iconv_open},
 	{"g_idle_add", &G_idle_add},
 	{"g_idle_add_full", &G_idle_add_full},
-	// {"g_idle_funcs", &G_idle_funcs},
+	// Data {"g_idle_funcs", &G_idle_funcs},
 	{"g_idle_remove_by_data", &G_idle_remove_by_data},
 	{"g_idle_source_new", &G_idle_source_new},
 	{"g_int64_equal", &G_int64_equal},
@@ -4633,8 +4755,8 @@ var apiList = outside.Apis{
 	{"g_io_channel_get_flags", &G_io_channel_get_flags},
 	{"g_io_channel_get_line_term", &G_io_channel_get_line_term},
 	{"g_io_channel_init", &G_io_channel_init},
-	// {"g_io_channel_new_file", &G_io_channel_new_file},
-	{"g_io_channel_new_file_utf8", &G_io_channel_new_file_utf8},
+	// Windows: _utf8 {"g_io_channel_new_file", &G_io_channel_new_file},
+	{"g_io_channel_new_file_utf8", &G_io_channel_new_file},
 	{"g_io_channel_read", &G_io_channel_read},
 	{"g_io_channel_read_chars", &G_io_channel_read_chars},
 	{"g_io_channel_read_line", &G_io_channel_read_line},
@@ -4659,15 +4781,15 @@ var apiList = outside.Apis{
 	{"g_io_channel_win32_new_fd", &G_io_channel_win32_new_fd},
 	{"g_io_channel_win32_new_messages", &G_io_channel_win32_new_messages},
 	{"g_io_channel_win32_new_socket", &G_io_channel_win32_new_socket},
-	// {"g_io_channel_win32_new_stream_socket", &G_io_channel_win32_new_stream_socket},
+	// Undocumented {"g_io_channel_win32_new_stream_socket", &G_io_channel_win32_new_stream_socket},
 	{"g_io_channel_win32_poll", &G_io_channel_win32_poll},
-	// {"g_io_channel_win32_set_debug", &G_io_channel_win32_set_debug},
+	// Undocumented {"g_io_channel_win32_set_debug", &G_io_channel_win32_set_debug},
 	{"g_io_channel_write", &G_io_channel_write},
 	{"g_io_channel_write_chars", &G_io_channel_write_chars},
 	{"g_io_channel_write_unichar", &G_io_channel_write_unichar},
 	{"g_io_create_watch", &G_io_create_watch},
-	// {"g_io_watch_funcs", &G_io_watch_funcs},
-	// {"g_key_file_error_quark", &G_key_file_error_quark},
+	// Data {"g_io_watch_funcs", &G_io_watch_funcs},
+	{"g_key_file_error_quark", &G_key_file_error_quark},
 	{"g_key_file_free", &G_key_file_free},
 	{"g_key_file_get_boolean", &G_key_file_get_boolean},
 	{"g_key_file_get_boolean_list", &G_key_file_get_boolean_list},
@@ -4747,7 +4869,7 @@ var apiList = outside.Apis{
 	{"g_listenv", &G_listenv},
 	{"g_locale_from_utf8", &G_locale_from_utf8},
 	{"g_locale_to_utf8", &G_locale_to_utf8},
-	// {"g_log", &G_log},
+	//TODO(t):Variant {"g_log", &G_log},
 	{"g_log_default_handler", &G_log_default_handler},
 	{"g_log_remove_handler", &G_log_remove_handler},
 	{"g_log_set_always_fatal", &G_log_set_always_fatal},
@@ -4755,7 +4877,7 @@ var apiList = outside.Apis{
 	{"g_log_set_fatal_mask", &G_log_set_fatal_mask},
 	{"g_log_set_handler", &G_log_set_handler},
 	{"g_logv", &G_logv},
-	// {"g_lstat", &G_lstat},
+	{"g_lstat", &G_lstat},
 	{"g_main_context_acquire", &G_main_context_acquire},
 	{"g_main_context_add_poll", &G_main_context_add_poll},
 	{"g_main_context_check", &G_main_context_check},
@@ -4802,8 +4924,8 @@ var apiList = outside.Apis{
 	{"g_mapped_file_new", &G_mapped_file_new},
 	{"g_mapped_file_ref", &G_mapped_file_ref},
 	{"g_mapped_file_unref", &G_mapped_file_unref},
-	// {"g_markup_collect_attributes", &G_markup_collect_attributes},
-	// {"g_markup_error_quark", &G_markup_error_quark},
+	//TODO(t):Variant {"g_markup_collect_attributes", &G_markup_collect_attributes},
+	{"g_markup_error_quark", &G_markup_error_quark},
 	{"g_markup_escape_text", &G_markup_escape_text},
 	{"g_markup_parse_context_end_parse", &G_markup_parse_context_end_parse},
 	{"g_markup_parse_context_free", &G_markup_parse_context_free},
@@ -4815,7 +4937,7 @@ var apiList = outside.Apis{
 	{"g_markup_parse_context_parse", &G_markup_parse_context_parse},
 	{"g_markup_parse_context_pop", &G_markup_parse_context_pop},
 	{"g_markup_parse_context_push", &G_markup_parse_context_push},
-	// {"g_markup_printf_escaped", &G_markup_printf_escaped},
+	//TODO(t):Variant {"g_markup_printf_escaped", &G_markup_printf_escaped},
 	{"g_markup_vprintf_escaped", &G_markup_vprintf_escaped},
 	{"g_match_info_expand_references", &G_match_info_expand_references},
 	{"g_match_info_fetch", &G_match_info_fetch},
@@ -4839,16 +4961,16 @@ var apiList = outside.Apis{
 	{"g_mem_chunk_new", &G_mem_chunk_new},
 	{"g_mem_chunk_print", &G_mem_chunk_print},
 	{"g_mem_chunk_reset", &G_mem_chunk_reset},
-	// {"g_mem_gc_friendly", &G_mem_gc_friendly},
+	// Data {"g_mem_gc_friendly", &G_mem_gc_friendly},
 	{"g_mem_is_system_malloc", &G_mem_is_system_malloc},
 	{"g_mem_profile", &G_mem_profile},
-	// {"g_mem_set_vtable", &G_mem_set_vtable},
+	{"g_mem_set_vtable", &G_mem_set_vtable},
 	{"g_memdup", &G_memdup},
-	// {"g_mkdir", &G_mkdir},
+	{"g_mkdir", &G_mkdir},
 	{"g_mkdir_with_parents", &G_mkdir_with_parents},
-	// {"g_mkstemp", &G_mkstemp},
+	// Windows: _utf8 {"g_mkstemp", &G_mkstemp},
 	{"g_mkstemp_full", &G_mkstemp_full},
-	{"g_mkstemp_utf8", &G_mkstemp_utf8},
+	{"g_mkstemp_utf8", &G_mkstemp},
 	{"g_node_child_index", &G_node_child_index},
 	{"g_node_child_position", &G_node_child_position},
 	{"g_node_children_foreach", &G_node_children_foreach},
@@ -4884,7 +5006,7 @@ var apiList = outside.Apis{
 	{"g_once_init_enter", &G_once_init_enter},
 	{"g_once_init_enter_impl", &G_once_init_enter_impl},
 	{"g_once_init_leave", &G_once_init_leave},
-	// {"g_open", &G_open},
+	{"g_open", &G_open},
 	{"g_option_context_add_group", &G_option_context_add_group},
 	{"g_option_context_add_main_entries", &G_option_context_add_main_entries},
 	{"g_option_context_free", &G_option_context_free},
@@ -4903,7 +5025,7 @@ var apiList = outside.Apis{
 	{"g_option_context_set_summary", &G_option_context_set_summary},
 	{"g_option_context_set_translate_func", &G_option_context_set_translate_func},
 	{"g_option_context_set_translation_domain", &G_option_context_set_translation_domain},
-	// {"g_option_error_quark", &G_option_error_quark},
+	{"g_option_error_quark", &G_option_error_quark},
 	{"g_option_group_add_entries", &G_option_group_add_entries},
 	{"g_option_group_free", &G_option_group_free},
 	{"g_option_group_new", &G_option_group_new},
@@ -4911,7 +5033,7 @@ var apiList = outside.Apis{
 	{"g_option_group_set_parse_hooks", &G_option_group_set_parse_hooks},
 	{"g_option_group_set_translate_func", &G_option_group_set_translate_func},
 	{"g_option_group_set_translation_domain", &G_option_group_set_translation_domain},
-	// {"g_parse_debug_string", &G_parse_debug_string},
+	{"g_parse_debug_string", &G_parse_debug_string},
 	{"g_path_get_basename", &G_path_get_basename},
 	{"g_path_get_dirname", &G_path_get_dirname},
 	{"g_path_is_absolute", &G_path_is_absolute},
@@ -4923,13 +5045,13 @@ var apiList = outside.Apis{
 	{"g_pattern_spec_free", &G_pattern_spec_free},
 	{"g_pattern_spec_new", &G_pattern_spec_new},
 	{"g_poll", &G_poll},
-	// {"g_prefix_error", &G_prefix_error},
-	// {"g_print", &G_print},
-	// {"g_printerr", &G_printerr},
-	// {"g_printf", &G_printf},
-	// {"g_printf_string_upper_bound", &G_printf_string_upper_bound},
+	//TODO(t):Variant {"g_prefix_error", &G_prefix_error},
+	//TODO(t):Variant {"g_print", &G_print},
+	//TODO(t):Variant {"g_printerr", &G_printerr},
+	//TODO(t):Variant {"g_printf", &G_printf},
+	{"g_printf_string_upper_bound", &G_printf_string_upper_bound},
 	{"g_propagate_error", &G_propagate_error},
-	// {"g_propagate_prefixed_error", &G_propagate_prefixed_error},
+	//TODO(t):Variant {"g_propagate_prefixed_error", &G_propagate_prefixed_error},
 	{"g_ptr_array_add", &G_ptr_array_add},
 	{"g_ptr_array_foreach", &G_ptr_array_foreach},
 	{"g_ptr_array_free", &G_ptr_array_free},
@@ -4947,7 +5069,7 @@ var apiList = outside.Apis{
 	{"g_ptr_array_sort", &G_ptr_array_sort},
 	{"g_ptr_array_sort_with_data", &G_ptr_array_sort_with_data},
 	{"g_ptr_array_unref", &G_ptr_array_unref},
-	// {"g_qsort_with_data", &G_qsort_with_data},
+	{"g_qsort_with_data", &G_qsort_with_data},
 	{"g_quark_from_static_string", &G_quark_from_static_string},
 	{"g_quark_from_string", &G_quark_from_string},
 	{"g_quark_to_string", &G_quark_to_string},
@@ -5010,7 +5132,7 @@ var apiList = outside.Apis{
 	{"g_realloc", &G_realloc},
 	{"g_realloc_n", &G_realloc_n},
 	{"g_regex_check_replacement", &G_regex_check_replacement},
-	// {"g_regex_error_quark", &G_regex_error_quark},
+	{"g_regex_error_quark", &G_regex_error_quark},
 	{"g_regex_escape_string", &G_regex_escape_string},
 	{"g_regex_get_capture_count", &G_regex_get_capture_count},
 	{"g_regex_get_compile_flags", &G_regex_get_compile_flags},
@@ -5035,24 +5157,24 @@ var apiList = outside.Apis{
 	{"g_relation_count", &G_relation_count},
 	{"g_relation_delete", &G_relation_delete},
 	{"g_relation_destroy", &G_relation_destroy},
-	// {"g_relation_exists", &G_relation_exists},
+	//TODO(t):Variant {"g_relation_exists", &G_relation_exists},
 	{"g_relation_index", &G_relation_index},
-	// {"g_relation_insert", &G_relation_insert},
+	//TODO(t):Variant {"g_relation_insert", &G_relation_insert},
 	{"g_relation_new", &G_relation_new},
 	{"g_relation_print", &G_relation_print},
 	{"g_relation_select", &G_relation_select},
 	{"g_reload_user_special_dirs_cache", &G_reload_user_special_dirs_cache},
-	// {"g_remove", &G_remove},
-	// {"g_rename", &G_rename},
+	{"g_remove", &G_remove},
+	{"g_rename", &G_rename},
 	{"g_return_if_fail_warning", &G_return_if_fail_warning},
-	// {"g_rmdir", &G_rmdir},
+	{"g_rmdir", &G_rmdir},
 	{"g_scanner_cur_line", &G_scanner_cur_line},
 	{"g_scanner_cur_position", &G_scanner_cur_position},
 	{"g_scanner_cur_token", &G_scanner_cur_token},
 	{"g_scanner_cur_value", &G_scanner_cur_value},
 	{"g_scanner_destroy", &G_scanner_destroy},
 	{"g_scanner_eof", &G_scanner_eof},
-	// {"g_scanner_error", &G_scanner_error},
+	//TODO(t):Variant {"g_scanner_error", &G_scanner_error},
 	{"g_scanner_get_next_token", &G_scanner_get_next_token},
 	{"g_scanner_input_file", &G_scanner_input_file},
 	{"g_scanner_input_text", &G_scanner_input_text},
@@ -5066,7 +5188,7 @@ var apiList = outside.Apis{
 	{"g_scanner_set_scope", &G_scanner_set_scope},
 	{"g_scanner_sync_file_offset", &G_scanner_sync_file_offset},
 	{"g_scanner_unexp_token", &G_scanner_unexp_token},
-	// {"g_scanner_warn", &G_scanner_warn},
+	//TODO(t):Variant {"g_scanner_warn", &G_scanner_warn},
 	{"g_sequence_append", &G_sequence_append},
 	{"g_sequence_foreach", &G_sequence_foreach},
 	{"g_sequence_foreach_range", &G_sequence_foreach_range},
@@ -5105,13 +5227,13 @@ var apiList = outside.Apis{
 	{"g_sequence_sort_iter", &G_sequence_sort_iter},
 	{"g_sequence_swap", &G_sequence_swap},
 	{"g_set_application_name", &G_set_application_name},
-	// {"g_set_error", &G_set_error},
+	//TODO(t):Variant {"g_set_error", &G_set_error},
 	{"g_set_error_literal", &G_set_error_literal},
 	{"g_set_prgname", &G_set_prgname},
 	{"g_set_print_handler", &G_set_print_handler},
 	{"g_set_printerr_handler", &G_set_printerr_handler},
-	// {"g_setenv", &G_setenv},
-	{"g_setenv_utf8", &G_setenv_utf8},
+	// Windows: _utf8 {"g_setenv", &G_setenv},
+	{"g_setenv_utf8", &G_setenv},
 	{"g_shell_error_quark", &G_shell_error_quark},
 	{"g_shell_parse_argv", &G_shell_parse_argv},
 	{"g_shell_quote", &G_shell_quote},
@@ -5154,7 +5276,7 @@ var apiList = outside.Apis{
 	{"g_slist_reverse", &G_slist_reverse},
 	{"g_slist_sort", &G_slist_sort},
 	{"g_slist_sort_with_data", &G_slist_sort_with_data},
-	// {"g_snprintf", &G_snprintf},
+	//TODO(t):Variant {"g_snprintf", &G_snprintf},
 	{"g_source_add_child_source", &G_source_add_child_source},
 	{"g_source_add_poll", &G_source_add_poll},
 	{"g_source_attach", &G_source_attach},
@@ -5183,27 +5305,27 @@ var apiList = outside.Apis{
 	{"g_source_set_priority", &G_source_set_priority},
 	{"g_source_unref", &G_source_unref},
 	{"g_spaced_primes_closest", &G_spaced_primes_closest},
-	// {"g_spawn_async", &G_spawn_async},
-	{"g_spawn_async_utf8", &G_spawn_async_utf8},
-	// {"g_spawn_async_with_pipes", &G_spawn_async_with_pipes},
-	{"g_spawn_async_with_pipes_utf8", &G_spawn_async_with_pipes_utf8},
+	// Windows: _utf8 {"g_spawn_async", &G_spawn_async},
+	{"g_spawn_async_utf8", &G_spawn_async},
+	// Windows: _utf8 {"g_spawn_async_with_pipes", &G_spawn_async_with_pipes},
+	{"g_spawn_async_with_pipes_utf8", &G_spawn_async_with_pipes},
 	{"g_spawn_close_pid", &G_spawn_close_pid},
-	// {"g_spawn_command_line_async", &G_spawn_command_line_async},
-	{"g_spawn_command_line_async_utf8", &G_spawn_command_line_async_utf8},
-	// {"g_spawn_command_line_sync", &G_spawn_command_line_sync},
-	{"g_spawn_command_line_sync_utf8", &G_spawn_command_line_sync_utf8},
+	// Windows: _utf8 {"g_spawn_command_line_async", &G_spawn_command_line_async},
+	{"g_spawn_command_line_async_utf8", &G_spawn_command_line_async},
+	// Windows: _utf8 {"g_spawn_command_line_sync", &G_spawn_command_line_sync},
+	{"g_spawn_command_line_sync_utf8", &G_spawn_command_line_sync},
 	{"g_spawn_error_quark", &G_spawn_error_quark},
-	// {"g_spawn_sync", &G_spawn_sync},
-	{"g_spawn_sync_utf8", &G_spawn_sync_utf8},
-	// {"g_sprintf", &G_sprintf},
-	// {"g_stat", &G_stat},
+	// Windows: _utf8 {"g_spawn_sync", &G_spawn_sync},
+	{"g_spawn_sync_utf8", &G_spawn_sync},
+	//TODO(t):Variant {"g_sprintf", &G_sprintf},
+	{"g_stat", &G_stat},
 	{"g_static_mutex_free", &G_static_mutex_free},
 	{"g_static_mutex_get_mutex_impl", &G_static_mutex_get_mutex_impl},
 	{"g_static_mutex_init", &G_static_mutex_init},
-	// {"g_static_private_free", &G_static_private_free},
-	// {"g_static_private_get", &G_static_private_get},
-	// {"g_static_private_init", &G_static_private_init},
-	// {"g_static_private_set", &G_static_private_set},
+	{"g_static_private_free", &G_static_private_free},
+	{"g_static_private_get", &G_static_private_get},
+	{"g_static_private_init", &G_static_private_init},
+	{"g_static_private_set", &G_static_private_set},
 	{"g_static_rec_mutex_free", &G_static_rec_mutex_free},
 	{"g_static_rec_mutex_init", &G_static_rec_mutex_init},
 	{"g_static_rec_mutex_lock", &G_static_rec_mutex_lock},
@@ -5230,11 +5352,11 @@ var apiList = outside.Apis{
 	{"g_strchug", &G_strchug},
 	{"g_strcmp0", &G_strcmp0},
 	{"g_strcompress", &G_strcompress},
-	// {"g_strconcat", &G_strconcat},
+	//TODO(t): Variant {"g_strconcat", &G_strconcat},
 	{"g_strdelimit", &G_strdelimit},
 	{"g_strdown", &G_strdown},
 	{"g_strdup", &G_strdup},
-	// {"g_strdup_printf", &G_strdup_printf},
+	//TODO(t): Variant {"g_strdup_printf", &G_strdup_printf},
 	{"g_strdup_vprintf", &G_strdup_vprintf},
 	{"g_strdupv", &G_strdupv},
 	{"g_strerror", &G_strerror},
@@ -5243,7 +5365,7 @@ var apiList = outside.Apis{
 	{"g_string_append", &G_string_append},
 	{"g_string_append_c", &G_string_append_c},
 	{"g_string_append_len", &G_string_append_len},
-	// {"g_string_append_printf", &G_string_append_printf},
+	//TODO(t): Variant {"g_string_append_printf", &G_string_append_printf},
 	{"g_string_append_unichar", &G_string_append_unichar},
 	{"g_string_append_uri_escaped", &G_string_append_uri_escaped},
 	{"g_string_append_vprintf", &G_string_append_vprintf},
@@ -5253,10 +5375,10 @@ var apiList = outside.Apis{
 	{"g_string_chunk_clear", &G_string_chunk_clear},
 	{"g_string_chunk_free", &G_string_chunk_free},
 	{"g_string_chunk_insert", &G_string_chunk_insert},
-	// {"g_string_chunk_insert_const", &G_string_chunk_insert_const},
+	{"g_string_chunk_insert_const", &G_string_chunk_insert_const},
 	{"g_string_chunk_insert_len", &G_string_chunk_insert_len},
 	{"g_string_chunk_new", &G_string_chunk_new},
-	// {"g_string_down", &G_string_down},
+	{"g_string_down", &G_string_down},
 	{"g_string_equal", &G_string_equal},
 	{"g_string_erase", &G_string_erase},
 	{"g_string_free", &G_string_free},
@@ -5273,14 +5395,14 @@ var apiList = outside.Apis{
 	{"g_string_prepend_c", &G_string_prepend_c},
 	{"g_string_prepend_len", &G_string_prepend_len},
 	{"g_string_prepend_unichar", &G_string_prepend_unichar},
-	// {"g_string_printf", &G_string_printf},
+	//TODO(t): Variant {"g_string_printf", &G_string_printf},
 	{"g_string_set_size", &G_string_set_size},
 	{"g_string_sized_new", &G_string_sized_new},
 	{"g_string_truncate", &G_string_truncate},
-	// {"g_string_up", &G_string_up},
+	{"g_string_up", &G_string_up},
 	{"g_string_vprintf", &G_string_vprintf},
 	{"g_strip_context", &G_strip_context},
-	// {"g_strjoin", &G_strjoin},
+	//TODO(t): Variant {"g_strjoin", &G_strjoin},
 	{"g_strjoinv", &G_strjoinv},
 	{"g_strlcat", &G_strlcat},
 	{"g_strlcpy", &G_strlcpy},
@@ -5302,11 +5424,11 @@ var apiList = outside.Apis{
 	{"g_test_add_vtable", &G_test_add_vtable},
 	{"g_test_bug", &G_test_bug},
 	{"g_test_bug_base", &G_test_bug_base},
-	// {"g_test_config_vars", &G_test_config_vars},
+	// Data {"g_test_config_vars", &G_test_config_vars},
 	{"g_test_create_case", &G_test_create_case},
 	{"g_test_create_suite", &G_test_create_suite},
 	{"g_test_get_root", &G_test_get_root},
-	// {"g_test_init", &G_test_init},
+	//TODO(t):Variant {"g_test_init", &G_test_init},
 	{"g_test_log_buffer_free", &G_test_log_buffer_free},
 	{"g_test_log_buffer_new", &G_test_log_buffer_new},
 	{"g_test_log_buffer_pop", &G_test_log_buffer_pop},
@@ -5314,9 +5436,9 @@ var apiList = outside.Apis{
 	{"g_test_log_msg_free", &G_test_log_msg_free},
 	{"g_test_log_set_fatal_handler", &G_test_log_set_fatal_handler},
 	{"g_test_log_type_name", &G_test_log_type_name},
-	// {"g_test_maximized_result", &G_test_maximized_result},
-	// {"g_test_message", &G_test_message},
-	// {"g_test_minimized_result", &G_test_minimized_result},
+	//TODO(t):Variant {"g_test_maximized_result", &G_test_maximized_result},
+	//TODO(t):Variant {"g_test_message", &G_test_message},
+	//TODO(t):Variant {"g_test_minimized_result", &G_test_minimized_result},
 	{"g_test_queue_destroy", &G_test_queue_destroy},
 	{"g_test_queue_free", &G_test_queue_free},
 	{"g_test_rand_double", &G_test_rand_double},
@@ -5338,10 +5460,10 @@ var apiList = outside.Apis{
 	{"g_thread_error_quark", &G_thread_error_quark},
 	{"g_thread_exit", &G_thread_exit},
 	{"g_thread_foreach", &G_thread_foreach},
-	// {"g_thread_functions_for_glib_use", &G_thread_functions_for_glib_use},
+	// Data {"g_thread_functions_for_glib_use", &G_thread_functions_for_glib_use},
 	{"g_thread_get_initialized", &G_thread_get_initialized},
-	// {"g_thread_gettime", &G_thread_gettime},
-	// {"g_thread_init_glib", &G_thread_init_glib},
+	// Data {"g_thread_gettime", &G_thread_gettime},
+	// Undocumented {"g_thread_init_glib", &G_thread_init_glib},
 	{"g_thread_join", &G_thread_join},
 	{"g_thread_pool_free", &G_thread_pool_free},
 	{"g_thread_pool_get_max_idle_time", &G_thread_pool_get_max_idle_time},
@@ -5359,8 +5481,8 @@ var apiList = outside.Apis{
 	{"g_thread_pool_unprocessed", &G_thread_pool_unprocessed},
 	{"g_thread_self", &G_thread_self},
 	{"g_thread_set_priority", &G_thread_set_priority},
-	// {"g_thread_use_default_impl", &G_thread_use_default_impl},
-	// {"g_threads_got_initialized", &G_threads_got_initialized},
+	// Data {"g_thread_use_default_impl", &G_thread_use_default_impl},
+	// Data {"g_threads_got_initialized", &G_threads_got_initialized},
 	{"g_time_val_add", &G_time_val_add},
 	{"g_time_val_from_iso8601", &G_time_val_from_iso8601},
 	{"g_time_val_to_iso8601", &G_time_val_to_iso8601},
@@ -5378,7 +5500,7 @@ var apiList = outside.Apis{
 	{"g_timeout_add_full", &G_timeout_add_full},
 	{"g_timeout_add_seconds", &G_timeout_add_seconds},
 	{"g_timeout_add_seconds_full", &G_timeout_add_seconds_full},
-	// {"g_timeout_funcs", &G_timeout_funcs},
+	// Data {"g_timeout_funcs", &G_timeout_funcs},
 	{"g_timeout_source_new", &G_timeout_source_new},
 	{"g_timeout_source_new_seconds", &G_timeout_source_new_seconds},
 	{"g_timer_continue", &G_timer_continue},
@@ -5388,10 +5510,10 @@ var apiList = outside.Apis{
 	{"g_timer_reset", &G_timer_reset},
 	{"g_timer_start", &G_timer_start},
 	{"g_timer_stop", &G_timer_stop},
-	// {"g_trash_stack_height", &G_trash_stack_height},
-	// {"g_trash_stack_peek", &G_trash_stack_peek},
-	// {"g_trash_stack_pop", &G_trash_stack_pop},
-	// {"g_trash_stack_push", &G_trash_stack_push},
+	{"g_trash_stack_height", &G_trash_stack_height},
+	{"g_trash_stack_peek", &G_trash_stack_peek},
+	{"g_trash_stack_pop", &G_trash_stack_pop},
+	{"g_trash_stack_push", &G_trash_stack_push},
 	{"g_tree_destroy", &G_tree_destroy},
 	{"g_tree_foreach", &G_tree_foreach},
 	{"g_tree_height", &G_tree_height},
@@ -5450,9 +5572,9 @@ var apiList = outside.Apis{
 	{"g_unichar_xdigit_value", &G_unichar_xdigit_value},
 	{"g_unicode_canonical_decomposition", &G_unicode_canonical_decomposition},
 	{"g_unicode_canonical_ordering", &G_unicode_canonical_ordering},
-	// {"g_unlink", &G_unlink},
-	// {"g_unsetenv", &G_unsetenv},
-	{"g_unsetenv_utf8", &G_unsetenv_utf8},
+	{"g_unlink", &G_unlink},
+	// Windows: _utf8 {"g_unsetenv", &G_unsetenv},
+	{"g_unsetenv_utf8", &G_unsetenv},
 	{"g_uri_escape_string", &G_uri_escape_string},
 	{"g_uri_list_extract_uris", &G_uri_list_extract_uris},
 	{"g_uri_parse_scheme", &G_uri_parse_scheme},
@@ -5473,7 +5595,7 @@ var apiList = outside.Apis{
 	{"g_utf8_offset_to_pointer", &G_utf8_offset_to_pointer},
 	{"g_utf8_pointer_to_offset", &G_utf8_pointer_to_offset},
 	{"g_utf8_prev_char", &G_utf8_prev_char},
-	// {"g_utf8_skip", &G_utf8_skip},
+	// Data {"g_utf8_skip", &G_utf8_skip},
 	{"g_utf8_strchr", &G_utf8_strchr},
 	{"g_utf8_strdown", &G_utf8_strdown},
 	{"g_utf8_strlen", &G_utf8_strlen},
@@ -5485,9 +5607,9 @@ var apiList = outside.Apis{
 	{"g_utf8_to_ucs4_fast", &G_utf8_to_ucs4_fast},
 	{"g_utf8_to_utf16", &G_utf8_to_utf16},
 	{"g_utf8_validate", &G_utf8_validate},
-	// {"g_utime", &G_utime},
-	// {"g_variant_builder_add", &G_variant_builder_add},
-	// {"g_variant_builder_add_parsed", &G_variant_builder_add_parsed},
+	{"g_utime", &G_utime},
+	//TODO(t): Variant {"g_variant_builder_add", &G_variant_builder_add},
+	//TODO(t): Variant {"g_variant_builder_add_parsed", &G_variant_builder_add_parsed},
 	{"g_variant_builder_add_value", &G_variant_builder_add_value},
 	{"g_variant_builder_clear", &G_variant_builder_clear},
 	{"g_variant_builder_close", &G_variant_builder_close},
@@ -5505,14 +5627,14 @@ var apiList = outside.Apis{
 	{"g_variant_dup_string", &G_variant_dup_string},
 	{"g_variant_dup_strv", &G_variant_dup_strv},
 	{"g_variant_equal", &G_variant_equal},
-	// {"g_variant_format_string_scan", &G_variant_format_string_scan},
-	// {"g_variant_format_string_scan_type", &G_variant_format_string_scan_type},
-	// {"g_variant_get", &G_variant_get},
+	// Undocumented {"g_variant_format_string_scan", &G_variant_format_string_scan},
+	// Undocumented {"g_variant_format_string_scan_type", &G_variant_format_string_scan_type},
+	//TODO(t): Variant {"g_variant_get", &G_variant_get},
 	{"g_variant_get_boolean", &G_variant_get_boolean},
 	{"g_variant_get_byte", &G_variant_get_byte},
 	{"g_variant_get_bytestring", &G_variant_get_bytestring},
 	{"g_variant_get_bytestring_array", &G_variant_get_bytestring_array},
-	// {"g_variant_get_child", &G_variant_get_child},
+	//TODO(t): Variant {"g_variant_get_child", &G_variant_get_child},
 	{"g_variant_get_child_value", &G_variant_get_child_value},
 	{"g_variant_get_data", &G_variant_get_data},
 	{"g_variant_get_double", &G_variant_get_double},
@@ -5526,7 +5648,7 @@ var apiList = outside.Apis{
 	{"g_variant_get_size", &G_variant_get_size},
 	{"g_variant_get_string", &G_variant_get_string},
 	{"g_variant_get_strv", &G_variant_get_strv},
-	// {"g_variant_get_type", &G_variant_get_type},
+	{"g_variant_get_type", &G_variant_get_type},
 	{"g_variant_get_type_string", &G_variant_get_type_string},
 	{"g_variant_get_uint16", &G_variant_get_uint16},
 	{"g_variant_get_uint32", &G_variant_get_uint32},
@@ -5538,20 +5660,20 @@ var apiList = outside.Apis{
 	{"g_variant_is_floating", &G_variant_is_floating},
 	{"g_variant_is_normal_form", &G_variant_is_normal_form},
 	{"g_variant_is_object_path", &G_variant_is_object_path},
-	// {"g_variant_is_of_type", &G_variant_is_of_type},
+	{"g_variant_is_of_type", &G_variant_is_of_type},
 	{"g_variant_is_signature", &G_variant_is_signature},
 	{"g_variant_iter_copy", &G_variant_iter_copy},
 	{"g_variant_iter_free", &G_variant_iter_free},
 	{"g_variant_iter_init", &G_variant_iter_init},
-	// {"g_variant_iter_loop", &G_variant_iter_loop},
+	//TODO(t): Variant {"g_variant_iter_loop", &G_variant_iter_loop},
 	{"g_variant_iter_n_children", &G_variant_iter_n_children},
 	{"g_variant_iter_new", &G_variant_iter_new},
-	// {"g_variant_iter_next", &G_variant_iter_next},
+	//TODO(t): Variant {"g_variant_iter_next", &G_variant_iter_next},
 	{"g_variant_iter_next_value", &G_variant_iter_next_value},
-	// {"g_variant_lookup", &G_variant_lookup},
+	//TODO(t): Variant {"g_variant_lookup", &G_variant_lookup},
 	{"g_variant_lookup_value", &G_variant_lookup_value},
 	{"g_variant_n_children", &G_variant_n_children},
-	// {"g_variant_new", &G_variant_new},
+	//TODO(t): Variant {"g_variant_new", &G_variant_new},
 	{"g_variant_new_array", &G_variant_new_array},
 	{"g_variant_new_boolean", &G_variant_new_boolean},
 	{"g_variant_new_byte", &G_variant_new_byte},
@@ -5566,7 +5688,7 @@ var apiList = outside.Apis{
 	{"g_variant_new_int64", &G_variant_new_int64},
 	{"g_variant_new_maybe", &G_variant_new_maybe},
 	{"g_variant_new_object_path", &G_variant_new_object_path},
-	// {"g_variant_new_parsed", &G_variant_new_parsed},
+	//TODO(t): Variant {"g_variant_new_parsed", &G_variant_new_parsed},
 	{"g_variant_new_parsed_va", &G_variant_new_parsed_va},
 	{"g_variant_new_signature", &G_variant_new_signature},
 	{"g_variant_new_string", &G_variant_new_string},
@@ -5583,15 +5705,15 @@ var apiList = outside.Apis{
 	{"g_variant_print_string", &G_variant_print_string},
 	{"g_variant_ref", &G_variant_ref},
 	{"g_variant_ref_sink", &G_variant_ref_sink},
-	// {"g_variant_serialised_byteswap", &G_variant_serialised_byteswap},
-	// {"g_variant_serialised_get_child", &G_variant_serialised_get_child},
-	// {"g_variant_serialised_is_normal", &G_variant_serialised_is_normal},
-	// {"g_variant_serialised_n_children", &G_variant_serialised_n_children},
-	// {"g_variant_serialiser_is_object_path", &G_variant_serialiser_is_object_path},
-	// {"g_variant_serialiser_is_signature", &G_variant_serialiser_is_signature},
-	// {"g_variant_serialiser_is_string", &G_variant_serialiser_is_string},
-	// {"g_variant_serialiser_needed_size", &G_variant_serialiser_needed_size},
-	// {"g_variant_serialiser_serialise", &G_variant_serialiser_serialise},
+	// Undocumented {"g_variant_serialised_byteswap", &G_variant_serialised_byteswap},
+	// Undocumented {"g_variant_serialised_get_child", &G_variant_serialised_get_child},
+	// Undocumented {"g_variant_serialised_is_normal", &G_variant_serialised_is_normal},
+	// Undocumented {"g_variant_serialised_n_children", &G_variant_serialised_n_children},
+	// Undocumented {"g_variant_serialiser_is_object_path", &G_variant_serialiser_is_object_path},
+	// Undocumented {"g_variant_serialiser_is_signature", &G_variant_serialiser_is_signature},
+	// Undocumented {"g_variant_serialiser_is_string", &G_variant_serialiser_is_string},
+	// Undocumented {"g_variant_serialiser_needed_size", &G_variant_serialiser_needed_size},
+	// Undocumented {"g_variant_serialiser_serialise", &G_variant_serialiser_serialise},
 	{"g_variant_store", &G_variant_store},
 	{"g_variant_type_checked_", &G_variant_type_checked_},
 	{"g_variant_type_copy", &G_variant_type_copy},
@@ -5602,16 +5724,16 @@ var apiList = outside.Apis{
 	{"g_variant_type_free", &G_variant_type_free},
 	{"g_variant_type_get_string_length", &G_variant_type_get_string_length},
 	{"g_variant_type_hash", &G_variant_type_hash},
-	// {"g_variant_type_info_assert_no_infos", &G_variant_type_info_assert_no_infos},
-	// {"g_variant_type_info_element", &G_variant_type_info_element},
-	// {"g_variant_type_info_get", &G_variant_type_info_get},
-	// {"g_variant_type_info_get_type_string", &G_variant_type_info_get_type_string},
-	// {"g_variant_type_info_member_info", &G_variant_type_info_member_info},
-	// {"g_variant_type_info_n_members", &G_variant_type_info_n_members},
-	// {"g_variant_type_info_query", &G_variant_type_info_query},
-	// {"g_variant_type_info_query_element", &G_variant_type_info_query_element},
-	// {"g_variant_type_info_ref", &G_variant_type_info_ref},
-	// {"g_variant_type_info_unref", &G_variant_type_info_unref},
+	// Undocumented {"g_variant_type_info_assert_no_infos", &G_variant_type_info_assert_no_infos},
+	// Undocumented {"g_variant_type_info_element", &G_variant_type_info_element},
+	// Undocumented {"g_variant_type_info_get", &G_variant_type_info_get},
+	// Undocumented {"g_variant_type_info_get_type_string", &G_variant_type_info_get_type_string},
+	// Undocumented {"g_variant_type_info_member_info", &G_variant_type_info_member_info},
+	// Undocumented {"g_variant_type_info_n_members", &G_variant_type_info_n_members},
+	// Undocumented {"g_variant_type_info_query", &G_variant_type_info_query},
+	// Undocumented {"g_variant_type_info_query_element", &G_variant_type_info_query_element},
+	// Undocumented {"g_variant_type_info_ref", &G_variant_type_info_ref},
+	// Undocumented {"g_variant_type_info_unref", &G_variant_type_info_unref},
 	{"g_variant_type_is_array", &G_variant_type_is_array},
 	{"g_variant_type_is_basic", &G_variant_type_is_basic},
 	{"g_variant_type_is_container", &G_variant_type_is_container},
@@ -5634,31 +5756,31 @@ var apiList = outside.Apis{
 	{"g_variant_type_string_scan", &G_variant_type_string_scan},
 	{"g_variant_type_value", &G_variant_type_value},
 	{"g_variant_unref", &G_variant_unref},
-	// {"g_vasprintf", &G_vasprintf},
-	// {"g_vfprintf", &G_vfprintf},
-	// {"g_vprintf", &G_vprintf},
+	{"g_vasprintf", &G_vasprintf},
+	{"g_vfprintf", &G_vfprintf},
+	{"g_vprintf", &G_vprintf},
 	{"g_vsnprintf", &G_vsnprintf},
-	// {"g_vsprintf", &G_vsprintf},
+	{"g_vsprintf", &G_vsprintf},
 	{"g_warn_message", &G_warn_message},
 	{"g_win32_error_message", &G_win32_error_message},
 	{"g_win32_ftruncate", &G_win32_ftruncate},
-	// {"g_win32_get_package_installation_directory", &G_win32_get_package_installation_directory},
+	// Windows: _utf8 {"g_win32_get_package_installation_directory", &G_win32_get_package_installation_directory},
 	{"g_win32_get_package_installation_directory_of_module", &G_win32_get_package_installation_directory_of_module},
-	{"g_win32_get_package_installation_directory_utf8", &G_win32_get_package_installation_directory_utf8},
-	// {"g_win32_get_package_installation_subdirectory", &G_win32_get_package_installation_subdirectory},
-	{"g_win32_get_package_installation_subdirectory_utf8", &G_win32_get_package_installation_subdirectory_utf8},
-	// {"g_win32_get_system_data_dirs_for_module", &G_win32_get_system_data_dirs_for_module},
+	{"g_win32_get_package_installation_directory_utf8", &G_win32_get_package_installation_directory},
+	// Windows: _utf8 {"g_win32_get_package_installation_subdirectory", &G_win32_get_package_installation_subdirectory},
+	{"g_win32_get_package_installation_subdirectory_utf8", &G_win32_get_package_installation_subdirectory},
+	{"g_win32_get_system_data_dirs_for_module", &G_win32_get_system_data_dirs_for_module},
 	{"g_win32_get_windows_version", &G_win32_get_windows_version},
 	{"g_win32_getlocale", &G_win32_getlocale},
 	{"g_win32_locale_filename_from_utf8", &G_win32_locale_filename_from_utf8},
-	// {"glib_binary_age", &glib_binary_age},
+	// Data {"glib_binary_age", &glib_binary_age},
 	{"glib_check_version", &Glib_check_version},
-	// {"glib_gettext", &glib_gettext},
-	// {"glib_interface_age", &glib_interface_age},
-	// {"glib_major_version", &glib_major_version},
-	// {"glib_mem_profiler_table", &glib_mem_profiler_table},
-	// {"glib_micro_version", &glib_micro_version},
-	// {"glib_minor_version", &glib_minor_version},
-	// {"glib_on_error_halt", &glib_on_error_halt},
-	// {"glib_pgettext", &glib_pgettext},
+	// Undocumented {"glib_gettext", &glib_gettext},
+	// Data {"glib_interface_age", &glib_interface_age},
+	// Data {"glib_major_version", &glib_major_version},
+	// Data {"glib_mem_profiler_table", &glib_mem_profiler_table},
+	// Data {"glib_micro_version", &glib_micro_version},
+	// Data {"glib_minor_version", &glib_minor_version},
+	// Undocumented {"glib_on_error_halt", &glib_on_error_halt},
+	// Undocumented {"glib_pgettext", &glib_pgettext},
 }

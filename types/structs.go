@@ -3567,4 +3567,20 @@ type (
 		show_page       Csi_show_page_func_t
 		copy_page       Csi_copy_page_func_t
 	}
+
+	GMemVTable struct {
+		malloc  func(n_bytes Gsize) Gpointer
+		realloc func(mem Gpointer,
+			n_bytes Gsize) Gpointer
+		free   func(mem Gpointer)
+		calloc func(n_blocks Gsize,
+			n_block_bytes Gsize) Gpointer
+		try_malloc  func(n_bytes Gsize) Gpointer
+		try_realloc func(mem Gpointer,
+			n_bytes Gsize) Gpointer
+	}
+
+	GTrashStack struct {
+		next *GTrashStack
+	}
 )
