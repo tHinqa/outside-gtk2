@@ -6,6 +6,7 @@ type (
 	Long_double fix
 	Va_list     fix
 
+	Cairo_bool_t  int
 	Char          int8
 	Double        float64
 	Enum          int
@@ -30,11 +31,14 @@ type (
 	Guint64       uint64
 	Guint8        uint8
 	Gushort       uint16
+	Long          int32 // TODO(t): Size?
 	Size_t        uint
 	Time_t        int
-	Unsigned_long uint
+	Unsigned_char uint8
+	Unsigned_int  uint
+	Unsigned_long uint32 //TODO(t):check  size
 
-	Gulong                 Unsigned_long
+	Gboolean               Gint
 	GCacheDestroyFunc      func(value Gpointer)
 	GCacheDupFunc          func(value Gpointer) Gpointer
 	GCacheNewFunc          func(key Gpointer) Gpointer
@@ -44,18 +48,17 @@ type (
 	GdkAtom                *struct{}
 	GdkBitmap              GdkDrawable
 	GdkNativeWindow        Gpointer
-	Gboolean               Gint
 	GdkPixmap              GdkDrawable
 	GdkWChar               Guint32
 	GdkWindow              GdkDrawable
 	GInitiallyUnowned      GObject
 	GInitiallyUnownedClass GObjectClass
+	Goffset                Gint64
 	GPid                   *struct{}
 	GQuark                 Guint32
 	GSequenceIter          GSequenceNode
 	GSignalCMarshaller     GClosureMarshal
 	GStaticMutex           *GMutex
-	Goffset                Gint64
 	GTime                  Gint32
 	GTimeSpan              Gint64
 	GtkAllocation          GdkRectangle
@@ -63,24 +66,24 @@ type (
 	GtkObjectInitFunc      GInstanceInitFunc
 	GtkType                GType
 	GType                  Gsize
+	Gulong                 Unsigned_long
+	Gunichar               Guint32
+	Gunichar2              Guint16
 	GVoidFunc              func()
 	PangoGlyph             Guint32
 	PangoGlyphUnit         Gint32
-	Gunichar               Guint32
-	Gunichar2              Guint16
+	PangoLayoutRun         PangoGlyphItem
 
-	GdkPixbufSimpleAnim         struct{}
-	PangoCairoFont              struct{}
-	PangoCairoFontMap           struct{}
-	PangoFont                   struct{}
-	GInputStreamPrivate         struct{}
-	PangoEngineShape            struct{}
-	PangoEngineLang             struct{}
+	Cairo_device_t              struct{}
+	Cairo_font_face_t           struct{}
 	Cairo_font_options_t        struct{}
 	Cairo_pattern_t             struct{}
+	Cairo_region_t              struct{}
 	Cairo_scaled_font_t         struct{}
+	Cairo_script_interpreter_t  struct{}
 	Cairo_surface_t             struct{}
 	Cairo_t                     struct{}
+	FcPattern                   struct{}
 	GAllocator                  struct{}
 	GAppLaunchContextPrivate    struct{}
 	GAsyncQueue                 struct{}
@@ -99,12 +102,14 @@ type (
 	GdkPixbufAnimation          struct{}
 	GdkPixbufAnimationIter      struct{}
 	GdkPixbufFormat             struct{}
+	GdkPixbufSimpleAnim         struct{}
 	GdkRegion                   struct{}
 	GdkXEvent                   struct{}
 	GFile                       struct{}
 	GHashTable                  struct{}
 	GIcon                       struct{}
 	GIConv                      struct{}
+	GInputStreamPrivate         struct{}
 	GKeyFile                    struct{}
 	GMainContext                struct{}
 	GMainLoop                   struct{}
@@ -217,16 +222,28 @@ type (
 	GTree                       struct{}
 	GVariant                    struct{}
 	GVariantType                struct{}
+	PangoAttrIterator           struct{}
 	PangoAttrList               struct{}
+	PangoCairoFont              struct{}
+	PangoCairoFontMap           struct{}
 	PangoContext                struct{}
+	PangoCoverage               struct{}
+	PangoEngineLang             struct{}
+	PangoEngineShape            struct{}
+	PangoFont                   struct{}
 	PangoFontDescription        struct{}
 	PangoFontFace               struct{}
 	PangoFontFamily             struct{}
 	PangoFontMap                struct{}
+	PangoFontMetrics            struct{}
+	PangoFontset                struct{}
 	PangoLanguage               struct{}
 	PangoLayout                 struct{}
+	PangoLayoutIter             struct{}
 	PangoRendererPrivate        struct{}
+	PangoScriptIter             struct{}
 	PangoTabArray               struct{}
+	Void                        struct{}
 )
 
 type GBookmarkFileError Enum
@@ -4836,4 +4853,72 @@ type (
 		data Gpointer)
 
 	PangoAttrDataCopyFunc func(data Gconstpointer) Gpointer
+
+	PangoAttrFilterFunc func(
+		attribute *PangoAttribute,
+		data Gpointer) Gboolean
+
+	PangoFontsetForeachFunc func(
+		fontset *PangoFontset,
+		font *PangoFont,
+		data Gpointer) Gboolean
+
+	Cairo_destroy_func_t func(data *Void)
+
+	Cairo_user_scaled_font_init_func_t func(
+		scaled_font *Cairo_scaled_font_t,
+		cr *Cairo_t,
+		extents *Cairo_font_extents_t) Cairo_status_t
+
+	Cairo_user_scaled_font_render_glyph_func_t func(
+		scaled_font *Cairo_scaled_font_t,
+		glyph Unsigned_long,
+		cr *Cairo_t,
+		extents *Cairo_text_extents_t) Cairo_status_t
+
+	Cairo_user_scaled_font_text_to_glyphs_func_t func(
+		scaled_font *Cairo_scaled_font_t,
+		utf8 *Char,
+		utf8_len int,
+		glyphs **Cairo_glyph_t,
+		num_glyphs *int,
+		clusters **Cairo_text_cluster_t,
+		num_clusters *int,
+		cluster_flags *Cairo_text_cluster_flags_t) Cairo_status_t
+
+	Cairo_user_scaled_font_unicode_to_glyph_func_t func(
+		scaled_font *Cairo_scaled_font_t,
+		unicode Unsigned_long,
+		glyph_index *Unsigned_long) Cairo_status_t
+
+	Cairo_write_func_t func(
+		closure *Void,
+		data *Unsigned_char,
+		length Unsigned_int) Cairo_status_t
+
+	Cairo_read_func_t func(
+		closure *Void,
+		data *Unsigned_char,
+		length Unsigned_int) Cairo_status_t
+
+	Csi_surface_create_func_t func(
+		closure *Void,
+		content Cairo_content_t,
+		width Double,
+		height Double,
+		uid Long) *Cairo_surface_t
+
+	Csi_destroy_func_t func(closure, ptr *Void)
+
+	Csi_context_create_func_t func(
+		closure *Void,
+		surface *Cairo_surface_t) *Cairo_t
+
+	Csi_show_page_func_t func(
+		closure *Void,
+		cr *Cairo_t)
+
+	Csi_copy_page_func_t func(
+		closure *Void,
+		cr *Cairo_t)
 )

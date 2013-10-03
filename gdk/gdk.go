@@ -673,7 +673,7 @@ var (
 
 	Gdk_app_launch_context_set_icon_name func(
 		context *GdkAppLaunchContext,
-		icon_name *Char)
+		icon_name string)
 
 	Gdk_rgb_init func()
 
@@ -840,17 +840,17 @@ var (
 		height int) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_file func(
-		filename *Char,
+		filename string,
 		error **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_size func(
-		filename *Char,
+		filename string,
 		width int,
 		height int,
 		error **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_scale func(
-		filename *Char,
+		filename string,
 		width int,
 		height int,
 		preserve_aspect_ratio Gboolean,
@@ -881,36 +881,36 @@ var (
 		pixel Guint32)
 
 	//TODO(t):Variant
-	//gdk_pixbuf_save_utf8 func( pixbuf  *GdkPixbuf, filename  *Char, typ  *Char, error  **GError, ...) Gboolean
+	//gdk_pixbuf_save_utf8 func( pixbuf  *GdkPixbuf, filename  string, typ  string, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_savev_utf8 func(
 		pixbuf *GdkPixbuf,
-		filename *Char,
+		filename string,
 		typ *Char,
 		option_keys **Char,
 		option_values **Char,
 		error **GError) Gboolean
 
 	//TODO(t):Variant
-	//gdk_pixbuf_save_to_callback func(pixbuf  *GdkPixbuf, save_func  GdkPixbufSaveFunc, user_data  Gpointer, typ  *Char, error  **GError, ...) Gboolean
+	//gdk_pixbuf_save_to_callback func(pixbuf  *GdkPixbuf, save_func  GdkPixbufSaveFunc, user_data  Gpointer, typ  string, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_save_to_callbackv func(
 		pixbuf *GdkPixbuf,
 		save_func GdkPixbufSaveFunc,
 		user_data Gpointer,
-		typ *Char,
+		typ string,
 		option_keys **Char,
 		option_values **Char,
 		error **GError) Gboolean
 
 	//TODO(t):Variant
-	//gdk_pixbuf_save_to_buffer func(pixbuf  *GdkPixbuf, buffer  **Gchar, buffer_size  *Gsize, typ  *Char, error  **GError, ...) Gboolean
+	//gdk_pixbuf_save_to_buffer func(pixbuf  *GdkPixbuf, buffer  **Gchar, buffer_size  *Gsize, typ  string, error  **GError, ...) Gboolean
 
 	Gdk_pixbuf_save_to_bufferv func(
 		pixbuf *GdkPixbuf,
 		buffer **Gchar,
 		buffer_size *Gsize,
-		typ *Char,
+		typ string,
 		option_keys **Char,
 		option_values **Char,
 		error **GError) Gboolean
@@ -948,7 +948,7 @@ var (
 		user_data Gpointer)
 
 	//TODO(t):Variant
-	//gdk_pixbuf_save_to_stream func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  *Char, cancellable  *GCancellable, error  **GError, ...) Gboolean
+	//gdk_pixbuf_save_to_stream func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  string, cancellable  *GCancellable, error  **GError, ...) Gboolean
 	//gdk_pixbuf_save_to_stream_async func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  *Gchar, cancellable  *GCancellable, callback  GAsyncReadyCallback, user_data  Gpointer, ...)
 
 	Gdk_pixbuf_save_to_stream_finish func(
@@ -1058,7 +1058,7 @@ var (
 	Gdk_pixbuf_animation_get_type func() GType
 
 	Gdk_pixbuf_animation_new_from_file_utf8 func(
-		filename *Char,
+		filename string,
 		error **GError) *GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_ref func(
@@ -1166,11 +1166,11 @@ var (
 	Gdk_pixbuf_loader_new func() *GdkPixbufLoader
 
 	Gdk_pixbuf_loader_new_with_type func(
-		image_type *Char,
+		image_type string,
 		error **GError) *GdkPixbufLoader
 
 	Gdk_pixbuf_loader_new_with_mime_type func(
-		mime_type *Char,
+		mime_type string,
 		error **GError) *GdkPixbufLoader
 
 	Gdk_pixbuf_loader_set_size func(
@@ -3203,10 +3203,10 @@ var (
 
 	Gdk_set_locale func() *Gchar
 
-	Gdk_get_program_class func() *Char
+	Gdk_get_program_class func() string
 
 	Gdk_set_program_class func(
-		program_class *Char)
+		program_class string)
 
 	Gdk_error_trap_push func()
 
@@ -3370,7 +3370,7 @@ var (
 		pixbuf *GdkPixbuf) *GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_new_from_file func(
-		filename *Char,
+		filename string,
 		error **GError) *GdkPixbufAnimation
 
 	Gdk_pixdata_serialize func(
@@ -4007,10 +4007,7 @@ var apiList = outside.Apis{
 	{"gdk_threads_enter", &Gdk_threads_enter},
 	{"gdk_threads_init", &Gdk_threads_init},
 	{"gdk_threads_leave", &Gdk_threads_leave},
-	// Data {"gdk_threads_lock", &Gdk_threads_lock},
-	// Data {"gdk_threads_mutex", &Gdk_threads_mutex},
 	{"gdk_threads_set_lock_functions", &Gdk_threads_set_lock_functions},
-	// Data {"gdk_threads_unlock", &Gdk_threads_unlock},
 	{"gdk_unicode_to_keyval", &Gdk_unicode_to_keyval},
 	{"gdk_utf8_to_compound_text", &Gdk_utf8_to_compound_text},
 	{"gdk_utf8_to_compound_text_for_display", &Gdk_utf8_to_compound_text_for_display},
@@ -4270,9 +4267,6 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_loader_new_with_type", &Gdk_pixbuf_loader_new_with_type},
 	{"gdk_pixbuf_loader_set_size", &Gdk_pixbuf_loader_set_size},
 	{"gdk_pixbuf_loader_write", &Gdk_pixbuf_loader_write},
-	// Data {"gdk_pixbuf_major_version", &Gdk_pixbuf_major_version},
-	// Data {"gdk_pixbuf_micro_version", &Gdk_pixbuf_micro_version},
-	// Data {"gdk_pixbuf_minor_version", &Gdk_pixbuf_minor_version},
 	{"gdk_pixbuf_new", &Gdk_pixbuf_new},
 	{"gdk_pixbuf_new_from_data", &Gdk_pixbuf_new_from_data},
 	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file", &Gdk_pixbuf_new_from_file},
@@ -4318,9 +4312,28 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_simple_anim_new", &Gdk_pixbuf_simple_anim_new},
 	{"gdk_pixbuf_simple_anim_set_loop", &Gdk_pixbuf_simple_anim_set_loop},
 	{"gdk_pixbuf_unref", &Gdk_pixbuf_unref},
-	// DATA {"gdk_pixbuf_version", &Gdk_pixbuf_version},
 	{"gdk_pixdata_deserialize", &Gdk_pixdata_deserialize},
 	{"gdk_pixdata_from_pixbuf", &Gdk_pixdata_from_pixbuf},
 	{"gdk_pixdata_serialize", &Gdk_pixdata_serialize},
 	{"gdk_pixdata_to_csource", &Gdk_pixdata_to_csource},
+}
+
+type (
+	Gdk_pixbuf_major_version Guint
+	Gdk_pixbuf_minor_version Guint
+	Gdk_pixbuf_micro_version Guint
+	Gdk_pixbuf_version       string
+	Gdk_threads_mutex        *GMutex
+	Gdk_threads_lock         GCallback
+	Gdk_threads_unlock       GCallback
+)
+
+var DataList = outside.Data{
+	{"gdk_threads_lock", new(Gdk_threads_lock)},
+	{"gdk_threads_mutex", new(Gdk_threads_mutex)},
+	{"gdk_threads_unlock", new(Gdk_threads_unlock)},
+	{"gdk_pixbuf_major_version", new(Gdk_pixbuf_major_version)},
+	{"gdk_pixbuf_micro_version", new(Gdk_pixbuf_micro_version)},
+	{"gdk_pixbuf_minor_version", new(Gdk_pixbuf_minor_version)},
+	{"gdk_pixbuf_version", new(Gdk_pixbuf_version)},
 }

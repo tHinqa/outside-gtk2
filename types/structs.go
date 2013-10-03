@@ -3473,4 +3473,98 @@ type (
 		height       Guint32
 		pixel_data   *Guint8
 	}
+
+	PangoGlyphItemIter struct {
+		glyph_item  *PangoGlyphItem
+		text        *Gchar
+		start_glyph int
+		start_index int
+		start_char  int
+		end_glyph   int
+		end_index   int
+		end_char    int
+	}
+
+	Cairo_user_data_key_t struct {
+		unused int
+	}
+
+	Cairo_matrix_t struct {
+		xx Double
+		yx Double
+		xy Double
+		yy Double
+		x0 Double
+		y0 Double
+	}
+
+	Cairo_rectangle_list_t struct {
+		status         Cairo_status_t
+		rectangles     *Cairo_rectangle_t
+		num_rectangles int
+	}
+
+	Cairo_rectangle_t struct {
+		x, y, width, height Double
+	}
+
+	Cairo_glyph_t struct {
+		index Unsigned_long
+		x     Double
+		y     Double
+	}
+
+	Cairo_text_cluster_t struct {
+		num_bytes  int
+		num_glyphs int
+	}
+
+	Cairo_text_extents_t struct {
+		x_bearing Double
+		y_bearing Double
+		width     Double
+		height    Double
+		x_advance Double
+		y_advance Double
+	}
+
+	Cairo_font_extents_t struct {
+		ascent        Double
+		descent       Double
+		height        Double
+		max_x_advance Double
+		max_y_advance Double
+	}
+
+	Cairo_path_t struct {
+		status   Cairo_status_t
+		data     *Cairo_path_data_t
+		num_data int
+	}
+
+	Cairo_path_data_t struct {
+		// todo(t): Union
+		// header struct {
+		// 	Type   Cairo_path_data_type_t
+		// 	length int
+		// }
+		point struct {
+			x, y Double
+		}
+	}
+
+	Cairo_rectangle_int_t struct {
+		x, y          int
+		width, height int
+	}
+
+	Cairo_script_interpreter_hooks_t struct {
+		closure         *Void
+		surface_create  Csi_surface_create_func_t
+		surface_destroy Csi_destroy_func_t
+		context_create  Csi_context_create_func_t
+		context_destroy Csi_destroy_func_t
+		show_page       Csi_show_page_func_t
+		copy_page       Csi_copy_page_func_t
+	}
 )

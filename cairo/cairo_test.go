@@ -1,4 +1,4 @@
-package gtk2
+package cairo
 
 import "testing"
 
