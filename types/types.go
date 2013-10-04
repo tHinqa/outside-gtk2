@@ -395,6 +395,8 @@ type (
 	GTlsClientConnection           struct{}
 	GTlsConnectionPrivate          struct{}
 	GTree                          struct{}
+	GTypeCValue                    struct{}
+	GTypePlugin                    struct{}
 	GUnixFDList                    struct{}
 	GVariant                       struct{}
 	GVariantType                   struct{}
@@ -5497,4 +5499,21 @@ type (
 		res *GSimpleAsyncResult,
 		object *GObject,
 		cancellable *GCancellable)
+
+	GBaseFinalizeFunc func(g_class Gpointer)
+
+	GClassInitFunc func(g_class, class_data Gpointer)
+
+	GClassFinalizeFunc func(g_class, class_data Gpointer)
+
+	GInterfaceFinalizeFunc func(g_iface, iface_data Gpointer)
+
+	GInterfaceInitFunc func(g_iface, iface_data Gpointer)
+
+	GTypeClassCacheFunc func(
+		cache_data Gpointer, g_class *GTypeClass) Gboolean
+
+	GTypeInterfaceCheckFunc func(check_data, g_iface Gpointer)
+
+	GValueTransform func(src_value, dest_value *GValue)
 )

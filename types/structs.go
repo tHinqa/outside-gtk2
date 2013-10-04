@@ -4437,4 +4437,88 @@ type (
 		parent_instance GOutputStream
 		priv            *GWin32OutputStreamPrivate
 	}
+
+	GEnumClass struct {
+		g_type_class GTypeClass
+		minimum      Gint
+		maximum      Gint
+		n_values     Guint
+		values       *GEnumValue
+	}
+
+	GEnumValue struct {
+		value      Gint
+		value_name *Gchar
+		value_nick *Gchar
+	}
+
+	GFlagsClass struct {
+		g_type_class GTypeClass
+		mask         Guint
+		n_values     Guint
+		values       *GFlagsValue
+	}
+
+	GFlagsValue struct {
+		value      Guint
+		value_name *Gchar
+		value_nick *Gchar
+	}
+
+	GTypeInfo struct {
+		class_size     Guint16
+		base_init      GBaseInitFunc
+		base_finalize  GBaseFinalizeFunc
+		class_init     GClassInitFunc
+		class_finalize GClassFinalizeFunc
+		class_data     Gconstpointer
+		instance_size  Guint16
+		n_preallocs    Guint16
+		instance_init  GInstanceInitFunc
+		value_table    *GTypeValueTable
+	}
+
+	GTypeValueTable struct {
+		value_init func(value *GValue)
+		value_free func(value *GValue)
+		value_copy func(
+			src_value *GValue, dest_value *GValue)
+		value_peek_pointer func(value *GValue) Gpointer
+		collect_format     *Gchar
+		collect_value      func(
+			value *GValue,
+			n_collect_values Guint,
+			collect_values *GTypeCValue,
+			collect_flags Guint) *Gchar
+		lcopy_format *Gchar
+		lcopy_value  func(
+			value *GValue,
+			n_collect_values Guint,
+			collect_values *GTypeCValue,
+			collect_flags Guint) *Gchar
+	}
+
+	GValueArray struct {
+		n_values     Guint
+		values       *GValue
+		n_prealloced Guint
+	}
+
+	GTypeFundamentalInfo struct {
+		type_flags GTypeFundamentalFlags
+	}
+
+	GInterfaceInfo struct {
+		interface_init     GInterfaceInitFunc
+		interface_finalize GInterfaceFinalizeFunc
+		interface_data     Gpointer
+	}
+
+	GTypeModule struct {
+		parent_instance GObject
+		use_count       Guint
+		type_infos      *GSList
+		interface_infos *GSList
+		name            *Gchar
+	}
 )
