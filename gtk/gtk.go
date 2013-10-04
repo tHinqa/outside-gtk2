@@ -1,6 +1,7 @@
 package gtk
 
 import (
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -28,7 +29,7 @@ var (
 
 	Gtk_accel_group_connect_by_path func(
 		accel_group *GtkAccelGroup,
-		accel_path *Gchar,
+		accel_path string,
 		closure *GClosure)
 
 	Gtk_accel_group_disconnect func(
@@ -46,14 +47,6 @@ var (
 		acceleratable *GObject,
 		accel_key Guint,
 		accel_mods GdkModifierType) Gboolean
-
-	// _gtk_accel_group_attach func(
-	// 	accel_group *GtkAccelGroup,
-	// 	object *GObject)
-
-	// _gtk_accel_group_detach func(
-	// 	accel_group *GtkAccelGroup,
-	// 	object *GObject)
 
 	Gtk_accel_groups_activate func(
 		object *GObject,
@@ -76,17 +69,17 @@ var (
 		modifiers GdkModifierType) Gboolean
 
 	Gtk_accelerator_parse func(
-		accelerator *Gchar,
+		accelerator string,
 		accelerator_key *Guint,
 		accelerator_mods *GdkModifierType)
 
 	Gtk_accelerator_name func(
 		accelerator_key Guint,
-		accelerator_mods GdkModifierType) *Gchar
+		accelerator_mods GdkModifierType) string
 
 	Gtk_accelerator_get_label func(
 		accelerator_key Guint,
-		accelerator_mods GdkModifierType) *Gchar
+		accelerator_mods GdkModifierType) string
 
 	Gtk_accelerator_set_default_mod_mask func(
 		default_mod_mask GdkModifierType)
@@ -98,10 +91,6 @@ var (
 		accel_key Guint,
 		accel_mods GdkModifierType,
 		n_entries *Guint) *GtkAccelGroupEntry
-
-	// _gtk_accel_group_reconnect func(
-	// 	accel_group *GtkAccelGroup,
-	// 	accel_path_quark GQuark)
 
 	Gtk_accel_flags_get_type func() GType
 
@@ -360,7 +349,8 @@ var (
 	Gtk_object_destroy func(
 		object *GtkObject)
 
-	// gtk_object_new func(t  GType,first_property_name  *Gchar,...)* GtkObject
+	Gtk_object_new func(t GType, first_property_name string,
+		v ...VArg) *GtkObject
 
 	Gtk_object_ref func(
 		object *GtkObject) *GtkObject
@@ -380,26 +370,26 @@ var (
 
 	Gtk_object_set_data func(
 		object *GtkObject,
-		key *Gchar,
+		key string,
 		data Gpointer)
 
 	Gtk_object_set_data_full func(
 		object *GtkObject,
-		key *Gchar,
+		key string,
 		data Gpointer,
 		destroy GDestroyNotify)
 
 	Gtk_object_remove_data func(
 		object *GtkObject,
-		key *Gchar)
+		key string)
 
 	Gtk_object_get_data func(
 		object *GtkObject,
-		key *Gchar) Gpointer
+		key string) Gpointer
 
 	Gtk_object_remove_no_notify func(
 		object *GtkObject,
-		key *Gchar)
+		key string)
 
 	Gtk_object_set_user_data func(
 		object *GtkObject,
@@ -431,12 +421,14 @@ var (
 		object *GtkObject,
 		key_id GQuark)
 
-	//gtk_object_get func(object *GtkObject, first_property_name *Gchar, ...)
+	Gtk_object_get func(object *GtkObject,
+		first_property_name string, v ...VArg)
 
-	//gtk_object_set func(object  *GtkObject, first_property_name  *Gchar, ...)
+	Gtk_object_set func(object *GtkObject,
+		first_property_name string, v ...VArg)
 
 	Gtk_object_add_arg_type func(
-		arg_name *Gchar,
+		arg_name string,
 		arg_type GType,
 		arg_flags Guint,
 		arg_id Guint)
@@ -558,11 +550,11 @@ var (
 
 	Gtk_style_lookup_icon_set func(
 		style *GtkStyle,
-		stock_id *Gchar) *GtkIconSet
+		stock_id string) *GtkIconSet
 
 	Gtk_style_lookup_color func(
 		style *GtkStyle,
-		color_name *Gchar,
+		color_name string,
 		color *GdkColor) Gboolean
 
 	Gtk_style_render_icon func(
@@ -572,7 +564,7 @@ var (
 		state GtkStateType,
 		size GtkIconSize,
 		widget *GtkWidget,
-		detail *Gchar) *GdkPixbuf
+		detail string) *GdkPixbuf
 
 	Gtk_draw_hline func(
 		style *GtkStyle,
@@ -781,7 +773,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x1 Gint,
 		x2 Gint,
 		y Gint)
@@ -792,7 +784,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		y1_ Gint,
 		y2_ Gint,
 		x Gint)
@@ -804,7 +796,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -817,7 +809,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		points *GdkPoint,
 		n_points Gint,
 		fill Gboolean)
@@ -829,7 +821,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		arrow_type GtkArrowType,
 		fill Gboolean,
 		x Gint,
@@ -844,7 +836,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -857,7 +849,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -870,7 +862,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -883,7 +875,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -896,7 +888,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -909,7 +901,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -922,7 +914,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -938,7 +930,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -954,7 +946,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -967,7 +959,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -980,7 +972,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -994,7 +986,7 @@ var (
 		shadow_type GtkShadowType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		width Gint,
@@ -1007,7 +999,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		expander_style GtkExpanderStyle)
@@ -1019,7 +1011,7 @@ var (
 		use_text Gboolean,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
 		layout *PangoLayout)
@@ -1030,7 +1022,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		edge GdkWindowEdge,
 		x Gint,
 		y Gint,
@@ -1043,7 +1035,7 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		step Guint,
 		x Gint,
 		y Gint,
@@ -1063,31 +1055,17 @@ var (
 	Gtk_style_get_style_property func(
 		style *GtkStyle,
 		widget_type GType,
-		property_name *Gchar,
+		property_name string,
 		value *GValue)
 
 	Gtk_style_get_valist func(
 		style *GtkStyle,
 		widget_type GType,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list)
 
-	//gtk_style_get func(style  *GtkStyle, widget_type  GType, first_property_name  *Gchar, ...)
-
-	// _gtk_style_peek_property_value func(
-	// 	style *GtkStyle,
-	// 	widget_type GType,
-	// 	pspec *GParamSpec,
-	// 	parser GtkRcPropertyParser) *GValue
-
-	// _gtk_style_init_for_settings func(
-	// 	style *GtkStyle,
-	// 	settings *GtkSettings)
-
-	// _gtk_style_shade func(
-	// 	a *GdkColor,
-	// 	b *GdkColor,
-	// 	k Gdouble)
+	Gtk_style_get func(style *GtkStyle, widget_type GType,
+		first_property_name string, v ...VArg)
 
 	Gtk_draw_string func(
 		style *GtkStyle,
@@ -1095,7 +1073,7 @@ var (
 		state_type GtkStateType,
 		x Gint,
 		y Gint,
-		string *Gchar)
+		string string)
 
 	Gtk_paint_string func(
 		style *GtkStyle,
@@ -1103,10 +1081,10 @@ var (
 		state_type GtkStateType,
 		area *GdkRectangle,
 		widget *GtkWidget,
-		detail *Gchar,
+		detail string,
 		x Gint,
 		y Gint,
-		string *Gchar)
+		string string)
 
 	Gtk_draw_insertion_cursor func(
 		widget *GtkWidget,
@@ -1117,31 +1095,10 @@ var (
 		direction GtkTextDirection,
 		draw_arrow Gboolean)
 
-	// _gtk_widget_get_cursor_gc func(
-	// 	widget *GtkWidget) *GdkGC
+	Gtk_rc_add_default_file func(
+		filename string)
 
-	// _gtk_widget_get_cursor_color func(
-	// 	widget *GtkWidget,
-	// 	color *GdkColor)
-
-	// _gtk_rc_init func()
-
-	// _gtk_rc_parse_widget_class_path func(
-	// 	pattern *Gchar) *GSList
-
-	// _gtk_rc_free_widget_class_path func(
-	// 	list *GSList)
-
-	// _gtk_rc_match_widget_class func(
-	// 	list *GSList,
-	// 	length Gint,
-	// 	path *Gchar,
-	// 	path_reversed *Gchar) Gboolean
-
-	Gtk_rc_add_default_file_utf8 func(
-		filename *Gchar)
-
-	Gtk_rc_set_default_files_utf8 func(
+	Gtk_rc_set_default_files func(
 		filenames **Gchar)
 
 	Gtk_rc_get_default_files func() **Gchar
@@ -1165,27 +1122,27 @@ var (
 	Gtk_rc_find_pixmap_in_path func(
 		settings *GtkSettings,
 		scanner *GScanner,
-		pixmap_file *Gchar) *Gchar
+		pixmap_file string) string
 
-	Gtk_rc_parse_utf8 func(
-		filename *Gchar)
+	Gtk_rc_parse func(
+		filename string)
 
 	Gtk_rc_parse_string func(
-		rc_string *Gchar)
+		rc_string string)
 
 	Gtk_rc_reparse_all func() Gboolean
 
 	Gtk_rc_add_widget_name_style func(
 		rc_style *GtkRcStyle,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_rc_add_widget_class_style func(
 		rc_style *GtkRcStyle,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_rc_add_class_style func(
 		rc_style *GtkRcStyle,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_rc_style_get_type func() GType
 
@@ -1201,15 +1158,15 @@ var (
 		rc_style *GtkRcStyle)
 
 	Gtk_rc_find_module_in_path func(
-		module_file *Gchar) *Gchar
+		module_file string) string
 
-	Gtk_rc_get_theme_dir func() *Gchar
+	Gtk_rc_get_theme_dir func() string
 
-	Gtk_rc_get_module_dir func() *Gchar
+	Gtk_rc_get_module_dir func() string
 
-	Gtk_rc_get_im_module_path func() *Gchar
+	Gtk_rc_get_im_module_path func() string
 
-	Gtk_rc_get_im_module_file func() *Gchar
+	Gtk_rc_get_im_module_file func() string
 
 	Gtk_rc_scanner_new func() *GScanner
 
@@ -1229,29 +1186,6 @@ var (
 	Gtk_rc_parse_priority func(
 		scanner *GScanner,
 		priority *GtkPathPriorityType) Guint
-
-	// _gtk_rc_style_lookup_rc_property func(
-	// 	rc_style *GtkRcStyle,
-	// 	type_name GQuark,
-	// 	property_name GQuark) *GtkRcProperty
-
-	// _gtk_rc_style_set_rc_property func(
-	// 	rc_style *GtkRcStyle,
-	// 	property *GtkRcProperty)
-
-	// _gtk_rc_style_unset_rc_property func(
-	// 	rc_style *GtkRcStyle,
-	// 	type_name GQuark,
-	// 	property_name GQuark)
-
-	// _gtk_rc_style_get_color_hashes func(
-	// 	rc_style *GtkRcStyle) *GSList
-
-	// _gtk_rc_context_get_default_font_name func(
-	// 	settings *GtkSettings) *Gchar
-
-	// _gtk_rc_context_destroy func(
-	// 	settings *GtkSettings)
 
 	Gtk_settings_get_type func() GType
 
@@ -1294,50 +1228,31 @@ var (
 
 	Gtk_settings_set_property_value func(
 		settings *GtkSettings,
-		name *Gchar,
+		name string,
 		svalue *GtkSettingsValue)
 
 	Gtk_settings_set_string_property func(
 		settings *GtkSettings,
-		name *Gchar,
-		v_string *Gchar,
-		origin *Gchar)
+		name string,
+		v_string string,
+		origin string)
 
 	Gtk_settings_set_long_property func(
 		settings *GtkSettings,
-		name *Gchar,
+		name string,
 		v_long Glong,
-		origin *Gchar)
+		origin string)
 
 	Gtk_settings_set_double_property func(
 		settings *GtkSettings,
-		name *Gchar,
+		name string,
 		v_double Gdouble,
-		origin *Gchar)
-
-	// _gtk_settings_set_property_value_from_rc func(
-	// 	settings *GtkSettings,
-	// 	name *Gchar,
-	// 	svalue *GtkSettingsValue)
-
-	// _gtk_settings_reset_rc_values func(
-	// 	settings *GtkSettings)
-
-	// _gtk_settings_handle_event func(
-	// 	event *GdkEventSetting)
-
-	// _gtk_rc_property_parser_from_type func(
-	// 	t GType) GtkRcPropertyParser
-
-	// _gtk_settings_parse_convert func(
-	// 	parser GtkRcPropertyParser,
-	// 	src_value *GValue,
-	// 	pspec *GParamSpec,
-	// 	dest_value *GValue) Gboolean
+		origin string)
 
 	Gtk_widget_get_type func() GType
 
-	//gtk_widget_new func( t  GType, first_property_name  *Gchar, ...)* GtkWidget
+	Gtk_widget_new func(t GType, first_property_name string,
+		v ...VArg) *GtkWidget
 
 	Gtk_widget_destroy func(
 		widget *GtkWidget)
@@ -1352,7 +1267,8 @@ var (
 	Gtk_widget_unref func(
 		widget *GtkWidget)
 
-	//gtk_widget_set func(widget  *GtkWidget, first_property_name  *Gchar, ...)
+	Gtk_widget_set func(widget *GtkWidget,
+		first_property_name string, v ...VArg)
 
 	Gtk_widget_hide_all func(
 		widget *GtkWidget)
@@ -1395,31 +1311,19 @@ var (
 		widget *GtkWidget)
 
 	Gtk_widget_queue_draw_area func(
-		widget *GtkWidget,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		widget *GtkWidget, x, y, width, height Gint)
 
 	Gtk_widget_queue_clear func(
 		widget *GtkWidget)
 
 	Gtk_widget_queue_clear_area func(
-		widget *GtkWidget,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		widget *GtkWidget, x, y, width, height Gint)
 
-	Gtk_widget_queue_resize func(
-		widget *GtkWidget)
+	Gtk_widget_queue_resize func(widget *GtkWidget)
 
-	Gtk_widget_queue_resize_no_redraw func(
-		widget *GtkWidget)
+	Gtk_widget_queue_resize_no_redraw func(widget *GtkWidget)
 
-	Gtk_widget_draw func(
-		widget *GtkWidget,
-		area *GdkRectangle)
+	Gtk_widget_draw func(widget *GtkWidget, area *GdkRectangle)
 
 	Gtk_widget_size_request func(
 		widget *GtkWidget,
@@ -1435,7 +1339,7 @@ var (
 
 	Gtk_widget_add_accelerator func(
 		widget *GtkWidget,
-		accel_signal *Gchar,
+		accel_signal string,
 		accel_group *GtkAccelGroup,
 		accel_key Guint,
 		accel_mods GdkModifierType,
@@ -1449,12 +1353,8 @@ var (
 
 	Gtk_widget_set_accel_path func(
 		widget *GtkWidget,
-		accel_path *Gchar,
+		accel_path string,
 		accel_group *GtkAccelGroup)
-
-	// _gtk_widget_get_accel_path func(
-	// 	widget *GtkWidget,
-	// 	locked *Gboolean) *Gchar
 
 	Gtk_widget_list_accel_closures func(
 		widget *GtkWidget) *GList
@@ -1505,7 +1405,7 @@ var (
 
 	Gtk_widget_child_notify func(
 		widget *GtkWidget,
-		child_property *Gchar)
+		child_property string)
 
 	Gtk_widget_thaw_child_notify func(
 		widget *GtkWidget)
@@ -1551,10 +1451,10 @@ var (
 
 	Gtk_widget_set_name func(
 		widget *GtkWidget,
-		name *Gchar)
+		name string)
 
 	Gtk_widget_get_name func(
-		widget *GtkWidget) *Gchar
+		widget *GtkWidget) string
 
 	Gtk_widget_set_state func(
 		widget *GtkWidget,
@@ -1837,20 +1737,20 @@ var (
 
 	Gtk_widget_create_pango_layout func(
 		widget *GtkWidget,
-		text *Gchar) *PangoLayout
+		text string) *PangoLayout
 
 	Gtk_widget_render_icon func(
 		widget *GtkWidget,
-		stock_id *Gchar,
+		stock_id string,
 		size GtkIconSize,
-		detail *Gchar) *GdkPixbuf
+		detail string) *GdkPixbuf
 
 	Gtk_widget_set_composite_name func(
 		widget *GtkWidget,
-		name *Gchar)
+		name string)
 
 	Gtk_widget_get_composite_name func(
-		widget *GtkWidget) *Gchar
+		widget *GtkWidget) string
 
 	Gtk_widget_reset_rc_styles func(
 		widget *GtkWidget)
@@ -1875,7 +1775,7 @@ var (
 
 	Gtk_widget_class_find_style_property func(
 		klass *GtkWidgetClass,
-		property_name *Gchar) *GParamSpec
+		property_name string) *GParamSpec
 
 	Gtk_widget_class_list_style_properties func(
 		klass *GtkWidgetClass,
@@ -1883,15 +1783,16 @@ var (
 
 	Gtk_widget_style_get_property func(
 		widget *GtkWidget,
-		property_name *Gchar,
+		property_name string,
 		value *GValue)
 
 	Gtk_widget_style_get_valist func(
 		widget *GtkWidget,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list)
 
-	//gtk_widget_style_get func( widget  *GtkWidget, first_property_name  *Gchar, ...)
+	Gtk_widget_style_get func(widget *GtkWidget,
+		first_property_name string, v ...VArg)
 
 	Gtk_widget_set_default_colormap func(
 		colormap *GdkColormap)
@@ -1967,17 +1868,17 @@ var (
 
 	Gtk_widget_set_tooltip_text func(
 		widget *GtkWidget,
-		text *Gchar)
+		text string)
 
 	Gtk_widget_get_tooltip_text func(
-		widget *GtkWidget) *Gchar
+		widget *GtkWidget) string
 
 	Gtk_widget_set_tooltip_markup func(
 		widget *GtkWidget,
-		markup *Gchar)
+		markup string)
 
 	Gtk_widget_get_tooltip_markup func(
-		widget *GtkWidget) *Gchar
+		widget *GtkWidget) string
 
 	Gtk_widget_set_has_tooltip func(
 		widget *GtkWidget,
@@ -1993,59 +1894,6 @@ var (
 
 	Gtk_requisition_free func(
 		requisition *GtkRequisition)
-
-	// _gtk_widget_set_has_default func(
-	// 	widget *GtkWidget,
-	// 	has_default Gboolean)
-
-	// _gtk_widget_set_has_grab func(
-	// 	widget *GtkWidget,
-	// 	has_grab Gboolean)
-
-	// _gtk_widget_set_is_toplevel func(
-	// 	widget *GtkWidget,
-	// 	is_toplevel Gboolean)
-
-	// _gtk_widget_grab_notify func(
-	// 	widget *GtkWidget,
-	// 	was_grabbed Gboolean)
-
-	// _gtk_widget_get_aux_info func(
-	// 	widget *GtkWidget,
-	// 	create Gboolean) *GtkWidgetAuxInfo
-
-	// _gtk_widget_propagate_hierarchy_changed func(
-	// 	widget *GtkWidget,
-	// 	previous_toplevel *GtkWidget)
-
-	// _gtk_widget_propagate_screen_changed func(
-	// 	widget *GtkWidget,
-	// 	previous_screen *GdkScreen)
-
-	// _gtk_widget_propagate_composited_changed func(
-	// 	widget *GtkWidget)
-
-	// _gtk_widget_set_pointer_window func(
-	// 	widget *GtkWidget,
-	// 	pointer_window *GdkWindow)
-
-	// _gtk_widget_get_pointer_window func(
-	// 	widget *GtkWidget) *GdkWindow
-
-	// _gtk_widget_is_pointer_widget func(
-	// 	widget *GtkWidget) Gboolean
-
-	// _gtk_widget_synthesize_crossing func(
-	// 	from *GtkWidget,
-	// 	to *GtkWidget,
-	// 	mode GdkCrossingMode)
-
-	// _gtk_widget_peek_colormap func() *GdkColormap
-
-	// _gtk_widget_buildable_finish_accelerator func(
-	// 	widget *GtkWidget,
-	// 	toplevel *GtkWidget,
-	// 	user_data Gpointer)
 
 	Gtk_container_get_type func() GType
 
@@ -2143,65 +1991,51 @@ var (
 
 	Gtk_container_class_find_child_property func(
 		cclass *GObjectClass,
-		property_name *Gchar) *GParamSpec
+		property_name string) *GParamSpec
 
 	Gtk_container_class_list_child_properties func(
 		cclass *GObjectClass,
 		n_properties *Guint) **GParamSpec
 
-	//gtk_container_add_with_properties func(container  *GtkContainer, widget  *GtkWidget, first_prop_name  *Gchar, ...)
+	Gtk_container_add_with_properties func(
+		container *GtkContainer, widget *GtkWidget,
+		first_prop_name string, v ...VArg)
 
-	//gtk_container_child_set func(container  *GtkContainer, child  *GtkWidget, first_prop_name  *Gchar, ...)
+	Gtk_container_child_set func(
+		container *GtkContainer, child *GtkWidget,
+		first_prop_name string, v ...VArg)
 
-	//gtk_container_child_get func(container  *GtkContainer, child  *GtkWidget, first_prop_name  *Gchar, ...)
+	Gtk_container_child_get func(container *GtkContainer,
+		child *GtkWidget, first_prop_name string, v ...VArg)
 
 	Gtk_container_child_set_valist func(
 		container *GtkContainer,
 		child *GtkWidget,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list)
 
 	Gtk_container_child_get_valist func(
 		container *GtkContainer,
 		child *GtkWidget,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list)
 
 	Gtk_container_child_set_property func(
 		container *GtkContainer,
 		child *GtkWidget,
-		property_name *Gchar,
+		property_name string,
 		value *GValue)
 
 	Gtk_container_child_get_property func(
 		container *GtkContainer,
 		child *GtkWidget,
-		property_name *Gchar,
+		property_name string,
 		value *GValue)
 
 	Gtk_container_forall func(
 		container *GtkContainer,
 		callback GtkCallback,
 		callback_data Gpointer)
-
-	// _gtk_container_queue_resize func(
-	// 	container *GtkContainer)
-
-	// _gtk_container_clear_resize_widgets func(
-	// 	container *GtkContainer)
-
-	// _gtk_container_child_composite_name func(
-	// 	container *GtkContainer,
-	// 	child *GtkWidget) *Gchar
-
-	// _gtk_container_dequeue_resize_handler func(
-	// 	container *GtkContainer)
-
-	// _gtk_container_focus_sort func(
-	// 	container *GtkContainer,
-	// 	children *GList,
-	// 	direction GtkDirectionType,
-	// 	old_focus *GtkWidget) *GList
 
 	Gtk_bin_get_type func() GType
 
@@ -2215,26 +2049,26 @@ var (
 
 	Gtk_window_set_title func(
 		window *GtkWindow,
-		title *Gchar)
+		title string)
 
 	Gtk_window_get_title func(
-		window *GtkWindow) *Gchar
+		window *GtkWindow) string
 
 	Gtk_window_set_wmclass func(
 		window *GtkWindow,
-		wmclass_name *Gchar,
-		wmclass_class *Gchar)
+		wmclass_name string,
+		wmclass_class string)
 
 	Gtk_window_set_role func(
 		window *GtkWindow,
-		role *Gchar)
+		role string)
 
 	Gtk_window_set_startup_id func(
 		window *GtkWindow,
-		startup_id *Gchar)
+		startup_id string)
 
 	Gtk_window_get_role func(
-		window *GtkWindow) *Gchar
+		window *GtkWindow) string
 
 	Gtk_window_add_accel_group func(
 		window *GtkWindow,
@@ -2419,18 +2253,18 @@ var (
 
 	Gtk_window_set_icon_name func(
 		window *GtkWindow,
-		name *Gchar)
+		name string)
 
-	Gtk_window_set_icon_from_file_utf8 func(
+	Gtk_window_set_icon_from_file func(
 		window *GtkWindow,
-		filename *Gchar,
+		filename string,
 		err **GError) Gboolean
 
 	Gtk_window_get_icon func(
 		window *GtkWindow) *GdkPixbuf
 
 	Gtk_window_get_icon_name func(
-		window *GtkWindow) *Gchar
+		window *GtkWindow) string
 
 	Gtk_window_set_default_icon_list func(
 		list *GList)
@@ -2441,12 +2275,12 @@ var (
 		icon *GdkPixbuf)
 
 	Gtk_window_set_default_icon_name func(
-		name *Gchar)
+		name string)
 
-	Gtk_window_get_default_icon_name func() *Gchar
+	Gtk_window_get_default_icon_name func() string
 
-	Gtk_window_set_default_icon_from_file_utf8 func(
-		filename *Gchar,
+	Gtk_window_set_default_icon_from_file func(
+		filename string,
 		err **GError) Gboolean
 
 	Gtk_window_set_auto_startup_notification func(
@@ -2583,7 +2417,7 @@ var (
 
 	Gtk_window_parse_geometry func(
 		window *GtkWindow,
-		geometry *Gchar) Gboolean
+		geometry string) Gboolean
 
 	Gtk_window_get_group func(
 		window *GtkWindow) *GtkWindowGroup
@@ -2612,10 +2446,6 @@ var (
 	Gtk_window_group_list_windows func(
 		window_group *GtkWindowGroup) *GList
 
-	// _gtk_window_internal_set_focus func(
-	// 	window *GtkWindow,
-	// 	focus *GtkWidget)
-
 	Gtk_window_remove_embedded_xid func(
 		window *GtkWindow,
 		xid GdkNativeWindow)
@@ -2624,52 +2454,17 @@ var (
 		window *GtkWindow,
 		xid GdkNativeWindow)
 
-	// _gtk_window_reposition func(
-	// 	window *GtkWindow,
-	// 	x Gint,
-	// 	y Gint)
-
-	// _gtk_window_constrain_size func(
-	// 	window *GtkWindow,
-	// 	width Gint,
-	// 	height Gint,
-	// 	new_width *Gint,
-	// 	new_height *Gint)
-
 	Gtk_window_group_get_current_grab func(
 		window_group *GtkWindowGroup) *GtkWidget
-
-	// _gtk_window_set_has_toplevel_focus func(
-	// 	window *GtkWindow,
-	// 	has_toplevel_focus Gboolean)
-
-	// _gtk_window_unset_focus_and_default func(
-	// 	window *GtkWindow,
-	// 	widget *GtkWidget)
-
-	// _gtk_window_set_is_active func(
-	// 	window *GtkWindow,
-	// 	is_active Gboolean)
-
-	// _gtk_window_set_is_toplevel func(
-	// 	window *GtkWindow,
-	// 	is_toplevel Gboolean)
-
-	// _gtk_window_keys_foreach func(
-	// 	window *GtkWindow,
-	// 	f GtkWindowKeysForeachFunc,
-	// 	func_data Gpointer)
-
-	// _gtk_window_query_nonaccels func(
-	// 	window *GtkWindow,
-	// 	accel_key Guint,
-	// 	accel_mods GdkModifierType) Gboolean
 
 	Gtk_dialog_get_type func() GType
 
 	Gtk_dialog_new func() *GtkWidget
 
-	//gtk_dialog_new_with_buttons func(title  *Gchar, parent  *GtkWindow, flags  GtkDialogFlags, first_button_text  *Gchar, ...)* GtkWidget
+	Gtk_dialog_new_with_buttons func(
+		title string, parent *GtkWindow,
+		flags GtkDialogFlags, first_button_text string,
+		v ...VArg) *GtkWidget
 
 	Gtk_dialog_add_action_widget func(
 		dialog *GtkDialog,
@@ -2678,10 +2473,11 @@ var (
 
 	Gtk_dialog_add_button func(
 		dialog *GtkDialog,
-		button_text *Gchar,
+		button_text string,
 		response_id Gint) *GtkWidget
 
-	//gtk_dialog_add_buttons func(dialog  *GtkDialog, first_button_text  *Gchar, ...)
+	Gtk_dialog_add_buttons func(dialog *GtkDialog,
+		first_button_text string, v ...VArg)
 
 	Gtk_dialog_set_response_sensitive func(
 		dialog *GtkDialog,
@@ -2710,7 +2506,8 @@ var (
 	Gtk_alternative_dialog_button_order func(
 		screen *GdkScreen) Gboolean
 
-	//gtk_dialog_set_alternative_button_order func(dialog  *GtkDialog, first_response_id  Gint, ...)
+	Gtk_dialog_set_alternative_button_order func(
+		dialog *GtkDialog, first_response_id Gint, v ...VArg)
 
 	Gtk_dialog_set_alternative_button_order_from_array func(
 		dialog *GtkDialog,
@@ -2730,57 +2527,54 @@ var (
 	Gtk_dialog_get_content_area func(
 		dialog *GtkDialog) *GtkWidget
 
-	// _gtk_dialog_set_ignore_separator func(
-	// 	dialog *GtkDialog,
-	// 	ignore_separator Gboolean)
-
 	Gtk_about_dialog_get_type func() GType
 
 	Gtk_about_dialog_new func() *GtkWidget
 
-	//gtk_show_about_dialog func(parent  *GtkWindow, first_property_name  *Gchar, ...)
+	Gtk_show_about_dialog func(parent *GtkWindow,
+		first_property_name string, v ...VArg)
 
 	Gtk_about_dialog_get_name func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_name func(
 		about *GtkAboutDialog,
-		name *Gchar)
+		name string)
 
 	Gtk_about_dialog_get_program_name func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_program_name func(
 		about *GtkAboutDialog,
-		name *Gchar)
+		name string)
 
 	Gtk_about_dialog_get_version func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_version func(
 		about *GtkAboutDialog,
-		version *Gchar)
+		version string)
 
 	Gtk_about_dialog_get_copyright func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_copyright func(
 		about *GtkAboutDialog,
-		copyright *Gchar)
+		copyright string)
 
 	Gtk_about_dialog_get_comments func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_comments func(
 		about *GtkAboutDialog,
-		comments *Gchar)
+		comments string)
 
 	Gtk_about_dialog_get_license func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_license func(
 		about *GtkAboutDialog,
-		license *Gchar)
+		license string)
 
 	Gtk_about_dialog_get_wrap_license func(
 		about *GtkAboutDialog) Gboolean
@@ -2790,18 +2584,18 @@ var (
 		wrap_license Gboolean)
 
 	Gtk_about_dialog_get_website func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_website func(
 		about *GtkAboutDialog,
-		website *Gchar)
+		website string)
 
 	Gtk_about_dialog_get_website_label func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_website_label func(
 		about *GtkAboutDialog,
-		website_label *Gchar)
+		website_label string)
 
 	Gtk_about_dialog_get_authors func(
 		about *GtkAboutDialog) **Gchar
@@ -2825,11 +2619,11 @@ var (
 		artists **Gchar)
 
 	Gtk_about_dialog_get_translator_credits func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_translator_credits func(
 		about *GtkAboutDialog,
-		translator_credits *Gchar)
+		translator_credits string)
 
 	Gtk_about_dialog_get_logo func(
 		about *GtkAboutDialog) *GdkPixbuf
@@ -2839,11 +2633,11 @@ var (
 		logo *GdkPixbuf)
 
 	Gtk_about_dialog_get_logo_icon_name func(
-		about *GtkAboutDialog) *Gchar
+		about *GtkAboutDialog) string
 
 	Gtk_about_dialog_set_logo_icon_name func(
 		about *GtkAboutDialog,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_about_dialog_set_email_hook func(
 		f GtkAboutDialogActivateLinkFunc,
@@ -2911,28 +2705,8 @@ var (
 		menu_shell *GtkMenuShell,
 		search_sensitive Gboolean)
 
-	// _gtk_menu_shell_select_last func(
-	// 	menu_shell *GtkMenuShell,
-	// 	search_sensitive Gboolean)
-
-	// _gtk_menu_shell_activate func(
-	// 	menu_shell *GtkMenuShell)
-
-	// _gtk_menu_shell_get_popup_delay func(
-	// 	menu_shell *GtkMenuShell) Gint
-
 	Gtk_menu_shell_cancel func(
 		menu_shell *GtkMenuShell)
-
-	// _gtk_menu_shell_add_mnemonic func(
-	// 	menu_shell *GtkMenuShell,
-	// 	keyval Guint,
-	// 	target *GtkWidget)
-
-	// _gtk_menu_shell_remove_mnemonic func(
-	// 	menu_shell *GtkMenuShell,
-	// 	keyval Guint,
-	// 	target *GtkWidget)
 
 	Gtk_menu_shell_get_take_focus func(
 		menu_shell *GtkMenuShell) Gboolean
@@ -2940,16 +2714,6 @@ var (
 	Gtk_menu_shell_set_take_focus func(
 		menu_shell *GtkMenuShell,
 		take_focus Gboolean)
-
-	// _gtk_menu_shell_update_mnemonics func(
-	// 	menu_shell *GtkMenuShell)
-
-	// _gtk_menu_shell_set_keyboard_mode func(
-	// 	menu_shell *GtkMenuShell,
-	// 	keyboard_mode Gboolean)
-
-	// _gtk_menu_shell_get_keyboard_mode func(
-	// 	menu_shell *GtkMenuShell) Gboolean
 
 	Gtk_menu_get_type func() GType
 
@@ -2986,10 +2750,10 @@ var (
 
 	Gtk_menu_set_accel_path func(
 		menu *GtkMenu,
-		accel_path *Gchar)
+		accel_path string)
 
 	Gtk_menu_get_accel_path func(
-		menu *GtkMenu) *Gchar
+		menu *GtkMenu) string
 
 	Gtk_menu_attach_to_widget func(
 		menu *GtkMenu,
@@ -3011,10 +2775,10 @@ var (
 
 	Gtk_menu_set_title func(
 		menu *GtkMenu,
-		title *Gchar)
+		title string)
 
 	Gtk_menu_get_title func(
-		menu *GtkMenu) *Gchar
+		menu *GtkMenu) string
 
 	Gtk_menu_reorder_child func(
 		menu *GtkMenu,
@@ -3053,17 +2817,17 @@ var (
 	Gtk_label_get_type func() GType
 
 	Gtk_label_new func(
-		str *Gchar) *GtkWidget
+		str string) *GtkWidget
 
 	Gtk_label_new_with_mnemonic func(
-		str *Gchar) *GtkWidget
+		str string) *GtkWidget
 
 	Gtk_label_set_text func(
 		label *GtkLabel,
-		str *Gchar)
+		str string)
 
 	Gtk_label_get_text func(
-		label *GtkLabel) *Gchar
+		label *GtkLabel) string
 
 	Gtk_label_set_attributes func(
 		label *GtkLabel,
@@ -3074,14 +2838,14 @@ var (
 
 	Gtk_label_set_label func(
 		label *GtkLabel,
-		str *Gchar)
+		str string)
 
 	Gtk_label_get_label func(
-		label *GtkLabel) *Gchar
+		label *GtkLabel) string
 
 	Gtk_label_set_markup func(
 		label *GtkLabel,
-		str *Gchar)
+		str string)
 
 	Gtk_label_set_use_markup func(
 		label *GtkLabel,
@@ -3099,7 +2863,7 @@ var (
 
 	Gtk_label_set_markup_with_mnemonic func(
 		label *GtkLabel,
-		str *Gchar)
+		str string)
 
 	Gtk_label_get_mnemonic_keyval func(
 		label *GtkLabel) Guint
@@ -3113,7 +2877,7 @@ var (
 
 	Gtk_label_set_text_with_mnemonic func(
 		label *GtkLabel,
-		str *Gchar)
+		str string)
 
 	Gtk_label_set_justify func(
 		label *GtkLabel,
@@ -3145,7 +2909,7 @@ var (
 
 	Gtk_label_set_pattern func(
 		label *GtkLabel,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_label_set_line_wrap func(
 		label *GtkLabel,
@@ -3201,7 +2965,7 @@ var (
 		label *GtkLabel) Gboolean
 
 	Gtk_label_get_current_uri func(
-		label *GtkLabel) *Gchar
+		label *GtkLabel) string
 
 	Gtk_label_set_track_visited_links func(
 		label *GtkLabel,
@@ -3216,16 +2980,12 @@ var (
 
 	Gtk_label_parse_uline func(
 		label *GtkLabel,
-		string *Gchar) Guint
-
-	// _gtk_label_mnemonics_visible_apply_recursively func(
-	// 	widget *GtkWidget,
-	// 	mnemonics_visible Gboolean)
+		string string) Guint
 
 	Gtk_accel_label_get_type func() GType
 
 	Gtk_accel_label_new func(
-		string *Gchar) *GtkWidget
+		string string) *GtkWidget
 
 	Gtk_accel_label_get_accel_widget func(
 		accel_label *GtkAccelLabel) *GtkWidget
@@ -3244,31 +3004,26 @@ var (
 	Gtk_accel_label_refetch func(
 		accel_label *GtkAccelLabel) Gboolean
 
-	// _gtk_accel_label_class_get_accelerator_label func(
-	// 	klass *GtkAccelLabelClass,
-	// 	accelerator_key Guint,
-	// 	accelerator_mods GdkModifierType) *Gchar
-
 	Gtk_accel_map_add_entry func(
-		accel_path *Gchar,
+		accel_path string,
 		accel_key Guint,
 		accel_mods GdkModifierType)
 
 	Gtk_accel_map_lookup_entry func(
-		accel_path *Gchar,
+		accel_path string,
 		key *GtkAccelKey) Gboolean
 
 	Gtk_accel_map_change_entry func(
-		accel_path *Gchar,
+		accel_path string,
 		accel_key Guint,
 		accel_mods GdkModifierType,
 		replace Gboolean) Gboolean
 
-	Gtk_accel_map_load_utf8 func(
-		file_name *Gchar)
+	Gtk_accel_map_load func(
+		file_name string)
 
-	Gtk_accel_map_save_utf8 func(
-		file_name *Gchar)
+	Gtk_accel_map_save func(
+		file_name string)
 
 	Gtk_accel_map_foreach func(
 		dataGpointer,
@@ -3284,13 +3039,13 @@ var (
 		fd Gint)
 
 	Gtk_accel_map_lock_path func(
-		accel_path *Gchar)
+		accel_path string)
 
 	Gtk_accel_map_unlock_path func(
-		accel_path *Gchar)
+		accel_path string)
 
 	Gtk_accel_map_add_filter func(
-		filter_pattern *Gchar)
+		filter_pattern string)
 
 	Gtk_accel_map_foreach_unfiltered func(
 		dataGpointer,
@@ -3299,19 +3054,6 @@ var (
 	Gtk_accel_map_get_type func() GType
 
 	Gtk_accel_map_get func() *GtkAccelMap
-
-	// _gtk_accel_map_init func()
-
-	// _gtk_accel_map_add_group func(
-	// 	accel_path *Gchar,
-	// 	accel_group *GtkAccelGroup)
-
-	// _gtk_accel_map_remove_group func(
-	// 	accel_path *Gchar,
-	// 	accel_group *GtkAccelGroup)
-
-	// _gtk_accel_path_is_valid func(
-	// 	accel_path *Gchar) Gboolean
 
 	Gtk_accessible_get_type func() GType
 
@@ -3328,13 +3070,13 @@ var (
 	Gtk_action_get_type func() GType
 
 	Gtk_action_new func(
-		name *Gchar,
-		label *Gchar,
-		tooltip *Gchar,
-		stock_id *Gchar) *GtkAction
+		name string,
+		label string,
+		tooltip string,
+		stock_id string) *GtkAction
 
 	Gtk_action_get_name func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_is_sensitive func(
 		action *GtkAction) Gboolean
@@ -3382,7 +3124,7 @@ var (
 		action *GtkAction)
 
 	Gtk_action_get_accel_path func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_get_accel_closure func(
 		action *GtkAction) *GClosure
@@ -3412,57 +3154,41 @@ var (
 	Gtk_action_unblock_activate func(
 		action *GtkAction)
 
-	// _gtk_action_add_to_proxy_list func(
-	// 	action *GtkAction,
-	// 	proxy *GtkWidget)
-
-	// _gtk_action_remove_from_proxy_list func(
-	// 	action *GtkAction,
-	// 	proxy *GtkWidget)
-
-	// _gtk_action_emit_activate func(
-	// 	action *GtkAction)
-
 	Gtk_action_set_accel_path func(
 		action *GtkAction,
-		accel_path *Gchar)
+		accel_path string)
 
 	Gtk_action_set_accel_group func(
 		action *GtkAction,
 		accel_group *GtkAccelGroup)
 
-	// _gtk_action_sync_menu_visible func(
-	// 	action *GtkAction,
-	// 	proxy *GtkWidget,
-	// 	empty Gboolean)
-
 	Gtk_action_set_label func(
 		action *GtkAction,
-		label *Gchar)
+		label string)
 
 	Gtk_action_get_label func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_set_short_label func(
 		action *GtkAction,
-		short_label *Gchar)
+		short_label string)
 
 	Gtk_action_get_short_label func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_set_tooltip func(
 		action *GtkAction,
-		tooltip *Gchar)
+		tooltip string)
 
 	Gtk_action_get_tooltip func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_set_stock_id func(
 		action *GtkAction,
-		stock_id *Gchar)
+		stock_id string)
 
 	Gtk_action_get_stock_id func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_set_gicon func(
 		action *GtkAction,
@@ -3473,10 +3199,10 @@ var (
 
 	Gtk_action_set_icon_name func(
 		action *GtkAction,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_action_get_icon_name func(
-		action *GtkAction) *Gchar
+		action *GtkAction) string
 
 	Gtk_action_set_visible_horizontal func(
 		action *GtkAction,
@@ -3509,10 +3235,10 @@ var (
 	Gtk_action_group_get_type func() GType
 
 	Gtk_action_group_new func(
-		name *Gchar) *GtkActionGroup
+		name string) *GtkActionGroup
 
 	Gtk_action_group_get_name func(
-		action_group *GtkActionGroup) *Gchar
+		action_group *GtkActionGroup) string
 
 	Gtk_action_group_get_sensitive func(
 		action_group *GtkActionGroup) Gboolean
@@ -3530,7 +3256,7 @@ var (
 
 	Gtk_action_group_get_action func(
 		action_group *GtkActionGroup,
-		action_name *Gchar) *GtkAction
+		action_name string) *GtkAction
 
 	Gtk_action_group_list_actions func(
 		action_group *GtkActionGroup) *GList
@@ -3542,7 +3268,7 @@ var (
 	Gtk_action_group_add_action_with_accel func(
 		action_group *GtkActionGroup,
 		action *GtkAction,
-		accelerator *Gchar)
+		accelerator string)
 
 	Gtk_action_group_remove_action func(
 		action_group *GtkActionGroup,
@@ -3599,29 +3325,11 @@ var (
 
 	Gtk_action_group_set_translation_domain func(
 		action_group *GtkActionGroup,
-		domain *Gchar)
+		domain string)
 
 	Gtk_action_group_translate_string func(
 		action_group *GtkActionGroup,
-		string *Gchar) *Gchar
-
-	// _gtk_action_group_emit_connect_proxy func(
-	// 	action_group *GtkActionGroup,
-	// 	action *GtkAction,
-	// 	proxy *GtkWidget)
-
-	// _gtk_action_group_emit_disconnect_proxy func(
-	// 	action_group *GtkActionGroup,
-	// 	action *GtkAction,
-	// 	proxy *GtkWidget)
-
-	// _gtk_action_group_emit_pre_activate func(
-	// 	action_group *GtkActionGroup,
-	// 	action *GtkAction)
-
-	// _gtk_action_group_emit_post_activate func(
-	// 	action_group *GtkActionGroup,
-	// 	action *GtkAction)
+		string string) string
 
 	Gtk_activatable_get_type func() GType
 
@@ -3690,14 +3398,14 @@ var (
 	Gtk_frame_get_type func() GType
 
 	Gtk_frame_new func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_frame_set_label func(
 		frame *GtkFrame,
-		label *Gchar)
+		label string)
 
 	Gtk_frame_get_label func(
-		frame *GtkFrame) *Gchar
+		frame *GtkFrame) string
 
 	Gtk_frame_set_label_widget func(
 		frame *GtkFrame,
@@ -3726,7 +3434,7 @@ var (
 	Gtk_aspect_frame_get_type func() GType
 
 	Gtk_aspect_frame_new func(
-		label *Gchar,
+		label string,
 		xalign Gfloat,
 		yalign Gfloat,
 		ratio Gfloat,
@@ -3788,11 +3496,11 @@ var (
 	Gtk_assistant_set_page_title func(
 		assistant *GtkAssistant,
 		page *GtkWidget,
-		title *Gchar)
+		title string)
 
 	Gtk_assistant_get_page_title func(
 		assistant *GtkAssistant,
-		page *GtkWidget) *Gchar
+		page *GtkWidget) string
 
 	Gtk_assistant_set_page_header_image func(
 		assistant *GtkAssistant,
@@ -3836,11 +3544,6 @@ var (
 		assistant *GtkAssistant)
 
 	Gtk_box_get_type func() GType
-
-	// _gtk_box_new func(
-	// 	orientation GtkOrientation,
-	// 	homogeneous Gboolean,
-	// 	spacing Gint) *GtkWidget
 
 	Gtk_box_pack_start func(
 		box *GtkBox,
@@ -3899,16 +3602,6 @@ var (
 		padding Guint,
 		pack_type GtkPackType)
 
-	// _gtk_box_set_old_defaults func(
-	// 	box *GtkBox)
-
-	// _gtk_box_get_spacing_set func(
-	// 	box *GtkBox) Gboolean
-
-	// _gtk_box_set_spacing_set func(
-	// 	box *GtkBox,
-	// 	spacing_set Gboolean)
-
 	Gtk_button_box_get_type func() GType
 
 	Gtk_button_box_get_layout func(
@@ -3947,21 +3640,14 @@ var (
 		ipad_x *Gint,
 		ipad_y *Gint)
 
-	// _gtk_button_box_child_requisition func(
-	// 	widget *GtkWidget,
-	// 	nvis_children *int,
-	// 	nvis_secondaries *int,
-	// 	width *int,
-	// 	height *int)
-
 	Gtk_binding_set_new func(
-		set_name *Gchar) *GtkBindingSet
+		set_name string) *GtkBindingSet
 
 	Gtk_binding_set_by_class func(
 		object_class Gpointer) *GtkBindingSet
 
 	Gtk_binding_set_find func(
-		set_name *Gchar) *GtkBindingSet
+		set_name string) *GtkBindingSet
 
 	Gtk_bindings_activate func(
 		object *GtkObject,
@@ -3991,13 +3677,15 @@ var (
 		keyval Guint,
 		modifiers GdkModifierType)
 
-	//gtk_binding_entry_add_signal func(binding_set  *GtkBindingSet, keyval  Guint, modifiers  GdkModifierType, signal_name  *Gchar, n_args  Guint, ...)
+	Gtk_binding_entry_add_signal func(binding_set *GtkBindingSet,
+		keyval Guint, modifiers GdkModifierType,
+		signal_name string, n_args Guint, varg ...VArg)
 
 	Gtk_binding_entry_add_signall func(
 		binding_set *GtkBindingSet,
 		keyval Guint,
 		modifiers GdkModifierType,
-		signal_name *Gchar,
+		signal_name string,
 		binding_args *GSList)
 
 	Gtk_binding_entry_remove func(
@@ -4008,20 +3696,8 @@ var (
 	Gtk_binding_set_add_path func(
 		binding_set *GtkBindingSet,
 		path_type GtkPathType,
-		path_pattern *Gchar,
+		path_pattern string,
 		priority GtkPathPriorityType)
-
-	// _gtk_binding_parse_binding func(
-	// 	scanner *GScanner) Guint
-
-	// _gtk_binding_reset_parsed func()
-
-	// _gtk_binding_entry_add_signall func(
-	// 	binding_set *GtkBindingSet,
-	// 	keyval Guint,
-	// 	modifiers GdkModifierType,
-	// 	signal_name *Gchar,
-	// 	binding_args *GSList)
 
 	Gtk_builder_get_type func() GType
 
@@ -4029,31 +3705,31 @@ var (
 
 	Gtk_builder_add_from_file func(
 		builder *GtkBuilder,
-		filename *Gchar,
+		filename string,
 		error **GError) Guint
 
 	Gtk_builder_add_from_string func(
 		builder *GtkBuilder,
-		buffer *Gchar,
+		buffer string,
 		length Gsize,
 		error **GError) Guint
 
 	Gtk_builder_add_objects_from_file func(
 		builder *GtkBuilder,
-		filename *Gchar,
+		filename string,
 		object_ids **Gchar,
 		error **GError) Guint
 
 	Gtk_builder_add_objects_from_string func(
 		builder *GtkBuilder,
-		buffer *Gchar,
+		buffer string,
 		length Gsize,
 		object_ids **Gchar,
 		error **GError) Guint
 
 	Gtk_builder_get_object func(
 		builder *GtkBuilder,
-		name *Gchar) *GObject
+		name string) *GObject
 
 	Gtk_builder_get_objects func(
 		builder *GtkBuilder) *GSList
@@ -4069,10 +3745,10 @@ var (
 
 	Gtk_builder_set_translation_domain func(
 		builder *GtkBuilder,
-		domain *Gchar)
+		domain string)
 
 	Gtk_builder_get_translation_domain func(
-		builder *GtkBuilder) *Gchar
+		builder *GtkBuilder) string
 
 	Gtk_builder_get_type_from_name func(
 		builder *GtkBuilder,
@@ -4081,14 +3757,14 @@ var (
 	Gtk_builder_value_from_string func(
 		builder *GtkBuilder,
 		pspec *GParamSpec,
-		string *Gchar,
+		string string,
 		value *GValue,
 		error **GError) Gboolean
 
 	Gtk_builder_value_from_string_type func(
 		builder *GtkBuilder,
 		t GType,
-		string *Gchar,
+		string string,
 		value *GValue,
 		error **GError) Gboolean
 
@@ -4096,33 +3772,33 @@ var (
 
 	Gtk_buildable_set_name func(
 		buildable *GtkBuildable,
-		name *Gchar)
+		name string)
 
 	Gtk_buildable_get_name func(
-		buildable *GtkBuildable) *Gchar
+		buildable *GtkBuildable) string
 
 	Gtk_buildable_add_child func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
 		child *GObject,
-		typ *Gchar)
+		typ string)
 
 	Gtk_buildable_set_buildable_property func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
-		name *Gchar,
+		name string,
 		value *GValue)
 
 	Gtk_buildable_construct_child func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
-		name *Gchar) *GObject
+		name string) *GObject
 
 	Gtk_buildable_custom_tag_start func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
 		child *GObject,
-		tagname *Gchar,
+		tagname string,
 		parser *GMarkupParser,
 		data *Gpointer) Gboolean
 
@@ -4130,14 +3806,14 @@ var (
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
 		child *GObject,
-		tagname *Gchar,
+		tagname string,
 		data *Gpointer)
 
 	Gtk_buildable_custom_finished func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
 		child *GObject,
-		tagname *Gchar,
+		tagname string,
 		data Gpointer)
 
 	Gtk_buildable_parser_finished func(
@@ -4147,7 +3823,7 @@ var (
 	Gtk_buildable_get_internal_child func(
 		buildable *GtkBuildable,
 		builder *GtkBuilder,
-		childname *Gchar) *GObject
+		childname string) *GObject
 
 	Gtk_image_get_type func() GType
 
@@ -4161,14 +3837,14 @@ var (
 		image *GdkImage,
 		mask *GdkBitmap) *GtkWidget
 
-	Gtk_image_new_from_file_utf8 func(
-		filename *Gchar) *GtkWidget
+	Gtk_image_new_from_file func(
+		filename string) *GtkWidget
 
 	Gtk_image_new_from_pixbuf func(
 		pixbuf *GdkPixbuf) *GtkWidget
 
 	Gtk_image_new_from_stock func(
-		stock_id *Gchar,
+		stock_id string,
 		size GtkIconSize) *GtkWidget
 
 	Gtk_image_new_from_icon_set func(
@@ -4179,7 +3855,7 @@ var (
 		animation *GdkPixbufAnimation) *GtkWidget
 
 	Gtk_image_new_from_icon_name func(
-		icon_name *Gchar,
+		icon_name string,
 		size GtkIconSize) *GtkWidget
 
 	Gtk_image_new_from_gicon func(
@@ -4199,9 +3875,9 @@ var (
 		gdk_image *GdkImage,
 		mask *GdkBitmap)
 
-	Gtk_image_set_from_file_utf8 func(
+	Gtk_image_set_from_file func(
 		image *GtkImage,
-		filename *Gchar)
+		filename string)
 
 	Gtk_image_set_from_pixbuf func(
 		image *GtkImage,
@@ -4209,7 +3885,7 @@ var (
 
 	Gtk_image_set_from_stock func(
 		image *GtkImage,
-		stock_id *Gchar,
+		stock_id string,
 		size GtkIconSize)
 
 	Gtk_image_set_from_icon_set func(
@@ -4223,7 +3899,7 @@ var (
 
 	Gtk_image_set_from_icon_name func(
 		image *GtkImage,
-		icon_name *Gchar,
+		icon_name string,
 		size GtkIconSize)
 
 	Gtk_image_set_from_gicon func(
@@ -4292,13 +3968,13 @@ var (
 	Gtk_button_new func() *GtkWidget
 
 	Gtk_button_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_button_new_from_stock func(
-		stock_id *Gchar) *GtkWidget
+		stock_id string) *GtkWidget
 
 	Gtk_button_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_button_pressed func(
 		button *GtkButton)
@@ -4324,10 +4000,10 @@ var (
 
 	Gtk_button_set_label func(
 		button *GtkButton,
-		label *Gchar)
+		label string)
 
 	Gtk_button_get_label func(
-		button *GtkButton) *Gchar
+		button *GtkButton) string
 
 	Gtk_button_set_use_underline func(
 		button *GtkButton,
@@ -4377,20 +4053,8 @@ var (
 	Gtk_button_get_event_window func(
 		button *GtkButton) *GdkWindow
 
-	// _gtk_button_set_depressed func(
-	// 	button *GtkButton,
-	// 	depressed Gboolean)
-
-	// _gtk_button_paint func(
-	// 	button *GtkButton,
-	// 	area *GdkRectangle,
-	// 	state_type GtkStateType,
-	// 	shadow_type GtkShadowType,
-	// 	main_detail *Gchar,
-	// 	default_detail *Gchar)
-
 	Gtk_signal_newv func(
-		name *Gchar,
+		name string,
 		signal_flags GtkSignalRunType,
 		object_type GType,
 		function_offset Guint,
@@ -4399,28 +4063,31 @@ var (
 		n_args Guint,
 		args *GType) Guint
 
-	//gtk_signal_new func(name  *Gchar, signal_flags  GtkSignalRunType, object_type  GType, function_offset  Guint, marshaller  GSignalCMarshaller, return_val  GType, n_args  Guint, ...) Guint
+	Gtk_signal_new func(name string,
+		signal_flags GtkSignalRunType,
+		object_type GType, function_offset Guint,
+		marshaller GSignalCMarshaller, return_val GType,
+		n_args Guint, v ...VArg) Guint
 
 	Gtk_signal_emit_stop_by_name func(
-		object *GtkObject,
-		name *Gchar)
+		object *GtkObject, name string)
 
 	Gtk_signal_connect_object_while_alive func(
 		object *GtkObject,
-		name *Gchar,
+		name string,
 		f GCallback,
 		alive_object *GtkObject)
 
 	Gtk_signal_connect_while_alive func(
 		object *GtkObject,
-		name *Gchar,
+		name string,
 		f GCallback,
 		func_dataGpointer,
 		alive_object *GtkObject)
 
 	Gtk_signal_connect_full func(
 		object *GtkObject,
-		name *Gchar,
+		name string,
 		f GCallback,
 		unsupported GtkCallbackMarshal,
 		dataGpointer,
@@ -4433,13 +4100,15 @@ var (
 		signal_id Guint,
 		args *GtkArg)
 
-	//gtk_signal_emit func(object  *GtkObject, signal_id  Guint, ...)
+	Gtk_signal_emit func(object *GtkObject, signal_id Guint,
+		v ...VArg)
 
-	//gtk_signal_emit_by_name func(object  *GtkObject, name  *Gchar, ...)
+	Gtk_signal_emit_by_name func(object *GtkObject,
+		name string, v ...VArg)
 
 	Gtk_signal_emitv_by_name func(
 		object *GtkObject,
-		name *Gchar,
+		name string,
 		args *GtkArg)
 
 	Gtk_signal_compat_matched func(
@@ -4552,7 +4221,7 @@ var (
 		cell *GtkCellRenderer,
 		event *GdkEvent,
 		widget *GtkWidget,
-		path *Gchar,
+		path string,
 		background_area *GdkRectangle,
 		cell_area *GdkRectangle,
 		flags GtkCellRendererState) Gboolean
@@ -4561,7 +4230,7 @@ var (
 		cell *GtkCellRenderer,
 		event *GdkEvent,
 		widget *GtkWidget,
-		path *Gchar,
+		path string,
 		background_area *GdkRectangle,
 		cell_area *GdkRectangle,
 		flags GtkCellRendererState) *GtkCellEditable
@@ -4620,12 +4289,13 @@ var (
 	Gtk_tree_path_new func() *GtkTreePath
 
 	Gtk_tree_path_new_from_string func(
-		path *Gchar) *GtkTreePath
+		path string) *GtkTreePath
 
-	//gtk_tree_path_new_from_indices func(first_index  Gint, ...) *GtkTreePath
+	Gtk_tree_path_new_from_indices func(first_index Gint,
+		v ...VArg) *GtkTreePath
 
 	Gtk_tree_path_to_string func(
-		path *GtkTreePath) *Gchar
+		path *GtkTreePath) string
 
 	Gtk_tree_path_new_first func() *GtkTreePath
 
@@ -4747,11 +4417,11 @@ var (
 	Gtk_tree_model_get_iter_from_string func(
 		tree_model *GtkTreeModel,
 		iter *GtkTreeIter,
-		path_string *Gchar) Gboolean
+		path_string string) Gboolean
 
 	Gtk_tree_model_get_string_from_iter func(
 		tree_model *GtkTreeModel,
-		iter *GtkTreeIter) *Gchar
+		iter *GtkTreeIter) string
 
 	Gtk_tree_model_get_iter_first func(
 		tree_model *GtkTreeModel,
@@ -4803,7 +4473,8 @@ var (
 		tree_model *GtkTreeModel,
 		iter *GtkTreeIter)
 
-	//gtk_tree_model_get func(tree_model  *GtkTreeModel, iter  *GtkTreeIter, ...)
+	Gtk_tree_model_get func(tree_model *GtkTreeModel,
+		iter *GtkTreeIter, v ...VArg)
 
 	Gtk_tree_model_get_valist func(
 		tree_model *GtkTreeModel,
@@ -4875,7 +4546,9 @@ var (
 
 	Gtk_tree_view_column_new func() *GtkTreeViewColumn
 
-	//gtk_tree_view_column_new_with_attributes func(title  *Gchar, cell  *GtkCellRenderer, ...) *GtkTreeViewColumn
+	Gtk_tree_view_column_new_with_attributes func(
+		title string, cell *GtkCellRenderer,
+		v ...VArg) *GtkTreeViewColumn
 
 	Gtk_tree_view_column_pack_start func(
 		tree_column *GtkTreeViewColumn,
@@ -4896,10 +4569,12 @@ var (
 	Gtk_tree_view_column_add_attribute func(
 		tree_column *GtkTreeViewColumn,
 		cell_renderer *GtkCellRenderer,
-		attribute *Gchar,
+		attribute string,
 		column Gint)
 
-	//gtk_tree_view_column_set_attributes func(tree_column  *GtkTreeViewColumn, cell_renderer  *GtkCellRenderer, ...)
+	Gtk_tree_view_column_set_attributes func(
+		tree_column *GtkTreeViewColumn,
+		cell_renderer *GtkCellRenderer, v ...VArg)
 
 	Gtk_tree_view_column_set_cell_data_func func(
 		tree_column *GtkTreeViewColumn,
@@ -4969,10 +4644,10 @@ var (
 
 	Gtk_tree_view_column_set_title func(
 		tree_column *GtkTreeViewColumn,
-		title *Gchar)
+		title string)
 
 	Gtk_tree_view_column_get_title func(
-		tree_column *GtkTreeViewColumn) *Gchar
+		tree_column *GtkTreeViewColumn) string
 
 	Gtk_tree_view_column_set_expand func(
 		tree_column *GtkTreeViewColumn,
@@ -5082,12 +4757,13 @@ var (
 	Gtk_cell_layout_clear func(
 		cell_layout *GtkCellLayout)
 
-	//gtk_cell_layout_set_attributes func(cell_layout  *GtkCellLayout, cell  *GtkCellRenderer, ...)
+	Gtk_cell_layout_set_attributes func(cell_layout *GtkCellLayout,
+		cell *GtkCellRenderer, v ...VArg)
 
 	Gtk_cell_layout_add_attribute func(
 		cell_layout *GtkCellLayout,
 		cell *GtkCellRenderer,
-		attribute *Gchar,
+		attribute string,
 		column Gint)
 
 	Gtk_cell_layout_set_cell_data_func func(
@@ -5105,27 +4781,6 @@ var (
 		cell_layout *GtkCellLayout,
 		cell *GtkCellRenderer,
 		position Gint)
-
-	// _gtk_cell_layout_buildable_custom_tag_start func(
-	// 	buildable *GtkBuildable,
-	// 	builder *GtkBuilder,
-	// 	child *GObject,
-	// 	tagname *Gchar,
-	// 	parser *GMarkupParser,
-	// 	data *Gpointer) Gboolean
-
-	// _gtk_cell_layout_buildable_custom_tag_end func(
-	// 	buildable *GtkBuildable,
-	// 	builder *GtkBuilder,
-	// 	child *GObject,
-	// 	tagname *Gchar,
-	// 	data *Gpointer)
-
-	// _gtk_cell_layout_buildable_add_child func(
-	// 	buildable *GtkBuildable,
-	// 	builder *GtkBuilder,
-	// 	child *GObject,
-	// 	typ *Gchar)
 
 	Gtk_cell_renderer_text_get_type func() GType
 
@@ -5189,10 +4844,10 @@ var (
 	Gtk_cell_view_new func() *GtkWidget
 
 	Gtk_cell_view_new_with_text func(
-		text *Gchar) *GtkWidget
+		text string) *GtkWidget
 
 	Gtk_cell_view_new_with_markup func(
-		markup *Gchar) *GtkWidget
+		markup string) *GtkWidget
 
 	Gtk_cell_view_new_with_pixbuf func(
 		pixbuf *GdkPixbuf) *GtkWidget
@@ -5228,10 +4883,10 @@ var (
 	Gtk_toggle_button_new func() *GtkWidget
 
 	Gtk_toggle_button_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_toggle_button_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_toggle_button_set_mode func(
 		toggle_button *GtkToggleButton,
@@ -5262,15 +4917,10 @@ var (
 	Gtk_check_button_new func() *GtkWidget
 
 	Gtk_check_button_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_check_button_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
-
-	// _gtk_check_button_get_props func(
-	// 	check_button *GtkCheckButton,
-	// 	indicator_size *Gint,
-	// 	indicator_spacing *Gint)
+		label string) *GtkWidget
 
 	Gtk_item_get_type func() GType
 
@@ -5288,10 +4938,10 @@ var (
 	Gtk_menu_item_new func() *GtkWidget
 
 	Gtk_menu_item_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_menu_item_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_menu_item_set_submenu func(
 		menu_item *GtkMenuItem,
@@ -5326,17 +4976,17 @@ var (
 
 	Gtk_menu_item_set_accel_path func(
 		menu_item *GtkMenuItem,
-		accel_path *Gchar)
+		accel_path string)
 
 	Gtk_menu_item_get_accel_path func(
-		menu_item *GtkMenuItem) *Gchar
+		menu_item *GtkMenuItem) string
 
 	Gtk_menu_item_set_label func(
 		menu_item *GtkMenuItem,
-		label *Gchar)
+		label string)
 
 	Gtk_menu_item_get_label func(
-		menu_item *GtkMenuItem) *Gchar
+		menu_item *GtkMenuItem) string
 
 	Gtk_menu_item_set_use_underline func(
 		menu_item *GtkMenuItem,
@@ -5344,22 +4994,6 @@ var (
 
 	Gtk_menu_item_get_use_underline func(
 		menu_item *GtkMenuItem) Gboolean
-
-	// _gtk_menu_item_refresh_accel_path func(
-	// 	menu_item *GtkMenuItem,
-	// 	prefix *Gchar,
-	// 	accel_group *GtkAccelGroup,
-	// 	group_changed Gboolean)
-
-	// _gtk_menu_item_is_selectable func(
-	// 	menu_item *GtkWidget) Gboolean
-
-	// _gtk_menu_item_popup_submenu func(
-	// 	menu_item *GtkWidget,
-	// 	with_delay Gboolean)
-
-	// _gtk_menu_item_popdown_submenu func(
-	// 	menu_item *GtkWidget)
 
 	Gtk_menu_item_remove_submenu func(
 		menu_item *GtkMenuItem)
@@ -5369,10 +5003,10 @@ var (
 	Gtk_check_menu_item_new func() *GtkWidget
 
 	Gtk_check_menu_item_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_check_menu_item_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_check_menu_item_set_active func(
 		check_menu_item *GtkCheckMenuItem,
@@ -5405,7 +5039,7 @@ var (
 	Gtk_text_tag_get_type func() GType
 
 	Gtk_text_tag_new func(
-		name *Gchar) *GtkTextTag
+		name string) *GtkTextTag
 
 	Gtk_text_tag_get_priority func(
 		tag *GtkTextTag) Gint
@@ -5481,19 +5115,19 @@ var (
 
 	Gtk_text_iter_get_slice func(
 		start *GtkTextIter,
-		end *GtkTextIter) *Gchar
+		end *GtkTextIter) string
 
 	Gtk_text_iter_get_text func(
 		start *GtkTextIter,
-		end *GtkTextIter) *Gchar
+		end *GtkTextIter) string
 
 	Gtk_text_iter_get_visible_slice func(
 		start *GtkTextIter,
-		end *GtkTextIter) *Gchar
+		end *GtkTextIter) string
 
 	Gtk_text_iter_get_visible_text func(
 		start *GtkTextIter,
-		end *GtkTextIter) *Gchar
+		end *GtkTextIter) string
 
 	Gtk_text_iter_get_pixbuf func(
 		iter *GtkTextIter) *GdkPixbuf
@@ -5745,7 +5379,7 @@ var (
 
 	Gtk_text_iter_forward_search func(
 		iter *GtkTextIter,
-		str *Gchar,
+		str string,
 		flags GtkTextSearchFlags,
 		match_start *GtkTextIter,
 		match_end *GtkTextIter,
@@ -5753,7 +5387,7 @@ var (
 
 	Gtk_text_iter_backward_search func(
 		iter *GtkTextIter,
-		str *Gchar,
+		str string,
 		flags GtkTextSearchFlags,
 		match_start *GtkTextIter,
 		match_end *GtkTextIter,
@@ -5896,7 +5530,7 @@ var (
 
 	Gtk_selection_data_set_text func(
 		selection_data *GtkSelectionData,
-		str *Gchar,
+		str string,
 		len Gint) Gboolean
 
 	Gtk_selection_data_get_text func(
@@ -5960,22 +5594,6 @@ var (
 		widget *GtkWidget,
 		event *GdkEventSelection) Gboolean
 
-	// _gtk_selection_request func(
-	// 	widget *GtkWidget,
-	// 	event *GdkEventSelection) Gboolean
-
-	// _gtk_selection_incr_event func(
-	// 	window *GdkWindow,
-	// 	event *GdkEventProperty) Gboolean
-
-	// _gtk_selection_notify func(
-	// 	widget *GtkWidget,
-	// 	event *GdkEventSelection) Gboolean
-
-	// _gtk_selection_property_notify func(
-	// 	widget *GtkWidget,
-	// 	event *GdkEventProperty) Gboolean
-
 	Gtk_selection_data_get_type func() GType
 
 	Gtk_selection_data_copy func(
@@ -6022,7 +5640,7 @@ var (
 
 	Gtk_clipboard_set_text func(
 		clipboard *GtkClipboard,
-		text *Gchar,
+		text string,
 		len Gint)
 
 	Gtk_clipboard_set_image func(
@@ -6066,7 +5684,7 @@ var (
 		target GdkAtom) *GtkSelectionData
 
 	Gtk_clipboard_wait_for_text func(
-		clipboard *GtkClipboard) *Gchar
+		clipboard *GtkClipboard) string
 
 	Gtk_clipboard_wait_for_rich_text func(
 		clipboard *GtkClipboard,
@@ -6110,11 +5728,6 @@ var (
 	Gtk_clipboard_store func(
 		clipboard *GtkClipboard)
 
-	// _gtk_clipboard_handle_event func(
-	// 	event *GdkEventOwnerChange)
-
-	// _gtk_clipboard_store_all func()
-
 	Gtk_color_button_get_type func() GType
 
 	Gtk_color_button_new func() *GtkWidget
@@ -6146,10 +5759,10 @@ var (
 
 	Gtk_color_button_set_title func(
 		color_button *GtkColorButton,
-		title *Gchar)
+		title string)
 
 	Gtk_color_button_get_title func(
-		color_button *GtkColorButton) *Gchar
+		color_button *GtkColorButton) string
 
 	Gtk_vbox_get_type func() GType
 
@@ -6209,13 +5822,13 @@ var (
 		colorsel *GtkColorSelection) Gboolean
 
 	Gtk_color_selection_palette_from_string func(
-		str *Gchar,
+		str string,
 		colors **GdkColor,
 		n_colors *Gint) Gboolean
 
 	Gtk_color_selection_palette_to_string func(
 		colors *GdkColor,
-		n_colors Gint) *Gchar
+		n_colors Gint) string
 
 	Gtk_color_selection_set_change_palette_hook func(
 		f GtkColorSelectionChangePaletteFunc) GtkColorSelectionChangePaletteFunc
@@ -6238,7 +5851,7 @@ var (
 	Gtk_color_selection_dialog_get_type func() GType
 
 	Gtk_color_selection_dialog_new func(
-		title *Gchar) *GtkWidget
+		title string) *GtkWidget
 
 	Gtk_color_selection_dialog_get_color_selection func(
 		colorsel *GtkColorSelectionDialog) *GtkWidget
@@ -6346,11 +5959,11 @@ var (
 
 	Gtk_drag_source_set_icon_stock func(
 		widget *GtkWidget,
-		stock_id *Gchar)
+		stock_id string)
 
 	Gtk_drag_source_set_icon_name func(
 		widget *GtkWidget,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_drag_begin func(
 		widget *GtkWidget,
@@ -6381,13 +5994,13 @@ var (
 
 	Gtk_drag_set_icon_stock func(
 		context *GdkDragContext,
-		stock_id *Gchar,
+		stock_id string,
 		hot_x Gint,
 		hot_y Gint)
 
 	Gtk_drag_set_icon_name func(
 		context *GdkDragContext,
-		icon_name *Gchar,
+		icon_name string,
 		hot_x Gint,
 		hot_y Gint)
 
@@ -6400,14 +6013,6 @@ var (
 		start_y Gint,
 		current_x Gint,
 		current_y Gint) Gboolean
-
-	// _gtk_drag_source_handle_event func(
-	// 	widget *GtkWidget,
-	// 	event *GdkEvent)
-
-	// _gtk_drag_dest_handle_event func(
-	// 	toplevel *GtkWidget,
-	// 	event *GdkEvent)
 
 	Gtk_drag_set_default_icon func(
 		colormap *GdkColormap,
@@ -6430,7 +6035,7 @@ var (
 
 	Gtk_editable_insert_text func(
 		editable *GtkEditable,
-		new_text *Gchar,
+		new_text string,
 		new_text_length Gint,
 		position *Gint)
 
@@ -6442,7 +6047,7 @@ var (
 	Gtk_editable_get_chars func(
 		editable *GtkEditable,
 		start_pos Gint,
-		end_pos Gint) *Gchar
+		end_pos Gint) string
 
 	Gtk_editable_cut_clipboard func(
 		editable *GtkEditable)
@@ -6505,7 +6110,7 @@ var (
 
 	Gtk_im_context_set_surrounding func(
 		context *GtkIMContext,
-		text *Gchar,
+		text string,
 		len Gint,
 		cursor_index Gint)
 
@@ -6522,7 +6127,7 @@ var (
 	Gtk_entry_buffer_get_type func() GType
 
 	Gtk_entry_buffer_new func(
-		initial_chars *Gchar,
+		initial_chars string,
 		n_initial_chars Gint) *GtkEntryBuffer
 
 	Gtk_entry_buffer_get_bytes func(
@@ -6532,11 +6137,11 @@ var (
 		buffer *GtkEntryBuffer) Guint
 
 	Gtk_entry_buffer_get_text func(
-		buffer *GtkEntryBuffer) *Gchar
+		buffer *GtkEntryBuffer) string
 
 	Gtk_entry_buffer_set_text func(
 		buffer *GtkEntryBuffer,
-		chars *Gchar,
+		chars string,
 		n_chars Gint)
 
 	Gtk_entry_buffer_set_max_length func(
@@ -6549,7 +6154,7 @@ var (
 	Gtk_entry_buffer_insert_text func(
 		buffer *GtkEntryBuffer,
 		position Guint,
-		chars *Gchar,
+		chars string,
 		n_chars Gint) Guint
 
 	Gtk_entry_buffer_delete_text func(
@@ -6560,7 +6165,7 @@ var (
 	Gtk_entry_buffer_emit_inserted_text func(
 		buffer *GtkEntryBuffer,
 		position Guint,
-		chars *Gchar,
+		chars string,
 		n_chars Guint)
 
 	Gtk_entry_buffer_emit_deleted_text func(
@@ -6570,7 +6175,8 @@ var (
 
 	Gtk_list_store_get_type func() GType
 
-	//gtk_list_store_new func(n_columns  Gint, ...) *GtkListStore
+	Gtk_list_store_new func(n_columns Gint,
+		v ...VArg) *GtkListStore
 
 	Gtk_list_store_newv func(
 		n_columns Gint,
@@ -6587,7 +6193,8 @@ var (
 		column Gint,
 		value *GValue)
 
-	//gtk_list_store_set func(list_store  *GtkListStore, iter  *GtkTreeIter, ...)
+	Gtk_list_store_set func(list_store *GtkListStore,
+		iter *GtkTreeIter, v ...VArg)
 
 	Gtk_list_store_set_valuesv func(
 		list_store *GtkListStore,
@@ -6620,7 +6227,8 @@ var (
 		iter *GtkTreeIter,
 		sibling *GtkTreeIter)
 
-	//gtk_list_store_insert_with_values func(list_store  *GtkListStore, iter  *GtkTreeIter, position  Gint, ...)
+	Gtk_list_store_insert_with_values func(list_store *GtkListStore,
+		iter *GtkTreeIter, position Gint, v ...VArg)
 
 	Gtk_list_store_insert_with_valuesv func(
 		list_store *GtkListStore,
@@ -6751,12 +6359,12 @@ var (
 	Gtk_entry_completion_insert_action_text func(
 		completion *GtkEntryCompletion,
 		index_ Gint,
-		text *Gchar)
+		text string)
 
 	Gtk_entry_completion_insert_action_markup func(
 		completion *GtkEntryCompletion,
 		index_ Gint,
-		markup *Gchar)
+		markup string)
 
 	Gtk_entry_completion_delete_action func(
 		completion *GtkEntryCompletion,
@@ -6798,7 +6406,7 @@ var (
 		completion *GtkEntryCompletion) Gboolean
 
 	Gtk_entry_completion_get_completion_prefix func(
-		completion *GtkEntryCompletion) *Gchar
+		completion *GtkEntryCompletion) string
 
 	Gtk_entry_completion_set_text_column func(
 		completion *GtkEntryCompletion,
@@ -6888,10 +6496,10 @@ var (
 
 	Gtk_entry_set_text func(
 		entry *GtkEntry,
-		text *Gchar)
+		text string)
 
 	Gtk_entry_get_text func(
-		entry *GtkEntry) *Gchar
+		entry *GtkEntry) string
 
 	Gtk_entry_get_layout func(
 		entry *GtkEntry) *PangoLayout
@@ -6955,12 +6563,12 @@ var (
 	Gtk_entry_set_icon_from_stock func(
 		entry *GtkEntry,
 		icon_pos GtkEntryIconPosition,
-		stock_id *Gchar)
+		stock_id string)
 
 	Gtk_entry_set_icon_from_icon_name func(
 		entry *GtkEntry,
 		icon_pos GtkEntryIconPosition,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_entry_set_icon_from_gicon func(
 		entry *GtkEntry,
@@ -6977,11 +6585,11 @@ var (
 
 	Gtk_entry_get_icon_stock func(
 		entry *GtkEntry,
-		icon_pos GtkEntryIconPosition) *Gchar
+		icon_pos GtkEntryIconPosition) string
 
 	Gtk_entry_get_icon_name func(
 		entry *GtkEntry,
-		icon_pos GtkEntryIconPosition) *Gchar
+		icon_pos GtkEntryIconPosition) string
 
 	Gtk_entry_get_icon_gicon func(
 		entry *GtkEntry,
@@ -7013,20 +6621,20 @@ var (
 	Gtk_entry_set_icon_tooltip_text func(
 		entry *GtkEntry,
 		icon_pos GtkEntryIconPosition,
-		tooltip *Gchar)
+		tooltip string)
 
 	Gtk_entry_get_icon_tooltip_text func(
 		entry *GtkEntry,
-		icon_pos GtkEntryIconPosition) *Gchar
+		icon_pos GtkEntryIconPosition) string
 
 	Gtk_entry_set_icon_tooltip_markup func(
 		entry *GtkEntry,
 		icon_pos GtkEntryIconPosition,
-		tooltip *Gchar)
+		tooltip string)
 
 	Gtk_entry_get_icon_tooltip_markup func(
 		entry *GtkEntry,
-		icon_pos GtkEntryIconPosition) *Gchar
+		icon_pos GtkEntryIconPosition) string
 
 	Gtk_entry_set_icon_drag_source func(
 		entry *GtkEntry,
@@ -7053,11 +6661,11 @@ var (
 
 	Gtk_entry_append_text func(
 		entry *GtkEntry,
-		text *Gchar)
+		text string)
 
 	Gtk_entry_prepend_text func(
 		entry *GtkEntry,
-		text *Gchar)
+		text string)
 
 	Gtk_entry_set_position func(
 		entry *GtkEntry,
@@ -7140,12 +6748,14 @@ var (
 		column *GtkTreeViewColumn,
 		position Gint) Gint
 
-	//gtk_tree_view_insert_column_with_attributes func(tree_view  *GtkTreeView, position  Gint, title  *Gchar, cell  *GtkCellRenderer, ...) Gint
+	Gtk_tree_view_insert_column_with_attributes func(
+		tree_view *GtkTreeView, position Gint, title string,
+		cell *GtkCellRenderer, v ...VArg) Gint
 
 	Gtk_tree_view_insert_column_with_data_func func(
 		tree_view *GtkTreeView,
 		position Gint,
-		title *Gchar,
+		title string,
 		cell *GtkCellRenderer,
 		f GtkTreeCellDataFunc,
 		dataGpointer,
@@ -7558,11 +7168,11 @@ var (
 		add_tearoffs Gboolean)
 
 	Gtk_combo_box_get_title func(
-		combo_box *GtkComboBox) *Gchar
+		combo_box *GtkComboBox) string
 
 	Gtk_combo_box_set_title func(
 		combo_box *GtkComboBox,
-		title *Gchar)
+		title string)
 
 	Gtk_combo_box_get_focus_on_click func(
 		combo *GtkComboBox) Gboolean
@@ -7623,23 +7233,23 @@ var (
 
 	Gtk_combo_box_append_text func(
 		combo_box *GtkComboBox,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_insert_text func(
 		combo_box *GtkComboBox,
 		position Gint,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_prepend_text func(
 		combo_box *GtkComboBox,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_remove_text func(
 		combo_box *GtkComboBox,
 		position Gint)
 
 	Gtk_combo_box_get_active_text func(
-		combo_box *GtkComboBox) *Gchar
+		combo_box *GtkComboBox) string
 
 	Gtk_combo_box_popup func(
 		combo_box *GtkComboBox)
@@ -7675,23 +7285,23 @@ var (
 
 	Gtk_combo_box_text_append_text func(
 		combo_box *GtkComboBoxText,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_text_insert_text func(
 		combo_box *GtkComboBoxText,
 		position Gint,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_text_prepend_text func(
 		combo_box *GtkComboBoxText,
-		text *Gchar)
+		text string)
 
 	Gtk_combo_box_text_remove func(
 		combo_box *GtkComboBoxText,
 		position Gint)
 
 	Gtk_combo_box_text_get_active_text func(
-		combo_box *GtkComboBoxText) *Gchar
+		combo_box *GtkComboBoxText) string
 
 	Gtk_drawing_area_get_type func() GType
 
@@ -7723,10 +7333,10 @@ var (
 	Gtk_expander_get_type func() GType
 
 	Gtk_expander_new func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_expander_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_expander_set_expanded func(
 		expander *GtkExpander,
@@ -7744,10 +7354,10 @@ var (
 
 	Gtk_expander_set_label func(
 		expander *GtkExpander,
-		label *Gchar)
+		label string)
 
 	Gtk_expander_get_label func(
-		expander *GtkExpander) *Gchar
+		expander *GtkExpander) string
 
 	Gtk_expander_set_use_underline func(
 		expander *GtkExpander,
@@ -7806,18 +7416,18 @@ var (
 
 	Gtk_file_filter_set_name func(
 		filter *GtkFileFilter,
-		name *Gchar)
+		name string)
 
 	Gtk_file_filter_get_name func(
-		filter *GtkFileFilter) *Gchar
+		filter *GtkFileFilter) string
 
 	Gtk_file_filter_add_mime_type func(
 		filter *GtkFileFilter,
-		mime_type *Gchar)
+		mime_type string)
 
 	Gtk_file_filter_add_pattern func(
 		filter *GtkFileFilter,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_file_filter_add_pixbuf_formats func(
 		filter *GtkFileFilter)
@@ -7884,20 +7494,20 @@ var (
 
 	Gtk_file_chooser_set_current_name func(
 		chooser *GtkFileChooser,
-		name *Gchar)
+		name string)
 
-	Gtk_file_chooser_get_filename_utf8 func(
-		chooser *GtkFileChooser) *Gchar
+	Gtk_file_chooser_get_filename func(
+		chooser *GtkFileChooser) string
 
-	Gtk_file_chooser_set_filename_utf8 func(
+	Gtk_file_chooser_set_filename func(
 		chooser *GtkFileChooser,
 		filename *Char) Gboolean
 
-	Gtk_file_chooser_select_filename_utf8 func(
+	Gtk_file_chooser_select_filename func(
 		chooser *GtkFileChooser,
 		filename *Char) Gboolean
 
-	Gtk_file_chooser_unselect_filename_utf8 func(
+	Gtk_file_chooser_unselect_filename func(
 		chooser *GtkFileChooser,
 		filename *Char)
 
@@ -7907,18 +7517,18 @@ var (
 	Gtk_file_chooser_unselect_all func(
 		chooser *GtkFileChooser)
 
-	Gtk_file_chooser_get_filenames_utf8 func(
+	Gtk_file_chooser_get_filenames func(
 		chooser *GtkFileChooser) *GSList
 
-	Gtk_file_chooser_set_current_folder_utf8 func(
+	Gtk_file_chooser_set_current_folder func(
 		chooser *GtkFileChooser,
-		filename *Gchar) Gboolean
+		filename string) Gboolean
 
-	Gtk_file_chooser_get_current_folder_utf8 func(
-		chooser *GtkFileChooser) *Gchar
+	Gtk_file_chooser_get_current_folder func(
+		chooser *GtkFileChooser) string
 
 	Gtk_file_chooser_get_uri func(
-		chooser *GtkFileChooser) *Gchar
+		chooser *GtkFileChooser) string
 
 	Gtk_file_chooser_set_uri func(
 		chooser *GtkFileChooser,
@@ -7937,10 +7547,10 @@ var (
 
 	Gtk_file_chooser_set_current_folder_uri func(
 		chooser *GtkFileChooser,
-		uri *Gchar) Gboolean
+		uri string) Gboolean
 
 	Gtk_file_chooser_get_current_folder_uri func(
-		chooser *GtkFileChooser) *Gchar
+		chooser *GtkFileChooser) string
 
 	Gtk_file_chooser_get_file func(
 		chooser *GtkFileChooser) *GFile
@@ -7991,7 +7601,7 @@ var (
 	Gtk_file_chooser_get_use_preview_label func(
 		chooser *GtkFileChooser) Gboolean
 
-	Gtk_file_chooser_get_preview_filename_utf8 func(
+	Gtk_file_chooser_get_preview_filename func(
 		chooser *GtkFileChooser) *Char
 
 	Gtk_file_chooser_get_preview_uri func(
@@ -8025,17 +7635,17 @@ var (
 	Gtk_file_chooser_get_filter func(
 		chooser *GtkFileChooser) *GtkFileFilter
 
-	Gtk_file_chooser_add_shortcut_folder_utf8 func(
+	Gtk_file_chooser_add_shortcut_folder func(
 		chooser *GtkFileChooser,
 		folder *Char,
 		error **GError) Gboolean
 
-	Gtk_file_chooser_remove_shortcut_folder_utf8 func(
+	Gtk_file_chooser_remove_shortcut_folder func(
 		chooser *GtkFileChooser,
 		folder *Char,
 		error **GError) Gboolean
 
-	Gtk_file_chooser_list_shortcut_folders_utf8 func(
+	Gtk_file_chooser_list_shortcut_folders func(
 		chooser *GtkFileChooser) *GSList
 
 	Gtk_file_chooser_add_shortcut_folder_uri func(
@@ -8060,23 +7670,23 @@ var (
 	Gtk_file_chooser_button_get_type func() GType
 
 	Gtk_file_chooser_button_new func(
-		title *Gchar,
+		title string,
 		action GtkFileChooserAction) *GtkWidget
 
 	Gtk_file_chooser_button_new_with_backend func(
-		title *Gchar,
+		title string,
 		action GtkFileChooserAction,
-		backend *Gchar) *GtkWidget
+		backend string) *GtkWidget
 
 	Gtk_file_chooser_button_new_with_dialog func(
 		dialog *GtkWidget) *GtkWidget
 
 	Gtk_file_chooser_button_get_title func(
-		button *GtkFileChooserButton) *Gchar
+		button *GtkFileChooserButton) string
 
 	Gtk_file_chooser_button_set_title func(
 		button *GtkFileChooserButton,
-		title *Gchar)
+		title string)
 
 	Gtk_file_chooser_button_get_width_chars func(
 		button *GtkFileChooserButton) Gint
@@ -8094,9 +7704,14 @@ var (
 
 	Gtk_file_chooser_dialog_get_type func() GType
 
-	//gtk_file_chooser_dialog_new func(title  *Gchar, parent  *GtkWindow, action  GtkFileChooserAction, first_button_text  *Gchar, ...) *GtkWidget
+	Gtk_file_chooser_dialog_new func(title string, parent *GtkWindow,
+		action GtkFileChooserAction, first_button_text string,
+		v ...VArg) *GtkWidget
 
-	//gtk_file_chooser_dialog_new_with_backend func(title  *Gchar, parent  *GtkWindow, action  GtkFileChooserAction, backend  *Gchar, first_button_text  *Gchar, ...) *GtkWidget
+	Gtk_file_chooser_dialog_new_with_backend func(title string,
+		parent *GtkWindow, action GtkFileChooserAction,
+		backend string, first_button_text string,
+		v ...VArg) *GtkWidget
 
 	Gtk_file_chooser_widget_get_type func() GType
 
@@ -8105,21 +7720,21 @@ var (
 
 	Gtk_file_chooser_widget_new_with_backend func(
 		action GtkFileChooserAction,
-		backend *Gchar) *GtkWidget
+		backend string) *GtkWidget
 
 	Gtk_font_button_get_type func() GType
 
 	Gtk_font_button_new func() *GtkWidget
 
 	Gtk_font_button_new_with_font func(
-		fontname *Gchar) *GtkWidget
+		fontname string) *GtkWidget
 
 	Gtk_font_button_get_title func(
-		font_button *GtkFontButton) *Gchar
+		font_button *GtkFontButton) string
 
 	Gtk_font_button_set_title func(
 		font_button *GtkFontButton,
-		title *Gchar)
+		title string)
 
 	Gtk_font_button_get_use_font func(
 		font_button *GtkFontButton) Gboolean
@@ -8136,11 +7751,11 @@ var (
 		use_size Gboolean)
 
 	Gtk_font_button_get_font_name func(
-		font_button *GtkFontButton) *Gchar
+		font_button *GtkFontButton) string
 
 	Gtk_font_button_set_font_name func(
 		font_button *GtkFontButton,
-		fontname *Gchar) Gboolean
+		fontname string) Gboolean
 
 	Gtk_font_button_get_show_style func(
 		font_button *GtkFontButton) Gboolean
@@ -8185,26 +7800,26 @@ var (
 		fontsel *GtkFontSelection) Gint
 
 	Gtk_font_selection_get_font_name func(
-		fontsel *GtkFontSelection) *Gchar
+		fontsel *GtkFontSelection) string
 
 	Gtk_font_selection_get_font func(
 		fontsel *GtkFontSelection) *GdkFont
 
 	Gtk_font_selection_set_font_name func(
 		fontsel *GtkFontSelection,
-		fontname *Gchar) Gboolean
+		fontname string) Gboolean
 
 	Gtk_font_selection_get_preview_text func(
-		fontsel *GtkFontSelection) *Gchar
+		fontsel *GtkFontSelection) string
 
 	Gtk_font_selection_set_preview_text func(
 		fontsel *GtkFontSelection,
-		text *Gchar)
+		text string)
 
 	Gtk_font_selection_dialog_get_type func() GType
 
 	Gtk_font_selection_dialog_new func(
-		title *Gchar) *GtkWidget
+		title string) *GtkWidget
 
 	Gtk_font_selection_dialog_get_ok_button func(
 		fsd *GtkFontSelectionDialog) *GtkWidget
@@ -8219,21 +7834,21 @@ var (
 		fsd *GtkFontSelectionDialog) *GtkWidget
 
 	Gtk_font_selection_dialog_get_font_name func(
-		fsd *GtkFontSelectionDialog) *Gchar
+		fsd *GtkFontSelectionDialog) string
 
 	Gtk_font_selection_dialog_get_font func(
 		fsd *GtkFontSelectionDialog) *GdkFont
 
 	Gtk_font_selection_dialog_set_font_name func(
 		fsd *GtkFontSelectionDialog,
-		fontname *Gchar) Gboolean
+		fontname string) Gboolean
 
 	Gtk_font_selection_dialog_get_preview_text func(
-		fsd *GtkFontSelectionDialog) *Gchar
+		fsd *GtkFontSelectionDialog) string
 
 	Gtk_font_selection_dialog_set_preview_text func(
 		fsd *GtkFontSelectionDialog,
-		text *Gchar)
+		text string)
 
 	Gtk_gc_get func(
 		depth Gint,
@@ -8285,8 +7900,6 @@ var (
 
 	Gtk_hbutton_box_set_layout_default func(
 		layout GtkButtonBoxStyle)
-
-	// _gtk_hbutton_box_get_layout_default func() GtkButtonBoxStyle
 
 	Gtk_paned_get_type func() GType
 
@@ -8481,19 +8094,6 @@ var (
 	Gtk_range_get_round_digits func(
 		r *GtkRange) Gint
 
-	// _gtk_range_get_wheel_delta func(
-	// 	r *GtkRange,
-	// 	direction GdkScrollDirection) Gdouble
-
-	// _gtk_range_set_stop_values func(
-	// 	r *GtkRange,
-	// 	values *Gdouble,
-	// 	n_values Gint)
-
-	// _gtk_range_get_stop_positions func(
-	// 	r *GtkRange,
-	// 	values **Gint) Gint
-
 	Gtk_scale_get_type func() GType
 
 	Gtk_scale_set_digits func(
@@ -8529,22 +8129,10 @@ var (
 		scale *GtkScale,
 		value Gdouble,
 		position GtkPositionType,
-		markup *Gchar)
+		markup string)
 
 	Gtk_scale_clear_marks func(
 		scale *GtkScale)
-
-	// _gtk_scale_clear_layout func(
-	// 	scale *GtkScale)
-
-	// _gtk_scale_get_value_size func(
-	// 	scale *GtkScale,
-	// 	width *Gint,
-	// 	height *Gint)
-
-	// _gtk_scale_format_value func(
-	// 	scale *GtkScale,
-	// 	value Gdouble) *Gchar
 
 	Gtk_hscale_get_type func() GType
 
@@ -8620,12 +8208,12 @@ var (
 
 	Gtk_icon_factory_add func(
 		factory *GtkIconFactory,
-		stock_id *Gchar,
+		stock_id string,
 		icon_set *GtkIconSet)
 
 	Gtk_icon_factory_lookup func(
 		factory *GtkIconFactory,
-		stock_id *Gchar) *GtkIconSet
+		stock_id string) *GtkIconSet
 
 	Gtk_icon_factory_add_default func(
 		factory *GtkIconFactory)
@@ -8634,7 +8222,7 @@ var (
 		factory *GtkIconFactory)
 
 	Gtk_icon_factory_lookup_default func(
-		stock_id *Gchar) *GtkIconSet
+		stock_id string) *GtkIconSet
 
 	Gtk_icon_size_lookup func(
 		size GtkIconSize,
@@ -8648,19 +8236,19 @@ var (
 		height *Gint) Gboolean
 
 	Gtk_icon_size_register func(
-		name *Gchar,
+		name string,
 		width Gint,
 		height Gint) GtkIconSize
 
 	Gtk_icon_size_register_alias func(
-		alias *Gchar,
+		alias string,
 		target GtkIconSize)
 
 	Gtk_icon_size_from_name func(
-		name *Gchar) GtkIconSize
+		name string) GtkIconSize
 
 	Gtk_icon_size_get_name func(
-		size GtkIconSize) *Gchar
+		size GtkIconSize) string
 
 	Gtk_icon_set_get_type func() GType
 
@@ -8706,23 +8294,23 @@ var (
 	Gtk_icon_source_free func(
 		source *GtkIconSource)
 
-	Gtk_icon_source_set_filename_utf8 func(
+	Gtk_icon_source_set_filename func(
 		source *GtkIconSource,
-		filename *Gchar)
+		filename string)
 
 	Gtk_icon_source_set_icon_name func(
 		source *GtkIconSource,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_icon_source_set_pixbuf func(
 		source *GtkIconSource,
 		pixbuf *GdkPixbuf)
 
-	Gtk_icon_source_get_filename_utf8 func(
-		source *GtkIconSource) *Gchar
+	Gtk_icon_source_get_filename func(
+		source *GtkIconSource) string
 
 	Gtk_icon_source_get_icon_name func(
-		source *GtkIconSource) *Gchar
+		source *GtkIconSource) string
 
 	Gtk_icon_source_get_pixbuf func(
 		source *GtkIconSource) *GdkPixbuf
@@ -8769,12 +8357,6 @@ var (
 	Gtk_icon_source_get_size func(
 		source *GtkIconSource) GtkIconSize
 
-	// _gtk_icon_set_invalidate_caches func()
-
-	// _gtk_icon_factory_list_ids func() *GList
-
-	// _gtk_icon_factory_ensure_default_icons func()
-
 	Gtk_icon_theme_error_quark func() GQuark
 
 	Gtk_icon_theme_get_type func() GType
@@ -8790,39 +8372,39 @@ var (
 		icon_theme *GtkIconTheme,
 		screen *GdkScreen)
 
-	Gtk_icon_theme_set_search_path_utf8 func(
+	Gtk_icon_theme_set_search_path func(
 		icon_theme *GtkIconTheme,
 		path **Gchar,
 		n_elements Gint)
 
-	Gtk_icon_theme_get_search_path_utf8 func(
+	Gtk_icon_theme_get_search_path func(
 		icon_theme *GtkIconTheme,
 		path ***Gchar,
 		n_elements *Gint)
 
-	Gtk_icon_theme_append_search_path_utf8 func(
+	Gtk_icon_theme_append_search_path func(
 		icon_theme *GtkIconTheme,
-		path *Gchar)
+		path string)
 
-	Gtk_icon_theme_prepend_search_path_utf8 func(
+	Gtk_icon_theme_prepend_search_path func(
 		icon_theme *GtkIconTheme,
-		path *Gchar)
+		path string)
 
 	Gtk_icon_theme_set_custom_theme func(
 		icon_theme *GtkIconTheme,
-		theme_name *Gchar)
+		theme_name string)
 
 	Gtk_icon_theme_has_icon func(
 		icon_theme *GtkIconTheme,
-		icon_name *Gchar) Gboolean
+		icon_name string) Gboolean
 
 	Gtk_icon_theme_get_icon_sizes func(
 		icon_theme *GtkIconTheme,
-		icon_name *Gchar) *Gint
+		icon_name string) *Gint
 
 	Gtk_icon_theme_lookup_icon func(
 		icon_theme *GtkIconTheme,
-		icon_name *Gchar,
+		icon_name string,
 		size Gint,
 		flags GtkIconLookupFlags) *GtkIconInfo
 
@@ -8834,7 +8416,7 @@ var (
 
 	Gtk_icon_theme_load_icon func(
 		icon_theme *GtkIconTheme,
-		icon_name *Gchar,
+		icon_name string,
 		size Gint,
 		flags GtkIconLookupFlags,
 		error **GError) *GdkPixbuf
@@ -8847,7 +8429,7 @@ var (
 
 	Gtk_icon_theme_list_icons func(
 		icon_theme *GtkIconTheme,
-		context *Gchar) *GList
+		context string) *GList
 
 	Gtk_icon_theme_list_contexts func(
 		icon_theme *GtkIconTheme) *GList
@@ -8859,7 +8441,7 @@ var (
 		icon_theme *GtkIconTheme) Gboolean
 
 	Gtk_icon_theme_add_builtin_icon func(
-		icon_name *Gchar,
+		icon_name string,
 		size Gint,
 		pixbuf *GdkPixbuf)
 
@@ -8878,8 +8460,8 @@ var (
 	Gtk_icon_info_get_base_size func(
 		icon_info *GtkIconInfo) Gint
 
-	Gtk_icon_info_get_filename_utf8 func(
-		icon_info *GtkIconInfo) *Gchar
+	Gtk_icon_info_get_filename func(
+		icon_info *GtkIconInfo) string
 
 	Gtk_icon_info_get_builtin_pixbuf func(
 		icon_info *GtkIconInfo) *GdkPixbuf
@@ -8902,22 +8484,17 @@ var (
 		n_points *Gint) Gboolean
 
 	Gtk_icon_info_get_display_name func(
-		icon_info *GtkIconInfo) *Gchar
-
-	// _gtk_icon_theme_check_reload func(
-	// 	display *GdkDisplay)
-
-	// _gtk_icon_theme_ensure_builtin_cache func()
+		icon_info *GtkIconInfo) string
 
 	Gtk_tooltip_get_type func() GType
 
 	Gtk_tooltip_set_markup func(
 		tooltip *GtkTooltip,
-		markup *Gchar)
+		markup string)
 
 	Gtk_tooltip_set_text func(
 		tooltip *GtkTooltip,
-		text *Gchar)
+		text string)
 
 	Gtk_tooltip_set_icon func(
 		tooltip *GtkTooltip,
@@ -8925,12 +8502,12 @@ var (
 
 	Gtk_tooltip_set_icon_from_stock func(
 		tooltip *GtkTooltip,
-		stock_id *Gchar,
+		stock_id string,
 		size GtkIconSize)
 
 	Gtk_tooltip_set_icon_from_icon_name func(
 		tooltip *GtkTooltip,
-		icon_name *Gchar,
+		icon_name string,
 		size GtkIconSize)
 
 	Gtk_tooltip_set_icon_from_gicon func(
@@ -8948,28 +8525,6 @@ var (
 
 	Gtk_tooltip_trigger_tooltip_query func(
 		display *GdkDisplay)
-
-	// _gtk_tooltip_focus_in func(
-	// 	widget *GtkWidget)
-
-	// _gtk_tooltip_focus_out func(
-	// 	widget *GtkWidget)
-
-	// _gtk_tooltip_toggle_keyboard_mode func(
-	// 	widget *GtkWidget)
-
-	// _gtk_tooltip_handle_event func(
-	// 	event *GdkEvent)
-
-	// _gtk_tooltip_hide func(
-	// 	widget *GtkWidget)
-
-	// _gtk_widget_find_at_coords func(
-	// 	window *GdkWindow,
-	// 	window_x Gint,
-	// 	window_y Gint,
-	// 	widget_x *Gint,
-	// 	widget_y *Gint) *GtkWidget
 
 	Gtk_icon_view_get_type func() GType
 
@@ -9235,13 +8790,13 @@ var (
 	Gtk_image_menu_item_new func() *GtkWidget
 
 	Gtk_image_menu_item_new_with_label func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_image_menu_item_new_with_mnemonic func(
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_image_menu_item_new_from_stock func(
-		stock_id *Gchar,
+		stock_id string,
 		accel_group *GtkAccelGroup) *GtkWidget
 
 	Gtk_image_menu_item_set_always_show_image func(
@@ -9298,7 +8853,8 @@ var (
 
 	Gtk_info_bar_new func() *GtkWidget
 
-	//gtk_info_bar_new_with_buttons func(first_button_text  *Gchar, ...) *GtkWidget
+	Gtk_info_bar_new_with_buttons func(
+		first_button_text string, v ...VArg) *GtkWidget
 
 	Gtk_info_bar_get_action_area func(
 		info_bar *GtkInfoBar) *GtkWidget
@@ -9313,11 +8869,11 @@ var (
 
 	Gtk_info_bar_add_button func(
 		info_bar *GtkInfoBar,
-		button_text *Gchar,
+		button_text string,
 		response_id Gint) *GtkWidget
 
-	//gtk_info_bar_add_buttons func(
-	//	info_bar  *GtkInfoBar,first_button_text  *Gchar,...)
+	Gtk_info_bar_add_buttons func(info_bar *GtkInfoBar,
+		first_button_text string, v ...VArg)
 
 	Gtk_info_bar_set_response_sensitive func(
 		info_bar *GtkInfoBar,
@@ -9407,18 +8963,18 @@ var (
 	Gtk_link_button_get_type func() GType
 
 	Gtk_link_button_new func(
-		uri *Gchar) *GtkWidget
+		uri string) *GtkWidget
 
 	Gtk_link_button_new_with_label func(
-		uri *Gchar,
-		label *Gchar) *GtkWidget
+		uri string,
+		label string) *GtkWidget
 
 	Gtk_link_button_get_uri func(
-		link_button *GtkLinkButton) *Gchar
+		link_button *GtkLinkButton) string
 
 	Gtk_link_button_set_uri func(
 		link_button *GtkLinkButton,
-		uri *Gchar)
+		uri string)
 
 	Gtk_link_button_set_uri_hook func(
 		f GtkLinkButtonUriFunc,
@@ -9435,7 +8991,7 @@ var (
 	Gtk_check_version func(
 		required_major Guint,
 		required_minor Guint,
-		required_micro Guint) *Gchar
+		required_micro Guint) string
 
 	Gtk_parse_args func(
 		argc *int,
@@ -9477,7 +9033,7 @@ var (
 	Gtk_exit func(
 		error_code Gint)
 
-	Gtk_set_locale func() *Gchar
+	Gtk_set_locale func() string
 
 	Gtk_disable_setlocale func()
 
@@ -9606,17 +9162,6 @@ var (
 		widget *GtkWidget,
 		event *GdkEvent)
 
-	// _gtk_boolean_handled_accumulator func(
-	// 	ihint *GSignalInvocationHint,
-	// 	return_accu *GValue,
-	// 	handler_return *GValue,
-	// 	dummy Gpointer) Gboolean
-
-	// _gtk_get_lc_ctype func() *Gchar
-
-	// _gtk_module_has_mixed_deps func(
-	// 	module *GModule) Gboolean
-
 	Gtk_menu_bar_get_type func() GType
 
 	Gtk_menu_bar_new func() *GtkWidget
@@ -9635,10 +9180,6 @@ var (
 		menubar *GtkMenuBar,
 		child_pack_dir GtkPackDirection)
 
-	// _gtk_menu_bar_cycle_focus func(
-	// 	menubar *GtkMenuBar,
-	// 	dir GtkDirectionType)
-
 	Gtk_tooltips_get_type func() GType
 
 	Gtk_tooltips_new func() *GtkTooltips
@@ -9656,8 +9197,8 @@ var (
 	Gtk_tooltips_set_tip func(
 		tooltips *GtkTooltips,
 		widget *GtkWidget,
-		tip_text *Gchar,
-		tip_private *Gchar)
+		tip_text string,
+		tip_private string)
 
 	Gtk_tooltips_data_get func(
 		widget *GtkWidget) *GtkTooltipsData
@@ -9700,17 +9241,6 @@ var (
 	Gtk_size_group_get_widgets func(
 		size_group *GtkSizeGroup) *GSList
 
-	// _gtk_size_group_get_child_requisition func(
-	// 	widget *GtkWidget,
-	// 	requisition *GtkRequisition)
-
-	// _gtk_size_group_compute_requisition func(
-	// 	widget *GtkWidget,
-	// 	requisition *GtkRequisition)
-
-	// _gtk_size_group_queue_resize func(
-	// 	widget *GtkWidget)
-
 	Gtk_tool_item_get_type func() GType
 
 	Gtk_tool_item_new func() *GtkToolItem
@@ -9732,16 +9262,16 @@ var (
 	Gtk_tool_item_set_tooltip func(
 		tool_item *GtkToolItem,
 		tooltips *GtkTooltips,
-		tip_text *Gchar,
-		tip_private *Gchar)
+		tip_text string,
+		tip_private string)
 
 	Gtk_tool_item_set_tooltip_text func(
 		tool_item *GtkToolItem,
-		text *Gchar)
+		text string)
 
 	Gtk_tool_item_set_tooltip_markup func(
 		tool_item *GtkToolItem,
-		markup *Gchar)
+		markup string)
 
 	Gtk_tool_item_set_use_drag_window func(
 		tool_item *GtkToolItem,
@@ -9800,11 +9330,11 @@ var (
 
 	Gtk_tool_item_get_proxy_menu_item func(
 		tool_item *GtkToolItem,
-		menu_item_id *Gchar) *GtkWidget
+		menu_item_id string) *GtkWidget
 
 	Gtk_tool_item_set_proxy_menu_item func(
 		tool_item *GtkToolItem,
-		menu_item_id *Gchar,
+		menu_item_id string,
 		menu_item *GtkWidget)
 
 	Gtk_tool_item_rebuild_menu func(
@@ -9813,24 +9343,21 @@ var (
 	Gtk_tool_item_toolbar_reconfigured func(
 		tool_item *GtkToolItem)
 
-	// _gtk_tool_item_create_menu_proxy func(
-	// 	tool_item *GtkToolItem) Gboolean
-
 	Gtk_tool_button_get_type func() GType
 
 	Gtk_tool_button_new func(
 		icon_widget *GtkWidget,
-		label *Gchar) *GtkToolItem
+		label string) *GtkToolItem
 
 	Gtk_tool_button_new_from_stock func(
-		stock_id *Gchar) *GtkToolItem
+		stock_id string) *GtkToolItem
 
 	Gtk_tool_button_set_label func(
 		button *GtkToolButton,
-		label *Gchar)
+		label string)
 
 	Gtk_tool_button_get_label func(
-		button *GtkToolButton) *Gchar
+		button *GtkToolButton) string
 
 	Gtk_tool_button_set_use_underline func(
 		button *GtkToolButton,
@@ -9841,17 +9368,17 @@ var (
 
 	Gtk_tool_button_set_stock_id func(
 		button *GtkToolButton,
-		stock_id *Gchar)
+		stock_id string)
 
 	Gtk_tool_button_get_stock_id func(
-		button *GtkToolButton) *Gchar
+		button *GtkToolButton) string
 
 	Gtk_tool_button_set_icon_name func(
 		button *GtkToolButton,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_tool_button_get_icon_name func(
-		button *GtkToolButton) *Gchar
+		button *GtkToolButton) string
 
 	Gtk_tool_button_set_icon_widget func(
 		button *GtkToolButton,
@@ -9867,17 +9394,14 @@ var (
 	Gtk_tool_button_get_label_widget func(
 		button *GtkToolButton) *GtkWidget
 
-	// _gtk_tool_button_get_button func(
-	// 	button *GtkToolButton) *GtkWidget
-
 	Gtk_menu_tool_button_get_type func() GType
 
 	Gtk_menu_tool_button_new func(
 		icon_widget *GtkWidget,
-		label *Gchar) *GtkToolItem
+		label string) *GtkToolItem
 
 	Gtk_menu_tool_button_new_from_stock func(
-		stock_id *Gchar) *GtkToolItem
+		stock_id string) *GtkToolItem
 
 	Gtk_menu_tool_button_set_menu func(
 		button *GtkMenuToolButton,
@@ -9889,34 +9413,34 @@ var (
 	Gtk_menu_tool_button_set_arrow_tooltip func(
 		button *GtkMenuToolButton,
 		tooltips *GtkTooltips,
-		tip_text *Gchar,
-		tip_private *Gchar)
+		tip_text string,
+		tip_private string)
 
 	Gtk_menu_tool_button_set_arrow_tooltip_text func(
 		button *GtkMenuToolButton,
-		text *Gchar)
+		text string)
 
 	Gtk_menu_tool_button_set_arrow_tooltip_markup func(
 		button *GtkMenuToolButton,
-		markup *Gchar)
+		markup string)
 
 	Gtk_message_dialog_get_type func() GType
 
-	//gtk_message_dialog_new func(
-	//	parent  *GtkWindow,
-	//	flags  GtkDialogFlags,
-	//	t  GtkMessageType,
-	//	buttons  GtkButtonsType,
-	//	message_format  *Gchar,
-	//	...)* GtkWidget
+	Gtk_message_dialog_new func(
+		parent *GtkWindow,
+		flags GtkDialogFlags,
+		t GtkMessageType,
+		buttons GtkButtonsType,
+		message_format string,
+		v ...VArg) *GtkWidget
 
-	//gtk_message_dialog_new_with_markup func(
-	//	parent  *GtkWindow,
-	//	flags  GtkDialogFlags,
-	//	t  GtkMessageType,
-	//	buttons  GtkButtonsType,
-	//	message_format  *Gchar,
-	//	...)* GtkWidget
+	Gtk_message_dialog_new_with_markup func(
+		parent *GtkWindow,
+		flags GtkDialogFlags,
+		t GtkMessageType,
+		buttons GtkButtonsType,
+		message_format string,
+		v ...VArg) *GtkWidget
 
 	Gtk_message_dialog_set_image func(
 		dialog *GtkMessageDialog,
@@ -9927,36 +9451,20 @@ var (
 
 	Gtk_message_dialog_set_markup func(
 		message_dialog *GtkMessageDialog,
-		str *Gchar)
+		str string)
 
-	//gtk_message_dialog_format_secondary_text func(
-	//	message_dialog  *GtkMessageDialog,
-	//	message_format  *Gchar,
-	//	...)
+	Gtk_message_dialog_format_secondary_text func(
+		message_dialog *GtkMessageDialog,
+		message_format string,
+		v ...VArg)
 
-	//gtk_message_dialog_format_secondary_markup func(
-	//	message_dialog  *GtkMessageDialog,
-	//	message_format  *Gchar,
-	//	...)
+	Gtk_message_dialog_format_secondary_markup func(
+		message_dialog *GtkMessageDialog,
+		message_format string,
+		v ...VArg)
 
 	Gtk_message_dialog_get_message_area func(
 		message_dialog *GtkMessageDialog) *GtkWidget
-
-	// _gtk_find_module func(
-	// 	name *Gchar,
-	// 	typ *Gchar) *Gchar
-
-	// _gtk_get_module_path func(
-	// 	typ *Gchar) **Gchar
-
-	// _gtk_modules_init func(
-	// 	argc *Gint,
-	// 	argv ***Gchar,
-	// 	Gtk_modules_args *Gchar)
-
-	// _gtk_modules_settings_changed func(
-	// 	settings *GtkSettings,
-	// 	modules *Gchar)
 
 	Gtk_mount_operation_get_type func() GType
 
@@ -10044,10 +9552,10 @@ var (
 
 	Gtk_notebook_set_group_name func(
 		notebook *GtkNotebook,
-		group_name *Gchar)
+		group_name string)
 
 	Gtk_notebook_get_group_name func(
-		notebook *GtkNotebook) *Gchar
+		notebook *GtkNotebook) string
 
 	Gtk_notebook_get_current_page func(
 		notebook *GtkNotebook) Gint
@@ -10141,11 +9649,11 @@ var (
 	Gtk_notebook_set_tab_label_text func(
 		notebook *GtkNotebook,
 		child *GtkWidget,
-		tab_text *Gchar)
+		tab_text string)
 
 	Gtk_notebook_get_tab_label_text func(
 		notebook *GtkNotebook,
-		child *GtkWidget) *Gchar
+		child *GtkWidget) string
 
 	Gtk_notebook_get_menu_label func(
 		notebook *GtkNotebook,
@@ -10159,11 +9667,11 @@ var (
 	Gtk_notebook_set_menu_label_text func(
 		notebook *GtkNotebook,
 		child *GtkWidget,
-		menu_text *Gchar)
+		menu_text string)
 
 	Gtk_notebook_get_menu_label_text func(
 		notebook *GtkNotebook,
-		child *GtkWidget) *Gchar
+		child *GtkWidget) string
 
 	Gtk_notebook_query_tab_label_packing func(
 		notebook *GtkNotebook,
@@ -10233,17 +9741,17 @@ var (
 	Gtk_paper_size_get_type func() GType
 
 	Gtk_paper_size_new func(
-		name *Gchar) *GtkPaperSize
+		name string) *GtkPaperSize
 
 	Gtk_paper_size_new_from_ppd func(
-		ppd_name *Gchar,
-		ppd_display_name *Gchar,
+		ppd_name string,
+		ppd_display_name string,
 		width Gdouble,
 		height Gdouble) *GtkPaperSize
 
 	Gtk_paper_size_new_custom func(
-		name *Gchar,
-		display_name *Gchar,
+		name string,
+		display_name string,
 		width Gdouble,
 		height Gdouble,
 		unit GtkUnit) *GtkPaperSize
@@ -10262,13 +9770,13 @@ var (
 		include_custom Gboolean) *GList
 
 	Gtk_paper_size_get_name func(
-		size *GtkPaperSize) *Gchar
+		size *GtkPaperSize) string
 
 	Gtk_paper_size_get_display_name func(
-		size *GtkPaperSize) *Gchar
+		size *GtkPaperSize) string
 
 	Gtk_paper_size_get_ppd_name func(
-		size *GtkPaperSize) *Gchar
+		size *GtkPaperSize) string
 
 	Gtk_paper_size_get_width func(
 		size *GtkPaperSize,
@@ -10303,17 +9811,17 @@ var (
 		size *GtkPaperSize,
 		unit GtkUnit) Gdouble
 
-	Gtk_paper_size_get_default func() *Gchar
+	Gtk_paper_size_get_default func() string
 
 	Gtk_paper_size_new_from_key_file func(
 		key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		error **GError) *GtkPaperSize
 
 	Gtk_paper_size_to_key_file func(
 		size *GtkPaperSize,
 		key_file *GKeyFile,
-		group_name *Gchar)
+		group_name string)
 
 	Gtk_page_setup_get_type func() GType
 
@@ -10393,7 +9901,7 @@ var (
 		unit GtkUnit) Gdouble
 
 	Gtk_page_setup_new_from_file func(
-		file_name *Gchar,
+		file_name string,
 		error **GError) *GtkPageSetup
 
 	Gtk_page_setup_load_file func(
@@ -10408,19 +9916,19 @@ var (
 
 	Gtk_page_setup_new_from_key_file func(
 		key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		error **GError) *GtkPageSetup
 
 	Gtk_page_setup_load_key_file func(
 		setup *GtkPageSetup,
 		key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		error **GError) Gboolean
 
 	Gtk_page_setup_to_key_file func(
 		setup *GtkPageSetup,
 		key_file *GKeyFile,
-		group_name *Gchar)
+		group_name string)
 
 	Gtk_socket_get_type func() GType
 
@@ -10467,14 +9975,6 @@ var (
 	Gtk_plug_get_socket_window func(
 		plug *GtkPlug) *GdkWindow
 
-	// _gtk_plug_add_to_socket func(
-	// 	plug *GtkPlug,
-	// 	socket_ *GtkSocket)
-
-	// _gtk_plug_remove_from_socket func(
-	// 	plug *GtkPlug,
-	// 	socket_ *GtkSocket)
-
 	Gtk_print_context_get_type func() GType
 
 	Gtk_print_context_get_cairo_context func(
@@ -10519,51 +10019,51 @@ var (
 		other *GtkPrintSettings) *GtkPrintSettings
 
 	Gtk_print_settings_new_from_file func(
-		file_name *Gchar,
+		file_name string,
 		error **GError) *GtkPrintSettings
 
 	Gtk_print_settings_load_file func(
 		settings *GtkPrintSettings,
-		file_name *Gchar,
+		file_name string,
 		error **GError) Gboolean
 
 	Gtk_print_settings_to_file func(
 		settings *GtkPrintSettings,
-		file_name *Gchar,
+		file_name string,
 		error **GError) Gboolean
 
 	Gtk_print_settings_new_from_key_file func(
 		key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		error **GError) *GtkPrintSettings
 
 	Gtk_print_settings_load_key_file func(
 		settings *GtkPrintSettings,
 		key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		error **GError) Gboolean
 
 	Gtk_print_settings_to_key_file func(
 		settings *GtkPrintSettings,
 		key_file *GKeyFile,
-		group_name *Gchar)
+		group_name string)
 
 	Gtk_print_settings_has_key func(
 		settings *GtkPrintSettings,
-		key *Gchar) Gboolean
+		key string) Gboolean
 
 	Gtk_print_settings_get func(
 		settings *GtkPrintSettings,
-		key *Gchar) *Gchar
+		key string) string
 
 	Gtk_print_settings_set func(
 		settings *GtkPrintSettings,
-		key *Gchar,
-		value *Gchar)
+		key string,
+		value string)
 
 	Gtk_print_settings_unset func(
 		settings *GtkPrintSettings,
-		key *Gchar)
+		key string)
 
 	Gtk_print_settings_foreach func(
 		settings *GtkPrintSettings,
@@ -10572,58 +10072,58 @@ var (
 
 	Gtk_print_settings_get_bool func(
 		settings *GtkPrintSettings,
-		key *Gchar) Gboolean
+		key string) Gboolean
 
 	Gtk_print_settings_set_bool func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		value Gboolean)
 
 	Gtk_print_settings_get_double func(
 		settings *GtkPrintSettings,
-		key *Gchar) Gdouble
+		key string) Gdouble
 
 	Gtk_print_settings_get_double_with_default func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		def Gdouble) Gdouble
 
 	Gtk_print_settings_set_double func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		value Gdouble)
 
 	Gtk_print_settings_get_length func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		unit GtkUnit) Gdouble
 
 	Gtk_print_settings_set_length func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		value Gdouble,
 		unit GtkUnit)
 
 	Gtk_print_settings_get_int func(
 		settings *GtkPrintSettings,
-		key *Gchar) Gint
+		key string) Gint
 
 	Gtk_print_settings_get_int_with_default func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		def Gint) Gint
 
 	Gtk_print_settings_set_int func(
 		settings *GtkPrintSettings,
-		key *Gchar,
+		key string,
 		value Gint)
 
 	Gtk_print_settings_get_printer func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_printer func(
 		settings *GtkPrintSettings,
-		printer *Gchar)
+		printer string)
 
 	Gtk_print_settings_get_orientation func(
 		settings *GtkPrintSettings) GtkPageOrientation
@@ -10769,39 +10269,39 @@ var (
 		page_set GtkPageSet)
 
 	Gtk_print_settings_get_default_source func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_default_source func(
 		settings *GtkPrintSettings,
-		default_source *Gchar)
+		default_source string)
 
 	Gtk_print_settings_get_media_type func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_media_type func(
 		settings *GtkPrintSettings,
-		media_type *Gchar)
+		media_type string)
 
 	Gtk_print_settings_get_dither func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_dither func(
 		settings *GtkPrintSettings,
-		dither *Gchar)
+		dither string)
 
 	Gtk_print_settings_get_finishings func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_finishings func(
 		settings *GtkPrintSettings,
-		finishings *Gchar)
+		finishings string)
 
 	Gtk_print_settings_get_output_bin func(
-		settings *GtkPrintSettings) *Gchar
+		settings *GtkPrintSettings) string
 
 	Gtk_print_settings_set_output_bin func(
 		settings *GtkPrintSettings,
-		output_bin *Gchar)
+		output_bin string)
 
 	Gtk_print_operation_preview_get_type func() GType
 
@@ -10838,7 +10338,7 @@ var (
 
 	Gtk_print_operation_set_job_name func(
 		op *GtkPrintOperation,
-		job_name *Gchar)
+		job_name string)
 
 	Gtk_print_operation_set_n_pages func(
 		op *GtkPrintOperation,
@@ -10858,7 +10358,7 @@ var (
 
 	Gtk_print_operation_set_export_filename func(
 		op *GtkPrintOperation,
-		filename *Gchar)
+		filename string)
 
 	Gtk_print_operation_set_track_print_status func(
 		op *GtkPrintOperation,
@@ -10874,7 +10374,7 @@ var (
 
 	Gtk_print_operation_set_custom_tab_label func(
 		op *GtkPrintOperation,
-		label *Gchar)
+		label string)
 
 	Gtk_print_operation_run func(
 		op *GtkPrintOperation,
@@ -10890,7 +10390,7 @@ var (
 		op *GtkPrintOperation) GtkPrintStatus
 
 	Gtk_print_operation_get_status_string func(
-		op *GtkPrintOperation) *Gchar
+		op *GtkPrintOperation) string
 
 	Gtk_print_operation_is_finished func(
 		op *GtkPrintOperation) Gboolean
@@ -10953,7 +10453,7 @@ var (
 
 	Gtk_progress_set_format_string func(
 		progress *GtkProgress,
-		format *Gchar)
+		format string)
 
 	Gtk_progress_set_adjustment func(
 		progress *GtkProgress,
@@ -10981,11 +10481,11 @@ var (
 		activity_mode Gboolean)
 
 	Gtk_progress_get_current_text func(
-		progress *GtkProgress) *Gchar
+		progress *GtkProgress) string
 
 	Gtk_progress_get_text_from_value func(
 		progress *GtkProgress,
-		value Gdouble) *Gchar
+		value Gdouble) string
 
 	Gtk_progress_get_current_percentage func(
 		progress *GtkProgress) Gdouble
@@ -11003,7 +10503,7 @@ var (
 
 	Gtk_progress_bar_set_text func(
 		pbar *GtkProgressBar,
-		text *Gchar)
+		text string)
 
 	Gtk_progress_bar_set_fraction func(
 		pbar *GtkProgressBar,
@@ -11018,7 +10518,7 @@ var (
 		orientation GtkProgressBarOrientation)
 
 	Gtk_progress_bar_get_text func(
-		pbar *GtkProgressBar) *Gchar
+		pbar *GtkProgressBar) string
 
 	Gtk_progress_bar_get_fraction func(
 		pbar *GtkProgressBar) Gdouble
@@ -11062,10 +10562,10 @@ var (
 	Gtk_toggle_action_get_type func() GType
 
 	Gtk_toggle_action_new func(
-		name *Gchar,
-		label *Gchar,
-		tooltip *Gchar,
-		stock_id *Gchar) *GtkToggleAction
+		name string,
+		label string,
+		tooltip string,
+		stock_id string) *GtkToggleAction
 
 	Gtk_toggle_action_toggled func(
 		action *GtkToggleAction)
@@ -11087,10 +10587,10 @@ var (
 	Gtk_radio_action_get_type func() GType
 
 	Gtk_radio_action_new func(
-		name *Gchar,
-		label *Gchar,
-		tooltip *Gchar,
-		stock_id *Gchar,
+		name string,
+		label string,
+		tooltip string,
+		stock_id string,
 		value Gint) *GtkRadioAction
 
 	Gtk_radio_action_get_group func(
@@ -11117,19 +10617,19 @@ var (
 
 	Gtk_radio_button_new_with_label func(
 		group *GSList,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_button_new_with_label_from_widget func(
 		radio_group_member *GtkRadioButton,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_button_new_with_mnemonic func(
 		group *GSList,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_button_new_with_mnemonic_from_widget func(
 		radio_group_member *GtkRadioButton,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_button_get_group func(
 		radio_button *GtkRadioButton) *GSList
@@ -11145,22 +10645,22 @@ var (
 
 	Gtk_radio_menu_item_new_with_label func(
 		group *GSList,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_menu_item_new_with_mnemonic func(
 		group *GSList,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_menu_item_new_from_widget func(
 		group *GtkRadioMenuItem) *GtkWidget
 
 	Gtk_radio_menu_item_new_with_mnemonic_from_widget func(
 		group *GtkRadioMenuItem,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_menu_item_new_with_label_from_widget func(
 		group *GtkRadioMenuItem,
-		label *Gchar) *GtkWidget
+		label string) *GtkWidget
 
 	Gtk_radio_menu_item_get_group func(
 		radio_menu_item *GtkRadioMenuItem) *GSList
@@ -11174,7 +10674,7 @@ var (
 	Gtk_toggle_tool_button_new func() *GtkToolItem
 
 	Gtk_toggle_tool_button_new_from_stock func(
-		stock_id *Gchar) *GtkToolItem
+		stock_id string) *GtkToolItem
 
 	Gtk_toggle_tool_button_set_active func(
 		button *GtkToggleToolButton,
@@ -11190,14 +10690,14 @@ var (
 
 	Gtk_radio_tool_button_new_from_stock func(
 		group *GSList,
-		stock_id *Gchar) *GtkToolItem
+		stock_id string) *GtkToolItem
 
 	Gtk_radio_tool_button_new_from_widget func(
 		group *GtkRadioToolButton) *GtkToolItem
 
 	Gtk_radio_tool_button_new_with_stock_from_widget func(
 		group *GtkRadioToolButton,
-		stock_id *Gchar) *GtkToolItem
+		stock_id string) *GtkToolItem
 
 	Gtk_radio_tool_button_get_group func(
 		button *GtkRadioToolButton) *GSList
@@ -11223,31 +10723,31 @@ var (
 
 	Gtk_recent_manager_add_item func(
 		manager *GtkRecentManager,
-		uri *Gchar) Gboolean
+		uri string) Gboolean
 
 	Gtk_recent_manager_add_full func(
 		manager *GtkRecentManager,
-		uri *Gchar,
+		uri string,
 		recent_data *GtkRecentData) Gboolean
 
 	Gtk_recent_manager_remove_item func(
 		manager *GtkRecentManager,
-		uri *Gchar,
+		uri string,
 		error **GError) Gboolean
 
 	Gtk_recent_manager_lookup_item func(
 		manager *GtkRecentManager,
-		uri *Gchar,
+		uri string,
 		error **GError) *GtkRecentInfo
 
 	Gtk_recent_manager_has_item func(
 		manager *GtkRecentManager,
-		uri *Gchar) Gboolean
+		uri string) Gboolean
 
 	Gtk_recent_manager_move_item func(
 		manager *GtkRecentManager,
-		uri *Gchar,
-		new_uri *Gchar,
+		uri string,
+		new_uri string,
 		error **GError) Gboolean
 
 	Gtk_recent_manager_set_limit func(
@@ -11273,16 +10773,16 @@ var (
 		info *GtkRecentInfo)
 
 	Gtk_recent_info_get_uri func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_display_name func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_description func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_mime_type func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_added func(
 		info *GtkRecentInfo) Time_t
@@ -11298,7 +10798,7 @@ var (
 
 	Gtk_recent_info_get_application_info func(
 		info *GtkRecentInfo,
-		app_name *Gchar,
+		app_name string,
 		app_exec **Gchar,
 		count *Guint,
 		time_ *Time_t) Gboolean
@@ -11308,11 +10808,11 @@ var (
 		length *Gsize) **Gchar
 
 	Gtk_recent_info_last_application func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_has_application func(
 		info *GtkRecentInfo,
-		app_name *Gchar) Gboolean
+		app_name string) Gboolean
 
 	Gtk_recent_info_get_groups func(
 		info *GtkRecentInfo,
@@ -11320,17 +10820,17 @@ var (
 
 	Gtk_recent_info_has_group func(
 		info *GtkRecentInfo,
-		group_name *Gchar) Gboolean
+		group_name string) Gboolean
 
 	Gtk_recent_info_get_icon func(
 		info *GtkRecentInfo,
 		size Gint) *GdkPixbuf
 
 	Gtk_recent_info_get_short_name func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_uri_display func(
-		info *GtkRecentInfo) *Gchar
+		info *GtkRecentInfo) string
 
 	Gtk_recent_info_get_age func(
 		info *GtkRecentInfo) Gint
@@ -11345,21 +10845,19 @@ var (
 		info_a *GtkRecentInfo,
 		info_b *GtkRecentInfo) Gboolean
 
-	// _gtk_recent_manager_sync func()
-
 	Gtk_recent_action_get_type func() GType
 
 	Gtk_recent_action_new func(
-		name *Gchar,
-		label *Gchar,
-		tooltip *Gchar,
-		stock_id *Gchar) *GtkAction
+		name string,
+		label string,
+		tooltip string,
+		stock_id string) *GtkAction
 
 	Gtk_recent_action_new_for_manager func(
-		name *Gchar,
-		label *Gchar,
-		tooltip *Gchar,
-		stock_id *Gchar,
+		name string,
+		label string,
+		tooltip string,
+		stock_id string,
 		manager *GtkRecentManager) *GtkAction
 
 	Gtk_recent_action_get_show_numbers func(
@@ -11375,29 +10873,29 @@ var (
 
 	Gtk_recent_filter_set_name func(
 		filter *GtkRecentFilter,
-		name *Gchar)
+		name string)
 
 	Gtk_recent_filter_get_name func(
-		filter *GtkRecentFilter) *Gchar
+		filter *GtkRecentFilter) string
 
 	Gtk_recent_filter_add_mime_type func(
 		filter *GtkRecentFilter,
-		mime_type *Gchar)
+		mime_type string)
 
 	Gtk_recent_filter_add_pattern func(
 		filter *GtkRecentFilter,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_recent_filter_add_pixbuf_formats func(
 		filter *GtkRecentFilter)
 
 	Gtk_recent_filter_add_application func(
 		filter *GtkRecentFilter,
-		application *Gchar)
+		application string)
 
 	Gtk_recent_filter_add_group func(
 		filter *GtkRecentFilter,
-		group *Gchar)
+		group string)
 
 	Gtk_recent_filter_add_age func(
 		filter *GtkRecentFilter,
@@ -11492,23 +10990,23 @@ var (
 
 	Gtk_recent_chooser_set_current_uri func(
 		chooser *GtkRecentChooser,
-		uri *Gchar,
+		uri string,
 		error **GError) Gboolean
 
 	Gtk_recent_chooser_get_current_uri func(
-		chooser *GtkRecentChooser) *Gchar
+		chooser *GtkRecentChooser) string
 
 	Gtk_recent_chooser_get_current_item func(
 		chooser *GtkRecentChooser) *GtkRecentInfo
 
 	Gtk_recent_chooser_select_uri func(
 		chooser *GtkRecentChooser,
-		uri *Gchar,
+		uri string,
 		error **GError) Gboolean
 
 	Gtk_recent_chooser_unselect_uri func(
 		chooser *GtkRecentChooser,
-		uri *Gchar)
+		uri string)
 
 	Gtk_recent_chooser_select_all func(
 		chooser *GtkRecentChooser)
@@ -11543,13 +11041,14 @@ var (
 
 	Gtk_recent_chooser_dialog_get_type func() GType
 
-	// gtk_recent_chooser_dialog_new func(
-	// 	title  *Gchar, parent  *GtkWindow,
-	// 	first_button_text  *Gchar, ...) *GtkWidget
+	Gtk_recent_chooser_dialog_new func(
+		title string, parent *GtkWindow,
+		first_button_text string, v ...VArg) *GtkWidget
 
-	// gtk_recent_chooser_dialog_new_for_manager func(title  *Gchar,
-	// 	parent  *GtkWindow, manager  *GtkRecentManager,
-	// 	first_button_text  *Gchar, ...) *GtkWidget
+	Gtk_recent_chooser_dialog_new_for_manager func(
+		title string, parent *GtkWindow,
+		manager *GtkRecentManager,
+		first_button_text string, v ...VArg) *GtkWidget
 
 	Gtk_recent_chooser_menu_get_type func() GType
 
@@ -11710,9 +11209,6 @@ var (
 		scrolled_window *GtkScrolledWindow,
 		child *GtkWidget)
 
-	// _gtk_scrolled_window_get_scrollbar_spacing func(
-	// 	scrolled_window *GtkScrolledWindow) Gint
-
 	Gtk_separator_menu_item_get_type func() GType
 
 	Gtk_separator_menu_item_new func() *GtkWidget
@@ -11730,7 +11226,7 @@ var (
 
 	Gtk_show_uri func(
 		screen *GdkScreen,
-		uri *Gchar,
+		uri string,
 		timestamp Guint32,
 		error **GError) Gboolean
 
@@ -11848,12 +11344,12 @@ var (
 
 	Gtk_statusbar_get_context_id func(
 		statusbar *GtkStatusbar,
-		context_description *Gchar) Guint
+		context_description string) Guint
 
 	Gtk_statusbar_push func(
 		statusbar *GtkStatusbar,
 		context_id Guint,
-		text *Gchar) Guint
+		text string) Guint
 
 	Gtk_statusbar_pop func(
 		statusbar *GtkStatusbar,
@@ -11886,13 +11382,13 @@ var (
 		pixbuf *GdkPixbuf) *GtkStatusIcon
 
 	Gtk_status_icon_new_from_file func(
-		filename *Gchar) *GtkStatusIcon
+		filename string) *GtkStatusIcon
 
 	Gtk_status_icon_new_from_stock func(
-		stock_id *Gchar) *GtkStatusIcon
+		stock_id string) *GtkStatusIcon
 
 	Gtk_status_icon_new_from_icon_name func(
-		icon_name *Gchar) *GtkStatusIcon
+		icon_name string) *GtkStatusIcon
 
 	Gtk_status_icon_new_from_gicon func(
 		icon *GIcon) *GtkStatusIcon
@@ -11903,15 +11399,15 @@ var (
 
 	Gtk_status_icon_set_from_file func(
 		status_icon *GtkStatusIcon,
-		filename *Gchar)
+		filename string)
 
 	Gtk_status_icon_set_from_stock func(
 		status_icon *GtkStatusIcon,
-		stock_id *Gchar)
+		stock_id string)
 
 	Gtk_status_icon_set_from_icon_name func(
 		status_icon *GtkStatusIcon,
-		icon_name *Gchar)
+		icon_name string)
 
 	Gtk_status_icon_set_from_gicon func(
 		status_icon *GtkStatusIcon,
@@ -11924,10 +11420,10 @@ var (
 		status_icon *GtkStatusIcon) *GdkPixbuf
 
 	Gtk_status_icon_get_stock func(
-		status_icon *GtkStatusIcon) *Gchar
+		status_icon *GtkStatusIcon) string
 
 	Gtk_status_icon_get_icon_name func(
-		status_icon *GtkStatusIcon) *Gchar
+		status_icon *GtkStatusIcon) string
 
 	Gtk_status_icon_get_gicon func(
 		status_icon *GtkStatusIcon) *GIcon
@@ -11944,7 +11440,7 @@ var (
 
 	Gtk_status_icon_set_tooltip func(
 		status_icon *GtkStatusIcon,
-		tooltip_text *Gchar)
+		tooltip_text string)
 
 	Gtk_status_icon_set_has_tooltip func(
 		status_icon *GtkStatusIcon,
@@ -11952,22 +11448,22 @@ var (
 
 	Gtk_status_icon_set_tooltip_text func(
 		status_icon *GtkStatusIcon,
-		text *Gchar)
+		text string)
 
 	Gtk_status_icon_set_tooltip_markup func(
 		status_icon *GtkStatusIcon,
-		markup *Gchar)
+		markup string)
 
 	Gtk_status_icon_set_title func(
 		status_icon *GtkStatusIcon,
-		title *Gchar)
+		title string)
 
 	Gtk_status_icon_get_title func(
-		status_icon *GtkStatusIcon) *Gchar
+		status_icon *GtkStatusIcon) string
 
 	Gtk_status_icon_set_name func(
 		status_icon *GtkStatusIcon,
-		name *Gchar)
+		name string)
 
 	Gtk_status_icon_set_visible func(
 		status_icon *GtkStatusIcon,
@@ -12003,10 +11499,10 @@ var (
 		status_icon *GtkStatusIcon) Gboolean
 
 	Gtk_status_icon_get_tooltip_text func(
-		status_icon *GtkStatusIcon) *Gchar
+		status_icon *GtkStatusIcon) string
 
 	Gtk_status_icon_get_tooltip_markup func(
-		status_icon *GtkStatusIcon) *Gchar
+		status_icon *GtkStatusIcon) string
 
 	Gtk_status_icon_get_x11_window_id func(
 		status_icon *GtkStatusIcon) Guint32
@@ -12020,7 +11516,7 @@ var (
 		n_items Guint)
 
 	Gtk_stock_lookup func(
-		stock_id *Gchar,
+		stock_id string,
 		item *GtkStockItem) Gboolean
 
 	Gtk_stock_list_ids func() *GSList
@@ -12032,7 +11528,7 @@ var (
 		item *GtkStockItem)
 
 	Gtk_stock_set_translate_func func(
-		domain *Gchar,
+		domain string,
 		f GtkTranslateFunc,
 		dataGpointer,
 		notify GDestroyNotify)
@@ -12127,7 +11623,7 @@ var (
 
 	Gtk_text_tag_table_lookup func(
 		table *GtkTextTagTable,
-		name *Gchar) *GtkTextTag
+		name string) *GtkTextTag
 
 	Gtk_text_tag_table_foreach func(
 		table *GtkTextTagTable,
@@ -12136,14 +11632,6 @@ var (
 
 	Gtk_text_tag_table_get_size func(
 		table *GtkTextTagTable) Gint
-
-	// _gtk_text_tag_table_add_buffer func(
-	// 	table *GtkTextTagTable,
-	// 	buffer Gpointer)
-
-	// _gtk_text_tag_table_remove_buffer func(
-	// 	table *GtkTextTagTable,
-	// 	buffer Gpointer)
 
 	Gtk_text_mark_get_type func() GType
 
@@ -12155,11 +11643,11 @@ var (
 		mark *GtkTextMark) Gboolean
 
 	Gtk_text_mark_new func(
-		name *Gchar,
+		name string,
 		left_gravity Gboolean) *GtkTextMark
 
 	Gtk_text_mark_get_name func(
-		mark *GtkTextMark) *Gchar
+		mark *GtkTextMark) string
 
 	Gtk_text_mark_get_deleted func(
 		mark *GtkTextMark) Gboolean
@@ -12186,30 +11674,30 @@ var (
 
 	Gtk_text_buffer_set_text func(
 		buffer *GtkTextBuffer,
-		text *Gchar,
+		text string,
 		len Gint)
 
 	Gtk_text_buffer_insert func(
 		buffer *GtkTextBuffer,
 		iter *GtkTextIter,
-		text *Gchar,
+		text string,
 		len Gint)
 
 	Gtk_text_buffer_insert_at_cursor func(
 		buffer *GtkTextBuffer,
-		text *Gchar,
+		text string,
 		len Gint)
 
 	Gtk_text_buffer_insert_interactive func(
 		buffer *GtkTextBuffer,
 		iter *GtkTextIter,
-		text *Gchar,
+		text string,
 		len Gint,
 		default_editable Gboolean) Gboolean
 
 	Gtk_text_buffer_insert_interactive_at_cursor func(
 		buffer *GtkTextBuffer,
-		text *Gchar,
+		text string,
 		len Gint,
 		default_editable Gboolean) Gboolean
 
@@ -12226,13 +11714,13 @@ var (
 		end *GtkTextIter,
 		default_editable Gboolean) Gboolean
 
-	// gtk_text_buffer_insert_with_tags func(buffer  *GtkTextBuffer,
-	// 	iter  *GtkTextIter, text  *Gchar, len  Gint,
-	// 	first_tag  *GtkTextTag, ...)
+	Gtk_text_buffer_insert_with_tags func(buffer *GtkTextBuffer,
+		iter *GtkTextIter, text string, len Gint,
+		first_tag *GtkTextTag, v ...VArg)
 
-	// gtk_text_buffer_insert_with_tags_by_name func(
-	// 	buffer  *GtkTextBuffer, iter  *GtkTextIter, text  *Gchar,
-	// 	len  Gint, first_tag_name  *Gchar, ...)
+	Gtk_text_buffer_insert_with_tags_by_name func(
+		buffer *GtkTextBuffer, iter *GtkTextIter, text string,
+		len Gint, first_tag_name string, v ...VArg)
 
 	Gtk_text_buffer_delete func(
 		buffer *GtkTextBuffer,
@@ -12255,13 +11743,13 @@ var (
 		buffer *GtkTextBuffer,
 		start *GtkTextIter,
 		end *GtkTextIter,
-		include_hidden_chars Gboolean) *Gchar
+		include_hidden_chars Gboolean) string
 
 	Gtk_text_buffer_get_slice func(
 		buffer *GtkTextBuffer,
 		start *GtkTextIter,
 		end *GtkTextIter,
-		include_hidden_chars Gboolean) *Gchar
+		include_hidden_chars Gboolean) string
 
 	Gtk_text_buffer_insert_pixbuf func(
 		buffer *GtkTextBuffer,
@@ -12284,7 +11772,7 @@ var (
 
 	Gtk_text_buffer_create_mark func(
 		buffer *GtkTextBuffer,
-		mark_name *Gchar,
+		mark_name string,
 		where *GtkTextIter,
 		left_gravity Gboolean) *GtkTextMark
 
@@ -12299,16 +11787,16 @@ var (
 
 	Gtk_text_buffer_get_mark func(
 		buffer *GtkTextBuffer,
-		name *Gchar) *GtkTextMark
+		name string) *GtkTextMark
 
 	Gtk_text_buffer_move_mark_by_name func(
 		buffer *GtkTextBuffer,
-		name *Gchar,
+		name string,
 		where *GtkTextIter)
 
 	Gtk_text_buffer_delete_mark_by_name func(
 		buffer *GtkTextBuffer,
-		name *Gchar)
+		name string)
 
 	Gtk_text_buffer_get_insert func(
 		buffer *GtkTextBuffer) *GtkTextMark
@@ -12339,13 +11827,13 @@ var (
 
 	Gtk_text_buffer_apply_tag_by_name func(
 		buffer *GtkTextBuffer,
-		name *Gchar,
+		name string,
 		start *GtkTextIter,
 		end *GtkTextIter)
 
 	Gtk_text_buffer_remove_tag_by_name func(
 		buffer *GtkTextBuffer,
-		name *Gchar,
+		name string,
 		start *GtkTextIter,
 		end *GtkTextIter)
 
@@ -12354,9 +11842,9 @@ var (
 		start *GtkTextIter,
 		end *GtkTextIter)
 
-	// gtk_text_buffer_create_tag func(
-	// 	buffer  *GtkTextBuffer, tag_name  *Gchar,
-	// 	first_property_name  *Gchar, ...) *GtkTextTag
+	Gtk_text_buffer_create_tag func(
+		buffer *GtkTextBuffer, tag_name string,
+		first_property_name string, v ...VArg) *GtkTextTag
 
 	Gtk_text_buffer_get_iter_at_line_offset func(
 		buffer *GtkTextBuffer,
@@ -12458,42 +11946,27 @@ var (
 	Gtk_text_buffer_get_paste_target_list func(
 		buffer *GtkTextBuffer) *GtkTargetList
 
-	// _gtk_text_buffer_spew func(
-	// 	buffer *GtkTextBuffer)
-
-	// _gtk_text_buffer_get_btree func(
-	// 	buffer *GtkTextBuffer) *GtkTextBTree
-
-	// _gtk_text_buffer_get_line_log_attrs func(
-	// 	buffer *GtkTextBuffer,
-	// 	anywhere_in_line *GtkTextIter,
-	// 	char_len *Gint) *PangoLogAttr
-
-	// _gtk_text_buffer_notify_will_remove_tag func(
-	// 	buffer *GtkTextBuffer,
-	// 	tag *GtkTextTag)
-
 	Gtk_text_buffer_register_serialize_format func(
 		buffer *GtkTextBuffer,
-		mime_type *Gchar,
+		mime_type string,
 		function GtkTextBufferSerializeFunc,
 		user_dataGpointer,
 		user_data_destroy GDestroyNotify) GdkAtom
 
 	Gtk_text_buffer_register_serialize_tagset func(
 		buffer *GtkTextBuffer,
-		tagset_name *Gchar) GdkAtom
+		tagset_name string) GdkAtom
 
 	Gtk_text_buffer_register_deserialize_format func(
 		buffer *GtkTextBuffer,
-		mime_type *Gchar,
+		mime_type string,
 		function GtkTextBufferDeserializeFunc,
 		user_dataGpointer,
 		user_data_destroy GDestroyNotify) GdkAtom
 
 	Gtk_text_buffer_register_deserialize_tagset func(
 		buffer *GtkTextBuffer,
-		tagset_name *Gchar) GdkAtom
+		tagset_name string) GdkAtom
 
 	Gtk_text_buffer_unregister_serialize_format func(
 		buffer *GtkTextBuffer,
@@ -12796,15 +12269,6 @@ var (
 		tool_item *GtkToolItem,
 		index_ Gint)
 
-	// _gtk_toolbar_elide_underscores func(original *Gchar) *Gchar
-
-	// _gtk_toolbar_paint_space_line func(widget *GtkWidget,
-	// 	toolbar *GtkToolbar,
-	// 	area *GdkRectangle,
-	// 	allocation *GtkAllocation)
-
-	// _gtk_toolbar_get_default_space_size func() Gint
-
 	Gtk_toolbar_get_orientation func(toolbar *GtkToolbar) GtkOrientation
 
 	Gtk_toolbar_set_orientation func(toolbar *GtkToolbar,
@@ -12841,7 +12305,7 @@ var (
 		position Gint) *GtkWidget
 
 	Gtk_toolbar_insert_stock func(toolbar *GtkToolbar,
-		stock_id *Gchar,
+		stock_id string,
 		tooltip_text *Char,
 		tooltip_private_text *Char,
 		callback GCallback,
@@ -12907,10 +12371,10 @@ var (
 
 	Gtk_tool_item_group_get_type func() GType
 
-	Gtk_tool_item_group_new func(label *Gchar) *GtkWidget
+	Gtk_tool_item_group_new func(label string) *GtkWidget
 
 	Gtk_tool_item_group_set_label func(group *GtkToolItemGroup,
-		label *Gchar)
+		label string)
 
 	Gtk_tool_item_group_set_label_widget func(group *GtkToolItemGroup,
 		label_widget *GtkWidget)
@@ -12924,7 +12388,7 @@ var (
 	Gtk_tool_item_group_set_header_relief func(group *GtkToolItemGroup,
 		style GtkReliefStyle)
 
-	Gtk_tool_item_group_get_label func(group *GtkToolItemGroup) *Gchar
+	Gtk_tool_item_group_get_label func(group *GtkToolItemGroup) string
 
 	Gtk_tool_item_group_get_label_widget func(group *GtkToolItemGroup) *GtkWidget
 
@@ -13041,24 +12505,24 @@ var (
 
 	Gtk_tool_shell_get_text_size_group func(shell *GtkToolShell) *GtkSizeGroup
 
-	// gtk_test_init func(argcp  *int, argvp ***Char, ...)
+	Gtk_test_init func(argcp *int, argvp ***Char, v ...VArg)
 
 	Gtk_test_register_all_types func()
 
 	Gtk_test_list_all_types func(n_types *Guint) *GType
 
 	Gtk_test_find_widget func(widget *GtkWidget,
-		label_pattern *Gchar,
+		label_pattern string,
 		widget_type GType) *GtkWidget
 
-	// gtk_test_create_widget func(widget_type  GType,
-	// first_property_name  *Gchar, ...)* GtkWidget
+	Gtk_test_create_widget func(widget_type GType,
+		first_property_name string, v ...VArg) *GtkWidget
 
-	Gtk_test_create_simple_window func(window_title *Gchar,
-		dialog_text *Gchar) *GtkWidget
+	Gtk_test_create_simple_window func(window_title string,
+		dialog_text string) *GtkWidget
 
-	// gtk_test_display_button_window func(window_title  *Gchar,
-	// dialog_text  *Gchar, ...)* GtkWidget
+	Gtk_test_display_button_window func(window_title string,
+		dialog_text string, v ...VArg) *GtkWidget
 
 	Gtk_test_slider_set_perc func(widget *GtkWidget,
 		percentage Double)
@@ -13078,15 +12542,15 @@ var (
 		modifiers GdkModifierType) Gboolean
 
 	Gtk_test_text_set func(widget *GtkWidget,
-		string *Gchar)
+		string string)
 
-	Gtk_test_text_get func(widget *GtkWidget) *Gchar
+	Gtk_test_text_get func(widget *GtkWidget) string
 
 	Gtk_test_find_sibling func(base_widget *GtkWidget,
 		widget_type GType) *GtkWidget
 
 	Gtk_test_find_label func(widget *GtkWidget,
-		label_pattern *Gchar) *GtkWidget
+		label_pattern string) *GtkWidget
 
 	Gtk_tree_drag_source_get_type func() GType
 
@@ -13208,7 +12672,8 @@ var (
 
 	Gtk_tree_store_get_type func() GType
 
-	// gtk_tree_store_new func(n_columns  Gint, ...) *GtkTreeStore
+	Gtk_tree_store_new func(
+		n_columns Gint, v ...VArg) *GtkTreeStore
 
 	Gtk_tree_store_newv func(n_columns Gint,
 		types *GType) *GtkTreeStore
@@ -13222,8 +12687,8 @@ var (
 		column Gint,
 		value *GValue)
 
-	// gtk_tree_store_set func(tree_store  *GtkTreeStore,
-	// iter  *GtkTreeIter, ...)
+	Gtk_tree_store_set func(tree_store *GtkTreeStore,
+		iter *GtkTreeIter, v ...VArg)
 
 	Gtk_tree_store_set_valuesv func(tree_store *GtkTreeStore,
 		iter *GtkTreeIter,
@@ -13253,10 +12718,10 @@ var (
 		parent *GtkTreeIter,
 		sibling *GtkTreeIter)
 
-	// gtk_tree_store_insert_with_values func(tree_store  *GtkTreeStore,
-	// iter  *GtkTreeIter,
-	// parent  *GtkTreeIter,
-	// position  Gint, ...)
+	Gtk_tree_store_insert_with_values func(tree_store *GtkTreeStore,
+		iter *GtkTreeIter,
+		parent *GtkTreeIter,
+		position Gint, v ...VArg)
 
 	Gtk_tree_store_insert_with_valuesv func(tree_store *GtkTreeStore,
 		iter *GtkTreeIter,
@@ -13323,35 +12788,35 @@ var (
 	Gtk_ui_manager_get_accel_group func(self *GtkUIManager) *GtkAccelGroup
 
 	Gtk_ui_manager_get_widget func(self *GtkUIManager,
-		path *Gchar) *GtkWidget
+		path string) *GtkWidget
 
 	Gtk_ui_manager_get_toplevels func(self *GtkUIManager,
 		types GtkUIManagerItemType) *GSList
 
 	Gtk_ui_manager_get_action func(self *GtkUIManager,
-		path *Gchar) *GtkAction
+		path string) *GtkAction
 
 	Gtk_ui_manager_add_ui_from_string func(self *GtkUIManager,
-		buffer *Gchar,
+		buffer string,
 		length Gssize,
 		err **GError) Guint
 
-	Gtk_ui_manager_add_ui_from_file_utf8 func(self *GtkUIManager,
-		filename *Gchar,
+	Gtk_ui_manager_add_ui_from_file func(self *GtkUIManager,
+		filename string,
 		err **GError) Guint
 
 	Gtk_ui_manager_add_ui func(self *GtkUIManager,
 		merge_id Guint,
-		path *Gchar,
-		name *Gchar,
-		action *Gchar,
+		path string,
+		name string,
+		action string,
 		t GtkUIManagerItemType,
 		top Gboolean)
 
 	Gtk_ui_manager_remove_ui func(self *GtkUIManager,
 		merge_id Guint)
 
-	Gtk_ui_manager_get_ui func(self *GtkUIManager) *Gchar
+	Gtk_ui_manager_get_ui func(self *GtkUIManager) string
 
 	Gtk_ui_manager_ensure_update func(self *GtkUIManager)
 
@@ -13368,8 +12833,6 @@ var (
 	Gtk_vbutton_box_get_layout_default func() GtkButtonBoxStyle
 
 	Gtk_vbutton_box_set_layout_default func(layout GtkButtonBoxStyle)
-
-	// _gtk_vbutton_box_get_layout_default func() GtkButtonBoxStyle
 
 	Gtk_volume_button_get_type func() GType
 
@@ -13448,10 +12911,10 @@ var (
 
 	Gtk_clist_set_column_title func(clist *GtkCList,
 		column Gint,
-		title *Gchar)
+		title string)
 
 	Gtk_clist_get_column_title func(clist *GtkCList,
-		column Gint) *Gchar
+		column Gint) string
 
 	Gtk_clist_set_column_widget func(clist *GtkCList,
 		column Gint,
@@ -13512,7 +12975,7 @@ var (
 	Gtk_clist_set_text func(clist *GtkCList,
 		row Gint,
 		column Gint,
-		text *Gchar)
+		text string)
 
 	Gtk_clist_get_text func(clist *GtkCList,
 		row Gint,
@@ -13534,7 +12997,7 @@ var (
 	Gtk_clist_set_pixtext func(clist *GtkCList,
 		row Gint,
 		column Gint,
-		text *Gchar,
+		text string,
 		spacing Guint8,
 		pixmap *GdkPixmap,
 		mask *GdkBitmap)
@@ -13656,10 +13119,6 @@ var (
 	Gtk_clist_set_auto_sort func(clist *GtkCList,
 		auto_sort Gboolean)
 
-	// _gtk_clist_create_cell_layout func(clist *GtkCList,
-	// 	clist_row *GtkCListRow,
-	// 	column Gint) *PangoLayout
-
 	Gtk_combo_get_type func() GType
 
 	Gtk_combo_new func() *GtkWidget
@@ -13679,7 +13138,7 @@ var (
 
 	Gtk_combo_set_item_string func(combo *GtkCombo,
 		item *GtkItem,
-		item_value *Gchar)
+		item_value string)
 
 	Gtk_combo_set_popdown_strings func(combo *GtkCombo,
 		strings *GList)
@@ -13838,7 +13297,7 @@ var (
 	Gtk_ctree_node_set_text func(ctree *GtkCTree,
 		node *GtkCTreeNode,
 		column Gint,
-		text *Gchar)
+		text string)
 
 	Gtk_ctree_node_set_pixmap func(ctree *GtkCTree,
 		node *GtkCTreeNode,
@@ -13849,14 +13308,14 @@ var (
 	Gtk_ctree_node_set_pixtext func(ctree *GtkCTree,
 		node *GtkCTreeNode,
 		column Gint,
-		text *Gchar,
+		text string,
 		spacing Guint8,
 		pixmap *GdkPixmap,
 		mask *GdkBitmap)
 
 	Gtk_ctree_set_node_info func(ctree *GtkCTree,
 		node *GtkCTreeNode,
-		text *Gchar,
+		text string,
 		spacing Guint8,
 		pixmap_closed *GdkPixmap,
 		mask_closed *GdkBitmap,
@@ -14011,21 +13470,21 @@ var (
 
 	Gtk_file_selection_get_type func() GType
 
-	Gtk_file_selection_new func(title *Gchar) *GtkWidget
+	Gtk_file_selection_new func(title string) *GtkWidget
 
-	Gtk_file_selection_set_filename_utf8 func(filesel *GtkFileSelection,
-		filename *Gchar)
+	Gtk_file_selection_set_filename func(filesel *GtkFileSelection,
+		filename string)
 
-	Gtk_file_selection_get_filename_utf8 func(filesel *GtkFileSelection) *Gchar
+	Gtk_file_selection_get_filename func(filesel *GtkFileSelection) string
 
 	Gtk_file_selection_complete func(filesel *GtkFileSelection,
-		pattern *Gchar)
+		pattern string)
 
 	Gtk_file_selection_show_fileop_buttons func(filesel *GtkFileSelection)
 
 	Gtk_file_selection_hide_fileop_buttons func(filesel *GtkFileSelection)
 
-	Gtk_file_selection_get_selections_utf8 func(filesel *GtkFileSelection) **Gchar
+	Gtk_file_selection_get_selections func(filesel *GtkFileSelection) **Gchar
 
 	Gtk_file_selection_set_select_multiple func(filesel *GtkFileSelection,
 		select_multiple Gboolean)
@@ -14043,29 +13502,29 @@ var (
 	Gtk_item_factory_get_type func() GType
 
 	Gtk_item_factory_new func(container_type GType,
-		path *Gchar,
+		path string,
 		accel_group *GtkAccelGroup) *GtkItemFactory
 
 	Gtk_item_factory_construct func(ifactory *GtkItemFactory,
 		container_type GType,
-		path *Gchar,
+		path string,
 		accel_group *GtkAccelGroup)
 
 	Gtk_item_factory_add_foreign func(accel_widget *GtkWidget,
-		full_path *Gchar,
+		full_path string,
 		accel_group *GtkAccelGroup,
 		keyval Guint,
 		modifiers GdkModifierType)
 
 	Gtk_item_factory_from_widget func(widget *GtkWidget) *GtkItemFactory
 
-	Gtk_item_factory_path_from_widget func(widget *GtkWidget) *Gchar
+	Gtk_item_factory_path_from_widget func(widget *GtkWidget) string
 
 	Gtk_item_factory_get_item func(ifactory *GtkItemFactory,
-		path *Gchar) *GtkWidget
+		path string) *GtkWidget
 
 	Gtk_item_factory_get_widget func(ifactory *GtkItemFactory,
-		path *Gchar) *GtkWidget
+		path string) *GtkWidget
 
 	Gtk_item_factory_get_widget_by_action func(ifactory *GtkItemFactory,
 		action Guint) *GtkWidget
@@ -14084,7 +13543,7 @@ var (
 		callback_data Gpointer)
 
 	Gtk_item_factory_delete_item func(ifactory *GtkItemFactory,
-		path *Gchar)
+		path string)
 
 	Gtk_item_factory_delete_entry func(ifactory *GtkItemFactory,
 		entry *GtkItemFactoryEntry)
@@ -14122,13 +13581,13 @@ var (
 		callback_dataGpointer,
 		callback_type Guint)
 
-	Gtk_item_factory_from_path func(path *Gchar) *GtkItemFactory
+	Gtk_item_factory_from_path func(path string) *GtkItemFactory
 
 	Gtk_item_factory_create_menu_entries func(n_entries Guint,
 		entries *GtkMenuEntry)
 
-	Gtk_item_factories_path_delete func(ifactory_path *Gchar,
-		path *Gchar)
+	Gtk_item_factories_path_delete func(ifactory_path string,
+		path string)
 
 	Gtk_list_get_type func() GType
 
@@ -14208,7 +13667,7 @@ var (
 
 	Gtk_list_item_new func() *GtkWidget
 
-	Gtk_list_item_new_with_label func(label *Gchar) *GtkWidget
+	Gtk_list_item_new_with_label func(label string) *GtkWidget
 
 	Gtk_list_item_select func(list_item *GtkListItem)
 
@@ -14301,8 +13760,8 @@ var (
 		caller *GtkWidget)
 
 	Gtk_tips_query_set_labels func(tips_query *GtkTipsQuery,
-		label_inactive *Gchar,
-		label_no_tip *Gchar)
+		label_inactive string,
+		label_no_tip string)
 
 	Gtk_marshal_BOOLEAN__VOID func(
 		closure *GClosure,
@@ -14511,4 +13970,87 @@ var (
 		param_values *GValue,
 		invocation_hint Gpointer,
 		marshal_data Gpointer)
+
+	Gtk_builder_error_quark func() GQuark
+
+	Gtk_print_context_set_cairo_context func(
+		context *GtkPrintContext,
+		cr *Cairo_t,
+		dpi_x, dpi_y Double)
+
+	Gtk_tearoff_menu_item_get_type func() GType
+
+	Gtk_tearoff_menu_item_new func() *GtkWidget
+
+	Gtk_tree_get_type func() GType
+
+	Gtk_tree_new func() *GtkWidget
+
+	Gtk_tree_append func(tree *GtkTree, tree_item *GtkWidget)
+
+	Gtk_tree_prepend func(tree *GtkTree, tree_item *GtkWidget)
+
+	Gtk_tree_insert func(
+		tree *GtkTree, tree_item *GtkWidget, position Gint)
+
+	Gtk_tree_remove_items func(tree *GtkTree, items *GList)
+
+	Gtk_tree_clear_items func(
+		tree *GtkTree, start Gint, end Gint)
+
+	Gtk_tree_select_item func(tree *GtkTree, item Gint)
+
+	Gtk_tree_unselect_item func(tree *GtkTree, item Gint)
+
+	Gtk_tree_select_child func(
+		tree *GtkTree, tree_item *GtkWidget)
+
+	Gtk_tree_unselect_child func(
+		tree *GtkTree, tree_item *GtkWidget)
+
+	Gtk_tree_child_position func(
+		tree *GtkTree, child *GtkWidget) Gint
+
+	Gtk_tree_set_selection_mode func(
+		tree *GtkTree, mode GtkSelectionMode)
+
+	Gtk_tree_set_view_mode func(
+		tree *GtkTree, mode GtkTreeViewMode)
+
+	Gtk_tree_set_view_lines func(tree *GtkTree, flag Gboolean)
+
+	Gtk_tree_remove_item func(tree *GtkTree, child *GtkWidget)
+
+	Gtk_tree_item_get_type func() GType
+
+	Gtk_tree_item_new func() *GtkWidget
+
+	Gtk_tree_item_new_with_label func(label *Gchar) *GtkWidget
+
+	Gtk_tree_item_set_subtree func(
+		tree_item *GtkTreeItem, subtree *GtkWidget)
+
+	Gtk_tree_item_remove_subtree func(tree_item *GtkTreeItem)
+
+	Gtk_tree_item_select func(tree_item *GtkTreeItem)
+
+	Gtk_tree_item_deselect func(tree_item *GtkTreeItem)
+
+	Gtk_tree_item_expand func(tree_item *GtkTreeItem)
+
+	Gtk_tree_item_collapse func(tree_item *GtkTreeItem)
+
+	Gtk_type_enum_get_values func(
+		enum_type GtkType) *GtkEnumValue
+
+	Gtk_type_flags_get_values func(
+		flags_type GtkType) *GtkFlagValue
+
+	Gtk_type_enum_find_value func(
+		enum_type GtkType,
+		value_name *Gchar) *GtkEnumValue
+
+	Gtk_type_flags_find_value func(
+		flags_type GtkType,
+		value_name *Gchar) *GtkFlagValue
 )
