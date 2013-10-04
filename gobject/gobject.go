@@ -1,12 +1,13 @@
 package gobject
 
 import (
-	"github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
-	outside.AddDllApis(dll, false, apiList)
+	AddDllApis(dll, false, apiList)
+	AddDllData(dll, false, dataList)
 }
 
 var (
@@ -34,9 +35,17 @@ var (
 		n_params Guint,
 		args Va_list) Guint
 
-	//TODO(t):Variant
-	//G_signal_new func(signal_name  string, itype  GType, signal_flags  GSignalFlags, class_offset  Guint, accumulator  GSignalAccumulator, accu_data  Gpointer, c_marshaller  GSignalCMarshaller, return_type  GType, n_params  Guint, ...) Guint
-	//G_signal_new_class_handler func(signal_name  string, itype  GType, signal_flags  GSignalFlags, class_handler  GCallback, accumulator  GSignalAccumulator, accu_data  Gpointer, c_marshaller  GSignalCMarshaller, return_type  GType, n_params  Guint, ...) Guint
+	G_signal_new func(signal_name string, itype GType,
+		signal_flags GSignalFlags, class_offset Guint,
+		accumulator GSignalAccumulator, accu_data Gpointer,
+		c_marshaller GSignalCMarshaller, return_type GType,
+		n_params Guint, v ...VArg) Guint
+
+	G_signal_new_class_handler func(signal_name string,
+		itype GType, signal_flags GSignalFlags,
+		class_handler GCallback, accumulator GSignalAccumulator,
+		accu_data Gpointer, c_marshaller GSignalCMarshaller,
+		return_type GType, n_params Guint, v ...VArg) Guint
 
 	G_signal_emitv func(
 		instance_and_params *GValue,
@@ -50,9 +59,11 @@ var (
 		detail GQuark,
 		var_args Va_list)
 
-	//TODO(t):Variant
-	//G_signal_emit func(instance  Gpointer, signal_id  Guint, detail  GQuark, ...)
-	//G_signal_emit_by_name func(instance  Gpointer, detailed_signal  string, ...)
+	G_signal_emit func(instance Gpointer, signal_id Guint,
+		detail GQuark, v ...VArg)
+
+	G_signal_emit_by_name func(instance Gpointer,
+		detailed_signal string, v ...VArg)
 
 	G_signal_lookup func(name string, itype GType) Guint
 
@@ -185,8 +196,8 @@ var (
 		instance_and_params *GValue,
 		return_value *GValue)
 
-	//TODO(t):Variant
-	//g_signal_chain_from_overridden_handler func(instance  Gpointer, ...)
+	G_signal_chain_from_overridden_handler func(
+		instance Gpointer, v ...VArg)
 
 	G_signal_accumulator_true_handled func(
 		ihint *GSignalInvocationHint,
@@ -202,8 +213,6 @@ var (
 
 	G_signal_handlers_destroy func(
 		instance Gpointer)
-	_g_signals_destroy func(
-		itype GType)
 
 	G_initially_unowned_get_type func() GType
 
@@ -244,8 +253,8 @@ var (
 
 	G_object_get_type func() GType
 
-	//TODO(t):Variant
-	//g_object_new func(object_type  GType, first_property_name  string, ...) Gpointer
+	G_object_new func(object_type GType,
+		first_property_name string, v ...VArg) Gpointer
 
 	G_object_newv func(
 		object_type GType,
@@ -257,11 +266,17 @@ var (
 		first_property_name string,
 		var_args Va_list) *GObject
 
-	//TODO(t):Variant
-	//g_object_set func(object  Gpointer, first_property_name  string, ...)
-	//g_object_get func(object  Gpointer, first_property_name  string, ...)
-	//g_object_connect func(object  Gpointer, signal_spec  string, ...) Gpointer
-	//g_object_disconnect func(object  Gpointer, signal_spec  string, ...)
+	G_object_set func(object Gpointer,
+		first_property_name string, v ...VArg)
+
+	G_object_get func(object Gpointer,
+		first_property_name string, v ...VArg)
+
+	G_object_connect func(object Gpointer,
+		signal_spec string, v ...VArg) Gpointer
+
+	G_object_disconnect func(object Gpointer,
+		signal_spec string, v ...VArg)
 
 	G_object_set_valist func(
 		object *GObject,
@@ -860,11 +875,11 @@ var (
 
 	G_enum_get_value_by_name func(
 		enum_class *GEnumClass,
-		name *Gchar) *GEnumValue
+		name string) *GEnumValue
 
 	G_enum_get_value_by_nick func(
 		enum_class *GEnumClass,
-		nick *Gchar) *GEnumValue
+		nick string) *GEnumValue
 
 	G_flags_get_first_value func(
 		flags_class *GFlagsClass,
@@ -872,11 +887,11 @@ var (
 
 	G_flags_get_value_by_name func(
 		flags_class *GFlagsClass,
-		name *Gchar) *GFlagsValue
+		name string) *GFlagsValue
 
 	G_flags_get_value_by_nick func(
 		flags_class *GFlagsClass,
-		nick *Gchar) *GFlagsValue
+		nick string) *GFlagsValue
 
 	G_value_set_enum func(
 		value *GValue,
@@ -893,11 +908,11 @@ var (
 		value *GValue) Guint
 
 	G_enum_register_static func(
-		name *Gchar,
+		name string,
 		const_static_values *GEnumValue) GType
 
 	G_flags_register_static func(
-		name *Gchar,
+		name string,
 		const_static_values *GFlagsValue) GType
 
 	G_enum_complete_type_info func(
@@ -968,13 +983,13 @@ var (
 		value2 *GValue) Gint
 
 	G_param_spec_get_name func(
-		pspec *GParamSpec) *Gchar
+		pspec *GParamSpec) string
 
 	G_param_spec_get_nick func(
-		pspec *GParamSpec) *Gchar
+		pspec *GParamSpec) string
 
 	G_param_spec_get_blurb func(
-		pspec *GParamSpec) *Gchar
+		pspec *GParamSpec) string
 
 	G_value_set_param func(
 		value *GValue,
@@ -1077,14 +1092,14 @@ var (
 
 	G_value_get_double func(value *GValue) Gdouble
 
-	G_value_set_string func(value *GValue, v_string *Gchar)
+	G_value_set_string func(value *GValue, v_string string)
 
 	G_value_set_static_string func(
-		value *GValue, v_string *Gchar)
+		value *GValue, v_string string)
 
-	G_value_get_string func(value *GValue) *Gchar
+	G_value_get_string func(value *GValue) string
 
-	G_value_dup_string func(value *GValue) *Gchar
+	G_value_dup_string func(value *GValue) string
 
 	G_value_set_pointer func(
 		value *GValue, v_pointer Gpointer)
@@ -1107,25 +1122,25 @@ var (
 
 	G_value_dup_variant func(value *GValue) *GVariant
 
-	G_pointer_type_register_static func(name *Gchar) GType
+	G_pointer_type_register_static func(name string) GType
 
-	G_strdup_value_contents func(value *GValue) *Gchar
+	G_strdup_value_contents func(value *GValue) string
 
 	G_value_take_string func(
-		value *GValue, v_string *Gchar)
+		value *GValue, v_string string)
 
 	G_value_set_string_take_ownership func(
-		value *GValue, v_string *Gchar)
+		value *GValue, v_string string)
 
 	G_type_register_static func(
 		parent_type GType,
-		type_name *Gchar,
+		type_name string,
 		info *GTypeInfo,
 		flags GTypeFlags) GType
 
 	G_type_register_static_simple func(
 		parent_type GType,
-		type_name *Gchar,
+		type_name string,
 		class_size Guint,
 		class_init GClassInitFunc,
 		instance_size Guint,
@@ -1134,13 +1149,13 @@ var (
 
 	G_type_register_dynamic func(
 		parent_type GType,
-		type_name *Gchar,
+		type_name string,
 		plugin *GTypePlugin,
 		flags GTypeFlags) GType
 
 	G_type_register_fundamental func(
 		type_id GType,
-		type_name *Gchar,
+		type_name string,
 		info *GTypeInfo,
 		finfo *GTypeFundamentalInfo,
 		flags GTypeFlags) GType
@@ -1253,10 +1268,10 @@ var (
 		flags Guint) Gboolean
 
 	G_type_name_from_instance func(
-		instance *GTypeInstance) *Gchar
+		instance *GTypeInstance) string
 
 	G_type_name_from_class func(
-		g_class *GTypeClass) *Gchar
+		g_class *GTypeClass) string
 
 	G_value_c_init func()
 
@@ -1347,12 +1362,12 @@ var (
 
 	G_type_module_set_name func(
 		module *GTypeModule,
-		name *Gchar)
+		name string)
 
 	G_type_module_register_type func(
 		module *GTypeModule,
 		parent_type GType,
-		type_name *Gchar,
+		type_name string,
 		type_info *GTypeInfo,
 		flags GTypeFlags) GType
 
@@ -1364,190 +1379,190 @@ var (
 
 	G_type_module_register_enum func(
 		module *GTypeModule,
-		name *Gchar,
+		name string,
 		const_static_values *GEnumValue) GType
 
 	G_type_module_register_flags func(
 		module *GTypeModule,
-		name *Gchar,
+		name string,
 		const_static_values *GFlagsValue) GType
 
 	G_param_spec_char func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gint8,
 		maximum Gint8,
 		default_value Gint8,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_uchar func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Guint8,
 		maximum Guint8,
 		default_value Guint8,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_boolean func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		default_value Gboolean,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_int func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gint,
 		maximum Gint,
 		default_value Gint,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_uint func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Guint,
 		maximum Guint,
 		default_value Guint,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_long func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Glong,
 		maximum Glong,
 		default_value Glong,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_ulong func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gulong,
 		maximum Gulong,
 		default_value Gulong,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_int64 func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gint64,
 		maximum Gint64,
 		default_value Gint64,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_uint64 func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Guint64,
 		maximum Guint64,
 		default_value Guint64,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_unichar func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		default_value Gunichar,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_enum func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		enum_type GType,
 		default_value Gint,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_flags func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		flags_type GType,
 		default_value Guint,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_float func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gfloat,
 		maximum Gfloat,
 		default_value Gfloat,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_double func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		minimum Gdouble,
 		maximum Gdouble,
 		default_value Gdouble,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_string func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
-		default_value *Gchar,
+		name string,
+		nick string,
+		blurb string,
+		default_value string,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_param func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		param_type GType,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_boxed func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		boxed_type GType,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_pointer func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_value_array func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		element_spec *GParamSpec,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_object func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		object_type GType,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_override func(
-		name *Gchar,
+		name string,
 		overridden *GParamSpec) *GParamSpec
 
 	G_param_spec_gtype func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		is_a_type GType,
 		flags GParamFlags) *GParamSpec
 
 	G_param_spec_variant func(
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		t *GVariantType,
 		default_value *GVariant,
 		flags GParamFlags) *GParamSpec
@@ -1564,14 +1579,14 @@ var (
 	G_io_condition_get_type func() GType
 
 	G_param_type_register_static func(
-		name *Gchar,
+		name string,
 		pspec_info *GParamSpecTypeInfo) GType
 
 	G_param_spec_internal func(
 		param_type GType,
-		name *Gchar,
-		nick *Gchar,
-		blurb *Gchar,
+		name string,
+		nick string,
+		blurb string,
 		flags GParamFlags) Gpointer
 
 	G_param_spec_pool_new func(
@@ -1588,7 +1603,7 @@ var (
 
 	G_param_spec_pool_lookup func(
 		pool *GParamSpecPool,
-		param_name *Gchar,
+		param_name string,
 		owner_type GType,
 		walk_ancestors Gboolean) *GParamSpec
 
@@ -1611,7 +1626,7 @@ var (
 
 var dll = "libgobject-2.0-0.dll"
 
-var apiList = outside.Apis{
+var apiList = Apis{
 	{"g_array_get_type", &G_array_get_type},
 	{"g_binding_flags_get_type", &G_binding_flags_get_type},
 	{"g_binding_get_flags", &G_binding_get_flags},
@@ -1696,11 +1711,11 @@ var apiList = outside.Apis{
 	{"g_object_class_list_properties", &G_object_class_list_properties},
 	{"g_object_class_override_property", &G_object_class_override_property},
 	{"g_object_compat_control", &G_object_compat_control},
-	// Vraiant {"g_object_connect", &G_object_connect},
-	// Variant {"g_object_disconnect", &G_object_disconnect},
+	{"g_object_connect", &G_object_connect},
+	{"g_object_disconnect", &G_object_disconnect},
 	{"g_object_force_floating", &G_object_force_floating},
 	{"g_object_freeze_notify", &G_object_freeze_notify},
-	// Variant {"g_object_get", &G_object_get},
+	{"g_object_get", &G_object_get},
 	{"g_object_get_data", &G_object_get_data},
 	{"g_object_get_property", &G_object_get_property},
 	{"g_object_get_qdata", &G_object_get_qdata},
@@ -1710,7 +1725,7 @@ var apiList = outside.Apis{
 	{"g_object_interface_install_property", &G_object_interface_install_property},
 	{"g_object_interface_list_properties", &G_object_interface_list_properties},
 	{"g_object_is_floating", &G_object_is_floating},
-	// Variant {"g_object_new", &G_object_new},
+	{"g_object_new", &G_object_new},
 	{"g_object_new_valist", &G_object_new_valist},
 	{"g_object_newv", &G_object_newv},
 	{"g_object_notify", &G_object_notify},
@@ -1720,7 +1735,7 @@ var apiList = outside.Apis{
 	{"g_object_remove_toggle_ref", &G_object_remove_toggle_ref},
 	{"g_object_remove_weak_pointer", &G_object_remove_weak_pointer},
 	{"g_object_run_dispose", &G_object_run_dispose},
-	// Variant {"g_object_set", &G_object_set},
+	{"g_object_set", &G_object_set},
 	{"g_object_set_data", &G_object_set_data},
 	{"g_object_set_data_full", &G_object_set_data_full},
 	{"g_object_set_property", &G_object_set_property},
@@ -1768,7 +1783,6 @@ var apiList = outside.Apis{
 	{"g_param_spec_sink", &G_param_spec_sink},
 	{"g_param_spec_steal_qdata", &G_param_spec_steal_qdata},
 	{"g_param_spec_string", &G_param_spec_string},
-	// Data {"g_param_spec_types", &G_param_spec_types},
 	{"g_param_spec_uchar", &G_param_spec_uchar},
 	{"g_param_spec_uint", &G_param_spec_uint},
 	{"g_param_spec_uint64", &G_param_spec_uint64},
@@ -1790,13 +1804,13 @@ var apiList = outside.Apis{
 	{"g_signal_accumulator_true_handled", &G_signal_accumulator_true_handled},
 	{"g_signal_add_emission_hook", &G_signal_add_emission_hook},
 	{"g_signal_chain_from_overridden", &G_signal_chain_from_overridden},
-	// Vrariant {"g_signal_chain_from_overridden_handler", &G_signal_chain_from_overridden_handler},
+	{"g_signal_chain_from_overridden_handler", &G_signal_chain_from_overridden_handler},
 	{"g_signal_connect_closure", &G_signal_connect_closure},
 	{"g_signal_connect_closure_by_id", &G_signal_connect_closure_by_id},
 	{"g_signal_connect_data", &G_signal_connect_data},
 	{"g_signal_connect_object", &G_signal_connect_object},
-	// Vrariant {"g_signal_emit", &G_signal_emit},
-	// Vrariant {"g_signal_emit_by_name", &G_signal_emit_by_name},
+	{"g_signal_emit", &G_signal_emit},
+	{"g_signal_emit_by_name", &G_signal_emit_by_name},
 	{"g_signal_emit_valist", &G_signal_emit_valist},
 	{"g_signal_emitv", &G_signal_emitv},
 	{"g_signal_get_invocation_hint", &G_signal_get_invocation_hint},
@@ -1813,8 +1827,8 @@ var apiList = outside.Apis{
 	{"g_signal_list_ids", &G_signal_list_ids},
 	{"g_signal_lookup", &G_signal_lookup},
 	{"g_signal_name", &G_signal_name},
-	// Vrariant {"g_signal_new", &G_signal_new},
-	// Vrariant {"g_signal_new_class_handler", &G_signal_new_class_handler},
+	{"g_signal_new", &G_signal_new},
+	{"g_signal_new_class_handler", &G_signal_new_class_handler},
 	{"g_signal_new_valist", &G_signal_new_valist},
 	{"g_signal_newv", &G_signal_newv},
 	{"g_signal_override_class_closure", &G_signal_override_class_closure},
@@ -1984,4 +1998,8 @@ var apiList = outside.Apis{
 	{"g_value_unset", &G_value_unset},
 	{"g_variant_get_gtype", &G_variant_get_gtype},
 	{"g_variant_type_get_gtype", &G_variant_type_get_gtype},
+}
+
+var dataList = Data{
+// {"g_param_spec_types", new(G_param_spec_types)},
 }
