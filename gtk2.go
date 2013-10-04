@@ -1,4 +1,4 @@
-//Package gtk2 is useful only to install all subcomponents
+//Package gtk2 is useful only to install/test all subcomponents
 package gtk2
 
 import (
@@ -10,6 +10,7 @@ import (
 	_ "github.com/tHinqa/outside-gtk2/gio"
 	_ "github.com/tHinqa/outside-gtk2/glib"
 	_ "github.com/tHinqa/outside-gtk2/gmodule"
+	_ "github.com/tHinqa/outside-gtk2/gobject"
 	_ "github.com/tHinqa/outside-gtk2/gtk"
 	_ "github.com/tHinqa/outside-gtk2/pango"
 )

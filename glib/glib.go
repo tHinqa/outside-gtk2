@@ -1,13 +1,14 @@
 package glib
 
 import (
-	"github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
-	outside.AddDllApis(dll, false, apiList)
-	outside.AddDllApis(dllThread, false, apiListThread)
+	AddDllApis(dll, false, apiList)
+	AddDllApis(dllThread, false, apiListThread)
+	AddDllData(dll, false, dataList)
 }
 
 type (
@@ -29,7 +30,7 @@ var (
 		reserved_size Guint) *GArray
 
 	G_array_free func(array *GArray,
-		free_segment Gboolean) *Gchar
+		free_segment Gboolean) string
 
 	G_array_ref func(array *GArray) *GArray
 
@@ -158,28 +159,28 @@ var (
 		compare_func GCompareDataFunc,
 		user_data Gpointer)
 
-	G_quark_try_string func(str *Gchar) GQuark
+	G_quark_try_string func(str string) GQuark
 
-	G_quark_from_static_string func(str *Gchar) GQuark
+	G_quark_from_static_string func(str string) GQuark
 
-	G_quark_from_string func(str *Gchar) GQuark
+	G_quark_from_string func(str string) GQuark
 
-	G_quark_to_string func(quark GQuark) *Gchar
+	G_quark_to_string func(quark GQuark) string
 
-	G_intern_string func(str *Gchar) *Gchar
+	G_intern_string func(str string) string
 
-	G_intern_static_string func(str *Gchar) *Gchar
+	G_intern_static_string func(str string) string
 
-	//TODO(t):Variant
-	//G_error_new func(domain GQuark, code Gint, format *Gchar, ...)*GError
+	G_error_new func(domain GQuark, code Gint, format string,
+		v ...VArg) *GError
 
 	G_error_new_literal func(domain GQuark,
 		code Gint,
-		message *Gchar) *GError
+		message string) *GError
 
 	G_error_new_valist func(domain GQuark,
 		code Gint,
-		format *Gchar,
+		format string,
 		args Va_list) *GError
 
 	G_error_free func(e *GError)
@@ -190,48 +191,49 @@ var (
 		domain GQuark,
 		code Gint) Gboolean
 
-	//TODO(t):Variant
-	// G_set_error func(err **GError, domain GQuark, code Gint, format *Gchar, ...)
+	G_set_error func(err **GError, domain GQuark, code Gint,
+		format string, v ...VArg)
 
 	G_set_error_literal func(err **GError,
 		domain GQuark,
 		code Gint,
-		message *Gchar)
+		message string)
 
 	G_propagate_error func(dest **GError,
 		src *GError)
 
 	G_clear_error func(err **GError)
 
-	//TODO(t):Variant
-	// G_prefix_error func(err **GError, format *Gchar, ...)
-	// G_propagate_prefixed_error func(dest **GError, src *GError, format *Gchar, ...)
+	G_prefix_error func(err **GError, format string, v ...VArg)
 
-	G_get_user_name func() *Gchar
+	G_propagate_prefixed_error func(dest **GError, src *GError,
+		format string, v ...VArg)
 
-	G_get_real_name func() *Gchar
+	G_get_user_name func() string
 
-	G_get_home_dir func() *Gchar
+	G_get_real_name func() string
 
-	G_get_tmp_dir func() *Gchar
+	G_get_home_dir func() string
 
-	G_get_host_name func() *Gchar
+	G_get_tmp_dir func() string
 
-	G_get_prgname func() *Gchar
+	G_get_host_name func() string
 
-	G_set_prgname func(prgname *Gchar)
+	G_get_prgname func() string
 
-	G_get_application_name func() *Gchar
+	G_set_prgname func(prgname string)
 
-	G_set_application_name func(application_name *Gchar)
+	G_get_application_name func() string
+
+	G_set_application_name func(application_name string)
 
 	G_reload_user_special_dirs_cache func()
 
-	G_get_user_data_dir func() *Gchar
+	G_get_user_data_dir func() string
 
-	G_get_user_config_dir func() *Gchar
+	G_get_user_config_dir func() string
 
-	G_get_user_cache_dir func() *Gchar
+	G_get_user_cache_dir func() string
 
 	G_get_system_data_dirs func() **Gchar
 
@@ -239,44 +241,41 @@ var (
 		f func()) **Gchar
 
 	G_parse_debug_string func(
-		str *Gchar, keys *GDebugKey, nkeys Guint) Guint
+		str string, keys *GDebugKey, nkeys Guint) Guint
 
-	//TODO(t):Variant
-	// G_snprintf func(str *Gchar, n Gulong, format *Gchar, ...) Gint
+	G_snprintf func(str string, n Gulong, format string,
+		v ...VArg) Gint
 
-	G_vsnprintf func(str *Gchar,
+	G_vsnprintf func(str string,
 		n Gulong,
-		format *Gchar,
+		format string,
 		args Va_list) Gint
 
-	G_path_is_absolute func(file_name *Gchar) Gboolean
+	G_path_is_absolute func(file_name string) Gboolean
 
-	G_path_skip_root func(file_name *Gchar) *Gchar
+	G_path_skip_root func(file_name string) string
 
-	G_basename func(file_name *Gchar) *Gchar
+	G_basename func(file_name string) string
 
-	G_get_current_dir func() *Gchar
+	G_get_current_dir func() string
 
-	G_path_get_basename func(file_name *Gchar) *Gchar
+	G_path_get_basename func(file_name string) string
 
-	G_path_get_dirname func(file_name *Gchar) *Gchar
+	G_path_get_dirname func(file_name string) string
 
 	G_nullify_pointer func(nullify_location *Gpointer)
 
-	G_getenv func(variable *Gchar) *Gchar
+	G_getenv func(variable string) string
 
-	G_setenv func(variable *Gchar,
-		value *Gchar,
+	G_setenv func(variable string,
+		value string,
 		overwrite Gboolean) Gboolean
 
-	G_unsetenv func(variable *Gchar)
+	G_unsetenv func(variable string)
 
 	G_listenv func() **Gchar
 
 	G_get_environ func() **Gchar
-
-	_g_getenv_nomalloc func(variable *Gchar,
-		buffer [1024]Gchar) *Gchar
 
 	G_thread_init func(vtable *GThreadFunctions)
 
@@ -422,37 +421,35 @@ var (
 		f GCompareDataFunc,
 		user_data Gpointer)
 
-	_g_async_queue_get_mutex func(queue *GAsyncQueue) *GMutex
+	G_on_error_query func(prg_name string)
 
-	G_on_error_query func(prg_name *Gchar)
-
-	G_on_error_stack_trace func(prg_name *Gchar)
+	G_on_error_stack_trace func(prg_name string)
 
 	G_base64_encode_step func(in *Guchar,
 		leng Gsize,
 		break_lines Gboolean,
-		out *Gchar,
+		out string,
 		state *Gint,
 		save *Gint) Gsize
 
 	G_base64_encode_close func(break_lines Gboolean,
-		out *Gchar,
+		out string,
 		state *Gint,
 		save *Gint) Gsize
 
 	G_base64_encode func(data *Guchar,
-		leng Gsize) *Gchar
+		leng Gsize) string
 
-	G_base64_decode_step func(in *Gchar,
+	G_base64_decode_step func(in string,
 		leng Gsize,
 		out *Guchar,
 		state *Gint,
 		save *Guint) Gsize
 
-	G_base64_decode func(text *Gchar,
+	G_base64_decode func(text string,
 		out_len *Gsize) *Guchar
 
-	G_base64_decode_inplace func(text *Gchar,
+	G_base64_decode_inplace func(text string,
 		out_len *Gsize) *Guchar
 
 	G_bit_lock func(
@@ -469,17 +466,17 @@ var (
 
 	G_get_system_config_dirs func() **Gchar
 
-	G_get_user_runtime_dir func() *Gchar
+	G_get_user_runtime_dir func() string
 
 	G_get_language_names func() **Gchar
 
-	G_get_locale_variants func(locale *Gchar) **Gchar
+	G_get_locale_variants func(locale string) **Gchar
 
 	G_atexit func(f GVoidFunc)
 
 	Glib_check_version func(required_major Guint,
 		required_minor Guint,
-		required_micro Guint) *Gchar
+		required_micro Guint) string
 
 	G_atomic_int_exchange_and_add func(atomic *Gint,
 		val Gint) Gint
@@ -514,146 +511,146 @@ var (
 	G_bookmark_file_free func(bookmark *GBookmarkFile)
 
 	G_bookmark_file_load_from_file func(bookmark *GBookmarkFile,
-		filename *Gchar,
+		filename string,
 		e **GError) Gboolean
 
 	G_bookmark_file_load_from_data func(bookmark *GBookmarkFile,
-		data *Gchar,
+		data string,
 		length Gsize,
 		e **GError) Gboolean
 
 	G_bookmark_file_load_from_data_dirs func(bookmark *GBookmarkFile,
-		file *Gchar,
+		file string,
 		full_path **Gchar,
 		e **GError) Gboolean
 
 	G_bookmark_file_to_data func(bookmark *GBookmarkFile,
 		length *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
 	G_bookmark_file_to_file func(bookmark *GBookmarkFile,
-		filename *Gchar,
+		filename string,
 		e **GError) Gboolean
 
 	G_bookmark_file_set_title func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		title *Gchar)
+		uri string,
+		title string)
 
 	G_bookmark_file_get_title func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		e **GError) *Gchar
+		uri string,
+		e **GError) string
 
 	G_bookmark_file_set_description func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		description *Gchar)
+		uri string,
+		description string)
 
 	G_bookmark_file_get_description func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		e **GError) *Gchar
+		uri string,
+		e **GError) string
 
 	G_bookmark_file_set_mime_type func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		mime_type *Gchar)
+		uri string,
+		mime_type string)
 
 	G_bookmark_file_get_mime_type func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		e **GError) *Gchar
+		uri string,
+		e **GError) string
 
 	G_bookmark_file_set_groups func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		groups **Gchar,
 		length Gsize)
 
 	G_bookmark_file_add_group func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		group *Gchar)
+		uri string,
+		group string)
 
 	G_bookmark_file_has_group func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		group *Gchar,
+		uri string,
+		group string,
 		e **GError) Gboolean
 
 	G_bookmark_file_get_groups func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		length *Gsize,
 		e **GError) **Gchar
 
 	G_bookmark_file_add_application func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		name *Gchar,
-		exec *Gchar)
+		uri string,
+		name string,
+		exec string)
 
 	G_bookmark_file_has_application func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		name *Gchar,
+		uri string,
+		name string,
 		e **GError) Gboolean
 
 	G_bookmark_file_get_applications func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		length *Gsize,
 		e **GError) **Gchar
 
 	G_bookmark_file_set_app_info func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		name *Gchar,
-		exec *Gchar,
+		uri string,
+		name string,
+		exec string,
 		count Gint,
 		stamp Time_t,
 		e **GError) Gboolean
 
 	G_bookmark_file_get_app_info func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		name *Gchar,
+		uri string,
+		name string,
 		exec **Gchar,
 		count *Guint,
 		stamp *Time_t,
 		e **GError) Gboolean
 
 	G_bookmark_file_set_is_private func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		is_private Gboolean)
 
 	G_bookmark_file_get_is_private func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		e **GError) Gboolean
 
 	G_bookmark_file_set_icon func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		href *Gchar,
-		mime_type *Gchar)
+		uri string,
+		href string,
+		mime_type string)
 
 	G_bookmark_file_get_icon func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		href **Gchar,
 		mime_type **Gchar,
 		e **GError) Gboolean
 
 	G_bookmark_file_set_added func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		added Time_t)
 
 	G_bookmark_file_get_added func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		e **GError) Time_t
 
 	G_bookmark_file_set_modified func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		modified Time_t)
 
 	G_bookmark_file_get_modified func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		e **GError) Time_t
 
 	G_bookmark_file_set_visited func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		visited Time_t)
 
 	G_bookmark_file_get_visited func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		e **GError) Time_t
 
 	G_bookmark_file_has_item func(bookmark *GBookmarkFile,
-		uri *Gchar) Gboolean
+		uri string) Gboolean
 
 	G_bookmark_file_get_size func(bookmark *GBookmarkFile) Gint
 
@@ -661,22 +658,22 @@ var (
 		length *Gsize) **Gchar
 
 	G_bookmark_file_remove_group func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		group *Gchar,
+		uri string,
+		group string,
 		e **GError) Gboolean
 
 	G_bookmark_file_remove_application func(bookmark *GBookmarkFile,
-		uri *Gchar,
-		name *Gchar,
+		uri string,
+		name string,
 		e **GError) Gboolean
 
 	G_bookmark_file_remove_item func(bookmark *GBookmarkFile,
-		uri *Gchar,
+		uri string,
 		e **GError) Gboolean
 
 	G_bookmark_file_move_item func(bookmark *GBookmarkFile,
-		old_uri *Gchar,
-		new_uri *Gchar,
+		old_uri string,
+		new_uri string,
 		e **GError) Gboolean
 
 	G_slice_alloc func(block_size Gsize) Gpointer
@@ -739,7 +736,7 @@ var (
 
 	G_mem_profile func()
 
-	G_mem_chunk_new func(name *Gchar,
+	G_mem_chunk_new func(name string,
 		atom_size Gint,
 		area_size Gsize,
 		typ Gint) *GMemChunk
@@ -763,7 +760,7 @@ var (
 
 	G_blow_chunks func()
 
-	G_allocator_new func(name *Gchar,
+	G_allocator_new func(name string,
 		n_preallocs Guint) *GAllocator
 
 	G_allocator_free func(allocator *GAllocator)
@@ -900,7 +897,7 @@ var (
 		data *Guchar,
 		length Gssize)
 
-	G_checksum_get_string func(checksum *GChecksum) *Gchar
+	G_checksum_get_string func(checksum *GChecksum) string
 
 	G_checksum_get_digest func(checksum *GChecksum,
 		buffer *Guint8,
@@ -908,11 +905,11 @@ var (
 
 	G_compute_checksum_for_data func(checksum_type GChecksumType,
 		data *Guchar,
-		length Gsize) *Gchar
+		length Gsize) string
 
 	G_compute_checksum_for_string func(checksum_type GChecksumType,
-		str *Gchar,
-		length Gssize) *Gchar
+		str string,
+		length Gssize) string
 
 	G_completion_new func(f GCompletionFunc) *GCompletion
 
@@ -925,11 +922,11 @@ var (
 	G_completion_clear_items func(cmp *GCompletion)
 
 	G_completion_complete func(cmp *GCompletion,
-		prefix *Gchar,
+		prefix string,
 		new_prefix **Gchar) *GList
 
 	G_completion_complete_utf8 func(cmp *GCompletion,
-		prefix *Gchar,
+		prefix string,
 		new_prefix **Gchar) *GList
 
 	G_completion_set_compare func(cmp *GCompletion,
@@ -939,8 +936,8 @@ var (
 
 	G_convert_error_quark func() GQuark
 
-	G_iconv_open func(to_codeset *Gchar,
-		from_codeset *Gchar) GIConv
+	G_iconv_open func(to_codeset string,
+		from_codeset string) GIConv
 
 	G_iconv func(converter GIConv,
 		inbuf **Gchar,
@@ -950,69 +947,69 @@ var (
 
 	G_iconv_close func(converter GIConv) Gint
 
-	G_convert func(str *Gchar,
+	G_convert func(str string,
 		leng Gssize,
-		to_codeset *Gchar,
-		from_codeset *Gchar,
+		to_codeset string,
+		from_codeset string,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_convert_with_iconv func(str *Gchar,
+	G_convert_with_iconv func(str string,
 		leng Gssize,
 		converter GIConv,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_convert_with_fallback func(str *Gchar,
+	G_convert_with_fallback func(str string,
 		leng Gssize,
-		to_codeset *Gchar,
-		from_codeset *Gchar,
-		fallback *Gchar,
+		to_codeset string,
+		from_codeset string,
+		fallback string,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_locale_to_utf8 func(opsysstr *Gchar,
-		leng Gssize,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) *Gchar
-
-	G_locale_from_utf8 func(utf8str *Gchar,
+	G_locale_to_utf8 func(opsysstr string,
 		leng Gssize,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_filename_to_utf8 func(opsysstr *Gchar,
+	G_locale_from_utf8 func(utf8str string,
 		leng Gssize,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_filename_from_utf8 func(utf8str *Gchar,
+	G_filename_to_utf8 func(opsysstr string,
 		leng Gssize,
 		bytes_read *Gsize,
 		bytes_written *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_filename_from_uri func(uri *Gchar,
+	G_filename_from_utf8 func(utf8str string,
+		leng Gssize,
+		bytes_read *Gsize,
+		bytes_written *Gsize,
+		e **GError) string
+
+	G_filename_from_uri func(uri string,
 		hostname **Gchar,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_filename_to_uri func(filename *Gchar,
-		hostname *Gchar,
-		e **GError) *Gchar
+	G_filename_to_uri func(filename string,
+		hostname string,
+		e **GError) string
 
-	G_filename_display_name func(filename *Gchar) *Gchar
+	G_filename_display_name func(filename string) string
 
 	G_get_filename_charsets func(charsets ***Gchar) Gboolean
 
-	G_filename_display_basename func(filename *Gchar) *Gchar
+	G_filename_display_basename func(filename string) string
 
-	G_uri_list_extract_uris func(uri_list *Gchar) **Gchar
+	G_uri_list_extract_uris func(uri_list string) **Gchar
 
 	G_datalist_init func(datalist **GData)
 
@@ -1106,7 +1103,7 @@ var (
 		n_dates Guint)
 
 	G_date_set_parse func(date *GDate,
-		str *Gchar)
+		str string)
 
 	G_date_set_time_t func(date *GDate,
 		timet Time_t)
@@ -1180,12 +1177,12 @@ var (
 
 	G_date_order func(date1 *GDate, date2 *GDate)
 
-	G_date_strftime func(s *Gchar,
+	G_date_strftime func(s string,
 		slen Gsize,
-		format *Gchar,
+		format string,
 		date *GDate) Gsize
 
-	G_time_zone_new func(identifier *Gchar) *GTimeZone
+	G_time_zone_new func(identifier string) *GTimeZone
 
 	G_time_zone_new_utc func() *GTimeZone
 
@@ -1204,7 +1201,7 @@ var (
 		time *Gint64) Gint
 
 	G_time_zone_get_abbreviation func(tz *GTimeZone,
-		interval Gint) *Gchar
+		interval Gint) string
 
 	G_time_zone_get_offset func(tz *GTimeZone,
 		interval Gint) Gint32
@@ -1331,7 +1328,7 @@ var (
 
 	G_date_time_get_utc_offset func(datetime *GDateTime) GTimeSpan
 
-	G_date_time_get_timezone_abbreviation func(datetime *GDateTime) *Gchar
+	G_date_time_get_timezone_abbreviation func(datetime *GDateTime) string
 
 	G_date_time_is_daylight_savings func(datetime *GDateTime) Gboolean
 
@@ -1343,13 +1340,13 @@ var (
 	G_date_time_to_utc func(datetime *GDateTime) *GDateTime
 
 	G_date_time_format func(datetime *GDateTime,
-		format *Gchar) *Gchar
+		format string) string
 
-	G_dir_open_utf8 func(path *Gchar,
+	G_dir_open_utf8 func(path string,
 		flags Guint,
 		e **GError) *GDir
 
-	G_dir_read_name_utf8 func(dir *GDir) *Gchar
+	G_dir_read_name_utf8 func(dir *GDir) string
 
 	G_dir_rewind func(dir *GDir)
 
@@ -1359,46 +1356,45 @@ var (
 
 	G_file_error_from_errno func(err_no Gint) GFileError
 
-	G_file_test func(filename *Gchar,
+	G_file_test func(filename string,
 		test GFileTest) Gboolean
 
-	G_file_get_contents func(filename *Gchar,
+	G_file_get_contents func(filename string,
 		contents **Gchar,
 		length *Gsize,
 		e **GError) Gboolean
 
-	G_file_set_contents func(filename *Gchar,
-		contents *Gchar,
+	G_file_set_contents func(filename string,
+		contents string,
 		length Gssize,
 		e **GError) Gboolean
 
-	G_file_read_link func(filename *Gchar,
-		e **GError) *Gchar
+	G_file_read_link func(filename string,
+		e **GError) string
 
-	G_mkstemp func(tmpl *Gchar) Gint
+	G_mkstemp func(tmpl string) Gint
 
-	G_mkstemp_full func(tmpl *Gchar,
+	G_mkstemp_full func(tmpl string,
 		flags int,
 		mode int) Gint
 
-	G_file_open_tmp func(tmpl *Gchar,
+	G_file_open_tmp func(tmpl string,
 		name_used **Gchar,
 		e **GError) Gint
 
 	G_format_size_for_display func(size Goffset) *Char
 
-	//TODO(t):Variant
-	// G_build_path func(separator *Gchar, first_element *Gchar, ...)*Gchar
+	G_build_path func(separator string, first_element string,
+		v ...VArg) string
 
-	G_build_pathv func(separator *Gchar,
-		args **Gchar) *Gchar
+	G_build_pathv func(separator string,
+		args **Gchar) string
 
-	//TODO(t):Variant
-	// G_build_filename func(first_element *Gchar, ...)*Gchar
+	G_build_filename func(first_element string, v ...VArg) string
 
-	G_build_filenamev func(args **Gchar) *Gchar
+	G_build_filenamev func(args **Gchar) string
 
-	G_mkdir_with_parents func(pathname *Gchar,
+	G_mkdir_with_parents func(pathname string,
 		mode int) int
 
 	G_hash_table_new func(hash_func GHashFunc,
@@ -1581,15 +1577,15 @@ var (
 		marshaller GHookCheckMarshaller,
 		marshal_data Gpointer)
 
-	G_hostname_is_non_ascii func(hostname *Gchar) Gboolean
+	G_hostname_is_non_ascii func(hostname string) Gboolean
 
-	G_hostname_is_ascii_encoded func(hostname *Gchar) Gboolean
+	G_hostname_is_ascii_encoded func(hostname string) Gboolean
 
-	G_hostname_is_ip_address func(hostname *Gchar) Gboolean
+	G_hostname_is_ip_address func(hostname string) Gboolean
 
-	G_hostname_to_ascii func(hostname *Gchar) *Gchar
+	G_hostname_to_ascii func(hostname string) string
 
-	G_hostname_to_unicode func(hostname *Gchar) *Gchar
+	G_hostname_to_unicode func(hostname string) string
 
 	G_poll func(fds *GPollFD,
 		nfds Guint,
@@ -1967,56 +1963,56 @@ var (
 	G_unicode_canonical_decomposition func(ch Gunichar,
 		result_len *Gsize) *Gunichar
 
-	G_utf8_get_char func(p *Gchar) Gunichar
+	G_utf8_get_char func(p string) Gunichar
 
-	G_utf8_get_char_validated func(p *Gchar,
+	G_utf8_get_char_validated func(p string,
 		max_len Gssize) Gunichar
 
-	G_utf8_offset_to_pointer func(str *Gchar,
-		offset Glong) *Gchar
+	G_utf8_offset_to_pointer func(str string,
+		offset Glong) string
 
-	G_utf8_pointer_to_offset func(str *Gchar,
-		pos *Gchar) Glong
+	G_utf8_pointer_to_offset func(str string,
+		pos string) Glong
 
-	G_utf8_prev_char func(p *Gchar) *Gchar
+	G_utf8_prev_char func(p string) string
 
-	G_utf8_find_next_char func(p *Gchar,
-		end *Gchar) *Gchar
+	G_utf8_find_next_char func(p string,
+		end string) string
 
-	G_utf8_find_prev_char func(str *Gchar,
-		p *Gchar) *Gchar
+	G_utf8_find_prev_char func(str string,
+		p string) string
 
-	G_utf8_strlen func(p *Gchar,
+	G_utf8_strlen func(p string,
 		max Gssize) Glong
 
-	G_utf8_strncpy func(dest *Gchar,
-		src *Gchar,
-		n Gsize) *Gchar
+	G_utf8_strncpy func(dest string,
+		src string,
+		n Gsize) string
 
-	G_utf8_strchr func(p *Gchar,
+	G_utf8_strchr func(p string,
 		leng Gssize,
-		c Gunichar) *Gchar
+		c Gunichar) string
 
-	G_utf8_strrchr func(p *Gchar,
+	G_utf8_strrchr func(p string,
 		leng Gssize,
-		c Gunichar) *Gchar
+		c Gunichar) string
 
-	G_utf8_strreverse func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_strreverse func(str string,
+		leng Gssize) string
 
-	G_utf8_to_utf16 func(str *Gchar,
+	G_utf8_to_utf16 func(str string,
 		leng Glong,
 		items_read *Glong,
 		items_written *Glong,
 		e **GError) *Gunichar2
 
-	G_utf8_to_ucs4 func(str *Gchar,
+	G_utf8_to_ucs4 func(str string,
 		leng Glong,
 		items_read *Glong,
 		items_written *Glong,
 		e **GError) *Gunichar
 
-	G_utf8_to_ucs4_fast func(str *Gchar,
+	G_utf8_to_ucs4_fast func(str string,
 		leng Glong,
 		items_written *Glong) *Gunichar
 
@@ -2030,7 +2026,7 @@ var (
 		leng Glong,
 		items_read *Glong,
 		items_written *Glong,
-		e **GError) *Gchar
+		e **GError) string
 
 	G_ucs4_to_utf16 func(str *Gunichar,
 		leng Glong,
@@ -2042,44 +2038,42 @@ var (
 		leng Glong,
 		items_read *Glong,
 		items_written *Glong,
-		e **GError) *Gchar
+		e **GError) string
 
 	G_unichar_to_utf8 func(c Gunichar,
-		outbuf *Gchar) Gint
+		outbuf string) Gint
 
-	G_utf8_validate func(str *Gchar,
+	G_utf8_validate func(str string,
 		max_len Gssize,
 		end **Gchar) Gboolean
 
 	G_unichar_validate func(ch Gunichar) Gboolean
-	G_utf8_strup       func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_strup       func(str string,
+		leng Gssize) string
 
-	G_utf8_strdown func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_strdown func(str string,
+		leng Gssize) string
 
-	G_utf8_casefold func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_casefold func(str string,
+		leng Gssize) string
 
-	G_utf8_normalize func(str *Gchar,
+	G_utf8_normalize func(str string,
 		leng Gssize,
-		mode GNormalizeMode) *Gchar
+		mode GNormalizeMode) string
 
-	G_utf8_collate func(str1 *Gchar,
-		str2 *Gchar) Gint
+	G_utf8_collate func(str1 string,
+		str2 string) Gint
 
-	G_utf8_collate_key func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_collate_key func(str string,
+		leng Gssize) string
 
-	G_utf8_collate_key_for_filename func(str *Gchar,
-		leng Gssize) *Gchar
+	G_utf8_collate_key_for_filename func(str string,
+		leng Gssize) string
 
 	G_unichar_get_mirror_char func(ch Gunichar,
 		mirrored_ch *Gunichar) Gboolean
 
 	G_unichar_get_script func(ch Gunichar) GUnicodeScript
-
-	_g_utf8_make_valid func(name *Gchar) *Gchar
 
 	G_string_chunk_new func(size Gsize) *GStringChunk
 
@@ -2088,24 +2082,24 @@ var (
 	G_string_chunk_clear func(chunk *GStringChunk)
 
 	G_string_chunk_insert func(chunk *GStringChunk,
-		str *Gchar) *Gchar
+		str string) string
 
 	G_string_chunk_insert_len func(chunk *GStringChunk,
-		str *Gchar,
-		leng Gssize) *Gchar
+		str string,
+		leng Gssize) string
 
 	G_string_chunk_insert_ func(chunk *GStringChunk,
-		str *Gchar) *Gchar
+		str string) string
 
-	G_string_new func(init *Gchar) *GString
+	G_string_new func(init string) *GString
 
-	G_string_new_len func(init *Gchar,
+	G_string_new_len func(init string,
 		leng Gssize) *GString
 
 	G_string_sized_new func(dfl_size Gsize) *GString
 
 	G_string_free func(str *GString,
-		free_segment Gboolean) *Gchar
+		free_segment Gboolean) string
 
 	G_string_equal func(v *GString,
 		v2 *GString) Gboolean
@@ -2113,7 +2107,7 @@ var (
 	G_string_hash func(str *GString) Guint
 
 	G_string_assign func(str *GString,
-		rval *Gchar) *GString
+		rval string) *GString
 
 	G_string_truncate func(str *GString,
 		leng Gsize) *GString
@@ -2123,14 +2117,14 @@ var (
 
 	G_string_insert_len func(str *GString,
 		pos Gssize,
-		val *Gchar,
+		val string,
 		leng Gssize) *GString
 
 	G_string_append func(str *GString,
-		val *Gchar) *GString
+		val string) *GString
 
 	G_string_append_len func(str *GString,
-		val *Gchar,
+		val string,
 		leng Gssize) *GString
 
 	G_string_append_c func(str *GString,
@@ -2140,7 +2134,7 @@ var (
 		wc Gunichar) *GString
 
 	G_string_prepend func(str *GString,
-		val *Gchar) *GString
+		val string) *GString
 
 	G_string_prepend_c func(str *GString,
 		c Gchar) *GString
@@ -2149,12 +2143,12 @@ var (
 		wc Gunichar) *GString
 
 	G_string_prepend_len func(str *GString,
-		val *Gchar,
+		val string,
 		leng Gssize) *GString
 
 	G_string_insert func(str *GString,
 		pos Gssize,
-		val *Gchar) *GString
+		val string) *GString
 
 	G_string_insert_c func(str *GString,
 		pos Gssize,
@@ -2166,11 +2160,11 @@ var (
 
 	G_string_overwrite func(str *GString,
 		pos Gsize,
-		val *Gchar) *GString
+		val string) *GString
 
 	G_string_overwrite_len func(str *GString,
 		pos Gsize,
-		val *Gchar,
+		val string,
 		leng Gssize) *GString
 
 	G_string_erase func(str *GString,
@@ -2182,18 +2176,17 @@ var (
 	G_string_ascii_up func(str *GString) *GString
 
 	G_string_vprintf func(str *GString,
-		format *Gchar,
+		format string,
 		args Va_list)
 
-	//TODO(t): Variant
-	// G_string_printf func(str *GString, format *Gchar, ...)void
+	G_string_printf func(str *GString, format string, v ...VArg)
 
 	G_string_append_vprintf func(str *GString,
-		format *Gchar,
+		format string,
 		args Va_list)
 
-	//TODO(t): Variant
-	// G_string_append_printf func(str *GString, format *Gchar, ...)void
+	G_string_append_printf func(str *GString,
+		format string, v ...VArg)
 
 	G_string_append_uri_escaped func(str *GString,
 		unescaped *Char,
@@ -2207,12 +2200,12 @@ var (
 	G_io_channel_unref func(channel *GIOChannel)
 
 	G_io_channel_read func(channel *GIOChannel,
-		buf *Gchar,
+		buf string,
 		count Gsize,
 		bytes_read *Gsize) GIOError
 
 	G_io_channel_write func(channel *GIOChannel,
-		buf *Gchar,
+		buf string,
 		count Gsize,
 		bytes_written *Gsize) GIOError
 
@@ -2255,11 +2248,11 @@ var (
 	G_io_channel_get_flags func(channel *GIOChannel) GIOFlags
 
 	G_io_channel_set_line_term func(channel *GIOChannel,
-		line_term *Gchar,
+		line_term string,
 		length Gint)
 
 	G_io_channel_get_line_term func(channel *GIOChannel,
-		length *Gint) *Gchar
+		length *Gint) string
 
 	G_io_channel_set_buffered func(channel *GIOChannel,
 		buffered Gboolean)
@@ -2267,10 +2260,10 @@ var (
 	G_io_channel_get_buffered func(channel *GIOChannel) Gboolean
 
 	G_io_channel_set_encoding func(channel *GIOChannel,
-		encoding *Gchar,
+		encoding string,
 		e **GError) GIOStatus
 
-	G_io_channel_get_encoding func(channel *GIOChannel) *Gchar
+	G_io_channel_get_encoding func(channel *GIOChannel) string
 
 	G_io_channel_set_close_on_unref func(channel *GIOChannel,
 		do_close Gboolean)
@@ -2297,7 +2290,7 @@ var (
 		e **GError) GIOStatus
 
 	G_io_channel_read_chars func(channel *GIOChannel,
-		buf *Gchar,
+		buf string,
 		count Gsize,
 		bytes_read *Gsize,
 		e **GError) GIOStatus
@@ -2307,7 +2300,7 @@ var (
 		e **GError) GIOStatus
 
 	G_io_channel_write_chars func(channel *GIOChannel,
-		buf *Gchar,
+		buf string,
 		count Gssize,
 		bytes_written *Gsize,
 		e **GError) GIOStatus
@@ -2321,8 +2314,8 @@ var (
 		typ GSeekType,
 		e **GError) GIOStatus
 
-	G_io_channel_new_file func(filename *Gchar,
-		mode *Gchar,
+	G_io_channel_new_file func(filename string,
+		mode string,
 		e **GError) *GIOChannel
 
 	G_io_channel_error_quark func() GQuark
@@ -2357,227 +2350,227 @@ var (
 		separator Gchar)
 
 	G_key_file_load_from_file func(key_file *GKeyFile,
-		file *Gchar,
+		file string,
 		flags GKeyFileFlags,
 		e **GError) Gboolean
 
 	G_key_file_load_from_data func(key_file *GKeyFile,
-		data *Gchar,
+		data string,
 		length Gsize,
 		flags GKeyFileFlags,
 		e **GError) Gboolean
 
 	G_key_file_load_from_dirs func(key_file *GKeyFile,
-		file *Gchar,
+		file string,
 		search_dirs **Gchar,
 		full_path **Gchar,
 		flags GKeyFileFlags,
 		e **GError) Gboolean
 
 	G_key_file_load_from_data_dirs func(key_file *GKeyFile,
-		file *Gchar,
+		file string,
 		full_path **Gchar,
 		flags GKeyFileFlags,
 		e **GError) Gboolean
 
 	G_key_file_to_data func(key_file *GKeyFile,
 		length *Gsize,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_key_file_get_start_group func(key_file *GKeyFile) *Gchar
+	G_key_file_get_start_group func(key_file *GKeyFile) string
 
 	G_key_file_get_groups func(key_file *GKeyFile,
 		length *Gsize) **Gchar
 
 	G_key_file_get_keys func(key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		length *Gsize,
 		e **GError) **Gchar
 
 	G_key_file_has_group func(key_file *GKeyFile,
-		group_name *Gchar) Gboolean
+		group_name string) Gboolean
 
 	G_key_file_has_key func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gboolean
 
 	G_key_file_get_value func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		e **GError) *Gchar
+		group_name string,
+		key string,
+		e **GError) string
 
 	G_key_file_set_value func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		value *Gchar)
+		group_name string,
+		key string,
+		value string)
 
 	G_key_file_get_string func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		e **GError) *Gchar
+		group_name string,
+		key string,
+		e **GError) string
 
 	G_key_file_set_string func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		str *Gchar)
+		group_name string,
+		key string,
+		str string)
 
 	G_key_file_get_locale_string func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		locale *Gchar,
-		e **GError) *Gchar
+		group_name string,
+		key string,
+		locale string,
+		e **GError) string
 
 	G_key_file_set_locale_string func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		locale *Gchar,
-		str *Gchar)
+		group_name string,
+		key string,
+		locale string,
+		str string)
 
 	G_key_file_get_boolean func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gboolean
 
 	G_key_file_set_boolean func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		value Gboolean)
 
 	G_key_file_get_integer func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gint
 
 	G_key_file_set_integer func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		value Gint)
 
 	G_key_file_get_int64 func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gint64
 
 	G_key_file_set_int64 func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		value Gint64)
 
 	G_key_file_get_uint64 func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Guint64
 
 	G_key_file_set_uint64 func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		value Guint64)
 
 	G_key_file_get_double func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gdouble
 
 	G_key_file_set_double func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		value Gdouble)
 
 	G_key_file_get_string_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		length *Gsize,
 		e **GError) **Gchar
 
 	G_key_file_set_string_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		list **Gchar,
 		length Gsize)
 
 	G_key_file_get_locale_string_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		locale *Gchar,
+		group_name string,
+		key string,
+		locale string,
 		length *Gsize,
 		e **GError) **Gchar
 
 	G_key_file_set_locale_string_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		locale *Gchar,
+		group_name string,
+		key string,
+		locale string,
 		list **Gchar,
 		length Gsize)
 
 	G_key_file_get_boolean_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		length *Gsize,
 		e **GError) *Gboolean
 
 	G_key_file_set_boolean_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		list *Gboolean,
 		length Gsize)
 
 	G_key_file_get_integer_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		length *Gsize,
 		e **GError) *Gint
 
 	G_key_file_set_double_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		list *Gdouble,
 		length Gsize)
 
 	G_key_file_get_double_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		length *Gsize,
 		e **GError) *Gdouble
 
 	G_key_file_set_integer_list func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		list *Gint,
 		length Gsize)
 
 	G_key_file_set_comment func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		comment *Gchar,
+		group_name string,
+		key string,
+		comment string,
 		e **GError) Gboolean
 
 	G_key_file_get_comment func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
-		e **GError) *Gchar
+		group_name string,
+		key string,
+		e **GError) string
 
 	G_key_file_remove_comment func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gboolean
 
 	G_key_file_remove_key func(key_file *GKeyFile,
-		group_name *Gchar,
-		key *Gchar,
+		group_name string,
+		key string,
 		e **GError) Gboolean
 
 	G_key_file_remove_group func(key_file *GKeyFile,
-		group_name *Gchar,
+		group_name string,
 		e **GError) Gboolean
 
-	G_mapped_file_new func(filename *Gchar,
+	G_mapped_file_new func(filename string,
 		writable Gboolean,
 		e **GError) *GMappedFile
 
 	G_mapped_file_get_length func(file *GMappedFile) Gsize
 
-	G_mapped_file_get_contents func(file *GMappedFile) *Gchar
+	G_mapped_file_get_contents func(file *GMappedFile) string
 
 	G_mapped_file_ref func(file *GMappedFile) *GMappedFile
 
@@ -2593,7 +2586,7 @@ var (
 	G_markup_parse_context_free func(context *GMarkupParseContext)
 
 	G_markup_parse_context_parse func(context *GMarkupParseContext,
-		text *Gchar,
+		text string,
 		text_len Gssize,
 		e **GError) Gboolean
 
@@ -2606,7 +2599,7 @@ var (
 	G_markup_parse_context_end_parse func(context *GMarkupParseContext,
 		e **GError) Gboolean
 
-	G_markup_parse_context_get_element func(context *GMarkupParseContext) *Gchar
+	G_markup_parse_context_get_element func(context *GMarkupParseContext) string
 
 	G_markup_parse_context_get_element_stack func(context *GMarkupParseContext) *GSList
 
@@ -2616,47 +2609,42 @@ var (
 
 	G_markup_parse_context_get_user_data func(context *GMarkupParseContext) Gpointer
 
-	G_markup_escape_text func(text *Gchar,
-		length Gssize) *Gchar
+	G_markup_escape_text func(text string,
+		length Gssize) string
 
-	// G_markup_printf_escaped func(format *Char, ...)*Gchar
+	G_markup_printf_escaped func(format *Char, v ...VArg) string
 
 	G_markup_vprintf_escaped func(format *Char,
-		args Va_list) *Gchar
+		args Va_list) string
 
-	G_log_set_handler func(log_domain *Gchar,
+	G_log_set_handler func(log_domain string,
 		log_levels GLogLevelFlags,
 		log_func GLogFunc,
 		user_data Gpointer) Guint
 
-	G_log_remove_handler func(log_domain *Gchar,
+	G_log_remove_handler func(log_domain string,
 		handler_id Guint)
 
-	G_log_default_handler func(log_domain *Gchar,
+	G_log_default_handler func(log_domain string,
 		log_level GLogLevelFlags,
-		message *Gchar,
+		message string,
 		unused_data Gpointer)
 
 	G_log_set_default_handler func(log_func GLogFunc,
 		user_data Gpointer) GLogFunc
 
-	//TODO(t):Variant
-	// G_log func(log_domain *Gchar, log_level GLogLevelFlags, format *Gchar, ...)void
+	G_log func(log_domain string, log_level GLogLevelFlags,
+		format string, v ...VArg)
 
-	G_logv func(log_domain *Gchar,
+	G_logv func(log_domain string,
 		log_level GLogLevelFlags,
-		format *Gchar,
+		format string,
 		args Va_list)
 
-	G_log_set_fatal_mask func(log_domain *Gchar,
+	G_log_set_fatal_mask func(log_domain string,
 		fatal_mask GLogLevelFlags) GLogLevelFlags
 
 	G_log_set_always_fatal func(fatal_mask GLogLevelFlags) GLogLevelFlags
-
-	_g_log_fallback_handler func(log_domain *Gchar,
-		log_level GLogLevelFlags,
-		message *Gchar,
-		unused_data Gpointer)
 
 	G_return_if_fail_warning func(log_domain *Char,
 		pretty_function *Char,
@@ -2674,13 +2662,11 @@ var (
 		pretty_function *Char,
 		expression *Char)
 
-	//TODO(t):Variant
-	// G_print func(format *Gchar, ...)void
+	G_print func(format string, v ...VArg)
 
 	G_set_print_handler func(f GPrintFunc) GPrintFunc
 
-	//TODO(t):Variant
-	// G_printerr func(format *Gchar, ...)void
+	G_printerr func(format string, v ...VArg)
 
 	G_set_printerr_handler func(f GPrintFunc) GPrintFunc
 
@@ -2691,25 +2677,20 @@ var (
 	G_node_unlink func(node *GNode)
 
 	G_node_copy_deep func(node *GNode,
-		copy_func GCopyFunc,
-		data Gpointer) *GNode
+		copy_func GCopyFunc, data Gpointer) *GNode
 
 	G_node_copy func(node *GNode) *GNode
 
 	G_node_insert func(parent *GNode,
-		position Gint,
-		node *GNode) *GNode
+		position Gint, node *GNode) *GNode
 
 	G_node_insert_before func(parent *GNode,
-		sibling *GNode,
-		node *GNode) *GNode
+		sibling *GNode, node *GNode) *GNode
 
 	G_node_insert_after func(parent *GNode,
-		sibling *GNode,
-		node *GNode) *GNode
+		sibling *GNode, node *GNode) *GNode
 
-	G_node_prepend func(parent *GNode,
-		node *GNode) *GNode
+	G_node_prepend func(parent *GNode, node *GNode) *GNode
 
 	G_node_n_nodes func(root *GNode,
 		flags GTraverseFlags) Guint
@@ -2767,17 +2748,17 @@ var (
 
 	G_node_pop_allocator func()
 
-	G_option_context_new func(parameter_string *Gchar) *GOptionContext
+	G_option_context_new func(parameter_string string) *GOptionContext
 
 	G_option_context_set_summary func(context *GOptionContext,
-		summary *Gchar)
+		summary string)
 
-	G_option_context_get_summary func(context *GOptionContext) *Gchar
+	G_option_context_get_summary func(context *GOptionContext) string
 
 	G_option_context_set_description func(context *GOptionContext,
-		description *Gchar)
+		description string)
 
-	G_option_context_get_description func(context *GOptionContext) *Gchar
+	G_option_context_get_description func(context *GOptionContext) string
 
 	G_option_context_free func(context *GOptionContext)
 
@@ -2793,7 +2774,7 @@ var (
 
 	G_option_context_add_main_entries func(context *GOptionContext,
 		entries *GOptionEntry,
-		translation_domain *Gchar)
+		translation_domain string)
 
 	G_option_context_parse func(context *GOptionContext,
 		argc *Gint,
@@ -2806,7 +2787,7 @@ var (
 		destroy_notify GDestroyNotify)
 
 	G_option_context_set_translation_domain func(context *GOptionContext,
-		domain *Gchar)
+		domain string)
 
 	G_option_context_add_group func(context *GOptionContext,
 		group *GOptionGroup)
@@ -2817,11 +2798,11 @@ var (
 
 	G_option_context_get_help func(context *GOptionContext,
 		main_help Gboolean,
-		group *GOptionGroup) *Gchar
+		group *GOptionGroup) string
 
-	G_option_group_new func(name *Gchar,
-		description *Gchar,
-		help_description *Gchar,
+	G_option_group_new func(name string,
+		description string,
+		help_description string,
 		user_data Gpointer,
 		destroy GDestroyNotify) *GOptionGroup
 
@@ -2843,9 +2824,9 @@ var (
 		destroy_notify GDestroyNotify)
 
 	G_option_group_set_translation_domain func(group *GOptionGroup,
-		domain *Gchar)
+		domain string)
 
-	G_pattern_spec_new func(pattern *Gchar) *GPatternSpec
+	G_pattern_spec_new func(pattern string) *GPatternSpec
 
 	G_pattern_spec_free func(pspec *GPatternSpec)
 
@@ -2854,14 +2835,14 @@ var (
 
 	G_pattern_match func(pspec *GPatternSpec,
 		string_length Guint,
-		str *Gchar,
-		string_reversed *Gchar) Gboolean
+		str string,
+		string_reversed string) Gboolean
 
 	G_pattern_match_string func(pspec *GPatternSpec,
-		str *Gchar) Gboolean
+		str string) Gboolean
 
-	G_pattern_match_simple func(pattern *Gchar,
-		str *Gchar) Gboolean
+	G_pattern_match_simple func(pattern string,
+		str string) Gboolean
 
 	G_spaced_primes_closest func(num Guint) Guint
 
@@ -3032,8 +3013,7 @@ var (
 		hash_func GHashFunc,
 		key_equal_func GEqualFunc)
 
-	//TODO(t):Variant
-	// G_relation_insert func(relation *GRelation, ...)void
+	G_relation_insert func(relation *GRelation, v ...VArg)
 
 	G_relation_delete func(relation *GRelation,
 		key Gconstpointer,
@@ -3047,8 +3027,8 @@ var (
 		key Gconstpointer,
 		field Gint) Gint
 
-	//TODO(t):Variant
-	// G_relation_exists func(relation *GRelation, ...)Gboolean
+	G_relation_exists func(
+		relation *GRelation, v ...VArg) Gboolean
 
 	G_relation_print func(relation *GRelation)
 
@@ -3058,7 +3038,7 @@ var (
 		index_ Gint,
 		field Gint) Gpointer
 
-	G_regex_new func(pattern *Gchar,
+	G_regex_new func(pattern string,
 		compile_options GRegexCompileFlags,
 		match_options GRegexMatchFlags,
 		e **GError) *GRegex
@@ -3067,34 +3047,34 @@ var (
 
 	G_regex_unref func(regex *GRegex)
 
-	G_regex_get_pattern func(regex *GRegex) *Gchar
+	G_regex_get_pattern func(regex *GRegex) string
 
 	G_regex_get_max_backref func(regex *GRegex) Gint
 
 	G_regex_get_capture_count func(regex *GRegex) Gint
 
 	G_regex_get_string_number func(regex *GRegex,
-		name *Gchar) Gint
+		name string) Gint
 
-	G_regex_escape_string func(str *Gchar,
-		length Gint) *Gchar
+	G_regex_escape_string func(str string,
+		length Gint) string
 
 	G_regex_get_compile_flags func(regex *GRegex) GRegexCompileFlags
 
 	G_regex_get_match_flags func(regex *GRegex) GRegexMatchFlags
 
-	G_regex_match_simple func(pattern *Gchar,
-		str *Gchar,
+	G_regex_match_simple func(pattern string,
+		str string,
 		compile_options GRegexCompileFlags,
 		match_options GRegexMatchFlags) Gboolean
 
 	G_regex_match func(regex *GRegex,
-		str *Gchar,
+		str string,
 		match_options GRegexMatchFlags,
 		match_info **GMatchInfo) Gboolean
 
 	G_regex_match_full func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
 		match_options GRegexMatchFlags,
@@ -3102,29 +3082,29 @@ var (
 		e **GError) Gboolean
 
 	G_regex_match_all func(regex *GRegex,
-		str *Gchar,
+		str string,
 		match_options GRegexMatchFlags,
 		match_info **GMatchInfo) Gboolean
 
 	G_regex_match_all_full func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
 		match_options GRegexMatchFlags,
 		match_info **GMatchInfo,
 		e **GError) Gboolean
 
-	G_regex_split_simple func(pattern *Gchar,
-		str *Gchar,
+	G_regex_split_simple func(pattern string,
+		str string,
 		compile_options GRegexCompileFlags,
 		match_options GRegexMatchFlags) **Gchar
 
 	G_regex_split func(regex *GRegex,
-		str *Gchar,
+		str string,
 		match_options GRegexMatchFlags) **Gchar
 
 	G_regex_split_full func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
 		match_options GRegexMatchFlags,
@@ -3132,37 +3112,37 @@ var (
 		e **GError) **Gchar
 
 	G_regex_replace func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
-		replacement *Gchar,
+		replacement string,
 		match_options GRegexMatchFlags,
-		e **GError) *Gchar
+		e **GError) string
 
 	G_regex_replace_literal func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
-		replacement *Gchar,
+		replacement string,
 		match_options GRegexMatchFlags,
-		e **GError) *Gchar
+		e **GError) string
 
 	G_regex_replace_eval func(regex *GRegex,
-		str *Gchar,
+		str string,
 		string_len Gssize,
 		start_position Gint,
 		match_options GRegexMatchFlags,
 		eval GRegexEvalCallback,
 		user_data Gpointer,
-		e **GError) *Gchar
+		e **GError) string
 
-	G_regex_check_replacement func(replacement *Gchar,
+	G_regex_check_replacement func(replacement string,
 		has_references *Gboolean,
 		e **GError) Gboolean
 
 	G_match_info_get_regex func(match_info *GMatchInfo) *GRegex
 
-	G_match_info_get_string func(match_info *GMatchInfo) *Gchar
+	G_match_info_get_string func(match_info *GMatchInfo) string
 
 	G_match_info_free func(match_info *GMatchInfo)
 
@@ -3176,11 +3156,11 @@ var (
 	G_match_info_is_partial_match func(match_info *GMatchInfo) Gboolean
 
 	G_match_info_expand_references func(match_info *GMatchInfo,
-		string_to_expand *Gchar,
-		e **GError) *Gchar
+		string_to_expand string,
+		e **GError) string
 
 	G_match_info_fetch func(match_info *GMatchInfo,
-		match_num Gint) *Gchar
+		match_num Gint) string
 
 	G_match_info_fetch_pos func(match_info *GMatchInfo,
 		match_num Gint,
@@ -3188,10 +3168,10 @@ var (
 		end_pos *Gint) Gboolean
 
 	G_match_info_fetch_named func(match_info *GMatchInfo,
-		name *Gchar) *Gchar
+		name string) string
 
 	G_match_info_fetch_named_pos func(match_info *GMatchInfo,
-		name *Gchar,
+		name string,
 		start_pos *Gint,
 		end_pos *Gint) Gboolean
 
@@ -3207,7 +3187,7 @@ var (
 	G_scanner_sync_file_offset func(scanner *GScanner)
 
 	G_scanner_input_text func(scanner *GScanner,
-		text *Gchar,
+		text string,
 		text_len Guint)
 
 	G_scanner_get_next_token func(scanner *GScanner) GTokenType
@@ -3229,16 +3209,16 @@ var (
 
 	G_scanner_scope_add_symbol func(scanner *GScanner,
 		scope_id Guint,
-		symbol *Gchar,
+		symbol string,
 		value Gpointer)
 
 	G_scanner_scope_remove_symbol func(scanner *GScanner,
 		scope_id Guint,
-		symbol *Gchar)
+		symbol string)
 
 	G_scanner_scope_lookup_symbol func(scanner *GScanner,
 		scope_id Guint,
-		symbol *Gchar) Gpointer
+		symbol string) Gpointer
 
 	G_scanner_scope_foreach_symbol func(scanner *GScanner,
 		scope_id Guint,
@@ -3246,19 +3226,21 @@ var (
 		user_data Gpointer)
 
 	G_scanner_lookup_symbol func(scanner *GScanner,
-		symbol *Gchar) Gpointer
+		symbol string) Gpointer
 
 	G_scanner_unexp_token func(scanner *GScanner,
 		expected_token GTokenType,
-		identifier_spec *Gchar,
-		symbol_spec *Gchar,
-		symbol_name *Gchar,
-		message *Gchar,
+		identifier_spec string,
+		symbol_spec string,
+		symbol_name string,
+		message string,
 		is_error Gint)
 
-	//TODO(t):Variant
-	// G_scanner_error func(scanner *GScanner, format *Gchar, ...)void
-	// G_scanner_warn func(scanner *GScanner, format *Gchar, ...)void
+	G_scanner_error func(scanner *GScanner,
+		format string, v ...VArg)
+
+	G_scanner_warn func(scanner *GScanner,
+		format string, v ...VArg)
 
 	G_sequence_new func(data_destroy GDestroyNotify) *GSequence
 
@@ -3380,19 +3362,19 @@ var (
 
 	G_shell_error_quark func() GQuark
 
-	G_shell_quote func(unquoted_string *Gchar) *Gchar
+	G_shell_quote func(unquoted_string string) string
 
-	G_shell_unquote func(quoted_string *Gchar,
-		e **GError) *Gchar
+	G_shell_unquote func(quoted_string string,
+		e **GError) string
 
-	G_shell_parse_argv func(command_line *Gchar,
+	G_shell_parse_argv func(command_line string,
 		argcp *Gint,
 		argvp ***Gchar,
 		e **GError) Gboolean
 
 	G_spawn_error_quark func() GQuark
 
-	G_spawn_async func(working_directory *Gchar,
+	G_spawn_async func(working_directory string,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3401,7 +3383,7 @@ var (
 		child_pid *GPid,
 		e **GError) Gboolean
 
-	G_spawn_async_with_pipes func(working_directory *Gchar,
+	G_spawn_async_with_pipes func(working_directory string,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3413,7 +3395,7 @@ var (
 		standard_error *Gint,
 		e **GError) Gboolean
 
-	G_spawn_sync func(working_directory *Gchar,
+	G_spawn_sync func(working_directory string,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -3424,13 +3406,13 @@ var (
 		exit_status *Gint,
 		e **GError) Gboolean
 
-	G_spawn_command_line_sync func(command_line *Gchar,
+	G_spawn_command_line_sync func(command_line string,
 		standard_output **Gchar,
 		standard_error **Gchar,
 		exit_status *Gint,
 		e **GError) Gboolean
 
-	G_spawn_command_line_async func(command_line *Gchar,
+	G_spawn_command_line_async func(command_line string,
 		e **GError) Gboolean
 
 	G_spawn_close_pid func(pid GPid)
@@ -3443,132 +3425,131 @@ var (
 
 	G_ascii_xdigit_value func(c Gchar) Gint
 
-	G_strdelimit func(str *Gchar,
-		delimiters *Gchar,
-		new_delimiter Gchar) *Gchar
+	G_strdelimit func(str string,
+		delimiters string,
+		new_delimiter Gchar) string
 
-	G_strcanon func(str *Gchar,
-		valid_chars *Gchar,
-		substitutor Gchar) *Gchar
+	G_strcanon func(str string,
+		valid_chars string,
+		substitutor Gchar) string
 
-	G_strerror func(errnum Gint) *Gchar
+	G_strerror func(errnum Gint) string
 
-	G_strsignal func(signum Gint) *Gchar
+	G_strsignal func(signum Gint) string
 
-	G_strreverse func(str *Gchar) *Gchar
+	G_strreverse func(str string) string
 
-	G_strlcpy func(dest *Gchar,
-		src *Gchar,
+	G_strlcpy func(dest string,
+		src string,
 		dest_size Gsize) Gsize
 
-	G_strlcat func(dest *Gchar,
-		src *Gchar,
+	G_strlcat func(dest string,
+		src string,
 		dest_size Gsize) Gsize
 
-	G_strstr_len func(haystack *Gchar,
+	G_strstr_len func(haystack string,
 		haystack_len Gssize,
-		needle *Gchar) *Gchar
+		needle string) string
 
-	G_strrstr func(haystack *Gchar,
-		needle *Gchar) *Gchar
+	G_strrstr func(haystack string,
+		needle string) string
 
-	G_strrstr_len func(haystack *Gchar,
+	G_strrstr_len func(haystack string,
 		haystack_len Gssize,
-		needle *Gchar) *Gchar
+		needle string) string
 
-	G_str_has_suffix func(str *Gchar,
-		suffix *Gchar) Gboolean
+	G_str_has_suffix func(str string,
+		suffix string) Gboolean
 
-	G_str_has_prefix func(str *Gchar,
-		prefix *Gchar) Gboolean
+	G_str_has_prefix func(str string,
+		prefix string) Gboolean
 
-	G_strtod func(nptr *Gchar,
+	G_strtod func(nptr string,
 		endptr **Gchar) Gdouble
 
-	G_ascii_strtod func(nptr *Gchar,
+	G_ascii_strtod func(nptr string,
 		endptr **Gchar) Gdouble
 
-	G_ascii_strtoull func(nptr *Gchar,
+	G_ascii_strtoull func(nptr string,
 		endptr **Gchar,
 		base Guint) Guint64
 
-	G_ascii_strtoll func(nptr *Gchar,
+	G_ascii_strtoll func(nptr string,
 		endptr **Gchar,
 		base Guint) Gint64
 
-	G_ascii_dtostr func(buffer *Gchar,
+	G_ascii_dtostr func(buffer string,
 		buf_len Gint,
-		d Gdouble) *Gchar
+		d Gdouble) string
 
-	G_ascii_formatd func(buffer *Gchar,
+	G_ascii_formatd func(buffer string,
 		buf_len Gint,
-		format *Gchar,
-		d Gdouble) *Gchar
+		format string,
+		d Gdouble) string
 
-	G_strchug func(str *Gchar) *Gchar
+	G_strchug func(str string) string
 
-	G_strchomp func(str *Gchar) *Gchar
+	G_strchomp func(str string) string
 
-	G_ascii_strcasecmp func(s1 *Gchar,
-		s2 *Gchar) Gint
+	G_ascii_strcasecmp func(s1 string,
+		s2 string) Gint
 
-	G_ascii_strncasecmp func(s1 *Gchar,
-		s2 *Gchar,
+	G_ascii_strncasecmp func(s1 string,
+		s2 string,
 		n Gsize) Gint
 
-	G_ascii_strdown func(str *Gchar,
-		leng Gssize) *Gchar
+	G_ascii_strdown func(str string,
+		leng Gssize) string
 
-	G_ascii_strup func(str *Gchar,
-		leng Gssize) *Gchar
+	G_ascii_strup func(str string,
+		leng Gssize) string
 
-	G_strcasecmp func(s1 *Gchar,
-		s2 *Gchar) Gint
+	G_strcasecmp func(s1 string,
+		s2 string) Gint
 
-	G_strncasecmp func(s1 *Gchar,
-		s2 *Gchar,
+	G_strncasecmp func(s1 string,
+		s2 string,
 		n Guint) Gint
 
-	G_strdown func(str *Gchar) *Gchar
+	G_strdown func(str string) string
 
-	G_strup func(str *Gchar) *Gchar
+	G_strup func(str string) string
 
-	G_strdup func(str *Gchar) *Gchar
+	G_strdup func(str string) string
 
-	//TODO(t): Variant
-	// G_strdup_printf func(format *Gchar, ...)* Gchar
+	G_strdup_printf func(format string, v ...VArg) string
 
-	G_strdup_vprintf func(format *Gchar,
-		args Va_list) *Gchar
+	G_strdup_vprintf func(format string,
+		args Va_list) string
 
-	G_strndup func(str *Gchar,
-		n Gsize) *Gchar
+	G_strndup func(str string,
+		n Gsize) string
 
 	G_strnfill func(length Gsize,
-		fill_char Gchar) *Gchar
+		fill_char Gchar) string
 
-	//TODO(t): Variant
-	// G_strconcat func(string1 *Gchar, ...)* Gchar
-	// G_strjoin func(separator *Gchar, ...)* Gchar
+	G_strconcat func(string1 string, v ...VArg) string
 
-	G_strcompress func(source *Gchar) *Gchar
+	G_strjoin func(separator string, v ...VArg) string
 
-	G_strescape func(source *Gchar,
-		exceptions *Gchar) *Gchar
+	G_strcompress func(source string) string
+
+	G_strescape func(source string,
+		exceptions string) string
 
 	G_memdup func(mem Gconstpointer,
 		byte_size Guint) Gpointer
 
-	G_strsplit func(str *Gchar,
-		delimiter *Gchar,
+	G_strsplit func(str string,
+		delimiter string,
 		max_tokens Gint) **Gchar
 
-	G_strsplit_set func(str *Gchar,
-		delimiters *Gchar,
+	G_strsplit_set func(str string,
+		delimiters string,
 		max_tokens Gint) **Gchar
 
-	G_strjoinv func(separator *Gchar,
-		str_array **Gchar) *Gchar
+	G_strjoinv func(separator string,
+		str_array **Gchar) string
 
 	G_strfreev func(str_array **Gchar)
 
@@ -3576,39 +3557,42 @@ var (
 
 	G_strv_length func(str_array **Gchar) Guint
 
-	G_stpcpy func(dest *Gchar,
-		src *Char) *Gchar
+	G_stpcpy func(dest string,
+		src *Char) string
 
-	G_strip_context func(msgid *Gchar,
-		msgval *Gchar) *Gchar
+	G_strip_context func(msgid string,
+		msgval string) string
 
-	G_dgettext func(domain *Gchar,
-		msgid *Gchar) *Gchar
+	G_dgettext func(domain string,
+		msgid string) string
 
-	G_dcgettext func(domain *Gchar,
-		msgid *Gchar,
-		category int) *Gchar
+	G_dcgettext func(domain string,
+		msgid string,
+		category int) string
 
-	G_dngettext func(domain *Gchar,
-		msgid *Gchar,
-		msgid_plural *Gchar,
-		n Gulong) *Gchar
+	G_dngettext func(domain string,
+		msgid string,
+		msgid_plural string,
+		n Gulong) string
 
-	G_dpgettext func(domain *Gchar,
-		msgctxtid *Gchar,
-		msgidoffset Gsize) *Gchar
+	G_dpgettext func(domain string,
+		msgctxtid string,
+		msgidoffset Gsize) string
 
-	G_dpgettext2 func(domain *Gchar,
-		context *Gchar,
-		msgid *Gchar) *Gchar
+	G_dpgettext2 func(domain string,
+		context string,
+		msgid string) string
 
 	G_strcmp0 func(str1 *Char,
 		str2 *Char) int
 
-	//TODO(t):Variant
-	// G_test_minimized_result func(minimized_quantity double, format *Char, ...)void
-	// G_test_maximized_result func(maximized_quantity double, format *Char, ...)void
-	// G_test_init func(argc *int, argv ***Char, ...)void
+	G_test_minimized_result func(minimized_quantity Double,
+		format *Char, v ...VArg)
+
+	G_test_maximized_result func(maximized_quantity Double,
+		format *Char, v ...VArg)
+
+	G_test_init func(argc *int, argv ***Char, v ...VArg)
 
 	G_test_run func() int
 
@@ -3619,8 +3603,7 @@ var (
 		test_data Gconstpointer,
 		test_func GTestDataFunc)
 
-	//TODO(t):Variant
-	// G_test_message func(format *Char, ...)void
+	G_test_message func(format *Char, v ...VArg)
 
 	G_test_bug_base func(uri_pattern *Char)
 
@@ -3804,10 +3787,10 @@ var (
 	G_time_val_add func(time_ *GTimeVal,
 		microseconds Glong)
 
-	G_time_val_from_iso8601 func(iso_date *Gchar,
+	G_time_val_from_iso8601 func(iso_date string,
 		time_ *GTimeVal) Gboolean
 
-	G_time_val_to_iso8601 func(time_ *GTimeVal) *Gchar
+	G_time_val_to_iso8601 func(time_ *GTimeVal) string
 
 	G_tree_new func(key_compare_func GCompareFunc) *GTree
 
@@ -3877,23 +3860,24 @@ var (
 		reserved_chars_allowed *Char,
 		allow_utf8 Gboolean) *Char
 
-	G_variant_type_string_is_valid func(type_string *Gchar) Gboolean
+	G_variant_type_string_is_valid func(
+		type_string string) Gboolean
 
-	G_variant_type_string_scan func(str *Gchar,
-		limit *Gchar,
+	G_variant_type_string_scan func(str string,
+		limit string,
 		endptr **Gchar) Gboolean
 
 	G_variant_type_free func(typ *GVariantType)
 
 	G_variant_type_copy func(typ *GVariantType) *GVariantType
 
-	G_variant_type_new func(type_string *Gchar) *GVariantType
+	G_variant_type_new func(type_string string) *GVariantType
 
 	G_variant_type_get_string_length func(typ *GVariantType) Gsize
 
-	G_variant_type_peek_string func(typ *GVariantType) *Gchar
+	G_variant_type_peek_string func(typ *GVariantType) string
 
-	G_variant_type_dup_string func(typ *GVariantType) *Gchar
+	G_variant_type_dup_string func(typ *GVariantType) string
 
 	G_variant_type_is_definite func(typ *GVariantType) Gboolean
 
@@ -3941,7 +3925,7 @@ var (
 	G_variant_type_new_dict_entry func(key *GVariantType,
 		value *GVariantType) *GVariantType
 
-	G_variant_type_checked_ func(*Gchar) *GVariantType
+	G_variant_type_checked_ func(string) *GVariantType
 
 	G_variant_unref func(value *GVariant)
 
@@ -3953,7 +3937,7 @@ var (
 
 	G_variant_get_type func(value *GVariant) *GVariantType
 
-	G_variant_get_type_string func(value *GVariant) *Gchar
+	G_variant_get_type_string func(value *GVariant) string
 
 	G_variant_is_of_type func(value *GVariant,
 		typ *GVariantType) Gboolean
@@ -3982,22 +3966,22 @@ var (
 
 	G_variant_new_double func(value Gdouble) *GVariant
 
-	G_variant_new_string func(str *Gchar) *GVariant
+	G_variant_new_string func(str string) *GVariant
 
-	G_variant_new_object_path func(object_path *Gchar) *GVariant
+	G_variant_new_object_path func(object_path string) *GVariant
 
-	G_variant_is_object_path func(str *Gchar) Gboolean
+	G_variant_is_object_path func(str string) Gboolean
 
-	G_variant_new_signature func(signature *Gchar) *GVariant
+	G_variant_new_signature func(signature string) *GVariant
 
-	G_variant_is_signature func(str *Gchar) Gboolean
+	G_variant_is_signature func(str string) Gboolean
 
 	G_variant_new_variant func(value *GVariant) *GVariant
 
 	G_variant_new_strv func(strv **Gchar,
 		length Gssize) *GVariant
 
-	G_variant_new_bytestring func(str *Gchar) *GVariant
+	G_variant_new_bytestring func(str string) *GVariant
 
 	G_variant_new_bytestring_array func(strv **Gchar,
 		length Gssize) *GVariant
@@ -4025,10 +4009,10 @@ var (
 	G_variant_get_variant func(value *GVariant) *GVariant
 
 	G_variant_get_string func(value *GVariant,
-		length *Gsize) *Gchar
+		length *Gsize) string
 
 	G_variant_dup_string func(value *GVariant,
-		length *Gsize) *Gchar
+		length *Gsize) string
 
 	G_variant_get_strv func(value *GVariant,
 		length *Gsize) **Gchar
@@ -4036,10 +4020,10 @@ var (
 	G_variant_dup_strv func(value *GVariant,
 		length *Gsize) **Gchar
 
-	G_variant_get_bytestring func(value *GVariant) *Gchar
+	G_variant_get_bytestring func(value *GVariant) string
 
 	G_variant_dup_bytestring func(value *GVariant,
-		length *Gsize) *Gchar
+		length *Gsize) string
 
 	G_variant_get_bytestring_array func(value *GVariant,
 		length *Gsize) **Gchar
@@ -4064,17 +4048,17 @@ var (
 
 	G_variant_n_children func(value *GVariant) Gsize
 
-	//TODO(t): Variant
-	// G_variant_get_child func(value *GVariant, index_ Gsize, format_string *Gchar, ...)void
+	G_variant_get_child func(value *GVariant, index_ Gsize,
+		format_string string, v ...VArg)
 
 	G_variant_get_child_value func(value *GVariant,
 		index_ Gsize) *GVariant
 
-	//TODO(t): Variant
-	// G_variant_lookup func(dictionary *GVariant, key *Gchar, format_string *Gchar, ...)Gboolean
+	G_variant_lookup func(dictionary *GVariant, key string,
+		format_string string, v ...VArg) Gboolean
 
 	G_variant_lookup_value func(dictionary *GVariant,
-		key *Gchar,
+		key string,
 		expected_type *GVariantType) *GVariant
 
 	G_variant_get_fixed_array func(value *GVariant,
@@ -4089,7 +4073,7 @@ var (
 		data Gpointer)
 
 	G_variant_print func(value *GVariant,
-		type_annotate Gboolean) *Gchar
+		type_annotate Gboolean) string
 
 	G_variant_print_string func(value *GVariant,
 		str *GString,
@@ -4126,9 +4110,11 @@ var (
 
 	G_variant_iter_next_value func(iter *GVariantIter) *GVariant
 
-	//TODO(t): Variant
-	// G_variant_iter_next func(iter *GVariantIter, format_string *Gchar, ...)Gboolean
-	// G_variant_iter_loop func(iter *GVariantIter, format_string *Gchar, ...)Gboolean
+	G_variant_iter_next func(iter *GVariantIter,
+		format_string string, v ...VArg) Gboolean
+
+	G_variant_iter_loop func(iter *GVariantIter,
+		format_string string, v ...VArg) Gboolean
 
 	G_variant_parser_get_error_quark func() GQuark
 
@@ -4153,30 +4139,35 @@ var (
 	G_variant_builder_add_value func(builder *GVariantBuilder,
 		value *GVariant)
 
-	//TODO(t): Variant
-	// G_variant_builder_add func(builder *GVariantBuilder, format_string *Gchar, ...)void
-	// G_variant_builder_add_parsed func(builder *GVariantBuilder, format *Gchar, ...)void
-	// G_variant_new func(format_string *Gchar, ...)*GVariant
-	// G_variant_get func(value *GVariant, format_string *Gchar, ...)void
+	G_variant_builder_add func(builder *GVariantBuilder,
+		format_string string, v ...VArg)
 
-	G_variant_new_va func(format_string *Gchar,
+	G_variant_builder_add_parsed func(builder *GVariantBuilder,
+		format string, v ...VArg)
+
+	G_variant_new func(format_string string, v ...VArg) *GVariant
+
+	G_variant_get func(value *GVariant, format_string string,
+		v ...VArg)
+
+	G_variant_new_va func(format_string string,
 		endptr **Gchar,
 		app *Va_list) *GVariant
 
 	G_variant_get_va func(value *GVariant,
-		format_string *Gchar,
+		format_string string,
 		endptr **Gchar,
 		app *Va_list)
 
 	G_variant_parse func(typ *GVariantType,
-		text *Gchar,
-		limit *Gchar,
+		text string,
+		limit string,
 		endptr **Gchar,
 		err **GError) *GVariant
 
-	// G_variant_new_parsed func(format *Gchar, ...)*GVariant
+	G_variant_new_parsed func(format string, v ...VArg) *GVariant
 
-	G_variant_new_parsed_va func(format *Gchar,
+	G_variant_new_parsed_va func(format string,
 		app *Va_list) *GVariant
 
 	G_variant_compare func(one Gconstpointer,
@@ -4185,78 +4176,81 @@ var (
 	G_win32_ftruncate func(f Gint,
 		size Guint) Gint
 
-	G_win32_getlocale func() *Gchar
+	G_win32_getlocale func() string
 
-	G_win32_error_message func(err Gint) *Gchar
+	G_win32_error_message func(err Gint) string
 
-	G_win32_get_package_installation_directory func(pkg *Gchar,
-		dll_name *Gchar) *Gchar
+	G_win32_get_package_installation_directory func(pkg string,
+		dll_name string) string
 
-	G_win32_get_package_installation_subdirectory func(pkg *Gchar,
-		dll_name *Gchar,
-		subdir *Gchar) *Gchar
+	G_win32_get_package_installation_subdirectory func(pkg string,
+		dll_name string,
+		subdir string) string
 
-	G_win32_get_package_installation_directory_of_module func(hmodule Gpointer) *Gchar
+	G_win32_get_package_installation_directory_of_module func(hmodule Gpointer) string
 
 	G_win32_get_windows_version func() Guint
 
-	G_win32_locale_filename_from_utf8 func(utf8filename *Gchar) *Gchar
+	G_win32_locale_filename_from_utf8 func(utf8filename string) string
 
-	G_access func(filename *Gchar, mode int) int
+	G_access func(filename string, mode int) int
 
-	G_chmod func(filename *Gchar, mode int) int
+	G_chmod func(filename string, mode int) int
 
-	G_open func(filename *Gchar, flags int, mode int) int
+	G_open func(filename string, flags int, mode int) int
 
-	G_creat func(filename *Gchar, mode int) int
+	G_creat func(filename string, mode int) int
 
-	G_rename func(oldfilename *Gchar, newfilename *Gchar) int
+	G_rename func(oldfilename string, newfilename string) int
 
-	G_mkdir func(filename *Gchar, mode int) int
+	G_mkdir func(filename string, mode int) int
 
-	G_chdir func(path *Gchar) int
+	G_chdir func(path string) int
 
-	G_stat func(filename *Gchar, buf *GStatBuf) int
+	G_stat func(filename string, buf *GStatBuf) int
 
-	G_lstat func(filename *Gchar, buf *GStatBuf) int
+	G_lstat func(filename string, buf *GStatBuf) int
 
-	G_unlink func(filename *Gchar) int
+	G_unlink func(filename string) int
 
-	G_remove func(filename *Gchar) int
+	G_remove func(filename string) int
 
-	G_rmdir func(filename *Gchar) int
+	G_rmdir func(filename string) int
 
-	G_fopen func(filename *Gchar, mode *Gchar) *FILE
+	G_fopen func(filename string, mode string) *FILE
 
 	G_freopen func(
-		filename *Gchar, mode *Gchar, stream *FILE) *FILE
+		filename string, mode string, stream *FILE) *FILE
 
-	G_utime func(filename *Gchar, utb *Utimbuf) int
+	G_utime func(filename string, utb *Utimbuf) int
 
-	G_find_program_in_path func(program *Gchar) *Gchar
+	G_find_program_in_path func(program string) string
 
-	//TODO(t):Variant
-	//G_printf func(format *Gchar, ...) Gint
-	//G_fprintf func(file *FILE, format *Gchar, ...) Gint
-	//G_sprintf func(string *Gchar,format *Gchar, ...) Gint
+	G_printf func(format string, v ...VArg) Gint
 
-	G_vprintf func(format *Gchar, args Va_list) Gint
+	G_fprintf func(file *FILE, format string, v ...VArg) Gint
+
+	G_sprintf func(str string, format string, v ...VArg) Gint
+
+	G_vprintf func(format string, args Va_list) Gint
 
 	G_vfprintf func(
-		file *FILE, format *Gchar, args Va_list) Gint
+		file *FILE, format string, args Va_list) Gint
 
 	G_vsprintf func(
-		string *Gchar, format *Gchar, args Va_list) Gint
+		str string, format string, args Va_list) Gint
 
 	G_vasprintf func(
-		string **Gchar, format *Gchar, args Va_list) Gint
+		string **Gchar, format string, args Va_list) Gint
 
-	G_get_user_special_dir func(directory GUserDirectory) *Gchar
+	G_get_user_special_dir func(directory GUserDirectory) string
 
 	G_key_file_error_quark func() GQuark
 
-	//TODO(t):Variant
-	//G_markup_collect_attributes func(element_name *Gchar, attribute_names **Gchar, attribute_values **Gchar, error **GError, first_type GMarkupCollectType, first_attr *Gchar, ...)Gboolean
+	G_markup_collect_attributes func(element_name string,
+		attribute_names **Gchar, attribute_values **Gchar,
+		error **GError, first_type GMarkupCollectType,
+		first_attr string, v ...VArg) Gboolean
 
 	G_markup_error_quark func() GQuark
 
@@ -4265,7 +4259,7 @@ var (
 	G_option_error_quark func() GQuark
 
 	G_printf_string_upper_bound func(
-		format *Gchar,
+		format string,
 		args Va_list) Gsize
 
 	G_regex_error_quark func() GQuark
@@ -4286,11 +4280,11 @@ var (
 
 	G_string_chunk_insert_const func(
 		chunk *GStringChunk,
-		string *Gchar) *Gchar
+		str string) string
 
-	G_string_down func(string *GString) *GString
+	G_string_down func(str *GString) *GString
 
-	G_string_up func(string *GString) *GString
+	G_string_up func(str *GString) *GString
 
 	G_trash_stack_push func(
 		stack_p **GTrashStack,
@@ -4308,7 +4302,7 @@ var (
 
 var dll = "libglib-2.0-0.dll"
 
-var apiList = outside.Apis{
+var apiList = Apis{
 	// Undocumented {"_g_debug_flags", &_g_debug_flags},
 	// Undocumented {"_g_debug_initialized", &_g_debug_initialized},
 	{"g_access", &G_access},
@@ -4339,7 +4333,6 @@ var apiList = outside.Apis{
 	{"g_ascii_strtoll", &G_ascii_strtoll},
 	{"g_ascii_strtoull", &G_ascii_strtoull},
 	{"g_ascii_strup", &G_ascii_strup},
-	// Data {"g_ascii_table", &G_ascii_table},
 	{"g_ascii_tolower", &G_ascii_tolower},
 	{"g_ascii_toupper", &G_ascii_toupper},
 	{"g_ascii_xdigit_value", &G_ascii_xdigit_value},
@@ -4434,9 +4427,9 @@ var apiList = outside.Apis{
 	{"g_bookmark_file_set_visited", &G_bookmark_file_set_visited},
 	{"g_bookmark_file_to_data", &G_bookmark_file_to_data},
 	{"g_bookmark_file_to_file", &G_bookmark_file_to_file},
-	//TODO(t):Variant {"g_build_filename", &G_build_filename},
+	{"g_build_filename", &G_build_filename},
 	{"g_build_filenamev", &G_build_filenamev},
-	//TODO(t):Variant {"g_build_path", &G_build_path},
+	{"g_build_path", &G_build_path},
 	{"g_build_pathv", &G_build_pathv},
 	{"g_byte_array_append", &G_byte_array_append},
 	{"g_byte_array_free", &G_byte_array_free},
@@ -4468,7 +4461,6 @@ var apiList = outside.Apis{
 	{"g_checksum_update", &G_checksum_update},
 	{"g_child_watch_add", &G_child_watch_add},
 	{"g_child_watch_add_full", &G_child_watch_add_full},
-	// Data {"g_child_watch_funcs", &G_child_watch_funcs},
 	{"g_child_watch_source_new", &G_child_watch_source_new},
 	{"g_chmod", &G_chmod},
 	{"g_clear_error", &G_clear_error},
@@ -4614,7 +4606,7 @@ var apiList = outside.Apis{
 	{"g_error_copy", &G_error_copy},
 	{"g_error_free", &G_error_free},
 	{"g_error_matches", &G_error_matches},
-	//TODO(t):Variant {"g_error_new", &G_error_new},
+	{"g_error_new", &G_error_new},
 	{"g_error_new_literal", &G_error_new_literal},
 	{"g_error_new_valist", &G_error_new_valist},
 	{"g_file_error_from_errno", &G_file_error_from_errno},
@@ -4641,7 +4633,7 @@ var apiList = outside.Apis{
 	{"g_find_program_in_path_utf8", &G_find_program_in_path},
 	{"g_fopen", &G_fopen},
 	{"g_format_size_for_display", &G_format_size_for_display},
-	//TODO(t):Variant {"g_fprintf", &G_fprintf},
+	{"g_fprintf", &G_fprintf},
 	{"g_free", &G_free},
 	{"g_freopen", &G_freopen},
 	{"g_get_application_name", &G_get_application_name},
@@ -4733,7 +4725,6 @@ var apiList = outside.Apis{
 	{"g_iconv_open", &G_iconv_open},
 	{"g_idle_add", &G_idle_add},
 	{"g_idle_add_full", &G_idle_add_full},
-	// Data {"g_idle_funcs", &G_idle_funcs},
 	{"g_idle_remove_by_data", &G_idle_remove_by_data},
 	{"g_idle_source_new", &G_idle_source_new},
 	{"g_int64_equal", &G_int64_equal},
@@ -4789,7 +4780,6 @@ var apiList = outside.Apis{
 	{"g_io_channel_write_chars", &G_io_channel_write_chars},
 	{"g_io_channel_write_unichar", &G_io_channel_write_unichar},
 	{"g_io_create_watch", &G_io_create_watch},
-	// Data {"g_io_watch_funcs", &G_io_watch_funcs},
 	{"g_key_file_error_quark", &G_key_file_error_quark},
 	{"g_key_file_free", &G_key_file_free},
 	{"g_key_file_get_boolean", &G_key_file_get_boolean},
@@ -4870,7 +4860,7 @@ var apiList = outside.Apis{
 	{"g_listenv", &G_listenv},
 	{"g_locale_from_utf8", &G_locale_from_utf8},
 	{"g_locale_to_utf8", &G_locale_to_utf8},
-	//TODO(t):Variant {"g_log", &G_log},
+	{"g_log", &G_log},
 	{"g_log_default_handler", &G_log_default_handler},
 	{"g_log_remove_handler", &G_log_remove_handler},
 	{"g_log_set_always_fatal", &G_log_set_always_fatal},
@@ -4925,7 +4915,7 @@ var apiList = outside.Apis{
 	{"g_mapped_file_new", &G_mapped_file_new},
 	{"g_mapped_file_ref", &G_mapped_file_ref},
 	{"g_mapped_file_unref", &G_mapped_file_unref},
-	//TODO(t):Variant {"g_markup_collect_attributes", &G_markup_collect_attributes},
+	{"g_markup_collect_attributes", &G_markup_collect_attributes},
 	{"g_markup_error_quark", &G_markup_error_quark},
 	{"g_markup_escape_text", &G_markup_escape_text},
 	{"g_markup_parse_context_end_parse", &G_markup_parse_context_end_parse},
@@ -4938,7 +4928,7 @@ var apiList = outside.Apis{
 	{"g_markup_parse_context_parse", &G_markup_parse_context_parse},
 	{"g_markup_parse_context_pop", &G_markup_parse_context_pop},
 	{"g_markup_parse_context_push", &G_markup_parse_context_push},
-	//TODO(t):Variant {"g_markup_printf_escaped", &G_markup_printf_escaped},
+	{"g_markup_printf_escaped", &G_markup_printf_escaped},
 	{"g_markup_vprintf_escaped", &G_markup_vprintf_escaped},
 	{"g_match_info_expand_references", &G_match_info_expand_references},
 	{"g_match_info_fetch", &G_match_info_fetch},
@@ -4962,7 +4952,6 @@ var apiList = outside.Apis{
 	{"g_mem_chunk_new", &G_mem_chunk_new},
 	{"g_mem_chunk_print", &G_mem_chunk_print},
 	{"g_mem_chunk_reset", &G_mem_chunk_reset},
-	// Data {"g_mem_gc_friendly", &G_mem_gc_friendly},
 	{"g_mem_is_system_malloc", &G_mem_is_system_malloc},
 	{"g_mem_profile", &G_mem_profile},
 	{"g_mem_set_vtable", &G_mem_set_vtable},
@@ -5046,13 +5035,13 @@ var apiList = outside.Apis{
 	{"g_pattern_spec_free", &G_pattern_spec_free},
 	{"g_pattern_spec_new", &G_pattern_spec_new},
 	{"g_poll", &G_poll},
-	//TODO(t):Variant {"g_prefix_error", &G_prefix_error},
-	//TODO(t):Variant {"g_print", &G_print},
-	//TODO(t):Variant {"g_printerr", &G_printerr},
-	//TODO(t):Variant {"g_printf", &G_printf},
+	{"g_prefix_error", &G_prefix_error},
+	{"g_print", &G_print},
+	{"g_printerr", &G_printerr},
+	{"g_printf", &G_printf},
 	{"g_printf_string_upper_bound", &G_printf_string_upper_bound},
 	{"g_propagate_error", &G_propagate_error},
-	//TODO(t):Variant {"g_propagate_prefixed_error", &G_propagate_prefixed_error},
+	{"g_propagate_prefixed_error", &G_propagate_prefixed_error},
 	{"g_ptr_array_add", &G_ptr_array_add},
 	{"g_ptr_array_foreach", &G_ptr_array_foreach},
 	{"g_ptr_array_free", &G_ptr_array_free},
@@ -5158,9 +5147,9 @@ var apiList = outside.Apis{
 	{"g_relation_count", &G_relation_count},
 	{"g_relation_delete", &G_relation_delete},
 	{"g_relation_destroy", &G_relation_destroy},
-	//TODO(t):Variant {"g_relation_exists", &G_relation_exists},
+	{"g_relation_exists", &G_relation_exists},
 	{"g_relation_index", &G_relation_index},
-	//TODO(t):Variant {"g_relation_insert", &G_relation_insert},
+	{"g_relation_insert", &G_relation_insert},
 	{"g_relation_new", &G_relation_new},
 	{"g_relation_print", &G_relation_print},
 	{"g_relation_select", &G_relation_select},
@@ -5175,7 +5164,7 @@ var apiList = outside.Apis{
 	{"g_scanner_cur_value", &G_scanner_cur_value},
 	{"g_scanner_destroy", &G_scanner_destroy},
 	{"g_scanner_eof", &G_scanner_eof},
-	//TODO(t):Variant {"g_scanner_error", &G_scanner_error},
+	{"g_scanner_error", &G_scanner_error},
 	{"g_scanner_get_next_token", &G_scanner_get_next_token},
 	{"g_scanner_input_file", &G_scanner_input_file},
 	{"g_scanner_input_text", &G_scanner_input_text},
@@ -5189,7 +5178,7 @@ var apiList = outside.Apis{
 	{"g_scanner_set_scope", &G_scanner_set_scope},
 	{"g_scanner_sync_file_offset", &G_scanner_sync_file_offset},
 	{"g_scanner_unexp_token", &G_scanner_unexp_token},
-	//TODO(t):Variant {"g_scanner_warn", &G_scanner_warn},
+	{"g_scanner_warn", &G_scanner_warn},
 	{"g_sequence_append", &G_sequence_append},
 	{"g_sequence_foreach", &G_sequence_foreach},
 	{"g_sequence_foreach_range", &G_sequence_foreach_range},
@@ -5228,7 +5217,7 @@ var apiList = outside.Apis{
 	{"g_sequence_sort_iter", &G_sequence_sort_iter},
 	{"g_sequence_swap", &G_sequence_swap},
 	{"g_set_application_name", &G_set_application_name},
-	//TODO(t):Variant {"g_set_error", &G_set_error},
+	{"g_set_error", &G_set_error},
 	{"g_set_error_literal", &G_set_error_literal},
 	{"g_set_prgname", &G_set_prgname},
 	{"g_set_print_handler", &G_set_print_handler},
@@ -5277,7 +5266,7 @@ var apiList = outside.Apis{
 	{"g_slist_reverse", &G_slist_reverse},
 	{"g_slist_sort", &G_slist_sort},
 	{"g_slist_sort_with_data", &G_slist_sort_with_data},
-	//TODO(t):Variant {"g_snprintf", &G_snprintf},
+	{"g_snprintf", &G_snprintf},
 	{"g_source_add_child_source", &G_source_add_child_source},
 	{"g_source_add_poll", &G_source_add_poll},
 	{"g_source_attach", &G_source_attach},
@@ -5318,7 +5307,7 @@ var apiList = outside.Apis{
 	{"g_spawn_error_quark", &G_spawn_error_quark},
 	// Windows: _utf8 {"g_spawn_sync", &G_spawn_sync},
 	{"g_spawn_sync_utf8", &G_spawn_sync},
-	//TODO(t):Variant {"g_sprintf", &G_sprintf},
+	{"g_sprintf", &G_sprintf},
 	{"g_stat", &G_stat},
 	{"g_static_mutex_free", &G_static_mutex_free},
 	{"g_static_mutex_get_mutex_impl", &G_static_mutex_get_mutex_impl},
@@ -5353,11 +5342,11 @@ var apiList = outside.Apis{
 	{"g_strchug", &G_strchug},
 	{"g_strcmp0", &G_strcmp0},
 	{"g_strcompress", &G_strcompress},
-	//TODO(t): Variant {"g_strconcat", &G_strconcat},
+	{"g_strconcat", &G_strconcat},
 	{"g_strdelimit", &G_strdelimit},
 	{"g_strdown", &G_strdown},
 	{"g_strdup", &G_strdup},
-	//TODO(t): Variant {"g_strdup_printf", &G_strdup_printf},
+	{"g_strdup_printf", &G_strdup_printf},
 	{"g_strdup_vprintf", &G_strdup_vprintf},
 	{"g_strdupv", &G_strdupv},
 	{"g_strerror", &G_strerror},
@@ -5366,7 +5355,7 @@ var apiList = outside.Apis{
 	{"g_string_append", &G_string_append},
 	{"g_string_append_c", &G_string_append_c},
 	{"g_string_append_len", &G_string_append_len},
-	//TODO(t): Variant {"g_string_append_printf", &G_string_append_printf},
+	{"g_string_append_printf", &G_string_append_printf},
 	{"g_string_append_unichar", &G_string_append_unichar},
 	{"g_string_append_uri_escaped", &G_string_append_uri_escaped},
 	{"g_string_append_vprintf", &G_string_append_vprintf},
@@ -5396,14 +5385,14 @@ var apiList = outside.Apis{
 	{"g_string_prepend_c", &G_string_prepend_c},
 	{"g_string_prepend_len", &G_string_prepend_len},
 	{"g_string_prepend_unichar", &G_string_prepend_unichar},
-	//TODO(t): Variant {"g_string_printf", &G_string_printf},
+	{"g_string_printf", &G_string_printf},
 	{"g_string_set_size", &G_string_set_size},
 	{"g_string_sized_new", &G_string_sized_new},
 	{"g_string_truncate", &G_string_truncate},
 	{"g_string_up", &G_string_up},
 	{"g_string_vprintf", &G_string_vprintf},
 	{"g_strip_context", &G_strip_context},
-	//TODO(t): Variant {"g_strjoin", &G_strjoin},
+	{"g_strjoin", &G_strjoin},
 	{"g_strjoinv", &G_strjoinv},
 	{"g_strlcat", &G_strlcat},
 	{"g_strlcpy", &G_strlcpy},
@@ -5425,11 +5414,10 @@ var apiList = outside.Apis{
 	{"g_test_add_vtable", &G_test_add_vtable},
 	{"g_test_bug", &G_test_bug},
 	{"g_test_bug_base", &G_test_bug_base},
-	// Data {"g_test_config_vars", &G_test_config_vars},
 	{"g_test_create_case", &G_test_create_case},
 	{"g_test_create_suite", &G_test_create_suite},
 	{"g_test_get_root", &G_test_get_root},
-	//TODO(t):Variant {"g_test_init", &G_test_init},
+	{"g_test_init", &G_test_init},
 	{"g_test_log_buffer_free", &G_test_log_buffer_free},
 	{"g_test_log_buffer_new", &G_test_log_buffer_new},
 	{"g_test_log_buffer_pop", &G_test_log_buffer_pop},
@@ -5437,9 +5425,9 @@ var apiList = outside.Apis{
 	{"g_test_log_msg_free", &G_test_log_msg_free},
 	{"g_test_log_set_fatal_handler", &G_test_log_set_fatal_handler},
 	{"g_test_log_type_name", &G_test_log_type_name},
-	//TODO(t):Variant {"g_test_maximized_result", &G_test_maximized_result},
-	//TODO(t):Variant {"g_test_message", &G_test_message},
-	//TODO(t):Variant {"g_test_minimized_result", &G_test_minimized_result},
+	{"g_test_maximized_result", &G_test_maximized_result},
+	{"g_test_message", &G_test_message},
+	{"g_test_minimized_result", &G_test_minimized_result},
 	{"g_test_queue_destroy", &G_test_queue_destroy},
 	{"g_test_queue_free", &G_test_queue_free},
 	{"g_test_rand_double", &G_test_rand_double},
@@ -5461,9 +5449,7 @@ var apiList = outside.Apis{
 	{"g_thread_error_quark", &G_thread_error_quark},
 	{"g_thread_exit", &G_thread_exit},
 	{"g_thread_foreach", &G_thread_foreach},
-	// Data {"g_thread_functions_for_glib_use", &G_thread_functions_for_glib_use},
 	{"g_thread_get_initialized", &G_thread_get_initialized},
-	// Data {"g_thread_gettime", &G_thread_gettime},
 	// Undocumented {"g_thread_init_glib", &G_thread_init_glib},
 	{"g_thread_join", &G_thread_join},
 	{"g_thread_pool_free", &G_thread_pool_free},
@@ -5482,8 +5468,6 @@ var apiList = outside.Apis{
 	{"g_thread_pool_unprocessed", &G_thread_pool_unprocessed},
 	{"g_thread_self", &G_thread_self},
 	{"g_thread_set_priority", &G_thread_set_priority},
-	// Data {"g_thread_use_default_impl", &G_thread_use_default_impl},
-	// Data {"g_threads_got_initialized", &G_threads_got_initialized},
 	{"g_time_val_add", &G_time_val_add},
 	{"g_time_val_from_iso8601", &G_time_val_from_iso8601},
 	{"g_time_val_to_iso8601", &G_time_val_to_iso8601},
@@ -5501,7 +5485,6 @@ var apiList = outside.Apis{
 	{"g_timeout_add_full", &G_timeout_add_full},
 	{"g_timeout_add_seconds", &G_timeout_add_seconds},
 	{"g_timeout_add_seconds_full", &G_timeout_add_seconds_full},
-	// Data {"g_timeout_funcs", &G_timeout_funcs},
 	{"g_timeout_source_new", &G_timeout_source_new},
 	{"g_timeout_source_new_seconds", &G_timeout_source_new_seconds},
 	{"g_timer_continue", &G_timer_continue},
@@ -5596,7 +5579,6 @@ var apiList = outside.Apis{
 	{"g_utf8_offset_to_pointer", &G_utf8_offset_to_pointer},
 	{"g_utf8_pointer_to_offset", &G_utf8_pointer_to_offset},
 	{"g_utf8_prev_char", &G_utf8_prev_char},
-	// Data {"g_utf8_skip", &G_utf8_skip},
 	{"g_utf8_strchr", &G_utf8_strchr},
 	{"g_utf8_strdown", &G_utf8_strdown},
 	{"g_utf8_strlen", &G_utf8_strlen},
@@ -5609,8 +5591,8 @@ var apiList = outside.Apis{
 	{"g_utf8_to_utf16", &G_utf8_to_utf16},
 	{"g_utf8_validate", &G_utf8_validate},
 	{"g_utime", &G_utime},
-	//TODO(t): Variant {"g_variant_builder_add", &G_variant_builder_add},
-	//TODO(t): Variant {"g_variant_builder_add_parsed", &G_variant_builder_add_parsed},
+	{"g_variant_builder_add", &G_variant_builder_add},
+	{"g_variant_builder_add_parsed", &G_variant_builder_add_parsed},
 	{"g_variant_builder_add_value", &G_variant_builder_add_value},
 	{"g_variant_builder_clear", &G_variant_builder_clear},
 	{"g_variant_builder_close", &G_variant_builder_close},
@@ -5630,12 +5612,12 @@ var apiList = outside.Apis{
 	{"g_variant_equal", &G_variant_equal},
 	// Undocumented {"g_variant_format_string_scan", &G_variant_format_string_scan},
 	// Undocumented {"g_variant_format_string_scan_type", &G_variant_format_string_scan_type},
-	//TODO(t): Variant {"g_variant_get", &G_variant_get},
+	{"g_variant_get", &G_variant_get},
 	{"g_variant_get_boolean", &G_variant_get_boolean},
 	{"g_variant_get_byte", &G_variant_get_byte},
 	{"g_variant_get_bytestring", &G_variant_get_bytestring},
 	{"g_variant_get_bytestring_array", &G_variant_get_bytestring_array},
-	//TODO(t): Variant {"g_variant_get_child", &G_variant_get_child},
+	{"g_variant_get_child", &G_variant_get_child},
 	{"g_variant_get_child_value", &G_variant_get_child_value},
 	{"g_variant_get_data", &G_variant_get_data},
 	{"g_variant_get_double", &G_variant_get_double},
@@ -5666,15 +5648,15 @@ var apiList = outside.Apis{
 	{"g_variant_iter_copy", &G_variant_iter_copy},
 	{"g_variant_iter_free", &G_variant_iter_free},
 	{"g_variant_iter_init", &G_variant_iter_init},
-	//TODO(t): Variant {"g_variant_iter_loop", &G_variant_iter_loop},
+	{"g_variant_iter_loop", &G_variant_iter_loop},
 	{"g_variant_iter_n_children", &G_variant_iter_n_children},
 	{"g_variant_iter_new", &G_variant_iter_new},
-	//TODO(t): Variant {"g_variant_iter_next", &G_variant_iter_next},
+	{"g_variant_iter_next", &G_variant_iter_next},
 	{"g_variant_iter_next_value", &G_variant_iter_next_value},
-	//TODO(t): Variant {"g_variant_lookup", &G_variant_lookup},
+	{"g_variant_lookup", &G_variant_lookup},
 	{"g_variant_lookup_value", &G_variant_lookup_value},
 	{"g_variant_n_children", &G_variant_n_children},
-	//TODO(t): Variant {"g_variant_new", &G_variant_new},
+	{"g_variant_new", &G_variant_new},
 	{"g_variant_new_array", &G_variant_new_array},
 	{"g_variant_new_boolean", &G_variant_new_boolean},
 	{"g_variant_new_byte", &G_variant_new_byte},
@@ -5689,7 +5671,7 @@ var apiList = outside.Apis{
 	{"g_variant_new_int64", &G_variant_new_int64},
 	{"g_variant_new_maybe", &G_variant_new_maybe},
 	{"g_variant_new_object_path", &G_variant_new_object_path},
-	//TODO(t): Variant {"g_variant_new_parsed", &G_variant_new_parsed},
+	{"g_variant_new_parsed", &G_variant_new_parsed},
 	{"g_variant_new_parsed_va", &G_variant_new_parsed_va},
 	{"g_variant_new_signature", &G_variant_new_signature},
 	{"g_variant_new_string", &G_variant_new_string},
@@ -5774,21 +5756,36 @@ var apiList = outside.Apis{
 	{"g_win32_get_windows_version", &G_win32_get_windows_version},
 	{"g_win32_getlocale", &G_win32_getlocale},
 	{"g_win32_locale_filename_from_utf8", &G_win32_locale_filename_from_utf8},
-	// Data {"glib_binary_age", &glib_binary_age},
 	{"glib_check_version", &Glib_check_version},
 	// Undocumented {"glib_gettext", &glib_gettext},
-	// Data {"glib_interface_age", &glib_interface_age},
-	// Data {"glib_major_version", &glib_major_version},
-	// Data {"glib_mem_profiler_table", &glib_mem_profiler_table},
-	// Data {"glib_micro_version", &glib_micro_version},
-	// Data {"glib_minor_version", &glib_minor_version},
 	// Undocumented {"glib_on_error_halt", &glib_on_error_halt},
 	// Undocumented {"glib_pgettext", &glib_pgettext},
 }
 
 var dllThread = "libgthread-2.0-0.dll"
 
-var apiListThread = outside.Apis{
+var apiListThread = Apis{
 	{"g_thread_init", &G_thread_init},
 	{"g_thread_init_with_errorcheck_mutexes", &G_thread_init_with_errorcheck_mutexes},
 }
+
+var dataList = Data{
+// {"g_ascii_table", new(G_ascii_table)},
+// {"g_child_watch_funcs", new(G_child_watch_funcs)},
+// {"g_idle_funcs", new(G_idle_funcs)},
+// {"g_io_watch_funcs", new(G_io_watch_funcs)},
+// {"g_mem_gc_friendly", new(G_mem_gc_friendly)},
+// {"g_test_config_vars", new(G_test_config_vars)},
+// {"g_thread_functions_for_glib_use", new(G_thread_functions_for_glib_use)},
+// {"g_thread_gettime", new(G_thread_gettime)},
+// {"g_thread_use_default_impl", new(G_thread_use_default_impl)},
+// {"g_threads_got_initialized", new(G_threads_got_initialized)},
+// {"g_timeout_funcs", new(G_timeout_funcs)},
+// {"g_utf8_skip", new(G_utf8_skip)},
+// {"glib_binary_age", new(glib_binary_age)},
+// {"glib_interface_age", new(glib_interface_age)},
+// {"glib_major_version", new(glib_major_version)},
+// {"glib_mem_profiler_table", new(glib_mem_profiler_table)},
+// {"glib_micro_version", new(glib_micro_version)},
+// {"glib_minor_version", new(glib_minor_version)},
+)}
