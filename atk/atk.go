@@ -7,20 +7,21 @@ import (
 
 func init() {
 	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllData(dll, false, dataList)
 }
 
 var (
 	Atk_state_type_register func(
-		name *Gchar) AtkStateType
+		name string) AtkStateType
 
 	Atk_state_type_get_name func(
-		t AtkStateType) *Gchar
+		t AtkStateType) string
 
 	Atk_state_type_for_name func(
-		name *Gchar) AtkStateType
+		name string) AtkStateType
 
 	Atk_role_register func(
-		name *Gchar) AtkRole
+		name string) AtkRole
 
 	Atk_object_get_type func() GType
 
@@ -30,10 +31,10 @@ var (
 		implementor *AtkImplementor) *AtkObject
 
 	Atk_object_get_name func(
-		accessible *AtkObject) *Gchar
+		accessible *AtkObject) string
 
 	Atk_object_get_description func(
-		accessible *AtkObject) *Gchar
+		accessible *AtkObject) string
 
 	Atk_object_get_parent func(
 		accessible *AtkObject) *AtkObject
@@ -68,11 +69,11 @@ var (
 
 	Atk_object_set_name func(
 		accessible *AtkObject,
-		name *Gchar)
+		name string)
 
 	Atk_object_set_description func(
 		accessible *AtkObject,
-		description *Gchar)
+		description string)
 
 	Atk_object_set_parent func(
 		accessible *AtkObject,
@@ -100,10 +101,10 @@ var (
 		data Gpointer)
 
 	Atk_role_get_name func(
-		role AtkRole) *Gchar
+		role AtkRole) string
 
 	Atk_role_for_name func(
-		name *Gchar) AtkRole
+		name string) AtkRole
 
 	Atk_object_add_relationship func(
 		object *AtkObject,
@@ -116,7 +117,7 @@ var (
 		target *AtkObject) Gboolean
 
 	Atk_role_get_localized_name func(
-		role AtkRole) *Gchar
+		role AtkRole) string
 
 	Atk_action_get_type func() GType
 
@@ -129,24 +130,24 @@ var (
 
 	Atk_action_get_description func(
 		action *AtkAction,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_action_get_name func(
 		action *AtkAction,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_action_get_keybinding func(
 		action *AtkAction,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_action_set_description func(
 		action *AtkAction,
 		i Gint,
-		desc *Gchar) Gboolean
+		desc string) Gboolean
 
 	Atk_action_get_localized_name func(
 		action *AtkAction,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_util_get_type func() GType
 
@@ -164,7 +165,7 @@ var (
 
 	Atk_add_global_event_listener func(
 		listener GSignalEmissionHook,
-		event_type *Gchar) Guint
+		event_type string) Guint
 
 	Atk_remove_global_event_listener func(
 		listener_id Guint)
@@ -180,11 +181,11 @@ var (
 
 	Atk_get_focus_object func() *AtkObject
 
-	Atk_get_toolkit_name func() *Gchar
+	Atk_get_toolkit_name func() string
 
-	Atk_get_toolkit_version func() *Gchar
+	Atk_get_toolkit_version func() string
 
-	Atk_get_version func() *Gchar
+	Atk_get_version func() string
 
 	Atk_rectangle_get_type func() GType
 
@@ -263,35 +264,35 @@ var (
 	Atk_document_get_type func() GType
 
 	Atk_document_get_document_type func(
-		document *AtkDocument) *Gchar
+		document *AtkDocument) string
 
 	Atk_document_get_document func(
 		document *AtkDocument) Gpointer
 
 	Atk_document_get_locale func(
-		document *AtkDocument) *Gchar
+		document *AtkDocument) string
 
 	Atk_document_get_attributes func(
 		document *AtkDocument) *AtkAttributeSet
 
 	Atk_document_get_attribute_value func(
 		document *AtkDocument,
-		attribute_name *Gchar) *Gchar
+		attribute_name string) string
 
 	Atk_document_set_attribute_value func(
 		document *AtkDocument,
-		attribute_name *Gchar,
-		attribute_value *Gchar) Gboolean
+		attribute_name string,
+		attribute_value string) Gboolean
 
 	Atk_text_attribute_register func(
-		name *Gchar) AtkTextAttribute
+		name string) AtkTextAttribute
 
 	Atk_text_get_type func() GType
 
 	Atk_text_get_text func(
 		text *AtkText,
 		start_offset Gint,
-		end_offset Gint) *Gchar
+		end_offset Gint) string
 
 	Atk_text_get_character_at_offset func(
 		text *AtkText,
@@ -302,21 +303,21 @@ var (
 		offset Gint,
 		boundary_type AtkTextBoundary,
 		start_offset *Gint,
-		end_offset *Gint) *Gchar
+		end_offset *Gint) string
 
 	Atk_text_get_text_at_offset func(
 		text *AtkText,
 		offset Gint,
 		boundary_type AtkTextBoundary,
 		start_offset *Gint,
-		end_offset *Gint) *Gchar
+		end_offset *Gint) string
 
 	Atk_text_get_text_before_offset func(
 		text *AtkText,
 		offset Gint,
 		boundary_type AtkTextBoundary,
 		start_offset *Gint,
-		end_offset *Gint) *Gchar
+		end_offset *Gint) string
 
 	Atk_text_get_caret_offset func(
 		text *AtkText) Gint
@@ -355,7 +356,7 @@ var (
 		text *AtkText,
 		selection_num Gint,
 		start_offset *Gint,
-		end_offset *Gint) *Gchar
+		end_offset *Gint) string
 
 	Atk_text_add_selection func(
 		text *AtkText,
@@ -397,14 +398,14 @@ var (
 		attrib_set *AtkAttributeSet)
 
 	Atk_text_attribute_get_name func(
-		attr AtkTextAttribute) *Gchar
+		attr AtkTextAttribute) string
 
 	Atk_text_attribute_for_name func(
-		name *Gchar) AtkTextAttribute
+		name string) AtkTextAttribute
 
 	Atk_text_attribute_get_value func(
 		attr AtkTextAttribute,
-		index_ Gint) *Gchar
+		index_ Gint) string
 
 	Atk_editable_text_get_type func() GType
 
@@ -416,11 +417,11 @@ var (
 
 	Atk_editable_text_set_text_contents func(
 		text *AtkEditableText,
-		string *Gchar)
+		string string)
 
 	Atk_editable_text_insert_text func(
 		text *AtkEditableText,
-		string *Gchar,
+		string string,
 		length Gint,
 		position *Gint)
 
@@ -453,7 +454,7 @@ var (
 
 	Atk_hyperlink_get_uri func(
 		link_ *AtkHyperlink,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_hyperlink_get_object func(
 		link_ *AtkHyperlink,
@@ -498,7 +499,7 @@ var (
 	Atk_image_get_type func() GType
 
 	Atk_image_get_image_description func(
-		image *AtkImage) *Gchar
+		image *AtkImage) string
 
 	Atk_image_get_image_size func(
 		image *AtkImage,
@@ -507,7 +508,7 @@ var (
 
 	Atk_image_set_image_description func(
 		image *AtkImage,
-		description *Gchar) Gboolean
+		description string) Gboolean
 
 	Atk_image_get_image_position func(
 		image *AtkImage,
@@ -516,7 +517,7 @@ var (
 		coord_type AtkCoordType)
 
 	Atk_image_get_image_locale func(
-		image *AtkImage) *Gchar
+		image *AtkImage) string
 
 	Atk_no_op_object_new func(
 		obj *GObject) *AtkObject
@@ -541,7 +542,7 @@ var (
 
 	Atk_plug_new func() *AtkObject
 
-	Atk_plug_get_id func(plug *AtkPlug) *Gchar
+	Atk_plug_get_id func(plug *AtkPlug) string
 
 	Atk_registry_get_type func() GType
 
@@ -563,13 +564,13 @@ var (
 	Atk_relation_get_type func() GType
 
 	Atk_relation_type_register func(
-		name *Gchar) AtkRelationType
+		name string) AtkRelationType
 
 	Atk_relation_type_get_name func(
-		t AtkRelationType) *Gchar
+		t AtkRelationType) string
 
 	Atk_relation_type_for_name func(
-		name *Gchar) AtkRelationType
+		name string) AtkRelationType
 
 	Atk_relation_new func(
 		targets **AtkObject,
@@ -653,7 +654,7 @@ var (
 
 	Atk_socket_embed func(
 		obj *AtkSocket,
-		plug_id *Gchar)
+		plug_id string)
 
 	Atk_socket_is_occupied func(
 		obj *AtkSocket) Gboolean
@@ -709,15 +710,15 @@ var (
 
 	Atk_streamable_content_get_mime_type func(
 		streamable *AtkStreamableContent,
-		i Gint) *Gchar
+		i Gint) string
 
 	Atk_streamable_content_get_stream func(
 		streamable *AtkStreamableContent,
-		mime_type *Gchar) *GIOChannel
+		mime_type string) *GIOChannel
 
 	Atk_streamable_content_get_uri func(
 		streamable *AtkStreamableContent,
-		mime_type *Gchar) *Gchar
+		mime_type string) string
 
 	Atk_table_get_type func() GType
 
@@ -760,7 +761,7 @@ var (
 
 	Atk_table_get_column_description func(
 		table *AtkTable,
-		column Gint) *Gchar
+		column Gint) string
 
 	Atk_table_get_column_header func(
 		table *AtkTable,
@@ -768,7 +769,7 @@ var (
 
 	Atk_table_get_row_description func(
 		table *AtkTable,
-		row Gint) *Gchar
+		row Gint) string
 
 	Atk_table_get_row_header func(
 		table *AtkTable,
@@ -784,7 +785,7 @@ var (
 	Atk_table_set_column_description func(
 		table *AtkTable,
 		column Gint,
-		description *Gchar)
+		description string)
 
 	Atk_table_set_column_header func(
 		table *AtkTable,
@@ -794,7 +795,7 @@ var (
 	Atk_table_set_row_description func(
 		table *AtkTable,
 		row Gint,
-		description *Gchar)
+		description string)
 
 	Atk_table_set_row_header func(
 		table *AtkTable,
@@ -978,7 +979,6 @@ var apiList = outside.Apis{
 	{"atk_layer_get_type", &Atk_layer_get_type},
 	{"atk_misc_get_instance", &Atk_misc_get_instance},
 	{"atk_misc_get_type", &Atk_misc_get_type},
-	// Data {"atk_misc_instance", &Atk_misc_instance},
 	{"atk_misc_threads_enter", &Atk_misc_threads_enter},
 	{"atk_misc_threads_leave", &Atk_misc_threads_leave},
 	{"atk_no_op_object_factory_get_type", &Atk_no_op_object_factory_get_type},
@@ -1137,4 +1137,8 @@ var apiList = outside.Apis{
 	{"atk_value_get_minimum_value", &Atk_value_get_minimum_value},
 	{"atk_value_get_type", &Atk_value_get_type},
 	{"atk_value_set_current_value", &Atk_value_set_current_value},
+}
+
+var dataList = outside.Data{
+// {"atk_misc_instance", new(Atk_misc_instance)},
 }

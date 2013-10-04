@@ -13,12 +13,12 @@ var (
 	Gail_misc_add_attribute func(
 		attrib_set *AtkAttributeSet,
 		attr AtkTextAttribute,
-		value *Gchar) *AtkAttributeSet
+		value string) *AtkAttributeSet
 
 	Gail_misc_layout_get_run_attributes func(
 		attrib_set *AtkAttributeSet,
 		layout *PangoLayout,
-		text *Gchar,
+		text string,
 		offset Gint,
 		start_offset *Gint,
 		end_offset *Gint) *AtkAttributeSet
@@ -72,7 +72,7 @@ var (
 
 	Gail_text_util_text_setup func(
 		textutil *GailTextUtil,
-		text *Gchar)
+		text string)
 
 	Gail_text_util_buffer_setup func(
 		textutil *GailTextUtil,
@@ -85,12 +85,12 @@ var (
 		boundary_type AtkTextBoundary,
 		offset Gint,
 		start_offset *Gint,
-		end_offset *Gint) *Gchar
+		end_offset *Gint) string
 
 	Gail_text_util_get_substring func(
 		textutil *GailTextUtil,
 		start_pos Gint,
-		end_pos Gint) *Gchar
+		end_pos Gint) string
 )
 
 var dll = "libgailutil-18.dll"

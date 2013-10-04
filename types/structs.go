@@ -4560,4 +4560,24 @@ type (
 		pixmaps          *GList
 		expanded         Guint // : 1
 	}
+
+	PangoIncludedModule struct {
+		list   func(engines **PangoEngineInfo, n_engines *int)
+		init   func(module *GTypeModule)
+		exit   func()
+		create func(id *Char) *PangoEngine
+	}
+
+	PangoEngineScriptInfo struct {
+		script PangoScript
+		langs  *Gchar
+	}
+
+	PangoEngineInfo struct {
+		id          *Gchar
+		engine_type *Gchar
+		render_type *Gchar
+		scripts     *PangoEngineScriptInfo
+		n_scripts   Gint
+	}
 )

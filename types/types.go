@@ -139,6 +139,7 @@ type (
 	AtkStateSet      simpleObject
 	GdkDrawable      simpleObject
 	GtkIMContext     simpleObject
+	PangoEngine      simpleObject
 	PangoFcDecoder   simpleObject
 
 	//TODO(t): Check and Fix
@@ -426,10 +427,12 @@ type (
 	PangoFontMap                   struct{}
 	PangoFontMetrics               struct{}
 	PangoFontset                   struct{}
+	PangoFontsetSimple             struct{}
 	PangoFT2FontMap                struct{}
 	PangoLanguage                  struct{}
 	PangoLayout                    struct{}
 	PangoLayoutIter                struct{}
+	PangoMap                       struct{}
 	PangoOTBuffer                  struct{}
 	PangoOTInfo                    struct{}
 	PangoOTRuleset                 struct{}
@@ -4781,7 +4784,7 @@ const (
 type (
 	GChildWatchFunc func(pid GPid, status Gint, data Gpointer)
 
-	GtkTranslateFunc func(path *Gchar, func_data Gpointer) *Gchar
+	GtkTranslateFunc func(path string, func_data Gpointer) string
 
 	GClosureNotify func(data Gpointer, closure *GClosure)
 
@@ -4821,7 +4824,7 @@ type (
 	GtkFunction func(data Gpointer) Gboolean
 
 	GtkLinkButtonUriFunc func(button *GtkLinkButton,
-		link_ *Gchar, user_data Gpointer)
+		link string, user_data Gpointer)
 
 	GtkCallbackMarshal func(object *GtkObject,
 		data Gpointer, n_args Guint, args *GtkArg)
@@ -4835,7 +4838,7 @@ type (
 	GtkNotebookWindowCreationFunc func(source *GtkNotebook,
 		page *GtkWidget, x Gint, y Gint, data Gpointer) *GtkNotebook
 
-	GtkPrintSettingsFunc func(key, value *Gchar,
+	GtkPrintSettingsFunc func(key, value string,
 		user_data Gpointer)
 
 	GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
@@ -4868,9 +4871,9 @@ type (
 
 	GCompareFunc func(a, b Gconstpointer) Gint
 
-	GCompletionFunc func(Gpointer) *Gchar
+	GCompletionFunc func(Gpointer) string
 
-	GCompletionStrncmpFunc func(s1, s2 *Gchar, n Gsize) Gint
+	GCompletionStrncmpFunc func(s1, s2 string, n Gsize) Gint
 
 	GCopyFunc func(src Gconstpointer, data Gpointer) Gpointer
 
@@ -4904,9 +4907,9 @@ type (
 		condition GIOCondition, data Gpointer) Gboolean
 
 	GLogFunc func(
-		log_domain *Gchar,
+		log_domain string,
 		log_level GLogLevelFlags,
-		message *Gchar,
+		message string,
 		user_data Gpointer)
 
 	GNodeForeachFunc func(node *GNode, data Gpointer)
@@ -4926,15 +4929,15 @@ type (
 		err **GError) Gboolean
 
 	GPollFunc func(
-		ufds *GPollFD, nfsd Guint, timeout_ Gint) Gint
+		ufds *GPollFD, nfsd Guint, timeout Gint) Gint
 
-	GPrintFunc func(str *Gchar)
+	GPrintFunc func(str string)
 
 	GRegexEvalCallback func(match_info *GMatchInfo,
 		result *GString, user_data Gpointer) Gboolean
 
 	GScannerMsgFunc func(
-		scanner *GScanner, message *Gchar, err Gboolean)
+		scanner *GScanner, message string, err Gboolean)
 
 	GSequenceIterCompareFunc func(
 		a, b *GSequenceIter, data Gpointer) Gint
@@ -4953,12 +4956,12 @@ type (
 	GTestFunc func()
 
 	GTestLogFatalFunc func(
-		log_domain *Gchar, log_level GLogLevelFlags,
-		message *Gchar, user_data Gpointer) Gboolean
+		log_domain string, log_level GLogLevelFlags,
+		message string, user_data Gpointer) Gboolean
 
 	GThreadFunc func(data Gpointer) Gpointer
 
-	GTranslateFunc func(str *Gchar, data Gpointer) *Gchar
+	GTranslateFunc func(str string, data Gpointer) string
 
 	GTraverseFunc func(key, value, data Gpointer) Gboolean
 
@@ -4970,7 +4973,7 @@ type (
 		invocation_hint, marshal_data Gpointer)
 
 	GtkAboutDialogActivateLinkFunc func(
-		about *GtkAboutDialog, link_ *Gchar, data Gpointer)
+		about *GtkAboutDialog, link string, data Gpointer)
 
 	GtkAccelGroupFindFunc func(
 		key *GtkAccelKey,
@@ -4979,7 +4982,7 @@ type (
 
 	GtkAccelMapForeach func(
 		data Gpointer,
-		accel_path *Gchar,
+		accel_path string,
 		accel_key Guint,
 		accel_mods GdkModifierType,
 		changed Gboolean)
@@ -5002,8 +5005,8 @@ type (
 	GtkBuilderConnectFunc func(
 		builder *GtkBuilder,
 		object *GObject,
-		signal_name *Gchar,
-		handler_name *Gchar,
+		signal_name string,
+		handler_name string,
 		connect_object *GObject,
 		flags GConnectFlags,
 		user_data Gpointer)
@@ -5013,7 +5016,7 @@ type (
 		year Guint,
 		month Guint,
 		day Guint,
-		user_data Gpointer) *Gchar
+		user_data Gpointer) string
 
 	GtkCellLayoutDataFunc func(
 		cell_layout *GtkCellLayout,
@@ -5057,12 +5060,12 @@ type (
 
 	GtkClipboardTextReceivedFunc func(
 		clipboard *GtkClipboard,
-		text *Gchar,
+		text string,
 		data Gpointer)
 
 	GtkClipboardURIReceivedFunc func(
 		clipboard *GtkClipboard,
-		uris **Gchar,
+		uris *string,
 		data Gpointer)
 
 	GtkColorSelectionChangePaletteFunc func(
@@ -5076,7 +5079,7 @@ type (
 
 	GtkEntryCompletionMatchFunc func(
 		completion *GtkEntryCompletion,
-		key *Gchar,
+		key string,
 		iter *GtkTreeIter,
 		user_data Gpointer) Gboolean
 
@@ -5148,7 +5151,7 @@ type (
 	GtkTreeViewSearchEqualFunc func(
 		model *GtkTreeModel,
 		column Gint,
-		key *Gchar,
+		key string,
 		iter *GtkTreeIter,
 		search_data Gpointer) Gboolean
 
@@ -5183,7 +5186,7 @@ type (
 		data Gpointer)
 
 	GdkPixbufSaveFunc func(
-		buf *Gchar,
+		buf string,
 		count Gsize,
 		error **GError,
 		data Gpointer) Gboolean
@@ -5224,7 +5227,7 @@ type (
 
 	Cairo_user_scaled_font_text_to_glyphs_func_t func(
 		scaled_font *Cairo_scaled_font_t,
-		utf8 *Char,
+		utf8 string,
 		utf8_len int,
 		glyphs **Cairo_glyph_t,
 		num_glyphs *int,
@@ -5326,7 +5329,7 @@ type (
 	FT_Module_Destructor func(module FT_Module)
 
 	FT_Module_Requester func(
-		module FT_Module, name *Char) FT_Module_Interface
+		module FT_Module, name string) FT_Module_Interface
 
 	FT_List_Iterator func(node FT_ListNode, user *Void) FT_Error
 
@@ -5381,87 +5384,87 @@ type (
 
 	GBusAcquiredCallback func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		user_data Gpointer)
 
 	GBusNameAcquiredCallback func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		user_data Gpointer)
 
 	GBusNameLostCallback func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		user_data Gpointer)
 
 	GBusNameAppearedCallback func(
 		connection *GDBusConnection,
-		name *Gchar,
-		name_owner *Gchar,
+		name string,
+		name_owner string,
 		user_data Gpointer)
 
 	GBusNameVanishedCallback func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		user_data Gpointer)
 
 	GDBusInterfaceMethodCallFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		method_name *Gchar,
+		sender string,
+		object_path string,
+		interface_name string,
+		method_name string,
 		parameters *GVariant,
 		invocation *GDBusMethodInvocation,
 		user_data Gpointer)
 
 	GDBusInterfaceGetPropertyFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		property_name *Gchar,
+		sender string,
+		object_path string,
+		interface_name string,
+		property_name string,
 		err **GError,
 		user_data Gpointer)
 
 	GDBusInterfaceSetPropertyFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		property_name *Gchar,
+		sender string,
+		object_path string,
+		interface_name string,
+		property_name string,
 		value *GVariant,
 		err **GError,
 		user_data Gpointer)
 
 	GDBusSubtreeEnumerateFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
+		sender string,
+		object_path string,
 		user_data Gpointer) **Gchar
 
 	GDBusSubtreeIntrospectFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
-		node *Gchar,
+		sender string,
+		object_path string,
+		node string,
 		user_data Gpointer) **GDBusInterfaceInfo
 
 	GDBusSubtreeDispatchFunc func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		node *Gchar,
+		sender string,
+		object_path string,
+		interface_name string,
+		node string,
 		out_user_data *Gpointer,
 		user_data Gpointer) *GDBusInterfaceVTable
 
 	GDBusSignalCallback func(
 		connection *GDBusConnection,
-		sender_name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		signal_name *Gchar,
+		sender_name string,
+		object_path string,
+		interface_name string,
+		signal_name string,
 		parameters *GVariant,
 		user_data Gpointer)
 
@@ -5482,7 +5485,7 @@ type (
 		user_data Gpointer) Gboolean
 
 	GFileReadMoreCallback func(
-		file_contents *Char,
+		file_contents string,
 		file_size Goffset,
 		callback_data Gpointer) Gboolean
 

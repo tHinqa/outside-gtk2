@@ -13,7 +13,7 @@ var (
 	G_module_supported func() Gboolean
 
 	G_module_open func(
-		file_name *Gchar,
+		file_name string,
 		flags GModuleFlags) *GModule
 
 	G_module_close func(
@@ -22,19 +22,19 @@ var (
 	G_module_make_resident func(
 		module *GModule)
 
-	G_module_error func() *Gchar
+	G_module_error func() string
 
 	G_module_symbol func(
 		module *GModule,
-		symbol_name *Gchar,
+		symbol_name string,
 		symbol *Gpointer) Gboolean
 
 	G_module_name func(
-		module *GModule) *Gchar
+		module *GModule) string
 
 	G_module_build_path func(
-		directory *Gchar,
-		module_name *Gchar) *Gchar
+		directory string,
+		module_name string) string
 )
 
 var dll = "libgmodule-2.0-0.dll"

@@ -1,13 +1,13 @@
 package pango
 
 import (
-	"github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
-	outside.AddDllApis(dll, false, apiList)
-	outside.AddDllApis(dllCairo, false, apiListCairo)
+	AddDllApis(dll, false, apiList)
+	AddDllApis(dllCairo, false, apiListCairo)
 }
 
 type (
@@ -28,11 +28,11 @@ var (
 
 	Pango_coverage_get func(
 		coverage *PangoCoverage,
-		index_ int) PangoCoverageLevel
+		index int) PangoCoverageLevel
 
 	Pango_coverage_set func(
 		coverage *PangoCoverage,
-		index_ int,
+		index int,
 		level PangoCoverageLevel)
 
 	Pango_coverage_max func(
@@ -109,7 +109,7 @@ var (
 		ch Gunichar) PangoScript
 
 	Pango_script_iter_new func(
-		text *Char,
+		text string,
 		length int) *PangoScriptIter
 
 	Pango_script_iter_get_range func(
@@ -127,19 +127,19 @@ var (
 	Pango_language_get_type func() GType
 
 	Pango_language_from_string func(
-		language *Char) *PangoLanguage
+		language string) *PangoLanguage
 
 	Pango_language_to_string func(
-		language *PangoLanguage) *Char
+		language *PangoLanguage) string
 
 	Pango_language_get_sample_string func(
-		language *PangoLanguage) *Char
+		language *PangoLanguage) string
 
 	Pango_language_get_default func() *PangoLanguage
 
 	Pango_language_matches func(
 		language *PangoLanguage,
-		range_list *Char) Gboolean
+		range_list string) Gboolean
 
 	Pango_language_includes_script func(
 		language *PangoLanguage,
@@ -176,7 +176,7 @@ var (
 		ch Gunichar) PangoDirection
 
 	Pango_find_base_dir func(
-		text *Gchar,
+		text string,
 		length Gint) PangoDirection
 
 	Pango_get_mirror_char func(
@@ -209,14 +209,14 @@ var (
 
 	Pango_font_description_set_family func(
 		desc *PangoFontDescription,
-		family *Char)
+		family string)
 
 	Pango_font_description_set_family_static func(
 		desc *PangoFontDescription,
-		family *Char)
+		family string)
 
 	Pango_font_description_get_family func(
-		desc *PangoFontDescription) *Char
+		desc *PangoFontDescription) string
 
 	Pango_font_description_set_style func(
 		desc *PangoFontDescription,
@@ -290,13 +290,13 @@ var (
 		new_match *PangoFontDescription) Gboolean
 
 	Pango_font_description_from_string func(
-		str *Char) *PangoFontDescription
+		str string) *PangoFontDescription
 
 	Pango_font_description_to_string func(
-		desc *PangoFontDescription) *Char
+		desc *PangoFontDescription) string
 
 	Pango_font_description_to_filename func(
-		desc *PangoFontDescription) *Char
+		desc *PangoFontDescription) string
 
 	Pango_font_metrics_get_type func() GType
 
@@ -338,7 +338,7 @@ var (
 		n_faces *int)
 
 	Pango_font_family_get_name func(
-		family *PangoFontFamily) *Char
+		family *PangoFontFamily) string
 
 	Pango_font_family_is_monospace func(
 		family *PangoFontFamily) Gboolean
@@ -349,7 +349,7 @@ var (
 		face *PangoFontFace) *PangoFontDescription
 
 	Pango_font_face_get_face_name func(
-		face *PangoFontFace) *Char
+		face *PangoFontFace) string
 
 	Pango_font_face_list_sizes func(
 		face *PangoFontFace,
@@ -399,16 +399,16 @@ var (
 
 	Pango_color_parse func(
 		color *PangoColor,
-		spec *Char) Gboolean
+		spec string) Gboolean
 
 	Pango_color_to_string func(
-		color *PangoColor) *Gchar
+		color *PangoColor) string
 
 	Pango_attr_type_register func(
-		name *Gchar) PangoAttrType
+		name string) PangoAttrType
 
 	Pango_attr_type_get_name func(
-		t PangoAttrType) *Char
+		t PangoAttrType) string
 
 	Pango_attribute_init func(
 		attr *PangoAttribute,
@@ -428,7 +428,7 @@ var (
 		language *PangoLanguage) *PangoAttribute
 
 	Pango_attr_family_new func(
-		family *Char) *PangoAttribute
+		family string) *PangoAttribute
 
 	Pango_attr_foreground_new func(
 		red Guint16,
@@ -573,7 +573,7 @@ var (
 		iterator *PangoAttrIterator) *GSList
 
 	Pango_parse_markup func(
-		markup_text *Char,
+		markup_text string,
 		length int,
 		accel_marker Gunichar,
 		attr_list **PangoAttrList,
@@ -597,20 +597,20 @@ var (
 		split_offset int) *PangoItem
 
 	Pango_break func(
-		text *Gchar,
+		text string,
 		length int,
 		analysis *PangoAnalysis,
 		attrs *PangoLogAttr,
 		attrs_len int)
 
 	Pango_find_paragraph_boundary func(
-		text *Gchar,
+		text string,
 		length Gint,
 		paragraph_delimiter_index *Gint,
 		next_paragraph_start *Gint)
 
 	Pango_get_log_attrs func(
-		text *Char,
+		text string,
 		length int,
 		level int,
 		language *PangoLanguage,
@@ -729,7 +729,7 @@ var (
 
 	Pango_itemize func(
 		context *PangoContext,
-		text *Char,
+		text string,
 		start_index int,
 		length int,
 		attrs *PangoAttrList,
@@ -738,7 +738,7 @@ var (
 	Pango_itemize_with_base_dir func(
 		context *PangoContext,
 		base_dir PangoDirection,
-		text *Char,
+		text string,
 		start_index int,
 		length int,
 		attrs *PangoAttrList,
@@ -777,31 +777,31 @@ var (
 
 	Pango_glyph_string_get_logical_widths func(
 		glyphs *PangoGlyphString,
-		text *Char,
+		text string,
 		length int,
 		embedding_level int,
 		logical_widths *int)
 
 	Pango_glyph_string_index_to_x func(
 		glyphs *PangoGlyphString,
-		text *Char,
+		text string,
 		length int,
 		analysis *PangoAnalysis,
-		index_ int,
+		index int,
 		trailing Gboolean,
 		x_pos *int)
 
 	Pango_glyph_string_x_to_index func(
 		glyphs *PangoGlyphString,
-		text *Char,
+		text string,
 		length int,
 		analysis *PangoAnalysis,
 		x_pos int,
-		index_ *int,
+		index *int,
 		trailing *int)
 
 	Pango_shape func(
-		text *Gchar,
+		text string,
 		length Gint,
 		analysis *PangoAnalysis,
 		glyphs *PangoGlyphString)
@@ -849,7 +849,7 @@ var (
 
 	Pango_glyph_item_split func(
 		orig *PangoGlyphItem,
-		text *Char,
+		text string,
 		split_index int) *PangoGlyphItem
 
 	Pango_glyph_item_copy func(
@@ -860,18 +860,18 @@ var (
 
 	Pango_glyph_item_apply_attrs func(
 		glyph_item *PangoGlyphItem,
-		text *Char,
+		text string,
 		list *PangoAttrList) *GSList
 
 	Pango_glyph_item_letter_space func(
 		glyph_item *PangoGlyphItem,
-		text *Char,
+		text string,
 		log_attrs *PangoLogAttr,
 		letter_spacing int)
 
 	Pango_glyph_item_get_logical_widths func(
 		glyph_item *PangoGlyphItem,
-		text *Char,
+		text string,
 		logical_widths *int)
 
 	Pango_glyph_item_iter_get_type func() GType
@@ -885,12 +885,12 @@ var (
 	Pango_glyph_item_iter_init_start func(
 		iter *PangoGlyphItemIter,
 		glyph_item *PangoGlyphItem,
-		text *Char) Gboolean
+		text string) Gboolean
 
 	Pango_glyph_item_iter_init_end func(
 		iter *PangoGlyphItemIter,
 		glyph_item *PangoGlyphItem,
-		text *Char) Gboolean
+		text string) Gboolean
 
 	Pango_glyph_item_iter_next_cluster func(
 		iter *PangoGlyphItemIter) Gboolean
@@ -902,8 +902,9 @@ var (
 		initial_size Gint,
 		positions_in_pixels Gboolean) *PangoTabArray
 
-	//TODO(t):Variant
-	//pango_tab_array_new_with_positions func(size  Gint, positions_in_pixels  Gboolean, first_alignment  PangoTabAlign, first_position  Gint, ...) *PangoTabArray
+	Pango_tab_array_new_with_positions func(size Gint,
+		positions_in_pixels Gboolean, first_alignment PangoTabAlign,
+		first_position Gint, v ...VArg) *PangoTabArray
 
 	Pango_tab_array_get_type func() GType
 
@@ -960,23 +961,23 @@ var (
 
 	Pango_layout_set_text func(
 		layout *PangoLayout,
-		text *Char,
+		text string,
 		length int)
 
 	Pango_layout_get_text func(
-		layout *PangoLayout) *Char
+		layout *PangoLayout) string
 
 	Pango_layout_get_character_count func(
 		layout *PangoLayout) Gint
 
 	Pango_layout_set_markup func(
 		layout *PangoLayout,
-		markup *Char,
+		markup string,
 		length int)
 
 	Pango_layout_set_markup_with_accel func(
 		layout *PangoLayout,
-		markup *Char,
+		markup string,
 		length int,
 		accel_marker Gunichar,
 		accel_char *Gunichar)
@@ -1088,19 +1089,19 @@ var (
 
 	Pango_layout_index_to_pos func(
 		layout *PangoLayout,
-		index_ int,
+		index int,
 		pos *PangoRectangle)
 
 	Pango_layout_index_to_line_x func(
 		layout *PangoLayout,
-		index_ int,
+		index int,
 		trailing Gboolean,
 		line *int,
 		x_pos *int)
 
 	Pango_layout_get_cursor_pos func(
 		layout *PangoLayout,
-		index_ int,
+		index int,
 		strong_pos *PangoRectangle,
 		weak_pos *PangoRectangle)
 
@@ -1117,7 +1118,7 @@ var (
 		layout *PangoLayout,
 		x int,
 		y int,
-		index_ *int,
+		index *int,
 		trailing *int) Gboolean
 
 	Pango_layout_get_extents func(
@@ -1171,12 +1172,12 @@ var (
 	Pango_layout_line_x_to_index func(
 		line *PangoLayoutLine,
 		x_pos int,
-		index_ *int,
+		index *int,
 		trailing *int) Gboolean
 
 	Pango_layout_line_index_to_x func(
 		line *PangoLayoutLine,
-		index_ int,
+		index int,
 		trailing Gboolean,
 		x_pos *int)
 
@@ -1262,8 +1263,8 @@ var (
 
 	Pango_layout_iter_get_line_yrange func(
 		iter *PangoLayoutIter,
-		y0_ *int,
-		y1_ *int)
+		y0 *int,
+		y1 *int)
 
 	Pango_layout_iter_get_layout_extents func(
 		iter *PangoLayoutIter,
@@ -1296,7 +1297,7 @@ var (
 
 	Pango_renderer_draw_glyph_item func(
 		renderer *PangoRenderer,
-		text *Char,
+		text string,
 		glyph_item *PangoGlyphItem,
 		x int,
 		y int)
@@ -1319,7 +1320,7 @@ var (
 	Pango_renderer_draw_trapezoid func(
 		renderer *PangoRenderer,
 		part PangoRenderPart,
-		y1_ Double,
+		y1 Double,
 		x11 Double,
 		x21 Double,
 		y2 Double,
@@ -1366,10 +1367,10 @@ var (
 		renderer *PangoRenderer) *PangoLayoutLine
 
 	Pango_split_file_list func(
-		str *Char) **Char
+		str string) **Char
 
 	Pango_trim_string func(
-		str *Char) *Char
+		str string) string
 
 	Pango_read_line func(
 		stream *FILE,
@@ -1392,28 +1393,28 @@ var (
 
 	Pango_parse_enum func(
 		t GType,
-		str *Char,
+		str string,
 		value *int,
 		warn Gboolean,
 		possible_values **Char) Gboolean
 
 	Pango_parse_style func(
-		str *Char,
+		str string,
 		style *PangoStyle,
 		warn Gboolean) Gboolean
 
 	Pango_parse_variant func(
-		str *Char,
+		str string,
 		variant *PangoVariant,
 		warn Gboolean) Gboolean
 
 	Pango_parse_weight func(
-		str *Char,
+		str string,
 		weight *PangoWeight,
 		warn Gboolean) Gboolean
 
 	Pango_parse_stretch func(
-		str *Char,
+		str string,
 		stretch *PangoStretch,
 		warn Gboolean) Gboolean
 
@@ -1422,7 +1423,7 @@ var (
 		position *int)
 
 	Pango_log2vis_get_embedding_levels func(
-		text *Gchar,
+		text string,
 		length int,
 		pbase_dir *PangoDirection) *Guint8
 
@@ -1431,12 +1432,12 @@ var (
 
 	Pango_version func() int
 
-	Pango_version_string func() *Char
+	Pango_version_string func() string
 
 	Pango_version_check func(
 		required_major int,
 		required_minor int,
-		required_micro int) *Char
+		required_micro int) string
 
 	Pango_cairo_font_map_get_type func() GType
 
@@ -1513,7 +1514,7 @@ var (
 
 	Pango_cairo_show_glyph_item func(
 		cr *Cairo_t,
-		text *Char,
+		text string,
 		glyph_item *PangoGlyphItem)
 
 	Pango_cairo_show_layout_line func(
@@ -1550,11 +1551,71 @@ var (
 		y Double,
 		width Double,
 		height Double)
+
+	Pango_config_key_get func(
+		key string) string
+
+	Pango_default_break func(
+		text string,
+		length int,
+		analysis *PangoAnalysis,
+		attrs *PangoLogAttr,
+		attrs_len int)
+
+	Pango_engine_get_type func() GType
+
+	Pango_engine_lang_get_type func() GType
+
+	Pango_engine_shape_get_type func() GType
+
+	Pango_find_map func(
+		language *PangoLanguage,
+		engine_type_id Guint,
+		render_type_id Guint) *PangoMap
+
+	Pango_font_map_get_shape_engine_type func(
+		fontmap *PangoFontMap) string
+
+	Pango_font_metrics_new func() *PangoFontMetrics
+
+	Pango_fontset_simple_append func(
+		fontset *PangoFontsetSimple,
+		font *PangoFont)
+
+	Pango_fontset_simple_size func(
+		fontset *PangoFontsetSimple) int
+
+	Pango_fontset_simple_new func(
+		language *PangoLanguage) *PangoFontsetSimple
+
+	Pango_fontset_simple_get_type func() GType
+
+	Pango_get_lib_subdirectory func() string
+
+	Pango_get_sysconf_subdirectory func() string
+
+	Pango_lookup_aliases func(
+		fontname string,
+		families ***Char,
+		n_families *int)
+
+	Pango_map_get_engine func(
+		map_ *PangoMap,
+		script PangoScript) *PangoEngine
+
+	Pango_map_get_engines func(
+		map_ *PangoMap,
+		script PangoScript,
+		exact_engines **GSList,
+		fallback_engines **GSList)
+
+	Pango_module_register func(
+		module *PangoIncludedModule)
 )
 
 var dll = "libpango-1.0-0.dll"
 
-var apiList = outside.Apis{
+var apiList = Apis{
 	{"pango_alignment_get_type", &Pango_alignment_get_type},
 	{"pango_attr_background_new", &Pango_attr_background_new},
 	{"pango_attr_fallback_new", &Pango_attr_fallback_new},
@@ -1612,7 +1673,7 @@ var apiList = outside.Apis{
 	{"pango_color_get_type", &Pango_color_get_type},
 	{"pango_color_parse", &Pango_color_parse},
 	{"pango_color_to_string", &Pango_color_to_string},
-	// {"pango_config_key_get", &Pango_config_key_get},
+	{"pango_config_key_get", &Pango_config_key_get},
 	{"pango_context_get_base_dir", &Pango_context_get_base_dir},
 	{"pango_context_get_base_gravity", &Pango_context_get_base_gravity},
 	{"pango_context_get_font_description", &Pango_context_get_font_description},
@@ -1644,15 +1705,15 @@ var apiList = outside.Apis{
 	{"pango_coverage_set", &Pango_coverage_set},
 	{"pango_coverage_to_bytes", &Pango_coverage_to_bytes},
 	{"pango_coverage_unref", &Pango_coverage_unref},
-	// {"pango_default_break", &Pango_default_break},
+	{"pango_default_break", &Pango_default_break},
 	{"pango_direction_get_type", &Pango_direction_get_type},
 	{"pango_ellipsize_mode_get_type", &Pango_ellipsize_mode_get_type},
-	// {"pango_engine_get_type", &Pango_engine_get_type},
-	// {"pango_engine_lang_get_type", &Pango_engine_lang_get_type},
-	// {"pango_engine_shape_get_type", &Pango_engine_shape_get_type},
+	{"pango_engine_get_type", &Pango_engine_get_type},
+	{"pango_engine_lang_get_type", &Pango_engine_lang_get_type},
+	{"pango_engine_shape_get_type", &Pango_engine_shape_get_type},
 	{"pango_extents_to_pixels", &Pango_extents_to_pixels},
 	{"pango_find_base_dir", &Pango_find_base_dir},
-	// {"pango_find_map", &Pango_find_map},
+	{"pango_find_map", &Pango_find_map},
 	{"pango_find_paragraph_boundary", &Pango_find_paragraph_boundary},
 	{"pango_font_describe", &Pango_font_describe},
 	{"pango_font_describe_with_absolute_size", &Pango_font_describe_with_absolute_size},
@@ -1705,7 +1766,7 @@ var apiList = outside.Apis{
 	{"pango_font_get_metrics", &Pango_font_get_metrics},
 	{"pango_font_get_type", &Pango_font_get_type},
 	{"pango_font_map_create_context", &Pango_font_map_create_context},
-	// {"pango_font_map_get_shape_engine_type", &Pango_font_map_get_shape_engine_type},
+	{"pango_font_map_get_shape_engine_type", &Pango_font_map_get_shape_engine_type},
 	{"pango_font_map_get_type", &Pango_font_map_get_type},
 	{"pango_font_map_list_families", &Pango_font_map_list_families},
 	{"pango_font_map_load_font", &Pango_font_map_load_font},
@@ -1720,21 +1781,21 @@ var apiList = outside.Apis{
 	{"pango_font_metrics_get_type", &Pango_font_metrics_get_type},
 	{"pango_font_metrics_get_underline_position", &Pango_font_metrics_get_underline_position},
 	{"pango_font_metrics_get_underline_thickness", &Pango_font_metrics_get_underline_thickness},
-	// {"pango_font_metrics_new", &Pango_font_metrics_new},
+	{"pango_font_metrics_new", &Pango_font_metrics_new},
 	{"pango_font_metrics_ref", &Pango_font_metrics_ref},
 	{"pango_font_metrics_unref", &Pango_font_metrics_unref},
 	{"pango_fontset_foreach", &Pango_fontset_foreach},
 	{"pango_fontset_get_font", &Pango_fontset_get_font},
 	{"pango_fontset_get_metrics", &Pango_fontset_get_metrics},
 	{"pango_fontset_get_type", &Pango_fontset_get_type},
-	// {"pango_fontset_simple_append", &Pango_fontset_simple_append},
-	// {"pango_fontset_simple_get_type", &Pango_fontset_simple_get_type},
-	// {"pango_fontset_simple_new", &Pango_fontset_simple_new},
-	// {"pango_fontset_simple_size", &Pango_fontset_simple_size},
-	// {"pango_get_lib_subdirectory", &Pango_get_lib_subdirectory},
+	{"pango_fontset_simple_append", &Pango_fontset_simple_append},
+	{"pango_fontset_simple_get_type", &Pango_fontset_simple_get_type},
+	{"pango_fontset_simple_new", &Pango_fontset_simple_new},
+	{"pango_fontset_simple_size", &Pango_fontset_simple_size},
+	{"pango_get_lib_subdirectory", &Pango_get_lib_subdirectory},
 	{"pango_get_log_attrs", &Pango_get_log_attrs},
 	{"pango_get_mirror_char", &Pango_get_mirror_char},
-	// {"pango_get_sysconf_subdirectory", &Pango_get_sysconf_subdirectory},
+	{"pango_get_sysconf_subdirectory", &Pango_get_sysconf_subdirectory},
 	{"pango_glyph_item_apply_attrs", &Pango_glyph_item_apply_attrs},
 	{"pango_glyph_item_copy", &Pango_glyph_item_copy},
 	{"pango_glyph_item_free", &Pango_glyph_item_free},
@@ -1869,9 +1930,9 @@ var apiList = outside.Apis{
 	{"pango_layout_set_wrap", &Pango_layout_set_wrap},
 	{"pango_layout_xy_to_index", &Pango_layout_xy_to_index},
 	{"pango_log2vis_get_embedding_levels", &Pango_log2vis_get_embedding_levels},
-	// {"pango_lookup_aliases", &Pango_lookup_aliases},
-	// {"pango_map_get_engine", &Pango_map_get_engine},
-	// {"pango_map_get_engines", &Pango_map_get_engines},
+	{"pango_lookup_aliases", &Pango_lookup_aliases},
+	{"pango_map_get_engine", &Pango_map_get_engine},
+	{"pango_map_get_engines", &Pango_map_get_engines},
 	{"pango_matrix_concat", &Pango_matrix_concat},
 	{"pango_matrix_copy", &Pango_matrix_copy},
 	{"pango_matrix_free", &Pango_matrix_free},
@@ -1884,7 +1945,7 @@ var apiList = outside.Apis{
 	{"pango_matrix_transform_point", &Pango_matrix_transform_point},
 	{"pango_matrix_transform_rectangle", &Pango_matrix_transform_rectangle},
 	{"pango_matrix_translate", &Pango_matrix_translate},
-	// {"pango_module_register", &Pango_module_register},
+	{"pango_module_register", &Pango_module_register},
 	{"pango_parse_enum", &Pango_parse_enum},
 	{"pango_parse_markup", &Pango_parse_markup},
 	{"pango_parse_stretch", &Pango_parse_stretch},
@@ -1937,7 +1998,7 @@ var apiList = outside.Apis{
 	{"pango_tab_array_get_tabs", &Pango_tab_array_get_tabs},
 	{"pango_tab_array_get_type", &Pango_tab_array_get_type},
 	{"pango_tab_array_new", &Pango_tab_array_new},
-	//TODO(t):Variant {"pango_tab_array_new_with_positions", &Pango_tab_array_new_with_positions},
+	{"pango_tab_array_new_with_positions", &Pango_tab_array_new_with_positions},
 	{"pango_tab_array_resize", &Pango_tab_array_resize},
 	{"pango_tab_array_set_tab", &Pango_tab_array_set_tab},
 	{"pango_trim_string", &Pango_trim_string},
@@ -1955,7 +2016,7 @@ var apiList = outside.Apis{
 
 var dllCairo = "libpangocairo-1.0-0.dll"
 
-var apiListCairo = outside.Apis{
+var apiListCairo = Apis{
 	{"pango_cairo_context_get_font_options", &Pango_cairo_context_get_font_options},
 	{"pango_cairo_context_get_resolution", &Pango_cairo_context_get_resolution},
 	{"pango_cairo_context_get_shape_renderer", &Pango_cairo_context_get_shape_renderer},

@@ -1108,8 +1108,8 @@ var (
 
 	Gtk_rc_get_style_by_paths func(
 		settings *GtkSettings,
-		widget_path *Char,
-		class_path *Char,
+		widget_path string,
+		class_path string,
 		t GType) *GtkStyle
 
 	Gtk_rc_reparse_all_for_settings func(
@@ -3752,7 +3752,7 @@ var (
 
 	Gtk_builder_get_type_from_name func(
 		builder *GtkBuilder,
-		type_name *Char) GType
+		type_name string) GType
 
 	Gtk_builder_value_from_string func(
 		builder *GtkBuilder,
@@ -7501,15 +7501,15 @@ var (
 
 	Gtk_file_chooser_set_filename func(
 		chooser *GtkFileChooser,
-		filename *Char) Gboolean
+		filename string) Gboolean
 
 	Gtk_file_chooser_select_filename func(
 		chooser *GtkFileChooser,
-		filename *Char) Gboolean
+		filename string) Gboolean
 
 	Gtk_file_chooser_unselect_filename func(
 		chooser *GtkFileChooser,
-		filename *Char)
+		filename string)
 
 	Gtk_file_chooser_select_all func(
 		chooser *GtkFileChooser)
@@ -7532,15 +7532,15 @@ var (
 
 	Gtk_file_chooser_set_uri func(
 		chooser *GtkFileChooser,
-		uri *Char) Gboolean
+		uri string) Gboolean
 
 	Gtk_file_chooser_select_uri func(
 		chooser *GtkFileChooser,
-		uri *Char) Gboolean
+		uri string) Gboolean
 
 	Gtk_file_chooser_unselect_uri func(
 		chooser *GtkFileChooser,
-		uri *Char)
+		uri string)
 
 	Gtk_file_chooser_get_uris func(
 		chooser *GtkFileChooser) *GSList
@@ -7602,10 +7602,10 @@ var (
 		chooser *GtkFileChooser) Gboolean
 
 	Gtk_file_chooser_get_preview_filename func(
-		chooser *GtkFileChooser) *Char
+		chooser *GtkFileChooser) string
 
 	Gtk_file_chooser_get_preview_uri func(
-		chooser *GtkFileChooser) *Char
+		chooser *GtkFileChooser) string
 
 	Gtk_file_chooser_get_preview_file func(
 		chooser *GtkFileChooser) *GFile
@@ -7637,12 +7637,12 @@ var (
 
 	Gtk_file_chooser_add_shortcut_folder func(
 		chooser *GtkFileChooser,
-		folder *Char,
+		folder string,
 		error **GError) Gboolean
 
 	Gtk_file_chooser_remove_shortcut_folder func(
 		chooser *GtkFileChooser,
-		folder *Char,
+		folder string,
 		error **GError) Gboolean
 
 	Gtk_file_chooser_list_shortcut_folders func(
@@ -7650,12 +7650,12 @@ var (
 
 	Gtk_file_chooser_add_shortcut_folder_uri func(
 		chooser *GtkFileChooser,
-		uri *Char,
+		uri string,
 		error **GError) Gboolean
 
 	Gtk_file_chooser_remove_shortcut_folder_uri func(
 		chooser *GtkFileChooser,
-		uri *Char,
+		uri string,
 		error **GError) Gboolean
 
 	Gtk_file_chooser_list_shortcut_folder_uris func(
@@ -8273,7 +8273,7 @@ var (
 		state GtkStateType,
 		size GtkIconSize,
 		widget *GtkWidget,
-		detail *Char) *GdkPixbuf
+		detail string) *GdkPixbuf
 
 	Gtk_icon_set_add_source func(
 		icon_set *GtkIconSet,
@@ -8435,7 +8435,7 @@ var (
 		icon_theme *GtkIconTheme) *GList
 
 	Gtk_icon_theme_get_example_icon_name func(
-		icon_theme *GtkIconTheme) *Char
+		icon_theme *GtkIconTheme) string
 
 	Gtk_icon_theme_rescan_if_needed func(
 		icon_theme *GtkIconTheme) Gboolean
@@ -8843,11 +8843,11 @@ var (
 		menushell *GtkMenuShell)
 
 	Gtk_im_multicontext_get_context_id func(
-		context *GtkIMMulticontext) *Char
+		context *GtkIMMulticontext) string
 
 	Gtk_im_multicontext_set_context_id func(
 		context *GtkIMMulticontext,
-		context_id *Char)
+		context_id string)
 
 	Gtk_info_bar_get_type func() GType
 
@@ -9008,9 +9008,9 @@ var (
 	Gtk_init_with_args func(
 		argc *int,
 		argv ***Char,
-		parameter_string *Char,
+		parameter_string string,
 		entries *GOptionEntry,
-		translation_domain *Char,
+		translation_domain string,
 		error **GError) Gboolean
 
 	Gtk_get_option_group func(
@@ -9906,12 +9906,12 @@ var (
 
 	Gtk_page_setup_load_file func(
 		setup *GtkPageSetup,
-		file_name *Char,
+		file_name string,
 		error **GError) Gboolean
 
 	Gtk_page_setup_to_file func(
 		setup *GtkPageSetup,
-		file_name *Char,
+		file_name string,
 		error **GError) Gboolean
 
 	Gtk_page_setup_new_from_key_file func(
@@ -12280,25 +12280,25 @@ var (
 		enable Gboolean)
 
 	Gtk_toolbar_append_item func(toolbar *GtkToolbar,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_data Gpointer) *GtkWidget
 
 	Gtk_toolbar_prepend_item func(toolbar *GtkToolbar,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_data Gpointer) *GtkWidget
 
 	Gtk_toolbar_insert_item func(toolbar *GtkToolbar,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_dataGpointer,
@@ -12306,8 +12306,8 @@ var (
 
 	Gtk_toolbar_insert_stock func(toolbar *GtkToolbar,
 		stock_id string,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		tooltip_text string,
+		tooltip_private_text string,
 		callback GCallback,
 		user_dataGpointer,
 		position Gint) *GtkWidget
@@ -12325,9 +12325,9 @@ var (
 	Gtk_toolbar_append_element func(toolbar *GtkToolbar,
 		t GtkToolbarChildType,
 		widget *GtkWidget,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_data Gpointer) *GtkWidget
@@ -12335,9 +12335,9 @@ var (
 	Gtk_toolbar_prepend_element func(toolbar *GtkToolbar,
 		t GtkToolbarChildType,
 		widget *GtkWidget,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_data Gpointer) *GtkWidget
@@ -12345,9 +12345,9 @@ var (
 	Gtk_toolbar_insert_element func(toolbar *GtkToolbar,
 		t GtkToolbarChildType,
 		widget *GtkWidget,
-		text *Char,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		text string,
+		tooltip_text string,
+		tooltip_private_text string,
 		icon *GtkWidget,
 		callback GCallback,
 		user_dataGpointer,
@@ -12355,18 +12355,18 @@ var (
 
 	Gtk_toolbar_append_widget func(toolbar *GtkToolbar,
 		widget *GtkWidget,
-		tooltip_text *Char,
-		tooltip_private_text *Char)
+		tooltip_text string,
+		tooltip_private_text string)
 
 	Gtk_toolbar_prepend_widget func(toolbar *GtkToolbar,
 		widget *GtkWidget,
-		tooltip_text *Char,
-		tooltip_private_text *Char)
+		tooltip_text string,
+		tooltip_private_text string)
 
 	Gtk_toolbar_insert_widget func(toolbar *GtkToolbar,
 		widget *GtkWidget,
-		tooltip_text *Char,
-		tooltip_private_text *Char,
+		tooltip_text string,
+		tooltip_private_text string,
 		position Gint)
 
 	Gtk_tool_item_group_get_type func() GType
@@ -14025,7 +14025,7 @@ var (
 
 	Gtk_tree_item_new func() *GtkWidget
 
-	Gtk_tree_item_new_with_label func(label *Gchar) *GtkWidget
+	Gtk_tree_item_new_with_label func(label string) *GtkWidget
 
 	Gtk_tree_item_set_subtree func(
 		tree_item *GtkTreeItem, subtree *GtkWidget)
@@ -14048,9 +14048,9 @@ var (
 
 	Gtk_type_enum_find_value func(
 		enum_type GtkType,
-		value_name *Gchar) *GtkEnumValue
+		value_name string) *GtkEnumValue
 
 	Gtk_type_flags_find_value func(
 		flags_type GtkType,
-		value_name *Gchar) *GtkFlagValue
+		value_name string) *GtkFlagValue
 )

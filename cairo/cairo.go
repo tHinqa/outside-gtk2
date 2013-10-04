@@ -43,7 +43,7 @@ const (
 var (
 	Cairo_version func() int
 
-	Cairo_version_string func() *Char
+	Cairo_version_string func() string
 
 	Cairo_create func(
 		target *Cairo_surface_t) *Cairo_t
@@ -419,7 +419,7 @@ var (
 
 	Cairo_select_font_face func(
 		cr *Cairo_t,
-		family *Char,
+		family string,
 		slant Cairo_font_slant_t,
 		weight Cairo_font_weight_t)
 
@@ -459,7 +459,7 @@ var (
 
 	Cairo_show_text func(
 		cr *Cairo_t,
-		utf8 *Char)
+		utf8 string)
 
 	Cairo_show_glyphs func(
 		cr *Cairo_t,
@@ -468,7 +468,7 @@ var (
 
 	Cairo_show_text_glyphs func(
 		cr *Cairo_t,
-		utf8 *Char,
+		utf8 string,
 		utf8_len int,
 		glyphs *Cairo_glyph_t,
 		num_glyphs int,
@@ -478,7 +478,7 @@ var (
 
 	Cairo_text_path func(
 		cr *Cairo_t,
-		utf8 *Char)
+		utf8 string)
 
 	Cairo_glyph_path func(
 		cr *Cairo_t,
@@ -487,7 +487,7 @@ var (
 
 	Cairo_text_extents func(
 		cr *Cairo_t,
-		utf8 *Char,
+		utf8 string,
 		extents *Cairo_text_extents_t)
 
 	Cairo_glyph_extents func(
@@ -562,7 +562,7 @@ var (
 
 	Cairo_scaled_font_text_extents func(
 		scaled_font *Cairo_scaled_font_t,
-		utf8 *Char,
+		utf8 string,
 		extents *Cairo_text_extents_t)
 
 	Cairo_scaled_font_glyph_extents func(
@@ -575,7 +575,7 @@ var (
 		scaled_font *Cairo_scaled_font_t,
 		x Double,
 		y Double,
-		utf8 *Char,
+		utf8 string,
 		utf8_len int,
 		glyphs **Cairo_glyph_t,
 		num_glyphs *int,
@@ -603,12 +603,12 @@ var (
 		options *Cairo_font_options_t)
 
 	Cairo_toy_font_face_create func(
-		family *Char,
+		family string,
 		slant Cairo_font_slant_t,
 		weight Cairo_font_weight_t) *Cairo_font_face_t
 
 	Cairo_toy_font_face_get_family func(
-		font_face *Cairo_font_face_t) *Char
+		font_face *Cairo_font_face_t) string
 
 	Cairo_toy_font_face_get_slant func(
 		font_face *Cairo_font_face_t) Cairo_font_slant_t
@@ -716,7 +716,7 @@ var (
 		cr *Cairo_t) Cairo_status_t
 
 	Cairo_status_to_string func(
-		status Cairo_status_t) *Char
+		status Cairo_status_t) string
 
 	Cairo_device_reference func(
 		device *Cairo_device_t) *Cairo_device_t
@@ -794,7 +794,7 @@ var (
 
 	Cairo_surface_write_to_png func(
 		surface *Cairo_surface_t,
-		filename *Char) Cairo_status_t
+		filename string) Cairo_status_t
 
 	Cairo_surface_write_to_png_stream func(
 		surface *Cairo_surface_t,
@@ -813,13 +813,13 @@ var (
 
 	Cairo_surface_get_mime_data func(
 		surface *Cairo_surface_t,
-		mime_type *Char,
+		mime_type string,
 		data **Unsigned_char,
 		length *Unsigned_long)
 
 	Cairo_surface_set_mime_data func(
 		surface *Cairo_surface_t,
-		mime_type *Char,
+		mime_type string,
 		data *Unsigned_char,
 		length Unsigned_long,
 		destroy Cairo_destroy_func_t,
@@ -903,7 +903,7 @@ var (
 		surface *Cairo_surface_t) int
 
 	Cairo_image_surface_create_from_png func(
-		filename *Char) *Cairo_surface_t
+		filename string) *Cairo_surface_t
 
 	Cairo_image_surface_create_from_png_stream func(
 		read_func Cairo_read_func_t,
@@ -1268,7 +1268,7 @@ var (
 
 	Cairo_script_interpreter_run func(
 		ctx *Cairo_script_interpreter_t,
-		filename *Char) Cairo_status_t
+		filename string) Cairo_status_t
 
 	Cairo_script_interpreter_feed_stream func(
 		ctx *Cairo_script_interpreter_t,
@@ -1276,7 +1276,7 @@ var (
 
 	Cairo_script_interpreter_feed_string func(
 		ctx *Cairo_script_interpreter_t,
-		line *Char,
+		line string,
 		len int) Cairo_status_t
 
 	Cairo_script_interpreter_get_line_number func(
@@ -1314,7 +1314,7 @@ var (
 		pattern *FcPattern)
 
 	Cairo_pdf_surface_create func(
-		filename *Char,
+		filename string,
 		width_in_points Double,
 		height_in_points Double) *Cairo_surface_t
 
@@ -1333,7 +1333,7 @@ var (
 		num_versions *int)
 
 	Cairo_pdf_version_to_string func(
-		version Cairo_pdf_version_t) *Char
+		version Cairo_pdf_version_t) string
 
 	Cairo_pdf_surface_set_size func(
 		surface *Cairo_surface_t,
@@ -1341,7 +1341,7 @@ var (
 		height_in_points Double)
 
 	Cairo_ps_surface_create func(
-		filename *Char,
+		filename string,
 		width_in_points Double,
 		height_in_points Double) *Cairo_surface_t
 
@@ -1364,7 +1364,7 @@ var (
 
 	Cairo_ps_surface_set_eps func(
 		surface *Cairo_surface_t,
-		eps Cairo_bool_t) *Char
+		eps Cairo_bool_t) string
 
 	Cairo_ps_surface_get_eps func(
 		surface *Cairo_surface_t)
@@ -1376,7 +1376,7 @@ var (
 
 	Cairo_ps_surface_dsc_comment func(
 		surface *Cairo_surface_t,
-		comment *Char)
+		comment string)
 
 	Cairo_ps_surface_dsc_begin_setup func(
 		surface *Cairo_surface_t)
@@ -1385,7 +1385,7 @@ var (
 		surface *Cairo_surface_t)
 
 	Cairo_svg_surface_create func(
-		filename *Char,
+		filename string,
 		width_in_points Double,
 		height_in_points Double) *Cairo_surface_t
 
@@ -1404,7 +1404,7 @@ var (
 		num_versions *int)
 
 	Cairo_svg_version_to_string func(
-		version Cairo_svg_version_t) *Char
+		version Cairo_svg_version_t) string
 
 	Cairo_win32_surface_create func(
 		hdc HDC) *Cairo_surface_t

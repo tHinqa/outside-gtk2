@@ -87,7 +87,7 @@ type (
 
 	GtkSourceViewMarkTooltipFunc func(
 		mark *GtkSourceMark,
-		user_data Gpointer) *Gchar
+		user_data Gpointer) string
 
 	GtkSourceLanguage struct {
 		parent_instance GObject
@@ -164,20 +164,20 @@ var (
 	Gtk_source_language_get_type func() GType
 
 	Gtk_source_language_get_id func(
-		language *GtkSourceLanguage) *Gchar
+		language *GtkSourceLanguage) string
 
 	Gtk_source_language_get_name func(
-		language *GtkSourceLanguage) *Gchar
+		language *GtkSourceLanguage) string
 
 	Gtk_source_language_get_section func(
-		language *GtkSourceLanguage) *Gchar
+		language *GtkSourceLanguage) string
 
 	Gtk_source_language_get_hidden func(
 		language *GtkSourceLanguage) Gboolean
 
 	Gtk_source_language_get_metadata func(
 		language *GtkSourceLanguage,
-		name *Gchar) *Gchar
+		name string) string
 
 	Gtk_source_language_get_mime_types func(
 		language *GtkSourceLanguage) **Gchar
@@ -190,24 +190,24 @@ var (
 
 	Gtk_source_language_get_style_name func(
 		language *GtkSourceLanguage,
-		style_id *Gchar) *Gchar
+		style_id string) string
 
 	Gtk_source_mark_get_type func() GType
 
 	Gtk_source_mark_new func(
-		name *Gchar,
-		category *Gchar) *GtkSourceMark
+		name string,
+		category string) *GtkSourceMark
 
 	Gtk_source_mark_get_category func(
-		mark *GtkSourceMark) *Gchar
+		mark *GtkSourceMark) string
 
 	Gtk_source_mark_next func(
 		mark *GtkSourceMark,
-		category *Gchar) *GtkSourceMark
+		category string) *GtkSourceMark
 
 	Gtk_source_mark_prev func(
 		mark *GtkSourceMark,
-		category *Gchar) *GtkSourceMark
+		category string) *GtkSourceMark
 
 	Gtk_source_style_get_type func() GType
 
@@ -216,57 +216,24 @@ var (
 
 	Gtk_source_style_scheme_get_type func() GType
 
-	_gtk_source_style_scheme_new func(
-		id *Gchar,
-		name *Gchar) *GtkSourceStyleScheme
-
 	Gtk_source_style_scheme_get_id func(
-		scheme *GtkSourceStyleScheme) *Gchar
+		scheme *GtkSourceStyleScheme) string
 
 	Gtk_source_style_scheme_get_name func(
-		scheme *GtkSourceStyleScheme) *Gchar
+		scheme *GtkSourceStyleScheme) string
 
 	Gtk_source_style_scheme_get_description func(
-		scheme *GtkSourceStyleScheme) *Gchar
+		scheme *GtkSourceStyleScheme) string
 
 	Gtk_source_style_scheme_get_authors func(
 		scheme *GtkSourceStyleScheme) **Gchar
 
 	Gtk_source_style_scheme_get_filename func(
-		scheme *GtkSourceStyleScheme) *Gchar
+		scheme *GtkSourceStyleScheme) string
 
 	Gtk_source_style_scheme_get_style func(
 		scheme *GtkSourceStyleScheme,
-		style_id *Gchar) *GtkSourceStyle
-
-	_gtk_source_style_scheme_new_from_file func(
-		filename *Gchar) *GtkSourceStyleScheme
-
-	_gtk_source_style_scheme_get_default func() *GtkSourceStyleScheme
-
-	_gtk_source_style_scheme_get_parent_id func(
-		scheme *GtkSourceStyleScheme) *Gchar
-
-	_gtk_source_style_scheme_set_parent func(
-		scheme *GtkSourceStyleScheme,
-		parent_scheme *GtkSourceStyleScheme)
-
-	_gtk_source_style_scheme_apply func(
-		scheme *GtkSourceStyleScheme,
-		widget *GtkWidget)
-
-	_gtk_source_style_scheme_get_matching_brackets_style func(
-		scheme *GtkSourceStyleScheme) *GtkSourceStyle
-
-	_gtk_source_style_scheme_get_right_margin_style func(
-		scheme *GtkSourceStyleScheme) *GtkSourceStyle
-
-	_gtk_source_style_scheme_get_draw_spaces_style func(
-		scheme *GtkSourceStyleScheme) *GtkSourceStyle
-
-	_gtk_source_style_scheme_get_current_line_color func(
-		scheme *GtkSourceStyleScheme,
-		color *GdkColor) Gboolean
+		style_id string) *GtkSourceStyle
 
 	Gtk_source_undo_manager_get_type func() GType
 
@@ -362,40 +329,40 @@ var (
 
 	Gtk_source_buffer_create_source_mark func(
 		buffer *GtkSourceBuffer,
-		name *Gchar,
-		category *Gchar,
+		name string,
+		category string,
 		where *GtkTextIter) *GtkSourceMark
 
 	Gtk_source_buffer_forward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		category *Gchar) Gboolean
+		category string) Gboolean
 
 	Gtk_source_buffer_backward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		category *Gchar) Gboolean
+		category string) Gboolean
 
 	Gtk_source_buffer_get_source_marks_at_iter func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		category *Gchar) *GSList
+		category string) *GSList
 
 	Gtk_source_buffer_get_source_marks_at_line func(
 		buffer *GtkSourceBuffer,
 		line Gint,
-		category *Gchar) *GSList
+		category string) *GSList
 
 	Gtk_source_buffer_remove_source_marks func(
 		buffer *GtkSourceBuffer,
 		start *GtkTextIter,
 		end *GtkTextIter,
-		category *Gchar)
+		category string)
 
 	Gtk_source_buffer_iter_has_context_class func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		context_class *Gchar) Gboolean
+		context_class string) Gboolean
 
 	Gtk_source_buffer_get_context_classes_at_iter func(
 		buffer *GtkSourceBuffer,
@@ -404,12 +371,12 @@ var (
 	Gtk_source_buffer_iter_forward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		context_class *Gchar) Gboolean
+		context_class string) Gboolean
 
 	Gtk_source_buffer_iter_backward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
 		iter *GtkTextIter,
-		context_class *Gchar) Gboolean
+		context_class string) Gboolean
 
 	Gtk_source_buffer_get_undo_manager func(
 		buffer *GtkSourceBuffer) *GtkSourceUndoManager
@@ -417,25 +384,6 @@ var (
 	Gtk_source_buffer_set_undo_manager func(
 		buffer *GtkSourceBuffer,
 		manager *GtkSourceUndoManager)
-
-	_gtk_source_buffer_update_highlight func(
-		buffer *GtkSourceBuffer,
-		start *GtkTextIter,
-		end *GtkTextIter,
-		synchronous Gboolean)
-
-	_gtk_source_buffer_source_mark_next func(
-		buffer *GtkSourceBuffer,
-		mark *GtkSourceMark,
-		category *Gchar) *GtkSourceMark
-
-	_gtk_source_buffer_source_mark_prev func(
-		buffer *GtkSourceBuffer,
-		mark *GtkSourceMark,
-		category *Gchar) *GtkSourceMark
-
-	_gtk_source_buffer_get_bracket_match_tag func(
-		buffer *GtkSourceBuffer) *GtkTextTag
 
 	Gtk_source_completion_info_get_type func() GType
 
@@ -466,19 +414,19 @@ var (
 	Gtk_source_completion_proposal_get_type func() GType
 
 	Gtk_source_completion_proposal_get_label func(
-		proposal *GtkSourceCompletionProposal) *Gchar
+		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_get_markup func(
-		proposal *GtkSourceCompletionProposal) *Gchar
+		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_get_text func(
-		proposal *GtkSourceCompletionProposal) *Gchar
+		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_get_icon func(
 		proposal *GtkSourceCompletionProposal) *GdkPixbuf
 
 	Gtk_source_completion_proposal_get_info func(
-		proposal *GtkSourceCompletionProposal) *Gchar
+		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_changed func(
 		proposal *GtkSourceCompletionProposal)
@@ -505,17 +453,10 @@ var (
 	Gtk_source_completion_context_get_activation func(
 		context *GtkSourceCompletionContext) GtkSourceCompletionActivation
 
-	_gtk_source_completion_context_new func(
-		completion *GtkSourceCompletion,
-		position *GtkTextIter) *GtkSourceCompletionContext
-
-	_gtk_source_completion_context_cancel func(
-		context *GtkSourceCompletionContext)
-
 	Gtk_source_completion_provider_get_type func() GType
 
 	Gtk_source_completion_provider_get_name func(
-		provider *GtkSourceCompletionProvider) *Gchar
+		provider *GtkSourceCompletionProvider) string
 
 	Gtk_source_completion_provider_get_icon func(
 		provider *GtkSourceCompletionProvider) *GdkPixbuf
@@ -595,13 +536,6 @@ var (
 	Gtk_source_completion_move_window func(
 		completion *GtkSourceCompletion,
 		iter *GtkTextIter)
-
-	_gtk_source_completion_add_proposals func(
-		completion *GtkSourceCompletion,
-		context *GtkSourceCompletionContext,
-		provider *GtkSourceCompletionProvider,
-		proposals *GList,
-		finished Gboolean)
 
 	Gtk_source_completion_block_interactive func(
 		completion *GtkSourceCompletion)
@@ -724,60 +658,60 @@ var (
 
 	Gtk_source_view_set_mark_category_pixbuf func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		pixbuf *GdkPixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_pixbuf func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		pixbuf *GdkPixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_stock func(
 		view *GtkSourceView,
-		category *Gchar,
-		stock_id *Gchar)
+		category string,
+		stock_id string)
 
 	Gtk_source_view_set_mark_category_icon_from_icon_name func(
 		view *GtkSourceView,
-		category *Gchar,
-		name *Gchar)
+		category string,
+		name string)
 
 	Gtk_source_view_get_mark_category_pixbuf func(
 		view *GtkSourceView,
-		category *Gchar) *GdkPixbuf
+		category string) *GdkPixbuf
 
 	Gtk_source_view_set_mark_category_background func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		color *GdkColor)
 
 	Gtk_source_view_get_mark_category_background func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		dest *GdkColor) Gboolean
 
 	Gtk_source_view_set_mark_category_tooltip_func func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		f GtkSourceViewMarkTooltipFunc,
 		user_data Gpointer,
 		user_data_notify GDestroyNotify)
 
 	Gtk_source_view_set_mark_category_tooltip_markup_func func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		markup_func GtkSourceViewMarkTooltipFunc,
 		user_data Gpointer,
 		user_data_notify GDestroyNotify)
 
 	Gtk_source_view_set_mark_category_priority func(
 		view *GtkSourceView,
-		category *Gchar,
+		category string,
 		priority Gint)
 
 	Gtk_source_view_get_mark_category_priority func(
 		view *GtkSourceView,
-		category *Gchar) Gint
+		category string) Gint
 
 	Gtk_source_view_set_smart_home_end func(
 		view *GtkSourceView,
@@ -803,22 +737,22 @@ var (
 	Gtk_source_completion_item_get_type func() GType
 
 	Gtk_source_completion_item_new func(
-		label *Gchar,
-		text *Gchar,
+		label string,
+		text string,
 		icon *GdkPixbuf,
-		info *Gchar) *GtkSourceCompletionItem
+		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_with_markup func(
-		markup *Gchar,
-		text *Gchar,
+		markup string,
+		text string,
 		icon *GdkPixbuf,
-		info *Gchar) *GtkSourceCompletionItem
+		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_from_stock func(
-		label *Gchar,
-		text *Gchar,
-		stock *Gchar,
-		info *Gchar) *GtkSourceCompletionItem
+		label string,
+		text string,
+		stock string,
+		info string) *GtkSourceCompletionItem
 
 	Gtk_source_search_flags_get_type func() GType
 
@@ -835,7 +769,7 @@ var (
 	Gtk_source_completion_words_get_type func() GType
 
 	Gtk_source_completion_words_new func(
-		name *Gchar,
+		name string,
 		icon *GdkPixbuf) *GtkSourceCompletionWords
 
 	Gtk_source_completion_words_register func(
@@ -848,7 +782,7 @@ var (
 
 	Gtk_source_iter_forward_search func(
 		iter *GtkTextIter,
-		str *Gchar,
+		str string,
 		flags GtkSourceSearchFlags,
 		match_start *GtkTextIter,
 		match_end *GtkTextIter,
@@ -856,7 +790,7 @@ var (
 
 	Gtk_source_iter_backward_search func(
 		iter *GtkTextIter,
-		str *Gchar,
+		str string,
 		flags GtkSourceSearchFlags,
 		match_start *GtkTextIter,
 		match_end *GtkTextIter,
@@ -880,12 +814,12 @@ var (
 
 	Gtk_source_language_manager_get_language func(
 		lm *GtkSourceLanguageManager,
-		id *Gchar) *GtkSourceLanguage
+		id string) *GtkSourceLanguage
 
 	Gtk_source_language_manager_guess_language func(
 		lm *GtkSourceLanguageManager,
-		filename *Gchar,
-		content_type *Gchar) *GtkSourceLanguage
+		filename string,
+		content_type string) *GtkSourceLanguage
 
 	Gtk_source_print_compositor_get_type func() GType
 
@@ -928,31 +862,31 @@ var (
 
 	Gtk_source_print_compositor_set_body_font_name func(
 		compositor *GtkSourcePrintCompositor,
-		font_name *Gchar)
+		font_name string)
 
 	Gtk_source_print_compositor_get_body_font_name func(
-		compositor *GtkSourcePrintCompositor) *Gchar
+		compositor *GtkSourcePrintCompositor) string
 
 	Gtk_source_print_compositor_set_line_numbers_font_name func(
 		compositor *GtkSourcePrintCompositor,
-		font_name *Gchar)
+		font_name string)
 
 	Gtk_source_print_compositor_get_line_numbers_font_name func(
-		compositor *GtkSourcePrintCompositor) *Gchar
+		compositor *GtkSourcePrintCompositor) string
 
 	Gtk_source_print_compositor_set_header_font_name func(
 		compositor *GtkSourcePrintCompositor,
-		font_name *Gchar)
+		font_name string)
 
 	Gtk_source_print_compositor_get_header_font_name func(
-		compositor *GtkSourcePrintCompositor) *Gchar
+		compositor *GtkSourcePrintCompositor) string
 
 	Gtk_source_print_compositor_set_footer_font_name func(
 		compositor *GtkSourcePrintCompositor,
-		font_name *Gchar)
+		font_name string)
 
 	Gtk_source_print_compositor_get_footer_font_name func(
-		compositor *GtkSourcePrintCompositor) *Gchar
+		compositor *GtkSourcePrintCompositor) string
 
 	Gtk_source_print_compositor_get_top_margin func(
 		compositor *GtkSourcePrintCompositor,
@@ -1007,16 +941,16 @@ var (
 	Gtk_source_print_compositor_set_header_format func(
 		compositor *GtkSourcePrintCompositor,
 		separator Gboolean,
-		left *Gchar,
-		center *Gchar,
-		right *Gchar)
+		left string,
+		center string,
+		right string)
 
 	Gtk_source_print_compositor_set_footer_format func(
 		compositor *GtkSourcePrintCompositor,
 		separator Gboolean,
-		left *Gchar,
-		center *Gchar,
-		right *Gchar)
+		left string,
+		center string,
+		right string)
 
 	Gtk_source_print_compositor_get_n_pages func(
 		compositor *GtkSourcePrintCompositor) Gint
@@ -1045,11 +979,11 @@ var (
 
 	Gtk_source_style_scheme_manager_append_search_path func(
 		manager *GtkSourceStyleSchemeManager,
-		path *Gchar)
+		path string)
 
 	Gtk_source_style_scheme_manager_prepend_search_path func(
 		manager *GtkSourceStyleSchemeManager,
-		path *Gchar)
+		path string)
 
 	Gtk_source_style_scheme_manager_get_search_path func(
 		manager *GtkSourceStyleSchemeManager) **Gchar
@@ -1062,7 +996,7 @@ var (
 
 	Gtk_source_style_scheme_manager_get_scheme func(
 		manager *GtkSourceStyleSchemeManager,
-		scheme_id *Gchar) *GtkSourceStyleScheme
+		scheme_id string) *GtkSourceStyleScheme
 )
 
 var dll = "libgtksourceview-2.0-0.dll"
@@ -1126,25 +1060,25 @@ var apiList = outside.Apis{
 	{"gtk_source_completion_item_new", &Gtk_source_completion_item_new},
 	{"gtk_source_completion_item_new_from_stock", &Gtk_source_completion_item_new_from_stock},
 	{"gtk_source_completion_item_new_with_markup", &Gtk_source_completion_item_new_with_markup},
-	// {"gtk_source_completion_model_append", &Gtk_source_completion_model_append},
-	// {"gtk_source_completion_model_begin", &Gtk_source_completion_model_begin},
-	// {"gtk_source_completion_model_cancel", &Gtk_source_completion_model_cancel},
-	// {"gtk_source_completion_model_clear", &Gtk_source_completion_model_clear},
-	// {"gtk_source_completion_model_end", &Gtk_source_completion_model_end},
-	// {"gtk_source_completion_model_get_providers", &Gtk_source_completion_model_get_providers},
-	// {"gtk_source_completion_model_get_type", &Gtk_source_completion_model_get_type},
-	// {"gtk_source_completion_model_get_visible_providers", &Gtk_source_completion_model_get_visible_providers},
-	// {"gtk_source_completion_model_is_empty", &Gtk_source_completion_model_is_empty},
-	// {"gtk_source_completion_model_iter_equal", &Gtk_source_completion_model_iter_equal},
-	// {"gtk_source_completion_model_iter_is_header", &Gtk_source_completion_model_iter_is_header},
-	// {"gtk_source_completion_model_iter_last", &Gtk_source_completion_model_iter_last},
-	// {"gtk_source_completion_model_iter_previous", &Gtk_source_completion_model_iter_previous},
-	// {"gtk_source_completion_model_n_proposals", &Gtk_source_completion_model_n_proposals},
-	// {"gtk_source_completion_model_new", &Gtk_source_completion_model_new},
-	// {"gtk_source_completion_model_set_show_headers", &Gtk_source_completion_model_set_show_headers},
-	// {"gtk_source_completion_model_set_visible_providers", &Gtk_source_completion_model_set_visible_providers},
+	// Undocumented {"gtk_source_completion_model_append", &Gtk_source_completion_model_append},
+	// Undocumented {"gtk_source_completion_model_begin", &Gtk_source_completion_model_begin},
+	// Undocumented {"gtk_source_completion_model_cancel", &Gtk_source_completion_model_cancel},
+	// Undocumented {"gtk_source_completion_model_clear", &Gtk_source_completion_model_clear},
+	// Undocumented {"gtk_source_completion_model_end", &Gtk_source_completion_model_end},
+	// Undocumented {"gtk_source_completion_model_get_providers", &Gtk_source_completion_model_get_providers},
+	// Undocumented {"gtk_source_completion_model_get_type", &Gtk_source_completion_model_get_type},
+	// Undocumented {"gtk_source_completion_model_get_visible_providers", &Gtk_source_completion_model_get_visible_providers},
+	// Undocumented {"gtk_source_completion_model_is_empty", &Gtk_source_completion_model_is_empty},
+	// Undocumented {"gtk_source_completion_model_iter_equal", &Gtk_source_completion_model_iter_equal},
+	// Undocumented {"gtk_source_completion_model_iter_is_header", &Gtk_source_completion_model_iter_is_header},
+	// Undocumented {"gtk_source_completion_model_iter_last", &Gtk_source_completion_model_iter_last},
+	// Undocumented {"gtk_source_completion_model_iter_previous", &Gtk_source_completion_model_iter_previous},
+	// Undocumented {"gtk_source_completion_model_n_proposals", &Gtk_source_completion_model_n_proposals},
+	// Undocumented {"gtk_source_completion_model_new", &Gtk_source_completion_model_new},
+	// Undocumented {"gtk_source_completion_model_set_show_headers", &Gtk_source_completion_model_set_show_headers},
+	// Undocumented {"gtk_source_completion_model_set_visible_providers", &Gtk_source_completion_model_set_visible_providers},
 	{"gtk_source_completion_move_window", &Gtk_source_completion_move_window},
-	// {"gtk_source_completion_new", &Gtk_source_completion_new},
+	// Undocumented {"gtk_source_completion_new", &Gtk_source_completion_new},
 	{"gtk_source_completion_proposal_changed", &Gtk_source_completion_proposal_changed},
 	{"gtk_source_completion_proposal_equal", &Gtk_source_completion_proposal_equal},
 	{"gtk_source_completion_proposal_get_icon", &Gtk_source_completion_proposal_get_icon},
@@ -1169,48 +1103,48 @@ var apiList = outside.Apis{
 	{"gtk_source_completion_remove_provider", &Gtk_source_completion_remove_provider},
 	{"gtk_source_completion_show", &Gtk_source_completion_show},
 	{"gtk_source_completion_unblock_interactive", &Gtk_source_completion_unblock_interactive},
-	// {"gtk_source_completion_utils_get_word", &Gtk_source_completion_utils_get_word},
-	// {"gtk_source_completion_utils_get_word_iter", &Gtk_source_completion_utils_get_word_iter},
-	// {"gtk_source_completion_utils_is_separator", &Gtk_source_completion_utils_is_separator},
-	// {"gtk_source_completion_utils_move_to_cursor", &Gtk_source_completion_utils_move_to_cursor},
-	// {"gtk_source_completion_utils_move_to_iter", &Gtk_source_completion_utils_move_to_iter},
-	// {"gtk_source_completion_utils_replace_current_word", &Gtk_source_completion_utils_replace_current_word},
-	// {"gtk_source_completion_utils_replace_word", &Gtk_source_completion_utils_replace_word},
-	// {"gtk_source_completion_words_buffer_get_buffer", &Gtk_source_completion_words_buffer_get_buffer},
-	// {"gtk_source_completion_words_buffer_get_mark", &Gtk_source_completion_words_buffer_get_mark},
-	// {"gtk_source_completion_words_buffer_get_type", &Gtk_source_completion_words_buffer_get_type},
-	// {"gtk_source_completion_words_buffer_new", &Gtk_source_completion_words_buffer_new},
-	// {"gtk_source_completion_words_buffer_set_minimum_word_size", &Gtk_source_completion_words_buffer_set_minimum_word_size},
-	// {"gtk_source_completion_words_buffer_set_scan_batch_size", &Gtk_source_completion_words_buffer_set_scan_batch_size},
+	// Undocumented {"gtk_source_completion_utils_get_word", &Gtk_source_completion_utils_get_word},
+	// Undocumented {"gtk_source_completion_utils_get_word_iter", &Gtk_source_completion_utils_get_word_iter},
+	// Undocumented {"gtk_source_completion_utils_is_separator", &Gtk_source_completion_utils_is_separator},
+	// Undocumented {"gtk_source_completion_utils_move_to_cursor", &Gtk_source_completion_utils_move_to_cursor},
+	// Undocumented {"gtk_source_completion_utils_move_to_iter", &Gtk_source_completion_utils_move_to_iter},
+	// Undocumented {"gtk_source_completion_utils_replace_current_word", &Gtk_source_completion_utils_replace_current_word},
+	// Undocumented {"gtk_source_completion_utils_replace_word", &Gtk_source_completion_utils_replace_word},
+	// Undocumented {"gtk_source_completion_words_buffer_get_buffer", &Gtk_source_completion_words_buffer_get_buffer},
+	// Undocumented {"gtk_source_completion_words_buffer_get_mark", &Gtk_source_completion_words_buffer_get_mark},
+	// Undocumented {"gtk_source_completion_words_buffer_get_type", &Gtk_source_completion_words_buffer_get_type},
+	// Undocumented{"gtk_source_completion_words_buffer_new", &Gtk_source_completion_words_buffer_new},
+	// Undocumented{"gtk_source_completion_words_buffer_set_minimum_word_size", &Gtk_source_completion_words_buffer_set_minimum_word_size},
+	// Undocumented{"gtk_source_completion_words_buffer_set_scan_batch_size", &Gtk_source_completion_words_buffer_set_scan_batch_size},
 	{"gtk_source_completion_words_get_type", &Gtk_source_completion_words_get_type},
-	// {"gtk_source_completion_words_library_add_word", &Gtk_source_completion_words_library_add_word},
-	// {"gtk_source_completion_words_library_find", &Gtk_source_completion_words_library_find},
-	// {"gtk_source_completion_words_library_find_first", &Gtk_source_completion_words_library_find_first},
-	// {"gtk_source_completion_words_library_find_next", &Gtk_source_completion_words_library_find_next},
-	// {"gtk_source_completion_words_library_get_proposal", &Gtk_source_completion_words_library_get_proposal},
-	// {"gtk_source_completion_words_library_get_type", &Gtk_source_completion_words_library_get_type},
-	// {"gtk_source_completion_words_library_is_locked", &Gtk_source_completion_words_library_is_locked},
-	// {"gtk_source_completion_words_library_lock", &Gtk_source_completion_words_library_lock},
-	// {"gtk_source_completion_words_library_new", &Gtk_source_completion_words_library_new},
-	// {"gtk_source_completion_words_library_remove_word", &Gtk_source_completion_words_library_remove_word},
-	// {"gtk_source_completion_words_library_unlock", &Gtk_source_completion_words_library_unlock},
+	// Undocumented {"gtk_source_completion_words_library_add_word", &Gtk_source_completion_words_library_add_word},
+	// Undocumented {"gtk_source_completion_words_library_find", &Gtk_source_completion_words_library_find},
+	// Undocumented {"gtk_source_completion_words_library_find_first", &Gtk_source_completion_words_library_find_first},
+	// Undocumented {"gtk_source_completion_words_library_find_next", &Gtk_source_completion_words_library_find_next},
+	// Undocumented {"gtk_source_completion_words_library_get_proposal", &Gtk_source_completion_words_library_get_proposal},
+	// Undocumented {"gtk_source_completion_words_library_get_type", &Gtk_source_completion_words_library_get_type},
+	// Undocumented {"gtk_source_completion_words_library_is_locked", &Gtk_source_completion_words_library_is_locked},
+	// Undocumented {"gtk_source_completion_words_library_lock", &Gtk_source_completion_words_library_lock},
+	// Undocumented {"gtk_source_completion_words_library_new", &Gtk_source_completion_words_library_new},
+	// Undocumented {"gtk_source_completion_words_library_remove_word", &Gtk_source_completion_words_library_remove_word},
+	// Undocumented {"gtk_source_completion_words_library_unlock", &Gtk_source_completion_words_library_unlock},
 	{"gtk_source_completion_words_new", &Gtk_source_completion_words_new},
-	// {"gtk_source_completion_words_proposal_get_type", &Gtk_source_completion_words_proposal_get_type},
-	// {"gtk_source_completion_words_proposal_get_word", &Gtk_source_completion_words_proposal_get_word},
-	// {"gtk_source_completion_words_proposal_new", &Gtk_source_completion_words_proposal_new},
-	// {"gtk_source_completion_words_proposal_unuse", &Gtk_source_completion_words_proposal_unuse},
-	// {"gtk_source_completion_words_proposal_use", &Gtk_source_completion_words_proposal_use},
+	// Undocumented {"gtk_source_completion_words_proposal_get_type", &Gtk_source_completion_words_proposal_get_type},
+	// Undocumented {"gtk_source_completion_words_proposal_get_word", &Gtk_source_completion_words_proposal_get_word},
+	// Undocumented {"gtk_source_completion_words_proposal_new", &Gtk_source_completion_words_proposal_new},
+	// Undocumented {"gtk_source_completion_words_proposal_unuse", &Gtk_source_completion_words_proposal_unuse},
+	// Undocumented {"gtk_source_completion_words_proposal_use", &Gtk_source_completion_words_proposal_use},
 	{"gtk_source_completion_words_register", &Gtk_source_completion_words_register},
 	{"gtk_source_completion_words_unregister", &Gtk_source_completion_words_unregister},
-	// {"gtk_source_completion_words_utils_backward_word_start", &Gtk_source_completion_words_utils_backward_word_start},
-	// {"gtk_source_completion_words_utils_forward_word_end", &Gtk_source_completion_words_utils_forward_word_end},
-	// {"gtk_source_context_class_free", &Gtk_source_context_class_free},
-	// {"gtk_source_context_class_new", &Gtk_source_context_class_new},
+	// Undocumented {"gtk_source_completion_words_utils_backward_word_start", &Gtk_source_completion_words_utils_backward_word_start},
+	// Undocumented {"gtk_source_completion_words_utils_forward_word_end", &Gtk_source_completion_words_utils_forward_word_end},
+	// Undocumented {"gtk_source_context_class_free", &Gtk_source_context_class_free},
+	// Undocumented {"gtk_source_context_class_new", &Gtk_source_context_class_new},
 	{"gtk_source_draw_spaces_flags_get_type", &Gtk_source_draw_spaces_flags_get_type},
 	{"gtk_source_gutter_get_type", &Gtk_source_gutter_get_type},
 	{"gtk_source_gutter_get_window", &Gtk_source_gutter_get_window},
 	{"gtk_source_gutter_insert", &Gtk_source_gutter_insert},
-	// {"gtk_source_gutter_new", &Gtk_source_gutter_new},
+	// Undocumented {"gtk_source_gutter_new", &Gtk_source_gutter_new},
 	{"gtk_source_gutter_queue_draw", &Gtk_source_gutter_queue_draw},
 	{"gtk_source_gutter_remove", &Gtk_source_gutter_remove},
 	{"gtk_source_gutter_reorder", &Gtk_source_gutter_reorder},
@@ -1305,8 +1239,8 @@ var apiList = outside.Apis{
 	{"gtk_source_undo_manager_can_redo_changed", &Gtk_source_undo_manager_can_redo_changed},
 	{"gtk_source_undo_manager_can_undo", &Gtk_source_undo_manager_can_undo},
 	{"gtk_source_undo_manager_can_undo_changed", &Gtk_source_undo_manager_can_undo_changed},
-	// {"gtk_source_undo_manager_default_get_type", &Gtk_source_undo_manager_default_get_type},
-	// {"gtk_source_undo_manager_default_set_max_undo_levels", &Gtk_source_undo_manager_default_set_max_undo_levels},
+	// Undocumented {"gtk_source_undo_manager_default_get_type", &Gtk_source_undo_manager_default_get_type},
+	// Undocumented {"gtk_source_undo_manager_default_set_max_undo_levels", &Gtk_source_undo_manager_default_set_max_undo_levels},
 	{"gtk_source_undo_manager_end_not_undoable_action", &Gtk_source_undo_manager_end_not_undoable_action},
 	{"gtk_source_undo_manager_get_type", &Gtk_source_undo_manager_get_type},
 	{"gtk_source_undo_manager_redo", &Gtk_source_undo_manager_redo},

@@ -1382,7 +1382,7 @@ var (
 		name_used **Gchar,
 		e **GError) Gint
 
-	G_format_size_for_display func(size Goffset) *Char
+	G_format_size_for_display func(size Goffset) string
 
 	G_build_path func(separator string, first_element string,
 		v ...VArg) string
@@ -1806,12 +1806,12 @@ var (
 	G_source_is_destroyed func(source *GSource) Gboolean
 
 	G_source_set_name func(source *GSource,
-		name *Char)
+		name string)
 
-	G_source_get_name func(source *GSource) *Char
+	G_source_get_name func(source *GSource) string
 
 	G_source_set_name_by_id func(tag Guint,
-		name *Char)
+		name string)
 
 	G_source_set_callback_indirect func(source *GSource,
 		callback_data Gpointer,
@@ -2189,8 +2189,8 @@ var (
 		format string, v ...VArg)
 
 	G_string_append_uri_escaped func(str *GString,
-		unescaped *Char,
-		reserved_chars_allowed *Char,
+		unescaped string,
+		reserved_chars_allowed string,
 		allow_utf8 Gboolean) *GString
 
 	G_io_channel_init func(channel *GIOChannel)
@@ -2612,9 +2612,9 @@ var (
 	G_markup_escape_text func(text string,
 		length Gssize) string
 
-	G_markup_printf_escaped func(format *Char, v ...VArg) string
+	G_markup_printf_escaped func(format string, v ...VArg) string
 
-	G_markup_vprintf_escaped func(format *Char,
+	G_markup_vprintf_escaped func(format string,
 		args Va_list) string
 
 	G_log_set_handler func(log_domain string,
@@ -2646,21 +2646,21 @@ var (
 
 	G_log_set_always_fatal func(fatal_mask GLogLevelFlags) GLogLevelFlags
 
-	G_return_if_fail_warning func(log_domain *Char,
-		pretty_function *Char,
-		expression *Char)
+	G_return_if_fail_warning func(log_domain string,
+		pretty_function string,
+		expression string)
 
-	G_warn_message func(domain *Char,
-		file *Char,
+	G_warn_message func(domain string,
+		file string,
 		line int,
-		f *Char,
-		warnexpr *Char)
+		f string,
+		warnexpr string)
 
-	G_assert_warning func(log_domain *Char,
-		file *Char,
+	G_assert_warning func(log_domain string,
+		file string,
 		line int,
-		pretty_function *Char,
-		expression *Char)
+		pretty_function string,
+		expression string)
 
 	G_print func(format string, v ...VArg)
 
@@ -3558,7 +3558,7 @@ var (
 	G_strv_length func(str_array **Gchar) Guint
 
 	G_stpcpy func(dest string,
-		src *Char) string
+		src string) string
 
 	G_strip_context func(msgid string,
 		msgval string) string
@@ -3583,31 +3583,31 @@ var (
 		context string,
 		msgid string) string
 
-	G_strcmp0 func(str1 *Char,
-		str2 *Char) int
+	G_strcmp0 func(str1 string,
+		str2 string) int
 
 	G_test_minimized_result func(minimized_quantity Double,
-		format *Char, v ...VArg)
+		format string, v ...VArg)
 
 	G_test_maximized_result func(maximized_quantity Double,
-		format *Char, v ...VArg)
+		format string, v ...VArg)
 
 	G_test_init func(argc *int, argv ***Char, v ...VArg)
 
 	G_test_run func() int
 
-	G_test_add_func func(testpath *Char,
+	G_test_add_func func(testpath string,
 		test_func GTestFunc)
 
-	G_test_add_data_func func(testpath *Char,
+	G_test_add_data_func func(testpath string,
 		test_data Gconstpointer,
 		test_func GTestDataFunc)
 
-	G_test_message func(format *Char, v ...VArg)
+	G_test_message func(format string, v ...VArg)
 
-	G_test_bug_base func(uri_pattern *Char)
+	G_test_bug_base func(uri_pattern string)
 
-	G_test_bug func(bug_uri_snippet *Char)
+	G_test_bug func(bug_uri_snippet string)
 
 	G_test_timer_start func()
 
@@ -3637,14 +3637,14 @@ var (
 	G_test_rand_double_range func(range_start Double,
 		range_end Double) Double
 
-	G_test_create_case func(test_name *Char,
+	G_test_create_case func(test_name string,
 		data_size Gsize,
 		test_data Gconstpointer,
 		data_setup GTestFixtureFunc,
 		data_test GTestFixtureFunc,
 		data_teardown GTestFixtureFunc) *GTestCase
 
-	G_test_create_suite func(suite_name *Char) *GTestSuite
+	G_test_create_suite func(suite_name string) *GTestSuite
 
 	G_test_get_root func() *GTestSuite
 
@@ -3656,61 +3656,61 @@ var (
 
 	G_test_run_suite func(suite *GTestSuite) int
 
-	G_test_trap_assertions func(domain *Char,
-		file *Char,
+	G_test_trap_assertions func(domain string,
+		file string,
 		line int,
-		f *Char,
+		f string,
 		assertion_flags Guint64,
-		pattern *Char)
+		pattern string)
 
-	G_assertion_message func(domain *Char,
-		file *Char,
+	G_assertion_message func(domain string,
+		file string,
 		line int,
-		f *Char,
-		message *Char)
+		f string,
+		message string)
 
-	G_assertion_message_expr func(domain *Char,
-		file *Char,
+	G_assertion_message_expr func(domain string,
+		file string,
 		line int,
-		f *Char,
-		expr *Char)
+		f string,
+		expr string)
 
-	G_assertion_message_cmpstr func(domain *Char,
-		file *Char,
+	G_assertion_message_cmpstr func(domain string,
+		file string,
 		line int,
-		f *Char,
-		expr *Char,
-		arg1 *Char,
-		cmp *Char,
-		arg2 *Char)
+		f string,
+		expr string,
+		arg1 string,
+		cmp string,
+		arg2 string)
 
-	G_assertion_message_cmpnum func(domain *Char,
-		file *Char,
+	G_assertion_message_cmpnum func(domain string,
+		file string,
 		line int,
-		f *Char,
-		expr *Char,
+		f string,
+		expr string,
 		arg1 Long_double,
-		cmp *Char,
+		cmp string,
 		arg2 Long_double,
 		numtype Char)
 
-	G_assertion_message_error func(domain *Char,
-		file *Char,
+	G_assertion_message_error func(domain string,
+		file string,
 		line int,
-		f *Char,
-		expr *Char,
+		f string,
+		expr string,
 		e *GError,
 		error_domain GQuark,
 		error_code int)
 
-	G_test_add_vtable func(testpath *Char,
+	G_test_add_vtable func(testpath string,
 		data_size Gsize,
 		test_data Gconstpointer,
 		data_setup GTestFixtureFunc,
 		data_test GTestFixtureFunc,
 		data_teardown GTestFixtureFunc)
 
-	G_test_log_type_name func(log_type GTestLogType) *Char
+	G_test_log_type_name func(log_type GTestLogType) string
 
 	G_test_log_buffer_new func() *GTestLogBuffer
 
@@ -3847,18 +3847,18 @@ var (
 
 	G_tree_nnodes func(tree *GTree) Gint
 
-	G_uri_unescape_string func(escaped_string *Char,
-		illegal_characters *Char) *Char
+	G_uri_unescape_string func(escaped_string string,
+		illegal_characters string) string
 
-	G_uri_unescape_segment func(escaped_string *Char,
-		escaped_string_end *Char,
-		illegal_characters *Char) *Char
+	G_uri_unescape_segment func(escaped_string string,
+		escaped_string_end string,
+		illegal_characters string) string
 
-	G_uri_parse_scheme func(uri *Char) *Char
+	G_uri_parse_scheme func(uri string) string
 
-	G_uri_escape_string func(unescaped *Char,
-		reserved_chars_allowed *Char,
-		allow_utf8 Gboolean) *Char
+	G_uri_escape_string func(unescaped string,
+		reserved_chars_allowed string,
+		allow_utf8 Gboolean) string
 
 	G_variant_type_string_is_valid func(
 		type_string string) Gboolean
@@ -5788,4 +5788,4 @@ var dataList = Data{
 // {"glib_mem_profiler_table", new(glib_mem_profiler_table)},
 // {"glib_micro_version", new(glib_micro_version)},
 // {"glib_minor_version", new(glib_minor_version)},
-)}
+}

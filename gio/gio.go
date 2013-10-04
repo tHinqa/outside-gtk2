@@ -1,20 +1,20 @@
 package gio
 
 import (
-	"github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
-	outside.AddDllApis(dll, false, apiList)
+	AddDllApis(dll, false, apiList)
 }
 
 var (
 	G_app_info_get_type func() GType
 
 	G_app_info_create_from_commandline func(
-		commandline *Char,
-		application_name *Char,
+		commandline string,
+		application_name string,
 		flags GAppInfoCreateFlags,
 		err **GError) *GAppInfo
 
@@ -23,17 +23,17 @@ var (
 	G_app_info_equal func(
 		appinfo1 *GAppInfo, appinfo2 *GAppInfo) Gboolean
 
-	G_app_info_get_id func(appinfo *GAppInfo) *Char
+	G_app_info_get_id func(appinfo *GAppInfo) string
 
-	G_app_info_get_name func(appinfo *GAppInfo) *Char
+	G_app_info_get_name func(appinfo *GAppInfo) string
 
-	G_app_info_get_display_name func(appinfo *GAppInfo) *Char
+	G_app_info_get_display_name func(appinfo *GAppInfo) string
 
-	G_app_info_get_description func(appinfo *GAppInfo) *Char
+	G_app_info_get_description func(appinfo *GAppInfo) string
 
-	G_app_info_get_executable func(appinfo *GAppInfo) *Char
+	G_app_info_get_executable func(appinfo *GAppInfo) string
 
-	G_app_info_get_commandline func(appinfo *GAppInfo) *Char
+	G_app_info_get_commandline func(appinfo *GAppInfo) string
 
 	G_app_info_get_icon func(appinfo *GAppInfo) *GIcon
 
@@ -57,17 +57,17 @@ var (
 
 	G_app_info_set_as_default_for_type func(
 		appinfo *GAppInfo,
-		content_type *Char,
+		content_type string,
 		err **GError) Gboolean
 
 	G_app_info_set_as_default_for_extension func(
 		appinfo *GAppInfo,
-		extension *Char,
+		extension string,
 		err **GError) Gboolean
 
 	G_app_info_add_supports_type func(
 		appinfo *GAppInfo,
-		content_type *Char,
+		content_type string,
 		err **GError) Gboolean
 
 	G_app_info_can_remove_supports_type func(
@@ -75,7 +75,7 @@ var (
 
 	G_app_info_remove_supports_type func(
 		appinfo *GAppInfo,
-		content_type *Char,
+		content_type string,
 		err **GError) Gboolean
 
 	G_app_info_can_delete func(appinfo *GAppInfo) Gboolean
@@ -84,30 +84,30 @@ var (
 
 	G_app_info_set_as_last_used_for_type func(
 		appinfo *GAppInfo,
-		content_type *Char,
+		content_type string,
 		err **GError) Gboolean
 
 	G_app_info_get_all func() *GList
 
-	G_app_info_get_all_for_type func(content_type *Char) *GList
+	G_app_info_get_all_for_type func(content_type string) *GList
 
 	G_app_info_get_recommended_for_type func(
-		content_type *Gchar) *GList
+		content_type string) *GList
 
 	G_app_info_get_fallback_for_type func(
-		content_type *Gchar) *GList
+		content_type string) *GList
 
-	G_app_info_reset_type_associations func(content_type *Char)
+	G_app_info_reset_type_associations func(content_type string)
 
 	G_app_info_get_default_for_type func(
-		content_type *Char,
+		content_type string,
 		must_support_uris Gboolean) *GAppInfo
 
 	G_app_info_get_default_for_uri_scheme func(
-		uri_scheme *Char) *GAppInfo
+		uri_scheme string) *GAppInfo
 
 	G_app_info_launch_default_for_uri func(
-		uri *Char,
+		uri string,
 		launch_context *GAppLaunchContext,
 		err **GError) Gboolean
 
@@ -118,20 +118,20 @@ var (
 	G_app_launch_context_get_display func(
 		context *GAppLaunchContext,
 		info *GAppInfo,
-		files *GList) *Char
+		files *GList) string
 
 	G_app_launch_context_get_startup_notify_id func(
 		context *GAppLaunchContext,
 		info *GAppInfo,
-		files *GList) *Char
+		files *GList) string
 
 	G_app_launch_context_launch_failed func(
 		context *GAppLaunchContext,
-		startup_notify_id *Char)
+		startup_notify_id string)
 
 	G_action_get_type func() GType
 
-	G_action_get_name func(action *GAction) *Gchar
+	G_action_get_name func(action *GAction) string
 
 	G_action_get_parameter_type func(action *GAction) *GVariantType
 
@@ -150,10 +150,10 @@ var (
 	G_simple_action_get_type func() GType
 
 	G_simple_action_new func(
-		name *Gchar, parameter_type *GVariantType) *GSimpleAction
+		name string, parameter_type *GVariantType) *GSimpleAction
 
 	G_simple_action_new_stateful func(
-		name *Gchar,
+		name string,
 		parameter_type *GVariantType,
 		state *GVariant) *GSimpleAction
 
@@ -165,57 +165,57 @@ var (
 
 	G_action_group_has_action func(
 		action_group *GActionGroup,
-		action_name *Gchar) Gboolean
+		action_name string) Gboolean
 
 	G_action_group_list_actions func(
 		action_group *GActionGroup) **Gchar
 
 	G_action_group_get_action_parameter_type func(
 		action_group *GActionGroup,
-		action_name *Gchar) *GVariantType
+		action_name string) *GVariantType
 
 	G_action_group_get_action_state_type func(
 		action_group *GActionGroup,
-		action_name *Gchar) *GVariantType
+		action_name string) *GVariantType
 
 	G_action_group_get_action_state_hint func(
 		action_group *GActionGroup,
-		action_name *Gchar) *GVariant
+		action_name string) *GVariant
 
 	G_action_group_get_action_enabled func(
 		action_group *GActionGroup,
-		action_name *Gchar) Gboolean
+		action_name string) Gboolean
 
 	G_action_group_get_action_state func(
 		action_group *GActionGroup,
-		action_name *Gchar) *GVariant
+		action_name string) *GVariant
 
 	G_action_group_change_action_state func(
 		action_group *GActionGroup,
-		action_name *Gchar,
+		action_name string,
 		value *GVariant)
 
 	G_action_group_activate_action func(
 		action_group *GActionGroup,
-		action_name *Gchar,
+		action_name string,
 		parameter *GVariant)
 
 	G_action_group_action_added func(
 		action_group *GActionGroup,
-		action_name *Gchar)
+		action_name string)
 
 	G_action_group_action_removed func(
 		action_group *GActionGroup,
-		action_name *Gchar)
+		action_name string)
 
 	G_action_group_action_enabled_changed func(
 		action_group *GActionGroup,
-		action_name *Gchar,
+		action_name string,
 		enabled Gboolean)
 
 	G_action_group_action_state_changed func(
 		action_group *GActionGroup,
-		action_name *Gchar,
+		action_name string,
 		state *GVariant)
 
 	G_simple_action_group_get_type func() GType
@@ -224,7 +224,7 @@ var (
 
 	G_simple_action_group_lookup func(
 		simple *GSimpleActionGroup,
-		action_name *Gchar) *GAction
+		action_name string) *GAction
 
 	G_simple_action_group_insert func(
 		simple *GSimpleActionGroup,
@@ -232,23 +232,23 @@ var (
 
 	G_simple_action_group_remove func(
 		simple *GSimpleActionGroup,
-		action_name *Gchar)
+		action_name string)
 
 	G_application_get_type func() GType
 
 	G_application_id_is_valid func(
-		application_id *Gchar) Gboolean
+		application_id string) Gboolean
 
 	G_application_new func(
-		application_id *Gchar,
+		application_id string,
 		flags GApplicationFlags) *GApplication
 
 	G_application_get_application_id func(
-		application *GApplication) *Gchar
+		application *GApplication) string
 
 	G_application_set_application_id func(
 		application *GApplication,
-		application_id *Gchar)
+		application_id string)
 
 	G_application_get_inactivity_timeout func(
 		application *GApplication) Guint
@@ -292,7 +292,7 @@ var (
 		application *GApplication,
 		files **GFile,
 		n_files Gint,
-		hint *Gchar)
+		hint string)
 
 	G_application_run func(
 		application *GApplication,
@@ -310,17 +310,18 @@ var (
 
 	G_application_command_line_getenv func(
 		cmdline *GApplicationCommandLine,
-		name *Gchar) *Gchar
+		name string) string
 
 	G_application_command_line_get_cwd func(
-		cmdline *GApplicationCommandLine) *Gchar
+		cmdline *GApplicationCommandLine) string
 
 	G_application_command_line_get_is_remote func(
 		cmdline *GApplicationCommandLine) Gboolean
 
-	//TODO(t): Variant
-	//g_application_command_line_print func(cmdline  *GApplicationCommandLine, format  *Gchar, ...)
-	//g_application_command_line_printerr func(cmdline  *GApplicationCommandLine, format  *Gchar, ...)
+	G_application_command_line_print func(
+		cmdline *GApplicationCommandLine, format string, v ...VArg)
+	G_application_command_line_printerr func(
+		cmdline *GApplicationCommandLine, format string, v ...VArg)
 
 	G_application_command_line_get_exit_status func(
 		cmdline *GApplicationCommandLine) int
@@ -339,8 +340,9 @@ var (
 		cancellable *GCancellable,
 		err **GError) Gboolean
 
-	//TODO(t):Variant
-	//g_initable_new func(object_type  GType, cancellable  *GCancellable, error  **GError, first_property_name  *Gchar, ...) Gpointer
+	G_initable_new func(object_type GType,
+		cancellable *GCancellable, e **GError,
+		first_property_name string, v ...VArg) Gpointer
 
 	G_initable_newv func(
 		object_type GType,
@@ -351,7 +353,7 @@ var (
 
 	G_initable_new_valist func(
 		object_type GType,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list,
 		cancellable *GCancellable,
 		err **GError) *GObject
@@ -370,8 +372,10 @@ var (
 		res *GAsyncResult,
 		err **GError) Gboolean
 
-	//TODO(t):Variant
-	//g_async_initable_new_async func(object_type  GType, io_priority  int, cancellable  *GCancellable, callback  GAsyncReadyCallback, user_data  Gpointer, first_property_name  *Gchar, ...)
+	G_async_initable_new_async func(object_type GType,
+		io_priority int, cancellable *GCancellable,
+		callback GAsyncReadyCallback, user_data Gpointer,
+		first_property_name string, v ...VArg)
 
 	G_async_initable_newv_async func(
 		object_type GType,
@@ -384,7 +388,7 @@ var (
 
 	G_async_initable_new_valist_async func(
 		object_type GType,
-		first_property_name *Gchar,
+		first_property_name string,
 		var_args Va_list,
 		io_priority int,
 		cancellable *GCancellable,
@@ -753,8 +757,8 @@ var (
 	G_charset_converter_get_type func() GType
 
 	G_charset_converter_new func(
-		to_charset *Gchar,
-		from_charset *Gchar,
+		to_charset string,
+		from_charset string,
 		err **GError) *GcharsetConverter
 
 	G_charset_converter_set_use_fallback func(
@@ -768,36 +772,36 @@ var (
 		converter *GcharsetConverter) Guint
 
 	G_content_type_equals func(
-		type1 *Gchar,
-		type2 *Gchar) Gboolean
+		type1 string,
+		type2 string) Gboolean
 
 	G_content_type_is_a func(
-		typ *Gchar,
-		supertype *Gchar) Gboolean
+		typ string,
+		supertype string) Gboolean
 
 	G_content_type_is_unknown func(
-		typ *Gchar) Gboolean
+		typ string) Gboolean
 
 	G_content_type_get_description func(
-		typ *Gchar) *Gchar
+		typ string) string
 
 	G_content_type_get_mime_type func(
-		typ *Gchar) *Gchar
+		typ string) string
 
 	G_content_type_get_icon func(
-		typ *Gchar) *GIcon
+		typ string) *GIcon
 
 	G_content_type_can_be_executable func(
-		typ *Gchar) Gboolean
+		typ string) Gboolean
 
 	G_content_type_from_mime_type func(
-		mime_type *Gchar) *Gchar
+		mime_type string) string
 
 	G_content_type_guess func(
-		filename *Gchar,
+		filename string,
 		data *Guchar,
 		data_size Gsize,
-		result_uncertain *Gboolean) *Gchar
+		result_uncertain *Gboolean) string
 
 	G_content_type_guess_for_tree func(
 		root *GFile) **Gchar
@@ -827,7 +831,7 @@ var (
 	G_credentials_new func() *GCredentials
 
 	G_credentials_to_string func(
-		credentials *GCredentials) *Gchar
+		credentials *GCredentials) string
 
 	G_credentials_get_native func(
 		credentials *GCredentials,
@@ -901,7 +905,7 @@ var (
 		stream *GDataInputStream,
 		length *Gsize,
 		cancellable *GCancellable,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_input_stream_read_line_async func(
 		stream *GDataInputStream,
@@ -914,18 +918,18 @@ var (
 		stream *GDataInputStream,
 		result *GAsyncResult,
 		length *Gsize,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_input_stream_read_until func(
 		stream *GDataInputStream,
-		stop_chars *Gchar,
+		stop_chars string,
 		length *Gsize,
 		cancellable *GCancellable,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_input_stream_read_until_async func(
 		stream *GDataInputStream,
-		stop_chars *Gchar,
+		stop_chars string,
 		io_priority Gint,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -935,19 +939,19 @@ var (
 		stream *GDataInputStream,
 		result *GAsyncResult,
 		length *Gsize,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_input_stream_read_upto func(
 		stream *GDataInputStream,
-		stop_chars *Gchar,
+		stop_chars string,
 		stop_chars_len Gssize,
 		length *Gsize,
 		cancellable *GCancellable,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_input_stream_read_upto_async func(
 		stream *GDataInputStream,
-		stop_chars *Gchar,
+		stop_chars string,
 		stop_chars_len Gssize,
 		io_priority Gint,
 		cancellable *GCancellable,
@@ -958,7 +962,7 @@ var (
 		stream *GDataInputStream,
 		result *GAsyncResult,
 		length *Gsize,
-		err **GError) *Char
+		err **GError) string
 
 	G_data_output_stream_get_type func() GType
 
@@ -1016,19 +1020,19 @@ var (
 
 	G_data_output_stream_put_string func(
 		stream *GDataOutputStream,
-		str *Char,
+		str string,
 		cancellable *GCancellable,
 		err **GError) Gboolean
 
 	G_dbus_is_address func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
 	G_dbus_is_supported_address func(
-		string *Gchar,
+		string string,
 		err **GError) Gboolean
 
 	G_dbus_address_get_stream func(
-		address *Gchar,
+		address string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -1039,7 +1043,7 @@ var (
 		err **GError) *GIOStream
 
 	G_dbus_address_get_stream_sync func(
-		address *Gchar,
+		address string,
 		out_guid **Gchar,
 		cancellable *GCancellable,
 		err **GError) *GIOStream
@@ -1047,7 +1051,7 @@ var (
 	G_dbus_address_get_for_bus_sync func(
 		bus_type GBusType,
 		cancellable *GCancellable,
-		err **GError) *Gchar
+		err **GError) string
 
 	G_dbus_auth_observer_get_type func() GType
 
@@ -1077,7 +1081,7 @@ var (
 
 	G_dbus_connection_new func(
 		stream *GIOStream,
-		guid *Gchar,
+		guid string,
 		flags GDBusConnectionFlags,
 		observer *GDBusAuthObserver,
 		cancellable *GCancellable,
@@ -1090,14 +1094,14 @@ var (
 
 	G_dbus_connection_new_sync func(
 		stream *GIOStream,
-		guid *Gchar,
+		guid string,
 		flags GDBusConnectionFlags,
 		observer *GDBusAuthObserver,
 		cancellable *GCancellable,
 		err **GError) *GDBusConnection
 
 	G_dbus_connection_new_for_address func(
-		address *Gchar,
+		address string,
 		flags GDBusConnectionFlags,
 		observer *GDBusAuthObserver,
 		cancellable *GCancellable,
@@ -1109,7 +1113,7 @@ var (
 		err **GError) *GDBusConnection
 
 	G_dbus_connection_new_for_address_sync func(
-		address *Gchar,
+		address string,
 		flags GDBusConnectionFlags,
 		observer *GDBusAuthObserver,
 		cancellable *GCancellable,
@@ -1125,10 +1129,10 @@ var (
 		connection *GDBusConnection) *GIOStream
 
 	G_dbus_connection_get_guid func(
-		connection *GDBusConnection) *Gchar
+		connection *GDBusConnection) string
 
 	G_dbus_connection_get_unique_name func(
-		connection *GDBusConnection) *Gchar
+		connection *GDBusConnection) string
 
 	G_dbus_connection_get_peer_credentials func(
 		connection *GDBusConnection) *GCredentials
@@ -1208,19 +1212,19 @@ var (
 
 	G_dbus_connection_emit_signal func(
 		connection *GDBusConnection,
-		destination_bus_name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		signal_name *Gchar,
+		destination_bus_name string,
+		object_path string,
+		interface_name string,
+		signal_name string,
 		parameters *GVariant,
 		err **GError) Gboolean
 
 	G_dbus_connection_call func(
 		connection *GDBusConnection,
-		bus_name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		method_name *Gchar,
+		bus_name string,
+		object_path string,
+		interface_name string,
+		method_name string,
 		parameters *GVariant,
 		reply_type *GVariantType,
 		flags GDBusCallFlags,
@@ -1236,10 +1240,10 @@ var (
 
 	G_dbus_connection_call_sync func(
 		connection *GDBusConnection,
-		bus_name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
-		method_name *Gchar,
+		bus_name string,
+		object_path string,
+		interface_name string,
+		method_name string,
 		parameters *GVariant,
 		reply_type *GVariantType,
 		flags GDBusCallFlags,
@@ -1249,7 +1253,7 @@ var (
 
 	G_dbus_connection_register_object func(
 		connection *GDBusConnection,
-		object_path *Gchar,
+		object_path string,
 		interface_info *GDBusInterfaceInfo,
 		vtable *GDBusInterfaceVTable,
 		user_data Gpointer,
@@ -1262,7 +1266,7 @@ var (
 
 	G_dbus_connection_register_subtree func(
 		connection *GDBusConnection,
-		object_path *Gchar,
+		object_path string,
 		vtable *GDBusSubtreeVTable,
 		flags GDBusSubtreeFlags,
 		user_data Gpointer,
@@ -1275,11 +1279,11 @@ var (
 
 	G_dbus_connection_signal_subscribe func(
 		connection *GDBusConnection,
-		sender *Gchar,
-		interface_name *Gchar,
-		member *Gchar,
-		object_path *Gchar,
-		arg0 *Gchar,
+		sender string,
+		interface_name string,
+		member string,
+		object_path string,
+		arg0 string,
 		flags GDBusSignalFlags,
 		callback GDBusSignalCallback,
 		user_data Gpointer,
@@ -1305,7 +1309,7 @@ var (
 		err *GError) Gboolean
 
 	G_dbus_error_get_remote_error func(
-		err *GError) *Gchar
+		err *GError) string
 
 	G_dbus_error_strip_remote_error func(
 		err *GError) Gboolean
@@ -1313,50 +1317,52 @@ var (
 	G_dbus_error_register_error func(
 		error_domain GQuark,
 		error_code Gint,
-		dbus_error_name *Gchar) Gboolean
+		dbus_error_name string) Gboolean
 
 	G_dbus_error_unregister_error func(
 		error_domain GQuark,
 		error_code Gint,
-		dbus_error_name *Gchar) Gboolean
+		dbus_error_name string) Gboolean
 
 	G_dbus_error_register_error_domain func(
-		error_domain_quark_name *Gchar,
+		error_domain_quark_name string,
 		quark_volatile *Gsize,
 		entries *GDBusErrorEntry,
 		num_entries Guint)
 
 	G_dbus_error_new_for_dbus_error func(
-		dbus_error_name *Gchar,
-		dbus_error_message *Gchar) *GError
+		dbus_error_name string,
+		dbus_error_message string) *GError
 
-	//g_dbus_error_set_dbus_error func(error  **GError, dbus_error_name  *Gchar, dbus_error_message  *Gchar, format  *Gchar, ...)
+	G_dbus_error_set_dbus_error func(e **GError,
+		dbus_error_name, dbus_error_message,
+		format string, v ...VArg)
 
 	G_dbus_error_set_dbus_error_valist func(
 		err **GError,
-		dbus_error_name *Gchar,
-		dbus_error_message *Gchar,
-		format *Gchar,
+		dbus_error_name string,
+		dbus_error_message string,
+		format string,
 		var_args Va_list)
 
 	G_dbus_error_encode_gerror func(
-		err *GError) *Gchar
+		err *GError) string
 
 	G_dbus_annotation_info_lookup func(
 		annotations **GDBusAnnotationInfo,
-		name *Gchar) *Gchar
+		name string) string
 
 	G_dbus_interface_info_lookup_method func(
 		info *GDBusInterfaceInfo,
-		name *Gchar) *GDBusMethodInfo
+		name string) *GDBusMethodInfo
 
 	G_dbus_interface_info_lookup_signal func(
 		info *GDBusInterfaceInfo,
-		name *Gchar) *GDBusSignalInfo
+		name string) *GDBusSignalInfo
 
 	G_dbus_interface_info_lookup_property func(
 		info *GDBusInterfaceInfo,
-		name *Gchar) *GDBusPropertyInfo
+		name string) *GDBusPropertyInfo
 
 	G_dbus_interface_info_generate_xml func(
 		info *GDBusInterfaceInfo,
@@ -1364,12 +1370,12 @@ var (
 		string_builder *GString)
 
 	G_dbus_node_info_new_for_xml func(
-		xml_data *Gchar,
+		xml_data string,
 		err **GError) *GDBusNodeInfo
 
 	G_dbus_node_info_lookup_interface func(
 		info *GDBusNodeInfo,
-		name *Gchar) *GDBusInterfaceInfo
+		name string) *GDBusInterfaceInfo
 
 	G_dbus_node_info_generate_xml func(
 		info *GDBusNodeInfo,
@@ -1437,35 +1443,38 @@ var (
 	G_dbus_message_new func() *GDBusMessage
 
 	G_dbus_message_new_signal func(
-		path *Gchar,
-		interface_ *Gchar,
-		signal *Gchar) *GDBusMessage
+		path string,
+		interface_ string,
+		signal string) *GDBusMessage
 
 	G_dbus_message_new_method_call func(
-		name *Gchar,
-		path *Gchar,
-		interface_ *Gchar,
-		method *Gchar) *GDBusMessage
+		name string,
+		path string,
+		interface_ string,
+		method string) *GDBusMessage
 
 	G_dbus_message_new_method_reply func(
 		method_call_message *GDBusMessage) *GDBusMessage
 
-	//g_dbus_message_new_method_error func(method_call_message  *GDBusMessage, error_name  *Gchar, error_message_format  *Gchar, ...) *GDBusMessage
+	G_dbus_message_new_method_error func(
+		method_call_message *GDBusMessage,
+		error_name, error_message_format string,
+		v ...VArg) *GDBusMessage
 
 	G_dbus_message_new_method_error_valist func(
 		method_call_message *GDBusMessage,
-		error_name *Gchar,
-		error_message_format *Gchar,
+		error_name string,
+		error_message_format string,
 		var_args Va_list) *GDBusMessage
 
 	G_dbus_message_new_method_error_literal func(
 		method_call_message *GDBusMessage,
-		error_name *Gchar,
-		error_message *Gchar) *GDBusMessage
+		error_name string,
+		error_message string) *GDBusMessage
 
 	G_dbus_message_print func(
 		message *GDBusMessage,
-		indent Guint) *Gchar
+		indent Guint) string
 
 	G_dbus_message_get_locked func(
 		message *GDBusMessage) Gboolean
@@ -1539,53 +1548,53 @@ var (
 		value Guint32)
 
 	G_dbus_message_get_interface func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_interface func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_member func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_member func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_path func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_path func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_sender func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_sender func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_destination func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_destination func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_error_name func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_error_name func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_signature func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_set_signature func(
 		message *GDBusMessage,
-		value *Gchar)
+		value string)
 
 	G_dbus_message_get_num_unix_fds func(
 		message *GDBusMessage) Guint32
@@ -1595,7 +1604,7 @@ var (
 		value Guint32)
 
 	G_dbus_message_get_arg0 func(
-		message *GDBusMessage) *Gchar
+		message *GDBusMessage) string
 
 	G_dbus_message_new_from_blob func(
 		blob *Guchar,
@@ -1621,16 +1630,16 @@ var (
 	G_dbus_method_invocation_get_type func() GType
 
 	G_dbus_method_invocation_get_sender func(
-		invocation *GDBusMethodInvocation) *Gchar
+		invocation *GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_object_path func(
-		invocation *GDBusMethodInvocation) *Gchar
+		invocation *GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_interface_name func(
-		invocation *GDBusMethodInvocation) *Gchar
+		invocation *GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_method_name func(
-		invocation *GDBusMethodInvocation) *Gchar
+		invocation *GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_method_info func(
 		invocation *GDBusMethodInvocation) *GDBusMethodInfo
@@ -1651,20 +1660,22 @@ var (
 		invocation *GDBusMethodInvocation,
 		parameters *GVariant)
 
-	//g_dbus_method_invocation_return_error func(invocation  *GDBusMethodInvocation, domain  GQuark, code  Gint, format  *Gchar, ...)
+	G_dbus_method_invocation_return_error func(
+		invocation *GDBusMethodInvocation,
+		domain GQuark, code Gint, format string, v ...VArg)
 
 	G_dbus_method_invocation_return_error_valist func(
 		invocation *GDBusMethodInvocation,
 		domain GQuark,
 		code Gint,
-		format *Gchar,
+		format string,
 		var_args Va_list)
 
 	G_dbus_method_invocation_return_error_literal func(
 		invocation *GDBusMethodInvocation,
 		domain GQuark,
 		code Gint,
-		message *Gchar)
+		message string)
 
 	G_dbus_method_invocation_return_gerror func(
 		invocation *GDBusMethodInvocation,
@@ -1672,12 +1683,12 @@ var (
 
 	G_dbus_method_invocation_return_dbus_error func(
 		invocation *GDBusMethodInvocation,
-		error_name *Gchar,
-		error_message *Gchar)
+		error_name string,
+		error_message string)
 
 	G_bus_own_name func(
 		bus_type GBusType,
-		name *Gchar,
+		name string,
 		flags GBusNameOwnerFlags,
 		bus_acquired_handler GBusAcquiredCallback,
 		name_acquired_handler GBusNameAcquiredCallback,
@@ -1687,7 +1698,7 @@ var (
 
 	G_bus_own_name_on_connection func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		flags GBusNameOwnerFlags,
 		name_acquired_handler GBusNameAcquiredCallback,
 		name_lost_handler GBusNameLostCallback,
@@ -1696,7 +1707,7 @@ var (
 
 	G_bus_own_name_with_closures func(
 		bus_type GBusType,
-		name *Gchar,
+		name string,
 		flags GBusNameOwnerFlags,
 		bus_acquired_closure *GClosure,
 		name_acquired_closure *GClosure,
@@ -1705,7 +1716,7 @@ var (
 	G_bus_own_name_on_connection_with_closures func(
 
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		flags GBusNameOwnerFlags,
 		name_acquired_closure *GClosure,
 		name_lost_closure *GClosure) Guint
@@ -1715,7 +1726,7 @@ var (
 
 	G_bus_watch_name func(
 		bus_type GBusType,
-		name *Gchar,
+		name string,
 		flags GBusNameWatcherFlags,
 		name_appeared_handler GBusNameAppearedCallback,
 		name_vanished_handler GBusNameVanishedCallback,
@@ -1724,7 +1735,7 @@ var (
 
 	G_bus_watch_name_on_connection func(
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		flags GBusNameWatcherFlags,
 		name_appeared_handler GBusNameAppearedCallback,
 		name_vanished_handler GBusNameVanishedCallback,
@@ -1733,7 +1744,7 @@ var (
 
 	G_bus_watch_name_with_closures func(
 		bus_type GBusType,
-		name *Gchar,
+		name string,
 		flags GBusNameWatcherFlags,
 		name_appeared_closure *GClosure,
 		name_vanished_closure *GClosure) Guint
@@ -1741,7 +1752,7 @@ var (
 	G_bus_watch_name_on_connection_with_closures func(
 
 		connection *GDBusConnection,
-		name *Gchar,
+		name string,
 		flags GBusNameWatcherFlags,
 		name_appeared_closure *GClosure,
 		name_vanished_closure *GClosure) Guint
@@ -1755,9 +1766,9 @@ var (
 		connection *GDBusConnection,
 		flags GDBusProxyFlags,
 		info *GDBusInterfaceInfo,
-		name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
+		name string,
+		object_path string,
+		interface_name string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -1770,9 +1781,9 @@ var (
 		connection *GDBusConnection,
 		flags GDBusProxyFlags,
 		info *GDBusInterfaceInfo,
-		name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
+		name string,
+		object_path string,
+		interface_name string,
 		cancellable *GCancellable,
 		err **GError) *GDBusProxy
 
@@ -1780,9 +1791,9 @@ var (
 		bus_type GBusType,
 		flags GDBusProxyFlags,
 		info *GDBusInterfaceInfo,
-		name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
+		name string,
+		object_path string,
+		interface_name string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -1795,9 +1806,9 @@ var (
 		bus_type GBusType,
 		flags GDBusProxyFlags,
 		info *GDBusInterfaceInfo,
-		name *Gchar,
-		object_path *Gchar,
-		interface_name *Gchar,
+		name string,
+		object_path string,
+		interface_name string,
 		cancellable *GCancellable,
 		err **GError) *GDBusProxy
 
@@ -1808,16 +1819,16 @@ var (
 		proxy *GDBusProxy) GDBusProxyFlags
 
 	G_dbus_proxy_get_name func(
-		proxy *GDBusProxy) *Gchar
+		proxy *GDBusProxy) string
 
 	G_dbus_proxy_get_name_owner func(
-		proxy *GDBusProxy) *Gchar
+		proxy *GDBusProxy) string
 
 	G_dbus_proxy_get_object_path func(
-		proxy *GDBusProxy) *Gchar
+		proxy *GDBusProxy) string
 
 	G_dbus_proxy_get_interface_name func(
-		proxy *GDBusProxy) *Gchar
+		proxy *GDBusProxy) string
 
 	G_dbus_proxy_get_default_timeout func(
 		proxy *GDBusProxy) Gint
@@ -1835,11 +1846,11 @@ var (
 
 	G_dbus_proxy_get_cached_property func(
 		proxy *GDBusProxy,
-		property_name *Gchar) *GVariant
+		property_name string) *GVariant
 
 	G_dbus_proxy_set_cached_property func(
 		proxy *GDBusProxy,
-		property_name *Gchar,
+		property_name string,
 		value *GVariant)
 
 	G_dbus_proxy_get_cached_property_names func(
@@ -1847,7 +1858,7 @@ var (
 
 	G_dbus_proxy_call func(
 		proxy *GDBusProxy,
-		method_name *Gchar,
+		method_name string,
 		parameters *GVariant,
 		flags GDBusCallFlags,
 		timeout_msec Gint,
@@ -1862,7 +1873,7 @@ var (
 
 	G_dbus_proxy_call_sync func(
 		proxy *GDBusProxy,
-		method_name *Gchar,
+		method_name string,
 		parameters *GVariant,
 		flags GDBusCallFlags,
 		timeout_msec Gint,
@@ -1872,18 +1883,18 @@ var (
 	G_dbus_server_get_type func() GType
 
 	G_dbus_server_new_sync func(
-		address *Gchar,
+		address string,
 		flags GDBusServerFlags,
-		guid *Gchar,
+		guid string,
 		observer *GDBusAuthObserver,
 		cancellable *GCancellable,
 		err **GError) *GDBusServer
 
 	G_dbus_server_get_client_address func(
-		server *GDBusServer) *Gchar
+		server *GDBusServer) string
 
 	G_dbus_server_get_guid func(
-		server *GDBusServer) *Gchar
+		server *GDBusServer) string
 
 	G_dbus_server_get_flags func(
 		server *GDBusServer) GDBusServerFlags
@@ -1898,25 +1909,25 @@ var (
 		server *GDBusServer) Gboolean
 
 	G_dbus_is_guid func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
-	G_dbus_generate_guid func() *Gchar
+	G_dbus_generate_guid func() string
 
 	G_dbus_is_name func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
 	G_dbus_is_unique_name func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
 	G_dbus_is_member_name func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
 	G_dbus_is_interface_name func(
-		string *Gchar) Gboolean
+		string string) Gboolean
 
 	G_drive_get_type func() GType
 
-	G_drive_get_name func(drive *GDrive) *Char
+	G_drive_get_name func(drive *GDrive) string
 
 	G_drive_get_icon func(drive *GDrive) *GIcon
 
@@ -1957,7 +1968,7 @@ var (
 		result *GAsyncResult,
 		err **GError) Gboolean
 
-	G_drive_get_identifier func(drive *GDrive, kind *Char) *Char
+	G_drive_get_identifier func(drive *GDrive, kind string) string
 
 	G_drive_enumerate_identifiers func(
 		drive *GDrive) **Char
@@ -2016,9 +2027,9 @@ var (
 
 	G_icon_equal func(icon1 *GIcon, icon2 *GIcon) Gboolean
 
-	G_icon_to_string func(icon *GIcon) *Gchar
+	G_icon_to_string func(icon *GIcon) string
 
-	G_icon_new_for_string func(str *Gchar, err **GError) *GIcon
+	G_icon_new_for_string func(str string, err **GError) *GIcon
 
 	G_emblem_get_type func() GType
 
@@ -2060,11 +2071,11 @@ var (
 
 	G_file_attribute_info_list_lookup func(
 		list *GFileAttributeInfoList,
-		name *Char) *GFileAttributeInfo
+		name string) *GFileAttributeInfo
 
 	G_file_attribute_info_list_add func(
 		list *GFileAttributeInfoList,
-		name *Char,
+		name string,
 		typ GFileAttributeType,
 		flags GFileAttributeInfoFlags)
 
@@ -2120,13 +2131,13 @@ var (
 
 	G_file_get_type func() GType
 
-	G_file_new_for_path func(path *Char) *GFile
+	G_file_new_for_path func(path string) *GFile
 
-	G_file_new_for_uri func(uri *Char) *GFile
+	G_file_new_for_uri func(uri string) *GFile
 
-	G_file_new_for_commandline_arg func(arg *Char) *GFile
+	G_file_new_for_commandline_arg func(arg string) *GFile
 
-	G_file_parse_name func(parse_name *Char) *GFile
+	G_file_parse_name func(parse_name string) *GFile
 
 	G_file_dup func(file *GFile) *GFile
 
@@ -2134,37 +2145,37 @@ var (
 
 	G_file_equal func(file1 *GFile, file2 *GFile) Gboolean
 
-	G_file_get_basename func(file *GFile) *Char
+	G_file_get_basename func(file *GFile) string
 
-	G_file_get_path func(file *GFile) *Char
+	G_file_get_path func(file *GFile) string
 
-	G_file_get_uri func(file *GFile) *Char
+	G_file_get_uri func(file *GFile) string
 
-	G_file_get_parse_name func(file *GFile) *Char
+	G_file_get_parse_name func(file *GFile) string
 
 	G_file_get_parent func(file *GFile) *GFile
 
 	G_file_has_parent func(file *GFile, parent *GFile) Gboolean
 
-	G_file_get_child func(file *GFile, name *Char) *GFile
+	G_file_get_child func(file *GFile, name string) *GFile
 
 	G_file_get_child_for_display_name func(
-		file *GFile, display_name *Char, err **GError) *GFile
+		file *GFile, display_name string, err **GError) *GFile
 
 	G_file_has_prefix func(file *GFile, prefix *GFile) Gboolean
 
 	G_file_get_relative_path func(
-		parent *GFile, descendant *GFile) *Char
+		parent *GFile, descendant *GFile) string
 
 	G_file_resolve_relative_path func(
-		file *GFile, relative_path *Char) *GFile
+		file *GFile, relative_path string) *GFile
 
 	G_file_is_native func(file *GFile) Gboolean
 
 	G_file_has_uri_scheme func(
-		file *GFile, uri_scheme *Char) Gboolean
+		file *GFile, uri_scheme string) Gboolean
 
-	G_file_get_uri_scheme func(file *GFile) *Char
+	G_file_get_uri_scheme func(file *GFile) string
 
 	G_file_read func(
 		file *GFile,
@@ -2197,7 +2208,7 @@ var (
 
 	G_file_replace func(
 		file *GFile,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		cancellable *GCancellable,
@@ -2231,7 +2242,7 @@ var (
 
 	G_file_replace_async func(
 		file *GFile,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		io_priority int,
@@ -2282,7 +2293,7 @@ var (
 
 	G_file_replace_readwrite func(
 		file *GFile,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		cancellable *GCancellable,
@@ -2290,7 +2301,7 @@ var (
 
 	G_file_replace_readwrite_async func(
 		file *GFile,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		io_priority int,
@@ -2314,14 +2325,14 @@ var (
 
 	G_file_query_info func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
 		err **GError) *GFileInfo
 
 	G_file_query_info_async func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		flags GFileQueryInfoFlags,
 		io_priority int,
 		cancellable *GCancellable,
@@ -2335,13 +2346,13 @@ var (
 
 	G_file_query_filesystem_info func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		cancellable *GCancellable,
 		err **GError) *GFileInfo
 
 	G_file_query_filesystem_info_async func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		io_priority int,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -2371,14 +2382,14 @@ var (
 
 	G_file_enumerate_children func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
 		err **GError) *GFileEnumerator
 
 	G_file_enumerate_children_async func(
 		file *GFile,
-		attributes *Char,
+		attributes string,
 		flags GFileQueryInfoFlags,
 		io_priority int,
 		cancellable *GCancellable,
@@ -2392,13 +2403,13 @@ var (
 
 	G_file_set_display_name func(
 		file *GFile,
-		display_name *Char,
+		display_name string,
 		cancellable *GCancellable,
 		err **GError) *GFile
 
 	G_file_set_display_name_async func(
 		file *GFile,
-		display_name *Char,
+		display_name string,
 		io_priority int,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -2465,7 +2476,7 @@ var (
 
 	G_file_make_symbolic_link func(
 		file *GFile,
-		symlink_value *Char,
+		symlink_value string,
 		cancellable *GCancellable,
 		err **GError) Gboolean
 
@@ -2481,7 +2492,7 @@ var (
 
 	G_file_set_attribute func(
 		file *GFile,
-		attribute *Char,
+		attribute string,
 		typ GFileAttributeType,
 		value_p Gpointer,
 		flags GFileQueryInfoFlags,
@@ -2512,23 +2523,23 @@ var (
 
 	G_file_set_attribute_string func(
 		file *GFile,
-		attribute *Char,
-		value *Char,
+		attribute string,
+		value string,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
 		err **GError) Gboolean
 
 	G_file_set_attribute_byte_string func(
 		file *GFile,
-		attribute *Char,
-		value *Char,
+		attribute string,
+		value string,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
 		err **GError) Gboolean
 
 	G_file_set_attribute_uint32 func(
 		file *GFile,
-		attribute *Char,
+		attribute string,
 		value Guint32,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
@@ -2536,7 +2547,7 @@ var (
 
 	G_file_set_attribute_int32 func(
 		file *GFile,
-		attribute *Char,
+		attribute string,
 		value Gint32,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
@@ -2544,7 +2555,7 @@ var (
 
 	G_file_set_attribute_uint64 func(
 		file *GFile,
-		attribute *Char,
+		attribute string,
 		value Guint64,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
@@ -2552,7 +2563,7 @@ var (
 
 	G_file_set_attribute_int64 func(
 		file *GFile,
-		attribute *Char,
+		attribute string,
 		value Gint64,
 		flags GFileQueryInfoFlags,
 		cancellable *GCancellable,
@@ -2740,9 +2751,9 @@ var (
 
 	G_file_replace_contents func(
 		file *GFile,
-		contents *Char,
+		contents string,
 		length Gsize,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		new_etag **Char,
@@ -2751,9 +2762,9 @@ var (
 
 	G_file_replace_contents_async func(
 		file *GFile,
-		contents *Char,
+		contents string,
 		length Gsize,
-		etag *Char,
+		etag string,
 		make_backup Gboolean,
 		flags GFileCreateFlags,
 		cancellable *GCancellable,
@@ -2783,127 +2794,127 @@ var (
 	G_file_info_copy_into func(src_info, dest_info *GFileInfo)
 
 	G_file_info_has_attribute func(
-		info *GFileInfo, attribute *Char) Gboolean
+		info *GFileInfo, attribute string) Gboolean
 
 	G_file_info_has_namespace func(
-		info *GFileInfo, name_space *Char) Gboolean
+		info *GFileInfo, name_space string) Gboolean
 
 	G_file_info_list_attributes func(
-		info *GFileInfo, name_space *Char) **Char
+		info *GFileInfo, name_space string) **Char
 
 	G_file_info_get_attribute_data func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		typ *GFileAttributeType,
 		value_pp *Gpointer,
 		status *GFileAttributeStatus) Gboolean
 
 	G_file_info_get_attribute_type func(
 		info *GFileInfo,
-		attribute *Char) GFileAttributeType
+		attribute string) GFileAttributeType
 
 	G_file_info_remove_attribute func(
 		info *GFileInfo,
-		attribute *Char)
+		attribute string)
 
 	G_file_info_get_attribute_status func(
 		info *GFileInfo,
-		attribute *Char) GFileAttributeStatus
+		attribute string) GFileAttributeStatus
 
 	G_file_info_set_attribute_status func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		status GFileAttributeStatus) Gboolean
 
 	G_file_info_get_attribute_as_string func(
 		info *GFileInfo,
-		attribute *Char) *Char
+		attribute string) string
 
 	G_file_info_get_attribute_string func(
 		info *GFileInfo,
-		attribute *Char) *Char
+		attribute string) string
 
 	G_file_info_get_attribute_byte_string func(
 		info *GFileInfo,
-		attribute *Char) *Char
+		attribute string) string
 
 	G_file_info_get_attribute_boolean func(
 		info *GFileInfo,
-		attribute *Char) Gboolean
+		attribute string) Gboolean
 
 	G_file_info_get_attribute_uint32 func(
 		info *GFileInfo,
-		attribute *Char) Guint32
+		attribute string) Guint32
 
 	G_file_info_get_attribute_int32 func(
 		info *GFileInfo,
-		attribute *Char) Gint32
+		attribute string) Gint32
 
 	G_file_info_get_attribute_uint64 func(
 		info *GFileInfo,
-		attribute *Char) Guint64
+		attribute string) Guint64
 
 	G_file_info_get_attribute_int64 func(
 		info *GFileInfo,
-		attribute *Char) Gint64
+		attribute string) Gint64
 
 	G_file_info_get_attribute_object func(
 		info *GFileInfo,
-		attribute *Char) *GObject
+		attribute string) *GObject
 
 	G_file_info_get_attribute_stringv func(
 		info *GFileInfo,
-		attribute *Char) **Char
+		attribute string) **Char
 
 	G_file_info_set_attribute func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		typ GFileAttributeType,
 		value_p Gpointer)
 
 	G_file_info_set_attribute_string func(
 		info *GFileInfo,
-		attribute *Char,
-		attr_value *Char)
+		attribute string,
+		attr_value string)
 
 	G_file_info_set_attribute_byte_string func(
 		info *GFileInfo,
-		attribute *Char,
-		attr_value *Char)
+		attribute string,
+		attr_value string)
 
 	G_file_info_set_attribute_boolean func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value Gboolean)
 
 	G_file_info_set_attribute_uint32 func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value Guint32)
 
 	G_file_info_set_attribute_int32 func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value Gint32)
 
 	G_file_info_set_attribute_uint64 func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value Guint64)
 
 	G_file_info_set_attribute_int64 func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value Gint64)
 
 	G_file_info_set_attribute_object func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value *GObject)
 
 	G_file_info_set_attribute_stringv func(
 		info *GFileInfo,
-		attribute *Char,
+		attribute string,
 		attr_value **Char)
 
 	G_file_info_clear_status func(
@@ -2922,19 +2933,19 @@ var (
 		info *GFileInfo) Gboolean
 
 	G_file_info_get_name func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_display_name func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_edit_name func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_icon func(
 		info *GFileInfo) *GIcon
 
 	G_file_info_get_content_type func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_size func(
 		info *GFileInfo) Goffset
@@ -2944,10 +2955,10 @@ var (
 		result *GTimeVal)
 
 	G_file_info_get_symlink_target func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_etag func(
-		info *GFileInfo) *Char
+		info *GFileInfo) string
 
 	G_file_info_get_sort_order func(
 		info *GFileInfo) Gint32
@@ -2973,15 +2984,15 @@ var (
 
 	G_file_info_set_name func(
 		info *GFileInfo,
-		name *Char)
+		name string)
 
 	G_file_info_set_display_name func(
 		info *GFileInfo,
-		display_name *Char)
+		display_name string)
 
 	G_file_info_set_edit_name func(
 		info *GFileInfo,
-		edit_name *Char)
+		edit_name string)
 
 	G_file_info_set_icon func(
 		info *GFileInfo,
@@ -2989,7 +3000,7 @@ var (
 
 	G_file_info_set_content_type func(
 		info *GFileInfo,
-		content_type *Char)
+		content_type string)
 
 	G_file_info_set_size func(
 		info *GFileInfo,
@@ -3001,7 +3012,7 @@ var (
 
 	G_file_info_set_symlink_target func(
 		info *GFileInfo,
-		symlink_target *Char)
+		symlink_target string)
 
 	G_file_info_set_sort_order func(
 		info *GFileInfo,
@@ -3010,7 +3021,7 @@ var (
 	G_file_attribute_matcher_get_type func() GType
 
 	G_file_attribute_matcher_new func(
-		attributes *Char) *GFileAttributeMatcher
+		attributes string) *GFileAttributeMatcher
 
 	G_file_attribute_matcher_ref func(
 		matcher *GFileAttributeMatcher) *GFileAttributeMatcher
@@ -3020,30 +3031,30 @@ var (
 
 	G_file_attribute_matcher_matches func(
 		matcher *GFileAttributeMatcher,
-		attribute *Char) Gboolean
+		attribute string) Gboolean
 
 	G_file_attribute_matcher_matches_only func(
 		matcher *GFileAttributeMatcher,
-		attribute *Char) Gboolean
+		attribute string) Gboolean
 
 	G_file_attribute_matcher_enumerate_namespace func(
 		matcher *GFileAttributeMatcher,
-		ns *Char) Gboolean
+		ns string) Gboolean
 
 	G_file_attribute_matcher_enumerate_next func(
-		matcher *GFileAttributeMatcher) *Char
+		matcher *GFileAttributeMatcher) string
 
 	G_file_input_stream_get_type func() GType
 
 	G_file_input_stream_query_info func(
 		stream *GFileInputStream,
-		attributes *Char,
+		attributes string,
 		cancellable *GCancellable,
 		err **GError) *GFileInfo
 
 	G_file_input_stream_query_info_async func(
 		stream *GFileInputStream,
-		attributes *Char,
+		attributes string,
 		io_priority int,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -3117,13 +3128,13 @@ var (
 
 	G_file_io_stream_query_info func(
 		stream *GFileIOStream,
-		attributes *Char,
+		attributes string,
 		cancellable *GCancellable,
 		err **GError) *GFileInfo
 
 	G_file_io_stream_query_info_async func(
 		stream *GFileIOStream,
-		attributes *Char,
+		attributes string,
 		io_priority int,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -3135,7 +3146,7 @@ var (
 		err **GError) *GFileInfo
 
 	G_file_io_stream_get_etag func(
-		stream *GFileIOStream) *Char
+		stream *GFileIOStream) string
 
 	G_file_monitor_get_type func() GType
 
@@ -3161,11 +3172,11 @@ var (
 
 	G_filename_completer_get_completion_suffix func(
 		completer *GFilenameCompleter,
-		initial_text *Char) *Char
+		initial_text string) string
 
 	G_filename_completer_get_completions func(
 		completer *GFilenameCompleter,
-		initial_text *Char) **Char
+		initial_text string) **Char
 
 	G_filename_completer_set_dirs_only func(
 		completer *GFilenameCompleter,
@@ -3175,13 +3186,13 @@ var (
 
 	G_file_output_stream_query_info func(
 		stream *GFileOutputStream,
-		attributes *Char,
+		attributes string,
 		cancellable *GCancellable,
 		err **GError) *GFileInfo
 
 	G_file_output_stream_query_info_async func(
 		stream *GFileOutputStream,
-		attributes *Char,
+		attributes string,
 		io_priority int,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -3193,12 +3204,12 @@ var (
 		err **GError) *GFileInfo
 
 	G_file_output_stream_get_etag func(
-		stream *GFileOutputStream) *Char
+		stream *GFileOutputStream) string
 
 	G_inet_address_get_type func() GType
 
 	G_inet_address_new_from_string func(
-		string *Gchar) *GInetAddress
+		string string) *GInetAddress
 
 	G_inet_address_new_from_bytes func(
 		bytes *Guint8,
@@ -3211,7 +3222,7 @@ var (
 		family GSocketFamily) *GInetAddress
 
 	G_inet_address_to_string func(
-		address *GInetAddress) *Gchar
+		address *GInetAddress) string
 
 	G_inet_address_to_bytes func(
 		address *GInetAddress) *Guint8
@@ -3399,19 +3410,19 @@ var (
 	G_io_module_get_type func() GType
 
 	G_io_module_new func(
-		filename *Gchar) *GIOModule
+		filename string) *GIOModule
 
 	G_io_modules_scan_all_in_directory func(
-		dirname *Char)
+		dirname string)
 
 	G_io_modules_load_all_in_directory func(
-		dirname *Gchar) *GList
+		dirname string) *GList
 
 	G_io_extension_point_register func(
-		name *Char) *GIOExtensionPoint
+		name string) *GIOExtensionPoint
 
 	G_io_extension_point_lookup func(
-		name *Char) *GIOExtensionPoint
+		name string) *GIOExtensionPoint
 
 	G_io_extension_point_set_required_type func(
 		extension_point *GIOExtensionPoint,
@@ -3425,19 +3436,19 @@ var (
 
 	G_io_extension_point_get_extension_by_name func(
 		extension_point *GIOExtensionPoint,
-		name *Char) *GIOExtension
+		name string) *GIOExtension
 
 	G_io_extension_point_implement func(
-		extension_point_name *Char,
+		extension_point_name string,
 		typ GType,
-		extension_name *Char,
+		extension_name string,
 		priority Gint) *GIOExtension
 
 	G_io_extension_get_type func(
 		extension *GIOExtension) GType
 
 	G_io_extension_get_name func(
-		extension *GIOExtension) *Char
+		extension *GIOExtension) string
 
 	G_io_extension_get_priority func(
 		extension *GIOExtension) Gint
@@ -3540,13 +3551,13 @@ var (
 		mount *GMount) *GFile
 
 	G_mount_get_name func(
-		mount *GMount) *Char
+		mount *GMount) string
 
 	G_mount_get_icon func(
 		mount *GMount) *GIcon
 
 	G_mount_get_uuid func(
-		mount *GMount) *Char
+		mount *GMount) string
 
 	G_mount_get_volume func(
 		mount *GMount) *GVolume
@@ -3655,18 +3666,18 @@ var (
 	G_mount_operation_new func() *GMountOperation
 
 	G_mount_operation_get_username func(
-		op *GMountOperation) *Char
+		op *GMountOperation) string
 
 	G_mount_operation_set_username func(
 		op *GMountOperation,
-		username *Char)
+		username string)
 
 	G_mount_operation_get_password func(
-		op *GMountOperation) *Char
+		op *GMountOperation) string
 
 	G_mount_operation_set_password func(
 		op *GMountOperation,
-		password *Char)
+		password string)
 
 	G_mount_operation_get_anonymous func(
 		op *GMountOperation) Gboolean
@@ -3676,11 +3687,11 @@ var (
 		anonymous Gboolean)
 
 	G_mount_operation_get_domain func(
-		op *GMountOperation) *Char
+		op *GMountOperation) string
 
 	G_mount_operation_set_domain func(
 		op *GMountOperation,
-		domain *Char)
+		domain string)
 
 	G_mount_operation_get_password_save func(
 		op *GMountOperation) GPasswordSave
@@ -3715,11 +3726,11 @@ var (
 
 	G_volume_monitor_get_volume_for_uuid func(
 		volume_monitor *GVolumeMonitor,
-		uuid *Char) *GVolume
+		uuid string) *GVolume
 
 	G_volume_monitor_get_mount_for_uuid func(
 		volume_monitor *GVolumeMonitor,
-		uuid *Char) *GMount
+		uuid string) *GMount
 
 	G_volume_monitor_adopt_orphan_mount func(
 		mount *GMount) *GVolume
@@ -3729,50 +3740,50 @@ var (
 	G_network_address_get_type func() GType
 
 	G_network_address_new func(
-		hostname *Gchar,
+		hostname string,
 		port Guint16) *GSocketConnectable
 
 	G_network_address_parse func(
-		host_and_port *Gchar,
+		host_and_port string,
 		default_port Guint16,
 		err **GError) *GSocketConnectable
 
 	G_network_address_parse_uri func(
-		uri *Gchar,
+		uri string,
 		default_port Guint16,
 		err **GError) *GSocketConnectable
 
 	G_network_address_get_hostname func(
-		addr *GNetworkAddress) *Gchar
+		addr *GNetworkAddress) string
 
 	G_network_address_get_port func(
 		addr *GNetworkAddress) Guint16
 
 	G_network_address_get_scheme func(
-		addr *GNetworkAddress) *Gchar
+		addr *GNetworkAddress) string
 
 	G_network_service_get_type func() GType
 
 	G_network_service_new func(
-		service *Gchar,
-		protocol *Gchar,
-		domain *Gchar) *GSocketConnectable
+		service string,
+		protocol string,
+		domain string) *GSocketConnectable
 
 	G_network_service_get_service func(
-		srv *GNetworkService) *Gchar
+		srv *GNetworkService) string
 
 	G_network_service_get_protocol func(
-		srv *GNetworkService) *Gchar
+		srv *GNetworkService) string
 
 	G_network_service_get_domain func(
-		srv *GNetworkService) *Gchar
+		srv *GNetworkService) string
 
 	G_network_service_get_scheme func(
-		srv *GNetworkService) *Gchar
+		srv *GNetworkService) string
 
 	G_network_service_set_scheme func(
 		srv *GNetworkService,
-		scheme *Gchar)
+		scheme string)
 
 	G_permission_get_type func() GType
 
@@ -3867,7 +3878,7 @@ var (
 	G_proxy_get_type func() GType
 
 	G_proxy_get_default_for_protocol func(
-		protocol *Gchar) *GProxy
+		protocol string) *GProxy
 
 	G_proxy_connect func(
 		proxy *GProxy,
@@ -3897,26 +3908,26 @@ var (
 	G_proxy_address_new func(
 		inetaddr *GInetAddress,
 		port Guint16,
-		protocol *Gchar,
-		dest_hostname *Gchar,
+		protocol string,
+		dest_hostname string,
 		dest_port Guint16,
-		username *Gchar,
-		password *Gchar) *GSocketAddress
+		username string,
+		password string) *GSocketAddress
 
 	G_proxy_address_get_protocol func(
-		proxy *GProxyAddress) *Gchar
+		proxy *GProxyAddress) string
 
 	G_proxy_address_get_destination_hostname func(
-		proxy *GProxyAddress) *Gchar
+		proxy *GProxyAddress) string
 
 	G_proxy_address_get_destination_port func(
 		proxy *GProxyAddress) Guint16
 
 	G_proxy_address_get_username func(
-		proxy *GProxyAddress) *Gchar
+		proxy *GProxyAddress) string
 
 	G_proxy_address_get_password func(
-		proxy *GProxyAddress) *Gchar
+		proxy *GProxyAddress) string
 
 	G_socket_address_enumerator_get_type func() GType
 
@@ -3947,13 +3958,13 @@ var (
 
 	G_proxy_resolver_lookup func(
 		resolver *GProxyResolver,
-		uri *Gchar,
+		uri string,
 		cancellable *GCancellable,
 		err **GError) **Gchar
 
 	G_proxy_resolver_lookup_async func(
 		resolver *GProxyResolver,
-		uri *Gchar,
+		uri string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -3972,13 +3983,13 @@ var (
 
 	G_resolver_lookup_by_name func(
 		resolver *GResolver,
-		hostname *Gchar,
+		hostname string,
 		cancellable *GCancellable,
 		err **GError) *GList
 
 	G_resolver_lookup_by_name_async func(
 		resolver *GResolver,
-		hostname *Gchar,
+		hostname string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -3995,7 +4006,7 @@ var (
 		resolver *GResolver,
 		address *GInetAddress,
 		cancellable *GCancellable,
-		err **GError) *Gchar
+		err **GError) string
 
 	G_resolver_lookup_by_address_async func(
 		resolver *GResolver,
@@ -4007,21 +4018,21 @@ var (
 	G_resolver_lookup_by_address_finish func(
 		resolver *GResolver,
 		result *GAsyncResult,
-		err **GError) *Gchar
+		err **GError) string
 
 	G_resolver_lookup_service func(
 		resolver *GResolver,
-		service *Gchar,
-		protocol *Gchar,
-		domain *Gchar,
+		service string,
+		protocol string,
+		domain string,
 		cancellable *GCancellable,
 		err **GError) *GList
 
 	G_resolver_lookup_service_async func(
 		resolver *GResolver,
-		service *Gchar,
-		protocol *Gchar,
-		domain *Gchar,
+		service string,
+		protocol string,
+		domain string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -4067,20 +4078,20 @@ var (
 	G_settings_list_relocatable_schemas func() **Gchar
 
 	G_settings_new func(
-		schema *Gchar) *GSettings
+		schema string) *GSettings
 
 	G_settings_new_with_path func(
-		schema *Gchar,
-		path *Gchar) *GSettings
+		schema string,
+		path string) *GSettings
 
 	G_settings_new_with_backend func(
-		schema *Gchar,
+		schema string,
 		backend *GSettingsBackend) *GSettings
 
 	G_settings_new_with_backend_and_path func(
-		schema *Gchar,
+		schema string,
 		backend *GSettingsBackend,
-		path *Gchar) *GSettings
+		path string) *GSettings
 
 	G_settings_list_children func(
 		settings *GSettings) **Gchar
@@ -4090,109 +4101,83 @@ var (
 
 	G_settings_get_range func(
 		settings *GSettings,
-		key *Gchar) *GVariant
+		key string) *GVariant
 
 	G_settings_range_check func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		value *GVariant) Gboolean
 
 	G_settings_set_value func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		value *GVariant) Gboolean
 
 	G_settings_get_value func(
 		settings *GSettings,
-		key *Gchar) *GVariant
+		key string) *GVariant
 
-	//TODO(t):Variant
-	//g_settings_set func(settings  *GSettings, key  *Gchar, format  *Gchar, ...) Gboolean
-	//g_settings_get func(settings  *GSettings, key  *Gchar, format  *Gchar, ...)
+	G_settings_set func(settings *GSettings, key, format string,
+		v ...VArg) Gboolean
 
-	G_settings_reset func(
-		settings *GSettings,
-		key *Gchar)
+	G_settings_get func(settings *GSettings, key, format string,
+		v ...VArg)
 
-	G_settings_get_int func(
-		settings *GSettings,
-		key *Gchar) Gint
+	G_settings_reset func(settings *GSettings, key string)
+
+	G_settings_get_int func(settings *GSettings, key string) Gint
 
 	G_settings_set_int func(
-		settings *GSettings,
-		key *Gchar,
-		value Gint) Gboolean
+		settings *GSettings, key string, value Gint) Gboolean
 
 	G_settings_get_string func(
-		settings *GSettings,
-		key *Gchar) *Gchar
+		settings *GSettings, key string) string
 
 	G_settings_set_string func(
-		settings *GSettings,
-		key *Gchar,
-		value *Gchar) Gboolean
+		settings *GSettings, key, value string) Gboolean
 
 	G_settings_get_boolean func(
-		settings *GSettings,
-		key *Gchar) Gboolean
+		settings *GSettings, key string) Gboolean
 
 	G_settings_set_boolean func(
-		settings *GSettings,
-		key *Gchar,
-		value Gboolean) Gboolean
+		settings *GSettings, key string, value Gboolean) Gboolean
 
 	G_settings_get_double func(
-		settings *GSettings,
-		key *Gchar) Gdouble
+		settings *GSettings, key string) Gdouble
 
-	G_settings_set_double func(
-		settings *GSettings,
-		key *Gchar,
-		value Gdouble) Gboolean
+	G_settings_set_double func(settings *GSettings,
+		key string, value Gdouble) Gboolean
 
 	G_settings_get_strv func(
-		settings *GSettings,
-		key *Gchar) **Gchar
+		settings *GSettings, key string) **Gchar
 
-	G_settings_set_strv func(
-		settings *GSettings,
-		key *Gchar,
-		value **Gchar) Gboolean
+	G_settings_set_strv func(settings *GSettings,
+		key string, value **Gchar) Gboolean
 
 	G_settings_get_enum func(
-		settings *GSettings,
-		key *Gchar) Gint
+		settings *GSettings, key string) Gint
 
-	G_settings_set_enum func(
-		settings *GSettings,
-		key *Gchar,
-		value Gint) Gboolean
+	G_settings_set_enum func(settings *GSettings,
+		key string, value Gint) Gboolean
 
 	G_settings_get_flags func(
-		settings *GSettings,
-		key *Gchar) Guint
+		settings *GSettings, key string) Guint
 
-	G_settings_set_flags func(
-		settings *GSettings,
-		key *Gchar,
-		value Guint) Gboolean
+	G_settings_set_flags func(settings *GSettings,
+		key string, value Guint) Gboolean
 
 	G_settings_get_child func(
 		settings *GSettings,
-		name *Gchar) *GSettings
+		name string) *GSettings
 
 	G_settings_is_writable func(
-		settings *GSettings,
-		name *Gchar) Gboolean
+		settings *GSettings, name string) Gboolean
 
-	G_settings_delay func(
-		settings *GSettings)
+	G_settings_delay func(settings *GSettings)
 
-	G_settings_apply func(
-		settings *GSettings)
+	G_settings_apply func(settings *GSettings)
 
-	G_settings_revert func(
-		settings *GSettings)
+	G_settings_revert func(settings *GSettings)
 
 	G_settings_get_has_unapplied func(
 		settings *GSettings) Gboolean
@@ -4201,16 +4186,16 @@ var (
 
 	G_settings_bind func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		object Gpointer,
-		property *Gchar,
+		property string,
 		flags GSettingsBindFlags)
 
 	G_settings_bind_with_mapping func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		object Gpointer,
-		property *Gchar,
+		property string,
 		flags GSettingsBindFlags,
 		get_mapping GSettingsBindGetMapping,
 		set_mapping GSettingsBindSetMapping,
@@ -4219,18 +4204,16 @@ var (
 
 	G_settings_bind_writable func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		object Gpointer,
-		property *Gchar,
+		property string,
 		inverted Gboolean)
 
-	G_settings_unbind func(
-		object Gpointer,
-		property *Gchar)
+	G_settings_unbind func(object Gpointer, property string)
 
 	G_settings_get_mapped func(
 		settings *GSettings,
-		key *Gchar,
+		key string,
 		mapping GSettingsGetMapping,
 		user_data Gpointer) Gpointer
 
@@ -4242,8 +4225,10 @@ var (
 		user_data Gpointer,
 		source_tag Gpointer) *GSimpleAsyncResult
 
-	//TODO(t):Variant
-	//g_simple_async_result_new_error func(source_object  *GObject, callback  GAsyncReadyCallback, user_data  Gpointer, domain  GQuark, code  Gint, format  *Char, ...) *GSimpleAsyncResult
+	G_simple_async_result_new_error func(
+		source_object *GObject, callback GAsyncReadyCallback,
+		user_data Gpointer, domain GQuark, code Gint,
+		format string, v ...VArg) *GSimpleAsyncResult
 
 	G_simple_async_result_new_from_error func(
 		source_object *GObject,
@@ -4310,14 +4295,15 @@ var (
 		simple *GSimpleAsyncResult,
 		dest **GError) Gboolean
 
-	//TODO(t):Variant
-	//g_simple_async_result_set_error func(simple  *GSimpleAsyncResult, domain  GQuark, code  Gint, format  *Char, ...)
+	G_simple_async_result_set_error func(
+		simple *GSimpleAsyncResult, domain GQuark,
+		code Gint, format string, v ...VArg)
 
 	G_simple_async_result_set_error_va func(
 		simple *GSimpleAsyncResult,
 		domain GQuark,
 		code Gint,
-		format *Char,
+		format string,
 		args Va_list)
 
 	G_simple_async_result_is_valid func(
@@ -4325,8 +4311,9 @@ var (
 		source *GObject,
 		source_tag Gpointer) Gboolean
 
-	//TODO(t):Variant
-	//g_simple_async_report_error_in_idle func(object  *GObject, callback  GAsyncReadyCallback, user_data  Gpointer, domain  GQuark, code  Gint, format  *Char, ...)
+	G_simple_async_report_error_in_idle func(object *GObject,
+		callback GAsyncReadyCallback, user_data Gpointer,
+		domain GQuark, code Gint, format string, v ...VArg)
 
 	G_simple_async_report_gerror_in_idle func(
 		object *GObject,
@@ -4413,21 +4400,21 @@ var (
 
 	G_socket_client_connect_to_host func(
 		client *GSocketClient,
-		host_and_port *Gchar,
+		host_and_port string,
 		default_port Guint16,
 		cancellable *GCancellable,
 		err **GError) *GSocketConnection
 
 	G_socket_client_connect_to_service func(
 		client *GSocketClient,
-		domain *Gchar,
-		service *Gchar,
+		domain string,
+		service string,
 		cancellable *GCancellable,
 		err **GError) *GSocketConnection
 
 	G_socket_client_connect_to_uri func(
 		client *GSocketClient,
-		uri *Gchar,
+		uri string,
 		default_port Guint16,
 		cancellable *GCancellable,
 		err **GError) *GSocketConnection
@@ -4446,7 +4433,7 @@ var (
 
 	G_socket_client_connect_to_host_async func(
 		client *GSocketClient,
-		host_and_port *Gchar,
+		host_and_port string,
 		default_port Guint16,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -4459,8 +4446,8 @@ var (
 
 	G_socket_client_connect_to_service_async func(
 		client *GSocketClient,
-		domain *Gchar,
-		service *Gchar,
+		domain string,
+		service string,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
@@ -4472,7 +4459,7 @@ var (
 
 	G_socket_client_connect_to_uri_async func(
 		client *GSocketClient,
-		uri *Gchar,
+		uri string,
 		default_port Guint16,
 		cancellable *GCancellable,
 		callback GAsyncReadyCallback,
@@ -4485,7 +4472,7 @@ var (
 
 	G_socket_client_add_application_proxy func(
 		client *GSocketClient,
-		protocol *Gchar)
+		protocol string)
 
 	G_socket_connectable_get_type func() GType
 
@@ -4595,7 +4582,7 @@ var (
 
 	G_socket_receive func(
 		socket *GSocket,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		cancellable *GCancellable,
 		err **GError) Gssize
@@ -4603,14 +4590,14 @@ var (
 	G_socket_receive_from func(
 		socket *GSocket,
 		address **GSocketAddress,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		cancellable *GCancellable,
 		err **GError) Gssize
 
 	G_socket_send func(
 		socket *GSocket,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		cancellable *GCancellable,
 		err **GError) Gssize
@@ -4618,7 +4605,7 @@ var (
 	G_socket_send_to func(
 		socket *GSocket,
 		address *GSocketAddress,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		cancellable *GCancellable,
 		err **GError) Gssize
@@ -4672,7 +4659,7 @@ var (
 
 	G_socket_receive_with_blocking func(
 		socket *GSocket,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		blocking Gboolean,
 		cancellable *GCancellable,
@@ -4680,7 +4667,7 @@ var (
 
 	G_socket_send_with_blocking func(
 		socket *GSocket,
-		buffer *Gchar,
+		buffer string,
 		size Gsize,
 		blocking Gboolean,
 		cancellable *GCancellable,
@@ -4824,7 +4811,7 @@ var (
 	G_srv_target_get_type func() GType
 
 	G_srv_target_new func(
-		hostname *Gchar,
+		hostname string,
 		port Guint16,
 		priority Guint16,
 		weight Guint16) *GSrvTarget
@@ -4836,7 +4823,7 @@ var (
 		target *GSrvTarget)
 
 	G_srv_target_get_hostname func(
-		target *GSrvTarget) *Gchar
+		target *GSrvTarget) string
 
 	G_srv_target_get_port func(
 		target *GSrvTarget) Guint16
@@ -4871,10 +4858,10 @@ var (
 	G_themed_icon_get_type func() GType
 
 	G_themed_icon_new func(
-		iconname *Char) *GIcon
+		iconname string) *GIcon
 
 	G_themed_icon_new_with_default_fallbacks func(
-		iconname *Char) *GIcon
+		iconname string) *GIcon
 
 	G_themed_icon_new_from_names func(
 		iconnames **Char,
@@ -4882,11 +4869,11 @@ var (
 
 	G_themed_icon_prepend_name func(
 		icon *GThemedIcon,
-		iconname *Char)
+		iconname string)
 
 	G_themed_icon_append_name func(
 		icon *GThemedIcon,
-		iconname *Char)
+		iconname string)
 
 	G_themed_icon_get_names func(
 		icon *GThemedIcon) **Gchar
@@ -4915,21 +4902,21 @@ var (
 	G_tls_certificate_get_type func() GType
 
 	G_tls_certificate_new_from_pem func(
-		data *Gchar,
+		data string,
 		length Gssize,
 		err **GError) *GTlsCertificate
 
 	G_tls_certificate_new_from_file func(
-		file *Gchar,
+		file string,
 		err **GError) *GTlsCertificate
 
 	G_tls_certificate_new_from_files func(
-		cert_file *Gchar,
-		key_file *Gchar,
+		cert_file string,
+		key_file string,
 		err **GError) *GTlsCertificate
 
 	G_tls_certificate_list_new_from_file func(
-		file *Gchar,
+		file string,
 		err **GError) *GList
 
 	G_tls_certificate_get_issuer func(
@@ -5045,18 +5032,18 @@ var (
 
 	G_vfs_get_file_for_path func(
 		vfs *GVfs,
-		path *Char) *GFile
+		path string) *GFile
 
 	G_vfs_get_file_for_uri func(
 		vfs *GVfs,
-		uri *Char) *GFile
+		uri string) *GFile
 
 	G_vfs_get_supported_uri_schemes func(
 		vfs *GVfs) **Gchar
 
 	G_vfs_parse_name func(
 		vfs *GVfs,
-		parse_name *Char) *GFile
+		parse_name string) *GFile
 
 	G_vfs_get_default func() *GVfs
 
@@ -5065,13 +5052,13 @@ var (
 	G_volume_get_type func() GType
 
 	G_volume_get_name func(
-		volume *GVolume) *Char
+		volume *GVolume) string
 
 	G_volume_get_icon func(
 		volume *GVolume) *GIcon
 
 	G_volume_get_uuid func(
-		volume *GVolume) *Char
+		volume *GVolume) string
 
 	G_volume_get_drive func(
 		volume *GVolume) *GDrive
@@ -5115,7 +5102,7 @@ var (
 
 	G_volume_get_identifier func(
 		volume *GVolume,
-		kind *Char) *Char
+		kind string) string
 
 	G_volume_enumerate_identifiers func(
 		volume *GVolume) **Char
@@ -5193,12 +5180,12 @@ var (
 
 	G_settings_backend_changed func(
 		backend *GSettingsBackend,
-		key *Gchar,
+		key string,
 		origin_tag Gpointer)
 
 	G_settings_backend_path_changed func(
 		backend *GSettingsBackend,
-		path *Gchar,
+		path string,
 		origin_tag Gpointer)
 
 	G_settings_backend_flatten_tree func(
@@ -5209,17 +5196,17 @@ var (
 
 	G_settings_backend_keys_changed func(
 		backend *GSettingsBackend,
-		path *Gchar,
+		path string,
 		items **Gchar,
 		origin_tag Gpointer)
 
 	G_settings_backend_path_writable_changed func(
 		backend *GSettingsBackend,
-		path *Gchar)
+		path string)
 
 	G_settings_backend_writable_changed func(
 		backend *GSettingsBackend,
-		key *Gchar)
+		key string)
 
 	G_settings_backend_changed_tree func(
 		backend *GSettingsBackend,
@@ -5229,9 +5216,9 @@ var (
 	G_settings_backend_get_default func() *GSettingsBackend
 
 	G_keyfile_settings_backend_new func(
-		filename *Gchar,
-		root_path *Gchar,
-		root_group *Gchar) *GSettingsBackend
+		filename string,
+		root_path string,
+		root_group string) *GSettingsBackend
 
 	G_null_settings_backend_new func() *GSettingsBackend
 
@@ -5239,7 +5226,7 @@ var (
 )
 var dll = "libgio-2.0-0.dll"
 
-var apiList = outside.Apis{
+var apiList = Apis{
 	{"g_action_activate", &G_action_activate},
 	{"g_action_get_enabled", &G_action_get_enabled},
 	{"g_action_get_name", &G_action_get_name},
@@ -5310,8 +5297,8 @@ var apiList = outside.Apis{
 	{"g_application_command_line_get_platform_data", &G_application_command_line_get_platform_data},
 	{"g_application_command_line_get_type", &G_application_command_line_get_type},
 	{"g_application_command_line_getenv", &G_application_command_line_getenv},
-	// TODO():Variant {"g_application_command_line_print", &G_application_command_line_print},
-	// TODO():Variant {"g_application_command_line_printerr", &G_application_command_line_printerr},
+	{"g_application_command_line_print", &G_application_command_line_print},
+	{"g_application_command_line_printerr", &G_application_command_line_printerr},
 	{"g_application_command_line_set_exit_status", &G_application_command_line_set_exit_status},
 	{"g_application_flags_get_type", &G_application_flags_get_type},
 	{"g_application_get_application_id", &G_application_get_application_id},
@@ -5335,7 +5322,7 @@ var apiList = outside.Apis{
 	{"g_async_initable_get_type", &G_async_initable_get_type},
 	{"g_async_initable_init_async", &G_async_initable_init_async},
 	{"g_async_initable_init_finish", &G_async_initable_init_finish},
-	// TODO():Variant {"g_async_initable_new_async", &G_async_initable_new_async},
+	{"g_async_initable_new_async", &G_async_initable_new_async},
 	{"g_async_initable_new_finish", &G_async_initable_new_finish},
 	{"g_async_initable_new_valist_async", &G_async_initable_new_valist_async},
 	{"g_async_initable_newv_async", &G_async_initable_newv_async},
@@ -5525,7 +5512,7 @@ var apiList = outside.Apis{
 	{"g_dbus_error_quark", &G_dbus_error_quark},
 	{"g_dbus_error_register_error", &G_dbus_error_register_error},
 	{"g_dbus_error_register_error_domain", &G_dbus_error_register_error_domain},
-	// TODO():Variant {"g_dbus_error_set_dbus_error", &G_dbus_error_set_dbus_error},
+	{"g_dbus_error_set_dbus_error", &G_dbus_error_set_dbus_error},
 	{"g_dbus_error_set_dbus_error_valist", &G_dbus_error_set_dbus_error_valist},
 	{"g_dbus_error_strip_remote_error", &G_dbus_error_strip_remote_error},
 	{"g_dbus_error_unregister_error", &G_dbus_error_unregister_error},
@@ -5572,7 +5559,7 @@ var apiList = outside.Apis{
 	{"g_dbus_message_new", &G_dbus_message_new},
 	{"g_dbus_message_new_from_blob", &G_dbus_message_new_from_blob},
 	{"g_dbus_message_new_method_call", &G_dbus_message_new_method_call},
-	// TODO():Variant {"g_dbus_message_new_method_error", &G_dbus_message_new_method_error},
+	{"g_dbus_message_new_method_error", &G_dbus_message_new_method_error},
 	{"g_dbus_message_new_method_error_literal", &G_dbus_message_new_method_error_literal},
 	{"g_dbus_message_new_method_error_valist", &G_dbus_message_new_method_error_valist},
 	{"g_dbus_message_new_method_reply", &G_dbus_message_new_method_reply},
@@ -5610,7 +5597,7 @@ var apiList = outside.Apis{
 	{"g_dbus_method_invocation_get_type", &G_dbus_method_invocation_get_type},
 	{"g_dbus_method_invocation_get_user_data", &G_dbus_method_invocation_get_user_data},
 	{"g_dbus_method_invocation_return_dbus_error", &G_dbus_method_invocation_return_dbus_error},
-	// TODO():Variant {"g_dbus_method_invocation_return_error", &G_dbus_method_invocation_return_error},
+	{"g_dbus_method_invocation_return_error", &G_dbus_method_invocation_return_error},
 	{"g_dbus_method_invocation_return_error_literal", &G_dbus_method_invocation_return_error_literal},
 	{"g_dbus_method_invocation_return_error_valist", &G_dbus_method_invocation_return_error_valist},
 	{"g_dbus_method_invocation_return_gerror", &G_dbus_method_invocation_return_gerror},
@@ -5979,7 +5966,7 @@ var apiList = outside.Apis{
 	{"g_inet_socket_address_new", &G_inet_socket_address_new},
 	{"g_initable_get_type", &G_initable_get_type},
 	{"g_initable_init", &G_initable_init},
-	//TODO(t):Variant {"g_initable_new", &G_initable_new},
+	{"g_initable_new", &G_initable_new},
 	{"g_initable_new_valist", &G_initable_new_valist},
 	{"g_initable_newv", &G_initable_newv},
 	{"g_input_stream_clear_pending", &G_input_stream_clear_pending},
@@ -6209,7 +6196,7 @@ var apiList = outside.Apis{
 	{"g_settings_bind_with_mapping", &G_settings_bind_with_mapping},
 	{"g_settings_bind_writable", &G_settings_bind_writable},
 	{"g_settings_delay", &G_settings_delay},
-	//TODO(t):Variant {"g_settings_get", &G_settings_get},
+	{"g_settings_get", &G_settings_get},
 	{"g_settings_get_boolean", &G_settings_get_boolean},
 	{"g_settings_get_child", &G_settings_get_child},
 	{"g_settings_get_double", &G_settings_get_double},
@@ -6235,7 +6222,7 @@ var apiList = outside.Apis{
 	{"g_settings_range_check", &G_settings_range_check},
 	{"g_settings_reset", &G_settings_reset},
 	{"g_settings_revert", &G_settings_revert},
-	//TODO(t):Variant {"g_settings_set", &G_settings_set},
+	{"g_settings_set", &G_settings_set},
 	{"g_settings_set_boolean", &G_settings_set_boolean},
 	{"g_settings_set_double", &G_settings_set_double},
 	{"g_settings_set_enum", &G_settings_set_enum},
@@ -6256,7 +6243,7 @@ var apiList = outside.Apis{
 	{"g_simple_action_new", &G_simple_action_new},
 	{"g_simple_action_new_stateful", &G_simple_action_new_stateful},
 	{"g_simple_action_set_enabled", &G_simple_action_set_enabled},
-	//TODO(t):Variant {"g_simple_async_report_error_in_idle", &G_simple_async_report_error_in_idle},
+	{"g_simple_async_report_error_in_idle", &G_simple_async_report_error_in_idle},
 	{"g_simple_async_report_gerror_in_idle", &G_simple_async_report_gerror_in_idle},
 	{"g_simple_async_report_take_gerror_in_idle", &G_simple_async_report_take_gerror_in_idle},
 	{"g_simple_async_result_complete", &G_simple_async_result_complete},
@@ -6268,12 +6255,12 @@ var apiList = outside.Apis{
 	{"g_simple_async_result_get_type", &G_simple_async_result_get_type},
 	{"g_simple_async_result_is_valid", &G_simple_async_result_is_valid},
 	{"g_simple_async_result_new", &G_simple_async_result_new},
-	//TODO(t):Variant {"g_simple_async_result_new_error", &G_simple_async_result_new_error},
+	{"g_simple_async_result_new_error", &G_simple_async_result_new_error},
 	{"g_simple_async_result_new_from_error", &G_simple_async_result_new_from_error},
 	{"g_simple_async_result_new_take_error", &G_simple_async_result_new_take_error},
 	{"g_simple_async_result_propagate_error", &G_simple_async_result_propagate_error},
 	{"g_simple_async_result_run_in_thread", &G_simple_async_result_run_in_thread},
-	//TODO(t):Variant {"g_simple_async_result_set_error", &G_simple_async_result_set_error},
+	{"g_simple_async_result_set_error", &G_simple_async_result_set_error},
 	{"g_simple_async_result_set_error_va", &G_simple_async_result_set_error_va},
 	{"g_simple_async_result_set_from_error", &G_simple_async_result_set_from_error},
 	{"g_simple_async_result_set_handle_cancellation", &G_simple_async_result_set_handle_cancellation},

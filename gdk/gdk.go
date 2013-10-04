@@ -1,13 +1,13 @@
 package gdk
 
 import (
-	"github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside"
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
-	outside.AddDllApis(dll, false, apiList)
-	outside.AddDllApis(dllPixbuf, false, apiListPixbuf)
+	AddDllApis(dll, false, apiList)
+	AddDllApis(dllPixbuf, false, apiListPixbuf)
 }
 
 type (
@@ -75,7 +75,7 @@ var (
 		color *GdkColor)
 
 	Gdk_color_parse func(
-		spec *Gchar,
+		spec string,
 		color *GdkColor) Gboolean
 
 	Gdk_color_hash func(
@@ -86,7 +86,7 @@ var (
 		colorb *GdkColor) Gboolean
 
 	Gdk_color_to_string func(
-		color *GdkColor) *Gchar
+		color *GdkColor) string
 
 	Gdk_color_get_type func() GType
 
@@ -230,7 +230,7 @@ var (
 	Gdk_devices_list func() *GList
 
 	Gdk_device_get_name func(
-		device *GdkDevice) *Gchar
+		device *GdkDevice) string
 
 	Gdk_device_get_source func(
 		device *GdkDevice) GdkInputSource
@@ -378,16 +378,16 @@ var (
 		data Gpointer)
 
 	Gdk_setting_get func(
-		name *Gchar,
+		name string,
 		value *GValue) Gboolean
 
 	Gdk_display_get_type func() GType
 
 	Gdk_display_open func(
-		display_name *Gchar) *GdkDisplay
+		display_name string) *GdkDisplay
 
 	Gdk_display_get_name func(
-		display *GdkDisplay) *Gchar
+		display *GdkDisplay) string
 
 	Gdk_display_get_n_screens func(
 		display *GdkDisplay) Gint
@@ -582,7 +582,7 @@ var (
 		screen *GdkScreen) *GList
 
 	Gdk_screen_make_display_name func(
-		screen *GdkScreen) *Gchar
+		screen *GdkScreen) string
 
 	Gdk_screen_get_n_monitors func(
 		screen *GdkScreen) Gint
@@ -614,7 +614,7 @@ var (
 
 	Gdk_screen_get_monitor_plug_name func(
 		screen *GdkScreen,
-		monitor_num Gint) *Gchar
+		monitor_num Gint) string
 
 	Gdk_screen_broadcast_client_message func(
 		screen *GdkScreen,
@@ -624,7 +624,7 @@ var (
 
 	Gdk_screen_get_setting func(
 		screen *GdkScreen,
-		name *Gchar,
+		name string,
 		value *GValue) Gboolean
 
 	Gdk_screen_set_font_options func(
@@ -841,20 +841,20 @@ var (
 
 	Gdk_pixbuf_new_from_file func(
 		filename string,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_size func(
 		filename string,
 		width int,
 		height int,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_scale func(
 		filename string,
 		width int,
 		height int,
 		preserve_aspect_ratio Gboolean,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_data func(
 		data *Guchar,
@@ -874,25 +874,27 @@ var (
 		data_length Gint,
 		data *Guint8,
 		copy_pixels Gboolean,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_fill func(
 		pixbuf *GdkPixbuf,
 		pixel Guint32)
 
-	//TODO(t):Variant
-	//gdk_pixbuf_save_utf8 func( pixbuf  *GdkPixbuf, filename  string, typ  string, error  **GError, ...) Gboolean
+	Gdk_pixbuf_save_utf8 func(pixbuf *GdkPixbuf,
+		filename, typ string, e **GError, v ...VArg) Gboolean
 
 	Gdk_pixbuf_savev_utf8 func(
 		pixbuf *GdkPixbuf,
 		filename string,
-		typ *Char,
+		typ string,
 		option_keys **Char,
 		option_values **Char,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
-	//TODO(t):Variant
-	//gdk_pixbuf_save_to_callback func(pixbuf  *GdkPixbuf, save_func  GdkPixbufSaveFunc, user_data  Gpointer, typ  string, error  **GError, ...) Gboolean
+	Gdk_pixbuf_save_to_callback func(pixbuf *GdkPixbuf,
+		save_func GdkPixbufSaveFunc,
+		user_data Gpointer,
+		typ string, err **GError, v ...VArg) Gboolean
 
 	Gdk_pixbuf_save_to_callbackv func(
 		pixbuf *GdkPixbuf,
@@ -901,10 +903,11 @@ var (
 		typ string,
 		option_keys **Char,
 		option_values **Char,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
-	//TODO(t):Variant
-	//gdk_pixbuf_save_to_buffer func(pixbuf  *GdkPixbuf, buffer  **Gchar, buffer_size  *Gsize, typ  string, error  **GError, ...) Gboolean
+	Gdk_pixbuf_save_to_buffer func(pixbuf *GdkPixbuf,
+		buffer **Gchar, buffer_size *Gsize,
+		typ string, e **GError, v ...VArg) Gboolean
 
 	Gdk_pixbuf_save_to_bufferv func(
 		pixbuf *GdkPixbuf,
@@ -913,12 +916,12 @@ var (
 		typ string,
 		option_keys **Char,
 		option_values **Char,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_pixbuf_new_from_stream func(
 		stream *GInputStream,
 		cancellable *GCancellable,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_async func(
 		stream *GInputStream,
@@ -928,7 +931,7 @@ var (
 
 	Gdk_pixbuf_new_from_stream_finish func(
 		async_result *GAsyncResult,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_at_scale func(
 		stream *GInputStream,
@@ -936,7 +939,7 @@ var (
 		height Gint,
 		preserve_aspect_ratio Gboolean,
 		cancellable *GCancellable,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_at_scale_async func(
 		stream *GInputStream,
@@ -947,34 +950,32 @@ var (
 		callback GAsyncReadyCallback,
 		user_data Gpointer)
 
-	//TODO(t):Variant
-	//gdk_pixbuf_save_to_stream func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  string, cancellable  *GCancellable, error  **GError, ...) Gboolean
-	//gdk_pixbuf_save_to_stream_async func(pixbuf  *GdkPixbuf, stream  *GOutputStream, typ  *Gchar, cancellable  *GCancellable, callback  GAsyncReadyCallback, user_data  Gpointer, ...)
+	Gdk_pixbuf_save_to_stream func(pixbuf *GdkPixbuf,
+		stream *GOutputStream, typ string,
+		cancellable *GCancellable, e **GError, v ...VArg) Gboolean
+
+	Gdk_pixbuf_save_to_stream_async func(pixbuf *GdkPixbuf,
+		stream *GOutputStream, typ string,
+		cancellable *GCancellable, callback GAsyncReadyCallback,
+		user_data Gpointer, v ...VArg)
 
 	Gdk_pixbuf_save_to_stream_finish func(
 		async_result *GAsyncResult,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_pixbuf_add_alpha func(
 		pixbuf *GdkPixbuf,
 		substitute_color Gboolean,
-		r Guchar,
-		g Guchar,
-		b Guchar) *GdkPixbuf
+		r, g, b Guchar) *GdkPixbuf
 
 	Gdk_pixbuf_copy_area func(
 		src_pixbuf *GdkPixbuf,
-		src_x int,
-		src_y int,
-		width int,
-		height int,
+		src_x, src_y, width, height int,
 		dest_pixbuf *GdkPixbuf,
-		dest_x int,
-		dest_y int)
+		dest_x, dest_y int)
 
 	Gdk_pixbuf_saturate_and_pixelate func(
-		src *GdkPixbuf,
-		dest *GdkPixbuf,
+		src, dest *GdkPixbuf,
 		saturation Gfloat,
 		pixelate Gboolean)
 
@@ -983,7 +984,7 @@ var (
 
 	Gdk_pixbuf_get_option func(
 		pixbuf *GdkPixbuf,
-		key *Gchar) *Gchar
+		key string) string
 
 	Gdk_pixbuf_scale func(
 		src *GdkPixbuf,
@@ -1059,7 +1060,7 @@ var (
 
 	Gdk_pixbuf_animation_new_from_file_utf8 func(
 		filename string,
-		error **GError) *GdkPixbufAnimation
+		e **GError) *GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_ref func(
 		animation *GdkPixbufAnimation) *GdkPixbufAnimation
@@ -1123,10 +1124,10 @@ var (
 	Gdk_pixbuf_get_formats func() *GSList
 
 	Gdk_pixbuf_format_get_name func(
-		format *GdkPixbufFormat) *Gchar
+		format *GdkPixbufFormat) string
 
 	Gdk_pixbuf_format_get_description func(
-		format *GdkPixbufFormat) *Gchar
+		format *GdkPixbufFormat) string
 
 	Gdk_pixbuf_format_get_mime_types func(
 		format *GdkPixbufFormat) **Gchar
@@ -1148,10 +1149,10 @@ var (
 		disabled Gboolean)
 
 	Gdk_pixbuf_format_get_license func(
-		format *GdkPixbufFormat) *Gchar
+		format *GdkPixbufFormat) string
 
 	Gdk_pixbuf_get_file_info func(
-		filename *Gchar,
+		filename string,
 		width *Gint,
 		height *Gint) *GdkPixbufFormat
 
@@ -1167,11 +1168,11 @@ var (
 
 	Gdk_pixbuf_loader_new_with_type func(
 		image_type string,
-		error **GError) *GdkPixbufLoader
+		e **GError) *GdkPixbufLoader
 
 	Gdk_pixbuf_loader_new_with_mime_type func(
 		mime_type string,
-		error **GError) *GdkPixbufLoader
+		e **GError) *GdkPixbufLoader
 
 	Gdk_pixbuf_loader_set_size func(
 		loader *GdkPixbufLoader,
@@ -1182,7 +1183,7 @@ var (
 		loader *GdkPixbufLoader,
 		buf *Guchar,
 		count Gsize,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_pixbuf_loader_get_pixbuf func(
 		loader *GdkPixbufLoader) *GdkPixbuf
@@ -1192,7 +1193,7 @@ var (
 
 	Gdk_pixbuf_loader_close func(
 		loader *GdkPixbufLoader,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_pixbuf_loader_get_format func(
 		loader *GdkPixbufLoader) *GdkPixbufFormat
@@ -1353,7 +1354,7 @@ var (
 
 	Gdk_cursor_new_from_name func(
 		display *GdkDisplay,
-		name *Gchar) *GdkCursor
+		name string) *GdkCursor
 
 	Gdk_cursor_get_image func(
 		cursor *GdkCursor) *GdkPixbuf
@@ -1502,13 +1503,13 @@ var (
 
 	Gdk_drawable_set_data func(
 		drawable *GdkDrawable,
-		key *Gchar,
+		key string,
 		data Gpointer,
 		destroy_func GDestroyNotify)
 
 	Gdk_drawable_get_data func(
 		drawable *GdkDrawable,
-		key *Gchar) Gpointer
+		key string) Gpointer
 
 	Gdk_drawable_set_colormap func(
 		drawable *GdkDrawable,
@@ -1587,7 +1588,7 @@ var (
 		gc *GdkGC,
 		x Gint,
 		y Gint,
-		string *Gchar)
+		s string)
 
 	Gdk_draw_text func(
 		drawable *GdkDrawable,
@@ -1595,7 +1596,7 @@ var (
 		gc *GdkGC,
 		x Gint,
 		y Gint,
-		text *Gchar,
+		text string,
 		text_length Gint)
 
 	Gdk_draw_text_wc func(
@@ -1848,32 +1849,32 @@ var (
 
 	Gdk_font_load_for_display func(
 		display *GdkDisplay,
-		font_name *Gchar) *GdkFont
+		font_name string) *GdkFont
 
 	Gdk_fontset_load_for_display func(
 		display *GdkDisplay,
-		fontset_name *Gchar) *GdkFont
+		fontset_name string) *GdkFont
 
 	Gdk_font_from_description_for_display func(
 		display *GdkDisplay,
 		font_desc *PangoFontDescription) *GdkFont
 
 	Gdk_font_load func(
-		font_name *Gchar) *GdkFont
+		font_name string) *GdkFont
 
 	Gdk_fontset_load func(
-		fontset_name *Gchar) *GdkFont
+		fontset_name string) *GdkFont
 
 	Gdk_font_from_description func(
 		font_desc *PangoFontDescription) *GdkFont
 
 	Gdk_string_width func(
 		font *GdkFont,
-		string *Gchar) Gint
+		s string) Gint
 
 	Gdk_text_width func(
 		font *GdkFont,
-		text *Gchar,
+		text string,
 		text_length Gint) Gint
 
 	Gdk_text_width_wc func(
@@ -1891,11 +1892,11 @@ var (
 
 	Gdk_string_measure func(
 		font *GdkFont,
-		string *Gchar) Gint
+		s string) Gint
 
 	Gdk_text_measure func(
 		font *GdkFont,
-		text *Gchar,
+		text string,
 		text_length Gint) Gint
 
 	Gdk_char_measure func(
@@ -1904,11 +1905,11 @@ var (
 
 	Gdk_string_height func(
 		font *GdkFont,
-		string *Gchar) Gint
+		s string) Gint
 
 	Gdk_text_height func(
 		font *GdkFont,
-		text *Gchar,
+		text string,
 		text_length Gint) Gint
 
 	Gdk_char_height func(
@@ -1917,7 +1918,7 @@ var (
 
 	Gdk_text_extents func(
 		font *GdkFont,
-		text *Gchar,
+		text string,
 		text_length Gint,
 		lbearing *Gint,
 		rbearing *Gint,
@@ -1937,7 +1938,7 @@ var (
 
 	Gdk_string_extents func(
 		font *GdkFont,
-		string *Gchar,
+		s string,
 		lbearing *Gint,
 		rbearing *Gint,
 		width *Gint,
@@ -2068,10 +2069,10 @@ var (
 		state *GdkModifierType) Gboolean
 
 	Gdk_keyval_name func(
-		keyval Guint) *Gchar
+		keyval Guint) string
 
 	Gdk_keyval_from_name func(
-		keyval_name *Gchar) Guint
+		keyval_name string) Guint
 
 	Gdk_keyval_convert_case func(
 		symbol Guint,
@@ -2168,13 +2169,13 @@ var (
 
 	Gdk_bitmap_create_from_data func(
 		drawable *GdkDrawable,
-		data *Gchar,
+		data string,
 		width Gint,
 		height Gint) *GdkBitmap
 
 	Gdk_pixmap_create_from_data func(
 		drawable *GdkDrawable,
-		data *Gchar,
+		data string,
 		width Gint,
 		height Gint,
 		depth Gint,
@@ -2185,14 +2186,14 @@ var (
 		drawable *GdkDrawable,
 		mask **GdkBitmap,
 		transparent_color *GdkColor,
-		filename *Gchar) *GdkPixmap
+		filename string) *GdkPixmap
 
 	Gdk_pixmap_colormap_create_from_xpm func(
 		drawable *GdkDrawable,
 		colormap *GdkColormap,
 		mask **GdkBitmap,
 		transparent_color *GdkColor,
-		filename *Gchar) *GdkPixmap
+		filename string) *GdkPixmap
 
 	Gdk_pixmap_create_from_xpm_d func(
 		drawable *GdkDrawable,
@@ -2234,14 +2235,14 @@ var (
 		depth Gint) *GdkPixmap
 
 	Gdk_atom_intern func(
-		atom_name *Gchar,
+		atom_name string,
 		only_if_exists Gboolean) GdkAtom
 
 	Gdk_atom_intern_static_string func(
-		atom_name *Gchar) GdkAtom
+		atom_name string) GdkAtom
 
 	Gdk_atom_name func(
-		atom GdkAtom) *Gchar
+		atom GdkAtom) string
 
 	Gdk_property_get func(
 		window *GdkWindow,
@@ -2276,14 +2277,14 @@ var (
 		list ***Gchar) Gint
 
 	Gdk_utf8_to_compound_text func(
-		str *Gchar,
+		str string,
 		encoding *GdkAtom,
 		format *Gint,
 		ctext **Guchar,
 		length *Gint) Gboolean
 
 	Gdk_string_to_compound_text func(
-		str *Gchar,
+		str string,
 		encoding *GdkAtom,
 		format *Gint,
 		ctext **Guchar,
@@ -2305,7 +2306,7 @@ var (
 		list ***Gchar) Gint
 
 	Gdk_utf8_to_string_target func(
-		str *Gchar) *Gchar
+		str string) string
 
 	Gdk_text_property_to_text_list_for_display func(
 		display *GdkDisplay,
@@ -2317,7 +2318,7 @@ var (
 
 	Gdk_string_to_compound_text_for_display func(
 		display *GdkDisplay,
-		str *Gchar,
+		str string,
 		encoding *GdkAtom,
 		format *Gint,
 		ctext **Guchar,
@@ -2325,7 +2326,7 @@ var (
 
 	Gdk_utf8_to_compound_text_for_display func(
 		display *GdkDisplay,
-		str *Gchar,
+		str string,
 		encoding *GdkAtom,
 		format *Gint,
 		ctext **Guchar,
@@ -2469,18 +2470,18 @@ var (
 
 	Gdk_spawn_on_screen func(
 		screen *GdkScreen,
-		working_directory *Gchar,
+		working_directory string,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
 		child_setup GSpawnChildSetupFunc,
 		user_data Gpointer,
 		child_pid *Gint,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_spawn_on_screen_with_pipes func(
 		screen *GdkScreen,
-		working_directory *Gchar,
+		working_directory string,
 		argv **Gchar,
 		envp **Gchar,
 		flags GSpawnFlags,
@@ -2490,12 +2491,12 @@ var (
 		standard_input *Gint,
 		standard_output *Gint,
 		standard_error *Gint,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_spawn_command_line_on_screen func(
 		screen *GdkScreen,
-		command_line *Gchar,
-		error **GError) Gboolean
+		command_line string,
+		e **GError) Gboolean
 
 	Gdk_window_object_get_type func() GType
 
@@ -2766,7 +2767,7 @@ var (
 		geom_mask GdkWindowHints)
 
 	Gdk_set_sm_client_id func(
-		sm_client_id *Gchar)
+		sm_client_id string)
 
 	Gdk_window_begin_paint_rect func(
 		window *GdkWindow,
@@ -2784,15 +2785,15 @@ var (
 
 	Gdk_window_set_title func(
 		window *GdkWindow,
-		title *Gchar)
+		title string)
 
 	Gdk_window_set_role func(
 		window *GdkWindow,
-		role *Gchar)
+		role string)
 
 	Gdk_window_set_startup_id func(
 		window *GdkWindow,
-		startup_id *Gchar)
+		startup_id string)
 
 	Gdk_window_set_transient_for func(
 		window *GdkWindow,
@@ -2917,7 +2918,7 @@ var (
 
 	Gdk_window_set_icon_name func(
 		window *GdkWindow,
-		name *Gchar)
+		name string)
 
 	Gdk_window_set_group func(
 		window *GdkWindow,
@@ -3201,7 +3202,7 @@ var (
 	Gdk_exit func(
 		error_code Gint)
 
-	Gdk_set_locale func() *Gchar
+	Gdk_set_locale func() string
 
 	Gdk_get_program_class func() string
 
@@ -3217,9 +3218,9 @@ var (
 
 	Gdk_get_use_xshm func() Gboolean
 
-	Gdk_get_display func() *Gchar
+	Gdk_get_display func() string
 
-	Gdk_get_display_arg_name func() *Gchar
+	Gdk_get_display_arg_name func() string
 
 	Gdk_input_add_full func(
 		source Gint,
@@ -3296,11 +3297,11 @@ var (
 	Gdk_rectangle_get_type func() GType
 
 	Gdk_wcstombs func(
-		src *GdkWChar) *Gchar
+		src *GdkWChar) string
 
 	Gdk_mbstowcs func(
 		dest *GdkWChar,
-		src *Gchar,
+		src string,
 		dest_max Gint) Gint
 
 	Gdk_event_send_client_message func(
@@ -3318,7 +3319,7 @@ var (
 	Gdk_notify_startup_complete func()
 
 	Gdk_notify_startup_complete_with_id func(
-		startup_id *Gchar)
+		startup_id string)
 
 	Gdk_threads_enter func()
 
@@ -3371,7 +3372,7 @@ var (
 
 	Gdk_pixbuf_animation_new_from_file func(
 		filename string,
-		error **GError) *GdkPixbufAnimation
+		e **GError) *GdkPixbufAnimation
 
 	Gdk_pixdata_serialize func(
 		pixdata *GdkPixdata,
@@ -3381,7 +3382,7 @@ var (
 		pixdata *GdkPixdata,
 		stream_length Guint,
 		stream *Guint8,
-		error **GError) Gboolean
+		e **GError) Gboolean
 
 	Gdk_pixdata_from_pixbuf func(
 		pixdata *GdkPixdata,
@@ -3391,17 +3392,17 @@ var (
 	Gdk_pixbuf_from_pixdata func(
 		pixdata *GdkPixdata,
 		copy_pixels Gboolean,
-		error **GError) *GdkPixbuf
+		e **GError) *GdkPixbuf
 
 	Gdk_pixdata_to_csource func(
 		pixdata *GdkPixdata,
-		name *Gchar,
+		name string,
 		dump_type GdkPixdataDumpType) *GString
 
 	Gdk_pixbuf_set_option func(
 		pixbuf *GdkPixbuf,
-		key *Gchar,
-		value *Gchar) Gboolean
+		key string,
+		value string) Gboolean
 
 	Gdk_window_destroy_notify func(
 		window *GdkWindow)
@@ -3471,7 +3472,7 @@ var dll = "libgdk-win32-2.0-0.dll"
 
 var dllPixbuf = "libgdk_pixbuf-2.0-0.dll"
 
-var apiList = outside.Apis{
+var apiList = Apis{
 	{"gdk_add_client_message_filter", &Gdk_add_client_message_filter},
 	{"gdk_add_option_entries_libgtk_only", &Gdk_add_option_entries_libgtk_only},
 	{"gdk_app_launch_context_get_type", &Gdk_app_launch_context_get_type},
@@ -4201,7 +4202,7 @@ var apiList = outside.Apis{
 	{"gdk_wm_function_get_type", &Gdk_wm_function_get_type},
 }
 
-var apiListPixbuf = outside.Apis{
+var apiListPixbuf = Apis{
 	{"gdk_colorspace_get_type", &Gdk_colorspace_get_type},
 	{"gdk_interp_type_get_type", &Gdk_interp_type_get_type},
 	{"gdk_pixbuf_add_alpha", &Gdk_pixbuf_add_alpha},
@@ -4290,14 +4291,14 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_rotation_get_type", &Gdk_pixbuf_rotation_get_type},
 	{"gdk_pixbuf_saturate_and_pixelate", &Gdk_pixbuf_saturate_and_pixelate},
 	// Win32 uses _utf8 {"gdk_pixbuf_save", &Gdk_pixbuf_save},
-	// TODO(t):Variant {"gdk_pixbuf_save_to_buffer", &Gdk_pixbuf_save_to_buffer},
+	{"gdk_pixbuf_save_to_buffer", &Gdk_pixbuf_save_to_buffer},
 	{"gdk_pixbuf_save_to_bufferv", &Gdk_pixbuf_save_to_bufferv},
-	// TODO(t):Variant {"gdk_pixbuf_save_to_callback", &Gdk_pixbuf_save_to_callback},
+	{"gdk_pixbuf_save_to_callback", &Gdk_pixbuf_save_to_callback},
 	{"gdk_pixbuf_save_to_callbackv", &Gdk_pixbuf_save_to_callbackv},
-	// TODO(t):Variant {"gdk_pixbuf_save_to_stream", &Gdk_pixbuf_save_to_stream},
-	// TODO(t):Variant {"gdk_pixbuf_save_to_stream_async", &Gdk_pixbuf_save_to_stream_async},
+	{"gdk_pixbuf_save_to_stream", &Gdk_pixbuf_save_to_stream},
+	{"gdk_pixbuf_save_to_stream_async", &Gdk_pixbuf_save_to_stream_async},
 	{"gdk_pixbuf_save_to_stream_finish", &Gdk_pixbuf_save_to_stream_finish},
-	// TODO(t):Variant {"gdk_pixbuf_save_utf8", &Gdk_pixbuf_save_utf8},
+	{"gdk_pixbuf_save_utf8", &Gdk_pixbuf_save_utf8},
 	// Win32 uses _utf8 {"gdk_pixbuf_savev", &Gdk_pixbuf_savev},
 	{"gdk_pixbuf_savev_utf8", &Gdk_pixbuf_savev_utf8},
 	{"gdk_pixbuf_scale", &Gdk_pixbuf_scale},
@@ -4328,12 +4329,12 @@ type (
 	Gdk_threads_unlock       GCallback
 )
 
-var DataList = outside.Data{
-	{"gdk_threads_lock", new(Gdk_threads_lock)},
-	{"gdk_threads_mutex", new(Gdk_threads_mutex)},
-	{"gdk_threads_unlock", new(Gdk_threads_unlock)},
-	{"gdk_pixbuf_major_version", new(Gdk_pixbuf_major_version)},
-	{"gdk_pixbuf_micro_version", new(Gdk_pixbuf_micro_version)},
-	{"gdk_pixbuf_minor_version", new(Gdk_pixbuf_minor_version)},
-	{"gdk_pixbuf_version", new(Gdk_pixbuf_version)},
+var DataList = Data{
+// {"gdk_threads_lock", new(Gdk_threads_lock)},
+// {"gdk_threads_mutex", new(Gdk_threads_mutex)},
+// {"gdk_threads_unlock", new(Gdk_threads_unlock)},
+// {"gdk_pixbuf_major_version", new(Gdk_pixbuf_major_version)},
+// {"gdk_pixbuf_micro_version", new(Gdk_pixbuf_micro_version)},
+// {"gdk_pixbuf_minor_version", new(Gdk_pixbuf_minor_version)},
+// {"gdk_pixbuf_version", new(Gdk_pixbuf_version)},
 }

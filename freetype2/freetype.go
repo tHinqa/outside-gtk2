@@ -12,7 +12,7 @@ func init() {
 var (
 	FT_New_Face func(
 		library FT_Library,
-		filepathname *Char,
+		filepathname string,
 		face_index FT_Long,
 		aface *FT_Face) FT_Error
 
@@ -31,7 +31,7 @@ var (
 
 	FT_Attach_File func(
 		face FT_Face,
-		filepathname *Char) FT_Error
+		filepathname string) FT_Error
 
 	FT_Attach_Stream func(
 		face FT_Face,
@@ -98,7 +98,7 @@ var (
 		buffer_max FT_UInt) FT_Error
 
 	FT_Get_Postscript_Name func(
-		face FT_Face) *Char
+		face FT_Face) string
 
 	FT_Select_Charmap func(
 		face FT_Face,
@@ -473,7 +473,7 @@ var (
 
 	FT_Get_Module func(
 		library FT_Library,
-		module_name *Char) FT_Module
+		module_name string) FT_Module
 
 	FT_Remove_Module func(
 		library FT_Library,
@@ -540,7 +540,7 @@ var (
 
 	FT_Get_BDF_Property func(
 		face FT_Face,
-		prop_name *Char,
+		prop_name string,
 		aproperty *BDF_PropertyRec) FT_Error
 
 	FT_Get_CID_Registry_Ordering_Supplement func(
@@ -748,7 +748,7 @@ var (
 		slot FT_GlyphSlot)
 
 	FT_Get_X11_Font_Format func(
-		face FT_Face) *Char
+		face FT_Face) string
 
 	FT_Sin func(
 		angle FT_Angle) FT_Fixed
@@ -812,6 +812,16 @@ var (
 		count FT_UInt,
 		load_flags FT_Int32,
 		padvances *FT_Fixed) FT_Error
+
+	FT_Done_FreeType func(library FT_Library) FT_Error
+
+	FT_Init_FreeType func(alibrary *FT_Library) FT_Error
+
+	FT_MulFix func(a, b FT_Long) FT_Long
+
+	FT_Render_Glyph func(
+		slot FT_GlyphSlot,
+		render_mode FT_Render_Mode) FT_Error
 )
 
 var dll = "freetype6.dll"
@@ -852,7 +862,7 @@ var apiList = outside.Apis{
 	{"FT_Cos", &FT_Cos},
 	{"FT_DivFix", &FT_DivFix},
 	{"FT_Done_Face", &FT_Done_Face},
-	// {"FT_Done_FreeType", &FT_Done_FreeType},
+	{"FT_Done_FreeType", &FT_Done_FreeType},
 	{"FT_Done_Glyph", &FT_Done_Glyph},
 	{"FT_Done_Library", &FT_Done_Library},
 	{"FT_Done_Size", &FT_Done_Size},
@@ -911,7 +921,7 @@ var apiList = outside.Apis{
 	{"FT_Glyph_To_Bitmap", &FT_Glyph_To_Bitmap},
 	{"FT_Glyph_Transform", &FT_Glyph_Transform},
 	{"FT_Has_PS_Glyph_Names", &FT_Has_PS_Glyph_Names},
-	// {"FT_Init_FreeType", &FT_Init_FreeType},
+	{"FT_Init_FreeType", &FT_Init_FreeType},
 	{"FT_Library_SetLcdFilter", &FT_Library_SetLcdFilter},
 	{"FT_Library_SetLcdFilterWeights", &FT_Library_SetLcdFilterWeights},
 	{"FT_Library_Version", &FT_Library_Version},
@@ -928,7 +938,7 @@ var apiList = outside.Apis{
 	{"FT_Matrix_Invert", &FT_Matrix_Invert},
 	{"FT_Matrix_Multiply", &FT_Matrix_Multiply},
 	{"FT_MulDiv", &FT_MulDiv},
-	// {"FT_MulFix", &FT_MulFix},
+	{"FT_MulFix", &FT_MulFix},
 	{"FT_New_Face", &FT_New_Face},
 	{"FT_New_Library", &FT_New_Library},
 	{"FT_New_Memory_Face", &FT_New_Memory_Face},
@@ -957,7 +967,7 @@ var apiList = outside.Apis{
 	{"FT_Reference_Face", &FT_Reference_Face},
 	{"FT_Reference_Library", &FT_Reference_Library},
 	{"FT_Remove_Module", &FT_Remove_Module},
-	// {"FT_Render_Glyph", &FT_Render_Glyph},
+	{"FT_Render_Glyph", &FT_Render_Glyph},
 	{"FT_Request_Size", &FT_Request_Size},
 	{"FT_RoundFix", &FT_RoundFix},
 	{"FT_Select_Charmap", &FT_Select_Charmap},
@@ -999,6 +1009,6 @@ var apiList = outside.Apis{
 	{"FT_Vector_Rotate", &FT_Vector_Rotate},
 	{"FT_Vector_Transform", &FT_Vector_Transform},
 	{"FT_Vector_Unit", &FT_Vector_Unit},
-	// {"TT_New_Context", &TT_New_Context},
-	// {"TT_RunIns", &TT_RunIns},
+	// Undocumented {"TT_New_Context", &TT_New_Context},
+	// Undocumented {"TT_RunIns", &TT_RunIns},
 }
