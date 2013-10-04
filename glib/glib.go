@@ -7,6 +7,7 @@ import (
 
 func init() {
 	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dllThread, false, apiListThread)
 }
 
 type (
@@ -5783,4 +5784,11 @@ var apiList = outside.Apis{
 	// Data {"glib_minor_version", &glib_minor_version},
 	// Undocumented {"glib_on_error_halt", &glib_on_error_halt},
 	// Undocumented {"glib_pgettext", &glib_pgettext},
+}
+
+var dllThread = "libgthread-2.0-0.dll"
+
+var apiListThread = outside.Apis{
+	{"g_thread_init", &G_thread_init},
+	{"g_thread_init_with_errorcheck_mutexes", &G_thread_init_with_errorcheck_mutexes},
 }

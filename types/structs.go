@@ -4089,4 +4089,352 @@ type (
 		palette_mode Char
 		palette      *Void
 	}
+
+	GParameter struct {
+		name  string
+		value GValue
+	}
+
+	GSignalQuery struct {
+		signal_id    Guint
+		signal_name  string
+		itype        GType
+		signal_flags GSignalFlags
+		return_type  GType
+		n_params     Guint
+		param_types  *GType
+	}
+
+	GTypeQuery struct {
+		Type          GType
+		type_name     string
+		class_size    Guint
+		instance_size Guint
+	}
+
+	GApplication struct {
+		parent_instance GObject
+		priv            *GApplicationPrivate
+	}
+
+	GApplicationCommandLine struct {
+		parent_instance GObject
+		priv            *GApplicationCommandLinePrivate
+	}
+
+	GBufferedInputStream struct {
+		parent_instance GFilterInputStream
+		priv            *GBufferedInputStreamPrivate
+	}
+
+	GFilterInputStream struct {
+		parent_instance GInputStream
+		base_stream     *GInputStream
+	}
+
+	GOutputStream struct {
+		parent_instance GObject
+		priv            *GOutputStreamPrivate
+	}
+
+	GBufferedOutputStream struct {
+		parent_instance GFilterOutputStream
+		priv            *GBufferedOutputStreamPrivate
+	}
+
+	GFilterOutputStream struct {
+		parent_instance GOutputStream
+		base_stream     *GOutputStream
+	}
+
+	GConverterInputStream struct {
+		parent_instance GFilterInputStream
+		priv            *GConverterInputStreamPrivate
+	}
+
+	GConverterOutputStream struct {
+		parent_instance GFilterOutputStream
+		priv            *GConverterOutputStreamPrivate
+	}
+
+	GDataInputStream struct {
+		parent_instance GBufferedInputStream
+		priv            *GDataInputStreamPrivate
+	}
+
+	GDataOutputStream struct {
+		parent_instance GFilterOutputStream
+		priv            *GDataOutputStreamPrivate
+	}
+
+	GIOStream struct {
+		parent_instance GObject
+		priv            *GIOStreamPrivate
+	}
+
+	GDBusInterfaceInfo struct {
+		ref_count   Gint
+		name        *Gchar
+		methods     **GDBusMethodInfo
+		signals     **GDBusSignalInfo
+		properties  **GDBusPropertyInfo
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusMethodInfo struct {
+		ref_count   Gint
+		name        *Gchar
+		in_args     **GDBusArgInfo
+		out_args    **GDBusArgInfo
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusSignalInfo struct {
+		ref_count   Gint
+		name        *Gchar
+		args        **GDBusArgInfo
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusPropertyInfo struct {
+		ref_count   Gint
+		name        *Gchar
+		signature   *Gchar
+		flags       GDBusPropertyInfoFlags
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusArgInfo struct {
+		ref_count   Gint
+		name        *Gchar
+		signature   *Gchar
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusAnnotationInfo struct {
+		ref_count   Gint
+		key         *Gchar
+		value       *Gchar
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusInterfaceVTable struct {
+		method_call  GDBusInterfaceMethodCallFunc
+		get_property GDBusInterfaceGetPropertyFunc
+		set_property GDBusInterfaceSetPropertyFunc
+		padding      [8]Gpointer
+	}
+
+	GDBusNodeInfo struct {
+		ref_count   Gint
+		path        *Gchar
+		interfaces  **GDBusInterfaceInfo
+		nodes       **GDBusNodeInfo
+		annotations **GDBusAnnotationInfo
+	}
+
+	GDBusProxy struct {
+		parent_instance GObject
+		priv            *GDBusProxyPrivate
+	}
+
+	GDBusSubtreeVTable struct {
+		enumerate  GDBusSubtreeEnumerateFunc
+		introspect GDBusSubtreeIntrospectFunc
+		dispatch   GDBusSubtreeDispatchFunc
+		padding    [8]Gpointer
+	}
+
+	GDBusErrorEntry struct {
+		error_code      Gint
+		dbus_error_name *Gchar
+	}
+
+	GEmblemedIcon struct {
+		parent_instance GObject
+		priv            *GEmblemedIconPrivate
+	}
+
+	GFileAttributeInfoList struct {
+		infos   *GFileAttributeInfo
+		n_infos int
+	}
+
+	GFileAttributeInfo struct {
+		name  *Char
+		Type  GFileAttributeType
+		flags GFileAttributeInfoFlags
+	}
+
+	GFileOutputStream struct {
+		parent_instance GOutputStream
+		priv            *GFileOutputStreamPrivate
+	}
+
+	GFileIOStream struct {
+		parent_instance GIOStream
+		priv            *GFileIOStreamPrivate
+	}
+
+	GFileEnumerator struct {
+		parent_instance GObject
+		priv            *GFileEnumeratorPrivate
+	}
+
+	GFileInputStream struct {
+		parent_instance GInputStream
+		priv            *GFileInputStreamPrivate
+	}
+
+	GFileMonitor struct {
+		parent_instance GObject
+		priv            *GFileMonitorPrivate
+	}
+
+	GInetAddress struct {
+		parent_instance GObject
+		priv            *GInetAddressPrivate
+	}
+
+	GInetSocketAddress struct {
+		parent_instance GSocketAddress
+		priv            *GInetSocketAddressPrivate
+	}
+
+	GSocketAddress struct {
+		parent_instance GObject
+	}
+
+	GMemoryOutputStream struct {
+		parent_instance GOutputStream
+		priv            *GMemoryOutputStreamPrivate
+	}
+
+	GNetworkAddress struct {
+		parent_instance GObject
+		priv            *GNetworkAddressPrivate
+	}
+
+	GNetworkService struct {
+		parent_instance GObject
+		priv            *GNetworkServicePrivate
+	}
+
+	GMemoryInputStream struct {
+		parent_instance GInputStream
+		priv            *GMemoryInputStreamPrivate
+	}
+
+	GPermission struct {
+		parent_instance GObject
+		priv            *GPermissionPrivate
+	}
+
+	GProxyAddress struct {
+		parent_instance GInetSocketAddress
+		priv            *GProxyAddressPrivate
+	}
+
+	GResolver struct {
+		parent_instance GObject
+		priv            *GResolverPrivate
+	}
+
+	GSettings struct {
+		parent_instance GObject
+		priv            *GSettingsPrivate
+	}
+
+	GSimpleActionGroup struct {
+		parent_instance GObject
+		priv            *GSimpleActionGroupPrivate
+	}
+
+	GSimpleAction struct {
+		parent_instance GObject
+		priv            *GSimpleActionPrivate
+	}
+
+	GSocketAddressEnumerator struct {
+		parent_instance GObject
+	}
+
+	GSocket struct {
+		parent_instance GObject
+		priv            *GSocketPrivate
+	}
+
+	GSocketClient struct {
+		parent_instance GObject
+		priv            *GSocketClientPrivate
+	}
+
+	GSocketConnection struct {
+		parent_instance GIOStream
+		priv            *GSocketConnectionPrivate
+	}
+
+	GSocketControlMessage struct {
+		parent_instance GObject
+		priv            *GSocketControlMessagePrivate
+	}
+
+	GSocketListener struct {
+		parent_instance GObject
+		priv            *GSocketListenerPrivate
+	}
+
+	GSocketService struct {
+		parent_instance GSocketListener
+		priv            *GSocketServicePrivate
+	}
+
+	GTlsCertificate struct {
+		parent_instance GObject
+		priv            *GTlsCertificatePrivate
+	}
+
+	GTcpConnection struct {
+		parent_instance GSocketConnection
+		priv            *GTcpConnectionPrivate
+	}
+
+	GTlsConnection struct {
+		parent_instance GIOStream
+		priv            *GTlsConnectionPrivate
+	}
+
+	GVfs struct {
+		parent_instance GObject
+	}
+
+	GVolumeMonitor struct {
+		parent_instance GObject
+		priv            Gpointer
+	}
+
+	GInputVector struct {
+		buffer Gpointer
+		size   Gsize
+	}
+
+	GOutputVector struct {
+		buffer Gconstpointer
+		size   Gsize
+	}
+
+	GTcpWrapperConnection struct {
+		parent_instance GTcpConnection
+		priv            *GTcpWrapperConnectionPrivate
+	}
+
+	GWin32InputStream struct {
+		parent_instance GInputStream
+		priv            *GWin32InputStreamPrivate
+	}
+
+	GWin32OutputStream struct {
+		parent_instance GOutputStream
+		priv            *GWin32OutputStreamPrivate
+	}
 )

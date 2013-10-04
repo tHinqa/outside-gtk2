@@ -5,6 +5,12 @@ import (
 	. "github.com/tHinqa/outside-gtk2/types"
 )
 
+func init() {
+	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dllGobject, false, apiListGobject)
+	outside.AddDllApis(dllScript, false, apiListScript)
+}
+
 type (
 	//TODO(t):Fix
 	FILE     uintptr
@@ -1451,10 +1457,6 @@ var (
 		scaled_font *Cairo_scaled_font_t,
 		device_to_logical *Cairo_matrix_t)
 )
-
-func init() {
-	outside.AddDllApis(dll, false, apiList)
-}
 
 var dll = "libcairo-2.dll"
 
