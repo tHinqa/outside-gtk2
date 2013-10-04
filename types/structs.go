@@ -4521,4 +4521,43 @@ type (
 		interface_infos *GSList
 		name            *Gchar
 	}
+
+	GParamSpecTypeInfo struct {
+		instance_size     Guint16
+		n_preallocs       Guint16
+		instance_init     func(pspec *GParamSpec)
+		value_type        GType
+		finalize          func(pspec *GParamSpec)
+		value_set_default func(
+			pspec *GParamSpec, value *GValue)
+		value_validate func(
+			pspec *GParamSpec, value *GValue) Gboolean
+		values_cmp func(pspec *GParamSpec,
+			value1 *GValue, value2 *GValue) Gint
+	}
+
+	GtkTree struct {
+		container      GtkContainer
+		children       *GList
+		root_tree      *GtkTree
+		tree_owner     *GtkWidget
+		selection      *GList
+		level          Guint
+		indent_value   Guint
+		current_indent Guint
+		bits           Guint
+		// selection_mode : 2
+		// view_mode : 1
+		// view_line : 1
+	}
+
+	GtkTreeItem struct {
+		item             GtkItem
+		subtree          *GtkWidget
+		pixmaps_box      *GtkWidget
+		plus_pix_widget  *GtkWidget
+		minus_pix_widget *GtkWidget
+		pixmaps          *GList
+		expanded         Guint // : 1
+	}
 )

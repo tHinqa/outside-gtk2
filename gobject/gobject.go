@@ -1562,6 +1562,51 @@ var (
 	G_io_channel_get_type func() GType
 
 	G_io_condition_get_type func() GType
+
+	G_param_type_register_static func(
+		name *Gchar,
+		pspec_info *GParamSpecTypeInfo) GType
+
+	G_param_spec_internal func(
+		param_type GType,
+		name *Gchar,
+		nick *Gchar,
+		blurb *Gchar,
+		flags GParamFlags) Gpointer
+
+	G_param_spec_pool_new func(
+		type_prefixing Gboolean) *GParamSpecPool
+
+	G_param_spec_pool_insert func(
+		pool *GParamSpecPool,
+		pspec *GParamSpec,
+		owner_type GType)
+
+	G_param_spec_pool_remove func(
+		pool *GParamSpecPool,
+		pspec *GParamSpec)
+
+	G_param_spec_pool_lookup func(
+		pool *GParamSpecPool,
+		param_name *Gchar,
+		owner_type GType,
+		walk_ancestors Gboolean) *GParamSpec
+
+	G_param_spec_pool_list_owned func(
+		pool *GParamSpecPool,
+		owner_type GType) *GList
+
+	G_param_spec_pool_list func(
+		pool *GParamSpecPool,
+		owner_type GType,
+		n_pspecs_p *Guint) **GParamSpec
+
+	G_unichar_validate func(
+		ch Gunichar) Gboolean
+
+	G_slist_remove_all func(
+		list *GSList,
+		data Gconstpointer) *GSList
 )
 
 var dll = "libgobject-2.0-0.dll"
@@ -1589,14 +1634,14 @@ var apiList = outside.Apis{
 	{"g_cclosure_marshal_VOID__ENUM", &G_cclosure_marshal_VOID__ENUM},
 	{"g_cclosure_marshal_VOID__FLAGS", &G_cclosure_marshal_VOID__FLAGS},
 	{"g_cclosure_marshal_VOID__FLOAT", &G_cclosure_marshal_VOID__FLOAT},
-	{"g_cclosure_marshal_VOID(int0_t)", &G_cclosure_marshal_VOID__INT},
+	{"g_cclosure_marshal_VOID__INT", &G_cclosure_marshal_VOID__INT},
 	{"g_cclosure_marshal_VOID__LONG", &G_cclosure_marshal_VOID__LONG},
 	{"g_cclosure_marshal_VOID__OBJECT", &G_cclosure_marshal_VOID__OBJECT},
 	{"g_cclosure_marshal_VOID__PARAM", &G_cclosure_marshal_VOID__PARAM},
 	{"g_cclosure_marshal_VOID__POINTER", &G_cclosure_marshal_VOID__POINTER},
 	{"g_cclosure_marshal_VOID__STRING", &G_cclosure_marshal_VOID__STRING},
 	{"g_cclosure_marshal_VOID__UCHAR", &G_cclosure_marshal_VOID__UCHAR},
-	{"g_cclosure_marshal_VOID(unsigned int0_t)", &G_cclosure_marshal_VOID__UINT},
+	{"g_cclosure_marshal_VOID__UINT", &G_cclosure_marshal_VOID__UINT},
 	{"g_cclosure_marshal_VOID__UINT_POINTER", &G_cclosure_marshal_VOID__UINT_POINTER},
 	{"g_cclosure_marshal_VOID__ULONG", &G_cclosure_marshal_VOID__ULONG},
 	{"g_cclosure_marshal_VOID__VARIANT", &G_cclosure_marshal_VOID__VARIANT},
@@ -1704,18 +1749,18 @@ var apiList = outside.Apis{
 	{"g_param_spec_gtype", &G_param_spec_gtype},
 	{"g_param_spec_int", &G_param_spec_int},
 	{"g_param_spec_int64", &G_param_spec_int64},
-	// {"g_param_spec_internal", &G_param_spec_internal},
+	{"g_param_spec_internal", &G_param_spec_internal},
 	{"g_param_spec_long", &G_param_spec_long},
 	{"g_param_spec_object", &G_param_spec_object},
 	{"g_param_spec_override", &G_param_spec_override},
 	{"g_param_spec_param", &G_param_spec_param},
 	{"g_param_spec_pointer", &G_param_spec_pointer},
-	// {"g_param_spec_pool_insert", &G_param_spec_pool_insert},
-	// {"g_param_spec_pool_list", &G_param_spec_pool_list},
-	// {"g_param_spec_pool_list_owned", &G_param_spec_pool_list_owned},
-	// {"g_param_spec_pool_lookup", &G_param_spec_pool_lookup},
-	// {"g_param_spec_pool_new", &G_param_spec_pool_new},
-	// {"g_param_spec_pool_remove", &G_param_spec_pool_remove},
+	{"g_param_spec_pool_insert", &G_param_spec_pool_insert},
+	{"g_param_spec_pool_list", &G_param_spec_pool_list},
+	{"g_param_spec_pool_list_owned", &G_param_spec_pool_list_owned},
+	{"g_param_spec_pool_lookup", &G_param_spec_pool_lookup},
+	{"g_param_spec_pool_new", &G_param_spec_pool_new},
+	{"g_param_spec_pool_remove", &G_param_spec_pool_remove},
 	{"g_param_spec_ref", &G_param_spec_ref},
 	{"g_param_spec_ref_sink", &G_param_spec_ref_sink},
 	{"g_param_spec_set_qdata", &G_param_spec_set_qdata},
@@ -1732,7 +1777,7 @@ var apiList = outside.Apis{
 	{"g_param_spec_unref", &G_param_spec_unref},
 	{"g_param_spec_value_array", &G_param_spec_value_array},
 	{"g_param_spec_variant", &G_param_spec_variant},
-	// {"g_param_type_register_static", &G_param_type_register_static},
+	{"g_param_type_register_static", &G_param_type_register_static},
 	{"g_param_value_convert", &G_param_value_convert},
 	{"g_param_value_defaults", &G_param_value_defaults},
 	{"g_param_value_set_default", &G_param_value_set_default},
@@ -1745,13 +1790,13 @@ var apiList = outside.Apis{
 	{"g_signal_accumulator_true_handled", &G_signal_accumulator_true_handled},
 	{"g_signal_add_emission_hook", &G_signal_add_emission_hook},
 	{"g_signal_chain_from_overridden", &G_signal_chain_from_overridden},
-	// {"g_signal_chain_from_overridden_handler", &G_signal_chain_from_overridden_handler},
+	// Vrariant {"g_signal_chain_from_overridden_handler", &G_signal_chain_from_overridden_handler},
 	{"g_signal_connect_closure", &G_signal_connect_closure},
 	{"g_signal_connect_closure_by_id", &G_signal_connect_closure_by_id},
 	{"g_signal_connect_data", &G_signal_connect_data},
 	{"g_signal_connect_object", &G_signal_connect_object},
-	// {"g_signal_emit", &G_signal_emit},
-	// {"g_signal_emit_by_name", &G_signal_emit_by_name},
+	// Vrariant {"g_signal_emit", &G_signal_emit},
+	// Vrariant {"g_signal_emit_by_name", &G_signal_emit_by_name},
 	{"g_signal_emit_valist", &G_signal_emit_valist},
 	{"g_signal_emitv", &G_signal_emitv},
 	{"g_signal_get_invocation_hint", &G_signal_get_invocation_hint},
@@ -1768,8 +1813,8 @@ var apiList = outside.Apis{
 	{"g_signal_list_ids", &G_signal_list_ids},
 	{"g_signal_lookup", &G_signal_lookup},
 	{"g_signal_name", &G_signal_name},
-	// {"g_signal_new", &G_signal_new},
-	// {"g_signal_new_class_handler", &G_signal_new_class_handler},
+	// Vrariant {"g_signal_new", &G_signal_new},
+	// Vrariant {"g_signal_new_class_handler", &G_signal_new_class_handler},
 	{"g_signal_new_valist", &G_signal_new_valist},
 	{"g_signal_newv", &G_signal_newv},
 	{"g_signal_override_class_closure", &G_signal_override_class_closure},
@@ -1780,7 +1825,7 @@ var apiList = outside.Apis{
 	{"g_signal_stop_emission", &G_signal_stop_emission},
 	{"g_signal_stop_emission_by_name", &G_signal_stop_emission_by_name},
 	{"g_signal_type_cclosure_new", &G_signal_type_cclosure_new},
-	// {"g_slist_remove_all", &G_slist_remove_all},
+	{"g_slist_remove_all", &G_slist_remove_all},
 	{"g_source_set_closure", &G_source_set_closure},
 	{"g_source_set_dummy_callback", &G_source_set_dummy_callback},
 	{"g_strdup_value_contents", &G_strdup_value_contents},
@@ -1857,7 +1902,7 @@ var apiList = outside.Apis{
 	{"g_type_set_qdata", &G_type_set_qdata},
 	{"g_type_test_flags", &G_type_test_flags},
 	{"g_type_value_table_peek", &G_type_value_table_peek},
-	// {"g_unichar_validate", &G_unichar_validate},
+	{"g_unichar_validate", &G_unichar_validate},
 	{"g_value_array_append", &G_value_array_append},
 	{"g_value_array_copy", &G_value_array_copy},
 	{"g_value_array_free", &G_value_array_free},

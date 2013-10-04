@@ -115,6 +115,8 @@ type (
 	GTimeSpan              Gint64
 	GtkAllocation          GdkRectangle
 	GtkClassInitFunc       GBaseInitFunc
+	GtkEnumValue           GEnumValue
+	GtkFlagValue           GFlagsValue
 	GtkObjectInitFunc      GInstanceInitFunc
 	GtkType                GType
 	GType                  Gsize
@@ -269,6 +271,7 @@ type (
 	GOptionContext                 struct{}
 	GOptionGroup                   struct{}
 	GOutputStreamPrivate           struct{}
+	GParamSpecPool                 struct{}
 	GPatternSpec                   struct{}
 	GPermissionPrivate             struct{}
 	GPollableInputStream           struct{}
@@ -4766,6 +4769,13 @@ const (
 	FT_STROKER_LINEJOIN_ROUND FT_Stroker_LineJoin = iota
 	FT_STROKER_LINEJOIN_BEVEL
 	FT_STROKER_LINEJOIN_MITER
+)
+
+type GtkTreeViewMode Enum
+
+const (
+	GTK_TREE_VIEW_LINE GtkTreeViewMode = iota
+	GTK_TREE_VIEW_ITEM
 )
 
 type (
