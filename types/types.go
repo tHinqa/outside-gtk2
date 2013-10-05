@@ -439,6 +439,7 @@ type (
 	PangoRendererPrivate           struct{}
 	PangoScriptIter                struct{}
 	PangoTabArray                  struct{}
+	PangoWin32FontCache            struct{}
 	Void                           struct{}
 )
 

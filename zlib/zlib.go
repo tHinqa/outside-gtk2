@@ -1,0 +1,368 @@
+package zlib
+
+import (
+	. "github.com/tHinqa/outside"
+	. "github.com/tHinqa/outside-gtk2/types"
+)
+
+func init() {
+	AddDllApis(dll, false, apiList)
+}
+
+type (
+	Byte           Unsigned_char
+	Bytef          Byte
+	GzFile         Voidp
+	Internal_state struct{}
+	UInt           Unsigned_int
+	ULong          Unsigned_long
+	ULongf         ULong
+	Voidp          *Void
+	Voidpf         *Void
+	Z_streamp      *Z_stream
+	Gz_headerp     *Gz_header
+
+	Alloc_func func(
+		opaque Voidpf,
+		items UInt,
+		size UInt) Voidpf
+
+	Free_func func(
+		opaque Voidpf,
+		address Voidpf)
+
+	In_func func(
+		*Void,
+		**Unsigned_char) uint
+
+	Out_func func(
+		*Void,
+		*Unsigned_char,
+		uint) int
+
+	Z_stream struct {
+		next_in   *Bytef
+		avail_in  UInt
+		total_in  ULong
+		next_out  *Bytef
+		avail_out UInt
+		total_out ULong
+		msg       *Char
+		state     *Internal_state
+		zalloc    Alloc_func
+		zfree     Free_func
+		opaque    Voidpf
+		data_type int
+		adler     ULong
+		reserved  ULong
+	}
+
+	Gz_header struct {
+		text      int
+		time      ULong
+		xflags    int
+		os        int
+		extra     *Bytef
+		extra_len UInt
+		extra_max UInt
+		name      *Bytef
+		name_max  UInt
+		comment   *Bytef
+		comm_max  UInt
+		hcrc      int
+		done      int
+	}
+)
+
+var (
+	ZlibVersion func() string
+
+	Deflate func(strm Z_streamp, flush int) int
+
+	DeflateEnd func(strm Z_streamp) int
+
+	Inflate func(strm Z_streamp, flush int) int
+
+	InflateEnd func(strm Z_streamp) int
+
+	DeflateSetDictionary func(
+		strm Z_streamp,
+		dictionary *Bytef,
+		dictLength UInt) int
+
+	DeflateCopy func(dest, source Z_streamp) int
+
+	DeflateReset func(strm Z_streamp) int
+
+	DeflateParams func(strm Z_streamp, level, strategy int) int
+
+	DeflateTune func(strm Z_streamp,
+		good_length, max_lazy, nice_length, max_chain int) int
+
+	DeflateBound func(strm Z_streamp, sourceLen ULong) ULong
+
+	DeflatePrime func(strm Z_streamp, bits, value int) int
+
+	DeflateSetHeader func(strm Z_streamp, head Gz_headerp) int
+
+	InflateSetDictionary func(
+		strm Z_streamp, dictionary *Bytef, dictLength UInt) int
+
+	InflateSync func(strm Z_streamp) int
+
+	InflateCopy func(dest, source Z_streamp) int
+
+	InflateReset func(strm Z_streamp) int
+
+	InflateReset2 func(strm Z_streamp, windowBits int) int
+
+	InflatePrime func(strm Z_streamp, bits, value int) int
+
+	InflateMark func(strm Z_streamp) Long
+
+	InflateGetHeader func(strm Z_streamp, head Gz_headerp) int
+
+	InflateBack func(
+		strm Z_streamp,
+		in In_func,
+		in_desc *Void,
+		out Out_func,
+		out_desc *Void) int
+
+	InflateBackEnd func(strm Z_streamp) int
+
+	ZlibCompileFlags func() ULong
+
+	Compress func(
+		dest *Bytef,
+		destLen *ULongf,
+		source *Bytef,
+		sourceLen ULong) int
+
+	Compress2 func(
+		dest *Bytef,
+		destLen *ULongf,
+		source *Bytef,
+		sourceLen ULong,
+		level int) int
+
+	CompressBound func(
+		sourceLen ULong) ULong
+
+	Uncompress func(
+		dest *Bytef,
+		destLen *ULongf,
+		source *Bytef,
+		sourceLen ULong) int
+
+	Gzdopen func(
+		fd int,
+		mode string) GzFile
+
+	Gzbuffer func(
+		file GzFile,
+		size uint) int
+
+	Gzsetparams func(
+		file GzFile,
+		level int,
+		strategy int) int
+
+	Gzread func(
+		file GzFile,
+		buf Voidp,
+		len uint) int
+
+	Gzwrite func(
+		file GzFile,
+		buf Voidp,
+		len uint) int
+
+	Gzprintf func(
+		file GzFile,
+		format string,
+		v ...VArg) int
+
+	Gzputs func(
+		file GzFile,
+		s string) int
+
+	Gzgets func(
+		file GzFile,
+		buf string,
+		len int) string
+
+	Gzputc func(
+		file GzFile,
+		c int) int
+
+	Gzgetc func(
+		file GzFile) int
+
+	Gzungetc func(
+		c int,
+		file GzFile) int
+
+	Gzflush func(
+		file GzFile,
+		flush int) int
+
+	Gzrewind func(
+		file GzFile) int
+
+	Gzeof func(
+		file GzFile) int
+
+	Gzdirect func(
+		file GzFile) int
+
+	Gzclose func(
+		file GzFile) int
+
+	Gzclose_r func(
+		file GzFile) int
+
+	Gzclose_w func(
+		file GzFile) int
+
+	Gzerror func(
+		file GzFile,
+		errnum *int) string
+
+	Gzclearerr func(
+		file GzFile)
+
+	Adler32 func(
+		adler ULong,
+		buf *Bytef,
+		len UInt) ULong
+
+	Crc32 func(
+		crc ULong,
+		buf *Bytef,
+		len UInt) ULong
+
+	DeflateInit_ func(
+		strm Z_streamp,
+		level int,
+		version string,
+		stream_size int) int
+
+	InflateInit_ func(
+		strm Z_streamp,
+		version string,
+		stream_size int) int
+
+	DeflateInit2_ func(
+		strm Z_streamp,
+		level int,
+		method int,
+		windowBits int,
+		memLevel int,
+		strategy int,
+		version string,
+		stream_size int) int
+
+	InflateInit2_ func(
+		strm Z_streamp,
+		windowBits int,
+		version string,
+		stream_size int) int
+
+	InflateBackInit_ func(
+		strm Z_streamp,
+		windowBits int,
+		window *Unsigned_char,
+		version string,
+		stream_size int) int
+
+	Gzopen func(string, string) GzFile
+
+	Gzseek func(GzFile, Long, int) Long
+
+	Gztell func(GzFile) Long
+
+	Gzoffset func(GzFile) Long
+
+	Adler32_combine func(ULong, ULong, Long) ULong
+
+	Crc32_combine func(ULong, ULong, Long) ULong
+
+	ZError func(int) string
+
+	InflateSyncPoint func(Z_streamp) int
+
+	Get_crc_table func() *ULongf
+
+	InflateUndermine func(Z_streamp, int) int
+)
+
+var dll = "zlib1.dll"
+
+var apiList = Apis{
+	{"adler32", &Adler32},
+	{"adler32_combine", &Adler32_combine},
+	{"compress", &Compress},
+	{"compress2", &Compress2},
+	{"compressBound", &CompressBound},
+	{"crc32", &Crc32},
+	{"crc32_combine", &Crc32_combine},
+	{"deflate", &Deflate},
+	{"deflateBound", &DeflateBound},
+	{"deflateCopy", &DeflateCopy},
+	{"deflateEnd", &DeflateEnd},
+	{"deflateInit2_", &DeflateInit2_},
+	{"deflateInit_", &DeflateInit_},
+	{"deflateParams", &DeflateParams},
+	{"deflatePrime", &DeflatePrime},
+	{"deflateReset", &DeflateReset},
+	{"deflateSetDictionary", &DeflateSetDictionary},
+	{"deflateSetHeader", &DeflateSetHeader},
+	{"deflateTune", &DeflateTune},
+	{"get_crc_table", &Get_crc_table},
+	{"gzbuffer", &Gzbuffer},
+	{"gzclearerr", &Gzclearerr},
+	{"gzclose", &Gzclose},
+	{"gzclose_r", &Gzclose_r},
+	{"gzclose_w", &Gzclose_w},
+	{"gzdirect", &Gzdirect},
+	{"gzdopen", &Gzdopen},
+	{"gzeof", &Gzeof},
+	{"gzerror", &Gzerror},
+	{"gzflush", &Gzflush},
+	{"gzgetc", &Gzgetc},
+	{"gzgets", &Gzgets},
+	{"gzoffset", &Gzoffset},
+	{"gzopen", &Gzopen},
+	{"gzprintf", &Gzprintf},
+	{"gzputc", &Gzputc},
+	{"gzputs", &Gzputs},
+	{"gzread", &Gzread},
+	{"gzrewind", &Gzrewind},
+	{"gzseek", &Gzseek},
+	{"gzsetparams", &Gzsetparams},
+	{"gztell", &Gztell},
+	{"gzungetc", &Gzungetc},
+	{"gzwrite", &Gzwrite},
+	{"inflate", &Inflate},
+	{"inflateBack", &InflateBack},
+	{"inflateBackEnd", &InflateBackEnd},
+	{"inflateBackInit_", &InflateBackInit_},
+	{"inflateCopy", &InflateCopy},
+	{"inflateEnd", &InflateEnd},
+	{"inflateGetHeader", &InflateGetHeader},
+	{"inflateInit2_", &InflateInit2_},
+	{"inflateInit_", &InflateInit_},
+	{"inflateMark", &InflateMark},
+	{"inflatePrime", &InflatePrime},
+	{"inflateReset", &InflateReset},
+	{"inflateReset2", &InflateReset2},
+	{"inflateSetDictionary", &InflateSetDictionary},
+	{"inflateSync", &InflateSync},
+	{"inflateSyncPoint", &InflateSyncPoint},
+	{"inflateUndermine", &InflateUndermine},
+	{"uncompress", &Uncompress},
+	{"zError", &ZError},
+	{"zlibCompileFlags", &ZlibCompileFlags},
+	{"zlibVersion", &ZlibVersion},
+}
