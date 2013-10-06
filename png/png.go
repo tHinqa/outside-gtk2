@@ -13,10 +13,6 @@ func init() {
 //TODO(t):check struct packing/sizes
 
 type (
-	//TODO(t): Fix
-	FILE uintptr
-
-	Png_doublep         *Double
 	Jmp_buf             [16]int
 	Png_alloc_size_t    Png_size_t
 	Png_byte            Unsigned_char
@@ -24,16 +20,21 @@ type (
 	Png_bytepp          **Png_byte
 	Png_charp           *Char
 	Png_charpp          **Char
-	Png_color_8p        *Png_color_8
 	Png_color_16p       *Png_color_16
+	Png_color_8p        *Png_color_8
 	Png_colorp          *Png_color
 	Png_const_charp     Png_charp
+	Png_doublep         *Double
+	Png_FILE_p          *FILE
 	Png_fixed_point     Png_int_32
 	Png_infop           *Png_info
 	Png_infopp          **Png_info
 	Png_int_32          int // Anomally: Size?
 	Png_row_infop       *Png_row_infop
 	Png_size_t          Size_t
+	Png_sPLT_entryp     *Png_sPLT_entry
+	Png_sPLT_tp         *Png_sPLT_t
+	Png_sPLT_tpp        **Png_sPLT_t
 	Png_struct          Png_struct_def
 	Png_structp         *Png_struct
 	Png_structpp        **Png_struct
@@ -46,10 +47,6 @@ type (
 	Png_unknown_chunkp  *Png_unknown_chunk
 	Png_unknown_chunkpp **Png_unknown_chunk
 	Png_voidp           *Void
-	Png_sPLT_tp         *Png_sPLT_t
-	Png_sPLT_tpp        **Png_sPLT_t
-	Png_sPLT_entryp     *Png_sPLT_entry
-	Png_FILE_p          *FILE
 
 	Png_longjmp_ptr func(Jmp_buf, int)
 

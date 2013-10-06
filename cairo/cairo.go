@@ -13,7 +13,6 @@ func init() {
 
 type (
 	//TODO(t):Fix
-	FILE     uintptr
 	HDC      uint32
 	HFONT    uint32
 	LOGFONTW struct{}

@@ -13,10 +13,7 @@ func init() {
 
 type (
 	//TODO(t):Fix (stat/stat32)
-	GStatBuf         struct{}
-	FILE             struct{}
-	Utimbuf          struct{}
-	G_thread_gettime func() Guint64
+	GStatBuf struct{}
 )
 
 var (

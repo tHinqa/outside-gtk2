@@ -10,10 +10,6 @@ func init() {
 	AddDllApis(dllCairo, false, apiListCairo)
 }
 
-type (
-	FILE uintptr // TODO(t):Fix
-)
-
 var (
 	Pango_coverage_new func() *PangoCoverage
 

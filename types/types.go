@@ -5,6 +5,8 @@ type (
 
 	Long_double fix
 	Va_list     fix
+	FILE        fix
+	Stat        fix
 
 	Cairo_bool_t   int
 	Char           int8
@@ -440,6 +442,7 @@ type (
 	PangoScriptIter                struct{}
 	PangoTabArray                  struct{}
 	PangoWin32FontCache            struct{}
+	Utimbuf                        struct{}
 	Void                           struct{}
 )
 
@@ -5530,4 +5533,6 @@ type (
 	GTypeInterfaceCheckFunc func(check_data, g_iface Gpointer)
 
 	GValueTransform func(src_value, dest_value *GValue)
+
+	G_thread_gettime func() Guint64
 )
