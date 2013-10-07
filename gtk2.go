@@ -8,6 +8,8 @@ package gtk2
 import (
 	_ "github.com/tHinqa/outside-gtk2/atk"
 	_ "github.com/tHinqa/outside-gtk2/cairo"
+	_ "github.com/tHinqa/outside-gtk2/expat"
+	_ "github.com/tHinqa/outside-gtk2/fontconfig"
 	_ "github.com/tHinqa/outside-gtk2/freetype2"
 	_ "github.com/tHinqa/outside-gtk2/gail"
 	_ "github.com/tHinqa/outside-gtk2/gdk"
@@ -17,6 +19,7 @@ import (
 	_ "github.com/tHinqa/outside-gtk2/gobject"
 	_ "github.com/tHinqa/outside-gtk2/gtk"
 	_ "github.com/tHinqa/outside-gtk2/gtksourceview"
+	_ "github.com/tHinqa/outside-gtk2/intl"
 	_ "github.com/tHinqa/outside-gtk2/pango"
 	_ "github.com/tHinqa/outside-gtk2/pangowin32"
 	_ "github.com/tHinqa/outside-gtk2/png"
