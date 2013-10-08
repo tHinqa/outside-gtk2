@@ -32,36 +32,36 @@ type (
 	_           struct{}
 
 	FcFontSet struct {
-		nfont int
-		sfont int
-		fonts **FcPattern
+		Nfont int
+		Sfont int
+		Fonts **FcPattern
 	}
 
 	FcObjectSet struct {
-		nobject int
-		sobject int
-		objects **Char
+		Nobject int
+		Sobject int
+		Objects **Char
 	}
 
 	FcMatrix struct {
-		xx, xy, yx, yy Double
+		XX, XY, YX, YY Double
 	}
 
 	FcObjectType struct {
-		object *Char
+		Object *Char
 		Type   FcType
 	}
 
 	FcConstant struct {
-		name   *FcChar8
-		object *Char
-		value  int
+		Name   *FcChar8
+		Object *Char
+		Value  int
 	}
 
 	FcValue struct {
 		Type FcType
 		// Union
-		s *FcChar8
+		S *FcChar8
 		// i int
 		// b FcBool
 		// d double

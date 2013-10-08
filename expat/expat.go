@@ -96,32 +96,32 @@ type (
 
 	XML_Content struct {
 		Type        XML_Content_Type
-		quant       XML_Content_Quant
-		name        *XML_Char
-		numchildren Unsigned_int
-		children    *XML_Content
+		Quant       XML_Content_Quant
+		Name        *XML_Char
+		Numchildren Unsigned_int
+		Children    *XML_Content
 	}
 
 	XML_ParsingStatus struct {
-		parsing     XML_Parsing
-		finalBuffer XML_Bool
+		Parsing     XML_Parsing
+		FinalBuffer XML_Bool
 	}
 
 	XML_Encoding struct {
 		Map     [256]int
-		data    *Void
-		convert func(data *Void, s *Char) int
-		release func(data *Void)
+		Data    *Void
+		Convert func(data *Void, s *Char) int
+		Release func(data *Void)
 	}
 
 	XML_Expat_Version struct {
-		major, minor, micro int
+		Major, Minor, Micro int
 	}
 
 	XML_Feature struct {
-		feature XML_FeatureEnum
-		name    POVString
-		value   Long
+		Feature XML_FeatureEnum
+		Name    POVString
+		Value   Long
 	}
 )
 

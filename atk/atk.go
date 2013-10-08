@@ -185,7 +185,7 @@ var (
 
 	Atk_get_toolkit_version func() string
 
-	Atk_get_version func() string
+	//Atk_get_version func() int //NOTE: Not exposed
 
 	Atk_rectangle_get_type func() GType
 

@@ -8,25 +8,25 @@ type (
 	}
 
 	GArray struct {
-		data *Gchar
-		leng Guint
+		Data *Gchar
+		Leng Guint
 	}
 
 	GByteArray struct {
-		data *Guint8
-		leng Guint
+		Data *Guint8
+		Leng Guint
 	}
 
 	GCompletion struct {
-		items        *GList
-		fnc          GCompletionFunc
-		prefix       *Gchar
-		cache        *GList
-		strncmp_func GCompletionStrncmpFunc
+		Items        *GList
+		Fnc          GCompletionFunc
+		Prefix       *Gchar
+		Cache        *GList
+		Strncmp_func GCompletionStrncmpFunc
 	}
 
 	GDate struct {
-		bits1, bits2 Guint
+		Bits1, Bits2 Guint
 		// julian_days : 32
 		// julian : 1
 		// dmy : 1
@@ -36,61 +36,61 @@ type (
 	}
 
 	GDebugKey struct {
-		key   *Gchar
-		value Guint
+		Key   *Gchar
+		Value Guint
 	}
 
 	GError struct {
-		domain  GQuark
-		code    Gint
-		message *Gchar
+		Domain  GQuark
+		Code    Gint
+		Message *Gchar
 	}
 
 	GHashTableIter struct {
-		dummy1 Gpointer
-		dummy2 Gpointer
-		dummy3 Gpointer
-		dummy4 int
-		dummy5 Gboolean
-		dummy6 Gpointer
+		Dummy1 Gpointer
+		Dummy2 Gpointer
+		Dummy3 Gpointer
+		Dummy4 int
+		Dummy5 Gboolean
+		Dummy6 Gpointer
 	}
 
 	GHook struct {
-		data      Gpointer
-		next      *GHook
-		prev      *GHook
-		ref_count Guint
-		hook_id   Gulong
-		flags     Guint
-		fnc       Gpointer
-		destroy   GDestroyNotify
+		Data      Gpointer
+		Next      *GHook
+		Prev      *GHook
+		Ref_count Guint
+		Hook_id   Gulong
+		Flags     Guint
+		Fnc       Gpointer
+		Destroy   GDestroyNotify
 	}
 
 	GHookList struct {
-		seq_id Gulong
-		bits   Guint
+		Seq_id Gulong
+		Bits   Guint
 		// hook_size : 16
 		// is_setup : 1
-		hooks         *GHook
-		dummy3        Gpointer
-		finalize_hook GHookFinalizeFunc
-		dummy         [2]Gpointer
+		Hooks         *GHook
+		Dummy3        Gpointer
+		Finalize_hook GHookFinalizeFunc
+		Dummy         [2]Gpointer
 	}
 
 	GIOChannel struct {
-		ref_count         Gint
-		funcs             *GIOFuncs
-		encoding          *Gchar
-		read_cd           GIConv
-		write_cd          GIConv
-		line_term         *Gchar
-		line_term_len     Guint
-		buf_size          Gsize
-		read_buf          *GString
-		encoded_read_buf  *GString
-		write_buf         *GString
-		partial_write_buf [6]Gchar
-		bits              Guint
+		Ref_count         Gint
+		Funcs             *GIOFuncs
+		Encoding          *Gchar
+		Read_cd           GIConv
+		Write_cd          GIConv
+		Line_term         *Gchar
+		Line_term_len     Guint
+		Buf_size          Gsize
+		Read_buf          *GString
+		Encoded_read_buf  *GString
+		Write_buf         *GString
+		Partial_write_buf [6]Gchar
+		Bits              Guint
 		// use_buffer : 1
 		// do_encode : 1
 		// close_on_unref : 1
@@ -101,65 +101,65 @@ type (
 	}
 
 	GList struct {
-		data Gpointer
-		next *GList
-		prev *GList
+		Data Gpointer
+		Next *GList
+		Prev *GList
 	}
 
 	GIOFuncs struct {
-		io_read func(
+		Io_read func(
 			channel *GIOChannel,
 			buf *Gchar,
 			count Gsize,
 			bytes_read *Gsize,
 			err **GError) GIOStatus
-		io_write func(
+		Io_write func(
 			channel *GIOChannel,
 			buf *Gchar,
 			count Gsize,
 			bytes_written *Gsize,
 			err **GError) GIOStatus
-		io_seek func(
+		Io_seek func(
 			channel *GIOChannel,
 			offset Gint64,
 			type_ GSeekType,
 			err **GError) GIOStatus
-		io_close func(
+		Io_close func(
 			channel *GIOChannel,
 			err **GError) GIOStatus
-		io_create_watch func(
+		Io_create_watch func(
 			channel *GIOChannel,
 			condition GIOCondition) *GSource
-		io_free func(
+		Io_free func(
 			channel *GIOChannel)
-		io_set_flags func(
+		Io_set_flags func(
 			channel *GIOChannel,
 			flags GIOFlags,
 			err **GError) GIOStatus
-		io_get_flags func(
+		Io_get_flags func(
 			channel *GIOChannel) GIOFlags
 	}
 
 	GMarkupParser struct {
-		start_element func(
+		Start_element func(
 			context *GMarkupParseContext,
 			element_name *Gchar,
 			attribute_names **Gchar,
 			attribute_values **Gchar,
 			user_data Gpointer,
 			error **GError)
-		end_element func(
+		End_element func(
 			context *GMarkupParseContext,
 			element_name *Gchar,
 			user_data Gpointer,
 			error **GError)
-		text func(
+		Text func(
 			context *GMarkupParseContext,
 			text *Gchar,
 			text_len Gsize,
 			user_data Gpointer,
 			error **GError)
-		passthrough func(
+		Passthrough func(
 			context *GMarkupParseContext,
 			passthrough_text *Gchar,
 			text_len Gsize,
@@ -172,19 +172,19 @@ type (
 	}
 
 	GNode struct {
-		data     Gpointer
-		next     *GNode
-		prev     *GNode
-		parent   *GNode
-		children *GNode
+		Data     Gpointer
+		Next     *GNode
+		Prev     *GNode
+		Parent   *GNode
+		Children *GNode
 	}
 
 	GSourceCallbackFuncs struct {
-		ref func(
+		Ref func(
 			cb_data Gpointer)
-		unref func(
+		Unref func(
 			cb_data Gpointer)
-		get func(
+		Get func(
 			cb_data Gpointer,
 			source *GSource,
 			fnc *GSourceFunc,
@@ -192,67 +192,67 @@ type (
 	}
 
 	GOnce struct {
-		status GOnceStatus
-		retval Gpointer
+		Status GOnceStatus
+		Retval Gpointer
 	}
 
 	GOptionEntry struct {
-		long_name       *Gchar
-		short_name      Gchar
-		flags           Gint
-		arg             GOptionArg
-		arg_data        Gpointer
-		description     *Gchar
-		arg_description *Gchar
+		Long_name       *Gchar
+		Short_name      Gchar
+		Flags           Gint
+		Arg             GOptionArg
+		Arg_data        Gpointer
+		Description     *Gchar
+		Arg_description *Gchar
 	}
 
 	GPollFD struct {
-		fd      Gint
-		events  Gushort
-		revents Gushort
+		Fd      Gint
+		Events  Gushort
+		Revents Gushort
 	}
 
 	GPtrArray struct {
-		pdata *Gpointer
-		len   Guint
+		Pdata *Gpointer
+		Len   Guint
 	}
 
 	GQueue struct {
-		head   *GList
-		tail   *GList
-		length Guint
+		Head   *GList
+		Tail   *GList
+		Length Guint
 	}
 
 	GScanner struct {
-		user_data        Gpointer
-		max_parse_errors Guint
-		parse_errors     Guint
-		input_name       *Gchar
-		qdata            *GData
-		config           *GScannerConfig
-		token            GTokenType
-		value            GTokenValue
-		line             Guint
-		position         Guint
-		next_token       GTokenType
-		next_value       GTokenValue
-		next_line        Guint
-		next_position    Guint
-		symbol_table     *GHashTable
-		input_fd         Gint
-		text             *Gchar
-		text_end         *Gchar
-		buffer           *Gchar
-		scope_id         Guint
-		msg_handler      GScannerMsgFunc
+		User_data        Gpointer
+		Max_parse_errors Guint
+		Parse_errors     Guint
+		Input_name       *Gchar
+		Qdata            *GData
+		Config           *GScannerConfig
+		Token            GTokenType
+		Value            GTokenValue
+		Line             Guint
+		Position         Guint
+		Next_token       GTokenType
+		Next_value       GTokenValue
+		Next_line        Guint
+		Next_position    Guint
+		Symbol_table     *GHashTable
+		Input_fd         Gint
+		Text             *Gchar
+		Text_end         *Gchar
+		Buffer           *Gchar
+		Scope_id         Guint
+		Msg_handler      GScannerMsgFunc
 	}
 
 	GScannerConfig struct {
-		cset_skip_characters  *Gchar
-		cset_identifier_first *Gchar
-		cset_identifier_nth   *Gchar
-		cpair_comment_single  *Gchar
-		bits                  Guint
+		Cset_skip_characters  *Gchar
+		Cset_identifier_first *Gchar
+		Cset_identifier_nth   *Gchar
+		Cpair_comment_single  *Gchar
+		Bits                  Guint
 		// case_sensitive : 1
 		// skip_comment_multi : 1
 		// skip_comment_single : 1
@@ -275,103 +275,103 @@ type (
 		// symbol_2_token : 1
 		// scope_0_fallback : 1
 		// store_int64 : 1
-		padding_dummy Guint
+		Padding_dummy Guint
 	}
 
 	GSList struct {
-		data Gpointer
-		next *GSList
+		Data Gpointer
+		Next *GSList
 	}
 
 	GSource struct {
-		callback_data  Gpointer
-		callback_funcs *GSourceCallbackFuncs
-		source_funcs   *GSourceFuncs
-		ref_count      Guint
-		context        *GMainContext
-		priority       Gint
-		flags          Guint
-		source_id      Guint
-		poll_fds       *GSList
-		prev           *GSource
-		next           *GSource
-		name           *Char
-		priv           *GSourcePrivate
+		Callback_data  Gpointer
+		Callback_funcs *GSourceCallbackFuncs
+		Source_funcs   *GSourceFuncs
+		Ref_count      Guint
+		Context        *GMainContext
+		Priority       Gint
+		Flags          Guint
+		Source_id      Guint
+		Poll_fds       *GSList
+		Prev           *GSource
+		Next           *GSource
+		Name           *Char
+		Priv           *GSourcePrivate
 	}
 
 	GStaticPrivate struct {
-		index Guint
+		Index Guint
 	}
 
 	GStaticRecMutex struct {
-		mutex GStaticMutex
-		depth Guint
-		owner GSystemThread
+		Mutex GStaticMutex
+		Depth Guint
+		Owner GSystemThread
 	}
 
 	GSystemThread struct {
 		// union
 		// data[4] Char
-		dummy_double Double
+		Dummy_double Double
 		// dummy_pointer *Void
 		// dummy_long Long
 	}
 
 	GStaticRWLock struct {
-		mutex         GStaticMutex
-		read_cond     *GCond
-		write_cond    *GCond
-		read_counter  Guint
-		have_writer   Gboolean
-		want_to_read  Guint
-		want_to_write Guint
+		Mutex         GStaticMutex
+		Read_cond     *GCond
+		Write_cond    *GCond
+		Read_counter  Guint
+		Have_writer   Gboolean
+		Want_to_read  Guint
+		Want_to_write Guint
 	}
 
 	GString struct {
-		str           *Gchar
-		len           Gsize
-		allocated_len Gsize
+		Str           *Gchar
+		Len           Gsize
+		Allocated_len Gsize
 	}
 
 	GTestLogBuffer struct {
-		data *GString
-		msgs *GSList
+		Data *GString
+		Msgs *GSList
 	}
 
 	GTestLogMsg struct {
-		log_type  GTestLogType
-		n_strings Guint
-		strings   **Gchar
-		n_nums    Guint
-		nums      *Long_double
+		Log_type  GTestLogType
+		N_strings Guint
+		Strings   **Gchar
+		N_nums    Guint
+		Nums      *Long_double
 	}
 
 	GThread struct {
 		Func     GThreadFunc
-		data     Gpointer
-		joinable Gboolean
-		priority GThreadPriority
+		Data     Gpointer
+		Joinable Gboolean
+		Priority GThreadPriority
 	}
 
 	GThreadFunctions struct {
-		mutex_new       func()
-		mutex_lock      func(mutex *GMutex) *GMutex
-		mutex_trylock   func(mutex *GMutex) Gboolean
-		mutex_unlock    func(mutex *GMutex)
-		mutex_free      func(mutex *GMutex)
-		cond_new        func() *GCond
-		cond_signal     func(cond *GCond)
-		cond_broadcast  func(cond *GCond)
-		cond_wait       func(cond *GCond, mutex *GMutex)
-		cond_timed_wait func(
+		Mutex_new       func()
+		Mutex_lock      func(mutex *GMutex) *GMutex
+		Mutex_trylock   func(mutex *GMutex) Gboolean
+		Mutex_unlock    func(mutex *GMutex)
+		Mutex_free      func(mutex *GMutex)
+		Cond_new        func() *GCond
+		Cond_signal     func(cond *GCond)
+		Cond_broadcast  func(cond *GCond)
+		Cond_wait       func(cond *GCond, mutex *GMutex)
+		Cond_timed_wait func(
 			cond *GCond,
 			mutex *GMutex,
 			end_time *GTimeVal) Gboolean
-		cond_free     func(cond *GCond)
-		private_new   func(destructor GDestroyNotify) *GPrivate
-		private_get   func(private_key *GPrivate) Gpointer
-		private_set   func(private_key *GPrivate, data Gpointer)
-		thread_create func(
+		Cond_free     func(cond *GCond)
+		Private_new   func(destructor GDestroyNotify) *GPrivate
+		Private_get   func(private_key *GPrivate) Gpointer
+		Private_set   func(private_key *GPrivate, data Gpointer)
+		Thread_create func(
 			fnc GThreadFunc,
 			data Gpointer,
 			stack_size Gulong,
@@ -380,27 +380,27 @@ type (
 			priority GThreadPriority,
 			thread Gpointer,
 			error **GError)
-		thread_yield        func()
-		thread_join         func(thread Gpointer)
-		thread_exit         func()
-		thread_set_priority func(
+		Thread_yield        func()
+		Thread_join         func(thread Gpointer)
+		Thread_exit         func()
+		Thread_set_priority func(
 			thread Gpointer,
 			priority GThreadPriority)
-		thread_self  func(thread Gpointer)
-		thread_equal func(
+		Thread_self  func(thread Gpointer)
+		Thread_equal func(
 			thread1 Gpointer,
 			thread2 Gpointer) Gboolean
 	}
 
 	GThreadPool struct {
 		Func      GFunc
-		user_data Gpointer
-		exclusive Gboolean
+		User_data Gpointer
+		Exclusive Gboolean
 	}
 
 	GTimeVal struct {
-		tv_sec  Glong
-		tv_usec Glong
+		Tv_sec  Glong
+		Tv_usec Glong
 	}
 
 	GTokenValue struct {
@@ -410,7 +410,7 @@ type (
 		// v_binary  Gulong;
 		// v_octal  Gulong;
 		// v_int  Gulong;
-		v_int64 Guint64
+		V_int64 Guint64
 		// v_float  Gdouble;
 		// v_hex  Gulong;
 		// v_string  *Gchar;
@@ -420,250 +420,250 @@ type (
 	}
 
 	GTuples struct {
-		len Guint
+		Len Guint
 	}
 
 	GVariantBuilder struct {
-		x [16]Gsize
+		X [16]Gsize
 	}
 
 	GVariantIter struct {
-		x [16]Gsize
+		X [16]Gsize
 	}
 
 	GtkWidget struct {
-		object        GtkObject
-		private_flags Guint16
-		state         Guint8
-		saved_state   Guint8
-		name          *Gchar
-		style         *GtkStyle
-		requisition   GtkRequisition
-		allocation    GtkAllocation
-		window        *GdkWindow
-		parent        *GtkWidget
+		Object        GtkObject
+		Private_flags Guint16
+		State         Guint8
+		Saved_state   Guint8
+		Name          *Gchar
+		Style         *GtkStyle
+		Requisition   GtkRequisition
+		Allocation    GtkAllocation
+		Window        *GdkWindow
+		Parent        *GtkWidget
 	}
 
 	GtkRequisition struct {
-		width  Gint
-		height Gint
+		Width  Gint
+		Height Gint
 	}
 
 	GTypeClass struct {
-		g_type GType
+		G_type GType
 	}
 
 	GTypeInstance struct {
-		g_class *GTypeClass
+		G_class *GTypeClass
 	}
 
 	GObject struct {
-		g_type_instance GTypeInstance
-		ref_count       Guint
-		qdata           *GData
+		G_type_instance GTypeInstance
+		Ref_count       Guint
+		Qdata           *GData
 	}
 
 	GSourceFuncs struct {
-		prepare func(
+		Prepare func(
 			source *GSource,
 			timeout_ *Gint) Gboolean
-		check func(
+		Check func(
 			source *GSource) Gboolean
-		dispatch func(
+		Dispatch func(
 			source *GSource,
 			callback GSourceFunc,
 			user_data Gpointer) Gboolean
-		finalize func(
+		Finalize func(
 			source *GSource)
-		closure_callback GSourceFunc
-		closure_marshal  GSourceDummyMarshal
+		Closure_callback GSourceFunc
+		Closure_marshal  GSourceDummyMarshal
 	}
 
 	GtkObject struct {
-		parent_instance GInitiallyUnowned
-		flags           Guint32
+		Parent_instance GInitiallyUnowned
+		Flags           Guint32
 	}
 
 	GdkColor struct {
-		pixel Guint32
-		red   Guint16
-		green Guint16
-		blue  Guint16
+		Pixel Guint32
+		Red   Guint16
+		Green Guint16
+		Blue  Guint16
 	}
 
 	GtkStyle struct {
-		parent_instance   GObject
-		fg                [5]GdkColor
-		bg                [5]GdkColor
-		light             [5]GdkColor
-		dark              [5]GdkColor
-		mid               [5]GdkColor
-		text              [5]GdkColor
-		base              [5]GdkColor
-		text_aa           [5]GdkColor
-		black             GdkColor
-		white             GdkColor
-		font_desc         *PangoFontDescription
-		xthickness        Gint
-		ythickness        Gint
-		fg_gc             *[5]GdkGC //TODO(t): CHECK
-		bg_gc             *[5]GdkGC //TODO(t): CHECK
-		light_gc          *[5]GdkGC //TODO(t): CHECK
-		dark_gc           *[5]GdkGC //TODO(t): CHECK
-		mid_gc            *[5]GdkGC //TODO(t): CHECK
-		text_gc           *[5]GdkGC //TODO(t): CHECK
-		base_gc           *[5]GdkGC //TODO(t): CHECK
-		text_aa_gc        *[5]GdkGC //TODO(t): CHECK
-		black_gc          *GdkGC
-		white_gc          *GdkGC
-		bg_pixmap         *[5]GdkPixmap //TODO(t): CHECK
-		attach_count      Gint
-		depth             Gint
-		colormap          *GdkColormap
-		private_font      *GdkFont
-		private_font_desc *PangoFontDescription
-		rc_style          *GtkRcStyle
-		styles            *GSList
-		property_cache    *GArray
-		icon_factories    *GSList
+		Parent_instance   GObject
+		Fg                [5]GdkColor
+		Bg                [5]GdkColor
+		Light             [5]GdkColor
+		Dark              [5]GdkColor
+		Mid               [5]GdkColor
+		Text              [5]GdkColor
+		Base              [5]GdkColor
+		Text_aa           [5]GdkColor
+		Black             GdkColor
+		White             GdkColor
+		Font_desc         *PangoFontDescription
+		Xthickness        Gint
+		Ythickness        Gint
+		Fg_gc             *[5]GdkGC //TODO(t): CHECK
+		Bg_gc             *[5]GdkGC //TODO(t): CHECK
+		Light_gc          *[5]GdkGC //TODO(t): CHECK
+		Dark_gc           *[5]GdkGC //TODO(t): CHECK
+		Mid_gc            *[5]GdkGC //TODO(t): CHECK
+		Text_gc           *[5]GdkGC //TODO(t): CHECK
+		Base_gc           *[5]GdkGC //TODO(t): CHECK
+		Text_aa_gc        *[5]GdkGC //TODO(t): CHECK
+		Black_gc          *GdkGC
+		White_gc          *GdkGC
+		Bg_pixmap         *[5]GdkPixmap //TODO(t): CHECK
+		Attach_count      Gint
+		Depth             Gint
+		Colormap          *GdkColormap
+		Private_font      *GdkFont
+		Private_font_desc *PangoFontDescription
+		Rc_style          *GtkRcStyle
+		Styles            *GSList
+		Property_cache    *GArray
+		Icon_factories    *GSList
 	}
 
 	GtkRcStyle struct {
-		parent_instance  GObject
-		name             *Gchar
-		bg_pixmap_name   *[5]Gchar //TODO(t): CHECK
-		font_desc        *PangoFontDescription
-		color_flags      [5]GtkRcFlags
-		fg               [5]GdkColor
-		bg               [5]GdkColor
-		text             [5]GdkColor
-		base             [5]GdkColor
-		xthickness       Gint
-		ythickness       Gint
-		rc_properties    *GArray
-		rc_style_lists   *GSList
-		icon_factories   *GSList
-		engine_specified Guint //: 1;
+		Parent_instance  GObject
+		Name             *Gchar
+		Bg_pixmap_name   *[5]Gchar //TODO(t): CHECK
+		Font_desc        *PangoFontDescription
+		Color_flags      [5]GtkRcFlags
+		Fg               [5]GdkColor
+		Bg               [5]GdkColor
+		Text             [5]GdkColor
+		Base             [5]GdkColor
+		Xthickness       Gint
+		Ythickness       Gint
+		Rc_properties    *GArray
+		Rc_style_lists   *GSList
+		Icon_factories   *GSList
+		Engine_specified Guint //: 1;
 	}
 
 	GdkFont struct {
 		Type    GdkFontType
-		ascent  Gint
-		descent Gint
+		Ascent  Gint
+		Descent Gint
 	}
 
 	GdkGC struct {
-		parent_instance GObject
-		clip_x_origin   Gint
-		clip_y_origin   Gint
-		ts_x_origin     Gint
-		ts_y_origin     Gint
-		colormap        *GdkColormap
+		Parent_instance GObject
+		Clip_x_origin   Gint
+		Clip_y_origin   Gint
+		Ts_x_origin     Gint
+		Ts_y_origin     Gint
+		Colormap        *GdkColormap
 	}
 
 	GdkColormap struct {
-		parent_instance GObject
-		size            Gint
-		colors          *GdkColor
-		visual          *GdkVisual
-		windowing_data  Gpointer
+		Parent_instance GObject
+		Size            Gint
+		Colors          *GdkColor
+		Visual          *GdkVisual
+		Windowing_data  Gpointer
 	}
 
 	GdkVisual struct {
-		parent_instance GObject
+		Parent_instance GObject
 		Type            GdkVisualType
-		depth           Gint
-		byte_order      GdkByteOrder
-		colormap_size   Gint
-		bits_per_rgb    Gint
-		red_mask        Guint32
-		red_shift       Gint
-		red_prec        Gint
-		green_mask      Guint32
-		green_shift     Gint
-		green_prec      Gint
-		blue_mask       Guint32
-		blue_shift      Gint
-		blue_prec       Gint
+		Depth           Gint
+		Byte_order      GdkByteOrder
+		Colormap_size   Gint
+		Bits_per_rgb    Gint
+		Red_mask        Guint32
+		Red_shift       Gint
+		Red_prec        Gint
+		Green_mask      Guint32
+		Green_shift     Gint
+		Green_prec      Gint
+		Blue_mask       Guint32
+		Blue_shift      Gint
+		Blue_prec       Gint
 	}
 
 	GdkRectangle struct {
-		x      Gint
-		y      Gint
-		width  Gint
-		height Gint
+		X      Gint
+		Y      Gint
+		Width  Gint
+		Height Gint
 	}
 
 	GtkCurve struct {
-		graph         GtkDrawingArea
-		cursor_type   Gint
-		min_x         Gfloat
-		max_x         Gfloat
-		min_y         Gfloat
-		max_y         Gfloat
-		pixmap        *GdkPixmap
-		curve_type    GtkCurveType
-		height        Gint
-		grab_point    Gint
-		last          Gint
-		num_points    Gint
-		point         *GdkPoint
-		num_ctlpoints Gint
-		ctlpoint      [2]*Gfloat //TODO(t): Gfloat (*ctlpoint)[2]; ???
+		Graph         GtkDrawingArea
+		Cursor_type   Gint
+		Min_x         Gfloat
+		Max_x         Gfloat
+		Min_y         Gfloat
+		Max_y         Gfloat
+		Pixmap        *GdkPixmap
+		Curve_type    GtkCurveType
+		Height        Gint
+		Grab_point    Gint
+		Last          Gint
+		Num_points    Gint
+		Point         *GdkPoint
+		Num_ctlpoints Gint
+		Ctlpoint      [2]*Gfloat //TODO(t): Gfloat (*ctlpoint)[2]; ???
 	}
 
 	GtkDrawingArea struct {
-		widget    GtkWidget
-		draw_data Gpointer
+		Widget    GtkWidget
+		Draw_data Gpointer
 	}
 
 	GdkPoint struct {
-		x Gint
-		y Gint
+		X Gint
+		Y Gint
 	}
 
 	GtkFileSelection struct {
-		parent_instance  GtkDialog
-		dir_list         *GtkWidget
-		file_list        *GtkWidget
-		selection_entry  *GtkWidget
-		selection_text   *GtkWidget
-		main_vbox        *GtkWidget
-		ok_button        *GtkWidget
-		cancel_button    *GtkWidget
-		help_button      *GtkWidget
-		history_pulldown *GtkWidget
-		history_menu     *GtkWidget
-		history_list     *GList
-		fileop_dialog    *GtkWidget
-		fileop_entry     *GtkWidget
-		fileop_file      *Gchar
-		cmpl_state       Gpointer
-		fileop_c_dir     *GtkWidget
-		fileop_del_file  *GtkWidget
-		fileop_ren_file  *GtkWidget
-		button_area      *GtkWidget
-		action_area      *GtkWidget
-		selected_names   *GPtrArray
-		last_selected    *Gchar
+		Parent_instance  GtkDialog
+		Dir_list         *GtkWidget
+		File_list        *GtkWidget
+		Selection_entry  *GtkWidget
+		Selection_text   *GtkWidget
+		Main_vbox        *GtkWidget
+		Ok_button        *GtkWidget
+		Cancel_button    *GtkWidget
+		Help_button      *GtkWidget
+		History_pulldown *GtkWidget
+		History_menu     *GtkWidget
+		History_list     *GList
+		Fileop_dialog    *GtkWidget
+		Fileop_entry     *GtkWidget
+		Fileop_file      *Gchar
+		Cmpl_state       Gpointer
+		Fileop_c_dir     *GtkWidget
+		Fileop_del_file  *GtkWidget
+		Fileop_ren_file  *GtkWidget
+		Button_area      *GtkWidget
+		Action_area      *GtkWidget
+		Selected_names   *GPtrArray
+		Last_selected    *Gchar
 	}
 
 	GtkDialog struct {
-		window      GtkWindow
-		vbox        *GtkWidget
-		action_area *GtkWidget
-		separator   *GtkWidget
+		Window      GtkWindow
+		Vbox        *GtkWidget
+		Action_area *GtkWidget
+		Separator   *GtkWidget
 	}
 
 	GtkBin struct {
-		container GtkContainer
-		child     *GtkWidget
+		Container GtkContainer
+		Child     *GtkWidget
 	}
 
 	GtkContainer struct {
-		widget      GtkWidget
-		focus_child *GtkWidget
-		bits        Guint
+		Widget      GtkWidget
+		Focus_child *GtkWidget
+		Bits        Guint
 		// border_width : 16
 		// need_resize : 1
 		// resize_mode : 2
@@ -672,19 +672,19 @@ type (
 	}
 
 	GtkWindow struct {
-		bin                     GtkBin
-		title                   *Gchar
-		wmclass_name            *Gchar
-		wmclass_class           *Gchar
-		wm_role                 *Gchar
-		focus_widget            *GtkWidget
-		default_widget          *GtkWidget
-		transient_parent        *GtkWindow
-		geometry_info           *GtkWindowGeometryInfo
-		frame                   *GdkWindow
-		group                   *GtkWindowGroup
-		configure_request_count Guint16
-		bits                    Guint
+		Bin                     GtkBin
+		Title                   *Gchar
+		Wmclass_name            *Gchar
+		Wmclass_class           *Gchar
+		Wm_role                 *Gchar
+		Focus_widget            *GtkWidget
+		Default_widget          *GtkWidget
+		Transient_parent        *GtkWindow
+		Geometry_info           *GtkWindowGeometryInfo
+		Frame                   *GdkWindow
+		Group                   *GtkWindowGroup
+		Configure_request_count Guint16
+		Bits                    Guint
 		// allow_shrink : 1
 		// allow_grow : 1
 		// configure_notify_received : 1
@@ -705,64 +705,64 @@ type (
 		// gravity : 5
 		// is_active : 1
 		// has_toplevel_focus : 1
-		frame_left           Guint
-		frame_top            Guint
-		frame_right          Guint
-		frame_bottom         Guint
-		keys_changed_handler Guint
-		mnemonic_modifier    GdkModifierType
-		screen               *GdkScreen
+		Frame_left           Guint
+		Frame_top            Guint
+		Frame_right          Guint
+		Frame_bottom         Guint
+		Keys_changed_handler Guint
+		Mnemonic_modifier    GdkModifierType
+		Screen               *GdkScreen
 	}
 
 	GtkWindowGroup struct {
-		parent_instance GObject
-		grabs           *GSList
+		Parent_instance GObject
+		Grabs           *GSList
 	}
 
 	GdkScreen struct {
-		parent_instance GObject
-		closed          Guint      // : 1
-		normal_gcs      *[32]GdkGC //TODO(t): CHECK
-		exposure_gcs    *[32]GdkGC //TODO(t): CHECK
-		subwindow_gcs   *[32]GdkGC //TODO(t): CHECK
-		font_options    *Cairo_font_options_t
-		resolution      Double
+		Parent_instance GObject
+		Closed          Guint      // : 1
+		Normal_gcs      *[32]GdkGC //TODO(t): CHECK
+		Exposure_gcs    *[32]GdkGC //TODO(t): CHECK
+		Subwindow_gcs   *[32]GdkGC //TODO(t): CHECK
+		Font_options    *Cairo_font_options_t
+		Resolution      Double
 	}
 
 	GtkItemFactory struct {
-		object           GtkObject
-		path             *Gchar
-		accel_group      *GtkAccelGroup
-		widget           *GtkWidget
-		items            *GSList
-		translate_func   GtkTranslateFunc
-		translate_data   Gpointer
-		translate_notify GDestroyNotify
+		Object           GtkObject
+		Path             *Gchar
+		Accel_group      *GtkAccelGroup
+		Widget           *GtkWidget
+		Items            *GSList
+		Translate_func   GtkTranslateFunc
+		Translate_data   Gpointer
+		Translate_notify GDestroyNotify
 	}
 
 	GtkAccelGroup struct {
-		parent         GObject
-		lock_count     Guint
-		modifier_mask  GdkModifierType
-		acceleratables *GSList
-		n_accels       Guint
-		priv_accels    *GtkAccelGroupEntry
+		Parent         GObject
+		Lock_count     Guint
+		Modifier_mask  GdkModifierType
+		Acceleratables *GSList
+		N_accels       Guint
+		Priv_accels    *GtkAccelGroupEntry
 	}
 
 	GtkAccelGroupEntry struct {
-		key              GtkAccelKey
-		closure          *GClosure
-		accel_path_quark GQuark
+		Key              GtkAccelKey
+		Closure          *GClosure
+		Accel_path_quark GQuark
 	}
 
 	GtkAccelKey struct {
-		accel_key   Guint
-		accel_mods  GdkModifierType
-		accel_flags Guint //: 16
+		Accel_key   Guint
+		Accel_mods  GdkModifierType
+		Accel_flags Guint //: 16
 	}
 
 	GClosure struct {
-		bits Guint
+		Bits Guint
 		// ref_count : 15
 		// meta_marshal : 1
 		// n_guards : 1
@@ -773,21 +773,21 @@ type (
 		// derivative_flag : 1
 		// in_marshal : 1
 		// is_invalid : 1
-		marshal func(
+		Marshal func(
 			closure *GClosure,
 			return_value *GValue,
 			n_param_values Guint,
 			param_values *GValue,
 			invocation_hint Gpointer,
 			marshal_data Gpointer)
-		data      Gpointer
-		notifiers *GClosureNotifyData
+		Data      Gpointer
+		Notifiers *GClosureNotifyData
 	}
 
 	GValue struct {
-		g_type GType
+		G_type GType
 		//  UNION
-		data [2]uint64 // was union{v_int...}data[2]
+		Data [2]uint64 // was union{v_int...}data[2]
 		// v_int     Gint
 		// v_uint    Guint
 		// v_long    glong
@@ -800,80 +800,80 @@ type (
 	}
 
 	GClosureNotifyData struct {
-		data   Gpointer
-		notify GClosureNotify
+		Data   Gpointer
+		Notify GClosureNotify
 	}
 
 	GtkItemFactoryEntry struct {
-		path            *Gchar
-		accelerator     *Gchar
-		callback        GtkItemFactoryCallback
-		callback_action Guint
-		item_type       *Gchar
-		extra_data      Gconstpointer
+		Path            *Gchar
+		Accelerator     *Gchar
+		Callback        GtkItemFactoryCallback
+		Callback_action Guint
+		Item_type       *Gchar
+		Extra_data      Gconstpointer
 	}
 
 	GtkMenuEntry struct {
-		path          *Gchar
-		accelerator   *Gchar
-		callback      GtkMenuCallback
-		callback_data Gpointer
-		widget        *GtkWidget
+		Path          *Gchar
+		Accelerator   *Gchar
+		Callback      GtkMenuCallback
+		Callback_data Gpointer
+		Widget        *GtkWidget
 	}
 
 	GtkList struct {
-		container        GtkContainer
-		children         *GList
-		selection        *GList
-		undo_selection   *GList
-		undo_unselection *GList
-		last_focus_child *GtkWidget
-		undo_focus_child *GtkWidget
-		htimer           Guint
-		vtimer           Guint
-		anchor           Gint
-		drag_pos         Gint
-		anchor_state     GtkStateType
-		bits             Guint
+		Container        GtkContainer
+		Children         *GList
+		Selection        *GList
+		Undo_selection   *GList
+		Undo_unselection *GList
+		Last_focus_child *GtkWidget
+		Undo_focus_child *GtkWidget
+		Htimer           Guint
+		Vtimer           Guint
+		Anchor           Gint
+		Drag_pos         Gint
+		Anchor_state     GtkStateType
+		Bits             Guint
 		// selection_mode : 2
 		// drag_selection : 1
 		// add_mode : 1
 	}
 
 	GtkListItem struct {
-		item GtkItem
+		Item GtkItem
 	}
 
 	GtkItem struct {
-		bin GtkBin
+		Bin GtkBin
 	}
 
 	GtkOldEditable struct {
-		widget              GtkWidget
-		current_pos         Guint
-		selection_start_pos Guint
-		selection_end_pos   Guint
-		bits                Guint
+		Widget              GtkWidget
+		Current_pos         Guint
+		Selection_start_pos Guint
+		Selection_end_pos   Guint
+		Bits                Guint
 		// has_selection : 1
 		// editable : 1
 		// visible : 1
-		clipboard_text *Gchar
+		Clipboard_text *Gchar
 	}
 
 	GtkOptionMenu struct {
-		button    GtkButton
-		menu      *GtkWidget
-		menu_item *GtkWidget
-		width     Guint16
-		height    Guint16
+		Button    GtkButton
+		Menu      *GtkWidget
+		Menu_item *GtkWidget
+		Width     Guint16
+		Height    Guint16
 	}
 
 	GtkButton struct {
-		bin              GtkBin
-		event_window     *GdkWindow
-		label_text       *Gchar
-		activate_timeout Guint
-		bits             Guint
+		Bin              GtkBin
+		Event_window     *GdkWindow
+		Label_text       *Gchar
+		Activate_timeout Guint
+		Bits             Guint
 		// constructed : 1
 		// in_button : 1
 		// button_down : 1
@@ -886,44 +886,44 @@ type (
 	}
 
 	GtkPreview struct {
-		widget        GtkWidget
-		buffer        *Guchar
-		buffer_width  Guint16
-		buffer_height Guint16
-		bpp           Guint16
-		rowstride     Guint16
-		dither        GdkRgbDither
-		bits          Guint
+		Widget        GtkWidget
+		Buffer        *Guchar
+		Buffer_width  Guint16
+		Buffer_height Guint16
+		Bpp           Guint16
+		Rowstride     Guint16
+		Dither        GdkRgbDither
+		Bits          Guint
 		// type : 1
 		// expand : 1
 	}
 
 	GtkPreviewInfo struct {
-		lookup *Guchar
-		gamma  Gdouble
+		Lookup *Guchar
+		Gamma  Gdouble
 	}
 
 	GtkTipsQuery struct {
-		label GtkLabel
-		bits  Guint
+		Label GtkLabel
+		Bits  Guint
 		// emit_always : 1
 		// in_query : 1
-		label_inactive *Gchar
-		label_no_tip   *Gchar
-		caller         *GtkWidget
-		last_crossed   *GtkWidget
-		query_cursor   *GdkCursor
+		Label_inactive *Gchar
+		Label_no_tip   *Gchar
+		Caller         *GtkWidget
+		Last_crossed   *GtkWidget
+		Query_cursor   *GdkCursor
 	}
 
 	GdkCursor struct {
 		Type      GdkCursorType
-		ref_count Guint
+		Ref_count Guint
 	}
 
 	GtkLabel struct {
-		misc  GtkMisc
-		label *Gchar
-		bits  Guint
+		Misc  GtkMisc
+		Label *Gchar
+		Bits  Guint
 		// jtype : 2
 		// wrap : 1
 		// use_underline : 1
@@ -935,85 +935,85 @@ type (
 		// wrap_mode : 3
 		// pattern_set : 1
 		// track_links : 1
-		mnemonic_keyval Guint
-		text            *Gchar
-		attrs           *PangoAttrList
-		effective_attrs *PangoAttrList
-		layout          *PangoLayout
-		mnemonic_widget *GtkWidget
-		mnemonic_window *GtkWindow
-		select_info     *GtkLabelSelectionInfo
+		Mnemonic_keyval Guint
+		Text            *Gchar
+		Attrs           *PangoAttrList
+		Effective_attrs *PangoAttrList
+		Layout          *PangoLayout
+		Mnemonic_widget *GtkWidget
+		Mnemonic_window *GtkWindow
+		Select_info     *GtkLabelSelectionInfo
 	}
 
 	GtkMisc struct {
-		widget GtkWidget
-		xalign Gfloat
-		yalign Gfloat
-		xpad   Guint16
-		ypad   Guint16
+		Widget GtkWidget
+		Xalign Gfloat
+		Yalign Gfloat
+		Xpad   Guint16
+		Ypad   Guint16
 	}
 
 	GtkCList struct {
-		container           GtkContainer
-		flags               Guint16
-		reserved1           Gpointer
-		reserved2           Gpointer
-		freeze_count        Guint
-		internal_allocation GdkRectangle
-		rows                Gint
-		row_height          Gint
-		row_list            *GList
-		row_list_end        *GList
-		columns             Gint
-		column_title_area   GdkRectangle
-		title_window        *GdkWindow
-		column              *GtkCListColumn
-		clist_window        *GdkWindow
-		clist_window_width  Gint
-		clist_window_height Gint
-		hoffset             Gint
-		voffset             Gint
-		shadow_type         GtkShadowType
-		selection_mode      GtkSelectionMode
-		selection           *GList
-		selection_end       *GList
-		undo_selection      *GList
-		undo_unselection    *GList
-		undo_anchor         Gint
-		button_actions      [5]Guint8
-		drag_button         Guint8
-		click_cell          GtkCListCellInfo
-		hadjustment         *GtkAdjustment
-		vadjustment         *GtkAdjustment
-		xor_gc              *GdkGC
-		fg_gc               *GdkGC
-		bg_gc               *GdkGC
-		cursor_drag         *GdkCursor
-		x_drag              Gint
-		focus_row           Gint
-		focus_header_column Gint
-		anchor              Gint
-		anchor_state        GtkStateType
-		drag_pos            Gint
-		htimer              Gint
-		vtimer              Gint
-		sort_type           GtkSortType
-		compare             GtkCListCompareFunc
-		sort_column         Gint
-		drag_highlight_row  Gint
-		drag_highlight_pos  GtkCListDragPos
+		Container           GtkContainer
+		Flags               Guint16
+		Reserved1           Gpointer
+		Reserved2           Gpointer
+		Freeze_count        Guint
+		Internal_allocation GdkRectangle
+		Rows                Gint
+		Row_height          Gint
+		Row_list            *GList
+		Row_list_end        *GList
+		Columns             Gint
+		Column_title_area   GdkRectangle
+		Title_window        *GdkWindow
+		Column              *GtkCListColumn
+		Clist_window        *GdkWindow
+		Clist_window_width  Gint
+		Clist_window_height Gint
+		Hoffset             Gint
+		Voffset             Gint
+		Shadow_type         GtkShadowType
+		Selection_mode      GtkSelectionMode
+		Selection           *GList
+		Selection_end       *GList
+		Undo_selection      *GList
+		Undo_unselection    *GList
+		Undo_anchor         Gint
+		Button_actions      [5]Guint8
+		Drag_button         Guint8
+		Click_cell          GtkCListCellInfo
+		Hadjustment         *GtkAdjustment
+		Vadjustment         *GtkAdjustment
+		Xor_gc              *GdkGC
+		Fg_gc               *GdkGC
+		Bg_gc               *GdkGC
+		Cursor_drag         *GdkCursor
+		X_drag              Gint
+		Focus_row           Gint
+		Focus_header_column Gint
+		Anchor              Gint
+		Anchor_state        GtkStateType
+		Drag_pos            Gint
+		Htimer              Gint
+		Vtimer              Gint
+		Sort_type           GtkSortType
+		Compare             GtkCListCompareFunc
+		Sort_column         Gint
+		Drag_highlight_row  Gint
+		Drag_highlight_pos  GtkCListDragPos
 	}
 
 	GtkCListColumn struct {
-		title         *Gchar
-		area          GdkRectangle
-		button        *GtkWidget
-		window        *GdkWindow
-		width         Gint
-		min_width     Gint
-		max_width     Gint
-		justification GtkJustification
-		bits          Guint
+		Title         *Gchar
+		Area          GdkRectangle
+		Button        *GtkWidget
+		Window        *GdkWindow
+		Width         Gint
+		Min_width     Gint
+		Max_width     Gint
+		Justification GtkJustification
+		Bits          Guint
 		// visible : 1
 		// width_set : 1
 		// resizeable : 1
@@ -1022,29 +1022,29 @@ type (
 	}
 
 	GtkCListCellInfo struct {
-		row    Gint
-		column Gint
+		Row    Gint
+		Column Gint
 	}
 
 	GtkAdjustment struct {
-		parent_instance GtkObject
-		lower           Gdouble
-		upper           Gdouble
-		value           Gdouble
-		step_increment  Gdouble
-		page_increment  Gdouble
-		page_size       Gdouble
+		Parent_instance GtkObject
+		Lower           Gdouble
+		Upper           Gdouble
+		Value           Gdouble
+		Step_increment  Gdouble
+		Page_increment  Gdouble
+		Page_size       Gdouble
 	}
 
 	GtkCListRow struct {
-		cell       *_GtkCell
-		state      GtkStateType
-		foreground GdkColor
-		background GdkColor
-		style      *GtkStyle
-		data       Gpointer
-		destroy    GDestroyNotify
-		bits       Guint
+		Cell       *_GtkCell
+		State      GtkStateType
+		Foreground GdkColor
+		Background GdkColor
+		Style      *GtkStyle
+		Data       Gpointer
+		Destroy    GDestroyNotify
+		Bits       Guint
 		// fg_set : 1
 		// bg_set : 1
 		// selectable : 1
@@ -1052,9 +1052,9 @@ type (
 
 	_GtkCell struct { // TODO(t):fix
 		Type       GtkCellType
-		vertical   Gint16
-		horizontal Gint16
-		style      *GtkStyle
+		Vertical   Gint16
+		Horizontal Gint16
+		Style      *GtkStyle
 		/* union
 		   text  *Gchar;
 		   struct {
@@ -1072,104 +1072,104 @@ type (
 	}
 
 	GtkCombo struct {
-		hbox            GtkHBox
-		entry           *GtkWidget
-		button          *GtkWidget
-		popup           *GtkWidget
-		popwin          *GtkWidget
-		list            *GtkWidget
-		entry_change_id Guint
-		list_change_id  Guint
-		bits            Guint
+		Hbox            GtkHBox
+		Entry           *GtkWidget
+		Button          *GtkWidget
+		Popup           *GtkWidget
+		Popwin          *GtkWidget
+		List            *GtkWidget
+		Entry_change_id Guint
+		List_change_id  Guint
+		Bits            Guint
 		// value_in_list:1
 		// ok_if_empty:1
 		// case_sensitive:1
 		// use_arrows:1
 		// use_arrows_always:1
-		current_button Guint16
-		activate_id    Guint
+		Current_button Guint16
+		Activate_id    Guint
 	}
 
 	GtkHBox struct {
-		box GtkBox
+		Box GtkBox
 	}
 
 	GtkBox struct {
-		container   GtkContainer
-		children    *GList
-		spacing     Gint16
-		homogeneous Guint // : 1
+		Container   GtkContainer
+		Children    *GList
+		Spacing     Gint16
+		Homogeneous Guint // : 1
 	}
 
 	GtkCTree struct {
-		clist        GtkCList
-		lines_gc     *GdkGC
-		tree_indent  Gint
-		tree_spacing Gint
-		tree_column  Gint
-		bits         Guint
+		Clist        GtkCList
+		Lines_gc     *GdkGC
+		Tree_indent  Gint
+		Tree_spacing Gint
+		Tree_column  Gint
+		Bits         Guint
 		// line_style : 2
 		// expander_style : 2
 		// show_stub : 1
-		drag_compare GtkCTreeCompareDragFunc
+		Drag_compare GtkCTreeCompareDragFunc
 	}
 
 	GtkCTreeNode struct {
-		list GList
+		List GList
 	}
 
 	GtkCTreeRow struct {
-		row           GtkCListRow
-		parent        *GtkCTreeNode
-		sibling       *GtkCTreeNode
-		children      *GtkCTreeNode
-		pixmap_closed *GdkPixmap
-		mask_closed   *GdkBitmap
-		pixmap_opened *GdkPixmap
-		mask_opened   *GdkBitmap
-		level         Guint16
-		bits          Guint
+		Row           GtkCListRow
+		Parent        *GtkCTreeNode
+		Sibling       *GtkCTreeNode
+		Children      *GtkCTreeNode
+		Pixmap_closed *GdkPixmap
+		Mask_closed   *GdkBitmap
+		Pixmap_opened *GdkPixmap
+		Mask_opened   *GdkBitmap
+		Level         Guint16
+		Bits          Guint
 		// is_leaf : 1
 		// expanded : 1
 	}
 
 	GtkTextBuffer struct {
-		parent_instance            GObject
-		tag_table                  *GtkTextTagTable
-		btree                      *GtkTextBTree
-		clipboard_contents_buffers *GSList
-		selection_clipboards       *GSList
-		log_attr_cache             *GtkTextLogAttrCache
-		user_action_count          Guint
-		bits                       Guint
+		Parent_instance            GObject
+		Tag_table                  *GtkTextTagTable
+		Btree                      *GtkTextBTree
+		Clipboard_contents_buffers *GSList
+		Selection_clipboards       *GSList
+		Log_attr_cache             *GtkTextLogAttrCache
+		User_action_count          Guint
+		Bits                       Guint
 		// modified : 1
 		// has_selection : 1
 	}
 
 	GtkTextTagTable struct {
-		parent_instance GObject
-		hash            *GHashTable
-		anonymous       *GSList
-		anon_count      Gint
-		buffers         *GSList
+		Parent_instance GObject
+		Hash            *GHashTable
+		Anonymous       *GSList
+		Anon_count      Gint
+		Buffers         *GSList
 	}
 
 	GtkTextView struct {
-		parent_instance        GtkContainer
-		layout                 *GtkTextLayout
-		buffer                 *GtkTextBuffer
-		selection_drag_handler Guint
-		scroll_timeout         Guint
-		pixels_above_lines     Gint
-		pixels_below_lines     Gint
-		pixels_inside_wrap     Gint
-		wrap_mode              GtkWrapMode
-		justify                GtkJustification
-		left_margin            Gint
-		right_margin           Gint
-		indent                 Gint
-		tabs                   *PangoTabArray
-		bits                   Guint
+		Parent_instance        GtkContainer
+		Layout                 *GtkTextLayout
+		Buffer                 *GtkTextBuffer
+		Selection_drag_handler Guint
+		Scroll_timeout         Guint
+		Pixels_above_lines     Gint
+		Pixels_below_lines     Gint
+		Pixels_inside_wrap     Gint
+		Wrap_mode              GtkWrapMode
+		Justify                GtkJustification
+		Left_margin            Gint
+		Right_margin           Gint
+		Indent                 Gint
+		Tabs                   *PangoTabArray
+		Bits                   Guint
 		// editable : 1
 		// overwrite_mode : 1
 		// cursor_visible : 1
@@ -1178,93 +1178,93 @@ type (
 		// width_changed : 1
 		// onscreen_validated : 1
 		// mouse_cursor_obscured : 1
-		text_window                 *GtkTextWindow
-		left_window                 *GtkTextWindow
-		right_window                *GtkTextWindow
-		top_window                  *GtkTextWindow
-		bottom_window               *GtkTextWindow
-		hadjustment                 *GtkAdjustment
-		vadjustment                 *GtkAdjustment
-		xoffset                     Gint
-		yoffset                     Gint
-		width                       Gint
-		height                      Gint
-		virtual_cursor_x            Gint
-		virtual_cursor_y            Gint
-		first_para_mark             *GtkTextMark
-		first_para_pixels           Gint
-		dnd_mark                    *GtkTextMark
-		blink_timeout               Guint
-		first_validate_idle         Guint
-		incremental_validate_idle   Guint
-		im_context                  *GtkIMContext
-		popup_menu                  *GtkWidget
-		drag_start_x                Gint
-		drag_start_y                Gint
-		children                    *GSList
-		pending_scroll              *GtkTextPendingScroll
-		pending_place_cursor_button Gint
+		Text_window                 *GtkTextWindow
+		Left_window                 *GtkTextWindow
+		Right_window                *GtkTextWindow
+		Top_window                  *GtkTextWindow
+		Bottom_window               *GtkTextWindow
+		Hadjustment                 *GtkAdjustment
+		Vadjustment                 *GtkAdjustment
+		Xoffset                     Gint
+		Yoffset                     Gint
+		Width                       Gint
+		Height                      Gint
+		Virtual_cursor_x            Gint
+		Virtual_cursor_y            Gint
+		First_para_mark             *GtkTextMark
+		First_para_pixels           Gint
+		Dnd_mark                    *GtkTextMark
+		Blink_timeout               Guint
+		First_validate_idle         Guint
+		Incremental_validate_idle   Guint
+		Im_context                  *GtkIMContext
+		Popup_menu                  *GtkWidget
+		Drag_start_x                Gint
+		Drag_start_y                Gint
+		Children                    *GSList
+		Pending_scroll              *GtkTextPendingScroll
+		Pending_place_cursor_button Gint
 	}
 
 	GtkTextMark struct {
-		parent_instance GObject
-		segment         Gpointer
+		Parent_instance GObject
+		Segment         Gpointer
 	}
 
 	GtkTextIter struct {
-		dummy1  Gpointer
-		dummy2  Gpointer
-		dummy3  Gint
-		dummy4  Gint
-		dummy5  Gint
-		dummy6  Gint
-		dummy7  Gint
-		dummy8  Gint
-		dummy9  Gpointer
-		dummy10 Gpointer
-		dummy11 Gint
-		dummy12 Gint
-		dummy13 Gint
-		dummy14 Gpointer
+		Dummy1  Gpointer
+		Dummy2  Gpointer
+		Dummy3  Gint
+		Dummy4  Gint
+		Dummy5  Gint
+		Dummy6  Gint
+		Dummy7  Gint
+		Dummy8  Gint
+		Dummy9  Gpointer
+		Dummy10 Gpointer
+		Dummy11 Gint
+		Dummy12 Gint
+		Dummy13 Gint
+		Dummy14 Gpointer
 	}
 
 	GdkEventKey struct {
 		Type             GdkEventType
-		window           *GdkWindow
-		send_event       Gint8
-		time             Guint32
-		state            Guint
-		keyval           Guint
-		length           Gint
-		string           *Gchar
-		hardware_keycode Guint16
-		group            Guint8
-		is_modifier      Guint // : 1
+		Window           *GdkWindow
+		Send_event       Gint8
+		Time             Guint32
+		State            Guint
+		Keyval           Guint
+		Length           Gint
+		String           *Gchar
+		Hardware_keycode Guint16
+		Group            Guint8
+		Is_modifier      Guint // : 1
 	}
 
 	GtkTextChildAnchor struct {
-		parent_instance GObject
-		segment         Gpointer
+		Parent_instance GObject
+		Segment         Gpointer
 	}
 
 	GtkTextAttributes struct {
-		refcount           Guint
-		appearance         GtkTextAppearance
-		justification      GtkJustification
-		direction          GtkTextDirection
-		font               *PangoFontDescription
-		font_scale         Gdouble
-		left_margin        Gint
-		indent             Gint
-		right_margin       Gint
-		pixels_above_lines Gint
-		pixels_below_lines Gint
-		pixels_inside_wrap Gint
-		tabs               *PangoTabArray
-		wrap_mode          GtkWrapMode
-		language           *PangoLanguage
-		pg_bg_color        *GdkColor
-		bits               Guint
+		Refcount           Guint
+		Appearance         GtkTextAppearance
+		Justification      GtkJustification
+		Direction          GtkTextDirection
+		Font               *PangoFontDescription
+		Font_scale         Gdouble
+		Left_margin        Gint
+		Indent             Gint
+		Right_margin       Gint
+		Pixels_above_lines Gint
+		Pixels_below_lines Gint
+		Pixels_inside_wrap Gint
+		Tabs               *PangoTabArray
+		Wrap_mode          GtkWrapMode
+		Language           *PangoLanguage
+		Pg_bg_color        *GdkColor
+		Bits               Guint
 		// invisible : 1
 		// bg_full_height : 1
 		// editable : 1
@@ -1276,13 +1276,13 @@ type (
 	}
 
 	GtkTextAppearance struct {
-		bg_color   GdkColor
-		fg_color   GdkColor
-		bg_stipple *GdkBitmap
-		fg_stipple *GdkBitmap
-		rise       Gint
-		padding1   Gpointer
-		bits       Guint
+		Bg_color   GdkColor
+		Fg_color   GdkColor
+		Bg_stipple *GdkBitmap
+		Fg_stipple *GdkBitmap
+		Rise       Gint
+		Padding1   Gpointer
+		Bits       Guint
 		// underline : 4
 		// strikethrough : 1
 		// draw_bg : 1
@@ -1295,183 +1295,183 @@ type (
 	}
 
 	GtkPixmap struct {
-		misc               GtkMisc
-		pixmap             *GdkPixmap
-		mask               *GdkBitmap
-		pixmap_insensitive *GdkPixmap
-		build_insensitive  Guint // : 1
+		Misc               GtkMisc
+		Pixmap             *GdkPixmap
+		Mask               *GdkBitmap
+		Pixmap_insensitive *GdkPixmap
+		Build_insensitive  Guint // : 1
 	}
 
 	GtkToolbar struct {
-		container    GtkContainer
-		num_children Gint
-		children     *GList
-		orientation  GtkOrientation
-		style        GtkToolbarStyle
-		icon_size    GtkIconSize
-		tooltips     *GtkTooltips
-		button_maxw  Gint
-		button_maxh  Gint
+		Container    GtkContainer
+		Num_children Gint
+		Children     *GList
+		Orientation  GtkOrientation
+		Style        GtkToolbarStyle
+		Icon_size    GtkIconSize
+		Tooltips     *GtkTooltips
+		Button_maxw  Gint
+		Button_maxh  Gint
 		_, _         Guint
-		bits         Guint
+		Bits         Guint
 		// style_set : 1
 		// icon_size_set : 1
 	}
 
 	GtkTooltips struct {
-		parent_instance  GtkObject
-		tip_window       *GtkWidget
-		tip_label        *GtkWidget
-		active_tips_data *GtkTooltipsData
-		tips_data_list   *GList
-		bits, bits2      Guint //TODO(t): 33 bits Alignment/size?
+		Parent_instance  GtkObject
+		Tip_window       *GtkWidget
+		Tip_label        *GtkWidget
+		Active_tips_data *GtkTooltipsData
+		Tips_data_list   *GList
+		Bits, Bits2      Guint //TODO(t): 33 bits Alignment/size?
 		// delay : 30
 		// enabled : 1
 		// have_grab : 1
 		// use_sticky_delay : 1
-		timer_tag    Gint
-		last_popdown GTimeVal
+		Timer_tag    Gint
+		Last_popdown GTimeVal
 	}
 
 	GtkTooltipsData struct {
-		tooltips    *GtkTooltips
-		widget      *GtkWidget
-		tip_text    *Gchar
-		tip_private *Gchar
+		Tooltips    *GtkTooltips
+		Widget      *GtkWidget
+		Tip_text    *Gchar
+		Tip_private *Gchar
 	}
 
 	GtkToolItem struct {
-		parent GtkBin
-		priv   *GtkToolItemPrivate
+		Parent GtkBin
+		Priv   *GtkToolItemPrivate
 	}
 
 	GtkToolItemGroup struct {
-		parent_instance GtkContainer
-		priv            *GtkToolItemGroupPrivate
+		Parent_instance GtkContainer
+		Priv            *GtkToolItemGroupPrivate
 	}
 
 	GtkToolPalette struct {
-		parent_instance GtkContainer
-		priv            *GtkToolPalettePrivate
+		Parent_instance GtkContainer
+		Priv            *GtkToolPalettePrivate
 	}
 
 	GtkSelectionData struct {
-		selection GdkAtom
-		target    GdkAtom
+		Selection GdkAtom
+		Target    GdkAtom
 		Type      GdkAtom
-		format    Gint
-		data      *Guchar
-		length    Gint
-		display   *GdkDisplay
+		Format    Gint
+		Data      *Guchar
+		Length    Gint
+		Display   *GdkDisplay
 	}
 
 	GdkDisplay struct {
-		parent_instance   GObject
-		queued_events     *GList
-		queued_tail       *GList
-		button_click_time [2]Guint32
-		button_window     [2]*GdkWindow
-		button_number     [2]Gint
+		Parent_instance   GObject
+		Queued_events     *GList
+		Queued_tail       *GList
+		Button_click_time [2]Guint32
+		Button_window     [2]*GdkWindow
+		Button_number     [2]Gint
 		Double_click_time Guint
-		core_pointer      *GdkDevice
-		pointer_hooks     *GdkDisplayPointerHooks
-		bits              Guint
+		Core_pointer      *GdkDevice
+		Pointer_hooks     *GdkDisplayPointerHooks
+		Bits              Guint
 		// closed : 1
 		// ignore_core_events : 1
 		Double_click_distance Guint
-		button_x              [2]Gint
-		button_y              [2]Gint
-		pointer_grabs         *GList
-		keyboard_grab         GdkKeyboardGrabInfo
-		pointer_info          GdkPointerWindowInfo
-		last_event_time       Guint32
+		Button_x              [2]Gint
+		Button_y              [2]Gint
+		Pointer_grabs         *GList
+		Keyboard_grab         GdkKeyboardGrabInfo
+		Pointer_info          GdkPointerWindowInfo
+		Last_event_time       Guint32
 	}
 
 	GdkKeyboardGrabInfo struct {
-		window        *GdkWindow
-		native_window *GdkWindow
-		serial        Gulong
-		owner_events  Gboolean
-		time          Guint32
+		Window        *GdkWindow
+		Native_window *GdkWindow
+		Serial        Gulong
+		Owner_events  Gboolean
+		Time          Guint32
 	}
 
 	GdkPointerWindowInfo struct {
-		toplevel_under_pointer *GdkWindow
-		window_under_pointer   *GdkWindow
-		toplevel_x, toplevel_y Gdouble
-		state                  Guint32
-		button                 Guint32
-		motion_hint_serial     Gulong
+		Toplevel_under_pointer *GdkWindow
+		Window_under_pointer   *GdkWindow
+		Toplevel_x, Toplevel_y Gdouble
+		State                  Guint32
+		Button                 Guint32
+		Motion_hint_serial     Gulong
 	}
 
 	GdkDevice struct {
-		parent_instance GObject
-		name            *Gchar
-		source          GdkInputSource
-		mode            GdkInputMode
-		has_cursor      Gboolean
-		num_axes        Gint
-		axes            *GdkDeviceAxis
-		num_keys        Gint
-		keys            *GdkDeviceKey
+		Parent_instance GObject
+		Name            *Gchar
+		Source          GdkInputSource
+		Mode            GdkInputMode
+		Has_cursor      Gboolean
+		Num_axes        Gint
+		Axes            *GdkDeviceAxis
+		Num_keys        Gint
+		Keys            *GdkDeviceKey
 	}
 
 	GdkDeviceKey struct {
-		keyval    Guint
-		modifiers GdkModifierType
+		Keyval    Guint
+		Modifiers GdkModifierType
 	}
 
 	GdkDisplayPointerHooks struct {
-		get_pointer func(
+		Get_pointer func(
 			display *GdkDisplay,
 			screen **GdkScreen,
 			x *Gint,
 			y *Gint,
 			mask *GdkModifierType)
-		window_get_pointer func(
+		Window_get_pointer func(
 			display *GdkDisplay,
 			window *GdkWindow,
 			x *Gint,
 			y *Gint,
 			mask *GdkModifierType) *GdkWindow
-		window_at_pointer func(
+		Window_at_pointer func(
 			display *GdkDisplay,
 			win_x *Gint,
 			win_y *Gint) *GdkWindow
 	}
 
 	GdkDeviceAxis struct {
-		use GdkAxisUse
-		min Gdouble
-		max Gdouble
+		Use GdkAxisUse
+		Min Gdouble
+		Max Gdouble
 	}
 
 	GtkTargetEntry struct {
-		target *Gchar
-		flags  Guint
-		info   Guint
+		Target *Gchar
+		Flags  Guint
+		Info   Guint
 	}
 
 	GtkSizeGroup struct {
-		parent_instance GObject
-		widgets         *GSList
-		mode            Guint8
-		bits            Guint
+		Parent_instance GObject
+		Widgets         *GSList
+		Mode            Guint8
+		Bits            Guint
 		// have_width : 1
 		// have_height : 1
 		// ignore_hidden : 1
-		requisition GtkRequisition
+		Requisition GtkRequisition
 	}
 
 	GtkSpinButton struct {
-		entry         GtkEntry
-		adjustment    *GtkAdjustment
-		panel         *GdkWindow
-		timer         Guint32
-		climb_rate    Gdouble
-		timer_step    Gdouble
-		update_policy GtkSpinButtonUpdatePolicy
-		bits          Guint
+		Entry         GtkEntry
+		Adjustment    *GtkAdjustment
+		Panel         *GdkWindow
+		Timer         Guint32
+		Climb_rate    Gdouble
+		Timer_step    Gdouble
+		Update_policy GtkSpinButtonUpdatePolicy
+		Bits          Guint
 		// in_child : 2
 		// click_child : 2
 		// button : 2
@@ -1484,22 +1484,22 @@ type (
 	}
 
 	GtkEntry struct {
-		widget GtkWidget
-		text   *Gchar
-		bits   Guint
+		Widget GtkWidget
+		Text   *Gchar
+		Bits   Guint
 		// editable : 1
 		// visible : 1
 		// overwrite_mode : 1
 		// in_drag : 1
-		text_length     Guint16
-		text_max_length Guint16
-		text_area       *GdkWindow
-		im_context      *GtkIMContext
-		popup_menu      *GtkWidget
-		current_pos     Gint
-		selection_bound Gint
-		cached_layout   *PangoLayout
-		bits2           Guint
+		Text_length     Guint16
+		Text_max_length Guint16
+		Text_area       *GdkWindow
+		Im_context      *GtkIMContext
+		Popup_menu      *GtkWidget
+		Current_pos     Gint
+		Selection_bound Gint
+		Cached_layout   *PangoLayout
+		Bits2           Guint
 		// cache_includes_preedit : 1
 		// need_im_reset : 1
 		// has_frame : 1
@@ -1513,116 +1513,116 @@ type (
 		// select_lines : 1
 		// resolved_dir : 4
 		// truncate_multiline : 1
-		button         Guint
-		blink_timeout  Guint
-		recompute_idle Guint
-		scroll_offset  Gint
-		ascent         Gint
-		descent        Gint
-		x_text_size    Guint16
-		x_n_bytes      Guint16
-		preedit_length Guint16
-		preedit_cursor Guint16
-		dnd_position   Gint
-		drag_start_x   Gint
-		drag_start_y   Gint
-		invisible_char Gunichar
-		width_chars    Gint
+		Button         Guint
+		Blink_timeout  Guint
+		Recompute_idle Guint
+		Scroll_offset  Gint
+		Ascent         Gint
+		Descent        Gint
+		X_text_size    Guint16
+		X_n_bytes      Guint16
+		Preedit_length Guint16
+		Preedit_cursor Guint16
+		Dnd_position   Gint
+		Drag_start_x   Gint
+		Drag_start_y   Gint
+		Invisible_char Gunichar
+		Width_chars    Gint
 	}
 
 	GtkTreeModelSort struct {
-		parent               GObject
-		root                 Gpointer
-		stamp                Gint
-		child_flags          Guint
-		child_model          *GtkTreeModel
-		zero_ref_count       Gint
-		sort_list            *GList
-		sort_column_id       Gint
-		order                GtkSortType
-		default_sort_func    GtkTreeIterCompareFunc
-		default_sort_data    Gpointer
-		default_sort_destroy GDestroyNotify
-		changed_id           Guint
-		inserted_id          Guint
-		has_child_toggled_id Guint
-		deleted_id           Guint
-		reordered_id         Guint
+		Parent               GObject
+		Root                 Gpointer
+		Stamp                Gint
+		Child_flags          Guint
+		Child_model          *GtkTreeModel
+		Zero_ref_count       Gint
+		Sort_list            *GList
+		Sort_column_id       Gint
+		Order                GtkSortType
+		Default_sort_func    GtkTreeIterCompareFunc
+		Default_sort_data    Gpointer
+		Default_sort_destroy GDestroyNotify
+		Changed_id           Guint
+		Inserted_id          Guint
+		Has_child_toggled_id Guint
+		Deleted_id           Guint
+		Reordered_id         Guint
 	}
 
 	GtkTreeIter struct {
-		stamp      Gint
-		user_data  Gpointer
-		user_data2 Gpointer
-		user_data3 Gpointer
+		Stamp      Gint
+		User_data  Gpointer
+		User_data2 Gpointer
+		User_data3 Gpointer
 	}
 
 	GtkTreeSelection struct {
-		parent    GObject
-		tree_view *GtkTreeView
+		Parent    GObject
+		Tree_view *GtkTreeView
 		Type      GtkSelectionMode
-		user_func GtkTreeSelectionFunc
-		user_data Gpointer
-		destroy   GDestroyNotify
+		User_func GtkTreeSelectionFunc
+		User_data Gpointer
+		Destroy   GDestroyNotify
 	}
 
 	GtkTreeView struct {
-		parent GtkContainer
-		priv   *GtkTreeViewPrivate
+		Parent GtkContainer
+		Priv   *GtkTreeViewPrivate
 	}
 
 	GtkTreeStore struct {
-		parent               GObject
-		stamp                Gint
-		root                 Gpointer
-		last                 Gpointer
-		n_columns            Gint
-		sort_column_id       Gint
-		sort_list            *GList
-		order                GtkSortType
-		column_headers       *GType
-		default_sort_func    GtkTreeIterCompareFunc
-		default_sort_data    Gpointer
-		default_sort_destroy GDestroyNotify
-		columns_dirty        Guint // : 1
+		Parent               GObject
+		Stamp                Gint
+		Root                 Gpointer
+		Last                 Gpointer
+		N_columns            Gint
+		Sort_column_id       Gint
+		Sort_list            *GList
+		Order                GtkSortType
+		Column_headers       *GType
+		Default_sort_func    GtkTreeIterCompareFunc
+		Default_sort_data    Gpointer
+		Default_sort_destroy GDestroyNotify
+		Columns_dirty        Guint // : 1
 	}
 
 	GtkUIManager struct {
-		parent       GObject
-		private_data *GtkUIManagerPrivate
+		Parent       GObject
+		Private_data *GtkUIManagerPrivate
 	}
 
 	GtkActionGroup struct {
-		parent       GObject
-		private_data *GtkActionGroupPrivate
+		Parent       GObject
+		Private_data *GtkActionGroupPrivate
 	}
 
 	GtkAction struct {
-		object       GObject
-		private_data *GtkActionPrivate
+		Object       GObject
+		Private_data *GtkActionPrivate
 	}
 
 	GtkHSV struct {
-		parent_instance GtkWidget
-		priv            Gpointer
+		Parent_instance GtkWidget
+		Priv            Gpointer
 	}
 
 	GtkIconFactory struct {
-		parent_instance GObject
-		icons           *GHashTable
+		Parent_instance GObject
+		Icons           *GHashTable
 	}
 
 	GtkSettings struct {
-		parent_instance GObject
-		queued_settings *GData
-		property_values *GtkSettingsPropertyValue
-		rc_context      *GtkRcContext
-		screen          *GdkScreen
+		Parent_instance GObject
+		Queued_settings *GData
+		Property_values *GtkSettingsPropertyValue
+		Rc_context      *GtkRcContext
+		Screen          *GdkScreen
 	}
 
 	GtkIconTheme struct {
-		parent_instance GObject
-		priv            *GtkIconThemePrivate
+		Parent_instance GObject
+		Priv            *GtkIconThemePrivate
 	}
 
 	GdkEvent struct {
@@ -1651,19 +1651,19 @@ type (
 	}
 
 	GtkIconView struct {
-		parent GtkContainer
-		priv   *GtkIconViewPrivate
+		Parent GtkContainer
+		Priv   *GtkIconViewPrivate
 	}
 
 	GtkCellRenderer struct {
-		parent GtkObject
-		xalign Gfloat
-		yalign Gfloat
-		width  Gint
-		height Gint
-		xpad   Guint16
-		ypad   Guint16
-		bits   Guint
+		Parent GtkObject
+		Xalign Gfloat
+		Yalign Gfloat
+		Width  Gint
+		Height Gint
+		Xpad   Guint16
+		Ypad   Guint16
+		Bits   Guint
 		// mode : 2;
 		// visible : 1
 		// is_expander : 1
@@ -1674,53 +1674,53 @@ type (
 	}
 
 	GtkImageMenuItem struct {
-		menu_item GtkMenuItem
-		image     *GtkWidget
+		Menu_item GtkMenuItem
+		Image     *GtkWidget
 	}
 
 	GtkMenuItem struct {
-		item              GtkItem
-		submenu           *GtkWidget
-		event_window      *GdkWindow
-		toggle_size       Guint16
-		accelerator_width Guint16
-		accel_path        *Gchar
-		bits              Guint
+		Item              GtkItem
+		Submenu           *GtkWidget
+		Event_window      *GdkWindow
+		Toggle_size       Guint16
+		Accelerator_width Guint16
+		Accel_path        *Gchar
+		Bits              Guint
 		// show_submenu_indicator : 1
 		// submenu_placement : 1
 		// submenu_direction : 1
 		// right_justify: 1
 		// timer_from_keypress : 1
 		// from_menubar : 1
-		timer Guint
+		Timer Guint
 	}
 
 	GtkIMContextSimple struct {
-		object              GtkIMContext
-		tables              *GSList
-		compose_buffer      [7 + 1]Guint
-		tentative_match     Gunichar
-		tentative_match_len Gint
-		bits                Guint
+		Object              GtkIMContext
+		Tables              *GSList
+		Compose_buffer      [7 + 1]Guint
+		Tentative_match     Gunichar
+		Tentative_match_len Gint
+		Bits                Guint
 		// in_hex_sequence : 1
 		// modifiers_dropped : 1
 	}
 
 	GtkIMMulticontext struct {
-		object     GtkIMContext
-		slave      *GtkIMContext
-		priv       *GtkIMMulticontextPrivate
-		context_id *Gchar
+		Object     GtkIMContext
+		Slave      *GtkIMContext
+		Priv       *GtkIMMulticontextPrivate
+		Context_id *Gchar
 	}
 
 	GtkMenuShell struct {
-		container         GtkContainer
-		children          *GList
-		active_menu_item  *GtkWidget
-		parent_menu_shell *GtkWidget
-		button            Guint
-		activate_time     Guint32
-		bits              Guint
+		Container         GtkContainer
+		Children          *GList
+		Active_menu_item  *GtkWidget
+		Parent_menu_shell *GtkWidget
+		Button            Guint
+		Activate_time     Guint32
+		Bits              Guint
 		// active : 1
 		// have_grab : 1
 		// have_xgrab : 1
@@ -1731,38 +1731,38 @@ type (
 	}
 
 	GtkInfoBar struct {
-		parent GtkHBox
-		priv   *GtkInfoBarPrivate
+		Parent GtkHBox
+		Priv   *GtkInfoBarPrivate
 	}
 
 	GtkInvisible struct {
-		widget             GtkWidget
-		has_user_ref_count Gboolean
-		screen             *GdkScreen
+		Widget             GtkWidget
+		Has_user_ref_count Gboolean
+		Screen             *GdkScreen
 	}
 
 	GtkLayout struct {
-		container    GtkContainer
-		children     *GList
-		width        Guint
-		height       Guint
-		hadjustment  *GtkAdjustment
-		vadjustment  *GtkAdjustment
-		bin_window   *GdkWindow
-		visibility   GdkVisibilityState
-		scroll_x     Gint
-		scroll_y     Gint
-		freeze_count Guint
+		Container    GtkContainer
+		Children     *GList
+		Width        Guint
+		Height       Guint
+		Hadjustment  *GtkAdjustment
+		Vadjustment  *GtkAdjustment
+		Bin_window   *GdkWindow
+		Visibility   GdkVisibilityState
+		Scroll_x     Gint
+		Scroll_y     Gint
+		Freeze_count Guint
 	}
 
 	GtkLinkButton struct {
-		parent_instance GtkButton
-		priv            *GtkLinkButtonPrivate
+		Parent_instance GtkButton
+		Priv            *GtkLinkButtonPrivate
 	}
 
 	GtkArg struct {
 		Type GType
-		name *Gchar
+		Name *Gchar
 		// Union
 		// Gchar char_data;
 		// uchar_data  Guchar;
@@ -1780,53 +1780,53 @@ type (
 	}
 
 	GSignalInvocationHint struct {
-		signal_id Guint
-		detail    GQuark
-		run_type  GSignalFlags
+		Signal_id Guint
+		Detail    GQuark
+		Run_type  GSignalFlags
 	}
 
 	GtkMenuBar struct {
-		menu_shell GtkMenuShell
+		Menu_shell GtkMenuShell
 	}
 
 	GtkToolButton struct {
-		parent GtkToolItem
-		priv   *GtkToolButtonPrivate
+		Parent GtkToolItem
+		Priv   *GtkToolButtonPrivate
 	}
 
 	GtkMenuToolButton struct {
-		parent GtkToolButton
-		priv   *GtkMenuToolButtonPrivate
+		Parent GtkToolButton
+		Priv   *GtkMenuToolButtonPrivate
 	}
 
 	GtkMessageDialog struct {
-		parent_instance GtkDialog
-		image           *GtkWidget
-		label           *GtkWidget
+		Parent_instance GtkDialog
+		Image           *GtkWidget
+		Label           *GtkWidget
 	}
 
 	GMountOperation struct {
-		parent_instance GObject
-		priv            *GMountOperationPrivate
+		Parent_instance GObject
+		Priv            *GMountOperationPrivate
 	}
 
 	GtkMountOperation struct {
-		parent_instance GMountOperation
-		priv            *GtkMountOperationPrivate
+		Parent_instance GMountOperation
+		Priv            *GtkMountOperationPrivate
 	}
 
 	GtkNotebook struct {
-		container    GtkContainer
-		cur_page     *GtkNotebookPage
-		children     *GList
-		first_tab    *GList
-		focus_tab    *GList
-		menu         *GtkWidget
-		event_window *GdkWindow
-		timer        Guint32
-		tab_hborder  Guint16
-		tab_vborder  Guint16
-		bits         Guint
+		Container    GtkContainer
+		Cur_page     *GtkNotebookPage
+		Children     *GList
+		First_tab    *GList
+		Focus_tab    *GList
+		Menu         *GtkWidget
+		Event_window *GdkWindow
+		Timer        Guint32
+		Tab_hborder  Guint16
+		Tab_vborder  Guint16
+		Bits         Guint
 		// show_tabs : 1
 		// homogeneous : 1
 		// show_border : 1
@@ -1846,104 +1846,104 @@ type (
 	}
 
 	GtkOffscreenWindow struct {
-		parent_object GtkWindow
+		Parent_object GtkWindow
 	}
 
 	GtkSocket struct {
-		container      GtkContainer
-		request_width  Guint16
-		request_height Guint16
-		current_width  Guint16
-		current_height Guint16
-		plug_window    *GdkWindow
-		plug_widget    *GtkWidget
-		xembed_version Gshort
-		bits           Guint
+		Container      GtkContainer
+		Request_width  Guint16
+		Request_height Guint16
+		Current_width  Guint16
+		Current_height Guint16
+		Plug_window    *GdkWindow
+		Plug_widget    *GtkWidget
+		Xembed_version Gshort
+		Bits           Guint
 		// same_app : 1
 		// focus_in : 1
 		// have_size : 1
 		// need_map : 1
 		// is_mapped : 1
 		// active : 1
-		accel_group *GtkAccelGroup
-		toplevel    *GtkWidget
+		Accel_group *GtkAccelGroup
+		Toplevel    *GtkWidget
 	}
 
 	GtkPlug struct {
-		window          GtkWindow
-		socket_window   *GdkWindow
-		modality_window *GtkWidget
-		modality_group  *GtkWindowGroup
-		grabbed_keys    *GHashTable
-		same_app        Guint // : 1
+		Window          GtkWindow
+		Socket_window   *GdkWindow
+		Modality_window *GtkWidget
+		Modality_group  *GtkWindowGroup
+		Grabbed_keys    *GHashTable
+		Same_app        Guint // : 1
 	}
 
 	GtkPageRange struct {
-		start Gint
-		end   Gint
+		Start Gint
+		End   Gint
 	}
 
 	GtkPrintOperation struct {
-		parent_instance GObject
-		priv            *GtkPrintOperationPrivate
+		Parent_instance GObject
+		Priv            *GtkPrintOperationPrivate
 	}
 
 	GtkProgress struct {
-		widget           GtkWidget
-		adjustment       *GtkAdjustment
-		offscreen_pixmap *GdkPixmap
-		format           *Gchar
-		x_align          Gfloat
-		y_align          Gfloat
-		bits             Guint
+		Widget           GtkWidget
+		Adjustment       *GtkAdjustment
+		Offscreen_pixmap *GdkPixmap
+		Format           *Gchar
+		X_align          Gfloat
+		Y_align          Gfloat
+		Bits             Guint
 		// show_text : 1;
 		// activity_mode : 1;
 		// use_text_format : 1
 	}
 
 	GtkProgressBar struct {
-		progress        GtkProgress
-		bar_style       GtkProgressBarStyle
-		orientation     GtkProgressBarOrientation
-		blocks          Guint
-		in_block        Gint
-		activity_pos    Gint
-		activity_step   Guint
-		activity_blocks Guint
-		pulse_fraction  Gdouble
-		bits            Guint
+		Progress        GtkProgress
+		Bar_style       GtkProgressBarStyle
+		Orientation     GtkProgressBarOrientation
+		Blocks          Guint
+		In_block        Gint
+		Activity_pos    Gint
+		Activity_step   Guint
+		Activity_blocks Guint
+		Pulse_fraction  Gdouble
+		Bits            Guint
 		// activity_dir : 1
 		// ellipsize : 3
 		// dirty : 1
 	}
 
 	GtkToggleAction struct {
-		parent       GtkAction
-		private_data *GtkToggleActionPrivate
+		Parent       GtkAction
+		Private_data *GtkToggleActionPrivate
 	}
 
 	GtkRadioAction struct {
-		parent       GtkToggleAction
-		private_data *GtkRadioActionPrivate
+		Parent       GtkToggleAction
+		Private_data *GtkRadioActionPrivate
 	}
 
 	GtkRadioButton struct {
-		check_button GtkCheckButton
-		group        *GSList
+		Check_button GtkCheckButton
+		Group        *GSList
 	}
 
 	GtkRadioMenuItem struct {
-		check_menu_item GtkCheckMenuItem
-		group           *GSList
+		Check_menu_item GtkCheckMenuItem
+		Group           *GSList
 	}
 
 	GtkCheckButton struct {
-		toggle_button GtkToggleButton
+		Toggle_button GtkToggleButton
 	}
 
 	GtkCheckMenuItem struct {
-		menu_item GtkMenuItem
-		bits      Guint
+		Menu_item GtkMenuItem
+		Bits      Guint
 		// active : 1
 		// always_show_toggle : 1
 		// inconsistent : 1
@@ -1951,110 +1951,110 @@ type (
 	}
 
 	GtkToggleButton struct {
-		button GtkButton
-		bits   Guint
+		Button GtkButton
+		Bits   Guint
 		// active : 1
 		// draw_indicator : 1
 		// inconsistent : 1
 	}
 
 	GtkToggleToolButton struct {
-		parent GtkToolButton
-		priv   *GtkToggleToolButtonPrivate
+		Parent GtkToolButton
+		Priv   *GtkToggleToolButtonPrivate
 	}
 
 	GtkRadioToolButton struct {
-		parent GtkToggleToolButton
+		Parent GtkToggleToolButton
 	}
 
 	GtkRecentManager struct {
-		parent_instance GObject
-		priv            *GtkRecentManagerPrivate
+		Parent_instance GObject
+		Priv            *GtkRecentManagerPrivate
 	}
 
 	GtkRecentData struct {
-		display_name *Gchar
-		description  *Gchar
-		mime_type    *Gchar
-		app_name     *Gchar
-		app_exec     *Gchar
-		groups       **Gchar
-		is_private   Gboolean
+		Display_name *Gchar
+		Description  *Gchar
+		Mime_type    *Gchar
+		App_name     *Gchar
+		App_exec     *Gchar
+		Groups       **Gchar
+		Is_private   Gboolean
 	}
 
 	GtkRecentAction struct {
-		parent_instance GtkAction
-		priv            *GtkRecentActionPrivate
+		Parent_instance GtkAction
+		Priv            *GtkRecentActionPrivate
 	}
 
 	GtkScaleButton struct {
-		parent       GtkButton
-		plus_button  *GtkWidget
-		minus_button *GtkWidget
-		priv         *GtkScaleButtonPrivate
+		Parent       GtkButton
+		Plus_button  *GtkWidget
+		Minus_button *GtkWidget
+		Priv         *GtkScaleButtonPrivate
 	}
 
 	GtkRecentFilterInfo struct {
-		contains     GtkRecentFilterFlags
-		uri          *Gchar
-		display_name *Gchar
-		mime_type    *Gchar
-		applications **Gchar
-		groups       **Gchar
-		age          Gint
+		Contains     GtkRecentFilterFlags
+		Uri          *Gchar
+		Display_name *Gchar
+		Mime_type    *Gchar
+		Applications **Gchar
+		Groups       **Gchar
+		Age          Gint
 	}
 
 	GtkViewport struct {
-		bin         GtkBin
-		shadow_type GtkShadowType
-		view_window *GdkWindow
-		bin_window  *GdkWindow
-		hadjustment *GtkAdjustment
-		vadjustment *GtkAdjustment
+		Bin         GtkBin
+		Shadow_type GtkShadowType
+		View_window *GdkWindow
+		Bin_window  *GdkWindow
+		Hadjustment *GtkAdjustment
+		Vadjustment *GtkAdjustment
 	}
 
 	GtkScrolledWindow struct {
-		container  GtkBin
-		hscrollbar *GtkWidget
-		vscrollbar *GtkWidget
-		bits       Guint
+		Container  GtkBin
+		Hscrollbar *GtkWidget
+		Vscrollbar *GtkWidget
+		Bits       Guint
 		// hscrollbar_policy : 2
 		// vscrollbar_policy : 2
 		// hscrollbar_visible : 1
 		// vscrollbar_visible : 1
 		// window_placement : 2
 		// focus_out : 1
-		shadow_type Guint16
+		Shadow_type Guint16
 	}
 
 	GtkRecentChooserMenu struct {
-		parent_instance GtkMenu
-		priv            *GtkRecentChooserMenuPrivate
+		Parent_instance GtkMenu
+		Priv            *GtkRecentChooserMenuPrivate
 	}
 
 	GtkMenu struct {
-		menu_shell           GtkMenuShell
-		parent_menu_item     *GtkWidget
-		old_active_menu_item *GtkWidget
-		accel_group          *GtkAccelGroup
-		accel_path           *Gchar
-		position_func        GtkMenuPositionFunc
-		position_func_data   Gpointer
-		toggle_size          Guint
-		toplevel             *GtkWidget
-		tearoff_window       *GtkWidget
-		tearoff_hbox         *GtkWidget
-		tearoff_scrollbar    *GtkWidget
-		tearoff_adjustment   *GtkAdjustment
-		view_window          *GdkWindow
-		bin_window           *GdkWindow
-		scroll_offset        Gint
-		saved_scroll_offset  Gint
-		scroll_step          Gint
-		timeout_id           Guint
-		navigation_region    *GdkRegion
-		navigation_timeout   Guint
-		bits                 Guint
+		Menu_shell           GtkMenuShell
+		Parent_menu_item     *GtkWidget
+		Old_active_menu_item *GtkWidget
+		Accel_group          *GtkAccelGroup
+		Accel_path           *Gchar
+		Position_func        GtkMenuPositionFunc
+		Position_func_data   Gpointer
+		Toggle_size          Guint
+		Toplevel             *GtkWidget
+		Tearoff_window       *GtkWidget
+		Tearoff_hbox         *GtkWidget
+		Tearoff_scrollbar    *GtkWidget
+		Tearoff_adjustment   *GtkAdjustment
+		View_window          *GdkWindow
+		Bin_window           *GdkWindow
+		Scroll_offset        Gint
+		Saved_scroll_offset  Gint
+		Scroll_step          Gint
+		Timeout_id           Guint
+		Navigation_region    *GdkRegion
+		Navigation_timeout   Guint
+		Bits                 Guint
 		// needs_destruction_ref_count : 1
 		// torn_off : 1
 		// tearoff_active : 1
@@ -2066,58 +2066,58 @@ type (
 	}
 
 	GtkSeparatorToolItem struct {
-		parent GtkToolItem
-		priv   *GtkSeparatorToolItemPrivate
+		Parent GtkToolItem
+		Priv   *GtkSeparatorToolItemPrivate
 	}
 
 	GtkStatusbar struct {
-		parent_widget   GtkHBox
-		frame           *GtkWidget
-		label           *GtkWidget
-		messages        *GSList
-		keys            *GSList
-		seq_context_id  Guint
-		seq_message_id  Guint
-		grip_window     *GdkWindow
-		has_resize_grip Guint // : 1
+		Parent_widget   GtkHBox
+		Frame           *GtkWidget
+		Label           *GtkWidget
+		Messages        *GSList
+		Keys            *GSList
+		Seq_context_id  Guint
+		Seq_message_id  Guint
+		Grip_window     *GdkWindow
+		Has_resize_grip Guint // : 1
 	}
 
 	GtkSpinner struct {
-		parent GtkDrawingArea
-		priv   *GtkSpinnerPrivate
+		Parent GtkDrawingArea
+		Priv   *GtkSpinnerPrivate
 	}
 
 	GtkStatusIcon struct {
-		parent_instance GObject
-		priv            *GtkStatusIconPrivate
+		Parent_instance GObject
+		Priv            *GtkStatusIconPrivate
 	}
 
 	GtkStockItem struct {
-		stock_id           *Gchar
-		label              *Gchar
-		modifier           GdkModifierType
-		keyval             Guint
-		translation_domain *Gchar
+		Stock_id           *Gchar
+		Label              *Gchar
+		Modifier           GdkModifierType
+		Keyval             Guint
+		Translation_domain *Gchar
 	}
 
 	GtkTable struct {
-		container      GtkContainer
-		children       *GList
-		rows           *GtkTableRowCol
-		cols           *GtkTableRowCol
-		nrows          Guint16
-		ncols          Guint16
-		column_spacing Guint16
-		row_spacing    Guint16
-		bits           Guint
+		Container      GtkContainer
+		Children       *GList
+		Rows           *GtkTableRowCol
+		Cols           *GtkTableRowCol
+		Nrows          Guint16
+		Ncols          Guint16
+		Column_spacing Guint16
+		Row_spacing    Guint16
+		Bits           Guint
 		// homogeneous : 1
 	}
 
 	GtkTableRowCol struct {
-		requisition Guint16
-		allocation  Guint16
-		spacing     Guint16
-		bits        Guint
+		Requisition Guint16
+		Allocation  Guint16
+		Spacing     Guint16
+		Bits        Guint
 		// need_expand : 1
 		// need_shrink : 1
 		// expand : 1
@@ -2126,12 +2126,12 @@ type (
 	}
 
 	GtkTextTag struct {
-		parent_instance GObject
-		table           *GtkTextTagTable
-		name            *Char
-		priority        int
-		values          *GtkTextAttributes
-		bits            Guint
+		Parent_instance GObject
+		Table           *GtkTextTagTable
+		Name            *Char
+		Priority        int
+		Values          *GtkTextAttributes
+		Bits            Guint
 		// bg_color_set : 1
 		// bg_stipple_set : 1
 		// fg_color_set : 1
@@ -2159,12 +2159,12 @@ type (
 	}
 
 	GtkTargetList struct {
-		list      *GList
-		ref_count Guint
+		List      *GList
+		Ref_count Guint
 	}
 
 	PangoLogAttr struct {
-		bits Guint
+		Bits Guint
 		// is_line_break : 1
 		// is_mandatory_break : 1
 		// is_char_break : 1
@@ -2181,626 +2181,626 @@ type (
 	}
 
 	AtkObject struct {
-		parent            GObject
-		description       *Gchar
-		name              *Gchar
-		accessible_parent *AtkObject
-		role              AtkRole
-		relation_set      *AtkRelationSet
-		layer             AtkLayer
+		Parent            GObject
+		Description       *Gchar
+		Name              *Gchar
+		Accessible_parent *AtkObject
+		Role              AtkRole
+		Relation_set      *AtkRelationSet
+		Layer             AtkLayer
 	}
 
 	AtkRelationSet struct {
-		parent    GObject
-		relations *GPtrArray
+		Parent    GObject
+		Relations *GPtrArray
 	}
 
 	GdkDragContext struct {
-		parent_instance  GObject
-		protocol         GdkDragProtocol
-		is_source        Gboolean
-		source_window    *GdkWindow
-		dest_window      *GdkWindow
-		targets          *GList
-		actions          GdkDragAction
-		suggested_action GdkDragAction
-		action           GdkDragAction
-		start_time       Guint32
-		windowing_data   Gpointer
+		Parent_instance  GObject
+		Protocol         GdkDragProtocol
+		Is_source        Gboolean
+		Source_window    *GdkWindow
+		Dest_window      *GdkWindow
+		Targets          *GList
+		Actions          GdkDragAction
+		Suggested_action GdkDragAction
+		Action           GdkDragAction
+		Start_time       Guint32
+		Windowing_data   Gpointer
 	}
 
 	GdkEventExpose struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		area       GdkRectangle
-		region     *GdkRegion
-		count      Gint
+		Window     *GdkWindow
+		Send_event Gint8
+		Area       GdkRectangle
+		Region     *GdkRegion
+		Count      Gint
 	}
 
 	GdkEventOwnerChange struct {
 		Type           GdkEventType
-		window         *GdkWindow
-		send_event     Gint8
-		owner          GdkNativeWindow
-		reason         GdkOwnerChange
-		selection      GdkAtom
-		time           Guint32
-		selection_time Guint32
+		Window         *GdkWindow
+		Send_event     Gint8
+		Owner          GdkNativeWindow
+		Reason         GdkOwnerChange
+		Selection      GdkAtom
+		Time           Guint32
+		Selection_time Guint32
 	}
 
 	GdkEventProperty struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		atom       GdkAtom
-		time       Guint32
-		state      Guint
+		Window     *GdkWindow
+		Send_event Gint8
+		Atom       GdkAtom
+		Time       Guint32
+		State      Guint
 	}
 
 	GdkEventSelection struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		selection  GdkAtom
-		target     GdkAtom
-		property   GdkAtom
-		time       Guint32
-		requestor  GdkNativeWindow
+		Window     *GdkWindow
+		Send_event Gint8
+		Selection  GdkAtom
+		Target     GdkAtom
+		Property   GdkAtom
+		Time       Guint32
+		Requestor  GdkNativeWindow
 	}
 
 	GdkEventSetting struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		action     GdkSettingAction
-		name       *Char
+		Window     *GdkWindow
+		Send_event Gint8
+		Action     GdkSettingAction
+		Name       *Char
 	}
 
 	GdkGCValues struct {
-		foreground         GdkColor
-		background         GdkColor
-		font               *GdkFont
-		function           GdkFunction
-		fill               GdkFill
-		tile               *GdkPixmap
-		stipple            *GdkPixmap
-		clip_mask          *GdkPixmap
-		subwindow_mode     GdkSubwindowMode
-		ts_x_origin        Gint
-		ts_y_origin        Gint
-		clip_x_origin      Gint
-		clip_y_origin      Gint
-		graphics_exposures Gint
-		line_width         Gint
-		line_style         GdkLineStyle
-		cap_style          GdkCapStyle
-		join_style         GdkJoinStyle
+		Foreground         GdkColor
+		Background         GdkColor
+		Font               *GdkFont
+		Function           GdkFunction
+		Fill               GdkFill
+		Tile               *GdkPixmap
+		Stipple            *GdkPixmap
+		Clip_mask          *GdkPixmap
+		Subwindow_mode     GdkSubwindowMode
+		Ts_x_origin        Gint
+		Ts_y_origin        Gint
+		Clip_x_origin      Gint
+		Clip_y_origin      Gint
+		Graphics_exposures Gint
+		Line_width         Gint
+		Line_style         GdkLineStyle
+		Cap_style          GdkCapStyle
+		Join_style         GdkJoinStyle
 	}
 
 	GdkGeometry struct {
-		min_width   Gint
-		min_height  Gint
-		max_width   Gint
-		max_height  Gint
-		base_width  Gint
-		base_height Gint
-		width_inc   Gint
-		height_inc  Gint
-		min_aspect  Gdouble
-		max_aspect  Gdouble
-		win_gravity GdkGravity
+		Min_width   Gint
+		Min_height  Gint
+		Max_width   Gint
+		Max_height  Gint
+		Base_width  Gint
+		Base_height Gint
+		Width_inc   Gint
+		Height_inc  Gint
+		Min_aspect  Gdouble
+		Max_aspect  Gdouble
+		Win_gravity GdkGravity
 	}
 
 	GdkImage struct {
-		parent_instance GObject
+		Parent_instance GObject
 		Type            GdkImageType
-		visual          *GdkVisual
-		byte_order      GdkByteOrder
-		width           Gint
-		height          Gint
-		depth           Guint16
-		bpp             Guint16
-		bpl             Guint16
-		bits_per_pixel  Guint16
-		mem             Gpointer
-		colormap        *GdkColormap
-		windowing_data  Gpointer
+		Visual          *GdkVisual
+		Byte_order      GdkByteOrder
+		Width           Gint
+		Height          Gint
+		Depth           Guint16
+		Bpp             Guint16
+		Bpl             Guint16
+		Bits_per_pixel  Guint16
+		Mem             Gpointer
+		Colormap        *GdkColormap
+		Windowing_data  Gpointer
 	}
 
 	GObjectClass struct {
-		g_type_class         GTypeClass
-		construct_properties *GSList
-		constructor          func(
+		G_type_class         GTypeClass
+		Construct_properties *GSList
+		Constructor          func(
 			Type GType,
 			n_construct_properties Guint,
 			construct_properties *GObjectConstructParam) *GObject
-		set_property func(
+		Set_property func(
 			object *GObject,
 			property_id Guint,
 			GValue,
 			pspec *GParamSpec)
-		get_property func(
+		Get_property func(
 			object *GObject,
 			property_id Guint,
 			value *GValue,
 			pspec *GParamSpec)
-		dispose func(
+		Dispose func(
 			object *GObject)
-		finalize func(
+		Finalize func(
 			object *GObject)
-		dispatch_properties_changed func(
+		Dispatch_properties_changed func(
 			object *GObject,
 			n_pspecs Guint,
 			pspecs **GParamSpec)
-		notify func(
+		Notify func(
 			object *GObject,
 			pspec *GParamSpec)
-		constructed func(
+		Constructed func(
 			object *GObject)
-		flags  Gsize
-		pdummy [6]Gpointer
+		Flags  Gsize
+		Pdummy [6]Gpointer
 	}
 
 	GParamSpec struct {
-		g_type_instance GTypeInstance
-		name            *Gchar
-		flags           GParamFlags
-		value_type      GType
-		owner_type      GType
+		G_type_instance GTypeInstance
+		Name            *Gchar
+		Flags           GParamFlags
+		Value_type      GType
+		Owner_type      GType
 		_nick           *Gchar
 		_blurb          *Gchar
-		qdata           *GData
-		ref_count       Guint
-		param_id        Guint
+		Qdata           *GData
+		Ref_count       Guint
+		Param_id        Guint
 	}
 
 	GObjectConstructParam struct {
-		pspec *GParamSpec
-		value *GValue
+		Pspec *GParamSpec
+		Value *GValue
 	}
 
 	GtkAboutDialog struct {
-		parent_instance GtkDialog
-		private_data    Gpointer
+		Parent_instance GtkDialog
+		Private_data    Gpointer
 	}
 
 	GtkAccelLabel struct {
-		label              GtkLabel
+		Label              GtkLabel
 		_                  Guint
-		accel_padding      Guint
-		accel_widget       *GtkWidget
-		accel_closure      *GClosure
-		accel_group        *GtkAccelGroup
-		accel_string       *Gchar
-		accel_string_width Guint16
+		Accel_padding      Guint
+		Accel_widget       *GtkWidget
+		Accel_closure      *GClosure
+		Accel_group        *GtkAccelGroup
+		Accel_string       *Gchar
+		Accel_string_width Guint16
 	}
 
 	GtkAccelLabelClass struct {
-		parent_class     GtkLabelClass
-		signal_quote1    *Gchar
-		signal_quote2    *Gchar
-		mod_name_shift   *Gchar
-		mod_name_control *Gchar
-		mod_name_alt     *Gchar
-		mod_separator    *Gchar
-		accel_seperator  *Gchar
-		latin1_to_char   Guint // : 1
+		Parent_class     GtkLabelClass
+		Signal_quote1    *Gchar
+		Signal_quote2    *Gchar
+		Mod_name_shift   *Gchar
+		Mod_name_control *Gchar
+		Mod_name_alt     *Gchar
+		Mod_separator    *Gchar
+		Accel_seperator  *Gchar
+		Latin1_to_char   Guint // : 1
 		_, _, _, _       func()
 	}
 
 	GtkLabelClass struct {
-		parent_class GtkMiscClass
-		move_cursor  func(
+		Parent_class GtkMiscClass
+		Move_cursor  func(
 			label *GtkLabel,
 			step GtkMovementStep,
 			count Gint,
 			extend_selection Gboolean)
-		copy_clipboard func(
+		Copy_clipboard func(
 			label *GtkLabel)
-		populate_popup func(
+		Populate_popup func(
 			label *GtkLabel,
 			menu *GtkMenu)
-		activate_link func(
+		Activate_link func(
 			label *GtkLabel,
 			uri *Gchar) Gboolean
 		_, _, _ func()
 	}
 
 	GtkMiscClass struct {
-		parent_class GtkWidgetClass
+		Parent_class GtkWidgetClass
 	}
 
 	GtkWidgetClass struct {
-		parent_class                      GtkObjectClass
-		activate_signal                   Guint
-		set_scroll_adjustments_signal     Guint
-		dispatch_child_properties_changed func(
+		Parent_class                      GtkObjectClass
+		Activate_signal                   Guint
+		Set_scroll_adjustments_signal     Guint
+		Dispatch_child_properties_changed func(
 			widget *GtkWidget,
 			n_pspecs Guint,
 			pspecs **GParamSpec)
-		show         func(widget *GtkWidget)
-		show_all     func(widget *GtkWidget)
-		hide         func(widget *GtkWidget)
-		hide_all     func(widget *GtkWidget)
+		Show         func(widget *GtkWidget)
+		Show_all     func(widget *GtkWidget)
+		Hide         func(widget *GtkWidget)
+		Hide_all     func(widget *GtkWidget)
 		Map          func(widget *GtkWidget)
-		unmap        func(widget *GtkWidget)
-		realize      func(widget *GtkWidget)
-		unrealize    func(widget *GtkWidget)
-		size_request func(widget *GtkWidget,
+		Unmap        func(widget *GtkWidget)
+		Realize      func(widget *GtkWidget)
+		Unrealize    func(widget *GtkWidget)
+		Size_request func(widget *GtkWidget,
 			requisition *GtkRequisition)
-		size_allocate func(widget *GtkWidget,
+		Size_allocate func(widget *GtkWidget,
 			allocation *GtkAllocation)
-		state_changed func(widget *GtkWidget,
+		State_changed func(widget *GtkWidget,
 			previous_state GtkStateType)
-		parent_set func(widget *GtkWidget,
+		Parent_set func(widget *GtkWidget,
 			previous_parent *GtkWidget)
-		hierarchy_changed func(widget *GtkWidget,
+		Hierarchy_changed func(widget *GtkWidget,
 			previous_toplevel *GtkWidget)
-		style_set func(widget *GtkWidget,
+		Style_set func(widget *GtkWidget,
 			previous_style *GtkStyle)
-		direction_changed func(widget *GtkWidget,
+		Direction_changed func(widget *GtkWidget,
 			previous_direction GtkTextDirection)
-		grab_notify func(widget *GtkWidget,
+		Grab_notify func(widget *GtkWidget,
 			was_grabbed Gboolean)
-		child_notify func(widget *GtkWidget,
+		Child_notify func(widget *GtkWidget,
 			pspec *GParamSpec)
-		mnemonic_activate func(widget *GtkWidget,
+		Mnemonic_activate func(widget *GtkWidget,
 			group_cycling Gboolean) Gboolean
-		grab_focus func(widget *GtkWidget)
-		focus      func(widget *GtkWidget,
+		Grab_focus func(widget *GtkWidget)
+		Focus      func(widget *GtkWidget,
 			direction GtkDirectionType) Gboolean
-		event func(widget *GtkWidget,
+		Event func(widget *GtkWidget,
 			event *GdkEvent) Gboolean
-		button_press_event func(widget *GtkWidget,
+		Button_press_event func(widget *GtkWidget,
 			event *GdkEventButton) Gboolean
-		button_release_event func(widget *GtkWidget,
+		Button_release_event func(widget *GtkWidget,
 			event *GdkEventButton) Gboolean
-		scroll_event func(widget *GtkWidget,
+		Scroll_event func(widget *GtkWidget,
 			event *GdkEventScroll) Gboolean
-		motion_notify_event func(widget *GtkWidget,
+		Motion_notify_event func(widget *GtkWidget,
 			event *GdkEventMotion) Gboolean
-		delete_event func(widget *GtkWidget,
+		Delete_event func(widget *GtkWidget,
 			event *GdkEventAny) Gboolean
-		destroy_event func(widget *GtkWidget,
+		Destroy_event func(widget *GtkWidget,
 			event *GdkEventAny) Gboolean
-		expose_event func(widget *GtkWidget,
+		Expose_event func(widget *GtkWidget,
 			event *GdkEventExpose) Gboolean
-		key_press_event func(widget *GtkWidget,
+		Key_press_event func(widget *GtkWidget,
 			event *GdkEventKey) Gboolean
-		key_release_event func(widget *GtkWidget,
+		Key_release_event func(widget *GtkWidget,
 			event *GdkEventKey) Gboolean
-		enter_notify_event func(widget *GtkWidget,
+		Enter_notify_event func(widget *GtkWidget,
 			event *GdkEventCrossing) Gboolean
-		leave_notify_event func(widget *GtkWidget,
+		Leave_notify_event func(widget *GtkWidget,
 			event *GdkEventCrossing) Gboolean
-		configure_event func(widget *GtkWidget,
+		Configure_event func(widget *GtkWidget,
 			event *GdkEventConfigure) Gboolean
-		focus_in_event func(widget *GtkWidget,
+		Focus_in_event func(widget *GtkWidget,
 			event *GdkEventFocus) Gboolean
-		focus_out_event func(widget *GtkWidget,
+		Focus_out_event func(widget *GtkWidget,
 			event *GdkEventFocus) Gboolean
-		map_event func(widget *GtkWidget,
+		Map_event func(widget *GtkWidget,
 			event *GdkEventAny) Gboolean
-		unmap_event func(widget *GtkWidget,
+		Unmap_event func(widget *GtkWidget,
 			event *GdkEventAny) Gboolean
-		property_notify_event func(widget *GtkWidget,
+		Property_notify_event func(widget *GtkWidget,
 			event *GdkEventProperty) Gboolean
-		selection_clear_event func(widget *GtkWidget,
+		Selection_clear_event func(widget *GtkWidget,
 			event *GdkEventSelection) Gboolean
-		selection_request_event func(widget *GtkWidget,
+		Selection_request_event func(widget *GtkWidget,
 			event *GdkEventSelection) Gboolean
-		selection_notify_event func(widget *GtkWidget,
+		Selection_notify_event func(widget *GtkWidget,
 			event *GdkEventSelection) Gboolean
-		proximity_in_event func(widget *GtkWidget,
+		Proximity_in_event func(widget *GtkWidget,
 			event *GdkEventProximity) Gboolean
-		proximity_out_event func(widget *GtkWidget,
+		Proximity_out_event func(widget *GtkWidget,
 			event *GdkEventProximity) Gboolean
-		visibility_notify_event func(widget *GtkWidget,
+		Visibility_notify_event func(widget *GtkWidget,
 			event *GdkEventVisibility) Gboolean
-		client_event func(widget *GtkWidget,
+		Client_event func(widget *GtkWidget,
 			event *GdkEventClient) Gboolean
-		no_expose_event func(widget *GtkWidget,
+		No_expose_event func(widget *GtkWidget,
 			event *GdkEventAny) Gboolean
-		window_state_event func(widget *GtkWidget,
+		Window_state_event func(widget *GtkWidget,
 			event *GdkEventWindowState) Gboolean
-		selection_get func(widget *GtkWidget,
+		Selection_get func(widget *GtkWidget,
 			selection_data *GtkSelectionData,
 			info, time_ Guint)
-		selection_received func(widget *GtkWidget,
+		Selection_received func(widget *GtkWidget,
 			selection_data *GtkSelectionData,
 			time_ Guint)
-		drag_begin func(widget *GtkWidget,
+		Drag_begin func(widget *GtkWidget,
 			context *GdkDragContext)
-		drag_end func(widget *GtkWidget,
+		Drag_end func(widget *GtkWidget,
 			context *GdkDragContext)
-		drag_data_get func(widget *GtkWidget,
+		Drag_data_get func(widget *GtkWidget,
 			context *GdkDragContext,
 			selection_data *GtkSelectionData,
 			info, time_ Guint)
-		drag_data_delete func(widget *GtkWidget,
+		Drag_data_delete func(widget *GtkWidget,
 			context *GdkDragContext)
-		drag_leave func(widget *GtkWidget,
+		Drag_leave func(widget *GtkWidget,
 			context *GdkDragContext,
 			time_ Guint)
-		drag_motion func(widget *GtkWidget,
+		Drag_motion func(widget *GtkWidget,
 			context *GdkDragContext,
 			x, y Gint, time_ Guint) Gboolean
-		drag_drop func(widget *GtkWidget,
+		Drag_drop func(widget *GtkWidget,
 			context *GdkDragContext,
 			x, y Gint, time_ Guint) Gboolean
-		drag_data_received func(widget *GtkWidget,
+		Drag_data_received func(widget *GtkWidget,
 			context *GdkDragContext,
 			x, y Gint,
 			selection_data *GtkSelectionData,
 			info, time_ Guint)
-		popup_menu func(widget *GtkWidget) Gboolean
-		show_help  func(widget *GtkWidget,
+		Popup_menu func(widget *GtkWidget) Gboolean
+		Show_help  func(widget *GtkWidget,
 			help_type GtkWidgetHelpType) Gboolean
-		get_accessible func(widget *GtkWidget) *AtkObject
-		screen_changed func(widget *GtkWidget,
+		Get_accessible func(widget *GtkWidget) *AtkObject
+		Screen_changed func(widget *GtkWidget,
 			previous_screen *GdkScreen) Gboolean
-		can_activate_accel func(widget *GtkWidget,
+		Can_activate_accel func(widget *GtkWidget,
 			signal_id Guint) Gboolean
-		grab_broken_event func(widget *GtkWidget,
+		Grab_broken_event func(widget *GtkWidget,
 			event *GdkEventGrabBroken) Gboolean
-		composited_changed func(widget *GtkWidget)
-		query_tooltip      func(widget *GtkWidget,
+		Composited_changed func(widget *GtkWidget)
+		Query_tooltip      func(widget *GtkWidget,
 			x, y Gint, keyboard_tooltip Gboolean,
 			tooltip *GtkTooltip) Gboolean
 		_, _, _ func()
 	}
 
 	GtkObjectClass struct {
-		parent_class GInitiallyUnownedClass
-		set_arg      func(object *GtkObject,
+		Parent_class GInitiallyUnownedClass
+		Set_arg      func(object *GtkObject,
 			arg *GtkArg,
 			arg_id Guint)
-		get_arg func(object *GtkObject,
+		Get_arg func(object *GtkObject,
 			arg *GtkArg,
 			arg_id Guint)
-		destroy func(object *GtkObject)
+		Destroy func(object *GtkObject)
 	}
 
 	GdkEventButton struct {
 		Type           GdkEventType
-		window         *GdkWindow
-		send_event     Gint8
-		time           Guint32
-		x              Gdouble
-		y              Gdouble
-		axes           *Gdouble
-		state          Guint
-		button         Guint
-		device         *GdkDevice
-		x_root, y_root Gdouble
+		Window         *GdkWindow
+		Send_event     Gint8
+		Time           Guint32
+		X              Gdouble
+		Y              Gdouble
+		Axes           *Gdouble
+		State          Guint
+		Button         Guint
+		Device         *GdkDevice
+		X_root, Y_root Gdouble
 	}
 
 	GdkEventScroll struct {
 		Type           GdkEventType
-		window         *GdkWindow
-		send_event     Gint8
-		time           Guint32
-		x              Gdouble
-		y              Gdouble
-		state          Guint
-		direction      GdkScrollDirection
-		device         *GdkDevice
-		x_root, y_root Gdouble
+		Window         *GdkWindow
+		Send_event     Gint8
+		Time           Guint32
+		X              Gdouble
+		Y              Gdouble
+		State          Guint
+		Direction      GdkScrollDirection
+		Device         *GdkDevice
+		X_root, Y_root Gdouble
 	}
 
 	GdkEventMotion struct {
 		Type           GdkEventType
-		window         *GdkWindow
-		send_event     Gint8
-		time           Guint32
-		x              Gdouble
-		y              Gdouble
-		axes           *Gdouble
-		state          Guint
-		is_hint        Gint16
-		device         *GdkDevice
-		x_root, y_root Gdouble
+		Window         *GdkWindow
+		Send_event     Gint8
+		Time           Guint32
+		X              Gdouble
+		Y              Gdouble
+		Axes           *Gdouble
+		State          Guint
+		Is_hint        Gint16
+		Device         *GdkDevice
+		X_root, Y_root Gdouble
 	}
 
 	GdkEventAny struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
+		Window     *GdkWindow
+		Send_event Gint8
 	}
 
 	GdkEventCrossing struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		subwindow  *GdkWindow
-		time       Guint32
-		x          Gdouble
-		y          Gdouble
-		x_root     Gdouble
-		y_root     Gdouble
-		mode       GdkCrossingMode
-		detail     GdkNotifyType
-		focus      Gboolean
-		state      Guint
+		Window     *GdkWindow
+		Send_event Gint8
+		Subwindow  *GdkWindow
+		Time       Guint32
+		X          Gdouble
+		Y          Gdouble
+		X_root     Gdouble
+		Y_root     Gdouble
+		Mode       GdkCrossingMode
+		Detail     GdkNotifyType
+		Focus      Gboolean
+		State      Guint
 	}
 
 	GdkEventConfigure struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		x, y       Gint
-		width      Gint
-		height     Gint
+		Window     *GdkWindow
+		Send_event Gint8
+		X, Y       Gint
+		Width      Gint
+		Height     Gint
 	}
 
 	GdkEventFocus struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		in         Gint16
+		Window     *GdkWindow
+		Send_event Gint8
+		In         Gint16
 	}
 
 	GdkEventProximity struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		time       Guint32
-		device     *GdkDevice
+		Window     *GdkWindow
+		Send_event Gint8
+		Time       Guint32
+		Device     *GdkDevice
 	}
 
 	GdkEventVisibility struct {
 		Type       GdkEventType
-		window     *GdkWindow
-		send_event Gint8
-		state      GdkVisibilityState
+		Window     *GdkWindow
+		Send_event Gint8
+		State      GdkVisibilityState
 	}
 
 	GdkEventClient struct {
 		Type         GdkEventType
-		window       *GdkWindow
-		send_event   Gint8
-		message_type GdkAtom
-		data_format  Gushort
+		Window       *GdkWindow
+		Send_event   Gint8
+		Message_type GdkAtom
+		Data_format  Gushort
 		// Union
-		b [20]Char
+		B [20]Char
 		// s [10]Short
 		// l [5]Long
 	}
 
 	GdkEventWindowState struct {
 		Type             GdkEventType
-		window           *GdkWindow
-		send_event       Gint8
-		changed_mask     GdkWindowState
-		new_window_state GdkWindowState
+		Window           *GdkWindow
+		Send_event       Gint8
+		Changed_mask     GdkWindowState
+		New_window_state GdkWindowState
 	}
 
 	GdkEventGrabBroken struct {
 		Yype        GdkEventType
-		window      *GdkWindow
-		send_event  Gint8
-		keyboard    Gboolean
-		implicit    Gboolean
-		grab_window *GdkWindow
+		Window      *GdkWindow
+		Send_event  Gint8
+		Keyboard    Gboolean
+		Implicit    Gboolean
+		Grab_window *GdkWindow
 	}
 
 	GtkAccessible struct {
-		parent AtkObject
-		widget *GtkWidget
+		Parent AtkObject
+		Widget *GtkWidget
 	}
 
 	GtkActionEntry struct {
-		name        *Gchar
-		stock_id    *Gchar
-		label       *Gchar
-		accelerator *Gchar
-		tooltip     *Gchar
-		callback    GCallback
+		Name        *Gchar
+		Stock_id    *Gchar
+		Label       *Gchar
+		Accelerator *Gchar
+		Tooltip     *Gchar
+		Callback    GCallback
 	}
 
 	GtkAlignment struct {
-		bin    GtkBin
-		xalign Gfloat
-		yalign Gfloat
-		xscale Gfloat
-		yscale Gfloat
+		Bin    GtkBin
+		Xalign Gfloat
+		Yalign Gfloat
+		Xscale Gfloat
+		Yscale Gfloat
 	}
 
 	GtkArrow struct {
-		misc        GtkMisc
-		arrow_type  Gint16
-		shadow_type Gint16
+		Misc        GtkMisc
+		Arrow_type  Gint16
+		Shadow_type Gint16
 	}
 
 	GtkAspectFrame struct {
-		frame             GtkFrame
-		xalign            Gfloat
-		yalign            Gfloat
-		ratio             Gfloat
-		obey_child        Gboolean
-		center_allocation GtkAllocation
+		Frame             GtkFrame
+		Xalign            Gfloat
+		Yalign            Gfloat
+		Ratio             Gfloat
+		Obey_child        Gboolean
+		Center_allocation GtkAllocation
 	}
 
 	GtkAssistant struct {
-		parent  GtkWindow
-		cancel  *GtkWidget
-		forward *GtkWidget
-		back    *GtkWidget
-		apply   *GtkWidget
-		close   *GtkWidget
-		last    *GtkWidget
-		priv    *GtkAssistantPrivate
+		Parent  GtkWindow
+		Cancel  *GtkWidget
+		Forward *GtkWidget
+		Back    *GtkWidget
+		Apply   *GtkWidget
+		Close   *GtkWidget
+		Last    *GtkWidget
+		Priv    *GtkAssistantPrivate
 	}
 
 	GtkBindingSet struct {
-		set_name            *Gchar
-		priority            Gint
-		widget_path_pspecs  *GSList
-		widget_class_pspecs *GSList
-		class_branch_pspecs *GSList
-		entries             *GtkBindingEntry
-		current             *GtkBindingEntry
-		parsed              Guint // : 1
+		Set_name            *Gchar
+		Priority            Gint
+		Widget_path_pspecs  *GSList
+		Widget_class_pspecs *GSList
+		Class_branch_pspecs *GSList
+		Entries             *GtkBindingEntry
+		Current             *GtkBindingEntry
+		Parsed              Guint // : 1
 	}
 
 	GtkBorder struct {
-		left   Gint
-		right  Gint
-		top    Gint
-		bottom Gint
+		Left   Gint
+		Right  Gint
+		Top    Gint
+		Bottom Gint
 	}
 
 	GtkBuilder struct {
-		parent_instance GObject
-		priv            *GtkBuilderPrivate
+		Parent_instance GObject
+		Priv            *GtkBuilderPrivate
 	}
 
 	GtkButtonBox struct {
-		box              GtkBox
-		child_min_width  Gint
-		child_min_height Gint
-		child_ipad_x     Gint
-		child_ipad_y     Gint
-		layout_style     GtkButtonBoxStyle
+		Box              GtkBox
+		Child_min_width  Gint
+		Child_min_height Gint
+		Child_ipad_x     Gint
+		Child_ipad_y     Gint
+		Layout_style     GtkButtonBoxStyle
 	}
 
 	GtkCalendar struct {
-		widget            GtkWidget
-		header_style      *GtkStyle
-		label_style       *GtkStyle
-		month             Gint
-		year              Gint
-		selected_day      Gint
-		day_month         [6][7]Gint
-		day               [6][7]Gint
-		num_marked_dates  Gint
-		marked_date       [31]Gint
-		display_flags     GtkCalendarDisplayOptions
-		marked_date_color [31]GdkColor
-		gc                *GdkGC
-		xor_gc            *GdkGC
-		focus_row         Gint
-		focus_col         Gint
-		highlight_row     Gint
-		highlight_col     Gint
-		priv              *GtkCalendarPrivate
-		grow_space        [32]Gchar
+		Widget            GtkWidget
+		Header_style      *GtkStyle
+		Label_style       *GtkStyle
+		Month             Gint
+		Year              Gint
+		Selected_day      Gint
+		Day_month         [6][7]Gint
+		Day               [6][7]Gint
+		Num_marked_dates  Gint
+		Marked_date       [31]Gint
+		Display_flags     GtkCalendarDisplayOptions
+		Marked_date_color [31]GdkColor
+		Gc                *GdkGC
+		Xor_gc            *GdkGC
+		Focus_row         Gint
+		Focus_col         Gint
+		Highlight_row     Gint
+		Highlight_col     Gint
+		Priv              *GtkCalendarPrivate
+		Grow_space        [32]Gchar
 		_, _, _, _        func()
 	}
 
 	GtkCellRendererText struct {
-		parent            GtkCellRenderer
-		text              *Gchar
-		font              *PangoFontDescription
-		font_scale        Gdouble
-		foreground        PangoColor
-		background        PangoColor
-		extra_attrs       *PangoAttrList
-		underline_style   PangoUnderline
-		rise              Gint
-		fixed_height_rows Gint
-		bits              Guint
+		Parent            GtkCellRenderer
+		Text              *Gchar
+		Font              *PangoFontDescription
+		Font_scale        Gdouble
+		Foreground        PangoColor
+		Background        PangoColor
+		Extra_attrs       *PangoAttrList
+		Underline_style   PangoUnderline
+		Rise              Gint
+		Fixed_height_rows Gint
+		Bits              Guint
 		// strikethrough : 1
 		// editable : 1
 		// scale_set : 1
@@ -2814,73 +2814,73 @@ type (
 	}
 
 	GtkCellRendererToggle struct {
-		parent GtkCellRenderer
-		bits   Guint
+		Parent GtkCellRenderer
+		Bits   Guint
 		// active : 1;
 		// activatable : 1;
 		// radio : 1;
 	}
 
 	GtkCellView struct {
-		parent_instance GtkWidget
-		priv            *GtkCellViewPrivate
+		Parent_instance GtkWidget
+		Priv            *GtkCellViewPrivate
 	}
 
 	GtkColorButton struct {
-		button GtkButton
-		priv   *GtkColorButtonPrivate
+		Button GtkButton
+		Priv   *GtkColorButtonPrivate
 	}
 
 	GtkColorSelection struct {
-		parent_instance GtkVBox
-		private_data    Gpointer
+		Parent_instance GtkVBox
+		Private_data    Gpointer
 	}
 
 	GtkColorSelectionDialog struct {
-		parent_instance GtkDialog
-		colorsel        *GtkWidget
-		ok_button       *GtkWidget
-		cancel_button   *GtkWidget
-		help_button     *GtkWidget
+		Parent_instance GtkDialog
+		Colorsel        *GtkWidget
+		Ok_button       *GtkWidget
+		Cancel_button   *GtkWidget
+		Help_button     *GtkWidget
 	}
 
 	GtkComboBox struct {
-		parent_instance GtkBin
-		priv            *GtkComboBoxPrivate
+		Parent_instance GtkBin
+		Priv            *GtkComboBoxPrivate
 	}
 
 	GtkComboBoxEntry struct {
-		parent_instance GtkComboBox
-		priv            *GtkComboBoxEntryPrivate
+		Parent_instance GtkComboBox
+		Priv            *GtkComboBoxEntryPrivate
 	}
 
 	GtkComboBoxText struct {
-		parent_instance GtkComboBox
-		priv            *GtkComboBoxTextPrivate
+		Parent_instance GtkComboBox
+		Priv            *GtkComboBoxTextPrivate
 	}
 
 	GtkContainerClass struct {
-		parent_class GtkWidgetClass
-		add          func(container *GtkContainer,
+		Parent_class GtkWidgetClass
+		Add          func(container *GtkContainer,
 			widget *GtkWidget)
-		remove func(container *GtkContainer,
+		Remove func(container *GtkContainer,
 			widget *GtkWidget)
-		check_resize func(container *GtkContainer)
-		forall       func(container *GtkContainer,
+		Check_resize func(container *GtkContainer)
+		Forall       func(container *GtkContainer,
 			include_internals Gboolean,
 			callback GtkCallback,
 			callback_data Gpointer)
-		set_focus_child func(container *GtkContainer,
+		Set_focus_child func(container *GtkContainer,
 			widget *GtkWidget)
-		child_type     func(container *GtkContainer) GType
-		composite_name func(container *GtkContainer,
+		Child_type     func(container *GtkContainer) GType
+		Composite_name func(container *GtkContainer,
 			child *GtkWidget) *Gchar
-		set_child_property func(container *GtkContainer,
+		Set_child_property func(container *GtkContainer,
 			child *GtkWidget,
 			property_id Guint,
 			value *GValue,
 			pspec *GParamSpec)
-		get_child_property func(container *GtkContainer,
+		Get_child_property func(container *GtkContainer,
 			child *GtkWidget,
 			property_id Guint,
 			value *GValue,
@@ -2889,102 +2889,102 @@ type (
 	}
 
 	GtkEntryBuffer struct {
-		parent_instance GObject
-		priv            *GtkEntryBufferPrivate
+		Parent_instance GObject
+		Priv            *GtkEntryBufferPrivate
 	}
 
 	GtkEntryCompletion struct {
-		parent_instance GObject
-		priv            *GtkEntryCompletionPrivate
+		Parent_instance GObject
+		Priv            *GtkEntryCompletionPrivate
 	}
 
 	GtkEventBox struct {
-		bin GtkBin
+		Bin GtkBin
 	}
 
 	GtkExpander struct {
-		bin  GtkBin
-		priv *GtkExpanderPrivate
+		Bin  GtkBin
+		Priv *GtkExpanderPrivate
 	}
 
 	GtkFileChooserButton struct {
-		parent GtkHBox
-		priv   *GtkFileChooserButtonPrivate
+		Parent GtkHBox
+		Priv   *GtkFileChooserButtonPrivate
 	}
 
 	GtkFileFilterInfo struct {
-		contains     GtkFileFilterFlags
-		filename     *Gchar
-		uri          *Gchar
-		display_name *Gchar
-		mime_type    *Gchar
+		Contains     GtkFileFilterFlags
+		Filename     *Gchar
+		Uri          *Gchar
+		Display_name *Gchar
+		Mime_type    *Gchar
 	}
 
 	GtkFixed struct {
-		container GtkContainer
-		children  *GList
+		Container GtkContainer
+		Children  *GList
 	}
 
 	GtkFontButton struct {
-		button GtkButton
-		priv   *GtkFontButtonPrivate
+		Button GtkButton
+		Priv   *GtkFontButtonPrivate
 	}
 
 	GtkFontSelection struct {
-		parent_instance  GtkVBox
-		font_entry       *GtkWidget
-		family_list      *GtkWidget
-		font_style_entry *GtkWidget
-		face_list        *GtkWidget
-		size_entry       *GtkWidget
-		size_list        *GtkWidget
-		pixels_button    *GtkWidget
-		points_button    *GtkWidget
-		filter_button    *GtkWidget
-		preview_entry    *GtkWidget
-		family           *PangoFontFamily
-		face             *PangoFontFace
-		size             Gint
-		font             *GdkFont
+		Parent_instance  GtkVBox
+		Font_entry       *GtkWidget
+		Family_list      *GtkWidget
+		Font_style_entry *GtkWidget
+		Face_list        *GtkWidget
+		Size_entry       *GtkWidget
+		Size_list        *GtkWidget
+		Pixels_button    *GtkWidget
+		Points_button    *GtkWidget
+		Filter_button    *GtkWidget
+		Preview_entry    *GtkWidget
+		Family           *PangoFontFamily
+		Face             *PangoFontFace
+		Size             Gint
+		Font             *GdkFont
 	}
 
 	GtkFontSelectionDialog struct {
-		parent_instance GtkDialog
-		fontsel         *GtkWidget
-		main_vbox       *GtkWidget
-		action_area     *GtkWidget
-		ok_button       *GtkWidget
-		apply_button    *GtkWidget
-		cancel_button   *GtkWidget
-		dialog_width    Gint
-		auto_resize     Gboolean
+		Parent_instance GtkDialog
+		Fontsel         *GtkWidget
+		Main_vbox       *GtkWidget
+		Action_area     *GtkWidget
+		Ok_button       *GtkWidget
+		Apply_button    *GtkWidget
+		Cancel_button   *GtkWidget
+		Dialog_width    Gint
+		Auto_resize     Gboolean
 	}
 
 	GtkFrame struct {
-		bin              GtkBin
-		label_widget     *GtkWidget
-		shadow_type      Gint16
-		label_xalign     Gfloat
-		label_yalign     Gfloat
-		child_allocation GtkAllocation
+		Bin              GtkBin
+		Label_widget     *GtkWidget
+		Shadow_type      Gint16
+		Label_xalign     Gfloat
+		Label_yalign     Gfloat
+		Child_allocation GtkAllocation
 	}
 
 	GtkHandleBox struct {
-		bin          GtkBin
-		bin_window   *GdkWindow
-		float_window *GdkWindow
-		shadow_type  GtkShadowType
-		bits         Guint
+		Bin          GtkBin
+		Bin_window   *GdkWindow
+		Float_window *GdkWindow
+		Shadow_type  GtkShadowType
+		Bits         Guint
 		// handle_position : 2;
 		// float_window_mapped : 1;
 		// child_detached : 1;
 		// in_drag : 1;
 		// shrink_on_detach : 1;
 		// snap_edge : 3 // signed
-		deskoff_x         Gint
-		deskoff_y         Gint
-		attach_allocation GtkAllocation
-		float_allocation  GtkAllocation
+		Deskoff_x         Gint
+		Deskoff_y         Gint
+		Attach_allocation GtkAllocation
+		Float_allocation  GtkAllocation
 	}
 	/*
 	   GtkImage  struct
@@ -3007,35 +3007,35 @@ type (
 	   };
 	*/
 	GtkListStore struct {
-		parent               GObject
-		stamp                Gint
-		seq                  Gpointer
+		Parent               GObject
+		Stamp                Gint
+		Seq                  Gpointer
 		_                    Gpointer
-		sort_list            *GList
-		n_columns            Gint
-		sort_column_id       Gint
-		order                GtkSortType
-		column_headers       *GType
-		length               Gint
-		default_sort_func    GtkTreeIterCompareFunc
-		default_sort_data    Gpointer
-		default_sort_destroy GDestroyNotify
-		columns_dirty        Guint // : 1
+		Sort_list            *GList
+		N_columns            Gint
+		Sort_column_id       Gint
+		Order                GtkSortType
+		Column_headers       *GType
+		Length               Gint
+		Default_sort_func    GtkTreeIterCompareFunc
+		Default_sort_data    Gpointer
+		Default_sort_destroy GDestroyNotify
+		Columns_dirty        Guint // : 1
 	}
 
 	GtkPaned struct {
-		container       GtkContainer
-		child1          *GtkWidget
-		child2          *GtkWidget
-		handle          *GdkWindow
-		xor_gc          *GdkGC
-		cursor_type     GdkCursorType
-		handle_pos      GdkRectangle
-		child1_size     Gint
-		last_allocation Gint
-		min_position    Gint
-		max_position    Gint
-		bits            Guint
+		Container       GtkContainer
+		Child1          *GtkWidget
+		Child2          *GtkWidget
+		Handle          *GdkWindow
+		Xor_gc          *GdkGC
+		Cursor_type     GdkCursorType
+		Handle_pos      GdkRectangle
+		Child1_size     Gint
+		Last_allocation Gint
+		Min_position    Gint
+		Max_position    Gint
+		Bits            Guint
 		// position_set : 1
 		// in_drag : 1
 		// child1_shrink : 1
@@ -3045,28 +3045,28 @@ type (
 		// orientation : 1
 		// in_recursion : 1
 		// handle_prelit : 1
-		last_child1_focus *GtkWidget
-		last_child2_focus *GtkWidget
-		priv              *GtkPanedPrivate
-		drag_pos          Gint
-		original_position Gint
+		Last_child1_focus *GtkWidget
+		Last_child2_focus *GtkWidget
+		Priv              *GtkPanedPrivate
+		Drag_pos          Gint
+		Original_position Gint
 	}
 
 	GtkToggleActionEntry struct {
-		name        *Gchar
-		stock_id    *Gchar
-		label       *Gchar
-		accelerator *Gchar
-		tooltip     *Gchar
-		callback    GCallback
-		is_active   Gboolean
+		Name        *Gchar
+		Stock_id    *Gchar
+		Label       *Gchar
+		Accelerator *Gchar
+		Tooltip     *Gchar
+		Callback    GCallback
+		Is_active   Gboolean
 	}
 
 	GtkRange struct {
-		widget        GtkWidget
-		adjustment    *GtkAdjustment
-		update_policy GtkUpdateType
-		bits          Guint
+		Widget        GtkWidget
+		Adjustment    *GtkAdjustment
+		Update_policy GtkUpdateType
+		Bits          Guint
 		// inverted : 1
 		// flippable : 1
 		// has_stepper_a : 1
@@ -3075,60 +3075,60 @@ type (
 		// has_stepper_d : 1
 		// need_recalc : 1
 		// slider_size_fixed : 1
-		min_slider_size Gint
-		orientation     GtkOrientation
-		range_rect      GdkRectangle
-		slider_start    Gint
-		slider_end      Gint
-		round_digits    Gint
-		bits2           Guint
+		Min_slider_size Gint
+		Orientation     GtkOrientation
+		Range_rect      GdkRectangle
+		Slider_start    Gint
+		Slider_end      Gint
+		Round_digits    Gint
+		Bits2           Guint
 		// trough_click_forward : 1
 		// update_pending : 1
-		layout                        *GtkRangeLayout
-		timer                         *GtkRangeStepTimer
-		slide_initial_slider_position Gint
-		slide_initial_coordinate      Gint
-		update_timeout_id             Guint
-		event_window                  *GdkWindow
+		Layout                        *GtkRangeLayout
+		Timer                         *GtkRangeStepTimer
+		Slide_initial_slider_position Gint
+		Slide_initial_coordinate      Gint
+		Update_timeout_id             Guint
+		Event_window                  *GdkWindow
 	}
 
 	GtkRcProperty struct {
-		type_name     GQuark
-		property_name GQuark
-		origin        *Gchar
-		value         GValue
+		Type_name     GQuark
+		Property_name GQuark
+		Origin        *Gchar
+		Value         GValue
 	}
 
 	GtkRuler struct {
-		widget        GtkWidget
-		backing_store *GdkPixmap
-		non_gr_exp_gc *GdkGC
-		metric        *GtkRulerMetric
-		xsrc          Gint
-		ysrc          Gint
-		slider_size   Gint
-		lower         Gdouble
-		upper         Gdouble
-		position      Gdouble
-		max_size      Gdouble
+		Widget        GtkWidget
+		Backing_store *GdkPixmap
+		Non_gr_exp_gc *GdkGC
+		Metric        *GtkRulerMetric
+		Xsrc          Gint
+		Ysrc          Gint
+		Slider_size   Gint
+		Lower         Gdouble
+		Upper         Gdouble
+		Position      Gdouble
+		Max_size      Gdouble
 	}
 
 	GtkScale struct {
 		Range  GtkRange
-		digits Gint
-		bits   Guint
+		Digits Gint
+		Bits   Guint
 		// draw_value : 1
 		// value_pos : 2
 	}
 
 	GtkSettingsValue struct {
-		origin *Gchar
-		value  GValue
+		Origin *Gchar
+		Value  GValue
 	}
 
 	GtkTreeModelFilter struct {
-		parent GObject
-		priv   *GtkTreeModelFilterPrivate
+		Parent GObject
+		Priv   *GtkTreeModelFilterPrivate
 	}
 
 	/*
@@ -3174,14 +3174,14 @@ type (
 	*/
 
 	GtkTypeInfo struct {
-		type_name            *Gchar
-		object_size          Guint
-		class_size           Guint
-		class_init_func      GtkClassInitFunc
-		object_init_func     GtkObjectInitFunc
-		reserved_1           Gpointer
-		reserved_2           Gpointer
-		base_class_init_func GtkClassInitFunc
+		Type_name            *Gchar
+		Object_size          Guint
+		Class_size           Guint
+		Class_init_func      GtkClassInitFunc
+		Object_init_func     GtkObjectInitFunc
+		Reserved_1           Gpointer
+		Reserved_2           Gpointer
+		Base_class_init_func GtkClassInitFunc
 	}
 
 	/*
@@ -3197,45 +3197,45 @@ type (
 	*/
 
 	GtkBindingEntry struct {
-		keyval      Guint
-		modifiers   GdkModifierType
-		binding_set *GtkBindingSet
-		bits        Guint
+		Keyval      Guint
+		Modifiers   GdkModifierType
+		Binding_set *GtkBindingSet
+		Bits        Guint
 		// destroyed : 1
 		// in_emission : 1
 		// marks_unbound : 1
-		set_next  *GtkBindingEntry
-		hash_next *GtkBindingEntry
-		signals   *GtkBindingSignal
+		Set_next  *GtkBindingEntry
+		Hash_next *GtkBindingEntry
+		Signals   *GtkBindingSignal
 	}
 
 	PangoColor struct {
-		red   Guint16
-		green Guint16
-		blue  Guint16
+		Red   Guint16
+		Green Guint16
+		Blue  Guint16
 	}
 
 	GtkVBox struct {
-		box GtkBox
+		Box GtkBox
 	}
 
 	GtkRulerMetric struct {
-		metric_name     *Gchar
-		abbrev          *Gchar
-		pixels_per_unit Gdouble
-		ruler_scale     [10]Gdouble
-		subdivide       [5]Gint
+		Metric_name     *Gchar
+		Abbrev          *Gchar
+		Pixels_per_unit Gdouble
+		Ruler_scale     [10]Gdouble
+		Subdivide       [5]Gint
 	}
 
 	GtkBindingSignal struct {
-		next        *GtkBindingSignal
-		signal_name *Gchar
-		n_args      Guint
-		args        *GtkBindingArg
+		Next        *GtkBindingSignal
+		Signal_name *Gchar
+		N_args      Guint
+		Args        *GtkBindingArg
 	}
 
 	GtkBindingArg struct {
-		arg_type GType
+		Arg_type GType
 		//Union {
 		// long_data  Glong;
 		Double_data Gdouble
@@ -3244,149 +3244,149 @@ type (
 	}
 
 	GtkRadioActionEntry struct {
-		name        *Gchar
-		stock_id    *Gchar
-		label       *Gchar
-		accelerator *Gchar
-		tooltip     *Gchar
-		value       Gint
+		Name        *Gchar
+		Stock_id    *Gchar
+		Label       *Gchar
+		Accelerator *Gchar
+		Tooltip     *Gchar
+		Value       Gint
 	}
 
 	GCancellable struct {
-		parent_instance GObject
-		priv            *GCancellablePrivate
+		Parent_instance GObject
+		Priv            *GCancellablePrivate
 	}
 
 	GdkAppLaunchContext struct {
-		parent_instance GAppLaunchContext
-		priv            *GdkAppLaunchContextPrivate
+		Parent_instance GAppLaunchContext
+		Priv            *GdkAppLaunchContextPrivate
 	}
 
 	GdkKeymap struct {
-		parent_instance GObject
-		display         *GdkDisplay
+		Parent_instance GObject
+		Display         *GdkDisplay
 	}
 
 	GdkKeymapKey struct {
-		keycode Guint
-		group   Gint
-		level   Gint
+		Keycode Guint
+		Group   Gint
+		Level   Gint
 	}
 
 	GdkPangoRenderer struct {
-		parent_instance PangoRenderer
-		priv            *GdkPangoRendererPrivate
+		Parent_instance PangoRenderer
+		Priv            *GdkPangoRendererPrivate
 	}
 
 	GdkPixbufLoader struct {
-		parent_instance GObject
-		priv            Gpointer
+		Parent_instance GObject
+		Priv            Gpointer
 	}
 
 	GAppLaunchContext struct {
-		parent_instance GObject
-		priv            *GAppLaunchContextPrivate
+		Parent_instance GObject
+		Priv            *GAppLaunchContextPrivate
 	}
 
 	PangoRenderer struct {
-		parent_instance GObject
-		underline       PangoUnderline
-		strikethrough   Gboolean
-		active_count    int
-		matrix          *PangoMatrix
-		priv            *PangoRendererPrivate
+		Parent_instance GObject
+		Underline       PangoUnderline
+		Strikethrough   Gboolean
+		Active_count    int
+		Matrix          *PangoMatrix
+		Priv            *PangoRendererPrivate
 	}
 
 	PangoMatrix struct {
-		xx Double
-		xy Double
-		yx Double
-		yy Double
-		x0 Double
-		y0 Double
+		Xx Double
+		Xy Double
+		Yx Double
+		Yy Double
+		X0 Double
+		Y0 Double
 	}
 
 	PangoAttrShape struct {
-		attr         PangoAttribute
-		ink_rect     PangoRectangle
-		logical_rect PangoRectangle
-		data         Gpointer
-		copy_func    PangoAttrDataCopyFunc
-		destroy_func GDestroyNotify
+		Attr         PangoAttribute
+		Ink_rect     PangoRectangle
+		Logical_rect PangoRectangle
+		Data         Gpointer
+		Copy_func    PangoAttrDataCopyFunc
+		Destroy_func GDestroyNotify
 	}
 
 	PangoRectangle struct {
-		x      int
-		y      int
-		width  int
-		height int
+		X      int
+		Y      int
+		Width  int
+		Height int
 	}
 
 	GdkPointerHooks struct {
-		get_pointer func(
+		Get_pointer func(
 			window *GdkWindow,
 			x *Gint,
 			y *Gint,
 			mask *GdkModifierType) *GdkWindow
-		window_at_pointer func(screen *GdkScreen,
+		Window_at_pointer func(screen *GdkScreen,
 			win_x *Gint,
 			win_y *Gint) *GdkWindow
 	}
 
 	GdkRgbCmap struct {
-		colors    [256]Guint32
-		n_colors  Gint
-		info_list *GSList
+		Colors    [256]Guint32
+		N_colors  Gint
+		Info_list *GSList
 	}
 
 	GdkSegment struct {
-		x1 Gint
-		y1 Gint
-		x2 Gint
-		y2 Gint
+		X1 Gint
+		Y1 Gint
+		X2 Gint
+		Y2 Gint
 	}
 
 	GdkSpan struct {
-		x     Gint
-		y     Gint
-		width Gint
+		X     Gint
+		Y     Gint
+		Width Gint
 	}
 
 	GdkTimeCoord struct {
-		time Guint32
-		axes [128]Gdouble
+		Time Guint32
+		Axes [128]Gdouble
 	}
 
 	GdkTrapezoid struct {
-		y1, x11, x21, y2, x12, x22 Double
+		Y1, X11, X21, Y2, X12, X22 Double
 	}
 
 	GdkWindowAttr struct {
-		title             *Gchar
-		event_mask        Gint
-		x, y              Gint
-		width             Gint
-		height            Gint
-		wclass            GdkWindowClass
-		visual            *GdkVisual
-		colormap          *GdkColormap
-		window_type       GdkWindowType
-		cursor            *GdkCursor
-		wmclass_name      *Gchar
-		wmclass_class     *Gchar
-		override_redirect Gboolean
-		type_hint         GdkWindowTypeHint
+		Title             *Gchar
+		Event_mask        Gint
+		X, Y              Gint
+		Width             Gint
+		Height            Gint
+		Wclass            GdkWindowClass
+		Visual            *GdkVisual
+		Colormap          *GdkColormap
+		Window_type       GdkWindowType
+		Cursor            *GdkCursor
+		Wmclass_name      *Gchar
+		Wmclass_class     *Gchar
+		Override_redirect Gboolean
+		Type_hint         GdkWindowTypeHint
 	}
 
 	GInputStream struct {
-		parent_instance GObject
-		priv            *GInputStreamPrivate
+		Parent_instance GObject
+		Priv            *GInputStreamPrivate
 	}
 
 	PangoAttribute struct {
-		klass       *PangoAttrClass
-		start_index Guint
-		end_index   Guint
+		Klass       *PangoAttrClass
+		Start_index Guint
+		End_index   Guint
 	}
 
 	PangoAttrClass struct {
@@ -3400,138 +3400,138 @@ type (
 	}
 
 	PangoGlyphItem struct {
-		item   *PangoItem
-		glyphs *PangoGlyphString
+		Item   *PangoItem
+		Glyphs *PangoGlyphString
 	}
 
 	PangoItem struct {
-		offset    Gint
-		length    Gint
-		num_chars Gint
-		analysis  PangoAnalysis
+		Offset    Gint
+		Length    Gint
+		Num_chars Gint
+		Analysis  PangoAnalysis
 	}
 
 	PangoAnalysis struct {
-		shape_engine *PangoEngineShape
-		lang_engine  *PangoEngineLang
-		font         *PangoFont
-		level        Guint8
-		gravity      Guint8
-		flags        Guint8
-		script       Guint8
-		language     *PangoLanguage
-		extra_attrs  *GSList
+		Shape_engine *PangoEngineShape
+		Lang_engine  *PangoEngineLang
+		Font         *PangoFont
+		Level        Guint8
+		Gravity      Guint8
+		Flags        Guint8
+		Script       Guint8
+		Language     *PangoLanguage
+		Extra_attrs  *GSList
 	}
 
 	PangoGlyphString struct {
-		num_glyphs   Gint
-		glyphs       *PangoGlyphInfo
-		log_clusters *Gint
-		space        Gint
+		Num_glyphs   Gint
+		Glyphs       *PangoGlyphInfo
+		Log_clusters *Gint
+		Space        Gint
 	}
 
 	PangoLayoutLine struct {
-		layout      *PangoLayout
-		start_index Gint
-		length      Gint
-		runs        *GSList
-		bits        Guint
+		Layout      *PangoLayout
+		Start_index Gint
+		Length      Gint
+		Runs        *GSList
+		Bits        Guint
 		// is_paragraph_start : 1
 		// resolved_dir : 3
 	}
 
 	PangoGlyphInfo struct {
-		glyph    PangoGlyph
-		geometry PangoGlyphGeometry
-		attr     PangoGlyphVisAttr
+		Glyph    PangoGlyph
+		Geometry PangoGlyphGeometry
+		Attr     PangoGlyphVisAttr
 	}
 
 	PangoGlyphGeometry struct {
-		width    PangoGlyphUnit
-		x_offset PangoGlyphUnit
-		y_offset PangoGlyphUnit
+		Width    PangoGlyphUnit
+		X_offset PangoGlyphUnit
+		Y_offset PangoGlyphUnit
 	}
 
 	PangoGlyphVisAttr struct {
-		is_cluster_start Guint // : 1
+		Is_cluster_start Guint // : 1
 	}
 
 	GdkPixdata struct {
-		magic        Guint32
-		length       Gint32
-		pixdata_type GdkPixdataType
-		rowstride    Guint32
-		width        Guint32
-		height       Guint32
-		pixel_data   *Guint8
+		Magic        Guint32
+		Length       Gint32
+		Pixdata_type GdkPixdataType
+		Rowstride    Guint32
+		Width        Guint32
+		Height       Guint32
+		Pixel_data   *Guint8
 	}
 
 	PangoGlyphItemIter struct {
-		glyph_item  *PangoGlyphItem
-		text        *Gchar
-		start_glyph int
-		start_index int
-		start_char  int
-		end_glyph   int
-		end_index   int
-		end_char    int
+		Glyph_item  *PangoGlyphItem
+		Text        *Gchar
+		Start_glyph int
+		Start_index int
+		Start_char  int
+		End_glyph   int
+		End_index   int
+		End_char    int
 	}
 
 	Cairo_user_data_key_t struct {
-		unused int
+		Unused int
 	}
 
 	Cairo_matrix_t struct {
-		xx Double
-		yx Double
-		xy Double
-		yy Double
-		x0 Double
-		y0 Double
+		Xx Double
+		Yx Double
+		Xy Double
+		Yy Double
+		X0 Double
+		Y0 Double
 	}
 
 	Cairo_rectangle_list_t struct {
-		status         Cairo_status_t
-		rectangles     *Cairo_rectangle_t
-		num_rectangles int
+		Status         Cairo_status_t
+		Rectangles     *Cairo_rectangle_t
+		Num_rectangles int
 	}
 
 	Cairo_rectangle_t struct {
-		x, y, width, height Double
+		X, Y, Width, Height Double
 	}
 
 	Cairo_glyph_t struct {
-		index Unsigned_long
-		x     Double
-		y     Double
+		Index Unsigned_long
+		X     Double
+		Y     Double
 	}
 
 	Cairo_text_cluster_t struct {
-		num_bytes  int
-		num_glyphs int
+		Num_bytes  int
+		Num_glyphs int
 	}
 
 	Cairo_text_extents_t struct {
-		x_bearing Double
-		y_bearing Double
-		width     Double
-		height    Double
-		x_advance Double
-		y_advance Double
+		X_bearing Double
+		Y_bearing Double
+		Width     Double
+		Height    Double
+		X_advance Double
+		Y_advance Double
 	}
 
 	Cairo_font_extents_t struct {
-		ascent        Double
-		descent       Double
-		height        Double
-		max_x_advance Double
-		max_y_advance Double
+		Ascent        Double
+		Descent       Double
+		Height        Double
+		Max_x_advance Double
+		Max_y_advance Double
 	}
 
 	Cairo_path_t struct {
-		status   Cairo_status_t
-		data     *Cairo_path_data_t
-		num_data int
+		Status   Cairo_status_t
+		Data     *Cairo_path_data_t
+		Num_data int
 	}
 
 	Cairo_path_data_t struct {
@@ -3540,958 +3540,958 @@ type (
 		// 	Type   Cairo_path_data_type_t
 		// 	length int
 		// }
-		point struct {
-			x, y Double
+		Point struct {
+			X, Y Double
 		}
 	}
 
 	Cairo_rectangle_int_t struct {
-		x, y          int
-		width, height int
+		X, Y          int
+		Width, Height int
 	}
 
 	Cairo_script_interpreter_hooks_t struct {
-		closure         *Void
-		surface_create  Csi_surface_create_func_t
-		surface_destroy Csi_destroy_func_t
-		context_create  Csi_context_create_func_t
-		context_destroy Csi_destroy_func_t
-		show_page       Csi_show_page_func_t
-		copy_page       Csi_copy_page_func_t
+		Closure         *Void
+		Surface_create  Csi_surface_create_func_t
+		Surface_destroy Csi_destroy_func_t
+		Context_create  Csi_context_create_func_t
+		Context_destroy Csi_destroy_func_t
+		Show_page       Csi_show_page_func_t
+		Copy_page       Csi_copy_page_func_t
 	}
 
 	GMemVTable struct {
-		malloc  func(n_bytes Gsize) Gpointer
-		realloc func(mem Gpointer,
+		Malloc  func(n_bytes Gsize) Gpointer
+		Realloc func(mem Gpointer,
 			n_bytes Gsize) Gpointer
-		free   func(mem Gpointer)
-		calloc func(n_blocks Gsize,
+		Free   func(mem Gpointer)
+		Calloc func(n_blocks Gsize,
 			n_block_bytes Gsize) Gpointer
-		try_malloc  func(n_bytes Gsize) Gpointer
-		try_realloc func(mem Gpointer,
+		Try_malloc  func(n_bytes Gsize) Gpointer
+		Try_realloc func(mem Gpointer,
 			n_bytes Gsize) Gpointer
 	}
 
 	GTrashStack struct {
-		next *GTrashStack
+		Next *GTrashStack
 	}
 
 	GailTextUtil struct {
-		parent GObject
-		buffer *GtkTextBuffer
+		Parent GObject
+		Buffer *GtkTextBuffer
 	}
 
 	AtkKeyEventStruct struct {
 		Type      Gint
-		state     Guint
-		keyval    Guint
-		length    Gint
-		string    *Gchar
-		keycode   Guint16
-		timestamp Guint32
+		State     Guint
+		Keyval    Guint
+		Length    Gint
+		String    *Gchar
+		Keycode   Guint16
+		Timestamp Guint32
 	}
 
 	AtkRegistry struct {
-		parent                  GObject
-		factory_type_registry   *GHashTable
-		factory_singleton_cache *GHashTable
+		Parent                  GObject
+		Factory_type_registry   *GHashTable
+		Factory_singleton_cache *GHashTable
 	}
 
 	AtkRelation struct {
-		parent       GObject
-		target       *GPtrArray
-		relationship AtkRelationType
+		Parent       GObject
+		Target       *GPtrArray
+		Relationship AtkRelationType
 	}
 
 	AtkPropertyValues struct {
-		property_name *Gchar
-		old_value     GValue
-		new_value     GValue
+		Property_name *Gchar
+		Old_value     GValue
+		New_value     GValue
 	}
 
 	AtkGObjectAccessible struct {
-		parent AtkObject
+		Parent AtkObject
 	}
 
 	AtkTextRectangle struct {
-		x      Gint
-		y      Gint
-		width  Gint
-		height Gint
+		X      Gint
+		Y      Gint
+		Width  Gint
+		Height Gint
 	}
 
 	AtkTextRange struct {
-		bounds       AtkTextRectangle
-		start_offset Gint
-		end_offset   Gint
-		content      *Gchar
+		Bounds       AtkTextRectangle
+		Start_offset Gint
+		End_offset   Gint
+		Content      *Gchar
 	}
 
 	AtkPlug struct {
-		parent AtkObject
+		Parent AtkObject
 	}
 
 	PangoFcFont struct {
-		parent_instance PangoFont
-		font_pattern    *FcPattern
-		fontmap         *PangoFontMap
-		priv            Gpointer
-		matrix          PangoMatrix
-		description     *PangoFontDescription
-		metrics_by_lang *GSList
-		bits            Guint
+		Parent_instance PangoFont
+		Font_pattern    *FcPattern
+		Fontmap         *PangoFontMap
+		Priv            Gpointer
+		Matrix          PangoMatrix
+		Description     *PangoFontDescription
+		Metrics_by_lang *GSList
+		Bits            Guint
 		// is_hinted : 1
 		// is_transformed : 1
 	}
 
 	PangoFcFontMap struct {
-		parent_instance PangoFontMap
-		priv            *PangoFcFontMapPrivate
+		Parent_instance PangoFontMap
+		Priv            *PangoFcFontMapPrivate
 	}
 
 	PangoOTRulesetDescription struct {
-		script                 PangoScript
-		language               *PangoLanguage
-		static_gsub_features   *PangoOTFeatureMap
-		n_static_gsub_features Guint
-		static_gpos_features   *PangoOTFeatureMap
-		n_static_gpos_features Guint
-		other_features         *PangoOTFeatureMap
-		n_other_features       Guint
+		Script                 PangoScript
+		Language               *PangoLanguage
+		Static_gsub_features   *PangoOTFeatureMap
+		N_static_gsub_features Guint
+		Static_gpos_features   *PangoOTFeatureMap
+		N_static_gpos_features Guint
+		Other_features         *PangoOTFeatureMap
+		N_other_features       Guint
 	}
 
 	PangoOTFeatureMap struct {
-		feature_name [5]Char
-		property_bit Gulong
+		Feature_name [5]Char
+		Property_bit Gulong
 	}
 
 	PangoOTGlyph struct {
-		glyph      Guint32
-		properties Guint
-		cluster    Guint
-		component  Gushort
-		ligID      Gushort
-		internal   Guint
+		Glyph      Guint32
+		Properties Guint
+		Cluster    Guint
+		Component  Gushort
+		LigID      Gushort
+		Internal   Guint
 	}
 
 	FT_FaceRec struct {
-		num_faces           FT_Long
-		face_index          FT_Long
-		face_flags          FT_Long
-		style_flags         FT_Long
-		num_glyphs          FT_Long
-		family_name         *FT_String
-		style_name          *FT_String
-		num_fixed_sizes     FT_Int
-		available_sizes     *FT_Bitmap_Size
-		num_charmaps        FT_Int
-		charmaps            *FT_CharMap
-		generic             FT_Generic
-		bbox                FT_BBox
-		units_per_EM        FT_UShort
-		ascender            FT_Short
-		descender           FT_Short
-		height              FT_Short
-		max_advance_width   FT_Short
-		max_advance_height  FT_Short
-		underline_position  FT_Short
-		underline_thickness FT_Short
-		glyph               FT_GlyphSlot
-		size                FT_Size
-		charmap             FT_CharMap
-		driver              FT_Driver
-		memory              FT_Memory
-		stream              FT_Stream
-		sizes_list          FT_ListRec
-		autohint            FT_Generic
-		extensions          *Void
-		internal            FT_Face_Internal
+		Num_faces           FT_Long
+		Face_index          FT_Long
+		Face_flags          FT_Long
+		Style_flags         FT_Long
+		Num_glyphs          FT_Long
+		Family_name         *FT_String
+		Style_name          *FT_String
+		Num_fixed_sizes     FT_Int
+		Available_sizes     *FT_Bitmap_Size
+		Num_charmaps        FT_Int
+		Charmaps            *FT_CharMap
+		Generic             FT_Generic
+		Bbox                FT_BBox
+		Units_per_EM        FT_UShort
+		Ascender            FT_Short
+		Descender           FT_Short
+		Height              FT_Short
+		Max_advance_width   FT_Short
+		Max_advance_height  FT_Short
+		Underline_position  FT_Short
+		Underline_thickness FT_Short
+		Glyph               FT_GlyphSlot
+		Size                FT_Size
+		Charmap             FT_CharMap
+		Driver              FT_Driver
+		Memory              FT_Memory
+		Stream              FT_Stream
+		Sizes_list          FT_ListRec
+		Autohint            FT_Generic
+		Extensions          *Void
+		Internal            FT_Face_Internal
 	}
 
 	FT_Bitmap_Size struct {
-		height FT_Short
-		width  FT_Short
-		size   FT_Pos
-		x_ppem FT_Pos
-		y_ppem FT_Pos
+		Height FT_Short
+		Width  FT_Short
+		Size   FT_Pos
+		X_ppem FT_Pos
+		Y_ppem FT_Pos
 	}
 
 	FT_Generic_Finalizer func(
-		object *Void)
+		Object *Void)
 
 	FT_Open_Args struct {
-		flags       FT_UInt
-		memory_base *FT_Byte
-		memory_size FT_Long
-		pathname    *FT_String
-		stream      FT_Stream
-		driver      FT_Module
-		num_params  FT_Int
-		params      *FT_Parameter
+		Flags       FT_UInt
+		Memory_base *FT_Byte
+		Memory_size FT_Long
+		Pathname    *FT_String
+		Stream      FT_Stream
+		Driver      FT_Module
+		Num_params  FT_Int
+		Params      *FT_Parameter
 	}
 
 	FT_StreamDesc struct {
 		//Union
-		value   Long
-		pointer *Void
+		Value   Long
+		Pointer *Void
 	}
 
 	FT_Parameter struct {
-		tag  FT_ULong
-		data FT_Pointer
+		Tag  FT_ULong
+		Data FT_Pointer
 	}
 
 	FT_Size_RequestRec struct {
 		Type           FT_Size_Request_Type
-		width          FT_Long
-		height         FT_Long
-		horiResolution FT_UInt
-		vertResolution FT_UInt
+		Width          FT_Long
+		Height         FT_Long
+		HoriResolution FT_UInt
+		VertResolution FT_UInt
 	}
 
 	FT_Matrix struct {
-		xx, xy FT_Fixed
-		yx, yy FT_Fixed
+		XX, XY FT_Fixed
+		YX, YY FT_Fixed
 	}
 
 	FT_Vector struct {
-		x FT_Pos
-		y FT_Pos
+		X FT_Pos
+		Y FT_Pos
 	}
 
 	FT_CharMapRec struct {
-		face        FT_Face
-		encoding    FT_Encoding
-		platform_id FT_UShort
-		encoding_id FT_UShort
+		Face        FT_Face
+		Encoding    FT_Encoding
+		Platform_id FT_UShort
+		Encoding_id FT_UShort
 	}
 
 	FT_GlyphSlotRec struct {
-		library           FT_Library
-		face              FT_Face
-		next              FT_GlyphSlot
-		reserved          FT_UInt
-		generic           FT_Generic
-		metrics           FT_Glyph_Metrics
-		linearHoriAdvance FT_Fixed
-		linearVertAdvance FT_Fixed
-		advance           FT_Vector
-		format            FT_Glyph_Format
-		bitmap            FT_Bitmap
-		bitmap_left       FT_Int
-		bitmap_top        FT_Int
-		outline           FT_Outline
-		num_subglyphs     FT_UInt
-		subglyphs         FT_SubGlyph
-		control_data      *Void
-		control_len       Long
-		lsb_delta         FT_Pos
-		rsb_delta         FT_Pos
-		other             *Void
-		internal          FT_Slot_Internal
+		Library           FT_Library
+		Face              FT_Face
+		Next              FT_GlyphSlot
+		Reserved          FT_UInt
+		Generic           FT_Generic
+		Metrics           FT_Glyph_Metrics
+		LinearHoriAdvance FT_Fixed
+		LinearVertAdvance FT_Fixed
+		Advance           FT_Vector
+		Format            FT_Glyph_Format
+		Bitmap            FT_Bitmap
+		Bitmap_left       FT_Int
+		Bitmap_top        FT_Int
+		Outline           FT_Outline
+		Num_subglyphs     FT_UInt
+		Subglyphs         FT_SubGlyph
+		Control_data      *Void
+		Control_len       Long
+		Lsb_delta         FT_Pos
+		Rsb_delta         FT_Pos
+		Other             *Void
+		Internal          FT_Slot_Internal
 	}
 
 	FT_Generic struct {
-		data      *Void
-		finalizer FT_Generic_Finalizer
+		Data      *Void
+		Finalizer FT_Generic_Finalizer
 	}
 
 	FT_Glyph_Metrics struct {
-		width        FT_Pos
-		height       FT_Pos
-		horiBearingX FT_Pos
-		horiBearingY FT_Pos
-		horiAdvance  FT_Pos
-		vertBearingX FT_Pos
-		vertBearingY FT_Pos
-		vertAdvance  FT_Pos
+		Width        FT_Pos
+		Height       FT_Pos
+		HoriBearingX FT_Pos
+		HoriBearingY FT_Pos
+		HoriAdvance  FT_Pos
+		VertBearingX FT_Pos
+		VertBearingY FT_Pos
+		VertAdvance  FT_Pos
 	}
 
 	FT_Outline struct {
-		n_contours Short
-		n_points   Short
-		points     *FT_Vector
-		tags       *Char
-		contours   *Short
-		flags      int
+		N_contours Short
+		N_points   Short
+		Points     *FT_Vector
+		Tags       *Char
+		Contours   *Short
+		Flags      int
 	}
 
 	FT_BBox struct {
-		xMin, yMin FT_Pos
-		xMax, yMax FT_Pos
+		XMin, YMin FT_Pos
+		XMax, YMax FT_Pos
 	}
 
 	FT_SizeRec struct {
-		face     FT_Face
-		generic  FT_Generic
-		metrics  FT_Size_Metrics
-		internal FT_Size_Internal
+		Face     FT_Face
+		Generic  FT_Generic
+		Metrics  FT_Size_Metrics
+		Internal FT_Size_Internal
 	}
 
 	FT_MemoryRec struct {
-		user    *Void
-		alloc   FT_Alloc_Func
-		free    FT_Free_Func
-		realloc FT_Realloc_Func
+		User    *Void
+		Alloc   FT_Alloc_Func
+		Free    FT_Free_Func
+		Realloc FT_Realloc_Func
 	}
 
 	FT_Size_Metrics struct {
-		x_ppem      FT_UShort
-		y_ppem      FT_UShort
-		x_scale     FT_Fixed
-		y_scale     FT_Fixed
-		ascender    FT_Pos
-		descender   FT_Pos
-		height      FT_Pos
-		max_advance FT_Pos
+		X_ppem      FT_UShort
+		Y_ppem      FT_UShort
+		X_scale     FT_Fixed
+		Y_scale     FT_Fixed
+		Ascender    FT_Pos
+		Descender   FT_Pos
+		Height      FT_Pos
+		Max_advance FT_Pos
 	}
 
 	FT_ListRec struct {
-		head FT_ListNode
-		tail FT_ListNode
+		Head FT_ListNode
+		Tail FT_ListNode
 	}
 
 	FT_ListNodeRec struct {
-		prev FT_ListNode
-		next FT_ListNode
-		data *Void
+		Prev FT_ListNode
+		Next FT_ListNode
+		Data *Void
 	}
 
 	FT_GlyphRec struct {
-		library FT_Library
-		clazz   *FT_Glyph_Class
-		format  FT_Glyph_Format
-		advance FT_Vector
+		Library FT_Library
+		Clazz   *FT_Glyph_Class
+		Format  FT_Glyph_Format
+		Advance FT_Vector
 	}
 
 	FT_Glyph_Class struct {
-		glyph_size      FT_Long
-		glyph_format    FT_Glyph_Format
-		glyph_init      FT_Glyph_InitFunc
-		glyph_done      FT_Glyph_DoneFunc
-		glyph_copy      FT_Glyph_CopyFunc
-		glyph_transform FT_Glyph_TransformFunc
-		glyph_bbox      FT_Glyph_GetBBoxFunc
-		glyph_prepare   FT_Glyph_PrepareFunc
+		Glyph_size      FT_Long
+		Glyph_format    FT_Glyph_Format
+		Glyph_init      FT_Glyph_InitFunc
+		Glyph_done      FT_Glyph_DoneFunc
+		Glyph_copy      FT_Glyph_CopyFunc
+		Glyph_transform FT_Glyph_TransformFunc
+		Glyph_bbox      FT_Glyph_GetBBoxFunc
+		Glyph_prepare   FT_Glyph_PrepareFunc
 	}
 
 	PS_FontInfoRec struct {
-		version             *FT_String
-		notice              *FT_String
-		full_name           *FT_String
-		family_name         *FT_String
-		weight              *FT_String
-		italic_angle        FT_Long
-		is_fixed_pitch      FT_Bool
-		underline_position  FT_Short
-		underline_thickness FT_UShort
+		Version             *FT_String
+		Notice              *FT_String
+		Full_name           *FT_String
+		Family_name         *FT_String
+		Weight              *FT_String
+		Italic_angle        FT_Long
+		Is_fixed_pitch      FT_Bool
+		Underline_position  FT_Short
+		Underline_thickness FT_UShort
 	}
 
 	PS_PrivateRec struct {
-		unique_id              FT_Int
-		lenIV                  FT_Int
-		num_blue_values        FT_Byte
-		num_other_blues        FT_Byte
-		num_family_blues       FT_Byte
-		num_family_other_blues FT_Byte
-		blue_values            [14]FT_Short
-		other_blues            [10]FT_Short
-		family_blues           [14]FT_Short
-		family_other_blues     [10]FT_Short
-		blue_scale             FT_Fixed
-		blue_shift             FT_Int
-		blue_fuzz              FT_Int
-		standard_width         [1]FT_UShort
-		standard_height        [1]FT_UShort
-		num_snap_widths        FT_Byte
-		num_snap_heights       FT_Byte
-		force_bold             FT_Bool
-		round_stem_up          FT_Bool
-		snap_widths            [13]FT_Short
-		snap_heights           [13]FT_Short
-		expansion_factor       FT_Fixed
-		language_group         FT_Long
-		password               FT_Long
-		min_feature            [2]FT_Short
+		Unique_id              FT_Int
+		LenIV                  FT_Int
+		Num_blue_values        FT_Byte
+		Num_other_blues        FT_Byte
+		Num_family_blues       FT_Byte
+		Num_family_other_blues FT_Byte
+		Blue_values            [14]FT_Short
+		Other_blues            [10]FT_Short
+		Family_blues           [14]FT_Short
+		Family_other_blues     [10]FT_Short
+		Blue_scale             FT_Fixed
+		Blue_shift             FT_Int
+		Blue_fuzz              FT_Int
+		Standard_width         [1]FT_UShort
+		Standard_height        [1]FT_UShort
+		Num_snap_widths        FT_Byte
+		Num_snap_heights       FT_Byte
+		Force_bold             FT_Bool
+		Round_stem_up          FT_Bool
+		Snap_widths            [13]FT_Short
+		Snap_heights           [13]FT_Short
+		Expansion_factor       FT_Fixed
+		Language_group         FT_Long
+		Password               FT_Long
+		Min_feature            [2]FT_Short
 	}
 
 	FT_Module_Class struct {
-		module_flags     FT_ULong
-		module_size      FT_Long
-		module_name      *FT_String
-		module_version   FT_Fixed
-		module_requires  FT_Fixed
-		module_interface *Void
-		module_init      FT_Module_Constructor
-		module_done      FT_Module_Destructor
-		get_interface    FT_Module_Requester
+		Module_flags     FT_ULong
+		Module_size      FT_Long
+		Module_name      *FT_String
+		Module_version   FT_Fixed
+		Module_requires  FT_Fixed
+		Module_interface *Void
+		Module_init      FT_Module_Constructor
+		Module_done      FT_Module_Destructor
+		Get_interface    FT_Module_Requester
 	}
 
 	FT_Multi_Master struct {
-		num_axis    FT_UInt
-		num_designs FT_UInt
-		axis        [4]FT_MM_Axis
+		Num_axis    FT_UInt
+		Num_designs FT_UInt
+		Axis        [4]FT_MM_Axis
 	}
 
 	FT_MM_Axis struct {
-		name    *FT_String
-		minimum FT_Long
-		maximum FT_Long
+		Name    *FT_String
+		Minimum FT_Long
+		Maximum FT_Long
 	}
 
 	FT_MM_Var struct {
-		num_axis        FT_UInt
-		num_designs     FT_UInt
-		num_namedstyles FT_UInt
-		axis            *FT_Var_Axis
-		namedstyle      *FT_Var_Named_Style
+		Num_axis        FT_UInt
+		Num_designs     FT_UInt
+		Num_namedstyles FT_UInt
+		Axis            *FT_Var_Axis
+		Namedstyle      *FT_Var_Named_Style
 	}
 
 	FT_Var_Axis struct {
-		name    *FT_String
-		minimum FT_Fixed
-		def     FT_Fixed
-		maximum FT_Fixed
-		tag     FT_ULong
-		strid   FT_UInt
+		Name    *FT_String
+		Minimum FT_Fixed
+		Def     FT_Fixed
+		Maximum FT_Fixed
+		Tag     FT_ULong
+		Strid   FT_UInt
 	}
 
 	FT_Var_Named_Style struct {
-		coords *FT_Fixed
-		strid  FT_UInt
+		Coords *FT_Fixed
+		Strid  FT_UInt
 	}
 
 	FT_Outline_Funcs struct {
-		move_to  FT_Outline_MoveToFunc
-		line_to  FT_Outline_LineToFunc
-		conic_to FT_Outline_ConicToFunc
-		cubic_to FT_Outline_CubicToFunc
-		shift    int
-		delta    FT_Pos
+		Move_to  FT_Outline_MoveToFunc
+		Line_to  FT_Outline_LineToFunc
+		Conic_to FT_Outline_ConicToFunc
+		Cubic_to FT_Outline_CubicToFunc
+		Shift    int
+		Delta    FT_Pos
 	}
 
 	FT_Raster_Params struct {
-		target      *FT_Bitmap
-		source      *Void
-		flags       int
-		gray_spans  FT_SpanFunc
-		black_spans FT_SpanFunc
-		bit_test    FT_Raster_BitTest_Func
-		bit_set     FT_Raster_BitSet_Func
-		user        *Void
-		clip_box    FT_BBox
+		Target      *FT_Bitmap
+		Source      *Void
+		Flags       int
+		Gray_spans  FT_SpanFunc
+		Black_spans FT_SpanFunc
+		Bit_test    FT_Raster_BitTest_Func
+		Bit_set     FT_Raster_BitSet_Func
+		User        *Void
+		Clip_box    FT_BBox
 	}
 
 	FT_Span struct {
-		x        Short
-		len      Unsigned_short
-		coverage Unsigned_char
+		X        Short
+		Len      Unsigned_short
+		Coverage Unsigned_char
 	}
 
 	BDF_PropertyRec struct {
 		Type BDF_PropertyType
 		// Union
-		atom *Char
+		Atom *Char
 		// integer  FT_Int32
 		// cardinal FT_UInt32
 	}
 
 	FT_WinFNT_HeaderRec struct {
-		version               FT_UShort
-		file_size             FT_ULong
-		copyright             [60]FT_Byte
-		file_type             FT_UShort
-		nominal_point_size    FT_UShort
-		vertical_resolution   FT_UShort
-		horizontal_resolution FT_UShort
-		ascent                FT_UShort
-		internal_leading      FT_UShort
-		external_leading      FT_UShort
-		italic                FT_Byte
-		underline             FT_Byte
-		strike_out            FT_Byte
-		weight                FT_UShort
-		charset               FT_Byte
-		pixel_width           FT_UShort
-		pixel_height          FT_UShort
-		pitch_and_family      FT_Byte
-		avg_width             FT_UShort
-		max_width             FT_UShort
-		first_char            FT_Byte
-		last_char             FT_Byte
-		default_char          FT_Byte
-		break_char            FT_Byte
-		bytes_per_row         FT_UShort
-		device_offset         FT_ULong
-		face_name_offset      FT_ULong
-		bits_pointer          FT_ULong
-		bits_offset           FT_ULong
-		reserved              FT_Byte
-		flags                 FT_ULong
+		Version               FT_UShort
+		File_size             FT_ULong
+		Copyright             [60]FT_Byte
+		File_type             FT_UShort
+		Nominal_point_size    FT_UShort
+		Vertical_resolution   FT_UShort
+		Horizontal_resolution FT_UShort
+		Ascent                FT_UShort
+		Internal_leading      FT_UShort
+		External_leading      FT_UShort
+		Italic                FT_Byte
+		Underline             FT_Byte
+		Strike_out            FT_Byte
+		Weight                FT_UShort
+		Charset               FT_Byte
+		Pixel_width           FT_UShort
+		Pixel_height          FT_UShort
+		Pitch_and_family      FT_Byte
+		Avg_width             FT_UShort
+		Max_width             FT_UShort
+		First_char            FT_Byte
+		Last_char             FT_Byte
+		Default_char          FT_Byte
+		Break_char            FT_Byte
+		Bytes_per_row         FT_UShort
+		Device_offset         FT_ULong
+		Face_name_offset      FT_ULong
+		Bits_pointer          FT_ULong
+		Bits_offset           FT_ULong
+		Reserved              FT_Byte
+		Flags                 FT_ULong
 		A_space               FT_UShort
 		B_space               FT_UShort
 		C_space               FT_UShort
-		color_table_offset    FT_UShort
-		reserved1             [4]FT_ULong
+		Color_table_offset    FT_UShort
+		Reserved1             [4]FT_ULong
 	}
 
 	FT_SfntName struct {
-		platform_id FT_UShort
-		encoding_id FT_UShort
-		language_id FT_UShort
-		name_id     FT_UShort
-		string      *FT_Byte
-		string_len  FT_UInt
+		Platform_id FT_UShort
+		Encoding_id FT_UShort
+		Language_id FT_UShort
+		Name_id     FT_UShort
+		String      *FT_Byte
+		String_len  FT_UInt
 	}
 
 	FTC_ScalerRec struct {
-		face_id FTC_FaceID
-		width   FT_UInt
-		height  FT_UInt
-		pixel   FT_Int
-		x_res   FT_UInt
-		y_res   FT_UInt
+		Face_id FTC_FaceID
+		Width   FT_UInt
+		Height  FT_UInt
+		Pixel   FT_Int
+		X_res   FT_UInt
+		Y_res   FT_UInt
 	}
 
 	FTC_ImageTypeRec struct {
-		face_id FTC_FaceID
-		width   FT_Int
-		height  FT_Int
-		flags   FT_Int32
+		Face_id FTC_FaceID
+		Width   FT_Int
+		Height  FT_Int
+		Flags   FT_Int32
 	}
 
 	FTC_SBitRec struct {
-		width     FT_Byte
-		height    FT_Byte
-		left      FT_Char
-		top       FT_Char
-		format    FT_Byte
-		max_grays FT_Byte
-		pitch     FT_Short
-		xadvance  FT_Char
-		yadvance  FT_Char
-		buffer    *FT_Byte
+		Width     FT_Byte
+		Height    FT_Byte
+		Left      FT_Char
+		Top       FT_Char
+		Format    FT_Byte
+		Max_grays FT_Byte
+		Pitch     FT_Short
+		Xadvance  FT_Char
+		Yadvance  FT_Char
+		Buffer    *FT_Byte
 	}
 
 	FTC_FontRec struct {
-		face_id    FTC_FaceID
-		pix_width  FT_UShort
-		pix_height FT_UShort
+		Face_id    FTC_FaceID
+		Pix_width  FT_UShort
+		Pix_height FT_UShort
 	}
 
 	FT_Bitmap struct {
-		rows         int
-		width        int
-		pitch        int
-		buffer       *Unsigned_char
-		num_grays    Short
-		pixel_mode   Char
-		palette_mode Char
-		palette      *Void
+		Rows         int
+		Width        int
+		Pitch        int
+		Buffer       *Unsigned_char
+		Num_grays    Short
+		Pixel_mode   Char
+		Palette_mode Char
+		Palette      *Void
 	}
 
 	GParameter struct {
-		name  string
-		value GValue
+		Name  string
+		Value GValue
 	}
 
 	GSignalQuery struct {
-		signal_id    Guint
-		signal_name  string
-		itype        GType
-		signal_flags GSignalFlags
-		return_type  GType
-		n_params     Guint
-		param_types  *GType
+		Signal_id    Guint
+		Signal_name  string
+		Itype        GType
+		Signal_flags GSignalFlags
+		Return_type  GType
+		N_params     Guint
+		Param_types  *GType
 	}
 
 	GTypeQuery struct {
 		Type          GType
-		type_name     string
-		class_size    Guint
-		instance_size Guint
+		Type_name     string
+		Class_size    Guint
+		Instance_size Guint
 	}
 
 	GApplication struct {
-		parent_instance GObject
-		priv            *GApplicationPrivate
+		Parent_instance GObject
+		Priv            *GApplicationPrivate
 	}
 
 	GApplicationCommandLine struct {
-		parent_instance GObject
-		priv            *GApplicationCommandLinePrivate
+		Parent_instance GObject
+		Priv            *GApplicationCommandLinePrivate
 	}
 
 	GBufferedInputStream struct {
-		parent_instance GFilterInputStream
-		priv            *GBufferedInputStreamPrivate
+		Parent_instance GFilterInputStream
+		Priv            *GBufferedInputStreamPrivate
 	}
 
 	GFilterInputStream struct {
-		parent_instance GInputStream
-		base_stream     *GInputStream
+		Parent_instance GInputStream
+		Base_stream     *GInputStream
 	}
 
 	GOutputStream struct {
-		parent_instance GObject
-		priv            *GOutputStreamPrivate
+		Parent_instance GObject
+		Priv            *GOutputStreamPrivate
 	}
 
 	GBufferedOutputStream struct {
-		parent_instance GFilterOutputStream
-		priv            *GBufferedOutputStreamPrivate
+		Parent_instance GFilterOutputStream
+		Priv            *GBufferedOutputStreamPrivate
 	}
 
 	GFilterOutputStream struct {
-		parent_instance GOutputStream
-		base_stream     *GOutputStream
+		Parent_instance GOutputStream
+		Base_stream     *GOutputStream
 	}
 
 	GConverterInputStream struct {
-		parent_instance GFilterInputStream
-		priv            *GConverterInputStreamPrivate
+		Parent_instance GFilterInputStream
+		Priv            *GConverterInputStreamPrivate
 	}
 
 	GConverterOutputStream struct {
-		parent_instance GFilterOutputStream
-		priv            *GConverterOutputStreamPrivate
+		Parent_instance GFilterOutputStream
+		Priv            *GConverterOutputStreamPrivate
 	}
 
 	GDataInputStream struct {
-		parent_instance GBufferedInputStream
-		priv            *GDataInputStreamPrivate
+		Parent_instance GBufferedInputStream
+		Priv            *GDataInputStreamPrivate
 	}
 
 	GDataOutputStream struct {
-		parent_instance GFilterOutputStream
-		priv            *GDataOutputStreamPrivate
+		Parent_instance GFilterOutputStream
+		Priv            *GDataOutputStreamPrivate
 	}
 
 	GIOStream struct {
-		parent_instance GObject
-		priv            *GIOStreamPrivate
+		Parent_instance GObject
+		Priv            *GIOStreamPrivate
 	}
 
 	GDBusInterfaceInfo struct {
-		ref_count   Gint
-		name        *Gchar
-		methods     **GDBusMethodInfo
-		signals     **GDBusSignalInfo
-		properties  **GDBusPropertyInfo
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Name        *Gchar
+		Methods     **GDBusMethodInfo
+		Signals     **GDBusSignalInfo
+		Properties  **GDBusPropertyInfo
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusMethodInfo struct {
-		ref_count   Gint
-		name        *Gchar
-		in_args     **GDBusArgInfo
-		out_args    **GDBusArgInfo
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Name        *Gchar
+		In_args     **GDBusArgInfo
+		Out_args    **GDBusArgInfo
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusSignalInfo struct {
-		ref_count   Gint
-		name        *Gchar
-		args        **GDBusArgInfo
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Name        *Gchar
+		Args        **GDBusArgInfo
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusPropertyInfo struct {
-		ref_count   Gint
-		name        *Gchar
-		signature   *Gchar
-		flags       GDBusPropertyInfoFlags
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Name        *Gchar
+		Signature   *Gchar
+		Flags       GDBusPropertyInfoFlags
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusArgInfo struct {
-		ref_count   Gint
-		name        *Gchar
-		signature   *Gchar
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Name        *Gchar
+		Signature   *Gchar
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusAnnotationInfo struct {
-		ref_count   Gint
-		key         *Gchar
-		value       *Gchar
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Key         *Gchar
+		Value       *Gchar
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusInterfaceVTable struct {
-		method_call  GDBusInterfaceMethodCallFunc
-		get_property GDBusInterfaceGetPropertyFunc
-		set_property GDBusInterfaceSetPropertyFunc
-		padding      [8]Gpointer
+		Method_call  GDBusInterfaceMethodCallFunc
+		Get_property GDBusInterfaceGetPropertyFunc
+		Set_property GDBusInterfaceSetPropertyFunc
+		Padding      [8]Gpointer
 	}
 
 	GDBusNodeInfo struct {
-		ref_count   Gint
-		path        *Gchar
-		interfaces  **GDBusInterfaceInfo
-		nodes       **GDBusNodeInfo
-		annotations **GDBusAnnotationInfo
+		Ref_count   Gint
+		Path        *Gchar
+		Interfaces  **GDBusInterfaceInfo
+		Nodes       **GDBusNodeInfo
+		Annotations **GDBusAnnotationInfo
 	}
 
 	GDBusProxy struct {
-		parent_instance GObject
-		priv            *GDBusProxyPrivate
+		Parent_instance GObject
+		Priv            *GDBusProxyPrivate
 	}
 
 	GDBusSubtreeVTable struct {
-		enumerate  GDBusSubtreeEnumerateFunc
-		introspect GDBusSubtreeIntrospectFunc
-		dispatch   GDBusSubtreeDispatchFunc
-		padding    [8]Gpointer
+		Enumerate  GDBusSubtreeEnumerateFunc
+		Introspect GDBusSubtreeIntrospectFunc
+		Dispatch   GDBusSubtreeDispatchFunc
+		Padding    [8]Gpointer
 	}
 
 	GDBusErrorEntry struct {
-		error_code      Gint
-		dbus_error_name *Gchar
+		Error_code      Gint
+		Dbus_error_name *Gchar
 	}
 
 	GEmblemedIcon struct {
-		parent_instance GObject
-		priv            *GEmblemedIconPrivate
+		Parent_instance GObject
+		Priv            *GEmblemedIconPrivate
 	}
 
 	GFileAttributeInfoList struct {
-		infos   *GFileAttributeInfo
-		n_infos int
+		Infos   *GFileAttributeInfo
+		N_infos int
 	}
 
 	GFileAttributeInfo struct {
-		name  *Char
+		Name  *Char
 		Type  GFileAttributeType
-		flags GFileAttributeInfoFlags
+		Flags GFileAttributeInfoFlags
 	}
 
 	GFileOutputStream struct {
-		parent_instance GOutputStream
-		priv            *GFileOutputStreamPrivate
+		Parent_instance GOutputStream
+		Priv            *GFileOutputStreamPrivate
 	}
 
 	GFileIOStream struct {
-		parent_instance GIOStream
-		priv            *GFileIOStreamPrivate
+		Parent_instance GIOStream
+		Priv            *GFileIOStreamPrivate
 	}
 
 	GFileEnumerator struct {
-		parent_instance GObject
-		priv            *GFileEnumeratorPrivate
+		Parent_instance GObject
+		Priv            *GFileEnumeratorPrivate
 	}
 
 	GFileInputStream struct {
-		parent_instance GInputStream
-		priv            *GFileInputStreamPrivate
+		Parent_instance GInputStream
+		Priv            *GFileInputStreamPrivate
 	}
 
 	GFileMonitor struct {
-		parent_instance GObject
-		priv            *GFileMonitorPrivate
+		Parent_instance GObject
+		Priv            *GFileMonitorPrivate
 	}
 
 	GInetAddress struct {
-		parent_instance GObject
-		priv            *GInetAddressPrivate
+		Parent_instance GObject
+		Priv            *GInetAddressPrivate
 	}
 
 	GInetSocketAddress struct {
-		parent_instance GSocketAddress
-		priv            *GInetSocketAddressPrivate
+		Parent_instance GSocketAddress
+		Priv            *GInetSocketAddressPrivate
 	}
 
 	GSocketAddress struct {
-		parent_instance GObject
+		Parent_instance GObject
 	}
 
 	GMemoryOutputStream struct {
-		parent_instance GOutputStream
-		priv            *GMemoryOutputStreamPrivate
+		Parent_instance GOutputStream
+		Priv            *GMemoryOutputStreamPrivate
 	}
 
 	GNetworkAddress struct {
-		parent_instance GObject
-		priv            *GNetworkAddressPrivate
+		Parent_instance GObject
+		Priv            *GNetworkAddressPrivate
 	}
 
 	GNetworkService struct {
-		parent_instance GObject
-		priv            *GNetworkServicePrivate
+		Parent_instance GObject
+		Priv            *GNetworkServicePrivate
 	}
 
 	GMemoryInputStream struct {
-		parent_instance GInputStream
-		priv            *GMemoryInputStreamPrivate
+		Parent_instance GInputStream
+		Priv            *GMemoryInputStreamPrivate
 	}
 
 	GPermission struct {
-		parent_instance GObject
-		priv            *GPermissionPrivate
+		Parent_instance GObject
+		Priv            *GPermissionPrivate
 	}
 
 	GProxyAddress struct {
-		parent_instance GInetSocketAddress
-		priv            *GProxyAddressPrivate
+		Parent_instance GInetSocketAddress
+		Priv            *GProxyAddressPrivate
 	}
 
 	GResolver struct {
-		parent_instance GObject
-		priv            *GResolverPrivate
+		Parent_instance GObject
+		Priv            *GResolverPrivate
 	}
 
 	GSettings struct {
-		parent_instance GObject
-		priv            *GSettingsPrivate
+		Parent_instance GObject
+		Priv            *GSettingsPrivate
 	}
 
 	GSimpleActionGroup struct {
-		parent_instance GObject
-		priv            *GSimpleActionGroupPrivate
+		Parent_instance GObject
+		Priv            *GSimpleActionGroupPrivate
 	}
 
 	GSimpleAction struct {
-		parent_instance GObject
-		priv            *GSimpleActionPrivate
+		Parent_instance GObject
+		Priv            *GSimpleActionPrivate
 	}
 
 	GSocketAddressEnumerator struct {
-		parent_instance GObject
+		Parent_instance GObject
 	}
 
 	GSocket struct {
-		parent_instance GObject
-		priv            *GSocketPrivate
+		Parent_instance GObject
+		Priv            *GSocketPrivate
 	}
 
 	GSocketClient struct {
-		parent_instance GObject
-		priv            *GSocketClientPrivate
+		Parent_instance GObject
+		Priv            *GSocketClientPrivate
 	}
 
 	GSocketConnection struct {
-		parent_instance GIOStream
-		priv            *GSocketConnectionPrivate
+		Parent_instance GIOStream
+		Priv            *GSocketConnectionPrivate
 	}
 
 	GSocketControlMessage struct {
-		parent_instance GObject
-		priv            *GSocketControlMessagePrivate
+		Parent_instance GObject
+		Priv            *GSocketControlMessagePrivate
 	}
 
 	GSocketListener struct {
-		parent_instance GObject
-		priv            *GSocketListenerPrivate
+		Parent_instance GObject
+		Priv            *GSocketListenerPrivate
 	}
 
 	GSocketService struct {
-		parent_instance GSocketListener
-		priv            *GSocketServicePrivate
+		Parent_instance GSocketListener
+		Priv            *GSocketServicePrivate
 	}
 
 	GTlsCertificate struct {
-		parent_instance GObject
-		priv            *GTlsCertificatePrivate
+		Parent_instance GObject
+		Priv            *GTlsCertificatePrivate
 	}
 
 	GTcpConnection struct {
-		parent_instance GSocketConnection
-		priv            *GTcpConnectionPrivate
+		Parent_instance GSocketConnection
+		Priv            *GTcpConnectionPrivate
 	}
 
 	GTlsConnection struct {
-		parent_instance GIOStream
-		priv            *GTlsConnectionPrivate
+		Parent_instance GIOStream
+		Priv            *GTlsConnectionPrivate
 	}
 
 	GVfs struct {
-		parent_instance GObject
+		Parent_instance GObject
 	}
 
 	GVolumeMonitor struct {
-		parent_instance GObject
-		priv            Gpointer
+		Parent_instance GObject
+		Priv            Gpointer
 	}
 
 	GInputVector struct {
-		buffer Gpointer
-		size   Gsize
+		Buffer Gpointer
+		Size   Gsize
 	}
 
 	GOutputVector struct {
-		buffer Gconstpointer
-		size   Gsize
+		Buffer Gconstpointer
+		Size   Gsize
 	}
 
 	GTcpWrapperConnection struct {
-		parent_instance GTcpConnection
-		priv            *GTcpWrapperConnectionPrivate
+		Parent_instance GTcpConnection
+		Priv            *GTcpWrapperConnectionPrivate
 	}
 
 	GWin32InputStream struct {
-		parent_instance GInputStream
-		priv            *GWin32InputStreamPrivate
+		Parent_instance GInputStream
+		Priv            *GWin32InputStreamPrivate
 	}
 
 	GWin32OutputStream struct {
-		parent_instance GOutputStream
-		priv            *GWin32OutputStreamPrivate
+		Parent_instance GOutputStream
+		Priv            *GWin32OutputStreamPrivate
 	}
 
 	GEnumClass struct {
-		g_type_class GTypeClass
-		minimum      Gint
-		maximum      Gint
-		n_values     Guint
-		values       *GEnumValue
+		G_type_class GTypeClass
+		Minimum      Gint
+		Maximum      Gint
+		N_values     Guint
+		Values       *GEnumValue
 	}
 
 	GEnumValue struct {
-		value      Gint
-		value_name *Gchar
-		value_nick *Gchar
+		Value      Gint
+		Value_name *Gchar
+		Value_nick *Gchar
 	}
 
 	GFlagsClass struct {
-		g_type_class GTypeClass
-		mask         Guint
-		n_values     Guint
-		values       *GFlagsValue
+		G_type_class GTypeClass
+		Mask         Guint
+		N_values     Guint
+		Values       *GFlagsValue
 	}
 
 	GFlagsValue struct {
-		value      Guint
-		value_name *Gchar
-		value_nick *Gchar
+		Value      Guint
+		Value_name *Gchar
+		Value_nick *Gchar
 	}
 
 	GTypeInfo struct {
-		class_size     Guint16
-		base_init      GBaseInitFunc
-		base_finalize  GBaseFinalizeFunc
-		class_init     GClassInitFunc
-		class_finalize GClassFinalizeFunc
-		class_data     Gconstpointer
-		instance_size  Guint16
-		n_preallocs    Guint16
-		instance_init  GInstanceInitFunc
-		value_table    *GTypeValueTable
+		Class_size     Guint16
+		Base_init      GBaseInitFunc
+		Base_finalize  GBaseFinalizeFunc
+		Class_init     GClassInitFunc
+		Class_finalize GClassFinalizeFunc
+		Class_data     Gconstpointer
+		Instance_size  Guint16
+		N_preallocs    Guint16
+		Instance_init  GInstanceInitFunc
+		Value_table    *GTypeValueTable
 	}
 
 	GTypeValueTable struct {
-		value_init func(value *GValue)
-		value_free func(value *GValue)
-		value_copy func(
+		Value_init func(value *GValue)
+		Value_free func(value *GValue)
+		Value_copy func(
 			src_value *GValue, dest_value *GValue)
-		value_peek_pointer func(value *GValue) Gpointer
-		collect_format     *Gchar
-		collect_value      func(
+		Value_peek_pointer func(value *GValue) Gpointer
+		Collect_format     *Gchar
+		Collect_value      func(
 			value *GValue,
 			n_collect_values Guint,
 			collect_values *GTypeCValue,
 			collect_flags Guint) *Gchar
-		lcopy_format *Gchar
-		lcopy_value  func(
+		Lcopy_format *Gchar
+		Lcopy_value  func(
 			value *GValue,
 			n_collect_values Guint,
 			collect_values *GTypeCValue,
@@ -4499,85 +4499,85 @@ type (
 	}
 
 	GValueArray struct {
-		n_values     Guint
-		values       *GValue
-		n_prealloced Guint
+		N_values     Guint
+		Values       *GValue
+		N_prealloced Guint
 	}
 
 	GTypeFundamentalInfo struct {
-		type_flags GTypeFundamentalFlags
+		Type_flags GTypeFundamentalFlags
 	}
 
 	GInterfaceInfo struct {
-		interface_init     GInterfaceInitFunc
-		interface_finalize GInterfaceFinalizeFunc
-		interface_data     Gpointer
+		Interface_init     GInterfaceInitFunc
+		Interface_finalize GInterfaceFinalizeFunc
+		Interface_data     Gpointer
 	}
 
 	GTypeModule struct {
-		parent_instance GObject
-		use_count       Guint
-		type_infos      *GSList
-		interface_infos *GSList
-		name            *Gchar
+		Parent_instance GObject
+		Use_count       Guint
+		Type_infos      *GSList
+		Interface_infos *GSList
+		Name            *Gchar
 	}
 
 	GParamSpecTypeInfo struct {
-		instance_size     Guint16
-		n_preallocs       Guint16
-		instance_init     func(pspec *GParamSpec)
-		value_type        GType
-		finalize          func(pspec *GParamSpec)
-		value_set_default func(
+		Instance_size     Guint16
+		N_preallocs       Guint16
+		Instance_init     func(pspec *GParamSpec)
+		Value_type        GType
+		Finalize          func(pspec *GParamSpec)
+		Value_set_default func(
 			pspec *GParamSpec, value *GValue)
-		value_validate func(
+		Value_validate func(
 			pspec *GParamSpec, value *GValue) Gboolean
-		values_cmp func(pspec *GParamSpec,
+		Values_cmp func(pspec *GParamSpec,
 			value1 *GValue, value2 *GValue) Gint
 	}
 
 	GtkTree struct {
-		container      GtkContainer
-		children       *GList
-		root_tree      *GtkTree
-		tree_owner     *GtkWidget
-		selection      *GList
-		level          Guint
-		indent_value   Guint
-		current_indent Guint
-		bits           Guint
+		Container      GtkContainer
+		Children       *GList
+		Root_tree      *GtkTree
+		Tree_owner     *GtkWidget
+		Selection      *GList
+		Level          Guint
+		Indent_value   Guint
+		Current_indent Guint
+		Bits           Guint
 		// selection_mode : 2
 		// view_mode : 1
 		// view_line : 1
 	}
 
 	GtkTreeItem struct {
-		item             GtkItem
-		subtree          *GtkWidget
-		pixmaps_box      *GtkWidget
-		plus_pix_widget  *GtkWidget
-		minus_pix_widget *GtkWidget
-		pixmaps          *GList
-		expanded         Guint // : 1
+		Item             GtkItem
+		Subtree          *GtkWidget
+		Pixmaps_box      *GtkWidget
+		Plus_pix_widget  *GtkWidget
+		Minus_pix_widget *GtkWidget
+		Pixmaps          *GList
+		Expanded         Guint // : 1
 	}
 
 	PangoIncludedModule struct {
-		list   func(engines **PangoEngineInfo, n_engines *int)
-		init   func(module *GTypeModule)
-		exit   func()
-		create func(id *Char) *PangoEngine
+		List   func(engines **PangoEngineInfo, n_engines *int)
+		Init   func(module *GTypeModule)
+		Exit   func()
+		Create func(id *Char) *PangoEngine
 	}
 
 	PangoEngineScriptInfo struct {
-		script PangoScript
-		langs  *Gchar
+		Script PangoScript
+		Langs  *Gchar
 	}
 
 	PangoEngineInfo struct {
-		id          *Gchar
-		engine_type *Gchar
-		render_type *Gchar
-		scripts     *PangoEngineScriptInfo
-		n_scripts   Gint
+		Id          *Gchar
+		Engine_type *Gchar
+		Render_type *Gchar
+		Scripts     *PangoEngineScriptInfo
+		N_scripts   Gint
 	}
 )

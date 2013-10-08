@@ -1,6 +1,6 @@
 //Package gtk2 is useful only to install all subcomponents
 
-//TODO(t): Bring to attention synonymous use of gchar char and
+//TODO(t): Bring to attention synonymous use of gchar & char and
 // possible simgle byte output *char
 
 package gtk2
@@ -23,5 +23,6 @@ import (
 	_ "github.com/tHinqa/outside-gtk2/pango"
 	_ "github.com/tHinqa/outside-gtk2/pangowin32"
 	_ "github.com/tHinqa/outside-gtk2/png"
+	_ "github.com/tHinqa/outside-gtk2/types"
 	_ "github.com/tHinqa/outside-gtk2/zlib"
 )

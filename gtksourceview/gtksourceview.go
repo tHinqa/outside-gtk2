@@ -90,73 +90,73 @@ type (
 		user_data Gpointer) string
 
 	GtkSourceLanguage struct {
-		parent_instance GObject
-		priv            *GtkSourceLanguagePrivate
+		Parent_instance GObject
+		Priv            *GtkSourceLanguagePrivate
 	}
 
 	GtkSourceMark struct {
-		parent_instance GtkTextMark
-		priv            *GtkSourceMarkPrivate
+		Parent_instance GtkTextMark
+		Priv            *GtkSourceMarkPrivate
 	}
 
 	GtkSourceStyleScheme struct {
-		base GObject
-		priv *GtkSourceStyleSchemePrivate
+		Base GObject
+		Priv *GtkSourceStyleSchemePrivate
 	}
 
 	GtkSourceBuffer struct {
-		parent_instance GtkTextBuffer
-		priv            *GtkSourceBufferPrivate
+		Parent_instance GtkTextBuffer
+		Priv            *GtkSourceBufferPrivate
 	}
 
 	GtkSourceCompletionInfo struct {
-		parent GtkWindow
-		priv   *GtkSourceCompletionInfoPrivate
+		Parent GtkWindow
+		Priv   *GtkSourceCompletionInfoPrivate
 	}
 
 	GtkSourceCompletionContext struct {
-		parent GInitiallyUnowned
-		priv   *GtkSourceCompletionContextPrivate
+		Parent GInitiallyUnowned
+		Priv   *GtkSourceCompletionContextPrivate
 	}
 
 	GtkSourceCompletion struct {
-		parent GtkObject
-		priv   *GtkSourceCompletionPrivate
+		Parent GtkObject
+		Priv   *GtkSourceCompletionPrivate
 	}
 
 	GtkSourceGutter struct {
-		parent GObject
-		priv   *GtkSourceGutterPrivate
+		Parent GObject
+		Priv   *GtkSourceGutterPrivate
 	}
 
 	GtkSourceView struct {
-		parent GtkTextView
-		priv   *GtkSourceViewPrivate
+		Parent GtkTextView
+		Priv   *GtkSourceViewPrivate
 	}
 
 	GtkSourceCompletionItem struct {
-		parent GObject
-		priv   *GtkSourceCompletionItemPrivate
+		Parent GObject
+		Priv   *GtkSourceCompletionItemPrivate
 	}
 
 	GtkSourceCompletionWords struct {
-		parent GObject
-		priv   *GtkSourceCompletionWordsPrivate
+		Parent GObject
+		Priv   *GtkSourceCompletionWordsPrivate
 	}
 
 	GtkSourceLanguageManager struct {
-		parent_instance GObject
-		priv            *GtkSourceLanguageManagerPrivate
+		Parent_instance GObject
+		Priv            *GtkSourceLanguageManagerPrivate
 	}
 
 	GtkSourcePrintCompositor struct {
-		parent_instance GObject
-		priv            *GtkSourcePrintCompositorPrivate
+		Parent_instance GObject
+		Priv            *GtkSourcePrintCompositorPrivate
 	}
 
 	GtkSourceStyleSchemeManager struct {
-		parent GObject
-		priv   *GtkSourceStyleSchemeManagerPrivate
+		Parent GObject
+		Priv   *GtkSourceStyleSchemeManagerPrivate
 	}
 )
 

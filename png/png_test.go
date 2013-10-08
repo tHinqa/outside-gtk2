@@ -3,5 +3,5 @@ package png
 import "testing"
 
 func TestInit(t *testing.T) {
-	t.Log("LibPNG version", Png_access_version_number())
+	t.Log("Png_access_version_number()", Png_access_version_number())
 }

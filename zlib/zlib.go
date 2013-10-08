@@ -41,36 +41,36 @@ type (
 		uint) int
 
 	Z_stream struct {
-		next_in   *Bytef
-		avail_in  UInt
-		total_in  ULong
-		next_out  *Bytef
-		avail_out UInt
-		total_out ULong
-		msg       *Char
-		state     *Internal_state
-		zalloc    Alloc_func
-		zfree     Free_func
-		opaque    Voidpf
-		data_type int
-		adler     ULong
-		reserved  ULong
+		Next_in   *Bytef
+		Avail_in  UInt
+		Total_in  ULong
+		Next_out  *Bytef
+		Avail_out UInt
+		Total_out ULong
+		Msg       *Char
+		State     *Internal_state
+		Zalloc    Alloc_func
+		Zfree     Free_func
+		Opaque    Voidpf
+		Data_type int
+		Adler     ULong
+		_         ULong
 	}
 
 	Gz_header struct {
-		text      int
-		time      ULong
-		xflags    int
-		os        int
-		extra     *Bytef
-		extra_len UInt
-		extra_max UInt
-		name      *Bytef
-		name_max  UInt
-		comment   *Bytef
-		comm_max  UInt
-		hcrc      int
-		done      int
+		Text      int
+		Time      ULong
+		Xflags    int
+		Os        int
+		Extra     *Bytef
+		Extra_len UInt
+		Extra_max UInt
+		Name      *Bytef
+		Name_max  UInt
+		Comment   *Bytef
+		Comm_max  UInt
+		Hcrc      int
+		Done      int
 	}
 )
 

@@ -2,4 +2,4 @@ package atk
 
 import "testing"
 
-func TestInit(*testing.T) {}
+func TestInit(t *testing.T) {}
