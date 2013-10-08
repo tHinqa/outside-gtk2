@@ -618,7 +618,7 @@ type GHookFlagMask Enum
 const (
 	G_HOOK_FLAG_ACTIVE GHookFlagMask = 1 << iota
 	G_HOOK_FLAG_IN_CALL
-	G_HOOK_FLAG_MASK = 0x0F
+	G_HOOK_FLAG_MASK GHookFlagMask = 0x0F
 )
 
 type GUnicodeType Enum
@@ -924,7 +924,7 @@ const (
 	G_MARKUP_COLLECT_STRDUP
 	G_MARKUP_COLLECT_BOOLEAN
 	G_MARKUP_COLLECT_TRISTATE
-	G_MARKUP_COLLECT_OPTIONAL = (1 << 16)
+	G_MARKUP_COLLECT_OPTIONAL GMarkupCollectType = 1 << 16
 )
 
 type GLogLevelFlags Enum
@@ -946,10 +946,10 @@ type GTraverseFlags Enum
 const (
 	G_TRAVERSE_LEAVES GTraverseFlags = 1 << iota
 	G_TRAVERSE_NON_LEAVES
-	G_TRAVERSE_ALL                      = G_TRAVERSE_LEAVES | G_TRAVERSE_NON_LEAVES
-	G_TRAVERSE_MASK      GTraverseFlags = 0x03
-	G_TRAVERSE_LEAFS                    = G_TRAVERSE_LEAVES
-	G_TRAVERSE_NON_LEAFS                = G_TRAVERSE_NON_LEAVES
+	G_TRAVERSE_ALL       = G_TRAVERSE_LEAVES | G_TRAVERSE_NON_LEAVES
+	G_TRAVERSE_MASK      = G_TRAVERSE_ALL // 0x03
+	G_TRAVERSE_LEAFS     = G_TRAVERSE_LEAVES
+	G_TRAVERSE_NON_LEAFS = G_TRAVERSE_NON_LEAVES
 )
 
 type GTraverseType Enum
@@ -1785,19 +1785,19 @@ const (
 type GDBusConnectionFlags Enum
 
 const (
-	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT = 1 << iota
+	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT GDBusConnectionFlags = 1 << iota
 	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER
 	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_ALLOW_ANONYMOUS
 	G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION
 	G_DBUS_CONNECTION_FLAGS_DELAY_MESSAGE_PROCESSING
-	G_DBUS_CONNECTION_FLAGS_NONE = 0
+	G_DBUS_CONNECTION_FLAGS_NONE GDBusConnectionFlags = 0
 )
 
 type GDBusCapabilityFlags Enum
 
 const (
-	G_DBUS_CAPABILITY_FLAGS_UNIX_FD_PASSING = 1 << iota
-	G_DBUS_CAPABILITY_FLAGS_NONE            = 0
+	G_DBUS_CAPABILITY_FLAGS_UNIX_FD_PASSING GDBusCapabilityFlags = 1 << iota
+	G_DBUS_CAPABILITY_FLAGS_NONE                                 = 0
 )
 
 type GDBusCallFlags Enum
@@ -3469,12 +3469,12 @@ const (
 type GtkSignalRunType Enum
 
 const (
-	GTK_RUN_FIRST      = GtkSignalRunType(G_SIGNAL_RUN_FIRST)
-	GTK_RUN_LAST       = GtkSignalRunType(G_SIGNAL_RUN_LAST)
-	GTK_RUN_BOTH       = GtkSignalRunType(GTK_RUN_FIRST | GTK_RUN_LAST)
-	GTK_RUN_NO_RECURSE = GtkSignalRunType(G_SIGNAL_NO_RECURSE)
-	GTK_RUN_ACTION     = GtkSignalRunType(G_SIGNAL_ACTION)
-	GTK_RUN_NO_HOOKS   = GtkSignalRunType(G_SIGNAL_NO_HOOKS)
+	GTK_RUN_FIRST      GtkSignalRunType = GtkSignalRunType(G_SIGNAL_RUN_FIRST)
+	GTK_RUN_LAST                        = GtkSignalRunType(G_SIGNAL_RUN_LAST)
+	GTK_RUN_BOTH                        = GtkSignalRunType(GTK_RUN_FIRST | GTK_RUN_LAST)
+	GTK_RUN_NO_RECURSE                  = GtkSignalRunType(G_SIGNAL_NO_RECURSE)
+	GTK_RUN_ACTION                      = GtkSignalRunType(G_SIGNAL_ACTION)
+	GTK_RUN_NO_HOOKS                    = GtkSignalRunType(G_SIGNAL_NO_HOOKS)
 )
 
 type GtkScrollType Enum
@@ -3747,7 +3747,7 @@ const (
 type GtkArgFlags Enum
 
 const (
-	GTK_ARG_READABLE                   = GtkArgFlags(G_PARAM_READABLE)
+	GTK_ARG_READABLE       GtkArgFlags = GtkArgFlags(G_PARAM_READABLE)
 	GTK_ARG_WRITABLE                   = GtkArgFlags(G_PARAM_WRITABLE)
 	GTK_ARG_CONSTRUCT                  = GtkArgFlags(G_PARAM_CONSTRUCT)
 	GTK_ARG_CONSTRUCT_ONLY             = GtkArgFlags(G_PARAM_CONSTRUCT_ONLY)
@@ -3766,7 +3766,7 @@ const (
 type GtkRcTokenType Enum
 
 const (
-	GTK_RC_TOKEN_INVALID = GtkRcTokenType(G_TOKEN_LAST) + iota
+	GTK_RC_TOKEN_INVALID GtkRcTokenType = GtkRcTokenType(G_TOKEN_LAST) + iota
 	GTK_RC_TOKEN_INCLUDE
 	GTK_RC_TOKEN_NORMAL
 	GTK_RC_TOKEN_ACTIVE
@@ -4572,8 +4572,10 @@ const (
 	GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE
 )
 
+type GtkCListFlags Enum
+
 const (
-	GTK_CLIST_IN_DRAG = 1 << iota
+	GTK_CLIST_IN_DRAG GtkCListFlags = 1 << iota
 	GTK_CLIST_ROW_HEIGHT_SET
 	GTK_CLIST_SHOW_TITLES
 	_
@@ -4695,7 +4697,7 @@ const (
 type FT_Render_Mode Enum
 
 const (
-	FT_RENDER_MODE_NORMAL = iota
+	FT_RENDER_MODE_NORMAL FT_Render_Mode = iota
 	FT_RENDER_MODE_LIGHT
 	FT_RENDER_MODE_MONO
 	FT_RENDER_MODE_LCD
