@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package expat provides API definitions for accessing
+//libexpat-1.dll.
 package expat
 
 import (

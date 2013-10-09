@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package gio provides API definitions for accessing
+//libgio-2.0-0.dll.
 package gio
 
 import (

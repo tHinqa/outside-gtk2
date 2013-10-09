@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package pango provides API definitions for accessing
+//libpango-1.0-0.dll and libpangocairo-1.0-0.dll.
 package pango
 
 import (

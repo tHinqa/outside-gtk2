@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package png provides API definitions for accessing
+//libpng14-14.dll.
 package png
 
 import (

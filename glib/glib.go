@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package glib provides API definitions for accessing
+//libglib-2.0-0.dll and libgthread-2.0-0.dll.
 package glib
 
 import (

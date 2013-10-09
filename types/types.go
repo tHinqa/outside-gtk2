@@ -1,3 +1,7 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package types provides API structs, enums and types for Gtk+2.
 package types
 
 type (

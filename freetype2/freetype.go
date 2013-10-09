@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package freetype provides API definitions for accessing
+//freetype6.dll.
 package freetype
 
 import (

@@ -1,3 +1,8 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENSE file for permissions and restrictions.
+
+//Package atk provides API definitions for accessing
+//libatk-1.0-0.dll.
 package atk
 
 import (
