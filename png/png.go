@@ -7,7 +7,7 @@ package png
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside-gtk2/zlib"
 )
 
@@ -20,23 +20,23 @@ func init() {
 type (
 	Jmp_buf             [16]int
 	Png_alloc_size_t    Png_size_t
-	Png_byte            Unsigned_char
+	Png_byte            T.Unsigned_char
 	Png_bytep           *Png_byte
 	Png_bytepp          **Png_byte
-	Png_charp           *Char
-	Png_charpp          **Char
+	Png_charp           *T.Char
+	Png_charpp          **T.Char
 	Png_color_16p       *Png_color_16
 	Png_color_8p        *Png_color_8
 	Png_colorp          *Png_color
 	Png_const_charp     Png_charp
-	Png_doublep         *Double
-	Png_FILE_p          *FILE
+	Png_doublep         *T.Double
+	Png_FILE_p          *T.FILE
 	Png_fixed_point     Png_int_32
 	Png_infop           *Png_info
 	Png_infopp          **Png_info
 	Png_int_32          int // Anomally: Size?
 	Png_row_infop       *Png_row_infop
-	Png_size_t          Size_t
+	Png_size_t          T.Size_t
 	Png_sPLT_entryp     *Png_sPLT_entry
 	Png_sPLT_tp         *Png_sPLT_t
 	Png_sPLT_tpp        **Png_sPLT_t
@@ -45,13 +45,13 @@ type (
 	Png_structpp        **Png_struct
 	Png_textp           *Png_text
 	Png_timep           Png_time
-	Png_uint_16         Unsigned_short
+	Png_uint_16         T.Unsigned_short
 	Png_uint_16p        *Png_uint_16
 	Png_uint_16pp       **Png_uint_16
-	Png_uint_32         Unsigned_int // Anomally: Size?
+	Png_uint_32         T.Unsigned_int // Anomally: Size?
 	Png_unknown_chunkp  *Png_unknown_chunk
 	Png_unknown_chunkpp **Png_unknown_chunk
-	Png_voidp           *Void
+	Png_voidp           *T.Void
 
 	Png_longjmp_ptr func(Jmp_buf, int)
 
@@ -355,8 +355,8 @@ type (
 		Splt_palettes      Png_sPLT_tp
 		Splt_palettes_num  Png_uint_32
 		Scal_unit          Png_byte
-		Scal_pixel_width   Double
-		Scal_pixel_height  Double
+		Scal_pixel_width   T.Double
+		Scal_pixel_height  T.Double
 		Scal_s_width       Png_charp
 		Scal_s_height      Png_charp
 		Row_pointers       Png_bytepp
@@ -406,7 +406,7 @@ var (
 	Png_set_longjmp_fn func(
 		png_ptr Png_structp,
 		longjmp_fn Png_longjmp_ptr,
-		Jmp_buf_size Size_t) *Jmp_buf
+		Jmp_buf_size T.Size_t) *Jmp_buf
 
 	Png_reset_zstream func(
 		png_ptr Png_structp) int
@@ -476,11 +476,11 @@ var (
 
 	Png_convert_from_struct_tm func(
 		ptime Png_timep,
-		ttime *Tm)
+		ttime *T.Tm)
 
 	Png_convert_from_time_t func(
 		ptime Png_timep,
-		ttime Time_t)
+		ttime T.Time_t)
 
 	Png_set_expand func(
 		png_ptr Png_structp)
@@ -504,7 +504,7 @@ var (
 		png_ptr Png_structp,
 		error_action int,
 		red,
-		green Double)
+		green T.Double)
 
 	Png_set_rgb_to_gray_fixed func(
 		png_ptr Png_structp,
@@ -561,7 +561,7 @@ var (
 		background_color Png_color_16p,
 		background_gamma_code int,
 		need_expand int,
-		background_gamma Double)
+		background_gamma T.Double)
 
 	Png_set_strip_16 func(
 		png_ptr Png_structp)
@@ -576,8 +576,8 @@ var (
 
 	Png_set_gamma func(
 		png_ptr Png_structp,
-		screen_gamma Double,
-		default_file_gamma Double)
+		screen_gamma T.Double,
+		default_file_gamma T.Double)
 
 	Png_set_flush func(
 		png_ptr Png_structp,
@@ -922,7 +922,7 @@ var (
 		white_x, white_y,
 		red_x, red_y,
 		green_x, green_y,
-		blue_x, blue_y *Double) Png_uint_32
+		blue_x, blue_y *T.Double) Png_uint_32
 
 	Png_get_cHRM_fixed func(
 		png_ptr Png_structp,
@@ -942,7 +942,7 @@ var (
 		white_x, white_y,
 		red_x, red_y,
 		green_x, green_y,
-		blue_x, blue_y Double)
+		blue_x, blue_y T.Double)
 
 	Png_set_cHRM_fixed func(
 		png_ptr Png_structp,
@@ -959,7 +959,7 @@ var (
 	Png_get_gAMA func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		file_gamma *Double) Png_uint_32
+		file_gamma *T.Double) Png_uint_32
 
 	Png_get_gAMA_fixed func(
 		png_ptr Png_structp,
@@ -969,7 +969,7 @@ var (
 	Png_set_gAMA func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		file_gamma Double)
+		file_gamma T.Double)
 
 	Png_set_gAMA_fixed func(
 		png_ptr Png_structp,
@@ -1162,13 +1162,13 @@ var (
 		png_ptr Png_structp,
 		info_ptr Png_infop,
 		unit *int,
-		width, height *Double) Png_uint_32
+		width, height *T.Double) Png_uint_32
 
 	Png_set_sCAL func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
 		unit int,
-		width, height Double)
+		width, height T.Double)
 
 	Png_set_keep_unknown_chunks func(
 		png_ptr Png_structp,
@@ -1275,7 +1275,7 @@ var (
 
 	Png_save_uint_16 func(
 		buf Png_bytep,
-		i Unsigned_int)
+		i T.Unsigned_int)
 )
 
 var dll = "libpng14-14.dll"

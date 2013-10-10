@@ -2,7 +2,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -10,321 +10,321 @@ func init() {
 }
 
 var (
-	Pango_fc_decoder_get_type func() GType
+	Pango_fc_decoder_get_type func() T.GType
 
 	Pango_fc_decoder_get_charset func(
-		decoder *PangoFcDecoder,
-		fcfont *PangoFcFont) *FcCharSet
+		decoder *T.PangoFcDecoder,
+		fcfont *T.PangoFcFont) *T.FcCharSet
 
 	Pango_fc_decoder_get_glyph func(
-		decoder *PangoFcDecoder,
-		fcfont *PangoFcFont,
-		wc Guint32) PangoGlyph
+		decoder *T.PangoFcDecoder,
+		fcfont *T.PangoFcFont,
+		wc T.Guint32) T.PangoGlyph
 
 	Pango_fc_font_has_char func(
-		font *PangoFcFont,
-		wc Gunichar) Gboolean
+		font *T.PangoFcFont,
+		wc T.Gunichar) T.Gboolean
 
 	Pango_fc_font_get_glyph func(
-		font *PangoFcFont,
-		wc Gunichar) Guint
+		font *T.PangoFcFont,
+		wc T.Gunichar) T.Guint
 
 	Pango_fc_font_get_unknown_glyph func(
-		font *PangoFcFont,
-		wc Gunichar) PangoGlyph
+		font *T.PangoFcFont,
+		wc T.Gunichar) T.PangoGlyph
 
 	Pango_fc_font_kern_glyphs func(
-		font *PangoFcFont,
-		glyphs *PangoGlyphString)
+		font *T.PangoFcFont,
+		glyphs *T.PangoGlyphString)
 
-	Pango_fc_font_get_type func() GType
+	Pango_fc_font_get_type func() T.GType
 
 	Pango_fc_font_lock_face func(
-		font *PangoFcFont) FT_Face
+		font *T.PangoFcFont) T.FT_Face
 
 	Pango_fc_font_unlock_face func(
-		font *PangoFcFont)
+		font *T.PangoFcFont)
 
 	Pango_fc_fontset_key_get_language func(
-		key *PangoFcFontsetKey) *PangoLanguage
+		key *T.PangoFcFontsetKey) *T.PangoLanguage
 
 	Pango_fc_fontset_key_get_description func(
-		key *PangoFcFontsetKey) *PangoFontDescription
+		key *T.PangoFcFontsetKey) *T.PangoFontDescription
 
 	Pango_fc_fontset_key_get_matrix func(
-		key *PangoFcFontsetKey) *PangoMatrix
+		key *T.PangoFcFontsetKey) *T.PangoMatrix
 
 	Pango_fc_fontset_key_get_absolute_size func(
-		key *PangoFcFontsetKey) Double
+		key *T.PangoFcFontsetKey) T.Double
 
 	Pango_fc_fontset_key_get_resolution func(
-		key *PangoFcFontsetKey) Double
+		key *T.PangoFcFontsetKey) T.Double
 
 	Pango_fc_fontset_key_get_context_key func(
-		key *PangoFcFontsetKey) Gpointer
+		key *T.PangoFcFontsetKey) T.Gpointer
 
 	Pango_fc_font_key_get_pattern func(
-		key *PangoFcFontKey) *FcPattern
+		key *T.PangoFcFontKey) *T.FcPattern
 
 	Pango_fc_font_key_get_matrix func(
-		key *PangoFcFontKey) *PangoMatrix
+		key *T.PangoFcFontKey) *T.PangoMatrix
 
 	Pango_fc_font_key_get_context_key func(
-		key *PangoFcFontKey) Gpointer
+		key *T.PangoFcFontKey) T.Gpointer
 
 	Pango_fc_font_map_create_context func(
-		fcfontmap *PangoFcFontMap) *PangoContext
+		fcfontmap *T.PangoFcFontMap) *T.PangoContext
 
 	Pango_fc_font_map_shutdown func(
-		fcfontmap *PangoFcFontMap)
+		fcfontmap *T.PangoFcFontMap)
 
-	Pango_fc_font_map_get_type func() GType
+	Pango_fc_font_map_get_type func() T.GType
 
 	Pango_fc_font_map_cache_clear func(
-		fcfontmap *PangoFcFontMap)
+		fcfontmap *T.PangoFcFontMap)
 
 	Pango_fc_font_map_add_decoder_find_func func(
-		fcfontmap *PangoFcFontMap,
-		findfunc PangoFcDecoderFindFunc,
-		user_data Gpointer,
-		dnotify GDestroyNotify)
+		fcfontmap *T.PangoFcFontMap,
+		findfunc T.PangoFcDecoderFindFunc,
+		user_data T.Gpointer,
+		dnotify T.GDestroyNotify)
 
 	Pango_fc_font_map_find_decoder func(
-		fcfontmap *PangoFcFontMap,
-		pattern *FcPattern) *PangoFcDecoder
+		fcfontmap *T.PangoFcFontMap,
+		pattern *T.FcPattern) *T.PangoFcDecoder
 
 	Pango_fc_font_description_from_pattern func(
-		pattern *FcPattern,
-		include_size Gboolean) *PangoFontDescription
+		pattern *T.FcPattern,
+		include_size T.Gboolean) *T.PangoFontDescription
 
 	Pango_ft2_render func(
-		bitmap *FT_Bitmap,
-		font *PangoFont,
-		glyphs *PangoGlyphString,
-		x, y Gint)
+		bitmap *T.FT_Bitmap,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString,
+		x, y T.Gint)
 
 	Pango_ft2_render_transformed func(
-		bitmap *FT_Bitmap,
-		matrix *PangoMatrix,
-		font *PangoFont,
-		glyphs *PangoGlyphString,
+		bitmap *T.FT_Bitmap,
+		matrix *T.PangoMatrix,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString,
 		x, y int)
 
 	Pango_ft2_render_layout_line func(
-		bitmap *FT_Bitmap,
-		line *PangoLayoutLine,
+		bitmap *T.FT_Bitmap,
+		line *T.PangoLayoutLine,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout_line_subpixel func(
-		bitmap *FT_Bitmap,
-		line *PangoLayoutLine,
+		bitmap *T.FT_Bitmap,
+		line *T.PangoLayoutLine,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout func(
-		bitmap *FT_Bitmap,
-		layout *PangoLayout,
+		bitmap *T.FT_Bitmap,
+		layout *T.PangoLayout,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout_subpixel func(
-		bitmap *FT_Bitmap,
-		layout *PangoLayout,
+		bitmap *T.FT_Bitmap,
+		layout *T.PangoLayout,
 		x int,
 		y int)
 
-	Pango_ft2_font_map_get_type func() GType
+	Pango_ft2_font_map_get_type func() T.GType
 
-	Pango_ft2_font_map_new func() *PangoFontMap
+	Pango_ft2_font_map_new func() *T.PangoFontMap
 
 	Pango_ft2_font_map_set_resolution func(
-		fontmap *PangoFT2FontMap,
-		dpi_x, dpi_y Double)
+		fontmap *T.PangoFT2FontMap,
+		dpi_x, dpi_y T.Double)
 
 	Pango_ft2_font_map_set_default_substitute func(
-		fontmap *PangoFT2FontMap,
-		f PangoFT2SubstituteFunc,
-		data Gpointer,
-		notify GDestroyNotify)
+		fontmap *T.PangoFT2FontMap,
+		f T.PangoFT2SubstituteFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify)
 
 	Pango_ft2_font_map_substitute_changed func(
-		fontmap *PangoFT2FontMap)
+		fontmap *T.PangoFT2FontMap)
 
 	Pango_ft2_font_map_create_context func(
-		fontmap *PangoFT2FontMap) *PangoContext
+		fontmap *T.PangoFT2FontMap) *T.PangoContext
 
 	Pango_ft2_get_context func(
-		dpi_x, dpi_y Double) *PangoContext
+		dpi_x, dpi_y T.Double) *T.PangoContext
 
-	Pango_ft2_font_map_for_display func() *PangoFontMap
+	Pango_ft2_font_map_for_display func() *T.PangoFontMap
 
 	Pango_ft2_shutdown_display func()
 
 	Pango_ft2_get_unknown_glyph func(
-		font *PangoFont) PangoGlyph
+		font *T.PangoFont) T.PangoGlyph
 
 	Pango_ft2_font_get_kerning func(
-		font *PangoFont,
-		left PangoGlyph,
-		right PangoGlyph) int
+		font *T.PangoFont,
+		left T.PangoGlyph,
+		right T.PangoGlyph) int
 
 	Pango_ft2_font_get_face func(
-		font *PangoFont) FT_Face
+		font *T.PangoFont) T.FT_Face
 
 	Pango_ft2_font_get_coverage func(
-		font *PangoFont,
-		language *PangoLanguage) *PangoCoverage
+		font *T.PangoFont,
+		language *T.PangoLanguage) *T.PangoCoverage
 
 	Pango_ot_info_get func(
-		face FT_Face) *PangoOTInfo
+		face T.FT_Face) *T.PangoOTInfo
 
 	Pango_ot_info_find_script func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType,
-		script_tag PangoOTTag,
-		script_index *Guint) Gboolean
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType,
+		script_tag T.PangoOTTag,
+		script_index *T.Guint) T.Gboolean
 
 	Pango_ot_info_find_language func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType,
-		script_index Guint,
-		language_tag PangoOTTag,
-		language_index *Guint,
-		required_feature_index *Guint) Gboolean
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType,
+		script_index T.Guint,
+		language_tag T.PangoOTTag,
+		language_index *T.Guint,
+		required_feature_index *T.Guint) T.Gboolean
 
 	Pango_ot_info_find_feature func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType,
-		feature_tag PangoOTTag,
-		script_index Guint,
-		language_index Guint,
-		feature_index *Guint) Gboolean
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType,
+		feature_tag T.PangoOTTag,
+		script_index T.Guint,
+		language_index T.Guint,
+		feature_index *T.Guint) T.Gboolean
 
 	Pango_ot_info_list_scripts func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType) *PangoOTTag
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType) *T.PangoOTTag
 
 	Pango_ot_info_list_languages func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType,
-		script_index Guint,
-		language_tag PangoOTTag) *PangoOTTag
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType,
+		script_index T.Guint,
+		language_tag T.PangoOTTag) *T.PangoOTTag
 
 	Pango_ot_info_list_features func(
-		info *PangoOTInfo,
-		table_type PangoOTTableType,
-		tag PangoOTTag,
-		script_index Guint,
-		language_index Guint) *PangoOTTag
+		info *T.PangoOTInfo,
+		table_type T.PangoOTTableType,
+		tag T.PangoOTTag,
+		script_index T.Guint,
+		language_index T.Guint) *T.PangoOTTag
 
 	Pango_ot_buffer_new func(
-		font *PangoFcFont) *PangoOTBuffer
+		font *T.PangoFcFont) *T.PangoOTBuffer
 
 	Pango_ot_buffer_destroy func(
-		buffer *PangoOTBuffer)
+		buffer *T.PangoOTBuffer)
 
 	Pango_ot_buffer_clear func(
-		buffer *PangoOTBuffer)
+		buffer *T.PangoOTBuffer)
 
 	Pango_ot_buffer_set_rtl func(
-		buffer *PangoOTBuffer,
-		rtl Gboolean)
+		buffer *T.PangoOTBuffer,
+		rtl T.Gboolean)
 
 	Pango_ot_buffer_add_glyph func(
-		buffer *PangoOTBuffer,
-		glyph Guint,
-		properties Guint,
-		cluster Guint)
+		buffer *T.PangoOTBuffer,
+		glyph T.Guint,
+		properties T.Guint,
+		cluster T.Guint)
 
 	Pango_ot_buffer_get_glyphs func(
-		buffer *PangoOTBuffer,
-		glyphs **PangoOTGlyph,
+		buffer *T.PangoOTBuffer,
+		glyphs **T.PangoOTGlyph,
 		n_glyphs *int)
 
 	Pango_ot_buffer_output func(
-		buffer *PangoOTBuffer,
-		glyphs *PangoGlyphString)
+		buffer *T.PangoOTBuffer,
+		glyphs *T.PangoGlyphString)
 
 	Pango_ot_buffer_set_zero_width_marks func(
-		buffer *PangoOTBuffer,
-		zero_width_marks Gboolean)
+		buffer *T.PangoOTBuffer,
+		zero_width_marks T.Gboolean)
 
 	Pango_ot_ruleset_get_for_description func(
-		info *PangoOTInfo,
-		desc *PangoOTRulesetDescription) *PangoOTRuleset
+		info *T.PangoOTInfo,
+		desc *T.PangoOTRulesetDescription) *T.PangoOTRuleset
 
 	Pango_ot_ruleset_new func(
-		info *PangoOTInfo) *PangoOTRuleset
+		info *T.PangoOTInfo) *T.PangoOTRuleset
 
 	Pango_ot_ruleset_new_for func(
-		info *PangoOTInfo,
-		script PangoScript,
-		language *PangoLanguage) *PangoOTRuleset
+		info *T.PangoOTInfo,
+		script T.PangoScript,
+		language *T.PangoLanguage) *T.PangoOTRuleset
 
 	Pango_ot_ruleset_new_from_description func(
-		info *PangoOTInfo,
-		desc *PangoOTRulesetDescription) *PangoOTRuleset
+		info *T.PangoOTInfo,
+		desc *T.PangoOTRulesetDescription) *T.PangoOTRuleset
 
 	Pango_ot_ruleset_add_feature func(
-		ruleset *PangoOTRuleset,
-		table_type PangoOTTableType,
-		feature_index Guint,
-		property_bit Gulong)
+		ruleset *T.PangoOTRuleset,
+		table_type T.PangoOTTableType,
+		feature_index T.Guint,
+		property_bit T.Gulong)
 
 	Pango_ot_ruleset_maybe_add_feature func(
-		ruleset *PangoOTRuleset,
-		table_type PangoOTTableType,
-		feature_tag PangoOTTag,
-		property_bit Gulong) Gboolean
+		ruleset *T.PangoOTRuleset,
+		table_type T.PangoOTTableType,
+		feature_tag T.PangoOTTag,
+		property_bit T.Gulong) T.Gboolean
 
 	Pango_ot_ruleset_maybe_add_features func(
-		ruleset *PangoOTRuleset,
-		table_type PangoOTTableType,
-		features *PangoOTFeatureMap,
-		n_features Guint) Guint
+		ruleset *T.PangoOTRuleset,
+		table_type T.PangoOTTableType,
+		features *T.PangoOTFeatureMap,
+		n_features T.Guint) T.Guint
 
 	Pango_ot_ruleset_get_feature_count func(
-		ruleset *PangoOTRuleset,
-		n_gsub_features *Guint,
-		n_gpos_features *Guint) Guint
+		ruleset *T.PangoOTRuleset,
+		n_gsub_features *T.Guint,
+		n_gpos_features *T.Guint) T.Guint
 
 	Pango_ot_ruleset_substitute func(
-		ruleset *PangoOTRuleset,
-		buffer *PangoOTBuffer)
+		ruleset *T.PangoOTRuleset,
+		buffer *T.PangoOTBuffer)
 
 	Pango_ot_ruleset_position func(
-		ruleset *PangoOTRuleset,
-		buffer *PangoOTBuffer)
+		ruleset *T.PangoOTRuleset,
+		buffer *T.PangoOTBuffer)
 
 	Pango_ot_tag_to_script func(
-		script_tag PangoOTTag) PangoScript
+		script_tag T.PangoOTTag) T.PangoScript
 
 	Pango_ot_tag_from_script func(
-		script PangoScript) PangoOTTag
+		script T.PangoScript) T.PangoOTTag
 
 	Pango_ot_tag_to_language func(
-		language_tag PangoOTTag) *PangoLanguage
+		language_tag T.PangoOTTag) *T.PangoLanguage
 
 	Pango_ot_tag_from_language func(
-		language *PangoLanguage) PangoOTTag
+		language *T.PangoLanguage) T.PangoOTTag
 
 	Pango_ot_ruleset_description_hash func(
-		desc *PangoOTRulesetDescription) Guint
+		desc *T.PangoOTRulesetDescription) T.Guint
 
 	Pango_ot_ruleset_description_equal func(
-		desc1 *PangoOTRulesetDescription,
-		desc2 *PangoOTRulesetDescription) Gboolean
+		desc1 *T.PangoOTRulesetDescription,
+		desc2 *T.PangoOTRulesetDescription) T.Gboolean
 
 	Pango_ot_ruleset_description_copy func(
-		desc *PangoOTRulesetDescription) *PangoOTRulesetDescription
+		desc *T.PangoOTRulesetDescription) *T.PangoOTRulesetDescription
 
 	Pango_ot_ruleset_description_free func(
-		desc *PangoOTRulesetDescription)
+		desc *T.PangoOTRulesetDescription)
 
-	Pango_ot_info_get_type func() GType
+	Pango_ot_info_get_type func() T.GType
 
-	Pango_ot_ruleset_get_type func() GType
+	Pango_ot_ruleset_get_type func() T.GType
 )
 
 var dllFt = "libpangoft2-1.0-0.dll"

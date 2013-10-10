@@ -7,14 +7,14 @@ package gtksourceview
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
 	outside.AddDllApis(dll, false, apiList)
 }
 
-type GtkSourceCompletionActivation Enum
+type GtkSourceCompletionActivation T.Enum
 
 const (
 	GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE GtkSourceCompletionActivation = 1 << iota
@@ -22,7 +22,7 @@ const (
 	GTK_SOURCE_COMPLETION_ACTIVATION_NONE GtkSourceCompletionActivation = 0
 )
 
-type GtkSourceSmartHomeEndType Enum
+type GtkSourceSmartHomeEndType T.Enum
 
 const (
 	GTK_SOURCE_SMART_HOME_END_DISABLED GtkSourceSmartHomeEndType = iota
@@ -31,7 +31,7 @@ const (
 	GTK_SOURCE_SMART_HOME_END_ALWAYS
 )
 
-type GtkSourceDrawSpacesFlags Enum
+type GtkSourceDrawSpacesFlags T.Enum
 
 const (
 	GTK_SOURCE_DRAW_SPACES_SPACE GtkSourceDrawSpacesFlags = 1 << iota
@@ -50,7 +50,7 @@ const (
 		GTK_SOURCE_DRAW_SPACES_TRAILING
 )
 
-type GtkSourceSearchFlags Enum
+type GtkSourceSearchFlags T.Enum
 
 const (
 	GTK_SOURCE_SEARCH_VISIBLE_ONLY GtkSourceSearchFlags = 1 << iota
@@ -80,93 +80,93 @@ type (
 
 	GtkSourceGutterDataFunc func(
 		gutter *GtkSourceGutter,
-		cell *GtkCellRenderer,
-		line_number Gint,
-		current_line Gboolean,
-		data Gpointer)
+		cell *T.GtkCellRenderer,
+		line_number T.Gint,
+		current_line T.Gboolean,
+		data T.Gpointer)
 
 	GtkSourceGutterSizeFunc func(
 		gutter *GtkSourceGutter,
-		cell *GtkCellRenderer,
-		data Gpointer)
+		cell *T.GtkCellRenderer,
+		data T.Gpointer)
 
 	GtkSourceViewMarkTooltipFunc func(
 		mark *GtkSourceMark,
-		user_data Gpointer) string
+		user_data T.Gpointer) string
 
 	GtkSourceLanguage struct {
-		Parent_instance GObject
+		Parent_instance T.GObject
 		Priv            *GtkSourceLanguagePrivate
 	}
 
 	GtkSourceMark struct {
-		Parent_instance GtkTextMark
+		Parent_instance T.GtkTextMark
 		Priv            *GtkSourceMarkPrivate
 	}
 
 	GtkSourceStyleScheme struct {
-		Base GObject
+		Base T.GObject
 		Priv *GtkSourceStyleSchemePrivate
 	}
 
 	GtkSourceBuffer struct {
-		Parent_instance GtkTextBuffer
+		Parent_instance T.GtkTextBuffer
 		Priv            *GtkSourceBufferPrivate
 	}
 
 	GtkSourceCompletionInfo struct {
-		Parent GtkWindow
+		Parent T.GtkWindow
 		Priv   *GtkSourceCompletionInfoPrivate
 	}
 
 	GtkSourceCompletionContext struct {
-		Parent GInitiallyUnowned
+		Parent T.GInitiallyUnowned
 		Priv   *GtkSourceCompletionContextPrivate
 	}
 
 	GtkSourceCompletion struct {
-		Parent GtkObject
+		Parent T.GtkObject
 		Priv   *GtkSourceCompletionPrivate
 	}
 
 	GtkSourceGutter struct {
-		Parent GObject
+		Parent T.GObject
 		Priv   *GtkSourceGutterPrivate
 	}
 
 	GtkSourceView struct {
-		Parent GtkTextView
+		Parent T.GtkTextView
 		Priv   *GtkSourceViewPrivate
 	}
 
 	GtkSourceCompletionItem struct {
-		Parent GObject
+		Parent T.GObject
 		Priv   *GtkSourceCompletionItemPrivate
 	}
 
 	GtkSourceCompletionWords struct {
-		Parent GObject
+		Parent T.GObject
 		Priv   *GtkSourceCompletionWordsPrivate
 	}
 
 	GtkSourceLanguageManager struct {
-		Parent_instance GObject
+		Parent_instance T.GObject
 		Priv            *GtkSourceLanguageManagerPrivate
 	}
 
 	GtkSourcePrintCompositor struct {
-		Parent_instance GObject
+		Parent_instance T.GObject
 		Priv            *GtkSourcePrintCompositorPrivate
 	}
 
 	GtkSourceStyleSchemeManager struct {
-		Parent GObject
+		Parent T.GObject
 		Priv   *GtkSourceStyleSchemeManagerPrivate
 	}
 )
 
 var (
-	Gtk_source_language_get_type func() GType
+	Gtk_source_language_get_type func() T.GType
 
 	Gtk_source_language_get_id func(
 		language *GtkSourceLanguage) string
@@ -178,26 +178,26 @@ var (
 		language *GtkSourceLanguage) string
 
 	Gtk_source_language_get_hidden func(
-		language *GtkSourceLanguage) Gboolean
+		language *GtkSourceLanguage) T.Gboolean
 
 	Gtk_source_language_get_metadata func(
 		language *GtkSourceLanguage,
 		name string) string
 
 	Gtk_source_language_get_mime_types func(
-		language *GtkSourceLanguage) **Gchar
+		language *GtkSourceLanguage) **T.Gchar
 
 	Gtk_source_language_get_globs func(
-		language *GtkSourceLanguage) **Gchar
+		language *GtkSourceLanguage) **T.Gchar
 
 	Gtk_source_language_get_style_ids func(
-		language *GtkSourceLanguage) **Gchar
+		language *GtkSourceLanguage) **T.Gchar
 
 	Gtk_source_language_get_style_name func(
 		language *GtkSourceLanguage,
 		style_id string) string
 
-	Gtk_source_mark_get_type func() GType
+	Gtk_source_mark_get_type func() T.GType
 
 	Gtk_source_mark_new func(
 		name string,
@@ -214,12 +214,12 @@ var (
 		mark *GtkSourceMark,
 		category string) *GtkSourceMark
 
-	Gtk_source_style_get_type func() GType
+	Gtk_source_style_get_type func() T.GType
 
 	Gtk_source_style_copy func(
 		style *GtkSourceStyle) *GtkSourceStyle
 
-	Gtk_source_style_scheme_get_type func() GType
+	Gtk_source_style_scheme_get_type func() T.GType
 
 	Gtk_source_style_scheme_get_id func(
 		scheme *GtkSourceStyleScheme) string
@@ -231,7 +231,7 @@ var (
 		scheme *GtkSourceStyleScheme) string
 
 	Gtk_source_style_scheme_get_authors func(
-		scheme *GtkSourceStyleScheme) **Gchar
+		scheme *GtkSourceStyleScheme) **T.Gchar
 
 	Gtk_source_style_scheme_get_filename func(
 		scheme *GtkSourceStyleScheme) string
@@ -240,13 +240,13 @@ var (
 		scheme *GtkSourceStyleScheme,
 		style_id string) *GtkSourceStyle
 
-	Gtk_source_undo_manager_get_type func() GType
+	Gtk_source_undo_manager_get_type func() T.GType
 
 	Gtk_source_undo_manager_can_undo func(
-		manager *GtkSourceUndoManager) Gboolean
+		manager *GtkSourceUndoManager) T.Gboolean
 
 	Gtk_source_undo_manager_can_redo func(
-		manager *GtkSourceUndoManager) Gboolean
+		manager *GtkSourceUndoManager) T.Gboolean
 
 	Gtk_source_undo_manager_undo func(
 		manager *GtkSourceUndoManager)
@@ -266,34 +266,34 @@ var (
 	Gtk_source_undo_manager_can_redo_changed func(
 		manager *GtkSourceUndoManager)
 
-	Gtk_source_buffer_get_type func() GType
+	Gtk_source_buffer_get_type func() T.GType
 
 	Gtk_source_buffer_new func(
-		table *GtkTextTagTable) *GtkSourceBuffer
+		table *T.GtkTextTagTable) *GtkSourceBuffer
 
 	Gtk_source_buffer_new_with_language func(
 		language *GtkSourceLanguage) *GtkSourceBuffer
 
 	Gtk_source_buffer_get_highlight_syntax func(
-		buffer *GtkSourceBuffer) Gboolean
+		buffer *GtkSourceBuffer) T.Gboolean
 
 	Gtk_source_buffer_set_highlight_syntax func(
 		buffer *GtkSourceBuffer,
-		highlight Gboolean)
+		highlight T.Gboolean)
 
 	Gtk_source_buffer_get_highlight_matching_brackets func(
-		buffer *GtkSourceBuffer) Gboolean
+		buffer *GtkSourceBuffer) T.Gboolean
 
 	Gtk_source_buffer_set_highlight_matching_brackets func(
 		buffer *GtkSourceBuffer,
-		highlight Gboolean)
+		highlight T.Gboolean)
 
 	Gtk_source_buffer_get_max_undo_levels func(
-		buffer *GtkSourceBuffer) Gint
+		buffer *GtkSourceBuffer) T.Gint
 
 	Gtk_source_buffer_set_max_undo_levels func(
 		buffer *GtkSourceBuffer,
-		max_undo_levels Gint)
+		max_undo_levels T.Gint)
 
 	Gtk_source_buffer_get_language func(
 		buffer *GtkSourceBuffer) *GtkSourceLanguage
@@ -303,10 +303,10 @@ var (
 		language *GtkSourceLanguage)
 
 	Gtk_source_buffer_can_undo func(
-		buffer *GtkSourceBuffer) Gboolean
+		buffer *GtkSourceBuffer) T.Gboolean
 
 	Gtk_source_buffer_can_redo func(
-		buffer *GtkSourceBuffer) Gboolean
+		buffer *GtkSourceBuffer) T.Gboolean
 
 	Gtk_source_buffer_get_style_scheme func(
 		buffer *GtkSourceBuffer) *GtkSourceStyleScheme
@@ -317,8 +317,7 @@ var (
 
 	Gtk_source_buffer_ensure_highlight func(
 		buffer *GtkSourceBuffer,
-		start *GtkTextIter,
-		end *GtkTextIter)
+		start, end *T.GtkTextIter)
 
 	Gtk_source_buffer_undo func(
 		buffer *GtkSourceBuffer)
@@ -334,54 +333,53 @@ var (
 
 	Gtk_source_buffer_create_source_mark func(
 		buffer *GtkSourceBuffer,
-		name string,
-		category string,
-		where *GtkTextIter) *GtkSourceMark
+		name, category string,
+		where *T.GtkTextIter) *GtkSourceMark
 
 	Gtk_source_buffer_forward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		category string) Gboolean
+		iter *T.GtkTextIter,
+		category string) T.Gboolean
 
 	Gtk_source_buffer_backward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		category string) Gboolean
+		iter *T.GtkTextIter,
+		category string) T.Gboolean
 
 	Gtk_source_buffer_get_source_marks_at_iter func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		category string) *GSList
+		iter *T.GtkTextIter,
+		category string) *T.GSList
 
 	Gtk_source_buffer_get_source_marks_at_line func(
 		buffer *GtkSourceBuffer,
-		line Gint,
-		category string) *GSList
+		line T.Gint,
+		category string) *T.GSList
 
 	Gtk_source_buffer_remove_source_marks func(
 		buffer *GtkSourceBuffer,
-		start *GtkTextIter,
-		end *GtkTextIter,
+		start *T.GtkTextIter,
+		end *T.GtkTextIter,
 		category string)
 
 	Gtk_source_buffer_iter_has_context_class func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		context_class string) Gboolean
+		iter *T.GtkTextIter,
+		context_class string) T.Gboolean
 
 	Gtk_source_buffer_get_context_classes_at_iter func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter) **Gchar
+		iter *T.GtkTextIter) **T.Gchar
 
 	Gtk_source_buffer_iter_forward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		context_class string) Gboolean
+		iter *T.GtkTextIter,
+		context_class string) T.Gboolean
 
 	Gtk_source_buffer_iter_backward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
-		iter *GtkTextIter,
-		context_class string) Gboolean
+		iter *T.GtkTextIter,
+		context_class string) T.Gboolean
 
 	Gtk_source_buffer_get_undo_manager func(
 		buffer *GtkSourceBuffer) *GtkSourceUndoManager
@@ -390,33 +388,33 @@ var (
 		buffer *GtkSourceBuffer,
 		manager *GtkSourceUndoManager)
 
-	Gtk_source_completion_info_get_type func() GType
+	Gtk_source_completion_info_get_type func() T.GType
 
 	Gtk_source_completion_info_new func() *GtkSourceCompletionInfo
 
 	Gtk_source_completion_info_move_to_iter func(
 		info *GtkSourceCompletionInfo,
-		view *GtkTextView,
-		iter *GtkTextIter)
+		view *T.GtkTextView,
+		iter *T.GtkTextIter)
 
 	Gtk_source_completion_info_set_sizing func(
 		info *GtkSourceCompletionInfo,
-		width Gint,
-		height Gint,
-		shrink_width Gboolean,
-		shrink_height Gboolean)
+		width T.Gint,
+		height T.Gint,
+		shrink_width T.Gboolean,
+		shrink_height T.Gboolean)
 
 	Gtk_source_completion_info_set_widget func(
 		info *GtkSourceCompletionInfo,
-		widget *GtkWidget)
+		widget *T.GtkWidget)
 
 	Gtk_source_completion_info_get_widget func(
-		info *GtkSourceCompletionInfo) *GtkWidget
+		info *GtkSourceCompletionInfo) *T.GtkWidget
 
 	Gtk_source_completion_info_process_resize func(
 		info *GtkSourceCompletionInfo)
 
-	Gtk_source_completion_proposal_get_type func() GType
+	Gtk_source_completion_proposal_get_type func() T.GType
 
 	Gtk_source_completion_proposal_get_label func(
 		proposal *GtkSourceCompletionProposal) string
@@ -428,7 +426,7 @@ var (
 		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_get_icon func(
-		proposal *GtkSourceCompletionProposal) *GdkPixbuf
+		proposal *GtkSourceCompletionProposal) *T.GdkPixbuf
 
 	Gtk_source_completion_proposal_get_info func(
 		proposal *GtkSourceCompletionProposal) string
@@ -437,34 +435,34 @@ var (
 		proposal *GtkSourceCompletionProposal)
 
 	Gtk_source_completion_proposal_hash func(
-		proposal *GtkSourceCompletionProposal) Guint
+		proposal *GtkSourceCompletionProposal) T.Guint
 
 	Gtk_source_completion_proposal_equal func(
 		proposal *GtkSourceCompletionProposal,
-		other *GtkSourceCompletionProposal) Gboolean
+		other *GtkSourceCompletionProposal) T.Gboolean
 
-	Gtk_source_completion_context_get_type func() GType
+	Gtk_source_completion_context_get_type func() T.GType
 
 	Gtk_source_completion_context_add_proposals func(
 		context *GtkSourceCompletionContext,
 		provider *GtkSourceCompletionProvider,
-		proposals *GList,
-		finished Gboolean)
+		proposals *T.GList,
+		finished T.Gboolean)
 
 	Gtk_source_completion_context_get_iter func(
 		context *GtkSourceCompletionContext,
-		iter *GtkTextIter)
+		iter *T.GtkTextIter)
 
 	Gtk_source_completion_context_get_activation func(
 		context *GtkSourceCompletionContext) GtkSourceCompletionActivation
 
-	Gtk_source_completion_provider_get_type func() GType
+	Gtk_source_completion_provider_get_type func() T.GType
 
 	Gtk_source_completion_provider_get_name func(
 		provider *GtkSourceCompletionProvider) string
 
 	Gtk_source_completion_provider_get_icon func(
-		provider *GtkSourceCompletionProvider) *GdkPixbuf
+		provider *GtkSourceCompletionProvider) *T.GdkPixbuf
 
 	Gtk_source_completion_provider_populate func(
 		provider *GtkSourceCompletionProvider,
@@ -475,11 +473,11 @@ var (
 
 	Gtk_source_completion_provider_match func(
 		provider *GtkSourceCompletionProvider,
-		context *GtkSourceCompletionContext) Gboolean
+		context *GtkSourceCompletionContext) T.Gboolean
 
 	Gtk_source_completion_provider_get_info_widget func(
 		provider *GtkSourceCompletionProvider,
-		proposal *GtkSourceCompletionProposal) *GtkWidget
+		proposal *GtkSourceCompletionProposal) *T.GtkWidget
 
 	Gtk_source_completion_provider_update_info func(
 		provider *GtkSourceCompletionProvider,
@@ -490,40 +488,40 @@ var (
 		provider *GtkSourceCompletionProvider,
 		context *GtkSourceCompletionContext,
 		proposal *GtkSourceCompletionProposal,
-		iter *GtkTextIter) Gboolean
+		iter *T.GtkTextIter) T.Gboolean
 
 	Gtk_source_completion_provider_activate_proposal func(
 		provider *GtkSourceCompletionProvider,
 		proposal *GtkSourceCompletionProposal,
-		iter *GtkTextIter) Gboolean
+		iter *T.GtkTextIter) T.Gboolean
 
 	Gtk_source_completion_provider_get_interactive_delay func(
-		provider *GtkSourceCompletionProvider) Gint
+		provider *GtkSourceCompletionProvider) T.Gint
 
 	Gtk_source_completion_provider_get_priority func(
-		provider *GtkSourceCompletionProvider) Gint
+		provider *GtkSourceCompletionProvider) T.Gint
 
-	Gtk_source_completion_get_type func() GType
+	Gtk_source_completion_get_type func() T.GType
 
-	Gtk_source_completion_error_quark func() GQuark
+	Gtk_source_completion_error_quark func() T.GQuark
 
 	Gtk_source_completion_add_provider func(
 		completion *GtkSourceCompletion,
 		provider *GtkSourceCompletionProvider,
-		error **GError) Gboolean
+		error **T.GError) T.Gboolean
 
 	Gtk_source_completion_remove_provider func(
 		completion *GtkSourceCompletion,
 		provider *GtkSourceCompletionProvider,
-		error **GError) Gboolean
+		error **T.GError) T.Gboolean
 
 	Gtk_source_completion_get_providers func(
-		completion *GtkSourceCompletion) *GList
+		completion *GtkSourceCompletion) *T.GList
 
 	Gtk_source_completion_show func(
 		completion *GtkSourceCompletion,
-		providers *GList,
-		context *GtkSourceCompletionContext) Gboolean
+		providers *T.GList,
+		context *GtkSourceCompletionContext) T.Gboolean
 
 	Gtk_source_completion_hide func(
 		completion *GtkSourceCompletion)
@@ -536,11 +534,11 @@ var (
 
 	Gtk_source_completion_create_context func(
 		completion *GtkSourceCompletion,
-		position *GtkTextIter) *GtkSourceCompletionContext
+		position *T.GtkTextIter) *GtkSourceCompletionContext
 
 	Gtk_source_completion_move_window func(
 		completion *GtkSourceCompletion,
-		iter *GtkTextIter)
+		iter *T.GtkTextIter)
 
 	Gtk_source_completion_block_interactive func(
 		completion *GtkSourceCompletion)
@@ -548,128 +546,128 @@ var (
 	Gtk_source_completion_unblock_interactive func(
 		completion *GtkSourceCompletion)
 
-	Gtk_source_gutter_get_type func() GType
+	Gtk_source_gutter_get_type func() T.GType
 
 	Gtk_source_gutter_get_window func(
-		gutter *GtkSourceGutter) *GdkWindow
+		gutter *GtkSourceGutter) *T.GdkWindow
 
 	Gtk_source_gutter_insert func(
 		gutter *GtkSourceGutter,
-		renderer *GtkCellRenderer,
-		position Gint)
+		renderer *T.GtkCellRenderer,
+		position T.Gint)
 
 	Gtk_source_gutter_reorder func(
 		gutter *GtkSourceGutter,
-		renderer *GtkCellRenderer,
-		position Gint)
+		renderer *T.GtkCellRenderer,
+		position T.Gint)
 
 	Gtk_source_gutter_remove func(
 		gutter *GtkSourceGutter,
-		renderer *GtkCellRenderer)
+		renderer *T.GtkCellRenderer)
 
 	Gtk_source_gutter_set_cell_data_func func(
 		gutter *GtkSourceGutter,
-		renderer *GtkCellRenderer,
+		renderer *T.GtkCellRenderer,
 		f GtkSourceGutterDataFunc,
-		func_data Gpointer,
-		destroy GDestroyNotify)
+		func_data T.Gpointer,
+		destroy T.GDestroyNotify)
 
 	Gtk_source_gutter_set_cell_size_func func(
 		gutter *GtkSourceGutter,
-		renderer *GtkCellRenderer,
+		renderer *T.GtkCellRenderer,
 		f GtkSourceGutterSizeFunc,
-		func_data Gpointer,
-		destroy GDestroyNotify)
+		func_data T.Gpointer,
+		destroy T.GDestroyNotify)
 
 	Gtk_source_gutter_queue_draw func(
 		gutter *GtkSourceGutter)
 
-	Gtk_source_view_get_type func() GType
+	Gtk_source_view_get_type func() T.GType
 
-	Gtk_source_view_new func() *GtkWidget
+	Gtk_source_view_new func() *T.GtkWidget
 
 	Gtk_source_view_new_with_buffer func(
-		buffer *GtkSourceBuffer) *GtkWidget
+		buffer *GtkSourceBuffer) *T.GtkWidget
 
 	Gtk_source_view_set_show_line_numbers func(
 		view *GtkSourceView,
-		show Gboolean)
+		show T.Gboolean)
 
 	Gtk_source_view_get_show_line_numbers func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_tab_width func(
 		view *GtkSourceView,
-		width Guint)
+		width T.Guint)
 
 	Gtk_source_view_get_tab_width func(
-		view *GtkSourceView) Guint
+		view *GtkSourceView) T.Guint
 
 	Gtk_source_view_set_indent_width func(
 		view *GtkSourceView,
-		width Gint)
+		width T.Gint)
 
 	Gtk_source_view_get_indent_width func(
-		view *GtkSourceView) Gint
+		view *GtkSourceView) T.Gint
 
 	Gtk_source_view_set_auto_indent func(
 		view *GtkSourceView,
-		enable Gboolean)
+		enable T.Gboolean)
 
 	Gtk_source_view_get_auto_indent func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_insert_spaces_instead_of_tabs func(
 		view *GtkSourceView,
-		enable Gboolean)
+		enable T.Gboolean)
 
 	Gtk_source_view_get_insert_spaces_instead_of_tabs func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_indent_on_tab func(
 		view *GtkSourceView,
-		enable Gboolean)
+		enable T.Gboolean)
 
 	Gtk_source_view_get_indent_on_tab func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_highlight_current_line func(
 		view *GtkSourceView,
-		show Gboolean)
+		show T.Gboolean)
 
 	Gtk_source_view_get_highlight_current_line func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_show_right_margin func(
 		view *GtkSourceView,
-		show Gboolean)
+		show T.Gboolean)
 
 	Gtk_source_view_get_show_right_margin func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_right_margin_position func(
 		view *GtkSourceView,
-		pos Guint)
+		pos T.Guint)
 
 	Gtk_source_view_get_right_margin_position func(
-		view *GtkSourceView) Guint
+		view *GtkSourceView) T.Guint
 
 	Gtk_source_view_set_show_line_marks func(
 		view *GtkSourceView,
-		show Gboolean)
+		show T.Gboolean)
 
 	Gtk_source_view_get_show_line_marks func(
-		view *GtkSourceView) Gboolean
+		view *GtkSourceView) T.Gboolean
 
 	Gtk_source_view_set_mark_category_pixbuf func(
 		view *GtkSourceView,
 		category string,
-		pixbuf *GdkPixbuf)
+		pixbuf *T.GdkPixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_pixbuf func(
 		view *GtkSourceView,
 		category string,
-		pixbuf *GdkPixbuf)
+		pixbuf *T.GdkPixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_stock func(
 		view *GtkSourceView,
@@ -683,40 +681,40 @@ var (
 
 	Gtk_source_view_get_mark_category_pixbuf func(
 		view *GtkSourceView,
-		category string) *GdkPixbuf
+		category string) *T.GdkPixbuf
 
 	Gtk_source_view_set_mark_category_background func(
 		view *GtkSourceView,
 		category string,
-		color *GdkColor)
+		color *T.GdkColor)
 
 	Gtk_source_view_get_mark_category_background func(
 		view *GtkSourceView,
 		category string,
-		dest *GdkColor) Gboolean
+		dest *T.GdkColor) T.Gboolean
 
 	Gtk_source_view_set_mark_category_tooltip_func func(
 		view *GtkSourceView,
 		category string,
 		f GtkSourceViewMarkTooltipFunc,
-		user_data Gpointer,
-		user_data_notify GDestroyNotify)
+		user_data T.Gpointer,
+		user_data_notify T.GDestroyNotify)
 
 	Gtk_source_view_set_mark_category_tooltip_markup_func func(
 		view *GtkSourceView,
 		category string,
 		markup_func GtkSourceViewMarkTooltipFunc,
-		user_data Gpointer,
-		user_data_notify GDestroyNotify)
+		user_data T.Gpointer,
+		user_data_notify T.GDestroyNotify)
 
 	Gtk_source_view_set_mark_category_priority func(
 		view *GtkSourceView,
 		category string,
-		priority Gint)
+		priority T.Gint)
 
 	Gtk_source_view_get_mark_category_priority func(
 		view *GtkSourceView,
-		category string) Gint
+		category string) T.Gint
 
 	Gtk_source_view_set_smart_home_end func(
 		view *GtkSourceView,
@@ -737,20 +735,20 @@ var (
 
 	Gtk_source_view_get_gutter func(
 		view *GtkSourceView,
-		window_type GtkTextWindowType) *GtkSourceGutter
+		window_type T.GtkTextWindowType) *GtkSourceGutter
 
-	Gtk_source_completion_item_get_type func() GType
+	Gtk_source_completion_item_get_type func() T.GType
 
 	Gtk_source_completion_item_new func(
 		label string,
 		text string,
-		icon *GdkPixbuf,
+		icon *T.GdkPixbuf,
 		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_with_markup func(
 		markup string,
 		text string,
-		icon *GdkPixbuf,
+		icon *T.GdkPixbuf,
 		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_from_stock func(
@@ -759,63 +757,63 @@ var (
 		stock string,
 		info string) *GtkSourceCompletionItem
 
-	Gtk_source_search_flags_get_type func() GType
+	Gtk_source_search_flags_get_type func() T.GType
 
-	Gtk_source_view_gutter_position_get_type func() GType
+	Gtk_source_view_gutter_position_get_type func() T.GType
 
-	Gtk_source_smart_home_end_type_get_type func() GType
+	Gtk_source_smart_home_end_type_get_type func() T.GType
 
-	Gtk_source_draw_spaces_flags_get_type func() GType
+	Gtk_source_draw_spaces_flags_get_type func() T.GType
 
-	Gtk_source_completion_error_get_type func() GType
+	Gtk_source_completion_error_get_type func() T.GType
 
-	Gtk_source_completion_activation_get_type func() GType
+	Gtk_source_completion_activation_get_type func() T.GType
 
-	Gtk_source_completion_words_get_type func() GType
+	Gtk_source_completion_words_get_type func() T.GType
 
 	Gtk_source_completion_words_new func(
 		name string,
-		icon *GdkPixbuf) *GtkSourceCompletionWords
+		icon *T.GdkPixbuf) *GtkSourceCompletionWords
 
 	Gtk_source_completion_words_register func(
 		words *GtkSourceCompletionWords,
-		buffer *GtkTextBuffer)
+		buffer *T.GtkTextBuffer)
 
 	Gtk_source_completion_words_unregister func(
 		words *GtkSourceCompletionWords,
-		buffer *GtkTextBuffer)
+		buffer *T.GtkTextBuffer)
 
 	Gtk_source_iter_forward_search func(
-		iter *GtkTextIter,
+		iter *T.GtkTextIter,
 		str string,
 		flags GtkSourceSearchFlags,
-		match_start *GtkTextIter,
-		match_end *GtkTextIter,
-		limit *GtkTextIter) Gboolean
+		match_start *T.GtkTextIter,
+		match_end *T.GtkTextIter,
+		limit *T.GtkTextIter) T.Gboolean
 
 	Gtk_source_iter_backward_search func(
-		iter *GtkTextIter,
+		iter *T.GtkTextIter,
 		str string,
 		flags GtkSourceSearchFlags,
-		match_start *GtkTextIter,
-		match_end *GtkTextIter,
-		limit *GtkTextIter) Gboolean
+		match_start *T.GtkTextIter,
+		match_end *T.GtkTextIter,
+		limit *T.GtkTextIter) T.Gboolean
 
-	Gtk_source_language_manager_get_type func() GType
+	Gtk_source_language_manager_get_type func() T.GType
 
 	Gtk_source_language_manager_new func() *GtkSourceLanguageManager
 
 	Gtk_source_language_manager_get_default func() *GtkSourceLanguageManager
 
 	Gtk_source_language_manager_get_search_path func(
-		lm *GtkSourceLanguageManager) **Gchar
+		lm *GtkSourceLanguageManager) **T.Gchar
 
 	Gtk_source_language_manager_set_search_path func(
 		lm *GtkSourceLanguageManager,
-		dirs **Gchar)
+		dirs **T.Gchar)
 
 	Gtk_source_language_manager_get_language_ids func(
-		lm *GtkSourceLanguageManager) **Gchar
+		lm *GtkSourceLanguageManager) **T.Gchar
 
 	Gtk_source_language_manager_get_language func(
 		lm *GtkSourceLanguageManager,
@@ -826,7 +824,7 @@ var (
 		filename string,
 		content_type string) *GtkSourceLanguage
 
-	Gtk_source_print_compositor_get_type func() GType
+	Gtk_source_print_compositor_get_type func() T.GType
 
 	Gtk_source_print_compositor_new func(
 		buffer *GtkSourceBuffer) *GtkSourcePrintCompositor
@@ -839,31 +837,31 @@ var (
 
 	Gtk_source_print_compositor_set_tab_width func(
 		compositor *GtkSourcePrintCompositor,
-		width Guint)
+		width T.Guint)
 
 	Gtk_source_print_compositor_get_tab_width func(
-		compositor *GtkSourcePrintCompositor) Guint
+		compositor *GtkSourcePrintCompositor) T.Guint
 
 	Gtk_source_print_compositor_set_wrap_mode func(
 		compositor *GtkSourcePrintCompositor,
-		wrap_mode GtkWrapMode)
+		wrap_mode T.GtkWrapMode)
 
 	Gtk_source_print_compositor_get_wrap_mode func(
-		compositor *GtkSourcePrintCompositor) GtkWrapMode
+		compositor *GtkSourcePrintCompositor) T.GtkWrapMode
 
 	Gtk_source_print_compositor_set_highlight_syntax func(
 		compositor *GtkSourcePrintCompositor,
-		highlight Gboolean)
+		highlight T.Gboolean)
 
 	Gtk_source_print_compositor_get_highlight_syntax func(
-		compositor *GtkSourcePrintCompositor) Gboolean
+		compositor *GtkSourcePrintCompositor) T.Gboolean
 
 	Gtk_source_print_compositor_set_print_line_numbers func(
 		compositor *GtkSourcePrintCompositor,
-		interval Guint)
+		interval T.Guint)
 
 	Gtk_source_print_compositor_get_print_line_numbers func(
-		compositor *GtkSourcePrintCompositor) Guint
+		compositor *GtkSourcePrintCompositor) T.Guint
 
 	Gtk_source_print_compositor_set_body_font_name func(
 		compositor *GtkSourcePrintCompositor,
@@ -895,84 +893,84 @@ var (
 
 	Gtk_source_print_compositor_get_top_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit GtkUnit) Gdouble
+		unit T.GtkUnit) T.Gdouble
 
 	Gtk_source_print_compositor_set_top_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin Gdouble,
-		unit GtkUnit)
+		margin T.Gdouble,
+		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit GtkUnit) Gdouble
+		unit T.GtkUnit) T.Gdouble
 
 	Gtk_source_print_compositor_set_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin Gdouble,
-		unit GtkUnit)
+		margin T.Gdouble,
+		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_left_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit GtkUnit) Gdouble
+		unit T.GtkUnit) T.Gdouble
 
 	Gtk_source_print_compositor_set_left_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin Gdouble,
-		unit GtkUnit)
+		margin T.Gdouble,
+		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_right_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit GtkUnit) Gdouble
+		unit T.GtkUnit) T.Gdouble
 
 	Gtk_source_print_compositor_set_right_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin Gdouble,
-		unit GtkUnit)
+		margin T.Gdouble,
+		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_set_print_header func(
 		compositor *GtkSourcePrintCompositor,
-		print Gboolean)
+		print T.Gboolean)
 
 	Gtk_source_print_compositor_get_print_header func(
-		compositor *GtkSourcePrintCompositor) Gboolean
+		compositor *GtkSourcePrintCompositor) T.Gboolean
 
 	Gtk_source_print_compositor_set_print_footer func(
 		compositor *GtkSourcePrintCompositor,
-		print Gboolean)
+		print T.Gboolean)
 
 	Gtk_source_print_compositor_get_print_footer func(
-		compositor *GtkSourcePrintCompositor) Gboolean
+		compositor *GtkSourcePrintCompositor) T.Gboolean
 
 	Gtk_source_print_compositor_set_header_format func(
 		compositor *GtkSourcePrintCompositor,
-		separator Gboolean,
+		separator T.Gboolean,
 		left string,
 		center string,
 		right string)
 
 	Gtk_source_print_compositor_set_footer_format func(
 		compositor *GtkSourcePrintCompositor,
-		separator Gboolean,
+		separator T.Gboolean,
 		left string,
 		center string,
 		right string)
 
 	Gtk_source_print_compositor_get_n_pages func(
-		compositor *GtkSourcePrintCompositor) Gint
+		compositor *GtkSourcePrintCompositor) T.Gint
 
 	Gtk_source_print_compositor_paginate func(
 		compositor *GtkSourcePrintCompositor,
-		context *GtkPrintContext) Gboolean
+		context *T.GtkPrintContext) T.Gboolean
 
 	Gtk_source_print_compositor_get_pagination_progress func(
-		compositor *GtkSourcePrintCompositor) Gdouble
+		compositor *GtkSourcePrintCompositor) T.Gdouble
 
 	Gtk_source_print_compositor_draw_page func(
 		compositor *GtkSourcePrintCompositor,
-		context *GtkPrintContext,
-		page_nr Gint)
+		context *T.GtkPrintContext,
+		page_nr T.Gint)
 
-	Gtk_source_style_scheme_manager_get_type func() GType
+	Gtk_source_style_scheme_manager_get_type func() T.GType
 
 	Gtk_source_style_scheme_manager_new func() *GtkSourceStyleSchemeManager
 
@@ -980,7 +978,7 @@ var (
 
 	Gtk_source_style_scheme_manager_set_search_path func(
 		manager *GtkSourceStyleSchemeManager,
-		path **Gchar)
+		path **T.Gchar)
 
 	Gtk_source_style_scheme_manager_append_search_path func(
 		manager *GtkSourceStyleSchemeManager,
@@ -991,13 +989,13 @@ var (
 		path string)
 
 	Gtk_source_style_scheme_manager_get_search_path func(
-		manager *GtkSourceStyleSchemeManager) **Gchar
+		manager *GtkSourceStyleSchemeManager) **T.Gchar
 
 	Gtk_source_style_scheme_manager_force_rescan func(
 		manager *GtkSourceStyleSchemeManager)
 
 	Gtk_source_style_scheme_manager_get_scheme_ids func(
-		manager *GtkSourceStyleSchemeManager) **Gchar
+		manager *GtkSourceStyleSchemeManager) **T.Gchar
 
 	Gtk_source_style_scheme_manager_get_scheme func(
 		manager *GtkSourceStyleSchemeManager,

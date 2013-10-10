@@ -7,7 +7,7 @@ package gio
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -15,777 +15,777 @@ func init() {
 }
 
 var (
-	G_app_info_get_type func() GType
+	G_app_info_get_type func() T.GType
 
 	G_app_info_create_from_commandline func(
 		commandline string,
 		application_name string,
-		flags GAppInfoCreateFlags,
-		err **GError) *GAppInfo
+		flags T.GAppInfoCreateFlags,
+		err **T.GError) *T.GAppInfo
 
-	G_app_info_dup func(appinfo *GAppInfo) *GAppInfo
+	G_app_info_dup func(appinfo *T.GAppInfo) *T.GAppInfo
 
 	G_app_info_equal func(
-		appinfo1 *GAppInfo, appinfo2 *GAppInfo) Gboolean
+		appinfo1 *T.GAppInfo, appinfo2 *T.GAppInfo) T.Gboolean
 
-	G_app_info_get_id func(appinfo *GAppInfo) string
+	G_app_info_get_id func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_name func(appinfo *GAppInfo) string
+	G_app_info_get_name func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_display_name func(appinfo *GAppInfo) string
+	G_app_info_get_display_name func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_description func(appinfo *GAppInfo) string
+	G_app_info_get_description func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_executable func(appinfo *GAppInfo) string
+	G_app_info_get_executable func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_commandline func(appinfo *GAppInfo) string
+	G_app_info_get_commandline func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_icon func(appinfo *GAppInfo) *GIcon
+	G_app_info_get_icon func(appinfo *T.GAppInfo) *T.GIcon
 
 	G_app_info_launch func(
-		appinfo *GAppInfo,
-		files *GList,
-		launch_context *GAppLaunchContext,
-		err **GError) Gboolean
+		appinfo *T.GAppInfo,
+		files *T.GList,
+		launch_context *T.GAppLaunchContext,
+		err **T.GError) T.Gboolean
 
-	G_app_info_supports_uris func(appinfo *GAppInfo) Gboolean
+	G_app_info_supports_uris func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_supports_files func(appinfo *GAppInfo) Gboolean
+	G_app_info_supports_files func(appinfo *T.GAppInfo) T.Gboolean
 
 	G_app_info_launch_uris func(
-		appinfo *GAppInfo,
-		uris *GList,
-		launch_context *GAppLaunchContext,
-		err **GError) Gboolean
+		appinfo *T.GAppInfo,
+		uris *T.GList,
+		launch_context *T.GAppLaunchContext,
+		err **T.GError) T.Gboolean
 
-	G_app_info_should_show func(appinfo *GAppInfo) Gboolean
+	G_app_info_should_show func(appinfo *T.GAppInfo) T.Gboolean
 
 	G_app_info_set_as_default_for_type func(
-		appinfo *GAppInfo,
+		appinfo *T.GAppInfo,
 		content_type string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
 	G_app_info_set_as_default_for_extension func(
-		appinfo *GAppInfo,
+		appinfo *T.GAppInfo,
 		extension string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
 	G_app_info_add_supports_type func(
-		appinfo *GAppInfo,
+		appinfo *T.GAppInfo,
 		content_type string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
 	G_app_info_can_remove_supports_type func(
-		appinfo *GAppInfo) Gboolean
+		appinfo *T.GAppInfo) T.Gboolean
 
 	G_app_info_remove_supports_type func(
-		appinfo *GAppInfo,
+		appinfo *T.GAppInfo,
 		content_type string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
-	G_app_info_can_delete func(appinfo *GAppInfo) Gboolean
+	G_app_info_can_delete func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_delete func(appinfo *GAppInfo) Gboolean
+	G_app_info_delete func(appinfo *T.GAppInfo) T.Gboolean
 
 	G_app_info_set_as_last_used_for_type func(
-		appinfo *GAppInfo,
+		appinfo *T.GAppInfo,
 		content_type string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
-	G_app_info_get_all func() *GList
+	G_app_info_get_all func() *T.GList
 
-	G_app_info_get_all_for_type func(content_type string) *GList
+	G_app_info_get_all_for_type func(content_type string) *T.GList
 
 	G_app_info_get_recommended_for_type func(
-		content_type string) *GList
+		content_type string) *T.GList
 
 	G_app_info_get_fallback_for_type func(
-		content_type string) *GList
+		content_type string) *T.GList
 
 	G_app_info_reset_type_associations func(content_type string)
 
 	G_app_info_get_default_for_type func(
 		content_type string,
-		must_support_uris Gboolean) *GAppInfo
+		must_support_uris T.Gboolean) *T.GAppInfo
 
 	G_app_info_get_default_for_uri_scheme func(
-		uri_scheme string) *GAppInfo
+		uri_scheme string) *T.GAppInfo
 
 	G_app_info_launch_default_for_uri func(
 		uri string,
-		launch_context *GAppLaunchContext,
-		err **GError) Gboolean
+		launch_context *T.GAppLaunchContext,
+		err **T.GError) T.Gboolean
 
-	G_app_launch_context_get_type func() GType
+	G_app_launch_context_get_type func() T.GType
 
-	G_app_launch_context_new func() *GAppLaunchContext
+	G_app_launch_context_new func() *T.GAppLaunchContext
 
 	G_app_launch_context_get_display func(
-		context *GAppLaunchContext,
-		info *GAppInfo,
-		files *GList) string
+		context *T.GAppLaunchContext,
+		info *T.GAppInfo,
+		files *T.GList) string
 
 	G_app_launch_context_get_startup_notify_id func(
-		context *GAppLaunchContext,
-		info *GAppInfo,
-		files *GList) string
+		context *T.GAppLaunchContext,
+		info *T.GAppInfo,
+		files *T.GList) string
 
 	G_app_launch_context_launch_failed func(
-		context *GAppLaunchContext,
+		context *T.GAppLaunchContext,
 		startup_notify_id string)
 
-	G_action_get_type func() GType
+	G_action_get_type func() T.GType
 
-	G_action_get_name func(action *GAction) string
+	G_action_get_name func(action *T.GAction) string
 
-	G_action_get_parameter_type func(action *GAction) *GVariantType
+	G_action_get_parameter_type func(action *T.GAction) *T.GVariantType
 
-	G_action_get_state_type func(action *GAction) *GVariantType
+	G_action_get_state_type func(action *T.GAction) *T.GVariantType
 
-	G_action_get_state_hint func(action *GAction) *GVariant
+	G_action_get_state_hint func(action *T.GAction) *T.GVariant
 
-	G_action_get_enabled func(action *GAction) Gboolean
+	G_action_get_enabled func(action *T.GAction) T.Gboolean
 
-	G_action_get_state func(action *GAction) *GVariant
+	G_action_get_state func(action *T.GAction) *T.GVariant
 
-	G_action_set_state func(action *GAction, value *GVariant)
+	G_action_set_state func(action *T.GAction, value *T.GVariant)
 
-	G_action_activate func(action *GAction, parameter *GVariant)
+	G_action_activate func(action *T.GAction, parameter *T.GVariant)
 
-	G_simple_action_get_type func() GType
+	G_simple_action_get_type func() T.GType
 
 	G_simple_action_new func(
-		name string, parameter_type *GVariantType) *GSimpleAction
+		name string, parameter_type *T.GVariantType) *T.GSimpleAction
 
 	G_simple_action_new_stateful func(
 		name string,
-		parameter_type *GVariantType,
-		state *GVariant) *GSimpleAction
+		parameter_type *T.GVariantType,
+		state *T.GVariant) *T.GSimpleAction
 
 	G_simple_action_set_enabled func(
-		simple *GSimpleAction,
-		enabled Gboolean)
+		simple *T.GSimpleAction,
+		enabled T.Gboolean)
 
-	G_action_group_get_type func() GType
+	G_action_group_get_type func() T.GType
 
 	G_action_group_has_action func(
-		action_group *GActionGroup,
-		action_name string) Gboolean
+		action_group *T.GActionGroup,
+		action_name string) T.Gboolean
 
 	G_action_group_list_actions func(
-		action_group *GActionGroup) **Gchar
+		action_group *T.GActionGroup) **T.Gchar
 
 	G_action_group_get_action_parameter_type func(
-		action_group *GActionGroup,
-		action_name string) *GVariantType
+		action_group *T.GActionGroup,
+		action_name string) *T.GVariantType
 
 	G_action_group_get_action_state_type func(
-		action_group *GActionGroup,
-		action_name string) *GVariantType
+		action_group *T.GActionGroup,
+		action_name string) *T.GVariantType
 
 	G_action_group_get_action_state_hint func(
-		action_group *GActionGroup,
-		action_name string) *GVariant
+		action_group *T.GActionGroup,
+		action_name string) *T.GVariant
 
 	G_action_group_get_action_enabled func(
-		action_group *GActionGroup,
-		action_name string) Gboolean
+		action_group *T.GActionGroup,
+		action_name string) T.Gboolean
 
 	G_action_group_get_action_state func(
-		action_group *GActionGroup,
-		action_name string) *GVariant
+		action_group *T.GActionGroup,
+		action_name string) *T.GVariant
 
 	G_action_group_change_action_state func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string,
-		value *GVariant)
+		value *T.GVariant)
 
 	G_action_group_activate_action func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string,
-		parameter *GVariant)
+		parameter *T.GVariant)
 
 	G_action_group_action_added func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string)
 
 	G_action_group_action_removed func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string)
 
 	G_action_group_action_enabled_changed func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string,
-		enabled Gboolean)
+		enabled T.Gboolean)
 
 	G_action_group_action_state_changed func(
-		action_group *GActionGroup,
+		action_group *T.GActionGroup,
 		action_name string,
-		state *GVariant)
+		state *T.GVariant)
 
-	G_simple_action_group_get_type func() GType
+	G_simple_action_group_get_type func() T.GType
 
-	G_simple_action_group_new func() *GSimpleActionGroup
+	G_simple_action_group_new func() *T.GSimpleActionGroup
 
 	G_simple_action_group_lookup func(
-		simple *GSimpleActionGroup,
-		action_name string) *GAction
+		simple *T.GSimpleActionGroup,
+		action_name string) *T.GAction
 
 	G_simple_action_group_insert func(
-		simple *GSimpleActionGroup,
-		action *GAction)
+		simple *T.GSimpleActionGroup,
+		action *T.GAction)
 
 	G_simple_action_group_remove func(
-		simple *GSimpleActionGroup,
+		simple *T.GSimpleActionGroup,
 		action_name string)
 
-	G_application_get_type func() GType
+	G_application_get_type func() T.GType
 
 	G_application_id_is_valid func(
-		application_id string) Gboolean
+		application_id string) T.Gboolean
 
 	G_application_new func(
 		application_id string,
-		flags GApplicationFlags) *GApplication
+		flags T.GApplicationFlags) *T.GApplication
 
 	G_application_get_application_id func(
-		application *GApplication) string
+		application *T.GApplication) string
 
 	G_application_set_application_id func(
-		application *GApplication,
+		application *T.GApplication,
 		application_id string)
 
 	G_application_get_inactivity_timeout func(
-		application *GApplication) Guint
+		application *T.GApplication) T.Guint
 
 	G_application_set_inactivity_timeout func(
-		application *GApplication,
-		inactivity_timeout Guint)
+		application *T.GApplication,
+		inactivity_timeout T.Guint)
 
 	G_application_get_flags func(
-		application *GApplication) GApplicationFlags
+		application *T.GApplication) T.GApplicationFlags
 
 	G_application_set_flags func(
-		application *GApplication,
-		flags GApplicationFlags)
+		application *T.GApplication,
+		flags T.GApplicationFlags)
 
 	G_application_set_action_group func(
-		application *GApplication,
-		action_group *GActionGroup)
+		application *T.GApplication,
+		action_group *T.GActionGroup)
 
 	G_application_get_is_registered func(
-		application *GApplication) Gboolean
+		application *T.GApplication) T.Gboolean
 
 	G_application_get_is_remote func(
-		application *GApplication) Gboolean
+		application *T.GApplication) T.Gboolean
 
 	G_application_register func(
-		application *GApplication,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		application *T.GApplication,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_application_hold func(
-		application *GApplication)
+		application *T.GApplication)
 
 	G_application_release func(
-		application *GApplication)
+		application *T.GApplication)
 
 	G_application_activate func(
-		application *GApplication)
+		application *T.GApplication)
 
 	G_application_open func(
-		application *GApplication,
-		files **GFile,
-		n_files Gint,
+		application *T.GApplication,
+		files **T.GFile,
+		n_files T.Gint,
 		hint string)
 
 	G_application_run func(
-		application *GApplication,
+		application *T.GApplication,
 		argc int,
-		argv **Char) int
+		argv **T.Char) int
 
-	G_application_command_line_get_type func() GType
+	G_application_command_line_get_type func() T.GType
 
 	G_application_command_line_get_arguments func(
-		cmdline *GApplicationCommandLine,
-		argc *int) **Gchar
+		cmdline *T.GApplicationCommandLine,
+		argc *int) **T.Gchar
 
 	G_application_command_line_get_environ func(
-		cmdline *GApplicationCommandLine) **Gchar
+		cmdline *T.GApplicationCommandLine) **T.Gchar
 
 	G_application_command_line_getenv func(
-		cmdline *GApplicationCommandLine,
+		cmdline *T.GApplicationCommandLine,
 		name string) string
 
 	G_application_command_line_get_cwd func(
-		cmdline *GApplicationCommandLine) string
+		cmdline *T.GApplicationCommandLine) string
 
 	G_application_command_line_get_is_remote func(
-		cmdline *GApplicationCommandLine) Gboolean
+		cmdline *T.GApplicationCommandLine) T.Gboolean
 
 	G_application_command_line_print func(
-		cmdline *GApplicationCommandLine, format string, v ...VArg)
+		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
 	G_application_command_line_printerr func(
-		cmdline *GApplicationCommandLine, format string, v ...VArg)
+		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
 
 	G_application_command_line_get_exit_status func(
-		cmdline *GApplicationCommandLine) int
+		cmdline *T.GApplicationCommandLine) int
 
 	G_application_command_line_set_exit_status func(
-		cmdline *GApplicationCommandLine,
+		cmdline *T.GApplicationCommandLine,
 		exit_status int)
 
 	G_application_command_line_get_platform_data func(
-		cmdline *GApplicationCommandLine) *GVariant
+		cmdline *T.GApplicationCommandLine) *T.GVariant
 
-	G_initable_get_type func() GType
+	G_initable_get_type func() T.GType
 
 	G_initable_init func(
-		initable *GInitable,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		initable *T.GInitable,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
-	G_initable_new func(object_type GType,
-		cancellable *GCancellable, e **GError,
-		first_property_name string, v ...VArg) Gpointer
+	G_initable_new func(object_type T.GType,
+		cancellable *T.GCancellable, e **T.GError,
+		first_property_name string, v ...VArg) T.Gpointer
 
 	G_initable_newv func(
-		object_type GType,
-		n_parameters Guint,
-		parameters *GParameter,
-		cancellable *GCancellable,
-		err **GError) Gpointer
+		object_type T.GType,
+		n_parameters T.Guint,
+		parameters *T.GParameter,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gpointer
 
 	G_initable_new_valist func(
-		object_type GType,
+		object_type T.GType,
 		first_property_name string,
-		var_args Va_list,
-		cancellable *GCancellable,
-		err **GError) *GObject
+		var_args T.Va_list,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GObject
 
-	G_async_initable_get_type func() GType
+	G_async_initable_get_type func() T.GType
 
 	G_async_initable_init_async func(
-		initable *GAsyncInitable,
+		initable *T.GAsyncInitable,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_async_initable_init_finish func(
-		initable *GAsyncInitable,
-		res *GAsyncResult,
-		err **GError) Gboolean
+		initable *T.GAsyncInitable,
+		res *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_async_initable_new_async func(object_type GType,
-		io_priority int, cancellable *GCancellable,
-		callback GAsyncReadyCallback, user_data Gpointer,
+	G_async_initable_new_async func(object_type T.GType,
+		io_priority int, cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback, user_data T.Gpointer,
 		first_property_name string, v ...VArg)
 
 	G_async_initable_newv_async func(
-		object_type GType,
-		n_parameters Guint,
-		parameters *GParameter,
+		object_type T.GType,
+		n_parameters T.Guint,
+		parameters *T.GParameter,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_async_initable_new_valist_async func(
-		object_type GType,
+		object_type T.GType,
 		first_property_name string,
-		var_args Va_list,
+		var_args T.Va_list,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_async_initable_new_finish func(
-		initable *GAsyncInitable,
-		res *GAsyncResult,
-		err **GError) *GObject
+		initable *T.GAsyncInitable,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GObject
 
-	G_async_result_get_type func() GType
+	G_async_result_get_type func() T.GType
 
 	G_async_result_get_user_data func(
-		res *GAsyncResult) Gpointer
+		res *T.GAsyncResult) T.Gpointer
 
 	G_async_result_get_source_object func(
-		res *GAsyncResult) *GObject
+		res *T.GAsyncResult) *T.GObject
 
-	G_input_stream_get_type func() GType
+	G_input_stream_get_type func() T.GType
 
 	G_input_stream_read func(
-		stream *GInputStream,
-		buffer *Void,
-		count Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GInputStream,
+		buffer *T.Void,
+		count T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_input_stream_read_all func(
-		stream *GInputStream,
-		buffer *Void,
-		count Gsize,
-		bytes_read *Gsize,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GInputStream,
+		buffer *T.Void,
+		count T.Gsize,
+		bytes_read *T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_input_stream_skip func(
-		stream *GInputStream,
-		count Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GInputStream,
+		count T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_input_stream_close func(
-		stream *GInputStream,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_input_stream_read_async func(
-		stream *GInputStream,
-		buffer *Void,
-		count Gsize,
+		stream *T.GInputStream,
+		buffer *T.Void,
+		count T.Gsize,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_input_stream_read_finish func(
-		stream *GInputStream,
-		result *GAsyncResult,
-		err **GError) Gssize
+		stream *T.GInputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gssize
 
 	G_input_stream_skip_async func(
-		stream *GInputStream,
-		count Gsize,
+		stream *T.GInputStream,
+		count T.Gsize,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_input_stream_skip_finish func(
-		stream *GInputStream,
-		result *GAsyncResult,
-		err **GError) Gssize
+		stream *T.GInputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gssize
 
 	G_input_stream_close_async func(
-		stream *GInputStream,
+		stream *T.GInputStream,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_input_stream_close_finish func(
-		stream *GInputStream,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		stream *T.GInputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_input_stream_is_closed func(
-		stream *GInputStream) Gboolean
+		stream *T.GInputStream) T.Gboolean
 
 	G_input_stream_has_pending func(
-		stream *GInputStream) Gboolean
+		stream *T.GInputStream) T.Gboolean
 
 	G_input_stream_set_pending func(
-		stream *GInputStream,
-		err **GError) Gboolean
+		stream *T.GInputStream,
+		err **T.GError) T.Gboolean
 
 	G_input_stream_clear_pending func(
-		stream *GInputStream)
+		stream *T.GInputStream)
 
-	G_filter_input_stream_get_type func() GType
+	G_filter_input_stream_get_type func() T.GType
 
 	G_filter_input_stream_get_base_stream func(
-		stream *GFilterInputStream) *GInputStream
+		stream *T.GFilterInputStream) *T.GInputStream
 
 	G_filter_input_stream_get_close_base_stream func(
-		stream *GFilterInputStream) Gboolean
+		stream *T.GFilterInputStream) T.Gboolean
 
 	G_filter_input_stream_set_close_base_stream func(
-		stream *GFilterInputStream,
-		close_base Gboolean)
+		stream *T.GFilterInputStream,
+		close_base T.Gboolean)
 
-	G_buffered_input_stream_get_type func() GType
+	G_buffered_input_stream_get_type func() T.GType
 
 	G_buffered_input_stream_new func(
-		base_stream *GInputStream) *GInputStream
+		base_stream *T.GInputStream) *T.GInputStream
 
 	G_buffered_input_stream_new_sized func(
-		base_stream *GInputStream,
-		size Gsize) *GInputStream
+		base_stream *T.GInputStream,
+		size T.Gsize) *T.GInputStream
 
 	G_buffered_input_stream_get_buffer_size func(
-		stream *GBufferedInputStream) Gsize
+		stream *T.GBufferedInputStream) T.Gsize
 
 	G_buffered_input_stream_set_buffer_size func(
-		stream *GBufferedInputStream,
-		size Gsize)
+		stream *T.GBufferedInputStream,
+		size T.Gsize)
 
 	G_buffered_input_stream_get_available func(
-		stream *GBufferedInputStream) Gsize
+		stream *T.GBufferedInputStream) T.Gsize
 
 	G_buffered_input_stream_peek func(
-		stream *GBufferedInputStream,
-		buffer *Void,
-		offset Gsize,
-		count Gsize) Gsize
+		stream *T.GBufferedInputStream,
+		buffer *T.Void,
+		offset T.Gsize,
+		count T.Gsize) T.Gsize
 
 	G_buffered_input_stream_peek_buffer func(
-		stream *GBufferedInputStream,
-		count *Gsize) *Void
+		stream *T.GBufferedInputStream,
+		count *T.Gsize) *T.Void
 
 	G_buffered_input_stream_fill func(
-		stream *GBufferedInputStream,
-		count Gssize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GBufferedInputStream,
+		count T.Gssize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_buffered_input_stream_fill_async func(
-		stream *GBufferedInputStream,
-		count Gssize,
+		stream *T.GBufferedInputStream,
+		count T.Gssize,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_buffered_input_stream_fill_finish func(
-		stream *GBufferedInputStream,
-		result *GAsyncResult,
-		err **GError) Gssize
+		stream *T.GBufferedInputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gssize
 
 	G_buffered_input_stream_read_byte func(
-		stream *GBufferedInputStream,
-		cancellable *GCancellable,
-		err **GError) int
+		stream *T.GBufferedInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) int
 
-	G_output_stream_get_type func() GType
+	G_output_stream_get_type func() T.GType
 
 	G_output_stream_write func(
-		stream *GOutputStream,
-		buffer *Void,
-		count Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GOutputStream,
+		buffer *T.Void,
+		count T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_output_stream_write_all func(
-		stream *GOutputStream,
-		buffer *Void,
-		count Gsize,
-		bytes_written *Gsize,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		buffer *T.Void,
+		count T.Gsize,
+		bytes_written *T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_splice func(
-		stream *GOutputStream,
-		source *GInputStream,
-		flags GOutputStreamSpliceFlags,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GOutputStream,
+		source *T.GInputStream,
+		flags T.GOutputStreamSpliceFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_output_stream_flush func(
-		stream *GOutputStream,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_close func(
-		stream *GOutputStream,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_write_async func(
-		stream *GOutputStream,
-		buffer *Void,
-		count Gsize,
+		stream *T.GOutputStream,
+		buffer *T.Void,
+		count T.Gsize,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_output_stream_write_finish func(
-		stream *GOutputStream,
-		result *GAsyncResult,
-		err **GError) Gssize
+		stream *T.GOutputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gssize
 
 	G_output_stream_splice_async func(
-		stream *GOutputStream,
-		source *GInputStream,
-		flags GOutputStreamSpliceFlags,
+		stream *T.GOutputStream,
+		source *T.GInputStream,
+		flags T.GOutputStreamSpliceFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_output_stream_splice_finish func(
-		stream *GOutputStream,
-		result *GAsyncResult,
-		err **GError) Gssize
+		stream *T.GOutputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gssize
 
 	G_output_stream_flush_async func(
-		stream *GOutputStream,
+		stream *T.GOutputStream,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_output_stream_flush_finish func(
-		stream *GOutputStream,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_close_async func(
-		stream *GOutputStream,
+		stream *T.GOutputStream,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_output_stream_close_finish func(
-		stream *GOutputStream,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_is_closed func(
-		stream *GOutputStream) Gboolean
+		stream *T.GOutputStream) T.Gboolean
 
 	G_output_stream_is_closing func(
-		stream *GOutputStream) Gboolean
+		stream *T.GOutputStream) T.Gboolean
 
 	G_output_stream_has_pending func(
-		stream *GOutputStream) Gboolean
+		stream *T.GOutputStream) T.Gboolean
 
 	G_output_stream_set_pending func(
-		stream *GOutputStream,
-		err **GError) Gboolean
+		stream *T.GOutputStream,
+		err **T.GError) T.Gboolean
 
 	G_output_stream_clear_pending func(
-		stream *GOutputStream)
+		stream *T.GOutputStream)
 
-	G_filter_output_stream_get_type func() GType
+	G_filter_output_stream_get_type func() T.GType
 
 	G_filter_output_stream_get_base_stream func(
-		stream *GFilterOutputStream) *GOutputStream
+		stream *T.GFilterOutputStream) *T.GOutputStream
 
 	G_filter_output_stream_get_close_base_stream func(
-		stream *GFilterOutputStream) Gboolean
+		stream *T.GFilterOutputStream) T.Gboolean
 
 	G_filter_output_stream_set_close_base_stream func(
-		stream *GFilterOutputStream,
-		close_base Gboolean)
+		stream *T.GFilterOutputStream,
+		close_base T.Gboolean)
 
-	G_buffered_output_stream_get_type func() GType
+	G_buffered_output_stream_get_type func() T.GType
 
 	G_buffered_output_stream_new func(
-		base_stream *GOutputStream) *GOutputStream
+		base_stream *T.GOutputStream) *T.GOutputStream
 
 	G_buffered_output_stream_new_sized func(
-		base_stream *GOutputStream,
-		size Gsize) *GOutputStream
+		base_stream *T.GOutputStream,
+		size T.Gsize) *T.GOutputStream
 
 	G_buffered_output_stream_get_buffer_size func(
-		stream *GBufferedOutputStream) Gsize
+		stream *T.GBufferedOutputStream) T.Gsize
 
 	G_buffered_output_stream_set_buffer_size func(
-		stream *GBufferedOutputStream,
-		size Gsize)
+		stream *T.GBufferedOutputStream,
+		size T.Gsize)
 
 	G_buffered_output_stream_get_auto_grow func(
-		stream *GBufferedOutputStream) Gboolean
+		stream *T.GBufferedOutputStream) T.Gboolean
 
 	G_buffered_output_stream_set_auto_grow func(
-		stream *GBufferedOutputStream,
-		auto_grow Gboolean)
+		stream *T.GBufferedOutputStream,
+		auto_grow T.Gboolean)
 
-	G_cancellable_get_type func() GType
+	G_cancellable_get_type func() T.GType
 
-	G_cancellable_new func() *GCancellable
+	G_cancellable_new func() *T.GCancellable
 
 	G_cancellable_is_cancelled func(
-		cancellable *GCancellable) Gboolean
+		cancellable *T.GCancellable) T.Gboolean
 
 	G_cancellable_set_error_if_cancelled func(
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_cancellable_get_fd func(
-		cancellable *GCancellable) int
+		cancellable *T.GCancellable) int
 
 	G_cancellable_make_pollfd func(
-		cancellable *GCancellable,
-		pollfd *GPollFD) Gboolean
+		cancellable *T.GCancellable,
+		pollfd *T.GPollFD) T.Gboolean
 
 	G_cancellable_release_fd func(
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
 	G_cancellable_source_new func(
-		cancellable *GCancellable) *GSource
+		cancellable *T.GCancellable) *T.GSource
 
-	G_cancellable_get_current func() *GCancellable
+	G_cancellable_get_current func() *T.GCancellable
 
 	G_cancellable_push_current func(
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
 	G_cancellable_pop_current func(
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
 	G_cancellable_reset func(
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
 	G_cancellable_connect func(
-		cancellable *GCancellable,
-		callback GCallback,
-		data Gpointer,
-		data_destroy_func GDestroyNotify) Gulong
+		cancellable *T.GCancellable,
+		callback T.GCallback,
+		data T.Gpointer,
+		data_destroy_func T.GDestroyNotify) T.Gulong
 
 	G_cancellable_disconnect func(
-		cancellable *GCancellable,
-		handler_id Gulong)
+		cancellable *T.GCancellable,
+		handler_id T.Gulong)
 
 	G_cancellable_cancel func(
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
-	G_converter_get_type func() GType
+	G_converter_get_type func() T.GType
 
 	G_converter_convert func(
-		converter *GConverter,
-		inbuf *Void,
-		inbuf_size Gsize,
-		outbuf *Void,
-		outbuf_size Gsize,
-		flags GConverterFlags,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		err **GError) GConverterResult
+		converter *T.GConverter,
+		inbuf *T.Void,
+		inbuf_size T.Gsize,
+		outbuf *T.Void,
+		outbuf_size T.Gsize,
+		flags T.GConverterFlags,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		err **T.GError) T.GConverterResult
 
 	G_converter_reset func(
-		converter *GConverter)
+		converter *T.GConverter)
 
-	G_charset_converter_get_type func() GType
+	G_charset_converter_get_type func() T.GType
 
 	G_charset_converter_new func(
 		to_charset string,
 		from_charset string,
-		err **GError) *GcharsetConverter
+		err **T.GError) *T.GcharsetConverter
 
 	G_charset_converter_set_use_fallback func(
-		converter *GcharsetConverter,
-		use_fallback Gboolean)
+		converter *T.GcharsetConverter,
+		use_fallback T.Gboolean)
 
 	G_charset_converter_get_use_fallback func(
-		converter *GcharsetConverter) Gboolean
+		converter *T.GcharsetConverter) T.Gboolean
 
 	G_charset_converter_get_num_fallbacks func(
-		converter *GcharsetConverter) Guint
+		converter *T.GcharsetConverter) T.Guint
 
 	G_content_type_equals func(
 		type1 string,
-		type2 string) Gboolean
+		type2 string) T.Gboolean
 
 	G_content_type_is_a func(
 		typ string,
-		supertype string) Gboolean
+		supertype string) T.Gboolean
 
 	G_content_type_is_unknown func(
-		typ string) Gboolean
+		typ string) T.Gboolean
 
 	G_content_type_get_description func(
 		typ string) string
@@ -794,4440 +794,4440 @@ var (
 		typ string) string
 
 	G_content_type_get_icon func(
-		typ string) *GIcon
+		typ string) *T.GIcon
 
 	G_content_type_can_be_executable func(
-		typ string) Gboolean
+		typ string) T.Gboolean
 
 	G_content_type_from_mime_type func(
 		mime_type string) string
 
 	G_content_type_guess func(
 		filename string,
-		data *Guchar,
-		data_size Gsize,
-		result_uncertain *Gboolean) string
+		data *T.Guchar,
+		data_size T.Gsize,
+		result_uncertain *T.Gboolean) string
 
 	G_content_type_guess_for_tree func(
-		root *GFile) **Gchar
+		root *T.GFile) **T.Gchar
 
-	G_content_types_get_registered func() *GList
+	G_content_types_get_registered func() *T.GList
 
-	G_converter_input_stream_get_type func() GType
+	G_converter_input_stream_get_type func() T.GType
 
 	G_converter_input_stream_new func(
-		base_stream *GInputStream,
-		converter *GConverter) *GInputStream
+		base_stream *T.GInputStream,
+		converter *T.GConverter) *T.GInputStream
 
 	G_converter_input_stream_get_converter func(
-		converter_stream *GConverterInputStream) *GConverter
+		converter_stream *T.GConverterInputStream) *T.GConverter
 
-	G_converter_output_stream_get_type func() GType
+	G_converter_output_stream_get_type func() T.GType
 
 	G_converter_output_stream_new func(
-		base_stream *GOutputStream,
-		converter *GConverter) *GOutputStream
+		base_stream *T.GOutputStream,
+		converter *T.GConverter) *T.GOutputStream
 
 	G_converter_output_stream_get_converter func(
-		converter_stream *GConverterOutputStream) *GConverter
+		converter_stream *T.GConverterOutputStream) *T.GConverter
 
-	G_credentials_get_type func() GType
+	G_credentials_get_type func() T.GType
 
-	G_credentials_new func() *GCredentials
+	G_credentials_new func() *T.GCredentials
 
 	G_credentials_to_string func(
-		credentials *GCredentials) string
+		credentials *T.GCredentials) string
 
 	G_credentials_get_native func(
-		credentials *GCredentials,
-		native_type GCredentialsType) Gpointer
+		credentials *T.GCredentials,
+		native_type T.GCredentialsType) T.Gpointer
 
 	G_credentials_set_native func(
-		credentials *GCredentials,
-		native_type GCredentialsType,
-		native Gpointer)
+		credentials *T.GCredentials,
+		native_type T.GCredentialsType,
+		native T.Gpointer)
 
 	G_credentials_is_same_user func(
-		credentials *GCredentials,
-		other_credentials *GCredentials,
-		err **GError) Gboolean
+		credentials *T.GCredentials,
+		other_credentials *T.GCredentials,
+		err **T.GError) T.Gboolean
 
-	G_data_input_stream_get_type func() GType
+	G_data_input_stream_get_type func() T.GType
 
 	G_data_input_stream_new func(
-		base_stream *GInputStream) *GDataInputStream
+		base_stream *T.GInputStream) *T.GDataInputStream
 
 	G_data_input_stream_set_byte_order func(
-		stream *GDataInputStream,
-		order GDataStreamByteOrder)
+		stream *T.GDataInputStream,
+		order T.GDataStreamByteOrder)
 
 	G_data_input_stream_get_byte_order func(
-		stream *GDataInputStream) GDataStreamByteOrder
+		stream *T.GDataInputStream) T.GDataStreamByteOrder
 
 	G_data_input_stream_set_newline_type func(
-		stream *GDataInputStream,
-		typ GDataStreamNewlineType)
+		stream *T.GDataInputStream,
+		typ T.GDataStreamNewlineType)
 
 	G_data_input_stream_get_newline_type func(
-		stream *GDataInputStream) GDataStreamNewlineType
+		stream *T.GDataInputStream) T.GDataStreamNewlineType
 
 	G_data_input_stream_read_byte func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Guchar
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Guchar
 
 	G_data_input_stream_read_int16 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Gint16
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gint16
 
 	G_data_input_stream_read_uint16 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Guint16
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Guint16
 
 	G_data_input_stream_read_int32 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Gint32
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gint32
 
 	G_data_input_stream_read_uint32 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Guint32
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Guint32
 
 	G_data_input_stream_read_int64 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Gint64
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gint64
 
 	G_data_input_stream_read_uint64 func(
-		stream *GDataInputStream,
-		cancellable *GCancellable,
-		err **GError) Guint64
+		stream *T.GDataInputStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Guint64
 
 	G_data_input_stream_read_line func(
-		stream *GDataInputStream,
-		length *Gsize,
-		cancellable *GCancellable,
-		err **GError) string
+		stream *T.GDataInputStream,
+		length *T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) string
 
 	G_data_input_stream_read_line_async func(
-		stream *GDataInputStream,
-		io_priority Gint,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		stream *T.GDataInputStream,
+		io_priority T.Gint,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_data_input_stream_read_line_finish func(
-		stream *GDataInputStream,
-		result *GAsyncResult,
-		length *Gsize,
-		err **GError) string
+		stream *T.GDataInputStream,
+		result *T.GAsyncResult,
+		length *T.Gsize,
+		err **T.GError) string
 
 	G_data_input_stream_read_until func(
-		stream *GDataInputStream,
+		stream *T.GDataInputStream,
 		stop_chars string,
-		length *Gsize,
-		cancellable *GCancellable,
-		err **GError) string
+		length *T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) string
 
 	G_data_input_stream_read_until_async func(
-		stream *GDataInputStream,
+		stream *T.GDataInputStream,
 		stop_chars string,
-		io_priority Gint,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		io_priority T.Gint,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_data_input_stream_read_until_finish func(
-		stream *GDataInputStream,
-		result *GAsyncResult,
-		length *Gsize,
-		err **GError) string
+		stream *T.GDataInputStream,
+		result *T.GAsyncResult,
+		length *T.Gsize,
+		err **T.GError) string
 
 	G_data_input_stream_read_upto func(
-		stream *GDataInputStream,
+		stream *T.GDataInputStream,
 		stop_chars string,
-		stop_chars_len Gssize,
-		length *Gsize,
-		cancellable *GCancellable,
-		err **GError) string
+		stop_chars_len T.Gssize,
+		length *T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) string
 
 	G_data_input_stream_read_upto_async func(
-		stream *GDataInputStream,
+		stream *T.GDataInputStream,
 		stop_chars string,
-		stop_chars_len Gssize,
-		io_priority Gint,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		stop_chars_len T.Gssize,
+		io_priority T.Gint,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_data_input_stream_read_upto_finish func(
-		stream *GDataInputStream,
-		result *GAsyncResult,
-		length *Gsize,
-		err **GError) string
+		stream *T.GDataInputStream,
+		result *T.GAsyncResult,
+		length *T.Gsize,
+		err **T.GError) string
 
-	G_data_output_stream_get_type func() GType
+	G_data_output_stream_get_type func() T.GType
 
 	G_data_output_stream_new func(
-		base_stream *GOutputStream) *GDataOutputStream
+		base_stream *T.GOutputStream) *T.GDataOutputStream
 
 	G_data_output_stream_set_byte_order func(
-		stream *GDataOutputStream,
-		order GDataStreamByteOrder)
+		stream *T.GDataOutputStream,
+		order T.GDataStreamByteOrder)
 
 	G_data_output_stream_get_byte_order func(
-		stream *GDataOutputStream) GDataStreamByteOrder
+		stream *T.GDataOutputStream) T.GDataStreamByteOrder
 
 	G_data_output_stream_put_byte func(
-		stream *GDataOutputStream,
-		data Guchar,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Guchar,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_int16 func(
-		stream *GDataOutputStream,
-		data Gint16,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Gint16,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint16 func(
-		stream *GDataOutputStream,
-		data Guint16,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Guint16,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_int32 func(
-		stream *GDataOutputStream,
-		data Gint32,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Gint32,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint32 func(
-		stream *GDataOutputStream,
-		data Guint32,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Guint32,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_int64 func(
-		stream *GDataOutputStream,
-		data Gint64,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Gint64,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint64 func(
-		stream *GDataOutputStream,
-		data Guint64,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GDataOutputStream,
+		data T.Guint64,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_string func(
-		stream *GDataOutputStream,
+		stream *T.GDataOutputStream,
 		str string,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_dbus_is_address func(
-		string string) Gboolean
+		string string) T.Gboolean
 
 	G_dbus_is_supported_address func(
 		string string,
-		err **GError) Gboolean
+		err **T.GError) T.Gboolean
 
 	G_dbus_address_get_stream func(
 		address string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_address_get_stream_finish func(
-		res *GAsyncResult,
-		out_guid **Gchar,
-		err **GError) *GIOStream
+		res *T.GAsyncResult,
+		out_guid **T.Gchar,
+		err **T.GError) *T.GIOStream
 
 	G_dbus_address_get_stream_sync func(
 		address string,
-		out_guid **Gchar,
-		cancellable *GCancellable,
-		err **GError) *GIOStream
+		out_guid **T.Gchar,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GIOStream
 
 	G_dbus_address_get_for_bus_sync func(
-		bus_type GBusType,
-		cancellable *GCancellable,
-		err **GError) string
+		bus_type T.GBusType,
+		cancellable *T.GCancellable,
+		err **T.GError) string
 
-	G_dbus_auth_observer_get_type func() GType
+	G_dbus_auth_observer_get_type func() T.GType
 
-	G_dbus_auth_observer_new func() *GDBusAuthObserver
+	G_dbus_auth_observer_new func() *T.GDBusAuthObserver
 
 	G_dbus_auth_observer_authorize_authenticated_peer func(
-		observer *GDBusAuthObserver,
-		stream *GIOStream,
-		credentials *GCredentials) Gboolean
+		observer *T.GDBusAuthObserver,
+		stream *T.GIOStream,
+		credentials *T.GCredentials) T.Gboolean
 
-	G_dbus_connection_get_type func() GType
+	G_dbus_connection_get_type func() T.GType
 
 	G_bus_get func(
-		bus_type GBusType,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		bus_type T.GBusType,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_bus_get_finish func(
-		res *GAsyncResult,
-		err **GError) *GDBusConnection
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusConnection
 
 	G_bus_get_sync func(
-		bus_type GBusType,
-		cancellable *GCancellable,
-		err **GError) *GDBusConnection
+		bus_type T.GBusType,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusConnection
 
 	G_dbus_connection_new func(
-		stream *GIOStream,
+		stream *T.GIOStream,
 		guid string,
-		flags GDBusConnectionFlags,
-		observer *GDBusAuthObserver,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		flags T.GDBusConnectionFlags,
+		observer *T.GDBusAuthObserver,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_new_finish func(
-		res *GAsyncResult,
-		err **GError) *GDBusConnection
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusConnection
 
 	G_dbus_connection_new_sync func(
-		stream *GIOStream,
+		stream *T.GIOStream,
 		guid string,
-		flags GDBusConnectionFlags,
-		observer *GDBusAuthObserver,
-		cancellable *GCancellable,
-		err **GError) *GDBusConnection
+		flags T.GDBusConnectionFlags,
+		observer *T.GDBusAuthObserver,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusConnection
 
 	G_dbus_connection_new_for_address func(
 		address string,
-		flags GDBusConnectionFlags,
-		observer *GDBusAuthObserver,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		flags T.GDBusConnectionFlags,
+		observer *T.GDBusAuthObserver,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_new_for_address_finish func(
-		res *GAsyncResult,
-		err **GError) *GDBusConnection
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusConnection
 
 	G_dbus_connection_new_for_address_sync func(
 		address string,
-		flags GDBusConnectionFlags,
-		observer *GDBusAuthObserver,
-		cancellable *GCancellable,
-		err **GError) *GDBusConnection
+		flags T.GDBusConnectionFlags,
+		observer *T.GDBusAuthObserver,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusConnection
 
 	G_dbus_connection_start_message_processing func(
-		connection *GDBusConnection)
+		connection *T.GDBusConnection)
 
 	G_dbus_connection_is_closed func(
-		connection *GDBusConnection) Gboolean
+		connection *T.GDBusConnection) T.Gboolean
 
 	G_dbus_connection_get_stream func(
-		connection *GDBusConnection) *GIOStream
+		connection *T.GDBusConnection) *T.GIOStream
 
 	G_dbus_connection_get_guid func(
-		connection *GDBusConnection) string
+		connection *T.GDBusConnection) string
 
 	G_dbus_connection_get_unique_name func(
-		connection *GDBusConnection) string
+		connection *T.GDBusConnection) string
 
 	G_dbus_connection_get_peer_credentials func(
-		connection *GDBusConnection) *GCredentials
+		connection *T.GDBusConnection) *T.GCredentials
 
 	G_dbus_connection_get_exit_on_close func(
-		connection *GDBusConnection) Gboolean
+		connection *T.GDBusConnection) T.Gboolean
 
 	G_dbus_connection_set_exit_on_close func(
-		connection *GDBusConnection,
-		exit_on_close Gboolean)
+		connection *T.GDBusConnection,
+		exit_on_close T.Gboolean)
 
 	G_dbus_connection_get_capabilities func(
-		connection *GDBusConnection) GDBusCapabilityFlags
+		connection *T.GDBusConnection) T.GDBusCapabilityFlags
 
 	G_dbus_connection_close func(
-		connection *GDBusConnection,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		connection *T.GDBusConnection,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_close_finish func(
-		connection *GDBusConnection,
-		res *GAsyncResult,
-		err **GError) Gboolean
+		connection *T.GDBusConnection,
+		res *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_close_sync func(
-		connection *GDBusConnection,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		connection *T.GDBusConnection,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_flush func(
-		connection *GDBusConnection,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		connection *T.GDBusConnection,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_flush_finish func(
-		connection *GDBusConnection,
-		res *GAsyncResult,
-		err **GError) Gboolean
+		connection *T.GDBusConnection,
+		res *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_flush_sync func(
-		connection *GDBusConnection,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		connection *T.GDBusConnection,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_send_message func(
-		connection *GDBusConnection,
-		message *GDBusMessage,
-		flags GDBusSendMessageFlags,
-		out_serial *Guint32,
-		err **GError) Gboolean
+		connection *T.GDBusConnection,
+		message *T.GDBusMessage,
+		flags T.GDBusSendMessageFlags,
+		out_serial *T.Guint32,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_send_message_with_reply func(
-		connection *GDBusConnection,
-		message *GDBusMessage,
-		flags GDBusSendMessageFlags,
-		timeout_msec Gint,
-		out_serial *Guint32,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		connection *T.GDBusConnection,
+		message *T.GDBusMessage,
+		flags T.GDBusSendMessageFlags,
+		timeout_msec T.Gint,
+		out_serial *T.Guint32,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_send_message_with_reply_finish func(
-		connection *GDBusConnection,
-		res *GAsyncResult,
-		err **GError) *GDBusMessage
+		connection *T.GDBusConnection,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusMessage
 
 	G_dbus_connection_send_message_with_reply_sync func(
-		connection *GDBusConnection,
-		message *GDBusMessage,
-		flags GDBusSendMessageFlags,
-		timeout_msec Gint,
-		out_serial *Guint32,
-		cancellable *GCancellable,
-		err **GError) *GDBusMessage
+		connection *T.GDBusConnection,
+		message *T.GDBusMessage,
+		flags T.GDBusSendMessageFlags,
+		timeout_msec T.Gint,
+		out_serial *T.Guint32,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusMessage
 
 	G_dbus_connection_emit_signal func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		destination_bus_name string,
 		object_path string,
 		interface_name string,
 		signal_name string,
-		parameters *GVariant,
-		err **GError) Gboolean
+		parameters *T.GVariant,
+		err **T.GError) T.Gboolean
 
 	G_dbus_connection_call func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		bus_name string,
 		object_path string,
 		interface_name string,
 		method_name string,
-		parameters *GVariant,
-		reply_type *GVariantType,
-		flags GDBusCallFlags,
-		timeout_msec Gint,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		parameters *T.GVariant,
+		reply_type *T.GVariantType,
+		flags T.GDBusCallFlags,
+		timeout_msec T.Gint,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_connection_call_finish func(
-		connection *GDBusConnection,
-		res *GAsyncResult,
-		err **GError) *GVariant
+		connection *T.GDBusConnection,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GVariant
 
 	G_dbus_connection_call_sync func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		bus_name string,
 		object_path string,
 		interface_name string,
 		method_name string,
-		parameters *GVariant,
-		reply_type *GVariantType,
-		flags GDBusCallFlags,
-		timeout_msec Gint,
-		cancellable *GCancellable,
-		err **GError) *GVariant
+		parameters *T.GVariant,
+		reply_type *T.GVariantType,
+		flags T.GDBusCallFlags,
+		timeout_msec T.Gint,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GVariant
 
 	G_dbus_connection_register_object func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		object_path string,
-		interface_info *GDBusInterfaceInfo,
-		vtable *GDBusInterfaceVTable,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify,
-		err **GError) Guint
+		interface_info *T.GDBusInterfaceInfo,
+		vtable *T.GDBusInterfaceVTable,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify,
+		err **T.GError) T.Guint
 
 	G_dbus_connection_unregister_object func(
-		connection *GDBusConnection,
-		registration_id Guint) Gboolean
+		connection *T.GDBusConnection,
+		registration_id T.Guint) T.Gboolean
 
 	G_dbus_connection_register_subtree func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		object_path string,
-		vtable *GDBusSubtreeVTable,
-		flags GDBusSubtreeFlags,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify,
-		err **GError) Guint
+		vtable *T.GDBusSubtreeVTable,
+		flags T.GDBusSubtreeFlags,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify,
+		err **T.GError) T.Guint
 
 	G_dbus_connection_unregister_subtree func(
-		connection *GDBusConnection,
-		registration_id Guint) Gboolean
+		connection *T.GDBusConnection,
+		registration_id T.Guint) T.Gboolean
 
 	G_dbus_connection_signal_subscribe func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		sender string,
 		interface_name string,
 		member string,
 		object_path string,
 		arg0 string,
-		flags GDBusSignalFlags,
-		callback GDBusSignalCallback,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		flags T.GDBusSignalFlags,
+		callback T.GDBusSignalCallback,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_dbus_connection_signal_unsubscribe func(
-		connection *GDBusConnection,
-		subscription_id Guint)
+		connection *T.GDBusConnection,
+		subscription_id T.Guint)
 
 	G_dbus_connection_add_filter func(
-		connection *GDBusConnection,
-		filter_function GDBusMessageFilterFunction,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		connection *T.GDBusConnection,
+		filter_function T.GDBusMessageFilterFunction,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_dbus_connection_remove_filter func(
-		connection *GDBusConnection,
-		filter_id Guint)
+		connection *T.GDBusConnection,
+		filter_id T.Guint)
 
-	G_dbus_error_quark func() GQuark
+	G_dbus_error_quark func() T.GQuark
 
 	G_dbus_error_is_remote_error func(
-		err *GError) Gboolean
+		err *T.GError) T.Gboolean
 
 	G_dbus_error_get_remote_error func(
-		err *GError) string
+		err *T.GError) string
 
 	G_dbus_error_strip_remote_error func(
-		err *GError) Gboolean
+		err *T.GError) T.Gboolean
 
 	G_dbus_error_register_error func(
-		error_domain GQuark,
-		error_code Gint,
-		dbus_error_name string) Gboolean
+		error_domain T.GQuark,
+		error_code T.Gint,
+		dbus_error_name string) T.Gboolean
 
 	G_dbus_error_unregister_error func(
-		error_domain GQuark,
-		error_code Gint,
-		dbus_error_name string) Gboolean
+		error_domain T.GQuark,
+		error_code T.Gint,
+		dbus_error_name string) T.Gboolean
 
 	G_dbus_error_register_error_domain func(
 		error_domain_quark_name string,
-		quark_volatile *Gsize,
-		entries *GDBusErrorEntry,
-		num_entries Guint)
+		quark_volatile *T.Gsize,
+		entries *T.GDBusErrorEntry,
+		num_entries T.Guint)
 
 	G_dbus_error_new_for_dbus_error func(
 		dbus_error_name string,
-		dbus_error_message string) *GError
+		dbus_error_message string) *T.GError
 
-	G_dbus_error_set_dbus_error func(e **GError,
+	G_dbus_error_set_dbus_error func(e **T.GError,
 		dbus_error_name, dbus_error_message,
 		format string, v ...VArg)
 
 	G_dbus_error_set_dbus_error_valist func(
-		err **GError,
+		err **T.GError,
 		dbus_error_name string,
 		dbus_error_message string,
 		format string,
-		var_args Va_list)
+		var_args T.Va_list)
 
 	G_dbus_error_encode_gerror func(
-		err *GError) string
+		err *T.GError) string
 
 	G_dbus_annotation_info_lookup func(
-		annotations **GDBusAnnotationInfo,
+		annotations **T.GDBusAnnotationInfo,
 		name string) string
 
 	G_dbus_interface_info_lookup_method func(
-		info *GDBusInterfaceInfo,
-		name string) *GDBusMethodInfo
+		info *T.GDBusInterfaceInfo,
+		name string) *T.GDBusMethodInfo
 
 	G_dbus_interface_info_lookup_signal func(
-		info *GDBusInterfaceInfo,
-		name string) *GDBusSignalInfo
+		info *T.GDBusInterfaceInfo,
+		name string) *T.GDBusSignalInfo
 
 	G_dbus_interface_info_lookup_property func(
-		info *GDBusInterfaceInfo,
-		name string) *GDBusPropertyInfo
+		info *T.GDBusInterfaceInfo,
+		name string) *T.GDBusPropertyInfo
 
 	G_dbus_interface_info_generate_xml func(
-		info *GDBusInterfaceInfo,
-		indent Guint,
-		string_builder *GString)
+		info *T.GDBusInterfaceInfo,
+		indent T.Guint,
+		string_builder *T.GString)
 
 	G_dbus_node_info_new_for_xml func(
 		xml_data string,
-		err **GError) *GDBusNodeInfo
+		err **T.GError) *T.GDBusNodeInfo
 
 	G_dbus_node_info_lookup_interface func(
-		info *GDBusNodeInfo,
-		name string) *GDBusInterfaceInfo
+		info *T.GDBusNodeInfo,
+		name string) *T.GDBusInterfaceInfo
 
 	G_dbus_node_info_generate_xml func(
-		info *GDBusNodeInfo,
-		indent Guint,
-		string_builder *GString)
+		info *T.GDBusNodeInfo,
+		indent T.Guint,
+		string_builder *T.GString)
 
 	G_dbus_node_info_ref func(
-		info *GDBusNodeInfo) *GDBusNodeInfo
+		info *T.GDBusNodeInfo) *T.GDBusNodeInfo
 
 	G_dbus_interface_info_ref func(
-		info *GDBusInterfaceInfo) *GDBusInterfaceInfo
+		info *T.GDBusInterfaceInfo) *T.GDBusInterfaceInfo
 
 	G_dbus_method_info_ref func(
-		info *GDBusMethodInfo) *GDBusMethodInfo
+		info *T.GDBusMethodInfo) *T.GDBusMethodInfo
 
 	G_dbus_signal_info_ref func(
-		info *GDBusSignalInfo) *GDBusSignalInfo
+		info *T.GDBusSignalInfo) *T.GDBusSignalInfo
 
 	G_dbus_property_info_ref func(
-		info *GDBusPropertyInfo) *GDBusPropertyInfo
+		info *T.GDBusPropertyInfo) *T.GDBusPropertyInfo
 
 	G_dbus_arg_info_ref func(
-		info *GDBusArgInfo) *GDBusArgInfo
+		info *T.GDBusArgInfo) *T.GDBusArgInfo
 
 	G_dbus_annotation_info_ref func(
-		info *GDBusAnnotationInfo) *GDBusAnnotationInfo
+		info *T.GDBusAnnotationInfo) *T.GDBusAnnotationInfo
 
 	G_dbus_node_info_unref func(
-		info *GDBusNodeInfo)
+		info *T.GDBusNodeInfo)
 
 	G_dbus_interface_info_unref func(
-		info *GDBusInterfaceInfo)
+		info *T.GDBusInterfaceInfo)
 
 	G_dbus_method_info_unref func(
-		info *GDBusMethodInfo)
+		info *T.GDBusMethodInfo)
 
 	G_dbus_signal_info_unref func(
-		info *GDBusSignalInfo)
+		info *T.GDBusSignalInfo)
 
 	G_dbus_property_info_unref func(
-		info *GDBusPropertyInfo)
+		info *T.GDBusPropertyInfo)
 
 	G_dbus_arg_info_unref func(
-		info *GDBusArgInfo)
+		info *T.GDBusArgInfo)
 
 	G_dbus_annotation_info_unref func(
-		info *GDBusAnnotationInfo)
+		info *T.GDBusAnnotationInfo)
 
-	G_dbus_node_info_get_type func() GType
+	G_dbus_node_info_get_type func() T.GType
 
-	G_dbus_interface_info_get_type func() GType
+	G_dbus_interface_info_get_type func() T.GType
 
-	G_dbus_method_info_get_type func() GType
+	G_dbus_method_info_get_type func() T.GType
 
-	G_dbus_signal_info_get_type func() GType
+	G_dbus_signal_info_get_type func() T.GType
 
-	G_dbus_property_info_get_type func() GType
+	G_dbus_property_info_get_type func() T.GType
 
-	G_dbus_arg_info_get_type func() GType
+	G_dbus_arg_info_get_type func() T.GType
 
-	G_dbus_annotation_info_get_type func() GType
+	G_dbus_annotation_info_get_type func() T.GType
 
-	G_dbus_message_get_type func() GType
+	G_dbus_message_get_type func() T.GType
 
-	G_dbus_message_new func() *GDBusMessage
+	G_dbus_message_new func() *T.GDBusMessage
 
 	G_dbus_message_new_signal func(
 		path string,
 		interface_ string,
-		signal string) *GDBusMessage
+		signal string) *T.GDBusMessage
 
 	G_dbus_message_new_method_call func(
 		name string,
 		path string,
 		interface_ string,
-		method string) *GDBusMessage
+		method string) *T.GDBusMessage
 
 	G_dbus_message_new_method_reply func(
-		method_call_message *GDBusMessage) *GDBusMessage
+		method_call_message *T.GDBusMessage) *T.GDBusMessage
 
 	G_dbus_message_new_method_error func(
-		method_call_message *GDBusMessage,
+		method_call_message *T.GDBusMessage,
 		error_name, error_message_format string,
-		v ...VArg) *GDBusMessage
+		v ...VArg) *T.GDBusMessage
 
 	G_dbus_message_new_method_error_valist func(
-		method_call_message *GDBusMessage,
+		method_call_message *T.GDBusMessage,
 		error_name string,
 		error_message_format string,
-		var_args Va_list) *GDBusMessage
+		var_args T.Va_list) *T.GDBusMessage
 
 	G_dbus_message_new_method_error_literal func(
-		method_call_message *GDBusMessage,
+		method_call_message *T.GDBusMessage,
 		error_name string,
-		error_message string) *GDBusMessage
+		error_message string) *T.GDBusMessage
 
 	G_dbus_message_print func(
-		message *GDBusMessage,
-		indent Guint) string
+		message *T.GDBusMessage,
+		indent T.Guint) string
 
 	G_dbus_message_get_locked func(
-		message *GDBusMessage) Gboolean
+		message *T.GDBusMessage) T.Gboolean
 
 	G_dbus_message_lock func(
-		message *GDBusMessage)
+		message *T.GDBusMessage)
 
 	G_dbus_message_copy func(
-		message *GDBusMessage,
-		err **GError) *GDBusMessage
+		message *T.GDBusMessage,
+		err **T.GError) *T.GDBusMessage
 
 	G_dbus_message_get_byte_order func(
-		message *GDBusMessage) GDBusMessageByteOrder
+		message *T.GDBusMessage) T.GDBusMessageByteOrder
 
 	G_dbus_message_set_byte_order func(
-		message *GDBusMessage,
-		byte_order GDBusMessageByteOrder)
+		message *T.GDBusMessage,
+		byte_order T.GDBusMessageByteOrder)
 
 	G_dbus_message_get_message_type func(
-		message *GDBusMessage) GDBusMessageType
+		message *T.GDBusMessage) T.GDBusMessageType
 
 	G_dbus_message_set_message_type func(
-		message *GDBusMessage,
-		typ GDBusMessageType)
+		message *T.GDBusMessage,
+		typ T.GDBusMessageType)
 
 	G_dbus_message_get_flags func(
-		message *GDBusMessage) GDBusMessageFlags
+		message *T.GDBusMessage) T.GDBusMessageFlags
 
 	G_dbus_message_set_flags func(
-		message *GDBusMessage,
-		flags GDBusMessageFlags)
+		message *T.GDBusMessage,
+		flags T.GDBusMessageFlags)
 
 	G_dbus_message_get_serial func(
-		message *GDBusMessage) Guint32
+		message *T.GDBusMessage) T.Guint32
 
 	G_dbus_message_set_serial func(
-		message *GDBusMessage,
-		serial Guint32)
+		message *T.GDBusMessage,
+		serial T.Guint32)
 
 	G_dbus_message_get_header func(
-		message *GDBusMessage,
-		header_field GDBusMessageHeaderField) *GVariant
+		message *T.GDBusMessage,
+		header_field T.GDBusMessageHeaderField) *T.GVariant
 
 	G_dbus_message_set_header func(
-		message *GDBusMessage,
-		header_field GDBusMessageHeaderField,
-		value *GVariant)
+		message *T.GDBusMessage,
+		header_field T.GDBusMessageHeaderField,
+		value *T.GVariant)
 
 	G_dbus_message_get_header_fields func(
-		message *GDBusMessage) *Guchar
+		message *T.GDBusMessage) *T.Guchar
 
 	G_dbus_message_get_body func(
-		message *GDBusMessage) *GVariant
+		message *T.GDBusMessage) *T.GVariant
 
 	G_dbus_message_set_body func(
-		message *GDBusMessage,
-		body *GVariant)
+		message *T.GDBusMessage,
+		body *T.GVariant)
 
 	G_dbus_message_get_unix_fd_list func(
-		message *GDBusMessage) *GUnixFDList
+		message *T.GDBusMessage) *T.GUnixFDList
 
 	G_dbus_message_set_unix_fd_list func(
-		message *GDBusMessage,
-		fd_list *GUnixFDList)
+		message *T.GDBusMessage,
+		fd_list *T.GUnixFDList)
 
 	G_dbus_message_get_reply_serial func(
-		message *GDBusMessage) Guint32
+		message *T.GDBusMessage) T.Guint32
 
 	G_dbus_message_set_reply_serial func(
-		message *GDBusMessage,
-		value Guint32)
+		message *T.GDBusMessage,
+		value T.Guint32)
 
 	G_dbus_message_get_interface func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_interface func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_member func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_member func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_path func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_path func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_sender func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_sender func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_destination func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_destination func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_error_name func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_error_name func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_signature func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_set_signature func(
-		message *GDBusMessage,
+		message *T.GDBusMessage,
 		value string)
 
 	G_dbus_message_get_num_unix_fds func(
-		message *GDBusMessage) Guint32
+		message *T.GDBusMessage) T.Guint32
 
 	G_dbus_message_set_num_unix_fds func(
-		message *GDBusMessage,
-		value Guint32)
+		message *T.GDBusMessage,
+		value T.Guint32)
 
 	G_dbus_message_get_arg0 func(
-		message *GDBusMessage) string
+		message *T.GDBusMessage) string
 
 	G_dbus_message_new_from_blob func(
-		blob *Guchar,
-		blob_len Gsize,
-		capabilities GDBusCapabilityFlags,
-		err **GError) *GDBusMessage
+		blob *T.Guchar,
+		blob_len T.Gsize,
+		capabilities T.GDBusCapabilityFlags,
+		err **T.GError) *T.GDBusMessage
 
 	G_dbus_message_bytes_needed func(
-		blob *Guchar,
-		blob_len Gsize,
-		err **GError) Gssize
+		blob *T.Guchar,
+		blob_len T.Gsize,
+		err **T.GError) T.Gssize
 
 	G_dbus_message_to_blob func(
-		message *GDBusMessage,
-		out_size *Gsize,
-		capabilities GDBusCapabilityFlags,
-		err **GError) *Guchar
+		message *T.GDBusMessage,
+		out_size *T.Gsize,
+		capabilities T.GDBusCapabilityFlags,
+		err **T.GError) *T.Guchar
 
 	G_dbus_message_to_gerror func(
-		message *GDBusMessage,
-		err **GError) Gboolean
+		message *T.GDBusMessage,
+		err **T.GError) T.Gboolean
 
-	G_dbus_method_invocation_get_type func() GType
+	G_dbus_method_invocation_get_type func() T.GType
 
 	G_dbus_method_invocation_get_sender func(
-		invocation *GDBusMethodInvocation) string
+		invocation *T.GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_object_path func(
-		invocation *GDBusMethodInvocation) string
+		invocation *T.GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_interface_name func(
-		invocation *GDBusMethodInvocation) string
+		invocation *T.GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_method_name func(
-		invocation *GDBusMethodInvocation) string
+		invocation *T.GDBusMethodInvocation) string
 
 	G_dbus_method_invocation_get_method_info func(
-		invocation *GDBusMethodInvocation) *GDBusMethodInfo
+		invocation *T.GDBusMethodInvocation) *T.GDBusMethodInfo
 
 	G_dbus_method_invocation_get_connection func(
-		invocation *GDBusMethodInvocation) *GDBusConnection
+		invocation *T.GDBusMethodInvocation) *T.GDBusConnection
 
 	G_dbus_method_invocation_get_message func(
-		invocation *GDBusMethodInvocation) *GDBusMessage
+		invocation *T.GDBusMethodInvocation) *T.GDBusMessage
 
 	G_dbus_method_invocation_get_parameters func(
-		invocation *GDBusMethodInvocation) *GVariant
+		invocation *T.GDBusMethodInvocation) *T.GVariant
 
 	G_dbus_method_invocation_get_user_data func(
-		invocation *GDBusMethodInvocation) Gpointer
+		invocation *T.GDBusMethodInvocation) T.Gpointer
 
 	G_dbus_method_invocation_return_value func(
-		invocation *GDBusMethodInvocation,
-		parameters *GVariant)
+		invocation *T.GDBusMethodInvocation,
+		parameters *T.GVariant)
 
 	G_dbus_method_invocation_return_error func(
-		invocation *GDBusMethodInvocation,
-		domain GQuark, code Gint, format string, v ...VArg)
+		invocation *T.GDBusMethodInvocation,
+		domain T.GQuark, code T.Gint, format string, v ...VArg)
 
 	G_dbus_method_invocation_return_error_valist func(
-		invocation *GDBusMethodInvocation,
-		domain GQuark,
-		code Gint,
+		invocation *T.GDBusMethodInvocation,
+		domain T.GQuark,
+		code T.Gint,
 		format string,
-		var_args Va_list)
+		var_args T.Va_list)
 
 	G_dbus_method_invocation_return_error_literal func(
-		invocation *GDBusMethodInvocation,
-		domain GQuark,
-		code Gint,
+		invocation *T.GDBusMethodInvocation,
+		domain T.GQuark,
+		code T.Gint,
 		message string)
 
 	G_dbus_method_invocation_return_gerror func(
-		invocation *GDBusMethodInvocation,
-		err *GError)
+		invocation *T.GDBusMethodInvocation,
+		err *T.GError)
 
 	G_dbus_method_invocation_return_dbus_error func(
-		invocation *GDBusMethodInvocation,
+		invocation *T.GDBusMethodInvocation,
 		error_name string,
 		error_message string)
 
 	G_bus_own_name func(
-		bus_type GBusType,
+		bus_type T.GBusType,
 		name string,
-		flags GBusNameOwnerFlags,
-		bus_acquired_handler GBusAcquiredCallback,
-		name_acquired_handler GBusNameAcquiredCallback,
-		name_lost_handler GBusNameLostCallback,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		flags T.GBusNameOwnerFlags,
+		bus_acquired_handler T.GBusAcquiredCallback,
+		name_acquired_handler T.GBusNameAcquiredCallback,
+		name_lost_handler T.GBusNameLostCallback,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_bus_own_name_on_connection func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		name string,
-		flags GBusNameOwnerFlags,
-		name_acquired_handler GBusNameAcquiredCallback,
-		name_lost_handler GBusNameLostCallback,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		flags T.GBusNameOwnerFlags,
+		name_acquired_handler T.GBusNameAcquiredCallback,
+		name_lost_handler T.GBusNameLostCallback,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_bus_own_name_with_closures func(
-		bus_type GBusType,
+		bus_type T.GBusType,
 		name string,
-		flags GBusNameOwnerFlags,
-		bus_acquired_closure *GClosure,
-		name_acquired_closure *GClosure,
-		name_lost_closure *GClosure) Guint
+		flags T.GBusNameOwnerFlags,
+		bus_acquired_closure *T.GClosure,
+		name_acquired_closure *T.GClosure,
+		name_lost_closure *T.GClosure) T.Guint
 
 	G_bus_own_name_on_connection_with_closures func(
 
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		name string,
-		flags GBusNameOwnerFlags,
-		name_acquired_closure *GClosure,
-		name_lost_closure *GClosure) Guint
+		flags T.GBusNameOwnerFlags,
+		name_acquired_closure *T.GClosure,
+		name_lost_closure *T.GClosure) T.Guint
 
 	G_bus_unown_name func(
-		owner_id Guint)
+		owner_id T.Guint)
 
 	G_bus_watch_name func(
-		bus_type GBusType,
+		bus_type T.GBusType,
 		name string,
-		flags GBusNameWatcherFlags,
-		name_appeared_handler GBusNameAppearedCallback,
-		name_vanished_handler GBusNameVanishedCallback,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		flags T.GBusNameWatcherFlags,
+		name_appeared_handler T.GBusNameAppearedCallback,
+		name_vanished_handler T.GBusNameVanishedCallback,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_bus_watch_name_on_connection func(
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		name string,
-		flags GBusNameWatcherFlags,
-		name_appeared_handler GBusNameAppearedCallback,
-		name_vanished_handler GBusNameVanishedCallback,
-		user_data Gpointer,
-		user_data_free_func GDestroyNotify) Guint
+		flags T.GBusNameWatcherFlags,
+		name_appeared_handler T.GBusNameAppearedCallback,
+		name_vanished_handler T.GBusNameVanishedCallback,
+		user_data T.Gpointer,
+		user_data_free_func T.GDestroyNotify) T.Guint
 
 	G_bus_watch_name_with_closures func(
-		bus_type GBusType,
+		bus_type T.GBusType,
 		name string,
-		flags GBusNameWatcherFlags,
-		name_appeared_closure *GClosure,
-		name_vanished_closure *GClosure) Guint
+		flags T.GBusNameWatcherFlags,
+		name_appeared_closure *T.GClosure,
+		name_vanished_closure *T.GClosure) T.Guint
 
 	G_bus_watch_name_on_connection_with_closures func(
 
-		connection *GDBusConnection,
+		connection *T.GDBusConnection,
 		name string,
-		flags GBusNameWatcherFlags,
-		name_appeared_closure *GClosure,
-		name_vanished_closure *GClosure) Guint
+		flags T.GBusNameWatcherFlags,
+		name_appeared_closure *T.GClosure,
+		name_vanished_closure *T.GClosure) T.Guint
 
 	G_bus_unwatch_name func(
-		watcher_id Guint)
+		watcher_id T.Guint)
 
-	G_dbus_proxy_get_type func() GType
+	G_dbus_proxy_get_type func() T.GType
 
 	G_dbus_proxy_new func(
-		connection *GDBusConnection,
-		flags GDBusProxyFlags,
-		info *GDBusInterfaceInfo,
+		connection *T.GDBusConnection,
+		flags T.GDBusProxyFlags,
+		info *T.GDBusInterfaceInfo,
 		name string,
 		object_path string,
 		interface_name string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_proxy_new_finish func(
-		res *GAsyncResult,
-		err **GError) *GDBusProxy
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusProxy
 
 	G_dbus_proxy_new_sync func(
-		connection *GDBusConnection,
-		flags GDBusProxyFlags,
-		info *GDBusInterfaceInfo,
+		connection *T.GDBusConnection,
+		flags T.GDBusProxyFlags,
+		info *T.GDBusInterfaceInfo,
 		name string,
 		object_path string,
 		interface_name string,
-		cancellable *GCancellable,
-		err **GError) *GDBusProxy
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusProxy
 
 	G_dbus_proxy_new_for_bus func(
-		bus_type GBusType,
-		flags GDBusProxyFlags,
-		info *GDBusInterfaceInfo,
+		bus_type T.GBusType,
+		flags T.GDBusProxyFlags,
+		info *T.GDBusInterfaceInfo,
 		name string,
 		object_path string,
 		interface_name string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_proxy_new_for_bus_finish func(
-		res *GAsyncResult,
-		err **GError) *GDBusProxy
+		res *T.GAsyncResult,
+		err **T.GError) *T.GDBusProxy
 
 	G_dbus_proxy_new_for_bus_sync func(
-		bus_type GBusType,
-		flags GDBusProxyFlags,
-		info *GDBusInterfaceInfo,
+		bus_type T.GBusType,
+		flags T.GDBusProxyFlags,
+		info *T.GDBusInterfaceInfo,
 		name string,
 		object_path string,
 		interface_name string,
-		cancellable *GCancellable,
-		err **GError) *GDBusProxy
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusProxy
 
 	G_dbus_proxy_get_connection func(
-		proxy *GDBusProxy) *GDBusConnection
+		proxy *T.GDBusProxy) *T.GDBusConnection
 
 	G_dbus_proxy_get_flags func(
-		proxy *GDBusProxy) GDBusProxyFlags
+		proxy *T.GDBusProxy) T.GDBusProxyFlags
 
 	G_dbus_proxy_get_name func(
-		proxy *GDBusProxy) string
+		proxy *T.GDBusProxy) string
 
 	G_dbus_proxy_get_name_owner func(
-		proxy *GDBusProxy) string
+		proxy *T.GDBusProxy) string
 
 	G_dbus_proxy_get_object_path func(
-		proxy *GDBusProxy) string
+		proxy *T.GDBusProxy) string
 
 	G_dbus_proxy_get_interface_name func(
-		proxy *GDBusProxy) string
+		proxy *T.GDBusProxy) string
 
 	G_dbus_proxy_get_default_timeout func(
-		proxy *GDBusProxy) Gint
+		proxy *T.GDBusProxy) T.Gint
 
 	G_dbus_proxy_set_default_timeout func(
-		proxy *GDBusProxy,
-		timeout_msec Gint)
+		proxy *T.GDBusProxy,
+		timeout_msec T.Gint)
 
 	G_dbus_proxy_get_interface_info func(
-		proxy *GDBusProxy) *GDBusInterfaceInfo
+		proxy *T.GDBusProxy) *T.GDBusInterfaceInfo
 
 	G_dbus_proxy_set_interface_info func(
-		proxy *GDBusProxy,
-		info *GDBusInterfaceInfo)
+		proxy *T.GDBusProxy,
+		info *T.GDBusInterfaceInfo)
 
 	G_dbus_proxy_get_cached_property func(
-		proxy *GDBusProxy,
-		property_name string) *GVariant
+		proxy *T.GDBusProxy,
+		property_name string) *T.GVariant
 
 	G_dbus_proxy_set_cached_property func(
-		proxy *GDBusProxy,
+		proxy *T.GDBusProxy,
 		property_name string,
-		value *GVariant)
+		value *T.GVariant)
 
 	G_dbus_proxy_get_cached_property_names func(
-		proxy *GDBusProxy) **Gchar
+		proxy *T.GDBusProxy) **T.Gchar
 
 	G_dbus_proxy_call func(
-		proxy *GDBusProxy,
+		proxy *T.GDBusProxy,
 		method_name string,
-		parameters *GVariant,
-		flags GDBusCallFlags,
-		timeout_msec Gint,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		parameters *T.GVariant,
+		flags T.GDBusCallFlags,
+		timeout_msec T.Gint,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_dbus_proxy_call_finish func(
-		proxy *GDBusProxy,
-		res *GAsyncResult,
-		err **GError) *GVariant
+		proxy *T.GDBusProxy,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GVariant
 
 	G_dbus_proxy_call_sync func(
-		proxy *GDBusProxy,
+		proxy *T.GDBusProxy,
 		method_name string,
-		parameters *GVariant,
-		flags GDBusCallFlags,
-		timeout_msec Gint,
-		cancellable *GCancellable,
-		err **GError) *GVariant
+		parameters *T.GVariant,
+		flags T.GDBusCallFlags,
+		timeout_msec T.Gint,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GVariant
 
-	G_dbus_server_get_type func() GType
+	G_dbus_server_get_type func() T.GType
 
 	G_dbus_server_new_sync func(
 		address string,
-		flags GDBusServerFlags,
+		flags T.GDBusServerFlags,
 		guid string,
-		observer *GDBusAuthObserver,
-		cancellable *GCancellable,
-		err **GError) *GDBusServer
+		observer *T.GDBusAuthObserver,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GDBusServer
 
 	G_dbus_server_get_client_address func(
-		server *GDBusServer) string
+		server *T.GDBusServer) string
 
 	G_dbus_server_get_guid func(
-		server *GDBusServer) string
+		server *T.GDBusServer) string
 
 	G_dbus_server_get_flags func(
-		server *GDBusServer) GDBusServerFlags
+		server *T.GDBusServer) T.GDBusServerFlags
 
 	G_dbus_server_start func(
-		server *GDBusServer)
+		server *T.GDBusServer)
 
 	G_dbus_server_stop func(
-		server *GDBusServer)
+		server *T.GDBusServer)
 
 	G_dbus_server_is_active func(
-		server *GDBusServer) Gboolean
+		server *T.GDBusServer) T.Gboolean
 
 	G_dbus_is_guid func(
-		string string) Gboolean
+		string string) T.Gboolean
 
 	G_dbus_generate_guid func() string
 
 	G_dbus_is_name func(
-		string string) Gboolean
+		string string) T.Gboolean
 
 	G_dbus_is_unique_name func(
-		string string) Gboolean
+		string string) T.Gboolean
 
 	G_dbus_is_member_name func(
-		string string) Gboolean
+		string string) T.Gboolean
 
 	G_dbus_is_interface_name func(
-		string string) Gboolean
+		string string) T.Gboolean
 
-	G_drive_get_type func() GType
+	G_drive_get_type func() T.GType
 
-	G_drive_get_name func(drive *GDrive) string
+	G_drive_get_name func(drive *T.GDrive) string
 
-	G_drive_get_icon func(drive *GDrive) *GIcon
+	G_drive_get_icon func(drive *T.GDrive) *T.GIcon
 
-	G_drive_has_volumes func(drive *GDrive) Gboolean
+	G_drive_has_volumes func(drive *T.GDrive) T.Gboolean
 
-	G_drive_get_volumes func(drive *GDrive) *GList
+	G_drive_get_volumes func(drive *T.GDrive) *T.GList
 
-	G_drive_is_media_removable func(drive *GDrive) Gboolean
+	G_drive_is_media_removable func(drive *T.GDrive) T.Gboolean
 
-	G_drive_has_media func(drive *GDrive) Gboolean
+	G_drive_has_media func(drive *T.GDrive) T.Gboolean
 
-	G_drive_is_media_check_automatic func(drive *GDrive) Gboolean
+	G_drive_is_media_check_automatic func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_poll_for_media func(drive *GDrive) Gboolean
+	G_drive_can_poll_for_media func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_eject func(drive *GDrive) Gboolean
+	G_drive_can_eject func(drive *T.GDrive) T.Gboolean
 
 	G_drive_eject func(
-		drive *GDrive,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		drive *T.GDrive,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_drive_eject_finish func(
-		drive *GDrive,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		drive *T.GDrive,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_drive_poll_for_media func(
-		drive *GDrive,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		drive *T.GDrive,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_drive_poll_for_media_finish func(
-		drive *GDrive,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		drive *T.GDrive,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_drive_get_identifier func(drive *GDrive, kind string) string
+	G_drive_get_identifier func(drive *T.GDrive, kind string) string
 
 	G_drive_enumerate_identifiers func(
-		drive *GDrive) **Char
+		drive *T.GDrive) **T.Char
 
 	G_drive_get_start_stop_type func(
-		drive *GDrive) GDriveStartStopType
+		drive *T.GDrive) T.GDriveStartStopType
 
-	G_drive_can_start func(drive *GDrive) Gboolean
+	G_drive_can_start func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_start_degraded func(drive *GDrive) Gboolean
+	G_drive_can_start_degraded func(drive *T.GDrive) T.Gboolean
 
 	G_drive_start func(
-		drive *GDrive,
-		flags GDriveStartFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		drive *T.GDrive,
+		flags T.GDriveStartFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_drive_start_finish func(
-		drive *GDrive,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		drive *T.GDrive,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_drive_can_stop func(drive *GDrive) Gboolean
+	G_drive_can_stop func(drive *T.GDrive) T.Gboolean
 
 	G_drive_stop func(
-		drive *GDrive,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		drive *T.GDrive,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_drive_stop_finish func(
-		drive *GDrive,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		drive *T.GDrive,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_drive_eject_with_operation func(
-		drive *GDrive,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		drive *T.GDrive,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_drive_eject_with_operation_finish func(
-		drive *GDrive,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		drive *T.GDrive,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_icon_get_type func() GType
+	G_icon_get_type func() T.GType
 
-	G_icon_hash func(icon Gconstpointer) Guint
+	G_icon_hash func(icon T.Gconstpointer) T.Guint
 
-	G_icon_equal func(icon1 *GIcon, icon2 *GIcon) Gboolean
+	G_icon_equal func(icon1 *T.GIcon, icon2 *T.GIcon) T.Gboolean
 
-	G_icon_to_string func(icon *GIcon) string
+	G_icon_to_string func(icon *T.GIcon) string
 
-	G_icon_new_for_string func(str string, err **GError) *GIcon
+	G_icon_new_for_string func(str string, err **T.GError) *T.GIcon
 
-	G_emblem_get_type func() GType
+	G_emblem_get_type func() T.GType
 
-	G_emblem_new func(icon *GIcon) *GEmblem
+	G_emblem_new func(icon *T.GIcon) *T.GEmblem
 
 	G_emblem_new_with_origin func(
-		icon *GIcon, origin GEmblemOrigin) *GEmblem
+		icon *T.GIcon, origin T.GEmblemOrigin) *T.GEmblem
 
-	G_emblem_get_icon func(emblem *GEmblem) *GIcon
+	G_emblem_get_icon func(emblem *T.GEmblem) *T.GIcon
 
-	G_emblem_get_origin func(emblem *GEmblem) GEmblemOrigin
+	G_emblem_get_origin func(emblem *T.GEmblem) T.GEmblemOrigin
 
-	G_emblemed_icon_get_type func() GType
+	G_emblemed_icon_get_type func() T.GType
 
-	G_emblemed_icon_new func(icon *GIcon, emblem *GEmblem) *GIcon
+	G_emblemed_icon_new func(icon *T.GIcon, emblem *T.GEmblem) *T.GIcon
 
-	G_emblemed_icon_get_icon func(emblemed *GEmblemedIcon) *GIcon
+	G_emblemed_icon_get_icon func(emblemed *T.GEmblemedIcon) *T.GIcon
 
 	G_emblemed_icon_get_emblems func(
-		emblemed *GEmblemedIcon) *GList
+		emblemed *T.GEmblemedIcon) *T.GList
 
 	G_emblemed_icon_add_emblem func(
-		emblemed *GEmblemedIcon, emblem *GEmblem)
+		emblemed *T.GEmblemedIcon, emblem *T.GEmblem)
 
-	G_emblemed_icon_clear_emblems func(emblemed *GEmblemedIcon)
+	G_emblemed_icon_clear_emblems func(emblemed *T.GEmblemedIcon)
 
-	G_file_attribute_info_list_get_type func() GType
+	G_file_attribute_info_list_get_type func() T.GType
 
-	G_file_attribute_info_list_new func() *GFileAttributeInfoList
+	G_file_attribute_info_list_new func() *T.GFileAttributeInfoList
 
 	G_file_attribute_info_list_ref func(
-		list *GFileAttributeInfoList) *GFileAttributeInfoList
+		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
 
 	G_file_attribute_info_list_unref func(
-		list *GFileAttributeInfoList)
+		list *T.GFileAttributeInfoList)
 
 	G_file_attribute_info_list_dup func(
-		list *GFileAttributeInfoList) *GFileAttributeInfoList
+		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
 
 	G_file_attribute_info_list_lookup func(
-		list *GFileAttributeInfoList,
-		name string) *GFileAttributeInfo
+		list *T.GFileAttributeInfoList,
+		name string) *T.GFileAttributeInfo
 
 	G_file_attribute_info_list_add func(
-		list *GFileAttributeInfoList,
+		list *T.GFileAttributeInfoList,
 		name string,
-		typ GFileAttributeType,
-		flags GFileAttributeInfoFlags)
+		typ T.GFileAttributeType,
+		flags T.GFileAttributeInfoFlags)
 
-	G_file_enumerator_get_type func() GType
+	G_file_enumerator_get_type func() T.GType
 
 	G_file_enumerator_next_file func(
-		enumerator *GFileEnumerator,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		enumerator *T.GFileEnumerator,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_enumerator_close func(
-		enumerator *GFileEnumerator,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		enumerator *T.GFileEnumerator,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_enumerator_next_files_async func(
-		enumerator *GFileEnumerator,
+		enumerator *T.GFileEnumerator,
 		num_files int,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_enumerator_next_files_finish func(
-		enumerator *GFileEnumerator,
-		result *GAsyncResult,
-		err **GError) *GList
+		enumerator *T.GFileEnumerator,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GList
 
 	G_file_enumerator_close_async func(
-		enumerator *GFileEnumerator,
+		enumerator *T.GFileEnumerator,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_enumerator_close_finish func(
-		enumerator *GFileEnumerator,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		enumerator *T.GFileEnumerator,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_enumerator_is_closed func(
-		enumerator *GFileEnumerator) Gboolean
+		enumerator *T.GFileEnumerator) T.Gboolean
 
 	G_file_enumerator_has_pending func(
-		enumerator *GFileEnumerator) Gboolean
+		enumerator *T.GFileEnumerator) T.Gboolean
 
 	G_file_enumerator_set_pending func(
-		enumerator *GFileEnumerator,
-		pending Gboolean)
+		enumerator *T.GFileEnumerator,
+		pending T.Gboolean)
 
 	G_file_enumerator_get_container func(
-		enumerator *GFileEnumerator) *GFile
+		enumerator *T.GFileEnumerator) *T.GFile
 
-	G_file_get_type func() GType
+	G_file_get_type func() T.GType
 
-	G_file_new_for_path func(path string) *GFile
+	G_file_new_for_path func(path string) *T.GFile
 
-	G_file_new_for_uri func(uri string) *GFile
+	G_file_new_for_uri func(uri string) *T.GFile
 
-	G_file_new_for_commandline_arg func(arg string) *GFile
+	G_file_new_for_commandline_arg func(arg string) *T.GFile
 
-	G_file_parse_name func(parse_name string) *GFile
+	G_file_parse_name func(parse_name string) *T.GFile
 
-	G_file_dup func(file *GFile) *GFile
+	G_file_dup func(file *T.GFile) *T.GFile
 
-	G_file_hash func(file Gconstpointer) Guint
+	G_file_hash func(file T.Gconstpointer) T.Guint
 
-	G_file_equal func(file1 *GFile, file2 *GFile) Gboolean
+	G_file_equal func(file1 *T.GFile, file2 *T.GFile) T.Gboolean
 
-	G_file_get_basename func(file *GFile) string
+	G_file_get_basename func(file *T.GFile) string
 
-	G_file_get_path func(file *GFile) string
+	G_file_get_path func(file *T.GFile) string
 
-	G_file_get_uri func(file *GFile) string
+	G_file_get_uri func(file *T.GFile) string
 
-	G_file_get_parse_name func(file *GFile) string
+	G_file_get_parse_name func(file *T.GFile) string
 
-	G_file_get_parent func(file *GFile) *GFile
+	G_file_get_parent func(file *T.GFile) *T.GFile
 
-	G_file_has_parent func(file *GFile, parent *GFile) Gboolean
+	G_file_has_parent func(file *T.GFile, parent *T.GFile) T.Gboolean
 
-	G_file_get_child func(file *GFile, name string) *GFile
+	G_file_get_child func(file *T.GFile, name string) *T.GFile
 
 	G_file_get_child_for_display_name func(
-		file *GFile, display_name string, err **GError) *GFile
+		file *T.GFile, display_name string, err **T.GError) *T.GFile
 
-	G_file_has_prefix func(file *GFile, prefix *GFile) Gboolean
+	G_file_has_prefix func(file *T.GFile, prefix *T.GFile) T.Gboolean
 
 	G_file_get_relative_path func(
-		parent *GFile, descendant *GFile) string
+		parent *T.GFile, descendant *T.GFile) string
 
 	G_file_resolve_relative_path func(
-		file *GFile, relative_path string) *GFile
+		file *T.GFile, relative_path string) *T.GFile
 
-	G_file_is_native func(file *GFile) Gboolean
+	G_file_is_native func(file *T.GFile) T.Gboolean
 
 	G_file_has_uri_scheme func(
-		file *GFile, uri_scheme string) Gboolean
+		file *T.GFile, uri_scheme string) T.Gboolean
 
-	G_file_get_uri_scheme func(file *GFile) string
+	G_file_get_uri_scheme func(file *T.GFile) string
 
 	G_file_read func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GFileInputStream
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInputStream
 
 	G_file_read_async func(
-		file *GFile,
+		file *T.GFile,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_read_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileInputStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileInputStream
 
 	G_file_append_to func(
-		file *GFile,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileOutputStream
+		file *T.GFile,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_create func(
-		file *GFile,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileOutputStream
+		file *T.GFile,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_replace func(
-		file *GFile,
+		file *T.GFile,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileOutputStream
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_append_to_async func(
-		file *GFile,
-		flags GFileCreateFlags,
+		file *T.GFile,
+		flags T.GFileCreateFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_append_to_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileOutputStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_create_async func(
-		file *GFile,
-		flags GFileCreateFlags,
+		file *T.GFile,
+		flags T.GFileCreateFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_create_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileOutputStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_replace_async func(
-		file *GFile,
+		file *T.GFile,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_replace_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileOutputStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileOutputStream
 
 	G_file_open_readwrite func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GFileIOStream
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_open_readwrite_async func(
-		file *GFile,
+		file *T.GFile,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_open_readwrite_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileIOStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_create_readwrite func(
-		file *GFile,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileIOStream
+		file *T.GFile,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_create_readwrite_async func(
-		file *GFile,
-		flags GFileCreateFlags,
+		file *T.GFile,
+		flags T.GFileCreateFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_create_readwrite_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileIOStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_replace_readwrite func(
-		file *GFile,
+		file *T.GFile,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileIOStream
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_replace_readwrite_async func(
-		file *GFile,
+		file *T.GFile,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_replace_readwrite_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileIOStream
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileIOStream
 
 	G_file_query_exists func(
-		file *GFile,
-		cancellable *GCancellable) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable) T.Gboolean
 
 	G_file_query_file_type func(
-		file *GFile,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable) GFileType
+		file *T.GFile,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable) T.GFileType
 
 	G_file_query_info func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_query_info_async func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
-		flags GFileQueryInfoFlags,
+		flags T.GFileQueryInfoFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_query_info_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileInfo
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileInfo
 
 	G_file_query_filesystem_info func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_query_filesystem_info_async func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_query_filesystem_info_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileInfo
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileInfo
 
 	G_file_find_enclosing_mount func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GMount
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GMount
 
 	G_file_find_enclosing_mount_async func(
-		file *GFile,
+		file *T.GFile,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_find_enclosing_mount_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GMount
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GMount
 
 	G_file_enumerate_children func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileEnumerator
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileEnumerator
 
 	G_file_enumerate_children_async func(
-		file *GFile,
+		file *T.GFile,
 		attributes string,
-		flags GFileQueryInfoFlags,
+		flags T.GFileQueryInfoFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_enumerate_children_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFileEnumerator
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFileEnumerator
 
 	G_file_set_display_name func(
-		file *GFile,
+		file *T.GFile,
 		display_name string,
-		cancellable *GCancellable,
-		err **GError) *GFile
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFile
 
 	G_file_set_display_name_async func(
-		file *GFile,
+		file *T.GFile,
 		display_name string,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_set_display_name_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) *GFile
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) *T.GFile
 
 	G_file_delete func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_trash func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_copy func(
-		source *GFile,
-		destination *GFile,
-		flags GFileCopyFlags,
-		cancellable *GCancellable,
-		progress_callback GFileProgressCallback,
-		progress_callback_data Gpointer,
-		err **GError) Gboolean
+		source *T.GFile,
+		destination *T.GFile,
+		flags T.GFileCopyFlags,
+		cancellable *T.GCancellable,
+		progress_callback T.GFileProgressCallback,
+		progress_callback_data T.Gpointer,
+		err **T.GError) T.Gboolean
 
 	G_file_copy_async func(
-		source *GFile,
-		destination *GFile,
-		flags GFileCopyFlags,
+		source *T.GFile,
+		destination *T.GFile,
+		flags T.GFileCopyFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		progress_callback GFileProgressCallback,
-		progress_callback_data Gpointer,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		progress_callback T.GFileProgressCallback,
+		progress_callback_data T.Gpointer,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_copy_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		res *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_move func(
-		source *GFile,
-		destination *GFile,
-		flags GFileCopyFlags,
-		cancellable *GCancellable,
-		progress_callback GFileProgressCallback,
-		progress_callback_data Gpointer,
-		err **GError) Gboolean
+		source *T.GFile,
+		destination *T.GFile,
+		flags T.GFileCopyFlags,
+		cancellable *T.GCancellable,
+		progress_callback T.GFileProgressCallback,
+		progress_callback_data T.Gpointer,
+		err **T.GError) T.Gboolean
 
 	G_file_make_directory func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_make_directory_with_parents func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_make_symbolic_link func(
-		file *GFile,
+		file *T.GFile,
 		symlink_value string,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_query_settable_attributes func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GFileAttributeInfoList
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileAttributeInfoList
 
 	G_file_query_writable_namespaces func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GFileAttributeInfoList
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileAttributeInfoList
 
 	G_file_set_attribute func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
-		typ GFileAttributeType,
-		value_p Gpointer,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		typ T.GFileAttributeType,
+		value_p T.Gpointer,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attributes_from_info func(
-		file *GFile,
-		info *GFileInfo,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		file *T.GFile,
+		info *T.GFileInfo,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attributes_async func(
-		file *GFile,
-		info *GFileInfo,
-		flags GFileQueryInfoFlags,
+		file *T.GFile,
+		info *T.GFileInfo,
+		flags T.GFileQueryInfoFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_set_attributes_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		info **GFileInfo,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		info **T.GFileInfo,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_string func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
 		value string,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_byte_string func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
 		value string,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_uint32 func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
-		value Guint32,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		value T.Guint32,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_int32 func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
-		value Gint32,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		value T.Gint32,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_uint64 func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
-		value Guint64,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		value T.Guint64,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_set_attribute_int64 func(
-		file *GFile,
+		file *T.GFile,
 		attribute string,
-		value Gint64,
-		flags GFileQueryInfoFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		value T.Gint64,
+		flags T.GFileQueryInfoFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_mount_enclosing_volume func(
-		location *GFile,
-		flags GMountMountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		location *T.GFile,
+		flags T.GMountMountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_mount_enclosing_volume_finish func(
-		location *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		location *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_mount_mountable func(
-		file *GFile,
-		flags GMountMountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountMountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_mount_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) *GFile
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GFile
 
 	G_file_unmount_mountable func(
-		file *GFile,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_unmount_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_unmount_mountable_with_operation func(
-		file *GFile,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_unmount_mountable_with_operation_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_eject_mountable func(
-		file *GFile,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_eject_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_eject_mountable_with_operation func(
-		file *GFile,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_eject_mountable_with_operation_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_copy_attributes func(
-		source *GFile,
-		destination *GFile,
-		flags GFileCopyFlags,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		source *T.GFile,
+		destination *T.GFile,
+		flags T.GFileCopyFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_monitor_directory func(
-		file *GFile,
-		flags GFileMonitorFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileMonitor
+		file *T.GFile,
+		flags T.GFileMonitorFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileMonitor
 
 	G_file_monitor_file func(
-		file *GFile,
-		flags GFileMonitorFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileMonitor
+		file *T.GFile,
+		flags T.GFileMonitorFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileMonitor
 
 	G_file_monitor func(
-		file *GFile,
-		flags GFileMonitorFlags,
-		cancellable *GCancellable,
-		err **GError) *GFileMonitor
+		file *T.GFile,
+		flags T.GFileMonitorFlags,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileMonitor
 
 	G_file_start_mountable func(
-		file *GFile,
-		flags GDriveStartFlags,
-		start_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GDriveStartFlags,
+		start_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_start_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_stop_mountable func(
-		file *GFile,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_stop_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_poll_mountable func(
-		file *GFile,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_poll_mountable_finish func(
-		file *GFile,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		file *T.GFile,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_file_query_default_handler func(
-		file *GFile,
-		cancellable *GCancellable,
-		err **GError) *GAppInfo
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GAppInfo
 
 	G_file_load_contents func(
-		file *GFile,
-		cancellable *GCancellable,
-		contents **Char,
-		length *Gsize,
-		etag_out **Char,
-		err **GError) Gboolean
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		contents **T.Char,
+		length *T.Gsize,
+		etag_out **T.Char,
+		err **T.GError) T.Gboolean
 
 	G_file_load_contents_async func(
-		file *GFile,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_load_contents_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		contents **Char,
-		length *Gsize,
-		etag_out **Char,
-		err **GError) Gboolean
+		file *T.GFile,
+		res *T.GAsyncResult,
+		contents **T.Char,
+		length *T.Gsize,
+		etag_out **T.Char,
+		err **T.GError) T.Gboolean
 
 	G_file_load_partial_contents_async func(
-		file *GFile,
-		cancellable *GCancellable,
-		read_more_callback GFileReadMoreCallback,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		file *T.GFile,
+		cancellable *T.GCancellable,
+		read_more_callback T.GFileReadMoreCallback,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_load_partial_contents_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		contents **Char,
-		length *Gsize,
-		etag_out **Char,
-		err **GError) Gboolean
+		file *T.GFile,
+		res *T.GAsyncResult,
+		contents **T.Char,
+		length *T.Gsize,
+		etag_out **T.Char,
+		err **T.GError) T.Gboolean
 
 	G_file_replace_contents func(
-		file *GFile,
+		file *T.GFile,
 		contents string,
-		length Gsize,
+		length T.Gsize,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
-		new_etag **Char,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
+		new_etag **T.Char,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_file_replace_contents_async func(
-		file *GFile,
+		file *T.GFile,
 		contents string,
-		length Gsize,
+		length T.Gsize,
 		etag string,
-		make_backup Gboolean,
-		flags GFileCreateFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		make_backup T.Gboolean,
+		flags T.GFileCreateFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_replace_contents_finish func(
-		file *GFile,
-		res *GAsyncResult,
-		new_etag **Char,
-		err **GError) Gboolean
+		file *T.GFile,
+		res *T.GAsyncResult,
+		new_etag **T.Char,
+		err **T.GError) T.Gboolean
 
-	G_file_supports_thread_contexts func(file *GFile) Gboolean
+	G_file_supports_thread_contexts func(file *T.GFile) T.Gboolean
 
-	G_file_icon_get_type func() GType
+	G_file_icon_get_type func() T.GType
 
-	G_file_icon_new func(file *GFile) *GIcon
+	G_file_icon_new func(file *T.GFile) *T.GIcon
 
-	G_file_icon_get_file func(icon *GFileIcon) *GFile
+	G_file_icon_get_file func(icon *T.GFileIcon) *T.GFile
 
-	G_file_info_get_type func() GType
+	G_file_info_get_type func() T.GType
 
-	G_file_info_new func() *GFileInfo
+	G_file_info_new func() *T.GFileInfo
 
-	G_file_info_dup func(other *GFileInfo) *GFileInfo
+	G_file_info_dup func(other *T.GFileInfo) *T.GFileInfo
 
-	G_file_info_copy_into func(src_info, dest_info *GFileInfo)
+	G_file_info_copy_into func(src_info, dest_info *T.GFileInfo)
 
 	G_file_info_has_attribute func(
-		info *GFileInfo, attribute string) Gboolean
+		info *T.GFileInfo, attribute string) T.Gboolean
 
 	G_file_info_has_namespace func(
-		info *GFileInfo, name_space string) Gboolean
+		info *T.GFileInfo, name_space string) T.Gboolean
 
 	G_file_info_list_attributes func(
-		info *GFileInfo, name_space string) **Char
+		info *T.GFileInfo, name_space string) **T.Char
 
 	G_file_info_get_attribute_data func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		typ *GFileAttributeType,
-		value_pp *Gpointer,
-		status *GFileAttributeStatus) Gboolean
+		typ *T.GFileAttributeType,
+		value_pp *T.Gpointer,
+		status *T.GFileAttributeStatus) T.Gboolean
 
 	G_file_info_get_attribute_type func(
-		info *GFileInfo,
-		attribute string) GFileAttributeType
+		info *T.GFileInfo,
+		attribute string) T.GFileAttributeType
 
 	G_file_info_remove_attribute func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string)
 
 	G_file_info_get_attribute_status func(
-		info *GFileInfo,
-		attribute string) GFileAttributeStatus
+		info *T.GFileInfo,
+		attribute string) T.GFileAttributeStatus
 
 	G_file_info_set_attribute_status func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		status GFileAttributeStatus) Gboolean
+		status T.GFileAttributeStatus) T.Gboolean
 
 	G_file_info_get_attribute_as_string func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string) string
 
 	G_file_info_get_attribute_string func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string) string
 
 	G_file_info_get_attribute_byte_string func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string) string
 
 	G_file_info_get_attribute_boolean func(
-		info *GFileInfo,
-		attribute string) Gboolean
+		info *T.GFileInfo,
+		attribute string) T.Gboolean
 
 	G_file_info_get_attribute_uint32 func(
-		info *GFileInfo,
-		attribute string) Guint32
+		info *T.GFileInfo,
+		attribute string) T.Guint32
 
 	G_file_info_get_attribute_int32 func(
-		info *GFileInfo,
-		attribute string) Gint32
+		info *T.GFileInfo,
+		attribute string) T.Gint32
 
 	G_file_info_get_attribute_uint64 func(
-		info *GFileInfo,
-		attribute string) Guint64
+		info *T.GFileInfo,
+		attribute string) T.Guint64
 
 	G_file_info_get_attribute_int64 func(
-		info *GFileInfo,
-		attribute string) Gint64
+		info *T.GFileInfo,
+		attribute string) T.Gint64
 
 	G_file_info_get_attribute_object func(
-		info *GFileInfo,
-		attribute string) *GObject
+		info *T.GFileInfo,
+		attribute string) *T.GObject
 
 	G_file_info_get_attribute_stringv func(
-		info *GFileInfo,
-		attribute string) **Char
+		info *T.GFileInfo,
+		attribute string) **T.Char
 
 	G_file_info_set_attribute func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		typ GFileAttributeType,
-		value_p Gpointer)
+		typ T.GFileAttributeType,
+		value_p T.Gpointer)
 
 	G_file_info_set_attribute_string func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
 		attr_value string)
 
 	G_file_info_set_attribute_byte_string func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
 		attr_value string)
 
 	G_file_info_set_attribute_boolean func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value Gboolean)
+		attr_value T.Gboolean)
 
 	G_file_info_set_attribute_uint32 func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value Guint32)
+		attr_value T.Guint32)
 
 	G_file_info_set_attribute_int32 func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value Gint32)
+		attr_value T.Gint32)
 
 	G_file_info_set_attribute_uint64 func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value Guint64)
+		attr_value T.Guint64)
 
 	G_file_info_set_attribute_int64 func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value Gint64)
+		attr_value T.Gint64)
 
 	G_file_info_set_attribute_object func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value *GObject)
+		attr_value *T.GObject)
 
 	G_file_info_set_attribute_stringv func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		attribute string,
-		attr_value **Char)
+		attr_value **T.Char)
 
 	G_file_info_clear_status func(
-		info *GFileInfo)
+		info *T.GFileInfo)
 
 	G_file_info_get_file_type func(
-		info *GFileInfo) GFileType
+		info *T.GFileInfo) T.GFileType
 
 	G_file_info_get_is_hidden func(
-		info *GFileInfo) Gboolean
+		info *T.GFileInfo) T.Gboolean
 
 	G_file_info_get_is_backup func(
-		info *GFileInfo) Gboolean
+		info *T.GFileInfo) T.Gboolean
 
 	G_file_info_get_is_symlink func(
-		info *GFileInfo) Gboolean
+		info *T.GFileInfo) T.Gboolean
 
 	G_file_info_get_name func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_display_name func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_edit_name func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_icon func(
-		info *GFileInfo) *GIcon
+		info *T.GFileInfo) *T.GIcon
 
 	G_file_info_get_content_type func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_size func(
-		info *GFileInfo) Goffset
+		info *T.GFileInfo) T.Goffset
 
 	G_file_info_get_modification_time func(
-		info *GFileInfo,
-		result *GTimeVal)
+		info *T.GFileInfo,
+		result *T.GTimeVal)
 
 	G_file_info_get_symlink_target func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_etag func(
-		info *GFileInfo) string
+		info *T.GFileInfo) string
 
 	G_file_info_get_sort_order func(
-		info *GFileInfo) Gint32
+		info *T.GFileInfo) T.Gint32
 
 	G_file_info_set_attribute_mask func(
-		info *GFileInfo,
-		mask *GFileAttributeMatcher)
+		info *T.GFileInfo,
+		mask *T.GFileAttributeMatcher)
 
 	G_file_info_unset_attribute_mask func(
-		info *GFileInfo)
+		info *T.GFileInfo)
 
 	G_file_info_set_file_type func(
-		info *GFileInfo,
-		typ GFileType)
+		info *T.GFileInfo,
+		typ T.GFileType)
 
 	G_file_info_set_is_hidden func(
-		info *GFileInfo,
-		is_hidden Gboolean)
+		info *T.GFileInfo,
+		is_hidden T.Gboolean)
 
 	G_file_info_set_is_symlink func(
-		info *GFileInfo,
-		is_symlink Gboolean)
+		info *T.GFileInfo,
+		is_symlink T.Gboolean)
 
 	G_file_info_set_name func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		name string)
 
 	G_file_info_set_display_name func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		display_name string)
 
 	G_file_info_set_edit_name func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		edit_name string)
 
 	G_file_info_set_icon func(
-		info *GFileInfo,
-		icon *GIcon)
+		info *T.GFileInfo,
+		icon *T.GIcon)
 
 	G_file_info_set_content_type func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		content_type string)
 
 	G_file_info_set_size func(
-		info *GFileInfo,
-		size Goffset)
+		info *T.GFileInfo,
+		size T.Goffset)
 
 	G_file_info_set_modification_time func(
-		info *GFileInfo,
-		mtime *GTimeVal)
+		info *T.GFileInfo,
+		mtime *T.GTimeVal)
 
 	G_file_info_set_symlink_target func(
-		info *GFileInfo,
+		info *T.GFileInfo,
 		symlink_target string)
 
 	G_file_info_set_sort_order func(
-		info *GFileInfo,
-		sort_order Gint32)
+		info *T.GFileInfo,
+		sort_order T.Gint32)
 
-	G_file_attribute_matcher_get_type func() GType
+	G_file_attribute_matcher_get_type func() T.GType
 
 	G_file_attribute_matcher_new func(
-		attributes string) *GFileAttributeMatcher
+		attributes string) *T.GFileAttributeMatcher
 
 	G_file_attribute_matcher_ref func(
-		matcher *GFileAttributeMatcher) *GFileAttributeMatcher
+		matcher *T.GFileAttributeMatcher) *T.GFileAttributeMatcher
 
 	G_file_attribute_matcher_unref func(
-		matcher *GFileAttributeMatcher)
+		matcher *T.GFileAttributeMatcher)
 
 	G_file_attribute_matcher_matches func(
-		matcher *GFileAttributeMatcher,
-		attribute string) Gboolean
+		matcher *T.GFileAttributeMatcher,
+		attribute string) T.Gboolean
 
 	G_file_attribute_matcher_matches_only func(
-		matcher *GFileAttributeMatcher,
-		attribute string) Gboolean
+		matcher *T.GFileAttributeMatcher,
+		attribute string) T.Gboolean
 
 	G_file_attribute_matcher_enumerate_namespace func(
-		matcher *GFileAttributeMatcher,
-		ns string) Gboolean
+		matcher *T.GFileAttributeMatcher,
+		ns string) T.Gboolean
 
 	G_file_attribute_matcher_enumerate_next func(
-		matcher *GFileAttributeMatcher) string
+		matcher *T.GFileAttributeMatcher) string
 
-	G_file_input_stream_get_type func() GType
+	G_file_input_stream_get_type func() T.GType
 
 	G_file_input_stream_query_info func(
-		stream *GFileInputStream,
+		stream *T.GFileInputStream,
 		attributes string,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_input_stream_query_info_async func(
-		stream *GFileInputStream,
+		stream *T.GFileInputStream,
 		attributes string,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_input_stream_query_info_finish func(
-		stream *GFileInputStream,
-		result *GAsyncResult,
-		err **GError) *GFileInfo
+		stream *T.GFileInputStream,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GFileInfo
 
-	G_io_error_quark func() GQuark
+	G_io_error_quark func() T.GQuark
 
 	G_io_error_from_errno func(
-		err_no Gint) GIOErrorEnum
+		err_no T.Gint) T.GIOErrorEnum
 
 	G_io_error_from_win32_error func(
-		error_code Gint) GIOErrorEnum
+		error_code T.Gint) T.GIOErrorEnum
 
-	G_io_stream_get_type func() GType
+	G_io_stream_get_type func() T.GType
 
 	G_io_stream_get_input_stream func(
-		stream *GIOStream) *GInputStream
+		stream *T.GIOStream) *T.GInputStream
 
 	G_io_stream_get_output_stream func(
-		stream *GIOStream) *GOutputStream
+		stream *T.GIOStream) *T.GOutputStream
 
 	G_io_stream_splice_async func(
-		stream1 *GIOStream,
-		stream2 *GIOStream,
-		flags GIOStreamSpliceFlags,
+		stream1 *T.GIOStream,
+		stream2 *T.GIOStream,
+		flags T.GIOStreamSpliceFlags,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_io_stream_splice_finish func(
-		result *GAsyncResult,
-		err **GError) Gboolean
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_io_stream_close func(
-		stream *GIOStream,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		stream *T.GIOStream,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_io_stream_close_async func(
-		stream *GIOStream,
+		stream *T.GIOStream,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_io_stream_close_finish func(
-		stream *GIOStream,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		stream *T.GIOStream,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_io_stream_is_closed func(
-		stream *GIOStream) Gboolean
+		stream *T.GIOStream) T.Gboolean
 
 	G_io_stream_has_pending func(
-		stream *GIOStream) Gboolean
+		stream *T.GIOStream) T.Gboolean
 
 	G_io_stream_set_pending func(
-		stream *GIOStream,
-		err **GError) Gboolean
+		stream *T.GIOStream,
+		err **T.GError) T.Gboolean
 
 	G_io_stream_clear_pending func(
-		stream *GIOStream)
+		stream *T.GIOStream)
 
-	G_file_io_stream_get_type func() GType
+	G_file_io_stream_get_type func() T.GType
 
 	G_file_io_stream_query_info func(
-		stream *GFileIOStream,
+		stream *T.GFileIOStream,
 		attributes string,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_io_stream_query_info_async func(
-		stream *GFileIOStream,
+		stream *T.GFileIOStream,
 		attributes string,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_io_stream_query_info_finish func(
-		stream *GFileIOStream,
-		result *GAsyncResult,
-		err **GError) *GFileInfo
+		stream *T.GFileIOStream,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GFileInfo
 
 	G_file_io_stream_get_etag func(
-		stream *GFileIOStream) string
+		stream *T.GFileIOStream) string
 
-	G_file_monitor_get_type func() GType
+	G_file_monitor_get_type func() T.GType
 
 	G_file_monitor_cancel func(
-		monitor *GFileMonitor) Gboolean
+		monitor *T.GFileMonitor) T.Gboolean
 
 	G_file_monitor_is_cancelled func(
-		monitor *GFileMonitor) Gboolean
+		monitor *T.GFileMonitor) T.Gboolean
 
 	G_file_monitor_set_rate_limit func(
-		monitor *GFileMonitor,
-		limit_msecs Gint)
+		monitor *T.GFileMonitor,
+		limit_msecs T.Gint)
 
 	G_file_monitor_emit_event func(
-		monitor *GFileMonitor,
-		child *GFile,
-		other_file *GFile,
-		event_type GFileMonitorEvent)
+		monitor *T.GFileMonitor,
+		child *T.GFile,
+		other_file *T.GFile,
+		event_type T.GFileMonitorEvent)
 
-	G_filename_completer_get_type func() GType
+	G_filename_completer_get_type func() T.GType
 
-	G_filename_completer_new func() *GFilenameCompleter
+	G_filename_completer_new func() *T.GFilenameCompleter
 
 	G_filename_completer_get_completion_suffix func(
-		completer *GFilenameCompleter,
+		completer *T.GFilenameCompleter,
 		initial_text string) string
 
 	G_filename_completer_get_completions func(
-		completer *GFilenameCompleter,
-		initial_text string) **Char
+		completer *T.GFilenameCompleter,
+		initial_text string) **T.Char
 
 	G_filename_completer_set_dirs_only func(
-		completer *GFilenameCompleter,
-		dirs_only Gboolean)
+		completer *T.GFilenameCompleter,
+		dirs_only T.Gboolean)
 
-	G_file_output_stream_get_type func() GType
+	G_file_output_stream_get_type func() T.GType
 
 	G_file_output_stream_query_info func(
-		stream *GFileOutputStream,
+		stream *T.GFileOutputStream,
 		attributes string,
-		cancellable *GCancellable,
-		err **GError) *GFileInfo
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GFileInfo
 
 	G_file_output_stream_query_info_async func(
-		stream *GFileOutputStream,
+		stream *T.GFileOutputStream,
 		attributes string,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_file_output_stream_query_info_finish func(
-		stream *GFileOutputStream,
-		result *GAsyncResult,
-		err **GError) *GFileInfo
+		stream *T.GFileOutputStream,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GFileInfo
 
 	G_file_output_stream_get_etag func(
-		stream *GFileOutputStream) string
+		stream *T.GFileOutputStream) string
 
-	G_inet_address_get_type func() GType
+	G_inet_address_get_type func() T.GType
 
 	G_inet_address_new_from_string func(
-		string string) *GInetAddress
+		string string) *T.GInetAddress
 
 	G_inet_address_new_from_bytes func(
-		bytes *Guint8,
-		family GSocketFamily) *GInetAddress
+		bytes *T.Guint8,
+		family T.GSocketFamily) *T.GInetAddress
 
 	G_inet_address_new_loopback func(
-		family GSocketFamily) *GInetAddress
+		family T.GSocketFamily) *T.GInetAddress
 
 	G_inet_address_new_any func(
-		family GSocketFamily) *GInetAddress
+		family T.GSocketFamily) *T.GInetAddress
 
 	G_inet_address_to_string func(
-		address *GInetAddress) string
+		address *T.GInetAddress) string
 
 	G_inet_address_to_bytes func(
-		address *GInetAddress) *Guint8
+		address *T.GInetAddress) *T.Guint8
 
 	G_inet_address_get_native_size func(
-		address *GInetAddress) Gsize
+		address *T.GInetAddress) T.Gsize
 
 	G_inet_address_get_family func(
-		address *GInetAddress) GSocketFamily
+		address *T.GInetAddress) T.GSocketFamily
 
 	G_inet_address_get_is_any func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_loopback func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_link_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_site_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_multicast func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_mc_global func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_mc_link_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_mc_node_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_mc_org_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
 	G_inet_address_get_is_mc_site_local func(
-		address *GInetAddress) Gboolean
+		address *T.GInetAddress) T.Gboolean
 
-	G_socket_address_get_type func() GType
+	G_socket_address_get_type func() T.GType
 
 	G_socket_address_get_family func(
-		address *GSocketAddress) GSocketFamily
+		address *T.GSocketAddress) T.GSocketFamily
 
 	G_socket_address_new_from_native func(
-		native Gpointer,
-		len Gsize) *GSocketAddress
+		native T.Gpointer,
+		len T.Gsize) *T.GSocketAddress
 
 	G_socket_address_to_native func(
-		address *GSocketAddress,
-		dest Gpointer,
-		destlen Gsize,
-		err **GError) Gboolean
+		address *T.GSocketAddress,
+		dest T.Gpointer,
+		destlen T.Gsize,
+		err **T.GError) T.Gboolean
 
 	G_socket_address_get_native_size func(
-		address *GSocketAddress) Gssize
+		address *T.GSocketAddress) T.Gssize
 
-	G_inet_socket_address_get_type func() GType
+	G_inet_socket_address_get_type func() T.GType
 
 	G_inet_socket_address_new func(
-		address *GInetAddress,
-		port Guint16) *GSocketAddress
+		address *T.GInetAddress,
+		port T.Guint16) *T.GSocketAddress
 
 	G_inet_socket_address_get_address func(
-		address *GInetSocketAddress) *GInetAddress
+		address *T.GInetSocketAddress) *T.GInetAddress
 
 	G_inet_socket_address_get_port func(
-		address *GInetSocketAddress) Guint16
+		address *T.GInetSocketAddress) T.Guint16
 
-	G_app_info_create_flags_get_type func() GType
+	G_app_info_create_flags_get_type func() T.GType
 
-	G_converter_flags_get_type func() GType
+	G_converter_flags_get_type func() T.GType
 
-	G_converter_result_get_type func() GType
+	G_converter_result_get_type func() T.GType
 
-	G_data_stream_byte_order_get_type func() GType
+	G_data_stream_byte_order_get_type func() T.GType
 
-	G_data_stream_newline_type_get_type func() GType
+	G_data_stream_newline_type_get_type func() T.GType
 
-	G_file_attribute_type_get_type func() GType
+	G_file_attribute_type_get_type func() T.GType
 
-	G_file_attribute_info_flags_get_type func() GType
+	G_file_attribute_info_flags_get_type func() T.GType
 
-	G_file_attribute_status_get_type func() GType
+	G_file_attribute_status_get_type func() T.GType
 
-	G_file_query_info_flags_get_type func() GType
+	G_file_query_info_flags_get_type func() T.GType
 
-	G_file_create_flags_get_type func() GType
+	G_file_create_flags_get_type func() T.GType
 
-	G_mount_mount_flags_get_type func() GType
+	G_mount_mount_flags_get_type func() T.GType
 
-	G_mount_unmount_flags_get_type func() GType
+	G_mount_unmount_flags_get_type func() T.GType
 
-	G_drive_start_flags_get_type func() GType
+	G_drive_start_flags_get_type func() T.GType
 
-	G_drive_start_stop_type_get_type func() GType
+	G_drive_start_stop_type_get_type func() T.GType
 
-	G_file_copy_flags_get_type func() GType
+	G_file_copy_flags_get_type func() T.GType
 
-	G_file_monitor_flags_get_type func() GType
+	G_file_monitor_flags_get_type func() T.GType
 
-	G_file_type_get_type func() GType
+	G_file_type_get_type func() T.GType
 
-	G_filesystem_preview_type_get_type func() GType
+	G_filesystem_preview_type_get_type func() T.GType
 
-	G_file_monitor_event_get_type func() GType
+	G_file_monitor_event_get_type func() T.GType
 
-	G_io_error_enum_get_type func() GType
+	G_io_error_enum_get_type func() T.GType
 
-	G_ask_password_flags_get_type func() GType
+	G_ask_password_flags_get_type func() T.GType
 
-	G_password_save_get_type func() GType
+	G_password_save_get_type func() T.GType
 
-	G_mount_operation_result_get_type func() GType
+	G_mount_operation_result_get_type func() T.GType
 
-	G_output_stream_splice_flags_get_type func() GType
+	G_output_stream_splice_flags_get_type func() T.GType
 
-	G_io_stream_splice_flags_get_type func() GType
+	G_io_stream_splice_flags_get_type func() T.GType
 
-	G_emblem_origin_get_type func() GType
+	G_emblem_origin_get_type func() T.GType
 
-	G_resolver_error_get_type func() GType
+	G_resolver_error_get_type func() T.GType
 
-	G_socket_family_get_type func() GType
+	G_socket_family_get_type func() T.GType
 
-	G_socket_type_get_type func() GType
+	G_socket_type_get_type func() T.GType
 
-	G_socket_msg_flags_get_type func() GType
+	G_socket_msg_flags_get_type func() T.GType
 
-	G_socket_protocol_get_type func() GType
+	G_socket_protocol_get_type func() T.GType
 
-	G_zlib_compressor_format_get_type func() GType
+	G_zlib_compressor_format_get_type func() T.GType
 
-	G_unix_socket_address_type_get_type func() GType
+	G_unix_socket_address_type_get_type func() T.GType
 
-	G_bus_type_get_type func() GType
+	G_bus_type_get_type func() T.GType
 
-	G_bus_name_owner_flags_get_type func() GType
+	G_bus_name_owner_flags_get_type func() T.GType
 
-	G_bus_name_watcher_flags_get_type func() GType
+	G_bus_name_watcher_flags_get_type func() T.GType
 
-	G_dbus_proxy_flags_get_type func() GType
+	G_dbus_proxy_flags_get_type func() T.GType
 
-	G_dbus_error_get_type func() GType
+	G_dbus_error_get_type func() T.GType
 
-	G_dbus_connection_flags_get_type func() GType
+	G_dbus_connection_flags_get_type func() T.GType
 
-	G_dbus_capability_flags_get_type func() GType
+	G_dbus_capability_flags_get_type func() T.GType
 
-	G_dbus_call_flags_get_type func() GType
+	G_dbus_call_flags_get_type func() T.GType
 
-	G_dbus_message_type_get_type func() GType
+	G_dbus_message_type_get_type func() T.GType
 
-	G_dbus_message_flags_get_type func() GType
+	G_dbus_message_flags_get_type func() T.GType
 
-	G_dbus_message_header_field_get_type func() GType
+	G_dbus_message_header_field_get_type func() T.GType
 
-	G_dbus_property_info_flags_get_type func() GType
+	G_dbus_property_info_flags_get_type func() T.GType
 
-	G_dbus_subtree_flags_get_type func() GType
+	G_dbus_subtree_flags_get_type func() T.GType
 
-	G_dbus_server_flags_get_type func() GType
+	G_dbus_server_flags_get_type func() T.GType
 
-	G_dbus_signal_flags_get_type func() GType
+	G_dbus_signal_flags_get_type func() T.GType
 
-	G_dbus_send_message_flags_get_type func() GType
+	G_dbus_send_message_flags_get_type func() T.GType
 
-	G_credentials_type_get_type func() GType
+	G_credentials_type_get_type func() T.GType
 
-	G_dbus_message_byte_order_get_type func() GType
+	G_dbus_message_byte_order_get_type func() T.GType
 
-	G_application_flags_get_type func() GType
+	G_application_flags_get_type func() T.GType
 
-	G_tls_error_get_type func() GType
+	G_tls_error_get_type func() T.GType
 
-	G_tls_certificate_flags_get_type func() GType
+	G_tls_certificate_flags_get_type func() T.GType
 
-	G_tls_authentication_mode_get_type func() GType
+	G_tls_authentication_mode_get_type func() T.GType
 
-	G_tls_rehandshake_mode_get_type func() GType
+	G_tls_rehandshake_mode_get_type func() T.GType
 
-	G_settings_bind_flags_get_type func() GType
+	G_settings_bind_flags_get_type func() T.GType
 
-	G_io_module_get_type func() GType
+	G_io_module_get_type func() T.GType
 
 	G_io_module_new func(
-		filename string) *GIOModule
+		filename string) *T.GIOModule
 
 	G_io_modules_scan_all_in_directory func(
 		dirname string)
 
 	G_io_modules_load_all_in_directory func(
-		dirname string) *GList
+		dirname string) *T.GList
 
 	G_io_extension_point_register func(
-		name string) *GIOExtensionPoint
+		name string) *T.GIOExtensionPoint
 
 	G_io_extension_point_lookup func(
-		name string) *GIOExtensionPoint
+		name string) *T.GIOExtensionPoint
 
 	G_io_extension_point_set_required_type func(
-		extension_point *GIOExtensionPoint,
-		typ GType)
+		extension_point *T.GIOExtensionPoint,
+		typ T.GType)
 
 	G_io_extension_point_get_required_type func(
-		extension_point *GIOExtensionPoint) GType
+		extension_point *T.GIOExtensionPoint) T.GType
 
 	G_io_extension_point_get_extensions func(
-		extension_point *GIOExtensionPoint) *GList
+		extension_point *T.GIOExtensionPoint) *T.GList
 
 	G_io_extension_point_get_extension_by_name func(
-		extension_point *GIOExtensionPoint,
-		name string) *GIOExtension
+		extension_point *T.GIOExtensionPoint,
+		name string) *T.GIOExtension
 
 	G_io_extension_point_implement func(
 		extension_point_name string,
-		typ GType,
+		typ T.GType,
 		extension_name string,
-		priority Gint) *GIOExtension
+		priority T.Gint) *T.GIOExtension
 
 	G_io_extension_get_type func(
-		extension *GIOExtension) GType
+		extension *T.GIOExtension) T.GType
 
 	G_io_extension_get_name func(
-		extension *GIOExtension) string
+		extension *T.GIOExtension) string
 
 	G_io_extension_get_priority func(
-		extension *GIOExtension) Gint
+		extension *T.GIOExtension) T.Gint
 
 	G_io_extension_ref_class func(
-		extension *GIOExtension) *GTypeClass
+		extension *T.GIOExtension) *T.GTypeClass
 
 	G_io_module_load func(
-		module *GIOModule)
+		module *T.GIOModule)
 
 	G_io_module_unload func(
-		module *GIOModule)
+		module *T.GIOModule)
 
-	G_io_module_query func() **Char
+	G_io_module_query func() **T.Char
 
 	G_io_scheduler_push_job func(
-		job_func GIOSchedulerJobFunc,
-		user_data Gpointer,
-		notify GDestroyNotify,
-		io_priority Gint,
-		cancellable *GCancellable)
+		job_func T.GIOSchedulerJobFunc,
+		user_data T.Gpointer,
+		notify T.GDestroyNotify,
+		io_priority T.Gint,
+		cancellable *T.GCancellable)
 
 	G_io_scheduler_cancel_all_jobs func()
 
 	G_io_scheduler_job_send_to_mainloop func(
-		job *GIOSchedulerJob,
-		f GSourceFunc,
-		user_data Gpointer,
-		notify GDestroyNotify) Gboolean
+		job *T.GIOSchedulerJob,
+		f T.GSourceFunc,
+		user_data T.Gpointer,
+		notify T.GDestroyNotify) T.Gboolean
 
 	G_io_scheduler_job_send_to_mainloop_async func(
-		job *GIOSchedulerJob,
-		f GSourceFunc,
-		user_data Gpointer,
-		notify GDestroyNotify)
+		job *T.GIOSchedulerJob,
+		f T.GSourceFunc,
+		user_data T.Gpointer,
+		notify T.GDestroyNotify)
 
-	G_loadable_icon_get_type func() GType
+	G_loadable_icon_get_type func() T.GType
 
 	G_loadable_icon_load func(
-		icon *GLoadableIcon,
+		icon *T.GLoadableIcon,
 		size int,
-		t **Char,
-		cancellable *GCancellable,
-		err **GError) *GInputStream
+		t **T.Char,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GInputStream
 
 	G_loadable_icon_load_async func(
-		icon *GLoadableIcon,
+		icon *T.GLoadableIcon,
 		size int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_loadable_icon_load_finish func(
-		icon *GLoadableIcon,
-		res *GAsyncResult,
-		typ **Char,
-		err **GError) *GInputStream
+		icon *T.GLoadableIcon,
+		res *T.GAsyncResult,
+		typ **T.Char,
+		err **T.GError) *T.GInputStream
 
-	G_memory_input_stream_get_type func() GType
+	G_memory_input_stream_get_type func() T.GType
 
-	G_memory_input_stream_new func() *GInputStream
+	G_memory_input_stream_new func() *T.GInputStream
 
 	G_memory_input_stream_new_from_data func(
-		data *Void,
-		len Gssize,
-		destroy GDestroyNotify) *GInputStream
+		data *T.Void,
+		len T.Gssize,
+		destroy T.GDestroyNotify) *T.GInputStream
 
 	G_memory_input_stream_add_data func(
-		stream *GMemoryInputStream,
-		data *Void,
-		len Gssize,
-		destroy GDestroyNotify)
+		stream *T.GMemoryInputStream,
+		data *T.Void,
+		len T.Gssize,
+		destroy T.GDestroyNotify)
 
-	G_memory_output_stream_get_type func() GType
+	G_memory_output_stream_get_type func() T.GType
 
 	G_memory_output_stream_new func(
-		data Gpointer,
-		size Gsize,
-		realloc_function GReallocFunc,
-		destroy_function GDestroyNotify) *GOutputStream
+		data T.Gpointer,
+		size T.Gsize,
+		realloc_function T.GReallocFunc,
+		destroy_function T.GDestroyNotify) *T.GOutputStream
 
 	G_memory_output_stream_get_data func(
-		ostream *GMemoryOutputStream) Gpointer
+		ostream *T.GMemoryOutputStream) T.Gpointer
 
 	G_memory_output_stream_get_size func(
-		ostream *GMemoryOutputStream) Gsize
+		ostream *T.GMemoryOutputStream) T.Gsize
 
 	G_memory_output_stream_get_data_size func(
-		ostream *GMemoryOutputStream) Gsize
+		ostream *T.GMemoryOutputStream) T.Gsize
 
 	G_memory_output_stream_steal_data func(
-		ostream *GMemoryOutputStream) Gpointer
+		ostream *T.GMemoryOutputStream) T.Gpointer
 
-	G_mount_get_type func() GType
+	G_mount_get_type func() T.GType
 
 	G_mount_get_root func(
-		mount *GMount) *GFile
+		mount *T.GMount) *T.GFile
 
 	G_mount_get_default_location func(
-		mount *GMount) *GFile
+		mount *T.GMount) *T.GFile
 
 	G_mount_get_name func(
-		mount *GMount) string
+		mount *T.GMount) string
 
 	G_mount_get_icon func(
-		mount *GMount) *GIcon
+		mount *T.GMount) *T.GIcon
 
 	G_mount_get_uuid func(
-		mount *GMount) string
+		mount *T.GMount) string
 
 	G_mount_get_volume func(
-		mount *GMount) *GVolume
+		mount *T.GMount) *T.GVolume
 
 	G_mount_get_drive func(
-		mount *GMount) *GDrive
+		mount *T.GMount) *T.GDrive
 
 	G_mount_can_unmount func(
-		mount *GMount) Gboolean
+		mount *T.GMount) T.Gboolean
 
 	G_mount_can_eject func(
-		mount *GMount) Gboolean
+		mount *T.GMount) T.Gboolean
 
 	G_mount_unmount func(
-		mount *GMount,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_unmount_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_mount_eject func(
-		mount *GMount,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_eject_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_mount_remount func(
-		mount *GMount,
-		flags GMountMountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		flags T.GMountMountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_remount_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_mount_guess_content_type func(
-		mount *GMount,
-		force_rescan Gboolean,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		force_rescan T.Gboolean,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_guess_content_type_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) **Gchar
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) **T.Gchar
 
 	G_mount_guess_content_type_sync func(
-		mount *GMount,
-		force_rescan Gboolean,
-		cancellable *GCancellable,
-		err **GError) **Gchar
+		mount *T.GMount,
+		force_rescan T.Gboolean,
+		cancellable *T.GCancellable,
+		err **T.GError) **T.Gchar
 
 	G_mount_is_shadowed func(
-		mount *GMount) Gboolean
+		mount *T.GMount) T.Gboolean
 
 	G_mount_shadow func(
-		mount *GMount)
+		mount *T.GMount)
 
 	G_mount_unshadow func(
-		mount *GMount)
+		mount *T.GMount)
 
 	G_mount_unmount_with_operation func(
-		mount *GMount,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_unmount_with_operation_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_mount_eject_with_operation func(
-		mount *GMount,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		mount *T.GMount,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_mount_eject_with_operation_finish func(
-		mount *GMount,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		mount *T.GMount,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_mount_operation_get_type func() GType
+	G_mount_operation_get_type func() T.GType
 
-	G_mount_operation_new func() *GMountOperation
+	G_mount_operation_new func() *T.GMountOperation
 
 	G_mount_operation_get_username func(
-		op *GMountOperation) string
+		op *T.GMountOperation) string
 
 	G_mount_operation_set_username func(
-		op *GMountOperation,
+		op *T.GMountOperation,
 		username string)
 
 	G_mount_operation_get_password func(
-		op *GMountOperation) string
+		op *T.GMountOperation) string
 
 	G_mount_operation_set_password func(
-		op *GMountOperation,
+		op *T.GMountOperation,
 		password string)
 
 	G_mount_operation_get_anonymous func(
-		op *GMountOperation) Gboolean
+		op *T.GMountOperation) T.Gboolean
 
 	G_mount_operation_set_anonymous func(
-		op *GMountOperation,
-		anonymous Gboolean)
+		op *T.GMountOperation,
+		anonymous T.Gboolean)
 
 	G_mount_operation_get_domain func(
-		op *GMountOperation) string
+		op *T.GMountOperation) string
 
 	G_mount_operation_set_domain func(
-		op *GMountOperation,
+		op *T.GMountOperation,
 		domain string)
 
 	G_mount_operation_get_password_save func(
-		op *GMountOperation) GPasswordSave
+		op *T.GMountOperation) T.GPasswordSave
 
 	G_mount_operation_set_password_save func(
-		op *GMountOperation,
-		save GPasswordSave)
+		op *T.GMountOperation,
+		save T.GPasswordSave)
 
 	G_mount_operation_get_choice func(
-		op *GMountOperation) int
+		op *T.GMountOperation) int
 
 	G_mount_operation_set_choice func(
-		op *GMountOperation,
+		op *T.GMountOperation,
 		choice int)
 
 	G_mount_operation_reply func(
-		op *GMountOperation,
-		result GMountOperationResult)
+		op *T.GMountOperation,
+		result T.GMountOperationResult)
 
-	G_volume_monitor_get_type func() GType
+	G_volume_monitor_get_type func() T.GType
 
-	G_volume_monitor_get func() *GVolumeMonitor
+	G_volume_monitor_get func() *T.GVolumeMonitor
 
 	G_volume_monitor_get_connected_drives func(
-		volume_monitor *GVolumeMonitor) *GList
+		volume_monitor *T.GVolumeMonitor) *T.GList
 
 	G_volume_monitor_get_volumes func(
-		volume_monitor *GVolumeMonitor) *GList
+		volume_monitor *T.GVolumeMonitor) *T.GList
 
 	G_volume_monitor_get_mounts func(
-		volume_monitor *GVolumeMonitor) *GList
+		volume_monitor *T.GVolumeMonitor) *T.GList
 
 	G_volume_monitor_get_volume_for_uuid func(
-		volume_monitor *GVolumeMonitor,
-		uuid string) *GVolume
+		volume_monitor *T.GVolumeMonitor,
+		uuid string) *T.GVolume
 
 	G_volume_monitor_get_mount_for_uuid func(
-		volume_monitor *GVolumeMonitor,
-		uuid string) *GMount
+		volume_monitor *T.GVolumeMonitor,
+		uuid string) *T.GMount
 
 	G_volume_monitor_adopt_orphan_mount func(
-		mount *GMount) *GVolume
+		mount *T.GMount) *T.GVolume
 
-	G_native_volume_monitor_get_type func() GType
+	G_native_volume_monitor_get_type func() T.GType
 
-	G_network_address_get_type func() GType
+	G_network_address_get_type func() T.GType
 
 	G_network_address_new func(
 		hostname string,
-		port Guint16) *GSocketConnectable
+		port T.Guint16) *T.GSocketConnectable
 
 	G_network_address_parse func(
 		host_and_port string,
-		default_port Guint16,
-		err **GError) *GSocketConnectable
+		default_port T.Guint16,
+		err **T.GError) *T.GSocketConnectable
 
 	G_network_address_parse_uri func(
 		uri string,
-		default_port Guint16,
-		err **GError) *GSocketConnectable
+		default_port T.Guint16,
+		err **T.GError) *T.GSocketConnectable
 
 	G_network_address_get_hostname func(
-		addr *GNetworkAddress) string
+		addr *T.GNetworkAddress) string
 
 	G_network_address_get_port func(
-		addr *GNetworkAddress) Guint16
+		addr *T.GNetworkAddress) T.Guint16
 
 	G_network_address_get_scheme func(
-		addr *GNetworkAddress) string
+		addr *T.GNetworkAddress) string
 
-	G_network_service_get_type func() GType
+	G_network_service_get_type func() T.GType
 
 	G_network_service_new func(
 		service string,
 		protocol string,
-		domain string) *GSocketConnectable
+		domain string) *T.GSocketConnectable
 
 	G_network_service_get_service func(
-		srv *GNetworkService) string
+		srv *T.GNetworkService) string
 
 	G_network_service_get_protocol func(
-		srv *GNetworkService) string
+		srv *T.GNetworkService) string
 
 	G_network_service_get_domain func(
-		srv *GNetworkService) string
+		srv *T.GNetworkService) string
 
 	G_network_service_get_scheme func(
-		srv *GNetworkService) string
+		srv *T.GNetworkService) string
 
 	G_network_service_set_scheme func(
-		srv *GNetworkService,
+		srv *T.GNetworkService,
 		scheme string)
 
-	G_permission_get_type func() GType
+	G_permission_get_type func() T.GType
 
 	G_permission_acquire func(
-		permission *GPermission,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		permission *T.GPermission,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_permission_acquire_async func(
-		permission *GPermission,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		permission *T.GPermission,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_permission_acquire_finish func(
-		permission *GPermission,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		permission *T.GPermission,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_permission_release func(
-		permission *GPermission,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		permission *T.GPermission,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_permission_release_async func(
-		permission *GPermission,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		permission *T.GPermission,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_permission_release_finish func(
-		permission *GPermission,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		permission *T.GPermission,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_permission_get_allowed func(
-		permission *GPermission) Gboolean
+		permission *T.GPermission) T.Gboolean
 
 	G_permission_get_can_acquire func(
-		permission *GPermission) Gboolean
+		permission *T.GPermission) T.Gboolean
 
 	G_permission_get_can_release func(
-		permission *GPermission) Gboolean
+		permission *T.GPermission) T.Gboolean
 
 	G_permission_impl_update func(
-		permission *GPermission,
-		allowed Gboolean,
-		can_acquire Gboolean,
-		can_release Gboolean)
+		permission *T.GPermission,
+		allowed T.Gboolean,
+		can_acquire T.Gboolean,
+		can_release T.Gboolean)
 
-	G_pollable_input_stream_get_type func() GType
+	G_pollable_input_stream_get_type func() T.GType
 
 	G_pollable_input_stream_can_poll func(
-		stream *GPollableInputStream) Gboolean
+		stream *T.GPollableInputStream) T.Gboolean
 
 	G_pollable_input_stream_is_readable func(
-		stream *GPollableInputStream) Gboolean
+		stream *T.GPollableInputStream) T.Gboolean
 
 	G_pollable_input_stream_create_source func(
-		stream *GPollableInputStream,
-		cancellable *GCancellable) *GSource
+		stream *T.GPollableInputStream,
+		cancellable *T.GCancellable) *T.GSource
 
 	G_pollable_input_stream_read_nonblocking func(
-		stream *GPollableInputStream,
-		buffer *Void,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GPollableInputStream,
+		buffer *T.Void,
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_pollable_source_new func(
-		pollable_stream *GObject) *GSource
+		pollable_stream *T.GObject) *T.GSource
 
-	G_pollable_output_stream_get_type func() GType
+	G_pollable_output_stream_get_type func() T.GType
 
 	G_pollable_output_stream_can_poll func(
-		stream *GPollableOutputStream) Gboolean
+		stream *T.GPollableOutputStream) T.Gboolean
 
 	G_pollable_output_stream_is_writable func(
-		stream *GPollableOutputStream) Gboolean
+		stream *T.GPollableOutputStream) T.Gboolean
 
 	G_pollable_output_stream_create_source func(
-		stream *GPollableOutputStream,
-		cancellable *GCancellable) *GSource
+		stream *T.GPollableOutputStream,
+		cancellable *T.GCancellable) *T.GSource
 
 	G_pollable_output_stream_write_nonblocking func(
-		stream *GPollableOutputStream,
-		buffer *Void,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		stream *T.GPollableOutputStream,
+		buffer *T.Void,
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
-	G_proxy_get_type func() GType
+	G_proxy_get_type func() T.GType
 
 	G_proxy_get_default_for_protocol func(
-		protocol string) *GProxy
+		protocol string) *T.GProxy
 
 	G_proxy_connect func(
-		proxy *GProxy,
-		connection *GIOStream,
-		proxy_address *GProxyAddress,
-		cancellable *GCancellable,
-		err **GError) *GIOStream
+		proxy *T.GProxy,
+		connection *T.GIOStream,
+		proxy_address *T.GProxyAddress,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GIOStream
 
 	G_proxy_connect_async func(
-		proxy *GProxy,
-		connection *GIOStream,
-		proxy_address *GProxyAddress,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		proxy *T.GProxy,
+		connection *T.GIOStream,
+		proxy_address *T.GProxyAddress,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_proxy_connect_finish func(
-		proxy *GProxy,
-		result *GAsyncResult,
-		err **GError) *GIOStream
+		proxy *T.GProxy,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GIOStream
 
 	G_proxy_supports_hostname func(
-		proxy *GProxy) Gboolean
+		proxy *T.GProxy) T.Gboolean
 
-	G_proxy_address_get_type func() GType
+	G_proxy_address_get_type func() T.GType
 
 	G_proxy_address_new func(
-		inetaddr *GInetAddress,
-		port Guint16,
+		inetaddr *T.GInetAddress,
+		port T.Guint16,
 		protocol string,
 		dest_hostname string,
-		dest_port Guint16,
+		dest_port T.Guint16,
 		username string,
-		password string) *GSocketAddress
+		password string) *T.GSocketAddress
 
 	G_proxy_address_get_protocol func(
-		proxy *GProxyAddress) string
+		proxy *T.GProxyAddress) string
 
 	G_proxy_address_get_destination_hostname func(
-		proxy *GProxyAddress) string
+		proxy *T.GProxyAddress) string
 
 	G_proxy_address_get_destination_port func(
-		proxy *GProxyAddress) Guint16
+		proxy *T.GProxyAddress) T.Guint16
 
 	G_proxy_address_get_username func(
-		proxy *GProxyAddress) string
+		proxy *T.GProxyAddress) string
 
 	G_proxy_address_get_password func(
-		proxy *GProxyAddress) string
+		proxy *T.GProxyAddress) string
 
-	G_socket_address_enumerator_get_type func() GType
+	G_socket_address_enumerator_get_type func() T.GType
 
 	G_socket_address_enumerator_next func(
-		enumerator *GSocketAddressEnumerator,
-		cancellable *GCancellable,
-		err **GError) *GSocketAddress
+		enumerator *T.GSocketAddressEnumerator,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketAddress
 
 	G_socket_address_enumerator_next_async func(
-		enumerator *GSocketAddressEnumerator,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		enumerator *T.GSocketAddressEnumerator,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_address_enumerator_next_finish func(
-		enumerator *GSocketAddressEnumerator,
-		result *GAsyncResult,
-		err **GError) *GSocketAddress
+		enumerator *T.GSocketAddressEnumerator,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GSocketAddress
 
-	G_proxy_address_enumerator_get_type func() GType
+	G_proxy_address_enumerator_get_type func() T.GType
 
-	G_proxy_resolver_get_type func() GType
+	G_proxy_resolver_get_type func() T.GType
 
-	G_proxy_resolver_get_default func() *GProxyResolver
+	G_proxy_resolver_get_default func() *T.GProxyResolver
 
 	G_proxy_resolver_is_supported func(
-		resolver *GProxyResolver) Gboolean
+		resolver *T.GProxyResolver) T.Gboolean
 
 	G_proxy_resolver_lookup func(
-		resolver *GProxyResolver,
+		resolver *T.GProxyResolver,
 		uri string,
-		cancellable *GCancellable,
-		err **GError) **Gchar
+		cancellable *T.GCancellable,
+		err **T.GError) **T.Gchar
 
 	G_proxy_resolver_lookup_async func(
-		resolver *GProxyResolver,
+		resolver *T.GProxyResolver,
 		uri string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_proxy_resolver_lookup_finish func(
-		resolver *GProxyResolver,
-		result *GAsyncResult,
-		err **GError) **Gchar
+		resolver *T.GProxyResolver,
+		result *T.GAsyncResult,
+		err **T.GError) **T.Gchar
 
-	G_resolver_get_type func() GType
+	G_resolver_get_type func() T.GType
 
-	G_resolver_get_default func() *GResolver
+	G_resolver_get_default func() *T.GResolver
 
 	G_resolver_set_default func(
-		resolver *GResolver)
+		resolver *T.GResolver)
 
 	G_resolver_lookup_by_name func(
-		resolver *GResolver,
+		resolver *T.GResolver,
 		hostname string,
-		cancellable *GCancellable,
-		err **GError) *GList
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GList
 
 	G_resolver_lookup_by_name_async func(
-		resolver *GResolver,
+		resolver *T.GResolver,
 		hostname string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_resolver_lookup_by_name_finish func(
-		resolver *GResolver,
-		result *GAsyncResult,
-		err **GError) *GList
+		resolver *T.GResolver,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GList
 
 	G_resolver_free_addresses func(
-		addresses *GList)
+		addresses *T.GList)
 
 	G_resolver_lookup_by_address func(
-		resolver *GResolver,
-		address *GInetAddress,
-		cancellable *GCancellable,
-		err **GError) string
+		resolver *T.GResolver,
+		address *T.GInetAddress,
+		cancellable *T.GCancellable,
+		err **T.GError) string
 
 	G_resolver_lookup_by_address_async func(
-		resolver *GResolver,
-		address *GInetAddress,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		resolver *T.GResolver,
+		address *T.GInetAddress,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_resolver_lookup_by_address_finish func(
-		resolver *GResolver,
-		result *GAsyncResult,
-		err **GError) string
+		resolver *T.GResolver,
+		result *T.GAsyncResult,
+		err **T.GError) string
 
 	G_resolver_lookup_service func(
-		resolver *GResolver,
+		resolver *T.GResolver,
 		service string,
 		protocol string,
 		domain string,
-		cancellable *GCancellable,
-		err **GError) *GList
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GList
 
 	G_resolver_lookup_service_async func(
-		resolver *GResolver,
+		resolver *T.GResolver,
 		service string,
 		protocol string,
 		domain string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_resolver_lookup_service_finish func(
-		resolver *GResolver,
-		result *GAsyncResult,
-		err **GError) *GList
+		resolver *T.GResolver,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GList
 
 	G_resolver_free_targets func(
-		targets *GList)
+		targets *T.GList)
 
-	G_resolver_error_quark func() GQuark
+	G_resolver_error_quark func() T.GQuark
 
-	G_seekable_get_type func() GType
+	G_seekable_get_type func() T.GType
 
 	G_seekable_tell func(
-		seekable *GSeekable) Goffset
+		seekable *T.GSeekable) T.Goffset
 
 	G_seekable_can_seek func(
-		seekable *GSeekable) Gboolean
+		seekable *T.GSeekable) T.Gboolean
 
 	G_seekable_seek func(
-		seekable *GSeekable,
-		offset Goffset,
-		typ GSeekType,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		seekable *T.GSeekable,
+		offset T.Goffset,
+		typ T.GSeekType,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_seekable_can_truncate func(
-		seekable *GSeekable) Gboolean
+		seekable *T.GSeekable) T.Gboolean
 
 	G_seekable_truncate func(
-		seekable *GSeekable,
-		offset Goffset,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		seekable *T.GSeekable,
+		offset T.Goffset,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
-	G_settings_get_type func() GType
+	G_settings_get_type func() T.GType
 
-	G_settings_list_schemas func() **Gchar
+	G_settings_list_schemas func() **T.Gchar
 
-	G_settings_list_relocatable_schemas func() **Gchar
+	G_settings_list_relocatable_schemas func() **T.Gchar
 
 	G_settings_new func(
-		schema string) *GSettings
+		schema string) *T.GSettings
 
 	G_settings_new_with_path func(
 		schema string,
-		path string) *GSettings
+		path string) *T.GSettings
 
 	G_settings_new_with_backend func(
 		schema string,
-		backend *GSettingsBackend) *GSettings
+		backend *T.GSettingsBackend) *T.GSettings
 
 	G_settings_new_with_backend_and_path func(
 		schema string,
-		backend *GSettingsBackend,
-		path string) *GSettings
+		backend *T.GSettingsBackend,
+		path string) *T.GSettings
 
 	G_settings_list_children func(
-		settings *GSettings) **Gchar
+		settings *T.GSettings) **T.Gchar
 
 	G_settings_list_keys func(
-		settings *GSettings) **Gchar
+		settings *T.GSettings) **T.Gchar
 
 	G_settings_get_range func(
-		settings *GSettings,
-		key string) *GVariant
+		settings *T.GSettings,
+		key string) *T.GVariant
 
 	G_settings_range_check func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		value *GVariant) Gboolean
+		value *T.GVariant) T.Gboolean
 
 	G_settings_set_value func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		value *GVariant) Gboolean
+		value *T.GVariant) T.Gboolean
 
 	G_settings_get_value func(
-		settings *GSettings,
-		key string) *GVariant
+		settings *T.GSettings,
+		key string) *T.GVariant
 
-	G_settings_set func(settings *GSettings, key, format string,
-		v ...VArg) Gboolean
+	G_settings_set func(settings *T.GSettings, key, format string,
+		v ...VArg) T.Gboolean
 
-	G_settings_get func(settings *GSettings, key, format string,
+	G_settings_get func(settings *T.GSettings, key, format string,
 		v ...VArg)
 
-	G_settings_reset func(settings *GSettings, key string)
+	G_settings_reset func(settings *T.GSettings, key string)
 
-	G_settings_get_int func(settings *GSettings, key string) Gint
+	G_settings_get_int func(settings *T.GSettings, key string) T.Gint
 
 	G_settings_set_int func(
-		settings *GSettings, key string, value Gint) Gboolean
+		settings *T.GSettings, key string, value T.Gint) T.Gboolean
 
 	G_settings_get_string func(
-		settings *GSettings, key string) string
+		settings *T.GSettings, key string) string
 
 	G_settings_set_string func(
-		settings *GSettings, key, value string) Gboolean
+		settings *T.GSettings, key, value string) T.Gboolean
 
 	G_settings_get_boolean func(
-		settings *GSettings, key string) Gboolean
+		settings *T.GSettings, key string) T.Gboolean
 
 	G_settings_set_boolean func(
-		settings *GSettings, key string, value Gboolean) Gboolean
+		settings *T.GSettings, key string, value T.Gboolean) T.Gboolean
 
 	G_settings_get_double func(
-		settings *GSettings, key string) Gdouble
+		settings *T.GSettings, key string) T.Gdouble
 
-	G_settings_set_double func(settings *GSettings,
-		key string, value Gdouble) Gboolean
+	G_settings_set_double func(settings *T.GSettings,
+		key string, value T.Gdouble) T.Gboolean
 
 	G_settings_get_strv func(
-		settings *GSettings, key string) **Gchar
+		settings *T.GSettings, key string) **T.Gchar
 
-	G_settings_set_strv func(settings *GSettings,
-		key string, value **Gchar) Gboolean
+	G_settings_set_strv func(settings *T.GSettings,
+		key string, value **T.Gchar) T.Gboolean
 
 	G_settings_get_enum func(
-		settings *GSettings, key string) Gint
+		settings *T.GSettings, key string) T.Gint
 
-	G_settings_set_enum func(settings *GSettings,
-		key string, value Gint) Gboolean
+	G_settings_set_enum func(settings *T.GSettings,
+		key string, value T.Gint) T.Gboolean
 
 	G_settings_get_flags func(
-		settings *GSettings, key string) Guint
+		settings *T.GSettings, key string) T.Guint
 
-	G_settings_set_flags func(settings *GSettings,
-		key string, value Guint) Gboolean
+	G_settings_set_flags func(settings *T.GSettings,
+		key string, value T.Guint) T.Gboolean
 
 	G_settings_get_child func(
-		settings *GSettings,
-		name string) *GSettings
+		settings *T.GSettings,
+		name string) *T.GSettings
 
 	G_settings_is_writable func(
-		settings *GSettings, name string) Gboolean
+		settings *T.GSettings, name string) T.Gboolean
 
-	G_settings_delay func(settings *GSettings)
+	G_settings_delay func(settings *T.GSettings)
 
-	G_settings_apply func(settings *GSettings)
+	G_settings_apply func(settings *T.GSettings)
 
-	G_settings_revert func(settings *GSettings)
+	G_settings_revert func(settings *T.GSettings)
 
 	G_settings_get_has_unapplied func(
-		settings *GSettings) Gboolean
+		settings *T.GSettings) T.Gboolean
 
 	G_settings_sync func()
 
 	G_settings_bind func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		object Gpointer,
+		object T.Gpointer,
 		property string,
-		flags GSettingsBindFlags)
+		flags T.GSettingsBindFlags)
 
 	G_settings_bind_with_mapping func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		object Gpointer,
+		object T.Gpointer,
 		property string,
-		flags GSettingsBindFlags,
-		get_mapping GSettingsBindGetMapping,
-		set_mapping GSettingsBindSetMapping,
-		user_data Gpointer,
-		destroy GDestroyNotify)
+		flags T.GSettingsBindFlags,
+		get_mapping T.GSettingsBindGetMapping,
+		set_mapping T.GSettingsBindSetMapping,
+		user_data T.Gpointer,
+		destroy T.GDestroyNotify)
 
 	G_settings_bind_writable func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		object Gpointer,
+		object T.Gpointer,
 		property string,
-		inverted Gboolean)
+		inverted T.Gboolean)
 
-	G_settings_unbind func(object Gpointer, property string)
+	G_settings_unbind func(object T.Gpointer, property string)
 
 	G_settings_get_mapped func(
-		settings *GSettings,
+		settings *T.GSettings,
 		key string,
-		mapping GSettingsGetMapping,
-		user_data Gpointer) Gpointer
+		mapping T.GSettingsGetMapping,
+		user_data T.Gpointer) T.Gpointer
 
-	G_simple_async_result_get_type func() GType
+	G_simple_async_result_get_type func() T.GType
 
 	G_simple_async_result_new func(
-		source_object *GObject,
-		callback GAsyncReadyCallback,
-		user_data Gpointer,
-		source_tag Gpointer) *GSimpleAsyncResult
+		source_object *T.GObject,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer,
+		source_tag T.Gpointer) *T.GSimpleAsyncResult
 
 	G_simple_async_result_new_error func(
-		source_object *GObject, callback GAsyncReadyCallback,
-		user_data Gpointer, domain GQuark, code Gint,
-		format string, v ...VArg) *GSimpleAsyncResult
+		source_object *T.GObject, callback T.GAsyncReadyCallback,
+		user_data T.Gpointer, domain T.GQuark, code T.Gint,
+		format string, v ...VArg) *T.GSimpleAsyncResult
 
 	G_simple_async_result_new_from_error func(
-		source_object *GObject,
-		callback GAsyncReadyCallback,
-		user_data Gpointer,
-		err *GError) *GSimpleAsyncResult
+		source_object *T.GObject,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer,
+		err *T.GError) *T.GSimpleAsyncResult
 
 	G_simple_async_result_new_take_error func(
-		source_object *GObject,
-		callback GAsyncReadyCallback,
-		user_data Gpointer,
-		err *GError) *GSimpleAsyncResult
+		source_object *T.GObject,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer,
+		err *T.GError) *T.GSimpleAsyncResult
 
 	G_simple_async_result_set_op_res_gpointer func(
-		simple *GSimpleAsyncResult,
-		op_res Gpointer,
-		destroy_op_res GDestroyNotify)
+		simple *T.GSimpleAsyncResult,
+		op_res T.Gpointer,
+		destroy_op_res T.GDestroyNotify)
 
 	G_simple_async_result_get_op_res_gpointer func(
-		simple *GSimpleAsyncResult) Gpointer
+		simple *T.GSimpleAsyncResult) T.Gpointer
 
 	G_simple_async_result_set_op_res_gssize func(
-		simple *GSimpleAsyncResult,
-		op_res Gssize)
+		simple *T.GSimpleAsyncResult,
+		op_res T.Gssize)
 
 	G_simple_async_result_get_op_res_gssize func(
-		simple *GSimpleAsyncResult) Gssize
+		simple *T.GSimpleAsyncResult) T.Gssize
 
 	G_simple_async_result_set_op_res_gboolean func(
-		simple *GSimpleAsyncResult,
-		op_res Gboolean)
+		simple *T.GSimpleAsyncResult,
+		op_res T.Gboolean)
 
 	G_simple_async_result_get_op_res_gboolean func(
-		simple *GSimpleAsyncResult) Gboolean
+		simple *T.GSimpleAsyncResult) T.Gboolean
 
 	G_simple_async_result_get_source_tag func(
-		simple *GSimpleAsyncResult) Gpointer
+		simple *T.GSimpleAsyncResult) T.Gpointer
 
 	G_simple_async_result_set_handle_cancellation func(
-		simple *GSimpleAsyncResult,
-		handle_cancellation Gboolean)
+		simple *T.GSimpleAsyncResult,
+		handle_cancellation T.Gboolean)
 
 	G_simple_async_result_complete func(
-		simple *GSimpleAsyncResult)
+		simple *T.GSimpleAsyncResult)
 
 	G_simple_async_result_complete_in_idle func(
-		simple *GSimpleAsyncResult)
+		simple *T.GSimpleAsyncResult)
 
 	G_simple_async_result_run_in_thread func(
-		simple *GSimpleAsyncResult,
-		f GSimpleAsyncThreadFunc,
+		simple *T.GSimpleAsyncResult,
+		f T.GSimpleAsyncThreadFunc,
 		io_priority int,
-		cancellable *GCancellable)
+		cancellable *T.GCancellable)
 
 	G_simple_async_result_set_from_error func(
-		simple *GSimpleAsyncResult,
-		err *GError)
+		simple *T.GSimpleAsyncResult,
+		err *T.GError)
 
 	G_simple_async_result_take_error func(
-		simple *GSimpleAsyncResult,
-		err *GError)
+		simple *T.GSimpleAsyncResult,
+		err *T.GError)
 
 	G_simple_async_result_propagate_error func(
-		simple *GSimpleAsyncResult,
-		dest **GError) Gboolean
+		simple *T.GSimpleAsyncResult,
+		dest **T.GError) T.Gboolean
 
 	G_simple_async_result_set_error func(
-		simple *GSimpleAsyncResult, domain GQuark,
-		code Gint, format string, v ...VArg)
+		simple *T.GSimpleAsyncResult, domain T.GQuark,
+		code T.Gint, format string, v ...VArg)
 
 	G_simple_async_result_set_error_va func(
-		simple *GSimpleAsyncResult,
-		domain GQuark,
-		code Gint,
+		simple *T.GSimpleAsyncResult,
+		domain T.GQuark,
+		code T.Gint,
 		format string,
-		args Va_list)
+		args T.Va_list)
 
 	G_simple_async_result_is_valid func(
-		result *GAsyncResult,
-		source *GObject,
-		source_tag Gpointer) Gboolean
+		result *T.GAsyncResult,
+		source *T.GObject,
+		source_tag T.Gpointer) T.Gboolean
 
-	G_simple_async_report_error_in_idle func(object *GObject,
-		callback GAsyncReadyCallback, user_data Gpointer,
-		domain GQuark, code Gint, format string, v ...VArg)
+	G_simple_async_report_error_in_idle func(object *T.GObject,
+		callback T.GAsyncReadyCallback, user_data T.Gpointer,
+		domain T.GQuark, code T.Gint, format string, v ...VArg)
 
 	G_simple_async_report_gerror_in_idle func(
-		object *GObject,
-		callback GAsyncReadyCallback,
-		user_data Gpointer,
-		err *GError)
+		object *T.GObject,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer,
+		err *T.GError)
 
 	G_simple_async_report_take_gerror_in_idle func(
-		object *GObject,
-		callback GAsyncReadyCallback,
-		user_data Gpointer,
-		err *GError)
+		object *T.GObject,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer,
+		err *T.GError)
 
-	G_simple_permission_get_type func() GType
+	G_simple_permission_get_type func() T.GType
 
 	G_simple_permission_new func(
-		allowed Gboolean) *GPermission
+		allowed T.Gboolean) *T.GPermission
 
-	G_socket_client_get_type func() GType
+	G_socket_client_get_type func() T.GType
 
-	G_socket_client_new func() *GSocketClient
+	G_socket_client_new func() *T.GSocketClient
 
 	G_socket_client_get_family func(
-		client *GSocketClient) GSocketFamily
+		client *T.GSocketClient) T.GSocketFamily
 
 	G_socket_client_set_family func(
-		client *GSocketClient,
-		family GSocketFamily)
+		client *T.GSocketClient,
+		family T.GSocketFamily)
 
 	G_socket_client_get_socket_type func(
-		client *GSocketClient) GSocketType
+		client *T.GSocketClient) T.GSocketType
 
 	G_socket_client_set_socket_type func(
-		client *GSocketClient,
-		t GSocketType)
+		client *T.GSocketClient,
+		t T.GSocketType)
 
 	G_socket_client_get_protocol func(
-		client *GSocketClient) GSocketProtocol
+		client *T.GSocketClient) T.GSocketProtocol
 
 	G_socket_client_set_protocol func(
-		client *GSocketClient,
-		protocol GSocketProtocol)
+		client *T.GSocketClient,
+		protocol T.GSocketProtocol)
 
 	G_socket_client_get_local_address func(
-		client *GSocketClient) *GSocketAddress
+		client *T.GSocketClient) *T.GSocketAddress
 
 	G_socket_client_set_local_address func(
-		client *GSocketClient,
-		address *GSocketAddress)
+		client *T.GSocketClient,
+		address *T.GSocketAddress)
 
 	G_socket_client_get_timeout func(
-		client *GSocketClient) Guint
+		client *T.GSocketClient) T.Guint
 
 	G_socket_client_set_timeout func(
-		client *GSocketClient,
-		timeout Guint)
+		client *T.GSocketClient,
+		timeout T.Guint)
 
 	G_socket_client_get_enable_proxy func(
-		client *GSocketClient) Gboolean
+		client *T.GSocketClient) T.Gboolean
 
 	G_socket_client_set_enable_proxy func(
-		client *GSocketClient,
-		enable Gboolean)
+		client *T.GSocketClient,
+		enable T.Gboolean)
 
 	G_socket_client_get_tls func(
-		client *GSocketClient) Gboolean
+		client *T.GSocketClient) T.Gboolean
 
 	G_socket_client_set_tls func(
-		client *GSocketClient,
-		tls Gboolean)
+		client *T.GSocketClient,
+		tls T.Gboolean)
 
 	G_socket_client_get_tls_validation_flags func(
-		client *GSocketClient) GTlsCertificateFlags
+		client *T.GSocketClient) T.GTlsCertificateFlags
 
 	G_socket_client_set_tls_validation_flags func(
-		client *GSocketClient,
-		flags GTlsCertificateFlags)
+		client *T.GSocketClient,
+		flags T.GTlsCertificateFlags)
 
 	G_socket_client_connect func(
-		client *GSocketClient,
-		connectable *GSocketConnectable,
-		cancellable *GCancellable,
-		err **GError) *GSocketConnection
+		client *T.GSocketClient,
+		connectable *T.GSocketConnectable,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_host func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		host_and_port string,
-		default_port Guint16,
-		cancellable *GCancellable,
-		err **GError) *GSocketConnection
+		default_port T.Guint16,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_service func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		domain string,
 		service string,
-		cancellable *GCancellable,
-		err **GError) *GSocketConnection
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_uri func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		uri string,
-		default_port Guint16,
-		cancellable *GCancellable,
-		err **GError) *GSocketConnection
+		default_port T.Guint16,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_async func(
-		client *GSocketClient,
-		connectable *GSocketConnectable,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		client *T.GSocketClient,
+		connectable *T.GSocketConnectable,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_client_connect_finish func(
-		client *GSocketClient,
-		result *GAsyncResult,
-		err **GError) *GSocketConnection
+		client *T.GSocketClient,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_host_async func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		host_and_port string,
-		default_port Guint16,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		default_port T.Guint16,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_client_connect_to_host_finish func(
-		client *GSocketClient,
-		result *GAsyncResult,
-		err **GError) *GSocketConnection
+		client *T.GSocketClient,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_service_async func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		domain string,
 		service string,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_client_connect_to_service_finish func(
-		client *GSocketClient,
-		result *GAsyncResult,
-		err **GError) *GSocketConnection
+		client *T.GSocketClient,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_connect_to_uri_async func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		uri string,
-		default_port Guint16,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		default_port T.Guint16,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_client_connect_to_uri_finish func(
-		client *GSocketClient,
-		result *GAsyncResult,
-		err **GError) *GSocketConnection
+		client *T.GSocketClient,
+		result *T.GAsyncResult,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_client_add_application_proxy func(
-		client *GSocketClient,
+		client *T.GSocketClient,
 		protocol string)
 
-	G_socket_connectable_get_type func() GType
+	G_socket_connectable_get_type func() T.GType
 
 	G_socket_connectable_enumerate func(
-		connectable *GSocketConnectable) *GSocketAddressEnumerator
+		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
 
 	G_socket_connectable_proxy_enumerate func(
-		connectable *GSocketConnectable) *GSocketAddressEnumerator
+		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
 
-	G_socket_get_type func() GType
+	G_socket_get_type func() T.GType
 
 	G_socket_new func(
-		family GSocketFamily,
-		t GSocketType,
-		protocol GSocketProtocol,
-		err **GError) *GSocket
+		family T.GSocketFamily,
+		t T.GSocketType,
+		protocol T.GSocketProtocol,
+		err **T.GError) *T.GSocket
 
 	G_socket_new_from_fd func(
-		fd Gint,
-		err **GError) *GSocket
+		fd T.Gint,
+		err **T.GError) *T.GSocket
 
 	G_socket_get_fd func(
-		socket *GSocket) int
+		socket *T.GSocket) int
 
 	G_socket_get_family func(
-		socket *GSocket) GSocketFamily
+		socket *T.GSocket) T.GSocketFamily
 
 	G_socket_get_socket_type func(
-		socket *GSocket) GSocketType
+		socket *T.GSocket) T.GSocketType
 
 	G_socket_get_protocol func(
-		socket *GSocket) GSocketProtocol
+		socket *T.GSocket) T.GSocketProtocol
 
 	G_socket_get_local_address func(
-		socket *GSocket,
-		err **GError) *GSocketAddress
+		socket *T.GSocket,
+		err **T.GError) *T.GSocketAddress
 
 	G_socket_get_remote_address func(
-		socket *GSocket,
-		err **GError) *GSocketAddress
+		socket *T.GSocket,
+		err **T.GError) *T.GSocketAddress
 
 	G_socket_set_blocking func(
-		socket *GSocket,
-		blocking Gboolean)
+		socket *T.GSocket,
+		blocking T.Gboolean)
 
 	G_socket_get_blocking func(
-		socket *GSocket) Gboolean
+		socket *T.GSocket) T.Gboolean
 
 	G_socket_set_keepalive func(
-		socket *GSocket,
-		keepalive Gboolean)
+		socket *T.GSocket,
+		keepalive T.Gboolean)
 
 	G_socket_get_keepalive func(
-		socket *GSocket) Gboolean
+		socket *T.GSocket) T.Gboolean
 
 	G_socket_get_listen_backlog func(
-		socket *GSocket) Gint
+		socket *T.GSocket) T.Gint
 
 	G_socket_set_listen_backlog func(
-		socket *GSocket,
-		backlog Gint)
+		socket *T.GSocket,
+		backlog T.Gint)
 
 	G_socket_get_timeout func(
-		socket *GSocket) Guint
+		socket *T.GSocket) T.Guint
 
 	G_socket_set_timeout func(
-		socket *GSocket,
-		timeout Guint)
+		socket *T.GSocket,
+		timeout T.Guint)
 
 	G_socket_is_connected func(
-		socket *GSocket) Gboolean
+		socket *T.GSocket) T.Gboolean
 
 	G_socket_bind func(
-		socket *GSocket,
-		address *GSocketAddress,
-		allow_reuse Gboolean,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		address *T.GSocketAddress,
+		allow_reuse T.Gboolean,
+		err **T.GError) T.Gboolean
 
 	G_socket_connect func(
-		socket *GSocket,
-		address *GSocketAddress,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		address *T.GSocketAddress,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_socket_check_connect_result func(
-		socket *GSocket,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		err **T.GError) T.Gboolean
 
 	G_socket_condition_check func(
-		socket *GSocket,
-		condition GIOCondition) GIOCondition
+		socket *T.GSocket,
+		condition T.GIOCondition) T.GIOCondition
 
 	G_socket_condition_wait func(
-		socket *GSocket,
-		condition GIOCondition,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		condition T.GIOCondition,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_socket_accept func(
-		socket *GSocket,
-		cancellable *GCancellable,
-		err **GError) *GSocket
+		socket *T.GSocket,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocket
 
 	G_socket_listen func(
-		socket *GSocket,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		err **T.GError) T.Gboolean
 
 	G_socket_receive func(
-		socket *GSocket,
+		socket *T.GSocket,
 		buffer string,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_receive_from func(
-		socket *GSocket,
-		address **GSocketAddress,
+		socket *T.GSocket,
+		address **T.GSocketAddress,
 		buffer string,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_send func(
-		socket *GSocket,
+		socket *T.GSocket,
 		buffer string,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_send_to func(
-		socket *GSocket,
-		address *GSocketAddress,
+		socket *T.GSocket,
+		address *T.GSocketAddress,
 		buffer string,
-		size Gsize,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_receive_message func(
-		socket *GSocket,
-		address **GSocketAddress,
-		vectors *GInputVector,
-		num_vectors Gint,
-		messages ***GSocketControlMessage,
-		num_messages *Gint,
-		flags *Gint,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		socket *T.GSocket,
+		address **T.GSocketAddress,
+		vectors *T.GInputVector,
+		num_vectors T.Gint,
+		messages ***T.GSocketControlMessage,
+		num_messages *T.Gint,
+		flags *T.Gint,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_send_message func(
-		socket *GSocket,
-		address *GSocketAddress,
-		vectors *GOutputVector,
-		num_vectors Gint,
-		messages **GSocketControlMessage,
-		num_messages Gint,
-		flags Gint,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		socket *T.GSocket,
+		address *T.GSocketAddress,
+		vectors *T.GOutputVector,
+		num_vectors T.Gint,
+		messages **T.GSocketControlMessage,
+		num_messages T.Gint,
+		flags T.Gint,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_close func(
-		socket *GSocket,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		err **T.GError) T.Gboolean
 
 	G_socket_shutdown func(
-		socket *GSocket,
-		shutdown_read Gboolean,
-		shutdown_write Gboolean,
-		err **GError) Gboolean
+		socket *T.GSocket,
+		shutdown_read T.Gboolean,
+		shutdown_write T.Gboolean,
+		err **T.GError) T.Gboolean
 
 	G_socket_is_closed func(
-		socket *GSocket) Gboolean
+		socket *T.GSocket) T.Gboolean
 
 	G_socket_create_source func(
-		socket *GSocket,
-		condition GIOCondition,
-		cancellable *GCancellable) *GSource
+		socket *T.GSocket,
+		condition T.GIOCondition,
+		cancellable *T.GCancellable) *T.GSource
 
 	G_socket_speaks_ipv4 func(
-		socket *GSocket) Gboolean
+		socket *T.GSocket) T.Gboolean
 
 	G_socket_get_credentials func(
-		socket *GSocket,
-		err **GError) *GCredentials
+		socket *T.GSocket,
+		err **T.GError) *T.GCredentials
 
 	G_socket_receive_with_blocking func(
-		socket *GSocket,
+		socket *T.GSocket,
 		buffer string,
-		size Gsize,
-		blocking Gboolean,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		blocking T.Gboolean,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
 	G_socket_send_with_blocking func(
-		socket *GSocket,
+		socket *T.GSocket,
 		buffer string,
-		size Gsize,
-		blocking Gboolean,
-		cancellable *GCancellable,
-		err **GError) Gssize
+		size T.Gsize,
+		blocking T.Gboolean,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gssize
 
-	G_socket_connection_get_type func() GType
+	G_socket_connection_get_type func() T.GType
 
 	G_socket_connection_get_socket func(
-		connection *GSocketConnection) *GSocket
+		connection *T.GSocketConnection) *T.GSocket
 
 	G_socket_connection_get_local_address func(
-		connection *GSocketConnection,
-		err **GError) *GSocketAddress
+		connection *T.GSocketConnection,
+		err **T.GError) *T.GSocketAddress
 
 	G_socket_connection_get_remote_address func(
-		connection *GSocketConnection,
-		err **GError) *GSocketAddress
+		connection *T.GSocketConnection,
+		err **T.GError) *T.GSocketAddress
 
 	G_socket_connection_factory_register_type func(
 
-		G_type GType,
-		family GSocketFamily,
-		t GSocketType,
-		protocol Gint)
+		G_type T.GType,
+		family T.GSocketFamily,
+		t T.GSocketType,
+		protocol T.Gint)
 
 	G_socket_connection_factory_lookup_type func(
-		family GSocketFamily,
-		t GSocketType,
-		protocol_id Gint) GType
+		family T.GSocketFamily,
+		t T.GSocketType,
+		protocol_id T.Gint) T.GType
 
 	G_socket_connection_factory_create_connection func(
-		socket *GSocket) *GSocketConnection
+		socket *T.GSocket) *T.GSocketConnection
 
-	G_socket_control_message_get_type func() GType
+	G_socket_control_message_get_type func() T.GType
 
 	G_socket_control_message_get_size func(
-		message *GSocketControlMessage) Gsize
+		message *T.GSocketControlMessage) T.Gsize
 
 	G_socket_control_message_get_level func(
-		message *GSocketControlMessage) int
+		message *T.GSocketControlMessage) int
 
 	G_socket_control_message_get_msg_type func(
-		message *GSocketControlMessage) int
+		message *T.GSocketControlMessage) int
 
 	G_socket_control_message_serialize func(
-		message *GSocketControlMessage,
-		data Gpointer)
+		message *T.GSocketControlMessage,
+		data T.Gpointer)
 
 	G_socket_control_message_deserialize func(
 		level int,
 		typ int,
-		size Gsize,
-		data Gpointer) *GSocketControlMessage
+		size T.Gsize,
+		data T.Gpointer) *T.GSocketControlMessage
 
-	G_socket_listener_get_type func() GType
+	G_socket_listener_get_type func() T.GType
 
-	G_socket_listener_new func() *GSocketListener
+	G_socket_listener_new func() *T.GSocketListener
 
 	G_socket_listener_set_backlog func(
-		listener *GSocketListener,
+		listener *T.GSocketListener,
 		listen_backlog int)
 
 	G_socket_listener_add_socket func(
-		listener *GSocketListener,
-		socket *GSocket,
-		source_object *GObject,
-		err **GError) Gboolean
+		listener *T.GSocketListener,
+		socket *T.GSocket,
+		source_object *T.GObject,
+		err **T.GError) T.Gboolean
 
 	G_socket_listener_add_address func(
-		listener *GSocketListener,
-		address *GSocketAddress,
-		t GSocketType,
-		protocol GSocketProtocol,
-		source_object *GObject,
-		effective_address **GSocketAddress,
-		err **GError) Gboolean
+		listener *T.GSocketListener,
+		address *T.GSocketAddress,
+		t T.GSocketType,
+		protocol T.GSocketProtocol,
+		source_object *T.GObject,
+		effective_address **T.GSocketAddress,
+		err **T.GError) T.Gboolean
 
 	G_socket_listener_add_inet_port func(
-		listener *GSocketListener,
-		port Guint16,
-		source_object *GObject,
-		err **GError) Gboolean
+		listener *T.GSocketListener,
+		port T.Guint16,
+		source_object *T.GObject,
+		err **T.GError) T.Gboolean
 
 	G_socket_listener_add_any_inet_port func(
-		listener *GSocketListener,
-		source_object *GObject,
-		err **GError) Guint16
+		listener *T.GSocketListener,
+		source_object *T.GObject,
+		err **T.GError) T.Guint16
 
 	G_socket_listener_accept_socket func(
-		listener *GSocketListener,
-		source_object **GObject,
-		cancellable *GCancellable,
-		err **GError) *GSocket
+		listener *T.GSocketListener,
+		source_object **T.GObject,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocket
 
 	G_socket_listener_accept_socket_async func(
-		listener *GSocketListener,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		listener *T.GSocketListener,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_listener_accept_socket_finish func(
-		listener *GSocketListener,
-		result *GAsyncResult,
-		source_object **GObject,
-		err **GError) *GSocket
+		listener *T.GSocketListener,
+		result *T.GAsyncResult,
+		source_object **T.GObject,
+		err **T.GError) *T.GSocket
 
 	G_socket_listener_accept func(
-		listener *GSocketListener,
-		source_object **GObject,
-		cancellable *GCancellable,
-		err **GError) *GSocketConnection
+		listener *T.GSocketListener,
+		source_object **T.GObject,
+		cancellable *T.GCancellable,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_listener_accept_async func(
-		listener *GSocketListener,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		listener *T.GSocketListener,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_socket_listener_accept_finish func(
-		listener *GSocketListener,
-		result *GAsyncResult,
-		source_object **GObject,
-		err **GError) *GSocketConnection
+		listener *T.GSocketListener,
+		result *T.GAsyncResult,
+		source_object **T.GObject,
+		err **T.GError) *T.GSocketConnection
 
 	G_socket_listener_close func(
-		listener *GSocketListener)
+		listener *T.GSocketListener)
 
-	G_socket_service_get_type func() GType
+	G_socket_service_get_type func() T.GType
 
-	G_socket_service_new func() *GSocketService
+	G_socket_service_new func() *T.GSocketService
 
 	G_socket_service_start func(
-		service *GSocketService)
+		service *T.GSocketService)
 
 	G_socket_service_stop func(
-		service *GSocketService)
+		service *T.GSocketService)
 
 	G_socket_service_is_active func(
-		service *GSocketService) Gboolean
+		service *T.GSocketService) T.Gboolean
 
-	G_srv_target_get_type func() GType
+	G_srv_target_get_type func() T.GType
 
 	G_srv_target_new func(
 		hostname string,
-		port Guint16,
-		priority Guint16,
-		weight Guint16) *GSrvTarget
+		port T.Guint16,
+		priority T.Guint16,
+		weight T.Guint16) *T.GSrvTarget
 
 	G_srv_target_copy func(
-		target *GSrvTarget) *GSrvTarget
+		target *T.GSrvTarget) *T.GSrvTarget
 
 	G_srv_target_free func(
-		target *GSrvTarget)
+		target *T.GSrvTarget)
 
 	G_srv_target_get_hostname func(
-		target *GSrvTarget) string
+		target *T.GSrvTarget) string
 
 	G_srv_target_get_port func(
-		target *GSrvTarget) Guint16
+		target *T.GSrvTarget) T.Guint16
 
 	G_srv_target_get_priority func(
-		target *GSrvTarget) Guint16
+		target *T.GSrvTarget) T.Guint16
 
 	G_srv_target_get_weight func(
-		target *GSrvTarget) Guint16
+		target *T.GSrvTarget) T.Guint16
 
 	G_srv_target_list_sort func(
-		targets *GList) *GList
+		targets *T.GList) *T.GList
 
-	G_tcp_connection_get_type func() GType
+	G_tcp_connection_get_type func() T.GType
 
 	G_tcp_connection_set_graceful_disconnect func(
-		connection *GTcpConnection,
-		graceful_disconnect Gboolean)
+		connection *T.GTcpConnection,
+		graceful_disconnect T.Gboolean)
 
 	G_tcp_connection_get_graceful_disconnect func(
-		connection *GTcpConnection) Gboolean
+		connection *T.GTcpConnection) T.Gboolean
 
-	G_tcp_wrapper_connection_get_type func() GType
+	G_tcp_wrapper_connection_get_type func() T.GType
 
 	G_tcp_wrapper_connection_new func(
-		base_io_stream *GIOStream,
-		socket *GSocket) *GSocketConnection
+		base_io_stream *T.GIOStream,
+		socket *T.GSocket) *T.GSocketConnection
 
 	G_tcp_wrapper_connection_get_base_io_stream func(
-		conn *GTcpWrapperConnection) *GIOStream
+		conn *T.GTcpWrapperConnection) *T.GIOStream
 
-	G_themed_icon_get_type func() GType
+	G_themed_icon_get_type func() T.GType
 
 	G_themed_icon_new func(
-		iconname string) *GIcon
+		iconname string) *T.GIcon
 
 	G_themed_icon_new_with_default_fallbacks func(
-		iconname string) *GIcon
+		iconname string) *T.GIcon
 
 	G_themed_icon_new_from_names func(
-		iconnames **Char,
-		len int) *GIcon
+		iconnames **T.Char,
+		len int) *T.GIcon
 
 	G_themed_icon_prepend_name func(
-		icon *GThemedIcon,
+		icon *T.GThemedIcon,
 		iconname string)
 
 	G_themed_icon_append_name func(
-		icon *GThemedIcon,
+		icon *T.GThemedIcon,
 		iconname string)
 
 	G_themed_icon_get_names func(
-		icon *GThemedIcon) **Gchar
+		icon *T.GThemedIcon) **T.Gchar
 
-	G_threaded_socket_service_get_type func() GType
+	G_threaded_socket_service_get_type func() T.GType
 
 	G_threaded_socket_service_new func(
-		max_threads int) *GSocketService
+		max_threads int) *T.GSocketService
 
-	G_tls_backend_get_type func() GType
+	G_tls_backend_get_type func() T.GType
 
-	G_tls_backend_get_default func() *GTlsBackend
+	G_tls_backend_get_default func() *T.GTlsBackend
 
 	G_tls_backend_supports_tls func(
-		backend *GTlsBackend) Gboolean
+		backend *T.GTlsBackend) T.Gboolean
 
 	G_tls_backend_get_certificate_type func(
-		backend *GTlsBackend) GType
+		backend *T.GTlsBackend) T.GType
 
 	G_tls_backend_get_client_connection_type func(
-		backend *GTlsBackend) GType
+		backend *T.GTlsBackend) T.GType
 
 	G_tls_backend_get_server_connection_type func(
-		backend *GTlsBackend) GType
+		backend *T.GTlsBackend) T.GType
 
-	G_tls_certificate_get_type func() GType
+	G_tls_certificate_get_type func() T.GType
 
 	G_tls_certificate_new_from_pem func(
 		data string,
-		length Gssize,
-		err **GError) *GTlsCertificate
+		length T.Gssize,
+		err **T.GError) *T.GTlsCertificate
 
 	G_tls_certificate_new_from_file func(
 		file string,
-		err **GError) *GTlsCertificate
+		err **T.GError) *T.GTlsCertificate
 
 	G_tls_certificate_new_from_files func(
 		cert_file string,
 		key_file string,
-		err **GError) *GTlsCertificate
+		err **T.GError) *T.GTlsCertificate
 
 	G_tls_certificate_list_new_from_file func(
 		file string,
-		err **GError) *GList
+		err **T.GError) *T.GList
 
 	G_tls_certificate_get_issuer func(
-		cert *GTlsCertificate) *GTlsCertificate
+		cert *T.GTlsCertificate) *T.GTlsCertificate
 
 	G_tls_certificate_verify func(
-		cert *GTlsCertificate,
-		identity *GSocketConnectable,
-		trusted_ca *GTlsCertificate) GTlsCertificateFlags
+		cert *T.GTlsCertificate,
+		identity *T.GSocketConnectable,
+		trusted_ca *T.GTlsCertificate) T.GTlsCertificateFlags
 
-	G_tls_connection_get_type func() GType
+	G_tls_connection_get_type func() T.GType
 
 	G_tls_connection_set_use_system_certdb func(
-		conn *GTlsConnection,
-		use_system_certdb Gboolean)
+		conn *T.GTlsConnection,
+		use_system_certdb T.Gboolean)
 
 	G_tls_connection_get_use_system_certdb func(
-		conn *GTlsConnection) Gboolean
+		conn *T.GTlsConnection) T.Gboolean
 
 	G_tls_connection_set_certificate func(
-		conn *GTlsConnection,
-		certificate *GTlsCertificate)
+		conn *T.GTlsConnection,
+		certificate *T.GTlsCertificate)
 
 	G_tls_connection_get_certificate func(
-		conn *GTlsConnection) *GTlsCertificate
+		conn *T.GTlsConnection) *T.GTlsCertificate
 
 	G_tls_connection_get_peer_certificate func(
-		conn *GTlsConnection) *GTlsCertificate
+		conn *T.GTlsConnection) *T.GTlsCertificate
 
 	G_tls_connection_get_peer_certificate_errors func(
-		conn *GTlsConnection) GTlsCertificateFlags
+		conn *T.GTlsConnection) T.GTlsCertificateFlags
 
 	G_tls_connection_set_require_close_notify func(
-		conn *GTlsConnection,
-		require_close_notify Gboolean)
+		conn *T.GTlsConnection,
+		require_close_notify T.Gboolean)
 
 	G_tls_connection_get_require_close_notify func(
-		conn *GTlsConnection) Gboolean
+		conn *T.GTlsConnection) T.Gboolean
 
 	G_tls_connection_set_rehandshake_mode func(
-		conn *GTlsConnection,
-		mode GTlsRehandshakeMode)
+		conn *T.GTlsConnection,
+		mode T.GTlsRehandshakeMode)
 
 	G_tls_connection_get_rehandshake_mode func(
-		conn *GTlsConnection) GTlsRehandshakeMode
+		conn *T.GTlsConnection) T.GTlsRehandshakeMode
 
 	G_tls_connection_handshake func(
-		conn *GTlsConnection,
-		cancellable *GCancellable,
-		err **GError) Gboolean
+		conn *T.GTlsConnection,
+		cancellable *T.GCancellable,
+		err **T.GError) T.Gboolean
 
 	G_tls_connection_handshake_async func(
-		conn *GTlsConnection,
+		conn *T.GTlsConnection,
 		io_priority int,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_tls_connection_handshake_finish func(
-		conn *GTlsConnection,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		conn *T.GTlsConnection,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_tls_error_quark func() GQuark
+	G_tls_error_quark func() T.GQuark
 
 	G_tls_connection_emit_accept_certificate func(
-		conn *GTlsConnection,
-		peer_cert *GTlsCertificate,
-		errors GTlsCertificateFlags) Gboolean
+		conn *T.GTlsConnection,
+		peer_cert *T.GTlsCertificate,
+		errors T.GTlsCertificateFlags) T.Gboolean
 
-	G_tls_client_connection_get_type func() GType
+	G_tls_client_connection_get_type func() T.GType
 
 	G_tls_client_connection_new func(
-		base_io_stream *GIOStream,
-		server_identity *GSocketConnectable,
-		err **GError) *GIOStream
+		base_io_stream *T.GIOStream,
+		server_identity *T.GSocketConnectable,
+		err **T.GError) *T.GIOStream
 
 	G_tls_client_connection_get_validation_flags func(
-		conn *GTlsClientConnection) GTlsCertificateFlags
+		conn *T.GTlsClientConnection) T.GTlsCertificateFlags
 
 	G_tls_client_connection_set_validation_flags func(
-		conn *GTlsClientConnection,
-		flags GTlsCertificateFlags)
+		conn *T.GTlsClientConnection,
+		flags T.GTlsCertificateFlags)
 
 	G_tls_client_connection_get_server_identity func(
-		conn *GTlsClientConnection) *GSocketConnectable
+		conn *T.GTlsClientConnection) *T.GSocketConnectable
 
 	G_tls_client_connection_set_server_identity func(
-		conn *GTlsClientConnection,
-		identity *GSocketConnectable)
+		conn *T.GTlsClientConnection,
+		identity *T.GSocketConnectable)
 
 	G_tls_client_connection_get_use_ssl3 func(
-		conn *GTlsClientConnection) Gboolean
+		conn *T.GTlsClientConnection) T.Gboolean
 
 	G_tls_client_connection_set_use_ssl3 func(
-		conn *GTlsClientConnection,
-		use_ssl3 Gboolean)
+		conn *T.GTlsClientConnection,
+		use_ssl3 T.Gboolean)
 
 	G_tls_client_connection_get_accepted_cas func(
-		conn *GTlsClientConnection) *GList
+		conn *T.GTlsClientConnection) *T.GList
 
-	G_tls_server_connection_get_type func() GType
+	G_tls_server_connection_get_type func() T.GType
 
 	G_tls_server_connection_new func(
-		base_io_stream *GIOStream,
-		certificate *GTlsCertificate,
-		err **GError) *GIOStream
+		base_io_stream *T.GIOStream,
+		certificate *T.GTlsCertificate,
+		err **T.GError) *T.GIOStream
 
-	G_vfs_get_type func() GType
+	G_vfs_get_type func() T.GType
 
 	G_vfs_is_active func(
-		vfs *GVfs) Gboolean
+		vfs *T.GVfs) T.Gboolean
 
 	G_vfs_get_file_for_path func(
-		vfs *GVfs,
-		path string) *GFile
+		vfs *T.GVfs,
+		path string) *T.GFile
 
 	G_vfs_get_file_for_uri func(
-		vfs *GVfs,
-		uri string) *GFile
+		vfs *T.GVfs,
+		uri string) *T.GFile
 
 	G_vfs_get_supported_uri_schemes func(
-		vfs *GVfs) **Gchar
+		vfs *T.GVfs) **T.Gchar
 
 	G_vfs_parse_name func(
-		vfs *GVfs,
-		parse_name string) *GFile
+		vfs *T.GVfs,
+		parse_name string) *T.GFile
 
-	G_vfs_get_default func() *GVfs
+	G_vfs_get_default func() *T.GVfs
 
-	G_vfs_get_local func() *GVfs
+	G_vfs_get_local func() *T.GVfs
 
-	G_volume_get_type func() GType
+	G_volume_get_type func() T.GType
 
 	G_volume_get_name func(
-		volume *GVolume) string
+		volume *T.GVolume) string
 
 	G_volume_get_icon func(
-		volume *GVolume) *GIcon
+		volume *T.GVolume) *T.GIcon
 
 	G_volume_get_uuid func(
-		volume *GVolume) string
+		volume *T.GVolume) string
 
 	G_volume_get_drive func(
-		volume *GVolume) *GDrive
+		volume *T.GVolume) *T.GDrive
 
 	G_volume_get_mount func(
-		volume *GVolume) *GMount
+		volume *T.GVolume) *T.GMount
 
 	G_volume_can_mount func(
-		volume *GVolume) Gboolean
+		volume *T.GVolume) T.Gboolean
 
 	G_volume_can_eject func(
-		volume *GVolume) Gboolean
+		volume *T.GVolume) T.Gboolean
 
 	G_volume_should_automount func(
-		volume *GVolume) Gboolean
+		volume *T.GVolume) T.Gboolean
 
 	G_volume_mount func(
-		volume *GVolume,
-		flags GMountMountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		volume *T.GVolume,
+		flags T.GMountMountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_volume_mount_finish func(
-		volume *GVolume,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		volume *T.GVolume,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_volume_eject func(
-		volume *GVolume,
-		flags GMountUnmountFlags,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		volume *T.GVolume,
+		flags T.GMountUnmountFlags,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_volume_eject_finish func(
-		volume *GVolume,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		volume *T.GVolume,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
 	G_volume_get_identifier func(
-		volume *GVolume,
+		volume *T.GVolume,
 		kind string) string
 
 	G_volume_enumerate_identifiers func(
-		volume *GVolume) **Char
+		volume *T.GVolume) **T.Char
 
 	G_volume_get_activation_root func(
-		volume *GVolume) *GFile
+		volume *T.GVolume) *T.GFile
 
 	G_volume_eject_with_operation func(
-		volume *GVolume,
-		flags GMountUnmountFlags,
-		mount_operation *GMountOperation,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		volume *T.GVolume,
+		flags T.GMountUnmountFlags,
+		mount_operation *T.GMountOperation,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	G_volume_eject_with_operation_finish func(
-		volume *GVolume,
-		result *GAsyncResult,
-		err **GError) Gboolean
+		volume *T.GVolume,
+		result *T.GAsyncResult,
+		err **T.GError) T.Gboolean
 
-	G_zlib_compressor_get_type func() GType
+	G_zlib_compressor_get_type func() T.GType
 
 	G_zlib_compressor_new func(
-		format GZlibCompressorFormat,
-		level int) *GZlibCompressor
+		format T.GZlibCompressorFormat,
+		level int) *T.GZlibCompressor
 
 	G_zlib_compressor_get_file_info func(
-		compressor *GZlibCompressor) *GFileInfo
+		compressor *T.GZlibCompressor) *T.GFileInfo
 
 	G_zlib_compressor_set_file_info func(
-		compressor *GZlibCompressor,
-		file_info *GFileInfo)
+		compressor *T.GZlibCompressor,
+		file_info *T.GFileInfo)
 
-	G_zlib_decompressor_get_type func() GType
+	G_zlib_decompressor_get_type func() T.GType
 
 	G_zlib_decompressor_new func(
-		format GZlibCompressorFormat) *GZlibDecompressor
+		format T.GZlibCompressorFormat) *T.GZlibDecompressor
 
 	G_zlib_decompressor_get_file_info func(
-		decompressor *GZlibDecompressor) *GFileInfo
+		decompressor *T.GZlibDecompressor) *T.GFileInfo
 
-	G_win32_input_stream_get_type func() GType
+	G_win32_input_stream_get_type func() T.GType
 
 	G_win32_input_stream_new func(
-		handle *Void,
-		close_handle Gboolean) *GInputStream
+		handle *T.Void,
+		close_handle T.Gboolean) *T.GInputStream
 
 	G_win32_input_stream_set_close_handle func(
-		stream *GWin32InputStream,
-		close_handle Gboolean)
+		stream *T.GWin32InputStream,
+		close_handle T.Gboolean)
 
 	G_win32_input_stream_get_close_handle func(
-		stream *GWin32InputStream) Gboolean
+		stream *T.GWin32InputStream) T.Gboolean
 
 	G_win32_input_stream_get_handle func(
-		stream *GWin32InputStream) *Void
+		stream *T.GWin32InputStream) *T.Void
 
-	G_win32_output_stream_get_type func() GType
+	G_win32_output_stream_get_type func() T.GType
 
 	G_win32_output_stream_new func(
-		handle *Void,
-		close_handle Gboolean) *GOutputStream
+		handle *T.Void,
+		close_handle T.Gboolean) *T.GOutputStream
 
 	G_win32_output_stream_set_close_handle func(
-		stream *GWin32OutputStream,
-		close_handle Gboolean)
+		stream *T.GWin32OutputStream,
+		close_handle T.Gboolean)
 
 	G_win32_output_stream_get_close_handle func(
-		stream *GWin32OutputStream) Gboolean
+		stream *T.GWin32OutputStream) T.Gboolean
 
 	G_win32_output_stream_get_handle func(
-		stream *GWin32OutputStream) *Void
+		stream *T.GWin32OutputStream) *T.Void
 
-	G_settings_backend_get_type func() GType
+	G_settings_backend_get_type func() T.GType
 
 	G_settings_backend_changed func(
-		backend *GSettingsBackend,
+		backend *T.GSettingsBackend,
 		key string,
-		origin_tag Gpointer)
+		origin_tag T.Gpointer)
 
 	G_settings_backend_path_changed func(
-		backend *GSettingsBackend,
+		backend *T.GSettingsBackend,
 		path string,
-		origin_tag Gpointer)
+		origin_tag T.Gpointer)
 
 	G_settings_backend_flatten_tree func(
-		tree *GTree,
-		path **Gchar,
-		keys ***Gchar,
-		values ***GVariant)
+		tree *T.GTree,
+		path **T.Gchar,
+		keys ***T.Gchar,
+		values ***T.GVariant)
 
 	G_settings_backend_keys_changed func(
-		backend *GSettingsBackend,
+		backend *T.GSettingsBackend,
 		path string,
-		items **Gchar,
-		origin_tag Gpointer)
+		items **T.Gchar,
+		origin_tag T.Gpointer)
 
 	G_settings_backend_path_writable_changed func(
-		backend *GSettingsBackend,
+		backend *T.GSettingsBackend,
 		path string)
 
 	G_settings_backend_writable_changed func(
-		backend *GSettingsBackend,
+		backend *T.GSettingsBackend,
 		key string)
 
 	G_settings_backend_changed_tree func(
-		backend *GSettingsBackend,
-		tree *GTree,
-		origin_tag Gpointer)
+		backend *T.GSettingsBackend,
+		tree *T.GTree,
+		origin_tag T.Gpointer)
 
-	G_settings_backend_get_default func() *GSettingsBackend
+	G_settings_backend_get_default func() *T.GSettingsBackend
 
 	G_keyfile_settings_backend_new func(
 		filename string,
 		root_path string,
-		root_group string) *GSettingsBackend
+		root_group string) *T.GSettingsBackend
 
-	G_null_settings_backend_new func() *GSettingsBackend
+	G_null_settings_backend_new func() *T.GSettingsBackend
 
-	G_memory_settings_backend_new func() *GSettingsBackend
+	G_memory_settings_backend_new func() *T.GSettingsBackend
 )
 var dll = "libgio-2.0-0.dll"
 

@@ -7,7 +7,7 @@ package pangowin
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 	w "github.com/tHinqa/outside-windows/types"
 )
 
@@ -18,70 +18,70 @@ func init() {
 }
 
 var (
-	Pango_win32_get_context func() *PangoContext
+	Pango_win32_get_context func() *T.PangoContext
 
 	Pango_win32_render func(hdc w.HDC,
-		font *PangoFont, glyphs *PangoGlyphString, x, y Gint)
+		font *T.PangoFont, glyphs *T.PangoGlyphString, x, y T.Gint)
 
 	Pango_win32_render_layout_line func(
-		hdc w.HDC, line *PangoLayoutLine, x, y int)
+		hdc w.HDC, line *T.PangoLayoutLine, x, y int)
 
 	Pango_win32_render_layout func(
-		hdc w.HDC, layout *PangoLayout, x, y int)
+		hdc w.HDC, layout *T.PangoLayout, x, y int)
 
 	Pango_win32_render_transformed func(
 		hdc w.HDC,
-		matrix *PangoMatrix,
-		font *PangoFont,
-		glyphs *PangoGlyphString,
+		matrix *T.PangoMatrix,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString,
 		x, y int)
 
 	Pango_win32_get_unknown_glyph func(
-		font *PangoFont, wc Gunichar) PangoGlyph
+		font *T.PangoFont, wc T.Gunichar) T.PangoGlyph
 
 	Pango_win32_font_get_glyph_index func(
-		font *PangoFont, wc Gunichar) Gint
+		font *T.PangoFont, wc T.Gunichar) T.Gint
 
 	Pango_win32_get_dc func() w.HDC
 
-	Pango_win32_get_debug_flag func() Gboolean
+	Pango_win32_get_debug_flag func() T.Gboolean
 
 	Pango_win32_font_select_font func(
-		font *PangoFont, hdc w.HDC) Gboolean
+		font *T.PangoFont, hdc w.HDC) T.Gboolean
 
-	Pango_win32_font_done_font func(font *PangoFont)
+	Pango_win32_font_done_font func(font *T.PangoFont)
 
-	Pango_win32_font_get_metrics_factor func(font *PangoFont) Double
+	Pango_win32_font_get_metrics_factor func(font *T.PangoFont) T.Double
 
-	Pango_win32_font_cache_new func() *PangoWin32FontCache
+	Pango_win32_font_cache_new func() *T.PangoWin32FontCache
 
-	Pango_win32_font_cache_free func(cache *PangoWin32FontCache)
+	Pango_win32_font_cache_free func(cache *T.PangoWin32FontCache)
 
 	Pango_win32_font_cache_load func(
-		cache *PangoWin32FontCache, logfont *w.LOGFONTA) w.HFONT
+		cache *T.PangoWin32FontCache, logfont *w.LOGFONTA) w.HFONT
 
 	Pango_win32_font_cache_loadw func(
-		cache *PangoWin32FontCache, logfont *w.LOGFONTW) w.HFONT
+		cache *T.PangoWin32FontCache, logfont *w.LOGFONTW) w.HFONT
 
 	Pango_win32_font_cache_unload func(
-		cache *PangoWin32FontCache, hfont w.HFONT)
+		cache *T.PangoWin32FontCache, hfont w.HFONT)
 
-	Pango_win32_font_map_for_display func() *PangoFontMap
+	Pango_win32_font_map_for_display func() *T.PangoFontMap
 
 	Pango_win32_shutdown_display func()
 
 	Pango_win32_font_map_get_font_cache func(
-		font_map *PangoFontMap) *PangoWin32FontCache
+		font_map *T.PangoFontMap) *T.PangoWin32FontCache
 
-	Pango_win32_font_logfont func(font *PangoFont) *w.LOGFONTA
+	Pango_win32_font_logfont func(font *T.PangoFont) *w.LOGFONTA
 
-	Pango_win32_font_logfontw func(font *PangoFont) *w.LOGFONTW
+	Pango_win32_font_logfontw func(font *T.PangoFont) *w.LOGFONTW
 
 	Pango_win32_font_description_from_logfont func(
-		lfp *w.LOGFONTA) *PangoFontDescription
+		lfp *w.LOGFONTA) *T.PangoFontDescription
 
 	Pango_win32_font_description_from_logfontw func(
-		lfp *w.LOGFONTW) *PangoFontDescription
+		lfp *w.LOGFONTW) *T.PangoFontDescription
 )
 
 var dll = "libpangowin32-1.0-0.dll"

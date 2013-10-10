@@ -7,7 +7,7 @@ package pango
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -16,1099 +16,1099 @@ func init() {
 }
 
 var (
-	Pango_coverage_new func() *PangoCoverage
+	Pango_coverage_new func() *T.PangoCoverage
 
 	Pango_coverage_ref func(
-		coverage *PangoCoverage) *PangoCoverage
+		coverage *T.PangoCoverage) *T.PangoCoverage
 
 	Pango_coverage_unref func(
-		coverage *PangoCoverage)
+		coverage *T.PangoCoverage)
 
 	Pango_coverage_copy func(
-		coverage *PangoCoverage) *PangoCoverage
+		coverage *T.PangoCoverage) *T.PangoCoverage
 
 	Pango_coverage_get func(
-		coverage *PangoCoverage,
-		index int) PangoCoverageLevel
+		coverage *T.PangoCoverage,
+		index int) T.PangoCoverageLevel
 
 	Pango_coverage_set func(
-		coverage *PangoCoverage,
+		coverage *T.PangoCoverage,
 		index int,
-		level PangoCoverageLevel)
+		level T.PangoCoverageLevel)
 
 	Pango_coverage_max func(
-		coverage *PangoCoverage,
-		other *PangoCoverage)
+		coverage *T.PangoCoverage,
+		other *T.PangoCoverage)
 
 	Pango_coverage_to_bytes func(
-		coverage *PangoCoverage,
-		bytes **Guchar,
+		coverage *T.PangoCoverage,
+		bytes **T.Guchar,
 		n_bytes *int)
 
 	Pango_coverage_from_bytes func(
-		bytes *Guchar,
-		n_bytes int) *PangoCoverage
+		bytes *T.Guchar,
+		n_bytes int) *T.PangoCoverage
 
 	Pango_units_from_double func(
-		d Double) int
+		d T.Double) int
 
 	Pango_units_to_double func(
-		i int) Double
+		i int) T.Double
 
 	Pango_extents_to_pixels func(
-		inclusive *PangoRectangle,
-		nearest *PangoRectangle)
+		inclusive *T.PangoRectangle,
+		nearest *T.PangoRectangle)
 
-	Pango_matrix_get_type func() GType
+	Pango_matrix_get_type func() T.GType
 
 	Pango_matrix_copy func(
-		matrix *PangoMatrix) *PangoMatrix
+		matrix *T.PangoMatrix) *T.PangoMatrix
 
 	Pango_matrix_free func(
-		matrix *PangoMatrix)
+		matrix *T.PangoMatrix)
 
 	Pango_matrix_translate func(
-		matrix *PangoMatrix,
-		tx Double,
-		ty Double)
+		matrix *T.PangoMatrix,
+		tx T.Double,
+		ty T.Double)
 
 	Pango_matrix_scale func(
-		matrix *PangoMatrix,
-		scale_x Double,
-		scale_y Double)
+		matrix *T.PangoMatrix,
+		scale_x T.Double,
+		scale_y T.Double)
 
 	Pango_matrix_rotate func(
-		matrix *PangoMatrix,
-		degrees Double)
+		matrix *T.PangoMatrix,
+		degrees T.Double)
 
 	Pango_matrix_concat func(
-		matrix *PangoMatrix,
-		new_matrix *PangoMatrix)
+		matrix *T.PangoMatrix,
+		new_matrix *T.PangoMatrix)
 
 	Pango_matrix_transform_point func(
-		matrix *PangoMatrix,
-		x *Double,
-		y *Double)
+		matrix *T.PangoMatrix,
+		x *T.Double,
+		y *T.Double)
 
 	Pango_matrix_transform_distance func(
-		matrix *PangoMatrix,
-		dx *Double,
-		dy *Double)
+		matrix *T.PangoMatrix,
+		dx *T.Double,
+		dy *T.Double)
 
 	Pango_matrix_transform_rectangle func(
-		matrix *PangoMatrix,
-		rect *PangoRectangle)
+		matrix *T.PangoMatrix,
+		rect *T.PangoRectangle)
 
 	Pango_matrix_transform_pixel_rectangle func(
-		matrix *PangoMatrix,
-		rect *PangoRectangle)
+		matrix *T.PangoMatrix,
+		rect *T.PangoRectangle)
 
 	Pango_matrix_get_font_scale_factor func(
-		matrix *PangoMatrix) Double
+		matrix *T.PangoMatrix) T.Double
 
 	Pango_script_for_unichar func(
-		ch Gunichar) PangoScript
+		ch T.Gunichar) T.PangoScript
 
 	Pango_script_iter_new func(
 		text string,
-		length int) *PangoScriptIter
+		length int) *T.PangoScriptIter
 
 	Pango_script_iter_get_range func(
-		iter *PangoScriptIter,
-		start **Char,
-		end **Char,
-		script *PangoScript)
+		iter *T.PangoScriptIter,
+		start **T.Char,
+		end **T.Char,
+		script *T.PangoScript)
 
 	Pango_script_iter_next func(
-		iter *PangoScriptIter) Gboolean
+		iter *T.PangoScriptIter) T.Gboolean
 
 	Pango_script_iter_free func(
-		iter *PangoScriptIter)
+		iter *T.PangoScriptIter)
 
-	Pango_language_get_type func() GType
+	Pango_language_get_type func() T.GType
 
 	Pango_language_from_string func(
-		language string) *PangoLanguage
+		language string) *T.PangoLanguage
 
 	Pango_language_to_string func(
-		language *PangoLanguage) string
+		language *T.PangoLanguage) string
 
 	Pango_language_get_sample_string func(
-		language *PangoLanguage) string
+		language *T.PangoLanguage) string
 
-	Pango_language_get_default func() *PangoLanguage
+	Pango_language_get_default func() *T.PangoLanguage
 
 	Pango_language_matches func(
-		language *PangoLanguage,
-		range_list string) Gboolean
+		language *T.PangoLanguage,
+		range_list string) T.Gboolean
 
 	Pango_language_includes_script func(
-		language *PangoLanguage,
-		script PangoScript) Gboolean
+		language *T.PangoLanguage,
+		script T.PangoScript) T.Gboolean
 
 	Pango_language_get_scripts func(
-		language *PangoLanguage,
-		num_scripts *int) *PangoScript
+		language *T.PangoLanguage,
+		num_scripts *int) *T.PangoScript
 
 	Pango_script_get_sample_language func(
-		script PangoScript) *PangoLanguage
+		script T.PangoScript) *T.PangoLanguage
 
 	Pango_gravity_to_rotation func(
-		gravity PangoGravity) Double
+		gravity T.PangoGravity) T.Double
 
 	Pango_gravity_get_for_matrix func(
-		matrix *PangoMatrix) PangoGravity
+		matrix *T.PangoMatrix) T.PangoGravity
 
 	Pango_gravity_get_for_script func(
-		script PangoScript,
-		base_gravity PangoGravity,
-		hint PangoGravityHint) PangoGravity
+		script T.PangoScript,
+		base_gravity T.PangoGravity,
+		hint T.PangoGravityHint) T.PangoGravity
 
 	Pango_gravity_get_for_script_and_width func(
-		script PangoScript,
-		wide Gboolean,
-		base_gravity PangoGravity,
-		hint PangoGravityHint) PangoGravity
+		script T.PangoScript,
+		wide T.Gboolean,
+		base_gravity T.PangoGravity,
+		hint T.PangoGravityHint) T.PangoGravity
 
 	Pango_bidi_type_for_unichar func(
-		ch Gunichar) PangoBidiType
+		ch T.Gunichar) T.PangoBidiType
 
 	Pango_unichar_direction func(
-		ch Gunichar) PangoDirection
+		ch T.Gunichar) T.PangoDirection
 
 	Pango_find_base_dir func(
 		text string,
-		length Gint) PangoDirection
+		length T.Gint) T.PangoDirection
 
 	Pango_get_mirror_char func(
-		ch Gunichar,
-		mirrored_ch *Gunichar) Gboolean
+		ch T.Gunichar,
+		mirrored_ch *T.Gunichar) T.Gboolean
 
-	Pango_font_description_get_type func() GType
+	Pango_font_description_get_type func() T.GType
 
-	Pango_font_description_new func() *PangoFontDescription
+	Pango_font_description_new func() *T.PangoFontDescription
 
 	Pango_font_description_copy func(
-		desc *PangoFontDescription) *PangoFontDescription
+		desc *T.PangoFontDescription) *T.PangoFontDescription
 
 	Pango_font_description_copy_static func(
-		desc *PangoFontDescription) *PangoFontDescription
+		desc *T.PangoFontDescription) *T.PangoFontDescription
 
 	Pango_font_description_hash func(
-		desc *PangoFontDescription) Guint
+		desc *T.PangoFontDescription) T.Guint
 
 	Pango_font_description_equal func(
-		desc1 *PangoFontDescription,
-		desc2 *PangoFontDescription) Gboolean
+		desc1 *T.PangoFontDescription,
+		desc2 *T.PangoFontDescription) T.Gboolean
 
 	Pango_font_description_free func(
-		desc *PangoFontDescription)
+		desc *T.PangoFontDescription)
 
 	Pango_font_descriptions_free func(
-		descs **PangoFontDescription,
+		descs **T.PangoFontDescription,
 		n_descs int)
 
 	Pango_font_description_set_family func(
-		desc *PangoFontDescription,
+		desc *T.PangoFontDescription,
 		family string)
 
 	Pango_font_description_set_family_static func(
-		desc *PangoFontDescription,
+		desc *T.PangoFontDescription,
 		family string)
 
 	Pango_font_description_get_family func(
-		desc *PangoFontDescription) string
+		desc *T.PangoFontDescription) string
 
 	Pango_font_description_set_style func(
-		desc *PangoFontDescription,
-		style PangoStyle)
+		desc *T.PangoFontDescription,
+		style T.PangoStyle)
 
 	Pango_font_description_get_style func(
-		desc *PangoFontDescription) PangoStyle
+		desc *T.PangoFontDescription) T.PangoStyle
 
 	Pango_font_description_set_variant func(
-		desc *PangoFontDescription,
-		variant PangoVariant)
+		desc *T.PangoFontDescription,
+		variant T.PangoVariant)
 
 	Pango_font_description_get_variant func(
-		desc *PangoFontDescription) PangoVariant
+		desc *T.PangoFontDescription) T.PangoVariant
 
 	Pango_font_description_set_weight func(
-		desc *PangoFontDescription,
-		weight PangoWeight)
+		desc *T.PangoFontDescription,
+		weight T.PangoWeight)
 
 	Pango_font_description_get_weight func(
-		desc *PangoFontDescription) PangoWeight
+		desc *T.PangoFontDescription) T.PangoWeight
 
 	Pango_font_description_set_stretch func(
-		desc *PangoFontDescription,
-		stretch PangoStretch)
+		desc *T.PangoFontDescription,
+		stretch T.PangoStretch)
 
 	Pango_font_description_get_stretch func(
-		desc *PangoFontDescription) PangoStretch
+		desc *T.PangoFontDescription) T.PangoStretch
 
 	Pango_font_description_set_size func(
-		desc *PangoFontDescription,
-		size Gint)
+		desc *T.PangoFontDescription,
+		size T.Gint)
 
 	Pango_font_description_get_size func(
-		desc *PangoFontDescription) Gint
+		desc *T.PangoFontDescription) T.Gint
 
 	Pango_font_description_set_absolute_size func(
-		desc *PangoFontDescription,
-		size Double)
+		desc *T.PangoFontDescription,
+		size T.Double)
 
 	Pango_font_description_get_size_is_absolute func(
-		desc *PangoFontDescription) Gboolean
+		desc *T.PangoFontDescription) T.Gboolean
 
 	Pango_font_description_set_gravity func(
-		desc *PangoFontDescription,
-		gravity PangoGravity)
+		desc *T.PangoFontDescription,
+		gravity T.PangoGravity)
 
 	Pango_font_description_get_gravity func(
-		desc *PangoFontDescription) PangoGravity
+		desc *T.PangoFontDescription) T.PangoGravity
 
 	Pango_font_description_get_set_fields func(
-		desc *PangoFontDescription) PangoFontMask
+		desc *T.PangoFontDescription) T.PangoFontMask
 
 	Pango_font_description_unset_fields func(
-		desc *PangoFontDescription,
-		to_unset PangoFontMask)
+		desc *T.PangoFontDescription,
+		to_unset T.PangoFontMask)
 
 	Pango_font_description_merge func(
-		desc *PangoFontDescription,
-		desc_to_merge *PangoFontDescription,
-		replace_existing Gboolean)
+		desc *T.PangoFontDescription,
+		desc_to_merge *T.PangoFontDescription,
+		replace_existing T.Gboolean)
 
 	Pango_font_description_merge_static func(
-		desc *PangoFontDescription,
-		desc_to_merge *PangoFontDescription,
-		replace_existing Gboolean)
+		desc *T.PangoFontDescription,
+		desc_to_merge *T.PangoFontDescription,
+		replace_existing T.Gboolean)
 
 	Pango_font_description_better_match func(
-		desc *PangoFontDescription,
-		old_match *PangoFontDescription,
-		new_match *PangoFontDescription) Gboolean
+		desc *T.PangoFontDescription,
+		old_match *T.PangoFontDescription,
+		new_match *T.PangoFontDescription) T.Gboolean
 
 	Pango_font_description_from_string func(
-		str string) *PangoFontDescription
+		str string) *T.PangoFontDescription
 
 	Pango_font_description_to_string func(
-		desc *PangoFontDescription) string
+		desc *T.PangoFontDescription) string
 
 	Pango_font_description_to_filename func(
-		desc *PangoFontDescription) string
+		desc *T.PangoFontDescription) string
 
-	Pango_font_metrics_get_type func() GType
+	Pango_font_metrics_get_type func() T.GType
 
 	Pango_font_metrics_ref func(
-		metrics *PangoFontMetrics) *PangoFontMetrics
+		metrics *T.PangoFontMetrics) *T.PangoFontMetrics
 
 	Pango_font_metrics_unref func(
-		metrics *PangoFontMetrics)
+		metrics *T.PangoFontMetrics)
 
 	Pango_font_metrics_get_ascent func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_descent func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_approximate_char_width func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_approximate_digit_width func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_underline_position func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_underline_thickness func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_strikethrough_position func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
 	Pango_font_metrics_get_strikethrough_thickness func(
-		metrics *PangoFontMetrics) int
+		metrics *T.PangoFontMetrics) int
 
-	Pango_font_family_get_type func() GType
+	Pango_font_family_get_type func() T.GType
 
 	Pango_font_family_list_faces func(
-		family *PangoFontFamily,
-		faces ***PangoFontFace,
+		family *T.PangoFontFamily,
+		faces ***T.PangoFontFace,
 		n_faces *int)
 
 	Pango_font_family_get_name func(
-		family *PangoFontFamily) string
+		family *T.PangoFontFamily) string
 
 	Pango_font_family_is_monospace func(
-		family *PangoFontFamily) Gboolean
+		family *T.PangoFontFamily) T.Gboolean
 
-	Pango_font_face_get_type func() GType
+	Pango_font_face_get_type func() T.GType
 
 	Pango_font_face_describe func(
-		face *PangoFontFace) *PangoFontDescription
+		face *T.PangoFontFace) *T.PangoFontDescription
 
 	Pango_font_face_get_face_name func(
-		face *PangoFontFace) string
+		face *T.PangoFontFace) string
 
 	Pango_font_face_list_sizes func(
-		face *PangoFontFace,
+		face *T.PangoFontFace,
 		sizes **int,
 		n_sizes *int)
 
 	Pango_font_face_is_synthesized func(
-		face *PangoFontFace) Gboolean
+		face *T.PangoFontFace) T.Gboolean
 
-	Pango_font_get_type func() GType
+	Pango_font_get_type func() T.GType
 
 	Pango_font_describe func(
-		font *PangoFont) *PangoFontDescription
+		font *T.PangoFont) *T.PangoFontDescription
 
 	Pango_font_describe_with_absolute_size func(
-		font *PangoFont) *PangoFontDescription
+		font *T.PangoFont) *T.PangoFontDescription
 
 	Pango_font_get_coverage func(
-		font *PangoFont,
-		language *PangoLanguage) *PangoCoverage
+		font *T.PangoFont,
+		language *T.PangoLanguage) *T.PangoCoverage
 
 	Pango_font_find_shaper func(
-		font *PangoFont,
-		language *PangoLanguage,
-		ch Guint32) *PangoEngineShape
+		font *T.PangoFont,
+		language *T.PangoLanguage,
+		ch T.Guint32) *T.PangoEngineShape
 
 	Pango_font_get_metrics func(
-		font *PangoFont,
-		language *PangoLanguage) *PangoFontMetrics
+		font *T.PangoFont,
+		language *T.PangoLanguage) *T.PangoFontMetrics
 
 	Pango_font_get_glyph_extents func(
-		font *PangoFont,
-		glyph PangoGlyph,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		font *T.PangoFont,
+		glyph T.PangoGlyph,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_font_get_font_map func(
-		font *PangoFont) *PangoFontMap
+		font *T.PangoFont) *T.PangoFontMap
 
-	Pango_color_get_type func() GType
+	Pango_color_get_type func() T.GType
 
 	Pango_color_copy func(
-		src *PangoColor) *PangoColor
+		src *T.PangoColor) *T.PangoColor
 
 	Pango_color_free func(
-		color *PangoColor)
+		color *T.PangoColor)
 
 	Pango_color_parse func(
-		color *PangoColor,
-		spec string) Gboolean
+		color *T.PangoColor,
+		spec string) T.Gboolean
 
 	Pango_color_to_string func(
-		color *PangoColor) string
+		color *T.PangoColor) string
 
 	Pango_attr_type_register func(
-		name string) PangoAttrType
+		name string) T.PangoAttrType
 
 	Pango_attr_type_get_name func(
-		t PangoAttrType) string
+		t T.PangoAttrType) string
 
 	Pango_attribute_init func(
-		attr *PangoAttribute,
-		klass *PangoAttrClass)
+		attr *T.PangoAttribute,
+		klass *T.PangoAttrClass)
 
 	Pango_attribute_copy func(
-		attr *PangoAttribute) *PangoAttribute
+		attr *T.PangoAttribute) *T.PangoAttribute
 
 	Pango_attribute_destroy func(
-		attr *PangoAttribute)
+		attr *T.PangoAttribute)
 
 	Pango_attribute_equal func(
-		attr1 *PangoAttribute,
-		attr2 *PangoAttribute) Gboolean
+		attr1 *T.PangoAttribute,
+		attr2 *T.PangoAttribute) T.Gboolean
 
 	Pango_attr_language_new func(
-		language *PangoLanguage) *PangoAttribute
+		language *T.PangoLanguage) *T.PangoAttribute
 
 	Pango_attr_family_new func(
-		family string) *PangoAttribute
+		family string) *T.PangoAttribute
 
 	Pango_attr_foreground_new func(
-		red Guint16,
-		green Guint16,
-		blue Guint16) *PangoAttribute
+		red T.Guint16,
+		green T.Guint16,
+		blue T.Guint16) *T.PangoAttribute
 
 	Pango_attr_background_new func(
-		red Guint16,
-		green Guint16,
-		blue Guint16) *PangoAttribute
+		red T.Guint16,
+		green T.Guint16,
+		blue T.Guint16) *T.PangoAttribute
 
 	Pango_attr_size_new func(
-		size int) *PangoAttribute
+		size int) *T.PangoAttribute
 
 	Pango_attr_size_new_absolute func(
-		size int) *PangoAttribute
+		size int) *T.PangoAttribute
 
 	Pango_attr_style_new func(
-		style PangoStyle) *PangoAttribute
+		style T.PangoStyle) *T.PangoAttribute
 
 	Pango_attr_weight_new func(
-		weight PangoWeight) *PangoAttribute
+		weight T.PangoWeight) *T.PangoAttribute
 
 	Pango_attr_variant_new func(
-		variant PangoVariant) *PangoAttribute
+		variant T.PangoVariant) *T.PangoAttribute
 
 	Pango_attr_stretch_new func(
-		stretch PangoStretch) *PangoAttribute
+		stretch T.PangoStretch) *T.PangoAttribute
 
 	Pango_attr_font_desc_new func(
-		desc *PangoFontDescription) *PangoAttribute
+		desc *T.PangoFontDescription) *T.PangoAttribute
 
 	Pango_attr_underline_new func(
-		underline PangoUnderline) *PangoAttribute
+		underline T.PangoUnderline) *T.PangoAttribute
 
 	Pango_attr_underline_color_new func(
-		red Guint16,
-		green Guint16,
-		blue Guint16) *PangoAttribute
+		red T.Guint16,
+		green T.Guint16,
+		blue T.Guint16) *T.PangoAttribute
 
 	Pango_attr_strikethrough_new func(
-		strikethrough Gboolean) *PangoAttribute
+		strikethrough T.Gboolean) *T.PangoAttribute
 
 	Pango_attr_strikethrough_color_new func(
-		red Guint16,
-		green Guint16,
-		blue Guint16) *PangoAttribute
+		red T.Guint16,
+		green T.Guint16,
+		blue T.Guint16) *T.PangoAttribute
 
 	Pango_attr_rise_new func(
-		rise int) *PangoAttribute
+		rise int) *T.PangoAttribute
 
 	Pango_attr_scale_new func(
-		scale_factor Double) *PangoAttribute
+		scale_factor T.Double) *T.PangoAttribute
 
 	Pango_attr_fallback_new func(
-		enable_fallback Gboolean) *PangoAttribute
+		enable_fallback T.Gboolean) *T.PangoAttribute
 
 	Pango_attr_letter_spacing_new func(
-		letter_spacing int) *PangoAttribute
+		letter_spacing int) *T.PangoAttribute
 
 	Pango_attr_shape_new func(
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle) *PangoAttribute
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle) *T.PangoAttribute
 
 	Pango_attr_shape_new_with_data func(
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle,
-		data Gpointer,
-		copy_func PangoAttrDataCopyFunc,
-		destroy_func GDestroyNotify) *PangoAttribute
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle,
+		data T.Gpointer,
+		copy_func T.PangoAttrDataCopyFunc,
+		destroy_func T.GDestroyNotify) *T.PangoAttribute
 
 	Pango_attr_gravity_new func(
-		gravity PangoGravity) *PangoAttribute
+		gravity T.PangoGravity) *T.PangoAttribute
 
 	Pango_attr_gravity_hint_new func(
-		hint PangoGravityHint) *PangoAttribute
+		hint T.PangoGravityHint) *T.PangoAttribute
 
-	Pango_attr_list_get_type func() GType
+	Pango_attr_list_get_type func() T.GType
 
-	Pango_attr_list_new func() *PangoAttrList
+	Pango_attr_list_new func() *T.PangoAttrList
 
 	Pango_attr_list_ref func(
-		list *PangoAttrList) *PangoAttrList
+		list *T.PangoAttrList) *T.PangoAttrList
 
 	Pango_attr_list_unref func(
-		list *PangoAttrList)
+		list *T.PangoAttrList)
 
 	Pango_attr_list_copy func(
-		list *PangoAttrList) *PangoAttrList
+		list *T.PangoAttrList) *T.PangoAttrList
 
 	Pango_attr_list_insert func(
-		list *PangoAttrList,
-		attr *PangoAttribute)
+		list *T.PangoAttrList,
+		attr *T.PangoAttribute)
 
 	Pango_attr_list_insert_before func(
-		list *PangoAttrList,
-		attr *PangoAttribute)
+		list *T.PangoAttrList,
+		attr *T.PangoAttribute)
 
 	Pango_attr_list_change func(
-		list *PangoAttrList,
-		attr *PangoAttribute)
+		list *T.PangoAttrList,
+		attr *T.PangoAttribute)
 
 	Pango_attr_list_splice func(
-		list *PangoAttrList,
-		other *PangoAttrList,
-		pos Gint,
-		len Gint)
+		list *T.PangoAttrList,
+		other *T.PangoAttrList,
+		pos T.Gint,
+		len T.Gint)
 
 	Pango_attr_list_filter func(
-		list *PangoAttrList,
-		f PangoAttrFilterFunc,
-		data Gpointer) *PangoAttrList
+		list *T.PangoAttrList,
+		f T.PangoAttrFilterFunc,
+		data T.Gpointer) *T.PangoAttrList
 
 	Pango_attr_list_get_iterator func(
-		list *PangoAttrList) *PangoAttrIterator
+		list *T.PangoAttrList) *T.PangoAttrIterator
 
 	Pango_attr_iterator_range func(
-		iterator *PangoAttrIterator,
-		start *Gint,
-		end *Gint)
+		iterator *T.PangoAttrIterator,
+		start *T.Gint,
+		end *T.Gint)
 
 	Pango_attr_iterator_next func(
-		iterator *PangoAttrIterator) Gboolean
+		iterator *T.PangoAttrIterator) T.Gboolean
 
 	Pango_attr_iterator_copy func(
-		iterator *PangoAttrIterator) *PangoAttrIterator
+		iterator *T.PangoAttrIterator) *T.PangoAttrIterator
 
 	Pango_attr_iterator_destroy func(
-		iterator *PangoAttrIterator)
+		iterator *T.PangoAttrIterator)
 
 	Pango_attr_iterator_get func(
-		iterator *PangoAttrIterator,
-		t PangoAttrType) *PangoAttribute
+		iterator *T.PangoAttrIterator,
+		t T.PangoAttrType) *T.PangoAttribute
 
 	Pango_attr_iterator_get_font func(
-		iterator *PangoAttrIterator,
-		desc *PangoFontDescription,
-		language **PangoLanguage,
-		extra_attrs **GSList)
+		iterator *T.PangoAttrIterator,
+		desc *T.PangoFontDescription,
+		language **T.PangoLanguage,
+		extra_attrs **T.GSList)
 
 	Pango_attr_iterator_get_attrs func(
-		iterator *PangoAttrIterator) *GSList
+		iterator *T.PangoAttrIterator) *T.GSList
 
 	Pango_parse_markup func(
 		markup_text string,
 		length int,
-		accel_marker Gunichar,
-		attr_list **PangoAttrList,
-		text **Char,
-		accel_char *Gunichar,
-		error **GError) Gboolean
+		accel_marker T.Gunichar,
+		attr_list **T.PangoAttrList,
+		text **T.Char,
+		accel_char *T.Gunichar,
+		error **T.GError) T.Gboolean
 
-	Pango_item_get_type func() GType
+	Pango_item_get_type func() T.GType
 
-	Pango_item_new func() *PangoItem
+	Pango_item_new func() *T.PangoItem
 
 	Pango_item_copy func(
-		item *PangoItem) *PangoItem
+		item *T.PangoItem) *T.PangoItem
 
 	Pango_item_free func(
-		item *PangoItem)
+		item *T.PangoItem)
 
 	Pango_item_split func(
-		orig *PangoItem,
+		orig *T.PangoItem,
 		split_index int,
-		split_offset int) *PangoItem
+		split_offset int) *T.PangoItem
 
 	Pango_break func(
 		text string,
 		length int,
-		analysis *PangoAnalysis,
-		attrs *PangoLogAttr,
+		analysis *T.PangoAnalysis,
+		attrs *T.PangoLogAttr,
 		attrs_len int)
 
 	Pango_find_paragraph_boundary func(
 		text string,
-		length Gint,
-		paragraph_delimiter_index *Gint,
-		next_paragraph_start *Gint)
+		length T.Gint,
+		paragraph_delimiter_index *T.Gint,
+		next_paragraph_start *T.Gint)
 
 	Pango_get_log_attrs func(
 		text string,
 		length int,
 		level int,
-		language *PangoLanguage,
-		log_attrs *PangoLogAttr,
+		language *T.PangoLanguage,
+		log_attrs *T.PangoLogAttr,
 		attrs_len int)
 
-	Pango_fontset_get_type func() GType
+	Pango_fontset_get_type func() T.GType
 
 	Pango_fontset_get_font func(
-		fontset *PangoFontset,
-		wc Guint) *PangoFont
+		fontset *T.PangoFontset,
+		wc T.Guint) *T.PangoFont
 
 	Pango_fontset_get_metrics func(
-		fontset *PangoFontset) *PangoFontMetrics
+		fontset *T.PangoFontset) *T.PangoFontMetrics
 
 	Pango_fontset_foreach func(
-		fontset *PangoFontset,
-		f PangoFontsetForeachFunc,
-		data Gpointer)
+		fontset *T.PangoFontset,
+		f T.PangoFontsetForeachFunc,
+		data T.Gpointer)
 
-	Pango_font_map_get_type func() GType
+	Pango_font_map_get_type func() T.GType
 
 	Pango_font_map_create_context func(
-		fontmap *PangoFontMap) *PangoContext
+		fontmap *T.PangoFontMap) *T.PangoContext
 
 	Pango_font_map_load_font func(
-		fontmap *PangoFontMap,
-		context *PangoContext,
-		desc *PangoFontDescription) *PangoFont
+		fontmap *T.PangoFontMap,
+		context *T.PangoContext,
+		desc *T.PangoFontDescription) *T.PangoFont
 
 	Pango_font_map_load_fontset func(
-		fontmap *PangoFontMap,
-		context *PangoContext,
-		desc *PangoFontDescription,
-		language *PangoLanguage) *PangoFontset
+		fontmap *T.PangoFontMap,
+		context *T.PangoContext,
+		desc *T.PangoFontDescription,
+		language *T.PangoLanguage) *T.PangoFontset
 
 	Pango_font_map_list_families func(
-		fontmap *PangoFontMap,
-		families ***PangoFontFamily,
+		fontmap *T.PangoFontMap,
+		families ***T.PangoFontFamily,
 		n_families *int)
 
-	Pango_context_get_type func() GType
+	Pango_context_get_type func() T.GType
 
-	Pango_context_new func() *PangoContext
+	Pango_context_new func() *T.PangoContext
 
 	Pango_context_set_font_map func(
-		context *PangoContext,
-		font_map *PangoFontMap)
+		context *T.PangoContext,
+		font_map *T.PangoFontMap)
 
 	Pango_context_get_font_map func(
-		context *PangoContext) *PangoFontMap
+		context *T.PangoContext) *T.PangoFontMap
 
 	Pango_context_list_families func(
-		context *PangoContext,
-		families ***PangoFontFamily,
+		context *T.PangoContext,
+		families ***T.PangoFontFamily,
 		n_families *int)
 
 	Pango_context_load_font func(
-		context *PangoContext,
-		desc *PangoFontDescription) *PangoFont
+		context *T.PangoContext,
+		desc *T.PangoFontDescription) *T.PangoFont
 
 	Pango_context_load_fontset func(
-		context *PangoContext,
-		desc *PangoFontDescription,
-		language *PangoLanguage) *PangoFontset
+		context *T.PangoContext,
+		desc *T.PangoFontDescription,
+		language *T.PangoLanguage) *T.PangoFontset
 
 	Pango_context_get_metrics func(
-		context *PangoContext,
-		desc *PangoFontDescription,
-		language *PangoLanguage) *PangoFontMetrics
+		context *T.PangoContext,
+		desc *T.PangoFontDescription,
+		language *T.PangoLanguage) *T.PangoFontMetrics
 
 	Pango_context_set_font_description func(
-		context *PangoContext,
-		desc *PangoFontDescription)
+		context *T.PangoContext,
+		desc *T.PangoFontDescription)
 
 	Pango_context_get_font_description func(
-		context *PangoContext) *PangoFontDescription
+		context *T.PangoContext) *T.PangoFontDescription
 
 	Pango_context_get_language func(
-		context *PangoContext) *PangoLanguage
+		context *T.PangoContext) *T.PangoLanguage
 
 	Pango_context_set_language func(
-		context *PangoContext,
-		language *PangoLanguage)
+		context *T.PangoContext,
+		language *T.PangoLanguage)
 
 	Pango_context_set_base_dir func(
-		context *PangoContext,
-		direction PangoDirection)
+		context *T.PangoContext,
+		direction T.PangoDirection)
 
 	Pango_context_get_base_dir func(
-		context *PangoContext) PangoDirection
+		context *T.PangoContext) T.PangoDirection
 
 	Pango_context_set_base_gravity func(
-		context *PangoContext,
-		gravity PangoGravity)
+		context *T.PangoContext,
+		gravity T.PangoGravity)
 
 	Pango_context_get_base_gravity func(
-		context *PangoContext) PangoGravity
+		context *T.PangoContext) T.PangoGravity
 
 	Pango_context_get_gravity func(
-		context *PangoContext) PangoGravity
+		context *T.PangoContext) T.PangoGravity
 
 	Pango_context_set_gravity_hint func(
-		context *PangoContext,
-		hint PangoGravityHint)
+		context *T.PangoContext,
+		hint T.PangoGravityHint)
 
 	Pango_context_get_gravity_hint func(
-		context *PangoContext) PangoGravityHint
+		context *T.PangoContext) T.PangoGravityHint
 
 	Pango_context_set_matrix func(
-		context *PangoContext,
-		matrix *PangoMatrix)
+		context *T.PangoContext,
+		matrix *T.PangoMatrix)
 
 	Pango_context_get_matrix func(
-		context *PangoContext) *PangoMatrix
+		context *T.PangoContext) *T.PangoMatrix
 
 	Pango_itemize func(
-		context *PangoContext,
+		context *T.PangoContext,
 		text string,
 		start_index int,
 		length int,
-		attrs *PangoAttrList,
-		cached_iter *PangoAttrIterator) *GList
+		attrs *T.PangoAttrList,
+		cached_iter *T.PangoAttrIterator) *T.GList
 
 	Pango_itemize_with_base_dir func(
-		context *PangoContext,
-		base_dir PangoDirection,
+		context *T.PangoContext,
+		base_dir T.PangoDirection,
 		text string,
 		start_index int,
 		length int,
-		attrs *PangoAttrList,
-		cached_iter *PangoAttrIterator) *GList
+		attrs *T.PangoAttrList,
+		cached_iter *T.PangoAttrIterator) *T.GList
 
-	Pango_glyph_string_new func() *PangoGlyphString
+	Pango_glyph_string_new func() *T.PangoGlyphString
 
 	Pango_glyph_string_set_size func(
-		string *PangoGlyphString,
-		new_len Gint)
+		string *T.PangoGlyphString,
+		new_len T.Gint)
 
-	Pango_glyph_string_get_type func() GType
+	Pango_glyph_string_get_type func() T.GType
 
 	Pango_glyph_string_copy func(
-		string *PangoGlyphString) *PangoGlyphString
+		string *T.PangoGlyphString) *T.PangoGlyphString
 
 	Pango_glyph_string_free func(
-		string *PangoGlyphString)
+		string *T.PangoGlyphString)
 
 	Pango_glyph_string_extents func(
-		glyphs *PangoGlyphString,
-		font *PangoFont,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		glyphs *T.PangoGlyphString,
+		font *T.PangoFont,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_glyph_string_get_width func(
-		glyphs *PangoGlyphString) int
+		glyphs *T.PangoGlyphString) int
 
 	Pango_glyph_string_extents_range func(
-		glyphs *PangoGlyphString,
+		glyphs *T.PangoGlyphString,
 		start int,
 		end int,
-		font *PangoFont,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		font *T.PangoFont,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_glyph_string_get_logical_widths func(
-		glyphs *PangoGlyphString,
+		glyphs *T.PangoGlyphString,
 		text string,
 		length int,
 		embedding_level int,
 		logical_widths *int)
 
 	Pango_glyph_string_index_to_x func(
-		glyphs *PangoGlyphString,
+		glyphs *T.PangoGlyphString,
 		text string,
 		length int,
-		analysis *PangoAnalysis,
+		analysis *T.PangoAnalysis,
 		index int,
-		trailing Gboolean,
+		trailing T.Gboolean,
 		x_pos *int)
 
 	Pango_glyph_string_x_to_index func(
-		glyphs *PangoGlyphString,
+		glyphs *T.PangoGlyphString,
 		text string,
 		length int,
-		analysis *PangoAnalysis,
+		analysis *T.PangoAnalysis,
 		x_pos int,
 		index *int,
 		trailing *int)
 
 	Pango_shape func(
 		text string,
-		length Gint,
-		analysis *PangoAnalysis,
-		glyphs *PangoGlyphString)
+		length T.Gint,
+		analysis *T.PangoAnalysis,
+		glyphs *T.PangoGlyphString)
 
 	Pango_reorder_items func(
-		logical_items *GList) *GList
+		logical_items *T.GList) *T.GList
 
-	Pango_attr_type_get_type func() GType
+	Pango_attr_type_get_type func() T.GType
 
-	Pango_underline_get_type func() GType
+	Pango_underline_get_type func() T.GType
 
-	Pango_bidi_type_get_type func() GType
+	Pango_bidi_type_get_type func() T.GType
 
-	Pango_direction_get_type func() GType
+	Pango_direction_get_type func() T.GType
 
-	Pango_coverage_level_get_type func() GType
+	Pango_coverage_level_get_type func() T.GType
 
-	Pango_style_get_type func() GType
+	Pango_style_get_type func() T.GType
 
-	Pango_variant_get_type func() GType
+	Pango_variant_get_type func() T.GType
 
-	Pango_weight_get_type func() GType
+	Pango_weight_get_type func() T.GType
 
-	Pango_stretch_get_type func() GType
+	Pango_stretch_get_type func() T.GType
 
-	Pango_font_mask_get_type func() GType
+	Pango_font_mask_get_type func() T.GType
 
-	Pango_gravity_get_type func() GType
+	Pango_gravity_get_type func() T.GType
 
-	Pango_gravity_hint_get_type func() GType
+	Pango_gravity_hint_get_type func() T.GType
 
-	Pango_alignment_get_type func() GType
+	Pango_alignment_get_type func() T.GType
 
-	Pango_wrap_mode_get_type func() GType
+	Pango_wrap_mode_get_type func() T.GType
 
-	Pango_ellipsize_mode_get_type func() GType
+	Pango_ellipsize_mode_get_type func() T.GType
 
-	Pango_render_part_get_type func() GType
+	Pango_render_part_get_type func() T.GType
 
-	Pango_script_get_type func() GType
+	Pango_script_get_type func() T.GType
 
-	Pango_tab_align_get_type func() GType
+	Pango_tab_align_get_type func() T.GType
 
-	Pango_glyph_item_get_type func() GType
+	Pango_glyph_item_get_type func() T.GType
 
 	Pango_glyph_item_split func(
-		orig *PangoGlyphItem,
+		orig *T.PangoGlyphItem,
 		text string,
-		split_index int) *PangoGlyphItem
+		split_index int) *T.PangoGlyphItem
 
 	Pango_glyph_item_copy func(
-		orig *PangoGlyphItem) *PangoGlyphItem
+		orig *T.PangoGlyphItem) *T.PangoGlyphItem
 
 	Pango_glyph_item_free func(
-		glyph_item *PangoGlyphItem)
+		glyph_item *T.PangoGlyphItem)
 
 	Pango_glyph_item_apply_attrs func(
-		glyph_item *PangoGlyphItem,
+		glyph_item *T.PangoGlyphItem,
 		text string,
-		list *PangoAttrList) *GSList
+		list *T.PangoAttrList) *T.GSList
 
 	Pango_glyph_item_letter_space func(
-		glyph_item *PangoGlyphItem,
+		glyph_item *T.PangoGlyphItem,
 		text string,
-		log_attrs *PangoLogAttr,
+		log_attrs *T.PangoLogAttr,
 		letter_spacing int)
 
 	Pango_glyph_item_get_logical_widths func(
-		glyph_item *PangoGlyphItem,
+		glyph_item *T.PangoGlyphItem,
 		text string,
 		logical_widths *int)
 
-	Pango_glyph_item_iter_get_type func() GType
+	Pango_glyph_item_iter_get_type func() T.GType
 
 	Pango_glyph_item_iter_copy func(
-		orig *PangoGlyphItemIter) *PangoGlyphItemIter
+		orig *T.PangoGlyphItemIter) *T.PangoGlyphItemIter
 
 	Pango_glyph_item_iter_free func(
-		iter *PangoGlyphItemIter)
+		iter *T.PangoGlyphItemIter)
 
 	Pango_glyph_item_iter_init_start func(
-		iter *PangoGlyphItemIter,
-		glyph_item *PangoGlyphItem,
-		text string) Gboolean
+		iter *T.PangoGlyphItemIter,
+		glyph_item *T.PangoGlyphItem,
+		text string) T.Gboolean
 
 	Pango_glyph_item_iter_init_end func(
-		iter *PangoGlyphItemIter,
-		glyph_item *PangoGlyphItem,
-		text string) Gboolean
+		iter *T.PangoGlyphItemIter,
+		glyph_item *T.PangoGlyphItem,
+		text string) T.Gboolean
 
 	Pango_glyph_item_iter_next_cluster func(
-		iter *PangoGlyphItemIter) Gboolean
+		iter *T.PangoGlyphItemIter) T.Gboolean
 
 	Pango_glyph_item_iter_prev_cluster func(
-		iter *PangoGlyphItemIter) Gboolean
+		iter *T.PangoGlyphItemIter) T.Gboolean
 
 	Pango_tab_array_new func(
-		initial_size Gint,
-		positions_in_pixels Gboolean) *PangoTabArray
+		initial_size T.Gint,
+		positions_in_pixels T.Gboolean) *T.PangoTabArray
 
-	Pango_tab_array_new_with_positions func(size Gint,
-		positions_in_pixels Gboolean, first_alignment PangoTabAlign,
-		first_position Gint, v ...VArg) *PangoTabArray
+	Pango_tab_array_new_with_positions func(size T.Gint,
+		positions_in_pixels T.Gboolean, first_alignment T.PangoTabAlign,
+		first_position T.Gint, v ...VArg) *T.PangoTabArray
 
-	Pango_tab_array_get_type func() GType
+	Pango_tab_array_get_type func() T.GType
 
 	Pango_tab_array_copy func(
-		src *PangoTabArray) *PangoTabArray
+		src *T.PangoTabArray) *T.PangoTabArray
 
 	Pango_tab_array_free func(
-		tab_array *PangoTabArray)
+		tab_array *T.PangoTabArray)
 
 	Pango_tab_array_get_size func(
-		tab_array *PangoTabArray) Gint
+		tab_array *T.PangoTabArray) T.Gint
 
 	Pango_tab_array_resize func(
-		tab_array *PangoTabArray,
-		new_size Gint)
+		tab_array *T.PangoTabArray,
+		new_size T.Gint)
 
 	Pango_tab_array_set_tab func(
-		tab_array *PangoTabArray,
-		tab_index Gint,
-		alignment PangoTabAlign,
-		location Gint)
+		tab_array *T.PangoTabArray,
+		tab_index T.Gint,
+		alignment T.PangoTabAlign,
+		location T.Gint)
 
 	Pango_tab_array_get_tab func(
-		tab_array *PangoTabArray,
-		tab_index Gint,
-		alignment *PangoTabAlign,
-		location *Gint)
+		tab_array *T.PangoTabArray,
+		tab_index T.Gint,
+		alignment *T.PangoTabAlign,
+		location *T.Gint)
 
 	Pango_tab_array_get_tabs func(
-		tab_array *PangoTabArray,
-		alignments **PangoTabAlign,
-		locations **Gint)
+		tab_array *T.PangoTabArray,
+		alignments **T.PangoTabAlign,
+		locations **T.Gint)
 
 	Pango_tab_array_get_positions_in_pixels func(
-		tab_array *PangoTabArray) Gboolean
+		tab_array *T.PangoTabArray) T.Gboolean
 
-	Pango_layout_get_type func() GType
+	Pango_layout_get_type func() T.GType
 
 	Pango_layout_new func(
-		context *PangoContext) *PangoLayout
+		context *T.PangoContext) *T.PangoLayout
 
 	Pango_layout_copy func(
-		src *PangoLayout) *PangoLayout
+		src *T.PangoLayout) *T.PangoLayout
 
 	Pango_layout_get_context func(
-		layout *PangoLayout) *PangoContext
+		layout *T.PangoLayout) *T.PangoContext
 
 	Pango_layout_set_attributes func(
-		layout *PangoLayout,
-		attrs *PangoAttrList)
+		layout *T.PangoLayout,
+		attrs *T.PangoAttrList)
 
 	Pango_layout_get_attributes func(
-		layout *PangoLayout) *PangoAttrList
+		layout *T.PangoLayout) *T.PangoAttrList
 
 	Pango_layout_set_text func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		text string,
 		length int)
 
 	Pango_layout_get_text func(
-		layout *PangoLayout) string
+		layout *T.PangoLayout) string
 
 	Pango_layout_get_character_count func(
-		layout *PangoLayout) Gint
+		layout *T.PangoLayout) T.Gint
 
 	Pango_layout_set_markup func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		markup string,
 		length int)
 
 	Pango_layout_set_markup_with_accel func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		markup string,
 		length int,
-		accel_marker Gunichar,
-		accel_char *Gunichar)
+		accel_marker T.Gunichar,
+		accel_char *T.Gunichar)
 
 	Pango_layout_set_font_description func(
-		layout *PangoLayout,
-		desc *PangoFontDescription)
+		layout *T.PangoLayout,
+		desc *T.PangoFontDescription)
 
 	Pango_layout_get_font_description func(
-		layout *PangoLayout) *PangoFontDescription
+		layout *T.PangoLayout) *T.PangoFontDescription
 
 	Pango_layout_set_width func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		width int)
 
 	Pango_layout_get_width func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_set_height func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		height int)
 
 	Pango_layout_get_height func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_set_wrap func(
-		layout *PangoLayout,
-		wrap PangoWrapMode)
+		layout *T.PangoLayout,
+		wrap T.PangoWrapMode)
 
 	Pango_layout_get_wrap func(
-		layout *PangoLayout) PangoWrapMode
+		layout *T.PangoLayout) T.PangoWrapMode
 
 	Pango_layout_is_wrapped func(
-		layout *PangoLayout) Gboolean
+		layout *T.PangoLayout) T.Gboolean
 
 	Pango_layout_set_indent func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		indent int)
 
 	Pango_layout_get_indent func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_set_spacing func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		spacing int)
 
 	Pango_layout_get_spacing func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_set_justify func(
-		layout *PangoLayout,
-		justify Gboolean)
+		layout *T.PangoLayout,
+		justify T.Gboolean)
 
 	Pango_layout_get_justify func(
-		layout *PangoLayout) Gboolean
+		layout *T.PangoLayout) T.Gboolean
 
 	Pango_layout_set_auto_dir func(
-		layout *PangoLayout,
-		auto_dir Gboolean)
+		layout *T.PangoLayout,
+		auto_dir T.Gboolean)
 
 	Pango_layout_get_auto_dir func(
-		layout *PangoLayout) Gboolean
+		layout *T.PangoLayout) T.Gboolean
 
 	Pango_layout_set_alignment func(
-		layout *PangoLayout,
-		alignment PangoAlignment)
+		layout *T.PangoLayout,
+		alignment T.PangoAlignment)
 
 	Pango_layout_get_alignment func(
-		layout *PangoLayout) PangoAlignment
+		layout *T.PangoLayout) T.PangoAlignment
 
 	Pango_layout_set_tabs func(
-		layout *PangoLayout,
-		tabs *PangoTabArray)
+		layout *T.PangoLayout,
+		tabs *T.PangoTabArray)
 
 	Pango_layout_get_tabs func(
-		layout *PangoLayout) *PangoTabArray
+		layout *T.PangoLayout) *T.PangoTabArray
 
 	Pango_layout_set_single_paragraph_mode func(
-		layout *PangoLayout,
-		setting Gboolean)
+		layout *T.PangoLayout,
+		setting T.Gboolean)
 
 	Pango_layout_get_single_paragraph_mode func(
-		layout *PangoLayout) Gboolean
+		layout *T.PangoLayout) T.Gboolean
 
 	Pango_layout_set_ellipsize func(
-		layout *PangoLayout,
-		ellipsize PangoEllipsizeMode)
+		layout *T.PangoLayout,
+		ellipsize T.PangoEllipsizeMode)
 
 	Pango_layout_get_ellipsize func(
-		layout *PangoLayout) PangoEllipsizeMode
+		layout *T.PangoLayout) T.PangoEllipsizeMode
 
 	Pango_layout_is_ellipsized func(
-		layout *PangoLayout) Gboolean
+		layout *T.PangoLayout) T.Gboolean
 
 	Pango_layout_get_unknown_glyphs_count func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_context_changed func(
-		layout *PangoLayout)
+		layout *T.PangoLayout)
 
 	Pango_layout_get_log_attrs func(
-		layout *PangoLayout,
-		attrs **PangoLogAttr,
-		n_attrs *Gint)
+		layout *T.PangoLayout,
+		attrs **T.PangoLogAttr,
+		n_attrs *T.Gint)
 
 	Pango_layout_get_log_attrs_readonly func(
-		layout *PangoLayout,
-		n_attrs *Gint) *PangoLogAttr
+		layout *T.PangoLayout,
+		n_attrs *T.Gint) *T.PangoLogAttr
 
 	Pango_layout_index_to_pos func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		index int,
-		pos *PangoRectangle)
+		pos *T.PangoRectangle)
 
 	Pango_layout_index_to_line_x func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		index int,
-		trailing Gboolean,
+		trailing T.Gboolean,
 		line *int,
 		x_pos *int)
 
 	Pango_layout_get_cursor_pos func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		index int,
-		strong_pos *PangoRectangle,
-		weak_pos *PangoRectangle)
+		strong_pos *T.PangoRectangle,
+		weak_pos *T.PangoRectangle)
 
 	Pango_layout_move_cursor_visually func(
-		layout *PangoLayout,
-		strong Gboolean,
+		layout *T.PangoLayout,
+		strong T.Gboolean,
 		old_index int,
 		old_trailing int,
 		direction int,
@@ -1116,442 +1116,419 @@ var (
 		new_trailing *int)
 
 	Pango_layout_xy_to_index func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		x int,
 		y int,
 		index *int,
-		trailing *int) Gboolean
+		trailing *int) T.Gboolean
 
 	Pango_layout_get_extents func(
-		layout *PangoLayout,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		layout *T.PangoLayout,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_get_pixel_extents func(
-		layout *PangoLayout,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		layout *T.PangoLayout,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_get_size func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		width *int,
 		height *int)
 
 	Pango_layout_get_pixel_size func(
-		layout *PangoLayout,
+		layout *T.PangoLayout,
 		width *int,
 		height *int)
 
 	Pango_layout_get_baseline func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_get_line_count func(
-		layout *PangoLayout) int
+		layout *T.PangoLayout) int
 
 	Pango_layout_get_line func(
-		layout *PangoLayout,
-		line int) *PangoLayoutLine
+		layout *T.PangoLayout,
+		line int) *T.PangoLayoutLine
 
 	Pango_layout_get_line_readonly func(
-		layout *PangoLayout,
-		line int) *PangoLayoutLine
+		layout *T.PangoLayout,
+		line int) *T.PangoLayoutLine
 
 	Pango_layout_get_lines func(
-		layout *PangoLayout) *GSList
+		layout *T.PangoLayout) *T.GSList
 
 	Pango_layout_get_lines_readonly func(
-		layout *PangoLayout) *GSList
+		layout *T.PangoLayout) *T.GSList
 
-	Pango_layout_line_get_type func() GType
+	Pango_layout_line_get_type func() T.GType
 
 	Pango_layout_line_ref func(
-		line *PangoLayoutLine) *PangoLayoutLine
+		line *T.PangoLayoutLine) *T.PangoLayoutLine
 
 	Pango_layout_line_unref func(
-		line *PangoLayoutLine)
+		line *T.PangoLayoutLine)
 
 	Pango_layout_line_x_to_index func(
-		line *PangoLayoutLine,
+		line *T.PangoLayoutLine,
 		x_pos int,
 		index *int,
-		trailing *int) Gboolean
+		trailing *int) T.Gboolean
 
 	Pango_layout_line_index_to_x func(
-		line *PangoLayoutLine,
+		line *T.PangoLayoutLine,
 		index int,
-		trailing Gboolean,
+		trailing T.Gboolean,
 		x_pos *int)
 
 	Pango_layout_line_get_x_ranges func(
-		line *PangoLayoutLine,
+		line *T.PangoLayoutLine,
 		start_index int,
 		end_index int,
 		ranges **int,
 		n_ranges *int)
 
 	Pango_layout_line_get_extents func(
-		line *PangoLayoutLine,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		line *T.PangoLayoutLine,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_line_get_pixel_extents func(
-		layout_line *PangoLayoutLine,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		layout_line *T.PangoLayoutLine,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
-	Pango_layout_iter_get_type func() GType
+	Pango_layout_iter_get_type func() T.GType
 
 	Pango_layout_get_iter func(
-		layout *PangoLayout) *PangoLayoutIter
+		layout *T.PangoLayout) *T.PangoLayoutIter
 
 	Pango_layout_iter_copy func(
-		iter *PangoLayoutIter) *PangoLayoutIter
+		iter *T.PangoLayoutIter) *T.PangoLayoutIter
 
 	Pango_layout_iter_free func(
-		iter *PangoLayoutIter)
+		iter *T.PangoLayoutIter)
 
 	Pango_layout_iter_get_index func(
-		iter *PangoLayoutIter) int
+		iter *T.PangoLayoutIter) int
 
 	Pango_layout_iter_get_run func(
-		iter *PangoLayoutIter) *PangoLayoutRun
+		iter *T.PangoLayoutIter) *T.PangoLayoutRun
 
 	Pango_layout_iter_get_run_readonly func(
-		iter *PangoLayoutIter) *PangoLayoutRun
+		iter *T.PangoLayoutIter) *T.PangoLayoutRun
 
 	Pango_layout_iter_get_line func(
-		iter *PangoLayoutIter) *PangoLayoutLine
+		iter *T.PangoLayoutIter) *T.PangoLayoutLine
 
 	Pango_layout_iter_get_line_readonly func(
-		iter *PangoLayoutIter) *PangoLayoutLine
+		iter *T.PangoLayoutIter) *T.PangoLayoutLine
 
 	Pango_layout_iter_at_last_line func(
-		iter *PangoLayoutIter) Gboolean
+		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_get_layout func(
-		iter *PangoLayoutIter) *PangoLayout
+		iter *T.PangoLayoutIter) *T.PangoLayout
 
 	Pango_layout_iter_next_char func(
-		iter *PangoLayoutIter) Gboolean
+		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_next_cluster func(
-		iter *PangoLayoutIter) Gboolean
+		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_next_run func(
-		iter *PangoLayoutIter) Gboolean
+		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_next_line func(
-		iter *PangoLayoutIter) Gboolean
+		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_get_char_extents func(
-		iter *PangoLayoutIter,
-		logical_rect *PangoRectangle)
+		iter *T.PangoLayoutIter,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_cluster_extents func(
-		iter *PangoLayoutIter,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		iter *T.PangoLayoutIter,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_run_extents func(
-		iter *PangoLayoutIter,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		iter *T.PangoLayoutIter,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_line_extents func(
-		iter *PangoLayoutIter,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		iter *T.PangoLayoutIter,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_line_yrange func(
-		iter *PangoLayoutIter,
+		iter *T.PangoLayoutIter,
 		y0 *int,
 		y1 *int)
 
 	Pango_layout_iter_get_layout_extents func(
-		iter *PangoLayoutIter,
-		ink_rect *PangoRectangle,
-		logical_rect *PangoRectangle)
+		iter *T.PangoLayoutIter,
+		ink_rect *T.PangoRectangle,
+		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_baseline func(
-		iter *PangoLayoutIter) int
+		iter *T.PangoLayoutIter) int
 
-	Pango_renderer_get_type func() GType
+	Pango_renderer_get_type func() T.GType
 
 	Pango_renderer_draw_layout func(
-		renderer *PangoRenderer,
-		layout *PangoLayout,
+		renderer *T.PangoRenderer,
+		layout *T.PangoLayout,
 		x int,
 		y int)
 
 	Pango_renderer_draw_layout_line func(
-		renderer *PangoRenderer,
-		line *PangoLayoutLine,
+		renderer *T.PangoRenderer,
+		line *T.PangoLayoutLine,
 		x int,
 		y int)
 
 	Pango_renderer_draw_glyphs func(
-		renderer *PangoRenderer,
-		font *PangoFont,
-		glyphs *PangoGlyphString,
+		renderer *T.PangoRenderer,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString,
 		x int,
 		y int)
 
 	Pango_renderer_draw_glyph_item func(
-		renderer *PangoRenderer,
+		renderer *T.PangoRenderer,
 		text string,
-		glyph_item *PangoGlyphItem,
+		glyph_item *T.PangoGlyphItem,
 		x int,
 		y int)
 
 	Pango_renderer_draw_rectangle func(
-		renderer *PangoRenderer,
-		part PangoRenderPart,
+		renderer *T.PangoRenderer,
+		part T.PangoRenderPart,
 		x int,
 		y int,
 		width int,
 		height int)
 
 	Pango_renderer_draw_error_underline func(
-		renderer *PangoRenderer,
+		renderer *T.PangoRenderer,
 		x int,
 		y int,
 		width int,
 		height int)
 
 	Pango_renderer_draw_trapezoid func(
-		renderer *PangoRenderer,
-		part PangoRenderPart,
-		y1 Double,
-		x11 Double,
-		x21 Double,
-		y2 Double,
-		x12 Double,
-		x22 Double)
+		renderer *T.PangoRenderer,
+		part T.PangoRenderPart,
+		y1 T.Double,
+		x11 T.Double,
+		x21 T.Double,
+		y2 T.Double,
+		x12 T.Double,
+		x22 T.Double)
 
 	Pango_renderer_draw_glyph func(
-		renderer *PangoRenderer,
-		font *PangoFont,
-		glyph PangoGlyph,
-		x Double,
-		y Double)
+		renderer *T.PangoRenderer,
+		font *T.PangoFont,
+		glyph T.PangoGlyph,
+		x T.Double,
+		y T.Double)
 
 	Pango_renderer_activate func(
-		renderer *PangoRenderer)
+		renderer *T.PangoRenderer)
 
 	Pango_renderer_deactivate func(
-		renderer *PangoRenderer)
+		renderer *T.PangoRenderer)
 
 	Pango_renderer_part_changed func(
-		renderer *PangoRenderer,
-		part PangoRenderPart)
+		renderer *T.PangoRenderer,
+		part T.PangoRenderPart)
 
 	Pango_renderer_set_color func(
-		renderer *PangoRenderer,
-		part PangoRenderPart,
-		color *PangoColor)
+		renderer *T.PangoRenderer,
+		part T.PangoRenderPart,
+		color *T.PangoColor)
 
 	Pango_renderer_get_color func(
-		renderer *PangoRenderer,
-		part PangoRenderPart) *PangoColor
+		renderer *T.PangoRenderer,
+		part T.PangoRenderPart) *T.PangoColor
 
 	Pango_renderer_set_matrix func(
-		renderer *PangoRenderer,
-		matrix *PangoMatrix)
+		renderer *T.PangoRenderer,
+		matrix *T.PangoMatrix)
 
 	Pango_renderer_get_matrix func(
-		renderer *PangoRenderer) *PangoMatrix
+		renderer *T.PangoRenderer) *T.PangoMatrix
 
 	Pango_renderer_get_layout func(
-		renderer *PangoRenderer) *PangoLayout
+		renderer *T.PangoRenderer) *T.PangoLayout
 
 	Pango_renderer_get_layout_line func(
-		renderer *PangoRenderer) *PangoLayoutLine
+		renderer *T.PangoRenderer) *T.PangoLayoutLine
 
 	Pango_split_file_list func(
-		str string) **Char
+		str string) **T.Char
 
 	Pango_trim_string func(
 		str string) string
 
-	Pango_read_line func(
-		stream *FILE,
-		str *GString) Gint
+	Pango_read_line func(stream *T.FILE, str *T.GString) T.Gint
 
-	Pango_skip_space func(
-		pos **Char) Gboolean
+	Pango_skip_space func(pos **T.Char) T.Gboolean
 
-	Pango_scan_word func(
-		pos **Char,
-		out *GString) Gboolean
+	Pango_scan_word func(pos **T.Char, out *T.GString) T.Gboolean
 
 	Pango_scan_string func(
-		pos **Char,
-		out *GString) Gboolean
+		pos **T.Char, out *T.GString) T.Gboolean
 
-	Pango_scan_int func(
-		pos **Char,
-		out *int) Gboolean
+	Pango_scan_int func(pos **T.Char, out *int) T.Gboolean
 
 	Pango_parse_enum func(
-		t GType,
+		t T.GType,
 		str string,
 		value *int,
-		warn Gboolean,
-		possible_values **Char) Gboolean
+		warn T.Gboolean,
+		possible_values **T.Char) T.Gboolean
 
-	Pango_parse_style func(
-		str string,
-		style *PangoStyle,
-		warn Gboolean) Gboolean
+	Pango_parse_style func(str string,
+		style *T.PangoStyle, warn T.Gboolean) T.Gboolean
 
-	Pango_parse_variant func(
-		str string,
-		variant *PangoVariant,
-		warn Gboolean) Gboolean
+	Pango_parse_variant func(str string,
+		variant *T.PangoVariant, warn T.Gboolean) T.Gboolean
 
-	Pango_parse_weight func(
-		str string,
-		weight *PangoWeight,
-		warn Gboolean) Gboolean
+	Pango_parse_weight func(str string,
+		weight *T.PangoWeight, warn T.Gboolean) T.Gboolean
 
-	Pango_parse_stretch func(
-		str string,
-		stretch *PangoStretch,
-		warn Gboolean) Gboolean
+	Pango_parse_stretch func(str string,
+		stretch *T.PangoStretch, warn T.Gboolean) T.Gboolean
 
-	Pango_quantize_line_geometry func(
-		thickness *int,
-		position *int)
+	Pango_quantize_line_geometry func(thickness, position *int)
 
-	Pango_log2vis_get_embedding_levels func(
-		text string,
-		length int,
-		pbase_dir *PangoDirection) *Guint8
+	Pango_log2vis_get_embedding_levels func(text string,
+		length int, pbase_dir *T.PangoDirection) *T.Guint8
 
-	Pango_is_zero_width func(
-		ch Gunichar) Gboolean
+	Pango_is_zero_width func(ch T.Gunichar) T.Gboolean
 
 	Pango_version func() int
 
 	Pango_version_string func() string
 
 	Pango_version_check func(
-		required_major int,
-		required_minor int,
-		required_micro int) string
+		required_major, required_minor, required_micro int) string
 
-	Pango_cairo_font_map_get_type func() GType
+	Pango_cairo_font_map_get_type func() T.GType
 
-	Pango_cairo_font_map_new func() *PangoFontMap
+	Pango_cairo_font_map_new func() *T.PangoFontMap
 
 	Pango_cairo_font_map_new_for_font_type func(
-		fonttype Cairo_font_type_t) *PangoFontMap
+		fonttype T.Cairo_font_type_t) *T.PangoFontMap
 
-	Pango_cairo_font_map_get_default func() *PangoFontMap
+	Pango_cairo_font_map_get_default func() *T.PangoFontMap
 
 	Pango_cairo_font_map_set_default func(
-		fontmap *PangoCairoFontMap)
+		fontmap *T.PangoCairoFontMap)
 
 	Pango_cairo_font_map_get_font_type func(
-		fontmap *PangoCairoFontMap) Cairo_font_type_t
+		fontmap *T.PangoCairoFontMap) T.Cairo_font_type_t
 
 	Pango_cairo_font_map_set_resolution func(
-		fontmap *PangoCairoFontMap,
-		dpi Double)
+		fontmap *T.PangoCairoFontMap,
+		dpi T.Double)
 
 	Pango_cairo_font_map_get_resolution func(
-		fontmap *PangoCairoFontMap) Double
+		fontmap *T.PangoCairoFontMap) T.Double
 
 	Pango_cairo_font_map_create_context func(
-		fontmap *PangoCairoFontMap) *PangoContext
+		fontmap *T.PangoCairoFontMap) *T.PangoContext
 
-	Pango_cairo_font_get_type func() GType
+	Pango_cairo_font_get_type func() T.GType
 
 	Pango_cairo_font_get_scaled_font func(
-		font *PangoCairoFont) *Cairo_scaled_font_t
+		font *T.PangoCairoFont) *T.Cairo_scaled_font_t
 
 	Pango_cairo_update_context func(
-		cr *Cairo_t,
-		context *PangoContext)
+		cr *T.Cairo_t,
+		context *T.PangoContext)
 
 	Pango_cairo_context_set_font_options func(
-		context *PangoContext,
-		options *Cairo_font_options_t)
+		context *T.PangoContext,
+		options *T.Cairo_font_options_t)
 
 	Pango_cairo_context_get_font_options func(
-		context *PangoContext) *Cairo_font_options_t
+		context *T.PangoContext) *T.Cairo_font_options_t
 
 	Pango_cairo_context_set_resolution func(
-		context *PangoContext,
-		dpi Double)
+		context *T.PangoContext,
+		dpi T.Double)
 
 	Pango_cairo_context_get_resolution func(
-		context *PangoContext) Double
+		context *T.PangoContext) T.Double
 
 	Pango_cairo_context_set_shape_renderer func(
-		context *PangoContext,
-		f PangoCairoShapeRendererFunc,
-		data Gpointer,
-		dnotify GDestroyNotify)
+		context *T.PangoContext,
+		f T.PangoCairoShapeRendererFunc,
+		data T.Gpointer,
+		dnotify T.GDestroyNotify)
 
 	Pango_cairo_context_get_shape_renderer func(
-		context *PangoContext,
-		data *Gpointer) PangoCairoShapeRendererFunc
+		context *T.PangoContext,
+		data *T.Gpointer) T.PangoCairoShapeRendererFunc
 
 	Pango_cairo_create_context func(
-		cr *Cairo_t) *PangoContext
+		cr *T.Cairo_t) *T.PangoContext
 
 	Pango_cairo_create_layout func(
-		cr *Cairo_t) *PangoLayout
+		cr *T.Cairo_t) *T.PangoLayout
 
 	Pango_cairo_update_layout func(
-		cr *Cairo_t,
-		layout *PangoLayout)
+		cr *T.Cairo_t,
+		layout *T.PangoLayout)
 
 	Pango_cairo_show_glyph_string func(
-		cr *Cairo_t,
-		font *PangoFont,
-		glyphs *PangoGlyphString)
+		cr *T.Cairo_t,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString)
 
 	Pango_cairo_show_glyph_item func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		text string,
-		glyph_item *PangoGlyphItem)
+		glyph_item *T.PangoGlyphItem)
 
 	Pango_cairo_show_layout_line func(
-		cr *Cairo_t,
-		line *PangoLayoutLine)
+		cr *T.Cairo_t,
+		line *T.PangoLayoutLine)
 
 	Pango_cairo_show_layout func(
-		cr *Cairo_t,
-		layout *PangoLayout)
+		cr *T.Cairo_t,
+		layout *T.PangoLayout)
 
 	Pango_cairo_show_error_underline func(
-		cr *Cairo_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double)
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double,
+		width T.Double,
+		height T.Double)
 
 	Pango_cairo_glyph_string_path func(
-		cr *Cairo_t,
-		font *PangoFont,
-		glyphs *PangoGlyphString)
+		cr *T.Cairo_t,
+		font *T.PangoFont,
+		glyphs *T.PangoGlyphString)
 
 	Pango_cairo_layout_line_path func(
-		cr *Cairo_t,
-		line *PangoLayoutLine)
+		cr *T.Cairo_t,
+		line *T.PangoLayoutLine)
 
 	Pango_cairo_layout_path func(
-		cr *Cairo_t,
-		layout *PangoLayout)
+		cr *T.Cairo_t,
+		layout *T.PangoLayout)
 
 	Pango_cairo_error_underline_path func(
-		cr *Cairo_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double)
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double,
+		width T.Double,
+		height T.Double)
 
 	Pango_config_key_get func(
 		key string) string
@@ -1559,37 +1536,37 @@ var (
 	Pango_default_break func(
 		text string,
 		length int,
-		analysis *PangoAnalysis,
-		attrs *PangoLogAttr,
+		analysis *T.PangoAnalysis,
+		attrs *T.PangoLogAttr,
 		attrs_len int)
 
-	Pango_engine_get_type func() GType
+	Pango_engine_get_type func() T.GType
 
-	Pango_engine_lang_get_type func() GType
+	Pango_engine_lang_get_type func() T.GType
 
-	Pango_engine_shape_get_type func() GType
+	Pango_engine_shape_get_type func() T.GType
 
 	Pango_find_map func(
-		language *PangoLanguage,
-		engine_type_id Guint,
-		render_type_id Guint) *PangoMap
+		language *T.PangoLanguage,
+		engine_type_id T.Guint,
+		render_type_id T.Guint) *T.PangoMap
 
 	Pango_font_map_get_shape_engine_type func(
-		fontmap *PangoFontMap) string
+		fontmap *T.PangoFontMap) string
 
-	Pango_font_metrics_new func() *PangoFontMetrics
+	Pango_font_metrics_new func() *T.PangoFontMetrics
 
 	Pango_fontset_simple_append func(
-		fontset *PangoFontsetSimple,
-		font *PangoFont)
+		fontset *T.PangoFontsetSimple,
+		font *T.PangoFont)
 
 	Pango_fontset_simple_size func(
-		fontset *PangoFontsetSimple) int
+		fontset *T.PangoFontsetSimple) int
 
 	Pango_fontset_simple_new func(
-		language *PangoLanguage) *PangoFontsetSimple
+		language *T.PangoLanguage) *T.PangoFontsetSimple
 
-	Pango_fontset_simple_get_type func() GType
+	Pango_fontset_simple_get_type func() T.GType
 
 	Pango_get_lib_subdirectory func() string
 
@@ -1597,21 +1574,21 @@ var (
 
 	Pango_lookup_aliases func(
 		fontname string,
-		families ***Char,
+		families ***T.Char,
 		n_families *int)
 
 	Pango_map_get_engine func(
-		map_ *PangoMap,
-		script PangoScript) *PangoEngine
+		map_ *T.PangoMap,
+		script T.PangoScript) *T.PangoEngine
 
 	Pango_map_get_engines func(
-		map_ *PangoMap,
-		script PangoScript,
-		exact_engines **GSList,
-		fallback_engines **GSList)
+		map_ *T.PangoMap,
+		script T.PangoScript,
+		exact_engines **T.GSList,
+		fallback_engines **T.GSList)
 
 	Pango_module_register func(
-		module *PangoIncludedModule)
+		module *T.PangoIncludedModule)
 )
 
 var dll = "libpango-1.0-0.dll"

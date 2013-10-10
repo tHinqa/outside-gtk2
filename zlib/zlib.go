@@ -7,7 +7,7 @@ package zlib
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -15,15 +15,15 @@ func init() {
 }
 
 type (
-	Byte           Unsigned_char
+	Byte           T.Unsigned_char
 	Bytef          Byte
 	GzFile         Voidp
 	Internal_state struct{}
-	UInt           Unsigned_int
-	ULong          Unsigned_long
+	UInt           T.Unsigned_int
+	ULong          T.Unsigned_long
 	ULongf         ULong
-	Voidp          *Void
-	Voidpf         *Void
+	Voidp          *T.Void
+	Voidpf         *T.Void
 	Z_streamp      *Z_stream
 	Gz_headerp     *Gz_header
 
@@ -37,12 +37,12 @@ type (
 		address Voidpf)
 
 	In_func func(
-		*Void,
-		**Unsigned_char) uint
+		*T.Void,
+		**T.Unsigned_char) uint
 
 	Out_func func(
-		*Void,
-		*Unsigned_char,
+		*T.Void,
+		*T.Unsigned_char,
 		uint) int
 
 	Z_stream struct {
@@ -52,7 +52,7 @@ type (
 		Next_out  *Bytef
 		Avail_out UInt
 		Total_out ULong
-		Msg       *Char
+		Msg       *T.Char
 		State     *Internal_state
 		Zalloc    Alloc_func
 		Zfree     Free_func
@@ -123,16 +123,16 @@ var (
 
 	InflatePrime func(strm Z_streamp, bits, value int) int
 
-	InflateMark func(strm Z_streamp) Long
+	InflateMark func(strm Z_streamp) T.Long
 
 	InflateGetHeader func(strm Z_streamp, head Gz_headerp) int
 
 	InflateBack func(
 		strm Z_streamp,
 		in In_func,
-		in_desc *Void,
+		in_desc *T.Void,
 		out Out_func,
-		out_desc *Void) int
+		out_desc *T.Void) int
 
 	InflateBackEnd func(strm Z_streamp) int
 
@@ -277,21 +277,21 @@ var (
 	InflateBackInit_ func(
 		strm Z_streamp,
 		windowBits int,
-		window *Unsigned_char,
+		window *T.Unsigned_char,
 		version string,
 		stream_size int) int
 
 	Gzopen func(string, string) GzFile
 
-	Gzseek func(GzFile, Long, int) Long
+	Gzseek func(GzFile, T.Long, int) T.Long
 
-	Gztell func(GzFile) Long
+	Gztell func(GzFile) T.Long
 
-	Gzoffset func(GzFile) Long
+	Gzoffset func(GzFile) T.Long
 
-	Adler32_combine func(ULong, ULong, Long) ULong
+	Adler32_combine func(ULong, ULong, T.Long) ULong
 
-	Crc32_combine func(ULong, ULong, Long) ULong
+	Crc32_combine func(ULong, ULong, T.Long) ULong
 
 	ZError func(int) string
 

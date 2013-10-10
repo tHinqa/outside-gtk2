@@ -8,7 +8,7 @@ package cairo
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -24,21 +24,21 @@ type (
 	LOGFONTW struct{}
 )
 
-type Cairo_pdf_version_t Enum
+type Cairo_pdf_version_t T.Enum
 
 const (
 	CAIRO_PDF_VERSION_1_4 Cairo_pdf_version_t = iota
 	CAIRO_PDF_VERSION_1_5
 )
 
-type Cairo_ps_level_t Enum
+type Cairo_ps_level_t T.Enum
 
 const (
 	CAIRO_PS_LEVEL_2 Cairo_ps_level_t = iota
 	CAIRO_PS_LEVEL_3
 )
 
-type Cairo_svg_version_t Enum
+type Cairo_svg_version_t T.Enum
 
 const (
 	CAIRO_SVG_VERSION_1_1 Cairo_svg_version_t = iota
@@ -51,1153 +51,1153 @@ var (
 	Cairo_version_string func() string
 
 	Cairo_create func(
-		target *Cairo_surface_t) *Cairo_t
+		target *T.Cairo_surface_t) *T.Cairo_t
 
 	Cairo_reference func(
-		cr *Cairo_t) *Cairo_t
+		cr *T.Cairo_t) *T.Cairo_t
 
 	Cairo_destroy func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_get_reference_count func(
-		cr *Cairo_t) Unsigned_int
+		cr *T.Cairo_t) T.Unsigned_int
 
 	Cairo_get_user_data func(
-		cr *Cairo_t,
-		key *Cairo_user_data_key_t) *Void
+		cr *T.Cairo_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_set_user_data func(
-		cr *Cairo_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		cr *T.Cairo_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_save func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_restore func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_push_group func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_push_group_with_content func(
-		cr *Cairo_t,
-		content Cairo_content_t)
+		cr *T.Cairo_t,
+		content T.Cairo_content_t)
 
 	Cairo_pop_group func(
-		cr *Cairo_t) *Cairo_pattern_t
+		cr *T.Cairo_t) *T.Cairo_pattern_t
 
 	Cairo_pop_group_to_source func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_set_operator func(
-		cr *Cairo_t,
-		op Cairo_operator_t)
+		cr *T.Cairo_t,
+		op T.Cairo_operator_t)
 
 	Cairo_set_source func(
-		cr *Cairo_t,
-		source *Cairo_pattern_t)
+		cr *T.Cairo_t,
+		source *T.Cairo_pattern_t)
 
 	Cairo_set_source_rgb func(
-		cr *Cairo_t,
-		red Double,
-		green Double,
-		blue Double)
+		cr *T.Cairo_t,
+		red T.Double,
+		green T.Double,
+		blue T.Double)
 
 	Cairo_set_source_rgba func(
-		cr *Cairo_t,
-		red Double,
-		green Double,
-		blue Double,
-		alpha Double)
+		cr *T.Cairo_t,
+		red T.Double,
+		green T.Double,
+		blue T.Double,
+		alpha T.Double)
 
 	Cairo_set_source_surface func(
-		cr *Cairo_t,
-		surface *Cairo_surface_t,
-		x Double,
-		y Double)
+		cr *T.Cairo_t,
+		surface *T.Cairo_surface_t,
+		x T.Double,
+		y T.Double)
 
 	Cairo_set_tolerance func(
-		cr *Cairo_t,
-		tolerance Double)
+		cr *T.Cairo_t,
+		tolerance T.Double)
 
 	Cairo_set_antialias func(
-		cr *Cairo_t,
-		antialias Cairo_antialias_t)
+		cr *T.Cairo_t,
+		antialias T.Cairo_antialias_t)
 
 	Cairo_set_fill_rule func(
-		cr *Cairo_t,
-		fill_rule Cairo_fill_rule_t)
+		cr *T.Cairo_t,
+		fill_rule T.Cairo_fill_rule_t)
 
 	Cairo_set_line_width func(
-		cr *Cairo_t,
-		width Double)
+		cr *T.Cairo_t,
+		width T.Double)
 
 	Cairo_set_line_cap func(
-		cr *Cairo_t,
-		line_cap Cairo_line_cap_t)
+		cr *T.Cairo_t,
+		line_cap T.Cairo_line_cap_t)
 
 	Cairo_set_line_join func(
-		cr *Cairo_t,
-		line_join Cairo_line_join_t)
+		cr *T.Cairo_t,
+		line_join T.Cairo_line_join_t)
 
 	Cairo_set_dash func(
-		cr *Cairo_t,
-		dashes *Double,
+		cr *T.Cairo_t,
+		dashes *T.Double,
 		num_dashes int,
-		offset Double)
+		offset T.Double)
 
 	Cairo_set_miter_limit func(
-		cr *Cairo_t,
-		limit Double)
+		cr *T.Cairo_t,
+		limit T.Double)
 
 	Cairo_translate func(
-		cr *Cairo_t,
-		tx Double,
-		ty Double)
+		cr *T.Cairo_t,
+		tx T.Double,
+		ty T.Double)
 
 	Cairo_scale func(
-		cr *Cairo_t,
-		sx Double,
-		sy Double)
+		cr *T.Cairo_t,
+		sx T.Double,
+		sy T.Double)
 
 	Cairo_rotate func(
-		cr *Cairo_t,
-		angle Double)
+		cr *T.Cairo_t,
+		angle T.Double)
 
 	Cairo_transform func(
-		cr *Cairo_t,
-		matrix *Cairo_matrix_t)
+		cr *T.Cairo_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_set_matrix func(
-		cr *Cairo_t,
-		matrix *Cairo_matrix_t)
+		cr *T.Cairo_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_identity_matrix func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_user_to_device func(
-		cr *Cairo_t,
-		x *Double,
-		y *Double)
+		cr *T.Cairo_t,
+		x *T.Double,
+		y *T.Double)
 
 	Cairo_user_to_device_distance func(
-		cr *Cairo_t,
-		dx *Double,
-		dy *Double)
+		cr *T.Cairo_t,
+		dx *T.Double,
+		dy *T.Double)
 
 	Cairo_device_to_user func(
-		cr *Cairo_t,
-		x *Double,
-		y *Double)
+		cr *T.Cairo_t,
+		x *T.Double,
+		y *T.Double)
 
 	Cairo_device_to_user_distance func(
-		cr *Cairo_t,
-		dx *Double,
-		dy *Double)
+		cr *T.Cairo_t,
+		dx *T.Double,
+		dy *T.Double)
 
 	Cairo_new_path func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_move_to func(
-		cr *Cairo_t,
-		x Double,
-		y Double)
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double)
 
 	Cairo_new_sub_path func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_line_to func(
-		cr *Cairo_t,
-		x Double,
-		y Double)
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double)
 
 	Cairo_curve_to func(
-		cr *Cairo_t,
-		x1 Double,
-		y1 Double,
-		x2 Double,
-		y2 Double,
-		x3 Double,
-		y3 Double)
+		cr *T.Cairo_t,
+		x1 T.Double,
+		y1 T.Double,
+		x2 T.Double,
+		y2 T.Double,
+		x3 T.Double,
+		y3 T.Double)
 
 	Cairo_arc func(
-		cr *Cairo_t,
-		xc Double,
-		yc Double,
-		radius Double,
-		angle1 Double,
-		angle2 Double)
+		cr *T.Cairo_t,
+		xc T.Double,
+		yc T.Double,
+		radius T.Double,
+		angle1 T.Double,
+		angle2 T.Double)
 
 	Cairo_arc_negative func(
-		cr *Cairo_t,
-		xc Double,
-		yc Double,
-		radius Double,
-		angle1 Double,
-		angle2 Double)
+		cr *T.Cairo_t,
+		xc T.Double,
+		yc T.Double,
+		radius T.Double,
+		angle1 T.Double,
+		angle2 T.Double)
 
 	Cairo_rel_move_to func(
-		cr *Cairo_t,
-		dx Double,
-		dy Double)
+		cr *T.Cairo_t,
+		dx T.Double,
+		dy T.Double)
 
 	Cairo_rel_line_to func(
-		cr *Cairo_t,
-		dx Double,
-		dy Double)
+		cr *T.Cairo_t,
+		dx T.Double,
+		dy T.Double)
 
 	Cairo_rel_curve_to func(
-		cr *Cairo_t,
-		dx1 Double,
-		dy1 Double,
-		dx2 Double,
-		dy2 Double,
-		dx3 Double,
-		dy3 Double)
+		cr *T.Cairo_t,
+		dx1 T.Double,
+		dy1 T.Double,
+		dx2 T.Double,
+		dy2 T.Double,
+		dx3 T.Double,
+		dy3 T.Double)
 
 	Cairo_rectangle func(
-		cr *Cairo_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double)
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double,
+		width T.Double,
+		height T.Double)
 
 	Cairo_close_path func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_path_extents func(
-		cr *Cairo_t,
-		x1 *Double,
-		y1 *Double,
-		x2 *Double,
-		y2 *Double)
+		cr *T.Cairo_t,
+		x1 *T.Double,
+		y1 *T.Double,
+		x2 *T.Double,
+		y2 *T.Double)
 
 	Cairo_paint func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_paint_with_alpha func(
-		cr *Cairo_t,
-		alpha Double)
+		cr *T.Cairo_t,
+		alpha T.Double)
 
 	Cairo_mask func(
-		cr *Cairo_t,
-		pattern *Cairo_pattern_t)
+		cr *T.Cairo_t,
+		pattern *T.Cairo_pattern_t)
 
 	Cairo_mask_surface func(
-		cr *Cairo_t,
-		surface *Cairo_surface_t,
-		surface_x Double,
-		surface_y Double)
+		cr *T.Cairo_t,
+		surface *T.Cairo_surface_t,
+		surface_x T.Double,
+		surface_y T.Double)
 
 	Cairo_stroke func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_stroke_preserve func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_fill func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_fill_preserve func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_copy_page func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_show_page func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_in_stroke func(
-		cr *Cairo_t,
-		x Double,
-		y Double) Cairo_bool_t
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double) T.Cairo_bool_t
 
 	Cairo_in_fill func(
-		cr *Cairo_t,
-		x Double,
-		y Double) Cairo_bool_t
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double) T.Cairo_bool_t
 
 	Cairo_in_clip func(
-		cr *Cairo_t,
-		x Double,
-		y Double) Cairo_bool_t
+		cr *T.Cairo_t,
+		x T.Double,
+		y T.Double) T.Cairo_bool_t
 
 	Cairo_stroke_extents func(
-		cr *Cairo_t,
-		x1 *Double,
-		y1 *Double,
-		x2 *Double,
-		y2 *Double)
+		cr *T.Cairo_t,
+		x1 *T.Double,
+		y1 *T.Double,
+		x2 *T.Double,
+		y2 *T.Double)
 
 	Cairo_fill_extents func(
-		cr *Cairo_t,
-		x1 *Double,
-		y1 *Double,
-		x2 *Double,
-		y2 *Double)
+		cr *T.Cairo_t,
+		x1 *T.Double,
+		y1 *T.Double,
+		x2 *T.Double,
+		y2 *T.Double)
 
 	Cairo_reset_clip func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_clip func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_clip_preserve func(
-		cr *Cairo_t)
+		cr *T.Cairo_t)
 
 	Cairo_clip_extents func(
-		cr *Cairo_t,
-		x1 *Double,
-		y1 *Double,
-		x2 *Double,
-		y2 *Double)
+		cr *T.Cairo_t,
+		x1 *T.Double,
+		y1 *T.Double,
+		x2 *T.Double,
+		y2 *T.Double)
 
 	Cairo_copy_clip_rectangle_list func(
-		cr *Cairo_t) *Cairo_rectangle_list_t
+		cr *T.Cairo_t) *T.Cairo_rectangle_list_t
 
 	Cairo_rectangle_list_destroy func(
-		rectangle_list *Cairo_rectangle_list_t)
+		rectangle_list *T.Cairo_rectangle_list_t)
 
 	Cairo_glyph_allocate func(
-		num_glyphs int) *Cairo_glyph_t
+		num_glyphs int) *T.Cairo_glyph_t
 
 	Cairo_glyph_free func(
-		glyphs *Cairo_glyph_t)
+		glyphs *T.Cairo_glyph_t)
 
 	Cairo_text_cluster_allocate func(
-		num_clusters int) *Cairo_text_cluster_t
+		num_clusters int) *T.Cairo_text_cluster_t
 
 	Cairo_text_cluster_free func(
-		clusters *Cairo_text_cluster_t)
+		clusters *T.Cairo_text_cluster_t)
 
-	Cairo_font_options_create func() *Cairo_font_options_t
+	Cairo_font_options_create func() *T.Cairo_font_options_t
 
 	Cairo_font_options_copy func(
-		original *Cairo_font_options_t) *Cairo_font_options_t
+		original *T.Cairo_font_options_t) *T.Cairo_font_options_t
 
 	Cairo_font_options_destroy func(
-		options *Cairo_font_options_t)
+		options *T.Cairo_font_options_t)
 
 	Cairo_font_options_status func(
-		options *Cairo_font_options_t) Cairo_status_t
+		options *T.Cairo_font_options_t) T.Cairo_status_t
 
 	Cairo_font_options_merge func(
-		options *Cairo_font_options_t,
-		other *Cairo_font_options_t)
+		options *T.Cairo_font_options_t,
+		other *T.Cairo_font_options_t)
 
 	Cairo_font_options_equal func(
-		options *Cairo_font_options_t,
-		other *Cairo_font_options_t) Cairo_bool_t
+		options *T.Cairo_font_options_t,
+		other *T.Cairo_font_options_t) T.Cairo_bool_t
 
 	Cairo_font_options_hash func(
-		options *Cairo_font_options_t) Unsigned_long
+		options *T.Cairo_font_options_t) T.Unsigned_long
 
 	Cairo_font_options_set_antialias func(
-		options *Cairo_font_options_t,
-		antialias Cairo_antialias_t)
+		options *T.Cairo_font_options_t,
+		antialias T.Cairo_antialias_t)
 
 	Cairo_font_options_get_antialias func(
-		options *Cairo_font_options_t) Cairo_antialias_t
+		options *T.Cairo_font_options_t) T.Cairo_antialias_t
 
 	Cairo_font_options_set_subpixel_order func(
-		options *Cairo_font_options_t,
-		subpixel_order Cairo_subpixel_order_t)
+		options *T.Cairo_font_options_t,
+		subpixel_order T.Cairo_subpixel_order_t)
 
 	Cairo_font_options_get_subpixel_order func(
-		options *Cairo_font_options_t) Cairo_subpixel_order_t
+		options *T.Cairo_font_options_t) T.Cairo_subpixel_order_t
 
 	Cairo_font_options_set_hint_style func(
-		options *Cairo_font_options_t,
-		hint_style Cairo_hint_style_t)
+		options *T.Cairo_font_options_t,
+		hint_style T.Cairo_hint_style_t)
 
 	Cairo_font_options_get_hint_style func(
-		options *Cairo_font_options_t) Cairo_hint_style_t
+		options *T.Cairo_font_options_t) T.Cairo_hint_style_t
 
 	Cairo_font_options_set_hint_metrics func(
-		options *Cairo_font_options_t,
-		hint_metrics Cairo_hint_metrics_t)
+		options *T.Cairo_font_options_t,
+		hint_metrics T.Cairo_hint_metrics_t)
 
 	Cairo_font_options_get_hint_metrics func(
-		options *Cairo_font_options_t) Cairo_hint_metrics_t
+		options *T.Cairo_font_options_t) T.Cairo_hint_metrics_t
 
 	Cairo_select_font_face func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		family string,
-		slant Cairo_font_slant_t,
-		weight Cairo_font_weight_t)
+		slant T.Cairo_font_slant_t,
+		weight T.Cairo_font_weight_t)
 
 	Cairo_set_font_size func(
-		cr *Cairo_t,
-		size Double)
+		cr *T.Cairo_t,
+		size T.Double)
 
 	Cairo_set_font_matrix func(
-		cr *Cairo_t,
-		matrix *Cairo_matrix_t)
+		cr *T.Cairo_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_get_font_matrix func(
-		cr *Cairo_t,
-		matrix *Cairo_matrix_t)
+		cr *T.Cairo_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_set_font_options func(
-		cr *Cairo_t,
-		options *Cairo_font_options_t)
+		cr *T.Cairo_t,
+		options *T.Cairo_font_options_t)
 
 	Cairo_get_font_options func(
-		cr *Cairo_t,
-		options *Cairo_font_options_t)
+		cr *T.Cairo_t,
+		options *T.Cairo_font_options_t)
 
 	Cairo_set_font_face func(
-		cr *Cairo_t,
-		font_face *Cairo_font_face_t)
+		cr *T.Cairo_t,
+		font_face *T.Cairo_font_face_t)
 
 	Cairo_get_font_face func(
-		cr *Cairo_t) *Cairo_font_face_t
+		cr *T.Cairo_t) *T.Cairo_font_face_t
 
 	Cairo_set_scaled_font func(
-		cr *Cairo_t,
-		scaled_font *Cairo_scaled_font_t)
+		cr *T.Cairo_t,
+		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_get_scaled_font func(
-		cr *Cairo_t) *Cairo_scaled_font_t
+		cr *T.Cairo_t) *T.Cairo_scaled_font_t
 
 	Cairo_show_text func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		utf8 string)
 
 	Cairo_show_glyphs func(
-		cr *Cairo_t,
-		glyphs *Cairo_glyph_t,
+		cr *T.Cairo_t,
+		glyphs *T.Cairo_glyph_t,
 		num_glyphs int)
 
 	Cairo_show_text_glyphs func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		utf8 string,
 		utf8_len int,
-		glyphs *Cairo_glyph_t,
+		glyphs *T.Cairo_glyph_t,
 		num_glyphs int,
-		clusters *Cairo_text_cluster_t,
+		clusters *T.Cairo_text_cluster_t,
 		num_clusters int,
-		cluster_flags Cairo_text_cluster_flags_t)
+		cluster_flags T.Cairo_text_cluster_flags_t)
 
 	Cairo_text_path func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		utf8 string)
 
 	Cairo_glyph_path func(
-		cr *Cairo_t,
-		glyphs *Cairo_glyph_t,
+		cr *T.Cairo_t,
+		glyphs *T.Cairo_glyph_t,
 		num_glyphs int)
 
 	Cairo_text_extents func(
-		cr *Cairo_t,
+		cr *T.Cairo_t,
 		utf8 string,
-		extents *Cairo_text_extents_t)
+		extents *T.Cairo_text_extents_t)
 
 	Cairo_glyph_extents func(
-		cr *Cairo_t,
-		glyphs *Cairo_glyph_t,
+		cr *T.Cairo_t,
+		glyphs *T.Cairo_glyph_t,
 		num_glyphs int,
-		extents *Cairo_text_extents_t)
+		extents *T.Cairo_text_extents_t)
 
 	Cairo_font_extents func(
-		cr *Cairo_t,
-		extents *Cairo_font_extents_t)
+		cr *T.Cairo_t,
+		extents *T.Cairo_font_extents_t)
 
 	Cairo_font_face_reference func(
-		font_face *Cairo_font_face_t) *Cairo_font_face_t
+		font_face *T.Cairo_font_face_t) *T.Cairo_font_face_t
 
 	Cairo_font_face_destroy func(
-		font_face *Cairo_font_face_t)
+		font_face *T.Cairo_font_face_t)
 
 	Cairo_font_face_get_reference_count func(
-		font_face *Cairo_font_face_t) Unsigned_int
+		font_face *T.Cairo_font_face_t) T.Unsigned_int
 
 	Cairo_font_face_status func(
-		font_face *Cairo_font_face_t) Cairo_status_t
+		font_face *T.Cairo_font_face_t) T.Cairo_status_t
 
 	Cairo_font_face_get_type func(
-		font_face *Cairo_font_face_t) Cairo_font_type_t
+		font_face *T.Cairo_font_face_t) T.Cairo_font_type_t
 
 	Cairo_font_face_get_user_data func(
-		font_face *Cairo_font_face_t,
-		key *Cairo_user_data_key_t) *Void
+		font_face *T.Cairo_font_face_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_font_face_set_user_data func(
-		font_face *Cairo_font_face_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		font_face *T.Cairo_font_face_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_scaled_font_create func(
-		font_face *Cairo_font_face_t,
-		font_matrix *Cairo_matrix_t,
-		ctm *Cairo_matrix_t,
-		options *Cairo_font_options_t) *Cairo_scaled_font_t
+		font_face *T.Cairo_font_face_t,
+		font_matrix *T.Cairo_matrix_t,
+		ctm *T.Cairo_matrix_t,
+		options *T.Cairo_font_options_t) *T.Cairo_scaled_font_t
 
 	Cairo_scaled_font_reference func(
-		scaled_font *Cairo_scaled_font_t) *Cairo_scaled_font_t
+		scaled_font *T.Cairo_scaled_font_t) *T.Cairo_scaled_font_t
 
 	Cairo_scaled_font_destroy func(
-		scaled_font *Cairo_scaled_font_t)
+		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_scaled_font_get_reference_count func(
-		scaled_font *Cairo_scaled_font_t) Unsigned_int
+		scaled_font *T.Cairo_scaled_font_t) T.Unsigned_int
 
 	Cairo_scaled_font_status func(
-		scaled_font *Cairo_scaled_font_t) Cairo_status_t
+		scaled_font *T.Cairo_scaled_font_t) T.Cairo_status_t
 
 	Cairo_scaled_font_get_type func(
-		scaled_font *Cairo_scaled_font_t) Cairo_font_type_t
+		scaled_font *T.Cairo_scaled_font_t) T.Cairo_font_type_t
 
 	Cairo_scaled_font_get_user_data func(
-		scaled_font *Cairo_scaled_font_t,
-		key *Cairo_user_data_key_t) *Void
+		scaled_font *T.Cairo_scaled_font_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_scaled_font_set_user_data func(
-		scaled_font *Cairo_scaled_font_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		scaled_font *T.Cairo_scaled_font_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_scaled_font_extents func(
-		scaled_font *Cairo_scaled_font_t,
-		extents *Cairo_font_extents_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		extents *T.Cairo_font_extents_t)
 
 	Cairo_scaled_font_text_extents func(
-		scaled_font *Cairo_scaled_font_t,
+		scaled_font *T.Cairo_scaled_font_t,
 		utf8 string,
-		extents *Cairo_text_extents_t)
+		extents *T.Cairo_text_extents_t)
 
 	Cairo_scaled_font_glyph_extents func(
-		scaled_font *Cairo_scaled_font_t,
-		glyphs *Cairo_glyph_t,
+		scaled_font *T.Cairo_scaled_font_t,
+		glyphs *T.Cairo_glyph_t,
 		num_glyphs int,
-		extents *Cairo_text_extents_t)
+		extents *T.Cairo_text_extents_t)
 
 	Cairo_scaled_font_text_to_glyphs func(
-		scaled_font *Cairo_scaled_font_t,
-		x Double,
-		y Double,
+		scaled_font *T.Cairo_scaled_font_t,
+		x T.Double,
+		y T.Double,
 		utf8 string,
 		utf8_len int,
-		glyphs **Cairo_glyph_t,
+		glyphs **T.Cairo_glyph_t,
 		num_glyphs *int,
-		clusters **Cairo_text_cluster_t,
+		clusters **T.Cairo_text_cluster_t,
 		num_clusters *int,
-		cluster_flags *Cairo_text_cluster_flags_t) Cairo_status_t
+		cluster_flags *T.Cairo_text_cluster_flags_t) T.Cairo_status_t
 
 	Cairo_scaled_font_get_font_face func(
-		scaled_font *Cairo_scaled_font_t) *Cairo_font_face_t
+		scaled_font *T.Cairo_scaled_font_t) *T.Cairo_font_face_t
 
 	Cairo_scaled_font_get_font_matrix func(
-		scaled_font *Cairo_scaled_font_t,
-		font_matrix *Cairo_matrix_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		font_matrix *T.Cairo_matrix_t)
 
 	Cairo_scaled_font_get_ctm func(
-		scaled_font *Cairo_scaled_font_t,
-		ctm *Cairo_matrix_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		ctm *T.Cairo_matrix_t)
 
 	Cairo_scaled_font_get_scale_matrix func(
-		scaled_font *Cairo_scaled_font_t,
-		scale_matrix *Cairo_matrix_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		scale_matrix *T.Cairo_matrix_t)
 
 	Cairo_scaled_font_get_font_options func(
-		scaled_font *Cairo_scaled_font_t,
-		options *Cairo_font_options_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		options *T.Cairo_font_options_t)
 
 	Cairo_toy_font_face_create func(
 		family string,
-		slant Cairo_font_slant_t,
-		weight Cairo_font_weight_t) *Cairo_font_face_t
+		slant T.Cairo_font_slant_t,
+		weight T.Cairo_font_weight_t) *T.Cairo_font_face_t
 
 	Cairo_toy_font_face_get_family func(
-		font_face *Cairo_font_face_t) string
+		font_face *T.Cairo_font_face_t) string
 
 	Cairo_toy_font_face_get_slant func(
-		font_face *Cairo_font_face_t) Cairo_font_slant_t
+		font_face *T.Cairo_font_face_t) T.Cairo_font_slant_t
 
 	Cairo_toy_font_face_get_weight func(
-		font_face *Cairo_font_face_t) Cairo_font_weight_t
+		font_face *T.Cairo_font_face_t) T.Cairo_font_weight_t
 
-	Cairo_user_font_face_create func() *Cairo_font_face_t
+	Cairo_user_font_face_create func() *T.Cairo_font_face_t
 
 	Cairo_user_font_face_set_init_func func(
-		font_face *Cairo_font_face_t,
-		init_func Cairo_user_scaled_font_init_func_t)
+		font_face *T.Cairo_font_face_t,
+		init_func T.Cairo_user_scaled_font_init_func_t)
 
 	Cairo_user_font_face_set_render_glyph_func func(
-		font_face *Cairo_font_face_t,
-		render_glyph_func Cairo_user_scaled_font_render_glyph_func_t)
+		font_face *T.Cairo_font_face_t,
+		render_glyph_func T.Cairo_user_scaled_font_render_glyph_func_t)
 
 	Cairo_user_font_face_set_text_to_glyphs_func func(
-		font_face *Cairo_font_face_t,
-		text_to_glyphs_func Cairo_user_scaled_font_text_to_glyphs_func_t)
+		font_face *T.Cairo_font_face_t,
+		text_to_glyphs_func T.Cairo_user_scaled_font_text_to_glyphs_func_t)
 
 	Cairo_user_font_face_set_unicode_to_glyph_func func(
-		font_face *Cairo_font_face_t,
-		unicode_to_glyph_func Cairo_user_scaled_font_unicode_to_glyph_func_t)
+		font_face *T.Cairo_font_face_t,
+		unicode_to_glyph_func T.Cairo_user_scaled_font_unicode_to_glyph_func_t)
 
 	Cairo_user_font_face_get_init_func func(
-		font_face *Cairo_font_face_t) Cairo_user_scaled_font_init_func_t
+		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_init_func_t
 
 	Cairo_user_font_face_get_render_glyph_func func(
-		font_face *Cairo_font_face_t) Cairo_user_scaled_font_render_glyph_func_t
+		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_render_glyph_func_t
 
 	Cairo_user_font_face_get_text_to_glyphs_func func(
-		font_face *Cairo_font_face_t) Cairo_user_scaled_font_text_to_glyphs_func_t
+		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_text_to_glyphs_func_t
 
 	Cairo_user_font_face_get_unicode_to_glyph_func func(
-		font_face *Cairo_font_face_t) Cairo_user_scaled_font_unicode_to_glyph_func_t
+		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_unicode_to_glyph_func_t
 
 	Cairo_get_operator func(
-		cr *Cairo_t) Cairo_operator_t
+		cr *T.Cairo_t) T.Cairo_operator_t
 
 	Cairo_get_source func(
-		cr *Cairo_t) *Cairo_pattern_t
+		cr *T.Cairo_t) *T.Cairo_pattern_t
 
 	Cairo_get_tolerance func(
-		cr *Cairo_t) Double
+		cr *T.Cairo_t) T.Double
 
 	Cairo_get_antialias func(
-		cr *Cairo_t) Cairo_antialias_t
+		cr *T.Cairo_t) T.Cairo_antialias_t
 
 	Cairo_has_current_point func(
-		cr *Cairo_t) Cairo_bool_t
+		cr *T.Cairo_t) T.Cairo_bool_t
 
 	Cairo_get_current_point func(
-		cr *Cairo_t,
-		x *Double,
-		y *Double)
+		cr *T.Cairo_t,
+		x *T.Double,
+		y *T.Double)
 
 	Cairo_get_fill_rule func(
-		cr *Cairo_t) Cairo_fill_rule_t
+		cr *T.Cairo_t) T.Cairo_fill_rule_t
 
 	Cairo_get_line_width func(
-		cr *Cairo_t) Double
+		cr *T.Cairo_t) T.Double
 
 	Cairo_get_line_cap func(
-		cr *Cairo_t) Cairo_line_cap_t
+		cr *T.Cairo_t) T.Cairo_line_cap_t
 
 	Cairo_get_line_join func(
-		cr *Cairo_t) Cairo_line_join_t
+		cr *T.Cairo_t) T.Cairo_line_join_t
 
 	Cairo_get_miter_limit func(
-		cr *Cairo_t) Double
+		cr *T.Cairo_t) T.Double
 
 	Cairo_get_dash_count func(
-		cr *Cairo_t) int
+		cr *T.Cairo_t) int
 
 	Cairo_get_dash func(
-		cr *Cairo_t,
-		dashes *Double,
-		offset *Double)
+		cr *T.Cairo_t,
+		dashes *T.Double,
+		offset *T.Double)
 
 	Cairo_get_matrix func(
-		cr *Cairo_t,
-		matrix *Cairo_matrix_t)
+		cr *T.Cairo_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_get_target func(
-		cr *Cairo_t) *Cairo_surface_t
+		cr *T.Cairo_t) *T.Cairo_surface_t
 
 	Cairo_get_group_target func(
-		cr *Cairo_t) *Cairo_surface_t
+		cr *T.Cairo_t) *T.Cairo_surface_t
 
 	Cairo_copy_path func(
-		cr *Cairo_t) *Cairo_path_t
+		cr *T.Cairo_t) *T.Cairo_path_t
 
 	Cairo_copy_path_flat func(
-		cr *Cairo_t) *Cairo_path_t
+		cr *T.Cairo_t) *T.Cairo_path_t
 
 	Cairo_append_path func(
-		cr *Cairo_t,
-		path *Cairo_path_t)
+		cr *T.Cairo_t,
+		path *T.Cairo_path_t)
 
 	Cairo_path_destroy func(
-		path *Cairo_path_t)
+		path *T.Cairo_path_t)
 
 	Cairo_status func(
-		cr *Cairo_t) Cairo_status_t
+		cr *T.Cairo_t) T.Cairo_status_t
 
 	Cairo_status_to_string func(
-		status Cairo_status_t) string
+		status T.Cairo_status_t) string
 
 	Cairo_device_reference func(
-		device *Cairo_device_t) *Cairo_device_t
+		device *T.Cairo_device_t) *T.Cairo_device_t
 
 	Cairo_device_get_type func(
-		device *Cairo_device_t) Cairo_device_type_t
+		device *T.Cairo_device_t) T.Cairo_device_type_t
 
 	Cairo_device_status func(
-		device *Cairo_device_t) Cairo_status_t
+		device *T.Cairo_device_t) T.Cairo_status_t
 
 	Cairo_device_acquire func(
-		device *Cairo_device_t) Cairo_status_t
+		device *T.Cairo_device_t) T.Cairo_status_t
 
 	Cairo_device_release func(
-		device *Cairo_device_t)
+		device *T.Cairo_device_t)
 
 	Cairo_device_flush func(
-		device *Cairo_device_t)
+		device *T.Cairo_device_t)
 
 	Cairo_device_finish func(
-		device *Cairo_device_t)
+		device *T.Cairo_device_t)
 
 	Cairo_device_destroy func(
-		device *Cairo_device_t)
+		device *T.Cairo_device_t)
 
 	Cairo_device_get_reference_count func(
-		device *Cairo_device_t) Unsigned_int
+		device *T.Cairo_device_t) T.Unsigned_int
 
 	Cairo_device_get_user_data func(
-		device *Cairo_device_t,
-		key *Cairo_user_data_key_t) *Void
+		device *T.Cairo_device_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_device_set_user_data func(
-		device *Cairo_device_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		device *T.Cairo_device_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_surface_create_similar func(
-		other *Cairo_surface_t,
-		content Cairo_content_t,
+		other *T.Cairo_surface_t,
+		content T.Cairo_content_t,
 		width int,
-		height int) *Cairo_surface_t
+		height int) *T.Cairo_surface_t
 
 	Cairo_surface_create_for_rectangle func(
-		target *Cairo_surface_t,
-		x Double,
-		y Double,
-		width Double,
-		height Double) *Cairo_surface_t
+		target *T.Cairo_surface_t,
+		x T.Double,
+		y T.Double,
+		width T.Double,
+		height T.Double) *T.Cairo_surface_t
 
 	Cairo_surface_reference func(
-		surface *Cairo_surface_t) *Cairo_surface_t
+		surface *T.Cairo_surface_t) *T.Cairo_surface_t
 
 	Cairo_surface_finish func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_destroy func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_get_device func(
-		surface *Cairo_surface_t) *Cairo_device_t
+		surface *T.Cairo_surface_t) *T.Cairo_device_t
 
 	Cairo_surface_get_reference_count func(
-		surface *Cairo_surface_t) Unsigned_int
+		surface *T.Cairo_surface_t) T.Unsigned_int
 
 	Cairo_surface_status func(
-		surface *Cairo_surface_t) Cairo_status_t
+		surface *T.Cairo_surface_t) T.Cairo_status_t
 
 	Cairo_surface_get_type func(
-		surface *Cairo_surface_t) Cairo_surface_type_t
+		surface *T.Cairo_surface_t) T.Cairo_surface_type_t
 
 	Cairo_surface_get_content func(
-		surface *Cairo_surface_t) Cairo_content_t
+		surface *T.Cairo_surface_t) T.Cairo_content_t
 
 	Cairo_surface_write_to_png func(
-		surface *Cairo_surface_t,
-		filename string) Cairo_status_t
+		surface *T.Cairo_surface_t,
+		filename string) T.Cairo_status_t
 
 	Cairo_surface_write_to_png_stream func(
-		surface *Cairo_surface_t,
-		write_func Cairo_write_func_t,
-		closure *Void) Cairo_status_t
+		surface *T.Cairo_surface_t,
+		write_func T.Cairo_write_func_t,
+		closure *T.Void) T.Cairo_status_t
 
 	Cairo_surface_get_user_data func(
-		surface *Cairo_surface_t,
-		key *Cairo_user_data_key_t) *Void
+		surface *T.Cairo_surface_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_surface_set_user_data func(
-		surface *Cairo_surface_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		surface *T.Cairo_surface_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_surface_get_mime_data func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		mime_type string,
-		data **Unsigned_char,
-		length *Unsigned_long)
+		data **T.Unsigned_char,
+		length *T.Unsigned_long)
 
 	Cairo_surface_set_mime_data func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		mime_type string,
-		data *Unsigned_char,
-		length Unsigned_long,
-		destroy Cairo_destroy_func_t,
-		closure *Void) Cairo_status_t
+		data *T.Unsigned_char,
+		length T.Unsigned_long,
+		destroy T.Cairo_destroy_func_t,
+		closure *T.Void) T.Cairo_status_t
 
 	Cairo_surface_get_font_options func(
-		surface *Cairo_surface_t,
-		options *Cairo_font_options_t)
+		surface *T.Cairo_surface_t,
+		options *T.Cairo_font_options_t)
 
 	Cairo_surface_flush func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_mark_dirty func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_mark_dirty_rectangle func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		x int,
 		y int,
 		width int,
 		height int)
 
 	Cairo_surface_set_device_offset func(
-		surface *Cairo_surface_t,
-		x_offset Double,
-		y_offset Double)
+		surface *T.Cairo_surface_t,
+		x_offset T.Double,
+		y_offset T.Double)
 
 	Cairo_surface_get_device_offset func(
-		surface *Cairo_surface_t,
-		x_offset *Double,
-		y_offset *Double)
+		surface *T.Cairo_surface_t,
+		x_offset *T.Double,
+		y_offset *T.Double)
 
 	Cairo_surface_set_fallback_resolution func(
-		surface *Cairo_surface_t,
-		x_pixels_per_inch Double,
-		y_pixels_per_inch Double)
+		surface *T.Cairo_surface_t,
+		x_pixels_per_inch T.Double,
+		y_pixels_per_inch T.Double)
 
 	Cairo_surface_get_fallback_resolution func(
-		surface *Cairo_surface_t,
-		x_pixels_per_inch *Double,
-		y_pixels_per_inch *Double)
+		surface *T.Cairo_surface_t,
+		x_pixels_per_inch *T.Double,
+		y_pixels_per_inch *T.Double)
 
 	Cairo_surface_copy_page func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_show_page func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_surface_has_show_text_glyphs func(
-		surface *Cairo_surface_t) Cairo_bool_t
+		surface *T.Cairo_surface_t) T.Cairo_bool_t
 
 	Cairo_image_surface_create func(
-		format Cairo_format_t,
+		format T.Cairo_format_t,
 		width int,
-		height int) *Cairo_surface_t
+		height int) *T.Cairo_surface_t
 
 	Cairo_format_stride_for_width func(
-		format Cairo_format_t,
+		format T.Cairo_format_t,
 		width int) int
 
 	Cairo_image_surface_create_for_data func(
-		data *Unsigned_char,
-		format Cairo_format_t,
+		data *T.Unsigned_char,
+		format T.Cairo_format_t,
 		width int,
 		height int,
-		stride int) *Cairo_surface_t
+		stride int) *T.Cairo_surface_t
 
 	Cairo_image_surface_get_data func(
-		surface *Cairo_surface_t) *Unsigned_char
+		surface *T.Cairo_surface_t) *T.Unsigned_char
 
 	Cairo_image_surface_get_format func(
-		surface *Cairo_surface_t) Cairo_format_t
+		surface *T.Cairo_surface_t) T.Cairo_format_t
 
 	Cairo_image_surface_get_width func(
-		surface *Cairo_surface_t) int
+		surface *T.Cairo_surface_t) int
 
 	Cairo_image_surface_get_height func(
-		surface *Cairo_surface_t) int
+		surface *T.Cairo_surface_t) int
 
 	Cairo_image_surface_get_stride func(
-		surface *Cairo_surface_t) int
+		surface *T.Cairo_surface_t) int
 
 	Cairo_image_surface_create_from_png func(
-		filename string) *Cairo_surface_t
+		filename string) *T.Cairo_surface_t
 
 	Cairo_image_surface_create_from_png_stream func(
-		read_func Cairo_read_func_t,
-		closure *Void) *Cairo_surface_t
+		read_func T.Cairo_read_func_t,
+		closure *T.Void) *T.Cairo_surface_t
 
 	Cairo_recording_surface_create func(
-		content Cairo_content_t,
-		extents *Cairo_rectangle_t) *Cairo_surface_t
+		content T.Cairo_content_t,
+		extents *T.Cairo_rectangle_t) *T.Cairo_surface_t
 
 	Cairo_recording_surface_ink_extents func(
-		surface *Cairo_surface_t,
-		x0 *Double,
-		y0 *Double,
-		width *Double,
-		height *Double)
+		surface *T.Cairo_surface_t,
+		x0 *T.Double,
+		y0 *T.Double,
+		width *T.Double,
+		height *T.Double)
 
 	Cairo_pattern_create_rgb func(
-		red Double,
-		green Double,
-		blue Double) *Cairo_pattern_t
+		red T.Double,
+		green T.Double,
+		blue T.Double) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_rgba func(
-		red Double,
-		green Double,
-		blue Double,
-		alpha Double) *Cairo_pattern_t
+		red T.Double,
+		green T.Double,
+		blue T.Double,
+		alpha T.Double) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_for_surface func(
-		surface *Cairo_surface_t) *Cairo_pattern_t
+		surface *T.Cairo_surface_t) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_linear func(
-		x0 Double,
-		y0 Double,
-		x1 Double,
-		y1 Double) *Cairo_pattern_t
+		x0 T.Double,
+		y0 T.Double,
+		x1 T.Double,
+		y1 T.Double) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_radial func(
-		cx0 Double,
-		cy0 Double,
-		radius0 Double,
-		cx1 Double,
-		cy1 Double,
-		radius1 Double) *Cairo_pattern_t
+		cx0 T.Double,
+		cy0 T.Double,
+		radius0 T.Double,
+		cx1 T.Double,
+		cy1 T.Double,
+		radius1 T.Double) *T.Cairo_pattern_t
 
 	Cairo_pattern_reference func(
-		pattern *Cairo_pattern_t) *Cairo_pattern_t
+		pattern *T.Cairo_pattern_t) *T.Cairo_pattern_t
 
 	Cairo_pattern_destroy func(
-		pattern *Cairo_pattern_t)
+		pattern *T.Cairo_pattern_t)
 
 	Cairo_pattern_get_reference_count func(
-		pattern *Cairo_pattern_t) Unsigned_int
+		pattern *T.Cairo_pattern_t) T.Unsigned_int
 
 	Cairo_pattern_status func(
-		pattern *Cairo_pattern_t) Cairo_status_t
+		pattern *T.Cairo_pattern_t) T.Cairo_status_t
 
 	Cairo_pattern_get_user_data func(
-		pattern *Cairo_pattern_t,
-		key *Cairo_user_data_key_t) *Void
+		pattern *T.Cairo_pattern_t,
+		key *T.Cairo_user_data_key_t) *T.Void
 
 	Cairo_pattern_set_user_data func(
-		pattern *Cairo_pattern_t,
-		key *Cairo_user_data_key_t,
-		user_data *Void,
-		destroy Cairo_destroy_func_t) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		key *T.Cairo_user_data_key_t,
+		user_data *T.Void,
+		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
 
 	Cairo_pattern_get_type func(
-		pattern *Cairo_pattern_t) Cairo_pattern_type_t
+		pattern *T.Cairo_pattern_t) T.Cairo_pattern_type_t
 
 	Cairo_pattern_add_color_stop_rgb func(
-		pattern *Cairo_pattern_t,
-		offset Double,
-		red Double,
-		green Double,
-		blue Double)
+		pattern *T.Cairo_pattern_t,
+		offset T.Double,
+		red T.Double,
+		green T.Double,
+		blue T.Double)
 
 	Cairo_pattern_add_color_stop_rgba func(
-		pattern *Cairo_pattern_t,
-		offset Double,
-		red Double,
-		green Double,
-		blue Double,
-		alpha Double)
+		pattern *T.Cairo_pattern_t,
+		offset T.Double,
+		red T.Double,
+		green T.Double,
+		blue T.Double,
+		alpha T.Double)
 
 	Cairo_pattern_set_matrix func(
-		pattern *Cairo_pattern_t,
-		matrix *Cairo_matrix_t)
+		pattern *T.Cairo_pattern_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_pattern_get_matrix func(
-		pattern *Cairo_pattern_t,
-		matrix *Cairo_matrix_t)
+		pattern *T.Cairo_pattern_t,
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_pattern_set_extend func(
-		pattern *Cairo_pattern_t,
-		extend Cairo_extend_t)
+		pattern *T.Cairo_pattern_t,
+		extend T.Cairo_extend_t)
 
 	Cairo_pattern_get_extend func(
-		pattern *Cairo_pattern_t) Cairo_extend_t
+		pattern *T.Cairo_pattern_t) T.Cairo_extend_t
 
 	Cairo_pattern_set_filter func(
-		pattern *Cairo_pattern_t,
-		filter Cairo_filter_t)
+		pattern *T.Cairo_pattern_t,
+		filter T.Cairo_filter_t)
 
 	Cairo_pattern_get_filter func(
-		pattern *Cairo_pattern_t) Cairo_filter_t
+		pattern *T.Cairo_pattern_t) T.Cairo_filter_t
 
 	Cairo_pattern_get_rgba func(
-		pattern *Cairo_pattern_t,
-		red *Double,
-		green *Double,
-		blue *Double,
-		alpha *Double) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		red *T.Double,
+		green *T.Double,
+		blue *T.Double,
+		alpha *T.Double) T.Cairo_status_t
 
 	Cairo_pattern_get_surface func(
-		pattern *Cairo_pattern_t,
-		surface **Cairo_surface_t) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		surface **T.Cairo_surface_t) T.Cairo_status_t
 
 	Cairo_pattern_get_color_stop_rgba func(
-		pattern *Cairo_pattern_t,
+		pattern *T.Cairo_pattern_t,
 		index int,
-		offset *Double,
-		red *Double,
-		green *Double,
-		blue *Double,
-		alpha *Double) Cairo_status_t
+		offset *T.Double,
+		red *T.Double,
+		green *T.Double,
+		blue *T.Double,
+		alpha *T.Double) T.Cairo_status_t
 
 	Cairo_pattern_get_color_stop_count func(
-		pattern *Cairo_pattern_t,
-		count *int) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		count *int) T.Cairo_status_t
 
 	Cairo_pattern_get_linear_points func(
-		pattern *Cairo_pattern_t,
-		x0 *Double,
-		y0 *Double,
-		x1 *Double,
-		y1 *Double) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		x0 *T.Double,
+		y0 *T.Double,
+		x1 *T.Double,
+		y1 *T.Double) T.Cairo_status_t
 
 	Cairo_pattern_get_radial_circles func(
-		pattern *Cairo_pattern_t,
-		x0 *Double,
-		y0 *Double,
-		r0 *Double,
-		x1 *Double,
-		y1 *Double,
-		r1 *Double) Cairo_status_t
+		pattern *T.Cairo_pattern_t,
+		x0 *T.Double,
+		y0 *T.Double,
+		r0 *T.Double,
+		x1 *T.Double,
+		y1 *T.Double,
+		r1 *T.Double) T.Cairo_status_t
 
 	Cairo_matrix_init func(
-		matrix *Cairo_matrix_t,
-		xx Double,
-		yx Double,
-		xy Double,
-		yy Double,
-		x0 Double,
-		y0 Double)
+		matrix *T.Cairo_matrix_t,
+		xx T.Double,
+		yx T.Double,
+		xy T.Double,
+		yy T.Double,
+		x0 T.Double,
+		y0 T.Double)
 
 	Cairo_matrix_init_identity func(
-		matrix *Cairo_matrix_t)
+		matrix *T.Cairo_matrix_t)
 
 	Cairo_matrix_init_translate func(
-		matrix *Cairo_matrix_t,
-		tx Double,
-		ty Double)
+		matrix *T.Cairo_matrix_t,
+		tx T.Double,
+		ty T.Double)
 
 	Cairo_matrix_init_scale func(
-		matrix *Cairo_matrix_t,
-		sx Double,
-		sy Double)
+		matrix *T.Cairo_matrix_t,
+		sx T.Double,
+		sy T.Double)
 
 	Cairo_matrix_init_rotate func(
-		matrix *Cairo_matrix_t,
-		radians Double)
+		matrix *T.Cairo_matrix_t,
+		radians T.Double)
 
 	Cairo_matrix_translate func(
-		matrix *Cairo_matrix_t,
-		tx Double,
-		ty Double)
+		matrix *T.Cairo_matrix_t,
+		tx T.Double,
+		ty T.Double)
 
 	Cairo_matrix_scale func(
-		matrix *Cairo_matrix_t,
-		sx Double,
-		sy Double)
+		matrix *T.Cairo_matrix_t,
+		sx T.Double,
+		sy T.Double)
 
 	Cairo_matrix_rotate func(
-		matrix *Cairo_matrix_t,
-		radians Double)
+		matrix *T.Cairo_matrix_t,
+		radians T.Double)
 
 	Cairo_matrix_invert func(
-		matrix *Cairo_matrix_t) Cairo_status_t
+		matrix *T.Cairo_matrix_t) T.Cairo_status_t
 
 	Cairo_matrix_multiply func(
-		result *Cairo_matrix_t,
-		a *Cairo_matrix_t,
-		b *Cairo_matrix_t)
+		result *T.Cairo_matrix_t,
+		a *T.Cairo_matrix_t,
+		b *T.Cairo_matrix_t)
 
 	Cairo_matrix_transform_distance func(
-		matrix *Cairo_matrix_t,
-		dx *Double,
-		dy *Double)
+		matrix *T.Cairo_matrix_t,
+		dx *T.Double,
+		dy *T.Double)
 
 	Cairo_matrix_transform_point func(
-		matrix *Cairo_matrix_t,
-		x *Double,
-		y *Double)
+		matrix *T.Cairo_matrix_t,
+		x *T.Double,
+		y *T.Double)
 
-	Cairo_region_create func() *Cairo_region_t
+	Cairo_region_create func() *T.Cairo_region_t
 
 	Cairo_region_create_rectangle func(
-		rectangle *Cairo_rectangle_int_t) *Cairo_region_t
+		rectangle *T.Cairo_rectangle_int_t) *T.Cairo_region_t
 
 	Cairo_region_create_rectangles func(
-		rects *Cairo_rectangle_int_t,
-		count int) *Cairo_region_t
+		rects *T.Cairo_rectangle_int_t,
+		count int) *T.Cairo_region_t
 
 	Cairo_region_copy func(
-		original *Cairo_region_t) *Cairo_region_t
+		original *T.Cairo_region_t) *T.Cairo_region_t
 
 	Cairo_region_reference func(
-		region *Cairo_region_t) *Cairo_region_t
+		region *T.Cairo_region_t) *T.Cairo_region_t
 
 	Cairo_region_destroy func(
-		region *Cairo_region_t)
+		region *T.Cairo_region_t)
 
 	Cairo_region_equal func(
-		a *Cairo_region_t,
-		b *Cairo_region_t) Cairo_bool_t
+		a *T.Cairo_region_t,
+		b *T.Cairo_region_t) T.Cairo_bool_t
 
 	Cairo_region_status func(
-		region *Cairo_region_t) Cairo_status_t
+		region *T.Cairo_region_t) T.Cairo_status_t
 
 	Cairo_region_get_extents func(
-		region *Cairo_region_t,
-		extents *Cairo_rectangle_int_t)
+		region *T.Cairo_region_t,
+		extents *T.Cairo_rectangle_int_t)
 
 	Cairo_region_num_rectangles func(
-		region *Cairo_region_t) int
+		region *T.Cairo_region_t) int
 
 	Cairo_region_get_rectangle func(
-		region *Cairo_region_t,
+		region *T.Cairo_region_t,
 		nth int,
-		rectangle *Cairo_rectangle_int_t)
+		rectangle *T.Cairo_rectangle_int_t)
 
 	Cairo_region_is_empty func(
-		region *Cairo_region_t) Cairo_bool_t
+		region *T.Cairo_region_t) T.Cairo_bool_t
 
 	Cairo_region_contains_rectangle func(
-		region *Cairo_region_t,
-		rectangle *Cairo_rectangle_int_t) Cairo_region_overlap_t
+		region *T.Cairo_region_t,
+		rectangle *T.Cairo_rectangle_int_t) T.Cairo_region_overlap_t
 
 	Cairo_region_contains_point func(
-		region *Cairo_region_t,
+		region *T.Cairo_region_t,
 		x int,
-		y int) Cairo_bool_t
+		y int) T.Cairo_bool_t
 
 	Cairo_region_translate func(
-		region *Cairo_region_t,
+		region *T.Cairo_region_t,
 		dx int,
 		dy int)
 
 	Cairo_region_subtract func(
-		dst *Cairo_region_t,
-		other *Cairo_region_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		other *T.Cairo_region_t) T.Cairo_status_t
 
 	Cairo_region_subtract_rectangle func(
-		dst *Cairo_region_t,
-		rectangle *Cairo_rectangle_int_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
 
 	Cairo_region_intersect func(
-		dst *Cairo_region_t,
-		other *Cairo_region_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		other *T.Cairo_region_t) T.Cairo_status_t
 
 	Cairo_region_intersect_rectangle func(
-		dst *Cairo_region_t,
-		rectangle *Cairo_rectangle_int_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
 
 	Cairo_region_union func(
-		dst *Cairo_region_t,
-		other *Cairo_region_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		other *T.Cairo_region_t) T.Cairo_status_t
 
 	Cairo_region_union_rectangle func(
-		dst *Cairo_region_t,
-		rectangle *Cairo_rectangle_int_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
 
 	Cairo_region_xor func(
-		dst *Cairo_region_t,
-		other *Cairo_region_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		other *T.Cairo_region_t) T.Cairo_status_t
 
 	Cairo_region_xor_rectangle func(
-		dst *Cairo_region_t,
-		rectangle *Cairo_rectangle_int_t) Cairo_status_t
+		dst *T.Cairo_region_t,
+		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
 
 	Cairo_debug_reset_static_data func()
 
@@ -1265,72 +1265,72 @@ var (
 
 	Cairo_gobject_region_overlap_get_type func()
 
-	Cairo_script_interpreter_create func() *Cairo_script_interpreter_t
+	Cairo_script_interpreter_create func() *T.Cairo_script_interpreter_t
 
 	Cairo_script_interpreter_install_hooks func(
-		ctx *Cairo_script_interpreter_t,
-		hooks *Cairo_script_interpreter_hooks_t)
+		ctx *T.Cairo_script_interpreter_t,
+		hooks *T.Cairo_script_interpreter_hooks_t)
 
 	Cairo_script_interpreter_run func(
-		ctx *Cairo_script_interpreter_t,
-		filename string) Cairo_status_t
+		ctx *T.Cairo_script_interpreter_t,
+		filename string) T.Cairo_status_t
 
 	Cairo_script_interpreter_feed_stream func(
-		ctx *Cairo_script_interpreter_t,
-		stream *FILE) Cairo_status_t
+		ctx *T.Cairo_script_interpreter_t,
+		stream *T.FILE) T.Cairo_status_t
 
 	Cairo_script_interpreter_feed_string func(
-		ctx *Cairo_script_interpreter_t,
+		ctx *T.Cairo_script_interpreter_t,
 		line string,
-		len int) Cairo_status_t
+		len int) T.Cairo_status_t
 
 	Cairo_script_interpreter_get_line_number func(
-		ctx *Cairo_script_interpreter_t) Unsigned_int
+		ctx *T.Cairo_script_interpreter_t) T.Unsigned_int
 
 	Cairo_script_interpreter_reference func(
-		ctx *Cairo_script_interpreter_t) *Cairo_script_interpreter_t
+		ctx *T.Cairo_script_interpreter_t) *T.Cairo_script_interpreter_t
 
 	Cairo_script_interpreter_finish func(
-		ctx *Cairo_script_interpreter_t) Cairo_status_t
+		ctx *T.Cairo_script_interpreter_t) T.Cairo_status_t
 
 	Cairo_script_interpreter_destroy func(
-		ctx *Cairo_script_interpreter_t) Cairo_status_t
+		ctx *T.Cairo_script_interpreter_t) T.Cairo_status_t
 
 	Cairo_script_interpreter_translate_stream func(
-		stream *FILE,
-		write_func Cairo_write_func_t,
-		closure *Void) Cairo_status_t
+		stream *T.FILE,
+		write_func T.Cairo_write_func_t,
+		closure *T.Void) T.Cairo_status_t
 
 	Cairo_ft_font_face_create_for_ft_face func(
-		face FT_Face,
-		load_flags int) *Cairo_font_face_t
+		face T.FT_Face,
+		load_flags int) *T.Cairo_font_face_t
 
 	Cairo_ft_scaled_font_lock_face func(
-		scaled_font *Cairo_scaled_font_t) FT_Face
+		scaled_font *T.Cairo_scaled_font_t) T.FT_Face
 
 	Cairo_ft_scaled_font_unlock_face func(
-		scaled_font *Cairo_scaled_font_t)
+		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_ft_font_face_create_for_pattern func(
-		pattern *FcPattern) *Cairo_font_face_t
+		pattern *T.FcPattern) *T.Cairo_font_face_t
 
 	Cairo_ft_font_options_substitute func(
-		options *Cairo_font_options_t,
-		pattern *FcPattern)
+		options *T.Cairo_font_options_t,
+		pattern *T.FcPattern)
 
 	Cairo_pdf_surface_create func(
 		filename string,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_pdf_surface_create_for_stream func(
-		write_func Cairo_write_func_t,
-		closure *Void,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		write_func T.Cairo_write_func_t,
+		closure *T.Void,
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_pdf_surface_restrict_to_version func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		version Cairo_pdf_version_t)
 
 	Cairo_pdf_get_versions func(
@@ -1341,23 +1341,23 @@ var (
 		version Cairo_pdf_version_t) string
 
 	Cairo_pdf_surface_set_size func(
-		surface *Cairo_surface_t,
-		width_in_points Double,
-		height_in_points Double)
+		surface *T.Cairo_surface_t,
+		width_in_points T.Double,
+		height_in_points T.Double)
 
 	Cairo_ps_surface_create func(
 		filename string,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_ps_surface_create_for_stream func(
-		write_func Cairo_write_func_t,
-		closure *Void,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		write_func T.Cairo_write_func_t,
+		closure *T.Void,
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_ps_surface_restrict_to_level func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		level Cairo_ps_level_t)
 
 	Cairo_ps_get_levels func(
@@ -1368,40 +1368,40 @@ var (
 		level Cairo_ps_level_t)
 
 	Cairo_ps_surface_set_eps func(
-		surface *Cairo_surface_t,
-		eps Cairo_bool_t) string
+		surface *T.Cairo_surface_t,
+		eps T.Cairo_bool_t) string
 
 	Cairo_ps_surface_get_eps func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_ps_surface_set_size func(
-		surface *Cairo_surface_t,
-		width_in_points Double,
-		height_in_points Double) Cairo_bool_t
+		surface *T.Cairo_surface_t,
+		width_in_points T.Double,
+		height_in_points T.Double) T.Cairo_bool_t
 
 	Cairo_ps_surface_dsc_comment func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		comment string)
 
 	Cairo_ps_surface_dsc_begin_setup func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_ps_surface_dsc_begin_page_setup func(
-		surface *Cairo_surface_t)
+		surface *T.Cairo_surface_t)
 
 	Cairo_svg_surface_create func(
 		filename string,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_svg_surface_create_for_stream func(
-		write_func Cairo_write_func_t,
-		closure *Void,
-		width_in_points Double,
-		height_in_points Double) *Cairo_surface_t
+		write_func T.Cairo_write_func_t,
+		closure *T.Void,
+		width_in_points T.Double,
+		height_in_points T.Double) *T.Cairo_surface_t
 
 	Cairo_svg_surface_restrict_to_version func(
-		surface *Cairo_surface_t,
+		surface *T.Cairo_surface_t,
 		version Cairo_svg_version_t)
 
 	Cairo_svg_get_versions func(
@@ -1412,55 +1412,55 @@ var (
 		version Cairo_svg_version_t) string
 
 	Cairo_win32_surface_create func(
-		hdc HDC) *Cairo_surface_t
+		hdc HDC) *T.Cairo_surface_t
 
 	Cairo_win32_printing_surface_create func(
-		hdc HDC) *Cairo_surface_t
+		hdc HDC) *T.Cairo_surface_t
 
 	Cairo_win32_surface_create_with_ddb func(
 		hdc HDC,
-		format Cairo_format_t,
+		format T.Cairo_format_t,
 		width int,
-		height int) *Cairo_surface_t
+		height int) *T.Cairo_surface_t
 
 	Cairo_win32_surface_create_with_dib func(
-		format Cairo_format_t,
+		format T.Cairo_format_t,
 		width int,
-		height int) *Cairo_surface_t
+		height int) *T.Cairo_surface_t
 
 	Cairo_win32_surface_get_dc func(
-		surface *Cairo_surface_t) HDC
+		surface *T.Cairo_surface_t) HDC
 
 	Cairo_win32_surface_get_image func(
-		surface *Cairo_surface_t) *Cairo_surface_t
+		surface *T.Cairo_surface_t) *T.Cairo_surface_t
 
 	Cairo_win32_font_face_create_for_logfontw func(
-		logfont *LOGFONTW) *Cairo_font_face_t
+		logfont *LOGFONTW) *T.Cairo_font_face_t
 
 	Cairo_win32_font_face_create_for_hfont func(
-		font HFONT) *Cairo_font_face_t
+		font HFONT) *T.Cairo_font_face_t
 
 	Cairo_win32_font_face_create_for_logfontw_hfont func(
 		logfont *LOGFONTW,
-		font HFONT) *Cairo_font_face_t
+		font HFONT) *T.Cairo_font_face_t
 
 	Cairo_win32_scaled_font_select_font func(
-		scaled_font *Cairo_scaled_font_t,
-		hdc HDC) Cairo_status_t
+		scaled_font *T.Cairo_scaled_font_t,
+		hdc HDC) T.Cairo_status_t
 
 	Cairo_win32_scaled_font_done_font func(
-		scaled_font *Cairo_scaled_font_t)
+		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_win32_scaled_font_get_metrics_factor func(
-		scaled_font *Cairo_scaled_font_t) Double
+		scaled_font *T.Cairo_scaled_font_t) T.Double
 
 	Cairo_win32_scaled_font_get_logical_to_device func(
-		scaled_font *Cairo_scaled_font_t,
-		logical_to_device *Cairo_matrix_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		logical_to_device *T.Cairo_matrix_t)
 
 	Cairo_win32_scaled_font_get_device_to_logical func(
-		scaled_font *Cairo_scaled_font_t,
-		device_to_logical *Cairo_matrix_t)
+		scaled_font *T.Cairo_scaled_font_t,
+		device_to_logical *T.Cairo_matrix_t)
 )
 
 var dll = "libcairo-2.dll"

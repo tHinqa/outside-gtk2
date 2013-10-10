@@ -7,7 +7,7 @@ package gmodule
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -15,27 +15,27 @@ func init() {
 }
 
 var (
-	G_module_supported func() Gboolean
+	G_module_supported func() T.Gboolean
 
 	G_module_open func(
 		file_name string,
-		flags GModuleFlags) *GModule
+		flags T.GModuleFlags) *T.GModule
 
 	G_module_close func(
-		module *GModule) Gboolean
+		module *T.GModule) T.Gboolean
 
 	G_module_make_resident func(
-		module *GModule)
+		module *T.GModule)
 
 	G_module_error func() string
 
 	G_module_symbol func(
-		module *GModule,
+		module *T.GModule,
 		symbol_name string,
-		symbol *Gpointer) Gboolean
+		symbol *T.Gpointer) T.Gboolean
 
 	G_module_name func(
-		module *GModule) string
+		module *T.GModule) string
 
 	G_module_build_path func(
 		directory string,

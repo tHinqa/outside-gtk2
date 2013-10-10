@@ -7,7 +7,7 @@ package expat
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -17,52 +17,52 @@ func init() {
 type (
 	//XML_Parser *struct{}
 	XML_Parser struct{}
-	XML_Char   Char
-	XML_LChar  Char
-	XML_Bool   Unsigned_char
-	XML_Size   Unsigned_long
-	XML_Index  Long
+	XML_Char   T.Char
+	XML_LChar  T.Char
+	XML_Bool   T.Unsigned_char
+	XML_Size   T.Unsigned_long
+	XML_Index  T.Long
 
 	XML_ElementDeclHandler func(
-		userData *Void, name string, model *XML_Content)
+		userData *T.Void, name string, model *XML_Content)
 
-	XML_AttlistDeclHandler func(userData *Void,
+	XML_AttlistDeclHandler func(userData *T.Void,
 		elname, attname, att_type, dflt string, isrequired int)
 
-	XML_XmlDeclHandler func(userData *Void,
+	XML_XmlDeclHandler func(userData *T.Void,
 		version, encoding string, standalone int)
 
-	XML_StartCdataSectionHandler func(userData *Void)
+	XML_StartCdataSectionHandler func(userData *T.Void)
 
-	XML_EndCdataSectionHandler func(userData *Void)
+	XML_EndCdataSectionHandler func(userData *T.Void)
 
 	XML_DefaultHandler func(
-		userData *Void, s *XML_Char, leng int)
+		userData *T.Void, s *XML_Char, leng int)
 
 	XML_CharacterDataHandler func(
-		userData *Void, s *XML_Char, leng int)
+		userData *T.Void, s *XML_Char, leng int)
 
 	XML_ProcessingInstructionHandler func(
-		userData *Void, target, data string)
+		userData *T.Void, target, data string)
 
 	XML_CommentHandler func(
-		userData *Void, data string)
+		userData *T.Void, data string)
 
 	XML_StartDoctypeDeclHandler func(
-		userData *Void,
+		userData *T.Void,
 		doctypeName, sysid, pubid string,
 		has_internal_subset int)
 
 	XML_StartElementHandler func(
-		userData *Void, name string, atts **XML_Char)
+		userData *T.Void, name string, atts **XML_Char)
 
 	XML_EndElementHandler func(
-		userData *Void, name string)
+		userData *T.Void, name string)
 
-	XML_EndDoctypeDeclHandler func(userData *Void)
+	XML_EndDoctypeDeclHandler func(userData *T.Void)
 
 	XML_EntityDeclHandler func(
-		userData *Void,
+		userData *T.Void,
 		entityName string,
 		is_parameter_entity int,
 		value string,
@@ -70,40 +70,40 @@ type (
 		base, systemId, publicId, notationName string)
 
 	XML_EndNamespaceDeclHandler func(
-		userData *Void, prefix string)
+		userData *T.Void, prefix string)
 
 	XML_StartNamespaceDeclHandler func(
-		userData *Void, prefix, uri string)
+		userData *T.Void, prefix, uri string)
 
-	XML_NotStandaloneHandler func(userData *Void) int
+	XML_NotStandaloneHandler func(userData *T.Void) int
 
 	XML_NotationDeclHandler func(
-		userData *Void,
+		userData *T.Void,
 		notationName, base, systemId, publicId string)
 
 	XML_ExternalEntityRefHandler func(parser XML_Parser,
 		context, base, systemId, publicId string) int
 
 	XML_SkippedEntityHandler func(
-		userData *Void, entityName string, is_parameter_entity int)
+		userData *T.Void, entityName string, is_parameter_entity int)
 
-	XML_UnparsedEntityDeclHandler func(userData *Void,
+	XML_UnparsedEntityDeclHandler func(userData *T.Void,
 		entityName, base, systemId, publicId, notationName string)
 
-	XML_UnknownEncodingHandler func(encodingHandlerData *Void,
+	XML_UnknownEncodingHandler func(encodingHandlerData *T.Void,
 		name string, info *XML_Encoding) int
 
 	XML_Memory_Handling_Suite struct {
-		malloc_fcn  func(size Size_t) *Void
-		realloc_fcn func(ptr *Void, size Size_t) *Void
-		free_fcn    func(ptr *Void)
+		malloc_fcn  func(size T.Size_t) *T.Void
+		realloc_fcn func(ptr *T.Void, size T.Size_t) *T.Void
+		free_fcn    func(ptr *T.Void)
 	}
 
 	XML_Content struct {
 		Type        XML_Content_Type
 		Quant       XML_Content_Quant
 		Name        *XML_Char
-		Numchildren Unsigned_int
+		Numchildren T.Unsigned_int
 		Children    *XML_Content
 	}
 
@@ -114,9 +114,9 @@ type (
 
 	XML_Encoding struct {
 		Map     [256]int
-		Data    *Void
-		Convert func(data *Void, s *Char) int
-		Release func(data *Void)
+		Data    *T.Void
+		Convert func(data *T.Void, s *T.Char) int
+		Release func(data *T.Void)
 	}
 
 	XML_Expat_Version struct {
@@ -126,11 +126,11 @@ type (
 	XML_Feature struct {
 		Feature XML_FeatureEnum
 		Name    POVString
-		Value   Long
+		Value   T.Long
 	}
 )
 
-type XML_Status Enum
+type XML_Status T.Enum
 
 const (
 	XML_STATUS_ERROR XML_Status = iota
@@ -138,7 +138,7 @@ const (
 	XML_STATUS_SUSPENDED
 )
 
-type XML_Content_Type Enum
+type XML_Content_Type T.Enum
 
 const (
 	XML_CTYPE_EMPTY XML_Content_Type = iota + 1
@@ -149,7 +149,7 @@ const (
 	XML_CTYPE_SEQ
 )
 
-type XML_Content_Quant Enum
+type XML_Content_Quant T.Enum
 
 const (
 	XML_CQUANT_NONE XML_Content_Quant = iota
@@ -158,7 +158,7 @@ const (
 	XML_CQUANT_PLUS
 )
 
-type XML_Parsing Enum
+type XML_Parsing T.Enum
 
 const (
 	XML_INITIALIZED XML_Parsing = iota
@@ -167,7 +167,7 @@ const (
 	XML_SUSPENDED
 )
 
-type XML_Error Enum
+type XML_Error T.Enum
 
 const (
 	XML_ERROR_NONE XML_Error = iota
@@ -213,7 +213,7 @@ const (
 	XML_ERROR_RESERVED_NAMESPACE_URI
 )
 
-type XML_ParamEntityParsing Enum
+type XML_ParamEntityParsing T.Enum
 
 const (
 	XML_PARAM_ENTITY_PARSING_NEVER XML_ParamEntityParsing = iota
@@ -221,7 +221,7 @@ const (
 	XML_PARAM_ENTITY_PARSING_ALWAYS
 )
 
-type XML_FeatureEnum Enum
+type XML_FeatureEnum T.Enum
 
 const (
 	XML_FEATURE_END XML_FeatureEnum = iota
@@ -353,7 +353,7 @@ var (
 		handler XML_ExternalEntityRefHandler)
 
 	XML_SetExternalEntityRefHandlerArg func(
-		parser XML_Parser, arg *Void)
+		parser XML_Parser, arg *T.Void)
 
 	XML_SetSkippedEntityHandler func(
 		parser XML_Parser,
@@ -362,14 +362,14 @@ var (
 	XML_SetUnknownEncodingHandler func(
 		parser XML_Parser,
 		handler XML_UnknownEncodingHandler,
-		encodingHandlerData *Void)
+		encodingHandlerData *T.Void)
 
 	XML_DefaultCurrent func(
 		parser XML_Parser)
 
 	XML_SetReturnNSTriplet func(parser XML_Parser, do_nst int)
 
-	XML_SetUserData func(parser XML_Parser, userData *Void)
+	XML_SetUserData func(parser XML_Parser, userData *T.Void)
 
 	XML_SetEncoding func(
 		parser XML_Parser, encoding string) XML_Status
@@ -392,9 +392,9 @@ var (
 		parser XML_Parser) int
 
 	XML_Parse func(parser XML_Parser,
-		s *Char, leng, isFinal int) XML_Status
+		s *T.Char, leng, isFinal int) XML_Status
 
-	XML_GetBuffer func(parser XML_Parser, leng int) *Void
+	XML_GetBuffer func(parser XML_Parser, leng int) *T.Void
 
 	XML_ParseBuffer func(
 		parser XML_Parser, leng, isFinal int) XML_Status
@@ -430,12 +430,12 @@ var (
 	XML_FreeContentModel func(
 		parser XML_Parser, model *XML_Content)
 
-	XML_MemMalloc func(parser XML_Parser, size Size_t) *Void
+	XML_MemMalloc func(parser XML_Parser, size T.Size_t) *T.Void
 
 	XML_MemRealloc func(
-		parser XML_Parser, ptr *Void, size Size_t) *Void
+		parser XML_Parser, ptr *T.Void, size T.Size_t) *T.Void
 
-	XML_MemFree func(parser XML_Parser, ptr *Void)
+	XML_MemFree func(parser XML_Parser, ptr *T.Void)
 
 	XML_ParserFree func(parser XML_Parser)
 

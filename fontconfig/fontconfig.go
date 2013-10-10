@@ -7,7 +7,7 @@ package fontconfig
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -20,9 +20,9 @@ const (
 )
 
 type (
-	FcChar8  Unsigned_char
-	FcChar16 Unsigned_short
-	FcChar32 Unsigned_int
+	FcChar8  T.Unsigned_char
+	FcChar16 T.Unsigned_short
+	FcChar32 T.Unsigned_int
 	FcBool   int
 
 	FcAtomic    struct{}
@@ -39,27 +39,27 @@ type (
 	FcFontSet struct {
 		Nfont int
 		Sfont int
-		Fonts **FcPattern
+		Fonts **T.FcPattern
 	}
 
 	FcObjectSet struct {
 		Nobject int
 		Sobject int
-		Objects **Char
+		Objects **T.Char
 	}
 
 	FcMatrix struct {
-		XX, XY, YX, YY Double
+		XX, XY, YX, YY T.Double
 	}
 
 	FcObjectType struct {
-		Object *Char
+		Object *T.Char
 		Type   FcType
 	}
 
 	FcConstant struct {
 		Name   *FcChar8
-		Object *Char
+		Object *T.Char
 		Value  int
 	}
 
@@ -71,13 +71,13 @@ type (
 		// b FcBool
 		// d double
 		// m *FcMatrix
-		// c *FcCharSet
+		// c *T.FcCharSet
 		// f *void
 		// l *FcLangSet
 	}
 )
 
-type FcType Enum
+type FcType T.Enum
 
 const (
 	FcTypeVoid FcType = iota
@@ -91,14 +91,14 @@ const (
 	FcTypeLangSet
 )
 
-type FcSetName Enum
+type FcSetName T.Enum
 
 const (
 	FcSetSystem FcSetName = iota
 	FcSetApplication
 )
 
-type FcMatchKind Enum
+type FcMatchKind T.Enum
 
 const (
 	FcMatchPattern FcMatchKind = iota
@@ -106,7 +106,7 @@ const (
 	FcMatchScan
 )
 
-type FcResult Enum
+type FcResult T.Enum
 
 const (
 	FcResultMatch FcResult = iota
@@ -116,7 +116,7 @@ const (
 	FcResultOutOfMemory
 )
 
-type FcLangResult Enum
+type FcLangResult T.Enum
 
 const (
 	FcLangEqual FcLangResult = 0
@@ -125,7 +125,7 @@ const (
 	FcLangDifferentTerritory = FcLangDifferentCountry
 )
 
-type FcEndian Enum
+type FcEndian T.Enum
 
 const (
 	FcEndianBig FcEndian = iota
@@ -204,59 +204,59 @@ var (
 	FcConfigAppFontClear func(config *FcConfig)
 
 	FcConfigSubstituteWithPat func(config *FcConfig,
-		p *FcPattern, p_pat *FcPattern, kind FcMatchKind) FcBool
+		p *T.FcPattern, p_pat *T.FcPattern, kind FcMatchKind) FcBool
 
 	FcConfigSubstitute func(
-		config *FcConfig, p *FcPattern, kind FcMatchKind) FcBool
+		config *FcConfig, p *T.FcPattern, kind FcMatchKind) FcBool
 
-	FcCharSetCreate func() *FcCharSet
+	FcCharSetCreate func() *T.FcCharSet
 
-	FcCharSetNew func() *FcCharSet
+	FcCharSetNew func() *T.FcCharSet
 
-	FcCharSetDestroy func(fcs *FcCharSet)
+	FcCharSetDestroy func(fcs *T.FcCharSet)
 
-	FcCharSetAddChar func(fcs *FcCharSet, ucs4 FcChar32) FcBool
+	FcCharSetAddChar func(fcs *T.FcCharSet, ucs4 FcChar32) FcBool
 
-	FcCharSetCopy func(src *FcCharSet) *FcCharSet
+	FcCharSetCopy func(src *T.FcCharSet) *T.FcCharSet
 
-	FcCharSetEqual func(a, b *FcCharSet) FcBool
+	FcCharSetEqual func(a, b *T.FcCharSet) FcBool
 
-	FcCharSetIntersect func(a, b *FcCharSet) *FcCharSet
+	FcCharSetIntersect func(a, b *T.FcCharSet) *T.FcCharSet
 
-	FcCharSetUnion func(a, b *FcCharSet) *FcCharSet
+	FcCharSetUnion func(a, b *T.FcCharSet) *T.FcCharSet
 
-	FcCharSetSubtract func(a, b *FcCharSet) *FcCharSet
+	FcCharSetSubtract func(a, b *T.FcCharSet) *T.FcCharSet
 
-	FcCharSetMerge func(a, b *FcCharSet, changed *FcBool) FcBool
+	FcCharSetMerge func(a, b *T.FcCharSet, changed *FcBool) FcBool
 
-	FcCharSetHasChar func(fcs *FcCharSet, ucs4 FcChar32) FcBool
+	FcCharSetHasChar func(fcs *T.FcCharSet, ucs4 FcChar32) FcBool
 
-	FcCharSetCount func(a *FcCharSet) FcChar32
+	FcCharSetCount func(a *T.FcCharSet) FcChar32
 
-	FcCharSetIntersectCount func(a, b *FcCharSet) FcChar32
+	FcCharSetIntersectCount func(a, b *T.FcCharSet) FcChar32
 
-	FcCharSetSubtractCount func(a, b *FcCharSet) FcChar32
+	FcCharSetSubtractCount func(a, b *T.FcCharSet) FcChar32
 
-	FcCharSetIsSubset func(a, b *FcCharSet) FcBool
+	FcCharSetIsSubset func(a, b *T.FcCharSet) FcBool
 
-	FcCharSetFirstPage func(a *FcCharSet,
+	FcCharSetFirstPage func(a *T.FcCharSet,
 		Map [FC_CHARSET_MAP_SIZE]FcChar32,
 		next *FcChar32) FcChar32
 
-	FcCharSetNextPage func(a *FcCharSet,
+	FcCharSetNextPage func(a *T.FcCharSet,
 		Map [FC_CHARSET_MAP_SIZE]FcChar32,
 		next *FcChar32) FcChar32
 
 	FcCharSetCoverage func(
-		a *FcCharSet, page FcChar32, result *FcChar32) FcChar32
+		a *T.FcCharSet, page FcChar32, result *FcChar32) FcChar32
 
 	FcValuePrint func(v FcValue)
 
-	FcPatternPrint func(p *FcPattern)
+	FcPatternPrint func(p *T.FcPattern)
 
 	FcFontSetPrint func(s *FcFontSet)
 
-	FcDefaultSubstitute func(pattern *FcPattern)
+	FcDefaultSubstitute func(pattern *T.FcPattern)
 
 	FcFileIsDir func(file string) FcBool
 
@@ -278,18 +278,18 @@ var (
 		dir string, force FcBool, config *FcConfig) *FcCache
 
 	FcDirCacheLoadFile func(
-		cache_file string, file_stat *Stat) *FcCache
+		cache_file string, file_stat *T.Stat) *FcCache
 
 	FcDirCacheUnload func(cache *FcCache)
 
 	FcFreeTypeQuery func(file string,
-		id int, blanks *FcBlanks, count *int) *FcPattern
+		id int, blanks *FcBlanks, count *int) *T.FcPattern
 
 	FcFontSetCreate func() *FcFontSet
 
 	FcFontSetDestroy func(s *FcFontSet)
 
-	FcFontSetAdd func(s *FcFontSet, font *FcPattern) FcBool
+	FcFontSetAdd func(s *FcFontSet, font *T.FcPattern) FcBool
 
 	FcInitLoadConfig func() *FcConfig
 
@@ -307,7 +307,7 @@ var (
 
 	FcGetLangs func() *FcStrSet
 
-	FcLangGetCharSet func(lang string) *FcCharSet
+	FcLangGetCharSet func(lang string) *T.FcCharSet
 
 	FcLangSetCreate func() *FcLangSet
 
@@ -335,15 +335,15 @@ var (
 
 	FcObjectSetDestroy func(os *FcObjectSet)
 
-	FcObjectSetVaBuild func(first string, va Va_list) *FcObjectSet
+	FcObjectSetVaBuild func(first string, va T.Va_list) *FcObjectSet
 
 	FcObjectSetBuild func(first string, v ...VArg) *FcObjectSet
 
 	FcFontSetList func(config *FcConfig, sets **FcFontSet,
-		nsets int, p *FcPattern, os *FcObjectSet) *FcFontSet
+		nsets int, p *T.FcPattern, os *FcObjectSet) *FcFontSet
 
 	FcFontList func(config *FcConfig,
-		p *FcPattern, os *FcObjectSet) *FcFontSet
+		p *T.FcPattern, os *FcObjectSet) *FcFontSet
 
 	FcAtomicCreate func(file string) *FcAtomic
 
@@ -362,20 +362,20 @@ var (
 	FcAtomicDestroy func(atomic *FcAtomic)
 
 	FcFontSetMatch func(config *FcConfig, sets **FcFontSet,
-		nsets int, p *FcPattern, result *FcResult) *FcPattern
+		nsets int, p *T.FcPattern, result *FcResult) *T.FcPattern
 
 	FcFontMatch func(config *FcConfig,
-		p *FcPattern, result *FcResult) *FcPattern
+		p *T.FcPattern, result *FcResult) *T.FcPattern
 
 	FcFontRenderPrepare func(config *FcConfig,
-		pat *FcPattern, font *FcPattern) *FcPattern
+		pat *T.FcPattern, font *T.FcPattern) *T.FcPattern
 
 	FcFontSetSort func(config *FcConfig, sets **FcFontSet,
-		nsets int, p *FcPattern, trim FcBool,
-		csp **FcCharSet, result *FcResult) *FcFontSet
+		nsets int, p *T.FcPattern, trim FcBool,
+		csp **T.FcCharSet, result *FcResult) *FcFontSet
 
-	FcFontSort func(config *FcConfig, p *FcPattern,
-		trim FcBool, csp **FcCharSet, result *FcResult) *FcFontSet
+	FcFontSort func(config *FcConfig, p *T.FcPattern,
+		trim FcBool, csp **T.FcCharSet, result *FcResult) *FcFontSet
 
 	FcFontSetSortDestroy func(fs *FcFontSet)
 
@@ -385,11 +385,11 @@ var (
 
 	FcMatrixMultiply func(result, a, b *FcMatrix)
 
-	FcMatrixRotate func(m *FcMatrix, c, s Double)
+	FcMatrixRotate func(m *FcMatrix, c, s T.Double)
 
-	FcMatrixScale func(m *FcMatrix, sx, sy Double)
+	FcMatrixScale func(m *FcMatrix, sx, sy T.Double)
 
-	FcMatrixShear func(m *FcMatrix, sh, sv Double)
+	FcMatrixShear func(m *FcMatrix, sh, sv T.Double)
 
 	FcNameRegisterObjectTypes func(
 		types *FcObjectType, ntype int) FcBool
@@ -409,17 +409,17 @@ var (
 
 	FcNameConstant func(st string, result *int) FcBool
 
-	FcNameParse func(name string) *FcPattern
+	FcNameParse func(name string) *T.FcPattern
 
-	FcNameUnparse func(pat *FcPattern) string
+	FcNameUnparse func(pat *T.FcPattern) string
 
-	FcPatternCreate func() *FcPattern
+	FcPatternCreate func() *T.FcPattern
 
-	FcPatternDuplicate func(p *FcPattern) *FcPattern
+	FcPatternDuplicate func(p *T.FcPattern) *T.FcPattern
 
-	FcPatternReference func(p *FcPattern)
+	FcPatternReference func(p *T.FcPattern)
 
-	FcPatternFilter func(p *FcPattern, os *FcObjectSet) *FcPattern
+	FcPatternFilter func(p *T.FcPattern, os *FcObjectSet) *T.FcPattern
 
 	FcValueDestroy func(v FcValue)
 
@@ -427,76 +427,76 @@ var (
 
 	FcValueSave func(v FcValue) FcValue
 
-	FcPatternDestroy func(p *FcPattern)
+	FcPatternDestroy func(p *T.FcPattern)
 
-	FcPatternEqual func(pa, pb *FcPattern) FcBool
+	FcPatternEqual func(pa, pb *T.FcPattern) FcBool
 
 	FcPatternEqualSubset func(
-		pa, pb *FcPattern, os *FcObjectSet) FcBool
+		pa, pb *T.FcPattern, os *FcObjectSet) FcBool
 
-	FcPatternHash func(p *FcPattern) FcChar32
+	FcPatternHash func(p *T.FcPattern) FcChar32
 
-	FcPatternAdd func(p *FcPattern,
+	FcPatternAdd func(p *T.FcPattern,
 		object string, value FcValue, append FcBool) FcBool
 
-	FcPatternAddWeak func(p *FcPattern,
+	FcPatternAddWeak func(p *T.FcPattern,
 		object string, value FcValue, append FcBool) FcBool
 
 	FcPatternGet func(
-		p *FcPattern, object string, id int, v *FcValue) FcResult
+		p *T.FcPattern, object string, id int, v *FcValue) FcResult
 
-	FcPatternDel func(p *FcPattern, object string) FcBool
+	FcPatternDel func(p *T.FcPattern, object string) FcBool
 
 	FcPatternRemove func(
-		p *FcPattern, object string, id int) FcBool
+		p *T.FcPattern, object string, id int) FcBool
 
 	FcPatternAddInteger func(
-		p *FcPattern, object string, i int) FcBool
+		p *T.FcPattern, object string, i int) FcBool
 
 	FcPatternAddDouble func(
-		p *FcPattern, object string, d Double) FcBool
+		p *T.FcPattern, object string, d T.Double) FcBool
 
 	FcPatternAddString func(
-		p *FcPattern, object string, s string) FcBool
+		p *T.FcPattern, object string, s string) FcBool
 
 	FcPatternAddMatrix func(
-		p *FcPattern, object string, s *FcMatrix) FcBool
+		p *T.FcPattern, object string, s *FcMatrix) FcBool
 
 	FcPatternAddCharSet func(
-		p *FcPattern, object string, c *FcCharSet) FcBool
+		p *T.FcPattern, object string, c *T.FcCharSet) FcBool
 
 	FcPatternAddBool func(
-		p *FcPattern, object string, b FcBool) FcBool
+		p *T.FcPattern, object string, b FcBool) FcBool
 
 	FcPatternAddLangSet func(
-		p *FcPattern, object string, ls *FcLangSet) FcBool
+		p *T.FcPattern, object string, ls *FcLangSet) FcBool
 
 	FcPatternGetInteger func(
-		p *FcPattern, object string, n int, i *int) FcResult
+		p *T.FcPattern, object string, n int, i *int) FcResult
 
 	FcPatternGetDouble func(
-		p *FcPattern, object string, n int, d *Double) FcResult
+		p *T.FcPattern, object string, n int, d *T.Double) FcResult
 
 	FcPatternGetString func(
-		p *FcPattern, object string, n int, s *string) FcResult
+		p *T.FcPattern, object string, n int, s *string) FcResult
 
 	FcPatternGetMatrix func(
-		p *FcPattern, object string, n int, s **FcMatrix) FcResult
+		p *T.FcPattern, object string, n int, s **FcMatrix) FcResult
 
-	FcPatternGetCharSet func(p *FcPattern,
-		object string, n int, c **FcCharSet) FcResult
+	FcPatternGetCharSet func(p *T.FcPattern,
+		object string, n int, c **T.FcCharSet) FcResult
 
 	FcPatternGetBool func(
-		p *FcPattern, object string, n int, b *FcBool) FcResult
+		p *T.FcPattern, object string, n int, b *FcBool) FcResult
 
-	FcPatternGetLangSet func(p *FcPattern,
+	FcPatternGetLangSet func(p *T.FcPattern,
 		object string, n int, ls **FcLangSet) FcResult
 
-	FcPatternVaBuild func(p *FcPattern, va Va_list) *FcPattern
+	FcPatternVaBuild func(p *T.FcPattern, va T.Va_list) *T.FcPattern
 
-	FcPatternBuild func(p *FcPattern, v ...VArg) *FcPattern
+	FcPatternBuild func(p *T.FcPattern, v ...VArg) *T.FcPattern
 
-	FcPatternFormat func(pat *FcPattern, format string) string
+	FcPatternFormat func(pat *T.FcPattern, format string) string
 
 	FcStrCopy func(s string) string
 
@@ -558,22 +558,22 @@ var (
 	FcConfigParseAndLoad func(
 		config *FcConfig, file string, complain FcBool) FcBool
 
-	FcFreeTypeCharIndex func(face FT_Face, ucs4 FcChar32) FT_UInt
+	FcFreeTypeCharIndex func(face T.FT_Face, ucs4 FcChar32) T.FT_UInt
 
 	FcFreeTypeCharSetAndSpacing func(
-		face FT_Face, blanks *FcBlanks, spacing *int) *FcCharSet
+		face T.FT_Face, blanks *FcBlanks, spacing *int) *T.FcCharSet
 
 	FcFreeTypeCharSet func(
-		face FT_Face, blanks *FcBlanks) *FcCharSet
+		face T.FT_Face, blanks *FcBlanks) *T.FcCharSet
 
 	FcPatternGetFTFace func(
-		p *FcPattern, object string, n int, f *FT_Face) FcResult
+		p *T.FcPattern, object string, n int, f *T.FT_Face) FcResult
 
 	FcPatternAddFTFace func(
-		p *FcPattern, object string, f FT_Face) FcBool
+		p *T.FcPattern, object string, f T.FT_Face) FcBool
 
-	FcFreeTypeQueryFace func(face FT_Face,
-		file string, id int, blanks *FcBlanks) *FcPattern
+	FcFreeTypeQueryFace func(face T.FT_Face,
+		file string, id int, blanks *FcBlanks) *T.FcPattern
 )
 
 var dll = "libfontconfig-1.dll"

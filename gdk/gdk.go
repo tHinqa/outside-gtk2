@@ -7,7 +7,7 @@ package gdk
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -23,1199 +23,1199 @@ type (
 )
 
 var (
-	Gdk_colormap_get_type func() GType
+	Gdk_colormap_get_type func() T.GType
 
 	Gdk_colormap_new func(
-		visual *GdkVisual,
-		allocate Gboolean) *GdkColormap
+		visual *T.GdkVisual,
+		allocate T.Gboolean) *T.GdkColormap
 
 	Gdk_colormap_ref func(
-		cmap *GdkColormap) *GdkColormap
+		cmap *T.GdkColormap) *T.GdkColormap
 
 	Gdk_colormap_unref func(
-		cmap *GdkColormap)
+		cmap *T.GdkColormap)
 
-	Gdk_colormap_get_system func() *GdkColormap
+	Gdk_colormap_get_system func() *T.GdkColormap
 
 	Gdk_colormap_get_screen func(
-		cmap *GdkColormap) *GdkScreen
+		cmap *T.GdkColormap) *T.GdkScreen
 
-	Gdk_colormap_get_system_size func() Gint
+	Gdk_colormap_get_system_size func() T.Gint
 
 	Gdk_colormap_change func(
-		colormap *GdkColormap,
-		ncolors Gint)
+		colormap *T.GdkColormap,
+		ncolors T.Gint)
 
 	Gdk_colormap_alloc_colors func(
-		colormap *GdkColormap,
-		colors *GdkColor,
-		n_colors Gint,
-		writeable Gboolean,
-		best_match Gboolean,
-		success *Gboolean) Gint
+		colormap *T.GdkColormap,
+		colors *T.GdkColor,
+		n_colors T.Gint,
+		writeable T.Gboolean,
+		best_match T.Gboolean,
+		success *T.Gboolean) T.Gint
 
 	Gdk_colormap_alloc_color func(
-		colormap *GdkColormap,
-		color *GdkColor,
-		writeable Gboolean,
-		best_match Gboolean) Gboolean
+		colormap *T.GdkColormap,
+		color *T.GdkColor,
+		writeable T.Gboolean,
+		best_match T.Gboolean) T.Gboolean
 
 	Gdk_colormap_free_colors func(
-		colormap *GdkColormap,
-		colors *GdkColor,
-		n_colors Gint)
+		colormap *T.GdkColormap,
+		colors *T.GdkColor,
+		n_colors T.Gint)
 
 	Gdk_colormap_query_color func(
-		colormap *GdkColormap,
-		pixel Gulong,
-		result *GdkColor)
+		colormap *T.GdkColormap,
+		pixel T.Gulong,
+		result *T.GdkColor)
 
 	Gdk_colormap_get_visual func(
-		colormap *GdkColormap) *GdkVisual
+		colormap *T.GdkColormap) *T.GdkVisual
 
 	Gdk_color_copy func(
-		color *GdkColor) *GdkColor
+		color *T.GdkColor) *T.GdkColor
 
 	Gdk_color_free func(
-		color *GdkColor)
+		color *T.GdkColor)
 
 	Gdk_color_parse func(
 		spec string,
-		color *GdkColor) Gboolean
+		color *T.GdkColor) T.Gboolean
 
 	Gdk_color_hash func(
-		colora *GdkColor) Guint
+		colora *T.GdkColor) T.Guint
 
 	Gdk_color_equal func(
-		colora *GdkColor,
-		colorb *GdkColor) Gboolean
+		colora *T.GdkColor,
+		colorb *T.GdkColor) T.Gboolean
 
 	Gdk_color_to_string func(
-		color *GdkColor) string
+		color *T.GdkColor) string
 
-	Gdk_color_get_type func() GType
+	Gdk_color_get_type func() T.GType
 
 	Gdk_colors_store func(
-		colormap *GdkColormap,
-		colors *GdkColor,
-		ncolors Gint)
+		colormap *T.GdkColormap,
+		colors *T.GdkColor,
+		ncolors T.Gint)
 
 	Gdk_color_white func(
-		colormap *GdkColormap,
-		color *GdkColor) Gint
+		colormap *T.GdkColormap,
+		color *T.GdkColor) T.Gint
 
 	Gdk_color_black func(
-		colormap *GdkColormap,
-		color *GdkColor) Gint
+		colormap *T.GdkColormap,
+		color *T.GdkColor) T.Gint
 
 	Gdk_color_alloc func(
-		colormap *GdkColormap,
-		color *GdkColor) Gint
+		colormap *T.GdkColormap,
+		color *T.GdkColor) T.Gint
 
 	Gdk_color_change func(
-		colormap *GdkColormap,
-		color *GdkColor) Gint
+		colormap *T.GdkColormap,
+		color *T.GdkColor) T.Gint
 
 	Gdk_colors_alloc func(
-		colormap *GdkColormap,
-		contiguous Gboolean,
-		planes *Gulong,
-		nplanes Gint,
-		pixels *Gulong,
-		npixels Gint) Gint
+		colormap *T.GdkColormap,
+		contiguous T.Gboolean,
+		planes *T.Gulong,
+		nplanes T.Gint,
+		pixels *T.Gulong,
+		npixels T.Gint) T.Gint
 
 	Gdk_colors_free func(
-		colormap *GdkColormap,
-		pixels *Gulong,
-		npixels Gint,
-		planes Gulong)
+		colormap *T.GdkColormap,
+		pixels *T.Gulong,
+		npixels T.Gint,
+		planes T.Gulong)
 
-	Gdk_drag_context_get_type func() GType
+	Gdk_drag_context_get_type func() T.GType
 
-	Gdk_drag_context_new func() *GdkDragContext
+	Gdk_drag_context_new func() *T.GdkDragContext
 
 	Gdk_drag_context_list_targets func(
-		context *GdkDragContext) *GList
+		context *T.GdkDragContext) *T.GList
 
 	Gdk_drag_context_get_actions func(
-		context *GdkDragContext) GdkDragAction
+		context *T.GdkDragContext) T.GdkDragAction
 
 	Gdk_drag_context_get_suggested_action func(
-		context *GdkDragContext) GdkDragAction
+		context *T.GdkDragContext) T.GdkDragAction
 
 	Gdk_drag_context_get_selected_action func(
-		context *GdkDragContext) GdkDragAction
+		context *T.GdkDragContext) T.GdkDragAction
 
 	Gdk_drag_context_get_source_window func(
-		context *GdkDragContext) *GdkWindow
+		context *T.GdkDragContext) *T.GdkWindow
 
 	Gdk_drag_context_get_dest_window func(
-		context *GdkDragContext) *GdkWindow
+		context *T.GdkDragContext) *T.GdkWindow
 
 	Gdk_drag_context_get_protocol func(
-		context *GdkDragContext) GdkDragProtocol
+		context *T.GdkDragContext) T.GdkDragProtocol
 
 	Gdk_drag_context_ref func(
-		context *GdkDragContext)
+		context *T.GdkDragContext)
 
 	Gdk_drag_context_unref func(
-		context *GdkDragContext)
+		context *T.GdkDragContext)
 
 	Gdk_drag_status func(
-		context *GdkDragContext,
-		action GdkDragAction,
-		time_ Guint32)
+		context *T.GdkDragContext,
+		action T.GdkDragAction,
+		time_ T.Guint32)
 
 	Gdk_drop_reply func(
-		context *GdkDragContext,
-		ok Gboolean,
-		time_ Guint32)
+		context *T.GdkDragContext,
+		ok T.Gboolean,
+		time_ T.Guint32)
 
 	Gdk_drop_finish func(
-		context *GdkDragContext,
-		success Gboolean,
-		time_ Guint32)
+		context *T.GdkDragContext,
+		success T.Gboolean,
+		time_ T.Guint32)
 
 	Gdk_drag_get_selection func(
-		context *GdkDragContext) GdkAtom
+		context *T.GdkDragContext) T.GdkAtom
 
 	Gdk_drag_begin func(
-		window *GdkWindow,
-		targets *GList) *GdkDragContext
+		window *T.GdkWindow,
+		targets *T.GList) *T.GdkDragContext
 
 	Gdk_drag_get_protocol_for_display func(
-		display *GdkDisplay,
-		xid GdkNativeWindow,
-		protocol *GdkDragProtocol) GdkNativeWindow
+		display *T.GdkDisplay,
+		xid T.GdkNativeWindow,
+		protocol *T.GdkDragProtocol) T.GdkNativeWindow
 
 	Gdk_drag_find_window_for_screen func(
-		context *GdkDragContext,
-		drag_window *GdkWindow,
-		screen *GdkScreen,
-		x_root Gint,
-		y_root Gint,
-		dest_window **GdkWindow,
-		protocol *GdkDragProtocol)
+		context *T.GdkDragContext,
+		drag_window *T.GdkWindow,
+		screen *T.GdkScreen,
+		x_root T.Gint,
+		y_root T.Gint,
+		dest_window **T.GdkWindow,
+		protocol *T.GdkDragProtocol)
 
 	Gdk_drag_get_protocol func(
-		xid GdkNativeWindow,
-		protocol *GdkDragProtocol) GdkNativeWindow
+		xid T.GdkNativeWindow,
+		protocol *T.GdkDragProtocol) T.GdkNativeWindow
 
 	Gdk_drag_find_window func(
-		context *GdkDragContext,
-		drag_window *GdkWindow,
-		x_root Gint,
-		y_root Gint,
-		dest_window **GdkWindow,
-		protocol *GdkDragProtocol)
+		context *T.GdkDragContext,
+		drag_window *T.GdkWindow,
+		x_root T.Gint,
+		y_root T.Gint,
+		dest_window **T.GdkWindow,
+		protocol *T.GdkDragProtocol)
 
 	Gdk_drag_motion func(
-		context *GdkDragContext,
-		dest_window *GdkWindow,
-		protocol GdkDragProtocol,
-		x_root Gint,
-		y_root Gint,
-		suggested_action GdkDragAction,
-		possible_actions GdkDragAction,
-		time_ Guint32) Gboolean
+		context *T.GdkDragContext,
+		dest_window *T.GdkWindow,
+		protocol T.GdkDragProtocol,
+		x_root T.Gint,
+		y_root T.Gint,
+		suggested_action T.GdkDragAction,
+		possible_actions T.GdkDragAction,
+		time_ T.Guint32) T.Gboolean
 
 	Gdk_drag_drop func(
-		context *GdkDragContext,
-		time_ Guint32)
+		context *T.GdkDragContext,
+		time_ T.Guint32)
 
 	Gdk_drag_abort func(
-		context *GdkDragContext,
-		time_ Guint32)
+		context *T.GdkDragContext,
+		time_ T.Guint32)
 
 	Gdk_drag_drop_succeeded func(
-		context *GdkDragContext) Gboolean
+		context *T.GdkDragContext) T.Gboolean
 
-	Gdk_device_get_type func() GType
+	Gdk_device_get_type func() T.GType
 
-	Gdk_devices_list func() *GList
+	Gdk_devices_list func() *T.GList
 
 	Gdk_device_get_name func(
-		device *GdkDevice) string
+		device *T.GdkDevice) string
 
 	Gdk_device_get_source func(
-		device *GdkDevice) GdkInputSource
+		device *T.GdkDevice) T.GdkInputSource
 
 	Gdk_device_get_mode func(
-		device *GdkDevice) GdkInputMode
+		device *T.GdkDevice) T.GdkInputMode
 
 	Gdk_device_get_has_cursor func(
-		device *GdkDevice) Gboolean
+		device *T.GdkDevice) T.Gboolean
 
 	Gdk_device_get_key func(
-		device *GdkDevice,
-		index Guint,
-		keyval *Guint,
-		modifiers *GdkModifierType)
+		device *T.GdkDevice,
+		index T.Guint,
+		keyval *T.Guint,
+		modifiers *T.GdkModifierType)
 
 	Gdk_device_get_axis_use func(
-		device *GdkDevice,
-		index Guint) GdkAxisUse
+		device *T.GdkDevice,
+		index T.Guint) T.GdkAxisUse
 
 	Gdk_device_get_n_keys func(
-		device *GdkDevice) Gint
+		device *T.GdkDevice) T.Gint
 
 	Gdk_device_get_n_axes func(
-		device *GdkDevice) Gint
+		device *T.GdkDevice) T.Gint
 
 	Gdk_device_set_source func(
-		device *GdkDevice,
-		source GdkInputSource)
+		device *T.GdkDevice,
+		source T.GdkInputSource)
 
 	Gdk_device_set_mode func(
-		device *GdkDevice,
-		mode GdkInputMode) Gboolean
+		device *T.GdkDevice,
+		mode T.GdkInputMode) T.Gboolean
 
 	Gdk_device_set_key func(
-		device *GdkDevice,
-		index_ Guint,
-		keyval Guint,
-		modifiers GdkModifierType)
+		device *T.GdkDevice,
+		index_ T.Guint,
+		keyval T.Guint,
+		modifiers T.GdkModifierType)
 
 	Gdk_device_set_axis_use func(
-		device *GdkDevice,
-		index_ Guint,
-		use GdkAxisUse)
+		device *T.GdkDevice,
+		index_ T.Guint,
+		use T.GdkAxisUse)
 
 	Gdk_device_get_state func(
-		device *GdkDevice,
-		window *GdkWindow,
-		axes *Gdouble,
-		mask *GdkModifierType)
+		device *T.GdkDevice,
+		window *T.GdkWindow,
+		axes *T.Gdouble,
+		mask *T.GdkModifierType)
 
 	Gdk_device_get_history func(
-		device *GdkDevice,
-		window *GdkWindow,
-		start Guint32,
-		stop Guint32,
-		events ***GdkTimeCoord,
-		n_events *Gint) Gboolean
+		device *T.GdkDevice,
+		window *T.GdkWindow,
+		start T.Guint32,
+		stop T.Guint32,
+		events ***T.GdkTimeCoord,
+		n_events *T.Gint) T.Gboolean
 
 	Gdk_device_free_history func(
-		events **GdkTimeCoord,
-		n_events Gint)
+		events **T.GdkTimeCoord,
+		n_events T.Gint)
 
 	Gdk_device_get_axis func(
-		device *GdkDevice,
-		axes *Gdouble,
-		use GdkAxisUse,
-		value *Gdouble) Gboolean
+		device *T.GdkDevice,
+		axes *T.Gdouble,
+		use T.GdkAxisUse,
+		value *T.Gdouble) T.Gboolean
 
 	Gdk_input_set_extension_events func(
-		window *GdkWindow,
-		mask Gint,
-		mode GdkExtensionMode)
+		window *T.GdkWindow,
+		mask T.Gint,
+		mode T.GdkExtensionMode)
 
-	Gdk_device_get_core_pointer func() *GdkDevice
+	Gdk_device_get_core_pointer func() *T.GdkDevice
 
-	Gdk_event_get_type func() GType
+	Gdk_event_get_type func() T.GType
 
-	Gdk_events_pending func() Gboolean
+	Gdk_events_pending func() T.Gboolean
 
-	Gdk_event_get func() *GdkEvent
+	Gdk_event_get func() *T.GdkEvent
 
-	Gdk_event_peek func() *GdkEvent
+	Gdk_event_peek func() *T.GdkEvent
 
 	Gdk_event_get_graphics_expose func(
-		window *GdkWindow) *GdkEvent
+		window *T.GdkWindow) *T.GdkEvent
 
 	Gdk_event_put func(
-		event *GdkEvent)
+		event *T.GdkEvent)
 
 	Gdk_event_new func(
-		t GdkEventType) *GdkEvent
+		t T.GdkEventType) *T.GdkEvent
 
 	Gdk_event_copy func(
-		event *GdkEvent) *GdkEvent
+		event *T.GdkEvent) *T.GdkEvent
 
 	Gdk_event_free func(
-		event *GdkEvent)
+		event *T.GdkEvent)
 
 	Gdk_event_get_time func(
-		event *GdkEvent) Guint32
+		event *T.GdkEvent) T.Guint32
 
 	Gdk_event_get_state func(
-		event *GdkEvent,
-		state *GdkModifierType) Gboolean
+		event *T.GdkEvent,
+		state *T.GdkModifierType) T.Gboolean
 
 	Gdk_event_get_coords func(
-		event *GdkEvent,
-		x_win *Gdouble,
-		y_win *Gdouble) Gboolean
+		event *T.GdkEvent,
+		x_win *T.Gdouble,
+		y_win *T.Gdouble) T.Gboolean
 
 	Gdk_event_get_root_coords func(
-		event *GdkEvent,
-		x_root *Gdouble,
-		y_root *Gdouble) Gboolean
+		event *T.GdkEvent,
+		x_root *T.Gdouble,
+		y_root *T.Gdouble) T.Gboolean
 
 	Gdk_event_get_axis func(
-		event *GdkEvent,
-		axis_use GdkAxisUse,
-		value *Gdouble) Gboolean
+		event *T.GdkEvent,
+		axis_use T.GdkAxisUse,
+		value *T.Gdouble) T.Gboolean
 
 	Gdk_event_request_motions func(
-		event *GdkEventMotion)
+		event *T.GdkEventMotion)
 
 	Gdk_event_handler_set func(
-		f GdkEventFunc,
-		data Gpointer,
-		notify GDestroyNotify)
+		f T.GdkEventFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify)
 
 	Gdk_event_set_screen func(
-		event *GdkEvent,
-		screen *GdkScreen)
+		event *T.GdkEvent,
+		screen *T.GdkScreen)
 
 	Gdk_event_get_screen func(
-		event *GdkEvent) *GdkScreen
+		event *T.GdkEvent) *T.GdkScreen
 
 	Gdk_set_show_events func(
-		show_events Gboolean)
+		show_events T.Gboolean)
 
-	Gdk_get_show_events func() Gboolean
+	Gdk_get_show_events func() T.Gboolean
 
 	Gdk_add_client_message_filter func(
-		message_type GdkAtom,
-		f GdkFilterFunc,
-		data Gpointer)
+		message_type T.GdkAtom,
+		f T.GdkFilterFunc,
+		data T.Gpointer)
 
 	Gdk_setting_get func(
 		name string,
-		value *GValue) Gboolean
+		value *T.GValue) T.Gboolean
 
-	Gdk_display_get_type func() GType
+	Gdk_display_get_type func() T.GType
 
 	Gdk_display_open func(
-		display_name string) *GdkDisplay
+		display_name string) *T.GdkDisplay
 
 	Gdk_display_get_name func(
-		display *GdkDisplay) string
+		display *T.GdkDisplay) string
 
 	Gdk_display_get_n_screens func(
-		display *GdkDisplay) Gint
+		display *T.GdkDisplay) T.Gint
 
 	Gdk_display_get_screen func(
-		display *GdkDisplay,
-		screen_num Gint) *GdkScreen
+		display *T.GdkDisplay,
+		screen_num T.Gint) *T.GdkScreen
 
 	Gdk_display_get_default_screen func(
-		display *GdkDisplay) *GdkScreen
+		display *T.GdkDisplay) *T.GdkScreen
 
 	Gdk_display_pointer_ungrab func(
-		display *GdkDisplay,
-		time_ Guint32)
+		display *T.GdkDisplay,
+		time_ T.Guint32)
 
 	Gdk_display_keyboard_ungrab func(
-		display *GdkDisplay,
-		time_ Guint32)
+		display *T.GdkDisplay,
+		time_ T.Guint32)
 
 	Gdk_display_pointer_is_grabbed func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_beep func(
-		display *GdkDisplay)
+		display *T.GdkDisplay)
 
 	Gdk_display_sync func(
-		display *GdkDisplay)
+		display *T.GdkDisplay)
 
 	Gdk_display_flush func(
-		display *GdkDisplay)
+		display *T.GdkDisplay)
 
 	Gdk_display_close func(
-		display *GdkDisplay)
+		display *T.GdkDisplay)
 
 	Gdk_display_is_closed func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_list_devices func(
-		display *GdkDisplay) *GList
+		display *T.GdkDisplay) *T.GList
 
 	Gdk_display_get_event func(
-		display *GdkDisplay) *GdkEvent
+		display *T.GdkDisplay) *T.GdkEvent
 
 	Gdk_display_peek_event func(
-		display *GdkDisplay) *GdkEvent
+		display *T.GdkDisplay) *T.GdkEvent
 
 	Gdk_display_put_event func(
-		display *GdkDisplay,
-		event *GdkEvent)
+		display *T.GdkDisplay,
+		event *T.GdkEvent)
 
 	Gdk_display_add_client_message_filter func(
-		display *GdkDisplay,
-		message_type GdkAtom,
-		f GdkFilterFunc,
-		data Gpointer)
+		display *T.GdkDisplay,
+		message_type T.GdkAtom,
+		f T.GdkFilterFunc,
+		data T.Gpointer)
 
 	Gdk_display_set_double_click_time func(
-		display *GdkDisplay,
-		msec Guint)
+		display *T.GdkDisplay,
+		msec T.Guint)
 
 	Gdk_display_set_double_click_distance func(
-		display *GdkDisplay,
-		distance Guint)
+		display *T.GdkDisplay,
+		distance T.Guint)
 
-	Gdk_display_get_default func() *GdkDisplay
+	Gdk_display_get_default func() *T.GdkDisplay
 
 	Gdk_display_get_core_pointer func(
-		display *GdkDisplay) *GdkDevice
+		display *T.GdkDisplay) *T.GdkDevice
 
 	Gdk_display_get_pointer func(
-		display *GdkDisplay,
-		screen **GdkScreen,
-		x *Gint,
-		y *Gint,
-		mask *GdkModifierType)
+		display *T.GdkDisplay,
+		screen **T.GdkScreen,
+		x *T.Gint,
+		y *T.Gint,
+		mask *T.GdkModifierType)
 
 	Gdk_display_get_window_at_pointer func(
-		display *GdkDisplay,
-		win_x *Gint,
-		win_y *Gint) *GdkWindow
+		display *T.GdkDisplay,
+		win_x *T.Gint,
+		win_y *T.Gint) *T.GdkWindow
 
 	Gdk_display_warp_pointer func(
-		display *GdkDisplay,
-		screen *GdkScreen,
-		x Gint,
-		y Gint)
+		display *T.GdkDisplay,
+		screen *T.GdkScreen,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_display_set_pointer_hooks func(
-		display *GdkDisplay,
-		new_hooks *GdkDisplayPointerHooks) *GdkDisplayPointerHooks
+		display *T.GdkDisplay,
+		new_hooks *T.GdkDisplayPointerHooks) *T.GdkDisplayPointerHooks
 
-	Gdk_display_open_default_libgtk_only func() *GdkDisplay
+	Gdk_display_open_default_libgtk_only func() *T.GdkDisplay
 
 	Gdk_display_supports_cursor_alpha func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_supports_cursor_color func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_get_default_cursor_size func(
-		display *GdkDisplay) Guint
+		display *T.GdkDisplay) T.Guint
 
 	Gdk_display_get_maximal_cursor_size func(
-		display *GdkDisplay,
-		width *Guint,
-		height *Guint)
+		display *T.GdkDisplay,
+		width *T.Guint,
+		height *T.Guint)
 
 	Gdk_display_get_default_group func(
-		display *GdkDisplay) *GdkWindow
+		display *T.GdkDisplay) *T.GdkWindow
 
 	Gdk_display_supports_selection_notification func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_request_selection_notification func(
-		display *GdkDisplay,
-		selection GdkAtom) Gboolean
+		display *T.GdkDisplay,
+		selection T.GdkAtom) T.Gboolean
 
 	Gdk_display_supports_clipboard_persistence func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_store_clipboard func(
-		display *GdkDisplay,
-		clipboard_window *GdkWindow,
-		time_ Guint32,
-		targets *GdkAtom,
-		n_targets Gint)
+		display *T.GdkDisplay,
+		clipboard_window *T.GdkWindow,
+		time_ T.Guint32,
+		targets *T.GdkAtom,
+		n_targets T.Gint)
 
 	Gdk_display_supports_shapes func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_supports_input_shapes func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_supports_composite func(
-		display *GdkDisplay) Gboolean
+		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_screen_get_type func() GType
+	Gdk_screen_get_type func() T.GType
 
 	Gdk_screen_get_default_colormap func(
-		screen *GdkScreen) *GdkColormap
+		screen *T.GdkScreen) *T.GdkColormap
 
 	Gdk_screen_set_default_colormap func(
-		screen *GdkScreen,
-		colormap *GdkColormap)
+		screen *T.GdkScreen,
+		colormap *T.GdkColormap)
 
 	Gdk_screen_get_system_colormap func(
-		screen *GdkScreen) *GdkColormap
+		screen *T.GdkScreen) *T.GdkColormap
 
 	Gdk_screen_get_system_visual func(
-		screen *GdkScreen) *GdkVisual
+		screen *T.GdkScreen) *T.GdkVisual
 
 	Gdk_screen_get_rgb_colormap func(
-		screen *GdkScreen) *GdkColormap
+		screen *T.GdkScreen) *T.GdkColormap
 
 	Gdk_screen_get_rgb_visual func(
-		screen *GdkScreen) *GdkVisual
+		screen *T.GdkScreen) *T.GdkVisual
 
 	Gdk_screen_get_rgba_colormap func(
-		screen *GdkScreen) *GdkColormap
+		screen *T.GdkScreen) *T.GdkColormap
 
 	Gdk_screen_get_rgba_visual func(
-		screen *GdkScreen) *GdkVisual
+		screen *T.GdkScreen) *T.GdkVisual
 
 	Gdk_screen_is_composited func(
-		screen *GdkScreen) Gboolean
+		screen *T.GdkScreen) T.Gboolean
 
 	Gdk_screen_get_root_window func(
-		screen *GdkScreen) *GdkWindow
+		screen *T.GdkScreen) *T.GdkWindow
 
 	Gdk_screen_get_display func(
-		screen *GdkScreen) *GdkDisplay
+		screen *T.GdkScreen) *T.GdkDisplay
 
 	Gdk_screen_get_number func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_width func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_height func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_width_mm func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_height_mm func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_list_visuals func(
-		screen *GdkScreen) *GList
+		screen *T.GdkScreen) *T.GList
 
 	Gdk_screen_get_toplevel_windows func(
-		screen *GdkScreen) *GList
+		screen *T.GdkScreen) *T.GList
 
 	Gdk_screen_make_display_name func(
-		screen *GdkScreen) string
+		screen *T.GdkScreen) string
 
 	Gdk_screen_get_n_monitors func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_primary_monitor func(
-		screen *GdkScreen) Gint
+		screen *T.GdkScreen) T.Gint
 
 	Gdk_screen_get_monitor_geometry func(
-		screen *GdkScreen,
-		monitor_num Gint,
-		dest *GdkRectangle)
+		screen *T.GdkScreen,
+		monitor_num T.Gint,
+		dest *T.GdkRectangle)
 
 	Gdk_screen_get_monitor_at_point func(
-		screen *GdkScreen,
-		x Gint,
-		y Gint) Gint
+		screen *T.GdkScreen,
+		x T.Gint,
+		y T.Gint) T.Gint
 
 	Gdk_screen_get_monitor_at_window func(
-		screen *GdkScreen,
-		window *GdkWindow) Gint
+		screen *T.GdkScreen,
+		window *T.GdkWindow) T.Gint
 
 	Gdk_screen_get_monitor_width_mm func(
-		screen *GdkScreen,
-		monitor_num Gint) Gint
+		screen *T.GdkScreen,
+		monitor_num T.Gint) T.Gint
 
 	Gdk_screen_get_monitor_height_mm func(
-		screen *GdkScreen,
-		monitor_num Gint) Gint
+		screen *T.GdkScreen,
+		monitor_num T.Gint) T.Gint
 
 	Gdk_screen_get_monitor_plug_name func(
-		screen *GdkScreen,
-		monitor_num Gint) string
+		screen *T.GdkScreen,
+		monitor_num T.Gint) string
 
 	Gdk_screen_broadcast_client_message func(
-		screen *GdkScreen,
-		event *GdkEvent)
+		screen *T.GdkScreen,
+		event *T.GdkEvent)
 
-	Gdk_screen_get_default func() *GdkScreen
+	Gdk_screen_get_default func() *T.GdkScreen
 
 	Gdk_screen_get_setting func(
-		screen *GdkScreen,
+		screen *T.GdkScreen,
 		name string,
-		value *GValue) Gboolean
+		value *T.GValue) T.Gboolean
 
 	Gdk_screen_set_font_options func(
-		screen *GdkScreen,
-		options *Cairo_font_options_t)
+		screen *T.GdkScreen,
+		options *T.Cairo_font_options_t)
 
 	Gdk_screen_get_font_options func(
-		screen *GdkScreen) *Cairo_font_options_t
+		screen *T.GdkScreen) *T.Cairo_font_options_t
 
 	Gdk_screen_set_resolution func(
-		screen *GdkScreen,
-		dpi Gdouble)
+		screen *T.GdkScreen,
+		dpi T.Gdouble)
 
 	Gdk_screen_get_resolution func(
-		screen *GdkScreen) Gdouble
+		screen *T.GdkScreen) T.Gdouble
 
 	Gdk_screen_get_active_window func(
-		screen *GdkScreen) *GdkWindow
+		screen *T.GdkScreen) *T.GdkWindow
 
 	Gdk_screen_get_window_stack func(
-		screen *GdkScreen) *GList
+		screen *T.GdkScreen) *T.GList
 
-	Gdk_app_launch_context_get_type func() GType
+	Gdk_app_launch_context_get_type func() T.GType
 
-	Gdk_app_launch_context_new func() *GdkAppLaunchContext
+	Gdk_app_launch_context_new func() *T.GdkAppLaunchContext
 
 	Gdk_app_launch_context_set_display func(
-		context *GdkAppLaunchContext,
-		display *GdkDisplay)
+		context *T.GdkAppLaunchContext,
+		display *T.GdkDisplay)
 
 	Gdk_app_launch_context_set_screen func(
-		context *GdkAppLaunchContext,
-		screen *GdkScreen)
+		context *T.GdkAppLaunchContext,
+		screen *T.GdkScreen)
 
 	Gdk_app_launch_context_set_desktop func(
-		context *GdkAppLaunchContext,
-		desktop Gint)
+		context *T.GdkAppLaunchContext,
+		desktop T.Gint)
 
 	Gdk_app_launch_context_set_timestamp func(
-		context *GdkAppLaunchContext,
-		timestamp Guint32)
+		context *T.GdkAppLaunchContext,
+		timestamp T.Guint32)
 
 	Gdk_app_launch_context_set_icon func(
-		context *GdkAppLaunchContext,
-		icon *GIcon)
+		context *T.GdkAppLaunchContext,
+		icon *T.GIcon)
 
 	Gdk_app_launch_context_set_icon_name func(
-		context *GdkAppLaunchContext,
+		context *T.GdkAppLaunchContext,
 		icon_name string)
 
 	Gdk_rgb_init func()
 
 	Gdk_rgb_xpixel_from_rgb func(
-		rgb Guint32) Gulong
+		rgb T.Guint32) T.Gulong
 
 	Gdk_rgb_gc_set_foreground func(
-		gc *GdkGC,
-		rgb Guint32)
+		gc *T.GdkGC,
+		rgb T.Guint32)
 
 	Gdk_rgb_gc_set_background func(
-		gc *GdkGC,
-		rgb Guint32)
+		gc *T.GdkGC,
+		rgb T.Guint32)
 
 	Gdk_rgb_find_color func(
-		colormap *GdkColormap,
-		color *GdkColor)
+		colormap *T.GdkColormap,
+		color *T.GdkColor)
 
 	Gdk_draw_rgb_image func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		rgb_buf *Guchar,
-		rowstride Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		rgb_buf *T.Guchar,
+		rowstride T.Gint)
 
 	Gdk_draw_rgb_image_dithalign func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		rgb_buf *Guchar,
-		rowstride Gint,
-		xdith Gint,
-		ydith Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		rgb_buf *T.Guchar,
+		rowstride T.Gint,
+		xdith T.Gint,
+		ydith T.Gint)
 
 	Gdk_draw_rgb_32_image func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		buf *Guchar,
-		rowstride Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		buf *T.Guchar,
+		rowstride T.Gint)
 
 	Gdk_draw_rgb_32_image_dithalign func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		buf *Guchar,
-		rowstride Gint,
-		xdith Gint,
-		ydith Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		buf *T.Guchar,
+		rowstride T.Gint,
+		xdith T.Gint,
+		ydith T.Gint)
 
 	Gdk_draw_gray_image func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		buf *Guchar,
-		rowstride Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		buf *T.Guchar,
+		rowstride T.Gint)
 
 	Gdk_draw_indexed_image func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		dith GdkRgbDither,
-		buf *Guchar,
-		rowstride Gint,
-		cmap *GdkRgbCmap)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dith T.GdkRgbDither,
+		buf *T.Guchar,
+		rowstride T.Gint,
+		cmap *T.GdkRgbCmap)
 
 	Gdk_rgb_cmap_new func(
-		colors *Guint32,
-		n_colors Gint) *GdkRgbCmap
+		colors *T.Guint32,
+		n_colors T.Gint) *T.GdkRgbCmap
 
 	Gdk_rgb_cmap_free func(
-		cmap *GdkRgbCmap)
+		cmap *T.GdkRgbCmap)
 
 	Gdk_rgb_set_verbose func(
-		verbose Gboolean)
+		verbose T.Gboolean)
 
 	Gdk_rgb_set_install func(
-		install Gboolean)
+		install T.Gboolean)
 
 	Gdk_rgb_set_min_colors func(
-		min_colors Gint)
+		min_colors T.Gint)
 
-	Gdk_rgb_get_colormap func() *GdkColormap
+	Gdk_rgb_get_colormap func() *T.GdkColormap
 
-	Gdk_rgb_get_visual func() *GdkVisual
+	Gdk_rgb_get_visual func() *T.GdkVisual
 
-	Gdk_rgb_ditherable func() Gboolean
+	Gdk_rgb_ditherable func() T.Gboolean
 
 	Gdk_rgb_colormap_ditherable func(
-		cmap *GdkColormap) Gboolean
+		cmap *T.GdkColormap) T.Gboolean
 
-	Gdk_pixbuf_error_quark func() GQuark
+	Gdk_pixbuf_error_quark func() T.GQuark
 
-	Gdk_pixbuf_get_type func() GType
+	Gdk_pixbuf_get_type func() T.GType
 
 	Gdk_pixbuf_ref func(
-		pixbuf *GdkPixbuf) *GdkPixbuf
+		pixbuf *T.GdkPixbuf) *T.GdkPixbuf
 
 	Gdk_pixbuf_unref func(
-		pixbuf *GdkPixbuf)
+		pixbuf *T.GdkPixbuf)
 
 	Gdk_pixbuf_get_colorspace func(
-		pixbuf *GdkPixbuf) GdkColorspace
+		pixbuf *T.GdkPixbuf) T.GdkColorspace
 
 	Gdk_pixbuf_get_n_channels func(
-		pixbuf *GdkPixbuf) int
+		pixbuf *T.GdkPixbuf) int
 
 	Gdk_pixbuf_get_has_alpha func(
-		pixbuf *GdkPixbuf) Gboolean
+		pixbuf *T.GdkPixbuf) T.Gboolean
 
 	Gdk_pixbuf_get_bits_per_sample func(
-		pixbuf *GdkPixbuf) int
+		pixbuf *T.GdkPixbuf) int
 
 	Gdk_pixbuf_get_pixels func(
-		pixbuf *GdkPixbuf) *Guchar
+		pixbuf *T.GdkPixbuf) *T.Guchar
 
 	Gdk_pixbuf_get_width func(
-		pixbuf *GdkPixbuf) int
+		pixbuf *T.GdkPixbuf) int
 
 	Gdk_pixbuf_get_height func(
-		pixbuf *GdkPixbuf) int
+		pixbuf *T.GdkPixbuf) int
 
 	Gdk_pixbuf_get_rowstride func(
-		pixbuf *GdkPixbuf) int
+		pixbuf *T.GdkPixbuf) int
 
 	Gdk_pixbuf_new func(
-		colorspace GdkColorspace,
-		has_alpha Gboolean,
+		colorspace T.GdkColorspace,
+		has_alpha T.Gboolean,
 		bits_per_sample int,
 		width int,
-		height int) *GdkPixbuf
+		height int) *T.GdkPixbuf
 
 	Gdk_pixbuf_copy func(
-		pixbuf *GdkPixbuf) *GdkPixbuf
+		pixbuf *T.GdkPixbuf) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_subpixbuf func(
-		src_pixbuf *GdkPixbuf,
+		src_pixbuf *T.GdkPixbuf,
 		src_x int,
 		src_y int,
 		width int,
-		height int) *GdkPixbuf
+		height int) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_file func(
 		filename string,
-		e **GError) *GdkPixbuf
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_size func(
 		filename string,
 		width int,
 		height int,
-		e **GError) *GdkPixbuf
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_file_at_scale func(
 		filename string,
 		width int,
 		height int,
-		preserve_aspect_ratio Gboolean,
-		e **GError) *GdkPixbuf
+		preserve_aspect_ratio T.Gboolean,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_data func(
-		data *Guchar,
-		colorspace GdkColorspace,
-		has_alpha Gboolean,
+		data *T.Guchar,
+		colorspace T.GdkColorspace,
+		has_alpha T.Gboolean,
 		bits_per_sample int,
 		width int,
 		height int,
 		rowstride int,
-		destroy_fn GdkPixbufDestroyNotify,
-		destroy_fn_data Gpointer) *GdkPixbuf
+		destroy_fn T.GdkPixbufDestroyNotify,
+		destroy_fn_data T.Gpointer) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_xpm_data func(
-		data **Char) *GdkPixbuf
+		data **T.Char) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_inline func(
-		data_length Gint,
-		data *Guint8,
-		copy_pixels Gboolean,
-		e **GError) *GdkPixbuf
+		data_length T.Gint,
+		data *T.Guint8,
+		copy_pixels T.Gboolean,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_fill func(
-		pixbuf *GdkPixbuf,
-		pixel Guint32)
+		pixbuf *T.GdkPixbuf,
+		pixel T.Guint32)
 
-	Gdk_pixbuf_save_utf8 func(pixbuf *GdkPixbuf,
-		filename, typ string, e **GError, v ...VArg) Gboolean
+	Gdk_pixbuf_save_utf8 func(pixbuf *T.GdkPixbuf,
+		filename, typ string, e **T.GError, v ...VArg) T.Gboolean
 
 	Gdk_pixbuf_savev_utf8 func(
-		pixbuf *GdkPixbuf,
+		pixbuf *T.GdkPixbuf,
 		filename string,
 		typ string,
-		option_keys **Char,
-		option_values **Char,
-		e **GError) Gboolean
+		option_keys **T.Char,
+		option_values **T.Char,
+		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_save_to_callback func(pixbuf *GdkPixbuf,
-		save_func GdkPixbufSaveFunc,
-		user_data Gpointer,
-		typ string, err **GError, v ...VArg) Gboolean
+	Gdk_pixbuf_save_to_callback func(pixbuf *T.GdkPixbuf,
+		save_func T.GdkPixbufSaveFunc,
+		user_data T.Gpointer,
+		typ string, err **T.GError, v ...VArg) T.Gboolean
 
 	Gdk_pixbuf_save_to_callbackv func(
-		pixbuf *GdkPixbuf,
-		save_func GdkPixbufSaveFunc,
-		user_data Gpointer,
+		pixbuf *T.GdkPixbuf,
+		save_func T.GdkPixbufSaveFunc,
+		user_data T.Gpointer,
 		typ string,
-		option_keys **Char,
-		option_values **Char,
-		e **GError) Gboolean
+		option_keys **T.Char,
+		option_values **T.Char,
+		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_save_to_buffer func(pixbuf *GdkPixbuf,
-		buffer **Gchar, buffer_size *Gsize,
-		typ string, e **GError, v ...VArg) Gboolean
+	Gdk_pixbuf_save_to_buffer func(pixbuf *T.GdkPixbuf,
+		buffer **T.Gchar, buffer_size *T.Gsize,
+		typ string, e **T.GError, v ...VArg) T.Gboolean
 
 	Gdk_pixbuf_save_to_bufferv func(
-		pixbuf *GdkPixbuf,
-		buffer **Gchar,
-		buffer_size *Gsize,
+		pixbuf *T.GdkPixbuf,
+		buffer **T.Gchar,
+		buffer_size *T.Gsize,
 		typ string,
-		option_keys **Char,
-		option_values **Char,
-		e **GError) Gboolean
+		option_keys **T.Char,
+		option_values **T.Char,
+		e **T.GError) T.Gboolean
 
 	Gdk_pixbuf_new_from_stream func(
-		stream *GInputStream,
-		cancellable *GCancellable,
-		e **GError) *GdkPixbuf
+		stream *T.GInputStream,
+		cancellable *T.GCancellable,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_async func(
-		stream *GInputStream,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		stream *T.GInputStream,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
 	Gdk_pixbuf_new_from_stream_finish func(
-		async_result *GAsyncResult,
-		e **GError) *GdkPixbuf
+		async_result *T.GAsyncResult,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_at_scale func(
-		stream *GInputStream,
-		width Gint,
-		height Gint,
-		preserve_aspect_ratio Gboolean,
-		cancellable *GCancellable,
-		e **GError) *GdkPixbuf
+		stream *T.GInputStream,
+		width T.Gint,
+		height T.Gint,
+		preserve_aspect_ratio T.Gboolean,
+		cancellable *T.GCancellable,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_at_scale_async func(
-		stream *GInputStream,
-		width Gint,
-		height Gint,
-		preserve_aspect_ratio Gboolean,
-		cancellable *GCancellable,
-		callback GAsyncReadyCallback,
-		user_data Gpointer)
+		stream *T.GInputStream,
+		width T.Gint,
+		height T.Gint,
+		preserve_aspect_ratio T.Gboolean,
+		cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback,
+		user_data T.Gpointer)
 
-	Gdk_pixbuf_save_to_stream func(pixbuf *GdkPixbuf,
-		stream *GOutputStream, typ string,
-		cancellable *GCancellable, e **GError, v ...VArg) Gboolean
+	Gdk_pixbuf_save_to_stream func(pixbuf *T.GdkPixbuf,
+		stream *T.GOutputStream, typ string,
+		cancellable *T.GCancellable, e **T.GError, v ...VArg) T.Gboolean
 
-	Gdk_pixbuf_save_to_stream_async func(pixbuf *GdkPixbuf,
-		stream *GOutputStream, typ string,
-		cancellable *GCancellable, callback GAsyncReadyCallback,
-		user_data Gpointer, v ...VArg)
+	Gdk_pixbuf_save_to_stream_async func(pixbuf *T.GdkPixbuf,
+		stream *T.GOutputStream, typ string,
+		cancellable *T.GCancellable, callback T.GAsyncReadyCallback,
+		user_data T.Gpointer, v ...VArg)
 
 	Gdk_pixbuf_save_to_stream_finish func(
-		async_result *GAsyncResult,
-		e **GError) Gboolean
+		async_result *T.GAsyncResult,
+		e **T.GError) T.Gboolean
 
 	Gdk_pixbuf_add_alpha func(
-		pixbuf *GdkPixbuf,
-		substitute_color Gboolean,
-		r, g, b Guchar) *GdkPixbuf
+		pixbuf *T.GdkPixbuf,
+		substitute_color T.Gboolean,
+		r, g, b T.Guchar) *T.GdkPixbuf
 
 	Gdk_pixbuf_copy_area func(
-		src_pixbuf *GdkPixbuf,
+		src_pixbuf *T.GdkPixbuf,
 		src_x, src_y, width, height int,
-		dest_pixbuf *GdkPixbuf,
+		dest_pixbuf *T.GdkPixbuf,
 		dest_x, dest_y int)
 
 	Gdk_pixbuf_saturate_and_pixelate func(
-		src, dest *GdkPixbuf,
-		saturation Gfloat,
-		pixelate Gboolean)
+		src, dest *T.GdkPixbuf,
+		saturation T.Gfloat,
+		pixelate T.Gboolean)
 
 	Gdk_pixbuf_apply_embedded_orientation func(
-		src *GdkPixbuf) *GdkPixbuf
+		src *T.GdkPixbuf) *T.GdkPixbuf
 
 	Gdk_pixbuf_get_option func(
-		pixbuf *GdkPixbuf,
+		pixbuf *T.GdkPixbuf,
 		key string) string
 
 	Gdk_pixbuf_scale func(
-		src *GdkPixbuf,
-		dest *GdkPixbuf,
+		src *T.GdkPixbuf,
+		dest *T.GdkPixbuf,
 		dest_x int,
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x Double,
-		offset_y Double,
-		scale_x Double,
-		scale_y Double,
-		interp_type GdkInterpType)
+		offset_x T.Double,
+		offset_y T.Double,
+		scale_x T.Double,
+		scale_y T.Double,
+		interp_type T.GdkInterpType)
 
 	Gdk_pixbuf_composite func(
-		src *GdkPixbuf,
-		dest *GdkPixbuf,
+		src *T.GdkPixbuf,
+		dest *T.GdkPixbuf,
 		dest_x int,
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x Double,
-		offset_y Double,
-		scale_x Double,
-		scale_y Double,
-		interp_type GdkInterpType,
+		offset_x T.Double,
+		offset_y T.Double,
+		scale_x T.Double,
+		scale_y T.Double,
+		interp_type T.GdkInterpType,
 		overall_alpha int)
 
 	Gdk_pixbuf_composite_color func(
-		src *GdkPixbuf,
-		dest *GdkPixbuf,
+		src *T.GdkPixbuf,
+		dest *T.GdkPixbuf,
 		dest_x int,
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x Double,
-		offset_y Double,
-		scale_x Double,
-		scale_y Double,
-		interp_type GdkInterpType,
+		offset_x T.Double,
+		offset_y T.Double,
+		scale_x T.Double,
+		scale_y T.Double,
+		interp_type T.GdkInterpType,
 		overall_alpha int,
 		check_x int,
 		check_y int,
 		check_size int,
-		color1 Guint32,
-		color2 Guint32)
+		color1 T.Guint32,
+		color2 T.Guint32)
 
 	Gdk_pixbuf_scale_simple func(
-		src *GdkPixbuf,
+		src *T.GdkPixbuf,
 		dest_width int,
 		dest_height int,
-		interp_type GdkInterpType) *GdkPixbuf
+		interp_type T.GdkInterpType) *T.GdkPixbuf
 
 	Gdk_pixbuf_composite_color_simple func(
-		src *GdkPixbuf,
+		src *T.GdkPixbuf,
 		dest_width int,
 		dest_height int,
-		interp_type GdkInterpType,
+		interp_type T.GdkInterpType,
 		overall_alpha int,
 		check_size int,
-		color1 Guint32,
-		color2 Guint32) *GdkPixbuf
+		color1 T.Guint32,
+		color2 T.Guint32) *T.GdkPixbuf
 
 	Gdk_pixbuf_rotate_simple func(
-		src *GdkPixbuf,
-		angle GdkPixbufRotation) *GdkPixbuf
+		src *T.GdkPixbuf,
+		angle T.GdkPixbufRotation) *T.GdkPixbuf
 
 	Gdk_pixbuf_flip func(
-		src *GdkPixbuf,
-		horizontal Gboolean) *GdkPixbuf
+		src *T.GdkPixbuf,
+		horizontal T.Gboolean) *T.GdkPixbuf
 
-	Gdk_pixbuf_animation_get_type func() GType
+	Gdk_pixbuf_animation_get_type func() T.GType
 
 	Gdk_pixbuf_animation_new_from_file_utf8 func(
 		filename string,
-		e **GError) *GdkPixbufAnimation
+		e **T.GError) *T.GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_ref func(
-		animation *GdkPixbufAnimation) *GdkPixbufAnimation
+		animation *T.GdkPixbufAnimation) *T.GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_unref func(
-		animation *GdkPixbufAnimation)
+		animation *T.GdkPixbufAnimation)
 
 	Gdk_pixbuf_animation_get_width func(
-		animation *GdkPixbufAnimation) int
+		animation *T.GdkPixbufAnimation) int
 
 	Gdk_pixbuf_animation_get_height func(
-		animation *GdkPixbufAnimation) int
+		animation *T.GdkPixbufAnimation) int
 
 	Gdk_pixbuf_animation_is_static_image func(
-		animation *GdkPixbufAnimation) Gboolean
+		animation *T.GdkPixbufAnimation) T.Gboolean
 
 	Gdk_pixbuf_animation_get_static_image func(
-		animation *GdkPixbufAnimation) *GdkPixbuf
+		animation *T.GdkPixbufAnimation) *T.GdkPixbuf
 
 	Gdk_pixbuf_animation_get_iter func(
-		animation *GdkPixbufAnimation,
-		start_time *GTimeVal) *GdkPixbufAnimationIter
+		animation *T.GdkPixbufAnimation,
+		start_time *T.GTimeVal) *T.GdkPixbufAnimationIter
 
-	Gdk_pixbuf_animation_iter_get_type func() GType
+	Gdk_pixbuf_animation_iter_get_type func() T.GType
 
 	Gdk_pixbuf_animation_iter_get_delay_time func(
-		iter *GdkPixbufAnimationIter) int
+		iter *T.GdkPixbufAnimationIter) int
 
 	Gdk_pixbuf_animation_iter_get_pixbuf func(
-		iter *GdkPixbufAnimationIter) *GdkPixbuf
+		iter *T.GdkPixbufAnimationIter) *T.GdkPixbuf
 
 	Gdk_pixbuf_animation_iter_on_currently_loading_frame func(
-		iter *GdkPixbufAnimationIter) Gboolean
+		iter *T.GdkPixbufAnimationIter) T.Gboolean
 
 	Gdk_pixbuf_animation_iter_advance func(
-		iter *GdkPixbufAnimationIter,
-		current_time *GTimeVal) Gboolean
+		iter *T.GdkPixbufAnimationIter,
+		current_time *T.GTimeVal) T.Gboolean
 
-	Gdk_pixbuf_simple_anim_get_type func() GType
+	Gdk_pixbuf_simple_anim_get_type func() T.GType
 
-	Gdk_pixbuf_simple_anim_iter_get_type func() GType
+	Gdk_pixbuf_simple_anim_iter_get_type func() T.GType
 
 	Gdk_pixbuf_simple_anim_new func(
-		width Gint,
-		height Gint,
-		rate Gfloat) *GdkPixbufSimpleAnim
+		width T.Gint,
+		height T.Gint,
+		rate T.Gfloat) *T.GdkPixbufSimpleAnim
 
 	Gdk_pixbuf_simple_anim_add_frame func(
-		animation *GdkPixbufSimpleAnim,
-		pixbuf *GdkPixbuf)
+		animation *T.GdkPixbufSimpleAnim,
+		pixbuf *T.GdkPixbuf)
 
 	Gdk_pixbuf_simple_anim_set_loop func(
-		animation *GdkPixbufSimpleAnim,
-		loop Gboolean)
+		animation *T.GdkPixbufSimpleAnim,
+		loop T.Gboolean)
 
 	Gdk_pixbuf_simple_anim_get_loop func(
-		animation *GdkPixbufSimpleAnim) Gboolean
+		animation *T.GdkPixbufSimpleAnim) T.Gboolean
 
-	Gdk_pixbuf_format_get_type func() GType
+	Gdk_pixbuf_format_get_type func() T.GType
 
-	Gdk_pixbuf_get_formats func() *GSList
+	Gdk_pixbuf_get_formats func() *T.GSList
 
 	Gdk_pixbuf_format_get_name func(
-		format *GdkPixbufFormat) string
+		format *T.GdkPixbufFormat) string
 
 	Gdk_pixbuf_format_get_description func(
-		format *GdkPixbufFormat) string
+		format *T.GdkPixbufFormat) string
 
 	Gdk_pixbuf_format_get_mime_types func(
-		format *GdkPixbufFormat) **Gchar
+		format *T.GdkPixbufFormat) **T.Gchar
 
 	Gdk_pixbuf_format_get_extensions func(
-		format *GdkPixbufFormat) **Gchar
+		format *T.GdkPixbufFormat) **T.Gchar
 
 	Gdk_pixbuf_format_is_writable func(
-		format *GdkPixbufFormat) Gboolean
+		format *T.GdkPixbufFormat) T.Gboolean
 
 	Gdk_pixbuf_format_is_scalable func(
-		format *GdkPixbufFormat) Gboolean
+		format *T.GdkPixbufFormat) T.Gboolean
 
 	Gdk_pixbuf_format_is_disabled func(
-		format *GdkPixbufFormat) Gboolean
+		format *T.GdkPixbufFormat) T.Gboolean
 
 	Gdk_pixbuf_format_set_disabled func(
-		format *GdkPixbufFormat,
-		disabled Gboolean)
+		format *T.GdkPixbufFormat,
+		disabled T.Gboolean)
 
 	Gdk_pixbuf_format_get_license func(
-		format *GdkPixbufFormat) string
+		format *T.GdkPixbufFormat) string
 
 	Gdk_pixbuf_get_file_info func(
 		filename string,
-		width *Gint,
-		height *Gint) *GdkPixbufFormat
+		width *T.Gint,
+		height *T.Gint) *T.GdkPixbufFormat
 
 	Gdk_pixbuf_format_copy func(
-		format *GdkPixbufFormat) *GdkPixbufFormat
+		format *T.GdkPixbufFormat) *T.GdkPixbufFormat
 
 	Gdk_pixbuf_format_free func(
-		format *GdkPixbufFormat)
+		format *T.GdkPixbufFormat)
 
-	Gdk_pixbuf_loader_get_type func() GType
+	Gdk_pixbuf_loader_get_type func() T.GType
 
-	Gdk_pixbuf_loader_new func() *GdkPixbufLoader
+	Gdk_pixbuf_loader_new func() *T.GdkPixbufLoader
 
 	Gdk_pixbuf_loader_new_with_type func(
 		image_type string,
-		e **GError) *GdkPixbufLoader
+		e **T.GError) *T.GdkPixbufLoader
 
 	Gdk_pixbuf_loader_new_with_mime_type func(
 		mime_type string,
-		e **GError) *GdkPixbufLoader
+		e **T.GError) *T.GdkPixbufLoader
 
 	Gdk_pixbuf_loader_set_size func(
-		loader *GdkPixbufLoader,
+		loader *T.GdkPixbufLoader,
 		width int,
 		height int)
 
 	Gdk_pixbuf_loader_write func(
-		loader *GdkPixbufLoader,
-		buf *Guchar,
-		count Gsize,
-		e **GError) Gboolean
+		loader *T.GdkPixbufLoader,
+		buf *T.Guchar,
+		count T.Gsize,
+		e **T.GError) T.Gboolean
 
 	Gdk_pixbuf_loader_get_pixbuf func(
-		loader *GdkPixbufLoader) *GdkPixbuf
+		loader *T.GdkPixbufLoader) *T.GdkPixbuf
 
 	Gdk_pixbuf_loader_get_animation func(
-		loader *GdkPixbufLoader) *GdkPixbufAnimation
+		loader *T.GdkPixbufLoader) *T.GdkPixbufAnimation
 
 	Gdk_pixbuf_loader_close func(
-		loader *GdkPixbufLoader,
-		e **GError) Gboolean
+		loader *T.GdkPixbufLoader,
+		e **T.GError) T.Gboolean
 
 	Gdk_pixbuf_loader_get_format func(
-		loader *GdkPixbufLoader) *GdkPixbufFormat
+		loader *T.GdkPixbufLoader) *T.GdkPixbufFormat
 
-	Gdk_pixbuf_alpha_mode_get_type func() GType
+	Gdk_pixbuf_alpha_mode_get_type func() T.GType
 
-	Gdk_colorspace_get_type func() GType
+	Gdk_colorspace_get_type func() T.GType
 
-	Gdk_pixbuf_error_get_type func() GType
+	Gdk_pixbuf_error_get_type func() T.GType
 
-	Gdk_interp_type_get_type func() GType
+	Gdk_interp_type_get_type func() T.GType
 
-	Gdk_pixbuf_rotation_get_type func() GType
+	Gdk_pixbuf_rotation_get_type func() T.GType
 
 	Gdk_pixbuf_render_threshold_alpha func(
-		pixbuf *GdkPixbuf,
-		bitmap *GdkBitmap,
+		pixbuf *T.GdkPixbuf,
+		bitmap *T.GdkBitmap,
 		src_x int,
 		src_y int,
 		dest_x int,
@@ -1225,1987 +1225,1985 @@ var (
 		alpha_threshold int)
 
 	Gdk_pixbuf_render_to_drawable func(
-		pixbuf *GdkPixbuf,
-		drawable *GdkDrawable,
-		gc *GdkGC,
+		pixbuf *T.GdkPixbuf,
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
 		src_x int,
 		src_y int,
 		dest_x int,
 		dest_y int,
 		width int,
 		height int,
-		dither GdkRgbDither,
+		dither T.GdkRgbDither,
 		x_dither int,
 		y_dither int)
 
 	Gdk_pixbuf_render_to_drawable_alpha func(
-		pixbuf *GdkPixbuf,
-		drawable *GdkDrawable,
+		pixbuf *T.GdkPixbuf,
+		drawable *T.GdkDrawable,
 		src_x int,
 		src_y int,
 		dest_x int,
 		dest_y int,
 		width int,
 		height int,
-		alpha_mode GdkPixbufAlphaMode,
+		alpha_mode T.GdkPixbufAlphaMode,
 		alpha_threshold int,
-		dither GdkRgbDither,
+		dither T.GdkRgbDither,
 		x_dither int,
 		y_dither int)
 
 	Gdk_pixbuf_render_pixmap_and_mask_for_colormap func(
-		pixbuf *GdkPixbuf,
-		colormap *GdkColormap,
-		pixmap_return **GdkPixmap,
-		mask_return **GdkBitmap,
+		pixbuf *T.GdkPixbuf,
+		colormap *T.GdkColormap,
+		pixmap_return **T.GdkPixmap,
+		mask_return **T.GdkBitmap,
 		alpha_threshold int)
 
 	Gdk_pixbuf_render_pixmap_and_mask func(
-		pixbuf *GdkPixbuf,
-		pixmap_return **GdkPixmap,
-		mask_return **GdkBitmap,
+		pixbuf *T.GdkPixbuf,
+		pixmap_return **T.GdkPixmap,
+		mask_return **T.GdkBitmap,
 		alpha_threshold int)
 
 	Gdk_pixbuf_get_from_drawable func(
-		dest *GdkPixbuf,
-		src *GdkDrawable,
-		cmap *GdkColormap,
+		dest *T.GdkPixbuf,
+		src *T.GdkDrawable,
+		cmap *T.GdkColormap,
 		src_x int,
 		src_y int,
 		dest_x int,
 		dest_y int,
 		width int,
-		height int) *GdkPixbuf
+		height int) *T.GdkPixbuf
 
 	Gdk_pixbuf_get_from_image func(
-		dest *GdkPixbuf,
-		src *GdkImage,
-		cmap *GdkColormap,
+		dest *T.GdkPixbuf,
+		src *T.GdkImage,
+		cmap *T.GdkColormap,
 		src_x int,
 		src_y int,
 		dest_x int,
 		dest_y int,
 		width int,
-		height int) *GdkPixbuf
+		height int) *T.GdkPixbuf
 
 	Gdk_cairo_create func(
-		drawable *GdkDrawable) *Cairo_t
+		drawable *T.GdkDrawable) *T.Cairo_t
 
 	Gdk_cairo_reset_clip func(
-		cr *Cairo_t,
-		drawable *GdkDrawable)
+		cr *T.Cairo_t,
+		drawable *T.GdkDrawable)
 
 	Gdk_cairo_set_source_color func(
-		cr *Cairo_t,
-		color *GdkColor)
+		cr *T.Cairo_t,
+		color *T.GdkColor)
 
 	Gdk_cairo_set_source_pixbuf func(
-		cr *Cairo_t,
-		pixbuf *GdkPixbuf,
-		pixbuf_x Double,
-		pixbuf_y Double)
+		cr *T.Cairo_t,
+		pixbuf *T.GdkPixbuf,
+		pixbuf_x T.Double,
+		pixbuf_y T.Double)
 
 	Gdk_cairo_set_source_pixmap func(
-		cr *Cairo_t,
-		pixmap *GdkPixmap,
-		pixmap_x Double,
-		pixmap_y Double)
+		cr *T.Cairo_t,
+		pixmap *T.GdkPixmap,
+		pixmap_x T.Double,
+		pixmap_y T.Double)
 
 	Gdk_cairo_set_source_window func(
-		cr *Cairo_t,
-		window *GdkWindow,
-		x Double,
-		y Double)
+		cr *T.Cairo_t,
+		window *T.GdkWindow,
+		x T.Double,
+		y T.Double)
 
 	Gdk_cairo_rectangle func(
-		cr *Cairo_t,
-		rectangle *GdkRectangle)
+		cr *T.Cairo_t,
+		rectangle *T.GdkRectangle)
 
 	Gdk_cairo_region func(
-		cr *Cairo_t,
-		region *GdkRegion)
+		cr *T.Cairo_t,
+		region *T.GdkRegion)
 
-	Gdk_cursor_get_type func() GType
+	Gdk_cursor_get_type func() T.GType
 
 	Gdk_cursor_new_for_display func(
-		display *GdkDisplay,
-		cursor_type GdkCursorType) *GdkCursor
+		display *T.GdkDisplay,
+		cursor_type T.GdkCursorType) *T.GdkCursor
 
 	Gdk_cursor_new func(
-		cursor_type GdkCursorType) *GdkCursor
+		cursor_type T.GdkCursorType) *T.GdkCursor
 
 	Gdk_cursor_new_from_pixmap func(
-		source *GdkPixmap,
-		mask *GdkPixmap,
-		fg *GdkColor,
-		bg *GdkColor,
-		x Gint,
-		y Gint) *GdkCursor
+		source *T.GdkPixmap,
+		mask *T.GdkPixmap,
+		fg *T.GdkColor,
+		bg *T.GdkColor,
+		x T.Gint,
+		y T.Gint) *T.GdkCursor
 
 	Gdk_cursor_new_from_pixbuf func(
-		display *GdkDisplay,
-		pixbuf *GdkPixbuf,
-		x Gint,
-		y Gint) *GdkCursor
+		display *T.GdkDisplay,
+		pixbuf *T.GdkPixbuf,
+		x T.Gint,
+		y T.Gint) *T.GdkCursor
 
 	Gdk_cursor_get_display func(
-		cursor *GdkCursor) *GdkDisplay
+		cursor *T.GdkCursor) *T.GdkDisplay
 
 	Gdk_cursor_ref func(
-		cursor *GdkCursor) *GdkCursor
+		cursor *T.GdkCursor) *T.GdkCursor
 
 	Gdk_cursor_unref func(
-		cursor *GdkCursor)
+		cursor *T.GdkCursor)
 
 	Gdk_cursor_new_from_name func(
-		display *GdkDisplay,
-		name string) *GdkCursor
+		display *T.GdkDisplay,
+		name string) *T.GdkCursor
 
 	Gdk_cursor_get_image func(
-		cursor *GdkCursor) *GdkPixbuf
+		cursor *T.GdkCursor) *T.GdkPixbuf
 
 	Gdk_cursor_get_cursor_type func(
-		cursor *GdkCursor) GdkCursorType
+		cursor *T.GdkCursor) T.GdkCursorType
 
-	Gdk_display_manager_get_type func() GType
+	Gdk_display_manager_get_type func() T.GType
 
-	Gdk_display_manager_get func() *GdkDisplayManager
+	Gdk_display_manager_get func() *T.GdkDisplayManager
 
 	Gdk_display_manager_get_default_display func(
-		display_manager *GdkDisplayManager) *GdkDisplay
+		display_manager *T.GdkDisplayManager) *T.GdkDisplay
 
 	Gdk_display_manager_set_default_display func(
-		display_manager *GdkDisplayManager,
-		display *GdkDisplay)
+		display_manager *T.GdkDisplayManager,
+		display *T.GdkDisplay)
 
 	Gdk_display_manager_list_displays func(
-		display_manager *GdkDisplayManager) *GSList
+		display_manager *T.GdkDisplayManager) *T.GSList
 
-	Gdk_gc_get_type func() GType
+	Gdk_gc_get_type func() T.GType
 
 	Gdk_gc_new func(
-		drawable *GdkDrawable) *GdkGC
+		drawable *T.GdkDrawable) *T.GdkGC
 
 	Gdk_gc_new_with_values func(
-		drawable *GdkDrawable,
-		values *GdkGCValues,
-		values_mask GdkGCValuesMask) *GdkGC
+		drawable *T.GdkDrawable,
+		values *T.GdkGCValues,
+		values_mask T.GdkGCValuesMask) *T.GdkGC
 
 	Gdk_gc_ref func(
-		gc *GdkGC) *GdkGC
+		gc *T.GdkGC) *T.GdkGC
 
 	Gdk_gc_unref func(
-		gc *GdkGC)
+		gc *T.GdkGC)
 
 	Gdk_gc_get_values func(
-		gc *GdkGC,
-		values *GdkGCValues)
+		gc *T.GdkGC,
+		values *T.GdkGCValues)
 
 	Gdk_gc_set_values func(
-		gc *GdkGC,
-		values *GdkGCValues,
-		values_mask GdkGCValuesMask)
+		gc *T.GdkGC,
+		values *T.GdkGCValues,
+		values_mask T.GdkGCValuesMask)
 
 	Gdk_gc_set_foreground func(
-		gc *GdkGC,
-		color *GdkColor)
+		gc *T.GdkGC,
+		color *T.GdkColor)
 
 	Gdk_gc_set_background func(
-		gc *GdkGC,
-		color *GdkColor)
+		gc *T.GdkGC,
+		color *T.GdkColor)
 
 	Gdk_gc_set_font func(
-		gc *GdkGC,
-		font *GdkFont)
+		gc *T.GdkGC,
+		font *T.GdkFont)
 
 	Gdk_gc_set_function func(
-		gc *GdkGC,
-		function GdkFunction)
+		gc *T.GdkGC,
+		function T.GdkFunction)
 
 	Gdk_gc_set_fill func(
-		gc *GdkGC,
-		fill GdkFill)
+		gc *T.GdkGC,
+		fill T.GdkFill)
 
 	Gdk_gc_set_tile func(
-		gc *GdkGC,
-		tile *GdkPixmap)
+		gc *T.GdkGC,
+		tile *T.GdkPixmap)
 
 	Gdk_gc_set_stipple func(
-		gc *GdkGC,
-		stipple *GdkPixmap)
+		gc *T.GdkGC,
+		stipple *T.GdkPixmap)
 
 	Gdk_gc_set_ts_origin func(
-		gc *GdkGC,
-		x Gint,
-		y Gint)
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_gc_set_clip_origin func(
-		gc *GdkGC,
-		x Gint,
-		y Gint)
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_gc_set_clip_mask func(
-		gc *GdkGC,
-		mask *GdkBitmap)
+		gc *T.GdkGC,
+		mask *T.GdkBitmap)
 
 	Gdk_gc_set_clip_rectangle func(
-		gc *GdkGC,
-		rectangle *GdkRectangle)
+		gc *T.GdkGC,
+		rectangle *T.GdkRectangle)
 
 	Gdk_gc_set_clip_region func(
-		gc *GdkGC,
-		region *GdkRegion)
+		gc *T.GdkGC,
+		region *T.GdkRegion)
 
 	Gdk_gc_set_subwindow func(
-		gc *GdkGC,
-		mode GdkSubwindowMode)
+		gc *T.GdkGC,
+		mode T.GdkSubwindowMode)
 
 	Gdk_gc_set_exposures func(
-		gc *GdkGC,
-		exposures Gboolean)
+		gc *T.GdkGC,
+		exposures T.Gboolean)
 
 	Gdk_gc_set_line_attributes func(
-		gc *GdkGC,
-		line_width Gint,
-		line_style GdkLineStyle,
-		cap_style GdkCapStyle,
-		join_style GdkJoinStyle)
+		gc *T.GdkGC,
+		line_width T.Gint,
+		line_style T.GdkLineStyle,
+		cap_style T.GdkCapStyle,
+		join_style T.GdkJoinStyle)
 
 	Gdk_gc_set_dashes func(
-		gc *GdkGC,
-		dash_offset Gint,
-		dash_list []Gint8,
-		n Gint)
+		gc *T.GdkGC,
+		dash_offset T.Gint,
+		dash_list *T.Gint8,
+		n T.Gint)
 
 	Gdk_gc_offset func(
-		gc *GdkGC,
-		x_offset Gint,
-		y_offset Gint)
+		gc *T.GdkGC,
+		x_offset T.Gint,
+		y_offset T.Gint)
 
 	Gdk_gc_copy func(
-		dst_gc *GdkGC,
-		src_gc *GdkGC)
+		dst_gc *T.GdkGC,
+		src_gc *T.GdkGC)
 
 	Gdk_gc_set_colormap func(
-		gc *GdkGC,
-		colormap *GdkColormap)
+		gc *T.GdkGC,
+		colormap *T.GdkColormap)
 
 	Gdk_gc_get_colormap func(
-		gc *GdkGC) *GdkColormap
+		gc *T.GdkGC) *T.GdkColormap
 
 	Gdk_gc_set_rgb_fg_color func(
-		gc *GdkGC,
-		color *GdkColor)
+		gc *T.GdkGC,
+		color *T.GdkColor)
 
 	Gdk_gc_set_rgb_bg_color func(
-		gc *GdkGC,
-		color *GdkColor)
+		gc *T.GdkGC,
+		color *T.GdkColor)
 
 	Gdk_gc_get_screen func(
-		gc *GdkGC) *GdkScreen
+		gc *T.GdkGC) *T.GdkScreen
 
-	Gdk_drawable_get_type func() GType
+	Gdk_drawable_get_type func() T.GType
 
 	Gdk_drawable_set_data func(
-		drawable *GdkDrawable,
+		drawable *T.GdkDrawable,
 		key string,
-		data Gpointer,
-		destroy_func GDestroyNotify)
+		data T.Gpointer,
+		destroy_func T.GDestroyNotify)
 
 	Gdk_drawable_get_data func(
-		drawable *GdkDrawable,
-		key string) Gpointer
+		drawable *T.GdkDrawable,
+		key string) T.Gpointer
 
 	Gdk_drawable_set_colormap func(
-		drawable *GdkDrawable,
-		colormap *GdkColormap)
+		drawable *T.GdkDrawable,
+		colormap *T.GdkColormap)
 
 	Gdk_drawable_get_colormap func(
-		drawable *GdkDrawable) *GdkColormap
+		drawable *T.GdkDrawable) *T.GdkColormap
 
 	Gdk_drawable_get_depth func(
-		drawable *GdkDrawable) Gint
+		drawable *T.GdkDrawable) T.Gint
 
 	Gdk_drawable_get_size func(
-		drawable *GdkDrawable,
-		width *Gint,
-		height *Gint)
+		drawable *T.GdkDrawable,
+		width *T.Gint,
+		height *T.Gint)
 
 	Gdk_drawable_get_visual func(
-		drawable *GdkDrawable) *GdkVisual
+		drawable *T.GdkDrawable) *T.GdkVisual
 
 	Gdk_drawable_get_screen func(
-		drawable *GdkDrawable) *GdkScreen
+		drawable *T.GdkDrawable) *T.GdkScreen
 
 	Gdk_drawable_get_display func(
-		drawable *GdkDrawable) *GdkDisplay
+		drawable *T.GdkDrawable) *T.GdkDisplay
 
 	Gdk_drawable_ref func(
-		drawable *GdkDrawable) *GdkDrawable
+		drawable *T.GdkDrawable) *T.GdkDrawable
 
 	Gdk_drawable_unref func(
-		drawable *GdkDrawable)
+		drawable *T.GdkDrawable)
 
 	Gdk_draw_point func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_draw_line func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x1_ Gint,
-		y1_ Gint,
-		x2_ Gint,
-		y2_ Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x1_ T.Gint,
+		y1_ T.Gint,
+		x2_ T.Gint,
+		y2_ T.Gint)
 
 	Gdk_draw_rectangle func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		filled Gboolean,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		filled T.Gboolean,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_draw_arc func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		filled Gboolean,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		angle1 Gint,
-		angle2 Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		filled T.Gboolean,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		angle1 T.Gint,
+		angle2 T.Gint)
 
 	Gdk_draw_polygon func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		filled Gboolean,
-		points *GdkPoint,
-		n_points Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		filled T.Gboolean,
+		points *T.GdkPoint,
+		n_points T.Gint)
 
 	Gdk_draw_string func(
-		drawable *GdkDrawable,
-		font *GdkFont,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
+		drawable *T.GdkDrawable,
+		font *T.GdkFont,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
 		s string)
 
 	Gdk_draw_text func(
-		drawable *GdkDrawable,
-		font *GdkFont,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
+		drawable *T.GdkDrawable,
+		font *T.GdkFont,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
 		text string,
-		text_length Gint)
+		text_length T.Gint)
 
 	Gdk_draw_text_wc func(
-		drawable *GdkDrawable,
-		font *GdkFont,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		text *GdkWChar,
-		text_length Gint)
+		drawable *T.GdkDrawable,
+		font *T.GdkFont,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		text *T.GdkWChar,
+		text_length T.Gint)
 
 	Gdk_draw_drawable func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		src *GdkDrawable,
-		xsrc Gint,
-		ysrc Gint,
-		xdest Gint,
-		ydest Gint,
-		width Gint,
-		height Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		src *T.GdkDrawable,
+		xsrc T.Gint,
+		ysrc T.Gint,
+		xdest T.Gint,
+		ydest T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_draw_image func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		image *GdkImage,
-		xsrc Gint,
-		ysrc Gint,
-		xdest Gint,
-		ydest Gint,
-		width Gint,
-		height Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		image *T.GdkImage,
+		xsrc T.Gint,
+		ysrc T.Gint,
+		xdest T.Gint,
+		ydest T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_draw_points func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		points *GdkPoint,
-		n_points Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		points *T.GdkPoint,
+		n_points T.Gint)
 
 	Gdk_draw_segments func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		segs *GdkSegment,
-		n_segs Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		segs *T.GdkSegment,
+		n_segs T.Gint)
 
 	Gdk_draw_lines func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		points *GdkPoint,
-		n_points Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		points *T.GdkPoint,
+		n_points T.Gint)
 
 	Gdk_draw_pixbuf func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		pixbuf *GdkPixbuf,
-		src_x Gint,
-		src_y Gint,
-		dest_x Gint,
-		dest_y Gint,
-		width Gint,
-		height Gint,
-		dither GdkRgbDither,
-		x_dither Gint,
-		y_dither Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		pixbuf *T.GdkPixbuf,
+		src_x T.Gint,
+		src_y T.Gint,
+		dest_x T.Gint,
+		dest_y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		dither T.GdkRgbDither,
+		x_dither T.Gint,
+		y_dither T.Gint)
 
 	Gdk_draw_glyphs func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		font *PangoFont,
-		x Gint,
-		y Gint,
-		glyphs *PangoGlyphString)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		font *T.PangoFont,
+		x T.Gint,
+		y T.Gint,
+		glyphs *T.PangoGlyphString)
 
 	Gdk_draw_layout_line func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		line *PangoLayoutLine)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		line *T.PangoLayoutLine)
 
 	Gdk_draw_layout func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		layout *PangoLayout)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		layout *T.PangoLayout)
 
 	Gdk_draw_layout_line_with_colors func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		line *PangoLayoutLine,
-		foreground *GdkColor,
-		background *GdkColor)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		line *T.PangoLayoutLine,
+		foreground *T.GdkColor,
+		background *T.GdkColor)
 
 	Gdk_draw_layout_with_colors func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		x Gint,
-		y Gint,
-		layout *PangoLayout,
-		foreground *GdkColor,
-		background *GdkColor)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		x T.Gint,
+		y T.Gint,
+		layout *T.PangoLayout,
+		foreground *T.GdkColor,
+		background *T.GdkColor)
 
 	Gdk_draw_glyphs_transformed func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		matrix *PangoMatrix,
-		font *PangoFont,
-		x Gint,
-		y Gint,
-		glyphs *PangoGlyphString)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		matrix *T.PangoMatrix,
+		font *T.PangoFont,
+		x T.Gint,
+		y T.Gint,
+		glyphs *T.PangoGlyphString)
 
 	Gdk_draw_trapezoids func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		trapezoids *GdkTrapezoid,
-		n_trapezoids Gint)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		trapezoids *T.GdkTrapezoid,
+		n_trapezoids T.Gint)
 
 	Gdk_drawable_get_image func(
-		drawable *GdkDrawable,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint) *GdkImage
+		drawable *T.GdkDrawable,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint) *T.GdkImage
 
 	Gdk_drawable_copy_to_image func(
-		drawable *GdkDrawable,
-		image *GdkImage,
-		src_x Gint,
-		src_y Gint,
-		dest_x Gint,
-		dest_y Gint,
-		width Gint,
-		height Gint) *GdkImage
+		drawable *T.GdkDrawable,
+		image *T.GdkImage,
+		src_x T.Gint,
+		src_y T.Gint,
+		dest_x T.Gint,
+		dest_y T.Gint,
+		width T.Gint,
+		height T.Gint) *T.GdkImage
 
 	Gdk_drawable_get_clip_region func(
-		drawable *GdkDrawable) *GdkRegion
+		drawable *T.GdkDrawable) *T.GdkRegion
 
 	Gdk_drawable_get_visible_region func(
-		drawable *GdkDrawable) *GdkRegion
+		drawable *T.GdkDrawable) *T.GdkRegion
 
-	Gdk_cursor_type_get_type func() GType
+	Gdk_cursor_type_get_type func() T.GType
 
-	Gdk_drag_action_get_type func() GType
+	Gdk_drag_action_get_type func() T.GType
 
-	Gdk_drag_protocol_get_type func() GType
+	Gdk_drag_protocol_get_type func() T.GType
 
-	Gdk_filter_return_get_type func() GType
+	Gdk_filter_return_get_type func() T.GType
 
-	Gdk_event_type_get_type func() GType
+	Gdk_event_type_get_type func() T.GType
 
-	Gdk_event_mask_get_type func() GType
+	Gdk_event_mask_get_type func() T.GType
 
-	Gdk_visibility_state_get_type func() GType
+	Gdk_visibility_state_get_type func() T.GType
 
-	Gdk_scroll_direction_get_type func() GType
+	Gdk_scroll_direction_get_type func() T.GType
 
-	Gdk_notify_type_get_type func() GType
+	Gdk_notify_type_get_type func() T.GType
 
-	Gdk_crossing_mode_get_type func() GType
+	Gdk_crossing_mode_get_type func() T.GType
 
-	Gdk_property_state_get_type func() GType
+	Gdk_property_state_get_type func() T.GType
 
-	Gdk_window_state_get_type func() GType
+	Gdk_window_state_get_type func() T.GType
 
-	Gdk_setting_action_get_type func() GType
+	Gdk_setting_action_get_type func() T.GType
 
-	Gdk_owner_change_get_type func() GType
+	Gdk_owner_change_get_type func() T.GType
 
-	Gdk_font_type_get_type func() GType
+	Gdk_font_type_get_type func() T.GType
 
-	Gdk_cap_style_get_type func() GType
+	Gdk_cap_style_get_type func() T.GType
 
-	Gdk_fill_get_type func() GType
+	Gdk_fill_get_type func() T.GType
 
-	Gdk_function_get_type func() GType
+	Gdk_function_get_type func() T.GType
 
-	Gdk_join_style_get_type func() GType
+	Gdk_join_style_get_type func() T.GType
 
-	Gdk_line_style_get_type func() GType
+	Gdk_line_style_get_type func() T.GType
 
-	Gdk_subwindow_mode_get_type func() GType
+	Gdk_subwindow_mode_get_type func() T.GType
 
-	Gdk_gc_values_mask_get_type func() GType
+	Gdk_gc_values_mask_get_type func() T.GType
 
-	Gdk_image_type_get_type func() GType
+	Gdk_image_type_get_type func() T.GType
 
-	Gdk_extension_mode_get_type func() GType
+	Gdk_extension_mode_get_type func() T.GType
 
-	Gdk_input_source_get_type func() GType
+	Gdk_input_source_get_type func() T.GType
 
-	Gdk_input_mode_get_type func() GType
+	Gdk_input_mode_get_type func() T.GType
 
-	Gdk_axis_use_get_type func() GType
+	Gdk_axis_use_get_type func() T.GType
 
-	Gdk_prop_mode_get_type func() GType
+	Gdk_prop_mode_get_type func() T.GType
 
-	Gdk_fill_rule_get_type func() GType
+	Gdk_fill_rule_get_type func() T.GType
 
-	Gdk_overlap_type_get_type func() GType
+	Gdk_overlap_type_get_type func() T.GType
 
-	Gdk_rgb_dither_get_type func() GType
+	Gdk_rgb_dither_get_type func() T.GType
 
-	Gdk_byte_order_get_type func() GType
+	Gdk_byte_order_get_type func() T.GType
 
-	Gdk_modifier_type_get_type func() GType
+	Gdk_modifier_type_get_type func() T.GType
 
-	Gdk_input_condition_get_type func() GType
+	Gdk_input_condition_get_type func() T.GType
 
-	Gdk_status_get_type func() GType
+	Gdk_status_get_type func() T.GType
 
-	Gdk_grab_status_get_type func() GType
+	Gdk_grab_status_get_type func() T.GType
 
-	Gdk_visual_type_get_type func() GType
+	Gdk_visual_type_get_type func() T.GType
 
-	Gdk_window_class_get_type func() GType
+	Gdk_window_class_get_type func() T.GType
 
-	Gdk_window_type_get_type func() GType
+	Gdk_window_type_get_type func() T.GType
 
-	Gdk_window_attributes_type_get_type func() GType
+	Gdk_window_attributes_type_get_type func() T.GType
 
-	Gdk_window_hints_get_type func() GType
+	Gdk_window_hints_get_type func() T.GType
 
-	Gdk_window_type_hint_get_type func() GType
+	Gdk_window_type_hint_get_type func() T.GType
 
-	Gdk_wm_decoration_get_type func() GType
+	Gdk_wm_decoration_get_type func() T.GType
 
-	Gdk_wm_function_get_type func() GType
+	Gdk_wm_function_get_type func() T.GType
 
-	Gdk_gravity_get_type func() GType
+	Gdk_gravity_get_type func() T.GType
 
-	Gdk_window_edge_get_type func() GType
+	Gdk_window_edge_get_type func() T.GType
 
-	Gdk_font_get_type func() GType
+	Gdk_font_get_type func() T.GType
 
 	Gdk_font_ref func(
-		font *GdkFont) *GdkFont
+		font *T.GdkFont) *T.GdkFont
 
 	Gdk_font_unref func(
-		font *GdkFont)
+		font *T.GdkFont)
 
 	Gdk_font_id func(
-		font *GdkFont) Gint
+		font *T.GdkFont) T.Gint
 
 	Gdk_font_equal func(
-		fonta *GdkFont,
-		fontb *GdkFont) Gboolean
+		fonta *T.GdkFont,
+		fontb *T.GdkFont) T.Gboolean
 
 	Gdk_font_load_for_display func(
-		display *GdkDisplay,
-		font_name string) *GdkFont
+		display *T.GdkDisplay,
+		font_name string) *T.GdkFont
 
 	Gdk_fontset_load_for_display func(
-		display *GdkDisplay,
-		fontset_name string) *GdkFont
+		display *T.GdkDisplay,
+		fontset_name string) *T.GdkFont
 
 	Gdk_font_from_description_for_display func(
-		display *GdkDisplay,
-		font_desc *PangoFontDescription) *GdkFont
+		display *T.GdkDisplay,
+		font_desc *T.PangoFontDescription) *T.GdkFont
 
 	Gdk_font_load func(
-		font_name string) *GdkFont
+		font_name string) *T.GdkFont
 
 	Gdk_fontset_load func(
-		fontset_name string) *GdkFont
+		fontset_name string) *T.GdkFont
 
 	Gdk_font_from_description func(
-		font_desc *PangoFontDescription) *GdkFont
+		font_desc *T.PangoFontDescription) *T.GdkFont
 
 	Gdk_string_width func(
-		font *GdkFont,
-		s string) Gint
+		font *T.GdkFont,
+		s string) T.Gint
 
 	Gdk_text_width func(
-		font *GdkFont,
+		font *T.GdkFont,
 		text string,
-		text_length Gint) Gint
+		text_length T.Gint) T.Gint
 
 	Gdk_text_width_wc func(
-		font *GdkFont,
-		text *GdkWChar,
-		text_length Gint) Gint
+		font *T.GdkFont,
+		text *T.GdkWChar,
+		text_length T.Gint) T.Gint
 
 	Gdk_char_width func(
-		font *GdkFont,
-		character Gchar) Gint
+		font *T.GdkFont,
+		character T.Gchar) T.Gint
 
 	Gdk_char_width_wc func(
-		font *GdkFont,
-		character GdkWChar) Gint
+		font *T.GdkFont,
+		character T.GdkWChar) T.Gint
 
 	Gdk_string_measure func(
-		font *GdkFont,
-		s string) Gint
+		font *T.GdkFont,
+		s string) T.Gint
 
 	Gdk_text_measure func(
-		font *GdkFont,
+		font *T.GdkFont,
 		text string,
-		text_length Gint) Gint
+		text_length T.Gint) T.Gint
 
 	Gdk_char_measure func(
-		font *GdkFont,
-		character Gchar) Gint
+		font *T.GdkFont,
+		character T.Gchar) T.Gint
 
 	Gdk_string_height func(
-		font *GdkFont,
-		s string) Gint
+		font *T.GdkFont,
+		s string) T.Gint
 
 	Gdk_text_height func(
-		font *GdkFont,
+		font *T.GdkFont,
 		text string,
-		text_length Gint) Gint
+		text_length T.Gint) T.Gint
 
 	Gdk_char_height func(
-		font *GdkFont,
-		character Gchar) Gint
+		font *T.GdkFont,
+		character T.Gchar) T.Gint
 
 	Gdk_text_extents func(
-		font *GdkFont,
+		font *T.GdkFont,
 		text string,
-		text_length Gint,
-		lbearing *Gint,
-		rbearing *Gint,
-		width *Gint,
-		ascent *Gint,
-		descent *Gint)
+		text_length T.Gint,
+		lbearing *T.Gint,
+		rbearing *T.Gint,
+		width *T.Gint,
+		ascent *T.Gint,
+		descent *T.Gint)
 
 	Gdk_text_extents_wc func(
-		font *GdkFont,
-		text *GdkWChar,
-		text_length Gint,
-		lbearing *Gint,
-		rbearing *Gint,
-		width *Gint,
-		ascent *Gint,
-		descent *Gint)
+		font *T.GdkFont,
+		text *T.GdkWChar,
+		text_length T.Gint,
+		lbearing *T.Gint,
+		rbearing *T.Gint,
+		width *T.Gint,
+		ascent *T.Gint,
+		descent *T.Gint)
 
 	Gdk_string_extents func(
-		font *GdkFont,
+		font *T.GdkFont,
 		s string,
-		lbearing *Gint,
-		rbearing *Gint,
-		width *Gint,
-		ascent *Gint,
-		descent *Gint)
+		lbearing *T.Gint,
+		rbearing *T.Gint,
+		width *T.Gint,
+		ascent *T.Gint,
+		descent *T.Gint)
 
 	Gdk_font_get_display func(
-		font *GdkFont) *GdkDisplay
+		font *T.GdkFont) *T.GdkDisplay
 
-	Gdk_image_get_type func() GType
+	Gdk_image_get_type func() T.GType
 
 	Gdk_image_new func(
-		typ GdkImageType,
-		visual *GdkVisual,
-		width Gint,
-		height Gint) *GdkImage
+		typ T.GdkImageType,
+		visual *T.GdkVisual,
+		width T.Gint,
+		height T.Gint) *T.GdkImage
 
 	Gdk_image_get func(
-		drawable *GdkDrawable,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint) *GdkImage
+		drawable *T.GdkDrawable,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint) *T.GdkImage
 
 	Gdk_image_ref func(
-		image *GdkImage) *GdkImage
+		image *T.GdkImage) *T.GdkImage
 
 	Gdk_image_unref func(
-		image *GdkImage)
+		image *T.GdkImage)
 
 	Gdk_image_put_pixel func(
-		image *GdkImage,
-		x Gint,
-		y Gint,
-		pixel Guint32)
+		image *T.GdkImage,
+		x T.Gint,
+		y T.Gint,
+		pixel T.Guint32)
 
 	Gdk_image_get_pixel func(
-		image *GdkImage,
-		x Gint,
-		y Gint) Guint32
+		image *T.GdkImage,
+		x T.Gint,
+		y T.Gint) T.Guint32
 
 	Gdk_image_set_colormap func(
-		image *GdkImage,
-		colormap *GdkColormap)
+		image *T.GdkImage,
+		colormap *T.GdkColormap)
 
 	Gdk_image_get_colormap func(
-		image *GdkImage) *GdkColormap
+		image *T.GdkImage) *T.GdkColormap
 
 	Gdk_image_get_image_type func(
-		image *GdkImage) GdkImageType
+		image *T.GdkImage) T.GdkImageType
 
 	Gdk_image_get_visual func(
-		image *GdkImage) *GdkVisual
+		image *T.GdkImage) *T.GdkVisual
 
 	Gdk_image_get_byte_order func(
-		image *GdkImage) GdkByteOrder
+		image *T.GdkImage) T.GdkByteOrder
 
 	Gdk_image_get_width func(
-		image *GdkImage) Gint
+		image *T.GdkImage) T.Gint
 
 	Gdk_image_get_height func(
-		image *GdkImage) Gint
+		image *T.GdkImage) T.Gint
 
 	Gdk_image_get_depth func(
-		image *GdkImage) Guint16
+		image *T.GdkImage) T.Guint16
 
 	Gdk_image_get_bytes_per_pixel func(
-		image *GdkImage) Guint16
+		image *T.GdkImage) T.Guint16
 
 	Gdk_image_get_bytes_per_line func(
-		image *GdkImage) Guint16
+		image *T.GdkImage) T.Guint16
 
 	Gdk_image_get_bits_per_pixel func(
-		image *GdkImage) Guint16
+		image *T.GdkImage) T.Guint16
 
 	Gdk_image_get_pixels func(
-		image *GdkImage) Gpointer
+		image *T.GdkImage) T.Gpointer
 
-	Gdk_keymap_get_type func() GType
+	Gdk_keymap_get_type func() T.GType
 
-	Gdk_keymap_get_default func() *GdkKeymap
+	Gdk_keymap_get_default func() *T.GdkKeymap
 
 	Gdk_keymap_get_for_display func(
-		display *GdkDisplay) *GdkKeymap
+		display *T.GdkDisplay) *T.GdkKeymap
 
 	Gdk_keymap_lookup_key func(
-		keymap *GdkKeymap,
-		key *GdkKeymapKey) Guint
+		keymap *T.GdkKeymap,
+		key *T.GdkKeymapKey) T.Guint
 
 	Gdk_keymap_translate_keyboard_state func(
-		keymap *GdkKeymap,
-		hardware_keycode Guint,
-		state GdkModifierType,
-		group Gint,
-		keyval *Guint,
-		effective_group *Gint,
-		level *Gint,
-		consumed_modifiers *GdkModifierType) Gboolean
+		keymap *T.GdkKeymap,
+		hardware_keycode T.Guint,
+		state T.GdkModifierType,
+		group T.Gint,
+		keyval *T.Guint,
+		effective_group *T.Gint,
+		level *T.Gint,
+		consumed_modifiers *T.GdkModifierType) T.Gboolean
 
 	Gdk_keymap_get_entries_for_keyval func(
-		keymap *GdkKeymap,
-		keyval Guint,
-		keys **GdkKeymapKey,
-		n_keys *Gint) Gboolean
+		keymap *T.GdkKeymap,
+		keyval T.Guint,
+		keys **T.GdkKeymapKey,
+		n_keys *T.Gint) T.Gboolean
 
 	Gdk_keymap_get_entries_for_keycode func(
-		keymap *GdkKeymap,
-		hardware_keycode Guint,
-		keys **GdkKeymapKey,
-		keyvals **Guint,
-		n_entries *Gint) Gboolean
+		keymap *T.GdkKeymap,
+		hardware_keycode T.Guint,
+		keys **T.GdkKeymapKey,
+		keyvals **T.Guint,
+		n_entries *T.Gint) T.Gboolean
 
 	Gdk_keymap_get_direction func(
-		keymap *GdkKeymap) PangoDirection
+		keymap *T.GdkKeymap) T.PangoDirection
 
 	Gdk_keymap_have_bidi_layouts func(
-		keymap *GdkKeymap) Gboolean
+		keymap *T.GdkKeymap) T.Gboolean
 
 	Gdk_keymap_get_caps_lock_state func(
-		keymap *GdkKeymap) Gboolean
+		keymap *T.GdkKeymap) T.Gboolean
 
 	Gdk_keymap_add_virtual_modifiers func(
-		keymap *GdkKeymap,
-		state *GdkModifierType)
+		keymap *T.GdkKeymap,
+		state *T.GdkModifierType)
 
 	Gdk_keymap_map_virtual_modifiers func(
-		keymap *GdkKeymap,
-		state *GdkModifierType) Gboolean
+		keymap *T.GdkKeymap,
+		state *T.GdkModifierType) T.Gboolean
 
 	Gdk_keyval_name func(
-		keyval Guint) string
+		keyval T.Guint) string
 
 	Gdk_keyval_from_name func(
-		keyval_name string) Guint
+		keyval_name string) T.Guint
 
 	Gdk_keyval_convert_case func(
-		symbol Guint,
-		lower *Guint,
-		upper *Guint)
+		symbol T.Guint,
+		lower *T.Guint,
+		upper *T.Guint)
 
 	Gdk_keyval_to_upper func(
-		keyval Guint) Guint
+		keyval T.Guint) T.Guint
 
 	Gdk_keyval_to_lower func(
-		keyval Guint) Guint
+		keyval T.Guint) T.Guint
 
 	Gdk_keyval_is_upper func(
-		keyval Guint) Gboolean
+		keyval T.Guint) T.Gboolean
 
 	Gdk_keyval_is_lower func(
-		keyval Guint) Gboolean
+		keyval T.Guint) T.Gboolean
 
 	Gdk_keyval_to_unicode func(
-		keyval Guint) Guint32
+		keyval T.Guint) T.Guint32
 
 	Gdk_unicode_to_keyval func(
-		wc Guint32) Guint
+		wc T.Guint32) T.Guint
 
-	Gdk_pango_renderer_get_type func() GType
+	Gdk_pango_renderer_get_type func() T.GType
 
 	Gdk_pango_renderer_new func(
-		screen *GdkScreen) *PangoRenderer
+		screen *T.GdkScreen) *T.PangoRenderer
 
 	Gdk_pango_renderer_get_default func(
-		screen *GdkScreen) *PangoRenderer
+		screen *T.GdkScreen) *T.PangoRenderer
 
 	Gdk_pango_renderer_set_drawable func(
 
-		Gdk_renderer *GdkPangoRenderer,
-		drawable *GdkDrawable)
+		Gdk_renderer *T.GdkPangoRenderer,
+		drawable *T.GdkDrawable)
 
 	Gdk_pango_renderer_set_gc func(
 
-		Gdk_renderer *GdkPangoRenderer,
-		gc *GdkGC)
+		Gdk_renderer *T.GdkPangoRenderer,
+		gc *T.GdkGC)
 
 	Gdk_pango_renderer_set_stipple func(
 
-		Gdk_renderer *GdkPangoRenderer,
-		part PangoRenderPart,
-		stipple *GdkBitmap)
+		Gdk_renderer *T.GdkPangoRenderer,
+		part T.PangoRenderPart,
+		stipple *T.GdkBitmap)
 
 	Gdk_pango_renderer_set_override_color func(
 
-		Gdk_renderer *GdkPangoRenderer,
-		part PangoRenderPart,
-		color *GdkColor)
+		Gdk_renderer *T.GdkPangoRenderer,
+		part T.PangoRenderPart,
+		color *T.GdkColor)
 
 	Gdk_pango_context_get_for_screen func(
-		screen *GdkScreen) *PangoContext
+		screen *T.GdkScreen) *T.PangoContext
 
-	Gdk_pango_context_get func() *PangoContext
+	Gdk_pango_context_get func() *T.PangoContext
 
 	Gdk_pango_context_set_colormap func(
-		context *PangoContext,
-		colormap *GdkColormap)
+		context *T.PangoContext,
+		colormap *T.GdkColormap)
 
 	Gdk_pango_layout_line_get_clip_region func(
-		line *PangoLayoutLine,
-		x_origin Gint,
-		y_origin Gint,
-		index_ranges *Gint,
-		n_ranges Gint) *GdkRegion
+		line *T.PangoLayoutLine,
+		x_origin T.Gint,
+		y_origin T.Gint,
+		index_ranges *T.Gint,
+		n_ranges T.Gint) *T.GdkRegion
 
 	Gdk_pango_layout_get_clip_region func(
-		layout *PangoLayout,
-		x_origin Gint,
-		y_origin Gint,
-		index_ranges *Gint,
-		n_ranges Gint) *GdkRegion
+		layout *T.PangoLayout,
+		x_origin T.Gint,
+		y_origin T.Gint,
+		index_ranges *T.Gint,
+		n_ranges T.Gint) *T.GdkRegion
 
 	Gdk_pango_attr_stipple_new func(
-		stipple *GdkBitmap) *PangoAttribute
+		stipple *T.GdkBitmap) *T.PangoAttribute
 
 	Gdk_pango_attr_embossed_new func(
-		embossed Gboolean) *PangoAttribute
+		embossed T.Gboolean) *T.PangoAttribute
 
 	Gdk_pango_attr_emboss_color_new func(
-		color *GdkColor) *PangoAttribute
+		color *T.GdkColor) *T.PangoAttribute
 
-	Gdk_pixmap_get_type func() GType
+	Gdk_pixmap_get_type func() T.GType
 
 	Gdk_pixmap_new func(
-		drawable *GdkDrawable,
-		width Gint,
-		height Gint,
-		depth Gint) *GdkPixmap
+		drawable *T.GdkDrawable,
+		width T.Gint,
+		height T.Gint,
+		depth T.Gint) *T.GdkPixmap
 
 	Gdk_bitmap_create_from_data func(
-		drawable *GdkDrawable,
+		drawable *T.GdkDrawable,
 		data string,
-		width Gint,
-		height Gint) *GdkBitmap
+		width T.Gint,
+		height T.Gint) *T.GdkBitmap
 
 	Gdk_pixmap_create_from_data func(
-		drawable *GdkDrawable,
+		drawable *T.GdkDrawable,
 		data string,
-		width Gint,
-		height Gint,
-		depth Gint,
-		fg *GdkColor,
-		bg *GdkColor) *GdkPixmap
+		width T.Gint,
+		height T.Gint,
+		depth T.Gint,
+		fg *T.GdkColor,
+		bg *T.GdkColor) *T.GdkPixmap
 
 	Gdk_pixmap_create_from_xpm func(
-		drawable *GdkDrawable,
-		mask **GdkBitmap,
-		transparent_color *GdkColor,
-		filename string) *GdkPixmap
+		drawable *T.GdkDrawable,
+		mask **T.GdkBitmap,
+		transparent_color *T.GdkColor,
+		filename string) *T.GdkPixmap
 
 	Gdk_pixmap_colormap_create_from_xpm func(
-		drawable *GdkDrawable,
-		colormap *GdkColormap,
-		mask **GdkBitmap,
-		transparent_color *GdkColor,
-		filename string) *GdkPixmap
+		drawable *T.GdkDrawable,
+		colormap *T.GdkColormap,
+		mask **T.GdkBitmap,
+		transparent_color *T.GdkColor,
+		filename string) *T.GdkPixmap
 
 	Gdk_pixmap_create_from_xpm_d func(
-		drawable *GdkDrawable,
-		mask **GdkBitmap,
-		transparent_color *GdkColor,
-		data **Gchar) *GdkPixmap
+		drawable *T.GdkDrawable,
+		mask **T.GdkBitmap,
+		transparent_color *T.GdkColor,
+		data **T.Gchar) *T.GdkPixmap
 
 	Gdk_pixmap_colormap_create_from_xpm_d func(
-		drawable *GdkDrawable,
-		colormap *GdkColormap,
-		mask **GdkBitmap,
-		transparent_color *GdkColor,
-		data **Gchar) *GdkPixmap
+		drawable *T.GdkDrawable,
+		colormap *T.GdkColormap,
+		mask **T.GdkBitmap,
+		transparent_color *T.GdkColor,
+		data **T.Gchar) *T.GdkPixmap
 
 	Gdk_pixmap_get_size func(
-		pixmap *GdkPixmap,
-		width *Gint,
-		height *Gint)
+		pixmap *T.GdkPixmap,
+		width *T.Gint,
+		height *T.Gint)
 
 	Gdk_pixmap_foreign_new func(
-		anid GdkNativeWindow) *GdkPixmap
+		anid T.GdkNativeWindow) *T.GdkPixmap
 
 	Gdk_pixmap_lookup func(
-		anid GdkNativeWindow) *GdkPixmap
+		anid T.GdkNativeWindow) *T.GdkPixmap
 
 	Gdk_pixmap_foreign_new_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkPixmap
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkPixmap
 
 	Gdk_pixmap_lookup_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkPixmap
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkPixmap
 
 	Gdk_pixmap_foreign_new_for_screen func(
-		screen *GdkScreen,
-		anid GdkNativeWindow,
-		width Gint,
-		height Gint,
-		depth Gint) *GdkPixmap
+		screen *T.GdkScreen,
+		anid T.GdkNativeWindow,
+		width T.Gint,
+		height T.Gint,
+		depth T.Gint) *T.GdkPixmap
 
 	Gdk_atom_intern func(
 		atom_name string,
-		only_if_exists Gboolean) GdkAtom
+		only_if_exists T.Gboolean) T.GdkAtom
 
 	Gdk_atom_intern_static_string func(
-		atom_name string) GdkAtom
+		atom_name string) T.GdkAtom
 
 	Gdk_atom_name func(
-		atom GdkAtom) string
+		atom T.GdkAtom) string
 
 	Gdk_property_get func(
-		window *GdkWindow,
-		property GdkAtom,
-		typ GdkAtom,
-		offset Gulong,
-		length Gulong,
-		pdelete Gint,
-		actual_property_type *GdkAtom,
-		actual_format *Gint,
-		actual_length *Gint,
-		data **Guchar) Gboolean
+		window *T.GdkWindow,
+		property T.GdkAtom,
+		typ T.GdkAtom,
+		offset T.Gulong,
+		length T.Gulong,
+		pdelete T.Gint,
+		actual_property_type *T.GdkAtom,
+		actual_format *T.Gint,
+		actual_length *T.Gint,
+		data **T.Guchar) T.Gboolean
 
 	Gdk_property_change func(
-		window *GdkWindow,
-		property GdkAtom,
-		typ GdkAtom,
-		format Gint,
-		mode GdkPropMode,
-		data *Guchar,
-		nelements Gint)
+		window *T.GdkWindow,
+		property T.GdkAtom,
+		typ T.GdkAtom,
+		format T.Gint,
+		mode T.GdkPropMode,
+		data *T.Guchar,
+		nelements T.Gint)
 
 	Gdk_property_delete func(
-		window *GdkWindow,
-		property GdkAtom)
+		window *T.GdkWindow,
+		property T.GdkAtom)
 
 	Gdk_text_property_to_text_list func(
-		encoding GdkAtom,
-		format Gint,
-		text *Guchar,
-		length Gint,
-		list ***Gchar) Gint
+		encoding T.GdkAtom,
+		format T.Gint,
+		text *T.Guchar,
+		length T.Gint,
+		list ***T.Gchar) T.Gint
 
 	Gdk_utf8_to_compound_text func(
 		str string,
-		encoding *GdkAtom,
-		format *Gint,
-		ctext **Guchar,
-		length *Gint) Gboolean
+		encoding *T.GdkAtom,
+		format *T.Gint,
+		ctext **T.Guchar,
+		length *T.Gint) T.Gboolean
 
 	Gdk_string_to_compound_text func(
 		str string,
-		encoding *GdkAtom,
-		format *Gint,
-		ctext **Guchar,
-		length *Gint) Gint
+		encoding *T.GdkAtom,
+		format *T.Gint,
+		ctext **T.Guchar,
+		length *T.Gint) T.Gint
 
 	Gdk_text_property_to_utf8_list func(
-		encoding GdkAtom,
-		format Gint,
-		text *Guchar,
-		length Gint,
-		list ***Gchar) Gint
+		encoding T.GdkAtom,
+		format T.Gint,
+		text *T.Guchar,
+		length T.Gint,
+		list ***T.Gchar) T.Gint
 
 	Gdk_text_property_to_utf8_list_for_display func(
-		display *GdkDisplay,
-		encoding GdkAtom,
-		format Gint,
-		text *Guchar,
-		length Gint,
-		list ***Gchar) Gint
+		display *T.GdkDisplay,
+		encoding T.GdkAtom,
+		format T.Gint,
+		text *T.Guchar,
+		length T.Gint,
+		list ***T.Gchar) T.Gint
 
 	Gdk_utf8_to_string_target func(
 		str string) string
 
 	Gdk_text_property_to_text_list_for_display func(
-		display *GdkDisplay,
-		encoding GdkAtom,
-		format Gint,
-		text *Guchar,
-		length Gint,
-		list ***Gchar) Gint
+		display *T.GdkDisplay,
+		encoding T.GdkAtom,
+		format T.Gint,
+		text *T.Guchar,
+		length T.Gint,
+		list ***T.Gchar) T.Gint
 
 	Gdk_string_to_compound_text_for_display func(
-		display *GdkDisplay,
+		display *T.GdkDisplay,
 		str string,
-		encoding *GdkAtom,
-		format *Gint,
-		ctext **Guchar,
-		length *Gint) Gint
+		encoding *T.GdkAtom,
+		format *T.Gint,
+		ctext **T.Guchar,
+		length *T.Gint) T.Gint
 
 	Gdk_utf8_to_compound_text_for_display func(
-		display *GdkDisplay,
+		display *T.GdkDisplay,
 		str string,
-		encoding *GdkAtom,
-		format *Gint,
-		ctext **Guchar,
-		length *Gint) Gboolean
+		encoding *T.GdkAtom,
+		format *T.Gint,
+		ctext **T.Guchar,
+		length *T.Gint) T.Gboolean
 
 	Gdk_free_text_list func(
-		list **Gchar)
+		list **T.Gchar)
 
 	Gdk_free_compound_text func(
-		ctext *Guchar)
+		ctext *T.Guchar)
 
-	Gdk_region_new func() *GdkRegion
+	Gdk_region_new func() *T.GdkRegion
 
 	Gdk_region_polygon func(
-		points *GdkPoint,
-		n_points Gint,
-		fill_rule GdkFillRule) *GdkRegion
+		points *T.GdkPoint,
+		n_points T.Gint,
+		fill_rule T.GdkFillRule) *T.GdkRegion
 
 	Gdk_region_copy func(
-		region *GdkRegion) *GdkRegion
+		region *T.GdkRegion) *T.GdkRegion
 
 	Gdk_region_rectangle func(
-		rectangle *GdkRectangle) *GdkRegion
+		rectangle *T.GdkRectangle) *T.GdkRegion
 
 	Gdk_region_destroy func(
-		region *GdkRegion)
+		region *T.GdkRegion)
 
 	Gdk_region_get_clipbox func(
-		region *GdkRegion,
-		rectangle *GdkRectangle)
+		region *T.GdkRegion,
+		rectangle *T.GdkRectangle)
 
 	Gdk_region_get_rectangles func(
-		region *GdkRegion,
-		rectangles **GdkRectangle,
-		n_rectangles *Gint)
+		region *T.GdkRegion,
+		rectangles **T.GdkRectangle,
+		n_rectangles *T.Gint)
 
 	Gdk_region_empty func(
-		region *GdkRegion) Gboolean
+		region *T.GdkRegion) T.Gboolean
 
 	Gdk_region_equal func(
-		region1 *GdkRegion,
-		region2 *GdkRegion) Gboolean
+		region1 *T.GdkRegion,
+		region2 *T.GdkRegion) T.Gboolean
 
 	Gdk_region_rect_equal func(
-		region *GdkRegion,
-		rectangle *GdkRectangle) Gboolean
+		region *T.GdkRegion,
+		rectangle *T.GdkRectangle) T.Gboolean
 
 	Gdk_region_point_in func(
-		region *GdkRegion,
+		region *T.GdkRegion,
 		x int,
-		y int) Gboolean
+		y int) T.Gboolean
 
 	Gdk_region_rect_in func(
-		region *GdkRegion,
-		rectangle *GdkRectangle) GdkOverlapType
+		region *T.GdkRegion,
+		rectangle *T.GdkRectangle) T.GdkOverlapType
 
 	Gdk_region_offset func(
-		region *GdkRegion,
-		dx Gint,
-		dy Gint)
+		region *T.GdkRegion,
+		dx T.Gint,
+		dy T.Gint)
 
 	Gdk_region_shrink func(
-		region *GdkRegion,
-		dx Gint,
-		dy Gint)
+		region *T.GdkRegion,
+		dx T.Gint,
+		dy T.Gint)
 
 	Gdk_region_union_with_rect func(
-		region *GdkRegion,
-		rect *GdkRectangle)
+		region *T.GdkRegion,
+		rect *T.GdkRectangle)
 
 	Gdk_region_intersect func(
-		source1 *GdkRegion,
-		source2 *GdkRegion)
+		source1 *T.GdkRegion,
+		source2 *T.GdkRegion)
 
 	Gdk_region_union func(
-		source1 *GdkRegion,
-		source2 *GdkRegion)
+		source1 *T.GdkRegion,
+		source2 *T.GdkRegion)
 
 	Gdk_region_subtract func(
-		source1 *GdkRegion,
-		source2 *GdkRegion)
+		source1 *T.GdkRegion,
+		source2 *T.GdkRegion)
 
 	Gdk_region_xor func(
-		source1 *GdkRegion,
-		source2 *GdkRegion)
+		source1 *T.GdkRegion,
+		source2 *T.GdkRegion)
 
 	Gdk_region_spans_intersect_foreach func(
-		region *GdkRegion,
-		spans *GdkSpan,
+		region *T.GdkRegion,
+		spans *T.GdkSpan,
 		n_spans int,
-		sorted Gboolean,
-		function GdkSpanFunc,
-		data Gpointer)
+		sorted T.Gboolean,
+		function T.GdkSpanFunc,
+		data T.Gpointer)
 
 	Gdk_selection_owner_set func(
-		owner *GdkWindow,
-		selection GdkAtom,
-		time_ Guint32,
-		send_event Gboolean) Gboolean
+		owner *T.GdkWindow,
+		selection T.GdkAtom,
+		time_ T.Guint32,
+		send_event T.Gboolean) T.Gboolean
 
 	Gdk_selection_owner_get func(
-		selection GdkAtom) *GdkWindow
+		selection T.GdkAtom) *T.GdkWindow
 
 	Gdk_selection_owner_set_for_display func(
-		display *GdkDisplay,
-		owner *GdkWindow,
-		selection GdkAtom,
-		time_ Guint32,
-		send_event Gboolean) Gboolean
+		display *T.GdkDisplay,
+		owner *T.GdkWindow,
+		selection T.GdkAtom,
+		time_ T.Guint32,
+		send_event T.Gboolean) T.Gboolean
 
 	Gdk_selection_owner_get_for_display func(
-		display *GdkDisplay,
-		selection GdkAtom) *GdkWindow
+		display *T.GdkDisplay,
+		selection T.GdkAtom) *T.GdkWindow
 
 	Gdk_selection_convert func(
-		requestor *GdkWindow,
-		selection GdkAtom,
-		target GdkAtom,
-		time_ Guint32)
+		requestor *T.GdkWindow,
+		selection T.GdkAtom,
+		target T.GdkAtom,
+		time_ T.Guint32)
 
 	Gdk_selection_property_get func(
-		requestor *GdkWindow,
-		data **Guchar,
-		prop_type *GdkAtom,
-		prop_format *Gint) Gint
+		requestor *T.GdkWindow,
+		data **T.Guchar,
+		prop_type *T.GdkAtom,
+		prop_format *T.Gint) T.Gint
 
 	Gdk_selection_send_notify func(
-		requestor GdkNativeWindow,
-		selection GdkAtom,
-		target GdkAtom,
-		property GdkAtom,
-		time_ Guint32)
+		requestor T.GdkNativeWindow,
+		selection T.GdkAtom,
+		target T.GdkAtom,
+		property T.GdkAtom,
+		time_ T.Guint32)
 
 	Gdk_selection_send_notify_for_display func(
-		display *GdkDisplay,
-		requestor GdkNativeWindow,
-		selection GdkAtom,
-		target GdkAtom,
-		property GdkAtom,
-		time_ Guint32)
+		display *T.GdkDisplay,
+		requestor T.GdkNativeWindow,
+		selection T.GdkAtom,
+		target T.GdkAtom,
+		property T.GdkAtom,
+		time_ T.Guint32)
 
 	Gdk_spawn_on_screen func(
-		screen *GdkScreen,
+		screen *T.GdkScreen,
 		working_directory string,
-		argv **Gchar,
-		envp **Gchar,
-		flags GSpawnFlags,
-		child_setup GSpawnChildSetupFunc,
-		user_data Gpointer,
-		child_pid *Gint,
-		e **GError) Gboolean
+		argv **T.Gchar,
+		envp **T.Gchar,
+		flags T.GSpawnFlags,
+		child_setup T.GSpawnChildSetupFunc,
+		user_data T.Gpointer,
+		child_pid *T.Gint,
+		e **T.GError) T.Gboolean
 
 	Gdk_spawn_on_screen_with_pipes func(
-		screen *GdkScreen,
+		screen *T.GdkScreen,
 		working_directory string,
-		argv **Gchar,
-		envp **Gchar,
-		flags GSpawnFlags,
-		child_setup GSpawnChildSetupFunc,
-		user_data Gpointer,
-		child_pid *Gint,
-		standard_input *Gint,
-		standard_output *Gint,
-		standard_error *Gint,
-		e **GError) Gboolean
+		argv **T.Gchar,
+		envp **T.Gchar,
+		flags T.GSpawnFlags,
+		child_setup T.GSpawnChildSetupFunc,
+		user_data T.Gpointer,
+		child_pid *T.Gint,
+		standard_input *T.Gint,
+		standard_output *T.Gint,
+		standard_error *T.Gint,
+		e **T.GError) T.Gboolean
 
 	Gdk_spawn_command_line_on_screen func(
-		screen *GdkScreen,
+		screen *T.GdkScreen,
 		command_line string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	Gdk_window_object_get_type func() GType
+	Gdk_window_object_get_type func() T.GType
 
 	Gdk_window_new func(
-		parent *GdkWindow,
-		attributes *GdkWindowAttr,
-		attributes_mask Gint) *GdkWindow
+		parent *T.GdkWindow,
+		attributes *T.GdkWindowAttr,
+		attributes_mask T.Gint) *T.GdkWindow
 
 	Gdk_window_destroy func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_get_window_type func(
-		window *GdkWindow) GdkWindowType
+		window *T.GdkWindow) T.GdkWindowType
 
 	Gdk_window_is_destroyed func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_get_screen func(
-		window *GdkWindow) *GdkScreen
+		window *T.GdkWindow) *T.GdkScreen
 
 	Gdk_window_get_display func(
-		window *GdkWindow) *GdkDisplay
+		window *T.GdkWindow) *T.GdkDisplay
 
 	Gdk_window_get_visual func(
-		window *GdkWindow) *GdkVisual
+		window *T.GdkWindow) *T.GdkVisual
 
 	Gdk_window_get_width func(
-		window *GdkWindow) int
+		window *T.GdkWindow) int
 
 	Gdk_window_get_height func(
-		window *GdkWindow) int
+		window *T.GdkWindow) int
 
 	Gdk_window_at_pointer func(
-		win_x *Gint,
-		win_y *Gint) *GdkWindow
+		win_x *T.Gint,
+		win_y *T.Gint) *T.GdkWindow
 
 	Gdk_window_show func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_hide func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_withdraw func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_show_unraised func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_move func(
-		window *GdkWindow,
-		x Gint,
-		y Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_window_resize func(
-		window *GdkWindow,
-		width Gint,
-		height Gint)
+		window *T.GdkWindow,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_window_move_resize func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_window_reparent func(
-		window *GdkWindow,
-		new_parent *GdkWindow,
-		x Gint,
-		y Gint)
+		window *T.GdkWindow,
+		new_parent *T.GdkWindow,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_window_clear func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_clear_area func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_window_clear_area_e func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_window_raise func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_lower func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_restack func(
-		window *GdkWindow,
-		sibling *GdkWindow,
-		above Gboolean)
+		window *T.GdkWindow,
+		sibling *T.GdkWindow,
+		above T.Gboolean)
 
 	Gdk_window_focus func(
-		window *GdkWindow,
-		timestamp Guint32)
+		window *T.GdkWindow,
+		timestamp T.Guint32)
 
 	Gdk_window_set_user_data func(
-		window *GdkWindow,
-		user_data Gpointer)
+		window *T.GdkWindow,
+		user_data T.Gpointer)
 
 	Gdk_window_set_override_redirect func(
-		window *GdkWindow,
-		override_redirect Gboolean)
+		window *T.GdkWindow,
+		override_redirect T.Gboolean)
 
 	Gdk_window_get_accept_focus func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_set_accept_focus func(
-		window *GdkWindow,
-		accept_focus Gboolean)
+		window *T.GdkWindow,
+		accept_focus T.Gboolean)
 
 	Gdk_window_get_focus_on_map func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_set_focus_on_map func(
-		window *GdkWindow,
-		focus_on_map Gboolean)
+		window *T.GdkWindow,
+		focus_on_map T.Gboolean)
 
 	Gdk_window_add_filter func(
-		window *GdkWindow,
-		function GdkFilterFunc,
-		data Gpointer)
+		window *T.GdkWindow,
+		function T.GdkFilterFunc,
+		data T.Gpointer)
 
 	Gdk_window_remove_filter func(
-		window *GdkWindow,
-		function GdkFilterFunc,
-		data Gpointer)
+		window *T.GdkWindow,
+		function T.GdkFilterFunc,
+		data T.Gpointer)
 
 	Gdk_window_scroll func(
-		window *GdkWindow,
-		dx Gint,
-		dy Gint)
+		window *T.GdkWindow,
+		dx T.Gint,
+		dy T.Gint)
 
 	Gdk_window_move_region func(
-		window *GdkWindow,
-		region *GdkRegion,
-		dx Gint,
-		dy Gint)
+		window *T.GdkWindow,
+		region *T.GdkRegion,
+		dx T.Gint,
+		dy T.Gint)
 
 	Gdk_window_ensure_native func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_shape_combine_mask func(
-		window *GdkWindow,
-		mask *GdkBitmap,
-		x Gint,
-		y Gint)
+		window *T.GdkWindow,
+		mask *T.GdkBitmap,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_window_shape_combine_region func(
-		window *GdkWindow,
-		shape_region *GdkRegion,
-		offset_x Gint,
-		offset_y Gint)
+		window *T.GdkWindow,
+		shape_region *T.GdkRegion,
+		offset_x T.Gint,
+		offset_y T.Gint)
 
 	Gdk_window_set_child_shapes func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_get_composited func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_set_composited func(
-		window *GdkWindow,
-		composited Gboolean)
+		window *T.GdkWindow,
+		composited T.Gboolean)
 
 	Gdk_window_merge_child_shapes func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_input_shape_combine_mask func(
-		window *GdkWindow,
-		mask *GdkBitmap,
-		x Gint,
-		y Gint)
+		window *T.GdkWindow,
+		mask *T.GdkBitmap,
+		x T.Gint,
+		y T.Gint)
 
 	Gdk_window_input_shape_combine_region func(
-		window *GdkWindow,
-		shape_region *GdkRegion,
-		offset_x Gint,
-		offset_y Gint)
+		window *T.GdkWindow,
+		shape_region *T.GdkRegion,
+		offset_x T.Gint,
+		offset_y T.Gint)
 
 	Gdk_window_set_child_input_shapes func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_merge_child_input_shapes func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_is_visible func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_is_viewable func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_is_input_only func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_is_shaped func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_get_state func(
-		window *GdkWindow) GdkWindowState
+		window *T.GdkWindow) T.GdkWindowState
 
 	Gdk_window_set_static_gravities func(
-		window *GdkWindow,
-		use_static Gboolean) Gboolean
+		window *T.GdkWindow,
+		use_static T.Gboolean) T.Gboolean
 
 	Gdk_window_foreign_new func(
-		anid GdkNativeWindow) *GdkWindow
+		anid T.GdkNativeWindow) *T.GdkWindow
 
 	Gdk_window_lookup func(
-		anid GdkNativeWindow) *GdkWindow
+		anid T.GdkNativeWindow) *T.GdkWindow
 
 	Gdk_window_foreign_new_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkWindow
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkWindow
 
 	Gdk_window_lookup_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkWindow
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkWindow
 
 	Gdk_window_has_native func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_set_hints func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		min_width Gint,
-		min_height Gint,
-		max_width Gint,
-		max_height Gint,
-		flags Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		min_width T.Gint,
+		min_height T.Gint,
+		max_width T.Gint,
+		max_height T.Gint,
+		flags T.Gint)
 
 	Gdk_window_set_type_hint func(
-		window *GdkWindow,
-		hint GdkWindowTypeHint)
+		window *T.GdkWindow,
+		hint T.GdkWindowTypeHint)
 
 	Gdk_window_get_type_hint func(
-		window *GdkWindow) GdkWindowTypeHint
+		window *T.GdkWindow) T.GdkWindowTypeHint
 
 	Gdk_window_get_modal_hint func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_window_set_modal_hint func(
-		window *GdkWindow,
-		modal Gboolean)
+		window *T.GdkWindow,
+		modal T.Gboolean)
 
 	Gdk_window_set_skip_taskbar_hint func(
-		window *GdkWindow,
-		skips_taskbar Gboolean)
+		window *T.GdkWindow,
+		skips_taskbar T.Gboolean)
 
 	Gdk_window_set_skip_pager_hint func(
-		window *GdkWindow,
-		skips_pager Gboolean)
+		window *T.GdkWindow,
+		skips_pager T.Gboolean)
 
 	Gdk_window_set_urgency_hint func(
-		window *GdkWindow,
-		urgent Gboolean)
+		window *T.GdkWindow,
+		urgent T.Gboolean)
 
 	Gdk_window_set_geometry_hints func(
-		window *GdkWindow,
-		geometry *GdkGeometry,
-		geom_mask GdkWindowHints)
+		window *T.GdkWindow,
+		geometry *T.GdkGeometry,
+		geom_mask T.GdkWindowHints)
 
 	Gdk_set_sm_client_id func(
 		sm_client_id string)
 
 	Gdk_window_begin_paint_rect func(
-		window *GdkWindow,
-		rectangle *GdkRectangle)
+		window *T.GdkWindow,
+		rectangle *T.GdkRectangle)
 
 	Gdk_window_begin_paint_region func(
-		window *GdkWindow,
-		region *GdkRegion)
+		window *T.GdkWindow,
+		region *T.GdkRegion)
 
 	Gdk_window_end_paint func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_flush func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_set_title func(
-		window *GdkWindow,
+		window *T.GdkWindow,
 		title string)
 
 	Gdk_window_set_role func(
-		window *GdkWindow,
+		window *T.GdkWindow,
 		role string)
 
 	Gdk_window_set_startup_id func(
-		window *GdkWindow,
+		window *T.GdkWindow,
 		startup_id string)
 
 	Gdk_window_set_transient_for func(
-		window *GdkWindow,
-		parent *GdkWindow)
+		window *T.GdkWindow,
+		parent *T.GdkWindow)
 
 	Gdk_window_set_background func(
-		window *GdkWindow,
-		color *GdkColor)
+		window *T.GdkWindow,
+		color *T.GdkColor)
 
 	Gdk_window_set_back_pixmap func(
-		window *GdkWindow,
-		pixmap *GdkPixmap,
-		parent_relative Gboolean)
+		window *T.GdkWindow,
+		pixmap *T.GdkPixmap,
+		parent_relative T.Gboolean)
 
 	Gdk_window_get_background_pattern func(
-		window *GdkWindow) *Cairo_pattern_t
+		window *T.GdkWindow) *T.Cairo_pattern_t
 
 	Gdk_window_set_cursor func(
-		window *GdkWindow,
-		cursor *GdkCursor)
+		window *T.GdkWindow,
+		cursor *T.GdkCursor)
 
 	Gdk_window_get_cursor func(
-		window *GdkWindow) *GdkCursor
+		window *T.GdkWindow) *T.GdkCursor
 
 	Gdk_window_get_user_data func(
-		window *GdkWindow,
-		data *Gpointer)
+		window *T.GdkWindow,
+		data *T.Gpointer)
 
 	Gdk_window_get_geometry func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint,
-		width *Gint,
-		height *Gint,
-		depth *Gint)
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint,
+		width *T.Gint,
+		height *T.Gint,
+		depth *T.Gint)
 
 	Gdk_window_get_position func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint)
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint)
 
 	Gdk_window_get_origin func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint) Gint
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint) T.Gint
 
 	Gdk_window_get_root_coords func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		root_x *Gint,
-		root_y *Gint)
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		root_x *T.Gint,
+		root_y *T.Gint)
 
 	Gdk_window_coords_to_parent func(
-		window *GdkWindow,
-		x Gdouble,
-		y Gdouble,
-		parent_x *Gdouble,
-		parent_y *Gdouble)
+		window *T.GdkWindow,
+		x T.Gdouble,
+		y T.Gdouble,
+		parent_x *T.Gdouble,
+		parent_y *T.Gdouble)
 
 	Gdk_window_coords_from_parent func(
-		window *GdkWindow,
-		parent_x Gdouble,
-		parent_y Gdouble,
-		x *Gdouble,
-		y *Gdouble)
+		window *T.GdkWindow,
+		parent_x T.Gdouble,
+		parent_y T.Gdouble,
+		x *T.Gdouble,
+		y *T.Gdouble)
 
 	Gdk_window_get_deskrelative_origin func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint) Gboolean
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint) T.Gboolean
 
 	Gdk_window_get_root_origin func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint)
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint)
 
 	Gdk_window_get_frame_extents func(
-		window *GdkWindow,
-		rect *GdkRectangle)
+		window *T.GdkWindow,
+		rect *T.GdkRectangle)
 
 	Gdk_window_get_pointer func(
-		window *GdkWindow,
-		x *Gint,
-		y *Gint,
-		mask *GdkModifierType) *GdkWindow
+		window *T.GdkWindow,
+		x *T.Gint,
+		y *T.Gint,
+		mask *T.GdkModifierType) *T.GdkWindow
 
 	Gdk_window_get_parent func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_get_toplevel func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_get_effective_parent func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_get_effective_toplevel func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_get_children func(
-		window *GdkWindow) *GList
+		window *T.GdkWindow) *T.GList
 
 	Gdk_window_peek_children func(
-		window *GdkWindow) *GList
+		window *T.GdkWindow) *T.GList
 
 	Gdk_window_get_events func(
-		window *GdkWindow) GdkEventMask
+		window *T.GdkWindow) T.GdkEventMask
 
 	Gdk_window_set_events func(
-		window *GdkWindow,
-		event_mask GdkEventMask)
+		window *T.GdkWindow,
+		event_mask T.GdkEventMask)
 
 	Gdk_window_set_icon_list func(
-		window *GdkWindow,
-		pixbufs *GList)
+		window *T.GdkWindow,
+		pixbufs *T.GList)
 
 	Gdk_window_set_icon func(
-		window *GdkWindow,
-		icon_window *GdkWindow,
-		pixmap *GdkPixmap,
-		mask *GdkBitmap)
+		window *T.GdkWindow,
+		icon_window *T.GdkWindow,
+		pixmap *T.GdkPixmap,
+		mask *T.GdkBitmap)
 
 	Gdk_window_set_icon_name func(
-		window *GdkWindow,
+		window *T.GdkWindow,
 		name string)
 
 	Gdk_window_set_group func(
-		window *GdkWindow,
-		leader *GdkWindow)
+		window *T.GdkWindow,
+		leader *T.GdkWindow)
 
 	Gdk_window_get_group func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_set_decorations func(
-		window *GdkWindow,
-		decorations GdkWMDecoration)
+		window *T.GdkWindow,
+		decorations T.GdkWMDecoration)
 
 	Gdk_window_get_decorations func(
-		window *GdkWindow,
-		decorations *GdkWMDecoration) Gboolean
+		window *T.GdkWindow,
+		decorations *T.GdkWMDecoration) T.Gboolean
 
 	Gdk_window_set_functions func(
-		window *GdkWindow,
-		functions GdkWMFunction)
+		window *T.GdkWindow,
+		functions T.GdkWMFunction)
 
-	Gdk_window_get_toplevels func() *GList
+	Gdk_window_get_toplevels func() *T.GList
 
 	Gdk_window_create_similar_surface func(
-		window *GdkWindow,
-		content Cairo_content_t,
+		window *T.GdkWindow,
+		content T.Cairo_content_t,
 		width int,
-		height int) *Cairo_surface_t
+		height int) *T.Cairo_surface_t
 
 	Gdk_window_beep func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_iconify func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_deiconify func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_stick func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_unstick func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_maximize func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_unmaximize func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_fullscreen func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_unfullscreen func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_set_keep_above func(
-		window *GdkWindow,
-		setting Gboolean)
+		window *T.GdkWindow,
+		setting T.Gboolean)
 
 	Gdk_window_set_keep_below func(
-		window *GdkWindow,
-		setting Gboolean)
+		window *T.GdkWindow,
+		setting T.Gboolean)
 
 	Gdk_window_set_opacity func(
-		window *GdkWindow,
-		opacity Gdouble)
+		window *T.GdkWindow,
+		opacity T.Gdouble)
 
 	Gdk_window_register_dnd func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_begin_resize_drag func(
-		window *GdkWindow,
-		edge GdkWindowEdge,
-		button Gint,
-		root_x Gint,
-		root_y Gint,
-		timestamp Guint32)
+		window *T.GdkWindow,
+		edge T.GdkWindowEdge,
+		button T.Gint,
+		root_x T.Gint,
+		root_y T.Gint,
+		timestamp T.Guint32)
 
 	Gdk_window_begin_move_drag func(
-		window *GdkWindow,
-		button Gint,
-		root_x Gint,
-		root_y Gint,
-		timestamp Guint32)
+		window *T.GdkWindow,
+		button T.Gint,
+		root_x T.Gint,
+		root_y T.Gint,
+		timestamp T.Guint32)
 
 	Gdk_window_invalidate_rect func(
-		window *GdkWindow,
-		rect *GdkRectangle,
-		invalidate_children Gboolean)
+		window *T.GdkWindow,
+		rect *T.GdkRectangle,
+		invalidate_children T.Gboolean)
 
 	Gdk_window_invalidate_region func(
-		window *GdkWindow,
-		region *GdkRegion,
-		invalidate_children Gboolean)
+		window *T.GdkWindow,
+		region *T.GdkRegion,
+		invalidate_children T.Gboolean)
 
 	Gdk_window_invalidate_maybe_recurse func(
-		window *GdkWindow,
-		region *GdkRegion,
-		child_func func(
-			*GdkWindow,
-			Gpointer) Gboolean,
-		user_data Gpointer)
+		window *T.GdkWindow,
+		region *T.GdkRegion,
+		child_func func(*T.GdkWindow, T.Gpointer) T.Gboolean,
+		user_data T.Gpointer)
 
 	Gdk_window_get_update_area func(
-		window *GdkWindow) *GdkRegion
+		window *T.GdkWindow) *T.GdkRegion
 
 	Gdk_window_freeze_updates func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_thaw_updates func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_freeze_toplevel_updates_libgtk_only func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_thaw_toplevel_updates_libgtk_only func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_process_all_updates func()
 
 	Gdk_window_process_updates func(
-		window *GdkWindow,
-		update_children Gboolean)
+		window *T.GdkWindow,
+		update_children T.Gboolean)
 
 	Gdk_window_set_debug_updates func(
-		setting Gboolean)
+		setting T.Gboolean)
 
 	Gdk_window_constrain_size func(
-		geometry *GdkGeometry,
-		flags Guint,
-		width Gint,
-		height Gint,
-		new_width *Gint,
-		new_height *Gint)
+		geometry *T.GdkGeometry,
+		flags T.Guint,
+		width T.Gint,
+		height T.Gint,
+		new_width *T.Gint,
+		new_height *T.Gint)
 
 	Gdk_window_get_internal_paint_info func(
-		window *GdkWindow,
-		real_drawable **GdkDrawable,
-		x_offset *Gint,
-		y_offset *Gint)
+		window *T.GdkWindow,
+		real_drawable **T.GdkDrawable,
+		x_offset *T.Gint,
+		y_offset *T.Gint)
 
 	Gdk_window_enable_synchronized_configure func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_configure_finished func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
-	Gdk_get_default_root_window func() *GdkWindow
+	Gdk_get_default_root_window func() *T.GdkWindow
 
 	Gdk_offscreen_window_get_pixmap func(
-		window *GdkWindow) *GdkPixmap
+		window *T.GdkWindow) *T.GdkPixmap
 
 	Gdk_offscreen_window_set_embedder func(
-		window *GdkWindow,
-		embedder *GdkWindow)
+		window *T.GdkWindow,
+		embedder *T.GdkWindow)
 
 	Gdk_offscreen_window_get_embedder func(
-		window *GdkWindow) *GdkWindow
+		window *T.GdkWindow) *T.GdkWindow
 
 	Gdk_window_geometry_changed func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_window_redirect_to_drawable func(
-		window *GdkWindow,
-		drawable *GdkDrawable,
-		src_x Gint,
-		src_y Gint,
-		dest_x Gint,
-		dest_y Gint,
-		width Gint,
-		height Gint)
+		window *T.GdkWindow,
+		drawable *T.GdkDrawable,
+		src_x T.Gint,
+		src_y T.Gint,
+		dest_x T.Gint,
+		dest_y T.Gint,
+		width T.Gint,
+		height T.Gint)
 
 	Gdk_window_remove_redirection func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_set_pointer_hooks func(
-		new_hooks *GdkPointerHooks) *GdkPointerHooks
+		new_hooks *T.GdkPointerHooks) *T.GdkPointerHooks
 
 	Gdk_test_render_sync func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_test_simulate_key func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		keyval Guint,
-		modifiers GdkModifierType,
-		key_pressrelease GdkEventType) Gboolean
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		keyval T.Guint,
+		modifiers T.GdkModifierType,
+		key_pressrelease T.GdkEventType) T.Gboolean
 
 	Gdk_test_simulate_button func(
-		window *GdkWindow,
-		x Gint,
-		y Gint,
-		button Guint,
-		modifiers GdkModifierType,
-		button_pressrelease GdkEventType) Gboolean
+		window *T.GdkWindow,
+		x T.Gint,
+		y T.Gint,
+		button T.Guint,
+		modifiers T.GdkModifierType,
+		button_pressrelease T.GdkEventType) T.Gboolean
 
-	Gdk_visual_get_type func() GType
+	Gdk_visual_get_type func() T.GType
 
-	Gdk_visual_get_best_depth func() Gint
+	Gdk_visual_get_best_depth func() T.Gint
 
-	Gdk_visual_get_best_type func() GdkVisualType
+	Gdk_visual_get_best_type func() T.GdkVisualType
 
-	Gdk_visual_get_system func() *GdkVisual
+	Gdk_visual_get_system func() *T.GdkVisual
 
-	Gdk_visual_get_best func() *GdkVisual
+	Gdk_visual_get_best func() *T.GdkVisual
 
 	Gdk_visual_get_best_with_depth func(
-		depth Gint) *GdkVisual
+		depth T.Gint) *T.GdkVisual
 
 	Gdk_visual_get_best_with_type func(
-		visual_type GdkVisualType) *GdkVisual
+		visual_type T.GdkVisualType) *T.GdkVisual
 
 	Gdk_visual_get_best_with_both func(
-		depth Gint,
-		visual_type GdkVisualType) *GdkVisual
+		depth T.Gint,
+		visual_type T.GdkVisualType) *T.GdkVisual
 
 	Gdk_query_depths func(
-		depths **Gint,
-		count *Gint)
+		depths **T.Gint,
+		count *T.Gint)
 
 	Gdk_query_visual_types func(
-		visual_types **GdkVisualType,
-		count *Gint)
+		visual_types **T.GdkVisualType,
+		count *T.Gint)
 
-	Gdk_list_visuals func() *GList
+	Gdk_list_visuals func() *T.GList
 
 	Gdk_visual_get_screen func(
-		visual *GdkVisual) *GdkScreen
+		visual *T.GdkVisual) *T.GdkScreen
 
 	Gdk_visual_get_visual_type func(
-		visual *GdkVisual) GdkVisualType
+		visual *T.GdkVisual) T.GdkVisualType
 
 	Gdk_visual_get_depth func(
-		visual *GdkVisual) Gint
+		visual *T.GdkVisual) T.Gint
 
 	Gdk_visual_get_byte_order func(
-		visual *GdkVisual) GdkByteOrder
+		visual *T.GdkVisual) T.GdkByteOrder
 
 	Gdk_visual_get_colormap_size func(
-		visual *GdkVisual) Gint
+		visual *T.GdkVisual) T.Gint
 
 	Gdk_visual_get_bits_per_rgb func(
-		visual *GdkVisual) Gint
+		visual *T.GdkVisual) T.Gint
 
 	Gdk_visual_get_red_pixel_details func(
-		visual *GdkVisual,
-		mask *Guint32,
-		shift *Gint,
-		precision *Gint)
+		visual *T.GdkVisual,
+		mask *T.Guint32,
+		shift *T.Gint,
+		precision *T.Gint)
 
 	Gdk_visual_get_green_pixel_details func(
-		visual *GdkVisual,
-		mask *Guint32,
-		shift *Gint,
-		precision *Gint)
+		visual *T.GdkVisual,
+		mask *T.Guint32,
+		shift *T.Gint,
+		precision *T.Gint)
 
 	Gdk_visual_get_blue_pixel_details func(
-		visual *GdkVisual,
-		mask *Guint32,
-		shift *Gint,
-		precision *Gint)
+		visual *T.GdkVisual,
+		mask *T.Guint32,
+		shift *T.Gint,
+		precision *T.Gint)
 
 	Gdk_parse_args func(
-		argc *Gint,
-		argv ***Gchar)
+		argc *T.Gint,
+		argv ***T.Gchar)
 
 	Gdk_init func(
-		argc *Gint,
-		argv ***Gchar)
+		argc *T.Gint,
+		argv ***T.Gchar)
 
 	Gdk_init_check func(
-		argc *Gint,
-		argv ***Gchar) Gboolean
+		argc *T.Gint,
+		argv ***T.Gchar) T.Gboolean
 
 	Gdk_add_option_entries_libgtk_only func(
-		group *GOptionGroup)
+		group *T.GOptionGroup)
 
 	Gdk_pre_parse_libgtk_only func()
 
 	Gdk_exit func(
-		error_code Gint)
+		error_code T.Gint)
 
 	Gdk_set_locale func() string
 
@@ -3216,110 +3214,110 @@ var (
 
 	Gdk_error_trap_push func()
 
-	Gdk_error_trap_pop func() Gint
+	Gdk_error_trap_pop func() T.Gint
 
 	Gdk_set_use_xshm func(
-		use_xshm Gboolean)
+		use_xshm T.Gboolean)
 
-	Gdk_get_use_xshm func() Gboolean
+	Gdk_get_use_xshm func() T.Gboolean
 
 	Gdk_get_display func() string
 
 	Gdk_get_display_arg_name func() string
 
 	Gdk_input_add_full func(
-		source Gint,
-		condition GdkInputCondition,
-		function GdkInputFunction,
-		data Gpointer,
-		destroy GDestroyNotify) Gint
+		source T.Gint,
+		condition T.GdkInputCondition,
+		function T.GdkInputFunction,
+		data T.Gpointer,
+		destroy T.GDestroyNotify) T.Gint
 
 	Gdk_input_add func(
-		source Gint,
-		condition GdkInputCondition,
-		function GdkInputFunction,
-		data Gpointer) Gint
+		source T.Gint,
+		condition T.GdkInputCondition,
+		function T.GdkInputFunction,
+		data T.Gpointer) T.Gint
 
 	Gdk_input_remove func(
-		tag Gint)
+		tag T.Gint)
 
 	Gdk_pointer_grab func(
-		window *GdkWindow,
-		owner_events Gboolean,
-		event_mask GdkEventMask,
-		confine_to *GdkWindow,
-		cursor *GdkCursor,
-		time_ Guint32) GdkGrabStatus
+		window *T.GdkWindow,
+		owner_events T.Gboolean,
+		event_mask T.GdkEventMask,
+		confine_to *T.GdkWindow,
+		cursor *T.GdkCursor,
+		time_ T.Guint32) T.GdkGrabStatus
 
 	Gdk_keyboard_grab func(
-		window *GdkWindow,
-		owner_events Gboolean,
-		time_ Guint32) GdkGrabStatus
+		window *T.GdkWindow,
+		owner_events T.Gboolean,
+		time_ T.Guint32) T.GdkGrabStatus
 
 	Gdk_pointer_grab_info_libgtk_only func(
-		display *GdkDisplay,
-		grab_window **GdkWindow,
-		owner_events *Gboolean) Gboolean
+		display *T.GdkDisplay,
+		grab_window **T.GdkWindow,
+		owner_events *T.Gboolean) T.Gboolean
 
 	Gdk_keyboard_grab_info_libgtk_only func(
-		display *GdkDisplay,
-		grab_window **GdkWindow,
-		owner_events *Gboolean) Gboolean
+		display *T.GdkDisplay,
+		grab_window **T.GdkWindow,
+		owner_events *T.Gboolean) T.Gboolean
 
 	Gdk_pointer_ungrab func(
-		time_ Guint32)
+		time_ T.Guint32)
 
 	Gdk_keyboard_ungrab func(
-		time_ Guint32)
+		time_ T.Guint32)
 
-	Gdk_pointer_is_grabbed func() Gboolean
+	Gdk_pointer_is_grabbed func() T.Gboolean
 
-	Gdk_screen_width func() Gint
+	Gdk_screen_width func() T.Gint
 
-	Gdk_screen_height func() Gint
+	Gdk_screen_height func() T.Gint
 
-	Gdk_screen_width_mm func() Gint
+	Gdk_screen_width_mm func() T.Gint
 
-	Gdk_screen_height_mm func() Gint
+	Gdk_screen_height_mm func() T.Gint
 
 	Gdk_beep func()
 
 	Gdk_flush func()
 
 	Gdk_set_double_click_time func(
-		msec Guint)
+		msec T.Guint)
 
 	Gdk_rectangle_intersect func(
-		src1 *GdkRectangle,
-		src2 *GdkRectangle,
-		dest *GdkRectangle) Gboolean
+		src1 *T.GdkRectangle,
+		src2 *T.GdkRectangle,
+		dest *T.GdkRectangle) T.Gboolean
 
 	Gdk_rectangle_union func(
-		src1 *GdkRectangle,
-		src2 *GdkRectangle,
-		dest *GdkRectangle)
+		src1 *T.GdkRectangle,
+		src2 *T.GdkRectangle,
+		dest *T.GdkRectangle)
 
-	Gdk_rectangle_get_type func() GType
+	Gdk_rectangle_get_type func() T.GType
 
 	Gdk_wcstombs func(
-		src *GdkWChar) string
+		src *T.GdkWChar) string
 
 	Gdk_mbstowcs func(
-		dest *GdkWChar,
+		dest *T.GdkWChar,
 		src string,
-		dest_max Gint) Gint
+		dest_max T.Gint) T.Gint
 
 	Gdk_event_send_client_message func(
-		event *GdkEvent,
-		winid GdkNativeWindow) Gboolean
+		event *T.GdkEvent,
+		winid T.GdkNativeWindow) T.Gboolean
 
 	Gdk_event_send_clientmessage_toall func(
-		event *GdkEvent)
+		event *T.GdkEvent)
 
 	Gdk_event_send_client_message_for_display func(
-		display *GdkDisplay,
-		event *GdkEvent,
-		winid GdkNativeWindow) Gboolean
+		display *T.GdkDisplay,
+		event *T.GdkEvent,
+		winid T.GdkNativeWindow) T.Gboolean
 
 	Gdk_notify_startup_complete func()
 
@@ -3333,144 +3331,144 @@ var (
 	Gdk_threads_init func()
 
 	Gdk_threads_set_lock_functions func(
-		enter_fn GCallback,
-		leave_fn GCallback)
+		enter_fn T.GCallback,
+		leave_fn T.GCallback)
 
 	Gdk_threads_add_idle_full func(
-		priority Gint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+		priority T.Gint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
 	Gdk_threads_add_idle func(
-		function GSourceFunc,
-		data Gpointer) Guint
+		function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
 	Gdk_threads_add_timeout_full func(
-		priority Gint,
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+		priority T.Gint,
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
 	Gdk_threads_add_timeout func(
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer) Guint
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
 	Gdk_threads_add_timeout_seconds_full func(
-		priority Gint,
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+		priority T.Gint,
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
 	Gdk_threads_add_timeout_seconds func(
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer) Guint
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
-	Gdk_pixbuf_non_anim_get_type func() GType
+	Gdk_pixbuf_non_anim_get_type func() T.GType
 
 	Gdk_pixbuf_non_anim_new func(
-		pixbuf *GdkPixbuf) *GdkPixbufAnimation
+		pixbuf *T.GdkPixbuf) *T.GdkPixbufAnimation
 
 	Gdk_pixbuf_animation_new_from_file func(
 		filename string,
-		e **GError) *GdkPixbufAnimation
+		e **T.GError) *T.GdkPixbufAnimation
 
 	Gdk_pixdata_serialize func(
-		pixdata *GdkPixdata,
-		stream_length_p *Guint) *Guint8
+		pixdata *T.GdkPixdata,
+		stream_length_p *T.Guint) *T.Guint8
 
 	Gdk_pixdata_deserialize func(
-		pixdata *GdkPixdata,
-		stream_length Guint,
-		stream *Guint8,
-		e **GError) Gboolean
+		pixdata *T.GdkPixdata,
+		stream_length T.Guint,
+		stream *T.Guint8,
+		e **T.GError) T.Gboolean
 
 	Gdk_pixdata_from_pixbuf func(
-		pixdata *GdkPixdata,
-		pixbuf *GdkPixbuf,
-		use_rle Gboolean) Gpointer
+		pixdata *T.GdkPixdata,
+		pixbuf *T.GdkPixbuf,
+		use_rle T.Gboolean) T.Gpointer
 
 	Gdk_pixbuf_from_pixdata func(
-		pixdata *GdkPixdata,
-		copy_pixels Gboolean,
-		e **GError) *GdkPixbuf
+		pixdata *T.GdkPixdata,
+		copy_pixels T.Gboolean,
+		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixdata_to_csource func(
-		pixdata *GdkPixdata,
+		pixdata *T.GdkPixdata,
 		name string,
-		dump_type GdkPixdataDumpType) *GString
+		dump_type T.GdkPixdataDumpType) *T.GString
 
 	Gdk_pixbuf_set_option func(
-		pixbuf *GdkPixbuf,
+		pixbuf *T.GdkPixbuf,
 		key string,
-		value string) Gboolean
+		value string) T.Gboolean
 
 	Gdk_window_destroy_notify func(
-		window *GdkWindow)
+		window *T.GdkWindow)
 
 	Gdk_synthesize_window_state func(
-		window *GdkWindow,
-		unset_flags GdkWindowState,
-		set_flags GdkWindowState)
+		window *T.GdkWindow,
+		unset_flags T.GdkWindowState,
+		set_flags T.GdkWindowState)
 
 	Gdk_win32_window_is_win32 func(
-		window *GdkWindow) Gboolean
+		window *T.GdkWindow) T.Gboolean
 
 	Gdk_win32_window_get_impl_hwnd func(
-		window *GdkWindow) HWND
+		window *T.GdkWindow) HWND
 
 	Gdk_win32_handle_table_lookup func(
-		handle GdkNativeWindow) Gpointer
+		handle T.GdkNativeWindow) T.Gpointer
 
 	Gdk_win32_drawable_get_handle func(
-		drawable *GdkDrawable) HGDIOBJ
+		drawable *T.GdkDrawable) HGDIOBJ
 
 	Gdk_win32_hdc_get func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		usage GdkGCValuesMask) HDC
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		usage T.GdkGCValuesMask) HDC
 
 	Gdk_win32_hdc_release func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		usage GdkGCValuesMask)
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		usage T.GdkGCValuesMask)
 
 	Gdk_win32_selection_add_targets func(
-		owner *GdkWindow,
-		selection GdkAtom,
-		n_targets Gint,
-		targets *GdkAtom)
+		owner *T.GdkWindow,
+		selection T.GdkAtom,
+		n_targets T.Gint,
+		targets *T.GdkAtom)
 
 	Gdk_win32_icon_to_pixbuf_libgtk_only func(
-		hicon HICON) *GdkPixbuf
+		hicon HICON) *T.GdkPixbuf
 
 	Gdk_win32_pixbuf_to_hicon_libgtk_only func(
-		pixbuf *GdkPixbuf) HICON
+		pixbuf *T.GdkPixbuf) HICON
 
 	Gdk_win32_set_modal_dialog_libgtk_only func(
 		window HWND)
 
 	Gdk_win32_begin_direct_draw_libgtk_only func(
-		drawable *GdkDrawable,
-		gc *GdkGC,
-		priv_data *Gpointer,
-		x_offset_out *Gint,
-		y_offset_out *Gint) *GdkDrawable
+		drawable *T.GdkDrawable,
+		gc *T.GdkGC,
+		priv_data *T.Gpointer,
+		x_offset_out *T.Gint,
+		y_offset_out *T.Gint) *T.GdkDrawable
 
 	Gdk_win32_end_direct_draw_libgtk_only func(
-		priv_data Gpointer)
+		priv_data T.Gpointer)
 
 	Gdk_win32_window_foreign_new_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkWindow
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkWindow
 
 	Gdk_win32_window_lookup_for_display func(
-		display *GdkDisplay,
-		anid GdkNativeWindow) *GdkWindow
+		display *T.GdkDisplay,
+		anid T.GdkNativeWindow) *T.GdkWindow
 )
 
 var dll = "libgdk-win32-2.0-0.dll"
@@ -4325,13 +4323,13 @@ var apiListPixbuf = Apis{
 }
 
 type (
-	Gdk_pixbuf_major_version Guint
-	Gdk_pixbuf_minor_version Guint
-	Gdk_pixbuf_micro_version Guint
+	Gdk_pixbuf_major_version T.Guint
+	Gdk_pixbuf_minor_version T.Guint
+	Gdk_pixbuf_micro_version T.Guint
 	Gdk_pixbuf_version       string
-	Gdk_threads_mutex        *GMutex
-	Gdk_threads_lock         GCallback
-	Gdk_threads_unlock       GCallback
+	Gdk_threads_mutex        *T.GMutex
+	Gdk_threads_lock         T.GCallback
+	Gdk_threads_unlock       T.GCallback
 )
 
 var DataList = Data{

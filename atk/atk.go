@@ -7,7 +7,7 @@ package atk
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -17,174 +17,174 @@ func init() {
 
 var (
 	Atk_state_type_register func(
-		name string) AtkStateType
+		name string) T.AtkStateType
 
 	Atk_state_type_get_name func(
-		t AtkStateType) string
+		t T.AtkStateType) string
 
 	Atk_state_type_for_name func(
-		name string) AtkStateType
+		name string) T.AtkStateType
 
 	Atk_role_register func(
-		name string) AtkRole
+		name string) T.AtkRole
 
-	Atk_object_get_type func() GType
+	Atk_object_get_type func() T.GType
 
-	Atk_implementor_get_type func() GType
+	Atk_implementor_get_type func() T.GType
 
 	Atk_implementor_ref_accessible func(
-		implementor *AtkImplementor) *AtkObject
+		implementor *T.AtkImplementor) *T.AtkObject
 
 	Atk_object_get_name func(
-		accessible *AtkObject) string
+		accessible *T.AtkObject) string
 
 	Atk_object_get_description func(
-		accessible *AtkObject) string
+		accessible *T.AtkObject) string
 
 	Atk_object_get_parent func(
-		accessible *AtkObject) *AtkObject
+		accessible *T.AtkObject) *T.AtkObject
 
 	Atk_object_get_n_accessible_children func(
-		accessible *AtkObject) Gint
+		accessible *T.AtkObject) T.Gint
 
 	Atk_object_ref_accessible_child func(
-		accessible *AtkObject,
-		i Gint) *AtkObject
+		accessible *T.AtkObject,
+		i T.Gint) *T.AtkObject
 
 	Atk_object_ref_relation_set func(
-		accessible *AtkObject) *AtkRelationSet
+		accessible *T.AtkObject) *T.AtkRelationSet
 
 	Atk_object_get_role func(
-		accessible *AtkObject) AtkRole
+		accessible *T.AtkObject) T.AtkRole
 
 	Atk_object_get_layer func(
-		accessible *AtkObject) AtkLayer
+		accessible *T.AtkObject) T.AtkLayer
 
 	Atk_object_get_mdi_zorder func(
-		accessible *AtkObject) Gint
+		accessible *T.AtkObject) T.Gint
 
 	Atk_object_get_attributes func(
-		accessible *AtkObject) *AtkAttributeSet
+		accessible *T.AtkObject) *T.AtkAttributeSet
 
 	Atk_object_ref_state_set func(
-		accessible *AtkObject) *AtkStateSet
+		accessible *T.AtkObject) *T.AtkStateSet
 
 	Atk_object_get_index_in_parent func(
-		accessible *AtkObject) Gint
+		accessible *T.AtkObject) T.Gint
 
 	Atk_object_set_name func(
-		accessible *AtkObject,
+		accessible *T.AtkObject,
 		name string)
 
 	Atk_object_set_description func(
-		accessible *AtkObject,
+		accessible *T.AtkObject,
 		description string)
 
 	Atk_object_set_parent func(
-		accessible *AtkObject,
-		parent *AtkObject)
+		accessible *T.AtkObject,
+		parent *T.AtkObject)
 
 	Atk_object_set_role func(
-		accessible *AtkObject,
-		role AtkRole)
+		accessible *T.AtkObject,
+		role T.AtkRole)
 
 	Atk_object_connect_property_change_handler func(
-		accessible *AtkObject,
-		handler *AtkPropertyChangeHandler) Guint
+		accessible *T.AtkObject,
+		handler *T.AtkPropertyChangeHandler) T.Guint
 
 	Atk_object_remove_property_change_handler func(
-		accessible *AtkObject,
-		handler_id Guint)
+		accessible *T.AtkObject,
+		handler_id T.Guint)
 
 	Atk_object_notify_state_change func(
-		accessible *AtkObject,
-		state AtkState,
-		value Gboolean)
+		accessible *T.AtkObject,
+		state T.AtkState,
+		value T.Gboolean)
 
 	Atk_object_initialize func(
-		accessible *AtkObject,
-		data Gpointer)
+		accessible *T.AtkObject,
+		data T.Gpointer)
 
 	Atk_role_get_name func(
-		role AtkRole) string
+		role T.AtkRole) string
 
 	Atk_role_for_name func(
-		name string) AtkRole
+		name string) T.AtkRole
 
 	Atk_object_add_relationship func(
-		object *AtkObject,
-		relationship AtkRelationType,
-		target *AtkObject) Gboolean
+		object *T.AtkObject,
+		relationship T.AtkRelationType,
+		target *T.AtkObject) T.Gboolean
 
 	Atk_object_remove_relationship func(
-		object *AtkObject,
-		relationship AtkRelationType,
-		target *AtkObject) Gboolean
+		object *T.AtkObject,
+		relationship T.AtkRelationType,
+		target *T.AtkObject) T.Gboolean
 
 	Atk_role_get_localized_name func(
-		role AtkRole) string
+		role T.AtkRole) string
 
-	Atk_action_get_type func() GType
+	Atk_action_get_type func() T.GType
 
 	Atk_action_do_action func(
-		action *AtkAction,
-		i Gint) Gboolean
+		action *T.AtkAction,
+		i T.Gint) T.Gboolean
 
 	Atk_action_get_n_actions func(
-		action *AtkAction) Gint
+		action *T.AtkAction) T.Gint
 
 	Atk_action_get_description func(
-		action *AtkAction,
-		i Gint) string
+		action *T.AtkAction,
+		i T.Gint) string
 
 	Atk_action_get_name func(
-		action *AtkAction,
-		i Gint) string
+		action *T.AtkAction,
+		i T.Gint) string
 
 	Atk_action_get_keybinding func(
-		action *AtkAction,
-		i Gint) string
+		action *T.AtkAction,
+		i T.Gint) string
 
 	Atk_action_set_description func(
-		action *AtkAction,
-		i Gint,
-		desc string) Gboolean
+		action *T.AtkAction,
+		i T.Gint,
+		desc string) T.Gboolean
 
 	Atk_action_get_localized_name func(
-		action *AtkAction,
-		i Gint) string
+		action *T.AtkAction,
+		i T.Gint) string
 
-	Atk_util_get_type func() GType
+	Atk_util_get_type func() T.GType
 
 	Atk_add_focus_tracker func(
-		focus_tracker AtkEventListener) Guint
+		focus_tracker T.AtkEventListener) T.Guint
 
 	Atk_remove_focus_tracker func(
-		tracker_id Guint)
+		tracker_id T.Guint)
 
 	Atk_focus_tracker_init func(
-		init AtkEventListenerInit)
+		init T.AtkEventListenerInit)
 
 	Atk_focus_tracker_notify func(
-		object *AtkObject)
+		object *T.AtkObject)
 
 	Atk_add_global_event_listener func(
-		listener GSignalEmissionHook,
-		event_type string) Guint
+		listener T.GSignalEmissionHook,
+		event_type string) T.Guint
 
 	Atk_remove_global_event_listener func(
-		listener_id Guint)
+		listener_id T.Guint)
 
 	Atk_add_key_event_listener func(
-		listener AtkKeySnoopFunc,
-		data Gpointer) Guint
+		listener T.AtkKeySnoopFunc,
+		data T.Gpointer) T.Guint
 
 	Atk_remove_key_event_listener func(
-		listener_id Guint)
+		listener_id T.Guint)
 
-	Atk_get_root func() *AtkObject
+	Atk_get_root func() *T.AtkObject
 
-	Atk_get_focus_object func() *AtkObject
+	Atk_get_focus_object func() *T.AtkObject
 
 	Atk_get_toolkit_name func() string
 
@@ -192,712 +192,707 @@ var (
 
 	//Atk_get_version func() int //NOTE: Not exposed
 
-	Atk_rectangle_get_type func() GType
+	Atk_rectangle_get_type func() T.GType
 
-	Atk_component_get_type func() GType
+	Atk_component_get_type func() T.GType
 
 	Atk_component_add_focus_handler func(
-		component *AtkComponent,
-		handler AtkFocusHandler) Guint
+		component *T.AtkComponent,
+		handler T.AtkFocusHandler) T.Guint
 
 	Atk_component_contains func(
-		component *AtkComponent,
-		x Gint,
-		y Gint,
-		coord_type AtkCoordType) Gboolean
+		component *T.AtkComponent,
+		x T.Gint,
+		y T.Gint,
+		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_ref_accessible_at_point func(
-		component *AtkComponent,
-		x Gint,
-		y Gint,
-		coord_type AtkCoordType) *AtkObject
+		component *T.AtkComponent,
+		x T.Gint,
+		y T.Gint,
+		coord_type T.AtkCoordType) *T.AtkObject
 
 	Atk_component_get_extents func(
-		component *AtkComponent,
-		x *Gint,
-		y *Gint,
-		width *Gint,
-		height *Gint,
-		coord_type AtkCoordType)
+		component *T.AtkComponent,
+		x *T.Gint,
+		y *T.Gint,
+		width *T.Gint,
+		height *T.Gint,
+		coord_type T.AtkCoordType)
 
 	Atk_component_get_position func(
-		component *AtkComponent,
-		x *Gint,
-		y *Gint,
-		coord_type AtkCoordType)
+		component *T.AtkComponent,
+		x *T.Gint,
+		y *T.Gint,
+		coord_type T.AtkCoordType)
 
 	Atk_component_get_size func(
-		component *AtkComponent,
-		width *Gint,
-		height *Gint)
+		component *T.AtkComponent,
+		width *T.Gint,
+		height *T.Gint)
 
 	Atk_component_get_layer func(
-		component *AtkComponent) AtkLayer
+		component *T.AtkComponent) T.AtkLayer
 
 	Atk_component_get_mdi_zorder func(
-		component *AtkComponent) Gint
+		component *T.AtkComponent) T.Gint
 
 	Atk_component_grab_focus func(
-		component *AtkComponent) Gboolean
+		component *T.AtkComponent) T.Gboolean
 
 	Atk_component_remove_focus_handler func(
-		component *AtkComponent,
-		handler_id Guint)
+		component *T.AtkComponent,
+		handler_id T.Guint)
 
 	Atk_component_set_extents func(
-		component *AtkComponent,
-		x Gint,
-		y Gint,
-		width Gint,
-		height Gint,
-		coord_type AtkCoordType) Gboolean
+		component *T.AtkComponent,
+		x T.Gint,
+		y T.Gint,
+		width T.Gint,
+		height T.Gint,
+		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_set_position func(
-		component *AtkComponent,
-		x Gint,
-		y Gint,
-		coord_type AtkCoordType) Gboolean
+		component *T.AtkComponent,
+		x T.Gint,
+		y T.Gint,
+		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_set_size func(
-		component *AtkComponent,
-		width Gint,
-		height Gint) Gboolean
+		component *T.AtkComponent,
+		width T.Gint,
+		height T.Gint) T.Gboolean
 
 	Atk_component_get_alpha func(
-		component *AtkComponent) Gdouble
+		component *T.AtkComponent) T.Gdouble
 
-	Atk_document_get_type func() GType
+	Atk_document_get_type func() T.GType
 
 	Atk_document_get_document_type func(
-		document *AtkDocument) string
+		document *T.AtkDocument) string
 
 	Atk_document_get_document func(
-		document *AtkDocument) Gpointer
+		document *T.AtkDocument) T.Gpointer
 
 	Atk_document_get_locale func(
-		document *AtkDocument) string
+		document *T.AtkDocument) string
 
 	Atk_document_get_attributes func(
-		document *AtkDocument) *AtkAttributeSet
+		document *T.AtkDocument) *T.AtkAttributeSet
 
 	Atk_document_get_attribute_value func(
-		document *AtkDocument,
+		document *T.AtkDocument,
 		attribute_name string) string
 
 	Atk_document_set_attribute_value func(
-		document *AtkDocument,
+		document *T.AtkDocument,
 		attribute_name string,
-		attribute_value string) Gboolean
+		attribute_value string) T.Gboolean
 
 	Atk_text_attribute_register func(
-		name string) AtkTextAttribute
+		name string) T.AtkTextAttribute
 
-	Atk_text_get_type func() GType
+	Atk_text_get_type func() T.GType
 
 	Atk_text_get_text func(
-		text *AtkText,
-		start_offset Gint,
-		end_offset Gint) string
+		text *T.AtkText,
+		start_offset T.Gint,
+		end_offset T.Gint) string
 
 	Atk_text_get_character_at_offset func(
-		text *AtkText,
-		offset Gint) Gunichar
+		text *T.AtkText,
+		offset T.Gint) T.Gunichar
 
 	Atk_text_get_text_after_offset func(
-		text *AtkText,
-		offset Gint,
-		boundary_type AtkTextBoundary,
-		start_offset *Gint,
-		end_offset *Gint) string
+		text *T.AtkText,
+		offset T.Gint,
+		boundary_type T.AtkTextBoundary,
+		start_offset *T.Gint,
+		end_offset *T.Gint) string
 
 	Atk_text_get_text_at_offset func(
-		text *AtkText,
-		offset Gint,
-		boundary_type AtkTextBoundary,
-		start_offset *Gint,
-		end_offset *Gint) string
+		text *T.AtkText,
+		offset T.Gint,
+		boundary_type T.AtkTextBoundary,
+		start_offset *T.Gint,
+		end_offset *T.Gint) string
 
 	Atk_text_get_text_before_offset func(
-		text *AtkText,
-		offset Gint,
-		boundary_type AtkTextBoundary,
-		start_offset *Gint,
-		end_offset *Gint) string
+		text *T.AtkText,
+		offset T.Gint,
+		boundary_type T.AtkTextBoundary,
+		start_offset *T.Gint,
+		end_offset *T.Gint) string
 
 	Atk_text_get_caret_offset func(
-		text *AtkText) Gint
+		text *T.AtkText) T.Gint
 
 	Atk_text_get_character_extents func(
-		text *AtkText,
-		offset Gint,
-		x *Gint,
-		y *Gint,
-		width *Gint,
-		height *Gint,
-		coords AtkCoordType)
+		text *T.AtkText,
+		offset T.Gint,
+		x *T.Gint,
+		y *T.Gint,
+		width *T.Gint,
+		height *T.Gint,
+		coords T.AtkCoordType)
 
 	Atk_text_get_run_attributes func(
-		text *AtkText,
-		offset Gint,
-		start_offset *Gint,
-		end_offset *Gint) *AtkAttributeSet
+		text *T.AtkText,
+		offset T.Gint,
+		start_offset *T.Gint,
+		end_offset *T.Gint) *T.AtkAttributeSet
 
 	Atk_text_get_default_attributes func(
-		text *AtkText) *AtkAttributeSet
+		text *T.AtkText) *T.AtkAttributeSet
 
 	Atk_text_get_character_count func(
-		text *AtkText) Gint
+		text *T.AtkText) T.Gint
 
 	Atk_text_get_offset_at_point func(
-		text *AtkText,
-		x Gint,
-		y Gint,
-		coords AtkCoordType) Gint
+		text *T.AtkText,
+		x T.Gint,
+		y T.Gint,
+		coords T.AtkCoordType) T.Gint
 
 	Atk_text_get_n_selections func(
-		text *AtkText) Gint
+		text *T.AtkText) T.Gint
 
 	Atk_text_get_selection func(
-		text *AtkText,
-		selection_num Gint,
-		start_offset *Gint,
-		end_offset *Gint) string
+		text *T.AtkText,
+		selection_num T.Gint,
+		start_offset *T.Gint,
+		end_offset *T.Gint) string
 
 	Atk_text_add_selection func(
-		text *AtkText,
-		start_offset Gint,
-		end_offset Gint) Gboolean
+		text *T.AtkText,
+		start_offset T.Gint,
+		end_offset T.Gint) T.Gboolean
 
 	Atk_text_remove_selection func(
-		text *AtkText,
-		selection_num Gint) Gboolean
+		text *T.AtkText,
+		selection_num T.Gint) T.Gboolean
 
 	Atk_text_set_selection func(
-		text *AtkText,
-		selection_num Gint,
-		start_offset Gint,
-		end_offset Gint) Gboolean
+		text *T.AtkText,
+		selection_num T.Gint,
+		start_offset T.Gint,
+		end_offset T.Gint) T.Gboolean
 
 	Atk_text_set_caret_offset func(
-		text *AtkText,
-		offset Gint) Gboolean
+		text *T.AtkText, offset T.Gint) T.Gboolean
 
 	Atk_text_get_range_extents func(
-		text *AtkText,
-		start_offset Gint,
-		end_offset Gint,
-		coord_type AtkCoordType,
-		rect *AtkTextRectangle)
+		text *T.AtkText,
+		start_offset, end_offset T.Gint,
+		coord_type T.AtkCoordType,
+		rect *T.AtkTextRectangle)
 
 	Atk_text_get_bounded_ranges func(
-		text *AtkText,
-		rect *AtkTextRectangle,
-		coord_type AtkCoordType,
-		x_clip_type AtkTextClipType,
-		y_clip_type AtkTextClipType) **AtkTextRange
+		text *T.AtkText,
+		rect *T.AtkTextRectangle,
+		coord_type T.AtkCoordType,
+		x_clip_type,
+		y_clip_type T.AtkTextClipType) **T.AtkTextRange
 
-	Atk_text_free_ranges func(
-		ranges **AtkTextRange)
+	Atk_text_free_ranges func(ranges **T.AtkTextRange)
 
-	Atk_attribute_set_free func(
-		attrib_set *AtkAttributeSet)
+	Atk_attribute_set_free func(attrib_set *T.AtkAttributeSet)
 
 	Atk_text_attribute_get_name func(
-		attr AtkTextAttribute) string
+		attr T.AtkTextAttribute) string
 
 	Atk_text_attribute_for_name func(
-		name string) AtkTextAttribute
+		name string) T.AtkTextAttribute
 
 	Atk_text_attribute_get_value func(
-		attr AtkTextAttribute,
-		index_ Gint) string
+		attr T.AtkTextAttribute, index_ T.Gint) string
 
-	Atk_editable_text_get_type func() GType
+	Atk_editable_text_get_type func() T.GType
 
 	Atk_editable_text_set_run_attributes func(
-		text *AtkEditableText,
-		attrib_set *AtkAttributeSet,
-		start_offset Gint,
-		end_offset Gint) Gboolean
+		text *T.AtkEditableText,
+		attrib_set *T.AtkAttributeSet,
+		start_offset T.Gint,
+		end_offset T.Gint) T.Gboolean
 
 	Atk_editable_text_set_text_contents func(
-		text *AtkEditableText,
+		text *T.AtkEditableText,
 		string string)
 
 	Atk_editable_text_insert_text func(
-		text *AtkEditableText,
+		text *T.AtkEditableText,
 		string string,
-		length Gint,
-		position *Gint)
+		length T.Gint,
+		position *T.Gint)
 
 	Atk_editable_text_copy_text func(
-		text *AtkEditableText,
-		start_pos Gint,
-		end_pos Gint)
+		text *T.AtkEditableText,
+		start_pos T.Gint,
+		end_pos T.Gint)
 
 	Atk_editable_text_cut_text func(
-		text *AtkEditableText,
-		start_pos Gint,
-		end_pos Gint)
+		text *T.AtkEditableText,
+		start_pos T.Gint,
+		end_pos T.Gint)
 
 	Atk_editable_text_delete_text func(
-		text *AtkEditableText,
-		start_pos Gint,
-		end_pos Gint)
+		text *T.AtkEditableText,
+		start_pos T.Gint,
+		end_pos T.Gint)
 
 	Atk_editable_text_paste_text func(
-		text *AtkEditableText,
-		position Gint)
+		text *T.AtkEditableText,
+		position T.Gint)
 
 	Atk_gobject_accessible_for_object func(
-		obj *GObject) *AtkObject
+		obj *T.GObject) *T.AtkObject
 
 	Atk_gobject_accessible_get_object func(
-		obj *AtkGObjectAccessible) *GObject
+		obj *T.AtkGObjectAccessible) *T.GObject
 
-	Atk_hyperlink_get_type func() GType
+	Atk_hyperlink_get_type func() T.GType
 
 	Atk_hyperlink_get_uri func(
-		link_ *AtkHyperlink,
-		i Gint) string
+		link_ *T.AtkHyperlink,
+		i T.Gint) string
 
 	Atk_hyperlink_get_object func(
-		link_ *AtkHyperlink,
-		i Gint) *AtkObject
+		link_ *T.AtkHyperlink,
+		i T.Gint) *T.AtkObject
 
 	Atk_hyperlink_get_end_index func(
-		link_ *AtkHyperlink) Gint
+		link_ *T.AtkHyperlink) T.Gint
 
 	Atk_hyperlink_get_start_index func(
-		link_ *AtkHyperlink) Gint
+		link_ *T.AtkHyperlink) T.Gint
 
 	Atk_hyperlink_is_valid func(
-		link_ *AtkHyperlink) Gboolean
+		link_ *T.AtkHyperlink) T.Gboolean
 
 	Atk_hyperlink_is_inline func(
-		link_ *AtkHyperlink) Gboolean
+		link_ *T.AtkHyperlink) T.Gboolean
 
 	Atk_hyperlink_get_n_anchors func(
-		link_ *AtkHyperlink) Gint
+		link_ *T.AtkHyperlink) T.Gint
 
 	Atk_hyperlink_is_selected_link func(
-		link_ *AtkHyperlink) Gboolean
+		link_ *T.AtkHyperlink) T.Gboolean
 
-	Atk_hyperlink_impl_get_type func() GType
+	Atk_hyperlink_impl_get_type func() T.GType
 
 	Atk_hyperlink_impl_get_hyperlink func(
-		obj *AtkHyperlinkImpl) *AtkHyperlink
+		obj *T.AtkHyperlinkImpl) *T.AtkHyperlink
 
-	Atk_hypertext_get_type func() GType
+	Atk_hypertext_get_type func() T.GType
 
 	Atk_hypertext_get_link func(
-		hypertext *AtkHypertext,
-		link_index Gint) *AtkHyperlink
+		hypertext *T.AtkHypertext,
+		link_index T.Gint) *T.AtkHyperlink
 
 	Atk_hypertext_get_n_links func(
-		hypertext *AtkHypertext) Gint
+		hypertext *T.AtkHypertext) T.Gint
 
 	Atk_hypertext_get_link_index func(
-		hypertext *AtkHypertext,
-		char_index Gint) Gint
+		hypertext *T.AtkHypertext,
+		char_index T.Gint) T.Gint
 
-	Atk_image_get_type func() GType
+	Atk_image_get_type func() T.GType
 
 	Atk_image_get_image_description func(
-		image *AtkImage) string
+		image *T.AtkImage) string
 
 	Atk_image_get_image_size func(
-		image *AtkImage,
-		width *Gint,
-		height *Gint)
+		image *T.AtkImage,
+		width *T.Gint,
+		height *T.Gint)
 
 	Atk_image_set_image_description func(
-		image *AtkImage,
-		description string) Gboolean
+		image *T.AtkImage,
+		description string) T.Gboolean
 
 	Atk_image_get_image_position func(
-		image *AtkImage,
-		x *Gint,
-		y *Gint,
-		coord_type AtkCoordType)
+		image *T.AtkImage,
+		x *T.Gint,
+		y *T.Gint,
+		coord_type T.AtkCoordType)
 
 	Atk_image_get_image_locale func(
-		image *AtkImage) string
+		image *T.AtkImage) string
 
 	Atk_no_op_object_new func(
-		obj *GObject) *AtkObject
+		obj *T.GObject) *T.AtkObject
 
-	Atk_object_factory_get_type func() GType
+	Atk_object_factory_get_type func() T.GType
 
 	Atk_object_factory_create_accessible func(
-		factory *AtkObjectFactory,
-		obj *GObject) *AtkObject
+		factory *T.AtkObjectFactory,
+		obj *T.GObject) *T.AtkObject
 
 	Atk_object_factory_invalidate func(
-		factory *AtkObjectFactory)
+		factory *T.AtkObjectFactory)
 
 	Atk_object_factory_get_accessible_type func(
-		factory *AtkObjectFactory) GType
+		factory *T.AtkObjectFactory) T.GType
 
-	Atk_no_op_object_factory_get_type func() GType
+	Atk_no_op_object_factory_get_type func() T.GType
 
-	Atk_no_op_object_factory_new func() *AtkObjectFactory
+	Atk_no_op_object_factory_new func() *T.AtkObjectFactory
 
-	Atk_plug_get_type func() GType
+	Atk_plug_get_type func() T.GType
 
-	Atk_plug_new func() *AtkObject
+	Atk_plug_new func() *T.AtkObject
 
-	Atk_plug_get_id func(plug *AtkPlug) string
+	Atk_plug_get_id func(plug *T.AtkPlug) string
 
-	Atk_registry_get_type func() GType
+	Atk_registry_get_type func() T.GType
 
 	Atk_registry_set_factory_type func(
-		registry *AtkRegistry,
-		t GType,
-		factory_type GType)
+		registry *T.AtkRegistry,
+		t T.GType,
+		factory_type T.GType)
 
 	Atk_registry_get_factory_type func(
-		registry *AtkRegistry,
-		t GType) GType
+		registry *T.AtkRegistry,
+		t T.GType) T.GType
 
 	Atk_registry_get_factory func(
-		registry *AtkRegistry,
-		t GType) *AtkObjectFactory
+		registry *T.AtkRegistry,
+		t T.GType) *T.AtkObjectFactory
 
-	Atk_get_default_registry func() *AtkRegistry
+	Atk_get_default_registry func() *T.AtkRegistry
 
-	Atk_relation_get_type func() GType
+	Atk_relation_get_type func() T.GType
 
 	Atk_relation_type_register func(
-		name string) AtkRelationType
+		name string) T.AtkRelationType
 
 	Atk_relation_type_get_name func(
-		t AtkRelationType) string
+		t T.AtkRelationType) string
 
 	Atk_relation_type_for_name func(
-		name string) AtkRelationType
+		name string) T.AtkRelationType
 
 	Atk_relation_new func(
-		targets **AtkObject,
-		n_targets Gint,
-		relationship AtkRelationType) *AtkRelation
+		targets **T.AtkObject,
+		n_targets T.Gint,
+		relationship T.AtkRelationType) *T.AtkRelation
 
 	Atk_relation_get_relation_type func(
-		relation *AtkRelation) AtkRelationType
+		relation *T.AtkRelation) T.AtkRelationType
 
 	Atk_relation_get_target func(
-		relation *AtkRelation) *GPtrArray
+		relation *T.AtkRelation) *T.GPtrArray
 
 	Atk_relation_add_target func(
-		relation *AtkRelation,
-		target *AtkObject)
+		relation *T.AtkRelation,
+		target *T.AtkObject)
 
 	Atk_relation_remove_target func(
-		relation *AtkRelation,
-		target *AtkObject) Gboolean
+		relation *T.AtkRelation,
+		target *T.AtkObject) T.Gboolean
 
-	Atk_relation_set_get_type func() GType
+	Atk_relation_set_get_type func() T.GType
 
-	Atk_relation_set_new func() *AtkRelationSet
+	Atk_relation_set_new func() *T.AtkRelationSet
 
 	Atk_relation_set_contains func(
-		set *AtkRelationSet,
-		relationship AtkRelationType) Gboolean
+		set *T.AtkRelationSet,
+		relationship T.AtkRelationType) T.Gboolean
 
 	Atk_relation_set_remove func(
-		set *AtkRelationSet,
-		relation *AtkRelation)
+		set *T.AtkRelationSet,
+		relation *T.AtkRelation)
 
 	Atk_relation_set_add func(
-		set *AtkRelationSet,
-		relation *AtkRelation)
+		set *T.AtkRelationSet,
+		relation *T.AtkRelation)
 
 	Atk_relation_set_get_n_relations func(
-		set *AtkRelationSet) Gint
+		set *T.AtkRelationSet) T.Gint
 
 	Atk_relation_set_get_relation func(
-		set *AtkRelationSet,
-		i Gint) *AtkRelation
+		set *T.AtkRelationSet,
+		i T.Gint) *T.AtkRelation
 
 	Atk_relation_set_get_relation_by_type func(
-		set *AtkRelationSet,
-		relationship AtkRelationType) *AtkRelation
+		set *T.AtkRelationSet,
+		relationship T.AtkRelationType) *T.AtkRelation
 
 	Atk_relation_set_add_relation_by_type func(
-		set *AtkRelationSet,
-		relationship AtkRelationType,
-		target *AtkObject)
+		set *T.AtkRelationSet,
+		relationship T.AtkRelationType,
+		target *T.AtkObject)
 
-	Atk_selection_get_type func() GType
+	Atk_selection_get_type func() T.GType
 
 	Atk_selection_add_selection func(
-		selection *AtkSelection,
-		i Gint) Gboolean
+		selection *T.AtkSelection,
+		i T.Gint) T.Gboolean
 
 	Atk_selection_clear_selection func(
-		selection *AtkSelection) Gboolean
+		selection *T.AtkSelection) T.Gboolean
 
 	Atk_selection_ref_selection func(
-		selection *AtkSelection,
-		i Gint) *AtkObject
+		selection *T.AtkSelection,
+		i T.Gint) *T.AtkObject
 
 	Atk_selection_get_selection_count func(
-		selection *AtkSelection) Gint
+		selection *T.AtkSelection) T.Gint
 
 	Atk_selection_is_child_selected func(
-		selection *AtkSelection,
-		i Gint) Gboolean
+		selection *T.AtkSelection,
+		i T.Gint) T.Gboolean
 
 	Atk_selection_remove_selection func(
-		selection *AtkSelection,
-		i Gint) Gboolean
+		selection *T.AtkSelection,
+		i T.Gint) T.Gboolean
 
 	Atk_selection_select_all_selection func(
-		selection *AtkSelection) Gboolean
+		selection *T.AtkSelection) T.Gboolean
 
-	Atk_socket_new func() *AtkObject
+	Atk_socket_new func() *T.AtkObject
 
 	Atk_socket_embed func(
-		obj *AtkSocket,
+		obj *T.AtkSocket,
 		plug_id string)
 
 	Atk_socket_is_occupied func(
-		obj *AtkSocket) Gboolean
+		obj *T.AtkSocket) T.Gboolean
 
-	Atk_state_set_get_type func() GType
+	Atk_state_set_get_type func() T.GType
 
-	Atk_state_set_new func() *AtkStateSet
+	Atk_state_set_new func() *T.AtkStateSet
 
 	Atk_state_set_is_empty func(
-		set *AtkStateSet) Gboolean
+		set *T.AtkStateSet) T.Gboolean
 
 	Atk_state_set_add_state func(
-		set *AtkStateSet,
-		t AtkStateType) Gboolean
+		set *T.AtkStateSet,
+		t T.AtkStateType) T.Gboolean
 
 	Atk_state_set_add_states func(
-		set *AtkStateSet,
-		types *AtkStateType,
-		n_types Gint)
+		set *T.AtkStateSet,
+		types *T.AtkStateType,
+		n_types T.Gint)
 
 	Atk_state_set_clear_states func(
-		set *AtkStateSet)
+		set *T.AtkStateSet)
 
 	Atk_state_set_contains_state func(
-		set *AtkStateSet,
-		t AtkStateType) Gboolean
+		set *T.AtkStateSet,
+		t T.AtkStateType) T.Gboolean
 
 	Atk_state_set_contains_states func(
-		set *AtkStateSet,
-		types *AtkStateType,
-		n_types Gint) Gboolean
+		set *T.AtkStateSet,
+		types *T.AtkStateType,
+		n_types T.Gint) T.Gboolean
 
 	Atk_state_set_remove_state func(
-		set *AtkStateSet,
-		t AtkStateType) Gboolean
+		set *T.AtkStateSet,
+		t T.AtkStateType) T.Gboolean
 
 	Atk_state_set_and_sets func(
-		set *AtkStateSet,
-		compare_set *AtkStateSet) *AtkStateSet
+		set *T.AtkStateSet,
+		compare_set *T.AtkStateSet) *T.AtkStateSet
 
 	Atk_state_set_or_sets func(
-		set *AtkStateSet,
-		compare_set *AtkStateSet) *AtkStateSet
+		set *T.AtkStateSet,
+		compare_set *T.AtkStateSet) *T.AtkStateSet
 
 	Atk_state_set_xor_sets func(
-		set *AtkStateSet,
-		compare_set *AtkStateSet) *AtkStateSet
+		set *T.AtkStateSet,
+		compare_set *T.AtkStateSet) *T.AtkStateSet
 
-	Atk_streamable_content_get_type func() GType
+	Atk_streamable_content_get_type func() T.GType
 
 	Atk_streamable_content_get_n_mime_types func(
-		streamable *AtkStreamableContent) Gint
+		streamable *T.AtkStreamableContent) T.Gint
 
 	Atk_streamable_content_get_mime_type func(
-		streamable *AtkStreamableContent,
-		i Gint) string
+		streamable *T.AtkStreamableContent,
+		i T.Gint) string
 
 	Atk_streamable_content_get_stream func(
-		streamable *AtkStreamableContent,
-		mime_type string) *GIOChannel
+		streamable *T.AtkStreamableContent,
+		mime_type string) *T.GIOChannel
 
 	Atk_streamable_content_get_uri func(
-		streamable *AtkStreamableContent,
+		streamable *T.AtkStreamableContent,
 		mime_type string) string
 
-	Atk_table_get_type func() GType
+	Atk_table_get_type func() T.GType
 
 	Atk_table_ref_at func(
-		table *AtkTable,
-		row Gint,
-		column Gint) *AtkObject
+		table *T.AtkTable,
+		row T.Gint,
+		column T.Gint) *T.AtkObject
 
 	Atk_table_get_index_at func(
-		table *AtkTable,
-		row Gint,
-		column Gint) Gint
+		table *T.AtkTable,
+		row T.Gint,
+		column T.Gint) T.Gint
 
 	Atk_table_get_column_at_index func(
-		table *AtkTable,
-		index_ Gint) Gint
+		table *T.AtkTable,
+		index_ T.Gint) T.Gint
 
 	Atk_table_get_row_at_index func(
-		table *AtkTable,
-		index_ Gint) Gint
+		table *T.AtkTable,
+		index_ T.Gint) T.Gint
 
 	Atk_table_get_n_columns func(
-		table *AtkTable) Gint
+		table *T.AtkTable) T.Gint
 
 	Atk_table_get_n_rows func(
-		table *AtkTable) Gint
+		table *T.AtkTable) T.Gint
 
 	Atk_table_get_column_extent_at func(
-		table *AtkTable,
-		row Gint,
-		column Gint) Gint
+		table *T.AtkTable,
+		row T.Gint,
+		column T.Gint) T.Gint
 
 	Atk_table_get_row_extent_at func(
-		table *AtkTable,
-		row Gint,
-		column Gint) Gint
+		table *T.AtkTable,
+		row T.Gint,
+		column T.Gint) T.Gint
 
 	Atk_table_get_caption func(
-		table *AtkTable) *AtkObject
+		table *T.AtkTable) *T.AtkObject
 
 	Atk_table_get_column_description func(
-		table *AtkTable,
-		column Gint) string
+		table *T.AtkTable,
+		column T.Gint) string
 
 	Atk_table_get_column_header func(
-		table *AtkTable,
-		column Gint) *AtkObject
+		table *T.AtkTable,
+		column T.Gint) *T.AtkObject
 
 	Atk_table_get_row_description func(
-		table *AtkTable,
-		row Gint) string
+		table *T.AtkTable,
+		row T.Gint) string
 
 	Atk_table_get_row_header func(
-		table *AtkTable,
-		row Gint) *AtkObject
+		table *T.AtkTable,
+		row T.Gint) *T.AtkObject
 
 	Atk_table_get_summary func(
-		table *AtkTable) *AtkObject
+		table *T.AtkTable) *T.AtkObject
 
 	Atk_table_set_caption func(
-		table *AtkTable,
-		caption *AtkObject)
+		table *T.AtkTable,
+		caption *T.AtkObject)
 
 	Atk_table_set_column_description func(
-		table *AtkTable,
-		column Gint,
+		table *T.AtkTable,
+		column T.Gint,
 		description string)
 
 	Atk_table_set_column_header func(
-		table *AtkTable,
-		column Gint,
-		header *AtkObject)
+		table *T.AtkTable,
+		column T.Gint,
+		header *T.AtkObject)
 
 	Atk_table_set_row_description func(
-		table *AtkTable,
-		row Gint,
+		table *T.AtkTable,
+		row T.Gint,
 		description string)
 
 	Atk_table_set_row_header func(
-		table *AtkTable,
-		row Gint,
-		header *AtkObject)
+		table *T.AtkTable,
+		row T.Gint,
+		header *T.AtkObject)
 
 	Atk_table_set_summary func(
-		table *AtkTable,
-		accessible *AtkObject)
+		table *T.AtkTable,
+		accessible *T.AtkObject)
 
 	Atk_table_get_selected_columns func(
-		table *AtkTable,
-		selected **Gint) Gint
+		table *T.AtkTable,
+		selected **T.Gint) T.Gint
 
 	Atk_table_get_selected_rows func(
-		table *AtkTable,
-		selected **Gint) Gint
+		table *T.AtkTable,
+		selected **T.Gint) T.Gint
 
 	Atk_table_is_column_selected func(
-		table *AtkTable,
-		column Gint) Gboolean
+		table *T.AtkTable,
+		column T.Gint) T.Gboolean
 
 	Atk_table_is_row_selected func(
-		table *AtkTable,
-		row Gint) Gboolean
+		table *T.AtkTable,
+		row T.Gint) T.Gboolean
 
 	Atk_table_is_selected func(
-		table *AtkTable,
-		row Gint,
-		column Gint) Gboolean
+		table *T.AtkTable,
+		row T.Gint,
+		column T.Gint) T.Gboolean
 
 	Atk_table_add_row_selection func(
-		table *AtkTable,
-		row Gint) Gboolean
+		table *T.AtkTable,
+		row T.Gint) T.Gboolean
 
 	Atk_table_remove_row_selection func(
-		table *AtkTable,
-		row Gint) Gboolean
+		table *T.AtkTable,
+		row T.Gint) T.Gboolean
 
 	Atk_table_add_column_selection func(
-		table *AtkTable,
-		column Gint) Gboolean
+		table *T.AtkTable,
+		column T.Gint) T.Gboolean
 
 	Atk_table_remove_column_selection func(
-		table *AtkTable,
-		column Gint) Gboolean
+		table *T.AtkTable,
+		column T.Gint) T.Gboolean
 
-	Atk_misc_get_type func() GType
+	Atk_misc_get_type func() T.GType
 
 	Atk_misc_threads_enter func(
-		misc *AtkMisc)
+		misc *T.AtkMisc)
 
 	Atk_misc_threads_leave func(
-		misc *AtkMisc)
+		misc *T.AtkMisc)
 
-	Atk_misc_get_instance func() *AtkMisc
+	Atk_misc_get_instance func() *T.AtkMisc
 
-	Atk_value_get_type func() GType
+	Atk_value_get_type func() T.GType
 
 	Atk_value_get_current_value func(
-		obj *AtkValue, value *GValue)
+		obj *T.AtkValue, value *T.GValue)
 
 	Atk_value_get_maximum_value func(
-		obj *AtkValue, value *GValue)
+		obj *T.AtkValue, value *T.GValue)
 
 	Atk_value_get_minimum_value func(
-		obj *AtkValue, value *GValue)
+		obj *T.AtkValue, value *T.GValue)
 
 	Atk_value_set_current_value func(
-		obj *AtkValue, value *GValue) Gboolean
+		obj *T.AtkValue, value *T.GValue) T.Gboolean
 
 	Atk_value_get_minimum_increment func(
-		obj *AtkValue, value *GValue)
+		obj *T.AtkValue, value *T.GValue)
 
-	Atk_coord_type_get_type func() GType
+	Atk_coord_type_get_type func() T.GType
 
-	Atk_gobject_accessible_get_type func() GType
+	Atk_gobject_accessible_get_type func() T.GType
 
-	Atk_hyperlink_state_flags_get_type func() GType
+	Atk_hyperlink_state_flags_get_type func() T.GType
 
-	Atk_key_event_type_get_type func() GType
+	Atk_key_event_type_get_type func() T.GType
 
-	Atk_layer_get_type func() GType
+	Atk_layer_get_type func() T.GType
 
-	Atk_no_op_object_get_type func() GType
+	Atk_no_op_object_get_type func() T.GType
 
-	Atk_relation_type_get_type func() GType
+	Atk_relation_type_get_type func() T.GType
 
-	Atk_role_get_type func() GType
+	Atk_role_get_type func() T.GType
 
-	Atk_state_type_get_type func() GType
+	Atk_state_type_get_type func() T.GType
 
-	Atk_text_attribute_get_type func() GType
+	Atk_text_attribute_get_type func() T.GType
 
-	Atk_text_boundary_get_type func() GType
+	Atk_text_boundary_get_type func() T.GType
 
-	Atk_text_clip_type_get_type func() GType
+	Atk_text_clip_type_get_type func() T.GType
 )
 
 var dll = "libatk-1.0-0.dll"

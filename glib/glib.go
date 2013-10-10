@@ -7,7 +7,7 @@ package glib
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -22,193 +22,189 @@ type (
 )
 
 var (
-	G_array_new func(zero_terminated Gboolean,
-		clear_ Gboolean,
-		element_size Guint) *GArray
+	G_array_new func(zero_terminated T.Gboolean,
+		clear T.Gboolean,
+		element_size T.Guint) *T.GArray
 
-	G_array_sized_new func(zero_terminated Gboolean,
-		clear_ Gboolean,
-		element_size Guint,
-		reserved_size Guint) *GArray
+	G_array_sized_new func(zero_terminated T.Gboolean,
+		clear T.Gboolean,
+		element_size T.Guint,
+		reserved_size T.Guint) *T.GArray
 
-	G_array_free func(array *GArray,
-		free_segment Gboolean) string
+	G_array_free func(array *T.GArray,
+		free_segment T.Gboolean) string
 
-	G_array_ref func(array *GArray) *GArray
+	G_array_ref func(array *T.GArray) *T.GArray
 
-	G_array_unref func(array *GArray)
+	G_array_unref func(array *T.GArray)
 
-	G_array_get_element_size func(array *GArray) Guint
+	G_array_get_element_size func(array *T.GArray) T.Guint
 
-	G_array_append_vals func(array *GArray,
-		data Gconstpointer,
-		leng Guint) *GArray
+	G_array_append_vals func(array *T.GArray,
+		data T.Gconstpointer,
+		leng T.Guint) *T.GArray
 
-	G_array_prepend_vals func(array *GArray,
-		data Gconstpointer,
-		leng Guint) *GArray
+	G_array_prepend_vals func(array *T.GArray,
+		data T.Gconstpointer,
+		leng T.Guint) *T.GArray
 
-	G_array_insert_vals func(array *GArray,
-		index_ Guint,
-		data Gconstpointer,
-		leng Guint) *GArray
+	G_array_insert_vals func(array *T.GArray,
+		index T.Guint,
+		data T.Gconstpointer,
+		leng T.Guint) *T.GArray
 
-	G_array_set_size func(array *GArray,
-		length Guint) *GArray
+	G_array_set_size func(array *T.GArray,
+		length T.Guint) *T.GArray
 
-	G_array_remove_index func(array *GArray,
-		index_ Guint) *GArray
+	G_array_remove_index func(array *T.GArray,
+		index T.Guint) *T.GArray
 
-	G_array_remove_index_fast func(array *GArray,
-		index_ Guint) *GArray
+	G_array_remove_index_fast func(array *T.GArray,
+		index T.Guint) *T.GArray
 
-	G_array_remove_range func(array *GArray,
-		index_ Guint,
-		length Guint) *GArray
+	G_array_remove_range func(array *T.GArray,
+		index T.Guint,
+		length T.Guint) *T.GArray
 
-	G_array_sort func(array *GArray,
-		compare_func GCompareFunc)
+	G_array_sort func(array *T.GArray,
+		compare_func T.GCompareFunc)
 
-	G_array_sort_with_data func(array *GArray,
-		compare_func GCompareDataFunc,
-		user_data Gpointer)
+	G_array_sort_with_data func(array *T.GArray,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_ptr_array_new func() *GPtrArray
+	G_ptr_array_new func() *T.GPtrArray
 
-	G_ptr_array_new_with_free_func func(element_free_func GDestroyNotify) *GPtrArray
+	G_ptr_array_new_with_free_func func(element_free_func T.GDestroyNotify) *T.GPtrArray
 
-	G_ptr_array_sized_new func(reserved_size Guint) *GPtrArray
+	G_ptr_array_sized_new func(reserved_size T.Guint) *T.GPtrArray
 
-	G_ptr_array_free func(array *GPtrArray,
-		free_seg Gboolean) *Gpointer
+	G_ptr_array_free func(array *T.GPtrArray,
+		free_seg T.Gboolean) *T.Gpointer
 
-	G_ptr_array_ref func(array *GPtrArray) *GPtrArray
+	G_ptr_array_ref func(array *T.GPtrArray) *T.GPtrArray
 
-	G_ptr_array_unref func(array *GPtrArray)
+	G_ptr_array_unref func(array *T.GPtrArray)
 
-	G_ptr_array_set_free_func func(array *GPtrArray,
-		element_free_func GDestroyNotify)
+	G_ptr_array_set_free_func func(array *T.GPtrArray,
+		element_free_func T.GDestroyNotify)
 
-	G_ptr_array_set_size func(array *GPtrArray,
-		length Gint)
+	G_ptr_array_set_size func(array *T.GPtrArray,
+		length T.Gint)
 
-	G_ptr_array_remove_index func(array *GPtrArray,
-		index_ Guint) Gpointer
+	G_ptr_array_remove_index func(array *T.GPtrArray,
+		index T.Guint) T.Gpointer
 
-	G_ptr_array_remove_index_fast func(array *GPtrArray,
-		index_ Guint) Gpointer
+	G_ptr_array_remove_index_fast func(array *T.GPtrArray,
+		index T.Guint) T.Gpointer
 
-	G_ptr_array_remove func(array *GPtrArray,
-		data Gpointer) Gboolean
+	G_ptr_array_remove func(array *T.GPtrArray,
+		data T.Gpointer) T.Gboolean
 
-	G_ptr_array_remove_fast func(array *GPtrArray,
-		data Gpointer) Gboolean
+	G_ptr_array_remove_fast func(array *T.GPtrArray,
+		data T.Gpointer) T.Gboolean
 
-	G_ptr_array_remove_range func(array *GPtrArray,
-		index_ Guint,
-		length Guint)
+	G_ptr_array_remove_range func(array *T.GPtrArray,
+		index T.Guint,
+		length T.Guint)
 
-	G_ptr_array_add func(array *GPtrArray,
-		data Gpointer)
+	G_ptr_array_add func(array *T.GPtrArray, data T.Gpointer)
 
-	G_ptr_array_sort func(array *GPtrArray,
-		compare_func GCompareFunc)
+	G_ptr_array_sort func(array *T.GPtrArray,
+		compare_func T.GCompareFunc)
 
-	G_ptr_array_sort_with_data func(array *GPtrArray,
-		compare_func GCompareDataFunc,
-		user_data Gpointer)
+	G_ptr_array_sort_with_data func(array *T.GPtrArray,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_ptr_array_foreach func(array *GPtrArray,
-		f GFunc,
-		user_data Gpointer)
+	G_ptr_array_foreach func(array *T.GPtrArray,
+		f T.GFunc, user_data T.Gpointer)
 
-	G_byte_array_new func() *GByteArray
+	G_byte_array_new func() *T.GByteArray
 
-	G_byte_array_sized_new func(reserved_size Guint) *GByteArray
+	G_byte_array_sized_new func(reserved_size T.Guint) *T.GByteArray
 
-	G_byte_array_free func(array *GByteArray,
-		free_segment Gboolean) *Guint8
+	G_byte_array_free func(array *T.GByteArray,
+		free_segment T.Gboolean) *T.Guint8
 
-	G_byte_array_ref func(array *GByteArray) *GByteArray
+	G_byte_array_ref func(array *T.GByteArray) *T.GByteArray
 
-	G_byte_array_unref func(array *GByteArray)
+	G_byte_array_unref func(array *T.GByteArray)
 
-	G_byte_array_append func(array *GByteArray,
-		data *Guint8,
-		leng Guint) *GByteArray
+	G_byte_array_append func(array *T.GByteArray,
+		data *T.Guint8, leng T.Guint) *T.GByteArray
 
-	G_byte_array_prepend func(array *GByteArray,
-		data *Guint8,
-		leng Guint) *GByteArray
+	G_byte_array_prepend func(array *T.GByteArray,
+		data *T.Guint8, leng T.Guint) *T.GByteArray
 
-	G_byte_array_set_size func(array *GByteArray,
-		length Guint) *GByteArray
+	G_byte_array_set_size func(array *T.GByteArray,
+		length T.Guint) *T.GByteArray
 
-	G_byte_array_remove_index func(array *GByteArray,
-		index_ Guint) *GByteArray
+	G_byte_array_remove_index func(array *T.GByteArray,
+		index T.Guint) *T.GByteArray
 
-	G_byte_array_remove_index_fast func(array *GByteArray,
-		index_ Guint) *GByteArray
+	G_byte_array_remove_index_fast func(array *T.GByteArray,
+		index T.Guint) *T.GByteArray
 
-	G_byte_array_remove_range func(array *GByteArray,
-		index_ Guint,
-		length Guint) *GByteArray
+	G_byte_array_remove_range func(array *T.GByteArray,
+		index T.Guint,
+		length T.Guint) *T.GByteArray
 
-	G_byte_array_sort func(array *GByteArray,
-		compare_func GCompareFunc)
+	G_byte_array_sort func(array *T.GByteArray,
+		compare_func T.GCompareFunc)
 
-	G_byte_array_sort_with_data func(array *GByteArray,
-		compare_func GCompareDataFunc,
-		user_data Gpointer)
+	G_byte_array_sort_with_data func(array *T.GByteArray,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_quark_try_string func(str string) GQuark
+	G_quark_try_string func(str string) T.GQuark
 
-	G_quark_from_static_string func(str string) GQuark
+	G_quark_from_static_string func(str string) T.GQuark
 
-	G_quark_from_string func(str string) GQuark
+	G_quark_from_string func(str string) T.GQuark
 
-	G_quark_to_string func(quark GQuark) string
+	G_quark_to_string func(quark T.GQuark) string
 
 	G_intern_string func(str string) string
 
 	G_intern_static_string func(str string) string
 
-	G_error_new func(domain GQuark, code Gint, format string,
-		v ...VArg) *GError
+	G_error_new func(domain T.GQuark, code T.Gint, format string,
+		v ...VArg) *T.GError
 
-	G_error_new_literal func(domain GQuark,
-		code Gint,
-		message string) *GError
+	G_error_new_literal func(domain T.GQuark,
+		code T.Gint,
+		message string) *T.GError
 
-	G_error_new_valist func(domain GQuark,
-		code Gint,
+	G_error_new_valist func(domain T.GQuark,
+		code T.Gint,
 		format string,
-		args Va_list) *GError
+		args T.Va_list) *T.GError
 
-	G_error_free func(e *GError)
+	G_error_free func(e *T.GError)
 
-	G_error_copy func(e *GError) *GError
+	G_error_copy func(e *T.GError) *T.GError
 
-	G_error_matches func(e *GError,
-		domain GQuark,
-		code Gint) Gboolean
+	G_error_matches func(e *T.GError,
+		domain T.GQuark,
+		code T.Gint) T.Gboolean
 
-	G_set_error func(err **GError, domain GQuark, code Gint,
+	G_set_error func(err **T.GError, domain T.GQuark, code T.Gint,
 		format string, v ...VArg)
 
-	G_set_error_literal func(err **GError,
-		domain GQuark,
-		code Gint,
+	G_set_error_literal func(err **T.GError,
+		domain T.GQuark,
+		code T.Gint,
 		message string)
 
-	G_propagate_error func(dest **GError,
-		src *GError)
+	G_propagate_error func(dest **T.GError,
+		src *T.GError)
 
-	G_clear_error func(err **GError)
+	G_clear_error func(err **T.GError)
 
-	G_prefix_error func(err **GError, format string, v ...VArg)
+	G_prefix_error func(err **T.GError, format string, v ...VArg)
 
-	G_propagate_prefixed_error func(dest **GError, src *GError,
+	G_propagate_prefixed_error func(dest **T.GError, src *T.GError,
 		format string, v ...VArg)
 
 	G_get_user_name func() string
@@ -237,23 +233,23 @@ var (
 
 	G_get_user_cache_dir func() string
 
-	G_get_system_data_dirs func() **Gchar
+	G_get_system_data_dirs func() **T.Gchar
 
 	G_win32_get_system_data_dirs_for_module func(
-		f func()) **Gchar
+		f func()) **T.Gchar
 
 	G_parse_debug_string func(
-		str string, keys *GDebugKey, nkeys Guint) Guint
+		str string, keys *T.GDebugKey, nkeys T.Guint) T.Guint
 
-	G_snprintf func(str string, n Gulong, format string,
-		v ...VArg) Gint
+	G_snprintf func(str string, n T.Gulong, format string,
+		v ...VArg) T.Gint
 
 	G_vsnprintf func(str string,
-		n Gulong,
+		n T.Gulong,
 		format string,
-		args Va_list) Gint
+		args T.Va_list) T.Gint
 
-	G_path_is_absolute func(file_name string) Gboolean
+	G_path_is_absolute func(file_name string) T.Gboolean
 
 	G_path_skip_root func(file_name string) string
 
@@ -265,1716 +261,1678 @@ var (
 
 	G_path_get_dirname func(file_name string) string
 
-	G_nullify_pointer func(nullify_location *Gpointer)
+	G_nullify_pointer func(nullify_location *T.Gpointer)
 
 	G_getenv func(variable string) string
 
 	G_setenv func(variable string,
 		value string,
-		overwrite Gboolean) Gboolean
+		overwrite T.Gboolean) T.Gboolean
 
 	G_unsetenv func(variable string)
 
-	G_listenv func() **Gchar
+	G_listenv func() **T.Gchar
 
-	G_get_environ func() **Gchar
+	G_get_environ func() **T.Gchar
 
-	G_thread_init func(vtable *GThreadFunctions)
+	G_thread_init func(vtable *T.GThreadFunctions)
 
-	G_thread_init_with_errorcheck_mutexes func(vtable *GThreadFunctions)
+	G_thread_init_with_errorcheck_mutexes func(vtable *T.GThreadFunctions)
 
-	G_thread_get_initialized func() Gboolean
+	G_thread_get_initialized func() T.Gboolean
 
-	G_static_mutex_get_mutex_impl func(mutex **GMutex) *GMutex
+	G_static_mutex_get_mutex_impl func(mutex **T.GMutex) *T.GMutex
 
-	G_thread_create_full func(f GThreadFunc,
-		data Gpointer,
-		stack_size Gulong,
-		joinable Gboolean,
-		bound Gboolean,
-		priority GThreadPriority,
-		e **GError) *GThread
+	G_thread_create_full func(f T.GThreadFunc,
+		data T.Gpointer,
+		stack_size T.Gulong,
+		joinable T.Gboolean,
+		bound T.Gboolean,
+		priority T.GThreadPriority,
+		e **T.GError) *T.GThread
 
-	G_thread_self func() *GThread
+	G_thread_self func() *T.GThread
 
-	G_thread_exit func(retval Gpointer)
+	G_thread_exit func(retval T.Gpointer)
 
-	G_thread_join func(thread *GThread) Gpointer
+	G_thread_join func(thread *T.GThread) T.Gpointer
 
-	G_thread_set_priority func(thread *GThread,
-		priority GThreadPriority)
+	G_thread_set_priority func(thread *T.GThread,
+		priority T.GThreadPriority)
 
-	G_static_mutex_init func(mutex *GStaticMutex)
+	G_static_mutex_init func(mutex *T.GStaticMutex)
 
-	G_static_mutex_free func(mutex *GStaticMutex)
+	G_static_mutex_free func(mutex *T.GStaticMutex)
 
-	G_static_rec_mutex_init func(mutex *GStaticRecMutex)
+	G_static_rec_mutex_init func(mutex *T.GStaticRecMutex)
 
-	G_static_rec_mutex_lock func(mutex *GStaticRecMutex)
+	G_static_rec_mutex_lock func(mutex *T.GStaticRecMutex)
 
-	G_static_rec_mutex_trylock func(mutex *GStaticRecMutex) Gboolean
+	G_static_rec_mutex_trylock func(mutex *T.GStaticRecMutex) T.Gboolean
 
-	G_static_rec_mutex_unlock func(mutex *GStaticRecMutex)
+	G_static_rec_mutex_unlock func(mutex *T.GStaticRecMutex)
 
-	G_static_rec_mutex_lock_full func(mutex *GStaticRecMutex,
-		depth Guint)
+	G_static_rec_mutex_lock_full func(mutex *T.GStaticRecMutex,
+		depth T.Guint)
 
-	G_static_rec_mutex_unlock_full func(mutex *GStaticRecMutex) Guint
+	G_static_rec_mutex_unlock_full func(mutex *T.GStaticRecMutex) T.Guint
 
-	G_static_rec_mutex_free func(mutex *GStaticRecMutex)
+	G_static_rec_mutex_free func(mutex *T.GStaticRecMutex)
 
 	G_static_rw_lock_init func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
 	G_static_rw_lock_reader_lock func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
 	G_static_rw_lock_reader_trylock func(
-		lock *GStaticRWLock) Gboolean
+		lock *T.GStaticRWLock) T.Gboolean
 
 	G_static_rw_lock_reader_unlock func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
 	G_static_rw_lock_writer_lock func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
 	G_static_rw_lock_writer_trylock func(
-		lock *GStaticRWLock) Gboolean
+		lock *T.GStaticRWLock) T.Gboolean
 
 	G_static_rw_lock_writer_unlock func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
 	G_static_rw_lock_free func(
-		lock *GStaticRWLock)
+		lock *T.GStaticRWLock)
 
-	G_thread_foreach func(thread_func GFunc,
-		user_data Gpointer)
+	G_thread_foreach func(thread_func T.GFunc,
+		user_data T.Gpointer)
 
 	G_once_impl func(
-		once *GOnce,
-		f GThreadFunc,
-		arg Gpointer) Gpointer
+		once *T.GOnce,
+		f T.GThreadFunc,
+		arg T.Gpointer) T.Gpointer
 
 	G_once_init_enter func(
-		value_location *Gsize) Gboolean
+		value_location *T.Gsize) T.Gboolean
 
 	G_once_init_enter_impl func(
-		value_location *Gsize) Gboolean
+		value_location *T.Gsize) T.Gboolean
 
 	G_once_init_leave func(
-		value_location *Gsize,
-		initialization_value Gsize)
+		value_location *T.Gsize,
+		initialization_value T.Gsize)
 
-	G_async_queue_new func() *GAsyncQueue
+	G_async_queue_new func() *T.GAsyncQueue
 
-	G_async_queue_new_full func(item_free_func GDestroyNotify) *GAsyncQueue
+	G_async_queue_new_full func(item_free_func T.GDestroyNotify) *T.GAsyncQueue
 
-	G_async_queue_lock func(queue *GAsyncQueue)
+	G_async_queue_lock func(queue *T.GAsyncQueue)
 
-	G_async_queue_unlock func(queue *GAsyncQueue)
+	G_async_queue_unlock func(queue *T.GAsyncQueue)
 
-	G_async_queue_ref func(queue *GAsyncQueue) *GAsyncQueue
+	G_async_queue_ref func(queue *T.GAsyncQueue) *T.GAsyncQueue
 
-	G_async_queue_unref func(queue *GAsyncQueue)
+	G_async_queue_unref func(queue *T.GAsyncQueue)
 
-	G_async_queue_ref_unlocked func(queue *GAsyncQueue)
+	G_async_queue_ref_unlocked func(queue *T.GAsyncQueue)
 
-	G_async_queue_unref_and_unlock func(queue *GAsyncQueue)
+	G_async_queue_unref_and_unlock func(queue *T.GAsyncQueue)
 
-	G_async_queue_push func(queue *GAsyncQueue,
-		data Gpointer)
+	G_async_queue_push func(queue *T.GAsyncQueue,
+		data T.Gpointer)
 
-	G_async_queue_push_unlocked func(queue *GAsyncQueue,
-		data Gpointer)
+	G_async_queue_push_unlocked func(queue *T.GAsyncQueue,
+		data T.Gpointer)
 
-	G_async_queue_push_sorted func(queue *GAsyncQueue,
-		data Gpointer,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_async_queue_push_sorted func(queue *T.GAsyncQueue,
+		data T.Gpointer,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_async_queue_push_sorted_unlocked func(queue *GAsyncQueue,
-		data Gpointer,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_async_queue_push_sorted_unlocked func(queue *T.GAsyncQueue,
+		data T.Gpointer,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_async_queue_pop func(queue *GAsyncQueue) Gpointer
+	G_async_queue_pop func(queue *T.GAsyncQueue) T.Gpointer
 
-	G_async_queue_pop_unlocked func(queue *GAsyncQueue) Gpointer
+	G_async_queue_pop_unlocked func(queue *T.GAsyncQueue) T.Gpointer
 
-	G_async_queue_try_pop func(queue *GAsyncQueue) Gpointer
+	G_async_queue_try_pop func(queue *T.GAsyncQueue) T.Gpointer
 
-	G_async_queue_try_pop_unlocked func(queue *GAsyncQueue) Gpointer
+	G_async_queue_try_pop_unlocked func(queue *T.GAsyncQueue) T.Gpointer
 
-	G_async_queue_timed_pop func(queue *GAsyncQueue,
-		end_time *GTimeVal) Gpointer
+	G_async_queue_timed_pop func(queue *T.GAsyncQueue,
+		end_time *T.GTimeVal) T.Gpointer
 
-	G_async_queue_timed_pop_unlocked func(queue *GAsyncQueue,
-		end_time *GTimeVal) Gpointer
+	G_async_queue_timed_pop_unlocked func(queue *T.GAsyncQueue,
+		end_time *T.GTimeVal) T.Gpointer
 
-	G_async_queue_length func(queue *GAsyncQueue) Gint
+	G_async_queue_length func(queue *T.GAsyncQueue) T.Gint
 
-	G_async_queue_length_unlocked func(queue *GAsyncQueue) Gint
+	G_async_queue_length_unlocked func(queue *T.GAsyncQueue) T.Gint
 
-	G_async_queue_sort func(queue *GAsyncQueue,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_async_queue_sort func(queue *T.GAsyncQueue,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_async_queue_sort_unlocked func(queue *GAsyncQueue,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_async_queue_sort_unlocked func(queue *T.GAsyncQueue,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
 	G_on_error_query func(prg_name string)
 
 	G_on_error_stack_trace func(prg_name string)
 
-	G_base64_encode_step func(in *Guchar,
-		leng Gsize,
-		break_lines Gboolean,
+	G_base64_encode_step func(in *T.Guchar,
+		leng T.Gsize,
+		break_lines T.Gboolean,
 		out string,
-		state *Gint,
-		save *Gint) Gsize
+		state *T.Gint,
+		save *T.Gint) T.Gsize
 
-	G_base64_encode_close func(break_lines Gboolean,
+	G_base64_encode_close func(break_lines T.Gboolean,
 		out string,
-		state *Gint,
-		save *Gint) Gsize
+		state *T.Gint,
+		save *T.Gint) T.Gsize
 
-	G_base64_encode func(data *Guchar,
-		leng Gsize) string
+	G_base64_encode func(data *T.Guchar,
+		leng T.Gsize) string
 
 	G_base64_decode_step func(in string,
-		leng Gsize,
-		out *Guchar,
-		state *Gint,
-		save *Guint) Gsize
+		leng T.Gsize,
+		out *T.Guchar,
+		state *T.Gint,
+		save *T.Guint) T.Gsize
 
 	G_base64_decode func(text string,
-		out_len *Gsize) *Guchar
+		out_len *T.Gsize) *T.Guchar
 
 	G_base64_decode_inplace func(text string,
-		out_len *Gsize) *Guchar
+		out_len *T.Gsize) *T.Guchar
 
 	G_bit_lock func(
-		address *Gint,
-		lock_bit Gint)
+		address *T.Gint,
+		lock_bit T.Gint)
 
 	G_bit_trylock func(
-		address *Gint,
-		lock_bit Gint) Gboolean
+		address *T.Gint,
+		lock_bit T.Gint) T.Gboolean
 
 	G_bit_unlock func(
-		address *Gint,
-		lock_bit Gint)
+		address *T.Gint,
+		lock_bit T.Gint)
 
-	G_get_system_config_dirs func() **Gchar
+	G_get_system_config_dirs func() **T.Gchar
 
 	G_get_user_runtime_dir func() string
 
-	G_get_language_names func() **Gchar
+	G_get_language_names func() **T.Gchar
 
-	G_get_locale_variants func(locale string) **Gchar
+	G_get_locale_variants func(locale string) **T.Gchar
 
-	G_atexit func(f GVoidFunc)
+	G_atexit func(f T.GVoidFunc)
 
-	Glib_check_version func(required_major Guint,
-		required_minor Guint,
-		required_micro Guint) string
+	Glib_check_version func(required_major T.Guint,
+		required_minor T.Guint,
+		required_micro T.Guint) string
 
-	G_atomic_int_exchange_and_add func(atomic *Gint,
-		val Gint) Gint
+	G_atomic_int_exchange_and_add func(atomic *T.Gint,
+		val T.Gint) T.Gint
 
-	G_atomic_int_add func(atomic *Gint,
-		val Gint)
+	G_atomic_int_add func(atomic *T.Gint,
+		val T.Gint)
 
-	G_atomic_int_compare_and_exchange func(atomic *Gint,
-		oldval Gint,
-		newval Gint) Gboolean
+	G_atomic_int_compare_and_exchange func(atomic *T.Gint,
+		oldval T.Gint,
+		newval T.Gint) T.Gboolean
 
-	G_atomic_pointer_compare_and_exchange func(atomic *Gpointer,
-		oldval Gpointer,
-		newval Gpointer) Gboolean
+	G_atomic_pointer_compare_and_exchange func(atomic *T.Gpointer,
+		oldval T.Gpointer,
+		newval T.Gpointer) T.Gboolean
 
-	G_atomic_int_get func(atomic *Gint) Gint
+	G_atomic_int_get func(atomic *T.Gint) T.Gint
 
-	G_atomic_int_set func(atomic *Gint,
-		newval Gint)
+	G_atomic_int_set func(atomic *T.Gint,
+		newval T.Gint)
 
-	G_atomic_pointer_get func(atomic *Gpointer) Gpointer
+	G_atomic_pointer_get func(atomic *T.Gpointer) T.Gpointer
 
-	G_atomic_pointer_set func(atomic *Gpointer,
-		newval Gpointer)
+	G_atomic_pointer_set func(atomic *T.Gpointer,
+		newval T.Gpointer)
 
-	G_thread_error_quark func() GQuark
+	G_thread_error_quark func() T.GQuark
 
-	G_bookmark_file_error_quark func() GQuark
+	G_bookmark_file_error_quark func() T.GQuark
 
-	G_bookmark_file_new func() *GBookmarkFile
+	G_bookmark_file_new func() *T.GBookmarkFile
 
-	G_bookmark_file_free func(bookmark *GBookmarkFile)
+	G_bookmark_file_free func(bookmark *T.GBookmarkFile)
 
-	G_bookmark_file_load_from_file func(bookmark *GBookmarkFile,
+	G_bookmark_file_load_from_file func(bookmark *T.GBookmarkFile,
 		filename string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_load_from_data func(bookmark *GBookmarkFile,
+	G_bookmark_file_load_from_data func(bookmark *T.GBookmarkFile,
 		data string,
-		length Gsize,
-		e **GError) Gboolean
+		length T.Gsize,
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_load_from_data_dirs func(bookmark *GBookmarkFile,
+	G_bookmark_file_load_from_data_dirs func(bookmark *T.GBookmarkFile,
 		file string,
-		full_path **Gchar,
-		e **GError) Gboolean
+		full_path **T.Gchar,
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_to_data func(bookmark *GBookmarkFile,
-		length *Gsize,
-		e **GError) string
+	G_bookmark_file_to_data func(bookmark *T.GBookmarkFile,
+		length *T.Gsize,
+		e **T.GError) string
 
-	G_bookmark_file_to_file func(bookmark *GBookmarkFile,
+	G_bookmark_file_to_file func(bookmark *T.GBookmarkFile,
 		filename string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_set_title func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_title func(bookmark *T.GBookmarkFile,
 		uri string,
 		title string)
 
-	G_bookmark_file_get_title func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_title func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) string
+		e **T.GError) string
 
-	G_bookmark_file_set_description func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_description func(bookmark *T.GBookmarkFile,
 		uri string,
 		description string)
 
-	G_bookmark_file_get_description func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_description func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) string
+		e **T.GError) string
 
-	G_bookmark_file_set_mime_type func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_mime_type func(bookmark *T.GBookmarkFile,
 		uri string,
 		mime_type string)
 
-	G_bookmark_file_get_mime_type func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_mime_type func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) string
+		e **T.GError) string
 
-	G_bookmark_file_set_groups func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_groups func(bookmark *T.GBookmarkFile,
 		uri string,
-		groups **Gchar,
-		length Gsize)
+		groups **T.Gchar,
+		length T.Gsize)
 
-	G_bookmark_file_add_group func(bookmark *GBookmarkFile,
+	G_bookmark_file_add_group func(bookmark *T.GBookmarkFile,
 		uri string,
 		group string)
 
-	G_bookmark_file_has_group func(bookmark *GBookmarkFile,
+	G_bookmark_file_has_group func(bookmark *T.GBookmarkFile,
 		uri string,
 		group string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_get_groups func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_groups func(bookmark *T.GBookmarkFile,
 		uri string,
-		length *Gsize,
-		e **GError) **Gchar
+		length *T.Gsize,
+		e **T.GError) **T.Gchar
 
-	G_bookmark_file_add_application func(bookmark *GBookmarkFile,
+	G_bookmark_file_add_application func(bookmark *T.GBookmarkFile,
 		uri string,
 		name string,
 		exec string)
 
-	G_bookmark_file_has_application func(bookmark *GBookmarkFile,
+	G_bookmark_file_has_application func(bookmark *T.GBookmarkFile,
 		uri string,
 		name string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_get_applications func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_applications func(bookmark *T.GBookmarkFile,
 		uri string,
-		length *Gsize,
-		e **GError) **Gchar
+		length *T.Gsize,
+		e **T.GError) **T.Gchar
 
-	G_bookmark_file_set_app_info func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_app_info func(bookmark *T.GBookmarkFile,
 		uri string,
 		name string,
 		exec string,
-		count Gint,
-		stamp Time_t,
-		e **GError) Gboolean
+		count T.Gint,
+		stamp T.Time_t,
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_get_app_info func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_app_info func(bookmark *T.GBookmarkFile,
 		uri string,
 		name string,
-		exec **Gchar,
-		count *Guint,
-		stamp *Time_t,
-		e **GError) Gboolean
+		exec **T.Gchar,
+		count *T.Guint,
+		stamp *T.Time_t,
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_set_is_private func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_is_private func(bookmark *T.GBookmarkFile,
 		uri string,
-		is_private Gboolean)
+		is_private T.Gboolean)
 
-	G_bookmark_file_get_is_private func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_is_private func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_set_icon func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_icon func(bookmark *T.GBookmarkFile,
 		uri string,
 		href string,
 		mime_type string)
 
-	G_bookmark_file_get_icon func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_icon func(bookmark *T.GBookmarkFile,
 		uri string,
-		href **Gchar,
-		mime_type **Gchar,
-		e **GError) Gboolean
+		href **T.Gchar,
+		mime_type **T.Gchar,
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_set_added func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_added func(bookmark *T.GBookmarkFile,
 		uri string,
-		added Time_t)
+		added T.Time_t)
 
-	G_bookmark_file_get_added func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_added func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) Time_t
+		e **T.GError) T.Time_t
 
-	G_bookmark_file_set_modified func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_modified func(bookmark *T.GBookmarkFile,
 		uri string,
-		modified Time_t)
+		modified T.Time_t)
 
-	G_bookmark_file_get_modified func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_modified func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) Time_t
+		e **T.GError) T.Time_t
 
-	G_bookmark_file_set_visited func(bookmark *GBookmarkFile,
+	G_bookmark_file_set_visited func(bookmark *T.GBookmarkFile,
 		uri string,
-		visited Time_t)
+		visited T.Time_t)
 
-	G_bookmark_file_get_visited func(bookmark *GBookmarkFile,
+	G_bookmark_file_get_visited func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) Time_t
+		e **T.GError) T.Time_t
 
-	G_bookmark_file_has_item func(bookmark *GBookmarkFile,
-		uri string) Gboolean
+	G_bookmark_file_has_item func(bookmark *T.GBookmarkFile,
+		uri string) T.Gboolean
 
-	G_bookmark_file_get_size func(bookmark *GBookmarkFile) Gint
+	G_bookmark_file_get_size func(bookmark *T.GBookmarkFile) T.Gint
 
-	G_bookmark_file_get_uris func(bookmark *GBookmarkFile,
-		length *Gsize) **Gchar
+	G_bookmark_file_get_uris func(bookmark *T.GBookmarkFile,
+		length *T.Gsize) **T.Gchar
 
-	G_bookmark_file_remove_group func(bookmark *GBookmarkFile,
+	G_bookmark_file_remove_group func(bookmark *T.GBookmarkFile,
 		uri string,
 		group string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_remove_application func(bookmark *GBookmarkFile,
+	G_bookmark_file_remove_application func(bookmark *T.GBookmarkFile,
 		uri string,
 		name string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_remove_item func(bookmark *GBookmarkFile,
+	G_bookmark_file_remove_item func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_bookmark_file_move_item func(bookmark *GBookmarkFile,
+	G_bookmark_file_move_item func(bookmark *T.GBookmarkFile,
 		old_uri string,
 		new_uri string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_slice_alloc func(block_size Gsize) Gpointer
+	G_slice_alloc func(block_size T.Gsize) T.Gpointer
 
-	G_slice_alloc0 func(block_size Gsize) Gpointer
+	G_slice_alloc0 func(block_size T.Gsize) T.Gpointer
 
-	G_slice_copy func(block_size Gsize,
-		mem_block Gconstpointer) Gpointer
+	G_slice_copy func(block_size T.Gsize,
+		mem_block T.Gconstpointer) T.Gpointer
 
-	G_slice_free1 func(block_size Gsize,
-		mem_block Gpointer)
+	G_slice_free1 func(block_size T.Gsize,
+		mem_block T.Gpointer)
 
-	G_slice_free_chain_with_offset func(block_size Gsize,
-		mem_chain Gpointer,
-		next_offset Gsize)
+	G_slice_free_chain_with_offset func(block_size T.Gsize,
+		mem_chain T.Gpointer,
+		next_offset T.Gsize)
 
-	G_slice_set_config func(ckey GSliceConfig, value Gint64)
+	G_slice_set_config func(ckey T.GSliceConfig, value T.Gint64)
 
-	G_slice_get_config func(ckey GSliceConfig) Gint64
+	G_slice_get_config func(ckey T.GSliceConfig) T.Gint64
 
-	G_slice_get_config_state func(ckey GSliceConfig, address Gint64, n_values *Guint) *Gint64
+	G_slice_get_config_state func(ckey T.GSliceConfig, address T.Gint64, n_values *T.Guint) *T.Gint64
 
-	G_free func(mem Gpointer)
+	G_free func(mem T.Gpointer)
 
-	G_malloc func(n_bytes Gsize) Gpointer
+	G_malloc func(n_bytes T.Gsize) T.Gpointer
 
-	G_malloc0 func(n_bytes Gsize) Gpointer
+	G_malloc0 func(n_bytes T.Gsize) T.Gpointer
 
-	G_realloc func(mem Gpointer,
-		n_bytes Gsize) Gpointer
+	G_realloc func(mem T.Gpointer,
+		n_bytes T.Gsize) T.Gpointer
 
-	G_try_malloc func(n_bytes Gsize) Gpointer
+	G_try_malloc func(n_bytes T.Gsize) T.Gpointer
 
-	G_try_malloc0 func(n_bytes Gsize) Gpointer
+	G_try_malloc0 func(n_bytes T.Gsize) T.Gpointer
 
-	G_try_realloc func(mem Gpointer,
-		n_bytes Gsize) Gpointer
+	G_try_realloc func(mem T.Gpointer,
+		n_bytes T.Gsize) T.Gpointer
 
-	G_malloc_n func(n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_malloc_n func(n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_malloc0_n func(n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_malloc0_n func(n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_realloc_n func(mem Gpointer,
-		n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_realloc_n func(mem T.Gpointer,
+		n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_try_malloc_n func(n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_try_malloc_n func(n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_try_malloc0_n func(n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_try_malloc0_n func(n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_try_realloc_n func(mem Gpointer,
-		n_blocks Gsize,
-		n_block_bytes Gsize) Gpointer
+	G_try_realloc_n func(mem T.Gpointer,
+		n_blocks T.Gsize,
+		n_block_bytes T.Gsize) T.Gpointer
 
-	G_mem_is_system_malloc func() Gboolean
+	G_mem_is_system_malloc func() T.Gboolean
 
 	G_mem_profile func()
 
-	G_mem_chunk_new func(name string,
-		atom_size Gint,
-		area_size Gsize,
-		typ Gint) *GMemChunk
+	G_mem_chunk_new func(name string, atom_size T.Gint,
+		area_size T.Gsize, typ T.Gint) *T.GMemChunk
 
-	G_mem_chunk_destroy func(mem_chunk *GMemChunk)
+	G_mem_chunk_destroy func(mem_chunk *T.GMemChunk)
 
-	G_mem_chunk_alloc func(mem_chunk *GMemChunk) Gpointer
+	G_mem_chunk_alloc func(mem_chunk *T.GMemChunk) T.Gpointer
 
-	G_mem_chunk_alloc0 func(mem_chunk *GMemChunk) Gpointer
+	G_mem_chunk_alloc0 func(mem_chunk *T.GMemChunk) T.Gpointer
 
-	G_mem_chunk_free func(mem_chunk *GMemChunk,
-		mem Gpointer)
+	G_mem_chunk_free func(mem_chunk *T.GMemChunk,
+		mem T.Gpointer)
 
-	G_mem_chunk_clean func(mem_chunk *GMemChunk)
+	G_mem_chunk_clean func(mem_chunk *T.GMemChunk)
 
-	G_mem_chunk_reset func(mem_chunk *GMemChunk)
+	G_mem_chunk_reset func(mem_chunk *T.GMemChunk)
 
-	G_mem_chunk_print func(mem_chunk *GMemChunk)
+	G_mem_chunk_print func(mem_chunk *T.GMemChunk)
 
 	G_mem_chunk_info func()
 
 	G_blow_chunks func()
 
 	G_allocator_new func(name string,
-		n_preallocs Guint) *GAllocator
+		n_preallocs T.Guint) *T.GAllocator
 
-	G_allocator_free func(allocator *GAllocator)
+	G_allocator_free func(allocator *T.GAllocator)
 
-	G_list_alloc func() *GList
+	G_list_alloc func() *T.GList
 
-	G_list_free func(list *GList)
+	G_list_free func(list *T.GList)
 
-	G_list_free_1 func(list *GList)
+	G_list_free_1 func(list *T.GList)
 
-	G_list_free_full func(list *GList,
-		free_func GDestroyNotify)
+	G_list_free_full func(list *T.GList,
+		free_func T.GDestroyNotify)
 
-	G_list_append func(list *GList,
-		data Gpointer) *GList
+	G_list_append func(list *T.GList,
+		data T.Gpointer) *T.GList
 
-	G_list_prepend func(list *GList,
-		data Gpointer) *GList
+	G_list_prepend func(list *T.GList,
+		data T.Gpointer) *T.GList
 
-	G_list_insert func(list *GList,
-		data Gpointer,
-		position Gint) *GList
+	G_list_insert func(list *T.GList,
+		data T.Gpointer,
+		position T.Gint) *T.GList
 
-	G_list_insert_sorted func(list *GList,
-		data Gpointer,
-		f GCompareFunc) *GList
+	G_list_insert_sorted func(list *T.GList,
+		data T.Gpointer,
+		f T.GCompareFunc) *T.GList
 
-	G_list_insert_sorted_with_data func(list *GList,
-		data Gpointer,
+	G_list_insert_sorted_with_data func(list *T.GList,
+		data T.Gpointer,
 		fGCompareDataFunc,
-		user_data Gpointer) *GList
+		user_data T.Gpointer) *T.GList
 
-	G_list_insert_before func(list *GList,
-		sibling *GList,
-		data Gpointer) *GList
+	G_list_insert_before func(list *T.GList,
+		sibling *T.GList,
+		data T.Gpointer) *T.GList
 
-	G_list_concat func(list1 *GList,
-		list2 *GList) *GList
+	G_list_concat func(list1 *T.GList,
+		list2 *T.GList) *T.GList
 
-	G_list_remove func(list *GList,
-		data Gconstpointer) *GList
+	G_list_remove func(list *T.GList,
+		data T.Gconstpointer) *T.GList
 
-	G_list_remove_all func(list *GList,
-		data Gconstpointer) *GList
+	G_list_remove_all func(list *T.GList,
+		data T.Gconstpointer) *T.GList
 
-	G_list_remove_link func(list *GList,
-		llink *GList) *GList
+	G_list_remove_link func(list *T.GList,
+		llink *T.GList) *T.GList
 
-	G_list_delete_link func(list *GList,
-		link_ *GList) *GList
+	G_list_delete_link func(list *T.GList,
+		link *T.GList) *T.GList
 
-	G_list_reverse func(list *GList) *GList
+	G_list_reverse func(list *T.GList) *T.GList
 
-	G_list_copy func(list *GList) *GList
+	G_list_copy func(list *T.GList) *T.GList
 
-	G_list_nth func(list *GList,
-		n Guint) *GList
+	G_list_nth func(list *T.GList,
+		n T.Guint) *T.GList
 
-	G_list_nth_prev func(list *GList,
-		n Guint) *GList
+	G_list_nth_prev func(list *T.GList,
+		n T.Guint) *T.GList
 
-	G_list_find func(list *GList,
-		data Gconstpointer) *GList
+	G_list_find func(list *T.GList,
+		data T.Gconstpointer) *T.GList
 
-	G_list_find_custom func(list *GList,
-		data Gconstpointer,
-		f GCompareFunc) *GList
+	G_list_find_custom func(list *T.GList,
+		data T.Gconstpointer,
+		f T.GCompareFunc) *T.GList
 
-	G_list_position func(list *GList,
-		llink *GList) Gint
+	G_list_position func(list *T.GList,
+		llink *T.GList) T.Gint
 
-	G_list_index func(list *GList,
-		data Gconstpointer) Gint
+	G_list_index func(list *T.GList,
+		data T.Gconstpointer) T.Gint
 
-	G_list_last func(list *GList) *GList
+	G_list_last func(list *T.GList) *T.GList
 
-	G_list_first func(list *GList) *GList
+	G_list_first func(list *T.GList) *T.GList
 
-	G_list_length func(list *GList) Guint
+	G_list_length func(list *T.GList) T.Guint
 
-	G_list_foreach func(list *GList,
-		f GFunc,
-		user_data Gpointer)
+	G_list_foreach func(list *T.GList,
+		f T.GFunc,
+		user_data T.Gpointer)
 
-	G_list_sort func(list *GList,
-		compare_func GCompareFunc) *GList
+	G_list_sort func(list *T.GList,
+		compare_func T.GCompareFunc) *T.GList
 
-	G_list_sort_with_data func(list *GList,
-		compare_func GCompareDataFunc,
-		user_data Gpointer) *GList
+	G_list_sort_with_data func(list *T.GList,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer) *T.GList
 
-	G_list_nth_data func(list *GList,
-		n Guint) Gpointer
+	G_list_nth_data func(list *T.GList,
+		n T.Guint) T.Gpointer
 
-	G_list_push_allocator func(allocator Gpointer)
+	G_list_push_allocator func(allocator T.Gpointer)
 
 	G_list_pop_allocator func()
 
-	G_cache_new func(value_new_func GCacheNewFunc,
-		value_destroy_func GCacheDestroyFunc,
-		key_dup_func GCacheDupFunc,
-		key_destroy_func GCacheDestroyFunc,
-		hash_key_func GHashFunc,
-		hash_value_func GHashFunc,
-		key_equal_func GEqualFunc) *GCache
+	G_cache_new func(value_new_func T.GCacheNewFunc,
+		value_destroy_func T.GCacheDestroyFunc,
+		key_dup_func T.GCacheDupFunc,
+		key_destroy_func T.GCacheDestroyFunc,
+		hash_key_func T.GHashFunc,
+		hash_value_func T.GHashFunc,
+		key_equal_func T.GEqualFunc) *T.GCache
 
-	G_cache_destroy func(cache *GCache)
+	G_cache_destroy func(cache *T.GCache)
 
-	G_cache_insert func(cache *GCache,
-		key Gpointer) Gpointer
+	G_cache_insert func(cache *T.GCache,
+		key T.Gpointer) T.Gpointer
 
-	G_cache_remove func(cache *GCache,
-		value Gconstpointer)
+	G_cache_remove func(cache *T.GCache,
+		value T.Gconstpointer)
 
-	G_cache_key_foreach func(cache *GCache,
-		f GHFunc,
-		user_data Gpointer)
+	G_cache_key_foreach func(cache *T.GCache,
+		f T.GHFunc, user_data T.Gpointer)
 
-	G_cache_value_foreach func(cache *GCache,
-		f GHFunc,
-		user_data Gpointer)
+	G_cache_value_foreach func(cache *T.GCache,
+		f T.GHFunc, user_data T.Gpointer)
 
-	G_checksum_type_get_length func(checksum_type GChecksumType) Gssize
+	G_checksum_type_get_length func(checksum_type T.GChecksumType) T.Gssize
 
-	G_checksum_new func(checksum_type GChecksumType) *GChecksum
+	G_checksum_new func(checksum_type T.GChecksumType) *T.GChecksum
 
-	G_checksum_reset func(checksum *GChecksum)
+	G_checksum_reset func(checksum *T.GChecksum)
 
-	G_checksum_copy func(checksum *GChecksum) *GChecksum
+	G_checksum_copy func(checksum *T.GChecksum) *T.GChecksum
 
-	G_checksum_free func(checksum *GChecksum)
+	G_checksum_free func(checksum *T.GChecksum)
 
-	G_checksum_update func(checksum *GChecksum,
-		data *Guchar,
-		length Gssize)
+	G_checksum_update func(checksum *T.GChecksum,
+		data *T.Guchar, length T.Gssize)
 
-	G_checksum_get_string func(checksum *GChecksum) string
+	G_checksum_get_string func(checksum *T.GChecksum) string
 
-	G_checksum_get_digest func(checksum *GChecksum,
-		buffer *Guint8,
-		digest_len *Gsize)
+	G_checksum_get_digest func(checksum *T.GChecksum,
+		buffer *T.Guint8, digest_len *T.Gsize)
 
-	G_compute_checksum_for_data func(checksum_type GChecksumType,
-		data *Guchar,
-		length Gsize) string
+	G_compute_checksum_for_data func(checksum_type T.GChecksumType,
+		data *T.Guchar, length T.Gsize) string
 
-	G_compute_checksum_for_string func(checksum_type GChecksumType,
-		str string,
-		length Gssize) string
+	G_compute_checksum_for_string func(checksum_type T.GChecksumType,
+		str string, length T.Gssize) string
 
-	G_completion_new func(f GCompletionFunc) *GCompletion
+	G_completion_new func(f T.GCompletionFunc) *T.GCompletion
 
-	G_completion_add_items func(cmp *GCompletion,
-		items *GList)
+	G_completion_add_items func(cmp *T.GCompletion, items *T.GList)
 
-	G_completion_remove_items func(cmp *GCompletion,
-		items *GList)
+	G_completion_remove_items func(cmp *T.GCompletion,
+		items *T.GList)
 
-	G_completion_clear_items func(cmp *GCompletion)
+	G_completion_clear_items func(cmp *T.GCompletion)
 
-	G_completion_complete func(cmp *GCompletion,
+	G_completion_complete func(cmp *T.GCompletion,
 		prefix string,
-		new_prefix **Gchar) *GList
+		new_prefix **T.Gchar) *T.GList
 
-	G_completion_complete_utf8 func(cmp *GCompletion,
+	G_completion_complete_utf8 func(cmp *T.GCompletion,
 		prefix string,
-		new_prefix **Gchar) *GList
+		new_prefix **T.Gchar) *T.GList
 
-	G_completion_set_compare func(cmp *GCompletion,
-		strncmp_func GCompletionStrncmpFunc)
+	G_completion_set_compare func(cmp *T.GCompletion,
+		strncmp_func T.GCompletionStrncmpFunc)
 
-	G_completion_free func(cmp *GCompletion)
+	G_completion_free func(cmp *T.GCompletion)
 
-	G_convert_error_quark func() GQuark
+	G_convert_error_quark func() T.GQuark
 
 	G_iconv_open func(to_codeset string,
-		from_codeset string) GIConv
+		from_codeset string) T.GIConv
 
-	G_iconv func(converter GIConv,
-		inbuf **Gchar,
-		inbytes_left *Gsize,
-		outbuf **Gchar,
-		outbytes_left *Gsize) Gsize
+	G_iconv func(converter T.GIConv,
+		inbuf **T.Gchar,
+		inbytes_left *T.Gsize,
+		outbuf **T.Gchar,
+		outbytes_left *T.Gsize) T.Gsize
 
-	G_iconv_close func(converter GIConv) Gint
+	G_iconv_close func(converter T.GIConv) T.Gint
 
 	G_convert func(str string,
-		leng Gssize,
+		leng T.Gssize,
 		to_codeset string,
 		from_codeset string,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_convert_with_iconv func(str string,
-		leng Gssize,
-		converter GIConv,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		leng T.Gssize,
+		converter T.GIConv,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_convert_with_fallback func(str string,
-		leng Gssize,
+		leng T.Gssize,
 		to_codeset string,
 		from_codeset string,
 		fallback string,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_locale_to_utf8 func(opsysstr string,
-		leng Gssize,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		leng T.Gssize,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_locale_from_utf8 func(utf8str string,
-		leng Gssize,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		leng T.Gssize,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_filename_to_utf8 func(opsysstr string,
-		leng Gssize,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		leng T.Gssize,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_filename_from_utf8 func(utf8str string,
-		leng Gssize,
-		bytes_read *Gsize,
-		bytes_written *Gsize,
-		e **GError) string
+		leng T.Gssize,
+		bytes_read *T.Gsize,
+		bytes_written *T.Gsize,
+		e **T.GError) string
 
 	G_filename_from_uri func(uri string,
-		hostname **Gchar,
-		e **GError) string
+		hostname **T.Gchar,
+		e **T.GError) string
 
 	G_filename_to_uri func(filename string,
 		hostname string,
-		e **GError) string
+		e **T.GError) string
 
 	G_filename_display_name func(filename string) string
 
-	G_get_filename_charsets func(charsets ***Gchar) Gboolean
+	G_get_filename_charsets func(charsets ***T.Gchar) T.Gboolean
 
 	G_filename_display_basename func(filename string) string
 
-	G_uri_list_extract_uris func(uri_list string) **Gchar
+	G_uri_list_extract_uris func(uri_list string) **T.Gchar
 
-	G_datalist_init func(datalist **GData)
+	G_datalist_init func(datalist **T.GData)
 
-	G_datalist_clear func(datalist **GData)
+	G_datalist_clear func(datalist **T.GData)
 
-	G_datalist_id_get_data func(datalist **GData,
-		key_id GQuark) Gpointer
+	G_datalist_id_get_data func(datalist **T.GData,
+		key_id T.GQuark) T.Gpointer
 
-	G_datalist_id_set_data_full func(datalist **GData,
-		key_id GQuark,
-		data Gpointer,
-		destroy_func GDestroyNotify)
+	G_datalist_id_set_data_full func(datalist **T.GData,
+		key_id T.GQuark,
+		data T.Gpointer,
+		destroy_func T.GDestroyNotify)
 
-	G_datalist_id_remove_no_notify func(datalist **GData,
-		key_id GQuark) Gpointer
+	G_datalist_id_remove_no_notify func(datalist **T.GData,
+		key_id T.GQuark) T.Gpointer
 
-	G_datalist_foreach func(datalist **GData,
-		f GDataForeachFunc,
-		user_data Gpointer)
+	G_datalist_foreach func(datalist **T.GData,
+		f T.GDataForeachFunc,
+		user_data T.Gpointer)
 
-	G_datalist_set_flags func(datalist **GData,
-		flags Guint)
+	G_datalist_set_flags func(datalist **T.GData,
+		flags T.Guint)
 
-	G_datalist_unset_flags func(datalist **GData,
-		flags Guint)
+	G_datalist_unset_flags func(datalist **T.GData,
+		flags T.Guint)
 
-	G_datalist_get_flags func(datalist **GData) Guint
+	G_datalist_get_flags func(datalist **T.GData) T.Guint
 
-	G_dataset_destroy func(dataset_location Gconstpointer)
+	G_dataset_destroy func(dataset_location T.Gconstpointer)
 
-	G_dataset_id_get_data func(dataset_location Gconstpointer,
-		key_id GQuark) Gpointer
+	G_dataset_id_get_data func(dataset_location T.Gconstpointer,
+		key_id T.GQuark) T.Gpointer
 
-	G_dataset_id_set_data_full func(dataset_location Gconstpointer,
-		key_id GQuark,
-		data Gpointer,
-		destroy_func GDestroyNotify)
+	G_dataset_id_set_data_full func(dataset_location T.Gconstpointer,
+		key_id T.GQuark,
+		data T.Gpointer,
+		destroy_func T.GDestroyNotify)
 
-	G_dataset_id_remove_no_notify func(dataset_location Gconstpointer,
-		key_id GQuark) Gpointer
+	G_dataset_id_remove_no_notify func(dataset_location T.Gconstpointer,
+		key_id T.GQuark) T.Gpointer
 
-	G_dataset_foreach func(dataset_location Gconstpointer,
-		f GDataForeachFunc,
-		user_data Gpointer)
+	G_dataset_foreach func(dataset_location T.Gconstpointer,
+		f T.GDataForeachFunc,
+		user_data T.Gpointer)
 
-	G_date_new func() *GDate
+	G_date_new func() *T.GDate
 
-	G_date_new_dmy func(day GDateDay,
-		month GDateMonth,
-		year GDateYear) *GDate
+	G_date_new_dmy func(day T.GDateDay,
+		month T.GDateMonth,
+		year T.GDateYear) *T.GDate
 
-	G_date_new_julian func(julian_day Guint32) *GDate
+	G_date_new_julian func(julian_day T.Guint32) *T.GDate
 
-	G_date_free func(date *GDate)
+	G_date_free func(date *T.GDate)
 
-	G_date_valid func(date *GDate) Gboolean
+	G_date_valid func(date *T.GDate) T.Gboolean
 
-	G_date_valid_day func(day GDateDay) Gboolean
+	G_date_valid_day func(day T.GDateDay) T.Gboolean
 
-	G_date_valid_month func(month GDateMonth) Gboolean
+	G_date_valid_month func(month T.GDateMonth) T.Gboolean
 
-	G_date_valid_year func(year GDateYear) Gboolean
+	G_date_valid_year func(year T.GDateYear) T.Gboolean
 
-	G_date_valid_weekday func(weekday GDateWeekday) Gboolean
+	G_date_valid_weekday func(weekday T.GDateWeekday) T.Gboolean
 
-	G_date_valid_julian func(julian_date Guint32) Gboolean
+	G_date_valid_julian func(julian_date T.Guint32) T.Gboolean
 
-	G_date_valid_dmy func(day GDateDay,
-		month GDateMonth,
-		year GDateYear) Gboolean
+	G_date_valid_dmy func(day T.GDateDay,
+		month T.GDateMonth,
+		year T.GDateYear) T.Gboolean
 
-	G_date_get_weekday func(date *GDate) GDateWeekday
+	G_date_get_weekday func(date *T.GDate) T.GDateWeekday
 
-	G_date_get_month func(date *GDate) GDateMonth
+	G_date_get_month func(date *T.GDate) T.GDateMonth
 
-	G_date_get_year func(date *GDate) GDateYear
+	G_date_get_year func(date *T.GDate) T.GDateYear
 
-	G_date_get_day func(date *GDate) GDateDay
+	G_date_get_day func(date *T.GDate) T.GDateDay
 
-	G_date_get_julian func(date *GDate) Guint32
+	G_date_get_julian func(date *T.GDate) T.Guint32
 
-	G_date_get_day_of_year func(date *GDate) Guint
+	G_date_get_day_of_year func(date *T.GDate) T.Guint
 
-	G_date_get_monday_week_of_year func(date *GDate) Guint
+	G_date_get_monday_week_of_year func(date *T.GDate) T.Guint
 
-	G_date_get_sunday_week_of_year func(date *GDate) Guint
+	G_date_get_sunday_week_of_year func(date *T.GDate) T.Guint
 
-	G_date_get_iso8601_week_of_year func(date *GDate) Guint
+	G_date_get_iso8601_week_of_year func(date *T.GDate) T.Guint
 
-	G_date_clear func(date *GDate,
-		n_dates Guint)
+	G_date_clear func(date *T.GDate, n_dates T.Guint)
 
-	G_date_set_parse func(date *GDate,
-		str string)
+	G_date_set_parse func(date *T.GDate, str string)
 
-	G_date_set_time_t func(date *GDate,
-		timet Time_t)
+	G_date_set_time_t func(date *T.GDate, timet T.Time_t)
 
-	G_date_set_time_val func(date *GDate,
-		timeval *GTimeVal)
+	G_date_set_time_val func(date *T.GDate, timeval *T.GTimeVal)
 
-	G_date_set_time func(date *GDate,
-		time_ GTime)
+	G_date_set_time func(date *T.GDate, time T.GTime)
 
-	G_date_set_month func(date *GDate,
-		month GDateMonth)
+	G_date_set_month func(date *T.GDate, month T.GDateMonth)
 
-	G_date_set_day func(date *GDate,
-		day GDateDay)
+	G_date_set_day func(date *T.GDate, day T.GDateDay)
 
-	G_date_set_year func(date *GDate,
-		year GDateYear)
+	G_date_set_year func(date *T.GDate, year T.GDateYear)
 
-	G_date_set_dmy func(date *GDate,
-		day GDateDay,
-		month GDateMonth,
-		y GDateYear)
+	G_date_set_dmy func(date *T.GDate,
+		day T.GDateDay, month T.GDateMonth, y T.GDateYear)
 
-	G_date_set_julian func(date *GDate,
-		julian_date Guint32)
+	G_date_set_julian func(date *T.GDate, julian_date T.Guint32)
 
-	G_date_is_first_of_month func(date *GDate) Gboolean
+	G_date_is_first_of_month func(date *T.GDate) T.Gboolean
 
-	G_date_is_last_of_month func(date *GDate) Gboolean
+	G_date_is_last_of_month func(date *T.GDate) T.Gboolean
 
-	G_date_add_days func(date *GDate,
-		n_days Guint)
+	G_date_add_days func(date *T.GDate, n_days T.Guint)
 
-	G_date_subtract_days func(date *GDate,
-		n_days Guint)
+	G_date_subtract_days func(date *T.GDate, n_days T.Guint)
 
-	G_date_add_months func(date *GDate,
-		n_months Guint)
+	G_date_add_months func(date *T.GDate, n_months T.Guint)
 
-	G_date_subtract_months func(date *GDate,
-		n_months Guint)
+	G_date_subtract_months func(date *T.GDate, n_months T.Guint)
 
-	G_date_add_years func(date *GDate,
-		n_years Guint)
+	G_date_add_years func(date *T.GDate, n_years T.Guint)
 
-	G_date_subtract_years func(date *GDate,
-		n_years Guint)
+	G_date_subtract_years func(date *T.GDate, n_years T.Guint)
 
-	G_date_is_leap_year func(year GDateYear) Gboolean
+	G_date_is_leap_year func(year T.GDateYear) T.Gboolean
 
-	G_date_get_days_in_month func(month GDateMonth,
-		year GDateYear) Guint8
+	G_date_get_days_in_month func(month T.GDateMonth,
+		year T.GDateYear) T.Guint8
 
-	G_date_get_monday_weeks_in_year func(year GDateYear) Guint8
+	G_date_get_monday_weeks_in_year func(year T.GDateYear) T.Guint8
 
-	G_date_get_sunday_weeks_in_year func(year GDateYear) Guint8
+	G_date_get_sunday_weeks_in_year func(year T.GDateYear) T.Guint8
 
-	G_date_days_between func(date1 *GDate,
-		date2 *GDate) Gint
+	G_date_days_between func(date1 *T.GDate,
+		date2 *T.GDate) T.Gint
 
-	G_date_compare func(lhs *GDate,
-		rhs *GDate) Gint
+	G_date_compare func(lhs *T.GDate,
+		rhs *T.GDate) T.Gint
 
-	G_date_to_struct_tm func(date *GDate,
-		tm *Tm)
+	G_date_to_struct_tm func(date *T.GDate, tm *T.Tm)
 
-	G_date_clamp func(date *GDate,
-		min_date *GDate,
-		max_date *GDate)
+	G_date_clamp func(date, min_date, max_date *T.GDate)
 
-	G_date_order func(date1 *GDate, date2 *GDate)
+	G_date_order func(date1 *T.GDate, date2 *T.GDate)
 
 	G_date_strftime func(s string,
-		slen Gsize,
+		slen T.Gsize,
 		format string,
-		date *GDate) Gsize
+		date *T.GDate) T.Gsize
 
-	G_time_zone_new func(identifier string) *GTimeZone
+	G_time_zone_new func(identifier string) *T.GTimeZone
 
-	G_time_zone_new_utc func() *GTimeZone
+	G_time_zone_new_utc func() *T.GTimeZone
 
-	G_time_zone_new_local func() *GTimeZone
+	G_time_zone_new_local func() *T.GTimeZone
 
-	G_time_zone_ref func(tz *GTimeZone) *GTimeZone
+	G_time_zone_ref func(tz *T.GTimeZone) *T.GTimeZone
 
-	G_time_zone_unref func(tz *GTimeZone)
+	G_time_zone_unref func(tz *T.GTimeZone)
 
-	G_time_zone_find_interval func(tz *GTimeZone,
-		typ GTimeType,
-		time Gint64) Gint
+	G_time_zone_find_interval func(tz *T.GTimeZone,
+		typ T.GTimeType,
+		time T.Gint64) T.Gint
 
-	G_time_zone_adjust_time func(tz *GTimeZone,
-		typ GTimeType,
-		time *Gint64) Gint
+	G_time_zone_adjust_time func(tz *T.GTimeZone,
+		typ T.GTimeType,
+		time *T.Gint64) T.Gint
 
-	G_time_zone_get_abbreviation func(tz *GTimeZone,
-		interval Gint) string
+	G_time_zone_get_abbreviation func(tz *T.GTimeZone,
+		interval T.Gint) string
 
-	G_time_zone_get_offset func(tz *GTimeZone,
-		interval Gint) Gint32
+	G_time_zone_get_offset func(tz *T.GTimeZone,
+		interval T.Gint) T.Gint32
 
-	G_time_zone_is_dst func(tz *GTimeZone,
-		interval Gint) Gboolean
+	G_time_zone_is_dst func(tz *T.GTimeZone,
+		interval T.Gint) T.Gboolean
 
-	G_date_time_unref func(datetime *GDateTime)
+	G_date_time_unref func(datetime *T.GDateTime)
 
-	G_date_time_ref func(datetime *GDateTime) *GDateTime
+	G_date_time_ref func(datetime *T.GDateTime) *T.GDateTime
 
-	G_date_time_new_now func(tz *GTimeZone) *GDateTime
+	G_date_time_new_now func(tz *T.GTimeZone) *T.GDateTime
 
-	G_date_time_new_now_local func() *GDateTime
+	G_date_time_new_now_local func() *T.GDateTime
 
-	G_date_time_new_now_utc func() *GDateTime
+	G_date_time_new_now_utc func() *T.GDateTime
 
-	G_date_time_new_from_unix_local func(t Gint64) *GDateTime
+	G_date_time_new_from_unix_local func(t T.Gint64) *T.GDateTime
 
-	G_date_time_new_from_unix_utc func(t Gint64) *GDateTime
+	G_date_time_new_from_unix_utc func(t T.Gint64) *T.GDateTime
 
-	G_date_time_new_from_timeval_local func(tv *GTimeVal) *GDateTime
+	G_date_time_new_from_timeval_local func(tv *T.GTimeVal) *T.GDateTime
 
-	G_date_time_new_from_timeval_utc func(tv *GTimeVal) *GDateTime
+	G_date_time_new_from_timeval_utc func(tv *T.GTimeVal) *T.GDateTime
 
-	G_date_time_new func(tz *GTimeZone,
-		year Gint,
-		month Gint,
-		day Gint,
-		hour Gint,
-		minute Gint,
-		seconds Gdouble) *GDateTime
+	G_date_time_new func(tz *T.GTimeZone,
+		year T.Gint,
+		month T.Gint,
+		day T.Gint,
+		hour T.Gint,
+		minute T.Gint,
+		seconds T.Gdouble) *T.GDateTime
 
-	G_date_time_new_local func(year Gint,
-		month Gint,
-		day Gint,
-		hour Gint,
-		minute Gint,
-		seconds Gdouble) *GDateTime
+	G_date_time_new_local func(year T.Gint,
+		month T.Gint,
+		day T.Gint,
+		hour T.Gint,
+		minute T.Gint,
+		seconds T.Gdouble) *T.GDateTime
 
-	G_date_time_new_utc func(year Gint,
-		month Gint,
-		day Gint,
-		hour Gint,
-		minute Gint,
-		seconds Gdouble) *GDateTime
+	G_date_time_new_utc func(year T.Gint,
+		month T.Gint,
+		day T.Gint,
+		hour T.Gint,
+		minute T.Gint,
+		seconds T.Gdouble) *T.GDateTime
 
-	G_date_time_add func(datetime *GDateTime,
-		timespan GTimeSpan) *GDateTime
+	G_date_time_add func(datetime *T.GDateTime,
+		timespan T.GTimeSpan) *T.GDateTime
 
-	G_date_time_add_years func(datetime *GDateTime,
-		years Gint) *GDateTime
+	G_date_time_add_years func(datetime *T.GDateTime,
+		years T.Gint) *T.GDateTime
 
-	G_date_time_add_months func(datetime *GDateTime,
-		months Gint) *GDateTime
+	G_date_time_add_months func(datetime *T.GDateTime,
+		months T.Gint) *T.GDateTime
 
-	G_date_time_add_weeks func(datetime *GDateTime,
-		weeks Gint) *GDateTime
+	G_date_time_add_weeks func(datetime *T.GDateTime,
+		weeks T.Gint) *T.GDateTime
 
-	G_date_time_add_days func(datetime *GDateTime,
-		days Gint) *GDateTime
+	G_date_time_add_days func(datetime *T.GDateTime,
+		days T.Gint) *T.GDateTime
 
-	G_date_time_add_hours func(datetime *GDateTime,
-		hours Gint) *GDateTime
+	G_date_time_add_hours func(datetime *T.GDateTime,
+		hours T.Gint) *T.GDateTime
 
-	G_date_time_add_minutes func(datetime *GDateTime,
-		minutes Gint) *GDateTime
+	G_date_time_add_minutes func(datetime *T.GDateTime,
+		minutes T.Gint) *T.GDateTime
 
-	G_date_time_add_seconds func(datetime *GDateTime,
-		seconds Gdouble) *GDateTime
+	G_date_time_add_seconds func(datetime *T.GDateTime,
+		seconds T.Gdouble) *T.GDateTime
 
-	G_date_time_add_full func(datetime *GDateTime,
-		years Gint,
-		months Gint,
-		days Gint,
-		hours Gint,
-		minutes Gint,
-		seconds Gdouble) *GDateTime
+	G_date_time_add_full func(datetime *T.GDateTime,
+		years T.Gint,
+		months T.Gint,
+		days T.Gint,
+		hours T.Gint,
+		minutes T.Gint,
+		seconds T.Gdouble) *T.GDateTime
 
-	G_date_time_compare func(dt1 Gconstpointer,
-		dt2 Gconstpointer) Gint
+	G_date_time_compare func(dt1 T.Gconstpointer,
+		dt2 T.Gconstpointer) T.Gint
 
-	G_date_time_difference func(end *GDateTime,
-		begin *GDateTime) GTimeSpan
+	G_date_time_difference func(end *T.GDateTime,
+		begin *T.GDateTime) T.GTimeSpan
 
-	G_date_time_hash func(datetime Gconstpointer) Guint
+	G_date_time_hash func(datetime T.Gconstpointer) T.Guint
 
-	G_date_time_equal func(dt1 Gconstpointer,
-		dt2 Gconstpointer) Gboolean
+	G_date_time_equal func(dt1 T.Gconstpointer,
+		dt2 T.Gconstpointer) T.Gboolean
 
-	G_date_time_get_ymd func(datetime *GDateTime,
-		year *Gint,
-		month *Gint,
-		day *Gint)
+	G_date_time_get_ymd func(datetime *T.GDateTime,
+		year *T.Gint,
+		month *T.Gint,
+		day *T.Gint)
 
-	G_date_time_get_year func(datetime *GDateTime) Gint
+	G_date_time_get_year func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_month func(datetime *GDateTime) Gint
+	G_date_time_get_month func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_day_of_month func(datetime *GDateTime) Gint
+	G_date_time_get_day_of_month func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_week_numbering_year func(datetime *GDateTime) Gint
+	G_date_time_get_week_numbering_year func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_week_of_year func(datetime *GDateTime) Gint
+	G_date_time_get_week_of_year func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_day_of_week func(datetime *GDateTime) Gint
+	G_date_time_get_day_of_week func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_day_of_year func(datetime *GDateTime) Gint
+	G_date_time_get_day_of_year func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_hour func(datetime *GDateTime) Gint
+	G_date_time_get_hour func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_minute func(datetime *GDateTime) Gint
+	G_date_time_get_minute func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_second func(datetime *GDateTime) Gint
+	G_date_time_get_second func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_microsecond func(datetime *GDateTime) Gint
+	G_date_time_get_microsecond func(datetime *T.GDateTime) T.Gint
 
-	G_date_time_get_seconds func(datetime *GDateTime) Gdouble
+	G_date_time_get_seconds func(datetime *T.GDateTime) T.Gdouble
 
-	G_date_time_to_unix func(datetime *GDateTime) Gint64
+	G_date_time_to_unix func(datetime *T.GDateTime) T.Gint64
 
-	G_date_time_to_timeval func(datetime *GDateTime,
-		tv *GTimeVal) Gboolean
+	G_date_time_to_timeval func(datetime *T.GDateTime,
+		tv *T.GTimeVal) T.Gboolean
 
-	G_date_time_get_utc_offset func(datetime *GDateTime) GTimeSpan
+	G_date_time_get_utc_offset func(datetime *T.GDateTime) T.GTimeSpan
 
-	G_date_time_get_timezone_abbreviation func(datetime *GDateTime) string
+	G_date_time_get_timezone_abbreviation func(datetime *T.GDateTime) string
 
-	G_date_time_is_daylight_savings func(datetime *GDateTime) Gboolean
+	G_date_time_is_daylight_savings func(datetime *T.GDateTime) T.Gboolean
 
-	G_date_time_to_timezone func(datetime *GDateTime,
-		tz *GTimeZone) *GDateTime
+	G_date_time_to_timezone func(datetime *T.GDateTime,
+		tz *T.GTimeZone) *T.GDateTime
 
-	G_date_time_to_local func(datetime *GDateTime) *GDateTime
+	G_date_time_to_local func(datetime *T.GDateTime) *T.GDateTime
 
-	G_date_time_to_utc func(datetime *GDateTime) *GDateTime
+	G_date_time_to_utc func(datetime *T.GDateTime) *T.GDateTime
 
-	G_date_time_format func(datetime *GDateTime,
+	G_date_time_format func(datetime *T.GDateTime,
 		format string) string
 
 	G_dir_open_utf8 func(path string,
-		flags Guint,
-		e **GError) *GDir
+		flags T.Guint,
+		e **T.GError) *T.GDir
 
-	G_dir_read_name_utf8 func(dir *GDir) string
+	G_dir_read_name_utf8 func(dir *T.GDir) string
 
-	G_dir_rewind func(dir *GDir)
+	G_dir_rewind func(dir *T.GDir)
 
-	G_dir_close func(dir *GDir)
+	G_dir_close func(dir *T.GDir)
 
-	G_file_error_quark func() GQuark
+	G_file_error_quark func() T.GQuark
 
-	G_file_error_from_errno func(err_no Gint) GFileError
+	G_file_error_from_errno func(err_no T.Gint) T.GFileError
 
 	G_file_test func(filename string,
-		test GFileTest) Gboolean
+		test T.GFileTest) T.Gboolean
 
 	G_file_get_contents func(filename string,
-		contents **Gchar,
-		length *Gsize,
-		e **GError) Gboolean
+		contents **T.Gchar,
+		length *T.Gsize,
+		e **T.GError) T.Gboolean
 
 	G_file_set_contents func(filename string,
 		contents string,
-		length Gssize,
-		e **GError) Gboolean
+		length T.Gssize,
+		e **T.GError) T.Gboolean
 
 	G_file_read_link func(filename string,
-		e **GError) string
+		e **T.GError) string
 
-	G_mkstemp func(tmpl string) Gint
+	G_mkstemp func(tmpl string) T.Gint
 
 	G_mkstemp_full func(tmpl string,
 		flags int,
-		mode int) Gint
+		mode int) T.Gint
 
 	G_file_open_tmp func(tmpl string,
-		name_used **Gchar,
-		e **GError) Gint
+		name_used **T.Gchar,
+		e **T.GError) T.Gint
 
-	G_format_size_for_display func(size Goffset) string
+	G_format_size_for_display func(size T.Goffset) string
 
 	G_build_path func(separator string, first_element string,
 		v ...VArg) string
 
 	G_build_pathv func(separator string,
-		args **Gchar) string
+		args **T.Gchar) string
 
 	G_build_filename func(first_element string, v ...VArg) string
 
-	G_build_filenamev func(args **Gchar) string
+	G_build_filenamev func(args **T.Gchar) string
 
 	G_mkdir_with_parents func(pathname string,
 		mode int) int
 
-	G_hash_table_new func(hash_func GHashFunc,
-		key_equal_func GEqualFunc) *GHashTable
+	G_hash_table_new func(hash_func T.GHashFunc,
+		key_equal_func T.GEqualFunc) *T.GHashTable
 
-	G_hash_table_new_full func(hash_func GHashFunc,
-		key_equal_func GEqualFunc,
-		key_destroy_func GDestroyNotify,
-		value_destroy_func GDestroyNotify) *GHashTable
+	G_hash_table_new_full func(hash_func T.GHashFunc,
+		key_equal_func T.GEqualFunc,
+		key_destroy_func T.GDestroyNotify,
+		value_destroy_func T.GDestroyNotify) *T.GHashTable
 
-	G_hash_table_destroy func(hash_table *GHashTable)
+	G_hash_table_destroy func(hash_table *T.GHashTable)
 
-	G_hash_table_insert func(hash_table *GHashTable,
-		key Gpointer,
-		value Gpointer)
+	G_hash_table_insert func(hash_table *T.GHashTable,
+		key T.Gpointer,
+		value T.Gpointer)
 
-	G_hash_table_replace func(hash_table *GHashTable,
-		key Gpointer,
-		value Gpointer)
+	G_hash_table_replace func(hash_table *T.GHashTable,
+		key T.Gpointer,
+		value T.Gpointer)
 
-	G_hash_table_remove func(hash_table *GHashTable,
-		key Gconstpointer) Gboolean
+	G_hash_table_remove func(hash_table *T.GHashTable,
+		key T.Gconstpointer) T.Gboolean
 
-	G_hash_table_remove_all func(hash_table *GHashTable)
+	G_hash_table_remove_all func(hash_table *T.GHashTable)
 
-	G_hash_table_steal func(hash_table *GHashTable,
-		key Gconstpointer) Gboolean
+	G_hash_table_steal func(hash_table *T.GHashTable,
+		key T.Gconstpointer) T.Gboolean
 
-	G_hash_table_steal_all func(hash_table *GHashTable)
+	G_hash_table_steal_all func(hash_table *T.GHashTable)
 
-	G_hash_table_lookup func(hash_table *GHashTable,
-		key Gconstpointer) Gpointer
+	G_hash_table_lookup func(hash_table *T.GHashTable,
+		key T.Gconstpointer) T.Gpointer
 
-	G_hash_table_lookup_extended func(hash_table *GHashTable,
-		lookup_key Gconstpointer,
-		orig_key *Gpointer,
-		value *Gpointer) Gboolean
+	G_hash_table_lookup_extended func(hash_table *T.GHashTable,
+		lookup_key T.Gconstpointer,
+		orig_key, value *T.Gpointer) T.Gboolean
 
-	G_hash_table_foreach func(hash_table *GHashTable,
-		f GHFunc,
-		user_data Gpointer)
+	G_hash_table_foreach func(hash_table *T.GHashTable,
+		f T.GHFunc, user_data T.Gpointer)
 
-	G_hash_table_find func(hash_table *GHashTable,
-		predicate GHRFunc,
-		user_data Gpointer) Gpointer
+	G_hash_table_find func(hash_table *T.GHashTable,
+		predicate T.GHRFunc, user_data T.Gpointer) T.Gpointer
 
-	G_hash_table_foreach_remove func(hash_table *GHashTable,
-		f GHRFunc,
-		user_data Gpointer) Guint
+	G_hash_table_foreach_remove func(hash_table *T.GHashTable,
+		f T.GHRFunc, user_data T.Gpointer) T.Guint
 
-	G_hash_table_foreach_steal func(hash_table *GHashTable,
-		f GHRFunc,
-		user_data Gpointer) Guint
+	G_hash_table_foreach_steal func(hash_table *T.GHashTable,
+		f T.GHRFunc, user_data T.Gpointer) T.Guint
 
-	G_hash_table_size func(hash_table *GHashTable) Guint
+	G_hash_table_size func(hash_table *T.GHashTable) T.Guint
 
-	G_hash_table_get_keys func(hash_table *GHashTable) *GList
+	G_hash_table_get_keys func(hash_table *T.GHashTable) *T.GList
 
-	G_hash_table_get_values func(hash_table *GHashTable) *GList
+	G_hash_table_get_values func(hash_table *T.GHashTable) *T.GList
 
-	G_hash_table_iter_init func(iter *GHashTableIter,
-		hash_table *GHashTable)
+	G_hash_table_iter_init func(iter *T.GHashTableIter,
+		hash_table *T.GHashTable)
 
-	G_hash_table_iter_next func(iter *GHashTableIter,
-		key *Gpointer,
-		value *Gpointer) Gboolean
+	G_hash_table_iter_next func(iter *T.GHashTableIter,
+		key *T.Gpointer,
+		value *T.Gpointer) T.Gboolean
 
-	G_hash_table_iter_get_hash_table func(iter *GHashTableIter) *GHashTable
+	G_hash_table_iter_get_hash_table func(iter *T.GHashTableIter) *T.GHashTable
 
-	G_hash_table_iter_remove func(iter *GHashTableIter)
+	G_hash_table_iter_remove func(iter *T.GHashTableIter)
 
-	G_hash_table_iter_steal func(iter *GHashTableIter)
+	G_hash_table_iter_steal func(iter *T.GHashTableIter)
 
-	G_hash_table_ref func(hash_table *GHashTable) *GHashTable
+	G_hash_table_ref func(hash_table *T.GHashTable) *T.GHashTable
 
-	G_hash_table_unref func(hash_table *GHashTable)
+	G_hash_table_unref func(hash_table *T.GHashTable)
 
-	G_str_equal func(v1 Gconstpointer,
-		v2 Gconstpointer) Gboolean
+	G_str_equal func(v1 T.Gconstpointer,
+		v2 T.Gconstpointer) T.Gboolean
 
-	G_str_hash func(v Gconstpointer) Guint
+	G_str_hash func(v T.Gconstpointer) T.Guint
 
-	G_int_equal func(v1 Gconstpointer,
-		v2 Gconstpointer) Gboolean
+	G_int_equal func(v1 T.Gconstpointer,
+		v2 T.Gconstpointer) T.Gboolean
 
-	G_int_hash func(v Gconstpointer) Guint
+	G_int_hash func(v T.Gconstpointer) T.Guint
 
-	G_int64_equal func(v1 Gconstpointer,
-		v2 Gconstpointer) Gboolean
+	G_int64_equal func(v1 T.Gconstpointer,
+		v2 T.Gconstpointer) T.Gboolean
 
-	G_int64_hash func(v Gconstpointer) Guint
+	G_int64_hash func(v T.Gconstpointer) T.Guint
 
-	G_double_equal func(v1 Gconstpointer,
-		v2 Gconstpointer) Gboolean
+	G_double_equal func(v1 T.Gconstpointer,
+		v2 T.Gconstpointer) T.Gboolean
 
-	G_double_hash func(v Gconstpointer) Guint
+	G_double_hash func(v T.Gconstpointer) T.Guint
 
-	G_direct_hash func(v Gconstpointer) Guint
+	G_direct_hash func(v T.Gconstpointer) T.Guint
 
-	G_direct_equal func(v1 Gconstpointer,
-		v2 Gconstpointer) Gboolean
+	G_direct_equal func(v1 T.Gconstpointer,
+		v2 T.Gconstpointer) T.Gboolean
 
-	G_hook_list_init func(hook_list *GHookList,
-		hook_size Guint)
+	G_hook_list_init func(hook_list *T.GHookList,
+		hook_size T.Guint)
 
-	G_hook_list_clear func(hook_list *GHookList)
+	G_hook_list_clear func(hook_list *T.GHookList)
 
-	G_hook_alloc func(hook_list *GHookList) *GHook
+	G_hook_alloc func(hook_list *T.GHookList) *T.GHook
 
-	G_hook_free func(hook_list *GHookList,
-		hook *GHook)
+	G_hook_free func(hook_list *T.GHookList,
+		hook *T.GHook)
 
-	G_hook_ref func(hook_list *GHookList,
-		hook *GHook) *GHook
+	G_hook_ref func(hook_list *T.GHookList,
+		hook *T.GHook) *T.GHook
 
-	G_hook_unref func(hook_list *GHookList,
-		hook *GHook)
+	G_hook_unref func(hook_list *T.GHookList,
+		hook *T.GHook)
 
-	G_hook_destroy func(hook_list *GHookList,
-		hook_id Gulong) Gboolean
+	G_hook_destroy func(hook_list *T.GHookList,
+		hook_id T.Gulong) T.Gboolean
 
-	G_hook_destroy_link func(hook_list *GHookList,
-		hook *GHook)
+	G_hook_destroy_link func(hook_list *T.GHookList,
+		hook *T.GHook)
 
-	G_hook_prepend func(hook_list *GHookList,
-		hook *GHook)
+	G_hook_prepend func(hook_list *T.GHookList,
+		hook *T.GHook)
 
-	G_hook_insert_before func(hook_list *GHookList,
-		sibling *GHook,
-		hook *GHook)
+	G_hook_insert_before func(hook_list *T.GHookList,
+		sibling *T.GHook,
+		hook *T.GHook)
 
-	G_hook_insert_sorted func(hook_list *GHookList,
-		hook *GHook,
-		f GHookCompareFunc)
+	G_hook_insert_sorted func(hook_list *T.GHookList,
+		hook *T.GHook,
+		f T.GHookCompareFunc)
 
-	G_hook_get func(hook_list *GHookList,
-		hook_id Gulong) *GHook
+	G_hook_get func(hook_list *T.GHookList,
+		hook_id T.Gulong) *T.GHook
 
-	G_hook_find func(hook_list *GHookList,
-		need_valids Gboolean,
-		f GHookFindFunc,
-		data Gpointer) *GHook
+	G_hook_find func(hook_list *T.GHookList,
+		need_valids T.Gboolean,
+		f T.GHookFindFunc,
+		data T.Gpointer) *T.GHook
 
-	G_hook_find_data func(hook_list *GHookList,
-		need_valids Gboolean,
-		data Gpointer) *GHook
+	G_hook_find_data func(hook_list *T.GHookList,
+		need_valids T.Gboolean,
+		data T.Gpointer) *T.GHook
 
-	G_hook_find_func func(hook_list *GHookList,
-		need_valids Gboolean,
-		f Gpointer) *GHook
+	G_hook_find_func func(hook_list *T.GHookList,
+		need_valids T.Gboolean,
+		f T.Gpointer) *T.GHook
 
-	G_hook_find_func_data func(hook_list *GHookList,
-		need_valids Gboolean,
-		f Gpointer,
-		data Gpointer) *GHook
+	G_hook_find_func_data func(hook_list *T.GHookList,
+		need_valids T.Gboolean,
+		f T.Gpointer,
+		data T.Gpointer) *T.GHook
 
-	G_hook_first_valid func(hook_list *GHookList,
-		may_be_in_call Gboolean) *GHook
+	G_hook_first_valid func(hook_list *T.GHookList,
+		may_be_in_call T.Gboolean) *T.GHook
 
-	G_hook_next_valid func(hook_list *GHookList,
-		hook *GHook,
-		may_be_in_call Gboolean) *GHook
+	G_hook_next_valid func(hook_list *T.GHookList,
+		hook *T.GHook,
+		may_be_in_call T.Gboolean) *T.GHook
 
-	G_hook_compare_ids func(new_hook *GHook,
-		sibling *GHook) Gint
+	G_hook_compare_ids func(new_hook *T.GHook,
+		sibling *T.GHook) T.Gint
 
-	G_hook_list_invoke func(hook_list *GHookList,
-		may_recurse Gboolean)
+	G_hook_list_invoke func(hook_list *T.GHookList,
+		may_recurse T.Gboolean)
 
-	G_hook_list_invoke_check func(hook_list *GHookList,
-		may_recurse Gboolean)
+	G_hook_list_invoke_check func(hook_list *T.GHookList,
+		may_recurse T.Gboolean)
 
-	G_hook_list_marshal func(hook_list *GHookList,
-		may_recurse Gboolean,
-		marshaller GHookMarshaller,
-		marshal_data Gpointer)
+	G_hook_list_marshal func(hook_list *T.GHookList,
+		may_recurse T.Gboolean,
+		marshaller T.GHookMarshaller,
+		marshal_data T.Gpointer)
 
-	G_hook_list_marshal_check func(hook_list *GHookList,
-		may_recurse Gboolean,
-		marshaller GHookCheckMarshaller,
-		marshal_data Gpointer)
+	G_hook_list_marshal_check func(hook_list *T.GHookList,
+		may_recurse T.Gboolean,
+		marshaller T.GHookCheckMarshaller,
+		marshal_data T.Gpointer)
 
-	G_hostname_is_non_ascii func(hostname string) Gboolean
+	G_hostname_is_non_ascii func(hostname string) T.Gboolean
 
-	G_hostname_is_ascii_encoded func(hostname string) Gboolean
+	G_hostname_is_ascii_encoded func(hostname string) T.Gboolean
 
-	G_hostname_is_ip_address func(hostname string) Gboolean
+	G_hostname_is_ip_address func(hostname string) T.Gboolean
 
 	G_hostname_to_ascii func(hostname string) string
 
 	G_hostname_to_unicode func(hostname string) string
 
-	G_poll func(fds *GPollFD,
-		nfds Guint,
-		timeout Gint) Gint
+	G_poll func(fds *T.GPollFD,
+		nfds T.Guint,
+		timeout T.Gint) T.Gint
 
-	G_slist_alloc func() *GSList
+	G_slist_alloc func() *T.GSList
 
-	G_slist_free func(list *GSList)
+	G_slist_free func(list *T.GSList)
 
-	G_slist_free_1 func(list *GSList)
+	G_slist_free_1 func(list *T.GSList)
 
-	G_slist_free_full func(list *GSList,
-		free_func GDestroyNotify)
+	G_slist_free_full func(list *T.GSList,
+		free_func T.GDestroyNotify)
 
-	G_slist_append func(list *GSList,
-		data Gpointer) *GSList
+	G_slist_append func(list *T.GSList,
+		data T.Gpointer) *T.GSList
 
-	G_slist_prepend func(list *GSList,
-		data Gpointer) *GSList
+	G_slist_prepend func(list *T.GSList,
+		data T.Gpointer) *T.GSList
 
-	G_slist_insert func(list *GSList,
-		data Gpointer,
-		position Gint) *GSList
+	G_slist_insert func(list *T.GSList,
+		data T.Gpointer,
+		position T.Gint) *T.GSList
 
-	G_slist_insert_sorted func(list *GSList,
-		data Gpointer,
-		f GCompareFunc) *GSList
+	G_slist_insert_sorted func(list *T.GSList,
+		data T.Gpointer,
+		f T.GCompareFunc) *T.GSList
 
-	G_slist_insert_sorted_with_data func(list *GSList,
-		data Gpointer,
-		f GCompareDataFunc,
-		user_data Gpointer) *GSList
+	G_slist_insert_sorted_with_data func(list *T.GSList,
+		data T.Gpointer,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer) *T.GSList
 
-	G_slist_insert_before func(slist *GSList,
-		sibling *GSList,
-		data Gpointer) *GSList
+	G_slist_insert_before func(slist *T.GSList,
+		sibling *T.GSList,
+		data T.Gpointer) *T.GSList
 
-	G_slist_concat func(list1 *GSList,
-		list2 *GSList) *GSList
+	G_slist_concat func(list1 *T.GSList,
+		list2 *T.GSList) *T.GSList
 
-	G_slist_remove func(list *GSList,
-		data Gconstpointer) *GSList
+	G_slist_remove func(list *T.GSList,
+		data T.Gconstpointer) *T.GSList
 
-	G_slist_remove_all func(list *GSList,
-		data Gconstpointer) *GSList
+	G_slist_remove_all func(list *T.GSList,
+		data T.Gconstpointer) *T.GSList
 
-	G_slist_remove_link func(list *GSList,
-		link_ *GSList) *GSList
+	G_slist_remove_link func(list *T.GSList,
+		link *T.GSList) *T.GSList
 
-	G_slist_delete_link func(list *GSList,
-		link_ *GSList) *GSList
+	G_slist_delete_link func(list *T.GSList,
+		link *T.GSList) *T.GSList
 
-	G_slist_reverse func(list *GSList) *GSList
+	G_slist_reverse func(list *T.GSList) *T.GSList
 
-	G_slist_copy func(list *GSList) *GSList
+	G_slist_copy func(list *T.GSList) *T.GSList
 
-	G_slist_nth func(list *GSList,
-		n Guint) *GSList
+	G_slist_nth func(list *T.GSList,
+		n T.Guint) *T.GSList
 
-	G_slist_find func(list *GSList,
-		data Gconstpointer) *GSList
+	G_slist_find func(list *T.GSList,
+		data T.Gconstpointer) *T.GSList
 
-	G_slist_find_custom func(list *GSList,
-		data Gconstpointer,
-		f GCompareFunc) *GSList
+	G_slist_find_custom func(list *T.GSList,
+		data T.Gconstpointer,
+		f T.GCompareFunc) *T.GSList
 
-	G_slist_position func(list *GSList,
-		llink *GSList) Gint
+	G_slist_position func(list *T.GSList,
+		llink *T.GSList) T.Gint
 
-	G_slist_index func(list *GSList,
-		data Gconstpointer) Gint
+	G_slist_index func(list *T.GSList,
+		data T.Gconstpointer) T.Gint
 
-	G_slist_last func(list *GSList) *GSList
+	G_slist_last func(list *T.GSList) *T.GSList
 
-	G_slist_length func(list *GSList) Guint
+	G_slist_length func(list *T.GSList) T.Guint
 
-	G_slist_foreach func(list *GSList,
-		f GFunc,
-		user_data Gpointer)
+	G_slist_foreach func(list *T.GSList,
+		f T.GFunc,
+		user_data T.Gpointer)
 
-	G_slist_sort func(list *GSList,
-		compare_func GCompareFunc) *GSList
+	G_slist_sort func(list *T.GSList,
+		compare_func T.GCompareFunc) *T.GSList
 
-	G_slist_sort_with_data func(list *GSList,
-		compare_func GCompareDataFunc,
-		user_data Gpointer) *GSList
+	G_slist_sort_with_data func(list *T.GSList,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer) *T.GSList
 
-	G_slist_nth_data func(list *GSList,
-		n Guint) Gpointer
+	G_slist_nth_data func(list *T.GSList,
+		n T.Guint) T.Gpointer
 
-	G_slist_push_allocator func(dummy Gpointer)
+	G_slist_push_allocator func(dummy T.Gpointer)
 
 	G_slist_pop_allocator func()
 
-	G_main_context_new func() *GMainContext
+	G_main_context_new func() *T.GMainContext
 
-	G_main_context_ref func(context *GMainContext) *GMainContext
+	G_main_context_ref func(context *T.GMainContext) *T.GMainContext
 
-	G_main_context_unref func(context *GMainContext)
+	G_main_context_unref func(context *T.GMainContext)
 
-	G_main_context_default func() *GMainContext
+	G_main_context_default func() *T.GMainContext
 
-	G_main_context_iteration func(context *GMainContext,
-		may_block Gboolean) Gboolean
+	G_main_context_iteration func(context *T.GMainContext,
+		may_block T.Gboolean) T.Gboolean
 
-	G_main_context_pending func(context *GMainContext) Gboolean
+	G_main_context_pending func(context *T.GMainContext) T.Gboolean
 
-	G_main_context_find_source_by_id func(context *GMainContext,
-		source_id Guint) *GSource
+	G_main_context_find_source_by_id func(context *T.GMainContext,
+		source_id T.Guint) *T.GSource
 
-	G_main_context_find_source_by_user_data func(context *GMainContext,
-		user_data Gpointer) *GSource
+	G_main_context_find_source_by_user_data func(context *T.GMainContext,
+		user_data T.Gpointer) *T.GSource
 
-	G_main_context_find_source_by_funcs_user_data func(context *GMainContext,
-		funcs *GSourceFuncs,
-		user_data Gpointer) *GSource
+	G_main_context_find_source_by_funcs_user_data func(context *T.GMainContext,
+		funcs *T.GSourceFuncs,
+		user_data T.Gpointer) *T.GSource
 
-	G_main_context_wakeup func(context *GMainContext)
+	G_main_context_wakeup func(context *T.GMainContext)
 
-	G_main_context_acquire func(context *GMainContext) Gboolean
+	G_main_context_acquire func(context *T.GMainContext) T.Gboolean
 
-	G_main_context_release func(context *GMainContext)
+	G_main_context_release func(context *T.GMainContext)
 
-	G_main_context_is_owner func(context *GMainContext) Gboolean
+	G_main_context_is_owner func(context *T.GMainContext) T.Gboolean
 
-	G_main_context_wait func(context *GMainContext,
-		cond *GCond,
-		mutex *GMutex) Gboolean
+	G_main_context_wait func(context *T.GMainContext,
+		cond *T.GCond, mutex *T.GMutex) T.Gboolean
 
-	G_main_context_prepare func(context *GMainContext,
-		priority *Gint) Gboolean
+	G_main_context_prepare func(context *T.GMainContext,
+		priority *T.Gint) T.Gboolean
 
-	G_main_context_query func(context *GMainContext,
-		max_priority Gint,
-		timeout_ *Gint,
-		fds *GPollFD,
-		n_fds Gint) Gint
+	G_main_context_query func(context *T.GMainContext,
+		max_priority T.Gint, timeout *T.Gint,
+		fds *T.GPollFD, n_fds T.Gint) T.Gint
 
-	G_main_context_check func(context *GMainContext,
-		max_priority Gint,
-		fds *GPollFD,
-		n_fds Gint) Gint
+	G_main_context_check func(context *T.GMainContext,
+		max_priority T.Gint, fds *T.GPollFD,
+		n_fds T.Gint) T.Gint
 
-	G_main_context_dispatch func(context *GMainContext)
+	G_main_context_dispatch func(context *T.GMainContext)
 
-	G_main_context_set_poll_func func(context *GMainContext,
-		f GPollFunc)
+	G_main_context_set_poll_func func(context *T.GMainContext,
+		f T.GPollFunc)
 
-	G_main_context_get_poll_func func(context *GMainContext) GPollFunc
+	G_main_context_get_poll_func func(context *T.GMainContext) T.GPollFunc
 
-	G_main_context_add_poll func(context *GMainContext,
-		fd *GPollFD,
-		priority Gint)
+	G_main_context_add_poll func(context *T.GMainContext,
+		fd *T.GPollFD,
+		priority T.Gint)
 
-	G_main_context_remove_poll func(context *GMainContext,
-		fd *GPollFD)
+	G_main_context_remove_poll func(context *T.GMainContext,
+		fd *T.GPollFD)
 
-	G_main_depth func() Gint
+	G_main_depth func() T.Gint
 
-	G_main_current_source func() *GSource
+	G_main_current_source func() *T.GSource
 
-	G_main_context_push_thread_default func(context *GMainContext)
+	G_main_context_push_thread_default func(context *T.GMainContext)
 
-	G_main_context_pop_thread_default func(context *GMainContext)
+	G_main_context_pop_thread_default func(context *T.GMainContext)
 
-	G_main_context_get_thread_default func() *GMainContext
+	G_main_context_get_thread_default func() *T.GMainContext
 
-	G_main_loop_new func(context *GMainContext,
-		is_running Gboolean) *GMainLoop
+	G_main_loop_new func(context *T.GMainContext,
+		is_running T.Gboolean) *T.GMainLoop
 
-	G_main_loop_run func(loop *GMainLoop)
+	G_main_loop_run func(loop *T.GMainLoop)
 
-	G_main_loop_quit func(loop *GMainLoop)
+	G_main_loop_quit func(loop *T.GMainLoop)
 
-	G_main_loop_ref func(loop *GMainLoop) *GMainLoop
+	G_main_loop_ref func(loop *T.GMainLoop) *T.GMainLoop
 
-	G_main_loop_unref func(loop *GMainLoop)
+	G_main_loop_unref func(loop *T.GMainLoop)
 
-	G_main_loop_is_running func(loop *GMainLoop) Gboolean
+	G_main_loop_is_running func(loop *T.GMainLoop) T.Gboolean
 
-	G_main_loop_get_context func(loop *GMainLoop) *GMainContext
+	G_main_loop_get_context func(loop *T.GMainLoop) *T.GMainContext
 
-	G_source_new func(source_funcs *GSourceFuncs,
+	G_source_new func(source_funcs *T.GSourceFuncs,
 
-		struct_size Guint) *GSource
+		struct_size T.Guint) *T.GSource
 
-	G_source_ref func(source *GSource) *GSource
+	G_source_ref func(source *T.GSource) *T.GSource
 
-	G_source_unref func(source *GSource)
+	G_source_unref func(source *T.GSource)
 
-	G_source_attach func(source *GSource,
-		context *GMainContext) Guint
+	G_source_attach func(source *T.GSource,
+		context *T.GMainContext) T.Guint
 
-	G_source_destroy func(source *GSource)
+	G_source_destroy func(source *T.GSource)
 
-	G_source_set_priority func(source *GSource,
-		priority Gint)
+	G_source_set_priority func(source *T.GSource,
+		priority T.Gint)
 
-	G_source_get_priority func(source *GSource) Gint
+	G_source_get_priority func(source *T.GSource) T.Gint
 
-	G_source_set_can_recurse func(source *GSource,
-		can_recurse Gboolean)
+	G_source_set_can_recurse func(source *T.GSource,
+		can_recurse T.Gboolean)
 
-	G_source_get_can_recurse func(source *GSource) Gboolean
+	G_source_get_can_recurse func(source *T.GSource) T.Gboolean
 
-	G_source_get_id func(source *GSource) Guint
+	G_source_get_id func(source *T.GSource) T.Guint
 
-	G_source_get_context func(source *GSource) *GMainContext
+	G_source_get_context func(source *T.GSource) *T.GMainContext
 
-	G_source_set_callback func(source *GSource,
-		f GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify)
+	G_source_set_callback func(source *T.GSource,
+		f T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify)
 
-	G_source_set_funcs func(source *GSource,
-		funcs *GSourceFuncs)
+	G_source_set_funcs func(source *T.GSource,
+		funcs *T.GSourceFuncs)
 
-	G_source_is_destroyed func(source *GSource) Gboolean
+	G_source_is_destroyed func(source *T.GSource) T.Gboolean
 
-	G_source_set_name func(source *GSource,
+	G_source_set_name func(source *T.GSource,
 		name string)
 
-	G_source_get_name func(source *GSource) string
+	G_source_get_name func(source *T.GSource) string
 
-	G_source_set_name_by_id func(tag Guint,
+	G_source_set_name_by_id func(tag T.Guint,
 		name string)
 
-	G_source_set_callback_indirect func(source *GSource,
-		callback_data Gpointer,
-		callback_funcs *GSourceCallbackFuncs)
+	G_source_set_callback_indirect func(source *T.GSource,
+		callback_data T.Gpointer,
+		callback_funcs *T.GSourceCallbackFuncs)
 
-	G_source_add_poll func(source *GSource,
-		fd *GPollFD)
+	G_source_add_poll func(source *T.GSource,
+		fd *T.GPollFD)
 
-	G_source_remove_poll func(source *GSource,
-		fd *GPollFD)
+	G_source_remove_poll func(source *T.GSource,
+		fd *T.GPollFD)
 
-	G_source_add_child_source func(source *GSource,
-		child_source *GSource)
+	G_source_add_child_source func(source *T.GSource,
+		child_source *T.GSource)
 
-	G_source_remove_child_source func(source *GSource,
-		child_source *GSource)
+	G_source_remove_child_source func(source *T.GSource,
+		child_source *T.GSource)
 
-	G_source_get_current_time func(source *GSource,
-		timeval *GTimeVal)
+	G_source_get_current_time func(source *T.GSource,
+		timeval *T.GTimeVal)
 
-	G_source_get_time func(source *GSource) Gint64
+	G_source_get_time func(source *T.GSource) T.Gint64
 
-	G_idle_source_new func() *GSource
+	G_idle_source_new func() *T.GSource
 
-	G_child_watch_source_new func(pid GPid) *GSource
+	G_child_watch_source_new func(pid T.GPid) *T.GSource
 
-	G_timeout_source_new func(interval Guint) *GSource
+	G_timeout_source_new func(interval T.Guint) *T.GSource
 
-	G_timeout_source_new_seconds func(interval Guint) *GSource
+	G_timeout_source_new_seconds func(interval T.Guint) *T.GSource
 
-	G_get_current_time func(result *GTimeVal)
+	G_get_current_time func(result *T.GTimeVal)
 
-	G_get_monotonic_time func() Gint64
+	G_get_monotonic_time func() T.Gint64
 
-	G_get_real_time func() Gint64
+	G_get_real_time func() T.Gint64
 
-	G_source_remove func(tag Guint) Gboolean
+	G_source_remove func(tag T.Guint) T.Gboolean
 
-	G_source_remove_by_user_data func(user_data Gpointer) Gboolean
+	G_source_remove_by_user_data func(user_data T.Gpointer) T.Gboolean
 
-	G_source_remove_by_funcs_user_data func(funcs *GSourceFuncs,
-		user_data Gpointer) Gboolean
+	G_source_remove_by_funcs_user_data func(funcs *T.GSourceFuncs,
+		user_data T.Gpointer) T.Gboolean
 
-	G_timeout_add_full func(priority Gint,
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+	G_timeout_add_full func(priority T.Gint,
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
-	G_timeout_add func(interval Guint,
-		function GSourceFunc,
-		data Gpointer) Guint
+	G_timeout_add func(interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
-	G_timeout_add_seconds_full func(priority Gint,
-		interval Guint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+	G_timeout_add_seconds_full func(priority T.Gint,
+		interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
-	G_timeout_add_seconds func(interval Guint,
-		function GSourceFunc,
-		data Gpointer) Guint
+	G_timeout_add_seconds func(interval T.Guint,
+		function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
-	G_child_watch_add_full func(priority Gint,
-		pid GPid,
-		function GChildWatchFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+	G_child_watch_add_full func(priority T.Gint,
+		pid T.GPid,
+		function T.GChildWatchFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
-	G_child_watch_add func(pid GPid,
-		function GChildWatchFunc,
-		data Gpointer) Guint
+	G_child_watch_add func(pid T.GPid,
+		function T.GChildWatchFunc,
+		data T.Gpointer) T.Guint
 
-	G_idle_add func(function GSourceFunc,
-		data Gpointer) Guint
+	G_idle_add func(function T.GSourceFunc,
+		data T.Gpointer) T.Guint
 
-	G_idle_add_full func(priority Gint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify) Guint
+	G_idle_add_full func(priority T.Gint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
-	G_idle_remove_by_data func(data Gpointer) Gboolean
+	G_idle_remove_by_data func(data T.Gpointer) T.Gboolean
 
-	G_main_context_invoke_full func(context *GMainContext,
-		priority Gint,
-		function GSourceFunc,
-		data Gpointer,
-		notify GDestroyNotify)
+	G_main_context_invoke_full func(context *T.GMainContext,
+		priority T.Gint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify)
 
-	G_main_context_invoke func(context *GMainContext,
-		function GSourceFunc,
-		data Gpointer)
+	G_main_context_invoke func(context *T.GMainContext,
+		function T.GSourceFunc,
+		data T.Gpointer)
 
-	G_get_charset func(charset **Char) Gboolean
+	G_get_charset func(charset **T.Char) T.Gboolean
 
-	G_unichar_isalnum func(c Gunichar) Gboolean
+	G_unichar_isalnum func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isalpha func(c Gunichar) Gboolean
+	G_unichar_isalpha func(c T.Gunichar) T.Gboolean
 
-	G_unichar_iscntrl func(c Gunichar) Gboolean
+	G_unichar_iscntrl func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isdigit func(c Gunichar) Gboolean
+	G_unichar_isdigit func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isgraph func(c Gunichar) Gboolean
+	G_unichar_isgraph func(c T.Gunichar) T.Gboolean
 
-	G_unichar_islower func(c Gunichar) Gboolean
+	G_unichar_islower func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isprint func(c Gunichar) Gboolean
+	G_unichar_isprint func(c T.Gunichar) T.Gboolean
 
-	G_unichar_ispunct func(c Gunichar) Gboolean
+	G_unichar_ispunct func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isspace func(c Gunichar) Gboolean
+	G_unichar_isspace func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isupper func(c Gunichar) Gboolean
+	G_unichar_isupper func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isxdigit func(c Gunichar) Gboolean
+	G_unichar_isxdigit func(c T.Gunichar) T.Gboolean
 
-	G_unichar_istitle func(c Gunichar) Gboolean
+	G_unichar_istitle func(c T.Gunichar) T.Gboolean
 
-	G_unichar_isdefined func(c Gunichar) Gboolean
+	G_unichar_isdefined func(c T.Gunichar) T.Gboolean
 
-	G_unichar_iswide func(c Gunichar) Gboolean
+	G_unichar_iswide func(c T.Gunichar) T.Gboolean
 
-	G_unichar_iswide_cjk func(c Gunichar) Gboolean
+	G_unichar_iswide_cjk func(c T.Gunichar) T.Gboolean
 
-	G_unichar_iszerowidth func(c Gunichar) Gboolean
+	G_unichar_iszerowidth func(c T.Gunichar) T.Gboolean
 
-	G_unichar_ismark func(c Gunichar) Gboolean
+	G_unichar_ismark func(c T.Gunichar) T.Gboolean
 
-	G_unichar_toupper func(c Gunichar) Gunichar
+	G_unichar_toupper func(c T.Gunichar) T.Gunichar
 
-	G_unichar_tolower func(c Gunichar) Gunichar
+	G_unichar_tolower func(c T.Gunichar) T.Gunichar
 
-	G_unichar_totitle func(c Gunichar) Gunichar
+	G_unichar_totitle func(c T.Gunichar) T.Gunichar
 
-	G_unichar_digit_value func(c Gunichar) Gint
+	G_unichar_digit_value func(c T.Gunichar) T.Gint
 
-	G_unichar_xdigit_value func(c Gunichar) Gint
+	G_unichar_xdigit_value func(c T.Gunichar) T.Gint
 
-	G_unichar_type func(c Gunichar) GUnicodeType
+	G_unichar_type func(c T.Gunichar) T.GUnicodeType
 
-	G_unichar_break_type func(c Gunichar) GUnicodeBreakType
+	G_unichar_break_type func(c T.Gunichar) T.GUnicodeBreakType
 
-	G_unichar_combining_class func(uc Gunichar) Gint
+	G_unichar_combining_class func(uc T.Gunichar) T.Gint
 
-	G_unicode_canonical_ordering func(str *Gunichar,
-		leng Gsize)
+	G_unicode_canonical_ordering func(str *T.Gunichar,
+		leng T.Gsize)
 
-	G_unicode_canonical_decomposition func(ch Gunichar,
-		result_len *Gsize) *Gunichar
+	G_unicode_canonical_decomposition func(ch T.Gunichar,
+		result_len *T.Gsize) *T.Gunichar
 
-	G_utf8_get_char func(p string) Gunichar
+	G_utf8_get_char func(p string) T.Gunichar
 
 	G_utf8_get_char_validated func(p string,
-		max_len Gssize) Gunichar
+		max_len T.Gssize) T.Gunichar
 
 	G_utf8_offset_to_pointer func(str string,
-		offset Glong) string
+		offset T.Glong) string
 
 	G_utf8_pointer_to_offset func(str string,
-		pos string) Glong
+		pos string) T.Glong
 
 	G_utf8_prev_char func(p string) string
 
@@ -1985,668 +1943,661 @@ var (
 		p string) string
 
 	G_utf8_strlen func(p string,
-		max Gssize) Glong
+		max T.Gssize) T.Glong
 
 	G_utf8_strncpy func(dest string,
 		src string,
-		n Gsize) string
+		n T.Gsize) string
 
 	G_utf8_strchr func(p string,
-		leng Gssize,
-		c Gunichar) string
+		leng T.Gssize,
+		c T.Gunichar) string
 
 	G_utf8_strrchr func(p string,
-		leng Gssize,
-		c Gunichar) string
+		leng T.Gssize,
+		c T.Gunichar) string
 
 	G_utf8_strreverse func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_utf8_to_utf16 func(str string,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) *Gunichar2
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) *T.Gunichar2
 
 	G_utf8_to_ucs4 func(str string,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) *Gunichar
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) *T.Gunichar
 
 	G_utf8_to_ucs4_fast func(str string,
-		leng Glong,
-		items_written *Glong) *Gunichar
+		leng T.Glong,
+		items_written *T.Glong) *T.Gunichar
 
-	G_utf16_to_ucs4 func(str *Gunichar2,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) *Gunichar
+	G_utf16_to_ucs4 func(str *T.Gunichar2,
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) *T.Gunichar
 
-	G_utf16_to_utf8 func(str *Gunichar2,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) string
+	G_utf16_to_utf8 func(str *T.Gunichar2,
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) string
 
-	G_ucs4_to_utf16 func(str *Gunichar,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) *Gunichar2
+	G_ucs4_to_utf16 func(str *T.Gunichar,
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) *T.Gunichar2
 
-	G_ucs4_to_utf8 func(str *Gunichar,
-		leng Glong,
-		items_read *Glong,
-		items_written *Glong,
-		e **GError) string
+	G_ucs4_to_utf8 func(str *T.Gunichar,
+		leng T.Glong,
+		items_read *T.Glong,
+		items_written *T.Glong,
+		e **T.GError) string
 
-	G_unichar_to_utf8 func(c Gunichar,
-		outbuf string) Gint
+	G_unichar_to_utf8 func(c T.Gunichar,
+		outbuf string) T.Gint
 
 	G_utf8_validate func(str string,
-		max_len Gssize,
-		end **Gchar) Gboolean
+		max_len T.Gssize,
+		end **T.Gchar) T.Gboolean
 
-	G_unichar_validate func(ch Gunichar) Gboolean
+	G_unichar_validate func(ch T.Gunichar) T.Gboolean
 	G_utf8_strup       func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_utf8_strdown func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_utf8_casefold func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_utf8_normalize func(str string,
-		leng Gssize,
-		mode GNormalizeMode) string
+		leng T.Gssize,
+		mode T.GNormalizeMode) string
 
 	G_utf8_collate func(str1 string,
-		str2 string) Gint
+		str2 string) T.Gint
 
 	G_utf8_collate_key func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_utf8_collate_key_for_filename func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
-	G_unichar_get_mirror_char func(ch Gunichar,
-		mirrored_ch *Gunichar) Gboolean
+	G_unichar_get_mirror_char func(ch T.Gunichar,
+		mirrored_ch *T.Gunichar) T.Gboolean
 
-	G_unichar_get_script func(ch Gunichar) GUnicodeScript
+	G_unichar_get_script func(ch T.Gunichar) T.GUnicodeScript
 
-	G_string_chunk_new func(size Gsize) *GStringChunk
+	G_string_chunk_new func(size T.Gsize) *T.GStringChunk
 
-	G_string_chunk_free func(chunk *GStringChunk)
+	G_string_chunk_free func(chunk *T.GStringChunk)
 
-	G_string_chunk_clear func(chunk *GStringChunk)
+	G_string_chunk_clear func(chunk *T.GStringChunk)
 
-	G_string_chunk_insert func(chunk *GStringChunk,
+	G_string_chunk_insert func(chunk *T.GStringChunk,
 		str string) string
 
-	G_string_chunk_insert_len func(chunk *GStringChunk,
+	G_string_chunk_insert_len func(chunk *T.GStringChunk,
 		str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
-	G_string_chunk_insert_ func(chunk *GStringChunk,
-		str string) string
-
-	G_string_new func(init string) *GString
+	G_string_new func(init string) *T.GString
 
 	G_string_new_len func(init string,
-		leng Gssize) *GString
+		leng T.Gssize) *T.GString
 
-	G_string_sized_new func(dfl_size Gsize) *GString
+	G_string_sized_new func(dfl_size T.Gsize) *T.GString
 
-	G_string_free func(str *GString,
-		free_segment Gboolean) string
+	G_string_free func(str *T.GString,
+		free_segment T.Gboolean) string
 
-	G_string_equal func(v *GString,
-		v2 *GString) Gboolean
+	G_string_equal func(v *T.GString,
+		v2 *T.GString) T.Gboolean
 
-	G_string_hash func(str *GString) Guint
+	G_string_hash func(str *T.GString) T.Guint
 
-	G_string_assign func(str *GString,
-		rval string) *GString
+	G_string_assign func(str *T.GString,
+		rval string) *T.GString
 
-	G_string_truncate func(str *GString,
-		leng Gsize) *GString
+	G_string_truncate func(str *T.GString,
+		leng T.Gsize) *T.GString
 
-	G_string_set_size func(str *GString,
-		leng Gsize) *GString
+	G_string_set_size func(str *T.GString,
+		leng T.Gsize) *T.GString
 
-	G_string_insert_len func(str *GString,
-		pos Gssize,
+	G_string_insert_len func(str *T.GString,
+		pos T.Gssize,
 		val string,
-		leng Gssize) *GString
+		leng T.Gssize) *T.GString
 
-	G_string_append func(str *GString,
-		val string) *GString
+	G_string_append func(str *T.GString,
+		val string) *T.GString
 
-	G_string_append_len func(str *GString,
+	G_string_append_len func(str *T.GString,
 		val string,
-		leng Gssize) *GString
+		leng T.Gssize) *T.GString
 
-	G_string_append_c func(str *GString,
-		c Gchar) *GString
+	G_string_append_c func(str *T.GString,
+		c T.Gchar) *T.GString
 
-	G_string_append_unichar func(str *GString,
-		wc Gunichar) *GString
+	G_string_append_unichar func(str *T.GString,
+		wc T.Gunichar) *T.GString
 
-	G_string_prepend func(str *GString,
-		val string) *GString
+	G_string_prepend func(str *T.GString,
+		val string) *T.GString
 
-	G_string_prepend_c func(str *GString,
-		c Gchar) *GString
+	G_string_prepend_c func(str *T.GString,
+		c T.Gchar) *T.GString
 
-	G_string_prepend_unichar func(str *GString,
-		wc Gunichar) *GString
+	G_string_prepend_unichar func(str *T.GString,
+		wc T.Gunichar) *T.GString
 
-	G_string_prepend_len func(str *GString,
+	G_string_prepend_len func(str *T.GString,
 		val string,
-		leng Gssize) *GString
+		leng T.Gssize) *T.GString
 
-	G_string_insert func(str *GString,
-		pos Gssize,
-		val string) *GString
+	G_string_insert func(str *T.GString,
+		pos T.Gssize,
+		val string) *T.GString
 
-	G_string_insert_c func(str *GString,
-		pos Gssize,
-		c Gchar) *GString
+	G_string_insert_c func(str *T.GString,
+		pos T.Gssize,
+		c T.Gchar) *T.GString
 
-	G_string_insert_unichar func(str *GString,
-		pos Gssize,
-		wc Gunichar) *GString
+	G_string_insert_unichar func(str *T.GString,
+		pos T.Gssize,
+		wc T.Gunichar) *T.GString
 
-	G_string_overwrite func(str *GString,
-		pos Gsize,
-		val string) *GString
+	G_string_overwrite func(str *T.GString,
+		pos T.Gsize,
+		val string) *T.GString
 
-	G_string_overwrite_len func(str *GString,
-		pos Gsize,
+	G_string_overwrite_len func(str *T.GString,
+		pos T.Gsize,
 		val string,
-		leng Gssize) *GString
+		leng T.Gssize) *T.GString
 
-	G_string_erase func(str *GString,
-		pos Gssize,
-		leng Gssize) *GString
+	G_string_erase func(str *T.GString,
+		pos T.Gssize,
+		leng T.Gssize) *T.GString
 
-	G_string_ascii_down func(str *GString) *GString
+	G_string_ascii_down func(str *T.GString) *T.GString
 
-	G_string_ascii_up func(str *GString) *GString
+	G_string_ascii_up func(str *T.GString) *T.GString
 
-	G_string_vprintf func(str *GString,
+	G_string_vprintf func(str *T.GString,
 		format string,
-		args Va_list)
+		args T.Va_list)
 
-	G_string_printf func(str *GString, format string, v ...VArg)
+	G_string_printf func(str *T.GString, format string, v ...VArg)
 
-	G_string_append_vprintf func(str *GString,
+	G_string_append_vprintf func(str *T.GString,
 		format string,
-		args Va_list)
+		args T.Va_list)
 
-	G_string_append_printf func(str *GString,
+	G_string_append_printf func(str *T.GString,
 		format string, v ...VArg)
 
-	G_string_append_uri_escaped func(str *GString,
+	G_string_append_uri_escaped func(str *T.GString,
 		unescaped string,
 		reserved_chars_allowed string,
-		allow_utf8 Gboolean) *GString
+		allow_utf8 T.Gboolean) *T.GString
 
-	G_io_channel_init func(channel *GIOChannel)
+	G_io_channel_init func(channel *T.GIOChannel)
 
-	G_io_channel_ref func(channel *GIOChannel) *GIOChannel
+	G_io_channel_ref func(channel *T.GIOChannel) *T.GIOChannel
 
-	G_io_channel_unref func(channel *GIOChannel)
+	G_io_channel_unref func(channel *T.GIOChannel)
 
-	G_io_channel_read func(channel *GIOChannel,
-		buf string,
-		count Gsize,
-		bytes_read *Gsize) GIOError
+	G_io_channel_read func(channel *T.GIOChannel,
+		buf string, count T.Gsize,
+		bytes_read *T.Gsize) T.GIOError
 
-	G_io_channel_write func(channel *GIOChannel,
-		buf string,
-		count Gsize,
-		bytes_written *Gsize) GIOError
+	G_io_channel_write func(channel *T.GIOChannel,
+		buf string, count T.Gsize,
+		bytes_written *T.Gsize) T.GIOError
 
-	G_io_channel_seek func(channel *GIOChannel,
-		offset Gint64,
-		typ GSeekType) GIOError
+	G_io_channel_seek func(channel *T.GIOChannel,
+		offset T.Gint64, typ T.GSeekType) T.GIOError
 
-	G_io_channel_close func(channel *GIOChannel)
+	G_io_channel_close func(channel *T.GIOChannel)
 
-	G_io_channel_shutdown func(channel *GIOChannel,
-		flush Gboolean,
-		err **GError) GIOStatus
+	G_io_channel_shutdown func(channel *T.GIOChannel,
+		flush T.Gboolean, err **T.GError) T.GIOStatus
 
-	G_io_add_watch_full func(channel *GIOChannel,
-		priority Gint,
-		condition GIOCondition,
-		f GIOFunc,
-		user_data Gpointer,
-		notify GDestroyNotify) Guint
+	G_io_add_watch_full func(channel *T.GIOChannel,
+		priority T.Gint,
+		condition T.GIOCondition,
+		f T.GIOFunc,
+		user_data T.Gpointer,
+		notify T.GDestroyNotify) T.Guint
 
-	G_io_create_watch func(channel *GIOChannel,
-		condition GIOCondition) *GSource
+	G_io_create_watch func(channel *T.GIOChannel,
+		condition T.GIOCondition) *T.GSource
 
-	G_io_add_watch func(channel *GIOChannel,
-		condition GIOCondition,
-		f GIOFunc,
-		user_data Gpointer) Guint
+	G_io_add_watch func(channel *T.GIOChannel,
+		condition T.GIOCondition,
+		f T.GIOFunc,
+		user_data T.Gpointer) T.Guint
 
-	G_io_channel_set_buffer_size func(channel *GIOChannel,
-		size Gsize)
+	G_io_channel_set_buffer_size func(channel *T.GIOChannel,
+		size T.Gsize)
 
-	G_io_channel_get_buffer_size func(channel *GIOChannel) Gsize
+	G_io_channel_get_buffer_size func(channel *T.GIOChannel) T.Gsize
 
-	G_io_channel_get_buffer_condition func(channel *GIOChannel) GIOCondition
+	G_io_channel_get_buffer_condition func(channel *T.GIOChannel) T.GIOCondition
 
-	G_io_channel_set_flags func(channel *GIOChannel,
-		flags GIOFlags,
-		e **GError) GIOStatus
+	G_io_channel_set_flags func(channel *T.GIOChannel,
+		flags T.GIOFlags,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_get_flags func(channel *GIOChannel) GIOFlags
+	G_io_channel_get_flags func(channel *T.GIOChannel) T.GIOFlags
 
-	G_io_channel_set_line_term func(channel *GIOChannel,
+	G_io_channel_set_line_term func(channel *T.GIOChannel,
 		line_term string,
-		length Gint)
+		length T.Gint)
 
-	G_io_channel_get_line_term func(channel *GIOChannel,
-		length *Gint) string
+	G_io_channel_get_line_term func(channel *T.GIOChannel,
+		length *T.Gint) string
 
-	G_io_channel_set_buffered func(channel *GIOChannel,
-		buffered Gboolean)
+	G_io_channel_set_buffered func(channel *T.GIOChannel,
+		buffered T.Gboolean)
 
-	G_io_channel_get_buffered func(channel *GIOChannel) Gboolean
+	G_io_channel_get_buffered func(channel *T.GIOChannel) T.Gboolean
 
-	G_io_channel_set_encoding func(channel *GIOChannel,
+	G_io_channel_set_encoding func(channel *T.GIOChannel,
 		encoding string,
-		e **GError) GIOStatus
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_get_encoding func(channel *GIOChannel) string
+	G_io_channel_get_encoding func(channel *T.GIOChannel) string
 
-	G_io_channel_set_close_on_unref func(channel *GIOChannel,
-		do_close Gboolean)
+	G_io_channel_set_close_on_unref func(channel *T.GIOChannel,
+		do_close T.Gboolean)
 
-	G_io_channel_get_close_on_unref func(channel *GIOChannel) Gboolean
+	G_io_channel_get_close_on_unref func(channel *T.GIOChannel) T.Gboolean
 
-	G_io_channel_flush func(channel *GIOChannel,
-		e **GError) GIOStatus
+	G_io_channel_flush func(channel *T.GIOChannel,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_read_line func(channel *GIOChannel,
-		str_return **Gchar,
-		length *Gsize,
-		terminator_pos *Gsize,
-		e **GError) GIOStatus
+	G_io_channel_read_line func(channel *T.GIOChannel,
+		str_return **T.Gchar,
+		length *T.Gsize,
+		terminator_pos *T.Gsize,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_read_line_string func(channel *GIOChannel,
-		buffer *GString,
-		terminator_pos *Gsize,
-		e **GError) GIOStatus
+	G_io_channel_read_line_string func(channel *T.GIOChannel,
+		buffer *T.GString,
+		terminator_pos *T.Gsize,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_read_to_end func(channel *GIOChannel,
-		str_return **Gchar,
-		length *Gsize,
-		e **GError) GIOStatus
+	G_io_channel_read_to_end func(channel *T.GIOChannel,
+		str_return **T.Gchar,
+		length *T.Gsize,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_read_chars func(channel *GIOChannel,
+	G_io_channel_read_chars func(channel *T.GIOChannel,
 		buf string,
-		count Gsize,
-		bytes_read *Gsize,
-		e **GError) GIOStatus
+		count T.Gsize,
+		bytes_read *T.Gsize,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_read_unichar func(channel *GIOChannel,
-		thechar *Gunichar,
-		e **GError) GIOStatus
+	G_io_channel_read_unichar func(channel *T.GIOChannel,
+		thechar *T.Gunichar,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_write_chars func(channel *GIOChannel,
+	G_io_channel_write_chars func(channel *T.GIOChannel,
 		buf string,
-		count Gssize,
-		bytes_written *Gsize,
-		e **GError) GIOStatus
+		count T.Gssize,
+		bytes_written *T.Gsize,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_write_unichar func(channel *GIOChannel,
-		thechar Gunichar,
-		e **GError) GIOStatus
+	G_io_channel_write_unichar func(channel *T.GIOChannel,
+		thechar T.Gunichar,
+		e **T.GError) T.GIOStatus
 
-	G_io_channel_seek_position func(channel *GIOChannel,
-		offset Gint64,
-		typ GSeekType,
-		e **GError) GIOStatus
+	G_io_channel_seek_position func(channel *T.GIOChannel,
+		offset T.Gint64,
+		typ T.GSeekType,
+		e **T.GError) T.GIOStatus
 
 	G_io_channel_new_file func(filename string,
 		mode string,
-		e **GError) *GIOChannel
+		e **T.GError) *T.GIOChannel
 
-	G_io_channel_error_quark func() GQuark
+	G_io_channel_error_quark func() T.GQuark
 
-	G_io_channel_error_from_errno func(en Gint) GIOChannelError
+	G_io_channel_error_from_errno func(en T.Gint) T.GIOChannelError
 
-	G_io_channel_unix_new func(fd int) *GIOChannel
+	G_io_channel_unix_new func(fd int) *T.GIOChannel
 
-	G_io_channel_unix_get_fd func(channel *GIOChannel) Gint
+	G_io_channel_unix_get_fd func(channel *T.GIOChannel) T.Gint
 
-	G_io_channel_win32_make_pollfd func(channel *GIOChannel,
-		condition GIOCondition,
-		fd *GPollFD)
+	G_io_channel_win32_make_pollfd func(channel *T.GIOChannel,
+		condition T.GIOCondition,
+		fd *T.GPollFD)
 
-	G_io_channel_win32_poll func(fds *GPollFD,
-		n_fds Gint,
-		timeout_ Gint) Gint
+	G_io_channel_win32_poll func(fds *T.GPollFD,
+		n_fds T.Gint,
+		timeout T.Gint) T.Gint
 
-	G_io_channel_win32_new_messages func(hwnd Guint) *GIOChannel
+	G_io_channel_win32_new_messages func(hwnd T.Guint) *T.GIOChannel
 
-	G_io_channel_win32_new_fd func(fd Gint) *GIOChannel
+	G_io_channel_win32_new_fd func(fd T.Gint) *T.GIOChannel
 
-	G_io_channel_win32_get_fd func(channel *GIOChannel) Gint
+	G_io_channel_win32_get_fd func(channel *T.GIOChannel) T.Gint
 
-	G_io_channel_win32_new_socket func(socket Gint) *GIOChannel
+	G_io_channel_win32_new_socket func(socket T.Gint) *T.GIOChannel
 
-	G_key_file_new func() *GKeyFile
+	G_key_file_new func() *T.GKeyFile
 
-	G_key_file_free func(key_file *GKeyFile)
+	G_key_file_free func(key_file *T.GKeyFile)
 
-	G_key_file_set_list_separator func(key_file *GKeyFile,
-		separator Gchar)
+	G_key_file_set_list_separator func(key_file *T.GKeyFile,
+		separator T.Gchar)
 
-	G_key_file_load_from_file func(key_file *GKeyFile,
+	G_key_file_load_from_file func(key_file *T.GKeyFile,
 		file string,
-		flags GKeyFileFlags,
-		e **GError) Gboolean
+		flags T.GKeyFileFlags,
+		e **T.GError) T.Gboolean
 
-	G_key_file_load_from_data func(key_file *GKeyFile,
+	G_key_file_load_from_data func(key_file *T.GKeyFile,
 		data string,
-		length Gsize,
-		flags GKeyFileFlags,
-		e **GError) Gboolean
+		length T.Gsize,
+		flags T.GKeyFileFlags,
+		e **T.GError) T.Gboolean
 
-	G_key_file_load_from_dirs func(key_file *GKeyFile,
+	G_key_file_load_from_dirs func(key_file *T.GKeyFile,
 		file string,
-		search_dirs **Gchar,
-		full_path **Gchar,
-		flags GKeyFileFlags,
-		e **GError) Gboolean
+		search_dirs **T.Gchar,
+		full_path **T.Gchar,
+		flags T.GKeyFileFlags,
+		e **T.GError) T.Gboolean
 
-	G_key_file_load_from_data_dirs func(key_file *GKeyFile,
+	G_key_file_load_from_data_dirs func(key_file *T.GKeyFile,
 		file string,
-		full_path **Gchar,
-		flags GKeyFileFlags,
-		e **GError) Gboolean
+		full_path **T.Gchar,
+		flags T.GKeyFileFlags,
+		e **T.GError) T.Gboolean
 
-	G_key_file_to_data func(key_file *GKeyFile,
-		length *Gsize,
-		e **GError) string
+	G_key_file_to_data func(key_file *T.GKeyFile,
+		length *T.Gsize,
+		e **T.GError) string
 
-	G_key_file_get_start_group func(key_file *GKeyFile) string
+	G_key_file_get_start_group func(key_file *T.GKeyFile) string
 
-	G_key_file_get_groups func(key_file *GKeyFile,
-		length *Gsize) **Gchar
+	G_key_file_get_groups func(key_file *T.GKeyFile,
+		length *T.Gsize) **T.Gchar
 
-	G_key_file_get_keys func(key_file *GKeyFile,
+	G_key_file_get_keys func(key_file *T.GKeyFile,
 		group_name string,
-		length *Gsize,
-		e **GError) **Gchar
+		length *T.Gsize,
+		e **T.GError) **T.Gchar
 
-	G_key_file_has_group func(key_file *GKeyFile,
-		group_name string) Gboolean
+	G_key_file_has_group func(key_file *T.GKeyFile,
+		group_name string) T.Gboolean
 
-	G_key_file_has_key func(key_file *GKeyFile,
+	G_key_file_has_key func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_key_file_get_value func(key_file *GKeyFile,
+	G_key_file_get_value func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) string
+		e **T.GError) string
 
-	G_key_file_set_value func(key_file *GKeyFile,
+	G_key_file_set_value func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		value string)
 
-	G_key_file_get_string func(key_file *GKeyFile,
+	G_key_file_get_string func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) string
+		e **T.GError) string
 
-	G_key_file_set_string func(key_file *GKeyFile,
+	G_key_file_set_string func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		str string)
 
-	G_key_file_get_locale_string func(key_file *GKeyFile,
+	G_key_file_get_locale_string func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		locale string,
-		e **GError) string
+		e **T.GError) string
 
-	G_key_file_set_locale_string func(key_file *GKeyFile,
+	G_key_file_set_locale_string func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		locale string,
 		str string)
 
-	G_key_file_get_boolean func(key_file *GKeyFile,
+	G_key_file_get_boolean func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_key_file_set_boolean func(key_file *GKeyFile,
+	G_key_file_set_boolean func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		value Gboolean)
+		value T.Gboolean)
 
-	G_key_file_get_integer func(key_file *GKeyFile,
+	G_key_file_get_integer func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gint
+		e **T.GError) T.Gint
 
-	G_key_file_set_integer func(key_file *GKeyFile,
+	G_key_file_set_integer func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		value Gint)
+		value T.Gint)
 
-	G_key_file_get_int64 func(key_file *GKeyFile,
+	G_key_file_get_int64 func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gint64
+		e **T.GError) T.Gint64
 
-	G_key_file_set_int64 func(key_file *GKeyFile,
+	G_key_file_set_int64 func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		value Gint64)
+		value T.Gint64)
 
-	G_key_file_get_uint64 func(key_file *GKeyFile,
+	G_key_file_get_uint64 func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Guint64
+		e **T.GError) T.Guint64
 
-	G_key_file_set_uint64 func(key_file *GKeyFile,
+	G_key_file_set_uint64 func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		value Guint64)
+		value T.Guint64)
 
-	G_key_file_get_double func(key_file *GKeyFile,
+	G_key_file_get_double func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gdouble
+		e **T.GError) T.Gdouble
 
-	G_key_file_set_double func(key_file *GKeyFile,
+	G_key_file_set_double func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		value Gdouble)
+		value T.Gdouble)
 
-	G_key_file_get_string_list func(key_file *GKeyFile,
+	G_key_file_get_string_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		length *Gsize,
-		e **GError) **Gchar
+		length *T.Gsize,
+		e **T.GError) **T.Gchar
 
-	G_key_file_set_string_list func(key_file *GKeyFile,
+	G_key_file_set_string_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		list **Gchar,
-		length Gsize)
+		list **T.Gchar,
+		length T.Gsize)
 
-	G_key_file_get_locale_string_list func(key_file *GKeyFile,
-		group_name string,
-		key string,
-		locale string,
-		length *Gsize,
-		e **GError) **Gchar
-
-	G_key_file_set_locale_string_list func(key_file *GKeyFile,
+	G_key_file_get_locale_string_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		locale string,
-		list **Gchar,
-		length Gsize)
+		length *T.Gsize,
+		e **T.GError) **T.Gchar
 
-	G_key_file_get_boolean_list func(key_file *GKeyFile,
+	G_key_file_set_locale_string_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		length *Gsize,
-		e **GError) *Gboolean
+		locale string,
+		list **T.Gchar,
+		length T.Gsize)
 
-	G_key_file_set_boolean_list func(key_file *GKeyFile,
+	G_key_file_get_boolean_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		list *Gboolean,
-		length Gsize)
+		length *T.Gsize,
+		e **T.GError) *T.Gboolean
 
-	G_key_file_get_integer_list func(key_file *GKeyFile,
+	G_key_file_set_boolean_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		length *Gsize,
-		e **GError) *Gint
+		list *T.Gboolean,
+		length T.Gsize)
 
-	G_key_file_set_double_list func(key_file *GKeyFile,
+	G_key_file_get_integer_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		list *Gdouble,
-		length Gsize)
+		length *T.Gsize,
+		e **T.GError) *T.Gint
 
-	G_key_file_get_double_list func(key_file *GKeyFile,
+	G_key_file_set_double_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		length *Gsize,
-		e **GError) *Gdouble
+		list *T.Gdouble,
+		length T.Gsize)
 
-	G_key_file_set_integer_list func(key_file *GKeyFile,
+	G_key_file_get_double_list func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		list *Gint,
-		length Gsize)
+		length *T.Gsize,
+		e **T.GError) *T.Gdouble
 
-	G_key_file_set_comment func(key_file *GKeyFile,
+	G_key_file_set_integer_list func(key_file *T.GKeyFile,
+		group_name string,
+		key string,
+		list *T.Gint,
+		length T.Gsize)
+
+	G_key_file_set_comment func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
 		comment string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_key_file_get_comment func(key_file *GKeyFile,
+	G_key_file_get_comment func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) string
+		e **T.GError) string
 
-	G_key_file_remove_comment func(key_file *GKeyFile,
+	G_key_file_remove_comment func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_key_file_remove_key func(key_file *GKeyFile,
+	G_key_file_remove_key func(key_file *T.GKeyFile,
 		group_name string,
 		key string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_key_file_remove_group func(key_file *GKeyFile,
+	G_key_file_remove_group func(key_file *T.GKeyFile,
 		group_name string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
 	G_mapped_file_new func(filename string,
-		writable Gboolean,
-		e **GError) *GMappedFile
+		writable T.Gboolean,
+		e **T.GError) *T.GMappedFile
 
-	G_mapped_file_get_length func(file *GMappedFile) Gsize
+	G_mapped_file_get_length func(file *T.GMappedFile) T.Gsize
 
-	G_mapped_file_get_contents func(file *GMappedFile) string
+	G_mapped_file_get_contents func(file *T.GMappedFile) string
 
-	G_mapped_file_ref func(file *GMappedFile) *GMappedFile
+	G_mapped_file_ref func(file *T.GMappedFile) *T.GMappedFile
 
-	G_mapped_file_unref func(file *GMappedFile)
+	G_mapped_file_unref func(file *T.GMappedFile)
 
-	G_mapped_file_free func(file *GMappedFile)
+	G_mapped_file_free func(file *T.GMappedFile)
 
-	G_markup_parse_context_new func(parser *GMarkupParser,
-		flags GMarkupParseFlags,
-		user_data Gpointer,
-		user_data_dnotify GDestroyNotify) *GMarkupParseContext
+	G_markup_parse_context_new func(parser *T.GMarkupParser,
+		flags T.GMarkupParseFlags,
+		user_data T.Gpointer,
+		user_data_dnotify T.GDestroyNotify) *T.GMarkupParseContext
 
-	G_markup_parse_context_free func(context *GMarkupParseContext)
+	G_markup_parse_context_free func(context *T.GMarkupParseContext)
 
-	G_markup_parse_context_parse func(context *GMarkupParseContext,
+	G_markup_parse_context_parse func(context *T.GMarkupParseContext,
 		text string,
-		text_len Gssize,
-		e **GError) Gboolean
+		text_len T.Gssize,
+		e **T.GError) T.Gboolean
 
-	G_markup_parse_context_push func(context *GMarkupParseContext,
-		parser *GMarkupParser,
-		user_data Gpointer)
+	G_markup_parse_context_push func(context *T.GMarkupParseContext,
+		parser *T.GMarkupParser,
+		user_data T.Gpointer)
 
-	G_markup_parse_context_pop func(context *GMarkupParseContext) Gpointer
+	G_markup_parse_context_pop func(context *T.GMarkupParseContext) T.Gpointer
 
-	G_markup_parse_context_end_parse func(context *GMarkupParseContext,
-		e **GError) Gboolean
+	G_markup_parse_context_end_parse func(context *T.GMarkupParseContext,
+		e **T.GError) T.Gboolean
 
-	G_markup_parse_context_get_element func(context *GMarkupParseContext) string
+	G_markup_parse_context_get_element func(context *T.GMarkupParseContext) string
 
-	G_markup_parse_context_get_element_stack func(context *GMarkupParseContext) *GSList
+	G_markup_parse_context_get_element_stack func(context *T.GMarkupParseContext) *T.GSList
 
-	G_markup_parse_context_get_position func(context *GMarkupParseContext,
-		line_number *Gint,
-		char_number *Gint)
+	G_markup_parse_context_get_position func(context *T.GMarkupParseContext,
+		line_number *T.Gint,
+		char_number *T.Gint)
 
-	G_markup_parse_context_get_user_data func(context *GMarkupParseContext) Gpointer
+	G_markup_parse_context_get_user_data func(context *T.GMarkupParseContext) T.Gpointer
 
 	G_markup_escape_text func(text string,
-		length Gssize) string
+		length T.Gssize) string
 
 	G_markup_printf_escaped func(format string, v ...VArg) string
 
 	G_markup_vprintf_escaped func(format string,
-		args Va_list) string
+		args T.Va_list) string
 
 	G_log_set_handler func(log_domain string,
-		log_levels GLogLevelFlags,
-		log_func GLogFunc,
-		user_data Gpointer) Guint
+		log_levels T.GLogLevelFlags,
+		log_func T.GLogFunc,
+		user_data T.Gpointer) T.Guint
 
 	G_log_remove_handler func(log_domain string,
-		handler_id Guint)
+		handler_id T.Guint)
 
 	G_log_default_handler func(log_domain string,
-		log_level GLogLevelFlags,
+		log_level T.GLogLevelFlags,
 		message string,
-		unused_data Gpointer)
+		unused_data T.Gpointer)
 
-	G_log_set_default_handler func(log_func GLogFunc,
-		user_data Gpointer) GLogFunc
+	G_log_set_default_handler func(log_func T.GLogFunc,
+		user_data T.Gpointer) T.GLogFunc
 
-	G_log func(log_domain string, log_level GLogLevelFlags,
+	G_log func(log_domain string, log_level T.GLogLevelFlags,
 		format string, v ...VArg)
 
 	G_logv func(log_domain string,
-		log_level GLogLevelFlags,
+		log_level T.GLogLevelFlags,
 		format string,
-		args Va_list)
+		args T.Va_list)
 
 	G_log_set_fatal_mask func(log_domain string,
-		fatal_mask GLogLevelFlags) GLogLevelFlags
+		fatal_mask T.GLogLevelFlags) T.GLogLevelFlags
 
-	G_log_set_always_fatal func(fatal_mask GLogLevelFlags) GLogLevelFlags
+	G_log_set_always_fatal func(fatal_mask T.GLogLevelFlags) T.GLogLevelFlags
 
 	G_return_if_fail_warning func(log_domain string,
 		pretty_function string,
@@ -2666,852 +2617,835 @@ var (
 
 	G_print func(format string, v ...VArg)
 
-	G_set_print_handler func(f GPrintFunc) GPrintFunc
+	G_set_print_handler func(f T.GPrintFunc) T.GPrintFunc
 
 	G_printerr func(format string, v ...VArg)
 
-	G_set_printerr_handler func(f GPrintFunc) GPrintFunc
+	G_set_printerr_handler func(f T.GPrintFunc) T.GPrintFunc
 
-	G_node_new func(data Gpointer) *GNode
+	G_node_new func(data T.Gpointer) *T.GNode
 
-	G_node_destroy func(root *GNode)
+	G_node_destroy func(root *T.GNode)
 
-	G_node_unlink func(node *GNode)
+	G_node_unlink func(node *T.GNode)
 
-	G_node_copy_deep func(node *GNode,
-		copy_func GCopyFunc, data Gpointer) *GNode
+	G_node_copy_deep func(node *T.GNode,
+		copy_func T.GCopyFunc, data T.Gpointer) *T.GNode
 
-	G_node_copy func(node *GNode) *GNode
+	G_node_copy func(node *T.GNode) *T.GNode
 
-	G_node_insert func(parent *GNode,
-		position Gint, node *GNode) *GNode
+	G_node_insert func(parent *T.GNode,
+		position T.Gint, node *T.GNode) *T.GNode
 
-	G_node_insert_before func(parent *GNode,
-		sibling *GNode, node *GNode) *GNode
+	G_node_insert_before func(parent *T.GNode,
+		sibling *T.GNode, node *T.GNode) *T.GNode
 
-	G_node_insert_after func(parent *GNode,
-		sibling *GNode, node *GNode) *GNode
+	G_node_insert_after func(parent *T.GNode,
+		sibling *T.GNode, node *T.GNode) *T.GNode
 
-	G_node_prepend func(parent *GNode, node *GNode) *GNode
+	G_node_prepend func(parent *T.GNode, node *T.GNode) *T.GNode
 
-	G_node_n_nodes func(root *GNode,
-		flags GTraverseFlags) Guint
+	G_node_n_nodes func(root *T.GNode,
+		flags T.GTraverseFlags) T.Guint
 
-	G_node_get_root func(node *GNode) *GNode
+	G_node_get_root func(node *T.GNode) *T.GNode
 
-	G_node_is_ancestor func(node *GNode,
-		descendant *GNode) Gboolean
+	G_node_is_ancestor func(node *T.GNode,
+		descendant *T.GNode) T.Gboolean
 
-	G_node_depth func(node *GNode) Guint
+	G_node_depth func(node *T.GNode) T.Guint
 
-	G_node_find func(root *GNode,
-		order GTraverseType,
-		flags GTraverseFlags,
-		data Gpointer) *GNode
+	G_node_find func(root *T.GNode,
+		order T.GTraverseType,
+		flags T.GTraverseFlags,
+		data T.Gpointer) *T.GNode
 
-	G_node_traverse func(root *GNode,
-		order GTraverseType,
-		flags GTraverseFlags,
-		max_depth Gint,
-		f GNodeTraverseFunc,
-		data Gpointer)
+	G_node_traverse func(root *T.GNode,
+		order T.GTraverseType,
+		flags T.GTraverseFlags,
+		max_depth T.Gint,
+		f T.GNodeTraverseFunc,
+		data T.Gpointer)
 
-	G_node_max_height func(root *GNode) Guint
+	G_node_max_height func(root *T.GNode) T.Guint
 
-	G_node_children_foreach func(node *GNode,
-		flags GTraverseFlags,
-		f GNodeForeachFunc,
-		data Gpointer)
+	G_node_children_foreach func(node *T.GNode,
+		flags T.GTraverseFlags,
+		f T.GNodeForeachFunc,
+		data T.Gpointer)
 
-	G_node_reverse_children func(node *GNode)
+	G_node_reverse_children func(node *T.GNode)
 
-	G_node_n_children func(node *GNode) Guint
+	G_node_n_children func(node *T.GNode) T.Guint
 
-	G_node_nth_child func(node *GNode,
-		n Guint) *GNode
+	G_node_nth_child func(node *T.GNode,
+		n T.Guint) *T.GNode
 
-	G_node_last_child func(node *GNode) *GNode
+	G_node_last_child func(node *T.GNode) *T.GNode
 
-	G_node_find_child func(node *GNode,
-		flags GTraverseFlags,
-		data Gpointer) *GNode
+	G_node_find_child func(node *T.GNode,
+		flags T.GTraverseFlags,
+		data T.Gpointer) *T.GNode
 
-	G_node_child_position func(node *GNode,
-		child *GNode) Gint
+	G_node_child_position func(node *T.GNode,
+		child *T.GNode) T.Gint
 
-	G_node_child_index func(node *GNode,
-		data Gpointer) Gint
+	G_node_child_index func(node *T.GNode,
+		data T.Gpointer) T.Gint
 
-	G_node_first_sibling func(node *GNode) *GNode
+	G_node_first_sibling func(node *T.GNode) *T.GNode
 
-	G_node_last_sibling func(node *GNode) *GNode
+	G_node_last_sibling func(node *T.GNode) *T.GNode
 
-	G_node_push_allocator func(dummy Gpointer)
+	G_node_push_allocator func(dummy T.Gpointer)
 
 	G_node_pop_allocator func()
 
-	G_option_context_new func(parameter_string string) *GOptionContext
+	G_option_context_new func(parameter_string string) *T.GOptionContext
 
-	G_option_context_set_summary func(context *GOptionContext,
+	G_option_context_set_summary func(context *T.GOptionContext,
 		summary string)
 
-	G_option_context_get_summary func(context *GOptionContext) string
+	G_option_context_get_summary func(context *T.GOptionContext) string
 
-	G_option_context_set_description func(context *GOptionContext,
+	G_option_context_set_description func(context *T.GOptionContext,
 		description string)
 
-	G_option_context_get_description func(context *GOptionContext) string
+	G_option_context_get_description func(context *T.GOptionContext) string
 
-	G_option_context_free func(context *GOptionContext)
+	G_option_context_free func(context *T.GOptionContext)
 
-	G_option_context_set_help_enabled func(context *GOptionContext,
-		help_enabled Gboolean)
+	G_option_context_set_help_enabled func(context *T.GOptionContext,
+		help_enabled T.Gboolean)
 
-	G_option_context_get_help_enabled func(context *GOptionContext) Gboolean
+	G_option_context_get_help_enabled func(context *T.GOptionContext) T.Gboolean
 
-	G_option_context_set_ignore_unknown_options func(context *GOptionContext,
-		ignore_unknown Gboolean)
+	G_option_context_set_ignore_unknown_options func(context *T.GOptionContext,
+		ignore_unknown T.Gboolean)
 
-	G_option_context_get_ignore_unknown_options func(context *GOptionContext) Gboolean
+	G_option_context_get_ignore_unknown_options func(context *T.GOptionContext) T.Gboolean
 
-	G_option_context_add_main_entries func(context *GOptionContext,
-		entries *GOptionEntry,
+	G_option_context_add_main_entries func(context *T.GOptionContext,
+		entries *T.GOptionEntry,
 		translation_domain string)
 
-	G_option_context_parse func(context *GOptionContext,
-		argc *Gint,
-		argv ***Gchar,
-		e **GError) Gboolean
+	G_option_context_parse func(context *T.GOptionContext,
+		argc *T.Gint,
+		argv ***T.Gchar,
+		e **T.GError) T.Gboolean
 
-	G_option_context_set_translate_func func(context *GOptionContext,
-		f GTranslateFunc,
-		data Gpointer,
-		destroy_notify GDestroyNotify)
+	G_option_context_set_translate_func func(context *T.GOptionContext,
+		f T.GTranslateFunc,
+		data T.Gpointer,
+		destroy_notify T.GDestroyNotify)
 
-	G_option_context_set_translation_domain func(context *GOptionContext,
+	G_option_context_set_translation_domain func(context *T.GOptionContext,
 		domain string)
 
-	G_option_context_add_group func(context *GOptionContext,
-		group *GOptionGroup)
+	G_option_context_add_group func(context *T.GOptionContext,
+		group *T.GOptionGroup)
 
-	G_option_context_set_main_group func(context *GOptionContext,
-		group *GOptionGroup)
-	G_option_context_get_main_group func(context *GOptionContext) *GOptionGroup
+	G_option_context_set_main_group func(context *T.GOptionContext,
+		group *T.GOptionGroup)
+	G_option_context_get_main_group func(context *T.GOptionContext) *T.GOptionGroup
 
-	G_option_context_get_help func(context *GOptionContext,
-		main_help Gboolean,
-		group *GOptionGroup) string
+	G_option_context_get_help func(context *T.GOptionContext,
+		main_help T.Gboolean,
+		group *T.GOptionGroup) string
 
 	G_option_group_new func(name string,
 		description string,
 		help_description string,
-		user_data Gpointer,
-		destroy GDestroyNotify) *GOptionGroup
+		user_data T.Gpointer,
+		destroy T.GDestroyNotify) *T.GOptionGroup
 
-	G_option_group_set_parse_hooks func(group *GOptionGroup,
-		pre_parse_func GOptionParseFunc,
-		post_parse_func GOptionParseFunc)
+	G_option_group_set_parse_hooks func(group *T.GOptionGroup,
+		pre_parse_func T.GOptionParseFunc,
+		post_parse_func T.GOptionParseFunc)
 
-	G_option_group_set_error_hook func(group *GOptionGroup,
-		error_func GOptionErrorFunc)
+	G_option_group_set_error_hook func(group *T.GOptionGroup,
+		error_func T.GOptionErrorFunc)
 
-	G_option_group_free func(group *GOptionGroup)
+	G_option_group_free func(group *T.GOptionGroup)
 
-	G_option_group_add_entries func(group *GOptionGroup,
-		entries *GOptionEntry)
+	G_option_group_add_entries func(group *T.GOptionGroup,
+		entries *T.GOptionEntry)
 
-	G_option_group_set_translate_func func(group *GOptionGroup,
-		f GTranslateFunc,
-		data Gpointer,
-		destroy_notify GDestroyNotify)
+	G_option_group_set_translate_func func(group *T.GOptionGroup,
+		f T.GTranslateFunc,
+		data T.Gpointer,
+		destroy_notify T.GDestroyNotify)
 
-	G_option_group_set_translation_domain func(group *GOptionGroup,
+	G_option_group_set_translation_domain func(group *T.GOptionGroup,
 		domain string)
 
-	G_pattern_spec_new func(pattern string) *GPatternSpec
+	G_pattern_spec_new func(pattern string) *T.GPatternSpec
 
-	G_pattern_spec_free func(pspec *GPatternSpec)
+	G_pattern_spec_free func(pspec *T.GPatternSpec)
 
-	G_pattern_spec_equal func(pspec1 *GPatternSpec,
-		pspec2 *GPatternSpec) Gboolean
+	G_pattern_spec_equal func(pspec1 *T.GPatternSpec,
+		pspec2 *T.GPatternSpec) T.Gboolean
 
-	G_pattern_match func(pspec *GPatternSpec,
-		string_length Guint,
+	G_pattern_match func(pspec *T.GPatternSpec,
+		string_length T.Guint,
 		str string,
-		string_reversed string) Gboolean
+		string_reversed string) T.Gboolean
 
-	G_pattern_match_string func(pspec *GPatternSpec,
-		str string) Gboolean
+	G_pattern_match_string func(pspec *T.GPatternSpec,
+		str string) T.Gboolean
 
 	G_pattern_match_simple func(pattern string,
-		str string) Gboolean
+		str string) T.Gboolean
 
-	G_spaced_primes_closest func(num Guint) Guint
+	G_spaced_primes_closest func(num T.Guint) T.Guint
 
-	G_qsort_with_data func(pbase Gconstpointer,
-		total_elems Gint,
-		size Gsize,
-		compare_func GCompareDataFunc,
-		user_data Gpointer)
+	G_qsort_with_data func(pbase T.Gconstpointer,
+		total_elems T.Gint,
+		size T.Gsize,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_queue_new func() *GQueue
+	G_queue_new func() *T.GQueue
 
-	G_queue_free func(queue *GQueue)
+	G_queue_free func(queue *T.GQueue)
 
-	G_queue_init func(queue *GQueue)
+	G_queue_init func(queue *T.GQueue)
 
-	G_queue_clear func(queue *GQueue)
+	G_queue_clear func(queue *T.GQueue)
 
-	G_queue_is_empty func(queue *GQueue) Gboolean
+	G_queue_is_empty func(queue *T.GQueue) T.Gboolean
 
-	G_queue_get_length func(queue *GQueue) Guint
+	G_queue_get_length func(queue *T.GQueue) T.Guint
 
-	G_queue_reverse func(queue *GQueue)
+	G_queue_reverse func(queue *T.GQueue)
 
-	G_queue_copy func(queue *GQueue) *GQueue
+	G_queue_copy func(queue *T.GQueue) *T.GQueue
 
-	G_queue_foreach func(queue *GQueue,
-		f GFunc,
-		user_data Gpointer)
+	G_queue_foreach func(queue *T.GQueue,
+		f T.GFunc,
+		user_data T.Gpointer)
 
-	G_queue_find func(queue *GQueue,
-		data Gconstpointer) *GList
+	G_queue_find func(queue *T.GQueue,
+		data T.Gconstpointer) *T.GList
 
-	G_queue_find_custom func(queue *GQueue,
-		data Gconstpointer,
-		f GCompareFunc) *GList
+	G_queue_find_custom func(queue *T.GQueue,
+		data T.Gconstpointer,
+		f T.GCompareFunc) *T.GList
 
-	G_queue_sort func(queue *GQueue,
-		compare_func GCompareDataFunc,
-		user_data Gpointer)
+	G_queue_sort func(queue *T.GQueue,
+		compare_func T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_queue_push_head func(queue *GQueue,
-		data Gpointer)
+	G_queue_push_head func(queue *T.GQueue,
+		data T.Gpointer)
 
-	G_queue_push_tail func(queue *GQueue,
-		data Gpointer)
+	G_queue_push_tail func(queue *T.GQueue,
+		data T.Gpointer)
 
-	G_queue_push_nth func(queue *GQueue,
-		data Gpointer,
-		n Gint)
+	G_queue_push_nth func(queue *T.GQueue,
+		data T.Gpointer,
+		n T.Gint)
 
-	G_queue_pop_head func(queue *GQueue) Gpointer
+	G_queue_pop_head func(queue *T.GQueue) T.Gpointer
 
-	G_queue_pop_tail func(queue *GQueue) Gpointer
+	G_queue_pop_tail func(queue *T.GQueue) T.Gpointer
 
-	G_queue_pop_nth func(queue *GQueue,
-		n Guint) Gpointer
+	G_queue_pop_nth func(queue *T.GQueue,
+		n T.Guint) T.Gpointer
 
-	G_queue_peek_head func(queue *GQueue) Gpointer
+	G_queue_peek_head func(queue *T.GQueue) T.Gpointer
 
-	G_queue_peek_tail func(queue *GQueue) Gpointer
+	G_queue_peek_tail func(queue *T.GQueue) T.Gpointer
 
-	G_queue_peek_nth func(queue *GQueue,
-		n Guint) Gpointer
+	G_queue_peek_nth func(queue *T.GQueue,
+		n T.Guint) T.Gpointer
 
-	G_queue_index func(queue *GQueue,
-		data Gconstpointer) Gint
+	G_queue_index func(queue *T.GQueue,
+		data T.Gconstpointer) T.Gint
 
-	G_queue_remove func(queue *GQueue,
-		data Gconstpointer)
+	G_queue_remove func(queue *T.GQueue,
+		data T.Gconstpointer)
 
-	G_queue_remove_all func(queue *GQueue,
-		data Gconstpointer)
+	G_queue_remove_all func(queue *T.GQueue,
+		data T.Gconstpointer)
 
-	G_queue_insert_before func(queue *GQueue,
-		sibling *GList,
-		data Gpointer)
+	G_queue_insert_before func(queue *T.GQueue,
+		sibling *T.GList,
+		data T.Gpointer)
 
-	G_queue_insert_after func(queue *GQueue,
-		sibling *GList,
-		data Gpointer)
+	G_queue_insert_after func(queue *T.GQueue,
+		sibling *T.GList,
+		data T.Gpointer)
 
-	G_queue_insert_sorted func(queue *GQueue,
-		data Gpointer,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_queue_insert_sorted func(queue *T.GQueue,
+		data T.Gpointer,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_queue_push_head_link func(queue *GQueue,
-		link_ *GList)
+	G_queue_push_head_link func(queue *T.GQueue,
+		link *T.GList)
 
-	G_queue_push_tail_link func(queue *GQueue,
-		link_ *GList)
+	G_queue_push_tail_link func(queue *T.GQueue,
+		link *T.GList)
 
-	G_queue_push_nth_link func(queue *GQueue,
-		n Gint,
-		link_ *GList)
+	G_queue_push_nth_link func(queue *T.GQueue,
+		n T.Gint,
+		link *T.GList)
 
-	G_queue_pop_head_link func(queue *GQueue) *GList
+	G_queue_pop_head_link func(queue *T.GQueue) *T.GList
 
-	G_queue_pop_tail_link func(queue *GQueue) *GList
+	G_queue_pop_tail_link func(queue *T.GQueue) *T.GList
 
-	G_queue_pop_nth_link func(queue *GQueue,
-		n Guint) *GList
+	G_queue_pop_nth_link func(queue *T.GQueue,
+		n T.Guint) *T.GList
 
-	G_queue_peek_head_link func(queue *GQueue) *GList
+	G_queue_peek_head_link func(queue *T.GQueue) *T.GList
 
-	G_queue_peek_tail_link func(queue *GQueue) *GList
+	G_queue_peek_tail_link func(queue *T.GQueue) *T.GList
 
-	G_queue_peek_nth_link func(queue *GQueue,
-		n Guint) *GList
+	G_queue_peek_nth_link func(queue *T.GQueue,
+		n T.Guint) *T.GList
 
-	G_queue_link_index func(queue *GQueue,
-		link_ *GList) Gint
+	G_queue_link_index func(queue *T.GQueue,
+		link *T.GList) T.Gint
 
-	G_queue_unlink func(queue *GQueue,
-		link_ *GList)
+	G_queue_unlink func(queue *T.GQueue, link *T.GList)
 
-	G_queue_delete_link func(queue *GQueue,
-		link_ *GList)
+	G_queue_delete_link func(queue *T.GQueue, link *T.GList)
 
-	G_rand_new_with_seed func(seed Guint32) *GRand
+	G_rand_new_with_seed func(seed T.Guint32) *T.GRand
 
-	G_rand_new_with_seed_array func(seed *Guint32,
-		seed_length Guint) *GRand
+	G_rand_new_with_seed_array func(seed *T.Guint32,
+		seed_length T.Guint) *T.GRand
 
-	G_rand_new func() *GRand
+	G_rand_new func() *T.GRand
 
-	G_rand_free func(rand_ *GRand)
+	G_rand_free func(rand *T.GRand)
 
-	G_rand_copy func(rand_ *GRand) *GRand
+	G_rand_copy func(rand *T.GRand) *T.GRand
 
-	G_rand_set_seed func(rand_ *GRand,
-		seed Guint32)
+	G_rand_set_seed func(rand *T.GRand,
+		seed T.Guint32)
 
-	G_rand_set_seed_array func(rand_ *GRand,
-		seed *Guint32,
-		seed_length Guint)
+	G_rand_set_seed_array func(rand *T.GRand,
+		seed *T.Guint32,
+		seed_length T.Guint)
 
-	G_rand_int func(rand_ *GRand) Guint32
+	G_rand_int func(rand *T.GRand) T.Guint32
 
-	G_rand_int_range func(rand_ *GRand,
-		begin Gint32,
-		end Gint32) Gint32
+	G_rand_int_range func(rand *T.GRand,
+		begin T.Gint32,
+		end T.Gint32) T.Gint32
 
-	G_rand_double func(rand_ *GRand) Gdouble
+	G_rand_double func(rand *T.GRand) T.Gdouble
 
-	G_rand_double_range func(rand_ *GRand,
-		begin Gdouble,
-		end Gdouble) Gdouble
+	G_rand_double_range func(rand *T.GRand,
+		begin T.Gdouble,
+		end T.Gdouble) T.Gdouble
 
-	G_random_set_seed func(seed Guint32)
+	G_random_set_seed func(seed T.Guint32)
 
-	G_random_int func() Guint32
+	G_random_int func() T.Guint32
 
-	G_random_int_range func(begin Gint32,
-		end Gint32) Gint32
+	G_random_int_range func(begin T.Gint32,
+		end T.Gint32) T.Gint32
 
-	G_random_double func() Gdouble
+	G_random_double func() T.Gdouble
 
-	G_random_double_range func(begin Gdouble,
-		end Gdouble) Gdouble
+	G_random_double_range func(begin T.Gdouble,
+		end T.Gdouble) T.Gdouble
 
-	G_relation_new func(fields Gint) *GRelation
+	G_relation_new func(fields T.Gint) *T.GRelation
 
-	G_relation_destroy func(relation *GRelation)
+	G_relation_destroy func(relation *T.GRelation)
 
-	G_relation_index func(relation *GRelation,
-		field Gint,
-		hash_func GHashFunc,
-		key_equal_func GEqualFunc)
+	G_relation_index func(relation *T.GRelation,
+		field T.Gint,
+		hash_func T.GHashFunc,
+		key_equal_func T.GEqualFunc)
 
-	G_relation_insert func(relation *GRelation, v ...VArg)
+	G_relation_insert func(relation *T.GRelation, v ...VArg)
 
-	G_relation_delete func(relation *GRelation,
-		key Gconstpointer,
-		field Gint) Gint
+	G_relation_delete func(relation *T.GRelation,
+		key T.Gconstpointer,
+		field T.Gint) T.Gint
 
-	G_relation_select func(relation *GRelation,
-		key Gconstpointer,
-		field Gint) *GTuples
+	G_relation_select func(relation *T.GRelation,
+		key T.Gconstpointer,
+		field T.Gint) *T.GTuples
 
-	G_relation_count func(relation *GRelation,
-		key Gconstpointer,
-		field Gint) Gint
+	G_relation_count func(relation *T.GRelation,
+		key T.Gconstpointer,
+		field T.Gint) T.Gint
 
 	G_relation_exists func(
-		relation *GRelation, v ...VArg) Gboolean
+		relation *T.GRelation, v ...VArg) T.Gboolean
 
-	G_relation_print func(relation *GRelation)
+	G_relation_print func(relation *T.GRelation)
 
-	G_tuples_destroy func(tuples *GTuples)
+	G_tuples_destroy func(tuples *T.GTuples)
 
-	G_tuples_index func(tuples *GTuples,
-		index_ Gint,
-		field Gint) Gpointer
+	G_tuples_index func(tuples *T.GTuples,
+		index T.Gint,
+		field T.Gint) T.Gpointer
 
 	G_regex_new func(pattern string,
-		compile_options GRegexCompileFlags,
-		match_options GRegexMatchFlags,
-		e **GError) *GRegex
+		compile_options T.GRegexCompileFlags,
+		match_options T.GRegexMatchFlags,
+		e **T.GError) *T.GRegex
 
-	G_regex_ref func(regex *GRegex) *GRegex
+	G_regex_ref func(regex *T.GRegex) *T.GRegex
 
-	G_regex_unref func(regex *GRegex)
+	G_regex_unref func(regex *T.GRegex)
 
-	G_regex_get_pattern func(regex *GRegex) string
+	G_regex_get_pattern func(regex *T.GRegex) string
 
-	G_regex_get_max_backref func(regex *GRegex) Gint
+	G_regex_get_max_backref func(regex *T.GRegex) T.Gint
 
-	G_regex_get_capture_count func(regex *GRegex) Gint
+	G_regex_get_capture_count func(regex *T.GRegex) T.Gint
 
-	G_regex_get_string_number func(regex *GRegex,
-		name string) Gint
+	G_regex_get_string_number func(regex *T.GRegex,
+		name string) T.Gint
 
 	G_regex_escape_string func(str string,
-		length Gint) string
+		length T.Gint) string
 
-	G_regex_get_compile_flags func(regex *GRegex) GRegexCompileFlags
+	G_regex_get_compile_flags func(regex *T.GRegex) T.GRegexCompileFlags
 
-	G_regex_get_match_flags func(regex *GRegex) GRegexMatchFlags
+	G_regex_get_match_flags func(regex *T.GRegex) T.GRegexMatchFlags
 
 	G_regex_match_simple func(pattern string,
 		str string,
-		compile_options GRegexCompileFlags,
-		match_options GRegexMatchFlags) Gboolean
+		compile_options T.GRegexCompileFlags,
+		match_options T.GRegexMatchFlags) T.Gboolean
 
-	G_regex_match func(regex *GRegex,
+	G_regex_match func(regex *T.GRegex,
 		str string,
-		match_options GRegexMatchFlags,
-		match_info **GMatchInfo) Gboolean
+		match_options T.GRegexMatchFlags,
+		match_info **T.GMatchInfo) T.Gboolean
 
-	G_regex_match_full func(regex *GRegex,
+	G_regex_match_full func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
-		match_options GRegexMatchFlags,
-		match_info **GMatchInfo,
-		e **GError) Gboolean
+		string_len T.Gssize,
+		start_position T.Gint,
+		match_options T.GRegexMatchFlags,
+		match_info **T.GMatchInfo,
+		e **T.GError) T.Gboolean
 
-	G_regex_match_all func(regex *GRegex,
+	G_regex_match_all func(regex *T.GRegex,
 		str string,
-		match_options GRegexMatchFlags,
-		match_info **GMatchInfo) Gboolean
+		match_options T.GRegexMatchFlags,
+		match_info **T.GMatchInfo) T.Gboolean
 
-	G_regex_match_all_full func(regex *GRegex,
+	G_regex_match_all_full func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
-		match_options GRegexMatchFlags,
-		match_info **GMatchInfo,
-		e **GError) Gboolean
+		string_len T.Gssize,
+		start_position T.Gint,
+		match_options T.GRegexMatchFlags,
+		match_info **T.GMatchInfo,
+		e **T.GError) T.Gboolean
 
 	G_regex_split_simple func(pattern string,
 		str string,
-		compile_options GRegexCompileFlags,
-		match_options GRegexMatchFlags) **Gchar
+		compile_options T.GRegexCompileFlags,
+		match_options T.GRegexMatchFlags) **T.Gchar
 
-	G_regex_split func(regex *GRegex,
+	G_regex_split func(regex *T.GRegex,
 		str string,
-		match_options GRegexMatchFlags) **Gchar
+		match_options T.GRegexMatchFlags) **T.Gchar
 
-	G_regex_split_full func(regex *GRegex,
+	G_regex_split_full func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
-		match_options GRegexMatchFlags,
-		max_tokens Gint,
-		e **GError) **Gchar
+		string_len T.Gssize,
+		start_position T.Gint,
+		match_options T.GRegexMatchFlags,
+		max_tokens T.Gint,
+		e **T.GError) **T.Gchar
 
-	G_regex_replace func(regex *GRegex,
+	G_regex_replace func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
+		string_len T.Gssize,
+		start_position T.Gint,
 		replacement string,
-		match_options GRegexMatchFlags,
-		e **GError) string
+		match_options T.GRegexMatchFlags,
+		e **T.GError) string
 
-	G_regex_replace_literal func(regex *GRegex,
+	G_regex_replace_literal func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
+		string_len T.Gssize,
+		start_position T.Gint,
 		replacement string,
-		match_options GRegexMatchFlags,
-		e **GError) string
+		match_options T.GRegexMatchFlags,
+		e **T.GError) string
 
-	G_regex_replace_eval func(regex *GRegex,
+	G_regex_replace_eval func(regex *T.GRegex,
 		str string,
-		string_len Gssize,
-		start_position Gint,
-		match_options GRegexMatchFlags,
-		eval GRegexEvalCallback,
-		user_data Gpointer,
-		e **GError) string
+		string_len T.Gssize,
+		start_position T.Gint,
+		match_options T.GRegexMatchFlags,
+		eval T.GRegexEvalCallback,
+		user_data T.Gpointer,
+		e **T.GError) string
 
 	G_regex_check_replacement func(replacement string,
-		has_references *Gboolean,
-		e **GError) Gboolean
+		has_references *T.Gboolean,
+		e **T.GError) T.Gboolean
 
-	G_match_info_get_regex func(match_info *GMatchInfo) *GRegex
+	G_match_info_get_regex func(match_info *T.GMatchInfo) *T.GRegex
 
-	G_match_info_get_string func(match_info *GMatchInfo) string
+	G_match_info_get_string func(match_info *T.GMatchInfo) string
 
-	G_match_info_free func(match_info *GMatchInfo)
+	G_match_info_free func(match_info *T.GMatchInfo)
 
-	G_match_info_next func(match_info *GMatchInfo,
-		e **GError) Gboolean
+	G_match_info_next func(match_info *T.GMatchInfo,
+		e **T.GError) T.Gboolean
 
-	G_match_info_matches func(match_info *GMatchInfo) Gboolean
+	G_match_info_matches func(match_info *T.GMatchInfo) T.Gboolean
 
-	G_match_info_get_match_count func(match_info *GMatchInfo) Gint
+	G_match_info_get_match_count func(match_info *T.GMatchInfo) T.Gint
 
-	G_match_info_is_partial_match func(match_info *GMatchInfo) Gboolean
+	G_match_info_is_partial_match func(match_info *T.GMatchInfo) T.Gboolean
 
-	G_match_info_expand_references func(match_info *GMatchInfo,
+	G_match_info_expand_references func(match_info *T.GMatchInfo,
 		string_to_expand string,
-		e **GError) string
+		e **T.GError) string
 
-	G_match_info_fetch func(match_info *GMatchInfo,
-		match_num Gint) string
+	G_match_info_fetch func(match_info *T.GMatchInfo,
+		match_num T.Gint) string
 
-	G_match_info_fetch_pos func(match_info *GMatchInfo,
-		match_num Gint,
-		start_pos *Gint,
-		end_pos *Gint) Gboolean
+	G_match_info_fetch_pos func(match_info *T.GMatchInfo,
+		match_num T.Gint,
+		start_pos *T.Gint,
+		end_pos *T.Gint) T.Gboolean
 
-	G_match_info_fetch_named func(match_info *GMatchInfo,
+	G_match_info_fetch_named func(match_info *T.GMatchInfo,
 		name string) string
 
-	G_match_info_fetch_named_pos func(match_info *GMatchInfo,
-		name string,
-		start_pos *Gint,
-		end_pos *Gint) Gboolean
+	G_match_info_fetch_named_pos func(match_info *T.GMatchInfo,
+		name string, start_pos *T.Gint, end_pos *T.Gint) T.Gboolean
 
-	G_match_info_fetch_all func(match_info *GMatchInfo) **Gchar
+	G_match_info_fetch_all func(
+		match_info *T.GMatchInfo) **T.Gchar
 
-	G_scanner_new func(config_templ *GScannerConfig) *GScanner
+	G_scanner_new func(
+		config_templ *T.GScannerConfig) *T.GScanner
 
-	G_scanner_destroy func(scanner *GScanner)
+	G_scanner_destroy func(scanner *T.GScanner)
 
-	G_scanner_input_file func(scanner *GScanner,
-		input_fd Gint)
+	G_scanner_input_file func(scanner *T.GScanner,
+		input_fd T.Gint)
 
-	G_scanner_sync_file_offset func(scanner *GScanner)
+	G_scanner_sync_file_offset func(scanner *T.GScanner)
 
-	G_scanner_input_text func(scanner *GScanner,
-		text string,
-		text_len Guint)
+	G_scanner_input_text func(scanner *T.GScanner,
+		text string, text_len T.Guint)
 
-	G_scanner_get_next_token func(scanner *GScanner) GTokenType
+	G_scanner_get_next_token func(scanner *T.GScanner) T.GTokenType
 
-	G_scanner_peek_next_token func(scanner *GScanner) GTokenType
+	G_scanner_peek_next_token func(scanner *T.GScanner) T.GTokenType
 
-	G_scanner_cur_token func(scanner *GScanner) GTokenType
+	G_scanner_cur_token func(scanner *T.GScanner) T.GTokenType
 
-	G_scanner_cur_value func(scanner *GScanner) GTokenValue
+	G_scanner_cur_value func(scanner *T.GScanner) T.GTokenValue
 
-	G_scanner_cur_line func(scanner *GScanner) Guint
+	G_scanner_cur_line func(scanner *T.GScanner) T.Guint
 
-	G_scanner_cur_position func(scanner *GScanner) Guint
+	G_scanner_cur_position func(scanner *T.GScanner) T.Guint
 
-	G_scanner_eof func(scanner *GScanner) Gboolean
+	G_scanner_eof func(scanner *T.GScanner) T.Gboolean
 
-	G_scanner_set_scope func(scanner *GScanner,
-		scope_id Guint) Guint
+	G_scanner_set_scope func(scanner *T.GScanner,
+		scope_id T.Guint) T.Guint
 
-	G_scanner_scope_add_symbol func(scanner *GScanner,
-		scope_id Guint,
-		symbol string,
-		value Gpointer)
+	G_scanner_scope_add_symbol func(scanner *T.GScanner,
+		scope_id T.Guint, symbol string, value T.Gpointer)
 
-	G_scanner_scope_remove_symbol func(scanner *GScanner,
-		scope_id Guint,
-		symbol string)
+	G_scanner_scope_remove_symbol func(scanner *T.GScanner,
+		scope_id T.Guint, symbol string)
 
-	G_scanner_scope_lookup_symbol func(scanner *GScanner,
-		scope_id Guint,
-		symbol string) Gpointer
+	G_scanner_scope_lookup_symbol func(scanner *T.GScanner,
+		scope_id T.Guint, symbol string) T.Gpointer
 
-	G_scanner_scope_foreach_symbol func(scanner *GScanner,
-		scope_id Guint,
-		f GHFunc,
-		user_data Gpointer)
+	G_scanner_scope_foreach_symbol func(scanner *T.GScanner,
+		scope_id T.Guint, f T.GHFunc, user_data T.Gpointer)
 
-	G_scanner_lookup_symbol func(scanner *GScanner,
-		symbol string) Gpointer
+	G_scanner_lookup_symbol func(scanner *T.GScanner,
+		symbol string) T.Gpointer
 
-	G_scanner_unexp_token func(scanner *GScanner,
-		expected_token GTokenType,
-		identifier_spec string,
-		symbol_spec string,
-		symbol_name string,
-		message string,
-		is_error Gint)
+	G_scanner_unexp_token func(scanner *T.GScanner,
+		expected_token T.GTokenType,
+		identifier_spec, symbol_spec, symbol_name, message string,
+		is_error T.Gint)
 
-	G_scanner_error func(scanner *GScanner,
+	G_scanner_error func(scanner *T.GScanner,
 		format string, v ...VArg)
 
-	G_scanner_warn func(scanner *GScanner,
+	G_scanner_warn func(scanner *T.GScanner,
 		format string, v ...VArg)
 
-	G_sequence_new func(data_destroy GDestroyNotify) *GSequence
+	G_sequence_new func(data_destroy T.GDestroyNotify) *T.GSequence
 
-	G_sequence_free func(seq *GSequence)
+	G_sequence_free func(seq *T.GSequence)
 
-	G_sequence_get_length func(seq *GSequence) Gint
+	G_sequence_get_length func(seq *T.GSequence) T.Gint
 
-	G_sequence_foreach func(seq *GSequence,
-		f GFunc,
-		user_data Gpointer)
+	G_sequence_foreach func(seq *T.GSequence,
+		f T.GFunc, user_data T.Gpointer)
 
-	G_sequence_foreach_range func(begin *GSequenceIter,
-		end *GSequenceIter,
-		f GFunc,
-		user_data Gpointer)
+	G_sequence_foreach_range func(begin *T.GSequenceIter,
+		end *T.GSequenceIter, f T.GFunc, user_data T.Gpointer)
 
-	G_sequence_sort func(seq *GSequence,
-		cmp_func GCompareDataFunc,
-		cmp_data Gpointer)
+	G_sequence_sort func(seq *T.GSequence,
+		cmp_func T.GCompareDataFunc, cmp_data T.Gpointer)
 
-	G_sequence_sort_iter func(seq *GSequence,
-		cmp_func GSequenceIterCompareFunc,
-		cmp_data Gpointer)
+	G_sequence_sort_iter func(seq *T.GSequence,
+		cmp_func T.GSequenceIterCompareFunc, cmp_data T.Gpointer)
 
-	G_sequence_get_begin_iter func(seq *GSequence) *GSequenceIter
+	G_sequence_get_begin_iter func(seq *T.GSequence) *T.GSequenceIter
 
-	G_sequence_get_end_iter func(seq *GSequence) *GSequenceIter
+	G_sequence_get_end_iter func(seq *T.GSequence) *T.GSequenceIter
 
-	G_sequence_get_iter_at_pos func(seq *GSequence,
-		pos Gint) *GSequenceIter
+	G_sequence_get_iter_at_pos func(seq *T.GSequence,
+		pos T.Gint) *T.GSequenceIter
 
-	G_sequence_append func(seq *GSequence,
-		data Gpointer) *GSequenceIter
+	G_sequence_append func(seq *T.GSequence,
+		data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_prepend func(seq *GSequence,
-		data Gpointer) *GSequenceIter
+	G_sequence_prepend func(seq *T.GSequence,
+		data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_insert_before func(iter *GSequenceIter,
-		data Gpointer) *GSequenceIter
+	G_sequence_insert_before func(iter *T.GSequenceIter,
+		data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_move func(src *GSequenceIter,
-		dest *GSequenceIter)
+	G_sequence_move func(src *T.GSequenceIter,
+		dest *T.GSequenceIter)
 
-	G_sequence_swap func(a *GSequenceIter,
-		b *GSequenceIter)
+	G_sequence_swap func(a *T.GSequenceIter,
+		b *T.GSequenceIter)
 
-	G_sequence_insert_sorted func(seq *GSequence,
-		data Gpointer,
-		cmp_func GCompareDataFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_insert_sorted func(seq *T.GSequence,
+		data T.Gpointer,
+		cmp_func T.GCompareDataFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_insert_sorted_iter func(seq *GSequence,
-		data Gpointer,
-		iter_cmp GSequenceIterCompareFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_insert_sorted_iter func(seq *T.GSequence,
+		data T.Gpointer,
+		iter_cmp T.GSequenceIterCompareFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_sort_changed func(iter *GSequenceIter,
-		cmp_func GCompareDataFunc,
-		cmp_data Gpointer)
+	G_sequence_sort_changed func(iter *T.GSequenceIter,
+		cmp_func T.GCompareDataFunc,
+		cmp_data T.Gpointer)
 
-	G_sequence_sort_changed_iter func(iter *GSequenceIter,
-		iter_cmp GSequenceIterCompareFunc,
-		cmp_data Gpointer)
+	G_sequence_sort_changed_iter func(iter *T.GSequenceIter,
+		iter_cmp T.GSequenceIterCompareFunc,
+		cmp_data T.Gpointer)
 
-	G_sequence_remove func(iter *GSequenceIter)
+	G_sequence_remove func(iter *T.GSequenceIter)
 
-	G_sequence_remove_range func(begin *GSequenceIter,
-		end *GSequenceIter)
+	G_sequence_remove_range func(begin *T.GSequenceIter,
+		end *T.GSequenceIter)
 
-	G_sequence_move_range func(dest *GSequenceIter,
-		begin *GSequenceIter,
-		end *GSequenceIter)
+	G_sequence_move_range func(dest *T.GSequenceIter,
+		begin *T.GSequenceIter,
+		end *T.GSequenceIter)
 
-	G_sequence_search func(seq *GSequence,
-		data Gpointer,
-		cmp_func GCompareDataFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_search func(seq *T.GSequence,
+		data T.Gpointer,
+		cmp_func T.GCompareDataFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_search_iter func(seq *GSequence,
-		data Gpointer,
-		iter_cmp GSequenceIterCompareFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_search_iter func(seq *T.GSequence,
+		data T.Gpointer,
+		iter_cmp T.GSequenceIterCompareFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_lookup func(seq *GSequence,
-		data Gpointer,
-		cmp_func GCompareDataFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_lookup func(seq *T.GSequence,
+		data T.Gpointer,
+		cmp_func T.GCompareDataFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_lookup_iter func(seq *GSequence,
-		data Gpointer,
-		iter_cmp GSequenceIterCompareFunc,
-		cmp_data Gpointer) *GSequenceIter
+	G_sequence_lookup_iter func(seq *T.GSequence,
+		data T.Gpointer,
+		iter_cmp T.GSequenceIterCompareFunc,
+		cmp_data T.Gpointer) *T.GSequenceIter
 
-	G_sequence_get func(iter *GSequenceIter) Gpointer
+	G_sequence_get func(iter *T.GSequenceIter) T.Gpointer
 
-	G_sequence_set func(iter *GSequenceIter,
-		data Gpointer)
+	G_sequence_set func(iter *T.GSequenceIter,
+		data T.Gpointer)
 
-	G_sequence_iter_is_begin func(iter *GSequenceIter) Gboolean
+	G_sequence_iter_is_begin func(iter *T.GSequenceIter) T.Gboolean
 
-	G_sequence_iter_is_end func(iter *GSequenceIter) Gboolean
+	G_sequence_iter_is_end func(iter *T.GSequenceIter) T.Gboolean
 
-	G_sequence_iter_next func(iter *GSequenceIter) *GSequenceIter
+	G_sequence_iter_next func(iter *T.GSequenceIter) *T.GSequenceIter
 
-	G_sequence_iter_prev func(iter *GSequenceIter) *GSequenceIter
+	G_sequence_iter_prev func(iter *T.GSequenceIter) *T.GSequenceIter
 
-	G_sequence_iter_get_position func(iter *GSequenceIter) Gint
+	G_sequence_iter_get_position func(iter *T.GSequenceIter) T.Gint
 
-	G_sequence_iter_move func(iter *GSequenceIter,
-		delta Gint) *GSequenceIter
+	G_sequence_iter_move func(iter *T.GSequenceIter,
+		delta T.Gint) *T.GSequenceIter
 
-	G_sequence_iter_get_sequence func(iter *GSequenceIter) *GSequence
+	G_sequence_iter_get_sequence func(iter *T.GSequenceIter) *T.GSequence
 
-	G_sequence_iter_compare func(a *GSequenceIter,
-		b *GSequenceIter) Gint
+	G_sequence_iter_compare func(a *T.GSequenceIter,
+		b *T.GSequenceIter) T.Gint
 
-	G_sequence_range_get_midpoint func(begin *GSequenceIter,
-		end *GSequenceIter) *GSequenceIter
+	G_sequence_range_get_midpoint func(begin *T.GSequenceIter,
+		end *T.GSequenceIter) *T.GSequenceIter
 
-	G_shell_error_quark func() GQuark
+	G_shell_error_quark func() T.GQuark
 
 	G_shell_quote func(unquoted_string string) string
 
 	G_shell_unquote func(quoted_string string,
-		e **GError) string
+		e **T.GError) string
 
 	G_shell_parse_argv func(command_line string,
-		argcp *Gint,
-		argvp ***Gchar,
-		e **GError) Gboolean
+		argcp *T.Gint,
+		argvp ***T.Gchar,
+		e **T.GError) T.Gboolean
 
-	G_spawn_error_quark func() GQuark
+	G_spawn_error_quark func() T.GQuark
 
 	G_spawn_async func(working_directory string,
-		argv **Gchar,
-		envp **Gchar,
-		flags GSpawnFlags,
-		child_setup GSpawnChildSetupFunc,
-		user_data Gpointer,
-		child_pid *GPid,
-		e **GError) Gboolean
+		argv **T.Gchar,
+		envp **T.Gchar,
+		flags T.GSpawnFlags,
+		child_setup T.GSpawnChildSetupFunc,
+		user_data T.Gpointer,
+		child_pid *T.GPid,
+		e **T.GError) T.Gboolean
 
 	G_spawn_async_with_pipes func(working_directory string,
-		argv **Gchar,
-		envp **Gchar,
-		flags GSpawnFlags,
-		child_setup GSpawnChildSetupFunc,
-		user_data Gpointer,
-		child_pid *GPid,
-		standard_input *Gint,
-		standard_output *Gint,
-		standard_error *Gint,
-		e **GError) Gboolean
+		argv **T.Gchar,
+		envp **T.Gchar,
+		flags T.GSpawnFlags,
+		child_setup T.GSpawnChildSetupFunc,
+		user_data T.Gpointer,
+		child_pid *T.GPid,
+		standard_input *T.Gint,
+		standard_output *T.Gint,
+		standard_error *T.Gint,
+		e **T.GError) T.Gboolean
 
 	G_spawn_sync func(working_directory string,
-		argv **Gchar,
-		envp **Gchar,
-		flags GSpawnFlags,
-		child_setup GSpawnChildSetupFunc,
-		user_data Gpointer,
-		standard_output **Gchar,
-		standard_error **Gchar,
-		exit_status *Gint,
-		e **GError) Gboolean
+		argv **T.Gchar,
+		envp **T.Gchar,
+		flags T.GSpawnFlags,
+		child_setup T.GSpawnChildSetupFunc,
+		user_data T.Gpointer,
+		standard_output **T.Gchar,
+		standard_error **T.Gchar,
+		exit_status *T.Gint,
+		e **T.GError) T.Gboolean
 
 	G_spawn_command_line_sync func(command_line string,
-		standard_output **Gchar,
-		standard_error **Gchar,
-		exit_status *Gint,
-		e **GError) Gboolean
+		standard_output **T.Gchar,
+		standard_error **T.Gchar,
+		exit_status *T.Gint,
+		e **T.GError) T.Gboolean
 
 	G_spawn_command_line_async func(command_line string,
-		e **GError) Gboolean
+		e **T.GError) T.Gboolean
 
-	G_spawn_close_pid func(pid GPid)
+	G_spawn_close_pid func(pid T.GPid)
 
-	G_ascii_tolower func(c Gchar) Gchar
+	G_ascii_tolower func(c T.Gchar) T.Gchar
 
-	G_ascii_toupper func(c Gchar) Gchar
+	G_ascii_toupper func(c T.Gchar) T.Gchar
 
-	G_ascii_digit_value func(c Gchar) Gint
+	G_ascii_digit_value func(c T.Gchar) T.Gint
 
-	G_ascii_xdigit_value func(c Gchar) Gint
+	G_ascii_xdigit_value func(c T.Gchar) T.Gint
 
 	G_strdelimit func(str string,
 		delimiters string,
-		new_delimiter Gchar) string
+		new_delimiter T.Gchar) string
 
 	G_strcanon func(str string,
 		valid_chars string,
-		substitutor Gchar) string
+		substitutor T.Gchar) string
 
-	G_strerror func(errnum Gint) string
+	G_strerror func(errnum T.Gint) string
 
-	G_strsignal func(signum Gint) string
+	G_strsignal func(signum T.Gint) string
 
 	G_strreverse func(str string) string
 
 	G_strlcpy func(dest string,
 		src string,
-		dest_size Gsize) Gsize
+		dest_size T.Gsize) T.Gsize
 
 	G_strlcat func(dest string,
 		src string,
-		dest_size Gsize) Gsize
+		dest_size T.Gsize) T.Gsize
 
 	G_strstr_len func(haystack string,
-		haystack_len Gssize,
+		haystack_len T.Gssize,
 		needle string) string
 
 	G_strrstr func(haystack string,
 		needle string) string
 
 	G_strrstr_len func(haystack string,
-		haystack_len Gssize,
+		haystack_len T.Gssize,
 		needle string) string
 
 	G_str_has_suffix func(str string,
-		suffix string) Gboolean
+		suffix string) T.Gboolean
 
 	G_str_has_prefix func(str string,
-		prefix string) Gboolean
+		prefix string) T.Gboolean
 
 	G_strtod func(nptr string,
-		endptr **Gchar) Gdouble
+		endptr **T.Gchar) T.Gdouble
 
 	G_ascii_strtod func(nptr string,
-		endptr **Gchar) Gdouble
+		endptr **T.Gchar) T.Gdouble
 
 	G_ascii_strtoull func(nptr string,
-		endptr **Gchar,
-		base Guint) Guint64
+		endptr **T.Gchar,
+		base T.Guint) T.Guint64
 
 	G_ascii_strtoll func(nptr string,
-		endptr **Gchar,
-		base Guint) Gint64
+		endptr **T.Gchar,
+		base T.Guint) T.Gint64
 
 	G_ascii_dtostr func(buffer string,
-		buf_len Gint,
-		d Gdouble) string
+		buf_len T.Gint,
+		d T.Gdouble) string
 
 	G_ascii_formatd func(buffer string,
-		buf_len Gint,
+		buf_len T.Gint,
 		format string,
-		d Gdouble) string
+		d T.Gdouble) string
 
 	G_strchug func(str string) string
 
 	G_strchomp func(str string) string
 
 	G_ascii_strcasecmp func(s1 string,
-		s2 string) Gint
+		s2 string) T.Gint
 
 	G_ascii_strncasecmp func(s1 string,
 		s2 string,
-		n Gsize) Gint
+		n T.Gsize) T.Gint
 
 	G_ascii_strdown func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_ascii_strup func(str string,
-		leng Gssize) string
+		leng T.Gssize) string
 
 	G_strcasecmp func(s1 string,
-		s2 string) Gint
+		s2 string) T.Gint
 
 	G_strncasecmp func(s1 string,
 		s2 string,
-		n Guint) Gint
+		n T.Guint) T.Gint
 
 	G_strdown func(str string) string
 
@@ -3522,13 +3456,13 @@ var (
 	G_strdup_printf func(format string, v ...VArg) string
 
 	G_strdup_vprintf func(format string,
-		args Va_list) string
+		args T.Va_list) string
 
 	G_strndup func(str string,
-		n Gsize) string
+		n T.Gsize) string
 
-	G_strnfill func(length Gsize,
-		fill_char Gchar) string
+	G_strnfill func(length T.Gsize,
+		fill_char T.Gchar) string
 
 	G_strconcat func(string1 string, v ...VArg) string
 
@@ -3539,71 +3473,61 @@ var (
 	G_strescape func(source string,
 		exceptions string) string
 
-	G_memdup func(mem Gconstpointer,
-		byte_size Guint) Gpointer
+	G_memdup func(mem T.Gconstpointer,
+		byte_size T.Guint) T.Gpointer
 
 	G_strsplit func(str string,
 		delimiter string,
-		max_tokens Gint) **Gchar
+		max_tokens T.Gint) **T.Gchar
 
 	G_strsplit_set func(str string,
 		delimiters string,
-		max_tokens Gint) **Gchar
+		max_tokens T.Gint) **T.Gchar
 
 	G_strjoinv func(separator string,
-		str_array **Gchar) string
+		str_array **T.Gchar) string
 
-	G_strfreev func(str_array **Gchar)
+	G_strfreev func(str_array **T.Gchar)
 
-	G_strdupv func(str_array **Gchar) **Gchar
+	G_strdupv func(str_array **T.Gchar) **T.Gchar
 
-	G_strv_length func(str_array **Gchar) Guint
+	G_strv_length func(str_array **T.Gchar) T.Guint
 
-	G_stpcpy func(dest string,
-		src string) string
+	G_stpcpy func(dest, src string) string
 
-	G_strip_context func(msgid string,
-		msgval string) string
+	G_strip_context func(msgid, msgval string) string
 
-	G_dgettext func(domain string,
-		msgid string) string
+	G_dgettext func(domain, msgid string) string
 
-	G_dcgettext func(domain string,
-		msgid string,
+	G_dcgettext func(domain, msgid string,
 		category int) string
 
-	G_dngettext func(domain string,
-		msgid string,
-		msgid_plural string,
-		n Gulong) string
+	G_dngettext func(domain, msgid, msgid_plural string,
+		n T.Gulong) string
 
-	G_dpgettext func(domain string,
-		msgctxtid string,
-		msgidoffset Gsize) string
+	G_dpgettext func(domain, msgctxtid string,
+		msgidoffset T.Gsize) string
 
-	G_dpgettext2 func(domain string,
-		context string,
-		msgid string) string
+	G_dpgettext2 func(domain, context, msgid string) string
 
-	G_strcmp0 func(str1 string,
-		str2 string) int
+	G_strcmp0 func(str1, str2 string) int
 
-	G_test_minimized_result func(minimized_quantity Double,
+	G_test_minimized_result func(minimized_quantity T.Double,
 		format string, v ...VArg)
 
-	G_test_maximized_result func(maximized_quantity Double,
+	G_test_maximized_result func(maximized_quantity T.Double,
 		format string, v ...VArg)
 
-	G_test_init func(argc *int, argv ***Char, v ...VArg)
+	G_test_init func(argc *int, argv ***T.Char, v ...VArg)
 
 	G_test_run func() int
 
 	G_test_add_func func(testpath string,
-		test_func GTestFunc)
+		test_func T.GTestFunc)
 
 	G_test_add_data_func func(testpath string,
-		test_data Gconstpointer,
-		test_func GTestDataFunc)
+		test_data T.Gconstpointer,
+		test_func T.GTestDataFunc)
 
 	G_test_message func(format string, v ...VArg)
 
@@ -3613,56 +3537,56 @@ var (
 
 	G_test_timer_start func()
 
-	G_test_timer_elapsed func() Double
+	G_test_timer_elapsed func() T.Double
 
-	G_test_timer_last func() Double
+	G_test_timer_last func() T.Double
 
-	G_test_queue_free func(gfree_pointer Gpointer)
+	G_test_queue_free func(gfree_pointer T.Gpointer)
 
-	G_test_queue_destroy func(destroy_func GDestroyNotify,
-		destroy_data Gpointer)
+	G_test_queue_destroy func(destroy_func T.GDestroyNotify,
+		destroy_data T.Gpointer)
 
-	G_test_trap_fork func(usec_timeout Guint64,
-		test_trap_flags GTestTrapFlags) Gboolean
+	G_test_trap_fork func(usec_timeout T.Guint64,
+		test_trap_flags T.GTestTrapFlags) T.Gboolean
 
-	G_test_trap_has_passed func() Gboolean
+	G_test_trap_has_passed func() T.Gboolean
 
-	G_test_trap_reached_timeout func() Gboolean
+	G_test_trap_reached_timeout func() T.Gboolean
 
-	G_test_rand_int func() Gint32
+	G_test_rand_int func() T.Gint32
 
-	G_test_rand_int_range func(begin Gint32,
-		end Gint32) Gint32
+	G_test_rand_int_range func(begin T.Gint32,
+		end T.Gint32) T.Gint32
 
-	G_test_rand_double func() Double
+	G_test_rand_double func() T.Double
 
-	G_test_rand_double_range func(range_start Double,
-		range_end Double) Double
+	G_test_rand_double_range func(range_start T.Double,
+		range_end T.Double) T.Double
 
 	G_test_create_case func(test_name string,
-		data_size Gsize,
-		test_data Gconstpointer,
-		data_setup GTestFixtureFunc,
-		data_test GTestFixtureFunc,
-		data_teardown GTestFixtureFunc) *GTestCase
+		data_size T.Gsize,
+		test_data T.Gconstpointer,
+		data_setup T.GTestFixtureFunc,
+		data_test T.GTestFixtureFunc,
+		data_teardown T.GTestFixtureFunc) *T.GTestCase
 
-	G_test_create_suite func(suite_name string) *GTestSuite
+	G_test_create_suite func(suite_name string) *T.GTestSuite
 
-	G_test_get_root func() *GTestSuite
+	G_test_get_root func() *T.GTestSuite
 
-	G_test_suite_add func(suite *GTestSuite,
-		test_case *GTestCase)
+	G_test_suite_add func(suite *T.GTestSuite,
+		test_case *T.GTestCase)
 
-	G_test_suite_add_suite func(suite *GTestSuite,
-		nestedsuite *GTestSuite)
+	G_test_suite_add_suite func(suite *T.GTestSuite,
+		nestedsuite *T.GTestSuite)
 
-	G_test_run_suite func(suite *GTestSuite) int
+	G_test_run_suite func(suite *T.GTestSuite) int
 
 	G_test_trap_assertions func(domain string,
 		file string,
 		line int,
 		f string,
-		assertion_flags Guint64,
+		assertion_flags T.Guint64,
 		pattern string)
 
 	G_assertion_message func(domain string,
@@ -3691,163 +3615,161 @@ var (
 		line int,
 		f string,
 		expr string,
-		arg1 Long_double,
+		arg1 T.Long_double,
 		cmp string,
-		arg2 Long_double,
-		numtype Char)
+		arg2 T.Long_double,
+		numtype T.Char)
 
 	G_assertion_message_error func(domain string,
 		file string,
 		line int,
 		f string,
 		expr string,
-		e *GError,
-		error_domain GQuark,
+		e *T.GError,
+		error_domain T.GQuark,
 		error_code int)
 
 	G_test_add_vtable func(testpath string,
-		data_size Gsize,
-		test_data Gconstpointer,
-		data_setup GTestFixtureFunc,
-		data_test GTestFixtureFunc,
-		data_teardown GTestFixtureFunc)
+		data_size T.Gsize,
+		test_data T.Gconstpointer,
+		data_setup T.GTestFixtureFunc,
+		data_test T.GTestFixtureFunc,
+		data_teardown T.GTestFixtureFunc)
 
-	G_test_log_type_name func(log_type GTestLogType) string
+	G_test_log_type_name func(log_type T.GTestLogType) string
 
-	G_test_log_buffer_new func() *GTestLogBuffer
+	G_test_log_buffer_new func() *T.GTestLogBuffer
 
-	G_test_log_buffer_free func(tbuffer *GTestLogBuffer)
+	G_test_log_buffer_free func(tbuffer *T.GTestLogBuffer)
 
-	G_test_log_buffer_push func(tbuffer *GTestLogBuffer,
-		n_bytes Guint,
-		bytes *Guint8)
+	G_test_log_buffer_push func(tbuffer *T.GTestLogBuffer,
+		n_bytes T.Guint,
+		bytes *T.Guint8)
 
-	G_test_log_buffer_pop func(tbuffer *GTestLogBuffer) *GTestLogMsg
+	G_test_log_buffer_pop func(tbuffer *T.GTestLogBuffer) *T.GTestLogMsg
 
-	G_test_log_msg_free func(tmsg *GTestLogMsg)
+	G_test_log_msg_free func(tmsg *T.GTestLogMsg)
 
-	G_test_log_set_fatal_handler func(log_func GTestLogFatalFunc,
-		user_data Gpointer)
+	G_test_log_set_fatal_handler func(log_func T.GTestLogFatalFunc,
+		user_data T.Gpointer)
 
-	G_thread_pool_new func(f GFunc,
-		user_data Gpointer,
-		max_threads Gint,
-		exclusive Gboolean,
-		e **GError) *GThreadPool
+	G_thread_pool_new func(f T.GFunc,
+		user_data T.Gpointer,
+		max_threads T.Gint,
+		exclusive T.Gboolean,
+		e **T.GError) *T.GThreadPool
 
-	G_thread_pool_push func(pool *GThreadPool,
-		data Gpointer,
-		e **GError)
+	G_thread_pool_push func(pool *T.GThreadPool,
+		data T.Gpointer,
+		e **T.GError)
 
-	G_thread_pool_set_max_threads func(pool *GThreadPool,
-		max_threads Gint,
-		e **GError)
+	G_thread_pool_set_max_threads func(pool *T.GThreadPool,
+		max_threads T.Gint,
+		e **T.GError)
 
-	G_thread_pool_get_max_threads func(pool *GThreadPool) Gint
+	G_thread_pool_get_max_threads func(pool *T.GThreadPool) T.Gint
 
-	G_thread_pool_get_num_threads func(pool *GThreadPool) Guint
+	G_thread_pool_get_num_threads func(pool *T.GThreadPool) T.Guint
 
-	G_thread_pool_unprocessed func(pool *GThreadPool) Guint
+	G_thread_pool_unprocessed func(pool *T.GThreadPool) T.Guint
 
-	G_thread_pool_free func(pool *GThreadPool,
-		immediate Gboolean,
-		wait_ Gboolean)
+	G_thread_pool_free func(pool *T.GThreadPool,
+		immediate T.Gboolean,
+		wait T.Gboolean)
 
-	G_thread_pool_set_max_unused_threads func(max_threads Gint)
+	G_thread_pool_set_max_unused_threads func(max_threads T.Gint)
 
-	G_thread_pool_get_max_unused_threads func() Gint
+	G_thread_pool_get_max_unused_threads func() T.Gint
 
-	G_thread_pool_get_num_unused_threads func() Guint
+	G_thread_pool_get_num_unused_threads func() T.Guint
 
 	G_thread_pool_stop_unused_threads func()
 
-	G_thread_pool_set_sort_function func(pool *GThreadPool,
-		f GCompareDataFunc,
-		user_data Gpointer)
+	G_thread_pool_set_sort_function func(pool *T.GThreadPool,
+		f T.GCompareDataFunc,
+		user_data T.Gpointer)
 
-	G_thread_pool_set_max_idle_time func(interval Guint)
+	G_thread_pool_set_max_idle_time func(interval T.Guint)
 
-	G_thread_pool_get_max_idle_time func() Guint
+	G_thread_pool_get_max_idle_time func() T.Guint
 
-	G_timer_new func() *GTimer
+	G_timer_new func() *T.GTimer
 
-	G_timer_destroy func(timer *GTimer)
+	G_timer_destroy func(timer *T.GTimer)
 
-	G_timer_start func(timer *GTimer)
+	G_timer_start func(timer *T.GTimer)
 
-	G_timer_stop func(timer *GTimer)
+	G_timer_stop func(timer *T.GTimer)
 
-	G_timer_reset func(timer *GTimer)
+	G_timer_reset func(timer *T.GTimer)
 
-	G_timer_continue func(timer *GTimer)
+	G_timer_continue func(timer *T.GTimer)
 
-	G_timer_elapsed func(timer *GTimer,
-		microseconds *Gulong) Gdouble
+	G_timer_elapsed func(timer *T.GTimer,
+		microseconds *T.Gulong) T.Gdouble
 
-	G_usleep func(microseconds Gulong)
+	G_usleep func(microseconds T.Gulong)
 
-	G_time_val_add func(time_ *GTimeVal,
-		microseconds Glong)
+	G_time_val_add func(time *T.GTimeVal,
+		microseconds T.Glong)
 
 	G_time_val_from_iso8601 func(iso_date string,
-		time_ *GTimeVal) Gboolean
+		time *T.GTimeVal) T.Gboolean
 
-	G_time_val_to_iso8601 func(time_ *GTimeVal) string
+	G_time_val_to_iso8601 func(time *T.GTimeVal) string
 
-	G_tree_new func(key_compare_func GCompareFunc) *GTree
+	G_tree_new func(key_compare_func T.GCompareFunc) *T.GTree
 
-	G_tree_new_with_data func(key_compare_func GCompareDataFunc,
-		key_compare_data Gpointer) *GTree
+	G_tree_new_with_data func(key_compare_func T.GCompareDataFunc,
+		key_compare_data T.Gpointer) *T.GTree
 
-	G_tree_new_full func(key_compare_func GCompareDataFunc,
-		key_compare_data Gpointer,
-		key_destroy_func GDestroyNotify,
-		value_destroy_func GDestroyNotify) *GTree
+	G_tree_new_full func(key_compare_func T.GCompareDataFunc,
+		key_compare_data T.Gpointer,
+		key_destroy_func T.GDestroyNotify,
+		value_destroy_func T.GDestroyNotify) *T.GTree
 
-	G_tree_ref func(tree *GTree) *GTree
+	G_tree_ref func(tree *T.GTree) *T.GTree
 
-	G_tree_unref func(tree *GTree)
+	G_tree_unref func(tree *T.GTree)
 
-	G_tree_destroy func(tree *GTree)
+	G_tree_destroy func(tree *T.GTree)
 
-	G_tree_insert func(tree *GTree,
-		key Gpointer,
-		value Gpointer)
+	G_tree_insert func(tree *T.GTree,
+		key T.Gpointer, value T.Gpointer)
 
-	G_tree_replace func(tree *GTree,
-		key Gpointer,
-		value Gpointer)
+	G_tree_replace func(tree *T.GTree,
+		key T.Gpointer, value T.Gpointer)
 
-	G_tree_remove func(tree *GTree,
-		key Gconstpointer) Gboolean
+	G_tree_remove func(tree *T.GTree,
+		key T.Gconstpointer) T.Gboolean
 
-	G_tree_steal func(tree *GTree,
-		key Gconstpointer) Gboolean
+	G_tree_steal func(tree *T.GTree,
+		key T.Gconstpointer) T.Gboolean
 
-	G_tree_lookup func(tree *GTree,
-		key Gconstpointer) Gpointer
+	G_tree_lookup func(tree *T.GTree,
+		key T.Gconstpointer) T.Gpointer
 
-	G_tree_lookup_extended func(tree *GTree,
-		lookup_key Gconstpointer,
-		orig_key *Gpointer,
-		value *Gpointer) Gboolean
+	G_tree_lookup_extended func(tree *T.GTree,
+		lookup_key T.Gconstpointer,
+		orig_key *T.Gpointer,
+		value *T.Gpointer) T.Gboolean
 
-	G_tree_foreach func(tree *GTree,
-		f GTraverseFunc,
-		user_data Gpointer)
+	G_tree_foreach func(tree *T.GTree,
+		f T.GTraverseFunc,
+		user_data T.Gpointer)
 
-	G_tree_traverse func(tree *GTree,
-		traverse_func GTraverseFunc,
-		traverse_type GTraverseType,
-		user_data Gpointer)
+	G_tree_traverse func(tree *T.GTree,
+		traverse_func T.GTraverseFunc,
+		traverse_type T.GTraverseType,
+		user_data T.Gpointer)
 
-	G_tree_search func(tree *GTree,
-		search_func GCompareFunc,
-		user_data Gconstpointer) Gpointer
+	G_tree_search func(tree *T.GTree,
+		search_func T.GCompareFunc,
+		user_data T.Gconstpointer) T.Gpointer
 
-	G_tree_height func(tree *GTree) Gint
+	G_tree_height func(tree *T.GTree) T.Gint
 
-	G_tree_nnodes func(tree *GTree) Gint
+	G_tree_nnodes func(tree *T.GTree) T.Gint
 
 	G_uri_unescape_string func(escaped_string string,
 		illegal_characters string) string
@@ -3860,340 +3782,337 @@ var (
 
 	G_uri_escape_string func(unescaped string,
 		reserved_chars_allowed string,
-		allow_utf8 Gboolean) string
+		allow_utf8 T.Gboolean) string
 
 	G_variant_type_string_is_valid func(
-		type_string string) Gboolean
+		type_string string) T.Gboolean
 
 	G_variant_type_string_scan func(str string,
 		limit string,
-		endptr **Gchar) Gboolean
+		endptr **T.Gchar) T.Gboolean
 
-	G_variant_type_free func(typ *GVariantType)
+	G_variant_type_free func(typ *T.GVariantType)
 
-	G_variant_type_copy func(typ *GVariantType) *GVariantType
+	G_variant_type_copy func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_new func(type_string string) *GVariantType
+	G_variant_type_new func(type_string string) *T.GVariantType
 
-	G_variant_type_get_string_length func(typ *GVariantType) Gsize
+	G_variant_type_get_string_length func(typ *T.GVariantType) T.Gsize
 
-	G_variant_type_peek_string func(typ *GVariantType) string
+	G_variant_type_peek_string func(typ *T.GVariantType) string
 
-	G_variant_type_dup_string func(typ *GVariantType) string
+	G_variant_type_dup_string func(typ *T.GVariantType) string
 
-	G_variant_type_is_definite func(typ *GVariantType) Gboolean
+	G_variant_type_is_definite func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_container func(typ *GVariantType) Gboolean
+	G_variant_type_is_container func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_basic func(typ *GVariantType) Gboolean
+	G_variant_type_is_basic func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_maybe func(typ *GVariantType) Gboolean
+	G_variant_type_is_maybe func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_array func(typ *GVariantType) Gboolean
+	G_variant_type_is_array func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_tuple func(typ *GVariantType) Gboolean
+	G_variant_type_is_tuple func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_dict_entry func(typ *GVariantType) Gboolean
+	G_variant_type_is_dict_entry func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_is_variant func(typ *GVariantType) Gboolean
+	G_variant_type_is_variant func(typ *T.GVariantType) T.Gboolean
 
-	G_variant_type_hash func(typ Gconstpointer) Guint
+	G_variant_type_hash func(typ T.Gconstpointer) T.Guint
 
-	G_variant_type_equal func(type1 Gconstpointer,
-		type2 Gconstpointer) Gboolean
+	G_variant_type_equal func(type1 T.Gconstpointer,
+		type2 T.Gconstpointer) T.Gboolean
 
-	G_variant_type_is_subtype_of func(typ *GVariantType,
-		supertyp *GVariantType) Gboolean
+	G_variant_type_is_subtype_of func(typ *T.GVariantType,
+		supertyp *T.GVariantType) T.Gboolean
 
-	G_variant_type_element func(typ *GVariantType) *GVariantType
+	G_variant_type_element func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_first func(typ *GVariantType) *GVariantType
+	G_variant_type_first func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_next func(typ *GVariantType) *GVariantType
+	G_variant_type_next func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_n_items func(typ *GVariantType) Gsize
+	G_variant_type_n_items func(typ *T.GVariantType) T.Gsize
 
-	G_variant_type_key func(typ *GVariantType) *GVariantType
+	G_variant_type_key func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_value func(typ *GVariantType) *GVariantType
+	G_variant_type_value func(typ *T.GVariantType) *T.GVariantType
 
-	G_variant_type_new_array func(element *GVariantType) *GVariantType
+	G_variant_type_new_array func(element *T.GVariantType) *T.GVariantType
 
-	G_variant_type_new_maybe func(element *GVariantType) *GVariantType
+	G_variant_type_new_maybe func(element *T.GVariantType) *T.GVariantType
 
-	G_variant_type_new_tuple func(items **GVariantType,
-		length Gint) *GVariantType
+	G_variant_type_new_tuple func(items **T.GVariantType,
+		length T.Gint) *T.GVariantType
 
-	G_variant_type_new_dict_entry func(key *GVariantType,
-		value *GVariantType) *GVariantType
+	G_variant_type_new_dict_entry func(key *T.GVariantType,
+		value *T.GVariantType) *T.GVariantType
 
-	G_variant_type_checked_ func(string) *GVariantType
+	G_variant_type_checked func(string) *T.GVariantType
 
-	G_variant_unref func(value *GVariant)
+	G_variant_unref func(value *T.GVariant)
 
-	G_variant_ref func(value *GVariant) *GVariant
+	G_variant_ref func(value *T.GVariant) *T.GVariant
 
-	G_variant_ref_sink func(value *GVariant) *GVariant
+	G_variant_ref_sink func(value *T.GVariant) *T.GVariant
 
-	G_variant_is_floating func(value *GVariant) Gboolean
+	G_variant_is_floating func(value *T.GVariant) T.Gboolean
 
-	G_variant_get_type func(value *GVariant) *GVariantType
+	G_variant_get_type func(value *T.GVariant) *T.GVariantType
 
-	G_variant_get_type_string func(value *GVariant) string
+	G_variant_get_type_string func(value *T.GVariant) string
 
-	G_variant_is_of_type func(value *GVariant,
-		typ *GVariantType) Gboolean
+	G_variant_is_of_type func(value *T.GVariant,
+		typ *T.GVariantType) T.Gboolean
 
-	G_variant_is_container func(value *GVariant) Gboolean
+	G_variant_is_container func(value *T.GVariant) T.Gboolean
 
-	G_variant_classify func(value *GVariant) GVariantClass
+	G_variant_classify func(value *T.GVariant) T.GVariantClass
 
-	G_variant_new_boolean func(value Gboolean) *GVariant
+	G_variant_new_boolean func(value T.Gboolean) *T.GVariant
 
-	G_variant_new_byte func(value Guchar) *GVariant
+	G_variant_new_byte func(value T.Guchar) *T.GVariant
 
-	G_variant_new_int16 func(value Gint16) *GVariant
+	G_variant_new_int16 func(value T.Gint16) *T.GVariant
 
-	G_variant_new_uint16 func(value Guint16) *GVariant
+	G_variant_new_uint16 func(value T.Guint16) *T.GVariant
 
-	G_variant_new_int32 func(value Gint32) *GVariant
+	G_variant_new_int32 func(value T.Gint32) *T.GVariant
 
-	G_variant_new_uint32 func(value Guint32) *GVariant
+	G_variant_new_uint32 func(value T.Guint32) *T.GVariant
 
-	G_variant_new_int64 func(value Gint64) *GVariant
+	G_variant_new_int64 func(value T.Gint64) *T.GVariant
 
-	G_variant_new_uint64 func(value Guint64) *GVariant
+	G_variant_new_uint64 func(value T.Guint64) *T.GVariant
 
-	G_variant_new_handle func(value Gint32) *GVariant
+	G_variant_new_handle func(value T.Gint32) *T.GVariant
 
-	G_variant_new_double func(value Gdouble) *GVariant
+	G_variant_new_double func(value T.Gdouble) *T.GVariant
 
-	G_variant_new_string func(str string) *GVariant
+	G_variant_new_string func(str string) *T.GVariant
 
-	G_variant_new_object_path func(object_path string) *GVariant
+	G_variant_new_object_path func(object_path string) *T.GVariant
 
-	G_variant_is_object_path func(str string) Gboolean
+	G_variant_is_object_path func(str string) T.Gboolean
 
-	G_variant_new_signature func(signature string) *GVariant
+	G_variant_new_signature func(signature string) *T.GVariant
 
-	G_variant_is_signature func(str string) Gboolean
+	G_variant_is_signature func(str string) T.Gboolean
 
-	G_variant_new_variant func(value *GVariant) *GVariant
+	G_variant_new_variant func(value *T.GVariant) *T.GVariant
 
-	G_variant_new_strv func(strv **Gchar,
-		length Gssize) *GVariant
+	G_variant_new_strv func(strv **T.Gchar,
+		length T.Gssize) *T.GVariant
 
-	G_variant_new_bytestring func(str string) *GVariant
+	G_variant_new_bytestring func(str string) *T.GVariant
 
-	G_variant_new_bytestring_array func(strv **Gchar,
-		length Gssize) *GVariant
+	G_variant_new_bytestring_array func(strv **T.Gchar,
+		length T.Gssize) *T.GVariant
 
-	G_variant_get_boolean func(value *GVariant) Gboolean
+	G_variant_get_boolean func(value *T.GVariant) T.Gboolean
 
-	G_variant_get_byte func(value *GVariant) Guchar
+	G_variant_get_byte func(value *T.GVariant) T.Guchar
 
-	G_variant_get_int16 func(value *GVariant) Gint16
+	G_variant_get_int16 func(value *T.GVariant) T.Gint16
 
-	G_variant_get_uint16 func(value *GVariant) Guint16
+	G_variant_get_uint16 func(value *T.GVariant) T.Guint16
 
-	G_variant_get_int32 func(value *GVariant) Gint32
+	G_variant_get_int32 func(value *T.GVariant) T.Gint32
 
-	G_variant_get_uint32 func(value *GVariant) Guint32
+	G_variant_get_uint32 func(value *T.GVariant) T.Guint32
 
-	G_variant_get_int64 func(value *GVariant) Gint64
+	G_variant_get_int64 func(value *T.GVariant) T.Gint64
 
-	G_variant_get_uint64 func(value *GVariant) Guint64
+	G_variant_get_uint64 func(value *T.GVariant) T.Guint64
 
-	G_variant_get_handle func(value *GVariant) Gint32
+	G_variant_get_handle func(value *T.GVariant) T.Gint32
 
-	G_variant_get_double func(value *GVariant) Gdouble
+	G_variant_get_double func(value *T.GVariant) T.Gdouble
 
-	G_variant_get_variant func(value *GVariant) *GVariant
+	G_variant_get_variant func(value *T.GVariant) *T.GVariant
 
-	G_variant_get_string func(value *GVariant,
-		length *Gsize) string
+	G_variant_get_string func(value *T.GVariant,
+		length *T.Gsize) string
 
-	G_variant_dup_string func(value *GVariant,
-		length *Gsize) string
+	G_variant_dup_string func(value *T.GVariant,
+		length *T.Gsize) string
 
-	G_variant_get_strv func(value *GVariant,
-		length *Gsize) **Gchar
+	G_variant_get_strv func(value *T.GVariant,
+		length *T.Gsize) **T.Gchar
 
-	G_variant_dup_strv func(value *GVariant,
-		length *Gsize) **Gchar
+	G_variant_dup_strv func(value *T.GVariant,
+		length *T.Gsize) **T.Gchar
 
-	G_variant_get_bytestring func(value *GVariant) string
+	G_variant_get_bytestring func(value *T.GVariant) string
 
-	G_variant_dup_bytestring func(value *GVariant,
-		length *Gsize) string
+	G_variant_dup_bytestring func(value *T.GVariant,
+		length *T.Gsize) string
 
-	G_variant_get_bytestring_array func(value *GVariant,
-		length *Gsize) **Gchar
+	G_variant_get_bytestring_array func(value *T.GVariant,
+		length *T.Gsize) **T.Gchar
 
-	G_variant_dup_bytestring_array func(value *GVariant,
-		length *Gsize) **Gchar
+	G_variant_dup_bytestring_array func(value *T.GVariant,
+		length *T.Gsize) **T.Gchar
 
-	G_variant_new_maybe func(child_type *GVariantType,
-		child *GVariant) *GVariant
+	G_variant_new_maybe func(child_type *T.GVariantType,
+		child *T.GVariant) *T.GVariant
 
-	G_variant_new_array func(child_type *GVariantType,
-		children **GVariant,
-		n_children Gsize) *GVariant
+	G_variant_new_array func(child_type *T.GVariantType,
+		children **T.GVariant,
+		n_children T.Gsize) *T.GVariant
 
-	G_variant_new_tuple func(children **GVariant,
-		n_children Gsize) *GVariant
+	G_variant_new_tuple func(children **T.GVariant,
+		n_children T.Gsize) *T.GVariant
 
-	G_variant_new_dict_entry func(key *GVariant,
-		value *GVariant) *GVariant
+	G_variant_new_dict_entry func(key *T.GVariant,
+		value *T.GVariant) *T.GVariant
 
-	G_variant_get_maybe func(value *GVariant) *GVariant
+	G_variant_get_maybe func(value *T.GVariant) *T.GVariant
 
-	G_variant_n_children func(value *GVariant) Gsize
+	G_variant_n_children func(value *T.GVariant) T.Gsize
 
-	G_variant_get_child func(value *GVariant, index_ Gsize,
+	G_variant_get_child func(value *T.GVariant, index T.Gsize,
 		format_string string, v ...VArg)
 
-	G_variant_get_child_value func(value *GVariant,
-		index_ Gsize) *GVariant
+	G_variant_get_child_value func(value *T.GVariant,
+		index T.Gsize) *T.GVariant
 
-	G_variant_lookup func(dictionary *GVariant, key string,
-		format_string string, v ...VArg) Gboolean
+	G_variant_lookup func(dictionary *T.GVariant, key string,
+		format_string string, v ...VArg) T.Gboolean
 
-	G_variant_lookup_value func(dictionary *GVariant,
+	G_variant_lookup_value func(dictionary *T.GVariant,
 		key string,
-		expected_type *GVariantType) *GVariant
+		expected_type *T.GVariantType) *T.GVariant
 
-	G_variant_get_fixed_array func(value *GVariant,
-		n_elements *Gsize,
-		element_size Gsize) Gconstpointer
+	G_variant_get_fixed_array func(value *T.GVariant,
+		n_elements *T.Gsize,
+		element_size T.Gsize) T.Gconstpointer
 
-	G_variant_get_size func(value *GVariant) Gsize
+	G_variant_get_size func(value *T.GVariant) T.Gsize
 
-	G_variant_get_data func(value *GVariant) Gconstpointer
+	G_variant_get_data func(value *T.GVariant) T.Gconstpointer
 
-	G_variant_store func(value *GVariant,
-		data Gpointer)
+	G_variant_store func(value *T.GVariant,
+		data T.Gpointer)
 
-	G_variant_print func(value *GVariant,
-		type_annotate Gboolean) string
+	G_variant_print func(value *T.GVariant,
+		type_annotate T.Gboolean) string
 
-	G_variant_print_string func(value *GVariant,
-		str *GString,
-		type_annotate Gboolean) *GString
+	G_variant_print_string func(value *T.GVariant,
+		str *T.GString,
+		type_annotate T.Gboolean) *T.GString
 
-	G_variant_hash func(value Gconstpointer) Guint
+	G_variant_hash func(value T.Gconstpointer) T.Guint
 
-	G_variant_equal func(one Gconstpointer,
-		two Gconstpointer) Gboolean
+	G_variant_equal func(one T.Gconstpointer,
+		two T.Gconstpointer) T.Gboolean
 
-	G_variant_get_normal_form func(value *GVariant) *GVariant
+	G_variant_get_normal_form func(value *T.GVariant) *T.GVariant
 
-	G_variant_is_normal_form func(value *GVariant) Gboolean
+	G_variant_is_normal_form func(value *T.GVariant) T.Gboolean
 
-	G_variant_byteswap func(value *GVariant) *GVariant
+	G_variant_byteswap func(value *T.GVariant) *T.GVariant
 
-	G_variant_new_from_data func(typ *GVariantType,
-		data Gconstpointer,
-		size Gsize,
-		trusted Gboolean,
-		notify GDestroyNotify,
-		user_data Gpointer) *GVariant
+	G_variant_new_from_data func(typ *T.GVariantType,
+		data T.Gconstpointer,
+		size T.Gsize,
+		trusted T.Gboolean,
+		notify T.GDestroyNotify,
+		user_data T.Gpointer) *T.GVariant
 
-	G_variant_iter_new func(value *GVariant) *GVariantIter
+	G_variant_iter_new func(value *T.GVariant) *T.GVariantIter
 
-	G_variant_iter_init func(iter *GVariantIter,
-		value *GVariant) Gsize
+	G_variant_iter_init func(iter *T.GVariantIter,
+		value *T.GVariant) T.Gsize
 
-	G_variant_iter_copy func(iter *GVariantIter) *GVariantIter
+	G_variant_iter_copy func(iter *T.GVariantIter) *T.GVariantIter
 
-	G_variant_iter_n_children func(iter *GVariantIter) Gsize
+	G_variant_iter_n_children func(iter *T.GVariantIter) T.Gsize
 
-	G_variant_iter_free func(iter *GVariantIter)
+	G_variant_iter_free func(iter *T.GVariantIter)
 
-	G_variant_iter_next_value func(iter *GVariantIter) *GVariant
+	G_variant_iter_next_value func(iter *T.GVariantIter) *T.GVariant
 
-	G_variant_iter_next func(iter *GVariantIter,
-		format_string string, v ...VArg) Gboolean
+	G_variant_iter_next func(iter *T.GVariantIter,
+		format_string string, v ...VArg) T.Gboolean
 
-	G_variant_iter_loop func(iter *GVariantIter,
-		format_string string, v ...VArg) Gboolean
+	G_variant_iter_loop func(iter *T.GVariantIter,
+		format_string string, v ...VArg) T.Gboolean
 
-	G_variant_parser_get_error_quark func() GQuark
+	G_variant_parser_get_error_quark func() T.GQuark
 
-	G_variant_builder_new func(typ *GVariantType) *GVariantBuilder
+	G_variant_builder_new func(typ *T.GVariantType) *T.GVariantBuilder
 
-	G_variant_builder_unref func(builder *GVariantBuilder)
+	G_variant_builder_unref func(builder *T.GVariantBuilder)
 
-	G_variant_builder_ref func(builder *GVariantBuilder) *GVariantBuilder
+	G_variant_builder_ref func(builder *T.GVariantBuilder) *T.GVariantBuilder
 
-	G_variant_builder_init func(builder *GVariantBuilder,
-		typ *GVariantType)
+	G_variant_builder_init func(builder *T.GVariantBuilder,
+		typ *T.GVariantType)
 
-	G_variant_builder_end func(builder *GVariantBuilder) *GVariant
+	G_variant_builder_end func(builder *T.GVariantBuilder) *T.GVariant
 
-	G_variant_builder_clear func(builder *GVariantBuilder)
+	G_variant_builder_clear func(builder *T.GVariantBuilder)
 
-	G_variant_builder_open func(builder *GVariantBuilder,
-		typ *GVariantType)
+	G_variant_builder_open func(
+		builder *T.GVariantBuilder, typ *T.GVariantType)
 
-	G_variant_builder_close func(builder *GVariantBuilder)
+	G_variant_builder_close func(builder *T.GVariantBuilder)
 
-	G_variant_builder_add_value func(builder *GVariantBuilder,
-		value *GVariant)
+	G_variant_builder_add_value func(
+		builder *T.GVariantBuilder, value *T.GVariant)
 
-	G_variant_builder_add func(builder *GVariantBuilder,
+	G_variant_builder_add func(builder *T.GVariantBuilder,
 		format_string string, v ...VArg)
 
-	G_variant_builder_add_parsed func(builder *GVariantBuilder,
-		format string, v ...VArg)
+	G_variant_builder_add_parsed func(
+		builder *T.GVariantBuilder, format string, v ...VArg)
 
-	G_variant_new func(format_string string, v ...VArg) *GVariant
+	G_variant_new func(
+		format_string string, v ...VArg) *T.GVariant
 
-	G_variant_get func(value *GVariant, format_string string,
-		v ...VArg)
+	G_variant_get func(
+		value *T.GVariant, format_string string, v ...VArg)
 
 	G_variant_new_va func(format_string string,
-		endptr **Gchar,
-		app *Va_list) *GVariant
+		endptr **T.Gchar, app *T.Va_list) *T.GVariant
 
-	G_variant_get_va func(value *GVariant,
-		format_string string,
-		endptr **Gchar,
-		app *Va_list)
+	G_variant_get_va func(value *T.GVariant, format_string string,
+		endptr **T.Gchar, app *T.Va_list)
 
-	G_variant_parse func(typ *GVariantType,
-		text string,
-		limit string,
-		endptr **Gchar,
-		err **GError) *GVariant
+	G_variant_parse func(typ *T.GVariantType, text, limit string,
+		endptr **T.Gchar, err **T.GError) *T.GVariant
 
-	G_variant_new_parsed func(format string, v ...VArg) *GVariant
+	G_variant_new_parsed func(
+		format string, v ...VArg) *T.GVariant
 
 	G_variant_new_parsed_va func(format string,
-		app *Va_list) *GVariant
+		app *T.Va_list) *T.GVariant
 
-	G_variant_compare func(one Gconstpointer,
-		two Gconstpointer) Gint
+	G_variant_compare func(one T.Gconstpointer,
+		two T.Gconstpointer) T.Gint
 
-	G_win32_ftruncate func(f Gint,
-		size Guint) Gint
+	G_win32_ftruncate func(f T.Gint,
+		size T.Guint) T.Gint
 
 	G_win32_getlocale func() string
 
-	G_win32_error_message func(err Gint) string
+	G_win32_error_message func(err T.Gint) string
 
-	G_win32_get_package_installation_directory func(pkg string,
-		dll_name string) string
+	G_win32_get_package_installation_directory func(
+		pkg, dll_name string) string
 
-	G_win32_get_package_installation_subdirectory func(pkg string,
-		dll_name string,
-		subdir string) string
+	G_win32_get_package_installation_subdirectory func(
+		pkg, dll_name, subdir string) string
 
-	G_win32_get_package_installation_directory_of_module func(hmodule Gpointer) string
+	G_win32_get_package_installation_directory_of_module func(
+		hmodule T.Gpointer) string
 
-	G_win32_get_windows_version func() Guint
+	G_win32_get_windows_version func() T.Guint
 
-	G_win32_locale_filename_from_utf8 func(utf8filename string) string
+	G_win32_locale_filename_from_utf8 func(
+		utf8filename string) string
 
 	G_access func(filename string, mode int) int
 
@@ -4219,87 +4138,78 @@ var (
 
 	G_rmdir func(filename string) int
 
-	G_fopen func(filename string, mode string) *FILE
+	G_fopen func(filename string, mode string) *T.FILE
 
 	G_freopen func(
-		filename string, mode string, stream *FILE) *FILE
+		filename string, mode string, stream *T.FILE) *T.FILE
 
-	G_utime func(filename string, utb *Utimbuf) int
+	G_utime func(filename string, utb *T.Utimbuf) int
 
 	G_find_program_in_path func(program string) string
 
-	G_printf func(format string, v ...VArg) Gint
+	G_printf func(format string, v ...VArg) T.Gint
 
-	G_fprintf func(file *FILE, format string, v ...VArg) Gint
+	G_fprintf func(file *T.FILE, format string, v ...VArg) T.Gint
 
-	G_sprintf func(str string, format string, v ...VArg) Gint
+	G_sprintf func(str string, format string, v ...VArg) T.Gint
 
-	G_vprintf func(format string, args Va_list) Gint
+	G_vprintf func(format string, args T.Va_list) T.Gint
 
 	G_vfprintf func(
-		file *FILE, format string, args Va_list) Gint
+		file *T.FILE, format string, args T.Va_list) T.Gint
 
 	G_vsprintf func(
-		str string, format string, args Va_list) Gint
+		str string, format string, args T.Va_list) T.Gint
 
 	G_vasprintf func(
-		string **Gchar, format string, args Va_list) Gint
+		string **T.Gchar, format string, args T.Va_list) T.Gint
 
-	G_get_user_special_dir func(directory GUserDirectory) string
+	G_get_user_special_dir func(directory T.GUserDirectory) string
 
-	G_key_file_error_quark func() GQuark
+	G_key_file_error_quark func() T.GQuark
 
 	G_markup_collect_attributes func(element_name string,
-		attribute_names **Gchar, attribute_values **Gchar,
-		error **GError, first_type GMarkupCollectType,
-		first_attr string, v ...VArg) Gboolean
+		attribute_names **T.Gchar, attribute_values **T.Gchar,
+		error **T.GError, first_type T.GMarkupCollectType,
+		first_attr string, v ...VArg) T.Gboolean
 
-	G_markup_error_quark func() GQuark
+	G_markup_error_quark func() T.GQuark
 
-	G_mem_set_vtable func(vtable *GMemVTable)
+	G_mem_set_vtable func(vtable *T.GMemVTable)
 
-	G_option_error_quark func() GQuark
+	G_option_error_quark func() T.GQuark
 
 	G_printf_string_upper_bound func(
-		format string,
-		args Va_list) Gsize
+		format string, args T.Va_list) T.Gsize
 
-	G_regex_error_quark func() GQuark
+	G_regex_error_quark func() T.GQuark
 
 	G_static_private_free func(
-		private_key *GStaticPrivate)
+		private_key *T.GStaticPrivate)
 
 	G_static_private_get func(
-		private_key *GStaticPrivate) Gpointer
+		private_key *T.GStaticPrivate) T.Gpointer
 
-	G_static_private_init func(
-		private_key *GStaticPrivate)
+	G_static_private_init func(private_key *T.GStaticPrivate)
 
-	G_static_private_set func(
-		private_key *GStaticPrivate,
-		data Gpointer,
-		notify GDestroyNotify)
+	G_static_private_set func(private_key *T.GStaticPrivate,
+		data T.Gpointer, notify T.GDestroyNotify)
 
 	G_string_chunk_insert_const func(
-		chunk *GStringChunk,
-		str string) string
+		chunk *T.GStringChunk, str string) string
 
-	G_string_down func(str *GString) *GString
+	G_string_down func(str *T.GString) *T.GString
 
-	G_string_up func(str *GString) *GString
+	G_string_up func(str *T.GString) *T.GString
 
 	G_trash_stack_push func(
-		stack_p **GTrashStack,
-		data_p Gpointer)
+		stack_p **T.GTrashStack, data_p T.Gpointer)
 
-	G_trash_stack_pop func(
-		stack_p **GTrashStack) Gpointer
+	G_trash_stack_pop func(stack_p **T.GTrashStack) T.Gpointer
 
-	G_trash_stack_peek func(
-		stack_p **GTrashStack) Gpointer
+	G_trash_stack_peek func(stack_p **T.GTrashStack) T.Gpointer
 
-	G_trash_stack_height func(
-		stack_p **GTrashStack) Guint
+	G_trash_stack_height func(stack_p **T.GTrashStack) T.Guint
 )
 
 var dll = "libglib-2.0-0.dll"
@@ -5700,7 +5610,7 @@ var apiList = Apis{
 	// Undocumented {"g_variant_serialiser_needed_size", &G_variant_serialiser_needed_size},
 	// Undocumented {"g_variant_serialiser_serialise", &G_variant_serialiser_serialise},
 	{"g_variant_store", &G_variant_store},
-	{"g_variant_type_checked_", &G_variant_type_checked_},
+	{"g_variant_type_checked_", &G_variant_type_checked},
 	{"g_variant_type_copy", &G_variant_type_copy},
 	{"g_variant_type_dup_string", &G_variant_type_dup_string},
 	{"g_variant_type_element", &G_variant_type_element},

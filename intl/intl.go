@@ -7,7 +7,7 @@ package intl
 
 import (
 	. "github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -24,13 +24,13 @@ var (
 		domainname string, msgid string, category int) string
 
 	Libintl_ngettext func(
-		msgid1 string, msgid2 string, n Unsigned_long) string
+		msgid1 string, msgid2 string, n T.Unsigned_long) string
 
 	Libintl_dngettext func(domainname string,
-		msgid1 string, msgid2 string, n Unsigned_long) string
+		msgid1 string, msgid2 string, n T.Unsigned_long) string
 
 	Libintl_dcngettext func(domainname string, msgid1 string,
-		msgid2 string, n Unsigned_long, category int) string
+		msgid2 string, n T.Unsigned_long, category int) string
 
 	Libintl_textdomain func(domainname string) string
 
@@ -40,21 +40,21 @@ var (
 	Libintl_bind_textdomain_codeset func(
 		domainname string, codeset string) string
 
-	Libintl_fprintf func(*FILE, string, ...VArg) int
+	Libintl_fprintf func(*T.FILE, string, ...VArg) int
 
-	Libintl_vfprintf func(*FILE, string, Va_list) int
+	Libintl_vfprintf func(*T.FILE, string, T.Va_list) int
 
 	Libintl_printf func(string, ...VArg) int
 
-	Libintl_vprintf func(string, Va_list) int
+	Libintl_vprintf func(string, T.Va_list) int
 
 	Libintl_sprintf func(string, string, ...VArg) int
 
-	Libintl_vsprintf func(string, string, Va_list) int
+	Libintl_vsprintf func(string, string, T.Va_list) int
 
-	Libintl_snprintf func(string, Size_t, string, ...VArg) int
+	Libintl_snprintf func(string, T.Size_t, string, ...VArg) int
 
-	Libintl_vsnprintf func(string, Size_t, string, Va_list) int
+	Libintl_vsnprintf func(string, T.Size_t, string, T.Va_list) int
 
 	Libintl_setlocale func(int, string) string
 

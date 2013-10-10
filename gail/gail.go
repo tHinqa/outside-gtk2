@@ -7,7 +7,7 @@ package gail
 
 import (
 	"github.com/tHinqa/outside"
-	. "github.com/tHinqa/outside-gtk2/types"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -16,86 +16,86 @@ func init() {
 
 var (
 	Gail_misc_add_attribute func(
-		attrib_set *AtkAttributeSet,
-		attr AtkTextAttribute,
-		value string) *AtkAttributeSet
+		attrib_set *T.AtkAttributeSet,
+		attr T.AtkTextAttribute,
+		value string) *T.AtkAttributeSet
 
 	Gail_misc_layout_get_run_attributes func(
-		attrib_set *AtkAttributeSet,
-		layout *PangoLayout,
+		attrib_set *T.AtkAttributeSet,
+		layout *T.PangoLayout,
 		text string,
-		offset Gint,
-		start_offset *Gint,
-		end_offset *Gint) *AtkAttributeSet
+		offset T.Gint,
+		start_offset *T.Gint,
+		end_offset *T.Gint) *T.AtkAttributeSet
 
 	Gail_misc_get_default_attributes func(
-		attrib_set *AtkAttributeSet,
-		layout *PangoLayout,
-		widget *GtkWidget) *AtkAttributeSet
+		attrib_set *T.AtkAttributeSet,
+		layout *T.PangoLayout,
+		widget *T.GtkWidget) *T.AtkAttributeSet
 
 	Gail_misc_get_extents_from_pango_rectangle func(
-		widget *GtkWidget,
-		char_rect *PangoRectangle,
-		x_layout Gint,
-		y_layout Gint,
-		x *Gint,
-		y *Gint,
-		width *Gint,
-		height *Gint,
-		coords AtkCoordType)
+		widget *T.GtkWidget,
+		char_rect *T.PangoRectangle,
+		x_layout T.Gint,
+		y_layout T.Gint,
+		x *T.Gint,
+		y *T.Gint,
+		width *T.Gint,
+		height *T.Gint,
+		coords T.AtkCoordType)
 
 	Gail_misc_get_index_at_point_in_layout func(
-		widget *GtkWidget,
-		layout *PangoLayout,
-		x_layout Gint,
-		y_layout Gint,
-		x Gint,
-		y Gint,
-		coords AtkCoordType) Gint
+		widget *T.GtkWidget,
+		layout *T.PangoLayout,
+		x_layout T.Gint,
+		y_layout T.Gint,
+		x T.Gint,
+		y T.Gint,
+		coords T.AtkCoordType) T.Gint
 
 	Gail_misc_get_origins func(
-		widget *GtkWidget,
-		x_window *Gint,
-		y_window *Gint,
-		x_toplevel *Gint,
-		y_toplevel *Gint)
+		widget *T.GtkWidget,
+		x_window *T.Gint,
+		y_window *T.Gint,
+		x_toplevel *T.Gint,
+		y_toplevel *T.Gint)
 
 	Gail_misc_add_to_attr_set func(
-		attrib_set *AtkAttributeSet,
-		attrs *GtkTextAttributes,
-		attr AtkTextAttribute) *AtkAttributeSet
+		attrib_set *T.AtkAttributeSet,
+		attrs *T.GtkTextAttributes,
+		attr T.AtkTextAttribute) *T.AtkAttributeSet
 
 	Gail_misc_buffer_get_run_attributes func(
-		buffer *GtkTextBuffer,
-		offset Gint,
-		start_offset *Gint,
-		end_offset *Gint) *AtkAttributeSet
+		buffer *T.GtkTextBuffer,
+		offset T.Gint,
+		start_offset *T.Gint,
+		end_offset *T.Gint) *T.AtkAttributeSet
 
-	Gail_text_util_get_type func() GType
+	Gail_text_util_get_type func() T.GType
 
-	Gail_text_util_new func() *GailTextUtil
+	Gail_text_util_new func() *T.GailTextUtil
 
 	Gail_text_util_text_setup func(
-		textutil *GailTextUtil,
+		textutil *T.GailTextUtil,
 		text string)
 
 	Gail_text_util_buffer_setup func(
-		textutil *GailTextUtil,
-		buffer *GtkTextBuffer)
+		textutil *T.GailTextUtil,
+		buffer *T.GtkTextBuffer)
 
 	Gail_text_util_get_text func(
-		textutil *GailTextUtil,
-		layout Gpointer,
-		function GailOffsetType,
-		boundary_type AtkTextBoundary,
-		offset Gint,
-		start_offset *Gint,
-		end_offset *Gint) string
+		textutil *T.GailTextUtil,
+		layout T.Gpointer,
+		function T.GailOffsetType,
+		boundary_type T.AtkTextBoundary,
+		offset T.Gint,
+		start_offset *T.Gint,
+		end_offset *T.Gint) string
 
 	Gail_text_util_get_substring func(
-		textutil *GailTextUtil,
-		start_pos Gint,
-		end_pos Gint) string
+		textutil *T.GailTextUtil,
+		start_pos T.Gint,
+		end_pos T.Gint) string
 )
 
 var dll = "libgailutil-18.dll"
