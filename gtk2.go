@@ -1,12 +1,11 @@
 // Copyright (c) 2013 Tony Wilson. All rights reserved.
-// See LICENSE file for permissions and restrictions.
+// See LICENCE file for permissions and restrictions.
 
 //Package gtk2 is useful only to install all subcomponents
+package gtk2
 
 //TODO(t): Bring to attention synonymous use of gchar & char and
 // possible simgle byte output *char
-
-package gtk2
 
 import (
 	_ "github.com/tHinqa/outside-gtk2/atk"

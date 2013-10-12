@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Tony Wilson. All rights reserved.
-// See LICENSE file for permissions and restrictions.
+// See LICENCE file for permissions and restrictions.
 
 //Package cairo provides API definitions for accessing
 //libcairo-2.dll, libcairo-gobject-2.dll and

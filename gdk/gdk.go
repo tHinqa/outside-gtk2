@@ -1,5 +1,5 @@
 // Copyright (c) 2013 Tony Wilson. All rights reserved.
-// See LICENSE file for permissions and restrictions.
+// See LICENCE file for permissions and restrictions.
 
 //Package gdk provides API definitions for accessing
 //libgdk-win32-2.0-0.dll and libgdk_pixbuf-2.0-0.dll.
