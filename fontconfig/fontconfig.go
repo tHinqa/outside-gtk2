@@ -6,12 +6,13 @@
 package fontconfig
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dll, false, apiList)
 }
 
 const (
@@ -578,7 +579,7 @@ var (
 
 var dll = "libfontconfig-1.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"FcAtomicCreate", &FcAtomicCreate},
 	{"FcAtomicDeleteNew", &FcAtomicDeleteNew},
 	{"FcAtomicDestroy", &FcAtomicDestroy},

@@ -6,13 +6,14 @@
 package pango
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
-	AddDllApis(dllCairo, false, apiListCairo)
+	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dllCairo, false, apiListCairo)
 }
 
 var (
@@ -1593,7 +1594,7 @@ var (
 
 var dll = "libpango-1.0-0.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"pango_alignment_get_type", &Pango_alignment_get_type},
 	{"pango_attr_background_new", &Pango_attr_background_new},
 	{"pango_attr_fallback_new", &Pango_attr_fallback_new},
@@ -1994,7 +1995,7 @@ var apiList = Apis{
 
 var dllCairo = "libpangocairo-1.0-0.dll"
 
-var apiListCairo = Apis{
+var apiListCairo = outside.Apis{
 	{"pango_cairo_context_get_font_options", &Pango_cairo_context_get_font_options},
 	{"pango_cairo_context_get_resolution", &Pango_cairo_context_get_resolution},
 	{"pango_cairo_context_get_shape_renderer", &Pango_cairo_context_get_shape_renderer},

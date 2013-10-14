@@ -6,13 +6,14 @@
 package gobject
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
-	AddDllData(dll, false, dataList)
+	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllData(dll, false, dataList)
 }
 
 var (
@@ -1631,7 +1632,7 @@ var (
 
 var dll = "libgobject-2.0-0.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"g_array_get_type", &G_array_get_type},
 	{"g_binding_flags_get_type", &G_binding_flags_get_type},
 	{"g_binding_get_flags", &G_binding_get_flags},
@@ -2005,6 +2006,6 @@ var apiList = Apis{
 	{"g_variant_type_get_gtype", &G_variant_type_get_gtype},
 }
 
-var dataList = Data{
+var dataList = outside.Data{
 // {"g_param_spec_types", new(G_param_spec_types)},
 }

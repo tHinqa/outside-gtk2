@@ -6,14 +6,15 @@
 package glib
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
-	AddDllApis(dllThread, false, apiListThread)
-	AddDllData(dll, false, dataList)
+	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dllThread, false, apiListThread)
+	outside.AddDllData(dll, false, dataList)
 }
 
 type (
@@ -4214,7 +4215,7 @@ var (
 
 var dll = "libglib-2.0-0.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	// Undocumented {"_g_debug_flags", &_g_debug_flags},
 	// Undocumented {"_g_debug_initialized", &_g_debug_initialized},
 	{"g_access", &G_access},
@@ -5676,12 +5677,12 @@ var apiList = Apis{
 
 var dllThread = "libgthread-2.0-0.dll"
 
-var apiListThread = Apis{
+var apiListThread = outside.Apis{
 	{"g_thread_init", &G_thread_init},
 	{"g_thread_init_with_errorcheck_mutexes", &G_thread_init_with_errorcheck_mutexes},
 }
 
-var dataList = Data{
+var dataList = outside.Data{
 // {"g_ascii_table", new(G_ascii_table)},
 // {"g_child_watch_funcs", new(G_child_watch_funcs)},
 // {"g_idle_funcs", new(G_idle_funcs)},

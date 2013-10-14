@@ -6,12 +6,13 @@
 package zlib
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dll, false, apiList)
 }
 
 type (
@@ -304,7 +305,7 @@ var (
 
 var dll = "zlib1.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"adler32", &Adler32},
 	{"adler32_combine", &Adler32_combine},
 	{"compress", &Compress},

@@ -6,12 +6,13 @@
 package gio
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dll, false, apiList)
 }
 
 var (
@@ -5231,7 +5232,7 @@ var (
 )
 var dll = "libgio-2.0-0.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"g_action_activate", &G_action_activate},
 	{"g_action_get_enabled", &G_action_get_enabled},
 	{"g_action_get_name", &G_action_get_name},

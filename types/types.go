@@ -52,7 +52,7 @@ type (
 	Gushort        uint16
 	Long           int32 // TODO(t): Size?
 	Short          int16
-	Size_t         uint
+	Size_t         uintptr
 	Time_t         int
 	Unsigned_char  uint8
 	Unsigned_int   uint

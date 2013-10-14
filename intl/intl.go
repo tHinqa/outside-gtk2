@@ -6,12 +6,13 @@
 package intl
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dll, false, apiList)
 }
 
 var (
@@ -64,7 +65,7 @@ var (
 
 var dll = "intl.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	// Undocumented {"_nl_expand_alias",&_nl_expand_alias},
 	// Undocumented {"_nl_msg_cat_cntr",&_nl_msg_cat_cntr},
 	// Libibtl_ {"bind_textdomain_codeset", &bind_textdomain_codeset},

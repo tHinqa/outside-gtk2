@@ -6,13 +6,14 @@
 package gdk
 
 import (
-	. "github.com/tHinqa/outside"
+	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
-	AddDllApis(dll, false, apiList)
-	AddDllApis(dllPixbuf, false, apiListPixbuf)
+	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllApis(dllPixbuf, false, apiListPixbuf)
 }
 
 type (
@@ -3475,7 +3476,7 @@ var dll = "libgdk-win32-2.0-0.dll"
 
 var dllPixbuf = "libgdk_pixbuf-2.0-0.dll"
 
-var apiList = Apis{
+var apiList = outside.Apis{
 	{"gdk_add_client_message_filter", &Gdk_add_client_message_filter},
 	{"gdk_add_option_entries_libgtk_only", &Gdk_add_option_entries_libgtk_only},
 	{"gdk_app_launch_context_get_type", &Gdk_app_launch_context_get_type},
@@ -4205,7 +4206,7 @@ var apiList = Apis{
 	{"gdk_wm_function_get_type", &Gdk_wm_function_get_type},
 }
 
-var apiListPixbuf = Apis{
+var apiListPixbuf = outside.Apis{
 	{"gdk_colorspace_get_type", &Gdk_colorspace_get_type},
 	{"gdk_interp_type_get_type", &Gdk_interp_type_get_type},
 	{"gdk_pixbuf_add_alpha", &Gdk_pixbuf_add_alpha},
@@ -4332,7 +4333,7 @@ type (
 	Gdk_threads_unlock       T.GCallback
 )
 
-var DataList = Data{
+var DataList = outside.Data{
 // {"gdk_threads_lock", new(Gdk_threads_lock)},
 // {"gdk_threads_mutex", new(Gdk_threads_mutex)},
 // {"gdk_threads_unlock", new(Gdk_threads_unlock)},

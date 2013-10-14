@@ -6,8 +6,8 @@
 package gtk
 
 import (
-	. "github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 var (
