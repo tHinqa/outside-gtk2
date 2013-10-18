@@ -16,11 +16,8 @@ func init() {
 }
 
 type (
-	Byte           T.Unsigned_char
-	Bytef          Byte
 	GzFile         Voidp
 	Internal_state struct{}
-	UInt           T.Unsigned_int
 	ULong          T.Unsigned_long
 	ULongf         ULong
 	Voidp          *T.Void
@@ -30,8 +27,8 @@ type (
 
 	Alloc_func func(
 		opaque Voidpf,
-		items UInt,
-		size UInt) Voidpf
+		items uint,
+		size uint) Voidpf
 
 	Free_func func(
 		opaque Voidpf,
@@ -47,11 +44,11 @@ type (
 		uint) int
 
 	Z_stream struct {
-		Next_in   *Bytef
-		Avail_in  UInt
+		Next_in   *byte
+		Avail_in  uint
 		Total_in  ULong
-		Next_out  *Bytef
-		Avail_out UInt
+		Next_out  *byte
+		Avail_out uint
 		Total_out ULong
 		Msg       *T.Char
 		State     *Internal_state
@@ -68,13 +65,13 @@ type (
 		Time      ULong
 		Xflags    int
 		Os        int
-		Extra     *Bytef
-		Extra_len UInt
-		Extra_max UInt
-		Name      *Bytef
-		Name_max  UInt
-		Comment   *Bytef
-		Comm_max  UInt
+		Extra     *byte
+		Extra_len uint
+		Extra_max uint
+		Name      *byte
+		Name_max  uint
+		Comment   *byte
+		Comm_max  uint
 		Hcrc      int
 		Done      int
 	}
@@ -93,8 +90,8 @@ var (
 
 	DeflateSetDictionary func(
 		strm Z_streamp,
-		dictionary *Bytef,
-		dictLength UInt) int
+		dictionary *byte,
+		dictLength uint) int
 
 	DeflateCopy func(dest, source Z_streamp) int
 
@@ -112,7 +109,7 @@ var (
 	DeflateSetHeader func(strm Z_streamp, head Gz_headerp) int
 
 	InflateSetDictionary func(
-		strm Z_streamp, dictionary *Bytef, dictLength UInt) int
+		strm Z_streamp, dictionary *byte, dictLength uint) int
 
 	InflateSync func(strm Z_streamp) int
 
@@ -140,15 +137,15 @@ var (
 	ZlibCompileFlags func() ULong
 
 	Compress func(
-		dest *Bytef,
+		dest *byte,
 		destLen *ULongf,
-		source *Bytef,
+		source *byte,
 		sourceLen ULong) int
 
 	Compress2 func(
-		dest *Bytef,
+		dest *byte,
 		destLen *ULongf,
-		source *Bytef,
+		source *byte,
 		sourceLen ULong,
 		level int) int
 
@@ -156,9 +153,9 @@ var (
 		sourceLen ULong) ULong
 
 	Uncompress func(
-		dest *Bytef,
+		dest *byte,
 		destLen *ULongf,
-		source *Bytef,
+		source *byte,
 		sourceLen ULong) int
 
 	Gzdopen func(
@@ -240,13 +237,13 @@ var (
 
 	Adler32 func(
 		adler ULong,
-		buf *Bytef,
-		len UInt) ULong
+		buf *byte,
+		len uint) ULong
 
 	Crc32 func(
 		crc ULong,
-		buf *Bytef,
-		len UInt) ULong
+		buf *byte,
+		len uint) ULong
 
 	DeflateInit_ func(
 		strm Z_streamp,

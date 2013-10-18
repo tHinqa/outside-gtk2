@@ -104,7 +104,7 @@ type (
 		Type        XML_Content_Type
 		Quant       XML_Content_Quant
 		Name        *XML_Char
-		Numchildren T.Unsigned_int
+		Numchildren uint
 		Children    *XML_Content
 	}
 

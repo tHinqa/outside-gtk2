@@ -43,19 +43,19 @@ var (
 	Gdk_colormap_get_screen func(
 		cmap *T.GdkColormap) *T.GdkScreen
 
-	Gdk_colormap_get_system_size func() T.Gint
+	Gdk_colormap_get_system_size func() int
 
 	Gdk_colormap_change func(
 		colormap *T.GdkColormap,
-		ncolors T.Gint)
+		ncolors int)
 
 	Gdk_colormap_alloc_colors func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
-		n_colors T.Gint,
+		n_colors int,
 		writeable T.Gboolean,
 		best_match T.Gboolean,
-		success *T.Gboolean) T.Gint
+		success *T.Gboolean) int
 
 	Gdk_colormap_alloc_color func(
 		colormap *T.GdkColormap,
@@ -66,7 +66,7 @@ var (
 	Gdk_colormap_free_colors func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
-		n_colors T.Gint)
+		n_colors int)
 
 	Gdk_colormap_query_color func(
 		colormap *T.GdkColormap,
@@ -87,7 +87,7 @@ var (
 		color *T.GdkColor) T.Gboolean
 
 	Gdk_color_hash func(
-		colora *T.GdkColor) T.Guint
+		colora *T.GdkColor) uint
 
 	Gdk_color_equal func(
 		colora *T.GdkColor,
@@ -101,36 +101,36 @@ var (
 	Gdk_colors_store func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
-		ncolors T.Gint)
+		ncolors int)
 
 	Gdk_color_white func(
 		colormap *T.GdkColormap,
-		color *T.GdkColor) T.Gint
+		color *T.GdkColor) int
 
 	Gdk_color_black func(
 		colormap *T.GdkColormap,
-		color *T.GdkColor) T.Gint
+		color *T.GdkColor) int
 
 	Gdk_color_alloc func(
 		colormap *T.GdkColormap,
-		color *T.GdkColor) T.Gint
+		color *T.GdkColor) int
 
 	Gdk_color_change func(
 		colormap *T.GdkColormap,
-		color *T.GdkColor) T.Gint
+		color *T.GdkColor) int
 
 	Gdk_colors_alloc func(
 		colormap *T.GdkColormap,
 		contiguous T.Gboolean,
 		planes *T.Gulong,
-		nplanes T.Gint,
+		nplanes int,
 		pixels *T.Gulong,
-		npixels T.Gint) T.Gint
+		npixels int) int
 
 	Gdk_colors_free func(
 		colormap *T.GdkColormap,
 		pixels *T.Gulong,
-		npixels T.Gint,
+		npixels int,
 		planes T.Gulong)
 
 	Gdk_drag_context_get_type func() T.GType
@@ -167,17 +167,17 @@ var (
 	Gdk_drag_status func(
 		context *T.GdkDragContext,
 		action T.GdkDragAction,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_drop_reply func(
 		context *T.GdkDragContext,
 		ok T.Gboolean,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_drop_finish func(
 		context *T.GdkDragContext,
 		success T.Gboolean,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_drag_get_selection func(
 		context *T.GdkDragContext) T.GdkAtom
@@ -195,8 +195,8 @@ var (
 		context *T.GdkDragContext,
 		drag_window *T.GdkWindow,
 		screen *T.GdkScreen,
-		x_root T.Gint,
-		y_root T.Gint,
+		x_root int,
+		y_root int,
 		dest_window **T.GdkWindow,
 		protocol *T.GdkDragProtocol)
 
@@ -207,8 +207,8 @@ var (
 	Gdk_drag_find_window func(
 		context *T.GdkDragContext,
 		drag_window *T.GdkWindow,
-		x_root T.Gint,
-		y_root T.Gint,
+		x_root int,
+		y_root int,
 		dest_window **T.GdkWindow,
 		protocol *T.GdkDragProtocol)
 
@@ -216,19 +216,19 @@ var (
 		context *T.GdkDragContext,
 		dest_window *T.GdkWindow,
 		protocol T.GdkDragProtocol,
-		x_root T.Gint,
-		y_root T.Gint,
+		x_root int,
+		y_root int,
 		suggested_action T.GdkDragAction,
 		possible_actions T.GdkDragAction,
-		time_ T.Guint32) T.Gboolean
+		time_ T.GUint32) T.Gboolean
 
 	Gdk_drag_drop func(
 		context *T.GdkDragContext,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_drag_abort func(
 		context *T.GdkDragContext,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_drag_drop_succeeded func(
 		context *T.GdkDragContext) T.Gboolean
@@ -251,19 +251,19 @@ var (
 
 	Gdk_device_get_key func(
 		device *T.GdkDevice,
-		index T.Guint,
-		keyval *T.Guint,
+		index uint,
+		keyval *uint,
 		modifiers *T.GdkModifierType)
 
 	Gdk_device_get_axis_use func(
 		device *T.GdkDevice,
-		index T.Guint) T.GdkAxisUse
+		index uint) T.GdkAxisUse
 
 	Gdk_device_get_n_keys func(
-		device *T.GdkDevice) T.Gint
+		device *T.GdkDevice) int
 
 	Gdk_device_get_n_axes func(
-		device *T.GdkDevice) T.Gint
+		device *T.GdkDevice) int
 
 	Gdk_device_set_source func(
 		device *T.GdkDevice,
@@ -275,42 +275,42 @@ var (
 
 	Gdk_device_set_key func(
 		device *T.GdkDevice,
-		index_ T.Guint,
-		keyval T.Guint,
+		index_ uint,
+		keyval uint,
 		modifiers T.GdkModifierType)
 
 	Gdk_device_set_axis_use func(
 		device *T.GdkDevice,
-		index_ T.Guint,
+		index_ uint,
 		use T.GdkAxisUse)
 
 	Gdk_device_get_state func(
 		device *T.GdkDevice,
 		window *T.GdkWindow,
-		axes *T.Gdouble,
+		axes *float64,
 		mask *T.GdkModifierType)
 
 	Gdk_device_get_history func(
 		device *T.GdkDevice,
 		window *T.GdkWindow,
-		start T.Guint32,
-		stop T.Guint32,
+		start T.GUint32,
+		stop T.GUint32,
 		events ***T.GdkTimeCoord,
-		n_events *T.Gint) T.Gboolean
+		n_events *int) T.Gboolean
 
 	Gdk_device_free_history func(
 		events **T.GdkTimeCoord,
-		n_events T.Gint)
+		n_events int)
 
 	Gdk_device_get_axis func(
 		device *T.GdkDevice,
-		axes *T.Gdouble,
+		axes *float64,
 		use T.GdkAxisUse,
-		value *T.Gdouble) T.Gboolean
+		value *float64) T.Gboolean
 
 	Gdk_input_set_extension_events func(
 		window *T.GdkWindow,
-		mask T.Gint,
+		mask int,
 		mode T.GdkExtensionMode)
 
 	Gdk_device_get_core_pointer func() *T.GdkDevice
@@ -339,7 +339,7 @@ var (
 		event *T.GdkEvent)
 
 	Gdk_event_get_time func(
-		event *T.GdkEvent) T.Guint32
+		event *T.GdkEvent) T.GUint32
 
 	Gdk_event_get_state func(
 		event *T.GdkEvent,
@@ -347,18 +347,18 @@ var (
 
 	Gdk_event_get_coords func(
 		event *T.GdkEvent,
-		x_win *T.Gdouble,
-		y_win *T.Gdouble) T.Gboolean
+		x_win *float64,
+		y_win *float64) T.Gboolean
 
 	Gdk_event_get_root_coords func(
 		event *T.GdkEvent,
-		x_root *T.Gdouble,
-		y_root *T.Gdouble) T.Gboolean
+		x_root *float64,
+		y_root *float64) T.Gboolean
 
 	Gdk_event_get_axis func(
 		event *T.GdkEvent,
 		axis_use T.GdkAxisUse,
-		value *T.Gdouble) T.Gboolean
+		value *float64) T.Gboolean
 
 	Gdk_event_request_motions func(
 		event *T.GdkEventMotion)
@@ -398,22 +398,22 @@ var (
 		display *T.GdkDisplay) string
 
 	Gdk_display_get_n_screens func(
-		display *T.GdkDisplay) T.Gint
+		display *T.GdkDisplay) int
 
 	Gdk_display_get_screen func(
 		display *T.GdkDisplay,
-		screen_num T.Gint) *T.GdkScreen
+		screen_num int) *T.GdkScreen
 
 	Gdk_display_get_default_screen func(
 		display *T.GdkDisplay) *T.GdkScreen
 
 	Gdk_display_pointer_ungrab func(
 		display *T.GdkDisplay,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_display_keyboard_ungrab func(
 		display *T.GdkDisplay,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_display_pointer_is_grabbed func(
 		display *T.GdkDisplay) T.Gboolean
@@ -454,11 +454,11 @@ var (
 
 	Gdk_display_set_double_click_time func(
 		display *T.GdkDisplay,
-		msec T.Guint)
+		msec uint)
 
 	Gdk_display_set_double_click_distance func(
 		display *T.GdkDisplay,
-		distance T.Guint)
+		distance uint)
 
 	Gdk_display_get_default func() *T.GdkDisplay
 
@@ -468,20 +468,20 @@ var (
 	Gdk_display_get_pointer func(
 		display *T.GdkDisplay,
 		screen **T.GdkScreen,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		mask *T.GdkModifierType)
 
 	Gdk_display_get_window_at_pointer func(
 		display *T.GdkDisplay,
-		win_x *T.Gint,
-		win_y *T.Gint) *T.GdkWindow
+		win_x *int,
+		win_y *int) *T.GdkWindow
 
 	Gdk_display_warp_pointer func(
 		display *T.GdkDisplay,
 		screen *T.GdkScreen,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_display_set_pointer_hooks func(
 		display *T.GdkDisplay,
@@ -496,12 +496,12 @@ var (
 		display *T.GdkDisplay) T.Gboolean
 
 	Gdk_display_get_default_cursor_size func(
-		display *T.GdkDisplay) T.Guint
+		display *T.GdkDisplay) uint
 
 	Gdk_display_get_maximal_cursor_size func(
 		display *T.GdkDisplay,
-		width *T.Guint,
-		height *T.Guint)
+		width *uint,
+		height *uint)
 
 	Gdk_display_get_default_group func(
 		display *T.GdkDisplay) *T.GdkWindow
@@ -519,9 +519,9 @@ var (
 	Gdk_display_store_clipboard func(
 		display *T.GdkDisplay,
 		clipboard_window *T.GdkWindow,
-		time_ T.Guint32,
+		time_ T.GUint32,
 		targets *T.GdkAtom,
-		n_targets T.Gint)
+		n_targets int)
 
 	Gdk_display_supports_shapes func(
 		display *T.GdkDisplay) T.Gboolean
@@ -569,19 +569,19 @@ var (
 		screen *T.GdkScreen) *T.GdkDisplay
 
 	Gdk_screen_get_number func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_width func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_height func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_width_mm func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_height_mm func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_list_visuals func(
 		screen *T.GdkScreen) *T.GList
@@ -593,36 +593,36 @@ var (
 		screen *T.GdkScreen) string
 
 	Gdk_screen_get_n_monitors func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_primary_monitor func(
-		screen *T.GdkScreen) T.Gint
+		screen *T.GdkScreen) int
 
 	Gdk_screen_get_monitor_geometry func(
 		screen *T.GdkScreen,
-		monitor_num T.Gint,
+		monitor_num int,
 		dest *T.GdkRectangle)
 
 	Gdk_screen_get_monitor_at_point func(
 		screen *T.GdkScreen,
-		x T.Gint,
-		y T.Gint) T.Gint
+		x int,
+		y int) int
 
 	Gdk_screen_get_monitor_at_window func(
 		screen *T.GdkScreen,
-		window *T.GdkWindow) T.Gint
+		window *T.GdkWindow) int
 
 	Gdk_screen_get_monitor_width_mm func(
 		screen *T.GdkScreen,
-		monitor_num T.Gint) T.Gint
+		monitor_num int) int
 
 	Gdk_screen_get_monitor_height_mm func(
 		screen *T.GdkScreen,
-		monitor_num T.Gint) T.Gint
+		monitor_num int) int
 
 	Gdk_screen_get_monitor_plug_name func(
 		screen *T.GdkScreen,
-		monitor_num T.Gint) string
+		monitor_num int) string
 
 	Gdk_screen_broadcast_client_message func(
 		screen *T.GdkScreen,
@@ -644,10 +644,10 @@ var (
 
 	Gdk_screen_set_resolution func(
 		screen *T.GdkScreen,
-		dpi T.Gdouble)
+		dpi float64)
 
 	Gdk_screen_get_resolution func(
-		screen *T.GdkScreen) T.Gdouble
+		screen *T.GdkScreen) float64
 
 	Gdk_screen_get_active_window func(
 		screen *T.GdkScreen) *T.GdkWindow
@@ -669,11 +669,11 @@ var (
 
 	Gdk_app_launch_context_set_desktop func(
 		context *T.GdkAppLaunchContext,
-		desktop T.Gint)
+		desktop int)
 
 	Gdk_app_launch_context_set_timestamp func(
 		context *T.GdkAppLaunchContext,
-		timestamp T.Guint32)
+		timestamp T.GUint32)
 
 	Gdk_app_launch_context_set_icon func(
 		context *T.GdkAppLaunchContext,
@@ -686,15 +686,15 @@ var (
 	Gdk_rgb_init func()
 
 	Gdk_rgb_xpixel_from_rgb func(
-		rgb T.Guint32) T.Gulong
+		rgb T.GUint32) T.Gulong
 
 	Gdk_rgb_gc_set_foreground func(
 		gc *T.GdkGC,
-		rgb T.Guint32)
+		rgb T.GUint32)
 
 	Gdk_rgb_gc_set_background func(
 		gc *T.GdkGC,
-		rgb T.Guint32)
+		rgb T.GUint32)
 
 	Gdk_rgb_find_color func(
 		colormap *T.GdkColormap,
@@ -703,77 +703,77 @@ var (
 	Gdk_draw_rgb_image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		rgb_buf *T.Guchar,
-		rowstride T.Gint)
+		rowstride int)
 
 	Gdk_draw_rgb_image_dithalign func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		rgb_buf *T.Guchar,
-		rowstride T.Gint,
-		xdith T.Gint,
-		ydith T.Gint)
+		rowstride int,
+		xdith int,
+		ydith int)
 
 	Gdk_draw_rgb_32_image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		buf *T.Guchar,
-		rowstride T.Gint)
+		rowstride int)
 
 	Gdk_draw_rgb_32_image_dithalign func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		buf *T.Guchar,
-		rowstride T.Gint,
-		xdith T.Gint,
-		ydith T.Gint)
+		rowstride int,
+		xdith int,
+		ydith int)
 
 	Gdk_draw_gray_image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		buf *T.Guchar,
-		rowstride T.Gint)
+		rowstride int)
 
 	Gdk_draw_indexed_image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		dith T.GdkRgbDither,
 		buf *T.Guchar,
-		rowstride T.Gint,
+		rowstride int,
 		cmap *T.GdkRgbCmap)
 
 	Gdk_rgb_cmap_new func(
-		colors *T.Guint32,
-		n_colors T.Gint) *T.GdkRgbCmap
+		colors *T.GUint32,
+		n_colors int) *T.GdkRgbCmap
 
 	Gdk_rgb_cmap_free func(
 		cmap *T.GdkRgbCmap)
@@ -785,7 +785,7 @@ var (
 		install T.Gboolean)
 
 	Gdk_rgb_set_min_colors func(
-		min_colors T.Gint)
+		min_colors int)
 
 	Gdk_rgb_get_colormap func() *T.GdkColormap
 
@@ -879,14 +879,14 @@ var (
 		data **T.Char) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_inline func(
-		data_length T.Gint,
-		data *T.Guint8,
+		data_length int,
+		data *uint8,
 		copy_pixels T.Gboolean,
 		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_fill func(
 		pixbuf *T.GdkPixbuf,
-		pixel T.Guint32)
+		pixel T.GUint32)
 
 	Gdk_pixbuf_save_utf8 func(pixbuf *T.GdkPixbuf,
 		filename, typ string, e **T.GError, v ...VArg) T.Gboolean
@@ -943,16 +943,16 @@ var (
 
 	Gdk_pixbuf_new_from_stream_at_scale func(
 		stream *T.GInputStream,
-		width T.Gint,
-		height T.Gint,
+		width int,
+		height int,
 		preserve_aspect_ratio T.Gboolean,
 		cancellable *T.GCancellable,
 		e **T.GError) *T.GdkPixbuf
 
 	Gdk_pixbuf_new_from_stream_at_scale_async func(
 		stream *T.GInputStream,
-		width T.Gint,
-		height T.Gint,
+		width int,
+		height int,
 		preserve_aspect_ratio T.Gboolean,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
@@ -984,7 +984,7 @@ var (
 
 	Gdk_pixbuf_saturate_and_pixelate func(
 		src, dest *T.GdkPixbuf,
-		saturation T.Gfloat,
+		saturation float32,
 		pixelate T.Gboolean)
 
 	Gdk_pixbuf_apply_embedded_orientation func(
@@ -1001,10 +1001,10 @@ var (
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x T.Double,
-		offset_y T.Double,
-		scale_x T.Double,
-		scale_y T.Double,
+		offset_x float64,
+		offset_y float64,
+		scale_x float64,
+		scale_y float64,
 		interp_type T.GdkInterpType)
 
 	Gdk_pixbuf_composite func(
@@ -1014,10 +1014,10 @@ var (
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x T.Double,
-		offset_y T.Double,
-		scale_x T.Double,
-		scale_y T.Double,
+		offset_x float64,
+		offset_y float64,
+		scale_x float64,
+		scale_y float64,
 		interp_type T.GdkInterpType,
 		overall_alpha int)
 
@@ -1028,17 +1028,17 @@ var (
 		dest_y int,
 		dest_width int,
 		dest_height int,
-		offset_x T.Double,
-		offset_y T.Double,
-		scale_x T.Double,
-		scale_y T.Double,
+		offset_x float64,
+		offset_y float64,
+		scale_x float64,
+		scale_y float64,
 		interp_type T.GdkInterpType,
 		overall_alpha int,
 		check_x int,
 		check_y int,
 		check_size int,
-		color1 T.Guint32,
-		color2 T.Guint32)
+		color1 T.GUint32,
+		color2 T.GUint32)
 
 	Gdk_pixbuf_scale_simple func(
 		src *T.GdkPixbuf,
@@ -1053,8 +1053,8 @@ var (
 		interp_type T.GdkInterpType,
 		overall_alpha int,
 		check_size int,
-		color1 T.Guint32,
-		color2 T.Guint32) *T.GdkPixbuf
+		color1 T.GUint32,
+		color2 T.GUint32) *T.GdkPixbuf
 
 	Gdk_pixbuf_rotate_simple func(
 		src *T.GdkPixbuf,
@@ -1112,9 +1112,9 @@ var (
 	Gdk_pixbuf_simple_anim_iter_get_type func() T.GType
 
 	Gdk_pixbuf_simple_anim_new func(
-		width T.Gint,
-		height T.Gint,
-		rate T.Gfloat) *T.GdkPixbufSimpleAnim
+		width int,
+		height int,
+		rate float32) *T.GdkPixbufSimpleAnim
 
 	Gdk_pixbuf_simple_anim_add_frame func(
 		animation *T.GdkPixbufSimpleAnim,
@@ -1161,8 +1161,8 @@ var (
 
 	Gdk_pixbuf_get_file_info func(
 		filename string,
-		width *T.Gint,
-		height *T.Gint) *T.GdkPixbufFormat
+		width *int,
+		height *int) *T.GdkPixbufFormat
 
 	Gdk_pixbuf_format_copy func(
 		format *T.GdkPixbufFormat) *T.GdkPixbufFormat
@@ -1305,20 +1305,20 @@ var (
 	Gdk_cairo_set_source_pixbuf func(
 		cr *T.Cairo_t,
 		pixbuf *T.GdkPixbuf,
-		pixbuf_x T.Double,
-		pixbuf_y T.Double)
+		pixbuf_x float64,
+		pixbuf_y float64)
 
 	Gdk_cairo_set_source_pixmap func(
 		cr *T.Cairo_t,
 		pixmap *T.GdkPixmap,
-		pixmap_x T.Double,
-		pixmap_y T.Double)
+		pixmap_x float64,
+		pixmap_y float64)
 
 	Gdk_cairo_set_source_window func(
 		cr *T.Cairo_t,
 		window *T.GdkWindow,
-		x T.Double,
-		y T.Double)
+		x float64,
+		y float64)
 
 	Gdk_cairo_rectangle func(
 		cr *T.Cairo_t,
@@ -1342,14 +1342,14 @@ var (
 		mask *T.GdkPixmap,
 		fg *T.GdkColor,
 		bg *T.GdkColor,
-		x T.Gint,
-		y T.Gint) *T.GdkCursor
+		x int,
+		y int) *T.GdkCursor
 
 	Gdk_cursor_new_from_pixbuf func(
 		display *T.GdkDisplay,
 		pixbuf *T.GdkPixbuf,
-		x T.Gint,
-		y T.Gint) *T.GdkCursor
+		x int,
+		y int) *T.GdkCursor
 
 	Gdk_cursor_get_display func(
 		cursor *T.GdkCursor) *T.GdkDisplay
@@ -1439,13 +1439,13 @@ var (
 
 	Gdk_gc_set_ts_origin func(
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_gc_set_clip_origin func(
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_gc_set_clip_mask func(
 		gc *T.GdkGC,
@@ -1469,21 +1469,21 @@ var (
 
 	Gdk_gc_set_line_attributes func(
 		gc *T.GdkGC,
-		line_width T.Gint,
+		line_width int,
 		line_style T.GdkLineStyle,
 		cap_style T.GdkCapStyle,
 		join_style T.GdkJoinStyle)
 
 	Gdk_gc_set_dashes func(
 		gc *T.GdkGC,
-		dash_offset T.Gint,
-		dash_list *T.Gint8,
-		n T.Gint)
+		dash_offset int,
+		dash_list *int8,
+		n int)
 
 	Gdk_gc_offset func(
 		gc *T.GdkGC,
-		x_offset T.Gint,
-		y_offset T.Gint)
+		x_offset int,
+		y_offset int)
 
 	Gdk_gc_copy func(
 		dst_gc *T.GdkGC,
@@ -1527,12 +1527,12 @@ var (
 		drawable *T.GdkDrawable) *T.GdkColormap
 
 	Gdk_drawable_get_depth func(
-		drawable *T.GdkDrawable) T.Gint
+		drawable *T.GdkDrawable) int
 
 	Gdk_drawable_get_size func(
 		drawable *T.GdkDrawable,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gdk_drawable_get_visual func(
 		drawable *T.GdkDrawable) *T.GdkVisual
@@ -1552,151 +1552,151 @@ var (
 	Gdk_draw_point func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_draw_line func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x1_ T.Gint,
-		y1_ T.Gint,
-		x2_ T.Gint,
-		y2_ T.Gint)
+		x1_ int,
+		y1_ int,
+		x2_ int,
+		y2_ int)
 
 	Gdk_draw_rectangle func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gdk_draw_arc func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
-		angle1 T.Gint,
-		angle2 T.Gint)
+		x int,
+		y int,
+		width int,
+		height int,
+		angle1 int,
+		angle2 int)
 
 	Gdk_draw_polygon func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
 		points *T.GdkPoint,
-		n_points T.Gint)
+		n_points int)
 
 	Gdk_draw_string func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		s string)
 
 	Gdk_draw_text func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		text string,
-		text_length T.Gint)
+		text_length int)
 
 	Gdk_draw_text_wc func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		text *T.GdkWChar,
-		text_length T.Gint)
+		text_length int)
 
 	Gdk_draw_drawable func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		src *T.GdkDrawable,
-		xsrc T.Gint,
-		ysrc T.Gint,
-		xdest T.Gint,
-		ydest T.Gint,
-		width T.Gint,
-		height T.Gint)
+		xsrc int,
+		ysrc int,
+		xdest int,
+		ydest int,
+		width int,
+		height int)
 
 	Gdk_draw_image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		image *T.GdkImage,
-		xsrc T.Gint,
-		ysrc T.Gint,
-		xdest T.Gint,
-		ydest T.Gint,
-		width T.Gint,
-		height T.Gint)
+		xsrc int,
+		ysrc int,
+		xdest int,
+		ydest int,
+		width int,
+		height int)
 
 	Gdk_draw_points func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		points *T.GdkPoint,
-		n_points T.Gint)
+		n_points int)
 
 	Gdk_draw_segments func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		segs *T.GdkSegment,
-		n_segs T.Gint)
+		n_segs int)
 
 	Gdk_draw_lines func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		points *T.GdkPoint,
-		n_points T.Gint)
+		n_points int)
 
 	Gdk_draw_pixbuf func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		pixbuf *T.GdkPixbuf,
-		src_x T.Gint,
-		src_y T.Gint,
-		dest_x T.Gint,
-		dest_y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		src_x int,
+		src_y int,
+		dest_x int,
+		dest_y int,
+		width int,
+		height int,
 		dither T.GdkRgbDither,
-		x_dither T.Gint,
-		y_dither T.Gint)
+		x_dither int,
+		y_dither int)
 
 	Gdk_draw_glyphs func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		font *T.PangoFont,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		glyphs *T.PangoGlyphString)
 
 	Gdk_draw_layout_line func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		line *T.PangoLayoutLine)
 
 	Gdk_draw_layout func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		layout *T.PangoLayout)
 
 	Gdk_draw_layout_line_with_colors func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		line *T.PangoLayoutLine,
 		foreground *T.GdkColor,
 		background *T.GdkColor)
@@ -1704,8 +1704,8 @@ var (
 	Gdk_draw_layout_with_colors func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		layout *T.PangoLayout,
 		foreground *T.GdkColor,
 		background *T.GdkColor)
@@ -1715,32 +1715,32 @@ var (
 		gc *T.GdkGC,
 		matrix *T.PangoMatrix,
 		font *T.PangoFont,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		glyphs *T.PangoGlyphString)
 
 	Gdk_draw_trapezoids func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		trapezoids *T.GdkTrapezoid,
-		n_trapezoids T.Gint)
+		n_trapezoids int)
 
 	Gdk_drawable_get_image func(
 		drawable *T.GdkDrawable,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint) *T.GdkImage
+		x int,
+		y int,
+		width int,
+		height int) *T.GdkImage
 
 	Gdk_drawable_copy_to_image func(
 		drawable *T.GdkDrawable,
 		image *T.GdkImage,
-		src_x T.Gint,
-		src_y T.Gint,
-		dest_x T.Gint,
-		dest_y T.Gint,
-		width T.Gint,
-		height T.Gint) *T.GdkImage
+		src_x int,
+		src_y int,
+		dest_x int,
+		dest_y int,
+		width int,
+		height int) *T.GdkImage
 
 	Gdk_drawable_get_clip_region func(
 		drawable *T.GdkDrawable) *T.GdkRegion
@@ -1849,7 +1849,7 @@ var (
 		font *T.GdkFont)
 
 	Gdk_font_id func(
-		font *T.GdkFont) T.Gint
+		font *T.GdkFont) int
 
 	Gdk_font_equal func(
 		fonta *T.GdkFont,
@@ -1878,80 +1878,80 @@ var (
 
 	Gdk_string_width func(
 		font *T.GdkFont,
-		s string) T.Gint
+		s string) int
 
 	Gdk_text_width func(
 		font *T.GdkFont,
 		text string,
-		text_length T.Gint) T.Gint
+		text_length int) int
 
 	Gdk_text_width_wc func(
 		font *T.GdkFont,
 		text *T.GdkWChar,
-		text_length T.Gint) T.Gint
+		text_length int) int
 
 	Gdk_char_width func(
 		font *T.GdkFont,
-		character T.Gchar) T.Gint
+		character T.Gchar) int
 
 	Gdk_char_width_wc func(
 		font *T.GdkFont,
-		character T.GdkWChar) T.Gint
+		character T.GdkWChar) int
 
 	Gdk_string_measure func(
 		font *T.GdkFont,
-		s string) T.Gint
+		s string) int
 
 	Gdk_text_measure func(
 		font *T.GdkFont,
 		text string,
-		text_length T.Gint) T.Gint
+		text_length int) int
 
 	Gdk_char_measure func(
 		font *T.GdkFont,
-		character T.Gchar) T.Gint
+		character T.Gchar) int
 
 	Gdk_string_height func(
 		font *T.GdkFont,
-		s string) T.Gint
+		s string) int
 
 	Gdk_text_height func(
 		font *T.GdkFont,
 		text string,
-		text_length T.Gint) T.Gint
+		text_length int) int
 
 	Gdk_char_height func(
 		font *T.GdkFont,
-		character T.Gchar) T.Gint
+		character T.Gchar) int
 
 	Gdk_text_extents func(
 		font *T.GdkFont,
 		text string,
-		text_length T.Gint,
-		lbearing *T.Gint,
-		rbearing *T.Gint,
-		width *T.Gint,
-		ascent *T.Gint,
-		descent *T.Gint)
+		text_length int,
+		lbearing *int,
+		rbearing *int,
+		width *int,
+		ascent *int,
+		descent *int)
 
 	Gdk_text_extents_wc func(
 		font *T.GdkFont,
 		text *T.GdkWChar,
-		text_length T.Gint,
-		lbearing *T.Gint,
-		rbearing *T.Gint,
-		width *T.Gint,
-		ascent *T.Gint,
-		descent *T.Gint)
+		text_length int,
+		lbearing *int,
+		rbearing *int,
+		width *int,
+		ascent *int,
+		descent *int)
 
 	Gdk_string_extents func(
 		font *T.GdkFont,
 		s string,
-		lbearing *T.Gint,
-		rbearing *T.Gint,
-		width *T.Gint,
-		ascent *T.Gint,
-		descent *T.Gint)
+		lbearing *int,
+		rbearing *int,
+		width *int,
+		ascent *int,
+		descent *int)
 
 	Gdk_font_get_display func(
 		font *T.GdkFont) *T.GdkDisplay
@@ -1961,15 +1961,15 @@ var (
 	Gdk_image_new func(
 		typ T.GdkImageType,
 		visual *T.GdkVisual,
-		width T.Gint,
-		height T.Gint) *T.GdkImage
+		width int,
+		height int) *T.GdkImage
 
 	Gdk_image_get func(
 		drawable *T.GdkDrawable,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint) *T.GdkImage
+		x int,
+		y int,
+		width int,
+		height int) *T.GdkImage
 
 	Gdk_image_ref func(
 		image *T.GdkImage) *T.GdkImage
@@ -1979,14 +1979,14 @@ var (
 
 	Gdk_image_put_pixel func(
 		image *T.GdkImage,
-		x T.Gint,
-		y T.Gint,
-		pixel T.Guint32)
+		x int,
+		y int,
+		pixel T.GUint32)
 
 	Gdk_image_get_pixel func(
 		image *T.GdkImage,
-		x T.Gint,
-		y T.Gint) T.Guint32
+		x int,
+		y int) T.GUint32
 
 	Gdk_image_set_colormap func(
 		image *T.GdkImage,
@@ -2005,22 +2005,22 @@ var (
 		image *T.GdkImage) T.GdkByteOrder
 
 	Gdk_image_get_width func(
-		image *T.GdkImage) T.Gint
+		image *T.GdkImage) int
 
 	Gdk_image_get_height func(
-		image *T.GdkImage) T.Gint
+		image *T.GdkImage) int
 
 	Gdk_image_get_depth func(
-		image *T.GdkImage) T.Guint16
+		image *T.GdkImage) uint16
 
 	Gdk_image_get_bytes_per_pixel func(
-		image *T.GdkImage) T.Guint16
+		image *T.GdkImage) uint16
 
 	Gdk_image_get_bytes_per_line func(
-		image *T.GdkImage) T.Guint16
+		image *T.GdkImage) uint16
 
 	Gdk_image_get_bits_per_pixel func(
-		image *T.GdkImage) T.Guint16
+		image *T.GdkImage) uint16
 
 	Gdk_image_get_pixels func(
 		image *T.GdkImage) T.Gpointer
@@ -2034,30 +2034,30 @@ var (
 
 	Gdk_keymap_lookup_key func(
 		keymap *T.GdkKeymap,
-		key *T.GdkKeymapKey) T.Guint
+		key *T.GdkKeymapKey) uint
 
 	Gdk_keymap_translate_keyboard_state func(
 		keymap *T.GdkKeymap,
-		hardware_keycode T.Guint,
+		hardware_keycode uint,
 		state T.GdkModifierType,
-		group T.Gint,
-		keyval *T.Guint,
-		effective_group *T.Gint,
-		level *T.Gint,
+		group int,
+		keyval *uint,
+		effective_group *int,
+		level *int,
 		consumed_modifiers *T.GdkModifierType) T.Gboolean
 
 	Gdk_keymap_get_entries_for_keyval func(
 		keymap *T.GdkKeymap,
-		keyval T.Guint,
+		keyval uint,
 		keys **T.GdkKeymapKey,
-		n_keys *T.Gint) T.Gboolean
+		n_keys *int) T.Gboolean
 
 	Gdk_keymap_get_entries_for_keycode func(
 		keymap *T.GdkKeymap,
-		hardware_keycode T.Guint,
+		hardware_keycode uint,
 		keys **T.GdkKeymapKey,
-		keyvals **T.Guint,
-		n_entries *T.Gint) T.Gboolean
+		keyvals **uint,
+		n_entries *int) T.Gboolean
 
 	Gdk_keymap_get_direction func(
 		keymap *T.GdkKeymap) T.PangoDirection
@@ -2077,33 +2077,33 @@ var (
 		state *T.GdkModifierType) T.Gboolean
 
 	Gdk_keyval_name func(
-		keyval T.Guint) string
+		keyval uint) string
 
 	Gdk_keyval_from_name func(
-		keyval_name string) T.Guint
+		keyval_name string) uint
 
 	Gdk_keyval_convert_case func(
-		symbol T.Guint,
-		lower *T.Guint,
-		upper *T.Guint)
+		symbol uint,
+		lower *uint,
+		upper *uint)
 
 	Gdk_keyval_to_upper func(
-		keyval T.Guint) T.Guint
+		keyval uint) uint
 
 	Gdk_keyval_to_lower func(
-		keyval T.Guint) T.Guint
+		keyval uint) uint
 
 	Gdk_keyval_is_upper func(
-		keyval T.Guint) T.Gboolean
+		keyval uint) T.Gboolean
 
 	Gdk_keyval_is_lower func(
-		keyval T.Guint) T.Gboolean
+		keyval uint) T.Gboolean
 
 	Gdk_keyval_to_unicode func(
-		keyval T.Guint) T.Guint32
+		keyval uint) T.GUint32
 
 	Gdk_unicode_to_keyval func(
-		wc T.Guint32) T.Guint
+		wc T.GUint32) uint
 
 	Gdk_pango_renderer_get_type func() T.GType
 
@@ -2146,17 +2146,17 @@ var (
 
 	Gdk_pango_layout_line_get_clip_region func(
 		line *T.PangoLayoutLine,
-		x_origin T.Gint,
-		y_origin T.Gint,
-		index_ranges *T.Gint,
-		n_ranges T.Gint) *T.GdkRegion
+		x_origin int,
+		y_origin int,
+		index_ranges *int,
+		n_ranges int) *T.GdkRegion
 
 	Gdk_pango_layout_get_clip_region func(
 		layout *T.PangoLayout,
-		x_origin T.Gint,
-		y_origin T.Gint,
-		index_ranges *T.Gint,
-		n_ranges T.Gint) *T.GdkRegion
+		x_origin int,
+		y_origin int,
+		index_ranges *int,
+		n_ranges int) *T.GdkRegion
 
 	Gdk_pango_attr_stipple_new func(
 		stipple *T.GdkBitmap) *T.PangoAttribute
@@ -2171,22 +2171,22 @@ var (
 
 	Gdk_pixmap_new func(
 		drawable *T.GdkDrawable,
-		width T.Gint,
-		height T.Gint,
-		depth T.Gint) *T.GdkPixmap
+		width int,
+		height int,
+		depth int) *T.GdkPixmap
 
 	Gdk_bitmap_create_from_data func(
 		drawable *T.GdkDrawable,
 		data string,
-		width T.Gint,
-		height T.Gint) *T.GdkBitmap
+		width int,
+		height int) *T.GdkBitmap
 
 	Gdk_pixmap_create_from_data func(
 		drawable *T.GdkDrawable,
 		data string,
-		width T.Gint,
-		height T.Gint,
-		depth T.Gint,
+		width int,
+		height int,
+		depth int,
 		fg *T.GdkColor,
 		bg *T.GdkColor) *T.GdkPixmap
 
@@ -2218,8 +2218,8 @@ var (
 
 	Gdk_pixmap_get_size func(
 		pixmap *T.GdkPixmap,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gdk_pixmap_foreign_new func(
 		anid T.GdkNativeWindow) *T.GdkPixmap
@@ -2238,9 +2238,9 @@ var (
 	Gdk_pixmap_foreign_new_for_screen func(
 		screen *T.GdkScreen,
 		anid T.GdkNativeWindow,
-		width T.Gint,
-		height T.Gint,
-		depth T.Gint) *T.GdkPixmap
+		width int,
+		height int,
+		depth int) *T.GdkPixmap
 
 	Gdk_atom_intern func(
 		atom_name string,
@@ -2258,20 +2258,20 @@ var (
 		typ T.GdkAtom,
 		offset T.Gulong,
 		length T.Gulong,
-		pdelete T.Gint,
+		pdelete int,
 		actual_property_type *T.GdkAtom,
-		actual_format *T.Gint,
-		actual_length *T.Gint,
+		actual_format *int,
+		actual_length *int,
 		data **T.Guchar) T.Gboolean
 
 	Gdk_property_change func(
 		window *T.GdkWindow,
 		property T.GdkAtom,
 		typ T.GdkAtom,
-		format T.Gint,
+		format int,
 		mode T.GdkPropMode,
 		data *T.Guchar,
-		nelements T.Gint)
+		nelements int)
 
 	Gdk_property_delete func(
 		window *T.GdkWindow,
@@ -2279,39 +2279,39 @@ var (
 
 	Gdk_text_property_to_text_list func(
 		encoding T.GdkAtom,
-		format T.Gint,
+		format int,
 		text *T.Guchar,
-		length T.Gint,
-		list ***T.Gchar) T.Gint
+		length int,
+		list ***T.Gchar) int
 
 	Gdk_utf8_to_compound_text func(
 		str string,
 		encoding *T.GdkAtom,
-		format *T.Gint,
+		format *int,
 		ctext **T.Guchar,
-		length *T.Gint) T.Gboolean
+		length *int) T.Gboolean
 
 	Gdk_string_to_compound_text func(
 		str string,
 		encoding *T.GdkAtom,
-		format *T.Gint,
+		format *int,
 		ctext **T.Guchar,
-		length *T.Gint) T.Gint
+		length *int) int
 
 	Gdk_text_property_to_utf8_list func(
 		encoding T.GdkAtom,
-		format T.Gint,
+		format int,
 		text *T.Guchar,
-		length T.Gint,
-		list ***T.Gchar) T.Gint
+		length int,
+		list ***T.Gchar) int
 
 	Gdk_text_property_to_utf8_list_for_display func(
 		display *T.GdkDisplay,
 		encoding T.GdkAtom,
-		format T.Gint,
+		format int,
 		text *T.Guchar,
-		length T.Gint,
-		list ***T.Gchar) T.Gint
+		length int,
+		list ***T.Gchar) int
 
 	Gdk_utf8_to_string_target func(
 		str string) string
@@ -2319,26 +2319,26 @@ var (
 	Gdk_text_property_to_text_list_for_display func(
 		display *T.GdkDisplay,
 		encoding T.GdkAtom,
-		format T.Gint,
+		format int,
 		text *T.Guchar,
-		length T.Gint,
-		list ***T.Gchar) T.Gint
+		length int,
+		list ***T.Gchar) int
 
 	Gdk_string_to_compound_text_for_display func(
 		display *T.GdkDisplay,
 		str string,
 		encoding *T.GdkAtom,
-		format *T.Gint,
+		format *int,
 		ctext **T.Guchar,
-		length *T.Gint) T.Gint
+		length *int) int
 
 	Gdk_utf8_to_compound_text_for_display func(
 		display *T.GdkDisplay,
 		str string,
 		encoding *T.GdkAtom,
-		format *T.Gint,
+		format *int,
 		ctext **T.Guchar,
-		length *T.Gint) T.Gboolean
+		length *int) T.Gboolean
 
 	Gdk_free_text_list func(
 		list **T.Gchar)
@@ -2350,7 +2350,7 @@ var (
 
 	Gdk_region_polygon func(
 		points *T.GdkPoint,
-		n_points T.Gint,
+		n_points int,
 		fill_rule T.GdkFillRule) *T.GdkRegion
 
 	Gdk_region_copy func(
@@ -2369,7 +2369,7 @@ var (
 	Gdk_region_get_rectangles func(
 		region *T.GdkRegion,
 		rectangles **T.GdkRectangle,
-		n_rectangles *T.Gint)
+		n_rectangles *int)
 
 	Gdk_region_empty func(
 		region *T.GdkRegion) T.Gboolean
@@ -2393,13 +2393,13 @@ var (
 
 	Gdk_region_offset func(
 		region *T.GdkRegion,
-		dx T.Gint,
-		dy T.Gint)
+		dx int,
+		dy int)
 
 	Gdk_region_shrink func(
 		region *T.GdkRegion,
-		dx T.Gint,
-		dy T.Gint)
+		dx int,
+		dy int)
 
 	Gdk_region_union_with_rect func(
 		region *T.GdkRegion,
@@ -2432,7 +2432,7 @@ var (
 	Gdk_selection_owner_set func(
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		time_ T.Guint32,
+		time_ T.GUint32,
 		send_event T.Gboolean) T.Gboolean
 
 	Gdk_selection_owner_get func(
@@ -2442,7 +2442,7 @@ var (
 		display *T.GdkDisplay,
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		time_ T.Guint32,
+		time_ T.GUint32,
 		send_event T.Gboolean) T.Gboolean
 
 	Gdk_selection_owner_get_for_display func(
@@ -2453,20 +2453,20 @@ var (
 		requestor *T.GdkWindow,
 		selection T.GdkAtom,
 		target T.GdkAtom,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_selection_property_get func(
 		requestor *T.GdkWindow,
 		data **T.Guchar,
 		prop_type *T.GdkAtom,
-		prop_format *T.Gint) T.Gint
+		prop_format *int) int
 
 	Gdk_selection_send_notify func(
 		requestor T.GdkNativeWindow,
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		property T.GdkAtom,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_selection_send_notify_for_display func(
 		display *T.GdkDisplay,
@@ -2474,7 +2474,7 @@ var (
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		property T.GdkAtom,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_spawn_on_screen func(
 		screen *T.GdkScreen,
@@ -2484,7 +2484,7 @@ var (
 		flags T.GSpawnFlags,
 		child_setup T.GSpawnChildSetupFunc,
 		user_data T.Gpointer,
-		child_pid *T.Gint,
+		child_pid *int,
 		e **T.GError) T.Gboolean
 
 	Gdk_spawn_on_screen_with_pipes func(
@@ -2495,10 +2495,10 @@ var (
 		flags T.GSpawnFlags,
 		child_setup T.GSpawnChildSetupFunc,
 		user_data T.Gpointer,
-		child_pid *T.Gint,
-		standard_input *T.Gint,
-		standard_output *T.Gint,
-		standard_error *T.Gint,
+		child_pid *int,
+		standard_input *int,
+		standard_output *int,
+		standard_error *int,
 		e **T.GError) T.Gboolean
 
 	Gdk_spawn_command_line_on_screen func(
@@ -2511,7 +2511,7 @@ var (
 	Gdk_window_new func(
 		parent *T.GdkWindow,
 		attributes *T.GdkWindowAttr,
-		attributes_mask T.Gint) *T.GdkWindow
+		attributes_mask int) *T.GdkWindow
 
 	Gdk_window_destroy func(
 		window *T.GdkWindow)
@@ -2538,8 +2538,8 @@ var (
 		window *T.GdkWindow) int
 
 	Gdk_window_at_pointer func(
-		win_x *T.Gint,
-		win_y *T.Gint) *T.GdkWindow
+		win_x *int,
+		win_y *int) *T.GdkWindow
 
 	Gdk_window_show func(
 		window *T.GdkWindow)
@@ -2555,43 +2555,43 @@ var (
 
 	Gdk_window_move func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_window_resize func(
 		window *T.GdkWindow,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gdk_window_move_resize func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gdk_window_reparent func(
 		window *T.GdkWindow,
 		new_parent *T.GdkWindow,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_window_clear func(
 		window *T.GdkWindow)
 
 	Gdk_window_clear_area func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gdk_window_clear_area_e func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gdk_window_raise func(
 		window *T.GdkWindow)
@@ -2606,7 +2606,7 @@ var (
 
 	Gdk_window_focus func(
 		window *T.GdkWindow,
-		timestamp T.Guint32)
+		timestamp T.GUint32)
 
 	Gdk_window_set_user_data func(
 		window *T.GdkWindow,
@@ -2642,14 +2642,14 @@ var (
 
 	Gdk_window_scroll func(
 		window *T.GdkWindow,
-		dx T.Gint,
-		dy T.Gint)
+		dx int,
+		dy int)
 
 	Gdk_window_move_region func(
 		window *T.GdkWindow,
 		region *T.GdkRegion,
-		dx T.Gint,
-		dy T.Gint)
+		dx int,
+		dy int)
 
 	Gdk_window_ensure_native func(
 		window *T.GdkWindow) T.Gboolean
@@ -2657,14 +2657,14 @@ var (
 	Gdk_window_shape_combine_mask func(
 		window *T.GdkWindow,
 		mask *T.GdkBitmap,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_window_shape_combine_region func(
 		window *T.GdkWindow,
 		shape_region *T.GdkRegion,
-		offset_x T.Gint,
-		offset_y T.Gint)
+		offset_x int,
+		offset_y int)
 
 	Gdk_window_set_child_shapes func(
 		window *T.GdkWindow)
@@ -2682,14 +2682,14 @@ var (
 	Gdk_window_input_shape_combine_mask func(
 		window *T.GdkWindow,
 		mask *T.GdkBitmap,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gdk_window_input_shape_combine_region func(
 		window *T.GdkWindow,
 		shape_region *T.GdkRegion,
-		offset_x T.Gint,
-		offset_y T.Gint)
+		offset_x int,
+		offset_y int)
 
 	Gdk_window_set_child_input_shapes func(
 		window *T.GdkWindow)
@@ -2735,13 +2735,13 @@ var (
 
 	Gdk_window_set_hints func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		min_width T.Gint,
-		min_height T.Gint,
-		max_width T.Gint,
-		max_height T.Gint,
-		flags T.Gint)
+		x int,
+		y int,
+		min_width int,
+		min_height int,
+		max_width int,
+		max_height int,
+		flags int)
 
 	Gdk_window_set_type_hint func(
 		window *T.GdkWindow,
@@ -2832,52 +2832,52 @@ var (
 
 	Gdk_window_get_geometry func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint,
-		width *T.Gint,
-		height *T.Gint,
-		depth *T.Gint)
+		x *int,
+		y *int,
+		width *int,
+		height *int,
+		depth *int)
 
 	Gdk_window_get_position func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gdk_window_get_origin func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint) T.Gint
+		x *int,
+		y *int) int
 
 	Gdk_window_get_root_coords func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		root_x *T.Gint,
-		root_y *T.Gint)
+		x int,
+		y int,
+		root_x *int,
+		root_y *int)
 
 	Gdk_window_coords_to_parent func(
 		window *T.GdkWindow,
-		x T.Gdouble,
-		y T.Gdouble,
-		parent_x *T.Gdouble,
-		parent_y *T.Gdouble)
+		x float64,
+		y float64,
+		parent_x *float64,
+		parent_y *float64)
 
 	Gdk_window_coords_from_parent func(
 		window *T.GdkWindow,
-		parent_x T.Gdouble,
-		parent_y T.Gdouble,
-		x *T.Gdouble,
-		y *T.Gdouble)
+		parent_x float64,
+		parent_y float64,
+		x *float64,
+		y *float64)
 
 	Gdk_window_get_deskrelative_origin func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint) T.Gboolean
+		x *int,
+		y *int) T.Gboolean
 
 	Gdk_window_get_root_origin func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gdk_window_get_frame_extents func(
 		window *T.GdkWindow,
@@ -2885,8 +2885,8 @@ var (
 
 	Gdk_window_get_pointer func(
 		window *T.GdkWindow,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		mask *T.GdkModifierType) *T.GdkWindow
 
 	Gdk_window_get_parent func(
@@ -2992,7 +2992,7 @@ var (
 
 	Gdk_window_set_opacity func(
 		window *T.GdkWindow,
-		opacity T.Gdouble)
+		opacity float64)
 
 	Gdk_window_register_dnd func(
 		window *T.GdkWindow)
@@ -3000,17 +3000,17 @@ var (
 	Gdk_window_begin_resize_drag func(
 		window *T.GdkWindow,
 		edge T.GdkWindowEdge,
-		button T.Gint,
-		root_x T.Gint,
-		root_y T.Gint,
-		timestamp T.Guint32)
+		button int,
+		root_x int,
+		root_y int,
+		timestamp T.GUint32)
 
 	Gdk_window_begin_move_drag func(
 		window *T.GdkWindow,
-		button T.Gint,
-		root_x T.Gint,
-		root_y T.Gint,
-		timestamp T.Guint32)
+		button int,
+		root_x int,
+		root_y int,
+		timestamp T.GUint32)
 
 	Gdk_window_invalidate_rect func(
 		window *T.GdkWindow,
@@ -3054,17 +3054,17 @@ var (
 
 	Gdk_window_constrain_size func(
 		geometry *T.GdkGeometry,
-		flags T.Guint,
-		width T.Gint,
-		height T.Gint,
-		new_width *T.Gint,
-		new_height *T.Gint)
+		flags uint,
+		width int,
+		height int,
+		new_width *int,
+		new_height *int)
 
 	Gdk_window_get_internal_paint_info func(
 		window *T.GdkWindow,
 		real_drawable **T.GdkDrawable,
-		x_offset *T.Gint,
-		y_offset *T.Gint)
+		x_offset *int,
+		y_offset *int)
 
 	Gdk_window_enable_synchronized_configure func(
 		window *T.GdkWindow)
@@ -3090,12 +3090,12 @@ var (
 	Gdk_window_redirect_to_drawable func(
 		window *T.GdkWindow,
 		drawable *T.GdkDrawable,
-		src_x T.Gint,
-		src_y T.Gint,
-		dest_x T.Gint,
-		dest_y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		src_x int,
+		src_y int,
+		dest_x int,
+		dest_y int,
+		width int,
+		height int)
 
 	Gdk_window_remove_redirection func(
 		window *T.GdkWindow)
@@ -3108,23 +3108,23 @@ var (
 
 	Gdk_test_simulate_key func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		keyval T.Guint,
+		x int,
+		y int,
+		keyval uint,
 		modifiers T.GdkModifierType,
 		key_pressrelease T.GdkEventType) T.Gboolean
 
 	Gdk_test_simulate_button func(
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		button T.Guint,
+		x int,
+		y int,
+		button uint,
 		modifiers T.GdkModifierType,
 		button_pressrelease T.GdkEventType) T.Gboolean
 
 	Gdk_visual_get_type func() T.GType
 
-	Gdk_visual_get_best_depth func() T.Gint
+	Gdk_visual_get_best_depth func() int
 
 	Gdk_visual_get_best_type func() T.GdkVisualType
 
@@ -3133,22 +3133,22 @@ var (
 	Gdk_visual_get_best func() *T.GdkVisual
 
 	Gdk_visual_get_best_with_depth func(
-		depth T.Gint) *T.GdkVisual
+		depth int) *T.GdkVisual
 
 	Gdk_visual_get_best_with_type func(
 		visual_type T.GdkVisualType) *T.GdkVisual
 
 	Gdk_visual_get_best_with_both func(
-		depth T.Gint,
+		depth int,
 		visual_type T.GdkVisualType) *T.GdkVisual
 
 	Gdk_query_depths func(
-		depths **T.Gint,
-		count *T.Gint)
+		depths **int,
+		count *int)
 
 	Gdk_query_visual_types func(
 		visual_types **T.GdkVisualType,
-		count *T.Gint)
+		count *int)
 
 	Gdk_list_visuals func() *T.GList
 
@@ -3159,45 +3159,45 @@ var (
 		visual *T.GdkVisual) T.GdkVisualType
 
 	Gdk_visual_get_depth func(
-		visual *T.GdkVisual) T.Gint
+		visual *T.GdkVisual) int
 
 	Gdk_visual_get_byte_order func(
 		visual *T.GdkVisual) T.GdkByteOrder
 
 	Gdk_visual_get_colormap_size func(
-		visual *T.GdkVisual) T.Gint
+		visual *T.GdkVisual) int
 
 	Gdk_visual_get_bits_per_rgb func(
-		visual *T.GdkVisual) T.Gint
+		visual *T.GdkVisual) int
 
 	Gdk_visual_get_red_pixel_details func(
 		visual *T.GdkVisual,
-		mask *T.Guint32,
-		shift *T.Gint,
-		precision *T.Gint)
+		mask *T.GUint32,
+		shift *int,
+		precision *int)
 
 	Gdk_visual_get_green_pixel_details func(
 		visual *T.GdkVisual,
-		mask *T.Guint32,
-		shift *T.Gint,
-		precision *T.Gint)
+		mask *T.GUint32,
+		shift *int,
+		precision *int)
 
 	Gdk_visual_get_blue_pixel_details func(
 		visual *T.GdkVisual,
-		mask *T.Guint32,
-		shift *T.Gint,
-		precision *T.Gint)
+		mask *T.GUint32,
+		shift *int,
+		precision *int)
 
 	Gdk_parse_args func(
-		argc *T.Gint,
+		argc *int,
 		argv ***T.Gchar)
 
 	Gdk_init func(
-		argc *T.Gint,
+		argc *int,
 		argv ***T.Gchar)
 
 	Gdk_init_check func(
-		argc *T.Gint,
+		argc *int,
 		argv ***T.Gchar) T.Gboolean
 
 	Gdk_add_option_entries_libgtk_only func(
@@ -3206,7 +3206,7 @@ var (
 	Gdk_pre_parse_libgtk_only func()
 
 	Gdk_exit func(
-		error_code T.Gint)
+		error_code int)
 
 	Gdk_set_locale func() string
 
@@ -3217,7 +3217,7 @@ var (
 
 	Gdk_error_trap_push func()
 
-	Gdk_error_trap_pop func() T.Gint
+	Gdk_error_trap_pop func() int
 
 	Gdk_set_use_xshm func(
 		use_xshm T.Gboolean)
@@ -3229,20 +3229,20 @@ var (
 	Gdk_get_display_arg_name func() string
 
 	Gdk_input_add_full func(
-		source T.Gint,
+		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
 		data T.Gpointer,
-		destroy T.GDestroyNotify) T.Gint
+		destroy T.GDestroyNotify) int
 
 	Gdk_input_add func(
-		source T.Gint,
+		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
-		data T.Gpointer) T.Gint
+		data T.Gpointer) int
 
 	Gdk_input_remove func(
-		tag T.Gint)
+		tag int)
 
 	Gdk_pointer_grab func(
 		window *T.GdkWindow,
@@ -3250,12 +3250,12 @@ var (
 		event_mask T.GdkEventMask,
 		confine_to *T.GdkWindow,
 		cursor *T.GdkCursor,
-		time_ T.Guint32) T.GdkGrabStatus
+		time_ T.GUint32) T.GdkGrabStatus
 
 	Gdk_keyboard_grab func(
 		window *T.GdkWindow,
 		owner_events T.Gboolean,
-		time_ T.Guint32) T.GdkGrabStatus
+		time_ T.GUint32) T.GdkGrabStatus
 
 	Gdk_pointer_grab_info_libgtk_only func(
 		display *T.GdkDisplay,
@@ -3268,27 +3268,27 @@ var (
 		owner_events *T.Gboolean) T.Gboolean
 
 	Gdk_pointer_ungrab func(
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_keyboard_ungrab func(
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gdk_pointer_is_grabbed func() T.Gboolean
 
-	Gdk_screen_width func() T.Gint
+	Gdk_screen_width func() int
 
-	Gdk_screen_height func() T.Gint
+	Gdk_screen_height func() int
 
-	Gdk_screen_width_mm func() T.Gint
+	Gdk_screen_width_mm func() int
 
-	Gdk_screen_height_mm func() T.Gint
+	Gdk_screen_height_mm func() int
 
 	Gdk_beep func()
 
 	Gdk_flush func()
 
 	Gdk_set_double_click_time func(
-		msec T.Guint)
+		msec uint)
 
 	Gdk_rectangle_intersect func(
 		src1 *T.GdkRectangle,
@@ -3308,7 +3308,7 @@ var (
 	Gdk_mbstowcs func(
 		dest *T.GdkWChar,
 		src string,
-		dest_max T.Gint) T.Gint
+		dest_max int) int
 
 	Gdk_event_send_client_message func(
 		event *T.GdkEvent,
@@ -3338,38 +3338,38 @@ var (
 		leave_fn T.GCallback)
 
 	Gdk_threads_add_idle_full func(
-		priority T.Gint,
+		priority int,
 		function T.GSourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) T.Guint
+		notify T.GDestroyNotify) uint
 
 	Gdk_threads_add_idle func(
 		function T.GSourceFunc,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gdk_threads_add_timeout_full func(
-		priority T.Gint,
-		interval T.Guint,
+		priority int,
+		interval uint,
 		function T.GSourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) T.Guint
+		notify T.GDestroyNotify) uint
 
 	Gdk_threads_add_timeout func(
-		interval T.Guint,
+		interval uint,
 		function T.GSourceFunc,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gdk_threads_add_timeout_seconds_full func(
-		priority T.Gint,
-		interval T.Guint,
+		priority int,
+		interval uint,
 		function T.GSourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) T.Guint
+		notify T.GDestroyNotify) uint
 
 	Gdk_threads_add_timeout_seconds func(
-		interval T.Guint,
+		interval uint,
 		function T.GSourceFunc,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gdk_pixbuf_non_anim_get_type func() T.GType
 
@@ -3382,12 +3382,12 @@ var (
 
 	Gdk_pixdata_serialize func(
 		pixdata *T.GdkPixdata,
-		stream_length_p *T.Guint) *T.Guint8
+		stream_length_p *uint) *uint8
 
 	Gdk_pixdata_deserialize func(
 		pixdata *T.GdkPixdata,
-		stream_length T.Guint,
-		stream *T.Guint8,
+		stream_length uint,
+		stream *uint8,
 		e **T.GError) T.Gboolean
 
 	Gdk_pixdata_from_pixbuf func(
@@ -3443,7 +3443,7 @@ var (
 	Gdk_win32_selection_add_targets func(
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		n_targets T.Gint,
+		n_targets int,
 		targets *T.GdkAtom)
 
 	Gdk_win32_icon_to_pixbuf_libgtk_only func(
@@ -3459,8 +3459,8 @@ var (
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		priv_data *T.Gpointer,
-		x_offset_out *T.Gint,
-		y_offset_out *T.Gint) *T.GdkDrawable
+		x_offset_out *int,
+		y_offset_out *int) *T.GdkDrawable
 
 	Gdk_win32_end_direct_draw_libgtk_only func(
 		priv_data T.Gpointer)
@@ -4332,8 +4332,8 @@ var dataList = outside.Data{
 }
 
 var dataListPixbuf = outside.Data{
-	{"gdk_pixbuf_major_version", (*T.Guint)(nil)},
-	{"gdk_pixbuf_micro_version", (*T.Guint)(nil)},
-	{"gdk_pixbuf_minor_version", (*T.Guint)(nil)},
+	{"gdk_pixbuf_major_version", (*uint)(nil)},
+	{"gdk_pixbuf_micro_version", (*uint)(nil)},
+	{"gdk_pixbuf_minor_version", (*uint)(nil)},
 	{"gdk_pixbuf_version", (*uint8)(nil)},
 }

@@ -81,7 +81,7 @@ type (
 	GtkSourceGutterDataFunc func(
 		gutter *GtkSourceGutter,
 		cell *T.GtkCellRenderer,
-		line_number T.Gint,
+		line_number int,
 		current_line T.Gboolean,
 		data T.Gpointer)
 
@@ -289,11 +289,11 @@ var (
 		highlight T.Gboolean)
 
 	Gtk_source_buffer_get_max_undo_levels func(
-		buffer *GtkSourceBuffer) T.Gint
+		buffer *GtkSourceBuffer) int
 
 	Gtk_source_buffer_set_max_undo_levels func(
 		buffer *GtkSourceBuffer,
-		max_undo_levels T.Gint)
+		max_undo_levels int)
 
 	Gtk_source_buffer_get_language func(
 		buffer *GtkSourceBuffer) *GtkSourceLanguage
@@ -353,7 +353,7 @@ var (
 
 	Gtk_source_buffer_get_source_marks_at_line func(
 		buffer *GtkSourceBuffer,
-		line T.Gint,
+		line int,
 		category string) *T.GSList
 
 	Gtk_source_buffer_remove_source_marks func(
@@ -399,8 +399,8 @@ var (
 
 	Gtk_source_completion_info_set_sizing func(
 		info *GtkSourceCompletionInfo,
-		width T.Gint,
-		height T.Gint,
+		width int,
+		height int,
 		shrink_width T.Gboolean,
 		shrink_height T.Gboolean)
 
@@ -435,7 +435,7 @@ var (
 		proposal *GtkSourceCompletionProposal)
 
 	Gtk_source_completion_proposal_hash func(
-		proposal *GtkSourceCompletionProposal) T.Guint
+		proposal *GtkSourceCompletionProposal) uint
 
 	Gtk_source_completion_proposal_equal func(
 		proposal *GtkSourceCompletionProposal,
@@ -496,10 +496,10 @@ var (
 		iter *T.GtkTextIter) T.Gboolean
 
 	Gtk_source_completion_provider_get_interactive_delay func(
-		provider *GtkSourceCompletionProvider) T.Gint
+		provider *GtkSourceCompletionProvider) int
 
 	Gtk_source_completion_provider_get_priority func(
-		provider *GtkSourceCompletionProvider) T.Gint
+		provider *GtkSourceCompletionProvider) int
 
 	Gtk_source_completion_get_type func() T.GType
 
@@ -554,12 +554,12 @@ var (
 	Gtk_source_gutter_insert func(
 		gutter *GtkSourceGutter,
 		renderer *T.GtkCellRenderer,
-		position T.Gint)
+		position int)
 
 	Gtk_source_gutter_reorder func(
 		gutter *GtkSourceGutter,
 		renderer *T.GtkCellRenderer,
-		position T.Gint)
+		position int)
 
 	Gtk_source_gutter_remove func(
 		gutter *GtkSourceGutter,
@@ -598,17 +598,17 @@ var (
 
 	Gtk_source_view_set_tab_width func(
 		view *GtkSourceView,
-		width T.Guint)
+		width uint)
 
 	Gtk_source_view_get_tab_width func(
-		view *GtkSourceView) T.Guint
+		view *GtkSourceView) uint
 
 	Gtk_source_view_set_indent_width func(
 		view *GtkSourceView,
-		width T.Gint)
+		width int)
 
 	Gtk_source_view_get_indent_width func(
-		view *GtkSourceView) T.Gint
+		view *GtkSourceView) int
 
 	Gtk_source_view_set_auto_indent func(
 		view *GtkSourceView,
@@ -647,10 +647,10 @@ var (
 
 	Gtk_source_view_set_right_margin_position func(
 		view *GtkSourceView,
-		pos T.Guint)
+		pos uint)
 
 	Gtk_source_view_get_right_margin_position func(
-		view *GtkSourceView) T.Guint
+		view *GtkSourceView) uint
 
 	Gtk_source_view_set_show_line_marks func(
 		view *GtkSourceView,
@@ -710,11 +710,11 @@ var (
 	Gtk_source_view_set_mark_category_priority func(
 		view *GtkSourceView,
 		category string,
-		priority T.Gint)
+		priority int)
 
 	Gtk_source_view_get_mark_category_priority func(
 		view *GtkSourceView,
-		category string) T.Gint
+		category string) int
 
 	Gtk_source_view_set_smart_home_end func(
 		view *GtkSourceView,
@@ -837,10 +837,10 @@ var (
 
 	Gtk_source_print_compositor_set_tab_width func(
 		compositor *GtkSourcePrintCompositor,
-		width T.Guint)
+		width uint)
 
 	Gtk_source_print_compositor_get_tab_width func(
-		compositor *GtkSourcePrintCompositor) T.Guint
+		compositor *GtkSourcePrintCompositor) uint
 
 	Gtk_source_print_compositor_set_wrap_mode func(
 		compositor *GtkSourcePrintCompositor,
@@ -858,10 +858,10 @@ var (
 
 	Gtk_source_print_compositor_set_print_line_numbers func(
 		compositor *GtkSourcePrintCompositor,
-		interval T.Guint)
+		interval uint)
 
 	Gtk_source_print_compositor_get_print_line_numbers func(
-		compositor *GtkSourcePrintCompositor) T.Guint
+		compositor *GtkSourcePrintCompositor) uint
 
 	Gtk_source_print_compositor_set_body_font_name func(
 		compositor *GtkSourcePrintCompositor,
@@ -893,38 +893,38 @@ var (
 
 	Gtk_source_print_compositor_get_top_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_source_print_compositor_set_top_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_source_print_compositor_set_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_left_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_source_print_compositor_set_left_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_get_right_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_source_print_compositor_set_right_margin func(
 		compositor *GtkSourcePrintCompositor,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_source_print_compositor_set_print_header func(
@@ -956,19 +956,19 @@ var (
 		right string)
 
 	Gtk_source_print_compositor_get_n_pages func(
-		compositor *GtkSourcePrintCompositor) T.Gint
+		compositor *GtkSourcePrintCompositor) int
 
 	Gtk_source_print_compositor_paginate func(
 		compositor *GtkSourcePrintCompositor,
 		context *T.GtkPrintContext) T.Gboolean
 
 	Gtk_source_print_compositor_get_pagination_progress func(
-		compositor *GtkSourcePrintCompositor) T.Gdouble
+		compositor *GtkSourcePrintCompositor) float64
 
 	Gtk_source_print_compositor_draw_page func(
 		compositor *GtkSourcePrintCompositor,
 		context *T.GtkPrintContext,
-		page_nr T.Gint)
+		page_nr int)
 
 	Gtk_source_style_scheme_manager_get_type func() T.GType
 

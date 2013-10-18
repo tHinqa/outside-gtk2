@@ -3872,11 +3872,11 @@ var apiList = outside.Apis{
 }
 
 var dataList = outside.Data{
-	{"gtk_binary_age", (*T.Guint)(nil)},
-	{"gtk_debug_flags", (*T.Guint)(nil)},
-	{"gtk_interface_age", (*T.Guint)(nil)},
-	{"gtk_major_version", (*T.Guint)(nil)},
-	{"gtk_micro_version", (*T.Guint)(nil)},
-	{"gtk_minor_version", (*T.Guint)(nil)},
+	{"gtk_binary_age", (*uint)(nil)},
+	{"gtk_debug_flags", (*uint)(nil)},
+	{"gtk_interface_age", (*uint)(nil)},
+	{"gtk_major_version", (*uint)(nil)},
+	{"gtk_micro_version", (*uint)(nil)},
+	{"gtk_minor_version", (*uint)(nil)},
 	{"gtk_text_attr_appearance_type", (*T.PangoAttrType)(nil)},
 }

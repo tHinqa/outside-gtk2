@@ -19,7 +19,7 @@ var (
 	Pango_fc_decoder_get_glyph func(
 		decoder *T.PangoFcDecoder,
 		fcfont *T.PangoFcFont,
-		wc T.Guint32) T.PangoGlyph
+		wc T.GUint32) T.PangoGlyph
 
 	Pango_fc_font_has_char func(
 		font *T.PangoFcFont,
@@ -27,7 +27,7 @@ var (
 
 	Pango_fc_font_get_glyph func(
 		font *T.PangoFcFont,
-		wc T.Gunichar) T.Guint
+		wc T.Gunichar) uint
 
 	Pango_fc_font_get_unknown_glyph func(
 		font *T.PangoFcFont,
@@ -55,10 +55,10 @@ var (
 		key *T.PangoFcFontsetKey) *T.PangoMatrix
 
 	Pango_fc_fontset_key_get_absolute_size func(
-		key *T.PangoFcFontsetKey) T.Double
+		key *T.PangoFcFontsetKey) float64
 
 	Pango_fc_fontset_key_get_resolution func(
-		key *T.PangoFcFontsetKey) T.Double
+		key *T.PangoFcFontsetKey) float64
 
 	Pango_fc_fontset_key_get_context_key func(
 		key *T.PangoFcFontsetKey) T.Gpointer
@@ -101,7 +101,7 @@ var (
 		bitmap *T.FT_Bitmap,
 		font *T.PangoFont,
 		glyphs *T.PangoGlyphString,
-		x, y T.Gint)
+		x, y int)
 
 	Pango_ft2_render_transformed func(
 		bitmap *T.FT_Bitmap,
@@ -140,7 +140,7 @@ var (
 
 	Pango_ft2_font_map_set_resolution func(
 		fontmap *T.PangoFT2FontMap,
-		dpi_x, dpi_y T.Double)
+		dpi_x, dpi_y float64)
 
 	Pango_ft2_font_map_set_default_substitute func(
 		fontmap *T.PangoFT2FontMap,
@@ -155,7 +155,7 @@ var (
 		fontmap *T.PangoFT2FontMap) *T.PangoContext
 
 	Pango_ft2_get_context func(
-		dpi_x, dpi_y T.Double) *T.PangoContext
+		dpi_x, dpi_y float64) *T.PangoContext
 
 	Pango_ft2_font_map_for_display func() *T.PangoFontMap
 
@@ -183,23 +183,23 @@ var (
 		info *T.PangoOTInfo,
 		table_type T.PangoOTTableType,
 		script_tag T.PangoOTTag,
-		script_index *T.Guint) T.Gboolean
+		script_index *uint) T.Gboolean
 
 	Pango_ot_info_find_language func(
 		info *T.PangoOTInfo,
 		table_type T.PangoOTTableType,
-		script_index T.Guint,
+		script_index uint,
 		language_tag T.PangoOTTag,
-		language_index *T.Guint,
-		required_feature_index *T.Guint) T.Gboolean
+		language_index *uint,
+		required_feature_index *uint) T.Gboolean
 
 	Pango_ot_info_find_feature func(
 		info *T.PangoOTInfo,
 		table_type T.PangoOTTableType,
 		feature_tag T.PangoOTTag,
-		script_index T.Guint,
-		language_index T.Guint,
-		feature_index *T.Guint) T.Gboolean
+		script_index uint,
+		language_index uint,
+		feature_index *uint) T.Gboolean
 
 	Pango_ot_info_list_scripts func(
 		info *T.PangoOTInfo,
@@ -208,15 +208,15 @@ var (
 	Pango_ot_info_list_languages func(
 		info *T.PangoOTInfo,
 		table_type T.PangoOTTableType,
-		script_index T.Guint,
+		script_index uint,
 		language_tag T.PangoOTTag) *T.PangoOTTag
 
 	Pango_ot_info_list_features func(
 		info *T.PangoOTInfo,
 		table_type T.PangoOTTableType,
 		tag T.PangoOTTag,
-		script_index T.Guint,
-		language_index T.Guint) *T.PangoOTTag
+		script_index uint,
+		language_index uint) *T.PangoOTTag
 
 	Pango_ot_buffer_new func(
 		font *T.PangoFcFont) *T.PangoOTBuffer
@@ -233,9 +233,9 @@ var (
 
 	Pango_ot_buffer_add_glyph func(
 		buffer *T.PangoOTBuffer,
-		glyph T.Guint,
-		properties T.Guint,
-		cluster T.Guint)
+		glyph uint,
+		properties uint,
+		cluster uint)
 
 	Pango_ot_buffer_get_glyphs func(
 		buffer *T.PangoOTBuffer,
@@ -269,7 +269,7 @@ var (
 	Pango_ot_ruleset_add_feature func(
 		ruleset *T.PangoOTRuleset,
 		table_type T.PangoOTTableType,
-		feature_index T.Guint,
+		feature_index uint,
 		property_bit T.Gulong)
 
 	Pango_ot_ruleset_maybe_add_feature func(
@@ -282,12 +282,12 @@ var (
 		ruleset *T.PangoOTRuleset,
 		table_type T.PangoOTTableType,
 		features *T.PangoOTFeatureMap,
-		n_features T.Guint) T.Guint
+		n_features uint) uint
 
 	Pango_ot_ruleset_get_feature_count func(
 		ruleset *T.PangoOTRuleset,
-		n_gsub_features *T.Guint,
-		n_gpos_features *T.Guint) T.Guint
+		n_gsub_features *uint,
+		n_gpos_features *uint) uint
 
 	Pango_ot_ruleset_substitute func(
 		ruleset *T.PangoOTRuleset,
@@ -310,7 +310,7 @@ var (
 		language *T.PangoLanguage) T.PangoOTTag
 
 	Pango_ot_ruleset_description_hash func(
-		desc *T.PangoOTRulesetDescription) T.Guint
+		desc *T.PangoOTRulesetDescription) uint
 
 	Pango_ot_ruleset_description_equal func(
 		desc1 *T.PangoOTRulesetDescription,

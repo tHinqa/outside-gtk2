@@ -27,7 +27,7 @@ var (
 
 	Gtk_accel_group_connect func(
 		accel_group *T.GtkAccelGroup,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType,
 		accel_flags T.GtkAccelFlags,
 		closure *T.GClosure)
@@ -43,19 +43,19 @@ var (
 
 	Gtk_accel_group_disconnect_key func(
 		accel_group *T.GtkAccelGroup,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType) T.Gboolean
 
 	Gtk_accel_group_activate func(
 		accel_group *T.GtkAccelGroup,
 		accel_quark T.GQuark,
 		acceleratable *T.GObject,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType) T.Gboolean
 
 	Gtk_accel_groups_activate func(
 		object *T.GObject,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType) T.Gboolean
 
 	Gtk_accel_groups_from_object func(
@@ -70,32 +70,32 @@ var (
 		closure *T.GClosure) *T.GtkAccelGroup
 
 	Gtk_accelerator_valid func(
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
 	Gtk_accelerator_parse func(
 		accelerator string,
-		accelerator_key *T.Guint,
+		accelerator_key *uint,
 		accelerator_mods *T.GdkModifierType)
 
 	Gtk_accelerator_name func(
-		accelerator_key T.Guint,
+		accelerator_key uint,
 		accelerator_mods T.GdkModifierType) string
 
 	Gtk_accelerator_get_label func(
-		accelerator_key T.Guint,
+		accelerator_key uint,
 		accelerator_mods T.GdkModifierType) string
 
 	Gtk_accelerator_set_default_mod_mask func(
 		default_mod_mask T.GdkModifierType)
 
-	Gtk_accelerator_get_default_mod_mask func() T.Guint
+	Gtk_accelerator_get_default_mod_mask func() uint
 
 	Gtk_accel_group_query func(
 		accel_group *T.GtkAccelGroup,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType,
-		n_entries *T.Guint) *T.GtkAccelGroupEntry
+		n_entries *uint) *T.GtkAccelGroupEntry
 
 	Gtk_accel_flags_get_type func() T.GType
 
@@ -435,18 +435,18 @@ var (
 	Gtk_object_add_arg_type func(
 		arg_name string,
 		arg_type T.GType,
-		arg_flags T.Guint,
-		arg_id T.Guint)
+		arg_flags uint,
+		arg_id uint)
 
 	Gtk_adjustment_get_type func() T.GType
 
 	Gtk_adjustment_new func(
-		value T.Gdouble,
-		lower T.Gdouble,
-		upper T.Gdouble,
-		step_increment T.Gdouble,
-		page_increment T.Gdouble,
-		page_size T.Gdouble) *T.GtkObject
+		value float64,
+		lower float64,
+		upper float64,
+		step_increment float64,
+		page_increment float64,
+		page_size float64) *T.GtkObject
 
 	Gtk_adjustment_changed func(
 		adjustment *T.GtkAdjustment)
@@ -455,55 +455,55 @@ var (
 		adjustment *T.GtkAdjustment)
 
 	Gtk_adjustment_clamp_page func(
-		adjustment *T.GtkAdjustment, lower, upper T.Gdouble)
+		adjustment *T.GtkAdjustment, lower, upper float64)
 
 	Gtk_adjustment_get_value func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_value func(
-		adjustment *T.GtkAdjustment, value T.Gdouble)
+		adjustment *T.GtkAdjustment, value float64)
 
 	Gtk_adjustment_get_lower func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_lower func(
-		adjustment *T.GtkAdjustment, lower T.Gdouble)
+		adjustment *T.GtkAdjustment, lower float64)
 
 	Gtk_adjustment_get_upper func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_upper func(
-		adjustment *T.GtkAdjustment, upper T.Gdouble)
+		adjustment *T.GtkAdjustment, upper float64)
 
 	Gtk_adjustment_get_step_increment func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_step_increment func(
 		adjustment *T.GtkAdjustment,
-		step_increment T.Gdouble)
+		step_increment float64)
 
 	Gtk_adjustment_get_page_increment func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_page_increment func(
 		adjustment *T.GtkAdjustment,
-		page_increment T.Gdouble)
+		page_increment float64)
 
 	Gtk_adjustment_get_page_size func(
-		adjustment *T.GtkAdjustment) T.Gdouble
+		adjustment *T.GtkAdjustment) float64
 
 	Gtk_adjustment_set_page_size func(
 		adjustment *T.GtkAdjustment,
-		page_size T.Gdouble)
+		page_size float64)
 
 	Gtk_adjustment_configure func(
 		adjustment *T.GtkAdjustment,
-		value T.Gdouble,
-		lower T.Gdouble,
-		upper T.Gdouble,
-		step_increment T.Gdouble,
-		page_increment T.Gdouble,
-		page_size T.Gdouble)
+		value float64,
+		lower float64,
+		upper float64,
+		step_increment float64,
+		page_increment float64,
+		page_size float64)
 
 	Gtk_style_get_type func() T.GType
 
@@ -543,10 +543,10 @@ var (
 		set_bg T.Gboolean,
 		state_type T.GtkStateType,
 		area *T.GdkRectangle,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_style_lookup_icon_set func(
 		style *T.GtkStyle,
@@ -570,27 +570,27 @@ var (
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
-		x1 T.Gint,
-		x2 T.Gint,
-		y T.Gint)
+		x1 int,
+		x2 int,
+		y int)
 
 	Gtk_draw_vline func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
-		y1_ T.Gint,
-		y2_ T.Gint,
-		x T.Gint)
+		y1_ int,
+		y2_ int,
+		x int)
 
 	Gtk_draw_shadow func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_polygon func(
 		style *T.GtkStyle,
@@ -598,7 +598,7 @@ var (
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
 		points *T.GdkPoint,
-		npoints T.Gint,
+		npoints int,
 		fill T.Gboolean)
 
 	Gtk_draw_arrow func(
@@ -608,125 +608,125 @@ var (
 		shadow_type T.GtkShadowType,
 		arrow_type T.GtkArrowType,
 		fill T.Gboolean,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_diamond func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_box func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_flat_box func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_check func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_option func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_tab func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_shadow_gap func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType,
-		gap_x T.Gint,
-		gap_width T.Gint)
+		gap_x int,
+		gap_width int)
 
 	Gtk_draw_box_gap func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType,
-		gap_x T.Gint,
-		gap_width T.Gint)
+		gap_x int,
+		gap_width int)
 
 	Gtk_draw_extension func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType)
 
 	Gtk_draw_focus func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_draw_slider func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		orientation T.GtkOrientation)
 
 	Gtk_draw_handle func(
@@ -734,18 +734,18 @@ var (
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		shadow_type T.GtkShadowType,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		orientation T.GtkOrientation)
 
 	Gtk_draw_expander func(
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		expander_style T.GtkExpanderStyle)
 
 	Gtk_draw_layout func(
@@ -753,8 +753,8 @@ var (
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		use_text T.Gboolean,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		layout *T.PangoLayout)
 
 	Gtk_draw_resize_grip func(
@@ -762,10 +762,10 @@ var (
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
 		edge T.GdkWindowEdge,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_hline func(
 		style *T.GtkStyle,
@@ -774,9 +774,9 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x1 T.Gint,
-		x2 T.Gint,
-		y T.Gint)
+		x1 int,
+		x2 int,
+		y int)
 
 	Gtk_paint_vline func(
 		style *T.GtkStyle,
@@ -785,9 +785,9 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		y1_ T.Gint,
-		y2_ T.Gint,
-		x T.Gint)
+		y1_ int,
+		y2_ int,
+		x int)
 
 	Gtk_paint_shadow func(
 		style *T.GtkStyle,
@@ -797,10 +797,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_polygon func(
 		style *T.GtkStyle,
@@ -811,7 +811,7 @@ var (
 		widget *T.GtkWidget,
 		detail string,
 		points *T.GdkPoint,
-		n_points T.Gint,
+		n_points int,
 		fill T.Gboolean)
 
 	Gtk_paint_arrow func(
@@ -824,10 +824,10 @@ var (
 		detail string,
 		arrow_type T.GtkArrowType,
 		fill T.Gboolean,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_diamond func(
 		style *T.GtkStyle,
@@ -837,10 +837,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_box func(
 		style *T.GtkStyle,
@@ -850,10 +850,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_flat_box func(
 		style *T.GtkStyle,
@@ -863,10 +863,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_check func(
 		style *T.GtkStyle,
@@ -876,10 +876,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_option func(
 		style *T.GtkStyle,
@@ -889,10 +889,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_tab func(
 		style *T.GtkStyle,
@@ -902,10 +902,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_shadow_gap func(
 		style *T.GtkStyle,
@@ -915,13 +915,13 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType,
-		gap_x T.Gint,
-		gap_width T.Gint)
+		gap_x int,
+		gap_width int)
 
 	Gtk_paint_box_gap func(
 		style *T.GtkStyle,
@@ -931,13 +931,13 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType,
-		gap_x T.Gint,
-		gap_width T.Gint)
+		gap_x int,
+		gap_width int)
 
 	Gtk_paint_extension func(
 		style *T.GtkStyle,
@@ -947,10 +947,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		gap_side T.GtkPositionType)
 
 	Gtk_paint_focus func(
@@ -960,10 +960,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_slider func(
 		style *T.GtkStyle,
@@ -973,10 +973,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		orientation T.GtkOrientation)
 
 	Gtk_paint_handle func(
@@ -987,10 +987,10 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		orientation T.GtkOrientation)
 
 	Gtk_paint_expander func(
@@ -1000,8 +1000,8 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		expander_style T.GtkExpanderStyle)
 
 	Gtk_paint_layout func(
@@ -1012,8 +1012,8 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		layout *T.PangoLayout)
 
 	Gtk_paint_resize_grip func(
@@ -1024,10 +1024,10 @@ var (
 		widget *T.GtkWidget,
 		detail string,
 		edge T.GdkWindowEdge,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_paint_spinner func(
 		style *T.GtkStyle,
@@ -1036,11 +1036,11 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		step T.Guint,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint)
+		step uint,
+		x int,
+		y int,
+		width int,
+		height int)
 
 	Gtk_border_get_type func() T.GType
 
@@ -1071,8 +1071,8 @@ var (
 		style *T.GtkStyle,
 		window *T.GdkWindow,
 		state_type T.GtkStateType,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		string string)
 
 	Gtk_paint_string func(
@@ -1082,8 +1082,8 @@ var (
 		area *T.GdkRectangle,
 		widget *T.GtkWidget,
 		detail string,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		string string)
 
 	Gtk_draw_insertion_cursor func(
@@ -1172,20 +1172,20 @@ var (
 
 	Gtk_rc_parse_color func(
 		scanner *T.GScanner,
-		color *T.GdkColor) T.Guint
+		color *T.GdkColor) uint
 
 	Gtk_rc_parse_color_full func(
 		scanner *T.GScanner,
 		style *T.GtkRcStyle,
-		color *T.GdkColor) T.Guint
+		color *T.GdkColor) uint
 
 	Gtk_rc_parse_state func(
 		scanner *T.GScanner,
-		state *T.GtkStateType) T.Guint
+		state *T.GtkStateType) uint
 
 	Gtk_rc_parse_priority func(
 		scanner *T.GScanner,
-		priority *T.GtkPathPriorityType) T.Guint
+		priority *T.GtkPathPriorityType) uint
 
 	Gtk_settings_get_type func() T.GType
 
@@ -1246,7 +1246,7 @@ var (
 	Gtk_settings_set_double_property func(
 		settings *T.GtkSettings,
 		name string,
-		v_double T.Gdouble,
+		v_double float64,
 		origin string)
 
 	Gtk_widget_get_type func() T.GType
@@ -1311,13 +1311,13 @@ var (
 		widget *T.GtkWidget)
 
 	Gtk_widget_queue_draw_area func(
-		widget *T.GtkWidget, x, y, width, height T.Gint)
+		widget *T.GtkWidget, x, y, width, height int)
 
 	Gtk_widget_queue_clear func(
 		widget *T.GtkWidget)
 
 	Gtk_widget_queue_clear_area func(
-		widget *T.GtkWidget, x, y, width, height T.Gint)
+		widget *T.GtkWidget, x, y, width, height int)
 
 	Gtk_widget_queue_resize func(widget *T.GtkWidget)
 
@@ -1341,14 +1341,14 @@ var (
 		widget *T.GtkWidget,
 		accel_signal string,
 		accel_group *T.GtkAccelGroup,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType,
 		accel_flags T.GtkAccelFlags)
 
 	Gtk_widget_remove_accelerator func(
 		widget *T.GtkWidget,
 		accel_group *T.GtkAccelGroup,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType) T.Gboolean
 
 	Gtk_widget_set_accel_path func(
@@ -1361,7 +1361,7 @@ var (
 
 	Gtk_widget_can_activate_accel func(
 		widget *T.GtkWidget,
-		signal_id T.Guint) T.Gboolean
+		signal_id uint) T.Gboolean
 
 	Gtk_widget_mnemonic_activate func(
 		widget *T.GtkWidget,
@@ -1373,7 +1373,7 @@ var (
 
 	Gtk_widget_send_expose func(
 		widget *T.GtkWidget,
-		event *T.GdkEvent) T.Gint
+		event *T.GdkEvent) int
 
 	Gtk_widget_send_focus_change func(
 		widget *T.GtkWidget,
@@ -1578,31 +1578,31 @@ var (
 
 	Gtk_widget_set_size_request func(
 		widget *T.GtkWidget,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_widget_get_size_request func(
 		widget *T.GtkWidget,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gtk_widget_set_uposition func(
 		widget *T.GtkWidget,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_widget_set_usize func(
 		widget *T.GtkWidget,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_widget_set_events func(
 		widget *T.GtkWidget,
-		events T.Gint)
+		events int)
 
 	Gtk_widget_add_events func(
 		widget *T.GtkWidget,
-		events T.Gint)
+		events int)
 
 	Gtk_widget_set_extension_events func(
 		widget *T.GtkWidget,
@@ -1655,12 +1655,12 @@ var (
 		colormap *T.GdkColormap)
 
 	Gtk_widget_get_events func(
-		widget *T.GtkWidget) T.Gint
+		widget *T.GtkWidget) int
 
 	Gtk_widget_get_pointer func(
 		widget *T.GtkWidget,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gtk_widget_is_ancestor func(
 		widget *T.GtkWidget,
@@ -1669,10 +1669,10 @@ var (
 	Gtk_widget_translate_coordinates func(
 		src_widget *T.GtkWidget,
 		dest_widget *T.GtkWidget,
-		src_x T.Gint,
-		src_y T.Gint,
-		dest_x *T.Gint,
-		dest_y *T.Gint) T.Gboolean
+		src_x int,
+		src_y int,
+		dest_x *int,
+		dest_y *int) T.Gboolean
 
 	Gtk_widget_hide_on_delete func(
 		widget *T.GtkWidget) T.Gboolean
@@ -1779,7 +1779,7 @@ var (
 
 	Gtk_widget_class_list_style_properties func(
 		klass *T.GtkWidgetClass,
-		n_properties *T.Guint) **T.GParamSpec
+		n_properties *uint) **T.GParamSpec
 
 	Gtk_widget_style_get_property func(
 		widget *T.GtkWidget,
@@ -1821,27 +1821,27 @@ var (
 	Gtk_widget_shape_combine_mask func(
 		widget *T.GtkWidget,
 		shape_mask *T.GdkBitmap,
-		offset_x T.Gint,
-		offset_y T.Gint)
+		offset_x int,
+		offset_y int)
 
 	Gtk_widget_input_shape_combine_mask func(
 		widget *T.GtkWidget,
 		shape_mask *T.GdkBitmap,
-		offset_x T.Gint,
-		offset_y T.Gint)
+		offset_x int,
+		offset_y int)
 
 	Gtk_widget_reset_shapes func(
 		widget *T.GtkWidget)
 
 	Gtk_widget_path func(
 		widget *T.GtkWidget,
-		path_length *T.Guint,
+		path_length *uint,
 		path **T.Gchar,
 		path_reversed **T.Gchar)
 
 	Gtk_widget_class_path func(
 		widget *T.GtkWidget,
-		path_length *T.Guint,
+		path_length *uint,
 		path **T.Gchar,
 		path_reversed **T.Gchar)
 
@@ -1899,10 +1899,10 @@ var (
 
 	Gtk_container_set_border_width func(
 		container *T.GtkContainer,
-		border_width T.Guint)
+		border_width uint)
 
 	Gtk_container_get_border_width func(
-		container *T.GtkContainer) T.Guint
+		container *T.GtkContainer) uint
 
 	Gtk_container_add func(
 		container *T.GtkContainer,
@@ -1986,7 +1986,7 @@ var (
 
 	Gtk_container_class_install_child_property func(
 		cclass *T.GtkContainerClass,
-		property_id T.Guint,
+		property_id uint,
 		pspec *T.GParamSpec)
 
 	Gtk_container_class_find_child_property func(
@@ -1995,7 +1995,7 @@ var (
 
 	Gtk_container_class_list_child_properties func(
 		cclass *T.GObjectClass,
-		n_properties *T.Guint) **T.GParamSpec
+		n_properties *uint) **T.GParamSpec
 
 	Gtk_container_add_with_properties func(
 		container *T.GtkContainer, widget *T.GtkWidget,
@@ -2111,10 +2111,10 @@ var (
 
 	Gtk_window_set_opacity func(
 		window *T.GtkWindow,
-		opacity T.Gdouble)
+		opacity float64)
 
 	Gtk_window_get_opacity func(
-		window *T.GtkWindow) T.Gdouble
+		window *T.GtkWindow) float64
 
 	Gtk_window_set_type_hint func(
 		window *T.GtkWindow,
@@ -2214,17 +2214,17 @@ var (
 
 	Gtk_window_set_frame_dimensions func(
 		window *T.GtkWindow,
-		left T.Gint,
-		top T.Gint,
-		right T.Gint,
-		bottom T.Gint)
+		left int,
+		top int,
+		right int,
+		bottom int)
 
 	Gtk_window_get_frame_dimensions func(
 		window *T.GtkWindow,
-		left *T.Gint,
-		top *T.Gint,
-		right *T.Gint,
-		bottom *T.Gint)
+		left *int,
+		top *int,
+		right *int,
+		bottom *int)
 
 	Gtk_window_set_decorated func(
 		window *T.GtkWindow,
@@ -2297,17 +2297,17 @@ var (
 
 	Gtk_window_add_mnemonic func(
 		window *T.GtkWindow,
-		keyval T.Guint,
+		keyval uint,
 		target *T.GtkWidget)
 
 	Gtk_window_remove_mnemonic func(
 		window *T.GtkWindow,
-		keyval T.Guint,
+		keyval uint,
 		target *T.GtkWidget)
 
 	Gtk_window_mnemonic_activate func(
 		window *T.GtkWindow,
-		keyval T.Guint,
+		keyval uint,
 		modifier T.GdkModifierType) T.Gboolean
 
 	Gtk_window_set_mnemonic_modifier func(
@@ -2330,7 +2330,7 @@ var (
 
 	Gtk_window_present_with_time func(
 		window *T.GtkWindow,
-		timestamp T.Guint32)
+		timestamp T.GUint32)
 
 	Gtk_window_iconify func(
 		window *T.GtkWindow)
@@ -2367,53 +2367,53 @@ var (
 	Gtk_window_begin_resize_drag func(
 		window *T.GtkWindow,
 		edge T.GdkWindowEdge,
-		button T.Gint,
-		root_x T.Gint,
-		root_y T.Gint,
-		timestamp T.Guint32)
+		button int,
+		root_x int,
+		root_y int,
+		timestamp T.GUint32)
 
 	Gtk_window_begin_move_drag func(
 		window *T.GtkWindow,
-		button T.Gint,
-		root_x T.Gint,
-		root_y T.Gint,
-		timestamp T.Guint32)
+		button int,
+		root_x int,
+		root_y int,
+		timestamp T.GUint32)
 
 	Gtk_window_set_policy func(
 		window *T.GtkWindow,
-		allow_shrink T.Gint,
-		allow_grow T.Gint,
-		auto_shrink T.Gint)
+		allow_shrink int,
+		allow_grow int,
+		auto_shrink int)
 
 	Gtk_window_set_default_size func(
 		window *T.GtkWindow,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_window_get_default_size func(
 		window *T.GtkWindow,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gtk_window_resize func(
 		window *T.GtkWindow,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_window_get_size func(
 		window *T.GtkWindow,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gtk_window_move func(
 		window *T.GtkWindow,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_window_get_position func(
 		window *T.GtkWindow,
-		root_x *T.Gint,
-		root_y *T.Gint)
+		root_x *int,
+		root_y *int)
 
 	Gtk_window_parse_geometry func(
 		window *T.GtkWindow,
@@ -2469,32 +2469,32 @@ var (
 	Gtk_dialog_add_action_widget func(
 		dialog *T.GtkDialog,
 		child *T.GtkWidget,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_dialog_add_button func(
 		dialog *T.GtkDialog,
 		button_text string,
-		response_id T.Gint) *T.GtkWidget
+		response_id int) *T.GtkWidget
 
 	Gtk_dialog_add_buttons func(dialog *T.GtkDialog,
 		first_button_text string, v ...VArg)
 
 	Gtk_dialog_set_response_sensitive func(
 		dialog *T.GtkDialog,
-		response_id T.Gint,
+		response_id int,
 		setting T.Gboolean)
 
 	Gtk_dialog_set_default_response func(
 		dialog *T.GtkDialog,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_dialog_get_widget_for_response func(
 		dialog *T.GtkDialog,
-		response_id T.Gint) *T.GtkWidget
+		response_id int) *T.GtkWidget
 
 	Gtk_dialog_get_response_for_widget func(
 		dialog *T.GtkDialog,
-		widget *T.GtkWidget) T.Gint
+		widget *T.GtkWidget) int
 
 	Gtk_dialog_set_has_separator func(
 		dialog *T.GtkDialog,
@@ -2507,19 +2507,19 @@ var (
 		screen *T.GdkScreen) T.Gboolean
 
 	Gtk_dialog_set_alternative_button_order func(
-		dialog *T.GtkDialog, first_response_id T.Gint, v ...VArg)
+		dialog *T.GtkDialog, first_response_id int, v ...VArg)
 
 	Gtk_dialog_set_alternative_button_order_from_array func(
 		dialog *T.GtkDialog,
-		n_params T.Gint,
-		new_order *T.Gint)
+		n_params int,
+		new_order *int)
 
 	Gtk_dialog_response func(
 		dialog *T.GtkDialog,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_dialog_run func(
-		dialog *T.GtkDialog) T.Gint
+		dialog *T.GtkDialog) int
 
 	Gtk_dialog_get_action_area func(
 		dialog *T.GtkDialog) *T.GtkWidget
@@ -2653,23 +2653,23 @@ var (
 
 	Gtk_misc_set_alignment func(
 		misc *T.GtkMisc,
-		xalign T.Gfloat,
-		yalign T.Gfloat)
+		xalign float32,
+		yalign float32)
 
 	Gtk_misc_get_alignment func(
 		misc *T.GtkMisc,
-		xalign *T.Gfloat,
-		yalign *T.Gfloat)
+		xalign *float32,
+		yalign *float32)
 
 	Gtk_misc_set_padding func(
 		misc *T.GtkMisc,
-		xpad T.Gint,
-		ypad T.Gint)
+		xpad int,
+		ypad int)
 
 	Gtk_misc_get_padding func(
 		misc *T.GtkMisc,
-		xpad *T.Gint,
-		ypad *T.Gint)
+		xpad *int,
+		ypad *int)
 
 	Gtk_menu_shell_get_type func() T.GType
 
@@ -2684,7 +2684,7 @@ var (
 	Gtk_menu_shell_insert func(
 		menu_shell *T.GtkMenuShell,
 		child *T.GtkWidget,
-		position T.Gint)
+		position int)
 
 	Gtk_menu_shell_deactivate func(
 		menu_shell *T.GtkMenuShell)
@@ -2725,8 +2725,8 @@ var (
 		parent_menu_item *T.GtkWidget,
 		f T.GtkMenuPositionFunc,
 		dataGpointer,
-		button T.Guint,
-		activate_time T.Guint32)
+		button uint,
+		activate_time T.GUint32)
 
 	Gtk_menu_reposition func(
 		menu *T.GtkMenu)
@@ -2739,7 +2739,7 @@ var (
 
 	Gtk_menu_set_active func(
 		menu *T.GtkMenu,
-		index_ T.Guint)
+		index_ uint)
 
 	Gtk_menu_set_accel_group func(
 		menu *T.GtkMenu,
@@ -2783,7 +2783,7 @@ var (
 	Gtk_menu_reorder_child func(
 		menu *T.GtkMenu,
 		child *T.GtkWidget,
-		position T.Gint)
+		position int)
 
 	Gtk_menu_set_screen func(
 		menu *T.GtkMenu,
@@ -2792,17 +2792,17 @@ var (
 	Gtk_menu_attach func(
 		menu *T.GtkMenu,
 		child *T.GtkWidget,
-		left_attach T.Guint,
-		right_attach T.Guint,
-		top_attach T.Guint,
-		bottom_attach T.Guint)
+		left_attach uint,
+		right_attach uint,
+		top_attach uint,
+		bottom_attach uint)
 
 	Gtk_menu_set_monitor func(
 		menu *T.GtkMenu,
-		monitor_num T.Gint)
+		monitor_num int)
 
 	Gtk_menu_get_monitor func(
-		menu *T.GtkMenu) T.Gint
+		menu *T.GtkMenu) int
 
 	Gtk_menu_get_for_attach_widget func(
 		widget *T.GtkWidget) *T.GList
@@ -2866,7 +2866,7 @@ var (
 		str string)
 
 	Gtk_label_get_mnemonic_keyval func(
-		label *T.GtkLabel) T.Guint
+		label *T.GtkLabel) uint
 
 	Gtk_label_set_mnemonic_widget func(
 		label *T.GtkLabel,
@@ -2895,17 +2895,17 @@ var (
 
 	Gtk_label_set_width_chars func(
 		label *T.GtkLabel,
-		n_chars T.Gint)
+		n_chars int)
 
 	Gtk_label_get_width_chars func(
-		label *T.GtkLabel) T.Gint
+		label *T.GtkLabel) int
 
 	Gtk_label_set_max_width_chars func(
 		label *T.GtkLabel,
-		n_chars T.Gint)
+		n_chars int)
 
 	Gtk_label_get_max_width_chars func(
-		label *T.GtkLabel) T.Gint
+		label *T.GtkLabel) int
 
 	Gtk_label_set_pattern func(
 		label *T.GtkLabel,
@@ -2934,28 +2934,28 @@ var (
 
 	Gtk_label_set_angle func(
 		label *T.GtkLabel,
-		angle T.Gdouble)
+		angle float64)
 
 	Gtk_label_get_angle func(
-		label *T.GtkLabel) T.Gdouble
+		label *T.GtkLabel) float64
 
 	Gtk_label_select_region func(
 		label *T.GtkLabel,
-		start_offset T.Gint,
-		end_offset T.Gint)
+		start_offset int,
+		end_offset int)
 
 	Gtk_label_get_selection_bounds func(
 		label *T.GtkLabel,
-		start *T.Gint,
-		end *T.Gint) T.Gboolean
+		start *int,
+		end *int) T.Gboolean
 
 	Gtk_label_get_layout func(
 		label *T.GtkLabel) *T.PangoLayout
 
 	Gtk_label_get_layout_offsets func(
 		label *T.GtkLabel,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gtk_label_set_single_line_mode func(
 		label *T.GtkLabel,
@@ -2980,7 +2980,7 @@ var (
 
 	Gtk_label_parse_uline func(
 		label *T.GtkLabel,
-		string string) T.Guint
+		string string) uint
 
 	Gtk_accel_label_get_type func() T.GType
 
@@ -2991,7 +2991,7 @@ var (
 		accel_label *T.GtkAccelLabel) *T.GtkWidget
 
 	Gtk_accel_label_get_accel_width func(
-		accel_label *T.GtkAccelLabel) T.Guint
+		accel_label *T.GtkAccelLabel) uint
 
 	Gtk_accel_label_set_accel_widget func(
 		accel_label *T.GtkAccelLabel,
@@ -3006,7 +3006,7 @@ var (
 
 	Gtk_accel_map_add_entry func(
 		accel_path string,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType)
 
 	Gtk_accel_map_lookup_entry func(
@@ -3015,7 +3015,7 @@ var (
 
 	Gtk_accel_map_change_entry func(
 		accel_path string,
-		accel_key T.Guint,
+		accel_key uint,
 		accel_mods T.GdkModifierType,
 		replace T.Gboolean) T.Gboolean
 
@@ -3030,13 +3030,13 @@ var (
 		foreach_func T.GtkAccelMapForeach)
 
 	Gtk_accel_map_load_fd func(
-		fd T.Gint)
+		fd int)
 
 	Gtk_accel_map_load_scanner func(
 		scanner *T.GScanner)
 
 	Gtk_accel_map_save_fd func(
-		fd T.Gint)
+		fd int)
 
 	Gtk_accel_map_lock_path func(
 		accel_path string)
@@ -3277,42 +3277,42 @@ var (
 	Gtk_action_group_add_actions func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkActionEntry,
-		n_entries T.Guint,
+		n_entries uint,
 		user_data T.Gpointer)
 
 	Gtk_action_group_add_toggle_actions func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkToggleActionEntry,
-		n_entries T.Guint,
+		n_entries uint,
 		user_data T.Gpointer)
 
 	Gtk_action_group_add_radio_actions func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkRadioActionEntry,
-		n_entries T.Guint,
-		value T.Gint,
+		n_entries uint,
+		value int,
 		on_change T.GCallback,
 		user_data T.Gpointer)
 
 	Gtk_action_group_add_actions_full func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkActionEntry,
-		n_entries T.Guint,
+		n_entries uint,
 		user_dataGpointer,
 		destroy T.GDestroyNotify)
 
 	Gtk_action_group_add_toggle_actions_full func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkToggleActionEntry,
-		n_entries T.Guint,
+		n_entries uint,
 		user_dataGpointer,
 		destroy T.GDestroyNotify)
 
 	Gtk_action_group_add_radio_actions_full func(
 		action_group *T.GtkActionGroup,
 		entries *T.GtkRadioActionEntry,
-		n_entries T.Guint,
-		value T.Gint,
+		n_entries uint,
+		value int,
 		on_change T.GCallback,
 		user_dataGpointer,
 		destroy T.GDestroyNotify)
@@ -3358,31 +3358,31 @@ var (
 	Gtk_alignment_get_type func() T.GType
 
 	Gtk_alignment_new func(
-		xalign T.Gfloat,
-		yalign T.Gfloat,
-		xscale T.Gfloat,
-		yscale T.Gfloat) *T.GtkWidget
+		xalign float32,
+		yalign float32,
+		xscale float32,
+		yscale float32) *T.GtkWidget
 
 	Gtk_alignment_set func(
 		alignment *T.GtkAlignment,
-		xalign T.Gfloat,
-		yalign T.Gfloat,
-		xscale T.Gfloat,
-		yscale T.Gfloat)
+		xalign float32,
+		yalign float32,
+		xscale float32,
+		yscale float32)
 
 	Gtk_alignment_set_padding func(
 		alignment *T.GtkAlignment,
-		padding_top T.Guint,
-		padding_bottom T.Guint,
-		padding_left T.Guint,
-		padding_right T.Guint)
+		padding_top uint,
+		padding_bottom uint,
+		padding_left uint,
+		padding_right uint)
 
 	Gtk_alignment_get_padding func(
 		alignment *T.GtkAlignment,
-		padding_top *T.Guint,
-		padding_bottom *T.Guint,
-		padding_left *T.Guint,
-		padding_right *T.Guint)
+		padding_top *uint,
+		padding_bottom *uint,
+		padding_left *uint,
+		padding_right *uint)
 
 	Gtk_arrow_get_type func() T.GType
 
@@ -3416,13 +3416,13 @@ var (
 
 	Gtk_frame_set_label_align func(
 		frame *T.GtkFrame,
-		xalign T.Gfloat,
-		yalign T.Gfloat)
+		xalign float32,
+		yalign float32)
 
 	Gtk_frame_get_label_align func(
 		frame *T.GtkFrame,
-		xalign *T.Gfloat,
-		yalign *T.Gfloat)
+		xalign *float32,
+		yalign *float32)
 
 	Gtk_frame_set_shadow_type func(
 		frame *T.GtkFrame,
@@ -3435,16 +3435,16 @@ var (
 
 	Gtk_aspect_frame_new func(
 		label string,
-		xalign T.Gfloat,
-		yalign T.Gfloat,
-		ratio T.Gfloat,
+		xalign float32,
+		yalign float32,
+		ratio float32,
 		obey_child T.Gboolean) *T.GtkWidget
 
 	Gtk_aspect_frame_set func(
 		aspect_frame *T.GtkAspectFrame,
-		xalign T.Gfloat,
-		yalign T.Gfloat,
-		ratio T.Gfloat,
+		xalign float32,
+		yalign float32,
+		ratio float32,
 		obey_child T.Gboolean)
 
 	Gtk_assistant_get_type func() T.GType
@@ -3452,31 +3452,31 @@ var (
 	Gtk_assistant_new func() *T.GtkWidget
 
 	Gtk_assistant_get_current_page func(
-		assistant *T.GtkAssistant) T.Gint
+		assistant *T.GtkAssistant) int
 
 	Gtk_assistant_set_current_page func(
 		assistant *T.GtkAssistant,
-		page_num T.Gint)
+		page_num int)
 
 	Gtk_assistant_get_n_pages func(
-		assistant *T.GtkAssistant) T.Gint
+		assistant *T.GtkAssistant) int
 
 	Gtk_assistant_get_nth_page func(
 		assistant *T.GtkAssistant,
-		page_num T.Gint) *T.GtkWidget
+		page_num int) *T.GtkWidget
 
 	Gtk_assistant_prepend_page func(
 		assistant *T.GtkAssistant,
-		page *T.GtkWidget) T.Gint
+		page *T.GtkWidget) int
 
 	Gtk_assistant_append_page func(
 		assistant *T.GtkAssistant,
-		page *T.GtkWidget) T.Gint
+		page *T.GtkWidget) int
 
 	Gtk_assistant_insert_page func(
 		assistant *T.GtkAssistant,
 		page *T.GtkWidget,
-		position T.Gint) T.Gint
+		position int) int
 
 	Gtk_assistant_set_forward_page_func func(
 		assistant *T.GtkAssistant,
@@ -3550,14 +3550,14 @@ var (
 		child *T.GtkWidget,
 		expand T.Gboolean,
 		fill T.Gboolean,
-		padding T.Guint)
+		padding uint)
 
 	Gtk_box_pack_end func(
 		box *T.GtkBox,
 		child *T.GtkWidget,
 		expand T.Gboolean,
 		fill T.Gboolean,
-		padding T.Guint)
+		padding uint)
 
 	Gtk_box_pack_start_defaults func(
 		box *T.GtkBox,
@@ -3576,22 +3576,22 @@ var (
 
 	Gtk_box_set_spacing func(
 		box *T.GtkBox,
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_box_get_spacing func(
-		box *T.GtkBox) T.Gint
+		box *T.GtkBox) int
 
 	Gtk_box_reorder_child func(
 		box *T.GtkBox,
 		child *T.GtkWidget,
-		position T.Gint)
+		position int)
 
 	Gtk_box_query_child_packing func(
 		box *T.GtkBox,
 		child *T.GtkWidget,
 		expand *T.Gboolean,
 		fill *T.Gboolean,
-		padding *T.Guint,
+		padding *uint,
 		pack_type *T.GtkPackType)
 
 	Gtk_box_set_child_packing func(
@@ -3599,7 +3599,7 @@ var (
 		child *T.GtkWidget,
 		expand T.Gboolean,
 		fill T.Gboolean,
-		padding T.Guint,
+		padding uint,
 		pack_type T.GtkPackType)
 
 	Gtk_button_box_get_type func() T.GType
@@ -3622,23 +3622,23 @@ var (
 
 	Gtk_button_box_set_child_size func(
 		widget *T.GtkButtonBox,
-		min_width T.Gint,
-		min_height T.Gint)
+		min_width int,
+		min_height int)
 
 	Gtk_button_box_set_child_ipadding func(
 		widget *T.GtkButtonBox,
-		ipad_x T.Gint,
-		ipad_y T.Gint)
+		ipad_x int,
+		ipad_y int)
 
 	Gtk_button_box_get_child_size func(
 		widget *T.GtkButtonBox,
-		min_width *T.Gint,
-		min_height *T.Gint)
+		min_width *int,
+		min_height *int)
 
 	Gtk_button_box_get_child_ipadding func(
 		widget *T.GtkButtonBox,
-		ipad_x *T.Gint,
-		ipad_y *T.Gint)
+		ipad_x *int,
+		ipad_y *int)
 
 	Gtk_binding_set_new func(
 		set_name string) *T.GtkBindingSet
@@ -3651,7 +3651,7 @@ var (
 
 	Gtk_bindings_activate func(
 		object *T.GtkObject,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
 	Gtk_bindings_activate_event func(
@@ -3660,37 +3660,37 @@ var (
 
 	Gtk_binding_set_activate func(
 		binding_set *T.GtkBindingSet,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType,
 		object *T.GtkObject) T.Gboolean
 
 	Gtk_binding_entry_clear func(
 		binding_set *T.GtkBindingSet,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType)
 
 	Gtk_binding_parse_binding func(
-		scanner *T.GScanner) T.Guint
+		scanner *T.GScanner) uint
 
 	Gtk_binding_entry_skip func(
 		binding_set *T.GtkBindingSet,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType)
 
 	Gtk_binding_entry_add_signal func(binding_set *T.GtkBindingSet,
-		keyval T.Guint, modifiers T.GdkModifierType,
-		signal_name string, n_args T.Guint, varg ...VArg)
+		keyval uint, modifiers T.GdkModifierType,
+		signal_name string, n_args uint, varg ...VArg)
 
 	Gtk_binding_entry_add_signall func(
 		binding_set *T.GtkBindingSet,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType,
 		signal_name string,
 		binding_args *T.GSList)
 
 	Gtk_binding_entry_remove func(
 		binding_set *T.GtkBindingSet,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType)
 
 	Gtk_binding_set_add_path func(
@@ -3706,26 +3706,26 @@ var (
 	Gtk_builder_add_from_file func(
 		builder *T.GtkBuilder,
 		filename string,
-		error **T.GError) T.Guint
+		error **T.GError) uint
 
 	Gtk_builder_add_from_string func(
 		builder *T.GtkBuilder,
 		buffer string,
 		length T.Gsize,
-		error **T.GError) T.Guint
+		error **T.GError) uint
 
 	Gtk_builder_add_objects_from_file func(
 		builder *T.GtkBuilder,
 		filename string,
 		object_ids **T.Gchar,
-		error **T.GError) T.Guint
+		error **T.GError) uint
 
 	Gtk_builder_add_objects_from_string func(
 		builder *T.GtkBuilder,
 		buffer string,
 		length T.Gsize,
 		object_ids **T.Gchar,
-		error **T.GError) T.Guint
+		error **T.GError) uint
 
 	Gtk_builder_get_object func(
 		builder *T.GtkBuilder,
@@ -3909,7 +3909,7 @@ var (
 
 	Gtk_image_set_pixel_size func(
 		image *T.GtkImage,
-		pixel_size T.Gint)
+		pixel_size int)
 
 	Gtk_image_get_storage_type func(
 		image *T.GtkImage) T.GtkImageType
@@ -3951,7 +3951,7 @@ var (
 		size *T.GtkIconSize)
 
 	Gtk_image_get_pixel_size func(
-		image *T.GtkImage) T.Gint
+		image *T.GtkImage) int
 
 	Gtk_image_set func(
 		image *T.GtkImage,
@@ -4028,13 +4028,13 @@ var (
 
 	Gtk_button_set_alignment func(
 		button *T.GtkButton,
-		xalign T.Gfloat,
-		yalign T.Gfloat)
+		xalign float32,
+		yalign float32)
 
 	Gtk_button_get_alignment func(
 		button *T.GtkButton,
-		xalign *T.Gfloat,
-		yalign *T.Gfloat)
+		xalign *float32,
+		yalign *float32)
 
 	Gtk_button_set_image func(
 		button *T.GtkButton,
@@ -4057,17 +4057,17 @@ var (
 		name string,
 		signal_flags T.GtkSignalRunType,
 		object_type T.GType,
-		function_offset T.Guint,
+		function_offset uint,
 		marshaller T.GSignalCMarshaller,
 		return_val T.GType,
-		n_args T.Guint,
-		args *T.GType) T.Guint
+		n_args uint,
+		args *T.GType) uint
 
 	Gtk_signal_new func(name string,
 		signal_flags T.GtkSignalRunType,
-		object_type T.GType, function_offset T.Guint,
+		object_type T.GType, function_offset uint,
 		marshaller T.GSignalCMarshaller, return_val T.GType,
-		n_args T.Guint, v ...VArg) T.Guint
+		n_args uint, v ...VArg) uint
 
 	Gtk_signal_emit_stop_by_name func(
 		object *T.GtkObject, name string)
@@ -4092,15 +4092,15 @@ var (
 		unsupported T.GtkCallbackMarshal,
 		dataGpointer,
 		destroy_func T.GDestroyNotify,
-		object_signal T.Gint,
-		after T.Gint) T.Gulong
+		object_signal int,
+		after int) T.Gulong
 
 	Gtk_signal_emitv func(
 		object *T.GtkObject,
-		signal_id T.Guint,
+		signal_id uint,
 		args *T.GtkArg)
 
-	Gtk_signal_emit func(object *T.GtkObject, signal_id T.Guint,
+	Gtk_signal_emit func(object *T.GtkObject, signal_id uint,
 		v ...VArg)
 
 	Gtk_signal_emit_by_name func(object *T.GtkObject,
@@ -4116,7 +4116,7 @@ var (
 		f T.GCallback,
 		dataGpointer,
 		match T.GSignalMatchType,
-		action T.Guint)
+		action uint)
 
 	Gtk_calendar_get_type func() T.GType
 
@@ -4124,20 +4124,20 @@ var (
 
 	Gtk_calendar_select_month func(
 		calendar *T.GtkCalendar,
-		month T.Guint,
-		year T.Guint) T.Gboolean
+		month uint,
+		year uint) T.Gboolean
 
 	Gtk_calendar_select_day func(
 		calendar *T.GtkCalendar,
-		day T.Guint)
+		day uint)
 
 	Gtk_calendar_mark_day func(
 		calendar *T.GtkCalendar,
-		day T.Guint) T.Gboolean
+		day uint) T.Gboolean
 
 	Gtk_calendar_unmark_day func(
 		calendar *T.GtkCalendar,
-		day T.Guint) T.Gboolean
+		day uint) T.Gboolean
 
 	Gtk_calendar_clear_marks func(
 		calendar *T.GtkCalendar)
@@ -4155,9 +4155,9 @@ var (
 
 	Gtk_calendar_get_date func(
 		calendar *T.GtkCalendar,
-		year *T.Guint,
-		month *T.Guint,
-		day *T.Guint)
+		year *uint,
+		month *uint,
+		day *uint)
 
 	Gtk_calendar_set_detail_func func(
 		calendar *T.GtkCalendar,
@@ -4167,17 +4167,17 @@ var (
 
 	Gtk_calendar_set_detail_width_chars func(
 		calendar *T.GtkCalendar,
-		chars T.Gint)
+		chars int)
 
 	Gtk_calendar_set_detail_height_rows func(
 		calendar *T.GtkCalendar,
-		rows T.Gint)
+		rows int)
 
 	Gtk_calendar_get_detail_width_chars func(
-		calendar *T.GtkCalendar) T.Gint
+		calendar *T.GtkCalendar) int
 
 	Gtk_calendar_get_detail_height_rows func(
-		calendar *T.GtkCalendar) T.Gint
+		calendar *T.GtkCalendar) int
 
 	Gtk_calendar_freeze func(
 		calendar *T.GtkCalendar)
@@ -4203,10 +4203,10 @@ var (
 		cell *T.GtkCellRenderer,
 		widget *T.GtkWidget,
 		cell_area *T.GdkRectangle,
-		x_offset *T.Gint,
-		y_offset *T.Gint,
-		width *T.Gint,
-		height *T.Gint)
+		x_offset *int,
+		y_offset *int,
+		width *int,
+		height *int)
 
 	Gtk_cell_renderer_render func(
 		cell *T.GtkCellRenderer,
@@ -4237,33 +4237,33 @@ var (
 
 	Gtk_cell_renderer_set_fixed_size func(
 		cell *T.GtkCellRenderer,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_cell_renderer_get_fixed_size func(
 		cell *T.GtkCellRenderer,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Gtk_cell_renderer_set_alignment func(
 		cell *T.GtkCellRenderer,
-		xalign T.Gfloat,
-		yalign T.Gfloat)
+		xalign float32,
+		yalign float32)
 
 	Gtk_cell_renderer_get_alignment func(
 		cell *T.GtkCellRenderer,
-		xalign *T.Gfloat,
-		yalign *T.Gfloat)
+		xalign *float32,
+		yalign *float32)
 
 	Gtk_cell_renderer_set_padding func(
 		cell *T.GtkCellRenderer,
-		xpad T.Gint,
-		ypad T.Gint)
+		xpad int,
+		ypad int)
 
 	Gtk_cell_renderer_get_padding func(
 		cell *T.GtkCellRenderer,
-		xpad *T.Gint,
-		ypad *T.Gint)
+		xpad *int,
+		ypad *int)
 
 	Gtk_cell_renderer_set_visible func(
 		cell *T.GtkCellRenderer,
@@ -4291,7 +4291,7 @@ var (
 	Gtk_tree_path_new_from_string func(
 		path string) *T.GtkTreePath
 
-	Gtk_tree_path_new_from_indices func(first_index T.Gint,
+	Gtk_tree_path_new_from_indices func(first_index int,
 		v ...VArg) *T.GtkTreePath
 
 	Gtk_tree_path_to_string func(
@@ -4301,21 +4301,21 @@ var (
 
 	Gtk_tree_path_append_index func(
 		path *T.GtkTreePath,
-		index_ T.Gint)
+		index_ int)
 
 	Gtk_tree_path_prepend_index func(
 		path *T.GtkTreePath,
-		index_ T.Gint)
+		index_ int)
 
 	Gtk_tree_path_get_depth func(
-		path *T.GtkTreePath) T.Gint
+		path *T.GtkTreePath) int
 
 	Gtk_tree_path_get_indices func(
-		path *T.GtkTreePath) *T.Gint
+		path *T.GtkTreePath) *int
 
 	Gtk_tree_path_get_indices_with_depth func(
 		path *T.GtkTreePath,
-		depth *T.Gint) *T.Gint
+		depth *int) *int
 
 	Gtk_tree_path_free func(
 		path *T.GtkTreePath)
@@ -4327,7 +4327,7 @@ var (
 
 	Gtk_tree_path_compare func(
 		a *T.GtkTreePath,
-		b *T.GtkTreePath) T.Gint
+		b *T.GtkTreePath) int
 
 	Gtk_tree_path_next func(
 		path *T.GtkTreePath)
@@ -4387,7 +4387,7 @@ var (
 		proxy *T.GObject,
 		path *T.GtkTreePath,
 		iter *T.GtkTreeIter,
-		new_order *T.Gint)
+		new_order *int)
 
 	Gtk_tree_iter_copy func(
 		iter *T.GtkTreeIter) *T.GtkTreeIter
@@ -4403,11 +4403,11 @@ var (
 		tree_model *T.GtkTreeModel) T.GtkTreeModelFlags
 
 	Gtk_tree_model_get_n_columns func(
-		tree_model *T.GtkTreeModel) T.Gint
+		tree_model *T.GtkTreeModel) int
 
 	Gtk_tree_model_get_column_type func(
 		tree_model *T.GtkTreeModel,
-		index_ T.Gint) T.GType
+		index_ int) T.GType
 
 	Gtk_tree_model_get_iter func(
 		tree_model *T.GtkTreeModel,
@@ -4434,7 +4434,7 @@ var (
 	Gtk_tree_model_get_value func(
 		tree_model *T.GtkTreeModel,
 		iter *T.GtkTreeIter,
-		column T.Gint,
+		column int,
 		value *T.GValue)
 
 	Gtk_tree_model_iter_next func(
@@ -4452,13 +4452,13 @@ var (
 
 	Gtk_tree_model_iter_n_children func(
 		tree_model *T.GtkTreeModel,
-		iter *T.GtkTreeIter) T.Gint
+		iter *T.GtkTreeIter) int
 
 	Gtk_tree_model_iter_nth_child func(
 		tree_model *T.GtkTreeModel,
 		iter *T.GtkTreeIter,
 		parent *T.GtkTreeIter,
-		n T.Gint) T.Gboolean
+		n int) T.Gboolean
 
 	Gtk_tree_model_iter_parent func(
 		tree_model *T.GtkTreeModel,
@@ -4509,7 +4509,7 @@ var (
 		tree_model *T.GtkTreeModel,
 		path *T.GtkTreePath,
 		iter *T.GtkTreeIter,
-		new_order *T.Gint)
+		new_order *int)
 
 	Gtk_tree_sortable_get_type func() T.GType
 
@@ -4518,17 +4518,17 @@ var (
 
 	Gtk_tree_sortable_get_sort_column_id func(
 		sortable *T.GtkTreeSortable,
-		sort_column_id *T.Gint,
+		sort_column_id *int,
 		order *T.GtkSortType) T.Gboolean
 
 	Gtk_tree_sortable_set_sort_column_id func(
 		sortable *T.GtkTreeSortable,
-		sort_column_id T.Gint,
+		sort_column_id int,
 		order T.GtkSortType)
 
 	Gtk_tree_sortable_set_sort_func func(
 		sortable *T.GtkTreeSortable,
-		sort_column_id T.Gint,
+		sort_column_id int,
 		sort_func T.GtkTreeIterCompareFunc,
 		user_dataGpointer,
 		destroy T.GDestroyNotify)
@@ -4570,7 +4570,7 @@ var (
 		tree_column *T.GtkTreeViewColumn,
 		cell_renderer *T.GtkCellRenderer,
 		attribute string,
-		column T.Gint)
+		column int)
 
 	Gtk_tree_view_column_set_attributes func(
 		tree_column *T.GtkTreeViewColumn,
@@ -4589,10 +4589,10 @@ var (
 
 	Gtk_tree_view_column_set_spacing func(
 		tree_column *T.GtkTreeViewColumn,
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_tree_view_column_get_spacing func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_set_visible func(
 		tree_column *T.GtkTreeViewColumn,
@@ -4616,28 +4616,28 @@ var (
 		tree_column *T.GtkTreeViewColumn) T.GtkTreeViewColumnSizing
 
 	Gtk_tree_view_column_get_width func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_get_fixed_width func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_set_fixed_width func(
 		tree_column *T.GtkTreeViewColumn,
-		fixed_width T.Gint)
+		fixed_width int)
 
 	Gtk_tree_view_column_set_min_width func(
 		tree_column *T.GtkTreeViewColumn,
-		min_width T.Gint)
+		min_width int)
 
 	Gtk_tree_view_column_get_min_width func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_set_max_width func(
 		tree_column *T.GtkTreeViewColumn,
-		max_width T.Gint)
+		max_width int)
 
 	Gtk_tree_view_column_get_max_width func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_clicked func(
 		tree_column *T.GtkTreeViewColumn)
@@ -4672,10 +4672,10 @@ var (
 
 	Gtk_tree_view_column_set_alignment func(
 		tree_column *T.GtkTreeViewColumn,
-		xalign T.Gfloat)
+		xalign float32)
 
 	Gtk_tree_view_column_get_alignment func(
-		tree_column *T.GtkTreeViewColumn) T.Gfloat
+		tree_column *T.GtkTreeViewColumn) float32
 
 	Gtk_tree_view_column_set_reorderable func(
 		tree_column *T.GtkTreeViewColumn,
@@ -4686,10 +4686,10 @@ var (
 
 	Gtk_tree_view_column_set_sort_column_id func(
 		tree_column *T.GtkTreeViewColumn,
-		sort_column_id T.Gint)
+		sort_column_id int)
 
 	Gtk_tree_view_column_get_sort_column_id func(
-		tree_column *T.GtkTreeViewColumn) T.Gint
+		tree_column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_column_set_sort_indicator func(
 		tree_column *T.GtkTreeViewColumn,
@@ -4715,10 +4715,10 @@ var (
 	Gtk_tree_view_column_cell_get_size func(
 		tree_column *T.GtkTreeViewColumn,
 		cell_area *T.GdkRectangle,
-		x_offset *T.Gint,
-		y_offset *T.Gint,
-		width *T.Gint,
-		height *T.Gint)
+		x_offset *int,
+		y_offset *int,
+		width *int,
+		height *int)
 
 	Gtk_tree_view_column_cell_is_visible func(
 		tree_column *T.GtkTreeViewColumn) T.Gboolean
@@ -4730,8 +4730,8 @@ var (
 	Gtk_tree_view_column_cell_get_position func(
 		tree_column *T.GtkTreeViewColumn,
 		cell_renderer *T.GtkCellRenderer,
-		start_pos *T.Gint,
-		width *T.Gint) T.Gboolean
+		start_pos *int,
+		width *int) T.Gboolean
 
 	Gtk_tree_view_column_queue_resize func(
 		tree_column *T.GtkTreeViewColumn)
@@ -4764,7 +4764,7 @@ var (
 		cell_layout *T.GtkCellLayout,
 		cell *T.GtkCellRenderer,
 		attribute string,
-		column T.Gint)
+		column int)
 
 	Gtk_cell_layout_set_cell_data_func func(
 		cell_layout *T.GtkCellLayout,
@@ -4780,7 +4780,7 @@ var (
 	Gtk_cell_layout_reorder func(
 		cell_layout *T.GtkCellLayout,
 		cell *T.GtkCellRenderer,
-		position T.Gint)
+		position int)
 
 	Gtk_cell_renderer_text_get_type func() T.GType
 
@@ -4788,7 +4788,7 @@ var (
 
 	Gtk_cell_renderer_text_set_fixed_height_from_font func(
 		renderer *T.GtkCellRendererText,
-		number_of_rows T.Gint)
+		number_of_rows int)
 
 	Gtk_cell_renderer_accel_get_type func() T.GType
 
@@ -4961,11 +4961,11 @@ var (
 
 	Gtk_menu_item_toggle_size_request func(
 		menu_item *T.GtkMenuItem,
-		requisition *T.Gint)
+		requisition *int)
 
 	Gtk_menu_item_toggle_size_allocate func(
 		menu_item *T.GtkMenuItem,
-		allocation T.Gint)
+		allocation int)
 
 	Gtk_menu_item_set_right_justified func(
 		menu_item *T.GtkMenuItem,
@@ -5042,11 +5042,11 @@ var (
 		name string) *T.GtkTextTag
 
 	Gtk_text_tag_get_priority func(
-		tag *T.GtkTextTag) T.Gint
+		tag *T.GtkTextTag) int
 
 	Gtk_text_tag_set_priority func(
 		tag *T.GtkTextTag,
-		priority T.Gint)
+		priority int)
 
 	Gtk_text_tag_event func(
 		tag *T.GtkTextTag,
@@ -5093,22 +5093,22 @@ var (
 	Gtk_text_iter_get_type func() T.GType
 
 	Gtk_text_iter_get_offset func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_line func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_line_offset func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_line_index func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_visible_line_offset func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_visible_line_index func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_char func(
 		iter *T.GtkTextIter) T.Gunichar
@@ -5197,10 +5197,10 @@ var (
 		iter *T.GtkTextIter) T.Gboolean
 
 	Gtk_text_iter_get_chars_in_line func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_bytes_in_line func(
-		iter *T.GtkTextIter) T.Gint
+		iter *T.GtkTextIter) int
 
 	Gtk_text_iter_get_attributes func(
 		iter *T.GtkTextIter,
@@ -5223,11 +5223,11 @@ var (
 
 	Gtk_text_iter_forward_chars func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_chars func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_line func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5237,11 +5237,11 @@ var (
 
 	Gtk_text_iter_forward_lines func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_lines func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_word_end func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5251,11 +5251,11 @@ var (
 
 	Gtk_text_iter_forward_word_ends func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_word_starts func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_visible_line func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5265,11 +5265,11 @@ var (
 
 	Gtk_text_iter_forward_visible_lines func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_visible_lines func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_visible_word_end func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5279,11 +5279,11 @@ var (
 
 	Gtk_text_iter_forward_visible_word_ends func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_visible_word_starts func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_sentence_end func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5293,11 +5293,11 @@ var (
 
 	Gtk_text_iter_forward_sentence_ends func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_sentence_starts func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_cursor_position func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5307,11 +5307,11 @@ var (
 
 	Gtk_text_iter_forward_cursor_positions func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_cursor_positions func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_forward_visible_cursor_position func(
 		iter *T.GtkTextIter) T.Gboolean
@@ -5321,27 +5321,27 @@ var (
 
 	Gtk_text_iter_forward_visible_cursor_positions func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_backward_visible_cursor_positions func(
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_iter_set_offset func(
 		iter *T.GtkTextIter,
-		char_offset T.Gint)
+		char_offset int)
 
 	Gtk_text_iter_set_line func(
 		iter *T.GtkTextIter,
-		line_number T.Gint)
+		line_number int)
 
 	Gtk_text_iter_set_line_offset func(
 		iter *T.GtkTextIter,
-		char_on_line T.Gint)
+		char_on_line int)
 
 	Gtk_text_iter_set_line_index func(
 		iter *T.GtkTextIter,
-		byte_on_line T.Gint)
+		byte_on_line int)
 
 	Gtk_text_iter_forward_to_end func(
 		iter *T.GtkTextIter)
@@ -5351,11 +5351,11 @@ var (
 
 	Gtk_text_iter_set_visible_line_offset func(
 		iter *T.GtkTextIter,
-		char_on_line T.Gint)
+		char_on_line int)
 
 	Gtk_text_iter_set_visible_line_index func(
 		iter *T.GtkTextIter,
-		byte_on_line T.Gint)
+		byte_on_line int)
 
 	Gtk_text_iter_forward_to_tag_toggle func(
 		iter *T.GtkTextIter,
@@ -5399,7 +5399,7 @@ var (
 
 	Gtk_text_iter_compare func(
 		lhs *T.GtkTextIter,
-		rhs *T.GtkTextIter) T.Gint
+		rhs *T.GtkTextIter) int
 
 	Gtk_text_iter_in_range func(
 		iter *T.GtkTextIter,
@@ -5412,7 +5412,7 @@ var (
 
 	Gtk_target_list_new func(
 		targets *T.GtkTargetEntry,
-		ntargets T.Guint) *T.GtkTargetList
+		ntargets uint) *T.GtkTargetList
 
 	Gtk_target_list_ref func(
 		list *T.GtkTargetList) *T.GtkTargetList
@@ -5423,32 +5423,32 @@ var (
 	Gtk_target_list_add func(
 		list *T.GtkTargetList,
 		target T.GdkAtom,
-		flags T.Guint,
-		info T.Guint)
+		flags uint,
+		info uint)
 
 	Gtk_target_list_add_text_targets func(
 		list *T.GtkTargetList,
-		info T.Guint)
+		info uint)
 
 	Gtk_target_list_add_rich_text_targets func(
 		list *T.GtkTargetList,
-		info T.Guint,
+		info uint,
 		deserializable T.Gboolean,
 		buffer *T.GtkTextBuffer)
 
 	Gtk_target_list_add_image_targets func(
 		list *T.GtkTargetList,
-		info T.Guint,
+		info uint,
 		writable T.Gboolean)
 
 	Gtk_target_list_add_uri_targets func(
 		list *T.GtkTargetList,
-		info T.Guint)
+		info uint)
 
 	Gtk_target_list_add_table func(
 		list *T.GtkTargetList,
 		targets *T.GtkTargetEntry,
-		ntargets T.Guint)
+		ntargets uint)
 
 	Gtk_target_list_remove func(
 		list *T.GtkTargetList,
@@ -5457,38 +5457,38 @@ var (
 	Gtk_target_list_find func(
 		list *T.GtkTargetList,
 		target T.GdkAtom,
-		info *T.Guint) T.Gboolean
+		info *uint) T.Gboolean
 
 	Gtk_target_table_new_from_list func(
 		list *T.GtkTargetList,
-		n_targets *T.Gint) *T.GtkTargetEntry
+		n_targets *int) *T.GtkTargetEntry
 
 	Gtk_target_table_free func(
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint)
+		n_targets int)
 
 	Gtk_selection_owner_set func(
 		widget *T.GtkWidget,
 		selection T.GdkAtom,
-		time_ T.Guint32) T.Gboolean
+		time_ T.GUint32) T.Gboolean
 
 	Gtk_selection_owner_set_for_display func(
 		display *T.GdkDisplay,
 		widget *T.GtkWidget,
 		selection T.GdkAtom,
-		time_ T.Guint32) T.Gboolean
+		time_ T.GUint32) T.Gboolean
 
 	Gtk_selection_add_target func(
 		widget *T.GtkWidget,
 		selection T.GdkAtom,
 		target T.GdkAtom,
-		info T.Guint)
+		info uint)
 
 	Gtk_selection_add_targets func(
 		widget *T.GtkWidget,
 		selection T.GdkAtom,
 		targets *T.GtkTargetEntry,
-		ntargets T.Guint)
+		ntargets uint)
 
 	Gtk_selection_clear_targets func(
 		widget *T.GtkWidget,
@@ -5498,7 +5498,7 @@ var (
 		widget *T.GtkWidget,
 		selection T.GdkAtom,
 		target T.GdkAtom,
-		time_ T.Guint32) T.Gboolean
+		time_ T.GUint32) T.Gboolean
 
 	Gtk_selection_data_get_selection func(
 		selection_data *T.GtkSelectionData) T.GdkAtom
@@ -5510,13 +5510,13 @@ var (
 		selection_data *T.GtkSelectionData) T.GdkAtom
 
 	Gtk_selection_data_get_format func(
-		selection_data *T.GtkSelectionData) T.Gint
+		selection_data *T.GtkSelectionData) int
 
 	Gtk_selection_data_get_data func(
 		selection_data *T.GtkSelectionData) *T.Guchar
 
 	Gtk_selection_data_get_length func(
-		selection_data *T.GtkSelectionData) T.Gint
+		selection_data *T.GtkSelectionData) int
 
 	Gtk_selection_data_get_display func(
 		selection_data *T.GtkSelectionData) *T.GdkDisplay
@@ -5524,14 +5524,14 @@ var (
 	Gtk_selection_data_set func(
 		selection_data *T.GtkSelectionData,
 		typ T.GdkAtom,
-		format T.Gint,
+		format int,
 		data *T.Guchar,
-		length T.Gint)
+		length int)
 
 	Gtk_selection_data_set_text func(
 		selection_data *T.GtkSelectionData,
 		str string,
-		len T.Gint) T.Gboolean
+		len int) T.Gboolean
 
 	Gtk_selection_data_get_text func(
 		selection_data *T.GtkSelectionData) *T.Guchar
@@ -5553,7 +5553,7 @@ var (
 	Gtk_selection_data_get_targets func(
 		selection_data *T.GtkSelectionData,
 		targets **T.GdkAtom,
-		n_atoms *T.Gint) T.Gboolean
+		n_atoms *int) T.Gboolean
 
 	Gtk_selection_data_targets_include_text func(
 		selection_data *T.GtkSelectionData) T.Gboolean
@@ -5571,21 +5571,21 @@ var (
 
 	Gtk_targets_include_text func(
 		targets *T.GdkAtom,
-		n_targets T.Gint) T.Gboolean
+		n_targets int) T.Gboolean
 
 	Gtk_targets_include_rich_text func(
 		targets *T.GdkAtom,
-		n_targets T.Gint,
+		n_targets int,
 		buffer *T.GtkTextBuffer) T.Gboolean
 
 	Gtk_targets_include_image func(
 		targets *T.GdkAtom,
-		n_targets T.Gint,
+		n_targets int,
 		writable T.Gboolean) T.Gboolean
 
 	Gtk_targets_include_uri func(
 		targets *T.GdkAtom,
-		n_targets T.Gint) T.Gboolean
+		n_targets int) T.Gboolean
 
 	Gtk_selection_remove_all func(
 		widget *T.GtkWidget)
@@ -5619,7 +5619,7 @@ var (
 	Gtk_clipboard_set_with_data func(
 		clipboard *T.GtkClipboard,
 		targets *T.GtkTargetEntry,
-		n_targets T.Guint,
+		n_targets uint,
 		get_func T.GtkClipboardGetFunc,
 		clear_func T.GtkClipboardClearFunc,
 		user_data T.Gpointer) T.Gboolean
@@ -5627,7 +5627,7 @@ var (
 	Gtk_clipboard_set_with_owner func(
 		clipboard *T.GtkClipboard,
 		targets *T.GtkTargetEntry,
-		n_targets T.Guint,
+		n_targets uint,
 		get_func T.GtkClipboardGetFunc,
 		clear_func T.GtkClipboardClearFunc,
 		owner *T.GObject) T.Gboolean
@@ -5641,7 +5641,7 @@ var (
 	Gtk_clipboard_set_text func(
 		clipboard *T.GtkClipboard,
 		text string,
-		len T.Gint)
+		len int)
 
 	Gtk_clipboard_set_image func(
 		clipboard *T.GtkClipboard,
@@ -5690,7 +5690,7 @@ var (
 		clipboard *T.GtkClipboard,
 		buffer *T.GtkTextBuffer,
 		format *T.GdkAtom,
-		length *T.Gsize) *T.Guint8
+		length *T.Gsize) *uint8
 
 	Gtk_clipboard_wait_for_image func(
 		clipboard *T.GtkClipboard) *T.GdkPixbuf
@@ -5701,7 +5701,7 @@ var (
 	Gtk_clipboard_wait_for_targets func(
 		clipboard *T.GtkClipboard,
 		targets **T.GdkAtom,
-		n_targets *T.Gint) T.Gboolean
+		n_targets *int) T.Gboolean
 
 	Gtk_clipboard_wait_is_text_available func(
 		clipboard *T.GtkClipboard) T.Gboolean
@@ -5723,7 +5723,7 @@ var (
 	Gtk_clipboard_set_can_store func(
 		clipboard *T.GtkClipboard,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint)
+		n_targets int)
 
 	Gtk_clipboard_store func(
 		clipboard *T.GtkClipboard)
@@ -5741,14 +5741,14 @@ var (
 
 	Gtk_color_button_set_alpha func(
 		color_button *T.GtkColorButton,
-		alpha T.Guint16)
+		alpha uint16)
 
 	Gtk_color_button_get_color func(
 		color_button *T.GtkColorButton,
 		color *T.GdkColor)
 
 	Gtk_color_button_get_alpha func(
-		color_button *T.GtkColorButton) T.Guint16
+		color_button *T.GtkColorButton) uint16
 
 	Gtk_color_button_set_use_alpha func(
 		color_button *T.GtkColorButton,
@@ -5768,7 +5768,7 @@ var (
 
 	Gtk_vbox_new func(
 		homogeneous T.Gboolean,
-		spacing T.Gint) *T.GtkWidget
+		spacing int) *T.GtkWidget
 
 	Gtk_color_selection_get_type func() T.GType
 
@@ -5794,14 +5794,14 @@ var (
 
 	Gtk_color_selection_set_current_alpha func(
 		colorsel *T.GtkColorSelection,
-		alpha T.Guint16)
+		alpha uint16)
 
 	Gtk_color_selection_get_current_color func(
 		colorsel *T.GtkColorSelection,
 		color *T.GdkColor)
 
 	Gtk_color_selection_get_current_alpha func(
-		colorsel *T.GtkColorSelection) T.Guint16
+		colorsel *T.GtkColorSelection) uint16
 
 	Gtk_color_selection_set_previous_color func(
 		colorsel *T.GtkColorSelection,
@@ -5809,14 +5809,14 @@ var (
 
 	Gtk_color_selection_set_previous_alpha func(
 		colorsel *T.GtkColorSelection,
-		alpha T.Guint16)
+		alpha uint16)
 
 	Gtk_color_selection_get_previous_color func(
 		colorsel *T.GtkColorSelection,
 		color *T.GdkColor)
 
 	Gtk_color_selection_get_previous_alpha func(
-		colorsel *T.GtkColorSelection) T.Guint16
+		colorsel *T.GtkColorSelection) uint16
 
 	Gtk_color_selection_is_adjusting func(
 		colorsel *T.GtkColorSelection) T.Gboolean
@@ -5824,11 +5824,11 @@ var (
 	Gtk_color_selection_palette_from_string func(
 		str string,
 		colors **T.GdkColor,
-		n_colors *T.Gint) T.Gboolean
+		n_colors *int) T.Gboolean
 
 	Gtk_color_selection_palette_to_string func(
 		colors *T.GdkColor,
-		n_colors T.Gint) string
+		n_colors int) string
 
 	Gtk_color_selection_set_change_palette_hook func(
 		f T.GtkColorSelectionChangePaletteFunc) T.GtkColorSelectionChangePaletteFunc
@@ -5838,11 +5838,11 @@ var (
 
 	Gtk_color_selection_set_color func(
 		colorsel *T.GtkColorSelection,
-		color *T.Gdouble)
+		color *float64)
 
 	Gtk_color_selection_get_color func(
 		colorsel *T.GtkColorSelection,
-		color *T.Gdouble)
+		color *float64)
 
 	Gtk_color_selection_set_update_policy func(
 		colorsel *T.GtkColorSelection,
@@ -5860,13 +5860,13 @@ var (
 		widget *T.GtkWidget,
 		context *T.GdkDragContext,
 		target T.GdkAtom,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gtk_drag_finish func(
 		context *T.GdkDragContext,
 		success T.Gboolean,
 		del T.Gboolean,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gtk_drag_get_source_widget func(
 		context *T.GdkDragContext) *T.GtkWidget
@@ -5881,7 +5881,7 @@ var (
 		widget *T.GtkWidget,
 		flags T.GtkDestDefaults,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_drag_dest_set_proxy func(
@@ -5925,7 +5925,7 @@ var (
 		widget *T.GtkWidget,
 		start_button_mask T.GdkModifierType,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_drag_source_unset func(
@@ -5969,85 +5969,85 @@ var (
 		widget *T.GtkWidget,
 		targets *T.GtkTargetList,
 		actions T.GdkDragAction,
-		button T.Gint,
+		button int,
 		event *T.GdkEvent) *T.GdkDragContext
 
 	Gtk_drag_set_icon_widget func(
 		context *T.GdkDragContext,
 		widget *T.GtkWidget,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_drag_set_icon_pixmap func(
 		context *T.GdkDragContext,
 		colormap *T.GdkColormap,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_drag_set_icon_pixbuf func(
 		context *T.GdkDragContext,
 		pixbuf *T.GdkPixbuf,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_drag_set_icon_stock func(
 		context *T.GdkDragContext,
 		stock_id string,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_drag_set_icon_name func(
 		context *T.GdkDragContext,
 		icon_name string,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_drag_set_icon_default func(
 		context *T.GdkDragContext)
 
 	Gtk_drag_check_threshold func(
 		widget *T.GtkWidget,
-		start_x T.Gint,
-		start_y T.Gint,
-		current_x T.Gint,
-		current_y T.Gint) T.Gboolean
+		start_x int,
+		start_y int,
+		current_x int,
+		current_y int) T.Gboolean
 
 	Gtk_drag_set_default_icon func(
 		colormap *T.GdkColormap,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap,
-		hot_x T.Gint,
-		hot_y T.Gint)
+		hot_x int,
+		hot_y int)
 
 	Gtk_editable_get_type func() T.GType
 
 	Gtk_editable_select_region func(
 		editable *T.GtkEditable,
-		start_pos T.Gint,
-		end_pos T.Gint)
+		start_pos int,
+		end_pos int)
 
 	Gtk_editable_get_selection_bounds func(
 		editable *T.GtkEditable,
-		start_pos *T.Gint,
-		end_pos *T.Gint) T.Gboolean
+		start_pos *int,
+		end_pos *int) T.Gboolean
 
 	Gtk_editable_insert_text func(
 		editable *T.GtkEditable,
 		new_text string,
-		new_text_length T.Gint,
-		position *T.Gint)
+		new_text_length int,
+		position *int)
 
 	Gtk_editable_delete_text func(
 		editable *T.GtkEditable,
-		start_pos T.Gint,
-		end_pos T.Gint)
+		start_pos int,
+		end_pos int)
 
 	Gtk_editable_get_chars func(
 		editable *T.GtkEditable,
-		start_pos T.Gint,
-		end_pos T.Gint) string
+		start_pos int,
+		end_pos int) string
 
 	Gtk_editable_cut_clipboard func(
 		editable *T.GtkEditable)
@@ -6063,10 +6063,10 @@ var (
 
 	Gtk_editable_set_position func(
 		editable *T.GtkEditable,
-		position T.Gint)
+		position int)
 
 	Gtk_editable_get_position func(
-		editable *T.GtkEditable) T.Gint
+		editable *T.GtkEditable) int
 
 	Gtk_editable_set_editable func(
 		editable *T.GtkEditable,
@@ -6085,7 +6085,7 @@ var (
 		context *T.GtkIMContext,
 		str **T.Gchar,
 		attrs **T.PangoAttrList,
-		cursor_pos *T.Gint)
+		cursor_pos *int)
 
 	Gtk_im_context_filter_keypress func(
 		context *T.GtkIMContext,
@@ -6111,30 +6111,30 @@ var (
 	Gtk_im_context_set_surrounding func(
 		context *T.GtkIMContext,
 		text string,
-		len T.Gint,
-		cursor_index T.Gint)
+		len int,
+		cursor_index int)
 
 	Gtk_im_context_get_surrounding func(
 		context *T.GtkIMContext,
 		text **T.Gchar,
-		cursor_index *T.Gint) T.Gboolean
+		cursor_index *int) T.Gboolean
 
 	Gtk_im_context_delete_surrounding func(
 		context *T.GtkIMContext,
-		offset T.Gint,
-		n_chars T.Gint) T.Gboolean
+		offset int,
+		n_chars int) T.Gboolean
 
 	Gtk_entry_buffer_get_type func() T.GType
 
 	Gtk_entry_buffer_new func(
 		initial_chars string,
-		n_initial_chars T.Gint) *T.GtkEntryBuffer
+		n_initial_chars int) *T.GtkEntryBuffer
 
 	Gtk_entry_buffer_get_bytes func(
 		buffer *T.GtkEntryBuffer) T.Gsize
 
 	Gtk_entry_buffer_get_length func(
-		buffer *T.GtkEntryBuffer) T.Guint
+		buffer *T.GtkEntryBuffer) uint
 
 	Gtk_entry_buffer_get_text func(
 		buffer *T.GtkEntryBuffer) string
@@ -6142,55 +6142,55 @@ var (
 	Gtk_entry_buffer_set_text func(
 		buffer *T.GtkEntryBuffer,
 		chars string,
-		n_chars T.Gint)
+		n_chars int)
 
 	Gtk_entry_buffer_set_max_length func(
 		buffer *T.GtkEntryBuffer,
-		max_length T.Gint)
+		max_length int)
 
 	Gtk_entry_buffer_get_max_length func(
-		buffer *T.GtkEntryBuffer) T.Gint
+		buffer *T.GtkEntryBuffer) int
 
 	Gtk_entry_buffer_insert_text func(
 		buffer *T.GtkEntryBuffer,
-		position T.Guint,
+		position uint,
 		chars string,
-		n_chars T.Gint) T.Guint
+		n_chars int) uint
 
 	Gtk_entry_buffer_delete_text func(
 		buffer *T.GtkEntryBuffer,
-		position T.Guint,
-		n_chars T.Gint) T.Guint
+		position uint,
+		n_chars int) uint
 
 	Gtk_entry_buffer_emit_inserted_text func(
 		buffer *T.GtkEntryBuffer,
-		position T.Guint,
+		position uint,
 		chars string,
-		n_chars T.Guint)
+		n_chars uint)
 
 	Gtk_entry_buffer_emit_deleted_text func(
 		buffer *T.GtkEntryBuffer,
-		position T.Guint,
-		n_chars T.Guint)
+		position uint,
+		n_chars uint)
 
 	Gtk_list_store_get_type func() T.GType
 
-	Gtk_list_store_new func(n_columns T.Gint,
+	Gtk_list_store_new func(n_columns int,
 		v ...VArg) *T.GtkListStore
 
 	Gtk_list_store_newv func(
-		n_columns T.Gint,
+		n_columns int,
 		types *T.GType) *T.GtkListStore
 
 	Gtk_list_store_set_column_types func(
 		list_store *T.GtkListStore,
-		n_columns T.Gint,
+		n_columns int,
 		types *T.GType)
 
 	Gtk_list_store_set_value func(
 		list_store *T.GtkListStore,
 		iter *T.GtkTreeIter,
-		column T.Gint,
+		column int,
 		value *T.GValue)
 
 	Gtk_list_store_set func(list_store *T.GtkListStore,
@@ -6199,9 +6199,9 @@ var (
 	Gtk_list_store_set_valuesv func(
 		list_store *T.GtkListStore,
 		iter *T.GtkTreeIter,
-		columns *T.Gint,
+		columns *int,
 		values *T.GValue,
-		n_values T.Gint)
+		n_values int)
 
 	Gtk_list_store_set_valist func(
 		list_store *T.GtkListStore,
@@ -6215,7 +6215,7 @@ var (
 	Gtk_list_store_insert func(
 		list_store *T.GtkListStore,
 		iter *T.GtkTreeIter,
-		position T.Gint)
+		position int)
 
 	Gtk_list_store_insert_before func(
 		list_store *T.GtkListStore,
@@ -6228,15 +6228,15 @@ var (
 		sibling *T.GtkTreeIter)
 
 	Gtk_list_store_insert_with_values func(list_store *T.GtkListStore,
-		iter *T.GtkTreeIter, position T.Gint, v ...VArg)
+		iter *T.GtkTreeIter, position int, v ...VArg)
 
 	Gtk_list_store_insert_with_valuesv func(
 		list_store *T.GtkListStore,
 		iter *T.GtkTreeIter,
-		position T.Gint,
-		columns *T.Gint,
+		position int,
+		columns *int,
 		values *T.GValue,
-		n_values T.Gint)
+		n_values int)
 
 	Gtk_list_store_prepend func(
 		list_store *T.GtkListStore,
@@ -6255,7 +6255,7 @@ var (
 
 	Gtk_list_store_reorder func(
 		store *T.GtkListStore,
-		new_order *T.Gint)
+		new_order *int)
 
 	Gtk_list_store_swap func(
 		store *T.GtkListStore,
@@ -6286,7 +6286,7 @@ var (
 
 	Gtk_tree_model_filter_set_modify_func func(
 		filter *T.GtkTreeModelFilter,
-		n_columns T.Gint,
+		n_columns int,
 		types *T.GType,
 		f T.GtkTreeModelFilterModifyFunc,
 		dataGpointer,
@@ -6294,7 +6294,7 @@ var (
 
 	Gtk_tree_model_filter_set_visible_column func(
 		filter *T.GtkTreeModelFilter,
-		column T.Gint)
+		column int)
 
 	Gtk_tree_model_filter_get_model func(
 		filter *T.GtkTreeModelFilter) *T.GtkTreeModel
@@ -6345,10 +6345,10 @@ var (
 
 	Gtk_entry_completion_set_minimum_key_length func(
 		completion *T.GtkEntryCompletion,
-		length T.Gint)
+		length int)
 
 	Gtk_entry_completion_get_minimum_key_length func(
-		completion *T.GtkEntryCompletion) T.Gint
+		completion *T.GtkEntryCompletion) int
 
 	Gtk_entry_completion_complete func(
 		completion *T.GtkEntryCompletion)
@@ -6358,17 +6358,17 @@ var (
 
 	Gtk_entry_completion_insert_action_text func(
 		completion *T.GtkEntryCompletion,
-		index_ T.Gint,
+		index_ int,
 		text string)
 
 	Gtk_entry_completion_insert_action_markup func(
 		completion *T.GtkEntryCompletion,
-		index_ T.Gint,
+		index_ int,
 		markup string)
 
 	Gtk_entry_completion_delete_action func(
 		completion *T.GtkEntryCompletion,
-		index_ T.Gint)
+		index_ int)
 
 	Gtk_entry_completion_set_inline_completion func(
 		completion *T.GtkEntryCompletion,
@@ -6410,10 +6410,10 @@ var (
 
 	Gtk_entry_completion_set_text_column func(
 		completion *T.GtkEntryCompletion,
-		column T.Gint)
+		column int)
 
 	Gtk_entry_completion_get_text_column func(
-		completion *T.GtkEntryCompletion) T.Gint
+		completion *T.GtkEntryCompletion) int
 
 	Gtk_entry_get_type func() T.GType
 
@@ -6472,13 +6472,13 @@ var (
 
 	Gtk_entry_set_max_length func(
 		entry *T.GtkEntry,
-		max T.Gint)
+		max int)
 
 	Gtk_entry_get_max_length func(
-		entry *T.GtkEntry) T.Gint
+		entry *T.GtkEntry) int
 
 	Gtk_entry_get_text_length func(
-		entry *T.GtkEntry) T.Guint16
+		entry *T.GtkEntry) uint16
 
 	Gtk_entry_set_activates_default func(
 		entry *T.GtkEntry,
@@ -6489,10 +6489,10 @@ var (
 
 	Gtk_entry_set_width_chars func(
 		entry *T.GtkEntry,
-		n_chars T.Gint)
+		n_chars int)
 
 	Gtk_entry_get_width_chars func(
-		entry *T.GtkEntry) T.Gint
+		entry *T.GtkEntry) int
 
 	Gtk_entry_set_text func(
 		entry *T.GtkEntry,
@@ -6506,15 +6506,15 @@ var (
 
 	Gtk_entry_get_layout_offsets func(
 		entry *T.GtkEntry,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gtk_entry_set_alignment func(
 		entry *T.GtkEntry,
-		xalign T.Gfloat)
+		xalign float32)
 
 	Gtk_entry_get_alignment func(
-		entry *T.GtkEntry) T.Gfloat
+		entry *T.GtkEntry) float32
 
 	Gtk_entry_set_completion func(
 		entry *T.GtkEntry,
@@ -6525,11 +6525,11 @@ var (
 
 	Gtk_entry_layout_index_to_text_index func(
 		entry *T.GtkEntry,
-		layout_index T.Gint) T.Gint
+		layout_index int) int
 
 	Gtk_entry_text_index_to_layout_index func(
 		entry *T.GtkEntry,
-		text_index T.Gint) T.Gint
+		text_index int) int
 
 	Gtk_entry_set_cursor_hadjustment func(
 		entry *T.GtkEntry,
@@ -6540,17 +6540,17 @@ var (
 
 	Gtk_entry_set_progress_fraction func(
 		entry *T.GtkEntry,
-		fraction T.Gdouble)
+		fraction float64)
 
 	Gtk_entry_get_progress_fraction func(
-		entry *T.GtkEntry) T.Gdouble
+		entry *T.GtkEntry) float64
 
 	Gtk_entry_set_progress_pulse_step func(
 		entry *T.GtkEntry,
-		fraction T.Gdouble)
+		fraction float64)
 
 	Gtk_entry_get_progress_pulse_step func(
-		entry *T.GtkEntry) T.Gdouble
+		entry *T.GtkEntry) float64
 
 	Gtk_entry_progress_pulse func(
 		entry *T.GtkEntry)
@@ -6615,8 +6615,8 @@ var (
 
 	Gtk_entry_get_icon_at_pos func(
 		entry *T.GtkEntry,
-		x T.Gint,
-		y T.Gint) T.Gint
+		x int,
+		y int) int
 
 	Gtk_entry_set_icon_tooltip_text func(
 		entry *T.GtkEntry,
@@ -6643,7 +6643,7 @@ var (
 		actions T.GdkDragAction)
 
 	Gtk_entry_get_current_icon_drag_source func(
-		entry *T.GtkEntry) T.Gint
+		entry *T.GtkEntry) int
 
 	Gtk_entry_get_icon_window func(
 		entry *T.GtkEntry,
@@ -6657,7 +6657,7 @@ var (
 		entry *T.GtkEntry)
 
 	Gtk_entry_new_with_max_length func(
-		max T.Gint) *T.GtkWidget
+		max int) *T.GtkWidget
 
 	Gtk_entry_append_text func(
 		entry *T.GtkEntry,
@@ -6669,12 +6669,12 @@ var (
 
 	Gtk_entry_set_position func(
 		entry *T.GtkEntry,
-		position T.Gint)
+		position int)
 
 	Gtk_entry_select_region func(
 		entry *T.GtkEntry,
-		start T.Gint,
-		end T.Gint)
+		start int,
+		end int)
 
 	Gtk_entry_set_editable func(
 		entry *T.GtkEntry,
@@ -6737,33 +6737,33 @@ var (
 
 	Gtk_tree_view_append_column func(
 		tree_view *T.GtkTreeView,
-		column *T.GtkTreeViewColumn) T.Gint
+		column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_remove_column func(
 		tree_view *T.GtkTreeView,
-		column *T.GtkTreeViewColumn) T.Gint
+		column *T.GtkTreeViewColumn) int
 
 	Gtk_tree_view_insert_column func(
 		tree_view *T.GtkTreeView,
 		column *T.GtkTreeViewColumn,
-		position T.Gint) T.Gint
+		position int) int
 
 	Gtk_tree_view_insert_column_with_attributes func(
-		tree_view *T.GtkTreeView, position T.Gint, title string,
-		cell *T.GtkCellRenderer, v ...VArg) T.Gint
+		tree_view *T.GtkTreeView, position int, title string,
+		cell *T.GtkCellRenderer, v ...VArg) int
 
 	Gtk_tree_view_insert_column_with_data_func func(
 		tree_view *T.GtkTreeView,
-		position T.Gint,
+		position int,
 		title string,
 		cell *T.GtkCellRenderer,
 		f T.GtkTreeCellDataFunc,
 		dataGpointer,
-		dnotify T.GDestroyNotify) T.Gint
+		dnotify T.GDestroyNotify) int
 
 	Gtk_tree_view_get_column func(
 		tree_view *T.GtkTreeView,
-		n T.Gint) *T.GtkTreeViewColumn
+		n int) *T.GtkTreeViewColumn
 
 	Gtk_tree_view_get_columns func(
 		tree_view *T.GtkTreeView) *T.GList
@@ -6788,16 +6788,16 @@ var (
 
 	Gtk_tree_view_scroll_to_point func(
 		tree_view *T.GtkTreeView,
-		tree_x T.Gint,
-		tree_y T.Gint)
+		tree_x int,
+		tree_y int)
 
 	Gtk_tree_view_scroll_to_cell func(
 		tree_view *T.GtkTreeView,
 		path *T.GtkTreePath,
 		column *T.GtkTreeViewColumn,
 		use_align T.Gboolean,
-		row_align T.Gfloat,
-		col_align T.Gfloat)
+		row_align float32,
+		col_align float32)
 
 	Gtk_tree_view_row_activated func(
 		tree_view *T.GtkTreeView,
@@ -6862,12 +6862,12 @@ var (
 
 	Gtk_tree_view_get_path_at_pos func(
 		tree_view *T.GtkTreeView,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		path **T.GtkTreePath,
 		column **T.GtkTreeViewColumn,
-		cell_x *T.Gint,
-		cell_y *T.Gint) T.Gboolean
+		cell_x *int,
+		cell_y *int) T.Gboolean
 
 	Gtk_tree_view_get_cell_area func(
 		tree_view *T.GtkTreeView,
@@ -6887,17 +6887,17 @@ var (
 
 	Gtk_tree_view_widget_to_tree_coords func(
 		tree_view *T.GtkTreeView,
-		wx T.Gint,
-		wy T.Gint,
-		tx *T.Gint,
-		ty *T.Gint)
+		wx int,
+		wy int,
+		tx *int,
+		ty *int)
 
 	Gtk_tree_view_tree_to_widget_coords func(
 		tree_view *T.GtkTreeView,
-		tx T.Gint,
-		ty T.Gint,
-		wx *T.Gint,
-		wy *T.Gint)
+		tx int,
+		ty int,
+		wx *int,
+		wy *int)
 
 	Gtk_tree_view_get_visible_range func(
 		tree_view *T.GtkTreeView,
@@ -6908,13 +6908,13 @@ var (
 		tree_view *T.GtkTreeView,
 		start_button_mask T.GdkModifierType,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_tree_view_enable_model_drag_dest func(
 		tree_view *T.GtkTreeView,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_tree_view_unset_rows_drag_source func(
@@ -6935,8 +6935,8 @@ var (
 
 	Gtk_tree_view_get_dest_row_at_pos func(
 		tree_view *T.GtkTreeView,
-		drag_x T.Gint,
-		drag_y T.Gint,
+		drag_x int,
+		drag_y int,
 		path **T.GtkTreePath,
 		pos *T.GtkTreeViewDropPosition) T.Gboolean
 
@@ -6952,11 +6952,11 @@ var (
 		tree_view *T.GtkTreeView) T.Gboolean
 
 	Gtk_tree_view_get_search_column func(
-		tree_view *T.GtkTreeView) T.Gint
+		tree_view *T.GtkTreeView) int
 
 	Gtk_tree_view_set_search_column func(
 		tree_view *T.GtkTreeView,
-		column T.Gint)
+		column int)
 
 	Gtk_tree_view_get_search_equal_func func(
 		tree_view *T.GtkTreeView) T.GtkTreeViewSearchEqualFunc
@@ -6985,45 +6985,45 @@ var (
 
 	Gtk_tree_view_convert_widget_to_tree_coords func(
 		tree_view *T.GtkTreeView,
-		wx T.Gint,
-		wy T.Gint,
-		tx *T.Gint,
-		ty *T.Gint)
+		wx int,
+		wy int,
+		tx *int,
+		ty *int)
 
 	Gtk_tree_view_convert_tree_to_widget_coords func(
 		tree_view *T.GtkTreeView,
-		tx T.Gint,
-		ty T.Gint,
-		wx *T.Gint,
-		wy *T.Gint)
+		tx int,
+		ty int,
+		wx *int,
+		wy *int)
 
 	Gtk_tree_view_convert_widget_to_bin_window_coords func(
 		tree_view *T.GtkTreeView,
-		wx T.Gint,
-		wy T.Gint,
-		bx *T.Gint,
-		by *T.Gint)
+		wx int,
+		wy int,
+		bx *int,
+		by *int)
 
 	Gtk_tree_view_convert_bin_window_to_widget_coords func(
 		tree_view *T.GtkTreeView,
-		bx T.Gint,
-		by T.Gint,
-		wx *T.Gint,
-		wy *T.Gint)
+		bx int,
+		by int,
+		wx *int,
+		wy *int)
 
 	Gtk_tree_view_convert_tree_to_bin_window_coords func(
 		tree_view *T.GtkTreeView,
-		tx T.Gint,
-		ty T.Gint,
-		bx *T.Gint,
-		by *T.Gint)
+		tx int,
+		ty int,
+		bx *int,
+		by *int)
 
 	Gtk_tree_view_convert_bin_window_to_tree_coords func(
 		tree_view *T.GtkTreeView,
-		bx T.Gint,
-		by T.Gint,
-		tx *T.Gint,
-		ty *T.Gint)
+		bx int,
+		by int,
+		tx *int,
+		ty *int)
 
 	Gtk_tree_view_set_destroy_count_func func(
 		tree_view *T.GtkTreeView,
@@ -7094,10 +7094,10 @@ var (
 
 	Gtk_tree_view_set_level_indentation func(
 		tree_view *T.GtkTreeView,
-		indentation T.Gint)
+		indentation int)
 
 	Gtk_tree_view_get_level_indentation func(
-		tree_view *T.GtkTreeView) T.Gint
+		tree_view *T.GtkTreeView) int
 
 	Gtk_tree_view_set_tooltip_row func(
 		tree_view *T.GtkTreeView,
@@ -7113,8 +7113,8 @@ var (
 
 	Gtk_tree_view_get_tooltip_context func(
 		tree_view *T.GtkTreeView,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		keyboard_tip T.Gboolean,
 		model **T.GtkTreeModel,
 		path **T.GtkTreePath,
@@ -7122,10 +7122,10 @@ var (
 
 	Gtk_tree_view_set_tooltip_column func(
 		tree_view *T.GtkTreeView,
-		column T.Gint)
+		column int)
 
 	Gtk_tree_view_get_tooltip_column func(
-		tree_view *T.GtkTreeView) T.Gint
+		tree_view *T.GtkTreeView) int
 
 	Gtk_combo_box_get_type func() T.GType
 
@@ -7140,25 +7140,25 @@ var (
 		model *T.GtkTreeModel) *T.GtkWidget
 
 	Gtk_combo_box_get_wrap_width func(
-		combo_box *T.GtkComboBox) T.Gint
+		combo_box *T.GtkComboBox) int
 
 	Gtk_combo_box_set_wrap_width func(
 		combo_box *T.GtkComboBox,
-		width T.Gint)
+		width int)
 
 	Gtk_combo_box_get_row_span_column func(
-		combo_box *T.GtkComboBox) T.Gint
+		combo_box *T.GtkComboBox) int
 
 	Gtk_combo_box_set_row_span_column func(
 		combo_box *T.GtkComboBox,
-		row_span T.Gint)
+		row_span int)
 
 	Gtk_combo_box_get_column_span_column func(
-		combo_box *T.GtkComboBox) T.Gint
+		combo_box *T.GtkComboBox) int
 
 	Gtk_combo_box_set_column_span_column func(
 		combo_box *T.GtkComboBox,
-		column_span T.Gint)
+		column_span int)
 
 	Gtk_combo_box_get_add_tearoffs func(
 		combo_box *T.GtkComboBox) T.Gboolean
@@ -7182,11 +7182,11 @@ var (
 		focus_on_click T.Gboolean)
 
 	Gtk_combo_box_get_active func(
-		combo_box *T.GtkComboBox) T.Gint
+		combo_box *T.GtkComboBox) int
 
 	Gtk_combo_box_set_active func(
 		combo_box *T.GtkComboBox,
-		index_ T.Gint)
+		index_ int)
 
 	Gtk_combo_box_get_active_iter func(
 		combo_box *T.GtkComboBox,
@@ -7224,10 +7224,10 @@ var (
 
 	Gtk_combo_box_set_entry_text_column func(
 		combo_box *T.GtkComboBox,
-		text_column T.Gint)
+		text_column int)
 
 	Gtk_combo_box_get_entry_text_column func(
-		combo_box *T.GtkComboBox) T.Gint
+		combo_box *T.GtkComboBox) int
 
 	Gtk_combo_box_new_text func() *T.GtkWidget
 
@@ -7237,7 +7237,7 @@ var (
 
 	Gtk_combo_box_insert_text func(
 		combo_box *T.GtkComboBox,
-		position T.Gint,
+		position int,
 		text string)
 
 	Gtk_combo_box_prepend_text func(
@@ -7246,7 +7246,7 @@ var (
 
 	Gtk_combo_box_remove_text func(
 		combo_box *T.GtkComboBox,
-		position T.Gint)
+		position int)
 
 	Gtk_combo_box_get_active_text func(
 		combo_box *T.GtkComboBox) string
@@ -7266,14 +7266,14 @@ var (
 
 	Gtk_combo_box_entry_new_with_model func(
 		model *T.GtkTreeModel,
-		text_column T.Gint) *T.GtkWidget
+		text_column int) *T.GtkWidget
 
 	Gtk_combo_box_entry_set_text_column func(
 		entry_box *T.GtkComboBoxEntry,
-		text_column T.Gint)
+		text_column int)
 
 	Gtk_combo_box_entry_get_text_column func(
-		entry_box *T.GtkComboBoxEntry) T.Gint
+		entry_box *T.GtkComboBoxEntry) int
 
 	Gtk_combo_box_entry_new_text func() *T.GtkWidget
 
@@ -7289,7 +7289,7 @@ var (
 
 	Gtk_combo_box_text_insert_text func(
 		combo_box *T.GtkComboBoxText,
-		position T.Gint,
+		position int,
 		text string)
 
 	Gtk_combo_box_text_prepend_text func(
@@ -7298,7 +7298,7 @@ var (
 
 	Gtk_combo_box_text_remove func(
 		combo_box *T.GtkComboBoxText,
-		position T.Gint)
+		position int)
 
 	Gtk_combo_box_text_get_active_text func(
 		combo_box *T.GtkComboBoxText) string
@@ -7309,8 +7309,8 @@ var (
 
 	Gtk_drawing_area_size func(
 		darea *T.GtkDrawingArea,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_event_box_get_type func() T.GType
 
@@ -7347,10 +7347,10 @@ var (
 
 	Gtk_expander_set_spacing func(
 		expander *T.GtkExpander,
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_expander_get_spacing func(
-		expander *T.GtkExpander) T.Gint
+		expander *T.GtkExpander) int
 
 	Gtk_expander_set_label func(
 		expander *T.GtkExpander,
@@ -7394,14 +7394,14 @@ var (
 	Gtk_fixed_put func(
 		fixed *T.GtkFixed,
 		widget *T.GtkWidget,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_fixed_move func(
 		fixed *T.GtkFixed,
 		widget *T.GtkWidget,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_fixed_set_has_window func(
 		fixed *T.GtkFixed,
@@ -7665,7 +7665,7 @@ var (
 
 	Gtk_hbox_new func(
 		homogeneous T.Gboolean,
-		spacing T.Gint) *T.GtkWidget
+		spacing int) *T.GtkWidget
 
 	Gtk_file_chooser_button_get_type func() T.GType
 
@@ -7689,11 +7689,11 @@ var (
 		title string)
 
 	Gtk_file_chooser_button_get_width_chars func(
-		button *T.GtkFileChooserButton) T.Gint
+		button *T.GtkFileChooserButton) int
 
 	Gtk_file_chooser_button_set_width_chars func(
 		button *T.GtkFileChooserButton,
-		n_chars T.Gint)
+		n_chars int)
 
 	Gtk_file_chooser_button_get_focus_on_click func(
 		button *T.GtkFileChooserButton) T.Gboolean
@@ -7797,7 +7797,7 @@ var (
 		fontsel *T.GtkFontSelection) *T.PangoFontFace
 
 	Gtk_font_selection_get_size func(
-		fontsel *T.GtkFontSelection) T.Gint
+		fontsel *T.GtkFontSelection) int
 
 	Gtk_font_selection_get_font_name func(
 		fontsel *T.GtkFontSelection) string
@@ -7851,7 +7851,7 @@ var (
 		text string)
 
 	Gtk_gc_get func(
-		depth T.Gint,
+		depth int,
 		colormap *T.GdkColormap,
 		values *T.GdkGCValues,
 		values_mask T.GdkGCValuesMask) *T.GdkGC
@@ -7891,12 +7891,12 @@ var (
 
 	Gtk_hbutton_box_new func() *T.GtkWidget
 
-	Gtk_hbutton_box_get_spacing_default func() T.Gint
+	Gtk_hbutton_box_get_spacing_default func() int
 
 	Gtk_hbutton_box_get_layout_default func() T.GtkButtonBoxStyle
 
 	Gtk_hbutton_box_set_spacing_default func(
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_hbutton_box_set_layout_default func(
 		layout T.GtkButtonBoxStyle)
@@ -7924,11 +7924,11 @@ var (
 		shrink T.Gboolean)
 
 	Gtk_paned_get_position func(
-		paned *T.GtkPaned) T.Gint
+		paned *T.GtkPaned) int
 
 	Gtk_paned_set_position func(
 		paned *T.GtkPaned,
-		position T.Gint)
+		position int)
 
 	Gtk_paned_get_child1 func(
 		paned *T.GtkPaned) *T.GtkWidget
@@ -7941,9 +7941,9 @@ var (
 
 	Gtk_paned_compute_position func(
 		paned *T.GtkPaned,
-		allocation T.Gint,
-		child1_req T.Gint,
-		child2_req T.Gint)
+		allocation int,
+		child1_req int,
+		child2_req int)
 
 	Gtk_hpaned_get_type func() T.GType
 
@@ -7960,17 +7960,17 @@ var (
 
 	Gtk_ruler_set_range func(
 		ruler *T.GtkRuler,
-		lower T.Gdouble,
-		upper T.Gdouble,
-		position T.Gdouble,
-		max_size T.Gdouble)
+		lower float64,
+		upper float64,
+		position float64,
+		max_size float64)
 
 	Gtk_ruler_get_range func(
 		ruler *T.GtkRuler,
-		lower *T.Gdouble,
-		upper *T.Gdouble,
-		position *T.Gdouble,
-		max_size *T.Gdouble)
+		lower *float64,
+		upper *float64,
+		position *float64,
+		max_size *float64)
 
 	Gtk_ruler_draw_ticks func(
 		ruler *T.GtkRuler)
@@ -8024,7 +8024,7 @@ var (
 		min_size T.Gboolean)
 
 	Gtk_range_get_min_slider_size func(
-		r *T.GtkRange) T.Gint
+		r *T.GtkRange) int
 
 	Gtk_range_get_range_rect func(
 		r *T.GtkRange,
@@ -8032,8 +8032,8 @@ var (
 
 	Gtk_range_get_slider_range func(
 		r *T.GtkRange,
-		slider_start *T.Gint,
-		slider_end *T.Gint)
+		slider_start *int,
+		slider_end *int)
 
 	Gtk_range_set_lower_stepper_sensitivity func(
 		r *T.GtkRange,
@@ -8051,20 +8051,20 @@ var (
 
 	Gtk_range_set_increments func(
 		r *T.GtkRange,
-		step T.Gdouble,
-		page T.Gdouble)
+		step float64,
+		page float64)
 
 	Gtk_range_set_range func(
 		r *T.GtkRange,
-		min T.Gdouble,
-		max T.Gdouble)
+		min float64,
+		max float64)
 
 	Gtk_range_set_value func(
 		r *T.GtkRange,
-		value T.Gdouble)
+		value float64)
 
 	Gtk_range_get_value func(
-		r *T.GtkRange) T.Gdouble
+		r *T.GtkRange) float64
 
 	Gtk_range_set_show_fill_level func(
 		r *T.GtkRange,
@@ -8082,26 +8082,26 @@ var (
 
 	Gtk_range_set_fill_level func(
 		r *T.GtkRange,
-		fill_level T.Gdouble)
+		fill_level float64)
 
 	Gtk_range_get_fill_level func(
-		r *T.GtkRange) T.Gdouble
+		r *T.GtkRange) float64
 
 	Gtk_range_set_round_digits func(
 		r *T.GtkRange,
-		round_digits T.Gint)
+		round_digits int)
 
 	Gtk_range_get_round_digits func(
-		r *T.GtkRange) T.Gint
+		r *T.GtkRange) int
 
 	Gtk_scale_get_type func() T.GType
 
 	Gtk_scale_set_digits func(
 		scale *T.GtkScale,
-		digits T.Gint)
+		digits int)
 
 	Gtk_scale_get_digits func(
-		scale *T.GtkScale) T.Gint
+		scale *T.GtkScale) int
 
 	Gtk_scale_set_draw_value func(
 		scale *T.GtkScale,
@@ -8122,12 +8122,12 @@ var (
 
 	Gtk_scale_get_layout_offsets func(
 		scale *T.GtkScale,
-		x *T.Gint,
-		y *T.Gint)
+		x *int,
+		y *int)
 
 	Gtk_scale_add_mark func(
 		scale *T.GtkScale,
-		value T.Gdouble,
+		value float64,
 		position T.GtkPositionType,
 		markup string)
 
@@ -8140,9 +8140,9 @@ var (
 		adjustment *T.GtkAdjustment) *T.GtkWidget
 
 	Gtk_hscale_new_with_range func(
-		min T.Gdouble,
-		max T.Gdouble,
-		step T.Gdouble) *T.GtkWidget
+		min float64,
+		max float64,
+		step float64) *T.GtkWidget
 
 	Gtk_scrollbar_get_type func() T.GType
 
@@ -8162,27 +8162,27 @@ var (
 	Gtk_hsv_new func() *T.GtkWidget
 
 	Gtk_hsv_set_color func(
-		hsv *T.GtkHSV, h, s, v T.Double)
+		hsv *T.GtkHSV, h, s, v float64)
 
 	Gtk_hsv_get_color func(
-		hsv *T.GtkHSV, h, s, v *T.Gdouble)
+		hsv *T.GtkHSV, h, s, v *float64)
 
 	Gtk_hsv_set_metrics func(
 		hsv *T.GtkHSV,
-		size T.Gint,
-		ring_width T.Gint)
+		size int,
+		ring_width int)
 
 	Gtk_hsv_get_metrics func(
 		hsv *T.GtkHSV,
-		size *T.Gint,
-		ring_width *T.Gint)
+		size *int,
+		ring_width *int)
 
 	Gtk_hsv_is_adjusting func(
 		hsv *T.GtkHSV) T.Gboolean
 
-	Gtk_hsv_to_rgb func(h, s, v T.Gdouble, r, g, b *T.Gdouble)
+	Gtk_hsv_to_rgb func(h, s, v float64, r, g, b *float64)
 
-	Gtk_rgb_to_hsv func(r, g, b T.Gdouble, h, s, v *T.Gdouble)
+	Gtk_rgb_to_hsv func(r, g, b float64, h, s, v *float64)
 
 	Gtk_icon_factory_get_type func() T.GType
 
@@ -8208,19 +8208,19 @@ var (
 
 	Gtk_icon_size_lookup func(
 		size T.GtkIconSize,
-		width *T.Gint,
-		height *T.Gint) T.Gboolean
+		width *int,
+		height *int) T.Gboolean
 
 	Gtk_icon_size_lookup_for_settings func(
 		settings *T.GtkSettings,
 		size T.GtkIconSize,
-		width *T.Gint,
-		height *T.Gint) T.Gboolean
+		width *int,
+		height *int) T.Gboolean
 
 	Gtk_icon_size_register func(
 		name string,
-		width T.Gint,
-		height T.Gint) T.GtkIconSize
+		width int,
+		height int) T.GtkIconSize
 
 	Gtk_icon_size_register_alias func(
 		alias string,
@@ -8264,7 +8264,7 @@ var (
 	Gtk_icon_set_get_sizes func(
 		icon_set *T.GtkIconSet,
 		sizes **T.GtkIconSize,
-		n_sizes *T.Gint)
+		n_sizes *int)
 
 	Gtk_icon_source_get_type func() T.GType
 
@@ -8357,12 +8357,12 @@ var (
 	Gtk_icon_theme_set_search_path func(
 		icon_theme *T.GtkIconTheme,
 		path **T.Gchar,
-		n_elements T.Gint)
+		n_elements int)
 
 	Gtk_icon_theme_get_search_path func(
 		icon_theme *T.GtkIconTheme,
 		path ***T.Gchar,
-		n_elements *T.Gint)
+		n_elements *int)
 
 	Gtk_icon_theme_append_search_path func(
 		icon_theme *T.GtkIconTheme,
@@ -8382,31 +8382,31 @@ var (
 
 	Gtk_icon_theme_get_icon_sizes func(
 		icon_theme *T.GtkIconTheme,
-		icon_name string) *T.Gint
+		icon_name string) *int
 
 	Gtk_icon_theme_lookup_icon func(
 		icon_theme *T.GtkIconTheme,
 		icon_name string,
-		size T.Gint,
+		size int,
 		flags T.GtkIconLookupFlags) *T.GtkIconInfo
 
 	Gtk_icon_theme_choose_icon func(
 		icon_theme *T.GtkIconTheme,
 		icon_names **T.Gchar,
-		size T.Gint,
+		size int,
 		flags T.GtkIconLookupFlags) *T.GtkIconInfo
 
 	Gtk_icon_theme_load_icon func(
 		icon_theme *T.GtkIconTheme,
 		icon_name string,
-		size T.Gint,
+		size int,
 		flags T.GtkIconLookupFlags,
 		error **T.GError) *T.GdkPixbuf
 
 	Gtk_icon_theme_lookup_by_gicon func(
 		icon_theme *T.GtkIconTheme,
 		icon *T.GIcon,
-		size T.Gint,
+		size int,
 		flags T.GtkIconLookupFlags) *T.GtkIconInfo
 
 	Gtk_icon_theme_list_icons func(
@@ -8424,7 +8424,7 @@ var (
 
 	Gtk_icon_theme_add_builtin_icon func(
 		icon_name string,
-		size T.Gint,
+		size int,
 		pixbuf *T.GdkPixbuf)
 
 	Gtk_icon_info_get_type func() T.GType
@@ -8440,7 +8440,7 @@ var (
 		pixbuf *T.GdkPixbuf) *T.GtkIconInfo
 
 	Gtk_icon_info_get_base_size func(
-		icon_info *T.GtkIconInfo) T.Gint
+		icon_info *T.GtkIconInfo) int
 
 	Gtk_icon_info_get_filename func(
 		icon_info *T.GtkIconInfo) string
@@ -8463,7 +8463,7 @@ var (
 	Gtk_icon_info_get_attach_points func(
 		icon_info *T.GtkIconInfo,
 		points **T.GdkPoint,
-		n_points *T.Gint) T.Gboolean
+		n_points *int) T.Gboolean
 
 	Gtk_icon_info_get_display_name func(
 		icon_info *T.GtkIconInfo) string
@@ -8524,24 +8524,24 @@ var (
 
 	Gtk_icon_view_set_text_column func(
 		icon_view *T.GtkIconView,
-		column T.Gint)
+		column int)
 
 	Gtk_icon_view_get_text_column func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_markup_column func(
 		icon_view *T.GtkIconView,
-		column T.Gint)
+		column int)
 
 	Gtk_icon_view_get_markup_column func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_pixbuf_column func(
 		icon_view *T.GtkIconView,
-		column T.Gint)
+		column int)
 
 	Gtk_icon_view_get_pixbuf_column func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_orientation func(
 		icon_view *T.GtkIconView,
@@ -8559,62 +8559,62 @@ var (
 
 	Gtk_icon_view_set_columns func(
 		icon_view *T.GtkIconView,
-		columns T.Gint)
+		columns int)
 
 	Gtk_icon_view_get_columns func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_item_width func(
 		icon_view *T.GtkIconView,
-		item_width T.Gint)
+		item_width int)
 
 	Gtk_icon_view_get_item_width func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_spacing func(
 		icon_view *T.GtkIconView,
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_icon_view_get_spacing func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_row_spacing func(
 		icon_view *T.GtkIconView,
-		row_spacing T.Gint)
+		row_spacing int)
 
 	Gtk_icon_view_get_row_spacing func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_column_spacing func(
 		icon_view *T.GtkIconView,
-		column_spacing T.Gint)
+		column_spacing int)
 
 	Gtk_icon_view_get_column_spacing func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_margin func(
 		icon_view *T.GtkIconView,
-		margin T.Gint)
+		margin int)
 
 	Gtk_icon_view_get_margin func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_set_item_padding func(
 		icon_view *T.GtkIconView,
-		item_padding T.Gint)
+		item_padding int)
 
 	Gtk_icon_view_get_item_padding func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_icon_view_get_path_at_pos func(
 		icon_view *T.GtkIconView,
-		x T.Gint,
-		y T.Gint) *T.GtkTreePath
+		x int,
+		y int) *T.GtkTreePath
 
 	Gtk_icon_view_get_item_at_pos func(
 		icon_view *T.GtkIconView,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		path **T.GtkTreePath,
 		cell **T.GtkCellRenderer) T.Gboolean
 
@@ -8649,11 +8649,11 @@ var (
 
 	Gtk_icon_view_get_item_row func(
 		icon_view *T.GtkIconView,
-		path *T.GtkTreePath) T.Gint
+		path *T.GtkTreePath) int
 
 	Gtk_icon_view_get_item_column func(
 		icon_view *T.GtkIconView,
-		path *T.GtkTreePath) T.Gint
+		path *T.GtkTreePath) int
 
 	Gtk_icon_view_get_selected_items func(
 		icon_view *T.GtkIconView) *T.GList
@@ -8683,20 +8683,20 @@ var (
 		icon_view *T.GtkIconView,
 		path *T.GtkTreePath,
 		use_align T.Gboolean,
-		row_align T.Gfloat,
-		col_align T.Gfloat)
+		row_align float32,
+		col_align float32)
 
 	Gtk_icon_view_enable_model_drag_source func(
 		icon_view *T.GtkIconView,
 		start_button_mask T.GdkModifierType,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_icon_view_enable_model_drag_dest func(
 		icon_view *T.GtkIconView,
 		targets *T.GtkTargetEntry,
-		n_targets T.Gint,
+		n_targets int,
 		actions T.GdkDragAction)
 
 	Gtk_icon_view_unset_model_drag_source func(
@@ -8724,8 +8724,8 @@ var (
 
 	Gtk_icon_view_get_dest_item_at_pos func(
 		icon_view *T.GtkIconView,
-		drag_x T.Gint,
-		drag_y T.Gint,
+		drag_x int,
+		drag_y int,
 		path **T.GtkTreePath,
 		pos *T.GtkIconViewDropPosition) T.Gboolean
 
@@ -8735,10 +8735,10 @@ var (
 
 	Gtk_icon_view_convert_widget_to_bin_window_coords func(
 		icon_view *T.GtkIconView,
-		wx T.Gint,
-		wy T.Gint,
-		bx *T.Gint,
-		by *T.Gint)
+		wx int,
+		wy int,
+		bx *int,
+		by *int)
 
 	Gtk_icon_view_set_tooltip_item func(
 		icon_view *T.GtkIconView,
@@ -8753,8 +8753,8 @@ var (
 
 	Gtk_icon_view_get_tooltip_context func(
 		icon_view *T.GtkIconView,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		keyboard_tip T.Gboolean,
 		model **T.GtkTreeModel,
 		path **T.GtkTreePath,
@@ -8762,10 +8762,10 @@ var (
 
 	Gtk_icon_view_set_tooltip_column func(
 		icon_view *T.GtkIconView,
-		column T.Gint)
+		column int)
 
 	Gtk_icon_view_get_tooltip_column func(
-		icon_view *T.GtkIconView) T.Gint
+		icon_view *T.GtkIconView) int
 
 	Gtk_image_menu_item_get_type func() T.GType
 
@@ -8812,9 +8812,9 @@ var (
 
 	Gtk_im_context_simple_add_table func(
 		context_simple *T.GtkIMContextSimple,
-		data *T.Guint16,
-		max_seq_len T.Gint,
-		n_seqs T.Gint)
+		data *uint16,
+		max_seq_len int,
+		n_seqs int)
 
 	Gtk_im_multicontext_get_type func() T.GType
 
@@ -8847,28 +8847,28 @@ var (
 	Gtk_info_bar_add_action_widget func(
 		info_bar *T.GtkInfoBar,
 		child *T.GtkWidget,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_info_bar_add_button func(
 		info_bar *T.GtkInfoBar,
 		button_text string,
-		response_id T.Gint) *T.GtkWidget
+		response_id int) *T.GtkWidget
 
 	Gtk_info_bar_add_buttons func(info_bar *T.GtkInfoBar,
 		first_button_text string, v ...VArg)
 
 	Gtk_info_bar_set_response_sensitive func(
 		info_bar *T.GtkInfoBar,
-		response_id T.Gint,
+		response_id int,
 		setting T.Gboolean)
 
 	Gtk_info_bar_set_default_response func(
 		info_bar *T.GtkInfoBar,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_info_bar_response func(
 		info_bar *T.GtkInfoBar,
-		response_id T.Gint)
+		response_id int)
 
 	Gtk_info_bar_set_message_type func(
 		info_bar *T.GtkInfoBar,
@@ -8903,24 +8903,24 @@ var (
 	Gtk_layout_put func(
 		layout *T.GtkLayout,
 		child_widget *T.GtkWidget,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_layout_move func(
 		layout *T.GtkLayout,
 		child_widget *T.GtkWidget,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_layout_set_size func(
 		layout *T.GtkLayout,
-		width T.Guint,
-		height T.Guint)
+		width uint,
+		height uint)
 
 	Gtk_layout_get_size func(
 		layout *T.GtkLayout,
-		width *T.Guint,
-		height *T.Guint)
+		width *uint,
+		height *uint)
 
 	Gtk_layout_get_hadjustment func(
 		layout *T.GtkLayout) *T.GtkAdjustment
@@ -8971,9 +8971,9 @@ var (
 		visited T.Gboolean)
 
 	Gtk_check_version func(
-		required_major T.Guint,
-		required_minor T.Guint,
-		required_micro T.Guint) string
+		required_major uint,
+		required_minor uint,
+		required_micro uint) string
 
 	Gtk_parse_args func(
 		argc *int,
@@ -9013,7 +9013,7 @@ var (
 		sizeof_GtkBox T.Size_t) T.Gboolean
 
 	Gtk_exit func(
-		error_code T.Gint)
+		error_code int)
 
 	Gtk_set_locale func() string
 
@@ -9028,7 +9028,7 @@ var (
 
 	Gtk_main func()
 
-	Gtk_main_level func() T.Guint
+	Gtk_main_level func() uint
 
 	Gtk_main_quit func()
 
@@ -9054,85 +9054,85 @@ var (
 		data T.Gpointer)
 
 	Gtk_quit_add_destroy func(
-		main_level T.Guint,
+		main_level uint,
 		object *T.GtkObject)
 
 	Gtk_quit_add func(
-		main_level T.Guint,
+		main_level uint,
 		function T.GtkFunction,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gtk_quit_add_full func(
-		main_level T.Guint,
+		main_level uint,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
 		dataGpointer,
-		destroy T.GDestroyNotify) T.Guint
+		destroy T.GDestroyNotify) uint
 
 	Gtk_quit_remove func(
-		quit_handler_id T.Guint)
+		quit_handler_id uint)
 
 	Gtk_quit_remove_by_data func(
 		data T.Gpointer)
 
 	Gtk_timeout_add func(
-		interval T.Guint32,
+		interval T.GUint32,
 		function T.GtkFunction,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gtk_timeout_add_full func(
-		interval T.Guint32,
+		interval T.GUint32,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
 		dataGpointer,
-		destroy T.GDestroyNotify) T.Guint
+		destroy T.GDestroyNotify) uint
 
 	Gtk_timeout_remove func(
-		timeout_handler_id T.Guint)
+		timeout_handler_id uint)
 
 	Gtk_idle_add func(
 		function T.GtkFunction,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gtk_idle_add_priority func(
-		priority T.Gint,
+		priority int,
 		function T.GtkFunction,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Gtk_idle_add_full func(
-		priority T.Gint,
+		priority int,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
 		dataGpointer,
-		destroy T.GDestroyNotify) T.Guint
+		destroy T.GDestroyNotify) uint
 
 	Gtk_idle_remove func(
-		idle_handler_id T.Guint)
+		idle_handler_id uint)
 
 	Gtk_idle_remove_by_data func(
 		data T.Gpointer)
 
 	Gtk_input_add_full func(
-		source T.Gint,
+		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
 		marshal T.GtkCallbackMarshal,
 		dataGpointer,
-		destroy T.GDestroyNotify) T.Guint
+		destroy T.GDestroyNotify) uint
 
 	Gtk_input_remove func(
-		input_handler_id T.Guint)
+		input_handler_id uint)
 
 	Gtk_key_snooper_install func(
 		snooper T.GtkKeySnoopFunc,
-		func_data T.Gpointer) T.Guint
+		func_data T.Gpointer) uint
 
 	Gtk_key_snooper_remove func(
-		snooper_handler_id T.Guint)
+		snooper_handler_id uint)
 
 	Gtk_get_current_event func() *T.GdkEvent
 
-	Gtk_get_current_event_time func() T.Guint32
+	Gtk_get_current_event_time func() T.GUint32
 
 	Gtk_get_current_event_state func(
 		state *T.GdkModifierType) T.Gboolean
@@ -9174,7 +9174,7 @@ var (
 
 	Gtk_tooltips_set_delay func(
 		tooltips *T.GtkTooltips,
-		delay T.Guint)
+		delay uint)
 
 	Gtk_tooltips_set_tip func(
 		tooltips *T.GtkTooltips,
@@ -9299,7 +9299,7 @@ var (
 		tool_item *T.GtkToolItem) T.GtkReliefStyle
 
 	Gtk_tool_item_get_text_alignment func(
-		tool_item *T.GtkToolItem) T.Gfloat
+		tool_item *T.GtkToolItem) float32
 
 	Gtk_tool_item_get_text_orientation func(
 		tool_item *T.GtkToolItem) T.GtkOrientation
@@ -9477,41 +9477,41 @@ var (
 	Gtk_notebook_append_page func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
-		tab_label *T.GtkWidget) T.Gint
+		tab_label *T.GtkWidget) int
 
 	Gtk_notebook_append_page_menu func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
 		tab_label *T.GtkWidget,
-		menu_label *T.GtkWidget) T.Gint
+		menu_label *T.GtkWidget) int
 
 	Gtk_notebook_prepend_page func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
-		tab_label *T.GtkWidget) T.Gint
+		tab_label *T.GtkWidget) int
 
 	Gtk_notebook_prepend_page_menu func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
 		tab_label *T.GtkWidget,
-		menu_label *T.GtkWidget) T.Gint
+		menu_label *T.GtkWidget) int
 
 	Gtk_notebook_insert_page func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
 		tab_label *T.GtkWidget,
-		position T.Gint) T.Gint
+		position int) int
 
 	Gtk_notebook_insert_page_menu func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
 		tab_label *T.GtkWidget,
 		menu_label *T.GtkWidget,
-		position T.Gint) T.Gint
+		position int) int
 
 	Gtk_notebook_remove_page func(
 		notebook *T.GtkNotebook,
-		page_num T.Gint)
+		page_num int)
 
 	Gtk_notebook_set_window_creation_hook func(
 		f T.GtkNotebookWindowCreationFunc,
@@ -9520,10 +9520,10 @@ var (
 
 	Gtk_notebook_set_group_id func(
 		notebook *T.GtkNotebook,
-		group_id T.Gint)
+		group_id int)
 
 	Gtk_notebook_get_group_id func(
-		notebook *T.GtkNotebook) T.Gint
+		notebook *T.GtkNotebook) int
 
 	Gtk_notebook_set_group func(
 		notebook *T.GtkNotebook,
@@ -9540,22 +9540,22 @@ var (
 		notebook *T.GtkNotebook) string
 
 	Gtk_notebook_get_current_page func(
-		notebook *T.GtkNotebook) T.Gint
+		notebook *T.GtkNotebook) int
 
 	Gtk_notebook_get_nth_page func(
 		notebook *T.GtkNotebook,
-		page_num T.Gint) *T.GtkWidget
+		page_num int) *T.GtkWidget
 
 	Gtk_notebook_get_n_pages func(
-		notebook *T.GtkNotebook) T.Gint
+		notebook *T.GtkNotebook) int
 
 	Gtk_notebook_page_num func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) T.Gint
+		child *T.GtkWidget) int
 
 	Gtk_notebook_set_current_page func(
 		notebook *T.GtkNotebook,
-		page_num T.Gint)
+		page_num int)
 
 	Gtk_notebook_next_page func(
 		notebook *T.GtkNotebook)
@@ -9590,15 +9590,15 @@ var (
 
 	Gtk_notebook_set_tab_border func(
 		notebook *T.GtkNotebook,
-		border_width T.Guint)
+		border_width uint)
 
 	Gtk_notebook_set_tab_hborder func(
 		notebook *T.GtkNotebook,
-		tab_hborder T.Guint)
+		tab_hborder uint)
 
 	Gtk_notebook_set_tab_vborder func(
 		notebook *T.GtkNotebook,
-		tab_vborder T.Guint)
+		tab_vborder uint)
 
 	Gtk_notebook_set_scrollable func(
 		notebook *T.GtkNotebook,
@@ -9608,10 +9608,10 @@ var (
 		notebook *T.GtkNotebook) T.Gboolean
 
 	Gtk_notebook_get_tab_hborder func(
-		notebook *T.GtkNotebook) T.Guint16
+		notebook *T.GtkNotebook) uint16
 
 	Gtk_notebook_get_tab_vborder func(
-		notebook *T.GtkNotebook) T.Guint16
+		notebook *T.GtkNotebook) uint16
 
 	Gtk_notebook_popup_enable func(
 		notebook *T.GtkNotebook)
@@ -9672,7 +9672,7 @@ var (
 	Gtk_notebook_reorder_child func(
 		notebook *T.GtkNotebook,
 		child *T.GtkWidget,
-		position T.Gint)
+		position int)
 
 	Gtk_notebook_get_tab_reorderable func(
 		notebook *T.GtkNotebook,
@@ -9728,14 +9728,14 @@ var (
 	Gtk_paper_size_new_from_ppd func(
 		ppd_name string,
 		ppd_display_name string,
-		width T.Gdouble,
-		height T.Gdouble) *T.GtkPaperSize
+		width float64,
+		height float64) *T.GtkPaperSize
 
 	Gtk_paper_size_new_custom func(
 		name string,
 		display_name string,
-		width T.Gdouble,
-		height T.Gdouble,
+		width float64,
+		height float64,
 		unit T.GtkUnit) *T.GtkPaperSize
 
 	Gtk_paper_size_copy func(
@@ -9762,36 +9762,36 @@ var (
 
 	Gtk_paper_size_get_width func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_get_height func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_is_custom func(
 		size *T.GtkPaperSize) T.Gboolean
 
 	Gtk_paper_size_set_size func(
 		size *T.GtkPaperSize,
-		width T.Gdouble,
-		height T.Gdouble,
+		width float64,
+		height float64,
 		unit T.GtkUnit)
 
 	Gtk_paper_size_get_default_top_margin func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_get_default_bottom_margin func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_get_default_left_margin func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_get_default_right_margin func(
 		size *T.GtkPaperSize,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_paper_size_get_default func() string
 
@@ -9828,38 +9828,38 @@ var (
 
 	Gtk_page_setup_get_top_margin func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_set_top_margin func(
 		setup *T.GtkPageSetup,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_page_setup_get_bottom_margin func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_set_bottom_margin func(
 		setup *T.GtkPageSetup,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_page_setup_get_left_margin func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_set_left_margin func(
 		setup *T.GtkPageSetup,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_page_setup_get_right_margin func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_set_right_margin func(
 		setup *T.GtkPageSetup,
-		margin T.Gdouble,
+		margin float64,
 		unit T.GtkUnit)
 
 	Gtk_page_setup_set_paper_size_and_default_margins func(
@@ -9868,19 +9868,19 @@ var (
 
 	Gtk_page_setup_get_paper_width func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_get_paper_height func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_get_page_width func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_get_page_height func(
 		setup *T.GtkPageSetup,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_page_setup_new_from_file func(
 		file_name string,
@@ -9966,23 +9966,23 @@ var (
 		context *T.GtkPrintContext) *T.GtkPageSetup
 
 	Gtk_print_context_get_width func(
-		context *T.GtkPrintContext) T.Gdouble
+		context *T.GtkPrintContext) float64
 
 	Gtk_print_context_get_height func(
-		context *T.GtkPrintContext) T.Gdouble
+		context *T.GtkPrintContext) float64
 
 	Gtk_print_context_get_dpi_x func(
-		context *T.GtkPrintContext) T.Gdouble
+		context *T.GtkPrintContext) float64
 
 	Gtk_print_context_get_dpi_y func(
-		context *T.GtkPrintContext) T.Gdouble
+		context *T.GtkPrintContext) float64
 
 	Gtk_print_context_get_hard_margins func(
 		context *T.GtkPrintContext,
-		top *T.Gdouble,
-		bottom *T.Gdouble,
-		left *T.Gdouble,
-		right *T.Gdouble) T.Gboolean
+		top *float64,
+		bottom *float64,
+		left *float64,
+		right *float64) T.Gboolean
 
 	Gtk_print_context_get_pango_fontmap func(
 		context *T.GtkPrintContext) *T.PangoFontMap
@@ -10063,42 +10063,42 @@ var (
 
 	Gtk_print_settings_get_double func(
 		settings *T.GtkPrintSettings,
-		key string) T.Gdouble
+		key string) float64
 
 	Gtk_print_settings_get_double_with_default func(
 		settings *T.GtkPrintSettings,
 		key string,
-		def T.Gdouble) T.Gdouble
+		def float64) float64
 
 	Gtk_print_settings_set_double func(
 		settings *T.GtkPrintSettings,
 		key string,
-		value T.Gdouble)
+		value float64)
 
 	Gtk_print_settings_get_length func(
 		settings *T.GtkPrintSettings,
 		key string,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_print_settings_set_length func(
 		settings *T.GtkPrintSettings,
 		key string,
-		value T.Gdouble,
+		value float64,
 		unit T.GtkUnit)
 
 	Gtk_print_settings_get_int func(
 		settings *T.GtkPrintSettings,
-		key string) T.Gint
+		key string) int
 
 	Gtk_print_settings_get_int_with_default func(
 		settings *T.GtkPrintSettings,
 		key string,
-		def T.Gint) T.Gint
+		def int) int
 
 	Gtk_print_settings_set_int func(
 		settings *T.GtkPrintSettings,
 		key string,
-		value T.Gint)
+		value int)
 
 	Gtk_print_settings_get_printer func(
 		settings *T.GtkPrintSettings) string
@@ -10123,20 +10123,20 @@ var (
 
 	Gtk_print_settings_get_paper_width func(
 		settings *T.GtkPrintSettings,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_print_settings_set_paper_width func(
 		settings *T.GtkPrintSettings,
-		width T.Gdouble,
+		width float64,
 		unit T.GtkUnit)
 
 	Gtk_print_settings_get_paper_height func(
 		settings *T.GtkPrintSettings,
-		unit T.GtkUnit) T.Gdouble
+		unit T.GtkUnit) float64
 
 	Gtk_print_settings_set_paper_height func(
 		settings *T.GtkPrintSettings,
-		height T.Gdouble,
+		height float64,
 		unit T.GtkUnit)
 
 	Gtk_print_settings_get_use_color func(
@@ -10175,18 +10175,18 @@ var (
 		quality T.GtkPrintQuality)
 
 	Gtk_print_settings_get_n_copies func(
-		settings *T.GtkPrintSettings) T.Gint
+		settings *T.GtkPrintSettings) int
 
 	Gtk_print_settings_set_n_copies func(
 		settings *T.GtkPrintSettings,
-		num_copies T.Gint)
+		num_copies int)
 
 	Gtk_print_settings_get_number_up func(
-		settings *T.GtkPrintSettings) T.Gint
+		settings *T.GtkPrintSettings) int
 
 	Gtk_print_settings_set_number_up func(
 		settings *T.GtkPrintSettings,
-		number_up T.Gint)
+		number_up int)
 
 	Gtk_print_settings_get_number_up_layout func(
 		settings *T.GtkPrintSettings) T.GtkNumberUpLayout
@@ -10196,36 +10196,36 @@ var (
 		number_up_layout T.GtkNumberUpLayout)
 
 	Gtk_print_settings_get_resolution func(
-		settings *T.GtkPrintSettings) T.Gint
+		settings *T.GtkPrintSettings) int
 
 	Gtk_print_settings_set_resolution func(
 		settings *T.GtkPrintSettings,
-		resolution T.Gint)
+		resolution int)
 
 	Gtk_print_settings_get_resolution_x func(
-		settings *T.GtkPrintSettings) T.Gint
+		settings *T.GtkPrintSettings) int
 
 	Gtk_print_settings_get_resolution_y func(
-		settings *T.GtkPrintSettings) T.Gint
+		settings *T.GtkPrintSettings) int
 
 	Gtk_print_settings_set_resolution_xy func(
 		settings *T.GtkPrintSettings,
-		resolution_x T.Gint,
-		resolution_y T.Gint)
+		resolution_x int,
+		resolution_y int)
 
 	Gtk_print_settings_get_printer_lpi func(
-		settings *T.GtkPrintSettings) T.Gdouble
+		settings *T.GtkPrintSettings) float64
 
 	Gtk_print_settings_set_printer_lpi func(
 		settings *T.GtkPrintSettings,
-		lpi T.Gdouble)
+		lpi float64)
 
 	Gtk_print_settings_get_scale func(
-		settings *T.GtkPrintSettings) T.Gdouble
+		settings *T.GtkPrintSettings) float64
 
 	Gtk_print_settings_set_scale func(
 		settings *T.GtkPrintSettings,
-		scale T.Gdouble)
+		scale float64)
 
 	Gtk_print_settings_get_print_pages func(
 		settings *T.GtkPrintSettings) T.GtkPrintPages
@@ -10236,12 +10236,12 @@ var (
 
 	Gtk_print_settings_get_page_ranges func(
 		settings *T.GtkPrintSettings,
-		num_ranges *T.Gint) *T.GtkPageRange
+		num_ranges *int) *T.GtkPageRange
 
 	Gtk_print_settings_set_page_ranges func(
 		settings *T.GtkPrintSettings,
 		page_ranges *T.GtkPageRange,
-		num_ranges T.Gint)
+		num_ranges int)
 
 	Gtk_print_settings_get_page_set func(
 		settings *T.GtkPrintSettings) T.GtkPageSet
@@ -10289,14 +10289,14 @@ var (
 
 	Gtk_print_operation_preview_render_page func(
 		preview *T.GtkPrintOperationPreview,
-		page_nr T.Gint)
+		page_nr int)
 
 	Gtk_print_operation_preview_end_preview func(
 		preview *T.GtkPrintOperationPreview)
 
 	Gtk_print_operation_preview_is_selected func(
 		preview *T.GtkPrintOperationPreview,
-		page_nr T.Gint) T.Gboolean
+		page_nr int) T.Gboolean
 
 	Gtk_print_error_quark func() T.GQuark
 
@@ -10324,11 +10324,11 @@ var (
 
 	Gtk_print_operation_set_n_pages func(
 		op *T.GtkPrintOperation,
-		n_pages T.Gint)
+		n_pages int)
 
 	Gtk_print_operation_set_current_page func(
 		op *T.GtkPrintOperation,
-		current_page T.Gint)
+		current_page int)
 
 	Gtk_print_operation_set_use_full_page func(
 		op *T.GtkPrintOperation,
@@ -10408,7 +10408,7 @@ var (
 		op *T.GtkPrintOperation) T.Gboolean
 
 	Gtk_print_operation_get_n_pages_to_print func(
-		op *T.GtkPrintOperation) T.Gint
+		op *T.GtkPrintOperation) int
 
 	Gtk_print_run_page_setup_dialog func(
 		parent *T.GtkWindow,
@@ -10430,8 +10430,8 @@ var (
 
 	Gtk_progress_set_text_alignment func(
 		progress *T.GtkProgress,
-		x_align T.Gfloat,
-		y_align T.Gfloat)
+		x_align float32,
+		y_align float32)
 
 	Gtk_progress_set_format_string func(
 		progress *T.GtkProgress,
@@ -10443,20 +10443,20 @@ var (
 
 	Gtk_progress_configure func(
 		progress *T.GtkProgress,
-		value T.Gdouble,
-		min T.Gdouble,
-		max T.Gdouble)
+		value float64,
+		min float64,
+		max float64)
 
 	Gtk_progress_set_percentage func(
 		progress *T.GtkProgress,
-		percentage T.Gdouble)
+		percentage float64)
 
 	Gtk_progress_set_value func(
 		progress *T.GtkProgress,
-		value T.Gdouble)
+		value float64)
 
 	Gtk_progress_get_value func(
-		progress *T.GtkProgress) T.Gdouble
+		progress *T.GtkProgress) float64
 
 	Gtk_progress_set_activity_mode func(
 		progress *T.GtkProgress,
@@ -10467,14 +10467,14 @@ var (
 
 	Gtk_progress_get_text_from_value func(
 		progress *T.GtkProgress,
-		value T.Gdouble) string
+		value float64) string
 
 	Gtk_progress_get_current_percentage func(
-		progress *T.GtkProgress) T.Gdouble
+		progress *T.GtkProgress) float64
 
 	Gtk_progress_get_percentage_from_value func(
 		progress *T.GtkProgress,
-		value T.Gdouble) T.Gdouble
+		value float64) float64
 
 	Gtk_progress_bar_get_type func() T.GType
 
@@ -10489,11 +10489,11 @@ var (
 
 	Gtk_progress_bar_set_fraction func(
 		pbar *T.GtkProgressBar,
-		fraction T.Gdouble)
+		fraction float64)
 
 	Gtk_progress_bar_set_pulse_step func(
 		pbar *T.GtkProgressBar,
-		fraction T.Gdouble)
+		fraction float64)
 
 	Gtk_progress_bar_set_orientation func(
 		pbar *T.GtkProgressBar,
@@ -10503,10 +10503,10 @@ var (
 		pbar *T.GtkProgressBar) string
 
 	Gtk_progress_bar_get_fraction func(
-		pbar *T.GtkProgressBar) T.Gdouble
+		pbar *T.GtkProgressBar) float64
 
 	Gtk_progress_bar_get_pulse_step func(
-		pbar *T.GtkProgressBar) T.Gdouble
+		pbar *T.GtkProgressBar) float64
 
 	Gtk_progress_bar_get_orientation func(
 		pbar *T.GtkProgressBar) T.GtkProgressBarOrientation
@@ -10527,19 +10527,19 @@ var (
 
 	Gtk_progress_bar_set_discrete_blocks func(
 		pbar *T.GtkProgressBar,
-		blocks T.Guint)
+		blocks uint)
 
 	Gtk_progress_bar_set_activity_step func(
 		pbar *T.GtkProgressBar,
-		step T.Guint)
+		step uint)
 
 	Gtk_progress_bar_set_activity_blocks func(
 		pbar *T.GtkProgressBar,
-		blocks T.Guint)
+		blocks uint)
 
 	Gtk_progress_bar_update func(
 		pbar *T.GtkProgressBar,
-		percentage T.Gdouble)
+		percentage float64)
 
 	Gtk_toggle_action_get_type func() T.GType
 
@@ -10573,7 +10573,7 @@ var (
 		label string,
 		tooltip string,
 		stock_id string,
-		value T.Gint) *T.GtkRadioAction
+		value int) *T.GtkRadioAction
 
 	Gtk_radio_action_get_group func(
 		action *T.GtkRadioAction) *T.GSList
@@ -10583,11 +10583,11 @@ var (
 		group *T.GSList)
 
 	Gtk_radio_action_get_current_value func(
-		action *T.GtkRadioAction) T.Gint
+		action *T.GtkRadioAction) int
 
 	Gtk_radio_action_set_current_value func(
 		action *T.GtkRadioAction,
-		current_value T.Gint)
+		current_value int)
 
 	Gtk_radio_button_get_type func() T.GType
 
@@ -10734,17 +10734,17 @@ var (
 
 	Gtk_recent_manager_set_limit func(
 		manager *T.GtkRecentManager,
-		limit T.Gint)
+		limit int)
 
 	Gtk_recent_manager_get_limit func(
-		manager *T.GtkRecentManager) T.Gint
+		manager *T.GtkRecentManager) int
 
 	Gtk_recent_manager_get_items func(
 		manager *T.GtkRecentManager) *T.GList
 
 	Gtk_recent_manager_purge_items func(
 		manager *T.GtkRecentManager,
-		error **T.GError) T.Gint
+		error **T.GError) int
 
 	Gtk_recent_info_get_type func() T.GType
 
@@ -10782,7 +10782,7 @@ var (
 		info *T.GtkRecentInfo,
 		app_name string,
 		app_exec **T.Gchar,
-		count *T.Guint,
+		count *uint,
 		time_ *T.Time_t) T.Gboolean
 
 	Gtk_recent_info_get_applications func(
@@ -10806,7 +10806,7 @@ var (
 
 	Gtk_recent_info_get_icon func(
 		info *T.GtkRecentInfo,
-		size T.Gint) *T.GdkPixbuf
+		size int) *T.GdkPixbuf
 
 	Gtk_recent_info_get_short_name func(
 		info *T.GtkRecentInfo) string
@@ -10815,7 +10815,7 @@ var (
 		info *T.GtkRecentInfo) string
 
 	Gtk_recent_info_get_age func(
-		info *T.GtkRecentInfo) T.Gint
+		info *T.GtkRecentInfo) int
 
 	Gtk_recent_info_is_local func(
 		info *T.GtkRecentInfo) T.Gboolean
@@ -10881,7 +10881,7 @@ var (
 
 	Gtk_recent_filter_add_age func(
 		filter *T.GtkRecentFilter,
-		days T.Gint)
+		days int)
 
 	Gtk_recent_filter_add_custom func(
 		filter *T.GtkRecentFilter,
@@ -10924,10 +10924,10 @@ var (
 
 	Gtk_recent_chooser_set_limit func(
 		chooser *T.GtkRecentChooser,
-		limit T.Gint)
+		limit int)
 
 	Gtk_recent_chooser_get_limit func(
-		chooser *T.GtkRecentChooser) T.Gint
+		chooser *T.GtkRecentChooser) int
 
 	Gtk_recent_chooser_set_local_only func(
 		chooser *T.GtkRecentChooser,
@@ -11057,9 +11057,9 @@ var (
 
 	Gtk_scale_button_new func(
 		size T.GtkIconSize,
-		min T.Gdouble,
-		max T.Gdouble,
-		step T.Gdouble,
+		min float64,
+		max float64,
+		step float64,
 		icons **T.Gchar) *T.GtkWidget
 
 	Gtk_scale_button_set_icons func(
@@ -11067,11 +11067,11 @@ var (
 		icons **T.Gchar)
 
 	Gtk_scale_button_get_value func(
-		button *T.GtkScaleButton) T.Gdouble
+		button *T.GtkScaleButton) float64
 
 	Gtk_scale_button_set_value func(
 		button *T.GtkScaleButton,
-		value T.Gdouble)
+		value float64)
 
 	Gtk_scale_button_get_adjustment func(
 		button *T.GtkScaleButton) *T.GtkAdjustment
@@ -11209,7 +11209,7 @@ var (
 	Gtk_show_uri func(
 		screen *T.GdkScreen,
 		uri string,
-		timestamp T.Guint32,
+		timestamp T.GUint32,
 		error **T.GError) T.Gboolean
 
 	Gtk_spin_button_get_type func() T.GType
@@ -11217,18 +11217,18 @@ var (
 	Gtk_spin_button_configure func(
 		spin_button *T.GtkSpinButton,
 		adjustment *T.GtkAdjustment,
-		climb_rate T.Gdouble,
-		digits T.Guint)
+		climb_rate float64,
+		digits uint)
 
 	Gtk_spin_button_new func(
 		adjustment *T.GtkAdjustment,
-		climb_rate T.Gdouble,
-		digits T.Guint) *T.GtkWidget
+		climb_rate float64,
+		digits uint) *T.GtkWidget
 
 	Gtk_spin_button_new_with_range func(
-		min T.Gdouble,
-		max T.Gdouble,
-		step T.Gdouble) *T.GtkWidget
+		min float64,
+		max float64,
+		step float64) *T.GtkWidget
 
 	Gtk_spin_button_set_adjustment func(
 		spin_button *T.GtkSpinButton,
@@ -11239,40 +11239,40 @@ var (
 
 	Gtk_spin_button_set_digits func(
 		spin_button *T.GtkSpinButton,
-		digits T.Guint)
+		digits uint)
 
 	Gtk_spin_button_get_digits func(
-		spin_button *T.GtkSpinButton) T.Guint
+		spin_button *T.GtkSpinButton) uint
 
 	Gtk_spin_button_set_increments func(
 		spin_button *T.GtkSpinButton,
-		step T.Gdouble,
-		page T.Gdouble)
+		step float64,
+		page float64)
 
 	Gtk_spin_button_get_increments func(
 		spin_button *T.GtkSpinButton,
-		step *T.Gdouble,
-		page *T.Gdouble)
+		step *float64,
+		page *float64)
 
 	Gtk_spin_button_set_range func(
 		spin_button *T.GtkSpinButton,
-		min T.Gdouble,
-		max T.Gdouble)
+		min float64,
+		max float64)
 
 	Gtk_spin_button_get_range func(
 		spin_button *T.GtkSpinButton,
-		min *T.Gdouble,
-		max *T.Gdouble)
+		min *float64,
+		max *float64)
 
 	Gtk_spin_button_get_value func(
-		spin_button *T.GtkSpinButton) T.Gdouble
+		spin_button *T.GtkSpinButton) float64
 
 	Gtk_spin_button_get_value_as_int func(
-		spin_button *T.GtkSpinButton) T.Gint
+		spin_button *T.GtkSpinButton) int
 
 	Gtk_spin_button_set_value func(
 		spin_button *T.GtkSpinButton,
-		value T.Gdouble)
+		value float64)
 
 	Gtk_spin_button_set_update_policy func(
 		spin_button *T.GtkSpinButton,
@@ -11291,7 +11291,7 @@ var (
 	Gtk_spin_button_spin func(
 		spin_button *T.GtkSpinButton,
 		direction T.GtkSpinType,
-		increment T.Gdouble)
+		increment float64)
 
 	Gtk_spin_button_set_wrap func(
 		spin_button *T.GtkSpinButton,
@@ -11326,25 +11326,25 @@ var (
 
 	Gtk_statusbar_get_context_id func(
 		statusbar *T.GtkStatusbar,
-		context_description string) T.Guint
+		context_description string) uint
 
 	Gtk_statusbar_push func(
 		statusbar *T.GtkStatusbar,
-		context_id T.Guint,
-		text string) T.Guint
+		context_id uint,
+		text string) uint
 
 	Gtk_statusbar_pop func(
 		statusbar *T.GtkStatusbar,
-		context_id T.Guint)
+		context_id uint)
 
 	Gtk_statusbar_remove func(
 		statusbar *T.GtkStatusbar,
-		context_id T.Guint,
-		message_id T.Guint)
+		context_id uint,
+		message_id uint)
 
 	Gtk_statusbar_remove_all func(
 		statusbar *T.GtkStatusbar,
-		context_id T.Guint)
+		context_id uint)
 
 	Gtk_statusbar_set_has_resize_grip func(
 		statusbar *T.GtkStatusbar,
@@ -11411,7 +11411,7 @@ var (
 		status_icon *T.GtkStatusIcon) *T.GIcon
 
 	Gtk_status_icon_get_size func(
-		status_icon *T.GtkStatusIcon) T.Gint
+		status_icon *T.GtkStatusIcon) int
 
 	Gtk_status_icon_set_screen func(
 		status_icon *T.GtkStatusIcon,
@@ -11466,8 +11466,8 @@ var (
 
 	Gtk_status_icon_position_menu func(
 		menu *T.GtkMenu,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		push_in *T.Gboolean,
 		user_data T.Gpointer)
 
@@ -11487,15 +11487,15 @@ var (
 		status_icon *T.GtkStatusIcon) string
 
 	Gtk_status_icon_get_x11_window_id func(
-		status_icon *T.GtkStatusIcon) T.Guint32
+		status_icon *T.GtkStatusIcon) T.GUint32
 
 	Gtk_stock_add func(
 		items *T.GtkStockItem,
-		n_items T.Guint)
+		n_items uint)
 
 	Gtk_stock_add_static func(
 		items *T.GtkStockItem,
-		n_items T.Guint)
+		n_items uint)
 
 	Gtk_stock_lookup func(
 		stock_id string,
@@ -11518,66 +11518,66 @@ var (
 	Gtk_table_get_type func() T.GType
 
 	Gtk_table_new func(
-		rows T.Guint,
-		columns T.Guint,
+		rows uint,
+		columns uint,
 		homogeneous T.Gboolean) *T.GtkWidget
 
 	Gtk_table_resize func(
 		table *T.GtkTable,
-		rows T.Guint,
-		columns T.Guint)
+		rows uint,
+		columns uint)
 
 	Gtk_table_attach func(
 		table *T.GtkTable,
 		child *T.GtkWidget,
-		left_attach T.Guint,
-		right_attach T.Guint,
-		top_attach T.Guint,
-		bottom_attach T.Guint,
+		left_attach uint,
+		right_attach uint,
+		top_attach uint,
+		bottom_attach uint,
 		xoptions T.GtkAttachOptions,
 		yoptions T.GtkAttachOptions,
-		xpadding T.Guint,
-		ypadding T.Guint)
+		xpadding uint,
+		ypadding uint)
 
 	Gtk_table_attach_defaults func(
 		table *T.GtkTable,
 		widget *T.GtkWidget,
-		left_attach T.Guint,
-		right_attach T.Guint,
-		top_attach T.Guint,
-		bottom_attach T.Guint)
+		left_attach uint,
+		right_attach uint,
+		top_attach uint,
+		bottom_attach uint)
 
 	Gtk_table_set_row_spacing func(
 		table *T.GtkTable,
-		row T.Guint,
-		spacing T.Guint)
+		row uint,
+		spacing uint)
 
 	Gtk_table_get_row_spacing func(
 		table *T.GtkTable,
-		row T.Guint) T.Guint
+		row uint) uint
 
 	Gtk_table_set_col_spacing func(
 		table *T.GtkTable,
-		column T.Guint,
-		spacing T.Guint)
+		column uint,
+		spacing uint)
 
 	Gtk_table_get_col_spacing func(
 		table *T.GtkTable,
-		column T.Guint) T.Guint
+		column uint) uint
 
 	Gtk_table_set_row_spacings func(
 		table *T.GtkTable,
-		spacing T.Guint)
+		spacing uint)
 
 	Gtk_table_get_default_row_spacing func(
-		table *T.GtkTable) T.Guint
+		table *T.GtkTable) uint
 
 	Gtk_table_set_col_spacings func(
 		table *T.GtkTable,
-		spacing T.Guint)
+		spacing uint)
 
 	Gtk_table_get_default_col_spacing func(
-		table *T.GtkTable) T.Guint
+		table *T.GtkTable) uint
 
 	Gtk_table_set_homogeneous func(
 		table *T.GtkTable,
@@ -11588,8 +11588,8 @@ var (
 
 	Gtk_table_get_size func(
 		table *T.GtkTable,
-		rows *T.Guint,
-		columns *T.Guint)
+		rows *uint,
+		columns *uint)
 
 	Gtk_text_tag_table_get_type func() T.GType
 
@@ -11613,7 +11613,7 @@ var (
 		data T.Gpointer)
 
 	Gtk_text_tag_table_get_size func(
-		table *T.GtkTextTagTable) T.Gint
+		table *T.GtkTextTagTable) int
 
 	Gtk_text_mark_get_type func() T.GType
 
@@ -11646,10 +11646,10 @@ var (
 		table *T.GtkTextTagTable) *T.GtkTextBuffer
 
 	Gtk_text_buffer_get_line_count func(
-		buffer *T.GtkTextBuffer) T.Gint
+		buffer *T.GtkTextBuffer) int
 
 	Gtk_text_buffer_get_char_count func(
-		buffer *T.GtkTextBuffer) T.Gint
+		buffer *T.GtkTextBuffer) int
 
 	Gtk_text_buffer_get_tag_table func(
 		buffer *T.GtkTextBuffer) *T.GtkTextTagTable
@@ -11657,30 +11657,30 @@ var (
 	Gtk_text_buffer_set_text func(
 		buffer *T.GtkTextBuffer,
 		text string,
-		len T.Gint)
+		len int)
 
 	Gtk_text_buffer_insert func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
 		text string,
-		len T.Gint)
+		len int)
 
 	Gtk_text_buffer_insert_at_cursor func(
 		buffer *T.GtkTextBuffer,
 		text string,
-		len T.Gint)
+		len int)
 
 	Gtk_text_buffer_insert_interactive func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
 		text string,
-		len T.Gint,
+		len int,
 		default_editable T.Gboolean) T.Gboolean
 
 	Gtk_text_buffer_insert_interactive_at_cursor func(
 		buffer *T.GtkTextBuffer,
 		text string,
-		len T.Gint,
+		len int,
 		default_editable T.Gboolean) T.Gboolean
 
 	Gtk_text_buffer_insert_range func(
@@ -11697,12 +11697,12 @@ var (
 		default_editable T.Gboolean) T.Gboolean
 
 	Gtk_text_buffer_insert_with_tags func(buffer *T.GtkTextBuffer,
-		iter *T.GtkTextIter, text string, len T.Gint,
+		iter *T.GtkTextIter, text string, len int,
 		first_tag *T.GtkTextTag, v ...VArg)
 
 	Gtk_text_buffer_insert_with_tags_by_name func(
 		buffer *T.GtkTextBuffer, iter *T.GtkTextIter, text string,
-		len T.Gint, first_tag_name string, v ...VArg)
+		len int, first_tag_name string, v ...VArg)
 
 	Gtk_text_buffer_delete func(
 		buffer *T.GtkTextBuffer,
@@ -11831,24 +11831,24 @@ var (
 	Gtk_text_buffer_get_iter_at_line_offset func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
-		line_number T.Gint,
-		char_offset T.Gint)
+		line_number int,
+		char_offset int)
 
 	Gtk_text_buffer_get_iter_at_line_index func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
-		line_number T.Gint,
-		byte_index T.Gint)
+		line_number int,
+		byte_index int)
 
 	Gtk_text_buffer_get_iter_at_offset func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
-		char_offset T.Gint)
+		char_offset int)
 
 	Gtk_text_buffer_get_iter_at_line func(
 		buffer *T.GtkTextBuffer,
 		iter *T.GtkTextIter,
-		line_number T.Gint)
+		line_number int)
 
 	Gtk_text_buffer_get_start_iter func(
 		buffer *T.GtkTextBuffer,
@@ -11969,11 +11969,11 @@ var (
 
 	Gtk_text_buffer_get_serialize_formats func(
 		buffer *T.GtkTextBuffer,
-		n_formats *T.Gint) *T.GdkAtom
+		n_formats *int) *T.GdkAtom
 
 	Gtk_text_buffer_get_deserialize_formats func(
 		buffer *T.GtkTextBuffer,
-		n_formats *T.Gint) *T.GdkAtom
+		n_formats *int) *T.GdkAtom
 
 	Gtk_text_buffer_serialize func(
 		register_buffer *T.GtkTextBuffer,
@@ -11981,14 +11981,14 @@ var (
 		format T.GdkAtom,
 		start *T.GtkTextIter,
 		end *T.GtkTextIter,
-		length *T.Gsize) *T.Guint8
+		length *T.Gsize) *uint8
 
 	Gtk_text_buffer_deserialize func(
 		register_buffer *T.GtkTextBuffer,
 		content_buffer *T.GtkTextBuffer,
 		format T.GdkAtom,
 		iter *T.GtkTextIter,
-		data *T.Guint8,
+		data *uint8,
 		length T.Gsize,
 		error **T.GError) T.Gboolean
 
@@ -12005,17 +12005,17 @@ var (
 
 	Gtk_text_view_scroll_to_iter func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter,
-		within_margin T.Gdouble,
+		within_margin float64,
 		use_align T.Gboolean,
-		xalign T.Gdouble,
-		yalign T.Gdouble) T.Gboolean
+		xalign float64,
+		yalign float64) T.Gboolean
 
 	Gtk_text_view_scroll_to_mark func(text_view *T.GtkTextView,
 		mark *T.GtkTextMark,
-		within_margin T.Gdouble,
+		within_margin float64,
 		use_align T.Gboolean,
-		xalign T.Gdouble,
-		yalign T.Gdouble)
+		xalign float64,
+		yalign float64)
 
 	Gtk_text_view_scroll_mark_onscreen func(text_view *T.GtkTextView,
 		mark *T.GtkTextMark)
@@ -12039,38 +12039,38 @@ var (
 
 	Gtk_text_view_get_iter_at_location func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter,
-		x T.Gint,
-		y T.Gint)
+		x int,
+		y int)
 
 	Gtk_text_view_get_iter_at_position func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter,
-		trailing *T.Gint,
-		x T.Gint,
-		y T.Gint)
+		trailing *int,
+		x int,
+		y int)
 
 	Gtk_text_view_get_line_yrange func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter,
-		y *T.Gint,
-		height *T.Gint)
+		y *int,
+		height *int)
 
 	Gtk_text_view_get_line_at_y func(text_view *T.GtkTextView,
 		target_iter *T.GtkTextIter,
-		y T.Gint,
-		line_top *T.Gint)
+		y int,
+		line_top *int)
 
 	Gtk_text_view_buffer_to_window_coords func(text_view *T.GtkTextView,
 		win T.GtkTextWindowType,
-		buffer_x T.Gint,
-		buffer_y T.Gint,
-		window_x *T.Gint,
-		window_y *T.Gint)
+		buffer_x int,
+		buffer_y int,
+		window_x *int,
+		window_y *int)
 
 	Gtk_text_view_window_to_buffer_coords func(text_view *T.GtkTextView,
 		win T.GtkTextWindowType,
-		window_x T.Gint,
-		window_y T.Gint,
-		buffer_x *T.Gint,
-		buffer_y *T.Gint)
+		window_x int,
+		window_y int,
+		buffer_x *int,
+		buffer_y *int)
 
 	Gtk_text_view_get_hadjustment func(text_view *T.GtkTextView) *T.GtkAdjustment
 
@@ -12084,10 +12084,10 @@ var (
 
 	Gtk_text_view_set_border_window_size func(text_view *T.GtkTextView,
 		t T.GtkTextWindowType,
-		size T.Gint)
+		size int)
 
 	Gtk_text_view_get_border_window_size func(text_view *T.GtkTextView,
-		t T.GtkTextWindowType) T.Gint
+		t T.GtkTextWindowType) int
 
 	Gtk_text_view_forward_display_line func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter) T.Gboolean
@@ -12106,7 +12106,7 @@ var (
 
 	Gtk_text_view_move_visually func(text_view *T.GtkTextView,
 		iter *T.GtkTextIter,
-		count T.Gint) T.Gboolean
+		count int) T.Gboolean
 
 	Gtk_text_view_im_context_filter_keypress func(text_view *T.GtkTextView,
 		event *T.GdkEventKey) T.Gboolean
@@ -12120,13 +12120,13 @@ var (
 	Gtk_text_view_add_child_in_window func(text_view *T.GtkTextView,
 		child *T.GtkWidget,
 		which_window T.GtkTextWindowType,
-		xpos T.Gint,
-		ypos T.Gint)
+		xpos int,
+		ypos int)
 
 	Gtk_text_view_move_child func(text_view *T.GtkTextView,
 		child *T.GtkWidget,
-		xpos T.Gint,
-		ypos T.Gint)
+		xpos int,
+		ypos int)
 
 	Gtk_text_view_set_wrap_mode func(text_view *T.GtkTextView,
 		wrap_mode T.GtkWrapMode)
@@ -12149,19 +12149,19 @@ var (
 	Gtk_text_view_get_accepts_tab func(text_view *T.GtkTextView) T.Gboolean
 
 	Gtk_text_view_set_pixels_above_lines func(text_view *T.GtkTextView,
-		pixels_above_lines T.Gint)
+		pixels_above_lines int)
 
-	Gtk_text_view_get_pixels_above_lines func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_pixels_above_lines func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_pixels_below_lines func(text_view *T.GtkTextView,
-		pixels_below_lines T.Gint)
+		pixels_below_lines int)
 
-	Gtk_text_view_get_pixels_below_lines func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_pixels_below_lines func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_pixels_inside_wrap func(text_view *T.GtkTextView,
-		pixels_inside_wrap T.Gint)
+		pixels_inside_wrap int)
 
-	Gtk_text_view_get_pixels_inside_wrap func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_pixels_inside_wrap func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_justification func(text_view *T.GtkTextView,
 		justification T.GtkJustification)
@@ -12169,19 +12169,19 @@ var (
 	Gtk_text_view_get_justification func(text_view *T.GtkTextView) T.GtkJustification
 
 	Gtk_text_view_set_left_margin func(text_view *T.GtkTextView,
-		left_margin T.Gint)
+		left_margin int)
 
-	Gtk_text_view_get_left_margin func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_left_margin func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_right_margin func(text_view *T.GtkTextView,
-		right_margin T.Gint)
+		right_margin int)
 
-	Gtk_text_view_get_right_margin func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_right_margin func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_indent func(text_view *T.GtkTextView,
-		indent T.Gint)
+		indent int)
 
-	Gtk_text_view_get_indent func(text_view *T.GtkTextView) T.Gint
+	Gtk_text_view_get_indent func(text_view *T.GtkTextView) int
 
 	Gtk_text_view_set_tabs func(text_view *T.GtkTextView,
 		tabs *T.PangoTabArray)
@@ -12212,15 +12212,15 @@ var (
 
 	Gtk_toolbar_insert func(toolbar *T.GtkToolbar,
 		item *T.GtkToolItem,
-		pos T.Gint)
+		pos int)
 
 	Gtk_toolbar_get_item_index func(toolbar *T.GtkToolbar,
-		item *T.GtkToolItem) T.Gint
+		item *T.GtkToolItem) int
 
-	Gtk_toolbar_get_n_items func(toolbar *T.GtkToolbar) T.Gint
+	Gtk_toolbar_get_n_items func(toolbar *T.GtkToolbar) int
 
 	Gtk_toolbar_get_nth_item func(toolbar *T.GtkToolbar,
-		n T.Gint) *T.GtkToolItem
+		n int) *T.GtkToolItem
 
 	Gtk_toolbar_get_show_arrow func(toolbar *T.GtkToolbar) T.Gboolean
 
@@ -12244,12 +12244,12 @@ var (
 	Gtk_toolbar_get_relief_style func(toolbar *T.GtkToolbar) T.GtkReliefStyle
 
 	Gtk_toolbar_get_drop_index func(toolbar *T.GtkToolbar,
-		x T.Gint,
-		y T.Gint) T.Gint
+		x int,
+		y int) int
 
 	Gtk_toolbar_set_drop_highlight_item func(toolbar *T.GtkToolbar,
 		tool_item *T.GtkToolItem,
-		index_ T.Gint)
+		index_ int)
 
 	Gtk_toolbar_get_orientation func(toolbar *T.GtkToolbar) T.GtkOrientation
 
@@ -12284,7 +12284,7 @@ var (
 		icon *T.GtkWidget,
 		callback T.GCallback,
 		user_dataGpointer,
-		position T.Gint) *T.GtkWidget
+		position int) *T.GtkWidget
 
 	Gtk_toolbar_insert_stock func(toolbar *T.GtkToolbar,
 		stock_id string,
@@ -12292,17 +12292,17 @@ var (
 		tooltip_private_text string,
 		callback T.GCallback,
 		user_dataGpointer,
-		position T.Gint) *T.GtkWidget
+		position int) *T.GtkWidget
 
 	Gtk_toolbar_append_space func(toolbar *T.GtkToolbar)
 
 	Gtk_toolbar_prepend_space func(toolbar *T.GtkToolbar)
 
 	Gtk_toolbar_insert_space func(toolbar *T.GtkToolbar,
-		position T.Gint)
+		position int)
 
 	Gtk_toolbar_remove_space func(toolbar *T.GtkToolbar,
-		position T.Gint)
+		position int)
 
 	Gtk_toolbar_append_element func(toolbar *T.GtkToolbar,
 		t T.GtkToolbarChildType,
@@ -12333,7 +12333,7 @@ var (
 		icon *T.GtkWidget,
 		callback T.GCallback,
 		user_dataGpointer,
-		position T.Gint) *T.GtkWidget
+		position int) *T.GtkWidget
 
 	Gtk_toolbar_append_widget func(toolbar *T.GtkToolbar,
 		widget *T.GtkWidget,
@@ -12349,7 +12349,7 @@ var (
 		widget *T.GtkWidget,
 		tooltip_text string,
 		tooltip_private_text string,
-		position T.Gint)
+		position int)
 
 	Gtk_tool_item_group_get_type func() T.GType
 
@@ -12382,23 +12382,23 @@ var (
 
 	Gtk_tool_item_group_insert func(group *T.GtkToolItemGroup,
 		item *T.GtkToolItem,
-		position T.Gint)
+		position int)
 
 	Gtk_tool_item_group_set_item_position func(group *T.GtkToolItemGroup,
 		item *T.GtkToolItem,
-		position T.Gint)
+		position int)
 
 	Gtk_tool_item_group_get_item_position func(group *T.GtkToolItemGroup,
-		item *T.GtkToolItem) T.Gint
+		item *T.GtkToolItem) int
 
-	Gtk_tool_item_group_get_n_items func(group *T.GtkToolItemGroup) T.Guint
+	Gtk_tool_item_group_get_n_items func(group *T.GtkToolItemGroup) uint
 
 	Gtk_tool_item_group_get_nth_item func(group *T.GtkToolItemGroup,
-		index T.Guint) *T.GtkToolItem
+		index uint) *T.GtkToolItem
 
 	Gtk_tool_item_group_get_drop_item func(group *T.GtkToolItemGroup,
-		x T.Gint,
-		y T.Gint) *T.GtkToolItem
+		x int,
+		y int) *T.GtkToolItem
 
 	Gtk_tool_palette_get_type func() T.GType
 
@@ -12406,7 +12406,7 @@ var (
 
 	Gtk_tool_palette_set_group_position func(palette *T.GtkToolPalette,
 		group *T.GtkToolItemGroup,
-		position T.Gint)
+		position int)
 
 	Gtk_tool_palette_set_exclusive func(palette *T.GtkToolPalette,
 		group *T.GtkToolItemGroup,
@@ -12417,7 +12417,7 @@ var (
 		expand T.Gboolean)
 
 	Gtk_tool_palette_get_group_position func(palette *T.GtkToolPalette,
-		group *T.GtkToolItemGroup) T.Gint
+		group *T.GtkToolItemGroup) int
 
 	Gtk_tool_palette_get_exclusive func(palette *T.GtkToolPalette,
 		group *T.GtkToolItemGroup) T.Gboolean
@@ -12440,12 +12440,12 @@ var (
 	Gtk_tool_palette_get_style func(palette *T.GtkToolPalette) T.GtkToolbarStyle
 
 	Gtk_tool_palette_get_drop_item func(palette *T.GtkToolPalette,
-		x T.Gint,
-		y T.Gint) *T.GtkToolItem
+		x int,
+		y int) *T.GtkToolItem
 
 	Gtk_tool_palette_get_drop_group func(palette *T.GtkToolPalette,
-		x T.Gint,
-		y T.Gint) *T.GtkToolItemGroup
+		x int,
+		y int) *T.GtkToolItemGroup
 
 	Gtk_tool_palette_get_drag_item func(palette *T.GtkToolPalette,
 		selection *T.GtkSelectionData) *T.GtkWidget
@@ -12481,7 +12481,7 @@ var (
 
 	Gtk_tool_shell_get_text_orientation func(shell *T.GtkToolShell) T.GtkOrientation
 
-	Gtk_tool_shell_get_text_alignment func(shell *T.GtkToolShell) T.Gfloat
+	Gtk_tool_shell_get_text_alignment func(shell *T.GtkToolShell) float32
 
 	Gtk_tool_shell_get_ellipsize_mode func(shell *T.GtkToolShell) T.PangoEllipsizeMode
 
@@ -12491,7 +12491,7 @@ var (
 
 	Gtk_test_register_all_types func()
 
-	Gtk_test_list_all_types func(n_types *T.Guint) *T.GType
+	Gtk_test_list_all_types func(n_types *uint) *T.GType
 
 	Gtk_test_find_widget func(widget *T.GtkWidget,
 		label_pattern string,
@@ -12507,20 +12507,20 @@ var (
 		dialog_text string, v ...VArg) *T.GtkWidget
 
 	Gtk_test_slider_set_perc func(widget *T.GtkWidget,
-		percentage T.Double)
+		percentage float64)
 
-	Gtk_test_slider_get_value func(widget *T.GtkWidget) T.Double
+	Gtk_test_slider_get_value func(widget *T.GtkWidget) float64
 
 	Gtk_test_spin_button_click func(spinner *T.GtkSpinButton,
-		button T.Guint,
+		button uint,
 		upwards T.Gboolean) T.Gboolean
 
 	Gtk_test_widget_click func(widget *T.GtkWidget,
-		button T.Guint,
+		button uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
 	Gtk_test_widget_send_key func(widget *T.GtkWidget,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
 	Gtk_test_text_set func(widget *T.GtkWidget,
@@ -12616,7 +12616,7 @@ var (
 	Gtk_tree_selection_get_selected_rows func(selection *T.GtkTreeSelection,
 		model **T.GtkTreeModel) *T.GList
 
-	Gtk_tree_selection_count_selected_rows func(selection *T.GtkTreeSelection) T.Gint
+	Gtk_tree_selection_count_selected_rows func(selection *T.GtkTreeSelection) int
 
 	Gtk_tree_selection_selected_foreach func(selection *T.GtkTreeSelection,
 		f T.GtkTreeSelectionForeachFunc,
@@ -12655,18 +12655,18 @@ var (
 	Gtk_tree_store_get_type func() T.GType
 
 	Gtk_tree_store_new func(
-		n_columns T.Gint, v ...VArg) *T.GtkTreeStore
+		n_columns int, v ...VArg) *T.GtkTreeStore
 
-	Gtk_tree_store_newv func(n_columns T.Gint,
+	Gtk_tree_store_newv func(n_columns int,
 		types *T.GType) *T.GtkTreeStore
 
 	Gtk_tree_store_set_column_types func(tree_store *T.GtkTreeStore,
-		n_columns T.Gint,
+		n_columns int,
 		types *T.GType)
 
 	Gtk_tree_store_set_value func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
-		column T.Gint,
+		column int,
 		value *T.GValue)
 
 	Gtk_tree_store_set func(tree_store *T.GtkTreeStore,
@@ -12674,9 +12674,9 @@ var (
 
 	Gtk_tree_store_set_valuesv func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
-		columns *T.Gint,
+		columns *int,
 		values *T.GValue,
-		n_values T.Gint)
+		n_values int)
 
 	Gtk_tree_store_set_valist func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
@@ -12688,7 +12688,7 @@ var (
 	Gtk_tree_store_insert func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
 		parent *T.GtkTreeIter,
-		position T.Gint)
+		position int)
 
 	Gtk_tree_store_insert_before func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
@@ -12703,15 +12703,15 @@ var (
 	Gtk_tree_store_insert_with_values func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
 		parent *T.GtkTreeIter,
-		position T.Gint, v ...VArg)
+		position int, v ...VArg)
 
 	Gtk_tree_store_insert_with_valuesv func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
 		parent *T.GtkTreeIter,
-		position T.Gint,
-		columns *T.Gint,
+		position int,
+		columns *int,
 		values *T.GValue,
-		n_values T.Gint)
+		n_values int)
 
 	Gtk_tree_store_prepend func(tree_store *T.GtkTreeStore,
 		iter *T.GtkTreeIter,
@@ -12726,7 +12726,7 @@ var (
 		descendant *T.GtkTreeIter) T.Gboolean
 
 	Gtk_tree_store_iter_depth func(tree_store *T.GtkTreeStore,
-		iter *T.GtkTreeIter) T.Gint
+		iter *T.GtkTreeIter) int
 
 	Gtk_tree_store_clear func(tree_store *T.GtkTreeStore)
 
@@ -12735,7 +12735,7 @@ var (
 
 	Gtk_tree_store_reorder func(tree_store *T.GtkTreeStore,
 		parent *T.GtkTreeIter,
-		new_order *T.Gint)
+		new_order *int)
 
 	Gtk_tree_store_swap func(tree_store *T.GtkTreeStore,
 		a *T.GtkTreeIter,
@@ -12760,7 +12760,7 @@ var (
 
 	Gtk_ui_manager_insert_action_group func(self *T.GtkUIManager,
 		action_group *T.GtkActionGroup,
-		pos T.Gint)
+		pos int)
 
 	Gtk_ui_manager_remove_action_group func(self *T.GtkUIManager,
 		action_group *T.GtkActionGroup)
@@ -12781,14 +12781,14 @@ var (
 	Gtk_ui_manager_add_ui_from_string func(self *T.GtkUIManager,
 		buffer string,
 		length T.Gssize,
-		err **T.GError) T.Guint
+		err **T.GError) uint
 
 	Gtk_ui_manager_add_ui_from_file func(self *T.GtkUIManager,
 		filename string,
-		err **T.GError) T.Guint
+		err **T.GError) uint
 
 	Gtk_ui_manager_add_ui func(self *T.GtkUIManager,
-		merge_id T.Guint,
+		merge_id uint,
 		path string,
 		name string,
 		action string,
@@ -12796,21 +12796,21 @@ var (
 		top T.Gboolean)
 
 	Gtk_ui_manager_remove_ui func(self *T.GtkUIManager,
-		merge_id T.Guint)
+		merge_id uint)
 
 	Gtk_ui_manager_get_ui func(self *T.GtkUIManager) string
 
 	Gtk_ui_manager_ensure_update func(self *T.GtkUIManager)
 
-	Gtk_ui_manager_new_merge_id func(self *T.GtkUIManager) T.Guint
+	Gtk_ui_manager_new_merge_id func(self *T.GtkUIManager) uint
 
 	Gtk_vbutton_box_get_type func() T.GType
 
 	Gtk_vbutton_box_new func() *T.GtkWidget
 
-	Gtk_vbutton_box_get_spacing_default func() T.Gint
+	Gtk_vbutton_box_get_spacing_default func() int
 
-	Gtk_vbutton_box_set_spacing_default func(spacing T.Gint)
+	Gtk_vbutton_box_set_spacing_default func(spacing int)
 
 	Gtk_vbutton_box_get_layout_default func() T.GtkButtonBoxStyle
 
@@ -12832,9 +12832,9 @@ var (
 
 	Gtk_vscale_new func(adjustment *T.GtkAdjustment) *T.GtkWidget
 
-	Gtk_vscale_new_with_range func(min T.Gdouble,
-		max T.Gdouble,
-		step T.Gdouble) *T.GtkWidget
+	Gtk_vscale_new_with_range func(min float64,
+		max float64,
+		step float64) *T.GtkWidget
 
 	Gtk_vseparator_get_type func() T.GType
 
@@ -12842,9 +12842,9 @@ var (
 
 	Gtk_clist_get_type func() T.GType
 
-	Gtk_clist_new func(columns T.Gint) *T.GtkWidget
+	Gtk_clist_new func(columns int) *T.GtkWidget
 
-	Gtk_clist_new_with_titles func(columns T.Gint,
+	Gtk_clist_new_with_titles func(columns int,
 		titles **T.Gchar) *T.GtkWidget
 
 	Gtk_clist_set_hadjustment func(clist *T.GtkCList,
@@ -12870,8 +12870,8 @@ var (
 		use_icons T.Gboolean)
 
 	Gtk_clist_set_button_actions func(clist *T.GtkCList,
-		button T.Guint,
-		button_actions T.Guint8)
+		button uint,
+		button_actions uint8)
 
 	Gtk_clist_freeze func(clist *T.GtkCList)
 
@@ -12882,216 +12882,216 @@ var (
 	Gtk_clist_column_titles_hide func(clist *T.GtkCList)
 
 	Gtk_clist_column_title_active func(clist *T.GtkCList,
-		column T.Gint)
+		column int)
 
 	Gtk_clist_column_title_passive func(clist *T.GtkCList,
-		column T.Gint)
+		column int)
 
 	Gtk_clist_column_titles_active func(clist *T.GtkCList)
 
 	Gtk_clist_column_titles_passive func(clist *T.GtkCList)
 
 	Gtk_clist_set_column_title func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		title string)
 
 	Gtk_clist_get_column_title func(clist *T.GtkCList,
-		column T.Gint) string
+		column int) string
 
 	Gtk_clist_set_column_widget func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		widget *T.GtkWidget)
 
 	Gtk_clist_get_column_widget func(clist *T.GtkCList,
-		column T.Gint) *T.GtkWidget
+		column int) *T.GtkWidget
 
 	Gtk_clist_set_column_justification func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		justification T.GtkJustification)
 
 	Gtk_clist_set_column_visibility func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		visible T.Gboolean)
 
 	Gtk_clist_set_column_resizeable func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		resizeable T.Gboolean)
 
 	Gtk_clist_set_column_auto_resize func(clist *T.GtkCList,
-		column T.Gint,
+		column int,
 		auto_resize T.Gboolean)
 
-	Gtk_clist_columns_autosize func(clist *T.GtkCList) T.Gint
+	Gtk_clist_columns_autosize func(clist *T.GtkCList) int
 
 	Gtk_clist_optimal_column_width func(clist *T.GtkCList,
-		column T.Gint) T.Gint
+		column int) int
 
 	Gtk_clist_set_column_width func(clist *T.GtkCList,
-		column T.Gint,
-		width T.Gint)
+		column int,
+		width int)
 
 	Gtk_clist_set_column_min_width func(clist *T.GtkCList,
-		column T.Gint,
-		min_width T.Gint)
+		column int,
+		min_width int)
 
 	Gtk_clist_set_column_max_width func(clist *T.GtkCList,
-		column T.Gint,
-		max_width T.Gint)
+		column int,
+		max_width int)
 
 	Gtk_clist_set_row_height func(clist *T.GtkCList,
-		height T.Guint)
+		height uint)
 
 	Gtk_clist_moveto func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
-		row_align T.Gfloat,
-		col_align T.Gfloat)
+		row int,
+		column int,
+		row_align float32,
+		col_align float32)
 
 	Gtk_clist_row_is_visible func(clist *T.GtkCList,
-		row T.Gint) T.GtkVisibility
+		row int) T.GtkVisibility
 
 	Gtk_clist_get_cell_type func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint) T.GtkCellType
+		row int,
+		column int) T.GtkCellType
 
 	Gtk_clist_set_text func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		text string)
 
 	Gtk_clist_get_text func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
-		text **T.Gchar) T.Gint
+		row int,
+		column int,
+		text **T.Gchar) int
 
 	Gtk_clist_set_pixmap func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
 	Gtk_clist_get_pixmap func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		pixmap **T.GdkPixmap,
-		mask **T.GdkBitmap) T.Gint
+		mask **T.GdkBitmap) int
 
 	Gtk_clist_set_pixtext func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		text string,
-		spacing T.Guint8,
+		spacing uint8,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
 	Gtk_clist_get_pixtext func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		text **T.Gchar,
-		spacing *T.Guint8,
+		spacing *uint8,
 		pixmap **T.GdkPixmap,
-		mask **T.GdkBitmap) T.Gint
+		mask **T.GdkBitmap) int
 
 	Gtk_clist_set_foreground func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		color *T.GdkColor)
 
 	Gtk_clist_set_background func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		color *T.GdkColor)
 
 	Gtk_clist_set_cell_style func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
+		row int,
+		column int,
 		style *T.GtkStyle)
 
 	Gtk_clist_get_cell_style func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint) *T.GtkStyle
+		row int,
+		column int) *T.GtkStyle
 
 	Gtk_clist_set_row_style func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		style *T.GtkStyle)
 
 	Gtk_clist_get_row_style func(clist *T.GtkCList,
-		row T.Gint) *T.GtkStyle
+		row int) *T.GtkStyle
 
 	Gtk_clist_set_shift func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint,
-		vertical T.Gint,
-		horizontal T.Gint)
+		row int,
+		column int,
+		vertical int,
+		horizontal int)
 
 	Gtk_clist_set_selectable func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		selectable T.Gboolean)
 
 	Gtk_clist_get_selectable func(clist *T.GtkCList,
-		row T.Gint) T.Gboolean
+		row int) T.Gboolean
 
 	Gtk_clist_prepend func(clist *T.GtkCList,
-		text **T.Gchar) T.Gint
+		text **T.Gchar) int
 
 	Gtk_clist_append func(clist *T.GtkCList,
-		text **T.Gchar) T.Gint
+		text **T.Gchar) int
 
 	Gtk_clist_insert func(clist *T.GtkCList,
-		row T.Gint,
-		text **T.Gchar) T.Gint
+		row int,
+		text **T.Gchar) int
 
 	Gtk_clist_remove func(clist *T.GtkCList,
-		row T.Gint)
+		row int)
 
 	Gtk_clist_set_row_data func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		data T.Gpointer)
 
 	Gtk_clist_set_row_data_full func(clist *T.GtkCList,
-		row T.Gint,
+		row int,
 		dataGpointer,
 		destroy T.GDestroyNotify)
 
 	Gtk_clist_get_row_data func(clist *T.GtkCList,
-		row T.Gint) T.Gpointer
+		row int) T.Gpointer
 
 	Gtk_clist_find_row_from_data func(clist *T.GtkCList,
-		data T.Gpointer) T.Gint
+		data T.Gpointer) int
 
 	Gtk_clist_select_row func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint)
+		row int,
+		column int)
 
 	Gtk_clist_unselect_row func(clist *T.GtkCList,
-		row T.Gint,
-		column T.Gint)
+		row int,
+		column int)
 
 	Gtk_clist_undo_selection func(clist *T.GtkCList)
 
 	Gtk_clist_clear func(clist *T.GtkCList)
 
 	Gtk_clist_get_selection_info func(clist *T.GtkCList,
-		x T.Gint,
-		y T.Gint,
-		row *T.Gint,
-		column *T.Gint) T.Gint
+		x int,
+		y int,
+		row *int,
+		column *int) int
 
 	Gtk_clist_select_all func(clist *T.GtkCList)
 
 	Gtk_clist_unselect_all func(clist *T.GtkCList)
 
 	Gtk_clist_swap_rows func(clist *T.GtkCList,
-		row1 T.Gint,
-		row2 T.Gint)
+		row1 int,
+		row2 int)
 
 	Gtk_clist_row_move func(clist *T.GtkCList,
-		source_row T.Gint,
-		dest_row T.Gint)
+		source_row int,
+		dest_row int)
 
 	Gtk_clist_set_compare_func func(clist *T.GtkCList,
 		cmp_func T.GtkCListCompareFunc)
 
 	Gtk_clist_set_sort_column func(clist *T.GtkCList,
-		column T.Gint)
+		column int)
 
 	Gtk_clist_set_sort_type func(clist *T.GtkCList,
 		sort_type T.GtkSortType)
@@ -13129,18 +13129,18 @@ var (
 
 	Gtk_ctree_get_type func() T.GType
 
-	Gtk_ctree_new_with_titles func(columns T.Gint,
-		tree_column T.Gint,
+	Gtk_ctree_new_with_titles func(columns int,
+		tree_column int,
 		titles **T.Gchar) *T.GtkWidget
 
-	Gtk_ctree_new func(columns T.Gint,
-		tree_column T.Gint) *T.GtkWidget
+	Gtk_ctree_new func(columns int,
+		tree_column int) *T.GtkWidget
 
 	Gtk_ctree_insert_node func(ctree *T.GtkCTree,
 		parent *T.GtkCTreeNode,
 		sibling *T.GtkCTreeNode,
 		text **T.Gchar,
-		spacing T.Guint8,
+		spacing uint8,
 		pixmap_closed *T.GdkPixmap,
 		mask_closed *T.GdkBitmap,
 		pixmap_opened *T.GdkPixmap,
@@ -13172,7 +13172,7 @@ var (
 
 	Gtk_ctree_post_recursive_to_depth func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		depth T.Gint,
+		depth int,
 		f T.GtkCTreeFunc,
 		data T.Gpointer)
 
@@ -13183,7 +13183,7 @@ var (
 
 	Gtk_ctree_pre_recursive_to_depth func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		depth T.Gint,
+		depth int,
 		f T.GtkCTreeFunc,
 		data T.Gpointer)
 
@@ -13197,7 +13197,7 @@ var (
 		ctree_row *T.GtkCTreeRow) *T.GtkCTreeNode
 
 	Gtk_ctree_node_nth func(ctree *T.GtkCTree,
-		row T.Guint) *T.GtkCTreeNode
+		row uint) *T.GtkCTreeNode
 
 	Gtk_ctree_find func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
@@ -13226,8 +13226,8 @@ var (
 		f T.GCompareFunc) *T.GList
 
 	Gtk_ctree_is_hot_spot func(ctree *T.GtkCTree,
-		x T.Gint,
-		y T.Gint) T.Gboolean
+		x int,
+		y int) T.Gboolean
 
 	Gtk_ctree_move func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
@@ -13242,7 +13242,7 @@ var (
 
 	Gtk_ctree_expand_to_depth func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		depth T.Gint)
+		depth int)
 
 	Gtk_ctree_collapse func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode)
@@ -13252,7 +13252,7 @@ var (
 
 	Gtk_ctree_collapse_to_depth func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		depth T.Gint)
+		depth int)
 
 	Gtk_ctree_toggle_expansion func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode)
@@ -13274,31 +13274,31 @@ var (
 
 	Gtk_ctree_real_select_recursive func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		state T.Gint)
+		state int)
 
 	Gtk_ctree_node_set_text func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		text string)
 
 	Gtk_ctree_node_set_pixmap func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
 	Gtk_ctree_node_set_pixtext func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		text string,
-		spacing T.Guint8,
+		spacing uint8,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
 	Gtk_ctree_set_node_info func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
 		text string,
-		spacing T.Guint8,
+		spacing uint8,
 		pixmap_closed *T.GdkPixmap,
 		mask_closed *T.GdkBitmap,
 		pixmap_opened *T.GdkPixmap,
@@ -13308,9 +13308,9 @@ var (
 
 	Gtk_ctree_node_set_shift func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
-		vertical T.Gint,
-		horizontal T.Gint)
+		column int,
+		vertical int,
+		horizontal int)
 
 	Gtk_ctree_node_set_selectable func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
@@ -13321,31 +13321,31 @@ var (
 
 	Gtk_ctree_node_get_cell_type func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint) T.GtkCellType
+		column int) T.GtkCellType
 
 	Gtk_ctree_node_get_text func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		text **T.Gchar) T.Gboolean
 
 	Gtk_ctree_node_get_pixmap func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		pixmap **T.GdkPixmap,
 		mask **T.GdkBitmap) T.Gboolean
 
 	Gtk_ctree_node_get_pixtext func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		text **T.Gchar,
-		spacing *T.Guint8,
+		spacing *uint8,
 		pixmap **T.GdkPixmap,
 		mask **T.GdkBitmap) T.Gboolean
 
 	Gtk_ctree_get_node_info func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
 		text **T.Gchar,
-		spacing *T.Guint8,
+		spacing *uint8,
 		pixmap_closed **T.GdkPixmap,
 		mask_closed **T.GdkBitmap,
 		pixmap_opened **T.GdkPixmap,
@@ -13362,12 +13362,12 @@ var (
 
 	Gtk_ctree_node_set_cell_style func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
+		column int,
 		style *T.GtkStyle)
 
 	Gtk_ctree_node_get_cell_style func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint) *T.GtkStyle
+		column int) *T.GtkStyle
 
 	Gtk_ctree_node_set_foreground func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
@@ -13391,18 +13391,18 @@ var (
 
 	Gtk_ctree_node_moveto func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode,
-		column T.Gint,
-		row_align T.Gfloat,
-		col_align T.Gfloat)
+		column int,
+		row_align float32,
+		col_align float32)
 
 	Gtk_ctree_node_is_visible func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode) T.GtkVisibility
 
 	Gtk_ctree_set_indent func(ctree *T.GtkCTree,
-		indent T.Gint)
+		indent int)
 
 	Gtk_ctree_set_spacing func(ctree *T.GtkCTree,
-		spacing T.Gint)
+		spacing int)
 
 	Gtk_ctree_set_show_stub func(ctree *T.GtkCTree,
 		show_stub T.Gboolean)
@@ -13431,21 +13431,21 @@ var (
 	Gtk_curve_reset func(curve *T.GtkCurve)
 
 	Gtk_curve_set_gamma func(curve *T.GtkCurve,
-		gamma_ T.Gfloat)
+		gamma_ float32)
 
 	Gtk_curve_set_range func(curve *T.GtkCurve,
-		min_x T.Gfloat,
-		max_x T.Gfloat,
-		min_y T.Gfloat,
-		max_y T.Gfloat)
+		min_x float32,
+		max_x float32,
+		min_y float32,
+		max_y float32)
 
 	Gtk_curve_get_vector func(curve *T.GtkCurve,
 		veclen int,
-		vector *T.Gfloat)
+		vector *float32)
 
 	Gtk_curve_set_vector func(curve *T.GtkCurve,
 		veclen int,
-		vector *T.Gfloat)
+		vector *float32)
 
 	Gtk_curve_set_curve_type func(curve *T.GtkCurve,
 		t T.GtkCurveType)
@@ -13495,7 +13495,7 @@ var (
 	Gtk_item_factory_add_foreign func(accel_widget *T.GtkWidget,
 		full_path string,
 		accel_group *T.GtkAccelGroup,
-		keyval T.Guint,
+		keyval uint,
 		modifiers T.GdkModifierType)
 
 	Gtk_item_factory_from_widget func(widget *T.GtkWidget) *T.GtkItemFactory
@@ -13509,18 +13509,18 @@ var (
 		path string) *T.GtkWidget
 
 	Gtk_item_factory_get_widget_by_action func(ifactory *T.GtkItemFactory,
-		action T.Guint) *T.GtkWidget
+		action uint) *T.GtkWidget
 
 	Gtk_item_factory_get_item_by_action func(ifactory *T.GtkItemFactory,
-		action T.Guint) *T.GtkWidget
+		action uint) *T.GtkWidget
 
 	Gtk_item_factory_create_item func(ifactory *T.GtkItemFactory,
 		entry *T.GtkItemFactoryEntry,
 		callback_dataGpointer,
-		callback_type T.Guint)
+		callback_type uint)
 
 	Gtk_item_factory_create_items func(ifactory *T.GtkItemFactory,
-		n_entries T.Guint,
+		n_entries uint,
 		entries *T.GtkItemFactoryEntry,
 		callback_data T.Gpointer)
 
@@ -13531,22 +13531,22 @@ var (
 		entry *T.GtkItemFactoryEntry)
 
 	Gtk_item_factory_delete_entries func(ifactory *T.GtkItemFactory,
-		n_entries T.Guint,
+		n_entries uint,
 		entries *T.GtkItemFactoryEntry)
 
 	Gtk_item_factory_popup func(ifactory *T.GtkItemFactory,
-		x T.Guint,
-		y T.Guint,
-		mouse_button T.Guint,
-		time_ T.Guint32)
+		x uint,
+		y uint,
+		mouse_button uint,
+		time_ T.GUint32)
 
 	Gtk_item_factory_popup_with_data func(ifactory *T.GtkItemFactory,
 		popup_dataGpointer,
 		destroy T.GDestroyNotify,
-		x T.Guint,
-		y T.Guint,
-		mouse_button T.Guint,
-		time_ T.Guint32)
+		x uint,
+		y uint,
+		mouse_button uint,
+		time_ T.GUint32)
 
 	Gtk_item_factory_popup_data func(ifactory *T.GtkItemFactory) T.Gpointer
 
@@ -13558,14 +13558,14 @@ var (
 		notify T.GDestroyNotify)
 
 	Gtk_item_factory_create_items_ac func(ifactory *T.GtkItemFactory,
-		n_entries T.Guint,
+		n_entries uint,
 		entries *T.GtkItemFactoryEntry,
 		callback_dataGpointer,
-		callback_type T.Guint)
+		callback_type uint)
 
 	Gtk_item_factory_from_path func(path string) *T.GtkItemFactory
 
-	Gtk_item_factory_create_menu_entries func(n_entries T.Guint,
+	Gtk_item_factory_create_menu_entries func(n_entries uint,
 		entries *T.GtkMenuEntry)
 
 	Gtk_item_factories_path_delete func(ifactory_path string,
@@ -13577,7 +13577,7 @@ var (
 
 	Gtk_list_insert_items func(list *T.GtkList,
 		items *T.GList,
-		position T.Gint)
+		position int)
 
 	Gtk_list_append_items func(list *T.GtkList,
 		items *T.GList)
@@ -13592,14 +13592,14 @@ var (
 		items *T.GList)
 
 	Gtk_list_clear_items func(list *T.GtkList,
-		start T.Gint,
-		end T.Gint)
+		start int,
+		end int)
 
 	Gtk_list_select_item func(list *T.GtkList,
-		item T.Gint)
+		item int)
 
 	Gtk_list_unselect_item func(list *T.GtkList,
-		item T.Gint)
+		item int)
 
 	Gtk_list_select_child func(list *T.GtkList,
 		child *T.GtkWidget)
@@ -13608,14 +13608,14 @@ var (
 		child *T.GtkWidget)
 
 	Gtk_list_child_position func(list *T.GtkList,
-		child *T.GtkWidget) T.Gint
+		child *T.GtkWidget) int
 
 	Gtk_list_set_selection_mode func(list *T.GtkList,
 		mode T.GtkSelectionMode)
 
 	Gtk_list_extend_selection func(list *T.GtkList,
 		scroll_type T.GtkScrollType,
-		position T.Gfloat,
+		position float32,
 		auto_start_selection T.Gboolean)
 
 	Gtk_list_start_selection func(list *T.GtkList)
@@ -13628,11 +13628,11 @@ var (
 
 	Gtk_list_scroll_horizontal func(list *T.GtkList,
 		scroll_type T.GtkScrollType,
-		position T.Gfloat)
+		position float32)
 
 	Gtk_list_scroll_vertical func(list *T.GtkList,
 		scroll_type T.GtkScrollType,
-		position T.Gfloat)
+		position float32)
 
 	Gtk_list_toggle_add_mode func(list *T.GtkList)
 
@@ -13659,7 +13659,7 @@ var (
 
 	Gtk_old_editable_claim_selection func(old_editable *T.GtkOldEditable,
 		claim T.Gboolean,
-		time_ T.Guint32)
+		time_ T.GUint32)
 
 	Gtk_old_editable_changed func(old_editable *T.GtkOldEditable)
 
@@ -13674,10 +13674,10 @@ var (
 
 	Gtk_option_menu_remove_menu func(option_menu *T.GtkOptionMenu)
 
-	Gtk_option_menu_get_history func(option_menu *T.GtkOptionMenu) T.Gint
+	Gtk_option_menu_get_history func(option_menu *T.GtkOptionMenu) int
 
 	Gtk_option_menu_set_history func(option_menu *T.GtkOptionMenu,
-		index_ T.Guint)
+		index_ uint)
 
 	Gtk_preview_get_type func() T.GType
 
@@ -13686,38 +13686,38 @@ var (
 	Gtk_preview_new func(t T.GtkPreviewType) *T.GtkWidget
 
 	Gtk_preview_size func(preview *T.GtkPreview,
-		width T.Gint,
-		height T.Gint)
+		width int,
+		height int)
 
 	Gtk_preview_put func(preview *T.GtkPreview,
 		window *T.GdkWindow,
 		gc *T.GdkGC,
-		srcx T.Gint,
-		srcy T.Gint,
-		destx T.Gint,
-		desty T.Gint,
-		width T.Gint,
-		height T.Gint)
+		srcx int,
+		srcy int,
+		destx int,
+		desty int,
+		width int,
+		height int)
 
 	Gtk_preview_draw_row func(preview *T.GtkPreview,
 		data *T.Guchar,
-		x T.Gint,
-		y T.Gint,
-		w T.Gint)
+		x int,
+		y int,
+		w int)
 
 	Gtk_preview_set_expand func(preview *T.GtkPreview,
 		expand T.Gboolean)
 
-	Gtk_preview_set_gamma func(gamma_ T.Double)
+	Gtk_preview_set_gamma func(gamma_ float64)
 
-	Gtk_preview_set_color_cube func(nred_shades T.Guint,
-		ngreen_shades T.Guint,
-		nblue_shades T.Guint,
-		ngray_shades T.Guint)
+	Gtk_preview_set_color_cube func(nred_shades uint,
+		ngreen_shades uint,
+		nblue_shades uint,
+		ngray_shades uint)
 
-	Gtk_preview_set_install_cmap func(install_cmap T.Gint)
+	Gtk_preview_set_install_cmap func(install_cmap int)
 
-	Gtk_preview_set_reserved func(nreserved T.Gint)
+	Gtk_preview_set_reserved func(nreserved int)
 
 	Gtk_preview_set_dither func(preview *T.GtkPreview,
 		dither T.GdkRgbDither)
@@ -13748,7 +13748,7 @@ var (
 	Gtk_marshal_BOOLEAN__VOID func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13756,7 +13756,7 @@ var (
 	Gtk_marshal_BOOLEAN__POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13764,7 +13764,7 @@ var (
 	Gtk_marshal_BOOLEAN__POINTER_POINTER_INT_INT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13772,7 +13772,7 @@ var (
 	Gtk_marshal_BOOLEAN__POINTER_INT_INT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13780,7 +13780,7 @@ var (
 	Gtk_marshal_BOOLEAN__POINTER_INT_INT_UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13788,7 +13788,7 @@ var (
 	Gtk_marshal_BOOLEAN__POINTER_STRING_STRING_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13796,7 +13796,7 @@ var (
 	Gtk_marshal_ENUM__ENUM func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13804,7 +13804,7 @@ var (
 	Gtk_marshal_INT__POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13812,7 +13812,7 @@ var (
 	Gtk_marshal_INT__POINTER_CHAR_CHAR func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13820,7 +13820,7 @@ var (
 	Gtk_marshal_VOID__ENUM_FLOAT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13828,7 +13828,7 @@ var (
 	Gtk_marshal_VOID__ENUM_FLOAT_BOOLEAN func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13836,7 +13836,7 @@ var (
 	Gtk_marshal_VOID__INT_INT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13844,7 +13844,7 @@ var (
 	Gtk_marshal_VOID__INT_INT_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13852,7 +13852,7 @@ var (
 	Gtk_marshal_VOID__POINTER_INT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13860,7 +13860,7 @@ var (
 	Gtk_marshal_VOID__POINTER_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13868,7 +13868,7 @@ var (
 	Gtk_marshal_VOID__POINTER_POINTER_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13876,7 +13876,7 @@ var (
 	Gtk_marshal_VOID__POINTER_STRING_STRING func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13884,7 +13884,7 @@ var (
 	Gtk_marshal_VOID__POINTER_UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13892,7 +13892,7 @@ var (
 	Gtk_marshal_VOID__POINTER_UINT_ENUM func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13900,7 +13900,7 @@ var (
 	Gtk_marshal_VOID__POINTER_POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13908,7 +13908,7 @@ var (
 	Gtk_marshal_VOID__POINTER_INT_INT_POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13916,7 +13916,7 @@ var (
 	Gtk_marshal_VOID__POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13924,7 +13924,7 @@ var (
 	Gtk_marshal_VOID__STRING_INT_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13932,7 +13932,7 @@ var (
 	Gtk_marshal_VOID__UINT_POINTER_UINT_ENUM_ENUM_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13940,7 +13940,7 @@ var (
 	Gtk_marshal_VOID__UINT_POINTER_UINT_UINT_ENUM func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13948,7 +13948,7 @@ var (
 	Gtk_marshal_VOID__UINT_STRING func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -13958,7 +13958,7 @@ var (
 	Gtk_print_context_set_cairo_context func(
 		context *T.GtkPrintContext,
 		cr *T.Cairo_t,
-		dpi_x, dpi_y T.Double)
+		dpi_x, dpi_y float64)
 
 	Gtk_tearoff_menu_item_get_type func() T.GType
 
@@ -13973,16 +13973,16 @@ var (
 	Gtk_tree_prepend func(tree *T.GtkTree, tree_item *T.GtkWidget)
 
 	Gtk_tree_insert func(
-		tree *T.GtkTree, tree_item *T.GtkWidget, position T.Gint)
+		tree *T.GtkTree, tree_item *T.GtkWidget, position int)
 
 	Gtk_tree_remove_items func(tree *T.GtkTree, items *T.GList)
 
 	Gtk_tree_clear_items func(
-		tree *T.GtkTree, start T.Gint, end T.Gint)
+		tree *T.GtkTree, start int, end int)
 
-	Gtk_tree_select_item func(tree *T.GtkTree, item T.Gint)
+	Gtk_tree_select_item func(tree *T.GtkTree, item int)
 
-	Gtk_tree_unselect_item func(tree *T.GtkTree, item T.Gint)
+	Gtk_tree_unselect_item func(tree *T.GtkTree, item int)
 
 	Gtk_tree_select_child func(
 		tree *T.GtkTree, tree_item *T.GtkWidget)
@@ -13991,7 +13991,7 @@ var (
 		tree *T.GtkTree, tree_item *T.GtkWidget)
 
 	Gtk_tree_child_position func(
-		tree *T.GtkTree, child *T.GtkWidget) T.Gint
+		tree *T.GtkTree, child *T.GtkWidget) int
 
 	Gtk_tree_set_selection_mode func(
 		tree *T.GtkTree, mode T.GtkSelectionMode)

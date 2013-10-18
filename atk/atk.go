@@ -45,11 +45,11 @@ var (
 		accessible *T.AtkObject) *T.AtkObject
 
 	Atk_object_get_n_accessible_children func(
-		accessible *T.AtkObject) T.Gint
+		accessible *T.AtkObject) int
 
 	Atk_object_ref_accessible_child func(
 		accessible *T.AtkObject,
-		i T.Gint) *T.AtkObject
+		i int) *T.AtkObject
 
 	Atk_object_ref_relation_set func(
 		accessible *T.AtkObject) *T.AtkRelationSet
@@ -61,7 +61,7 @@ var (
 		accessible *T.AtkObject) T.AtkLayer
 
 	Atk_object_get_mdi_zorder func(
-		accessible *T.AtkObject) T.Gint
+		accessible *T.AtkObject) int
 
 	Atk_object_get_attributes func(
 		accessible *T.AtkObject) *T.AtkAttributeSet
@@ -70,7 +70,7 @@ var (
 		accessible *T.AtkObject) *T.AtkStateSet
 
 	Atk_object_get_index_in_parent func(
-		accessible *T.AtkObject) T.Gint
+		accessible *T.AtkObject) int
 
 	Atk_object_set_name func(
 		accessible *T.AtkObject,
@@ -90,11 +90,11 @@ var (
 
 	Atk_object_connect_property_change_handler func(
 		accessible *T.AtkObject,
-		handler *T.AtkPropertyChangeHandler) T.Guint
+		handler *T.AtkPropertyChangeHandler) uint
 
 	Atk_object_remove_property_change_handler func(
 		accessible *T.AtkObject,
-		handler_id T.Guint)
+		handler_id uint)
 
 	Atk_object_notify_state_change func(
 		accessible *T.AtkObject,
@@ -128,39 +128,39 @@ var (
 
 	Atk_action_do_action func(
 		action *T.AtkAction,
-		i T.Gint) T.Gboolean
+		i int) T.Gboolean
 
 	Atk_action_get_n_actions func(
-		action *T.AtkAction) T.Gint
+		action *T.AtkAction) int
 
 	Atk_action_get_description func(
 		action *T.AtkAction,
-		i T.Gint) string
+		i int) string
 
 	Atk_action_get_name func(
 		action *T.AtkAction,
-		i T.Gint) string
+		i int) string
 
 	Atk_action_get_keybinding func(
 		action *T.AtkAction,
-		i T.Gint) string
+		i int) string
 
 	Atk_action_set_description func(
 		action *T.AtkAction,
-		i T.Gint,
+		i int,
 		desc string) T.Gboolean
 
 	Atk_action_get_localized_name func(
 		action *T.AtkAction,
-		i T.Gint) string
+		i int) string
 
 	Atk_util_get_type func() T.GType
 
 	Atk_add_focus_tracker func(
-		focus_tracker T.AtkEventListener) T.Guint
+		focus_tracker T.AtkEventListener) uint
 
 	Atk_remove_focus_tracker func(
-		tracker_id T.Guint)
+		tracker_id uint)
 
 	Atk_focus_tracker_init func(
 		init T.AtkEventListenerInit)
@@ -170,17 +170,17 @@ var (
 
 	Atk_add_global_event_listener func(
 		listener T.GSignalEmissionHook,
-		event_type string) T.Guint
+		event_type string) uint
 
 	Atk_remove_global_event_listener func(
-		listener_id T.Guint)
+		listener_id uint)
 
 	Atk_add_key_event_listener func(
 		listener T.AtkKeySnoopFunc,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	Atk_remove_key_event_listener func(
-		listener_id T.Guint)
+		listener_id uint)
 
 	Atk_get_root func() *T.AtkObject
 
@@ -198,73 +198,73 @@ var (
 
 	Atk_component_add_focus_handler func(
 		component *T.AtkComponent,
-		handler T.AtkFocusHandler) T.Guint
+		handler T.AtkFocusHandler) uint
 
 	Atk_component_contains func(
 		component *T.AtkComponent,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_ref_accessible_at_point func(
 		component *T.AtkComponent,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		coord_type T.AtkCoordType) *T.AtkObject
 
 	Atk_component_get_extents func(
 		component *T.AtkComponent,
-		x *T.Gint,
-		y *T.Gint,
-		width *T.Gint,
-		height *T.Gint,
+		x *int,
+		y *int,
+		width *int,
+		height *int,
 		coord_type T.AtkCoordType)
 
 	Atk_component_get_position func(
 		component *T.AtkComponent,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		coord_type T.AtkCoordType)
 
 	Atk_component_get_size func(
 		component *T.AtkComponent,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Atk_component_get_layer func(
 		component *T.AtkComponent) T.AtkLayer
 
 	Atk_component_get_mdi_zorder func(
-		component *T.AtkComponent) T.Gint
+		component *T.AtkComponent) int
 
 	Atk_component_grab_focus func(
 		component *T.AtkComponent) T.Gboolean
 
 	Atk_component_remove_focus_handler func(
 		component *T.AtkComponent,
-		handler_id T.Guint)
+		handler_id uint)
 
 	Atk_component_set_extents func(
 		component *T.AtkComponent,
-		x T.Gint,
-		y T.Gint,
-		width T.Gint,
-		height T.Gint,
+		x int,
+		y int,
+		width int,
+		height int,
 		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_set_position func(
 		component *T.AtkComponent,
-		x T.Gint,
-		y T.Gint,
+		x int,
+		y int,
 		coord_type T.AtkCoordType) T.Gboolean
 
 	Atk_component_set_size func(
 		component *T.AtkComponent,
-		width T.Gint,
-		height T.Gint) T.Gboolean
+		width int,
+		height int) T.Gboolean
 
 	Atk_component_get_alpha func(
-		component *T.AtkComponent) T.Gdouble
+		component *T.AtkComponent) float64
 
 	Atk_document_get_type func() T.GType
 
@@ -296,94 +296,94 @@ var (
 
 	Atk_text_get_text func(
 		text *T.AtkText,
-		start_offset T.Gint,
-		end_offset T.Gint) string
+		start_offset int,
+		end_offset int) string
 
 	Atk_text_get_character_at_offset func(
 		text *T.AtkText,
-		offset T.Gint) T.Gunichar
+		offset int) T.Gunichar
 
 	Atk_text_get_text_after_offset func(
 		text *T.AtkText,
-		offset T.Gint,
+		offset int,
 		boundary_type T.AtkTextBoundary,
-		start_offset *T.Gint,
-		end_offset *T.Gint) string
+		start_offset *int,
+		end_offset *int) string
 
 	Atk_text_get_text_at_offset func(
 		text *T.AtkText,
-		offset T.Gint,
+		offset int,
 		boundary_type T.AtkTextBoundary,
-		start_offset *T.Gint,
-		end_offset *T.Gint) string
+		start_offset *int,
+		end_offset *int) string
 
 	Atk_text_get_text_before_offset func(
 		text *T.AtkText,
-		offset T.Gint,
+		offset int,
 		boundary_type T.AtkTextBoundary,
-		start_offset *T.Gint,
-		end_offset *T.Gint) string
+		start_offset *int,
+		end_offset *int) string
 
 	Atk_text_get_caret_offset func(
-		text *T.AtkText) T.Gint
+		text *T.AtkText) int
 
 	Atk_text_get_character_extents func(
 		text *T.AtkText,
-		offset T.Gint,
-		x *T.Gint,
-		y *T.Gint,
-		width *T.Gint,
-		height *T.Gint,
+		offset int,
+		x *int,
+		y *int,
+		width *int,
+		height *int,
 		coords T.AtkCoordType)
 
 	Atk_text_get_run_attributes func(
 		text *T.AtkText,
-		offset T.Gint,
-		start_offset *T.Gint,
-		end_offset *T.Gint) *T.AtkAttributeSet
+		offset int,
+		start_offset *int,
+		end_offset *int) *T.AtkAttributeSet
 
 	Atk_text_get_default_attributes func(
 		text *T.AtkText) *T.AtkAttributeSet
 
 	Atk_text_get_character_count func(
-		text *T.AtkText) T.Gint
+		text *T.AtkText) int
 
 	Atk_text_get_offset_at_point func(
 		text *T.AtkText,
-		x T.Gint,
-		y T.Gint,
-		coords T.AtkCoordType) T.Gint
+		x int,
+		y int,
+		coords T.AtkCoordType) int
 
 	Atk_text_get_n_selections func(
-		text *T.AtkText) T.Gint
+		text *T.AtkText) int
 
 	Atk_text_get_selection func(
 		text *T.AtkText,
-		selection_num T.Gint,
-		start_offset *T.Gint,
-		end_offset *T.Gint) string
+		selection_num int,
+		start_offset *int,
+		end_offset *int) string
 
 	Atk_text_add_selection func(
 		text *T.AtkText,
-		start_offset T.Gint,
-		end_offset T.Gint) T.Gboolean
+		start_offset int,
+		end_offset int) T.Gboolean
 
 	Atk_text_remove_selection func(
 		text *T.AtkText,
-		selection_num T.Gint) T.Gboolean
+		selection_num int) T.Gboolean
 
 	Atk_text_set_selection func(
 		text *T.AtkText,
-		selection_num T.Gint,
-		start_offset T.Gint,
-		end_offset T.Gint) T.Gboolean
+		selection_num int,
+		start_offset int,
+		end_offset int) T.Gboolean
 
 	Atk_text_set_caret_offset func(
-		text *T.AtkText, offset T.Gint) T.Gboolean
+		text *T.AtkText, offset int) T.Gboolean
 
 	Atk_text_get_range_extents func(
 		text *T.AtkText,
-		start_offset, end_offset T.Gint,
+		start_offset, end_offset int,
 		coord_type T.AtkCoordType,
 		rect *T.AtkTextRectangle)
 
@@ -405,15 +405,15 @@ var (
 		name string) T.AtkTextAttribute
 
 	Atk_text_attribute_get_value func(
-		attr T.AtkTextAttribute, index_ T.Gint) string
+		attr T.AtkTextAttribute, index_ int) string
 
 	Atk_editable_text_get_type func() T.GType
 
 	Atk_editable_text_set_run_attributes func(
 		text *T.AtkEditableText,
 		attrib_set *T.AtkAttributeSet,
-		start_offset T.Gint,
-		end_offset T.Gint) T.Gboolean
+		start_offset int,
+		end_offset int) T.Gboolean
 
 	Atk_editable_text_set_text_contents func(
 		text *T.AtkEditableText,
@@ -422,27 +422,27 @@ var (
 	Atk_editable_text_insert_text func(
 		text *T.AtkEditableText,
 		string string,
-		length T.Gint,
-		position *T.Gint)
+		length int,
+		position *int)
 
 	Atk_editable_text_copy_text func(
 		text *T.AtkEditableText,
-		start_pos T.Gint,
-		end_pos T.Gint)
+		start_pos int,
+		end_pos int)
 
 	Atk_editable_text_cut_text func(
 		text *T.AtkEditableText,
-		start_pos T.Gint,
-		end_pos T.Gint)
+		start_pos int,
+		end_pos int)
 
 	Atk_editable_text_delete_text func(
 		text *T.AtkEditableText,
-		start_pos T.Gint,
-		end_pos T.Gint)
+		start_pos int,
+		end_pos int)
 
 	Atk_editable_text_paste_text func(
 		text *T.AtkEditableText,
-		position T.Gint)
+		position int)
 
 	Atk_gobject_accessible_for_object func(
 		obj *T.GObject) *T.AtkObject
@@ -454,17 +454,17 @@ var (
 
 	Atk_hyperlink_get_uri func(
 		link_ *T.AtkHyperlink,
-		i T.Gint) string
+		i int) string
 
 	Atk_hyperlink_get_object func(
 		link_ *T.AtkHyperlink,
-		i T.Gint) *T.AtkObject
+		i int) *T.AtkObject
 
 	Atk_hyperlink_get_end_index func(
-		link_ *T.AtkHyperlink) T.Gint
+		link_ *T.AtkHyperlink) int
 
 	Atk_hyperlink_get_start_index func(
-		link_ *T.AtkHyperlink) T.Gint
+		link_ *T.AtkHyperlink) int
 
 	Atk_hyperlink_is_valid func(
 		link_ *T.AtkHyperlink) T.Gboolean
@@ -473,7 +473,7 @@ var (
 		link_ *T.AtkHyperlink) T.Gboolean
 
 	Atk_hyperlink_get_n_anchors func(
-		link_ *T.AtkHyperlink) T.Gint
+		link_ *T.AtkHyperlink) int
 
 	Atk_hyperlink_is_selected_link func(
 		link_ *T.AtkHyperlink) T.Gboolean
@@ -487,14 +487,14 @@ var (
 
 	Atk_hypertext_get_link func(
 		hypertext *T.AtkHypertext,
-		link_index T.Gint) *T.AtkHyperlink
+		link_index int) *T.AtkHyperlink
 
 	Atk_hypertext_get_n_links func(
-		hypertext *T.AtkHypertext) T.Gint
+		hypertext *T.AtkHypertext) int
 
 	Atk_hypertext_get_link_index func(
 		hypertext *T.AtkHypertext,
-		char_index T.Gint) T.Gint
+		char_index int) int
 
 	Atk_image_get_type func() T.GType
 
@@ -503,8 +503,8 @@ var (
 
 	Atk_image_get_image_size func(
 		image *T.AtkImage,
-		width *T.Gint,
-		height *T.Gint)
+		width *int,
+		height *int)
 
 	Atk_image_set_image_description func(
 		image *T.AtkImage,
@@ -512,8 +512,8 @@ var (
 
 	Atk_image_get_image_position func(
 		image *T.AtkImage,
-		x *T.Gint,
-		y *T.Gint,
+		x *int,
+		y *int,
 		coord_type T.AtkCoordType)
 
 	Atk_image_get_image_locale func(
@@ -574,7 +574,7 @@ var (
 
 	Atk_relation_new func(
 		targets **T.AtkObject,
-		n_targets T.Gint,
+		n_targets int,
 		relationship T.AtkRelationType) *T.AtkRelation
 
 	Atk_relation_get_relation_type func(
@@ -608,11 +608,11 @@ var (
 		relation *T.AtkRelation)
 
 	Atk_relation_set_get_n_relations func(
-		set *T.AtkRelationSet) T.Gint
+		set *T.AtkRelationSet) int
 
 	Atk_relation_set_get_relation func(
 		set *T.AtkRelationSet,
-		i T.Gint) *T.AtkRelation
+		i int) *T.AtkRelation
 
 	Atk_relation_set_get_relation_by_type func(
 		set *T.AtkRelationSet,
@@ -627,25 +627,25 @@ var (
 
 	Atk_selection_add_selection func(
 		selection *T.AtkSelection,
-		i T.Gint) T.Gboolean
+		i int) T.Gboolean
 
 	Atk_selection_clear_selection func(
 		selection *T.AtkSelection) T.Gboolean
 
 	Atk_selection_ref_selection func(
 		selection *T.AtkSelection,
-		i T.Gint) *T.AtkObject
+		i int) *T.AtkObject
 
 	Atk_selection_get_selection_count func(
-		selection *T.AtkSelection) T.Gint
+		selection *T.AtkSelection) int
 
 	Atk_selection_is_child_selected func(
 		selection *T.AtkSelection,
-		i T.Gint) T.Gboolean
+		i int) T.Gboolean
 
 	Atk_selection_remove_selection func(
 		selection *T.AtkSelection,
-		i T.Gint) T.Gboolean
+		i int) T.Gboolean
 
 	Atk_selection_select_all_selection func(
 		selection *T.AtkSelection) T.Gboolean
@@ -673,7 +673,7 @@ var (
 	Atk_state_set_add_states func(
 		set *T.AtkStateSet,
 		types *T.AtkStateType,
-		n_types T.Gint)
+		n_types int)
 
 	Atk_state_set_clear_states func(
 		set *T.AtkStateSet)
@@ -685,7 +685,7 @@ var (
 	Atk_state_set_contains_states func(
 		set *T.AtkStateSet,
 		types *T.AtkStateType,
-		n_types T.Gint) T.Gboolean
+		n_types int) T.Gboolean
 
 	Atk_state_set_remove_state func(
 		set *T.AtkStateSet,
@@ -706,11 +706,11 @@ var (
 	Atk_streamable_content_get_type func() T.GType
 
 	Atk_streamable_content_get_n_mime_types func(
-		streamable *T.AtkStreamableContent) T.Gint
+		streamable *T.AtkStreamableContent) int
 
 	Atk_streamable_content_get_mime_type func(
 		streamable *T.AtkStreamableContent,
-		i T.Gint) string
+		i int) string
 
 	Atk_streamable_content_get_stream func(
 		streamable *T.AtkStreamableContent,
@@ -724,56 +724,56 @@ var (
 
 	Atk_table_ref_at func(
 		table *T.AtkTable,
-		row T.Gint,
-		column T.Gint) *T.AtkObject
+		row int,
+		column int) *T.AtkObject
 
 	Atk_table_get_index_at func(
 		table *T.AtkTable,
-		row T.Gint,
-		column T.Gint) T.Gint
+		row int,
+		column int) int
 
 	Atk_table_get_column_at_index func(
 		table *T.AtkTable,
-		index_ T.Gint) T.Gint
+		index_ int) int
 
 	Atk_table_get_row_at_index func(
 		table *T.AtkTable,
-		index_ T.Gint) T.Gint
+		index_ int) int
 
 	Atk_table_get_n_columns func(
-		table *T.AtkTable) T.Gint
+		table *T.AtkTable) int
 
 	Atk_table_get_n_rows func(
-		table *T.AtkTable) T.Gint
+		table *T.AtkTable) int
 
 	Atk_table_get_column_extent_at func(
 		table *T.AtkTable,
-		row T.Gint,
-		column T.Gint) T.Gint
+		row int,
+		column int) int
 
 	Atk_table_get_row_extent_at func(
 		table *T.AtkTable,
-		row T.Gint,
-		column T.Gint) T.Gint
+		row int,
+		column int) int
 
 	Atk_table_get_caption func(
 		table *T.AtkTable) *T.AtkObject
 
 	Atk_table_get_column_description func(
 		table *T.AtkTable,
-		column T.Gint) string
+		column int) string
 
 	Atk_table_get_column_header func(
 		table *T.AtkTable,
-		column T.Gint) *T.AtkObject
+		column int) *T.AtkObject
 
 	Atk_table_get_row_description func(
 		table *T.AtkTable,
-		row T.Gint) string
+		row int) string
 
 	Atk_table_get_row_header func(
 		table *T.AtkTable,
-		row T.Gint) *T.AtkObject
+		row int) *T.AtkObject
 
 	Atk_table_get_summary func(
 		table *T.AtkTable) *T.AtkObject
@@ -784,22 +784,22 @@ var (
 
 	Atk_table_set_column_description func(
 		table *T.AtkTable,
-		column T.Gint,
+		column int,
 		description string)
 
 	Atk_table_set_column_header func(
 		table *T.AtkTable,
-		column T.Gint,
+		column int,
 		header *T.AtkObject)
 
 	Atk_table_set_row_description func(
 		table *T.AtkTable,
-		row T.Gint,
+		row int,
 		description string)
 
 	Atk_table_set_row_header func(
 		table *T.AtkTable,
-		row T.Gint,
+		row int,
 		header *T.AtkObject)
 
 	Atk_table_set_summary func(
@@ -808,40 +808,40 @@ var (
 
 	Atk_table_get_selected_columns func(
 		table *T.AtkTable,
-		selected **T.Gint) T.Gint
+		selected **int) int
 
 	Atk_table_get_selected_rows func(
 		table *T.AtkTable,
-		selected **T.Gint) T.Gint
+		selected **int) int
 
 	Atk_table_is_column_selected func(
 		table *T.AtkTable,
-		column T.Gint) T.Gboolean
+		column int) T.Gboolean
 
 	Atk_table_is_row_selected func(
 		table *T.AtkTable,
-		row T.Gint) T.Gboolean
+		row int) T.Gboolean
 
 	Atk_table_is_selected func(
 		table *T.AtkTable,
-		row T.Gint,
-		column T.Gint) T.Gboolean
+		row int,
+		column int) T.Gboolean
 
 	Atk_table_add_row_selection func(
 		table *T.AtkTable,
-		row T.Gint) T.Gboolean
+		row int) T.Gboolean
 
 	Atk_table_remove_row_selection func(
 		table *T.AtkTable,
-		row T.Gint) T.Gboolean
+		row int) T.Gboolean
 
 	Atk_table_add_column_selection func(
 		table *T.AtkTable,
-		column T.Gint) T.Gboolean
+		column int) T.Gboolean
 
 	Atk_table_remove_column_selection func(
 		table *T.AtkTable,
-		column T.Gint) T.Gboolean
+		column int) T.Gboolean
 
 	Atk_misc_get_type func() T.GType
 

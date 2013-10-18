@@ -21,9 +21,7 @@ const (
 )
 
 type (
-	FcChar8  T.Unsigned_char
-	FcChar16 T.Unsigned_short
-	FcChar32 T.Unsigned_int
+	FcChar32 uint // ANOMALLY
 	FcBool   int
 
 	FcAtomic    struct{}
@@ -50,7 +48,7 @@ type (
 	}
 
 	FcMatrix struct {
-		XX, XY, YX, YY T.Double
+		XX, XY, YX, YY float64
 	}
 
 	FcObjectType struct {
@@ -59,7 +57,7 @@ type (
 	}
 
 	FcConstant struct {
-		Name   *FcChar8
+		Name   *uint8
 		Object *T.Char
 		Value  int
 	}
@@ -67,7 +65,7 @@ type (
 	FcValue struct {
 		Type FcType
 		// Union
-		S *FcChar8
+		S *uint8
 		// i int
 		// b FcBool
 		// d double
@@ -273,7 +271,7 @@ var (
 		set *FcFontSet, dirs *FcStrSet, dir string) FcBool
 
 	FcDirCacheLoad func(dir string,
-		config *FcConfig, cache_file **FcChar8) *FcCache
+		config *FcConfig, cache_file **uint8) *FcCache
 
 	FcDirCacheRead func(
 		dir string, force FcBool, config *FcConfig) *FcCache
@@ -386,11 +384,11 @@ var (
 
 	FcMatrixMultiply func(result, a, b *FcMatrix)
 
-	FcMatrixRotate func(m *FcMatrix, c, s T.Double)
+	FcMatrixRotate func(m *FcMatrix, c, s float64)
 
-	FcMatrixScale func(m *FcMatrix, sx, sy T.Double)
+	FcMatrixScale func(m *FcMatrix, sx, sy float64)
 
-	FcMatrixShear func(m *FcMatrix, sh, sv T.Double)
+	FcMatrixShear func(m *FcMatrix, sh, sv float64)
 
 	FcNameRegisterObjectTypes func(
 		types *FcObjectType, ntype int) FcBool
@@ -455,7 +453,7 @@ var (
 		p *T.FcPattern, object string, i int) FcBool
 
 	FcPatternAddDouble func(
-		p *T.FcPattern, object string, d T.Double) FcBool
+		p *T.FcPattern, object string, d float64) FcBool
 
 	FcPatternAddString func(
 		p *T.FcPattern, object string, s string) FcBool
@@ -476,7 +474,7 @@ var (
 		p *T.FcPattern, object string, n int, i *int) FcResult
 
 	FcPatternGetDouble func(
-		p *T.FcPattern, object string, n int, d *T.Double) FcResult
+		p *T.FcPattern, object string, n int, d *float64) FcResult
 
 	FcPatternGetString func(
 		p *T.FcPattern, object string, n int, s *string) FcResult
@@ -521,15 +519,15 @@ var (
 		src_orig string, dst *FcChar32, leng int) int
 
 	FcUtf8Len func(
-		FcChar8 *string, leng int, nchar, wchar *int) FcBool
+		str *uint8, leng int, nchar, wchar *int) FcBool
 
 	FcUcs4ToUtf8 func(
-		ucs4 FcChar32, dest [FC_UTF8_MAX_LEN]FcChar8) int
+		ucs4 FcChar32, dest [FC_UTF8_MAX_LEN]uint8) int
 
 	FcUtf16ToUcs4 func(src_orig string, endian FcEndian,
 		dst *FcChar32, leng int) int
 
-	FcUtf16Len func(FcChar8 *string, endian FcEndian,
+	FcUtf16Len func(str *uint8, endian FcEndian,
 		leng int, nchar, wchar *int) FcBool
 
 	FcStrDirname func(file string) string
@@ -559,7 +557,7 @@ var (
 	FcConfigParseAndLoad func(
 		config *FcConfig, file string, complain FcBool) FcBool
 
-	FcFreeTypeCharIndex func(face T.FT_Face, ucs4 FcChar32) T.FT_UInt
+	FcFreeTypeCharIndex func(face T.FT_Face, ucs4 FcChar32) uint
 
 	FcFreeTypeCharSetAndSpacing func(
 		face T.FT_Face, blanks *FcBlanks, spacing *int) *T.FcCharSet

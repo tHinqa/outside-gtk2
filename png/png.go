@@ -29,7 +29,7 @@ type (
 	Png_color_8p        *Png_color_8
 	Png_colorp          *Png_color
 	Png_const_charp     Png_charp
-	Png_doublep         *T.Double
+	Png_doublep         *float64
 	Png_FILE_p          *T.FILE
 	Png_fixed_point     Png_int_32
 	Png_infop           *Png_info
@@ -45,10 +45,7 @@ type (
 	Png_structpp        **Png_struct
 	Png_textp           *Png_text
 	Png_timep           Png_time
-	Png_uint_16         T.Unsigned_short
-	Png_uint_16p        *Png_uint_16
-	Png_uint_16pp       **Png_uint_16
-	Png_uint_32         T.Unsigned_int // Anomally: Size?
+	Png_uint_32         uint // Anomally: Size?
 	Png_unknown_chunkp  *Png_unknown_chunk
 	Png_unknown_chunkpp **Png_unknown_chunk
 	Png_voidp           *T.Void
@@ -84,7 +81,7 @@ type (
 	//Png_unknown_chunk_ptr func(Png_structp)
 
 	Png_time struct {
-		Year   Png_uint_16
+		Year   uint16
 		Month  Png_byte
 		Day    Png_byte
 		Hour   Png_byte
@@ -117,10 +114,10 @@ type (
 
 	Png_color_16 struct {
 		Index Png_byte
-		Red   Png_uint_16
-		Green Png_uint_16
-		Blue  Png_uint_16
-		Gray  Png_uint_16
+		Red   uint16
+		Green uint16
+		Blue  uint16
+		Gray  uint16
 	}
 
 	Png_text struct {
@@ -148,11 +145,11 @@ type (
 	}
 
 	Png_sPLT_entry struct {
-		Red       Png_uint_16
-		Green     Png_uint_16
-		Blue      Png_uint_16
-		Alpha     Png_uint_16
-		Frequency Png_uint_16
+		Red       uint16
+		Green     uint16
+		Blue      uint16
+		Alpha     uint16
+		Frequency uint16
 	}
 
 	Png_struct_def struct { // Deprecated
@@ -198,8 +195,8 @@ type (
 		Idat_size               Png_uint_32
 		Crc                     Png_uint_32
 		Palette                 Png_colorp
-		Num_palette             Png_uint_16
-		Num_trans               Png_uint_16
+		Num_palette             uint16
+		Num_trans               uint16
 		Chunk_name              [5]Png_byte
 		Compression             Png_byte
 		Filter                  Png_byte
@@ -213,7 +210,7 @@ type (
 		Channels                Png_byte
 		Usr_channels            Png_byte
 		Sig_bytes               Png_byte
-		Filler                  Png_uint_16
+		Filler                  uint16
 		Background_gamma_type   Png_byte
 		Background_gamma        float32
 		Background              Png_color_16
@@ -227,9 +224,9 @@ type (
 		Gamma_table             Png_bytep
 		Gamma_from_1            Png_bytep
 		Gamma_to_1              Png_bytep
-		Gamma_16_table          Png_uint_16pp
-		Gamma_16_from_1         Png_uint_16pp
-		Gamma_16_to_1           Png_uint_16pp
+		Gamma_16_table          **uint16
+		Gamma_16_from_1         **uint16
+		Gamma_16_to_1           **uint16
 		Sig_bit                 Png_color_8
 		Shift                   Png_color_8
 		Trans_alpha             Png_bytep
@@ -257,14 +254,14 @@ type (
 		Current_text_ptr        Png_charp
 		Palette_lookup          Png_bytep
 		Quantize_index          Png_bytep
-		Hist                    Png_uint_16p
+		Hist                    *uint16
 		Heuristic_method        Png_byte
 		Num_prev_filters        Png_byte
 		Prev_filters            Png_bytep
-		Filter_weights          Png_uint_16p
-		Inv_filter_weights      Png_uint_16p
-		Filter_costs            Png_uint_16p
-		Inv_filter_costs        Png_uint_16p
+		Filter_weights          *uint16
+		Inv_filter_weights      *uint16
+		Filter_costs            *uint16
+		Inv_filter_costs        *uint16
 		Time_buffer             Png_charp
 		Free_me                 Png_uint_32
 		User_chunk_ptr          Png_voidp
@@ -272,9 +269,9 @@ type (
 		Num_chunk_list          int
 		Chunk_list              Png_bytep
 		Rgb_to_gray_status      Png_byte
-		Rgb_to_gray_red_coeff   Png_uint_16
-		Rgb_to_gray_green_coeff Png_uint_16
-		Rgb_to_gray_blue_coeff  Png_uint_16
+		Rgb_to_gray_red_coeff   uint16
+		Rgb_to_gray_green_coeff uint16
+		Rgb_to_gray_blue_coeff  uint16
 		Mng_features_permitted  Png_uint_32
 		Int_gamma               Png_fixed_point
 		Filter_type             Png_byte
@@ -302,8 +299,8 @@ type (
 		Valid              Png_uint_32
 		Rowbytes           Png_size_t
 		Palette            Png_colorp
-		Num_palette        Png_uint_16
-		Num_trans          Png_uint_16
+		Num_palette        uint16
+		Num_trans          uint16
 		Bit_depth          Png_byte
 		Color_type         Png_byte
 		Compression_type   Png_byte
@@ -329,7 +326,7 @@ type (
 		X_pixels_per_unit  Png_uint_32
 		Y_pixels_per_unit  Png_uint_32
 		Phys_unit_type     Png_byte
-		Hist               Png_uint_16p
+		Hist               *uint16
 		X_white            float32
 		Y_white            float32
 		X_red              float32
@@ -355,8 +352,8 @@ type (
 		Splt_palettes      Png_sPLT_tp
 		Splt_palettes_num  Png_uint_32
 		Scal_unit          Png_byte
-		Scal_pixel_width   T.Double
-		Scal_pixel_height  T.Double
+		Scal_pixel_width   float64
+		Scal_pixel_height  float64
 		Scal_s_width       Png_charp
 		Scal_s_height      Png_charp
 		Row_pointers       Png_bytepp
@@ -504,7 +501,7 @@ var (
 		png_ptr Png_structp,
 		error_action int,
 		red,
-		green T.Double)
+		green float64)
 
 	Png_set_rgb_to_gray_fixed func(
 		png_ptr Png_structp,
@@ -561,7 +558,7 @@ var (
 		background_color Png_color_16p,
 		background_gamma_code int,
 		need_expand int,
-		background_gamma T.Double)
+		background_gamma float64)
 
 	Png_set_strip_16 func(
 		png_ptr Png_structp)
@@ -571,13 +568,13 @@ var (
 		palette Png_colorp,
 		num_palette int,
 		maximum_colors int,
-		histogram Png_uint_16p,
+		histogram *uint16,
 		full_quantize int)
 
 	Png_set_gamma func(
 		png_ptr Png_structp,
-		screen_gamma T.Double,
-		default_file_gamma T.Double)
+		screen_gamma float64,
+		default_file_gamma float64)
 
 	Png_set_flush func(
 		png_ptr Png_structp,
@@ -922,7 +919,7 @@ var (
 		white_x, white_y,
 		red_x, red_y,
 		green_x, green_y,
-		blue_x, blue_y *T.Double) Png_uint_32
+		blue_x, blue_y *float64) Png_uint_32
 
 	Png_get_cHRM_fixed func(
 		png_ptr Png_structp,
@@ -942,7 +939,7 @@ var (
 		white_x, white_y,
 		red_x, red_y,
 		green_x, green_y,
-		blue_x, blue_y T.Double)
+		blue_x, blue_y float64)
 
 	Png_set_cHRM_fixed func(
 		png_ptr Png_structp,
@@ -959,7 +956,7 @@ var (
 	Png_get_gAMA func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		file_gamma *T.Double) Png_uint_32
+		file_gamma *float64) Png_uint_32
 
 	Png_get_gAMA_fixed func(
 		png_ptr Png_structp,
@@ -969,7 +966,7 @@ var (
 	Png_set_gAMA func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		file_gamma T.Double)
+		file_gamma float64)
 
 	Png_set_gAMA_fixed func(
 		png_ptr Png_structp,
@@ -979,12 +976,12 @@ var (
 	Png_get_hIST func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		hist *Png_uint_16p) Png_uint_32
+		hist **uint16) Png_uint_32
 
 	Png_set_hIST func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
-		hist Png_uint_16p)
+		hist *uint16)
 
 	Png_get_IHDR func(
 		png_ptr Png_structp,
@@ -1162,13 +1159,13 @@ var (
 		png_ptr Png_structp,
 		info_ptr Png_infop,
 		unit *int,
-		width, height *T.Double) Png_uint_32
+		width, height *float64) Png_uint_32
 
 	Png_set_sCAL func(
 		png_ptr Png_structp,
 		info_ptr Png_infop,
 		unit int,
-		width, height T.Double)
+		width, height float64)
 
 	Png_set_keep_unknown_chunks func(
 		png_ptr Png_structp,
@@ -1275,7 +1272,7 @@ var (
 
 	Png_save_uint_16 func(
 		buf Png_bytep,
-		i T.Unsigned_int)
+		i uint)
 )
 
 var dll = "libpng14-14.dll"

@@ -26,8 +26,8 @@ var (
 		accu_data T.Gpointer,
 		c_marshaller T.GSignalCMarshaller,
 		return_type T.GType,
-		n_params T.Guint,
-		param_types *T.GType) T.Guint
+		n_params uint,
+		param_types *T.GType) uint
 
 	G_signal_new_valist func(
 		signal_name string,
@@ -38,51 +38,51 @@ var (
 		accu_data T.Gpointer,
 		c_marshaller T.GSignalCMarshaller,
 		return_type T.GType,
-		n_params T.Guint,
-		args T.Va_list) T.Guint
+		n_params uint,
+		args T.Va_list) uint
 
 	G_signal_new func(signal_name string, itype T.GType,
-		signal_flags T.GSignalFlags, class_offset T.Guint,
+		signal_flags T.GSignalFlags, class_offset uint,
 		accumulator T.GSignalAccumulator, accu_data T.Gpointer,
 		c_marshaller T.GSignalCMarshaller, return_type T.GType,
-		n_params T.Guint, v ...VArg) T.Guint
+		n_params uint, v ...VArg) uint
 
 	G_signal_new_class_handler func(signal_name string,
 		itype T.GType, signal_flags T.GSignalFlags,
 		class_handler T.GCallback, accumulator T.GSignalAccumulator,
 		accu_data T.Gpointer, c_marshaller T.GSignalCMarshaller,
-		return_type T.GType, n_params T.Guint, v ...VArg) T.Guint
+		return_type T.GType, n_params uint, v ...VArg) uint
 
 	G_signal_emitv func(
 		instance_and_params *T.GValue,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		return_value *T.GValue)
 
 	G_signal_emit_valist func(
 		instance T.Gpointer,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		var_args T.Va_list)
 
-	G_signal_emit func(instance T.Gpointer, signal_id T.Guint,
+	G_signal_emit func(instance T.Gpointer, signal_id uint,
 		detail T.GQuark, v ...VArg)
 
 	G_signal_emit_by_name func(instance T.Gpointer,
 		detailed_signal string, v ...VArg)
 
-	G_signal_lookup func(name string, itype T.GType) T.Guint
+	G_signal_lookup func(name string, itype T.GType) uint
 
-	G_signal_name func(signal_id T.Guint) string
+	G_signal_name func(signal_id uint) string
 
-	G_signal_query func(signal_id T.Guint, query *T.GSignalQuery)
+	G_signal_query func(signal_id uint, query *T.GSignalQuery)
 
-	G_signal_list_ids func(itype T.GType, n_ids *T.Guint) *T.Guint
+	G_signal_list_ids func(itype T.GType, n_ids *uint) *uint
 
 	G_signal_parse_name func(
 		detailed_signal string,
 		itype T.GType,
-		signal_id_p *T.Guint,
+		signal_id_p *uint,
 		detail_p *T.GQuark,
 		force_detail_quark T.Gboolean) T.Gboolean
 
@@ -91,7 +91,7 @@ var (
 
 	G_signal_stop_emission func(
 		instance T.Gpointer,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark)
 
 	G_signal_stop_emission_by_name func(
@@ -99,25 +99,25 @@ var (
 		detailed_signal string)
 
 	G_signal_add_emission_hook func(
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		hook_func T.GSignalEmissionHook,
 		hook_data T.Gpointer,
 		data_destroy T.GDestroyNotify) T.Gulong
 
 	G_signal_remove_emission_hook func(
-		signal_id T.Guint,
+		signal_id uint,
 		hook_id T.Gulong)
 
 	G_signal_has_handler_pending func(
 		instance T.Gpointer,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		may_be_blocked T.Gboolean) T.Gboolean
 
 	G_signal_connect_closure_by_id func(
 		instance T.Gpointer,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		closure *T.GClosure,
 		after T.Gboolean) T.Gulong
@@ -155,7 +155,7 @@ var (
 	G_signal_handler_find func(
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		closure *T.GClosure,
 		fnc T.Gpointer,
@@ -164,32 +164,32 @@ var (
 	G_signal_handlers_block_matched func(
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		closure *T.GClosure,
 		fnc T.Gpointer,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	G_signal_handlers_unblock_matched func(
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		closure *T.GClosure,
 		fnc T.Gpointer,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	G_signal_handlers_disconnect_matched func(
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
-		signal_id T.Guint,
+		signal_id uint,
 		detail T.GQuark,
 		closure *T.GClosure,
 		fnc T.Gpointer,
-		data T.Gpointer) T.Guint
+		data T.Gpointer) uint
 
 	G_signal_override_class_closure func(
-		signal_id T.Guint,
+		signal_id uint,
 		instance_type T.GType,
 		class_closure *T.GClosure)
 
@@ -224,7 +224,7 @@ var (
 
 	G_object_class_install_property func(
 		oclass *T.GObjectClass,
-		property_id T.Guint,
+		property_id uint,
 		pspec *T.GParamSpec)
 
 	G_object_class_find_property func(
@@ -233,16 +233,16 @@ var (
 
 	G_object_class_list_properties func(
 		oclass *T.GObjectClass,
-		n_properties *T.Guint) **T.GParamSpec
+		n_properties *uint) **T.GParamSpec
 
 	G_object_class_override_property func(
 		oclass *T.GObjectClass,
-		property_id T.Guint,
+		property_id uint,
 		name string)
 
 	G_object_class_install_properties func(
 		oclass *T.GObjectClass,
-		n_pspecs T.Guint,
+		n_pspecs uint,
 		pspecs **T.GParamSpec)
 
 	G_object_interface_install_property func(
@@ -255,7 +255,7 @@ var (
 
 	G_object_interface_list_properties func(
 		g_iface T.Gpointer,
-		n_properties_p *T.Guint) **T.GParamSpec
+		n_properties_p *uint) **T.GParamSpec
 
 	G_object_get_type func() T.GType
 
@@ -264,7 +264,7 @@ var (
 
 	G_object_newv func(
 		object_type T.GType,
-		n_parameters T.Guint,
+		n_parameters uint,
 		parameters *T.GParameter) T.Gpointer
 
 	G_object_new_valist func(
@@ -409,7 +409,7 @@ var (
 		object *T.GObject) *T.GClosure
 
 	G_closure_new_object func(
-		sizeof_closure T.Guint,
+		sizeof_closure uint,
 		object *T.GObject) *T.GClosure
 
 	G_value_set_object func(
@@ -568,7 +568,7 @@ var (
 
 	G_type_parent func(t T.GType) T.GType
 
-	G_type_depth func(t T.GType) T.Guint
+	G_type_depth func(t T.GType) uint
 
 	G_type_next_base func(leaf_type, root_type T.GType) T.GType
 
@@ -607,11 +607,11 @@ var (
 
 	G_type_children func(
 		t T.GType,
-		n_children *T.Guint) *T.GType
+		n_children *uint) *T.GType
 
 	G_type_interfaces func(
 		t T.GType,
-		n_interfaces *T.Guint) *T.GType
+		n_interfaces *uint) *T.GType
 
 	G_type_set_qdata func(
 		t T.GType,
@@ -638,7 +638,7 @@ var (
 
 	G_signal_type_cclosure_new func(
 		itype T.GType,
-		struct_offset T.Guint) *T.GClosure
+		struct_offset uint) *T.GClosure
 
 	G_closure_ref func(
 		closure *T.GClosure) *T.GClosure
@@ -650,7 +650,7 @@ var (
 		closure *T.GClosure)
 
 	G_closure_new_simple func(
-		sizeof_closure T.Guint,
+		sizeof_closure uint,
 		data T.Gpointer) *T.GClosure
 
 	G_closure_add_finalize_notifier func(
@@ -695,14 +695,14 @@ var (
 	G_closure_invoke func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer)
 
 	G_cclosure_marshal_VOID__VOID func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -710,7 +710,7 @@ var (
 	G_cclosure_marshal_VOID__BOOLEAN func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -718,7 +718,7 @@ var (
 	G_cclosure_marshal_VOID__CHAR func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -726,7 +726,7 @@ var (
 	G_cclosure_marshal_VOID__UCHAR func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -734,7 +734,7 @@ var (
 	G_cclosure_marshal_VOID__INT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -742,7 +742,7 @@ var (
 	G_cclosure_marshal_VOID__UINT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -750,7 +750,7 @@ var (
 	G_cclosure_marshal_VOID__LONG func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -758,7 +758,7 @@ var (
 	G_cclosure_marshal_VOID__ULONG func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -766,7 +766,7 @@ var (
 	G_cclosure_marshal_VOID__ENUM func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -774,7 +774,7 @@ var (
 	G_cclosure_marshal_VOID__FLAGS func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -782,7 +782,7 @@ var (
 	G_cclosure_marshal_VOID__FLOAT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -790,7 +790,7 @@ var (
 	G_cclosure_marshal_VOID__DOUBLE func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -798,7 +798,7 @@ var (
 	G_cclosure_marshal_VOID__STRING func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -806,7 +806,7 @@ var (
 	G_cclosure_marshal_VOID__PARAM func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -814,7 +814,7 @@ var (
 	G_cclosure_marshal_VOID__BOXED func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -822,7 +822,7 @@ var (
 	G_cclosure_marshal_VOID__POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -830,7 +830,7 @@ var (
 	G_cclosure_marshal_VOID__OBJECT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -838,7 +838,7 @@ var (
 	G_cclosure_marshal_VOID__VARIANT func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -846,7 +846,7 @@ var (
 	G_cclosure_marshal_VOID__UINT_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -854,7 +854,7 @@ var (
 	G_cclosure_marshal_BOOLEAN__FLAGS func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -862,7 +862,7 @@ var (
 	G_cclosure_marshal_STRING__OBJECT_POINTER func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
@@ -870,14 +870,14 @@ var (
 	G_cclosure_marshal_BOOLEAN__BOXED_BOXED func(
 		closure *T.GClosure,
 		return_value *T.GValue,
-		n_param_values T.Guint,
+		n_param_values uint,
 		param_values *T.GValue,
 		invocation_hint T.Gpointer,
 		marshal_data T.Gpointer)
 
 	G_enum_get_value func(
 		enum_class *T.GEnumClass,
-		value T.Gint) *T.GEnumValue
+		value int) *T.GEnumValue
 
 	G_enum_get_value_by_name func(
 		enum_class *T.GEnumClass,
@@ -889,7 +889,7 @@ var (
 
 	G_flags_get_first_value func(
 		flags_class *T.GFlagsClass,
-		value T.Guint) *T.GFlagsValue
+		value uint) *T.GFlagsValue
 
 	G_flags_get_value_by_name func(
 		flags_class *T.GFlagsClass,
@@ -901,17 +901,17 @@ var (
 
 	G_value_set_enum func(
 		value *T.GValue,
-		v_enum T.Gint)
+		v_enum int)
 
 	G_value_get_enum func(
-		value *T.GValue) T.Gint
+		value *T.GValue) int
 
 	G_value_set_flags func(
 		value *T.GValue,
-		v_flags T.Guint)
+		v_flags uint)
 
 	G_value_get_flags func(
-		value *T.GValue) T.Guint
+		value *T.GValue) uint
 
 	G_enum_register_static func(
 		name string,
@@ -986,7 +986,7 @@ var (
 	G_param_values_cmp func(
 		pspec *T.GParamSpec,
 		value1 *T.GValue,
-		value2 *T.GValue) T.Gint
+		value2 *T.GValue) int
 
 	G_param_spec_get_name func(
 		pspec *T.GParamSpec) string
@@ -1017,9 +1017,9 @@ var (
 
 	G_value_array_get_nth func(
 		value_array *T.GValueArray,
-		index_ T.Guint) *T.GValue
+		index_ uint) *T.GValue
 
-	G_value_array_new func(n_prealloced T.Guint) *T.GValueArray
+	G_value_array_new func(n_prealloced uint) *T.GValueArray
 
 	G_value_array_free func(value_array *T.GValueArray)
 
@@ -1036,12 +1036,12 @@ var (
 
 	G_value_array_insert func(
 		value_array *T.GValueArray,
-		index_ T.Guint,
+		index_ uint,
 		value *T.GValue) *T.GValueArray
 
 	G_value_array_remove func(
 		value_array *T.GValueArray,
-		index_ T.Guint) *T.GValueArray
+		index_ uint) *T.GValueArray
 
 	G_value_array_sort func(
 		value_array *T.GValueArray,
@@ -1066,13 +1066,13 @@ var (
 
 	G_value_get_boolean func(value *T.GValue) T.Gboolean
 
-	G_value_set_int func(value *T.GValue, v_int T.Gint)
+	G_value_set_int func(value *T.GValue, v_int int)
 
-	G_value_get_int func(value *T.GValue) T.Gint
+	G_value_get_int func(value *T.GValue) int
 
-	G_value_set_uint func(value *T.GValue, v_uint T.Guint)
+	G_value_set_uint func(value *T.GValue, v_uint uint)
 
-	G_value_get_uint func(value *T.GValue) T.Guint
+	G_value_get_uint func(value *T.GValue) uint
 
 	G_value_set_long func(value *T.GValue, v_long T.Glong)
 
@@ -1082,21 +1082,21 @@ var (
 
 	G_value_get_ulong func(value *T.GValue) T.Gulong
 
-	G_value_set_int64 func(value *T.GValue, v_int64 T.Gint64)
+	G_value_set_int64 func(value *T.GValue, v_int64 int64)
 
-	G_value_get_int64 func(value *T.GValue) T.Gint64
+	G_value_get_int64 func(value *T.GValue) int64
 
-	G_value_set_uint64 func(value *T.GValue, v_uint64 T.Guint64)
+	G_value_set_uint64 func(value *T.GValue, v_uint64 uint64)
 
-	G_value_get_uint64 func(value *T.GValue) T.Guint64
+	G_value_get_uint64 func(value *T.GValue) uint64
 
-	G_value_set_float func(value *T.GValue, v_float T.Gfloat)
+	G_value_set_float func(value *T.GValue, v_float float32)
 
-	G_value_get_float func(value *T.GValue) T.Gfloat
+	G_value_get_float func(value *T.GValue) float32
 
-	G_value_set_double func(value *T.GValue, v_double T.Gdouble)
+	G_value_set_double func(value *T.GValue, v_double float64)
 
-	G_value_get_double func(value *T.GValue) T.Gdouble
+	G_value_get_double func(value *T.GValue) float64
 
 	G_value_set_string func(value *T.GValue, v_string string)
 
@@ -1147,9 +1147,9 @@ var (
 	G_type_register_static_simple func(
 		parent_type T.GType,
 		type_name string,
-		class_size T.Guint,
+		class_size uint,
 		class_init T.GClassInitFunc,
-		instance_size T.Guint,
+		instance_size uint,
 		instance_init T.GInstanceInitFunc,
 		flags T.GTypeFlags) T.GType
 
@@ -1182,7 +1182,7 @@ var (
 
 	G_type_interface_prerequisites func(
 		interface_type T.GType,
-		n_prerequisites *T.Guint) *T.GType
+		n_prerequisites *uint) *T.GType
 
 	G_type_class_add_private func(
 		g_class T.Gpointer,
@@ -1271,7 +1271,7 @@ var (
 
 	G_type_test_flags func(
 		t T.GType,
-		flags T.Guint) T.Gboolean
+		flags uint) T.Gboolean
 
 	G_type_name_from_instance func(
 		instance *T.GTypeInstance) string
@@ -1397,18 +1397,18 @@ var (
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Gint8,
-		maximum T.Gint8,
-		default_value T.Gint8,
+		minimum int8,
+		maximum int8,
+		default_value int8,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_uchar func(
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Guint8,
-		maximum T.Guint8,
-		default_value T.Guint8,
+		minimum uint8,
+		maximum uint8,
+		default_value uint8,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_boolean func(
@@ -1422,18 +1422,18 @@ var (
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Gint,
-		maximum T.Gint,
-		default_value T.Gint,
+		minimum int,
+		maximum int,
+		default_value int,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_uint func(
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Guint,
-		maximum T.Guint,
-		default_value T.Guint,
+		minimum uint,
+		maximum uint,
+		default_value uint,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_long func(
@@ -1458,18 +1458,18 @@ var (
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Gint64,
-		maximum T.Gint64,
-		default_value T.Gint64,
+		minimum int64,
+		maximum int64,
+		default_value int64,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_uint64 func(
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Guint64,
-		maximum T.Guint64,
-		default_value T.Guint64,
+		minimum uint64,
+		maximum uint64,
+		default_value uint64,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_unichar func(
@@ -1484,7 +1484,7 @@ var (
 		nick string,
 		blurb string,
 		enum_type T.GType,
-		default_value T.Gint,
+		default_value int,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_flags func(
@@ -1492,25 +1492,25 @@ var (
 		nick string,
 		blurb string,
 		flags_type T.GType,
-		default_value T.Guint,
+		default_value uint,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_float func(
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Gfloat,
-		maximum T.Gfloat,
-		default_value T.Gfloat,
+		minimum float32,
+		maximum float32,
+		default_value float32,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_double func(
 		name string,
 		nick string,
 		blurb string,
-		minimum T.Gdouble,
-		maximum T.Gdouble,
-		default_value T.Gdouble,
+		minimum float64,
+		maximum float64,
+		default_value float64,
 		flags T.GParamFlags) *T.GParamSpec
 
 	G_param_spec_string func(
@@ -1620,7 +1620,7 @@ var (
 	G_param_spec_pool_list func(
 		pool *T.GParamSpecPool,
 		owner_type T.GType,
-		n_pspecs_p *T.Guint) **T.GParamSpec
+		n_pspecs_p *uint) **T.GParamSpec
 
 	G_unichar_validate func(
 		ch T.Gunichar) T.Gboolean

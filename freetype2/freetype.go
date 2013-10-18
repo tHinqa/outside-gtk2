@@ -56,7 +56,7 @@ var (
 
 	FT_Select_Size func(
 		face T.FT_Face,
-		strike_index T.FT_Int) T.FT_Error
+		strike_index int) T.FT_Error
 
 	FT_Request_Size func(
 		face T.FT_Face,
@@ -66,17 +66,17 @@ var (
 		face T.FT_Face,
 		char_width T.FT_F26Dot6,
 		char_height T.FT_F26Dot6,
-		horz_resolution T.FT_UInt,
-		vert_resolution T.FT_UInt) T.FT_Error
+		horz_resolution uint,
+		vert_resolution uint) T.FT_Error
 
 	FT_Set_Pixel_Sizes func(
 		face T.FT_Face,
-		pixel_width T.FT_UInt,
-		pixel_height T.FT_UInt) T.FT_Error
+		pixel_width uint,
+		pixel_height uint) T.FT_Error
 
 	FT_Load_Glyph func(
 		face T.FT_Face,
-		glyph_index T.FT_UInt,
+		glyph_index uint,
 		load_flags T.FT_Int32) T.FT_Error
 
 	FT_Load_Char func(
@@ -91,22 +91,22 @@ var (
 
 	FT_Get_Kerning func(
 		face T.FT_Face,
-		left_glyph T.FT_UInt,
-		right_glyph T.FT_UInt,
-		kern_mode T.FT_UInt,
+		left_glyph uint,
+		right_glyph uint,
+		kern_mode uint,
 		akerning *T.FT_Vector) T.FT_Error
 
 	FT_Get_Track_Kerning func(
 		face T.FT_Face,
 		point_size T.FT_Fixed,
-		degree T.FT_Int,
+		degree int,
 		akerning *T.FT_Fixed) T.FT_Error
 
 	FT_Get_Glyph_Name func(
 		face T.FT_Face,
-		glyph_index T.FT_UInt,
+		glyph_index uint,
 		buffer T.FT_Pointer,
-		buffer_max T.FT_UInt) T.FT_Error
+		buffer_max uint) T.FT_Error
 
 	FT_Get_Postscript_Name func(
 		face T.FT_Face) string
@@ -120,46 +120,45 @@ var (
 		charmap T.FT_CharMap) T.FT_Error
 
 	FT_Get_Charmap_Index func(
-		charmap T.FT_CharMap) T.FT_Int
+		charmap T.FT_CharMap) int
 
 	FT_Get_Char_Index func(
 		face T.FT_Face,
-		charcode T.FT_ULong) T.FT_UInt
+		charcode T.FT_ULong) uint
 
 	FT_Get_First_Char func(
 		face T.FT_Face,
-		agindex *T.FT_UInt) T.FT_ULong
+		agindex *uint) T.FT_ULong
 
 	FT_Get_Next_Char func(
 		face T.FT_Face,
 		char_code T.FT_ULong,
-		agindex *T.FT_UInt) T.FT_ULong
+		agindex *uint) T.FT_ULong
 
 	FT_Get_Name_Index func(
 		face T.FT_Face,
-		glyph_name *T.FT_String) T.FT_UInt
+		glyph_name *T.FT_String) uint
 
 	FT_Get_SubGlyph_Info func(
 		glyph T.FT_GlyphSlot,
-		sub_index T.FT_UInt,
-		p_index *T.FT_Int,
-		p_flags *T.FT_UInt,
-		p_arg1 *T.FT_Int,
-		p_arg2 *T.FT_Int,
+		sub_index uint,
+		p_index *int,
+		p_flags *uint,
+		p_arg1 *int,
+		p_arg2 *int,
 		p_transform *T.FT_Matrix) T.FT_Error
 
-	FT_Get_FSType_Flags func(
-		face T.FT_Face) T.FT_UShort
+	FT_Get_FSType_Flags func(face T.FT_Face) uint16
 
 	FT_Face_GetCharVariantIndex func(
 		face T.FT_Face,
 		charcode T.FT_ULong,
-		variantSelector T.FT_ULong) T.FT_UInt
+		variantSelector T.FT_ULong) uint
 
 	FT_Face_GetCharVariantIsDefault func(
 		face T.FT_Face,
 		charcode T.FT_ULong,
-		variantSelector T.FT_ULong) T.FT_Int
+		variantSelector T.FT_ULong) int
 
 	FT_Face_GetVariantSelectors func(
 		face T.FT_Face) *T.FT_UInt32
@@ -196,9 +195,9 @@ var (
 
 	FT_Library_Version func(
 		library T.FT_Library,
-		amajor *T.FT_Int,
-		aminor *T.FT_Int,
-		apatch *T.FT_Int)
+		amajor *int,
+		aminor *int,
+		apatch *int)
 
 	FT_Face_CheckTrueTypePatents func(
 		face T.FT_Face) T.FT_Bool
@@ -208,7 +207,7 @@ var (
 		value T.FT_Bool) T.FT_Bool
 
 	FT_Has_PS_Glyph_Names func(
-		face T.FT_Face) T.FT_Int
+		face T.FT_Face) int
 
 	FT_Get_PS_Font_Info func(
 		face T.FT_Face,
@@ -228,22 +227,22 @@ var (
 
 	FT_Set_MM_Design_Coordinates func(
 		face T.FT_Face,
-		num_coords T.FT_UInt,
+		num_coords uint,
 		coords *T.FT_Long) T.FT_Error
 
 	FT_Set_Var_Design_Coordinates func(
 		face T.FT_Face,
-		num_coords T.FT_UInt,
+		num_coords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
 	FT_Set_MM_Blend_Coordinates func(
 		face T.FT_Face,
-		num_coords T.FT_UInt,
+		num_coords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
 	FT_Set_Var_Blend_Coordinates func(
 		face T.FT_Face,
-		num_coords T.FT_UInt,
+		num_coords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
 	FT_Get_Glyph func(
@@ -261,7 +260,7 @@ var (
 
 	FT_Glyph_Get_CBox func(
 		glyph T.FT_Glyph,
-		bbox_mode T.FT_UInt,
+		bbox_mode uint,
 		acbox *T.FT_BBox)
 
 	FT_Glyph_To_Bitmap func(
@@ -282,8 +281,8 @@ var (
 
 	FTC_Manager_New func(
 		library T.FT_Library,
-		max_faces T.FT_UInt,
-		max_sizes T.FT_UInt,
+		max_faces uint,
+		max_sizes uint,
 		max_bytes T.FT_ULong,
 		requester T.FTC_Face_Requester,
 		req_data T.FT_Pointer,
@@ -320,8 +319,8 @@ var (
 	FTC_CMapCache_Lookup func(
 		cache T.FTC_CMapCache,
 		face_id T.FTC_FaceID,
-		cmap_index T.FT_Int,
-		char_code T.FT_UInt32) T.FT_UInt
+		cmap_index int,
+		char_code T.FT_UInt32) uint
 
 	FTC_ImageCache_New func(
 		manager T.FTC_Manager,
@@ -330,7 +329,7 @@ var (
 	FTC_ImageCache_Lookup func(
 		cache T.FTC_ImageCache,
 		t T.FTC_ImageType,
-		gindex T.FT_UInt,
+		gindex uint,
 		aglyph *T.FT_Glyph,
 		anode *T.FTC_Node) T.FT_Error
 
@@ -338,7 +337,7 @@ var (
 		cache T.FTC_ImageCache,
 		scaler T.FTC_Scaler,
 		load_flags T.FT_ULong,
-		gindex T.FT_UInt,
+		gindex uint,
 		aglyph *T.FT_Glyph,
 		anode *T.FTC_Node) T.FT_Error
 
@@ -349,7 +348,7 @@ var (
 	FTC_SBitCache_Lookup func(
 		cache T.FTC_SBitCache,
 		t T.FTC_ImageType,
-		gindex T.FT_UInt,
+		gindex uint,
 		sbit *T.FTC_SBit,
 		anode *T.FTC_Node) T.FT_Error
 
@@ -357,7 +356,7 @@ var (
 		cache T.FTC_SBitCache,
 		scaler T.FTC_Scaler,
 		load_flags T.FT_ULong,
-		gindex T.FT_UInt,
+		gindex uint,
 		sbit *T.FTC_SBit,
 		anode *T.FTC_Node) T.FT_Error
 
@@ -420,14 +419,14 @@ var (
 
 	FT_Outline_New func(
 		library T.FT_Library,
-		numPoints T.FT_UInt,
-		numContours T.FT_Int,
+		numPoints uint,
+		numContours int,
 		anoutline *T.FT_Outline) T.FT_Error
 
 	FT_Outline_New_Internal func(
 		memory T.FT_Memory,
-		numPoints T.FT_UInt,
-		numContours T.FT_Int,
+		numPoints uint,
+		numContours int,
 		anoutline *T.FT_Outline) T.FT_Error
 
 	FT_Outline_Done func(
@@ -500,7 +499,7 @@ var (
 
 	FT_Set_Debug_Hook func(
 		library T.FT_Library,
-		hook_index T.FT_UInt,
+		hook_index uint,
 		debug_hook T.FT_DebugHook_Func)
 
 	FT_Add_Default_Modules func(library T.FT_Library)
@@ -514,7 +513,7 @@ var (
 	FT_Set_Renderer func(
 		library T.FT_Library,
 		renderer T.FT_Renderer,
-		num_params T.FT_UInt,
+		num_params uint,
 		parameters *T.FT_Parameter) T.FT_Error
 
 	FT_Get_Sfnt_Table func(
@@ -529,7 +528,7 @@ var (
 
 	FT_Sfnt_Table_Info func(
 		face T.FT_Face,
-		table_index T.FT_UInt,
+		table_index uint,
 		tag, length *T.FT_ULong) T.FT_Error
 
 	FT_Get_CMap_Language_ID func(charmap T.FT_CharMap) T.FT_ULong
@@ -547,7 +546,7 @@ var (
 	FT_Get_CID_Registry_Ordering_Supplement func(
 		face T.FT_Face,
 		registry, ordering **T.Char,
-		supplement *T.FT_Int) T.FT_Error
+		supplement *int) T.FT_Error
 
 	FT_Get_CID_Is_Internally_CID_Keyed func(
 		face T.FT_Face,
@@ -555,8 +554,8 @@ var (
 
 	FT_Get_CID_From_Glyph_Index func(
 		face T.FT_Face,
-		glyph_index T.FT_UInt,
-		cid *T.FT_UInt) T.FT_Error
+		glyph_index uint,
+		cid *uint) T.FT_Error
 
 	FT_Stream_OpenGzip func(
 		stream, source T.FT_Stream) T.FT_Error
@@ -582,7 +581,7 @@ var (
 	FT_Bitmap_Convert func(
 		library T.FT_Library,
 		source, target *T.FT_Bitmap,
-		alignment T.FT_Int) T.FT_Error
+		alignment int) T.FT_Error
 
 	FT_GlyphSlot_Own_Bitmap func(slot T.FT_GlyphSlot) T.FT_Error
 
@@ -592,15 +591,15 @@ var (
 	FT_Outline_Get_BBox func(
 		outline *T.FT_Outline, abbox *T.FT_BBox) T.FT_Error
 
-	FT_Get_Sfnt_Name_Count func(face T.FT_Face) T.FT_UInt
+	FT_Get_Sfnt_Name_Count func(face T.FT_Face) uint
 
 	FT_Get_Sfnt_Name func(
 		face T.FT_Face,
-		idx T.FT_UInt,
+		idx uint,
 		aname *T.FT_SfntName) T.FT_Error
 
 	FT_OpenType_Validate func(
-		face T.FT_Face, validation_flags T.FT_UInt,
+		face T.FT_Face, validation_flags uint,
 		BASE_table, GDEF_table, GPOS_table,
 		GSUB_table, JSTF_table *T.FT_Bytes) T.FT_Error
 
@@ -608,32 +607,32 @@ var (
 
 	FT_TrueTypeGX_Validate func(
 		face T.FT_Face,
-		validation_flags T.FT_UInt,
+		validation_flags uint,
 		tables [FT_VALIDATE_GX_LENGTH]T.FT_Bytes,
-		table_length T.FT_UInt) T.FT_Error
+		table_length uint) T.FT_Error
 
 	FT_TrueTypeGX_Free func(face T.FT_Face, table T.FT_Bytes)
 
 	FT_ClassicKern_Validate func(
 		face T.FT_Face,
-		validation_flags T.FT_UInt,
+		validation_flags uint,
 		ckern_table *T.FT_Bytes) T.FT_Error
 
 	FT_ClassicKern_Free func(
 		face T.FT_Face, table T.FT_Bytes)
 
 	FT_Get_PFR_Metrics func(face T.FT_Face,
-		aoutline_resolution, ametrics_resolution *T.FT_UInt,
+		aoutline_resolution, ametrics_resolution *uint,
 		ametrics_x_scale, ametrics_y_scale *T.FT_Fixed) T.FT_Error
 
 	FT_Get_PFR_Kerning func(
 		face T.FT_Face,
-		left, right T.FT_UInt,
+		left, right uint,
 		avector *T.FT_Vector) T.FT_Error
 
 	FT_Get_PFR_Advance func(
 		face T.FT_Face,
-		gindex T.FT_UInt,
+		gindex uint,
 		aadvance *T.FT_Pos) T.FT_Error
 
 	FT_Outline_GetInsideBorder func(
@@ -674,13 +673,13 @@ var (
 
 	FT_Stroker_GetBorderCounts func(
 		stroker T.FT_Stroker, border T.FT_StrokerBorder,
-		anum_points, anum_contours *T.FT_UInt) T.FT_Error
+		anum_points, anum_contours *uint) T.FT_Error
 
 	FT_Stroker_ExportBorder func(stroker T.FT_Stroker,
 		border T.FT_StrokerBorder, outline *T.FT_Outline)
 
 	FT_Stroker_GetCounts func(stroker T.FT_Stroker,
-		anum_points, anum_contours *T.FT_UInt) T.FT_Error
+		anum_points, anum_contours *uint) T.FT_Error
 
 	FT_Stroker_Export func(
 		stroker T.FT_Stroker, outline *T.FT_Outline)
@@ -731,17 +730,17 @@ var (
 		weights *T.Unsigned_char) T.FT_Error
 
 	FT_Get_Gasp func(
-		face T.FT_Face, ppem T.FT_UInt) T.FT_Int
+		face T.FT_Face, ppem uint) int
 
 	FT_Get_Advance func(
 		face T.FT_Face,
-		gindex T.FT_UInt,
+		gindex uint,
 		load_flags T.FT_Int32,
 		padvance *T.FT_Fixed) T.FT_Error
 
 	FT_Get_Advances func(
 		face T.FT_Face,
-		start, count T.FT_UInt,
+		start, count uint,
 		load_flags T.FT_Int32,
 		padvances *T.FT_Fixed) T.FT_Error
 

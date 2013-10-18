@@ -51,10 +51,10 @@ var (
 		n_bytes int) *T.PangoCoverage
 
 	Pango_units_from_double func(
-		d T.Double) int
+		d float64) int
 
 	Pango_units_to_double func(
-		i int) T.Double
+		i int) float64
 
 	Pango_extents_to_pixels func(
 		inclusive *T.PangoRectangle,
@@ -70,17 +70,17 @@ var (
 
 	Pango_matrix_translate func(
 		matrix *T.PangoMatrix,
-		tx T.Double,
-		ty T.Double)
+		tx float64,
+		ty float64)
 
 	Pango_matrix_scale func(
 		matrix *T.PangoMatrix,
-		scale_x T.Double,
-		scale_y T.Double)
+		scale_x float64,
+		scale_y float64)
 
 	Pango_matrix_rotate func(
 		matrix *T.PangoMatrix,
-		degrees T.Double)
+		degrees float64)
 
 	Pango_matrix_concat func(
 		matrix *T.PangoMatrix,
@@ -88,13 +88,13 @@ var (
 
 	Pango_matrix_transform_point func(
 		matrix *T.PangoMatrix,
-		x *T.Double,
-		y *T.Double)
+		x *float64,
+		y *float64)
 
 	Pango_matrix_transform_distance func(
 		matrix *T.PangoMatrix,
-		dx *T.Double,
-		dy *T.Double)
+		dx *float64,
+		dy *float64)
 
 	Pango_matrix_transform_rectangle func(
 		matrix *T.PangoMatrix,
@@ -105,7 +105,7 @@ var (
 		rect *T.PangoRectangle)
 
 	Pango_matrix_get_font_scale_factor func(
-		matrix *T.PangoMatrix) T.Double
+		matrix *T.PangoMatrix) float64
 
 	Pango_script_for_unichar func(
 		ch T.Gunichar) T.PangoScript
@@ -155,7 +155,7 @@ var (
 		script T.PangoScript) *T.PangoLanguage
 
 	Pango_gravity_to_rotation func(
-		gravity T.PangoGravity) T.Double
+		gravity T.PangoGravity) float64
 
 	Pango_gravity_get_for_matrix func(
 		matrix *T.PangoMatrix) T.PangoGravity
@@ -179,7 +179,7 @@ var (
 
 	Pango_find_base_dir func(
 		text string,
-		length T.Gint) T.PangoDirection
+		length int) T.PangoDirection
 
 	Pango_get_mirror_char func(
 		ch T.Gunichar,
@@ -196,7 +196,7 @@ var (
 		desc *T.PangoFontDescription) *T.PangoFontDescription
 
 	Pango_font_description_hash func(
-		desc *T.PangoFontDescription) T.Guint
+		desc *T.PangoFontDescription) uint
 
 	Pango_font_description_equal func(
 		desc1 *T.PangoFontDescription,
@@ -250,14 +250,14 @@ var (
 
 	Pango_font_description_set_size func(
 		desc *T.PangoFontDescription,
-		size T.Gint)
+		size int)
 
 	Pango_font_description_get_size func(
-		desc *T.PangoFontDescription) T.Gint
+		desc *T.PangoFontDescription) int
 
 	Pango_font_description_set_absolute_size func(
 		desc *T.PangoFontDescription,
-		size T.Double)
+		size float64)
 
 	Pango_font_description_get_size_is_absolute func(
 		desc *T.PangoFontDescription) T.Gboolean
@@ -376,7 +376,7 @@ var (
 	Pango_font_find_shaper func(
 		font *T.PangoFont,
 		language *T.PangoLanguage,
-		ch T.Guint32) *T.PangoEngineShape
+		ch T.GUint32) *T.PangoEngineShape
 
 	Pango_font_get_metrics func(
 		font *T.PangoFont,
@@ -433,14 +433,14 @@ var (
 		family string) *T.PangoAttribute
 
 	Pango_attr_foreground_new func(
-		red T.Guint16,
-		green T.Guint16,
-		blue T.Guint16) *T.PangoAttribute
+		red uint16,
+		green uint16,
+		blue uint16) *T.PangoAttribute
 
 	Pango_attr_background_new func(
-		red T.Guint16,
-		green T.Guint16,
-		blue T.Guint16) *T.PangoAttribute
+		red uint16,
+		green uint16,
+		blue uint16) *T.PangoAttribute
 
 	Pango_attr_size_new func(
 		size int) *T.PangoAttribute
@@ -467,23 +467,23 @@ var (
 		underline T.PangoUnderline) *T.PangoAttribute
 
 	Pango_attr_underline_color_new func(
-		red T.Guint16,
-		green T.Guint16,
-		blue T.Guint16) *T.PangoAttribute
+		red uint16,
+		green uint16,
+		blue uint16) *T.PangoAttribute
 
 	Pango_attr_strikethrough_new func(
 		strikethrough T.Gboolean) *T.PangoAttribute
 
 	Pango_attr_strikethrough_color_new func(
-		red T.Guint16,
-		green T.Guint16,
-		blue T.Guint16) *T.PangoAttribute
+		red uint16,
+		green uint16,
+		blue uint16) *T.PangoAttribute
 
 	Pango_attr_rise_new func(
 		rise int) *T.PangoAttribute
 
 	Pango_attr_scale_new func(
-		scale_factor T.Double) *T.PangoAttribute
+		scale_factor float64) *T.PangoAttribute
 
 	Pango_attr_fallback_new func(
 		enable_fallback T.Gboolean) *T.PangoAttribute
@@ -536,8 +536,8 @@ var (
 	Pango_attr_list_splice func(
 		list *T.PangoAttrList,
 		other *T.PangoAttrList,
-		pos T.Gint,
-		len T.Gint)
+		pos int,
+		len int)
 
 	Pango_attr_list_filter func(
 		list *T.PangoAttrList,
@@ -549,8 +549,8 @@ var (
 
 	Pango_attr_iterator_range func(
 		iterator *T.PangoAttrIterator,
-		start *T.Gint,
-		end *T.Gint)
+		start *int,
+		end *int)
 
 	Pango_attr_iterator_next func(
 		iterator *T.PangoAttrIterator) T.Gboolean
@@ -607,9 +607,9 @@ var (
 
 	Pango_find_paragraph_boundary func(
 		text string,
-		length T.Gint,
-		paragraph_delimiter_index *T.Gint,
-		next_paragraph_start *T.Gint)
+		length int,
+		paragraph_delimiter_index *int,
+		next_paragraph_start *int)
 
 	Pango_get_log_attrs func(
 		text string,
@@ -623,7 +623,7 @@ var (
 
 	Pango_fontset_get_font func(
 		fontset *T.PangoFontset,
-		wc T.Guint) *T.PangoFont
+		wc uint) *T.PangoFont
 
 	Pango_fontset_get_metrics func(
 		fontset *T.PangoFontset) *T.PangoFontMetrics
@@ -750,7 +750,7 @@ var (
 
 	Pango_glyph_string_set_size func(
 		string *T.PangoGlyphString,
-		new_len T.Gint)
+		new_len int)
 
 	Pango_glyph_string_get_type func() T.GType
 
@@ -804,7 +804,7 @@ var (
 
 	Pango_shape func(
 		text string,
-		length T.Gint,
+		length int,
 		analysis *T.PangoAnalysis,
 		glyphs *T.PangoGlyphString)
 
@@ -901,12 +901,12 @@ var (
 		iter *T.PangoGlyphItemIter) T.Gboolean
 
 	Pango_tab_array_new func(
-		initial_size T.Gint,
+		initial_size int,
 		positions_in_pixels T.Gboolean) *T.PangoTabArray
 
-	Pango_tab_array_new_with_positions func(size T.Gint,
+	Pango_tab_array_new_with_positions func(size int,
 		positions_in_pixels T.Gboolean, first_alignment T.PangoTabAlign,
-		first_position T.Gint, v ...VArg) *T.PangoTabArray
+		first_position int, v ...VArg) *T.PangoTabArray
 
 	Pango_tab_array_get_type func() T.GType
 
@@ -917,28 +917,28 @@ var (
 		tab_array *T.PangoTabArray)
 
 	Pango_tab_array_get_size func(
-		tab_array *T.PangoTabArray) T.Gint
+		tab_array *T.PangoTabArray) int
 
 	Pango_tab_array_resize func(
 		tab_array *T.PangoTabArray,
-		new_size T.Gint)
+		new_size int)
 
 	Pango_tab_array_set_tab func(
 		tab_array *T.PangoTabArray,
-		tab_index T.Gint,
+		tab_index int,
 		alignment T.PangoTabAlign,
-		location T.Gint)
+		location int)
 
 	Pango_tab_array_get_tab func(
 		tab_array *T.PangoTabArray,
-		tab_index T.Gint,
+		tab_index int,
 		alignment *T.PangoTabAlign,
-		location *T.Gint)
+		location *int)
 
 	Pango_tab_array_get_tabs func(
 		tab_array *T.PangoTabArray,
 		alignments **T.PangoTabAlign,
-		locations **T.Gint)
+		locations **int)
 
 	Pango_tab_array_get_positions_in_pixels func(
 		tab_array *T.PangoTabArray) T.Gboolean
@@ -970,7 +970,7 @@ var (
 		layout *T.PangoLayout) string
 
 	Pango_layout_get_character_count func(
-		layout *T.PangoLayout) T.Gint
+		layout *T.PangoLayout) int
 
 	Pango_layout_set_markup func(
 		layout *T.PangoLayout,
@@ -1083,11 +1083,11 @@ var (
 	Pango_layout_get_log_attrs func(
 		layout *T.PangoLayout,
 		attrs **T.PangoLogAttr,
-		n_attrs *T.Gint)
+		n_attrs *int)
 
 	Pango_layout_get_log_attrs_readonly func(
 		layout *T.PangoLayout,
-		n_attrs *T.Gint) *T.PangoLogAttr
+		n_attrs *int) *T.PangoLogAttr
 
 	Pango_layout_index_to_pos func(
 		layout *T.PangoLayout,
@@ -1322,19 +1322,19 @@ var (
 	Pango_renderer_draw_trapezoid func(
 		renderer *T.PangoRenderer,
 		part T.PangoRenderPart,
-		y1 T.Double,
-		x11 T.Double,
-		x21 T.Double,
-		y2 T.Double,
-		x12 T.Double,
-		x22 T.Double)
+		y1 float64,
+		x11 float64,
+		x21 float64,
+		y2 float64,
+		x12 float64,
+		x22 float64)
 
 	Pango_renderer_draw_glyph func(
 		renderer *T.PangoRenderer,
 		font *T.PangoFont,
 		glyph T.PangoGlyph,
-		x T.Double,
-		y T.Double)
+		x float64,
+		y float64)
 
 	Pango_renderer_activate func(
 		renderer *T.PangoRenderer)
@@ -1374,7 +1374,7 @@ var (
 	Pango_trim_string func(
 		str string) string
 
-	Pango_read_line func(stream *T.FILE, str *T.GString) T.Gint
+	Pango_read_line func(stream *T.FILE, str *T.GString) int
 
 	Pango_skip_space func(pos **T.Char) T.Gboolean
 
@@ -1407,7 +1407,7 @@ var (
 	Pango_quantize_line_geometry func(thickness, position *int)
 
 	Pango_log2vis_get_embedding_levels func(text string,
-		length int, pbase_dir *T.PangoDirection) *T.Guint8
+		length int, pbase_dir *T.PangoDirection) *uint8
 
 	Pango_is_zero_width func(ch T.Gunichar) T.Gboolean
 
@@ -1435,10 +1435,10 @@ var (
 
 	Pango_cairo_font_map_set_resolution func(
 		fontmap *T.PangoCairoFontMap,
-		dpi T.Double)
+		dpi float64)
 
 	Pango_cairo_font_map_get_resolution func(
-		fontmap *T.PangoCairoFontMap) T.Double
+		fontmap *T.PangoCairoFontMap) float64
 
 	Pango_cairo_font_map_create_context func(
 		fontmap *T.PangoCairoFontMap) *T.PangoContext
@@ -1461,10 +1461,10 @@ var (
 
 	Pango_cairo_context_set_resolution func(
 		context *T.PangoContext,
-		dpi T.Double)
+		dpi float64)
 
 	Pango_cairo_context_get_resolution func(
-		context *T.PangoContext) T.Double
+		context *T.PangoContext) float64
 
 	Pango_cairo_context_set_shape_renderer func(
 		context *T.PangoContext,
@@ -1506,10 +1506,10 @@ var (
 
 	Pango_cairo_show_error_underline func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double,
-		width T.Double,
-		height T.Double)
+		x float64,
+		y float64,
+		width float64,
+		height float64)
 
 	Pango_cairo_glyph_string_path func(
 		cr *T.Cairo_t,
@@ -1526,10 +1526,10 @@ var (
 
 	Pango_cairo_error_underline_path func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double,
-		width T.Double,
-		height T.Double)
+		x float64,
+		y float64,
+		width float64,
+		height float64)
 
 	Pango_config_key_get func(
 		key string) string
@@ -1549,8 +1549,8 @@ var (
 
 	Pango_find_map func(
 		language *T.PangoLanguage,
-		engine_type_id T.Guint,
-		render_type_id T.Guint) *T.PangoMap
+		engine_type_id uint,
+		render_type_id uint) *T.PangoMap
 
 	Pango_font_map_get_shape_engine_type func(
 		fontmap *T.PangoFontMap) string

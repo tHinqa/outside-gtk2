@@ -60,7 +60,7 @@ var (
 		cr *T.Cairo_t)
 
 	Cairo_get_reference_count func(
-		cr *T.Cairo_t) T.Unsigned_int
+		cr *T.Cairo_t) uint
 
 	Cairo_get_user_data func(
 		cr *T.Cairo_t,
@@ -101,26 +101,26 @@ var (
 
 	Cairo_set_source_rgb func(
 		cr *T.Cairo_t,
-		red T.Double,
-		green T.Double,
-		blue T.Double)
+		red float64,
+		green float64,
+		blue float64)
 
 	Cairo_set_source_rgba func(
 		cr *T.Cairo_t,
-		red T.Double,
-		green T.Double,
-		blue T.Double,
-		alpha T.Double)
+		red float64,
+		green float64,
+		blue float64,
+		alpha float64)
 
 	Cairo_set_source_surface func(
 		cr *T.Cairo_t,
 		surface *T.Cairo_surface_t,
-		x T.Double,
-		y T.Double)
+		x float64,
+		y float64)
 
 	Cairo_set_tolerance func(
 		cr *T.Cairo_t,
-		tolerance T.Double)
+		tolerance float64)
 
 	Cairo_set_antialias func(
 		cr *T.Cairo_t,
@@ -132,7 +132,7 @@ var (
 
 	Cairo_set_line_width func(
 		cr *T.Cairo_t,
-		width T.Double)
+		width float64)
 
 	Cairo_set_line_cap func(
 		cr *T.Cairo_t,
@@ -144,27 +144,27 @@ var (
 
 	Cairo_set_dash func(
 		cr *T.Cairo_t,
-		dashes *T.Double,
+		dashes *float64,
 		num_dashes int,
-		offset T.Double)
+		offset float64)
 
 	Cairo_set_miter_limit func(
 		cr *T.Cairo_t,
-		limit T.Double)
+		limit float64)
 
 	Cairo_translate func(
 		cr *T.Cairo_t,
-		tx T.Double,
-		ty T.Double)
+		tx float64,
+		ty float64)
 
 	Cairo_scale func(
 		cr *T.Cairo_t,
-		sx T.Double,
-		sy T.Double)
+		sx float64,
+		sy float64)
 
 	Cairo_rotate func(
 		cr *T.Cairo_t,
-		angle T.Double)
+		angle float64)
 
 	Cairo_transform func(
 		cr *T.Cairo_t,
@@ -179,107 +179,107 @@ var (
 
 	Cairo_user_to_device func(
 		cr *T.Cairo_t,
-		x *T.Double,
-		y *T.Double)
+		x *float64,
+		y *float64)
 
 	Cairo_user_to_device_distance func(
 		cr *T.Cairo_t,
-		dx *T.Double,
-		dy *T.Double)
+		dx *float64,
+		dy *float64)
 
 	Cairo_device_to_user func(
 		cr *T.Cairo_t,
-		x *T.Double,
-		y *T.Double)
+		x *float64,
+		y *float64)
 
 	Cairo_device_to_user_distance func(
 		cr *T.Cairo_t,
-		dx *T.Double,
-		dy *T.Double)
+		dx *float64,
+		dy *float64)
 
 	Cairo_new_path func(
 		cr *T.Cairo_t)
 
 	Cairo_move_to func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double)
+		x float64,
+		y float64)
 
 	Cairo_new_sub_path func(
 		cr *T.Cairo_t)
 
 	Cairo_line_to func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double)
+		x float64,
+		y float64)
 
 	Cairo_curve_to func(
 		cr *T.Cairo_t,
-		x1 T.Double,
-		y1 T.Double,
-		x2 T.Double,
-		y2 T.Double,
-		x3 T.Double,
-		y3 T.Double)
+		x1 float64,
+		y1 float64,
+		x2 float64,
+		y2 float64,
+		x3 float64,
+		y3 float64)
 
 	Cairo_arc func(
 		cr *T.Cairo_t,
-		xc T.Double,
-		yc T.Double,
-		radius T.Double,
-		angle1 T.Double,
-		angle2 T.Double)
+		xc float64,
+		yc float64,
+		radius float64,
+		angle1 float64,
+		angle2 float64)
 
 	Cairo_arc_negative func(
 		cr *T.Cairo_t,
-		xc T.Double,
-		yc T.Double,
-		radius T.Double,
-		angle1 T.Double,
-		angle2 T.Double)
+		xc float64,
+		yc float64,
+		radius float64,
+		angle1 float64,
+		angle2 float64)
 
 	Cairo_rel_move_to func(
 		cr *T.Cairo_t,
-		dx T.Double,
-		dy T.Double)
+		dx float64,
+		dy float64)
 
 	Cairo_rel_line_to func(
 		cr *T.Cairo_t,
-		dx T.Double,
-		dy T.Double)
+		dx float64,
+		dy float64)
 
 	Cairo_rel_curve_to func(
 		cr *T.Cairo_t,
-		dx1 T.Double,
-		dy1 T.Double,
-		dx2 T.Double,
-		dy2 T.Double,
-		dx3 T.Double,
-		dy3 T.Double)
+		dx1 float64,
+		dy1 float64,
+		dx2 float64,
+		dy2 float64,
+		dx3 float64,
+		dy3 float64)
 
 	Cairo_rectangle func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double,
-		width T.Double,
-		height T.Double)
+		x float64,
+		y float64,
+		width float64,
+		height float64)
 
 	Cairo_close_path func(
 		cr *T.Cairo_t)
 
 	Cairo_path_extents func(
 		cr *T.Cairo_t,
-		x1 *T.Double,
-		y1 *T.Double,
-		x2 *T.Double,
-		y2 *T.Double)
+		x1 *float64,
+		y1 *float64,
+		x2 *float64,
+		y2 *float64)
 
 	Cairo_paint func(
 		cr *T.Cairo_t)
 
 	Cairo_paint_with_alpha func(
 		cr *T.Cairo_t,
-		alpha T.Double)
+		alpha float64)
 
 	Cairo_mask func(
 		cr *T.Cairo_t,
@@ -288,8 +288,8 @@ var (
 	Cairo_mask_surface func(
 		cr *T.Cairo_t,
 		surface *T.Cairo_surface_t,
-		surface_x T.Double,
-		surface_y T.Double)
+		surface_x float64,
+		surface_y float64)
 
 	Cairo_stroke func(
 		cr *T.Cairo_t)
@@ -311,32 +311,32 @@ var (
 
 	Cairo_in_stroke func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double) T.Cairo_bool_t
+		x float64,
+		y float64) T.Cairo_bool_t
 
 	Cairo_in_fill func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double) T.Cairo_bool_t
+		x float64,
+		y float64) T.Cairo_bool_t
 
 	Cairo_in_clip func(
 		cr *T.Cairo_t,
-		x T.Double,
-		y T.Double) T.Cairo_bool_t
+		x float64,
+		y float64) T.Cairo_bool_t
 
 	Cairo_stroke_extents func(
 		cr *T.Cairo_t,
-		x1 *T.Double,
-		y1 *T.Double,
-		x2 *T.Double,
-		y2 *T.Double)
+		x1 *float64,
+		y1 *float64,
+		x2 *float64,
+		y2 *float64)
 
 	Cairo_fill_extents func(
 		cr *T.Cairo_t,
-		x1 *T.Double,
-		y1 *T.Double,
-		x2 *T.Double,
-		y2 *T.Double)
+		x1 *float64,
+		y1 *float64,
+		x2 *float64,
+		y2 *float64)
 
 	Cairo_reset_clip func(
 		cr *T.Cairo_t)
@@ -349,10 +349,10 @@ var (
 
 	Cairo_clip_extents func(
 		cr *T.Cairo_t,
-		x1 *T.Double,
-		y1 *T.Double,
-		x2 *T.Double,
-		y2 *T.Double)
+		x1 *float64,
+		y1 *float64,
+		x2 *float64,
+		y2 *float64)
 
 	Cairo_copy_clip_rectangle_list func(
 		cr *T.Cairo_t) *T.Cairo_rectangle_list_t
@@ -430,7 +430,7 @@ var (
 
 	Cairo_set_font_size func(
 		cr *T.Cairo_t,
-		size T.Double)
+		size float64)
 
 	Cairo_set_font_matrix func(
 		cr *T.Cairo_t,
@@ -512,7 +512,7 @@ var (
 		font_face *T.Cairo_font_face_t)
 
 	Cairo_font_face_get_reference_count func(
-		font_face *T.Cairo_font_face_t) T.Unsigned_int
+		font_face *T.Cairo_font_face_t) uint
 
 	Cairo_font_face_status func(
 		font_face *T.Cairo_font_face_t) T.Cairo_status_t
@@ -543,7 +543,7 @@ var (
 		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_scaled_font_get_reference_count func(
-		scaled_font *T.Cairo_scaled_font_t) T.Unsigned_int
+		scaled_font *T.Cairo_scaled_font_t) uint
 
 	Cairo_scaled_font_status func(
 		scaled_font *T.Cairo_scaled_font_t) T.Cairo_status_t
@@ -578,8 +578,8 @@ var (
 
 	Cairo_scaled_font_text_to_glyphs func(
 		scaled_font *T.Cairo_scaled_font_t,
-		x T.Double,
-		y T.Double,
+		x float64,
+		y float64,
 		utf8 string,
 		utf8_len int,
 		glyphs **T.Cairo_glyph_t,
@@ -658,7 +658,7 @@ var (
 		cr *T.Cairo_t) *T.Cairo_pattern_t
 
 	Cairo_get_tolerance func(
-		cr *T.Cairo_t) T.Double
+		cr *T.Cairo_t) float64
 
 	Cairo_get_antialias func(
 		cr *T.Cairo_t) T.Cairo_antialias_t
@@ -668,14 +668,14 @@ var (
 
 	Cairo_get_current_point func(
 		cr *T.Cairo_t,
-		x *T.Double,
-		y *T.Double)
+		x *float64,
+		y *float64)
 
 	Cairo_get_fill_rule func(
 		cr *T.Cairo_t) T.Cairo_fill_rule_t
 
 	Cairo_get_line_width func(
-		cr *T.Cairo_t) T.Double
+		cr *T.Cairo_t) float64
 
 	Cairo_get_line_cap func(
 		cr *T.Cairo_t) T.Cairo_line_cap_t
@@ -684,15 +684,15 @@ var (
 		cr *T.Cairo_t) T.Cairo_line_join_t
 
 	Cairo_get_miter_limit func(
-		cr *T.Cairo_t) T.Double
+		cr *T.Cairo_t) float64
 
 	Cairo_get_dash_count func(
 		cr *T.Cairo_t) int
 
 	Cairo_get_dash func(
 		cr *T.Cairo_t,
-		dashes *T.Double,
-		offset *T.Double)
+		dashes *float64,
+		offset *float64)
 
 	Cairo_get_matrix func(
 		cr *T.Cairo_t,
@@ -748,7 +748,7 @@ var (
 		device *T.Cairo_device_t)
 
 	Cairo_device_get_reference_count func(
-		device *T.Cairo_device_t) T.Unsigned_int
+		device *T.Cairo_device_t) uint
 
 	Cairo_device_get_user_data func(
 		device *T.Cairo_device_t,
@@ -768,10 +768,10 @@ var (
 
 	Cairo_surface_create_for_rectangle func(
 		target *T.Cairo_surface_t,
-		x T.Double,
-		y T.Double,
-		width T.Double,
-		height T.Double) *T.Cairo_surface_t
+		x float64,
+		y float64,
+		width float64,
+		height float64) *T.Cairo_surface_t
 
 	Cairo_surface_reference func(
 		surface *T.Cairo_surface_t) *T.Cairo_surface_t
@@ -786,7 +786,7 @@ var (
 		surface *T.Cairo_surface_t) *T.Cairo_device_t
 
 	Cairo_surface_get_reference_count func(
-		surface *T.Cairo_surface_t) T.Unsigned_int
+		surface *T.Cairo_surface_t) uint
 
 	Cairo_surface_status func(
 		surface *T.Cairo_surface_t) T.Cairo_status_t
@@ -849,23 +849,23 @@ var (
 
 	Cairo_surface_set_device_offset func(
 		surface *T.Cairo_surface_t,
-		x_offset T.Double,
-		y_offset T.Double)
+		x_offset float64,
+		y_offset float64)
 
 	Cairo_surface_get_device_offset func(
 		surface *T.Cairo_surface_t,
-		x_offset *T.Double,
-		y_offset *T.Double)
+		x_offset *float64,
+		y_offset *float64)
 
 	Cairo_surface_set_fallback_resolution func(
 		surface *T.Cairo_surface_t,
-		x_pixels_per_inch T.Double,
-		y_pixels_per_inch T.Double)
+		x_pixels_per_inch float64,
+		y_pixels_per_inch float64)
 
 	Cairo_surface_get_fallback_resolution func(
 		surface *T.Cairo_surface_t,
-		x_pixels_per_inch *T.Double,
-		y_pixels_per_inch *T.Double)
+		x_pixels_per_inch *float64,
+		y_pixels_per_inch *float64)
 
 	Cairo_surface_copy_page func(
 		surface *T.Cairo_surface_t)
@@ -920,38 +920,38 @@ var (
 
 	Cairo_recording_surface_ink_extents func(
 		surface *T.Cairo_surface_t,
-		x0 *T.Double,
-		y0 *T.Double,
-		width *T.Double,
-		height *T.Double)
+		x0 *float64,
+		y0 *float64,
+		width *float64,
+		height *float64)
 
 	Cairo_pattern_create_rgb func(
-		red T.Double,
-		green T.Double,
-		blue T.Double) *T.Cairo_pattern_t
+		red float64,
+		green float64,
+		blue float64) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_rgba func(
-		red T.Double,
-		green T.Double,
-		blue T.Double,
-		alpha T.Double) *T.Cairo_pattern_t
+		red float64,
+		green float64,
+		blue float64,
+		alpha float64) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_for_surface func(
 		surface *T.Cairo_surface_t) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_linear func(
-		x0 T.Double,
-		y0 T.Double,
-		x1 T.Double,
-		y1 T.Double) *T.Cairo_pattern_t
+		x0 float64,
+		y0 float64,
+		x1 float64,
+		y1 float64) *T.Cairo_pattern_t
 
 	Cairo_pattern_create_radial func(
-		cx0 T.Double,
-		cy0 T.Double,
-		radius0 T.Double,
-		cx1 T.Double,
-		cy1 T.Double,
-		radius1 T.Double) *T.Cairo_pattern_t
+		cx0 float64,
+		cy0 float64,
+		radius0 float64,
+		cx1 float64,
+		cy1 float64,
+		radius1 float64) *T.Cairo_pattern_t
 
 	Cairo_pattern_reference func(
 		pattern *T.Cairo_pattern_t) *T.Cairo_pattern_t
@@ -960,7 +960,7 @@ var (
 		pattern *T.Cairo_pattern_t)
 
 	Cairo_pattern_get_reference_count func(
-		pattern *T.Cairo_pattern_t) T.Unsigned_int
+		pattern *T.Cairo_pattern_t) uint
 
 	Cairo_pattern_status func(
 		pattern *T.Cairo_pattern_t) T.Cairo_status_t
@@ -980,18 +980,18 @@ var (
 
 	Cairo_pattern_add_color_stop_rgb func(
 		pattern *T.Cairo_pattern_t,
-		offset T.Double,
-		red T.Double,
-		green T.Double,
-		blue T.Double)
+		offset float64,
+		red float64,
+		green float64,
+		blue float64)
 
 	Cairo_pattern_add_color_stop_rgba func(
 		pattern *T.Cairo_pattern_t,
-		offset T.Double,
-		red T.Double,
-		green T.Double,
-		blue T.Double,
-		alpha T.Double)
+		offset float64,
+		red float64,
+		green float64,
+		blue float64,
+		alpha float64)
 
 	Cairo_pattern_set_matrix func(
 		pattern *T.Cairo_pattern_t,
@@ -1017,10 +1017,10 @@ var (
 
 	Cairo_pattern_get_rgba func(
 		pattern *T.Cairo_pattern_t,
-		red *T.Double,
-		green *T.Double,
-		blue *T.Double,
-		alpha *T.Double) T.Cairo_status_t
+		red *float64,
+		green *float64,
+		blue *float64,
+		alpha *float64) T.Cairo_status_t
 
 	Cairo_pattern_get_surface func(
 		pattern *T.Cairo_pattern_t,
@@ -1029,11 +1029,11 @@ var (
 	Cairo_pattern_get_color_stop_rgba func(
 		pattern *T.Cairo_pattern_t,
 		index int,
-		offset *T.Double,
-		red *T.Double,
-		green *T.Double,
-		blue *T.Double,
-		alpha *T.Double) T.Cairo_status_t
+		offset *float64,
+		red *float64,
+		green *float64,
+		blue *float64,
+		alpha *float64) T.Cairo_status_t
 
 	Cairo_pattern_get_color_stop_count func(
 		pattern *T.Cairo_pattern_t,
@@ -1041,59 +1041,59 @@ var (
 
 	Cairo_pattern_get_linear_points func(
 		pattern *T.Cairo_pattern_t,
-		x0 *T.Double,
-		y0 *T.Double,
-		x1 *T.Double,
-		y1 *T.Double) T.Cairo_status_t
+		x0 *float64,
+		y0 *float64,
+		x1 *float64,
+		y1 *float64) T.Cairo_status_t
 
 	Cairo_pattern_get_radial_circles func(
 		pattern *T.Cairo_pattern_t,
-		x0 *T.Double,
-		y0 *T.Double,
-		r0 *T.Double,
-		x1 *T.Double,
-		y1 *T.Double,
-		r1 *T.Double) T.Cairo_status_t
+		x0 *float64,
+		y0 *float64,
+		r0 *float64,
+		x1 *float64,
+		y1 *float64,
+		r1 *float64) T.Cairo_status_t
 
 	Cairo_matrix_init func(
 		matrix *T.Cairo_matrix_t,
-		xx T.Double,
-		yx T.Double,
-		xy T.Double,
-		yy T.Double,
-		x0 T.Double,
-		y0 T.Double)
+		xx float64,
+		yx float64,
+		xy float64,
+		yy float64,
+		x0 float64,
+		y0 float64)
 
 	Cairo_matrix_init_identity func(
 		matrix *T.Cairo_matrix_t)
 
 	Cairo_matrix_init_translate func(
 		matrix *T.Cairo_matrix_t,
-		tx T.Double,
-		ty T.Double)
+		tx float64,
+		ty float64)
 
 	Cairo_matrix_init_scale func(
 		matrix *T.Cairo_matrix_t,
-		sx T.Double,
-		sy T.Double)
+		sx float64,
+		sy float64)
 
 	Cairo_matrix_init_rotate func(
 		matrix *T.Cairo_matrix_t,
-		radians T.Double)
+		radians float64)
 
 	Cairo_matrix_translate func(
 		matrix *T.Cairo_matrix_t,
-		tx T.Double,
-		ty T.Double)
+		tx float64,
+		ty float64)
 
 	Cairo_matrix_scale func(
 		matrix *T.Cairo_matrix_t,
-		sx T.Double,
-		sy T.Double)
+		sx float64,
+		sy float64)
 
 	Cairo_matrix_rotate func(
 		matrix *T.Cairo_matrix_t,
-		radians T.Double)
+		radians float64)
 
 	Cairo_matrix_invert func(
 		matrix *T.Cairo_matrix_t) T.Cairo_status_t
@@ -1105,13 +1105,13 @@ var (
 
 	Cairo_matrix_transform_distance func(
 		matrix *T.Cairo_matrix_t,
-		dx *T.Double,
-		dy *T.Double)
+		dx *float64,
+		dy *float64)
 
 	Cairo_matrix_transform_point func(
 		matrix *T.Cairo_matrix_t,
-		x *T.Double,
-		y *T.Double)
+		x *float64,
+		y *float64)
 
 	Cairo_region_create func() *T.Cairo_region_t
 
@@ -1282,10 +1282,10 @@ var (
 	Cairo_script_interpreter_feed_string func(
 		ctx *T.Cairo_script_interpreter_t,
 		line string,
-		len int) T.Cairo_status_t
+		leng int) T.Cairo_status_t
 
 	Cairo_script_interpreter_get_line_number func(
-		ctx *T.Cairo_script_interpreter_t) T.Unsigned_int
+		ctx *T.Cairo_script_interpreter_t) uint
 
 	Cairo_script_interpreter_reference func(
 		ctx *T.Cairo_script_interpreter_t) *T.Cairo_script_interpreter_t
@@ -1320,14 +1320,14 @@ var (
 
 	Cairo_pdf_surface_create func(
 		filename string,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_pdf_surface_create_for_stream func(
 		write_func T.Cairo_write_func_t,
 		closure *T.Void,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_pdf_surface_restrict_to_version func(
 		surface *T.Cairo_surface_t,
@@ -1342,19 +1342,19 @@ var (
 
 	Cairo_pdf_surface_set_size func(
 		surface *T.Cairo_surface_t,
-		width_in_points T.Double,
-		height_in_points T.Double)
+		width_in_points float64,
+		height_in_points float64)
 
 	Cairo_ps_surface_create func(
 		filename string,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_ps_surface_create_for_stream func(
 		write_func T.Cairo_write_func_t,
 		closure *T.Void,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_ps_surface_restrict_to_level func(
 		surface *T.Cairo_surface_t,
@@ -1376,8 +1376,8 @@ var (
 
 	Cairo_ps_surface_set_size func(
 		surface *T.Cairo_surface_t,
-		width_in_points T.Double,
-		height_in_points T.Double) T.Cairo_bool_t
+		width_in_points float64,
+		height_in_points float64) T.Cairo_bool_t
 
 	Cairo_ps_surface_dsc_comment func(
 		surface *T.Cairo_surface_t,
@@ -1391,14 +1391,14 @@ var (
 
 	Cairo_svg_surface_create func(
 		filename string,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_svg_surface_create_for_stream func(
 		write_func T.Cairo_write_func_t,
 		closure *T.Void,
-		width_in_points T.Double,
-		height_in_points T.Double) *T.Cairo_surface_t
+		width_in_points float64,
+		height_in_points float64) *T.Cairo_surface_t
 
 	Cairo_svg_surface_restrict_to_version func(
 		surface *T.Cairo_surface_t,
@@ -1452,7 +1452,7 @@ var (
 		scaled_font *T.Cairo_scaled_font_t)
 
 	Cairo_win32_scaled_font_get_metrics_factor func(
-		scaled_font *T.Cairo_scaled_font_t) T.Double
+		scaled_font *T.Cairo_scaled_font_t) float64
 
 	Cairo_win32_scaled_font_get_logical_to_device func(
 		scaled_font *T.Cairo_scaled_font_t,

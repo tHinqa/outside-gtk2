@@ -257,11 +257,11 @@ var (
 		application_id string)
 
 	G_application_get_inactivity_timeout func(
-		application *T.GApplication) T.Guint
+		application *T.GApplication) uint
 
 	G_application_set_inactivity_timeout func(
 		application *T.GApplication,
-		inactivity_timeout T.Guint)
+		inactivity_timeout uint)
 
 	G_application_get_flags func(
 		application *T.GApplication) T.GApplicationFlags
@@ -297,7 +297,7 @@ var (
 	G_application_open func(
 		application *T.GApplication,
 		files **T.GFile,
-		n_files T.Gint,
+		n_files int,
 		hint string)
 
 	G_application_run func(
@@ -352,7 +352,7 @@ var (
 
 	G_initable_newv func(
 		object_type T.GType,
-		n_parameters T.Guint,
+		n_parameters uint,
 		parameters *T.GParameter,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gpointer
@@ -385,7 +385,7 @@ var (
 
 	G_async_initable_newv_async func(
 		object_type T.GType,
-		n_parameters T.Guint,
+		n_parameters uint,
 		parameters *T.GParameter,
 		io_priority int,
 		cancellable *T.GCancellable,
@@ -775,7 +775,7 @@ var (
 		converter *T.GcharsetConverter) T.Gboolean
 
 	G_charset_converter_get_num_fallbacks func(
-		converter *T.GcharsetConverter) T.Guint
+		converter *T.GcharsetConverter) uint
 
 	G_content_type_equals func(
 		type1 string,
@@ -880,32 +880,32 @@ var (
 	G_data_input_stream_read_int16 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Gint16
+		err **T.GError) int16
 
 	G_data_input_stream_read_uint16 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Guint16
+		err **T.GError) uint16
 
 	G_data_input_stream_read_int32 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Gint32
+		err **T.GError) T.GInt32
 
 	G_data_input_stream_read_uint32 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Guint32
+		err **T.GError) T.GUint32
 
 	G_data_input_stream_read_int64 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Gint64
+		err **T.GError) int64
 
 	G_data_input_stream_read_uint64 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
-		err **T.GError) T.Guint64
+		err **T.GError) uint64
 
 	G_data_input_stream_read_line func(
 		stream *T.GDataInputStream,
@@ -915,7 +915,7 @@ var (
 
 	G_data_input_stream_read_line_async func(
 		stream *T.GDataInputStream,
-		io_priority T.Gint,
+		io_priority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -936,7 +936,7 @@ var (
 	G_data_input_stream_read_until_async func(
 		stream *T.GDataInputStream,
 		stop_chars string,
-		io_priority T.Gint,
+		io_priority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -959,7 +959,7 @@ var (
 		stream *T.GDataInputStream,
 		stop_chars string,
 		stop_chars_len T.Gssize,
-		io_priority T.Gint,
+		io_priority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -990,37 +990,37 @@ var (
 
 	G_data_output_stream_put_int16 func(
 		stream *T.GDataOutputStream,
-		data T.Gint16,
+		data int16,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint16 func(
 		stream *T.GDataOutputStream,
-		data T.Guint16,
+		data uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_int32 func(
 		stream *T.GDataOutputStream,
-		data T.Gint32,
+		data T.GInt32,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint32 func(
 		stream *T.GDataOutputStream,
-		data T.Guint32,
+		data T.GUint32,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_int64 func(
 		stream *T.GDataOutputStream,
-		data T.Gint64,
+		data int64,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
 	G_data_output_stream_put_uint64 func(
 		stream *T.GDataOutputStream,
-		data T.Guint64,
+		data uint64,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
@@ -1189,15 +1189,15 @@ var (
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		out_serial *T.Guint32,
+		out_serial *T.GUint32,
 		err **T.GError) T.Gboolean
 
 	G_dbus_connection_send_message_with_reply func(
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		timeout_msec T.Gint,
-		out_serial *T.Guint32,
+		timeout_msec int,
+		out_serial *T.GUint32,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -1211,8 +1211,8 @@ var (
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		timeout_msec T.Gint,
-		out_serial *T.Guint32,
+		timeout_msec int,
+		out_serial *T.GUint32,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusMessage
 
@@ -1234,7 +1234,7 @@ var (
 		parameters *T.GVariant,
 		reply_type *T.GVariantType,
 		flags T.GDBusCallFlags,
-		timeout_msec T.Gint,
+		timeout_msec int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -1253,7 +1253,7 @@ var (
 		parameters *T.GVariant,
 		reply_type *T.GVariantType,
 		flags T.GDBusCallFlags,
-		timeout_msec T.Gint,
+		timeout_msec int,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GVariant
 
@@ -1264,11 +1264,11 @@ var (
 		vtable *T.GDBusInterfaceVTable,
 		user_data T.Gpointer,
 		user_data_free_func T.GDestroyNotify,
-		err **T.GError) T.Guint
+		err **T.GError) uint
 
 	G_dbus_connection_unregister_object func(
 		connection *T.GDBusConnection,
-		registration_id T.Guint) T.Gboolean
+		registration_id uint) T.Gboolean
 
 	G_dbus_connection_register_subtree func(
 		connection *T.GDBusConnection,
@@ -1277,11 +1277,11 @@ var (
 		flags T.GDBusSubtreeFlags,
 		user_data T.Gpointer,
 		user_data_free_func T.GDestroyNotify,
-		err **T.GError) T.Guint
+		err **T.GError) uint
 
 	G_dbus_connection_unregister_subtree func(
 		connection *T.GDBusConnection,
-		registration_id T.Guint) T.Gboolean
+		registration_id uint) T.Gboolean
 
 	G_dbus_connection_signal_subscribe func(
 		connection *T.GDBusConnection,
@@ -1293,21 +1293,21 @@ var (
 		flags T.GDBusSignalFlags,
 		callback T.GDBusSignalCallback,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_dbus_connection_signal_unsubscribe func(
 		connection *T.GDBusConnection,
-		subscription_id T.Guint)
+		subscription_id uint)
 
 	G_dbus_connection_add_filter func(
 		connection *T.GDBusConnection,
 		filter_function T.GDBusMessageFilterFunction,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_dbus_connection_remove_filter func(
 		connection *T.GDBusConnection,
-		filter_id T.Guint)
+		filter_id uint)
 
 	G_dbus_error_quark func() T.GQuark
 
@@ -1322,19 +1322,19 @@ var (
 
 	G_dbus_error_register_error func(
 		error_domain T.GQuark,
-		error_code T.Gint,
+		error_code int,
 		dbus_error_name string) T.Gboolean
 
 	G_dbus_error_unregister_error func(
 		error_domain T.GQuark,
-		error_code T.Gint,
+		error_code int,
 		dbus_error_name string) T.Gboolean
 
 	G_dbus_error_register_error_domain func(
 		error_domain_quark_name string,
 		quark_volatile *T.Gsize,
 		entries *T.GDBusErrorEntry,
-		num_entries T.Guint)
+		num_entries uint)
 
 	G_dbus_error_new_for_dbus_error func(
 		dbus_error_name string,
@@ -1372,7 +1372,7 @@ var (
 
 	G_dbus_interface_info_generate_xml func(
 		info *T.GDBusInterfaceInfo,
-		indent T.Guint,
+		indent uint,
 		string_builder *T.GString)
 
 	G_dbus_node_info_new_for_xml func(
@@ -1385,7 +1385,7 @@ var (
 
 	G_dbus_node_info_generate_xml func(
 		info *T.GDBusNodeInfo,
-		indent T.Guint,
+		indent uint,
 		string_builder *T.GString)
 
 	G_dbus_node_info_ref func(
@@ -1480,7 +1480,7 @@ var (
 
 	G_dbus_message_print func(
 		message *T.GDBusMessage,
-		indent T.Guint) string
+		indent uint) string
 
 	G_dbus_message_get_locked func(
 		message *T.GDBusMessage) T.Gboolean
@@ -1514,11 +1514,11 @@ var (
 		flags T.GDBusMessageFlags)
 
 	G_dbus_message_get_serial func(
-		message *T.GDBusMessage) T.Guint32
+		message *T.GDBusMessage) T.GUint32
 
 	G_dbus_message_set_serial func(
 		message *T.GDBusMessage,
-		serial T.Guint32)
+		serial T.GUint32)
 
 	G_dbus_message_get_header func(
 		message *T.GDBusMessage,
@@ -1547,11 +1547,11 @@ var (
 		fd_list *T.GUnixFDList)
 
 	G_dbus_message_get_reply_serial func(
-		message *T.GDBusMessage) T.Guint32
+		message *T.GDBusMessage) T.GUint32
 
 	G_dbus_message_set_reply_serial func(
 		message *T.GDBusMessage,
-		value T.Guint32)
+		value T.GUint32)
 
 	G_dbus_message_get_interface func(
 		message *T.GDBusMessage) string
@@ -1603,11 +1603,11 @@ var (
 		value string)
 
 	G_dbus_message_get_num_unix_fds func(
-		message *T.GDBusMessage) T.Guint32
+		message *T.GDBusMessage) T.GUint32
 
 	G_dbus_message_set_num_unix_fds func(
 		message *T.GDBusMessage,
-		value T.Guint32)
+		value T.GUint32)
 
 	G_dbus_message_get_arg0 func(
 		message *T.GDBusMessage) string
@@ -1668,19 +1668,19 @@ var (
 
 	G_dbus_method_invocation_return_error func(
 		invocation *T.GDBusMethodInvocation,
-		domain T.GQuark, code T.Gint, format string, v ...VArg)
+		domain T.GQuark, code int, format string, v ...VArg)
 
 	G_dbus_method_invocation_return_error_valist func(
 		invocation *T.GDBusMethodInvocation,
 		domain T.GQuark,
-		code T.Gint,
+		code int,
 		format string,
 		var_args T.Va_list)
 
 	G_dbus_method_invocation_return_error_literal func(
 		invocation *T.GDBusMethodInvocation,
 		domain T.GQuark,
-		code T.Gint,
+		code int,
 		message string)
 
 	G_dbus_method_invocation_return_gerror func(
@@ -1700,7 +1700,7 @@ var (
 		name_acquired_handler T.GBusNameAcquiredCallback,
 		name_lost_handler T.GBusNameLostCallback,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_bus_own_name_on_connection func(
 		connection *T.GDBusConnection,
@@ -1709,7 +1709,7 @@ var (
 		name_acquired_handler T.GBusNameAcquiredCallback,
 		name_lost_handler T.GBusNameLostCallback,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_bus_own_name_with_closures func(
 		bus_type T.GBusType,
@@ -1717,7 +1717,7 @@ var (
 		flags T.GBusNameOwnerFlags,
 		bus_acquired_closure *T.GClosure,
 		name_acquired_closure *T.GClosure,
-		name_lost_closure *T.GClosure) T.Guint
+		name_lost_closure *T.GClosure) uint
 
 	G_bus_own_name_on_connection_with_closures func(
 
@@ -1725,10 +1725,10 @@ var (
 		name string,
 		flags T.GBusNameOwnerFlags,
 		name_acquired_closure *T.GClosure,
-		name_lost_closure *T.GClosure) T.Guint
+		name_lost_closure *T.GClosure) uint
 
 	G_bus_unown_name func(
-		owner_id T.Guint)
+		owner_id uint)
 
 	G_bus_watch_name func(
 		bus_type T.GBusType,
@@ -1737,7 +1737,7 @@ var (
 		name_appeared_handler T.GBusNameAppearedCallback,
 		name_vanished_handler T.GBusNameVanishedCallback,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_bus_watch_name_on_connection func(
 		connection *T.GDBusConnection,
@@ -1746,14 +1746,14 @@ var (
 		name_appeared_handler T.GBusNameAppearedCallback,
 		name_vanished_handler T.GBusNameVanishedCallback,
 		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) T.Guint
+		user_data_free_func T.GDestroyNotify) uint
 
 	G_bus_watch_name_with_closures func(
 		bus_type T.GBusType,
 		name string,
 		flags T.GBusNameWatcherFlags,
 		name_appeared_closure *T.GClosure,
-		name_vanished_closure *T.GClosure) T.Guint
+		name_vanished_closure *T.GClosure) uint
 
 	G_bus_watch_name_on_connection_with_closures func(
 
@@ -1761,10 +1761,10 @@ var (
 		name string,
 		flags T.GBusNameWatcherFlags,
 		name_appeared_closure *T.GClosure,
-		name_vanished_closure *T.GClosure) T.Guint
+		name_vanished_closure *T.GClosure) uint
 
 	G_bus_unwatch_name func(
-		watcher_id T.Guint)
+		watcher_id uint)
 
 	G_dbus_proxy_get_type func() T.GType
 
@@ -1837,11 +1837,11 @@ var (
 		proxy *T.GDBusProxy) string
 
 	G_dbus_proxy_get_default_timeout func(
-		proxy *T.GDBusProxy) T.Gint
+		proxy *T.GDBusProxy) int
 
 	G_dbus_proxy_set_default_timeout func(
 		proxy *T.GDBusProxy,
-		timeout_msec T.Gint)
+		timeout_msec int)
 
 	G_dbus_proxy_get_interface_info func(
 		proxy *T.GDBusProxy) *T.GDBusInterfaceInfo
@@ -1867,7 +1867,7 @@ var (
 		method_name string,
 		parameters *T.GVariant,
 		flags T.GDBusCallFlags,
-		timeout_msec T.Gint,
+		timeout_msec int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -1882,7 +1882,7 @@ var (
 		method_name string,
 		parameters *T.GVariant,
 		flags T.GDBusCallFlags,
-		timeout_msec T.Gint,
+		timeout_msec int,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GVariant
 
@@ -2029,7 +2029,7 @@ var (
 
 	G_icon_get_type func() T.GType
 
-	G_icon_hash func(icon T.Gconstpointer) T.Guint
+	G_icon_hash func(icon T.Gconstpointer) uint
 
 	G_icon_equal func(icon1 *T.GIcon, icon2 *T.GIcon) T.Gboolean
 
@@ -2147,7 +2147,7 @@ var (
 
 	G_file_dup func(file *T.GFile) *T.GFile
 
-	G_file_hash func(file T.Gconstpointer) T.Guint
+	G_file_hash func(file T.Gconstpointer) uint
 
 	G_file_equal func(file1 *T.GFile, file2 *T.GFile) T.Gboolean
 
@@ -2546,7 +2546,7 @@ var (
 	G_file_set_attribute_uint32 func(
 		file *T.GFile,
 		attribute string,
-		value T.Guint32,
+		value T.GUint32,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
@@ -2554,7 +2554,7 @@ var (
 	G_file_set_attribute_int32 func(
 		file *T.GFile,
 		attribute string,
-		value T.Gint32,
+		value T.GInt32,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
@@ -2562,7 +2562,7 @@ var (
 	G_file_set_attribute_uint64 func(
 		file *T.GFile,
 		attribute string,
-		value T.Guint64,
+		value uint64,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
@@ -2570,7 +2570,7 @@ var (
 	G_file_set_attribute_int64 func(
 		file *T.GFile,
 		attribute string,
-		value T.Gint64,
+		value int64,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
@@ -2850,19 +2850,19 @@ var (
 
 	G_file_info_get_attribute_uint32 func(
 		info *T.GFileInfo,
-		attribute string) T.Guint32
+		attribute string) T.GUint32
 
 	G_file_info_get_attribute_int32 func(
 		info *T.GFileInfo,
-		attribute string) T.Gint32
+		attribute string) T.GInt32
 
 	G_file_info_get_attribute_uint64 func(
 		info *T.GFileInfo,
-		attribute string) T.Guint64
+		attribute string) uint64
 
 	G_file_info_get_attribute_int64 func(
 		info *T.GFileInfo,
-		attribute string) T.Gint64
+		attribute string) int64
 
 	G_file_info_get_attribute_object func(
 		info *T.GFileInfo,
@@ -2896,22 +2896,22 @@ var (
 	G_file_info_set_attribute_uint32 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.Guint32)
+		attr_value T.GUint32)
 
 	G_file_info_set_attribute_int32 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.Gint32)
+		attr_value T.GInt32)
 
 	G_file_info_set_attribute_uint64 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.Guint64)
+		attr_value uint64)
 
 	G_file_info_set_attribute_int64 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.Gint64)
+		attr_value int64)
 
 	G_file_info_set_attribute_object func(
 		info *T.GFileInfo,
@@ -2967,7 +2967,7 @@ var (
 		info *T.GFileInfo) string
 
 	G_file_info_get_sort_order func(
-		info *T.GFileInfo) T.Gint32
+		info *T.GFileInfo) T.GInt32
 
 	G_file_info_set_attribute_mask func(
 		info *T.GFileInfo,
@@ -3022,7 +3022,7 @@ var (
 
 	G_file_info_set_sort_order func(
 		info *T.GFileInfo,
-		sort_order T.Gint32)
+		sort_order T.GInt32)
 
 	G_file_attribute_matcher_get_type func() T.GType
 
@@ -3074,10 +3074,10 @@ var (
 	G_io_error_quark func() T.GQuark
 
 	G_io_error_from_errno func(
-		err_no T.Gint) T.GIOErrorEnum
+		err_no int) T.GIOErrorEnum
 
 	G_io_error_from_win32_error func(
-		error_code T.Gint) T.GIOErrorEnum
+		error_code int) T.GIOErrorEnum
 
 	G_io_stream_get_type func() T.GType
 
@@ -3164,7 +3164,7 @@ var (
 
 	G_file_monitor_set_rate_limit func(
 		monitor *T.GFileMonitor,
-		limit_msecs T.Gint)
+		limit_msecs int)
 
 	G_file_monitor_emit_event func(
 		monitor *T.GFileMonitor,
@@ -3218,7 +3218,7 @@ var (
 		string string) *T.GInetAddress
 
 	G_inet_address_new_from_bytes func(
-		bytes *T.Guint8,
+		bytes *uint8,
 		family T.GSocketFamily) *T.GInetAddress
 
 	G_inet_address_new_loopback func(
@@ -3231,7 +3231,7 @@ var (
 		address *T.GInetAddress) string
 
 	G_inet_address_to_bytes func(
-		address *T.GInetAddress) *T.Guint8
+		address *T.GInetAddress) *uint8
 
 	G_inet_address_get_native_size func(
 		address *T.GInetAddress) T.Gsize
@@ -3291,13 +3291,13 @@ var (
 
 	G_inet_socket_address_new func(
 		address *T.GInetAddress,
-		port T.Guint16) *T.GSocketAddress
+		port uint16) *T.GSocketAddress
 
 	G_inet_socket_address_get_address func(
 		address *T.GInetSocketAddress) *T.GInetAddress
 
 	G_inet_socket_address_get_port func(
-		address *T.GInetSocketAddress) T.Guint16
+		address *T.GInetSocketAddress) uint16
 
 	G_app_info_create_flags_get_type func() T.GType
 
@@ -3448,7 +3448,7 @@ var (
 		extension_point_name string,
 		typ T.GType,
 		extension_name string,
-		priority T.Gint) *T.GIOExtension
+		priority int) *T.GIOExtension
 
 	G_io_extension_get_type func(
 		extension *T.GIOExtension) T.GType
@@ -3457,7 +3457,7 @@ var (
 		extension *T.GIOExtension) string
 
 	G_io_extension_get_priority func(
-		extension *T.GIOExtension) T.Gint
+		extension *T.GIOExtension) int
 
 	G_io_extension_ref_class func(
 		extension *T.GIOExtension) *T.GTypeClass
@@ -3474,7 +3474,7 @@ var (
 		job_func T.GIOSchedulerJobFunc,
 		user_data T.Gpointer,
 		notify T.GDestroyNotify,
-		io_priority T.Gint,
+		io_priority int,
 		cancellable *T.GCancellable)
 
 	G_io_scheduler_cancel_all_jobs func()
@@ -3747,23 +3747,23 @@ var (
 
 	G_network_address_new func(
 		hostname string,
-		port T.Guint16) *T.GSocketConnectable
+		port uint16) *T.GSocketConnectable
 
 	G_network_address_parse func(
 		host_and_port string,
-		default_port T.Guint16,
+		default_port uint16,
 		err **T.GError) *T.GSocketConnectable
 
 	G_network_address_parse_uri func(
 		uri string,
-		default_port T.Guint16,
+		default_port uint16,
 		err **T.GError) *T.GSocketConnectable
 
 	G_network_address_get_hostname func(
 		addr *T.GNetworkAddress) string
 
 	G_network_address_get_port func(
-		addr *T.GNetworkAddress) T.Guint16
+		addr *T.GNetworkAddress) uint16
 
 	G_network_address_get_scheme func(
 		addr *T.GNetworkAddress) string
@@ -3913,10 +3913,10 @@ var (
 
 	G_proxy_address_new func(
 		inetaddr *T.GInetAddress,
-		port T.Guint16,
+		port uint16,
 		protocol string,
 		dest_hostname string,
-		dest_port T.Guint16,
+		dest_port uint16,
 		username string,
 		password string) *T.GSocketAddress
 
@@ -3927,7 +3927,7 @@ var (
 		proxy *T.GProxyAddress) string
 
 	G_proxy_address_get_destination_port func(
-		proxy *T.GProxyAddress) T.Guint16
+		proxy *T.GProxyAddress) uint16
 
 	G_proxy_address_get_username func(
 		proxy *T.GProxyAddress) string
@@ -4131,10 +4131,10 @@ var (
 
 	G_settings_reset func(settings *T.GSettings, key string)
 
-	G_settings_get_int func(settings *T.GSettings, key string) T.Gint
+	G_settings_get_int func(settings *T.GSettings, key string) int
 
 	G_settings_set_int func(
-		settings *T.GSettings, key string, value T.Gint) T.Gboolean
+		settings *T.GSettings, key string, value int) T.Gboolean
 
 	G_settings_get_string func(
 		settings *T.GSettings, key string) string
@@ -4149,10 +4149,10 @@ var (
 		settings *T.GSettings, key string, value T.Gboolean) T.Gboolean
 
 	G_settings_get_double func(
-		settings *T.GSettings, key string) T.Gdouble
+		settings *T.GSettings, key string) float64
 
 	G_settings_set_double func(settings *T.GSettings,
-		key string, value T.Gdouble) T.Gboolean
+		key string, value float64) T.Gboolean
 
 	G_settings_get_strv func(
 		settings *T.GSettings, key string) **T.Gchar
@@ -4161,16 +4161,16 @@ var (
 		key string, value **T.Gchar) T.Gboolean
 
 	G_settings_get_enum func(
-		settings *T.GSettings, key string) T.Gint
+		settings *T.GSettings, key string) int
 
 	G_settings_set_enum func(settings *T.GSettings,
-		key string, value T.Gint) T.Gboolean
+		key string, value int) T.Gboolean
 
 	G_settings_get_flags func(
-		settings *T.GSettings, key string) T.Guint
+		settings *T.GSettings, key string) uint
 
 	G_settings_set_flags func(settings *T.GSettings,
-		key string, value T.Guint) T.Gboolean
+		key string, value uint) T.Gboolean
 
 	G_settings_get_child func(
 		settings *T.GSettings,
@@ -4233,7 +4233,7 @@ var (
 
 	G_simple_async_result_new_error func(
 		source_object *T.GObject, callback T.GAsyncReadyCallback,
-		user_data T.Gpointer, domain T.GQuark, code T.Gint,
+		user_data T.Gpointer, domain T.GQuark, code int,
 		format string, v ...VArg) *T.GSimpleAsyncResult
 
 	G_simple_async_result_new_from_error func(
@@ -4303,12 +4303,12 @@ var (
 
 	G_simple_async_result_set_error func(
 		simple *T.GSimpleAsyncResult, domain T.GQuark,
-		code T.Gint, format string, v ...VArg)
+		code int, format string, v ...VArg)
 
 	G_simple_async_result_set_error_va func(
 		simple *T.GSimpleAsyncResult,
 		domain T.GQuark,
-		code T.Gint,
+		code int,
 		format string,
 		args T.Va_list)
 
@@ -4319,7 +4319,7 @@ var (
 
 	G_simple_async_report_error_in_idle func(object *T.GObject,
 		callback T.GAsyncReadyCallback, user_data T.Gpointer,
-		domain T.GQuark, code T.Gint, format string, v ...VArg)
+		domain T.GQuark, code int, format string, v ...VArg)
 
 	G_simple_async_report_gerror_in_idle func(
 		object *T.GObject,
@@ -4371,11 +4371,11 @@ var (
 		address *T.GSocketAddress)
 
 	G_socket_client_get_timeout func(
-		client *T.GSocketClient) T.Guint
+		client *T.GSocketClient) uint
 
 	G_socket_client_set_timeout func(
 		client *T.GSocketClient,
-		timeout T.Guint)
+		timeout uint)
 
 	G_socket_client_get_enable_proxy func(
 		client *T.GSocketClient) T.Gboolean
@@ -4407,7 +4407,7 @@ var (
 	G_socket_client_connect_to_host func(
 		client *T.GSocketClient,
 		host_and_port string,
-		default_port T.Guint16,
+		default_port uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
@@ -4421,7 +4421,7 @@ var (
 	G_socket_client_connect_to_uri func(
 		client *T.GSocketClient,
 		uri string,
-		default_port T.Guint16,
+		default_port uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
@@ -4440,7 +4440,7 @@ var (
 	G_socket_client_connect_to_host_async func(
 		client *T.GSocketClient,
 		host_and_port string,
-		default_port T.Guint16,
+		default_port uint16,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -4466,7 +4466,7 @@ var (
 	G_socket_client_connect_to_uri_async func(
 		client *T.GSocketClient,
 		uri string,
-		default_port T.Guint16,
+		default_port uint16,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
 		user_data T.Gpointer)
@@ -4497,7 +4497,7 @@ var (
 		err **T.GError) *T.GSocket
 
 	G_socket_new_from_fd func(
-		fd T.Gint,
+		fd int,
 		err **T.GError) *T.GSocket
 
 	G_socket_get_fd func(
@@ -4535,18 +4535,18 @@ var (
 		socket *T.GSocket) T.Gboolean
 
 	G_socket_get_listen_backlog func(
-		socket *T.GSocket) T.Gint
+		socket *T.GSocket) int
 
 	G_socket_set_listen_backlog func(
 		socket *T.GSocket,
-		backlog T.Gint)
+		backlog int)
 
 	G_socket_get_timeout func(
-		socket *T.GSocket) T.Guint
+		socket *T.GSocket) uint
 
 	G_socket_set_timeout func(
 		socket *T.GSocket,
-		timeout T.Guint)
+		timeout uint)
 
 	G_socket_is_connected func(
 		socket *T.GSocket) T.Gboolean
@@ -4620,10 +4620,10 @@ var (
 		socket *T.GSocket,
 		address **T.GSocketAddress,
 		vectors *T.GInputVector,
-		num_vectors T.Gint,
+		num_vectors int,
 		messages ***T.GSocketControlMessage,
-		num_messages *T.Gint,
-		flags *T.Gint,
+		num_messages *int,
+		flags *int,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
@@ -4631,10 +4631,10 @@ var (
 		socket *T.GSocket,
 		address *T.GSocketAddress,
 		vectors *T.GOutputVector,
-		num_vectors T.Gint,
+		num_vectors int,
 		messages **T.GSocketControlMessage,
-		num_messages T.Gint,
-		flags T.Gint,
+		num_messages int,
+		flags int,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
@@ -4697,12 +4697,12 @@ var (
 		G_type T.GType,
 		family T.GSocketFamily,
 		t T.GSocketType,
-		protocol T.Gint)
+		protocol int)
 
 	G_socket_connection_factory_lookup_type func(
 		family T.GSocketFamily,
 		t T.GSocketType,
-		protocol_id T.Gint) T.GType
+		protocol_id int) T.GType
 
 	G_socket_connection_factory_create_connection func(
 		socket *T.GSocket) *T.GSocketConnection
@@ -4753,14 +4753,14 @@ var (
 
 	G_socket_listener_add_inet_port func(
 		listener *T.GSocketListener,
-		port T.Guint16,
+		port uint16,
 		source_object *T.GObject,
 		err **T.GError) T.Gboolean
 
 	G_socket_listener_add_any_inet_port func(
 		listener *T.GSocketListener,
 		source_object *T.GObject,
-		err **T.GError) T.Guint16
+		err **T.GError) uint16
 
 	G_socket_listener_accept_socket func(
 		listener *T.GSocketListener,
@@ -4818,9 +4818,9 @@ var (
 
 	G_srv_target_new func(
 		hostname string,
-		port T.Guint16,
-		priority T.Guint16,
-		weight T.Guint16) *T.GSrvTarget
+		port uint16,
+		priority uint16,
+		weight uint16) *T.GSrvTarget
 
 	G_srv_target_copy func(
 		target *T.GSrvTarget) *T.GSrvTarget
@@ -4832,13 +4832,13 @@ var (
 		target *T.GSrvTarget) string
 
 	G_srv_target_get_port func(
-		target *T.GSrvTarget) T.Guint16
+		target *T.GSrvTarget) uint16
 
 	G_srv_target_get_priority func(
-		target *T.GSrvTarget) T.Guint16
+		target *T.GSrvTarget) uint16
 
 	G_srv_target_get_weight func(
-		target *T.GSrvTarget) T.Guint16
+		target *T.GSrvTarget) uint16
 
 	G_srv_target_list_sort func(
 		targets *T.GList) *T.GList

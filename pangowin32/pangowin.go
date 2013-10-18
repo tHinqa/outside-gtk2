@@ -21,7 +21,7 @@ var (
 	Pango_win32_get_context func() *T.PangoContext
 
 	Pango_win32_render func(hdc w.HDC,
-		font *T.PangoFont, glyphs *T.PangoGlyphString, x, y T.Gint)
+		font *T.PangoFont, glyphs *T.PangoGlyphString, x, y int)
 
 	Pango_win32_render_layout_line func(
 		hdc w.HDC, line *T.PangoLayoutLine, x, y int)
@@ -40,7 +40,7 @@ var (
 		font *T.PangoFont, wc T.Gunichar) T.PangoGlyph
 
 	Pango_win32_font_get_glyph_index func(
-		font *T.PangoFont, wc T.Gunichar) T.Gint
+		font *T.PangoFont, wc T.Gunichar) int
 
 	Pango_win32_get_dc func() w.HDC
 
@@ -51,7 +51,7 @@ var (
 
 	Pango_win32_font_done_font func(font *T.PangoFont)
 
-	Pango_win32_font_get_metrics_factor func(font *T.PangoFont) T.Double
+	Pango_win32_font_get_metrics_factor func(font *T.PangoFont) float64
 
 	Pango_win32_font_cache_new func() *T.PangoWin32FontCache
 
