@@ -13,7 +13,9 @@ import (
 
 func init() {
 	outside.AddDllApis(dll, false, apiList)
+	outside.AddDllData(dll, false, dataList)
 	outside.AddDllApis(dllPixbuf, false, apiListPixbuf)
+	outside.AddDllData(dllPixbuf, false, dataListPixbuf)
 }
 
 type (
@@ -4323,22 +4325,15 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixdata_to_csource", &Gdk_pixdata_to_csource},
 }
 
-type (
-	Gdk_pixbuf_major_version T.Guint
-	Gdk_pixbuf_minor_version T.Guint
-	Gdk_pixbuf_micro_version T.Guint
-	Gdk_pixbuf_version       string
-	Gdk_threads_mutex        *T.GMutex
-	Gdk_threads_lock         T.GCallback
-	Gdk_threads_unlock       T.GCallback
-)
+var dataList = outside.Data{
+	{"gdk_threads_lock", (*T.GCallback)(nil)},
+	{"gdk_threads_mutex", (*T.GMutex)(nil)},
+	{"gdk_threads_unlock", (*T.GCallback)(nil)},
+}
 
-var DataList = outside.Data{
-// {"gdk_threads_lock", new(Gdk_threads_lock)},
-// {"gdk_threads_mutex", new(Gdk_threads_mutex)},
-// {"gdk_threads_unlock", new(Gdk_threads_unlock)},
-// {"gdk_pixbuf_major_version", new(Gdk_pixbuf_major_version)},
-// {"gdk_pixbuf_micro_version", new(Gdk_pixbuf_micro_version)},
-// {"gdk_pixbuf_minor_version", new(Gdk_pixbuf_minor_version)},
-// {"gdk_pixbuf_version", new(Gdk_pixbuf_version)},
+var dataListPixbuf = outside.Data{
+	{"gdk_pixbuf_major_version", (*T.Guint)(nil)},
+	{"gdk_pixbuf_micro_version", (*T.Guint)(nil)},
+	{"gdk_pixbuf_minor_version", (*T.Guint)(nil)},
+	{"gdk_pixbuf_version", (*uint8)(nil)},
 }

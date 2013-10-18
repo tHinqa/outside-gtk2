@@ -4580,4 +4580,12 @@ type (
 		Scripts     *PangoEngineScriptInfo
 		N_scripts   Gint
 	}
+
+	GTestConfig struct {
+		Test_initialized Gboolean
+		Test_quick       Gboolean
+		Test_perf        Gboolean
+		Test_verbose     Gboolean
+		Test_quiet       Gboolean
+	}
 )

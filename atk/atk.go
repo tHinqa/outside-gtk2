@@ -1140,5 +1140,5 @@ var apiList = outside.Apis{
 }
 
 var dataList = outside.Data{
-// {"atk_misc_instance", new(Atk_misc_instance)},
+	{"atk_misc_instance", (*T.AtkMisc)(nil)},
 }

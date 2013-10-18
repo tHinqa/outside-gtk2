@@ -2007,5 +2007,5 @@ var apiList = outside.Apis{
 }
 
 var dataList = outside.Data{
-// {"g_param_spec_types", new(G_param_spec_types)},
+	{"g_param_spec_types", (*T.GType)(nil)},
 }

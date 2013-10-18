@@ -2,6 +2,7 @@ package gtk
 
 import (
 	"github.com/tHinqa/outside"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -3871,11 +3872,11 @@ var apiList = outside.Apis{
 }
 
 var dataList = outside.Data{
-// {"gtk_binary_age", new(Gtk_binary_age)},
-// {"gtk_debug_flags", new(Gtk_debug_flags)},
-// {"gtk_interface_age", new(Gtk_interface_age)},
-// {"gtk_major_version", new(Gtk_major_version)},
-// {"gtk_micro_version", new(Gtk_micro_version)},
-// {"gtk_minor_version", new(Gtk_minor_version)},
-// {"gtk_text_attr_appearance_type", new(Gtk_text_attr_appearance_type)},
+	{"gtk_binary_age", (*T.Guint)(nil)},
+	{"gtk_debug_flags", (*T.Guint)(nil)},
+	{"gtk_interface_age", (*T.Guint)(nil)},
+	{"gtk_major_version", (*T.Guint)(nil)},
+	{"gtk_micro_version", (*T.Guint)(nil)},
+	{"gtk_minor_version", (*T.Guint)(nil)},
+	{"gtk_text_attr_appearance_type", (*T.PangoAttrType)(nil)},
 }
