@@ -2,4 +2,4 @@ package glib
 
 import "testing"
 
-func TestInit(t *testing.T) {}
+func TestIni(t *testing.T) {}

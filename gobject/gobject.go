@@ -555,7 +555,7 @@ var (
 
 	G_variant_get_gtype func() T.GType
 
-	G_type_init func()
+	GTypeInit func()
 
 	G_type_init_with_debug_flags func(
 		debug_flags T.GTypeDebugFlags)
@@ -1883,7 +1883,7 @@ var apiList = outside.Apis{
 	{"g_type_fundamental_next", &G_type_fundamental_next},
 	{"g_type_get_plugin", &G_type_get_plugin},
 	{"g_type_get_qdata", &G_type_get_qdata},
-	{"g_type_init", &G_type_init},
+	{"g_type_init", &GTypeInit},
 	{"g_type_init_with_debug_flags", &G_type_init_with_debug_flags},
 	{"g_type_instance_get_private", &G_type_instance_get_private},
 	{"g_type_interface_add_prerequisite", &G_type_interface_add_prerequisite},

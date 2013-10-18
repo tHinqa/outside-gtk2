@@ -26,100 +26,100 @@ type (
 )
 
 var (
-	Gdk_colormap_get_type func() T.GType
+	ColormapGetType func() T.GType
 
-	Gdk_colormap_new func(
+	ColormapNew func(
 		visual *T.GdkVisual,
 		allocate T.Gboolean) *T.GdkColormap
 
-	Gdk_colormap_ref func(
+	ColormapRef func(
 		cmap *T.GdkColormap) *T.GdkColormap
 
-	Gdk_colormap_unref func(
+	ColormapUnref func(
 		cmap *T.GdkColormap)
 
-	Gdk_colormap_get_system func() *T.GdkColormap
+	ColormapGetSystem func() *T.GdkColormap
 
-	Gdk_colormap_get_screen func(
+	ColormapGetScreen func(
 		cmap *T.GdkColormap) *T.GdkScreen
 
-	Gdk_colormap_get_system_size func() int
+	ColormapGetSystemSize func() int
 
-	Gdk_colormap_change func(
+	ColormapChange func(
 		colormap *T.GdkColormap,
 		ncolors int)
 
-	Gdk_colormap_alloc_colors func(
+	ColormapAllocColors func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
-		n_colors int,
+		nColors int,
 		writeable T.Gboolean,
-		best_match T.Gboolean,
+		bestMatch T.Gboolean,
 		success *T.Gboolean) int
 
-	Gdk_colormap_alloc_color func(
+	ColormapAllocColor func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor,
 		writeable T.Gboolean,
-		best_match T.Gboolean) T.Gboolean
+		bestMatch T.Gboolean) T.Gboolean
 
-	Gdk_colormap_free_colors func(
+	ColormapFreeColors func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
-		n_colors int)
+		nColors int)
 
-	Gdk_colormap_query_color func(
+	ColormapQueryColor func(
 		colormap *T.GdkColormap,
 		pixel T.Gulong,
 		result *T.GdkColor)
 
-	Gdk_colormap_get_visual func(
+	ColormapGetVisual func(
 		colormap *T.GdkColormap) *T.GdkVisual
 
-	Gdk_color_copy func(
+	ColorCopy func(
 		color *T.GdkColor) *T.GdkColor
 
-	Gdk_color_free func(
+	ColorFree func(
 		color *T.GdkColor)
 
-	Gdk_color_parse func(
+	ColorParse func(
 		spec string,
 		color *T.GdkColor) T.Gboolean
 
-	Gdk_color_hash func(
+	ColorHash func(
 		colora *T.GdkColor) uint
 
-	Gdk_color_equal func(
+	ColorEqual func(
 		colora *T.GdkColor,
 		colorb *T.GdkColor) T.Gboolean
 
-	Gdk_color_to_string func(
+	ColorToString func(
 		color *T.GdkColor) string
 
-	Gdk_color_get_type func() T.GType
+	ColorGetType func() T.GType
 
-	Gdk_colors_store func(
+	ColorsStore func(
 		colormap *T.GdkColormap,
 		colors *T.GdkColor,
 		ncolors int)
 
-	Gdk_color_white func(
+	ColorWhite func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor) int
 
-	Gdk_color_black func(
+	ColorBlack func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor) int
 
-	Gdk_color_alloc func(
+	ColorAlloc func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor) int
 
-	Gdk_color_change func(
+	ColorChange func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor) int
 
-	Gdk_colors_alloc func(
+	ColorsAlloc func(
 		colormap *T.GdkColormap,
 		contiguous T.Gboolean,
 		planes *T.Gulong,
@@ -127,580 +127,580 @@ var (
 		pixels *T.Gulong,
 		npixels int) int
 
-	Gdk_colors_free func(
+	ColorsFree func(
 		colormap *T.GdkColormap,
 		pixels *T.Gulong,
 		npixels int,
 		planes T.Gulong)
 
-	Gdk_drag_context_get_type func() T.GType
+	DragContextGetType func() T.GType
 
-	Gdk_drag_context_new func() *T.GdkDragContext
+	DragContextNew func() *T.GdkDragContext
 
-	Gdk_drag_context_list_targets func(
+	DragContextListTargets func(
 		context *T.GdkDragContext) *T.GList
 
-	Gdk_drag_context_get_actions func(
+	DragContextGetActions func(
 		context *T.GdkDragContext) T.GdkDragAction
 
-	Gdk_drag_context_get_suggested_action func(
+	DragContextGetSuggestedAction func(
 		context *T.GdkDragContext) T.GdkDragAction
 
-	Gdk_drag_context_get_selected_action func(
+	DragContextGetSelectedAction func(
 		context *T.GdkDragContext) T.GdkDragAction
 
-	Gdk_drag_context_get_source_window func(
+	DragContextGetSourceWindow func(
 		context *T.GdkDragContext) *T.GdkWindow
 
-	Gdk_drag_context_get_dest_window func(
+	DragContextGetDestWindow func(
 		context *T.GdkDragContext) *T.GdkWindow
 
-	Gdk_drag_context_get_protocol func(
+	DragContextGetProtocol func(
 		context *T.GdkDragContext) T.GdkDragProtocol
 
-	Gdk_drag_context_ref func(
+	DragContextRef func(
 		context *T.GdkDragContext)
 
-	Gdk_drag_context_unref func(
+	DragContextUnref func(
 		context *T.GdkDragContext)
 
-	Gdk_drag_status func(
+	DragStatus func(
 		context *T.GdkDragContext,
 		action T.GdkDragAction,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_drop_reply func(
+	DropReply func(
 		context *T.GdkDragContext,
 		ok T.Gboolean,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_drop_finish func(
+	DropFinish func(
 		context *T.GdkDragContext,
 		success T.Gboolean,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_drag_get_selection func(
+	DragGetSelection func(
 		context *T.GdkDragContext) T.GdkAtom
 
-	Gdk_drag_begin func(
+	DragBegin func(
 		window *T.GdkWindow,
 		targets *T.GList) *T.GdkDragContext
 
-	Gdk_drag_get_protocol_for_display func(
+	DragGetProtocolForDisplay func(
 		display *T.GdkDisplay,
 		xid T.GdkNativeWindow,
 		protocol *T.GdkDragProtocol) T.GdkNativeWindow
 
-	Gdk_drag_find_window_for_screen func(
+	DragFindWindowForScreen func(
 		context *T.GdkDragContext,
-		drag_window *T.GdkWindow,
+		dragWindow *T.GdkWindow,
 		screen *T.GdkScreen,
-		x_root int,
-		y_root int,
-		dest_window **T.GdkWindow,
+		xRoot int,
+		yRoot int,
+		destWindow **T.GdkWindow,
 		protocol *T.GdkDragProtocol)
 
-	Gdk_drag_get_protocol func(
+	DragGetProtocol func(
 		xid T.GdkNativeWindow,
 		protocol *T.GdkDragProtocol) T.GdkNativeWindow
 
-	Gdk_drag_find_window func(
+	DragFindWindow func(
 		context *T.GdkDragContext,
-		drag_window *T.GdkWindow,
-		x_root int,
-		y_root int,
-		dest_window **T.GdkWindow,
+		dragWindow *T.GdkWindow,
+		xRoot int,
+		yRoot int,
+		destWindow **T.GdkWindow,
 		protocol *T.GdkDragProtocol)
 
-	Gdk_drag_motion func(
+	DragMotion func(
 		context *T.GdkDragContext,
-		dest_window *T.GdkWindow,
+		destWindow *T.GdkWindow,
 		protocol T.GdkDragProtocol,
-		x_root int,
-		y_root int,
-		suggested_action T.GdkDragAction,
-		possible_actions T.GdkDragAction,
-		time_ T.GUint32) T.Gboolean
+		xRoot int,
+		yRoot int,
+		suggestedAction T.GdkDragAction,
+		possibleActions T.GdkDragAction,
+		time T.GUint32) T.Gboolean
 
-	Gdk_drag_drop func(
+	DragDrop func(
 		context *T.GdkDragContext,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_drag_abort func(
+	DragAbort func(
 		context *T.GdkDragContext,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_drag_drop_succeeded func(
+	DragDropSucceeded func(
 		context *T.GdkDragContext) T.Gboolean
 
-	Gdk_device_get_type func() T.GType
+	DeviceGetType func() T.GType
 
-	Gdk_devices_list func() *T.GList
+	DevicesList func() *T.GList
 
-	Gdk_device_get_name func(
+	DeviceGetName func(
 		device *T.GdkDevice) string
 
-	Gdk_device_get_source func(
+	DeviceGetSource func(
 		device *T.GdkDevice) T.GdkInputSource
 
-	Gdk_device_get_mode func(
+	DeviceGetMode func(
 		device *T.GdkDevice) T.GdkInputMode
 
-	Gdk_device_get_has_cursor func(
+	DeviceGetHasCursor func(
 		device *T.GdkDevice) T.Gboolean
 
-	Gdk_device_get_key func(
+	DeviceGetKey func(
 		device *T.GdkDevice,
 		index uint,
 		keyval *uint,
 		modifiers *T.GdkModifierType)
 
-	Gdk_device_get_axis_use func(
+	DeviceGetAxisUse func(
 		device *T.GdkDevice,
 		index uint) T.GdkAxisUse
 
-	Gdk_device_get_n_keys func(
+	DeviceGetNKeys func(
 		device *T.GdkDevice) int
 
-	Gdk_device_get_n_axes func(
+	DeviceGetNAxes func(
 		device *T.GdkDevice) int
 
-	Gdk_device_set_source func(
+	DeviceSetSource func(
 		device *T.GdkDevice,
 		source T.GdkInputSource)
 
-	Gdk_device_set_mode func(
+	DeviceSetMode func(
 		device *T.GdkDevice,
 		mode T.GdkInputMode) T.Gboolean
 
-	Gdk_device_set_key func(
+	DeviceSetKey func(
 		device *T.GdkDevice,
-		index_ uint,
+		index uint,
 		keyval uint,
 		modifiers T.GdkModifierType)
 
-	Gdk_device_set_axis_use func(
+	DeviceSetAxisUse func(
 		device *T.GdkDevice,
-		index_ uint,
+		index uint,
 		use T.GdkAxisUse)
 
-	Gdk_device_get_state func(
+	DeviceGetState func(
 		device *T.GdkDevice,
 		window *T.GdkWindow,
 		axes *float64,
 		mask *T.GdkModifierType)
 
-	Gdk_device_get_history func(
+	DeviceGetHistory func(
 		device *T.GdkDevice,
 		window *T.GdkWindow,
 		start T.GUint32,
 		stop T.GUint32,
 		events ***T.GdkTimeCoord,
-		n_events *int) T.Gboolean
+		nEvents *int) T.Gboolean
 
-	Gdk_device_free_history func(
+	DeviceFreeHistory func(
 		events **T.GdkTimeCoord,
-		n_events int)
+		nEvents int)
 
-	Gdk_device_get_axis func(
+	DeviceGetAxis func(
 		device *T.GdkDevice,
 		axes *float64,
 		use T.GdkAxisUse,
 		value *float64) T.Gboolean
 
-	Gdk_input_set_extension_events func(
+	InputSetExtensionEvents func(
 		window *T.GdkWindow,
 		mask int,
 		mode T.GdkExtensionMode)
 
-	Gdk_device_get_core_pointer func() *T.GdkDevice
+	DeviceGetCorePointer func() *T.GdkDevice
 
-	Gdk_event_get_type func() T.GType
+	EventGetType func() T.GType
 
-	Gdk_events_pending func() T.Gboolean
+	EventsPending func() T.Gboolean
 
-	Gdk_event_get func() *T.GdkEvent
+	EventGet func() *T.GdkEvent
 
-	Gdk_event_peek func() *T.GdkEvent
+	EventPeek func() *T.GdkEvent
 
-	Gdk_event_get_graphics_expose func(
+	EventGetGraphicsExpose func(
 		window *T.GdkWindow) *T.GdkEvent
 
-	Gdk_event_put func(
+	EventPut func(
 		event *T.GdkEvent)
 
-	Gdk_event_new func(
+	EventNew func(
 		t T.GdkEventType) *T.GdkEvent
 
-	Gdk_event_copy func(
+	EventCopy func(
 		event *T.GdkEvent) *T.GdkEvent
 
-	Gdk_event_free func(
+	EventFree func(
 		event *T.GdkEvent)
 
-	Gdk_event_get_time func(
+	EventGetTime func(
 		event *T.GdkEvent) T.GUint32
 
-	Gdk_event_get_state func(
+	EventGetState func(
 		event *T.GdkEvent,
 		state *T.GdkModifierType) T.Gboolean
 
-	Gdk_event_get_coords func(
+	EventGetCoords func(
 		event *T.GdkEvent,
-		x_win *float64,
-		y_win *float64) T.Gboolean
+		xWin *float64,
+		yWin *float64) T.Gboolean
 
-	Gdk_event_get_root_coords func(
+	EventGetRootCoords func(
 		event *T.GdkEvent,
-		x_root *float64,
-		y_root *float64) T.Gboolean
+		xRoot *float64,
+		yRoot *float64) T.Gboolean
 
-	Gdk_event_get_axis func(
+	EventGetAxis func(
 		event *T.GdkEvent,
-		axis_use T.GdkAxisUse,
+		axisUse T.GdkAxisUse,
 		value *float64) T.Gboolean
 
-	Gdk_event_request_motions func(
+	EventRequestMotions func(
 		event *T.GdkEventMotion)
 
-	Gdk_event_handler_set func(
+	EventHandlerSet func(
 		f T.GdkEventFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify)
 
-	Gdk_event_set_screen func(
+	EventSetScreen func(
 		event *T.GdkEvent,
 		screen *T.GdkScreen)
 
-	Gdk_event_get_screen func(
+	EventGetScreen func(
 		event *T.GdkEvent) *T.GdkScreen
 
-	Gdk_set_show_events func(
-		show_events T.Gboolean)
+	SetShowEvents func(
+		showEvents T.Gboolean)
 
-	Gdk_get_show_events func() T.Gboolean
+	GetShowEvents func() T.Gboolean
 
-	Gdk_add_client_message_filter func(
-		message_type T.GdkAtom,
+	AddClientMessageFilter func(
+		messageType T.GdkAtom,
 		f T.GdkFilterFunc,
 		data T.Gpointer)
 
-	Gdk_setting_get func(
+	SettingGet func(
 		name string,
 		value *T.GValue) T.Gboolean
 
-	Gdk_display_get_type func() T.GType
+	DisplayGetType func() T.GType
 
-	Gdk_display_open func(
-		display_name string) *T.GdkDisplay
+	DisplayOpen func(
+		displayName string) *T.GdkDisplay
 
-	Gdk_display_get_name func(
+	DisplayGetName func(
 		display *T.GdkDisplay) string
 
-	Gdk_display_get_n_screens func(
+	DisplayGetNScreens func(
 		display *T.GdkDisplay) int
 
-	Gdk_display_get_screen func(
+	DisplayGetScreen func(
 		display *T.GdkDisplay,
-		screen_num int) *T.GdkScreen
+		screenNum int) *T.GdkScreen
 
-	Gdk_display_get_default_screen func(
+	DisplayGetDefaultScreen func(
 		display *T.GdkDisplay) *T.GdkScreen
 
-	Gdk_display_pointer_ungrab func(
+	DisplayPointerUngrab func(
 		display *T.GdkDisplay,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_display_keyboard_ungrab func(
+	DisplayKeyboardUngrab func(
 		display *T.GdkDisplay,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_display_pointer_is_grabbed func(
+	DisplayPointerIsGrabbed func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_beep func(
+	DisplayBeep func(
 		display *T.GdkDisplay)
 
-	Gdk_display_sync func(
+	DisplaySync func(
 		display *T.GdkDisplay)
 
-	Gdk_display_flush func(
+	DisplayFlush func(
 		display *T.GdkDisplay)
 
-	Gdk_display_close func(
+	DisplayClose func(
 		display *T.GdkDisplay)
 
-	Gdk_display_is_closed func(
+	DisplayIsClosed func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_list_devices func(
+	DisplayListDevices func(
 		display *T.GdkDisplay) *T.GList
 
-	Gdk_display_get_event func(
+	DisplayGetEvent func(
 		display *T.GdkDisplay) *T.GdkEvent
 
-	Gdk_display_peek_event func(
+	DisplayPeekEvent func(
 		display *T.GdkDisplay) *T.GdkEvent
 
-	Gdk_display_put_event func(
+	DisplayPutEvent func(
 		display *T.GdkDisplay,
 		event *T.GdkEvent)
 
-	Gdk_display_add_client_message_filter func(
+	DisplayAddClientMessageFilter func(
 		display *T.GdkDisplay,
-		message_type T.GdkAtom,
+		messageType T.GdkAtom,
 		f T.GdkFilterFunc,
 		data T.Gpointer)
 
-	Gdk_display_set_double_click_time func(
+	DisplaySetDoubleClickTime func(
 		display *T.GdkDisplay,
 		msec uint)
 
-	Gdk_display_set_double_click_distance func(
+	DisplaySetDoubleClickDistance func(
 		display *T.GdkDisplay,
 		distance uint)
 
-	Gdk_display_get_default func() *T.GdkDisplay
+	DisplayGetDefault func() *T.GdkDisplay
 
-	Gdk_display_get_core_pointer func(
+	DisplayGetCorePointer func(
 		display *T.GdkDisplay) *T.GdkDevice
 
-	Gdk_display_get_pointer func(
+	DisplayGetPointer func(
 		display *T.GdkDisplay,
 		screen **T.GdkScreen,
 		x *int,
 		y *int,
 		mask *T.GdkModifierType)
 
-	Gdk_display_get_window_at_pointer func(
+	DisplayGetWindowAtPointer func(
 		display *T.GdkDisplay,
-		win_x *int,
-		win_y *int) *T.GdkWindow
+		winX *int,
+		winY *int) *T.GdkWindow
 
-	Gdk_display_warp_pointer func(
+	DisplayWarpPointer func(
 		display *T.GdkDisplay,
 		screen *T.GdkScreen,
 		x int,
 		y int)
 
-	Gdk_display_set_pointer_hooks func(
+	DisplaySetPointerHooks func(
 		display *T.GdkDisplay,
-		new_hooks *T.GdkDisplayPointerHooks) *T.GdkDisplayPointerHooks
+		newHooks *T.GdkDisplayPointerHooks) *T.GdkDisplayPointerHooks
 
-	Gdk_display_open_default_libgtk_only func() *T.GdkDisplay
+	DisplayOpenDefaultLibgtkOnly func() *T.GdkDisplay
 
-	Gdk_display_supports_cursor_alpha func(
+	DisplaySupportsCursorAlpha func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_supports_cursor_color func(
+	DisplaySupportsCursorColor func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_get_default_cursor_size func(
+	DisplayGetDefaultCursorSize func(
 		display *T.GdkDisplay) uint
 
-	Gdk_display_get_maximal_cursor_size func(
+	DisplayGetMaximalCursorSize func(
 		display *T.GdkDisplay,
 		width *uint,
 		height *uint)
 
-	Gdk_display_get_default_group func(
+	DisplayGetDefaultGroup func(
 		display *T.GdkDisplay) *T.GdkWindow
 
-	Gdk_display_supports_selection_notification func(
+	DisplaySupportsSelectionNotification func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_request_selection_notification func(
+	DisplayRequestSelectionNotification func(
 		display *T.GdkDisplay,
 		selection T.GdkAtom) T.Gboolean
 
-	Gdk_display_supports_clipboard_persistence func(
+	DisplaySupportsClipboardPersistence func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_store_clipboard func(
+	DisplayStoreClipboard func(
 		display *T.GdkDisplay,
-		clipboard_window *T.GdkWindow,
-		time_ T.GUint32,
+		clipboardWindow *T.GdkWindow,
+		time T.GUint32,
 		targets *T.GdkAtom,
-		n_targets int)
+		nTargets int)
 
-	Gdk_display_supports_shapes func(
+	DisplaySupportsShapes func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_supports_input_shapes func(
+	DisplaySupportsInputShapes func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_display_supports_composite func(
+	DisplaySupportsComposite func(
 		display *T.GdkDisplay) T.Gboolean
 
-	Gdk_screen_get_type func() T.GType
+	ScreenGetType func() T.GType
 
-	Gdk_screen_get_default_colormap func(
+	ScreenGetDefaultColormap func(
 		screen *T.GdkScreen) *T.GdkColormap
 
-	Gdk_screen_set_default_colormap func(
+	ScreenSetDefaultColormap func(
 		screen *T.GdkScreen,
 		colormap *T.GdkColormap)
 
-	Gdk_screen_get_system_colormap func(
+	ScreenGetSystemColormap func(
 		screen *T.GdkScreen) *T.GdkColormap
 
-	Gdk_screen_get_system_visual func(
+	ScreenGetSystemVisual func(
 		screen *T.GdkScreen) *T.GdkVisual
 
-	Gdk_screen_get_rgb_colormap func(
+	ScreenGetRgbColormap func(
 		screen *T.GdkScreen) *T.GdkColormap
 
-	Gdk_screen_get_rgb_visual func(
+	ScreenGetRgbVisual func(
 		screen *T.GdkScreen) *T.GdkVisual
 
-	Gdk_screen_get_rgba_colormap func(
+	ScreenGetRgbaColormap func(
 		screen *T.GdkScreen) *T.GdkColormap
 
-	Gdk_screen_get_rgba_visual func(
+	ScreenGetRgbaVisual func(
 		screen *T.GdkScreen) *T.GdkVisual
 
-	Gdk_screen_is_composited func(
+	ScreenIsComposited func(
 		screen *T.GdkScreen) T.Gboolean
 
-	Gdk_screen_get_root_window func(
+	ScreenGetRootWindow func(
 		screen *T.GdkScreen) *T.GdkWindow
 
-	Gdk_screen_get_display func(
+	ScreenGetDisplay func(
 		screen *T.GdkScreen) *T.GdkDisplay
 
-	Gdk_screen_get_number func(
+	ScreenGetNumber func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_width func(
+	ScreenGetWidth func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_height func(
+	ScreenGetHeight func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_width_mm func(
+	ScreenGetWidthMm func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_height_mm func(
+	ScreenGetHeightMm func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_list_visuals func(
+	ScreenListVisuals func(
 		screen *T.GdkScreen) *T.GList
 
-	Gdk_screen_get_toplevel_windows func(
+	ScreenGetToplevelWindows func(
 		screen *T.GdkScreen) *T.GList
 
-	Gdk_screen_make_display_name func(
+	ScreenMakeDisplayName func(
 		screen *T.GdkScreen) string
 
-	Gdk_screen_get_n_monitors func(
+	ScreenGetNMonitors func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_primary_monitor func(
+	ScreenGetPrimaryMonitor func(
 		screen *T.GdkScreen) int
 
-	Gdk_screen_get_monitor_geometry func(
+	ScreenGetMonitorGeometry func(
 		screen *T.GdkScreen,
-		monitor_num int,
+		monitorNum int,
 		dest *T.GdkRectangle)
 
-	Gdk_screen_get_monitor_at_point func(
+	ScreenGetMonitorAtPoint func(
 		screen *T.GdkScreen,
 		x int,
 		y int) int
 
-	Gdk_screen_get_monitor_at_window func(
+	ScreenGetMonitorAtWindow func(
 		screen *T.GdkScreen,
 		window *T.GdkWindow) int
 
-	Gdk_screen_get_monitor_width_mm func(
+	ScreenGetMonitorWidthMm func(
 		screen *T.GdkScreen,
-		monitor_num int) int
+		monitorNum int) int
 
-	Gdk_screen_get_monitor_height_mm func(
+	ScreenGetMonitorHeightMm func(
 		screen *T.GdkScreen,
-		monitor_num int) int
+		monitorNum int) int
 
-	Gdk_screen_get_monitor_plug_name func(
+	ScreenGetMonitorPlugName func(
 		screen *T.GdkScreen,
-		monitor_num int) string
+		monitorNum int) string
 
-	Gdk_screen_broadcast_client_message func(
+	ScreenBroadcastClientMessage func(
 		screen *T.GdkScreen,
 		event *T.GdkEvent)
 
-	Gdk_screen_get_default func() *T.GdkScreen
+	ScreenGetDefault func() *T.GdkScreen
 
-	Gdk_screen_get_setting func(
+	ScreenGetSetting func(
 		screen *T.GdkScreen,
 		name string,
 		value *T.GValue) T.Gboolean
 
-	Gdk_screen_set_font_options func(
+	ScreenSetFontOptions func(
 		screen *T.GdkScreen,
-		options *T.Cairo_font_options_t)
+		options *T.CairoFontOptionsT)
 
-	Gdk_screen_get_font_options func(
-		screen *T.GdkScreen) *T.Cairo_font_options_t
+	ScreenGetFontOptions func(
+		screen *T.GdkScreen) *T.CairoFontOptionsT
 
-	Gdk_screen_set_resolution func(
+	ScreenSetResolution func(
 		screen *T.GdkScreen,
 		dpi float64)
 
-	Gdk_screen_get_resolution func(
+	ScreenGetResolution func(
 		screen *T.GdkScreen) float64
 
-	Gdk_screen_get_active_window func(
+	ScreenGetActiveWindow func(
 		screen *T.GdkScreen) *T.GdkWindow
 
-	Gdk_screen_get_window_stack func(
+	ScreenGetWindowStack func(
 		screen *T.GdkScreen) *T.GList
 
-	Gdk_app_launch_context_get_type func() T.GType
+	AppLaunchContextGetType func() T.GType
 
-	Gdk_app_launch_context_new func() *T.GdkAppLaunchContext
+	AppLaunchContextNew func() *T.GdkAppLaunchContext
 
-	Gdk_app_launch_context_set_display func(
+	AppLaunchContextSetDisplay func(
 		context *T.GdkAppLaunchContext,
 		display *T.GdkDisplay)
 
-	Gdk_app_launch_context_set_screen func(
+	AppLaunchContextSetScreen func(
 		context *T.GdkAppLaunchContext,
 		screen *T.GdkScreen)
 
-	Gdk_app_launch_context_set_desktop func(
+	AppLaunchContextSetDesktop func(
 		context *T.GdkAppLaunchContext,
 		desktop int)
 
-	Gdk_app_launch_context_set_timestamp func(
+	AppLaunchContextSetTimestamp func(
 		context *T.GdkAppLaunchContext,
 		timestamp T.GUint32)
 
-	Gdk_app_launch_context_set_icon func(
+	AppLaunchContextSetIcon func(
 		context *T.GdkAppLaunchContext,
 		icon *T.GIcon)
 
-	Gdk_app_launch_context_set_icon_name func(
+	AppLaunchContextSetIconName func(
 		context *T.GdkAppLaunchContext,
-		icon_name string)
+		iconName string)
 
-	Gdk_rgb_init func()
+	RgbInit func()
 
-	Gdk_rgb_xpixel_from_rgb func(
+	RgbXpixelFromRgb func(
 		rgb T.GUint32) T.Gulong
 
-	Gdk_rgb_gc_set_foreground func(
+	RgbGcSetForeground func(
 		gc *T.GdkGC,
 		rgb T.GUint32)
 
-	Gdk_rgb_gc_set_background func(
+	RgbGcSetBackground func(
 		gc *T.GdkGC,
 		rgb T.GUint32)
 
-	Gdk_rgb_find_color func(
+	RgbFindColor func(
 		colormap *T.GdkColormap,
 		color *T.GdkColor)
 
-	Gdk_draw_rgb_image func(
+	DrawRgbImage func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -708,10 +708,10 @@ var (
 		width int,
 		height int,
 		dith T.GdkRgbDither,
-		rgb_buf *T.Guchar,
+		rgbBuf *T.Guchar,
 		rowstride int)
 
-	Gdk_draw_rgb_image_dithalign func(
+	DrawRgbImageDithalign func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -719,12 +719,12 @@ var (
 		width int,
 		height int,
 		dith T.GdkRgbDither,
-		rgb_buf *T.Guchar,
+		rgbBuf *T.Guchar,
 		rowstride int,
 		xdith int,
 		ydith int)
 
-	Gdk_draw_rgb_32_image func(
+	DrawRgb32Image func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -735,7 +735,7 @@ var (
 		buf *T.Guchar,
 		rowstride int)
 
-	Gdk_draw_rgb_32_image_dithalign func(
+	DrawRgb32ImageDithalign func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -748,7 +748,7 @@ var (
 		xdith int,
 		ydith int)
 
-	Gdk_draw_gray_image func(
+	DrawGrayImage func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -759,7 +759,7 @@ var (
 		buf *T.Guchar,
 		rowstride int)
 
-	Gdk_draw_indexed_image func(
+	DrawIndexedImage func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -771,573 +771,573 @@ var (
 		rowstride int,
 		cmap *T.GdkRgbCmap)
 
-	Gdk_rgb_cmap_new func(
+	RgbCmapNew func(
 		colors *T.GUint32,
-		n_colors int) *T.GdkRgbCmap
+		nColors int) *T.GdkRgbCmap
 
-	Gdk_rgb_cmap_free func(
+	RgbCmapFree func(
 		cmap *T.GdkRgbCmap)
 
-	Gdk_rgb_set_verbose func(
+	RgbSetVerbose func(
 		verbose T.Gboolean)
 
-	Gdk_rgb_set_install func(
+	RgbSetInstall func(
 		install T.Gboolean)
 
-	Gdk_rgb_set_min_colors func(
-		min_colors int)
+	RgbSetMinColors func(
+		minColors int)
 
-	Gdk_rgb_get_colormap func() *T.GdkColormap
+	RgbGetColormap func() *T.GdkColormap
 
-	Gdk_rgb_get_visual func() *T.GdkVisual
+	RgbGetVisual func() *T.GdkVisual
 
-	Gdk_rgb_ditherable func() T.Gboolean
+	RgbDitherable func() T.Gboolean
 
-	Gdk_rgb_colormap_ditherable func(
+	RgbColormapDitherable func(
 		cmap *T.GdkColormap) T.Gboolean
 
-	Gdk_pixbuf_error_quark func() T.GQuark
+	PixbufErrorQuark func() T.GQuark
 
-	Gdk_pixbuf_get_type func() T.GType
+	PixbufGetType func() T.GType
 
-	Gdk_pixbuf_ref func(
+	PixbufRef func(
 		pixbuf *T.GdkPixbuf) *T.GdkPixbuf
 
-	Gdk_pixbuf_unref func(
+	PixbufUnref func(
 		pixbuf *T.GdkPixbuf)
 
-	Gdk_pixbuf_get_colorspace func(
+	PixbufGetColorspace func(
 		pixbuf *T.GdkPixbuf) T.GdkColorspace
 
-	Gdk_pixbuf_get_n_channels func(
+	PixbufGetNChannels func(
 		pixbuf *T.GdkPixbuf) int
 
-	Gdk_pixbuf_get_has_alpha func(
+	PixbufGetHasAlpha func(
 		pixbuf *T.GdkPixbuf) T.Gboolean
 
-	Gdk_pixbuf_get_bits_per_sample func(
+	PixbufGetBitsPerSample func(
 		pixbuf *T.GdkPixbuf) int
 
-	Gdk_pixbuf_get_pixels func(
+	PixbufGetPixels func(
 		pixbuf *T.GdkPixbuf) *T.Guchar
 
-	Gdk_pixbuf_get_width func(
+	PixbufGetWidth func(
 		pixbuf *T.GdkPixbuf) int
 
-	Gdk_pixbuf_get_height func(
+	PixbufGetHeight func(
 		pixbuf *T.GdkPixbuf) int
 
-	Gdk_pixbuf_get_rowstride func(
+	PixbufGetRowstride func(
 		pixbuf *T.GdkPixbuf) int
 
-	Gdk_pixbuf_new func(
+	PixbufNew func(
 		colorspace T.GdkColorspace,
-		has_alpha T.Gboolean,
-		bits_per_sample int,
+		hasAlpha T.Gboolean,
+		bitsPerSample int,
 		width int,
 		height int) *T.GdkPixbuf
 
-	Gdk_pixbuf_copy func(
+	PixbufCopy func(
 		pixbuf *T.GdkPixbuf) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_subpixbuf func(
-		src_pixbuf *T.GdkPixbuf,
-		src_x int,
-		src_y int,
+	PixbufNewSubpixbuf func(
+		srcPixbuf *T.GdkPixbuf,
+		srcX int,
+		srcY int,
 		width int,
 		height int) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_file func(
+	PixbufNewFromFile func(
 		filename string,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_file_at_size func(
-		filename string,
-		width int,
-		height int,
-		e **T.GError) *T.GdkPixbuf
-
-	Gdk_pixbuf_new_from_file_at_scale func(
+	PixbufNewFromFileAtSize func(
 		filename string,
 		width int,
 		height int,
-		preserve_aspect_ratio T.Gboolean,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_data func(
+	PixbufNewFromFileAtScale func(
+		filename string,
+		width int,
+		height int,
+		preserveAspectRatio T.Gboolean,
+		e **T.GError) *T.GdkPixbuf
+
+	PixbufNewFromData func(
 		data *T.Guchar,
 		colorspace T.GdkColorspace,
-		has_alpha T.Gboolean,
-		bits_per_sample int,
+		hasAlpha T.Gboolean,
+		bitsPerSample int,
 		width int,
 		height int,
 		rowstride int,
-		destroy_fn T.GdkPixbufDestroyNotify,
-		destroy_fn_data T.Gpointer) *T.GdkPixbuf
+		destroyFn T.GdkPixbufDestroyNotify,
+		destroyFnData T.Gpointer) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_xpm_data func(
+	PixbufNewFromXpmData func(
 		data **T.Char) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_inline func(
-		data_length int,
+	PixbufNewFromInline func(
+		dataLength int,
 		data *uint8,
-		copy_pixels T.Gboolean,
+		copyPixels T.Gboolean,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_fill func(
+	PixbufFill func(
 		pixbuf *T.GdkPixbuf,
 		pixel T.GUint32)
 
-	Gdk_pixbuf_save_utf8 func(pixbuf *T.GdkPixbuf,
+	PixbufSaveUtf8 func(pixbuf *T.GdkPixbuf,
 		filename, typ string, e **T.GError, v ...VArg) T.Gboolean
 
-	Gdk_pixbuf_savev_utf8 func(
+	PixbufSavevUtf8 func(
 		pixbuf *T.GdkPixbuf,
 		filename string,
 		typ string,
-		option_keys **T.Char,
-		option_values **T.Char,
+		optionKeys **T.Char,
+		optionValues **T.Char,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_save_to_callback func(pixbuf *T.GdkPixbuf,
-		save_func T.GdkPixbufSaveFunc,
-		user_data T.Gpointer,
+	PixbufSaveToCallback func(pixbuf *T.GdkPixbuf,
+		saveFunc T.GdkPixbufSaveFunc,
+		userData T.Gpointer,
 		typ string, err **T.GError, v ...VArg) T.Gboolean
 
-	Gdk_pixbuf_save_to_callbackv func(
+	PixbufSaveToCallbackv func(
 		pixbuf *T.GdkPixbuf,
-		save_func T.GdkPixbufSaveFunc,
-		user_data T.Gpointer,
+		saveFunc T.GdkPixbufSaveFunc,
+		userData T.Gpointer,
 		typ string,
-		option_keys **T.Char,
-		option_values **T.Char,
+		optionKeys **T.Char,
+		optionValues **T.Char,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_save_to_buffer func(pixbuf *T.GdkPixbuf,
-		buffer **T.Gchar, buffer_size *T.Gsize,
+	PixbufSaveToBuffer func(pixbuf *T.GdkPixbuf,
+		buffer **T.Gchar, bufferSize *T.Gsize,
 		typ string, e **T.GError, v ...VArg) T.Gboolean
 
-	Gdk_pixbuf_save_to_bufferv func(
+	PixbufSaveToBufferv func(
 		pixbuf *T.GdkPixbuf,
 		buffer **T.Gchar,
-		buffer_size *T.Gsize,
+		bufferSize *T.Gsize,
 		typ string,
-		option_keys **T.Char,
-		option_values **T.Char,
+		optionKeys **T.Char,
+		optionValues **T.Char,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_new_from_stream func(
+	PixbufNewFromStream func(
 		stream *T.GInputStream,
 		cancellable *T.GCancellable,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_stream_async func(
+	PixbufNewFromStreamAsync func(
 		stream *T.GInputStream,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	Gdk_pixbuf_new_from_stream_finish func(
-		async_result *T.GAsyncResult,
+	PixbufNewFromStreamFinish func(
+		asyncResult *T.GAsyncResult,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_stream_at_scale func(
+	PixbufNewFromStreamAtScale func(
 		stream *T.GInputStream,
 		width int,
 		height int,
-		preserve_aspect_ratio T.Gboolean,
+		preserveAspectRatio T.Gboolean,
 		cancellable *T.GCancellable,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixbuf_new_from_stream_at_scale_async func(
+	PixbufNewFromStreamAtScaleAsync func(
 		stream *T.GInputStream,
 		width int,
 		height int,
-		preserve_aspect_ratio T.Gboolean,
+		preserveAspectRatio T.Gboolean,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	Gdk_pixbuf_save_to_stream func(pixbuf *T.GdkPixbuf,
+	PixbufSaveToStream func(pixbuf *T.GdkPixbuf,
 		stream *T.GOutputStream, typ string,
 		cancellable *T.GCancellable, e **T.GError, v ...VArg) T.Gboolean
 
-	Gdk_pixbuf_save_to_stream_async func(pixbuf *T.GdkPixbuf,
+	PixbufSaveToStreamAsync func(pixbuf *T.GdkPixbuf,
 		stream *T.GOutputStream, typ string,
 		cancellable *T.GCancellable, callback T.GAsyncReadyCallback,
-		user_data T.Gpointer, v ...VArg)
+		userData T.Gpointer, v ...VArg)
 
-	Gdk_pixbuf_save_to_stream_finish func(
-		async_result *T.GAsyncResult,
+	PixbufSaveToStreamFinish func(
+		asyncResult *T.GAsyncResult,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_add_alpha func(
+	PixbufAddAlpha func(
 		pixbuf *T.GdkPixbuf,
-		substitute_color T.Gboolean,
+		substituteColor T.Gboolean,
 		r, g, b T.Guchar) *T.GdkPixbuf
 
-	Gdk_pixbuf_copy_area func(
-		src_pixbuf *T.GdkPixbuf,
-		src_x, src_y, width, height int,
-		dest_pixbuf *T.GdkPixbuf,
-		dest_x, dest_y int)
+	PixbufCopyArea func(
+		srcPixbuf *T.GdkPixbuf,
+		srcX, srcY, width, height int,
+		destPixbuf *T.GdkPixbuf,
+		destX, destY int)
 
-	Gdk_pixbuf_saturate_and_pixelate func(
+	PixbufSaturateAndPixelate func(
 		src, dest *T.GdkPixbuf,
 		saturation float32,
 		pixelate T.Gboolean)
 
-	Gdk_pixbuf_apply_embedded_orientation func(
+	PixbufApplyEmbeddedOrientation func(
 		src *T.GdkPixbuf) *T.GdkPixbuf
 
-	Gdk_pixbuf_get_option func(
+	PixbufGetOption func(
 		pixbuf *T.GdkPixbuf,
 		key string) string
 
-	Gdk_pixbuf_scale func(
+	PixbufScale func(
 		src *T.GdkPixbuf,
 		dest *T.GdkPixbuf,
-		dest_x int,
-		dest_y int,
-		dest_width int,
-		dest_height int,
-		offset_x float64,
-		offset_y float64,
-		scale_x float64,
-		scale_y float64,
-		interp_type T.GdkInterpType)
+		destX int,
+		destY int,
+		destWidth int,
+		destHeight int,
+		offsetX float64,
+		offsetY float64,
+		scaleX float64,
+		scaleY float64,
+		interpType T.GdkInterpType)
 
-	Gdk_pixbuf_composite func(
+	PixbufComposite func(
 		src *T.GdkPixbuf,
 		dest *T.GdkPixbuf,
-		dest_x int,
-		dest_y int,
-		dest_width int,
-		dest_height int,
-		offset_x float64,
-		offset_y float64,
-		scale_x float64,
-		scale_y float64,
-		interp_type T.GdkInterpType,
-		overall_alpha int)
+		destX int,
+		destY int,
+		destWidth int,
+		destHeight int,
+		offsetX float64,
+		offsetY float64,
+		scaleX float64,
+		scaleY float64,
+		interpType T.GdkInterpType,
+		overallAlpha int)
 
-	Gdk_pixbuf_composite_color func(
+	PixbufCompositeColor func(
 		src *T.GdkPixbuf,
 		dest *T.GdkPixbuf,
-		dest_x int,
-		dest_y int,
-		dest_width int,
-		dest_height int,
-		offset_x float64,
-		offset_y float64,
-		scale_x float64,
-		scale_y float64,
-		interp_type T.GdkInterpType,
-		overall_alpha int,
-		check_x int,
-		check_y int,
-		check_size int,
+		destX int,
+		destY int,
+		destWidth int,
+		destHeight int,
+		offsetX float64,
+		offsetY float64,
+		scaleX float64,
+		scaleY float64,
+		interpType T.GdkInterpType,
+		overallAlpha int,
+		checkX int,
+		checkY int,
+		checkSize int,
 		color1 T.GUint32,
 		color2 T.GUint32)
 
-	Gdk_pixbuf_scale_simple func(
+	PixbufScaleSimple func(
 		src *T.GdkPixbuf,
-		dest_width int,
-		dest_height int,
-		interp_type T.GdkInterpType) *T.GdkPixbuf
+		destWidth int,
+		destHeight int,
+		interpType T.GdkInterpType) *T.GdkPixbuf
 
-	Gdk_pixbuf_composite_color_simple func(
+	PixbufCompositeColorSimple func(
 		src *T.GdkPixbuf,
-		dest_width int,
-		dest_height int,
-		interp_type T.GdkInterpType,
-		overall_alpha int,
-		check_size int,
+		destWidth int,
+		destHeight int,
+		interpType T.GdkInterpType,
+		overallAlpha int,
+		checkSize int,
 		color1 T.GUint32,
 		color2 T.GUint32) *T.GdkPixbuf
 
-	Gdk_pixbuf_rotate_simple func(
+	PixbufRotateSimple func(
 		src *T.GdkPixbuf,
 		angle T.GdkPixbufRotation) *T.GdkPixbuf
 
-	Gdk_pixbuf_flip func(
+	PixbufFlip func(
 		src *T.GdkPixbuf,
 		horizontal T.Gboolean) *T.GdkPixbuf
 
-	Gdk_pixbuf_animation_get_type func() T.GType
+	PixbufAnimationGetType func() T.GType
 
-	Gdk_pixbuf_animation_new_from_file_utf8 func(
+	PixbufAnimationNewFromFileUtf8 func(
 		filename string,
 		e **T.GError) *T.GdkPixbufAnimation
 
-	Gdk_pixbuf_animation_ref func(
+	PixbufAnimationRef func(
 		animation *T.GdkPixbufAnimation) *T.GdkPixbufAnimation
 
-	Gdk_pixbuf_animation_unref func(
+	PixbufAnimationUnref func(
 		animation *T.GdkPixbufAnimation)
 
-	Gdk_pixbuf_animation_get_width func(
+	PixbufAnimationGetWidth func(
 		animation *T.GdkPixbufAnimation) int
 
-	Gdk_pixbuf_animation_get_height func(
+	PixbufAnimationGetHeight func(
 		animation *T.GdkPixbufAnimation) int
 
-	Gdk_pixbuf_animation_is_static_image func(
+	PixbufAnimationIsStaticImage func(
 		animation *T.GdkPixbufAnimation) T.Gboolean
 
-	Gdk_pixbuf_animation_get_static_image func(
+	PixbufAnimationGetStaticImage func(
 		animation *T.GdkPixbufAnimation) *T.GdkPixbuf
 
-	Gdk_pixbuf_animation_get_iter func(
+	PixbufAnimationGetIter func(
 		animation *T.GdkPixbufAnimation,
-		start_time *T.GTimeVal) *T.GdkPixbufAnimationIter
+		startTime *T.GTimeVal) *T.GdkPixbufAnimationIter
 
-	Gdk_pixbuf_animation_iter_get_type func() T.GType
+	PixbufAnimationIterGetType func() T.GType
 
-	Gdk_pixbuf_animation_iter_get_delay_time func(
+	PixbufAnimationIterGetDelayTime func(
 		iter *T.GdkPixbufAnimationIter) int
 
-	Gdk_pixbuf_animation_iter_get_pixbuf func(
+	PixbufAnimationIterGetPixbuf func(
 		iter *T.GdkPixbufAnimationIter) *T.GdkPixbuf
 
-	Gdk_pixbuf_animation_iter_on_currently_loading_frame func(
+	PixbufAnimationIterOnCurrentlyLoadingFrame func(
 		iter *T.GdkPixbufAnimationIter) T.Gboolean
 
-	Gdk_pixbuf_animation_iter_advance func(
+	PixbufAnimationIterAdvance func(
 		iter *T.GdkPixbufAnimationIter,
-		current_time *T.GTimeVal) T.Gboolean
+		currentTime *T.GTimeVal) T.Gboolean
 
-	Gdk_pixbuf_simple_anim_get_type func() T.GType
+	PixbufSimpleAnimGetType func() T.GType
 
-	Gdk_pixbuf_simple_anim_iter_get_type func() T.GType
+	PixbufSimpleAnimIterGetType func() T.GType
 
-	Gdk_pixbuf_simple_anim_new func(
+	PixbufSimpleAnimNew func(
 		width int,
 		height int,
 		rate float32) *T.GdkPixbufSimpleAnim
 
-	Gdk_pixbuf_simple_anim_add_frame func(
+	PixbufSimpleAnimAddFrame func(
 		animation *T.GdkPixbufSimpleAnim,
 		pixbuf *T.GdkPixbuf)
 
-	Gdk_pixbuf_simple_anim_set_loop func(
+	PixbufSimpleAnimSetLoop func(
 		animation *T.GdkPixbufSimpleAnim,
 		loop T.Gboolean)
 
-	Gdk_pixbuf_simple_anim_get_loop func(
+	PixbufSimpleAnimGetLoop func(
 		animation *T.GdkPixbufSimpleAnim) T.Gboolean
 
-	Gdk_pixbuf_format_get_type func() T.GType
+	PixbufFormatGetType func() T.GType
 
-	Gdk_pixbuf_get_formats func() *T.GSList
+	PixbufGetFormats func() *T.GSList
 
-	Gdk_pixbuf_format_get_name func(
+	PixbufFormatGetName func(
 		format *T.GdkPixbufFormat) string
 
-	Gdk_pixbuf_format_get_description func(
+	PixbufFormatGetDescription func(
 		format *T.GdkPixbufFormat) string
 
-	Gdk_pixbuf_format_get_mime_types func(
+	PixbufFormatGetMimeTypes func(
 		format *T.GdkPixbufFormat) **T.Gchar
 
-	Gdk_pixbuf_format_get_extensions func(
+	PixbufFormatGetExtensions func(
 		format *T.GdkPixbufFormat) **T.Gchar
 
-	Gdk_pixbuf_format_is_writable func(
+	PixbufFormatIsWritable func(
 		format *T.GdkPixbufFormat) T.Gboolean
 
-	Gdk_pixbuf_format_is_scalable func(
+	PixbufFormatIsScalable func(
 		format *T.GdkPixbufFormat) T.Gboolean
 
-	Gdk_pixbuf_format_is_disabled func(
+	PixbufFormatIsDisabled func(
 		format *T.GdkPixbufFormat) T.Gboolean
 
-	Gdk_pixbuf_format_set_disabled func(
+	PixbufFormatSetDisabled func(
 		format *T.GdkPixbufFormat,
 		disabled T.Gboolean)
 
-	Gdk_pixbuf_format_get_license func(
+	PixbufFormatGetLicense func(
 		format *T.GdkPixbufFormat) string
 
-	Gdk_pixbuf_get_file_info func(
+	PixbufGetFileInfo func(
 		filename string,
 		width *int,
 		height *int) *T.GdkPixbufFormat
 
-	Gdk_pixbuf_format_copy func(
+	PixbufFormatCopy func(
 		format *T.GdkPixbufFormat) *T.GdkPixbufFormat
 
-	Gdk_pixbuf_format_free func(
+	PixbufFormatFree func(
 		format *T.GdkPixbufFormat)
 
-	Gdk_pixbuf_loader_get_type func() T.GType
+	PixbufLoaderGetType func() T.GType
 
-	Gdk_pixbuf_loader_new func() *T.GdkPixbufLoader
+	PixbufLoaderNew func() *T.GdkPixbufLoader
 
-	Gdk_pixbuf_loader_new_with_type func(
-		image_type string,
+	PixbufLoaderNewWithType func(
+		imageType string,
 		e **T.GError) *T.GdkPixbufLoader
 
-	Gdk_pixbuf_loader_new_with_mime_type func(
-		mime_type string,
+	PixbufLoaderNewWithMimeType func(
+		mimeType string,
 		e **T.GError) *T.GdkPixbufLoader
 
-	Gdk_pixbuf_loader_set_size func(
+	PixbufLoaderSetSize func(
 		loader *T.GdkPixbufLoader,
 		width int,
 		height int)
 
-	Gdk_pixbuf_loader_write func(
+	PixbufLoaderWrite func(
 		loader *T.GdkPixbufLoader,
 		buf *T.Guchar,
 		count T.Gsize,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_loader_get_pixbuf func(
+	PixbufLoaderGetPixbuf func(
 		loader *T.GdkPixbufLoader) *T.GdkPixbuf
 
-	Gdk_pixbuf_loader_get_animation func(
+	PixbufLoaderGetAnimation func(
 		loader *T.GdkPixbufLoader) *T.GdkPixbufAnimation
 
-	Gdk_pixbuf_loader_close func(
+	PixbufLoaderClose func(
 		loader *T.GdkPixbufLoader,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixbuf_loader_get_format func(
+	PixbufLoaderGetFormat func(
 		loader *T.GdkPixbufLoader) *T.GdkPixbufFormat
 
-	Gdk_pixbuf_alpha_mode_get_type func() T.GType
+	PixbufAlphaModeGetType func() T.GType
 
-	Gdk_colorspace_get_type func() T.GType
+	ColorspaceGetType func() T.GType
 
-	Gdk_pixbuf_error_get_type func() T.GType
+	PixbufErrorGetType func() T.GType
 
-	Gdk_interp_type_get_type func() T.GType
+	InterpTypeGetType func() T.GType
 
-	Gdk_pixbuf_rotation_get_type func() T.GType
+	PixbufRotationGetType func() T.GType
 
-	Gdk_pixbuf_render_threshold_alpha func(
+	PixbufRenderThresholdAlpha func(
 		pixbuf *T.GdkPixbuf,
 		bitmap *T.GdkBitmap,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int,
-		alpha_threshold int)
+		alphaThreshold int)
 
-	Gdk_pixbuf_render_to_drawable func(
+	PixbufRenderToDrawable func(
 		pixbuf *T.GdkPixbuf,
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int,
 		dither T.GdkRgbDither,
-		x_dither int,
-		y_dither int)
+		xDither int,
+		yDither int)
 
-	Gdk_pixbuf_render_to_drawable_alpha func(
+	PixbufRenderToDrawableAlpha func(
 		pixbuf *T.GdkPixbuf,
 		drawable *T.GdkDrawable,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int,
-		alpha_mode T.GdkPixbufAlphaMode,
-		alpha_threshold int,
+		alphaMode T.GdkPixbufAlphaMode,
+		alphaThreshold int,
 		dither T.GdkRgbDither,
-		x_dither int,
-		y_dither int)
+		xDither int,
+		yDither int)
 
-	Gdk_pixbuf_render_pixmap_and_mask_for_colormap func(
+	PixbufRenderPixmapAndMaskForColormap func(
 		pixbuf *T.GdkPixbuf,
 		colormap *T.GdkColormap,
-		pixmap_return **T.GdkPixmap,
-		mask_return **T.GdkBitmap,
-		alpha_threshold int)
+		pixmapReturn **T.GdkPixmap,
+		maskReturn **T.GdkBitmap,
+		alphaThreshold int)
 
-	Gdk_pixbuf_render_pixmap_and_mask func(
+	PixbufRenderPixmapAndMask func(
 		pixbuf *T.GdkPixbuf,
-		pixmap_return **T.GdkPixmap,
-		mask_return **T.GdkBitmap,
-		alpha_threshold int)
+		pixmapReturn **T.GdkPixmap,
+		maskReturn **T.GdkBitmap,
+		alphaThreshold int)
 
-	Gdk_pixbuf_get_from_drawable func(
+	PixbufGetFromDrawable func(
 		dest *T.GdkPixbuf,
 		src *T.GdkDrawable,
 		cmap *T.GdkColormap,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int) *T.GdkPixbuf
 
-	Gdk_pixbuf_get_from_image func(
+	PixbufGetFromImage func(
 		dest *T.GdkPixbuf,
 		src *T.GdkImage,
 		cmap *T.GdkColormap,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int) *T.GdkPixbuf
 
-	Gdk_cairo_create func(
-		drawable *T.GdkDrawable) *T.Cairo_t
+	CairoCreate func(
+		drawable *T.GdkDrawable) *T.CairoT
 
-	Gdk_cairo_reset_clip func(
-		cr *T.Cairo_t,
+	CairoResetClip func(
+		cr *T.CairoT,
 		drawable *T.GdkDrawable)
 
-	Gdk_cairo_set_source_color func(
-		cr *T.Cairo_t,
+	CairoSetSourceColor func(
+		cr *T.CairoT,
 		color *T.GdkColor)
 
-	Gdk_cairo_set_source_pixbuf func(
-		cr *T.Cairo_t,
+	CairoSetSourcePixbuf func(
+		cr *T.CairoT,
 		pixbuf *T.GdkPixbuf,
-		pixbuf_x float64,
-		pixbuf_y float64)
+		pixbufX float64,
+		pixbufY float64)
 
-	Gdk_cairo_set_source_pixmap func(
-		cr *T.Cairo_t,
+	CairoSetSourcePixmap func(
+		cr *T.CairoT,
 		pixmap *T.GdkPixmap,
-		pixmap_x float64,
-		pixmap_y float64)
+		pixmapX float64,
+		pixmapY float64)
 
-	Gdk_cairo_set_source_window func(
-		cr *T.Cairo_t,
+	CairoSetSourceWindow func(
+		cr *T.CairoT,
 		window *T.GdkWindow,
 		x float64,
 		y float64)
 
-	Gdk_cairo_rectangle func(
-		cr *T.Cairo_t,
+	CairoRectangle func(
+		cr *T.CairoT,
 		rectangle *T.GdkRectangle)
 
-	Gdk_cairo_region func(
-		cr *T.Cairo_t,
+	CairoRegion func(
+		cr *T.CairoT,
 		region *T.GdkRegion)
 
-	Gdk_cursor_get_type func() T.GType
+	CursorGetType func() T.GType
 
-	Gdk_cursor_new_for_display func(
+	CursorNewForDisplay func(
 		display *T.GdkDisplay,
-		cursor_type T.GdkCursorType) *T.GdkCursor
+		cursorType T.GdkCursorType) *T.GdkCursor
 
-	Gdk_cursor_new func(
-		cursor_type T.GdkCursorType) *T.GdkCursor
+	CursorNew func(
+		cursorType T.GdkCursorType) *T.GdkCursor
 
-	Gdk_cursor_new_from_pixmap func(
+	CursorNewFromPixmap func(
 		source *T.GdkPixmap,
 		mask *T.GdkPixmap,
 		fg *T.GdkColor,
@@ -1345,225 +1345,225 @@ var (
 		x int,
 		y int) *T.GdkCursor
 
-	Gdk_cursor_new_from_pixbuf func(
+	CursorNewFromPixbuf func(
 		display *T.GdkDisplay,
 		pixbuf *T.GdkPixbuf,
 		x int,
 		y int) *T.GdkCursor
 
-	Gdk_cursor_get_display func(
+	CursorGetDisplay func(
 		cursor *T.GdkCursor) *T.GdkDisplay
 
-	Gdk_cursor_ref func(
+	CursorRef func(
 		cursor *T.GdkCursor) *T.GdkCursor
 
-	Gdk_cursor_unref func(
+	CursorUnref func(
 		cursor *T.GdkCursor)
 
-	Gdk_cursor_new_from_name func(
+	CursorNewFromName func(
 		display *T.GdkDisplay,
 		name string) *T.GdkCursor
 
-	Gdk_cursor_get_image func(
+	CursorGetImage func(
 		cursor *T.GdkCursor) *T.GdkPixbuf
 
-	Gdk_cursor_get_cursor_type func(
+	CursorGetCursorType func(
 		cursor *T.GdkCursor) T.GdkCursorType
 
-	Gdk_display_manager_get_type func() T.GType
+	DisplayManagerGetType func() T.GType
 
-	Gdk_display_manager_get func() *T.GdkDisplayManager
+	DisplayManagerGet func() *T.GdkDisplayManager
 
-	Gdk_display_manager_get_default_display func(
-		display_manager *T.GdkDisplayManager) *T.GdkDisplay
+	DisplayManagerGetDefaultDisplay func(
+		displayManager *T.GdkDisplayManager) *T.GdkDisplay
 
-	Gdk_display_manager_set_default_display func(
-		display_manager *T.GdkDisplayManager,
+	DisplayManagerSetDefaultDisplay func(
+		displayManager *T.GdkDisplayManager,
 		display *T.GdkDisplay)
 
-	Gdk_display_manager_list_displays func(
-		display_manager *T.GdkDisplayManager) *T.GSList
+	DisplayManagerListDisplays func(
+		displayManager *T.GdkDisplayManager) *T.GSList
 
-	Gdk_gc_get_type func() T.GType
+	GcGetType func() T.GType
 
-	Gdk_gc_new func(
+	GcNew func(
 		drawable *T.GdkDrawable) *T.GdkGC
 
-	Gdk_gc_new_with_values func(
+	GcNewWithValues func(
 		drawable *T.GdkDrawable,
 		values *T.GdkGCValues,
-		values_mask T.GdkGCValuesMask) *T.GdkGC
+		valuesMask T.GdkGCValuesMask) *T.GdkGC
 
-	Gdk_gc_ref func(
+	GcRef func(
 		gc *T.GdkGC) *T.GdkGC
 
-	Gdk_gc_unref func(
+	GcUnref func(
 		gc *T.GdkGC)
 
-	Gdk_gc_get_values func(
+	GcGetValues func(
 		gc *T.GdkGC,
 		values *T.GdkGCValues)
 
-	Gdk_gc_set_values func(
+	GcSetValues func(
 		gc *T.GdkGC,
 		values *T.GdkGCValues,
-		values_mask T.GdkGCValuesMask)
+		valuesMask T.GdkGCValuesMask)
 
-	Gdk_gc_set_foreground func(
+	GcSetForeground func(
 		gc *T.GdkGC,
 		color *T.GdkColor)
 
-	Gdk_gc_set_background func(
+	GcSetBackground func(
 		gc *T.GdkGC,
 		color *T.GdkColor)
 
-	Gdk_gc_set_font func(
+	GcSetFont func(
 		gc *T.GdkGC,
 		font *T.GdkFont)
 
-	Gdk_gc_set_function func(
+	GcSetFunction func(
 		gc *T.GdkGC,
 		function T.GdkFunction)
 
-	Gdk_gc_set_fill func(
+	GcSetFill func(
 		gc *T.GdkGC,
 		fill T.GdkFill)
 
-	Gdk_gc_set_tile func(
+	GcSetTile func(
 		gc *T.GdkGC,
 		tile *T.GdkPixmap)
 
-	Gdk_gc_set_stipple func(
+	GcSetStipple func(
 		gc *T.GdkGC,
 		stipple *T.GdkPixmap)
 
-	Gdk_gc_set_ts_origin func(
+	GcSetTsOrigin func(
 		gc *T.GdkGC,
 		x int,
 		y int)
 
-	Gdk_gc_set_clip_origin func(
+	GcSetClipOrigin func(
 		gc *T.GdkGC,
 		x int,
 		y int)
 
-	Gdk_gc_set_clip_mask func(
+	GcSetClipMask func(
 		gc *T.GdkGC,
 		mask *T.GdkBitmap)
 
-	Gdk_gc_set_clip_rectangle func(
+	GcSetClipRectangle func(
 		gc *T.GdkGC,
 		rectangle *T.GdkRectangle)
 
-	Gdk_gc_set_clip_region func(
+	GcSetClipRegion func(
 		gc *T.GdkGC,
 		region *T.GdkRegion)
 
-	Gdk_gc_set_subwindow func(
+	GcSetSubwindow func(
 		gc *T.GdkGC,
 		mode T.GdkSubwindowMode)
 
-	Gdk_gc_set_exposures func(
+	GcSetExposures func(
 		gc *T.GdkGC,
 		exposures T.Gboolean)
 
-	Gdk_gc_set_line_attributes func(
+	GcSetLineAttributes func(
 		gc *T.GdkGC,
-		line_width int,
-		line_style T.GdkLineStyle,
-		cap_style T.GdkCapStyle,
-		join_style T.GdkJoinStyle)
+		lineWidth int,
+		lineStyle T.GdkLineStyle,
+		capStyle T.GdkCapStyle,
+		joinStyle T.GdkJoinStyle)
 
-	Gdk_gc_set_dashes func(
+	GcSetDashes func(
 		gc *T.GdkGC,
-		dash_offset int,
-		dash_list *int8,
+		dashOffset int,
+		dashList *int8,
 		n int)
 
-	Gdk_gc_offset func(
+	GcOffset func(
 		gc *T.GdkGC,
-		x_offset int,
-		y_offset int)
+		xOffset int,
+		yOffset int)
 
-	Gdk_gc_copy func(
-		dst_gc *T.GdkGC,
-		src_gc *T.GdkGC)
+	GcCopy func(
+		dstGc *T.GdkGC,
+		srcGc *T.GdkGC)
 
-	Gdk_gc_set_colormap func(
+	GcSetColormap func(
 		gc *T.GdkGC,
 		colormap *T.GdkColormap)
 
-	Gdk_gc_get_colormap func(
+	GcGetColormap func(
 		gc *T.GdkGC) *T.GdkColormap
 
-	Gdk_gc_set_rgb_fg_color func(
+	GcSetRgbFgColor func(
 		gc *T.GdkGC,
 		color *T.GdkColor)
 
-	Gdk_gc_set_rgb_bg_color func(
+	GcSetRgbBgColor func(
 		gc *T.GdkGC,
 		color *T.GdkColor)
 
-	Gdk_gc_get_screen func(
+	GcGetScreen func(
 		gc *T.GdkGC) *T.GdkScreen
 
-	Gdk_drawable_get_type func() T.GType
+	DrawableGetType func() T.GType
 
-	Gdk_drawable_set_data func(
+	DrawableSetData func(
 		drawable *T.GdkDrawable,
 		key string,
 		data T.Gpointer,
-		destroy_func T.GDestroyNotify)
+		destroyFunc T.GDestroyNotify)
 
-	Gdk_drawable_get_data func(
+	DrawableGetData func(
 		drawable *T.GdkDrawable,
 		key string) T.Gpointer
 
-	Gdk_drawable_set_colormap func(
+	DrawableSetColormap func(
 		drawable *T.GdkDrawable,
 		colormap *T.GdkColormap)
 
-	Gdk_drawable_get_colormap func(
+	DrawableGetColormap func(
 		drawable *T.GdkDrawable) *T.GdkColormap
 
-	Gdk_drawable_get_depth func(
+	DrawableGetDepth func(
 		drawable *T.GdkDrawable) int
 
-	Gdk_drawable_get_size func(
+	DrawableGetSize func(
 		drawable *T.GdkDrawable,
 		width *int,
 		height *int)
 
-	Gdk_drawable_get_visual func(
+	DrawableGetVisual func(
 		drawable *T.GdkDrawable) *T.GdkVisual
 
-	Gdk_drawable_get_screen func(
+	DrawableGetScreen func(
 		drawable *T.GdkDrawable) *T.GdkScreen
 
-	Gdk_drawable_get_display func(
+	DrawableGetDisplay func(
 		drawable *T.GdkDrawable) *T.GdkDisplay
 
-	Gdk_drawable_ref func(
+	DrawableRef func(
 		drawable *T.GdkDrawable) *T.GdkDrawable
 
-	Gdk_drawable_unref func(
+	DrawableUnref func(
 		drawable *T.GdkDrawable)
 
-	Gdk_draw_point func(
+	DrawPoint func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
 		y int)
 
-	Gdk_draw_line func(
+	DrawLine func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		x1_ int,
-		y1_ int,
-		x2_ int,
-		y2_ int)
+		x1 int,
+		y1 int,
+		x2 int,
+		y2 int)
 
-	Gdk_draw_rectangle func(
+	DrawRectangle func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
@@ -1572,7 +1572,7 @@ var (
 		width int,
 		height int)
 
-	Gdk_draw_arc func(
+	DrawArc func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
@@ -1583,14 +1583,14 @@ var (
 		angle1 int,
 		angle2 int)
 
-	Gdk_draw_polygon func(
+	DrawPolygon func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		filled T.Gboolean,
 		points *T.GdkPoint,
-		n_points int)
+		nPoints int)
 
-	Gdk_draw_string func(
+	DrawString func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
@@ -1598,25 +1598,25 @@ var (
 		y int,
 		s string)
 
-	Gdk_draw_text func(
+	DrawText func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
 		x int,
 		y int,
 		text string,
-		text_length int)
+		textLength int)
 
-	Gdk_draw_text_wc func(
+	DrawTextWc func(
 		drawable *T.GdkDrawable,
 		font *T.GdkFont,
 		gc *T.GdkGC,
 		x int,
 		y int,
 		text *T.GdkWChar,
-		text_length int)
+		textLength int)
 
-	Gdk_draw_drawable func(
+	DrawDrawable func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		src *T.GdkDrawable,
@@ -1627,7 +1627,7 @@ var (
 		width int,
 		height int)
 
-	Gdk_draw_image func(
+	DrawImage func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		image *T.GdkImage,
@@ -1638,39 +1638,39 @@ var (
 		width int,
 		height int)
 
-	Gdk_draw_points func(
+	DrawPoints func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		points *T.GdkPoint,
-		n_points int)
+		nPoints int)
 
-	Gdk_draw_segments func(
+	DrawSegments func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		segs *T.GdkSegment,
-		n_segs int)
+		nSegs int)
 
-	Gdk_draw_lines func(
+	DrawLines func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		points *T.GdkPoint,
-		n_points int)
+		nPoints int)
 
-	Gdk_draw_pixbuf func(
+	DrawPixbuf func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		pixbuf *T.GdkPixbuf,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int,
 		dither T.GdkRgbDither,
-		x_dither int,
-		y_dither int)
+		xDither int,
+		yDither int)
 
-	Gdk_draw_glyphs func(
+	DrawGlyphs func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		font *T.PangoFont,
@@ -1678,21 +1678,21 @@ var (
 		y int,
 		glyphs *T.PangoGlyphString)
 
-	Gdk_draw_layout_line func(
+	DrawLayoutLine func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
 		y int,
 		line *T.PangoLayoutLine)
 
-	Gdk_draw_layout func(
+	DrawLayout func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
 		y int,
 		layout *T.PangoLayout)
 
-	Gdk_draw_layout_line_with_colors func(
+	DrawLayoutLineWithColors func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -1701,7 +1701,7 @@ var (
 		foreground *T.GdkColor,
 		background *T.GdkColor)
 
-	Gdk_draw_layout_with_colors func(
+	DrawLayoutWithColors func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		x int,
@@ -1710,7 +1710,7 @@ var (
 		foreground *T.GdkColor,
 		background *T.GdkColor)
 
-	Gdk_draw_glyphs_transformed func(
+	DrawGlyphsTransformed func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		matrix *T.PangoMatrix,
@@ -1719,232 +1719,232 @@ var (
 		y int,
 		glyphs *T.PangoGlyphString)
 
-	Gdk_draw_trapezoids func(
+	DrawTrapezoids func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		trapezoids *T.GdkTrapezoid,
-		n_trapezoids int)
+		nTrapezoids int)
 
-	Gdk_drawable_get_image func(
+	DrawableGetImage func(
 		drawable *T.GdkDrawable,
 		x int,
 		y int,
 		width int,
 		height int) *T.GdkImage
 
-	Gdk_drawable_copy_to_image func(
+	DrawableCopyToImage func(
 		drawable *T.GdkDrawable,
 		image *T.GdkImage,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int) *T.GdkImage
 
-	Gdk_drawable_get_clip_region func(
+	DrawableGetClipRegion func(
 		drawable *T.GdkDrawable) *T.GdkRegion
 
-	Gdk_drawable_get_visible_region func(
+	DrawableGetVisibleRegion func(
 		drawable *T.GdkDrawable) *T.GdkRegion
 
-	Gdk_cursor_type_get_type func() T.GType
+	CursorTypeGetType func() T.GType
 
-	Gdk_drag_action_get_type func() T.GType
+	DragActionGetType func() T.GType
 
-	Gdk_drag_protocol_get_type func() T.GType
+	DragProtocolGetType func() T.GType
 
-	Gdk_filter_return_get_type func() T.GType
+	FilterReturnGetType func() T.GType
 
-	Gdk_event_type_get_type func() T.GType
+	EventTypeGetType func() T.GType
 
-	Gdk_event_mask_get_type func() T.GType
+	EventMaskGetType func() T.GType
 
-	Gdk_visibility_state_get_type func() T.GType
+	VisibilityStateGetType func() T.GType
 
-	Gdk_scroll_direction_get_type func() T.GType
+	ScrollDirectionGetType func() T.GType
 
-	Gdk_notify_type_get_type func() T.GType
+	NotifyTypeGetType func() T.GType
 
-	Gdk_crossing_mode_get_type func() T.GType
+	CrossingModeGetType func() T.GType
 
-	Gdk_property_state_get_type func() T.GType
+	PropertyStateGetType func() T.GType
 
-	Gdk_window_state_get_type func() T.GType
+	WindowStateGetType func() T.GType
 
-	Gdk_setting_action_get_type func() T.GType
+	SettingActionGetType func() T.GType
 
-	Gdk_owner_change_get_type func() T.GType
+	OwnerChangeGetType func() T.GType
 
-	Gdk_font_type_get_type func() T.GType
+	FontTypeGetType func() T.GType
 
-	Gdk_cap_style_get_type func() T.GType
+	CapStyleGetType func() T.GType
 
-	Gdk_fill_get_type func() T.GType
+	FillGetType func() T.GType
 
-	Gdk_function_get_type func() T.GType
+	FunctionGetType func() T.GType
 
-	Gdk_join_style_get_type func() T.GType
+	JoinStyleGetType func() T.GType
 
-	Gdk_line_style_get_type func() T.GType
+	LineStyleGetType func() T.GType
 
-	Gdk_subwindow_mode_get_type func() T.GType
+	SubwindowModeGetType func() T.GType
 
-	Gdk_gc_values_mask_get_type func() T.GType
+	GcValuesMaskGetType func() T.GType
 
-	Gdk_image_type_get_type func() T.GType
+	ImageTypeGetType func() T.GType
 
-	Gdk_extension_mode_get_type func() T.GType
+	ExtensionModeGetType func() T.GType
 
-	Gdk_input_source_get_type func() T.GType
+	InputSourceGetType func() T.GType
 
-	Gdk_input_mode_get_type func() T.GType
+	InputModeGetType func() T.GType
 
-	Gdk_axis_use_get_type func() T.GType
+	AxisUseGetType func() T.GType
 
-	Gdk_prop_mode_get_type func() T.GType
+	PropModeGetType func() T.GType
 
-	Gdk_fill_rule_get_type func() T.GType
+	FillRuleGetType func() T.GType
 
-	Gdk_overlap_type_get_type func() T.GType
+	OverlapTypeGetType func() T.GType
 
-	Gdk_rgb_dither_get_type func() T.GType
+	RgbDitherGetType func() T.GType
 
-	Gdk_byte_order_get_type func() T.GType
+	ByteOrderGetType func() T.GType
 
-	Gdk_modifier_type_get_type func() T.GType
+	ModifierTypeGetType func() T.GType
 
-	Gdk_input_condition_get_type func() T.GType
+	InputConditionGetType func() T.GType
 
-	Gdk_status_get_type func() T.GType
+	StatusGetType func() T.GType
 
-	Gdk_grab_status_get_type func() T.GType
+	GrabStatusGetType func() T.GType
 
-	Gdk_visual_type_get_type func() T.GType
+	VisualTypeGetType func() T.GType
 
-	Gdk_window_class_get_type func() T.GType
+	WindowClassGetType func() T.GType
 
-	Gdk_window_type_get_type func() T.GType
+	WindowTypeGetType func() T.GType
 
-	Gdk_window_attributes_type_get_type func() T.GType
+	WindowAttributesTypeGetType func() T.GType
 
-	Gdk_window_hints_get_type func() T.GType
+	WindowHintsGetType func() T.GType
 
-	Gdk_window_type_hint_get_type func() T.GType
+	WindowTypeHintGetType func() T.GType
 
-	Gdk_wm_decoration_get_type func() T.GType
+	WmDecorationGetType func() T.GType
 
-	Gdk_wm_function_get_type func() T.GType
+	WmFunctionGetType func() T.GType
 
-	Gdk_gravity_get_type func() T.GType
+	GravityGetType func() T.GType
 
-	Gdk_window_edge_get_type func() T.GType
+	WindowEdgeGetType func() T.GType
 
-	Gdk_font_get_type func() T.GType
+	FontGetType func() T.GType
 
-	Gdk_font_ref func(
+	FontRef func(
 		font *T.GdkFont) *T.GdkFont
 
-	Gdk_font_unref func(
+	FontUnref func(
 		font *T.GdkFont)
 
-	Gdk_font_id func(
+	FontId func(
 		font *T.GdkFont) int
 
-	Gdk_font_equal func(
+	FontEqual func(
 		fonta *T.GdkFont,
 		fontb *T.GdkFont) T.Gboolean
 
-	Gdk_font_load_for_display func(
+	FontLoadForDisplay func(
 		display *T.GdkDisplay,
-		font_name string) *T.GdkFont
+		fontName string) *T.GdkFont
 
-	Gdk_fontset_load_for_display func(
+	FontsetLoadForDisplay func(
 		display *T.GdkDisplay,
-		fontset_name string) *T.GdkFont
+		fontsetName string) *T.GdkFont
 
-	Gdk_font_from_description_for_display func(
+	FontFromDescriptionForDisplay func(
 		display *T.GdkDisplay,
-		font_desc *T.PangoFontDescription) *T.GdkFont
+		fontDesc *T.PangoFontDescription) *T.GdkFont
 
-	Gdk_font_load func(
-		font_name string) *T.GdkFont
+	FontLoad func(
+		fontName string) *T.GdkFont
 
-	Gdk_fontset_load func(
-		fontset_name string) *T.GdkFont
+	FontsetLoad func(
+		fontsetName string) *T.GdkFont
 
-	Gdk_font_from_description func(
-		font_desc *T.PangoFontDescription) *T.GdkFont
+	FontFromDescription func(
+		fontDesc *T.PangoFontDescription) *T.GdkFont
 
-	Gdk_string_width func(
+	StringWidth func(
 		font *T.GdkFont,
 		s string) int
 
-	Gdk_text_width func(
+	TextWidth func(
 		font *T.GdkFont,
 		text string,
-		text_length int) int
+		textLength int) int
 
-	Gdk_text_width_wc func(
+	TextWidthWc func(
 		font *T.GdkFont,
 		text *T.GdkWChar,
-		text_length int) int
+		textLength int) int
 
-	Gdk_char_width func(
+	CharWidth func(
 		font *T.GdkFont,
 		character T.Gchar) int
 
-	Gdk_char_width_wc func(
+	CharWidthWc func(
 		font *T.GdkFont,
 		character T.GdkWChar) int
 
-	Gdk_string_measure func(
+	StringMeasure func(
 		font *T.GdkFont,
 		s string) int
 
-	Gdk_text_measure func(
+	TextMeasure func(
 		font *T.GdkFont,
 		text string,
-		text_length int) int
+		textLength int) int
 
-	Gdk_char_measure func(
+	CharMeasure func(
 		font *T.GdkFont,
 		character T.Gchar) int
 
-	Gdk_string_height func(
+	StringHeight func(
 		font *T.GdkFont,
 		s string) int
 
-	Gdk_text_height func(
+	TextHeight func(
 		font *T.GdkFont,
 		text string,
-		text_length int) int
+		textLength int) int
 
-	Gdk_char_height func(
+	CharHeight func(
 		font *T.GdkFont,
 		character T.Gchar) int
 
-	Gdk_text_extents func(
+	TextExtents func(
 		font *T.GdkFont,
 		text string,
-		text_length int,
+		textLength int,
 		lbearing *int,
 		rbearing *int,
 		width *int,
 		ascent *int,
 		descent *int)
 
-	Gdk_text_extents_wc func(
+	TextExtentsWc func(
 		font *T.GdkFont,
 		text *T.GdkWChar,
-		text_length int,
+		textLength int,
 		lbearing *int,
 		rbearing *int,
 		width *int,
 		ascent *int,
 		descent *int)
 
-	Gdk_string_extents func(
+	StringExtents func(
 		font *T.GdkFont,
 		s string,
 		lbearing *int,
@@ -1953,235 +1953,235 @@ var (
 		ascent *int,
 		descent *int)
 
-	Gdk_font_get_display func(
+	FontGetDisplay func(
 		font *T.GdkFont) *T.GdkDisplay
 
-	Gdk_image_get_type func() T.GType
+	ImageGetType func() T.GType
 
-	Gdk_image_new func(
+	ImageNew func(
 		typ T.GdkImageType,
 		visual *T.GdkVisual,
 		width int,
 		height int) *T.GdkImage
 
-	Gdk_image_get func(
+	ImageGet func(
 		drawable *T.GdkDrawable,
 		x int,
 		y int,
 		width int,
 		height int) *T.GdkImage
 
-	Gdk_image_ref func(
+	ImageRef func(
 		image *T.GdkImage) *T.GdkImage
 
-	Gdk_image_unref func(
+	ImageUnref func(
 		image *T.GdkImage)
 
-	Gdk_image_put_pixel func(
+	ImagePutPixel func(
 		image *T.GdkImage,
 		x int,
 		y int,
 		pixel T.GUint32)
 
-	Gdk_image_get_pixel func(
+	ImageGetPixel func(
 		image *T.GdkImage,
 		x int,
 		y int) T.GUint32
 
-	Gdk_image_set_colormap func(
+	ImageSetColormap func(
 		image *T.GdkImage,
 		colormap *T.GdkColormap)
 
-	Gdk_image_get_colormap func(
+	ImageGetColormap func(
 		image *T.GdkImage) *T.GdkColormap
 
-	Gdk_image_get_image_type func(
+	ImageGetImageType func(
 		image *T.GdkImage) T.GdkImageType
 
-	Gdk_image_get_visual func(
+	ImageGetVisual func(
 		image *T.GdkImage) *T.GdkVisual
 
-	Gdk_image_get_byte_order func(
+	ImageGetByteOrder func(
 		image *T.GdkImage) T.GdkByteOrder
 
-	Gdk_image_get_width func(
+	ImageGetWidth func(
 		image *T.GdkImage) int
 
-	Gdk_image_get_height func(
+	ImageGetHeight func(
 		image *T.GdkImage) int
 
-	Gdk_image_get_depth func(
+	ImageGetDepth func(
 		image *T.GdkImage) uint16
 
-	Gdk_image_get_bytes_per_pixel func(
+	ImageGetBytesPerPixel func(
 		image *T.GdkImage) uint16
 
-	Gdk_image_get_bytes_per_line func(
+	ImageGetBytesPerLine func(
 		image *T.GdkImage) uint16
 
-	Gdk_image_get_bits_per_pixel func(
+	ImageGetBitsPerPixel func(
 		image *T.GdkImage) uint16
 
-	Gdk_image_get_pixels func(
+	ImageGetPixels func(
 		image *T.GdkImage) T.Gpointer
 
-	Gdk_keymap_get_type func() T.GType
+	KeymapGetType func() T.GType
 
-	Gdk_keymap_get_default func() *T.GdkKeymap
+	KeymapGetDefault func() *T.GdkKeymap
 
-	Gdk_keymap_get_for_display func(
+	KeymapGetForDisplay func(
 		display *T.GdkDisplay) *T.GdkKeymap
 
-	Gdk_keymap_lookup_key func(
+	KeymapLookupKey func(
 		keymap *T.GdkKeymap,
 		key *T.GdkKeymapKey) uint
 
-	Gdk_keymap_translate_keyboard_state func(
+	KeymapTranslateKeyboardState func(
 		keymap *T.GdkKeymap,
-		hardware_keycode uint,
+		hardwareKeycode uint,
 		state T.GdkModifierType,
 		group int,
 		keyval *uint,
-		effective_group *int,
+		effectiveGroup *int,
 		level *int,
-		consumed_modifiers *T.GdkModifierType) T.Gboolean
+		consumedModifiers *T.GdkModifierType) T.Gboolean
 
-	Gdk_keymap_get_entries_for_keyval func(
+	KeymapGetEntriesForKeyval func(
 		keymap *T.GdkKeymap,
 		keyval uint,
 		keys **T.GdkKeymapKey,
-		n_keys *int) T.Gboolean
+		nKeys *int) T.Gboolean
 
-	Gdk_keymap_get_entries_for_keycode func(
+	KeymapGetEntriesForKeycode func(
 		keymap *T.GdkKeymap,
-		hardware_keycode uint,
+		hardwareKeycode uint,
 		keys **T.GdkKeymapKey,
 		keyvals **uint,
-		n_entries *int) T.Gboolean
+		nEntries *int) T.Gboolean
 
-	Gdk_keymap_get_direction func(
+	KeymapGetDirection func(
 		keymap *T.GdkKeymap) T.PangoDirection
 
-	Gdk_keymap_have_bidi_layouts func(
+	KeymapHaveBidiLayouts func(
 		keymap *T.GdkKeymap) T.Gboolean
 
-	Gdk_keymap_get_caps_lock_state func(
+	KeymapGetCapsLockState func(
 		keymap *T.GdkKeymap) T.Gboolean
 
-	Gdk_keymap_add_virtual_modifiers func(
+	KeymapAddVirtualModifiers func(
 		keymap *T.GdkKeymap,
 		state *T.GdkModifierType)
 
-	Gdk_keymap_map_virtual_modifiers func(
+	KeymapMapVirtualModifiers func(
 		keymap *T.GdkKeymap,
 		state *T.GdkModifierType) T.Gboolean
 
-	Gdk_keyval_name func(
+	KeyvalName func(
 		keyval uint) string
 
-	Gdk_keyval_from_name func(
-		keyval_name string) uint
+	KeyvalFromName func(
+		keyvalName string) uint
 
-	Gdk_keyval_convert_case func(
+	KeyvalConvertCase func(
 		symbol uint,
 		lower *uint,
 		upper *uint)
 
-	Gdk_keyval_to_upper func(
+	KeyvalToUpper func(
 		keyval uint) uint
 
-	Gdk_keyval_to_lower func(
+	KeyvalToLower func(
 		keyval uint) uint
 
-	Gdk_keyval_is_upper func(
+	KeyvalIsUpper func(
 		keyval uint) T.Gboolean
 
-	Gdk_keyval_is_lower func(
+	KeyvalIsLower func(
 		keyval uint) T.Gboolean
 
-	Gdk_keyval_to_unicode func(
+	KeyvalToUnicode func(
 		keyval uint) T.GUint32
 
-	Gdk_unicode_to_keyval func(
+	UnicodeToKeyval func(
 		wc T.GUint32) uint
 
-	Gdk_pango_renderer_get_type func() T.GType
+	PangoRendererGetType func() T.GType
 
-	Gdk_pango_renderer_new func(
+	PangoRendererNew func(
 		screen *T.GdkScreen) *T.PangoRenderer
 
-	Gdk_pango_renderer_get_default func(
+	PangoRendererGetDefault func(
 		screen *T.GdkScreen) *T.PangoRenderer
 
-	Gdk_pango_renderer_set_drawable func(
+	PangoRendererSetDrawable func(
 
-		Gdk_renderer *T.GdkPangoRenderer,
+		GdkRenderer *T.GdkPangoRenderer,
 		drawable *T.GdkDrawable)
 
-	Gdk_pango_renderer_set_gc func(
+	PangoRendererSetGc func(
 
-		Gdk_renderer *T.GdkPangoRenderer,
+		GdkRenderer *T.GdkPangoRenderer,
 		gc *T.GdkGC)
 
-	Gdk_pango_renderer_set_stipple func(
+	PangoRendererSetStipple func(
 
-		Gdk_renderer *T.GdkPangoRenderer,
+		GdkRenderer *T.GdkPangoRenderer,
 		part T.PangoRenderPart,
 		stipple *T.GdkBitmap)
 
-	Gdk_pango_renderer_set_override_color func(
+	PangoRendererSetOverrideColor func(
 
-		Gdk_renderer *T.GdkPangoRenderer,
+		GdkRenderer *T.GdkPangoRenderer,
 		part T.PangoRenderPart,
 		color *T.GdkColor)
 
-	Gdk_pango_context_get_for_screen func(
+	PangoContextGetForScreen func(
 		screen *T.GdkScreen) *T.PangoContext
 
-	Gdk_pango_context_get func() *T.PangoContext
+	PangoContextGet func() *T.PangoContext
 
-	Gdk_pango_context_set_colormap func(
+	PangoContextSetColormap func(
 		context *T.PangoContext,
 		colormap *T.GdkColormap)
 
-	Gdk_pango_layout_line_get_clip_region func(
+	PangoLayoutLineGetClipRegion func(
 		line *T.PangoLayoutLine,
-		x_origin int,
-		y_origin int,
-		index_ranges *int,
-		n_ranges int) *T.GdkRegion
+		xOrigin int,
+		yOrigin int,
+		indexRanges *int,
+		nRanges int) *T.GdkRegion
 
-	Gdk_pango_layout_get_clip_region func(
+	PangoLayoutGetClipRegion func(
 		layout *T.PangoLayout,
-		x_origin int,
-		y_origin int,
-		index_ranges *int,
-		n_ranges int) *T.GdkRegion
+		xOrigin int,
+		yOrigin int,
+		indexRanges *int,
+		nRanges int) *T.GdkRegion
 
-	Gdk_pango_attr_stipple_new func(
+	PangoAttrStippleNew func(
 		stipple *T.GdkBitmap) *T.PangoAttribute
 
-	Gdk_pango_attr_embossed_new func(
+	PangoAttrEmbossedNew func(
 		embossed T.Gboolean) *T.PangoAttribute
 
-	Gdk_pango_attr_emboss_color_new func(
+	PangoAttrEmbossColorNew func(
 		color *T.GdkColor) *T.PangoAttribute
 
-	Gdk_pixmap_get_type func() T.GType
+	PixmapGetType func() T.GType
 
-	Gdk_pixmap_new func(
+	PixmapNew func(
 		drawable *T.GdkDrawable,
 		width int,
 		height int,
 		depth int) *T.GdkPixmap
 
-	Gdk_bitmap_create_from_data func(
+	BitmapCreateFromData func(
 		drawable *T.GdkDrawable,
 		data string,
 		width int,
 		height int) *T.GdkBitmap
 
-	Gdk_pixmap_create_from_data func(
+	PixmapCreateFromData func(
 		drawable *T.GdkDrawable,
 		data string,
 		width int,
@@ -2190,81 +2190,81 @@ var (
 		fg *T.GdkColor,
 		bg *T.GdkColor) *T.GdkPixmap
 
-	Gdk_pixmap_create_from_xpm func(
+	PixmapCreateFromXpm func(
 		drawable *T.GdkDrawable,
 		mask **T.GdkBitmap,
-		transparent_color *T.GdkColor,
+		transparentColor *T.GdkColor,
 		filename string) *T.GdkPixmap
 
-	Gdk_pixmap_colormap_create_from_xpm func(
+	PixmapColormapCreateFromXpm func(
 		drawable *T.GdkDrawable,
 		colormap *T.GdkColormap,
 		mask **T.GdkBitmap,
-		transparent_color *T.GdkColor,
+		transparentColor *T.GdkColor,
 		filename string) *T.GdkPixmap
 
-	Gdk_pixmap_create_from_xpm_d func(
+	PixmapCreateFromXpmD func(
 		drawable *T.GdkDrawable,
 		mask **T.GdkBitmap,
-		transparent_color *T.GdkColor,
+		transparentColor *T.GdkColor,
 		data **T.Gchar) *T.GdkPixmap
 
-	Gdk_pixmap_colormap_create_from_xpm_d func(
+	PixmapColormapCreateFromXpmD func(
 		drawable *T.GdkDrawable,
 		colormap *T.GdkColormap,
 		mask **T.GdkBitmap,
-		transparent_color *T.GdkColor,
+		transparentColor *T.GdkColor,
 		data **T.Gchar) *T.GdkPixmap
 
-	Gdk_pixmap_get_size func(
+	PixmapGetSize func(
 		pixmap *T.GdkPixmap,
 		width *int,
 		height *int)
 
-	Gdk_pixmap_foreign_new func(
+	PixmapForeignNew func(
 		anid T.GdkNativeWindow) *T.GdkPixmap
 
-	Gdk_pixmap_lookup func(
+	PixmapLookup func(
 		anid T.GdkNativeWindow) *T.GdkPixmap
 
-	Gdk_pixmap_foreign_new_for_display func(
+	PixmapForeignNewForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkPixmap
 
-	Gdk_pixmap_lookup_for_display func(
+	PixmapLookupForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkPixmap
 
-	Gdk_pixmap_foreign_new_for_screen func(
+	PixmapForeignNewForScreen func(
 		screen *T.GdkScreen,
 		anid T.GdkNativeWindow,
 		width int,
 		height int,
 		depth int) *T.GdkPixmap
 
-	Gdk_atom_intern func(
-		atom_name string,
-		only_if_exists T.Gboolean) T.GdkAtom
+	AtomIntern func(
+		atomName string,
+		onlyIfExists T.Gboolean) T.GdkAtom
 
-	Gdk_atom_intern_static_string func(
-		atom_name string) T.GdkAtom
+	AtomInternStaticString func(
+		atomName string) T.GdkAtom
 
-	Gdk_atom_name func(
+	AtomName func(
 		atom T.GdkAtom) string
 
-	Gdk_property_get func(
+	PropertyGet func(
 		window *T.GdkWindow,
 		property T.GdkAtom,
 		typ T.GdkAtom,
 		offset T.Gulong,
 		length T.Gulong,
 		pdelete int,
-		actual_property_type *T.GdkAtom,
-		actual_format *int,
-		actual_length *int,
+		actualPropertyType *T.GdkAtom,
+		actualFormat *int,
+		actualLength *int,
 		data **T.Guchar) T.Gboolean
 
-	Gdk_property_change func(
+	PropertyChange func(
 		window *T.GdkWindow,
 		property T.GdkAtom,
 		typ T.GdkAtom,
@@ -2273,39 +2273,39 @@ var (
 		data *T.Guchar,
 		nelements int)
 
-	Gdk_property_delete func(
+	PropertyDelete func(
 		window *T.GdkWindow,
 		property T.GdkAtom)
 
-	Gdk_text_property_to_text_list func(
+	TextPropertyToTextList func(
 		encoding T.GdkAtom,
 		format int,
 		text *T.Guchar,
 		length int,
 		list ***T.Gchar) int
 
-	Gdk_utf8_to_compound_text func(
+	Utf8ToCompoundText func(
 		str string,
 		encoding *T.GdkAtom,
 		format *int,
 		ctext **T.Guchar,
 		length *int) T.Gboolean
 
-	Gdk_string_to_compound_text func(
+	StringToCompoundText func(
 		str string,
 		encoding *T.GdkAtom,
 		format *int,
 		ctext **T.Guchar,
 		length *int) int
 
-	Gdk_text_property_to_utf8_list func(
+	TextPropertyToUtf8List func(
 		encoding T.GdkAtom,
 		format int,
 		text *T.Guchar,
 		length int,
 		list ***T.Gchar) int
 
-	Gdk_text_property_to_utf8_list_for_display func(
+	TextPropertyToUtf8ListForDisplay func(
 		display *T.GdkDisplay,
 		encoding T.GdkAtom,
 		format int,
@@ -2313,10 +2313,10 @@ var (
 		length int,
 		list ***T.Gchar) int
 
-	Gdk_utf8_to_string_target func(
+	Utf8ToStringTarget func(
 		str string) string
 
-	Gdk_text_property_to_text_list_for_display func(
+	TextPropertyToTextListForDisplay func(
 		display *T.GdkDisplay,
 		encoding T.GdkAtom,
 		format int,
@@ -2324,7 +2324,7 @@ var (
 		length int,
 		list ***T.Gchar) int
 
-	Gdk_string_to_compound_text_for_display func(
+	StringToCompoundTextForDisplay func(
 		display *T.GdkDisplay,
 		str string,
 		encoding *T.GdkAtom,
@@ -2332,7 +2332,7 @@ var (
 		ctext **T.Guchar,
 		length *int) int
 
-	Gdk_utf8_to_compound_text_for_display func(
+	Utf8ToCompoundTextForDisplay func(
 		display *T.GdkDisplay,
 		str string,
 		encoding *T.GdkAtom,
@@ -2340,497 +2340,497 @@ var (
 		ctext **T.Guchar,
 		length *int) T.Gboolean
 
-	Gdk_free_text_list func(
+	FreeTextList func(
 		list **T.Gchar)
 
-	Gdk_free_compound_text func(
+	FreeCompoundText func(
 		ctext *T.Guchar)
 
-	Gdk_region_new func() *T.GdkRegion
+	RegionNew func() *T.GdkRegion
 
-	Gdk_region_polygon func(
+	RegionPolygon func(
 		points *T.GdkPoint,
-		n_points int,
-		fill_rule T.GdkFillRule) *T.GdkRegion
+		nPoints int,
+		fillRule T.GdkFillRule) *T.GdkRegion
 
-	Gdk_region_copy func(
+	RegionCopy func(
 		region *T.GdkRegion) *T.GdkRegion
 
-	Gdk_region_rectangle func(
+	RegionRectangle func(
 		rectangle *T.GdkRectangle) *T.GdkRegion
 
-	Gdk_region_destroy func(
+	RegionDestroy func(
 		region *T.GdkRegion)
 
-	Gdk_region_get_clipbox func(
+	RegionGetClipbox func(
 		region *T.GdkRegion,
 		rectangle *T.GdkRectangle)
 
-	Gdk_region_get_rectangles func(
+	RegionGetRectangles func(
 		region *T.GdkRegion,
 		rectangles **T.GdkRectangle,
-		n_rectangles *int)
+		nRectangles *int)
 
-	Gdk_region_empty func(
+	RegionEmpty func(
 		region *T.GdkRegion) T.Gboolean
 
-	Gdk_region_equal func(
+	RegionEqual func(
 		region1 *T.GdkRegion,
 		region2 *T.GdkRegion) T.Gboolean
 
-	Gdk_region_rect_equal func(
+	RegionRectEqual func(
 		region *T.GdkRegion,
 		rectangle *T.GdkRectangle) T.Gboolean
 
-	Gdk_region_point_in func(
+	RegionPointIn func(
 		region *T.GdkRegion,
 		x int,
 		y int) T.Gboolean
 
-	Gdk_region_rect_in func(
+	RegionRectIn func(
 		region *T.GdkRegion,
 		rectangle *T.GdkRectangle) T.GdkOverlapType
 
-	Gdk_region_offset func(
+	RegionOffset func(
 		region *T.GdkRegion,
 		dx int,
 		dy int)
 
-	Gdk_region_shrink func(
+	RegionShrink func(
 		region *T.GdkRegion,
 		dx int,
 		dy int)
 
-	Gdk_region_union_with_rect func(
+	RegionUnionWithRect func(
 		region *T.GdkRegion,
 		rect *T.GdkRectangle)
 
-	Gdk_region_intersect func(
+	RegionIntersect func(
 		source1 *T.GdkRegion,
 		source2 *T.GdkRegion)
 
-	Gdk_region_union func(
+	RegionUnion func(
 		source1 *T.GdkRegion,
 		source2 *T.GdkRegion)
 
-	Gdk_region_subtract func(
+	RegionSubtract func(
 		source1 *T.GdkRegion,
 		source2 *T.GdkRegion)
 
-	Gdk_region_xor func(
+	RegionXor func(
 		source1 *T.GdkRegion,
 		source2 *T.GdkRegion)
 
-	Gdk_region_spans_intersect_foreach func(
+	RegionSpansIntersectForeach func(
 		region *T.GdkRegion,
 		spans *T.GdkSpan,
-		n_spans int,
+		nSpans int,
 		sorted T.Gboolean,
 		function T.GdkSpanFunc,
 		data T.Gpointer)
 
-	Gdk_selection_owner_set func(
+	SelectionOwnerSet func(
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		time_ T.GUint32,
-		send_event T.Gboolean) T.Gboolean
+		time T.GUint32,
+		sendEvent T.Gboolean) T.Gboolean
 
-	Gdk_selection_owner_get func(
+	SelectionOwnerGet func(
 		selection T.GdkAtom) *T.GdkWindow
 
-	Gdk_selection_owner_set_for_display func(
+	SelectionOwnerSetForDisplay func(
 		display *T.GdkDisplay,
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		time_ T.GUint32,
-		send_event T.Gboolean) T.Gboolean
+		time T.GUint32,
+		sendEvent T.Gboolean) T.Gboolean
 
-	Gdk_selection_owner_get_for_display func(
+	SelectionOwnerGetForDisplay func(
 		display *T.GdkDisplay,
 		selection T.GdkAtom) *T.GdkWindow
 
-	Gdk_selection_convert func(
+	SelectionConvert func(
 		requestor *T.GdkWindow,
 		selection T.GdkAtom,
 		target T.GdkAtom,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_selection_property_get func(
+	SelectionPropertyGet func(
 		requestor *T.GdkWindow,
 		data **T.Guchar,
-		prop_type *T.GdkAtom,
-		prop_format *int) int
+		propType *T.GdkAtom,
+		propFormat *int) int
 
-	Gdk_selection_send_notify func(
+	SelectionSendNotify func(
 		requestor T.GdkNativeWindow,
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		property T.GdkAtom,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_selection_send_notify_for_display func(
+	SelectionSendNotifyForDisplay func(
 		display *T.GdkDisplay,
 		requestor T.GdkNativeWindow,
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		property T.GdkAtom,
-		time_ T.GUint32)
+		time T.GUint32)
 
-	Gdk_spawn_on_screen func(
+	SpawnOnScreen func(
 		screen *T.GdkScreen,
-		working_directory string,
+		workingDirectory string,
 		argv **T.Gchar,
 		envp **T.Gchar,
 		flags T.GSpawnFlags,
-		child_setup T.GSpawnChildSetupFunc,
-		user_data T.Gpointer,
-		child_pid *int,
+		childSetup T.GSpawnChildSetupFunc,
+		userData T.Gpointer,
+		childPid *int,
 		e **T.GError) T.Gboolean
 
-	Gdk_spawn_on_screen_with_pipes func(
+	SpawnOnScreenWithPipes func(
 		screen *T.GdkScreen,
-		working_directory string,
+		workingDirectory string,
 		argv **T.Gchar,
 		envp **T.Gchar,
 		flags T.GSpawnFlags,
-		child_setup T.GSpawnChildSetupFunc,
-		user_data T.Gpointer,
-		child_pid *int,
-		standard_input *int,
-		standard_output *int,
-		standard_error *int,
+		childSetup T.GSpawnChildSetupFunc,
+		userData T.Gpointer,
+		childPid *int,
+		standardInput *int,
+		standardOutput *int,
+		standardError *int,
 		e **T.GError) T.Gboolean
 
-	Gdk_spawn_command_line_on_screen func(
+	SpawnCommandLineOnScreen func(
 		screen *T.GdkScreen,
-		command_line string,
+		commandLine string,
 		e **T.GError) T.Gboolean
 
-	Gdk_window_object_get_type func() T.GType
+	WindowObjectGetType func() T.GType
 
-	Gdk_window_new func(
+	WindowNew func(
 		parent *T.GdkWindow,
 		attributes *T.GdkWindowAttr,
-		attributes_mask int) *T.GdkWindow
+		attributesMask int) *T.GdkWindow
 
-	Gdk_window_destroy func(
+	WindowDestroy func(
 		window *T.GdkWindow)
 
-	Gdk_window_get_window_type func(
+	WindowGetWindowType func(
 		window *T.GdkWindow) T.GdkWindowType
 
-	Gdk_window_is_destroyed func(
+	WindowIsDestroyed func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_get_screen func(
+	WindowGetScreen func(
 		window *T.GdkWindow) *T.GdkScreen
 
-	Gdk_window_get_display func(
+	WindowGetDisplay func(
 		window *T.GdkWindow) *T.GdkDisplay
 
-	Gdk_window_get_visual func(
+	WindowGetVisual func(
 		window *T.GdkWindow) *T.GdkVisual
 
-	Gdk_window_get_width func(
+	WindowGetWidth func(
 		window *T.GdkWindow) int
 
-	Gdk_window_get_height func(
+	WindowGetHeight func(
 		window *T.GdkWindow) int
 
-	Gdk_window_at_pointer func(
-		win_x *int,
-		win_y *int) *T.GdkWindow
+	WindowAtPointer func(
+		winX *int,
+		winY *int) *T.GdkWindow
 
-	Gdk_window_show func(
+	WindowShow func(
 		window *T.GdkWindow)
 
-	Gdk_window_hide func(
+	WindowHide func(
 		window *T.GdkWindow)
 
-	Gdk_window_withdraw func(
+	WindowWithdraw func(
 		window *T.GdkWindow)
 
-	Gdk_window_show_unraised func(
+	WindowShowUnraised func(
 		window *T.GdkWindow)
 
-	Gdk_window_move func(
+	WindowMove func(
 		window *T.GdkWindow,
 		x int,
 		y int)
 
-	Gdk_window_resize func(
+	WindowResize func(
 		window *T.GdkWindow,
 		width int,
 		height int)
 
-	Gdk_window_move_resize func(
+	WindowMoveResize func(
 		window *T.GdkWindow,
 		x int,
 		y int,
 		width int,
 		height int)
 
-	Gdk_window_reparent func(
+	WindowReparent func(
 		window *T.GdkWindow,
-		new_parent *T.GdkWindow,
+		newParent *T.GdkWindow,
 		x int,
 		y int)
 
-	Gdk_window_clear func(
+	WindowClear func(
 		window *T.GdkWindow)
 
-	Gdk_window_clear_area func(
+	WindowClearArea func(
 		window *T.GdkWindow,
 		x int,
 		y int,
 		width int,
 		height int)
 
-	Gdk_window_clear_area_e func(
+	WindowClearAreaE func(
 		window *T.GdkWindow,
 		x int,
 		y int,
 		width int,
 		height int)
 
-	Gdk_window_raise func(
+	WindowRaise func(
 		window *T.GdkWindow)
 
-	Gdk_window_lower func(
+	WindowLower func(
 		window *T.GdkWindow)
 
-	Gdk_window_restack func(
+	WindowRestack func(
 		window *T.GdkWindow,
 		sibling *T.GdkWindow,
 		above T.Gboolean)
 
-	Gdk_window_focus func(
+	WindowFocus func(
 		window *T.GdkWindow,
 		timestamp T.GUint32)
 
-	Gdk_window_set_user_data func(
+	WindowSetUserData func(
 		window *T.GdkWindow,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	Gdk_window_set_override_redirect func(
+	WindowSetOverrideRedirect func(
 		window *T.GdkWindow,
-		override_redirect T.Gboolean)
+		overrideRedirect T.Gboolean)
 
-	Gdk_window_get_accept_focus func(
+	WindowGetAcceptFocus func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_set_accept_focus func(
+	WindowSetAcceptFocus func(
 		window *T.GdkWindow,
-		accept_focus T.Gboolean)
+		acceptFocus T.Gboolean)
 
-	Gdk_window_get_focus_on_map func(
+	WindowGetFocusOnMap func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_set_focus_on_map func(
+	WindowSetFocusOnMap func(
 		window *T.GdkWindow,
-		focus_on_map T.Gboolean)
+		focusOnMap T.Gboolean)
 
-	Gdk_window_add_filter func(
+	WindowAddFilter func(
 		window *T.GdkWindow,
 		function T.GdkFilterFunc,
 		data T.Gpointer)
 
-	Gdk_window_remove_filter func(
+	WindowRemoveFilter func(
 		window *T.GdkWindow,
 		function T.GdkFilterFunc,
 		data T.Gpointer)
 
-	Gdk_window_scroll func(
+	WindowScroll func(
 		window *T.GdkWindow,
 		dx int,
 		dy int)
 
-	Gdk_window_move_region func(
+	WindowMoveRegion func(
 		window *T.GdkWindow,
 		region *T.GdkRegion,
 		dx int,
 		dy int)
 
-	Gdk_window_ensure_native func(
+	WindowEnsureNative func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_shape_combine_mask func(
+	WindowShapeCombineMask func(
 		window *T.GdkWindow,
 		mask *T.GdkBitmap,
 		x int,
 		y int)
 
-	Gdk_window_shape_combine_region func(
+	WindowShapeCombineRegion func(
 		window *T.GdkWindow,
-		shape_region *T.GdkRegion,
-		offset_x int,
-		offset_y int)
+		shapeRegion *T.GdkRegion,
+		offsetX int,
+		offsetY int)
 
-	Gdk_window_set_child_shapes func(
+	WindowSetChildShapes func(
 		window *T.GdkWindow)
 
-	Gdk_window_get_composited func(
+	WindowGetComposited func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_set_composited func(
+	WindowSetComposited func(
 		window *T.GdkWindow,
 		composited T.Gboolean)
 
-	Gdk_window_merge_child_shapes func(
+	WindowMergeChildShapes func(
 		window *T.GdkWindow)
 
-	Gdk_window_input_shape_combine_mask func(
+	WindowInputShapeCombineMask func(
 		window *T.GdkWindow,
 		mask *T.GdkBitmap,
 		x int,
 		y int)
 
-	Gdk_window_input_shape_combine_region func(
+	WindowInputShapeCombineRegion func(
 		window *T.GdkWindow,
-		shape_region *T.GdkRegion,
-		offset_x int,
-		offset_y int)
+		shapeRegion *T.GdkRegion,
+		offsetX int,
+		offsetY int)
 
-	Gdk_window_set_child_input_shapes func(
+	WindowSetChildInputShapes func(
 		window *T.GdkWindow)
 
-	Gdk_window_merge_child_input_shapes func(
+	WindowMergeChildInputShapes func(
 		window *T.GdkWindow)
 
-	Gdk_window_is_visible func(
+	WindowIsVisible func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_is_viewable func(
+	WindowIsViewable func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_is_input_only func(
+	WindowIsInputOnly func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_is_shaped func(
+	WindowIsShaped func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_get_state func(
+	WindowGetState func(
 		window *T.GdkWindow) T.GdkWindowState
 
-	Gdk_window_set_static_gravities func(
+	WindowSetStaticGravities func(
 		window *T.GdkWindow,
-		use_static T.Gboolean) T.Gboolean
+		useStatic T.Gboolean) T.Gboolean
 
-	Gdk_window_foreign_new func(
+	WindowForeignNew func(
 		anid T.GdkNativeWindow) *T.GdkWindow
 
-	Gdk_window_lookup func(
+	WindowLookup func(
 		anid T.GdkNativeWindow) *T.GdkWindow
 
-	Gdk_window_foreign_new_for_display func(
+	WindowForeignNewForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkWindow
 
-	Gdk_window_lookup_for_display func(
+	WindowLookupForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkWindow
 
-	Gdk_window_has_native func(
+	WindowHasNative func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_set_hints func(
+	WindowSetHints func(
 		window *T.GdkWindow,
 		x int,
 		y int,
-		min_width int,
-		min_height int,
-		max_width int,
-		max_height int,
+		minWidth int,
+		minHeight int,
+		maxWidth int,
+		maxHeight int,
 		flags int)
 
-	Gdk_window_set_type_hint func(
+	WindowSetTypeHint func(
 		window *T.GdkWindow,
 		hint T.GdkWindowTypeHint)
 
-	Gdk_window_get_type_hint func(
+	WindowGetTypeHint func(
 		window *T.GdkWindow) T.GdkWindowTypeHint
 
-	Gdk_window_get_modal_hint func(
+	WindowGetModalHint func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_window_set_modal_hint func(
+	WindowSetModalHint func(
 		window *T.GdkWindow,
 		modal T.Gboolean)
 
-	Gdk_window_set_skip_taskbar_hint func(
+	WindowSetSkipTaskbarHint func(
 		window *T.GdkWindow,
-		skips_taskbar T.Gboolean)
+		skipsTaskbar T.Gboolean)
 
-	Gdk_window_set_skip_pager_hint func(
+	WindowSetSkipPagerHint func(
 		window *T.GdkWindow,
-		skips_pager T.Gboolean)
+		skipsPager T.Gboolean)
 
-	Gdk_window_set_urgency_hint func(
+	WindowSetUrgencyHint func(
 		window *T.GdkWindow,
 		urgent T.Gboolean)
 
-	Gdk_window_set_geometry_hints func(
+	WindowSetGeometryHints func(
 		window *T.GdkWindow,
 		geometry *T.GdkGeometry,
-		geom_mask T.GdkWindowHints)
+		geomMask T.GdkWindowHints)
 
-	Gdk_set_sm_client_id func(
-		sm_client_id string)
+	SetSmClientId func(
+		smClientId string)
 
-	Gdk_window_begin_paint_rect func(
+	WindowBeginPaintRect func(
 		window *T.GdkWindow,
 		rectangle *T.GdkRectangle)
 
-	Gdk_window_begin_paint_region func(
+	WindowBeginPaintRegion func(
 		window *T.GdkWindow,
 		region *T.GdkRegion)
 
-	Gdk_window_end_paint func(
+	WindowEndPaint func(
 		window *T.GdkWindow)
 
-	Gdk_window_flush func(
+	WindowFlush func(
 		window *T.GdkWindow)
 
-	Gdk_window_set_title func(
+	WindowSetTitle func(
 		window *T.GdkWindow,
 		title string)
 
-	Gdk_window_set_role func(
+	WindowSetRole func(
 		window *T.GdkWindow,
 		role string)
 
-	Gdk_window_set_startup_id func(
+	WindowSetStartupId func(
 		window *T.GdkWindow,
-		startup_id string)
+		startupId string)
 
-	Gdk_window_set_transient_for func(
+	WindowSetTransientFor func(
 		window *T.GdkWindow,
 		parent *T.GdkWindow)
 
-	Gdk_window_set_background func(
+	WindowSetBackground func(
 		window *T.GdkWindow,
 		color *T.GdkColor)
 
-	Gdk_window_set_back_pixmap func(
+	WindowSetBackPixmap func(
 		window *T.GdkWindow,
 		pixmap *T.GdkPixmap,
-		parent_relative T.Gboolean)
+		parentRelative T.Gboolean)
 
-	Gdk_window_get_background_pattern func(
-		window *T.GdkWindow) *T.Cairo_pattern_t
+	WindowGetBackgroundPattern func(
+		window *T.GdkWindow) *T.CairoPatternT
 
-	Gdk_window_set_cursor func(
+	WindowSetCursor func(
 		window *T.GdkWindow,
 		cursor *T.GdkCursor)
 
-	Gdk_window_get_cursor func(
+	WindowGetCursor func(
 		window *T.GdkWindow) *T.GdkCursor
 
-	Gdk_window_get_user_data func(
+	WindowGetUserData func(
 		window *T.GdkWindow,
 		data *T.Gpointer)
 
-	Gdk_window_get_geometry func(
+	WindowGetGeometry func(
 		window *T.GdkWindow,
 		x *int,
 		y *int,
@@ -2838,638 +2838,638 @@ var (
 		height *int,
 		depth *int)
 
-	Gdk_window_get_position func(
+	WindowGetPosition func(
 		window *T.GdkWindow,
 		x *int,
 		y *int)
 
-	Gdk_window_get_origin func(
+	WindowGetOrigin func(
 		window *T.GdkWindow,
 		x *int,
 		y *int) int
 
-	Gdk_window_get_root_coords func(
+	WindowGetRootCoords func(
 		window *T.GdkWindow,
 		x int,
 		y int,
-		root_x *int,
-		root_y *int)
+		rootX *int,
+		rootY *int)
 
-	Gdk_window_coords_to_parent func(
+	WindowCoordsToParent func(
 		window *T.GdkWindow,
 		x float64,
 		y float64,
-		parent_x *float64,
-		parent_y *float64)
+		parentX *float64,
+		parentY *float64)
 
-	Gdk_window_coords_from_parent func(
+	WindowCoordsFromParent func(
 		window *T.GdkWindow,
-		parent_x float64,
-		parent_y float64,
+		parentX float64,
+		parentY float64,
 		x *float64,
 		y *float64)
 
-	Gdk_window_get_deskrelative_origin func(
+	WindowGetDeskrelativeOrigin func(
 		window *T.GdkWindow,
 		x *int,
 		y *int) T.Gboolean
 
-	Gdk_window_get_root_origin func(
+	WindowGetRootOrigin func(
 		window *T.GdkWindow,
 		x *int,
 		y *int)
 
-	Gdk_window_get_frame_extents func(
+	WindowGetFrameExtents func(
 		window *T.GdkWindow,
 		rect *T.GdkRectangle)
 
-	Gdk_window_get_pointer func(
+	WindowGetPointer func(
 		window *T.GdkWindow,
 		x *int,
 		y *int,
 		mask *T.GdkModifierType) *T.GdkWindow
 
-	Gdk_window_get_parent func(
+	WindowGetParent func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_get_toplevel func(
+	WindowGetToplevel func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_get_effective_parent func(
+	WindowGetEffectiveParent func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_get_effective_toplevel func(
+	WindowGetEffectiveToplevel func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_get_children func(
+	WindowGetChildren func(
 		window *T.GdkWindow) *T.GList
 
-	Gdk_window_peek_children func(
+	WindowPeekChildren func(
 		window *T.GdkWindow) *T.GList
 
-	Gdk_window_get_events func(
+	WindowGetEvents func(
 		window *T.GdkWindow) T.GdkEventMask
 
-	Gdk_window_set_events func(
+	WindowSetEvents func(
 		window *T.GdkWindow,
-		event_mask T.GdkEventMask)
+		eventMask T.GdkEventMask)
 
-	Gdk_window_set_icon_list func(
+	WindowSetIconList func(
 		window *T.GdkWindow,
 		pixbufs *T.GList)
 
-	Gdk_window_set_icon func(
+	WindowSetIcon func(
 		window *T.GdkWindow,
-		icon_window *T.GdkWindow,
+		iconWindow *T.GdkWindow,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
-	Gdk_window_set_icon_name func(
+	WindowSetIconName func(
 		window *T.GdkWindow,
 		name string)
 
-	Gdk_window_set_group func(
+	WindowSetGroup func(
 		window *T.GdkWindow,
 		leader *T.GdkWindow)
 
-	Gdk_window_get_group func(
+	WindowGetGroup func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_set_decorations func(
+	WindowSetDecorations func(
 		window *T.GdkWindow,
 		decorations T.GdkWMDecoration)
 
-	Gdk_window_get_decorations func(
+	WindowGetDecorations func(
 		window *T.GdkWindow,
 		decorations *T.GdkWMDecoration) T.Gboolean
 
-	Gdk_window_set_functions func(
+	WindowSetFunctions func(
 		window *T.GdkWindow,
 		functions T.GdkWMFunction)
 
-	Gdk_window_get_toplevels func() *T.GList
+	WindowGetToplevels func() *T.GList
 
-	Gdk_window_create_similar_surface func(
+	WindowCreateSimilarSurface func(
 		window *T.GdkWindow,
-		content T.Cairo_content_t,
+		content T.CairoContentT,
 		width int,
-		height int) *T.Cairo_surface_t
+		height int) *T.CairoSurfaceT
 
-	Gdk_window_beep func(
+	WindowBeep func(
 		window *T.GdkWindow)
 
-	Gdk_window_iconify func(
+	WindowIconify func(
 		window *T.GdkWindow)
 
-	Gdk_window_deiconify func(
+	WindowDeiconify func(
 		window *T.GdkWindow)
 
-	Gdk_window_stick func(
+	WindowStick func(
 		window *T.GdkWindow)
 
-	Gdk_window_unstick func(
+	WindowUnstick func(
 		window *T.GdkWindow)
 
-	Gdk_window_maximize func(
+	WindowMaximize func(
 		window *T.GdkWindow)
 
-	Gdk_window_unmaximize func(
+	WindowUnmaximize func(
 		window *T.GdkWindow)
 
-	Gdk_window_fullscreen func(
+	WindowFullscreen func(
 		window *T.GdkWindow)
 
-	Gdk_window_unfullscreen func(
+	WindowUnfullscreen func(
 		window *T.GdkWindow)
 
-	Gdk_window_set_keep_above func(
+	WindowSetKeepAbove func(
 		window *T.GdkWindow,
 		setting T.Gboolean)
 
-	Gdk_window_set_keep_below func(
+	WindowSetKeepBelow func(
 		window *T.GdkWindow,
 		setting T.Gboolean)
 
-	Gdk_window_set_opacity func(
+	WindowSetOpacity func(
 		window *T.GdkWindow,
 		opacity float64)
 
-	Gdk_window_register_dnd func(
+	WindowRegisterDnd func(
 		window *T.GdkWindow)
 
-	Gdk_window_begin_resize_drag func(
+	WindowBeginResizeDrag func(
 		window *T.GdkWindow,
 		edge T.GdkWindowEdge,
 		button int,
-		root_x int,
-		root_y int,
+		rootX int,
+		rootY int,
 		timestamp T.GUint32)
 
-	Gdk_window_begin_move_drag func(
+	WindowBeginMoveDrag func(
 		window *T.GdkWindow,
 		button int,
-		root_x int,
-		root_y int,
+		rootX int,
+		rootY int,
 		timestamp T.GUint32)
 
-	Gdk_window_invalidate_rect func(
+	WindowInvalidateRect func(
 		window *T.GdkWindow,
 		rect *T.GdkRectangle,
-		invalidate_children T.Gboolean)
+		invalidateChildren T.Gboolean)
 
-	Gdk_window_invalidate_region func(
+	WindowInvalidateRegion func(
 		window *T.GdkWindow,
 		region *T.GdkRegion,
-		invalidate_children T.Gboolean)
+		invalidateChildren T.Gboolean)
 
-	Gdk_window_invalidate_maybe_recurse func(
+	WindowInvalidateMaybeRecurse func(
 		window *T.GdkWindow,
 		region *T.GdkRegion,
-		child_func func(*T.GdkWindow, T.Gpointer) T.Gboolean,
-		user_data T.Gpointer)
+		childFunc func(*T.GdkWindow, T.Gpointer) T.Gboolean,
+		userData T.Gpointer)
 
-	Gdk_window_get_update_area func(
+	WindowGetUpdateArea func(
 		window *T.GdkWindow) *T.GdkRegion
 
-	Gdk_window_freeze_updates func(
+	WindowFreezeUpdates func(
 		window *T.GdkWindow)
 
-	Gdk_window_thaw_updates func(
+	WindowThawUpdates func(
 		window *T.GdkWindow)
 
-	Gdk_window_freeze_toplevel_updates_libgtk_only func(
+	WindowFreezeToplevelUpdatesLibgtkOnly func(
 		window *T.GdkWindow)
 
-	Gdk_window_thaw_toplevel_updates_libgtk_only func(
+	WindowThawToplevelUpdatesLibgtkOnly func(
 		window *T.GdkWindow)
 
-	Gdk_window_process_all_updates func()
+	WindowProcessAllUpdates func()
 
-	Gdk_window_process_updates func(
+	WindowProcessUpdates func(
 		window *T.GdkWindow,
-		update_children T.Gboolean)
+		updateChildren T.Gboolean)
 
-	Gdk_window_set_debug_updates func(
+	WindowSetDebugUpdates func(
 		setting T.Gboolean)
 
-	Gdk_window_constrain_size func(
+	WindowConstrainSize func(
 		geometry *T.GdkGeometry,
 		flags uint,
 		width int,
 		height int,
-		new_width *int,
-		new_height *int)
+		newWidth *int,
+		newHeight *int)
 
-	Gdk_window_get_internal_paint_info func(
+	WindowGetInternalPaintInfo func(
 		window *T.GdkWindow,
-		real_drawable **T.GdkDrawable,
-		x_offset *int,
-		y_offset *int)
+		realDrawable **T.GdkDrawable,
+		xOffset *int,
+		yOffset *int)
 
-	Gdk_window_enable_synchronized_configure func(
+	WindowEnableSynchronizedConfigure func(
 		window *T.GdkWindow)
 
-	Gdk_window_configure_finished func(
+	WindowConfigureFinished func(
 		window *T.GdkWindow)
 
-	Gdk_get_default_root_window func() *T.GdkWindow
+	GetDefaultRootWindow func() *T.GdkWindow
 
-	Gdk_offscreen_window_get_pixmap func(
+	OffscreenWindowGetPixmap func(
 		window *T.GdkWindow) *T.GdkPixmap
 
-	Gdk_offscreen_window_set_embedder func(
+	OffscreenWindowSetEmbedder func(
 		window *T.GdkWindow,
 		embedder *T.GdkWindow)
 
-	Gdk_offscreen_window_get_embedder func(
+	OffscreenWindowGetEmbedder func(
 		window *T.GdkWindow) *T.GdkWindow
 
-	Gdk_window_geometry_changed func(
+	WindowGeometryChanged func(
 		window *T.GdkWindow)
 
-	Gdk_window_redirect_to_drawable func(
+	WindowRedirectToDrawable func(
 		window *T.GdkWindow,
 		drawable *T.GdkDrawable,
-		src_x int,
-		src_y int,
-		dest_x int,
-		dest_y int,
+		srcX int,
+		srcY int,
+		destX int,
+		destY int,
 		width int,
 		height int)
 
-	Gdk_window_remove_redirection func(
+	WindowRemoveRedirection func(
 		window *T.GdkWindow)
 
-	Gdk_set_pointer_hooks func(
-		new_hooks *T.GdkPointerHooks) *T.GdkPointerHooks
+	SetPointerHooks func(
+		newHooks *T.GdkPointerHooks) *T.GdkPointerHooks
 
-	Gdk_test_render_sync func(
+	TestRenderSync func(
 		window *T.GdkWindow)
 
-	Gdk_test_simulate_key func(
+	TestSimulateKey func(
 		window *T.GdkWindow,
 		x int,
 		y int,
 		keyval uint,
 		modifiers T.GdkModifierType,
-		key_pressrelease T.GdkEventType) T.Gboolean
+		keyPressrelease T.GdkEventType) T.Gboolean
 
-	Gdk_test_simulate_button func(
+	TestSimulateButton func(
 		window *T.GdkWindow,
 		x int,
 		y int,
 		button uint,
 		modifiers T.GdkModifierType,
-		button_pressrelease T.GdkEventType) T.Gboolean
+		buttonPressrelease T.GdkEventType) T.Gboolean
 
-	Gdk_visual_get_type func() T.GType
+	VisualGetType func() T.GType
 
-	Gdk_visual_get_best_depth func() int
+	VisualGetBestDepth func() int
 
-	Gdk_visual_get_best_type func() T.GdkVisualType
+	VisualGetBestType func() T.GdkVisualType
 
-	Gdk_visual_get_system func() *T.GdkVisual
+	VisualGetSystem func() *T.GdkVisual
 
-	Gdk_visual_get_best func() *T.GdkVisual
+	VisualGetBest func() *T.GdkVisual
 
-	Gdk_visual_get_best_with_depth func(
+	VisualGetBestWithDepth func(
 		depth int) *T.GdkVisual
 
-	Gdk_visual_get_best_with_type func(
-		visual_type T.GdkVisualType) *T.GdkVisual
+	VisualGetBestWithType func(
+		visualType T.GdkVisualType) *T.GdkVisual
 
-	Gdk_visual_get_best_with_both func(
+	VisualGetBestWithBoth func(
 		depth int,
-		visual_type T.GdkVisualType) *T.GdkVisual
+		visualType T.GdkVisualType) *T.GdkVisual
 
-	Gdk_query_depths func(
+	QueryDepths func(
 		depths **int,
 		count *int)
 
-	Gdk_query_visual_types func(
-		visual_types **T.GdkVisualType,
+	QueryVisualTypes func(
+		visualTypes **T.GdkVisualType,
 		count *int)
 
-	Gdk_list_visuals func() *T.GList
+	ListVisuals func() *T.GList
 
-	Gdk_visual_get_screen func(
+	VisualGetScreen func(
 		visual *T.GdkVisual) *T.GdkScreen
 
-	Gdk_visual_get_visual_type func(
+	VisualGetVisualType func(
 		visual *T.GdkVisual) T.GdkVisualType
 
-	Gdk_visual_get_depth func(
+	VisualGetDepth func(
 		visual *T.GdkVisual) int
 
-	Gdk_visual_get_byte_order func(
+	VisualGetByteOrder func(
 		visual *T.GdkVisual) T.GdkByteOrder
 
-	Gdk_visual_get_colormap_size func(
+	VisualGetColormapSize func(
 		visual *T.GdkVisual) int
 
-	Gdk_visual_get_bits_per_rgb func(
+	VisualGetBitsPerRgb func(
 		visual *T.GdkVisual) int
 
-	Gdk_visual_get_red_pixel_details func(
+	VisualGetRedPixelDetails func(
 		visual *T.GdkVisual,
 		mask *T.GUint32,
 		shift *int,
 		precision *int)
 
-	Gdk_visual_get_green_pixel_details func(
+	VisualGetGreenPixelDetails func(
 		visual *T.GdkVisual,
 		mask *T.GUint32,
 		shift *int,
 		precision *int)
 
-	Gdk_visual_get_blue_pixel_details func(
+	VisualGetBluePixelDetails func(
 		visual *T.GdkVisual,
 		mask *T.GUint32,
 		shift *int,
 		precision *int)
 
-	Gdk_parse_args func(
+	ParseArgs func(
 		argc *int,
 		argv ***T.Gchar)
 
-	Gdk_init func(
+	Init func(
 		argc *int,
 		argv ***T.Gchar)
 
-	Gdk_init_check func(
+	InitCheck func(
 		argc *int,
 		argv ***T.Gchar) T.Gboolean
 
-	Gdk_add_option_entries_libgtk_only func(
+	AddOptionEntriesLibgtkOnly func(
 		group *T.GOptionGroup)
 
-	Gdk_pre_parse_libgtk_only func()
+	PreParseLibgtkOnly func()
 
-	Gdk_exit func(
-		error_code int)
+	Exit func(
+		errorCode int)
 
-	Gdk_set_locale func() string
+	SetLocale func() string
 
-	Gdk_get_program_class func() string
+	GetProgramClass func() string
 
-	Gdk_set_program_class func(
-		program_class string)
+	SetProgramClass func(
+		programClass string)
 
-	Gdk_error_trap_push func()
+	ErrorTrapPush func()
 
-	Gdk_error_trap_pop func() int
+	ErrorTrapPop func() int
 
-	Gdk_set_use_xshm func(
-		use_xshm T.Gboolean)
+	SetUseXshm func(
+		useXshm T.Gboolean)
 
-	Gdk_get_use_xshm func() T.Gboolean
+	GetUseXshm func() T.Gboolean
 
-	Gdk_get_display func() string
+	GetDisplay func() string
 
-	Gdk_get_display_arg_name func() string
+	GetDisplayArgName func() string
 
-	Gdk_input_add_full func(
+	InputAddFull func(
 		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
 		data T.Gpointer,
 		destroy T.GDestroyNotify) int
 
-	Gdk_input_add func(
+	InputAdd func(
 		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
 		data T.Gpointer) int
 
-	Gdk_input_remove func(
+	InputRemove func(
 		tag int)
 
-	Gdk_pointer_grab func(
+	PointerGrab func(
 		window *T.GdkWindow,
-		owner_events T.Gboolean,
-		event_mask T.GdkEventMask,
-		confine_to *T.GdkWindow,
+		ownerEvents T.Gboolean,
+		eventMask T.GdkEventMask,
+		confineTo *T.GdkWindow,
 		cursor *T.GdkCursor,
-		time_ T.GUint32) T.GdkGrabStatus
+		time T.GUint32) T.GdkGrabStatus
 
-	Gdk_keyboard_grab func(
+	KeyboardGrab func(
 		window *T.GdkWindow,
-		owner_events T.Gboolean,
-		time_ T.GUint32) T.GdkGrabStatus
+		ownerEvents T.Gboolean,
+		time T.GUint32) T.GdkGrabStatus
 
-	Gdk_pointer_grab_info_libgtk_only func(
+	PointerGrabInfoLibgtkOnly func(
 		display *T.GdkDisplay,
-		grab_window **T.GdkWindow,
-		owner_events *T.Gboolean) T.Gboolean
+		grabWindow **T.GdkWindow,
+		ownerEvents *T.Gboolean) T.Gboolean
 
-	Gdk_keyboard_grab_info_libgtk_only func(
+	KeyboardGrabInfoLibgtkOnly func(
 		display *T.GdkDisplay,
-		grab_window **T.GdkWindow,
-		owner_events *T.Gboolean) T.Gboolean
+		grabWindow **T.GdkWindow,
+		ownerEvents *T.Gboolean) T.Gboolean
 
-	Gdk_pointer_ungrab func(
-		time_ T.GUint32)
+	PointerUngrab func(
+		time T.GUint32)
 
-	Gdk_keyboard_ungrab func(
-		time_ T.GUint32)
+	KeyboardUngrab func(
+		time T.GUint32)
 
-	Gdk_pointer_is_grabbed func() T.Gboolean
+	PointerIsGrabbed func() T.Gboolean
 
-	Gdk_screen_width func() int
+	ScreenWidth func() int
 
-	Gdk_screen_height func() int
+	ScreenHeight func() int
 
-	Gdk_screen_width_mm func() int
+	ScreenWidthMm func() int
 
-	Gdk_screen_height_mm func() int
+	ScreenHeightMm func() int
 
-	Gdk_beep func()
+	Beep func()
 
-	Gdk_flush func()
+	Flush func()
 
-	Gdk_set_double_click_time func(
+	SetDoubleClickTime func(
 		msec uint)
 
-	Gdk_rectangle_intersect func(
+	RectangleIntersect func(
 		src1 *T.GdkRectangle,
 		src2 *T.GdkRectangle,
 		dest *T.GdkRectangle) T.Gboolean
 
-	Gdk_rectangle_union func(
+	RectangleUnion func(
 		src1 *T.GdkRectangle,
 		src2 *T.GdkRectangle,
 		dest *T.GdkRectangle)
 
-	Gdk_rectangle_get_type func() T.GType
+	RectangleGetType func() T.GType
 
-	Gdk_wcstombs func(
+	Wcstombs func(
 		src *T.GdkWChar) string
 
-	Gdk_mbstowcs func(
+	Mbstowcs func(
 		dest *T.GdkWChar,
 		src string,
-		dest_max int) int
+		destMax int) int
 
-	Gdk_event_send_client_message func(
+	EventSendClientMessage func(
 		event *T.GdkEvent,
 		winid T.GdkNativeWindow) T.Gboolean
 
-	Gdk_event_send_clientmessage_toall func(
+	EventSendClientmessageToall func(
 		event *T.GdkEvent)
 
-	Gdk_event_send_client_message_for_display func(
+	EventSendClientMessageForDisplay func(
 		display *T.GdkDisplay,
 		event *T.GdkEvent,
 		winid T.GdkNativeWindow) T.Gboolean
 
-	Gdk_notify_startup_complete func()
+	NotifyStartupComplete func()
 
-	Gdk_notify_startup_complete_with_id func(
-		startup_id string)
+	NotifyStartupCompleteWithId func(
+		startupId string)
 
-	Gdk_threads_enter func()
+	ThreadsEnter func()
 
-	Gdk_threads_leave func()
+	ThreadsLeave func()
 
-	Gdk_threads_init func()
+	ThreadsInit func()
 
-	Gdk_threads_set_lock_functions func(
-		enter_fn T.GCallback,
-		leave_fn T.GCallback)
+	ThreadsSetLockFunctions func(
+		enterFn T.GCallback,
+		leaveFn T.GCallback)
 
-	Gdk_threads_add_idle_full func(
+	ThreadsAddIdleFull func(
 		priority int,
 		function T.GSourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
-	Gdk_threads_add_idle func(
+	ThreadsAddIdle func(
 		function T.GSourceFunc,
 		data T.Gpointer) uint
 
-	Gdk_threads_add_timeout_full func(
-		priority int,
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify) uint
-
-	Gdk_threads_add_timeout func(
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer) uint
-
-	Gdk_threads_add_timeout_seconds_full func(
+	ThreadsAddTimeoutFull func(
 		priority int,
 		interval uint,
 		function T.GSourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
-	Gdk_threads_add_timeout_seconds func(
+	ThreadsAddTimeout func(
 		interval uint,
 		function T.GSourceFunc,
 		data T.Gpointer) uint
 
-	Gdk_pixbuf_non_anim_get_type func() T.GType
+	ThreadsAddTimeoutSecondsFull func(
+		priority int,
+		interval uint,
+		function T.GSourceFunc,
+		data T.Gpointer,
+		notify T.GDestroyNotify) uint
 
-	Gdk_pixbuf_non_anim_new func(
+	ThreadsAddTimeoutSeconds func(
+		interval uint,
+		function T.GSourceFunc,
+		data T.Gpointer) uint
+
+	PixbufNonAnimGetType func() T.GType
+
+	PixbufNonAnimNew func(
 		pixbuf *T.GdkPixbuf) *T.GdkPixbufAnimation
 
-	Gdk_pixbuf_animation_new_from_file func(
+	PixbufAnimationNewFromFile func(
 		filename string,
 		e **T.GError) *T.GdkPixbufAnimation
 
-	Gdk_pixdata_serialize func(
+	PixdataSerialize func(
 		pixdata *T.GdkPixdata,
-		stream_length_p *uint) *uint8
+		streamLengthP *uint) *uint8
 
-	Gdk_pixdata_deserialize func(
+	PixdataDeserialize func(
 		pixdata *T.GdkPixdata,
-		stream_length uint,
+		streamLength uint,
 		stream *uint8,
 		e **T.GError) T.Gboolean
 
-	Gdk_pixdata_from_pixbuf func(
+	PixdataFromPixbuf func(
 		pixdata *T.GdkPixdata,
 		pixbuf *T.GdkPixbuf,
-		use_rle T.Gboolean) T.Gpointer
+		useRle T.Gboolean) T.Gpointer
 
-	Gdk_pixbuf_from_pixdata func(
+	PixbufFromPixdata func(
 		pixdata *T.GdkPixdata,
-		copy_pixels T.Gboolean,
+		copyPixels T.Gboolean,
 		e **T.GError) *T.GdkPixbuf
 
-	Gdk_pixdata_to_csource func(
+	PixdataToCsource func(
 		pixdata *T.GdkPixdata,
 		name string,
-		dump_type T.GdkPixdataDumpType) *T.GString
+		dumpType T.GdkPixdataDumpType) *T.GString
 
-	Gdk_pixbuf_set_option func(
+	PixbufSetOption func(
 		pixbuf *T.GdkPixbuf,
 		key string,
 		value string) T.Gboolean
 
-	Gdk_window_destroy_notify func(
+	WindowDestroyNotify func(
 		window *T.GdkWindow)
 
-	Gdk_synthesize_window_state func(
+	SynthesizeWindowState func(
 		window *T.GdkWindow,
-		unset_flags T.GdkWindowState,
-		set_flags T.GdkWindowState)
+		unsetFlags T.GdkWindowState,
+		setFlags T.GdkWindowState)
 
-	Gdk_win32_window_is_win32 func(
+	Win32WindowIsWin32 func(
 		window *T.GdkWindow) T.Gboolean
 
-	Gdk_win32_window_get_impl_hwnd func(
+	Win32WindowGetImplHwnd func(
 		window *T.GdkWindow) HWND
 
-	Gdk_win32_handle_table_lookup func(
+	Win32HandleTableLookup func(
 		handle T.GdkNativeWindow) T.Gpointer
 
-	Gdk_win32_drawable_get_handle func(
+	Win32DrawableGetHandle func(
 		drawable *T.GdkDrawable) HGDIOBJ
 
-	Gdk_win32_hdc_get func(
+	Win32HdcGet func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		usage T.GdkGCValuesMask) HDC
 
-	Gdk_win32_hdc_release func(
+	Win32HdcRelease func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
 		usage T.GdkGCValuesMask)
 
-	Gdk_win32_selection_add_targets func(
+	Win32SelectionAddTargets func(
 		owner *T.GdkWindow,
 		selection T.GdkAtom,
-		n_targets int,
+		nTargets int,
 		targets *T.GdkAtom)
 
-	Gdk_win32_icon_to_pixbuf_libgtk_only func(
+	Win32IconToPixbufLibgtkOnly func(
 		hicon HICON) *T.GdkPixbuf
 
-	Gdk_win32_pixbuf_to_hicon_libgtk_only func(
+	Win32PixbufToHiconLibgtkOnly func(
 		pixbuf *T.GdkPixbuf) HICON
 
-	Gdk_win32_set_modal_dialog_libgtk_only func(
+	Win32SetModalDialogLibgtkOnly func(
 		window HWND)
 
-	Gdk_win32_begin_direct_draw_libgtk_only func(
+	Win32BeginDirectDrawLibgtkOnly func(
 		drawable *T.GdkDrawable,
 		gc *T.GdkGC,
-		priv_data *T.Gpointer,
-		x_offset_out *int,
-		y_offset_out *int) *T.GdkDrawable
+		privData *T.Gpointer,
+		xOffsetOut *int,
+		yOffsetOut *int) *T.GdkDrawable
 
-	Gdk_win32_end_direct_draw_libgtk_only func(
-		priv_data T.Gpointer)
+	Win32EndDirectDrawLibgtkOnly func(
+		privData T.Gpointer)
 
-	Gdk_win32_window_foreign_new_for_display func(
+	Win32WindowForeignNewForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkWindow
 
-	Gdk_win32_window_lookup_for_display func(
+	Win32WindowLookupForDisplay func(
 		display *T.GdkDisplay,
 		anid T.GdkNativeWindow) *T.GdkWindow
 )
@@ -3479,850 +3479,850 @@ var dll = "libgdk-win32-2.0-0.dll"
 var dllPixbuf = "libgdk_pixbuf-2.0-0.dll"
 
 var apiList = outside.Apis{
-	{"gdk_add_client_message_filter", &Gdk_add_client_message_filter},
-	{"gdk_add_option_entries_libgtk_only", &Gdk_add_option_entries_libgtk_only},
-	{"gdk_app_launch_context_get_type", &Gdk_app_launch_context_get_type},
-	{"gdk_app_launch_context_new", &Gdk_app_launch_context_new},
-	{"gdk_app_launch_context_set_desktop", &Gdk_app_launch_context_set_desktop},
-	{"gdk_app_launch_context_set_display", &Gdk_app_launch_context_set_display},
-	{"gdk_app_launch_context_set_icon", &Gdk_app_launch_context_set_icon},
-	{"gdk_app_launch_context_set_icon_name", &Gdk_app_launch_context_set_icon_name},
-	{"gdk_app_launch_context_set_screen", &Gdk_app_launch_context_set_screen},
-	{"gdk_app_launch_context_set_timestamp", &Gdk_app_launch_context_set_timestamp},
-	{"gdk_atom_intern", &Gdk_atom_intern},
-	{"gdk_atom_intern_static_string", &Gdk_atom_intern_static_string},
-	{"gdk_atom_name", &Gdk_atom_name},
-	{"gdk_axis_use_get_type", &Gdk_axis_use_get_type},
-	{"gdk_beep", &Gdk_beep},
-	{"gdk_bitmap_create_from_data", &Gdk_bitmap_create_from_data},
-	{"gdk_byte_order_get_type", &Gdk_byte_order_get_type},
-	{"gdk_cairo_create", &Gdk_cairo_create},
-	{"gdk_cairo_rectangle", &Gdk_cairo_rectangle},
-	{"gdk_cairo_region", &Gdk_cairo_region},
-	{"gdk_cairo_reset_clip", &Gdk_cairo_reset_clip},
-	{"gdk_cairo_set_source_color", &Gdk_cairo_set_source_color},
-	{"gdk_cairo_set_source_pixbuf", &Gdk_cairo_set_source_pixbuf},
-	{"gdk_cairo_set_source_pixmap", &Gdk_cairo_set_source_pixmap},
-	{"gdk_cairo_set_source_window", &Gdk_cairo_set_source_window},
-	{"gdk_cap_style_get_type", &Gdk_cap_style_get_type},
-	{"gdk_char_height", &Gdk_char_height},
-	{"gdk_char_measure", &Gdk_char_measure},
-	{"gdk_char_width", &Gdk_char_width},
-	{"gdk_char_width_wc", &Gdk_char_width_wc},
-	{"gdk_color_alloc", &Gdk_color_alloc},
-	{"gdk_color_black", &Gdk_color_black},
-	{"gdk_color_change", &Gdk_color_change},
-	{"gdk_color_copy", &Gdk_color_copy},
-	{"gdk_color_equal", &Gdk_color_equal},
-	{"gdk_color_free", &Gdk_color_free},
-	{"gdk_color_get_type", &Gdk_color_get_type},
-	{"gdk_color_hash", &Gdk_color_hash},
-	{"gdk_color_parse", &Gdk_color_parse},
-	{"gdk_color_to_string", &Gdk_color_to_string},
-	{"gdk_color_white", &Gdk_color_white},
-	{"gdk_colormap_alloc_color", &Gdk_colormap_alloc_color},
-	{"gdk_colormap_alloc_colors", &Gdk_colormap_alloc_colors},
-	{"gdk_colormap_change", &Gdk_colormap_change},
-	{"gdk_colormap_free_colors", &Gdk_colormap_free_colors},
-	{"gdk_colormap_get_screen", &Gdk_colormap_get_screen},
-	{"gdk_colormap_get_system", &Gdk_colormap_get_system},
-	{"gdk_colormap_get_system_size", &Gdk_colormap_get_system_size},
-	{"gdk_colormap_get_type", &Gdk_colormap_get_type},
-	{"gdk_colormap_get_visual", &Gdk_colormap_get_visual},
-	{"gdk_colormap_new", &Gdk_colormap_new},
-	{"gdk_colormap_query_color", &Gdk_colormap_query_color},
-	{"gdk_colormap_ref", &Gdk_colormap_ref},
-	{"gdk_colormap_unref", &Gdk_colormap_unref},
-	{"gdk_colors_alloc", &Gdk_colors_alloc},
-	{"gdk_colors_free", &Gdk_colors_free},
-	{"gdk_colors_store", &Gdk_colors_store},
-	{"gdk_crossing_mode_get_type", &Gdk_crossing_mode_get_type},
-	{"gdk_cursor_get_cursor_type", &Gdk_cursor_get_cursor_type},
-	{"gdk_cursor_get_display", &Gdk_cursor_get_display},
-	{"gdk_cursor_get_image", &Gdk_cursor_get_image},
-	{"gdk_cursor_get_type", &Gdk_cursor_get_type},
-	{"gdk_cursor_new", &Gdk_cursor_new},
-	{"gdk_cursor_new_for_display", &Gdk_cursor_new_for_display},
-	{"gdk_cursor_new_from_name", &Gdk_cursor_new_from_name},
-	{"gdk_cursor_new_from_pixbuf", &Gdk_cursor_new_from_pixbuf},
-	{"gdk_cursor_new_from_pixmap", &Gdk_cursor_new_from_pixmap},
-	{"gdk_cursor_ref", &Gdk_cursor_ref},
-	{"gdk_cursor_type_get_type", &Gdk_cursor_type_get_type},
-	{"gdk_cursor_unref", &Gdk_cursor_unref},
-	{"gdk_device_free_history", &Gdk_device_free_history},
-	{"gdk_device_get_axis", &Gdk_device_get_axis},
-	{"gdk_device_get_axis_use", &Gdk_device_get_axis_use},
-	{"gdk_device_get_core_pointer", &Gdk_device_get_core_pointer},
-	{"gdk_device_get_has_cursor", &Gdk_device_get_has_cursor},
-	{"gdk_device_get_history", &Gdk_device_get_history},
-	{"gdk_device_get_key", &Gdk_device_get_key},
-	{"gdk_device_get_mode", &Gdk_device_get_mode},
-	{"gdk_device_get_n_axes", &Gdk_device_get_n_axes},
-	{"gdk_device_get_n_keys", &Gdk_device_get_n_keys},
-	{"gdk_device_get_name", &Gdk_device_get_name},
-	{"gdk_device_get_source", &Gdk_device_get_source},
-	{"gdk_device_get_state", &Gdk_device_get_state},
-	{"gdk_device_get_type", &Gdk_device_get_type},
-	{"gdk_device_set_axis_use", &Gdk_device_set_axis_use},
-	{"gdk_device_set_key", &Gdk_device_set_key},
-	{"gdk_device_set_mode", &Gdk_device_set_mode},
-	{"gdk_device_set_source", &Gdk_device_set_source},
-	{"gdk_devices_list", &Gdk_devices_list},
-	{"gdk_display_add_client_message_filter", &Gdk_display_add_client_message_filter},
-	{"gdk_display_beep", &Gdk_display_beep},
-	{"gdk_display_close", &Gdk_display_close},
-	{"gdk_display_flush", &Gdk_display_flush},
-	{"gdk_display_get_core_pointer", &Gdk_display_get_core_pointer},
-	{"gdk_display_get_default", &Gdk_display_get_default},
-	{"gdk_display_get_default_cursor_size", &Gdk_display_get_default_cursor_size},
-	{"gdk_display_get_default_group", &Gdk_display_get_default_group},
-	{"gdk_display_get_default_screen", &Gdk_display_get_default_screen},
-	{"gdk_display_get_event", &Gdk_display_get_event},
-	{"gdk_display_get_maximal_cursor_size", &Gdk_display_get_maximal_cursor_size},
-	{"gdk_display_get_n_screens", &Gdk_display_get_n_screens},
-	{"gdk_display_get_name", &Gdk_display_get_name},
-	{"gdk_display_get_pointer", &Gdk_display_get_pointer},
-	{"gdk_display_get_screen", &Gdk_display_get_screen},
-	{"gdk_display_get_type", &Gdk_display_get_type},
-	{"gdk_display_get_window_at_pointer", &Gdk_display_get_window_at_pointer},
-	{"gdk_display_is_closed", &Gdk_display_is_closed},
-	{"gdk_display_keyboard_ungrab", &Gdk_display_keyboard_ungrab},
-	{"gdk_display_list_devices", &Gdk_display_list_devices},
-	{"gdk_display_manager_get", &Gdk_display_manager_get},
-	{"gdk_display_manager_get_default_display", &Gdk_display_manager_get_default_display},
-	{"gdk_display_manager_get_type", &Gdk_display_manager_get_type},
-	{"gdk_display_manager_list_displays", &Gdk_display_manager_list_displays},
-	{"gdk_display_manager_set_default_display", &Gdk_display_manager_set_default_display},
-	{"gdk_display_open", &Gdk_display_open},
-	{"gdk_display_open_default_libgtk_only", &Gdk_display_open_default_libgtk_only},
-	{"gdk_display_peek_event", &Gdk_display_peek_event},
-	{"gdk_display_pointer_is_grabbed", &Gdk_display_pointer_is_grabbed},
-	{"gdk_display_pointer_ungrab", &Gdk_display_pointer_ungrab},
-	{"gdk_display_put_event", &Gdk_display_put_event},
-	{"gdk_display_request_selection_notification", &Gdk_display_request_selection_notification},
-	{"gdk_display_set_double_click_distance", &Gdk_display_set_double_click_distance},
-	{"gdk_display_set_double_click_time", &Gdk_display_set_double_click_time},
-	{"gdk_display_set_pointer_hooks", &Gdk_display_set_pointer_hooks},
-	{"gdk_display_store_clipboard", &Gdk_display_store_clipboard},
-	{"gdk_display_supports_clipboard_persistence", &Gdk_display_supports_clipboard_persistence},
-	{"gdk_display_supports_composite", &Gdk_display_supports_composite},
-	{"gdk_display_supports_cursor_alpha", &Gdk_display_supports_cursor_alpha},
-	{"gdk_display_supports_cursor_color", &Gdk_display_supports_cursor_color},
-	{"gdk_display_supports_input_shapes", &Gdk_display_supports_input_shapes},
-	{"gdk_display_supports_selection_notification", &Gdk_display_supports_selection_notification},
-	{"gdk_display_supports_shapes", &Gdk_display_supports_shapes},
-	{"gdk_display_sync", &Gdk_display_sync},
-	{"gdk_display_warp_pointer", &Gdk_display_warp_pointer},
-	{"gdk_drag_abort", &Gdk_drag_abort},
-	{"gdk_drag_action_get_type", &Gdk_drag_action_get_type},
-	{"gdk_drag_begin", &Gdk_drag_begin},
-	{"gdk_drag_context_get_actions", &Gdk_drag_context_get_actions},
-	{"gdk_drag_context_get_dest_window", &Gdk_drag_context_get_dest_window},
-	{"gdk_drag_context_get_protocol", &Gdk_drag_context_get_protocol},
-	{"gdk_drag_context_get_selected_action", &Gdk_drag_context_get_selected_action},
-	{"gdk_drag_context_get_source_window", &Gdk_drag_context_get_source_window},
-	{"gdk_drag_context_get_suggested_action", &Gdk_drag_context_get_suggested_action},
-	{"gdk_drag_context_get_type", &Gdk_drag_context_get_type},
-	{"gdk_drag_context_list_targets", &Gdk_drag_context_list_targets},
-	{"gdk_drag_context_new", &Gdk_drag_context_new},
-	{"gdk_drag_context_ref", &Gdk_drag_context_ref},
-	{"gdk_drag_context_unref", &Gdk_drag_context_unref},
-	{"gdk_drag_drop", &Gdk_drag_drop},
-	{"gdk_drag_drop_succeeded", &Gdk_drag_drop_succeeded},
-	{"gdk_drag_find_window", &Gdk_drag_find_window},
-	{"gdk_drag_find_window_for_screen", &Gdk_drag_find_window_for_screen},
-	{"gdk_drag_get_protocol", &Gdk_drag_get_protocol},
-	{"gdk_drag_get_protocol_for_display", &Gdk_drag_get_protocol_for_display},
-	{"gdk_drag_get_selection", &Gdk_drag_get_selection},
-	{"gdk_drag_motion", &Gdk_drag_motion},
-	{"gdk_drag_protocol_get_type", &Gdk_drag_protocol_get_type},
-	{"gdk_drag_status", &Gdk_drag_status},
-	{"gdk_draw_arc", &Gdk_draw_arc},
-	{"gdk_draw_drawable", &Gdk_draw_drawable},
-	{"gdk_draw_glyphs", &Gdk_draw_glyphs},
-	{"gdk_draw_glyphs_transformed", &Gdk_draw_glyphs_transformed},
-	{"gdk_draw_gray_image", &Gdk_draw_gray_image},
-	{"gdk_draw_image", &Gdk_draw_image},
-	{"gdk_draw_indexed_image", &Gdk_draw_indexed_image},
-	{"gdk_draw_layout", &Gdk_draw_layout},
-	{"gdk_draw_layout_line", &Gdk_draw_layout_line},
-	{"gdk_draw_layout_line_with_colors", &Gdk_draw_layout_line_with_colors},
-	{"gdk_draw_layout_with_colors", &Gdk_draw_layout_with_colors},
-	{"gdk_draw_line", &Gdk_draw_line},
-	{"gdk_draw_lines", &Gdk_draw_lines},
-	{"gdk_draw_pixbuf", &Gdk_draw_pixbuf},
-	{"gdk_draw_point", &Gdk_draw_point},
-	{"gdk_draw_points", &Gdk_draw_points},
-	{"gdk_draw_polygon", &Gdk_draw_polygon},
-	{"gdk_draw_rectangle", &Gdk_draw_rectangle},
-	{"gdk_draw_rgb_32_image", &Gdk_draw_rgb_32_image},
-	{"gdk_draw_rgb_32_image_dithalign", &Gdk_draw_rgb_32_image_dithalign},
-	{"gdk_draw_rgb_image", &Gdk_draw_rgb_image},
-	{"gdk_draw_rgb_image_dithalign", &Gdk_draw_rgb_image_dithalign},
-	{"gdk_draw_segments", &Gdk_draw_segments},
-	{"gdk_draw_string", &Gdk_draw_string},
-	{"gdk_draw_text", &Gdk_draw_text},
-	{"gdk_draw_text_wc", &Gdk_draw_text_wc},
-	{"gdk_draw_trapezoids", &Gdk_draw_trapezoids},
-	{"gdk_drawable_copy_to_image", &Gdk_drawable_copy_to_image},
-	{"gdk_drawable_get_clip_region", &Gdk_drawable_get_clip_region},
-	{"gdk_drawable_get_colormap", &Gdk_drawable_get_colormap},
-	{"gdk_drawable_get_data", &Gdk_drawable_get_data},
-	{"gdk_drawable_get_depth", &Gdk_drawable_get_depth},
-	{"gdk_drawable_get_display", &Gdk_drawable_get_display},
-	{"gdk_drawable_get_image", &Gdk_drawable_get_image},
-	{"gdk_drawable_get_screen", &Gdk_drawable_get_screen},
-	{"gdk_drawable_get_size", &Gdk_drawable_get_size},
-	{"gdk_drawable_get_type", &Gdk_drawable_get_type},
-	{"gdk_drawable_get_visible_region", &Gdk_drawable_get_visible_region},
-	{"gdk_drawable_get_visual", &Gdk_drawable_get_visual},
-	{"gdk_drawable_ref", &Gdk_drawable_ref},
-	{"gdk_drawable_set_colormap", &Gdk_drawable_set_colormap},
-	{"gdk_drawable_set_data", &Gdk_drawable_set_data},
-	{"gdk_drawable_unref", &Gdk_drawable_unref},
-	{"gdk_drop_finish", &Gdk_drop_finish},
-	{"gdk_drop_reply", &Gdk_drop_reply},
-	{"gdk_error_trap_pop", &Gdk_error_trap_pop},
-	{"gdk_error_trap_push", &Gdk_error_trap_push},
-	{"gdk_event_copy", &Gdk_event_copy},
-	{"gdk_event_free", &Gdk_event_free},
-	{"gdk_event_get", &Gdk_event_get},
-	{"gdk_event_get_axis", &Gdk_event_get_axis},
-	{"gdk_event_get_coords", &Gdk_event_get_coords},
-	{"gdk_event_get_graphics_expose", &Gdk_event_get_graphics_expose},
-	{"gdk_event_get_root_coords", &Gdk_event_get_root_coords},
-	{"gdk_event_get_screen", &Gdk_event_get_screen},
-	{"gdk_event_get_state", &Gdk_event_get_state},
-	{"gdk_event_get_time", &Gdk_event_get_time},
-	{"gdk_event_get_type", &Gdk_event_get_type},
-	{"gdk_event_handler_set", &Gdk_event_handler_set},
-	{"gdk_event_mask_get_type", &Gdk_event_mask_get_type},
-	{"gdk_event_new", &Gdk_event_new},
-	{"gdk_event_peek", &Gdk_event_peek},
-	{"gdk_event_put", &Gdk_event_put},
-	{"gdk_event_request_motions", &Gdk_event_request_motions},
-	{"gdk_event_send_client_message", &Gdk_event_send_client_message},
-	{"gdk_event_send_client_message_for_display", &Gdk_event_send_client_message_for_display},
-	{"gdk_event_send_clientmessage_toall", &Gdk_event_send_clientmessage_toall},
-	{"gdk_event_set_screen", &Gdk_event_set_screen},
-	{"gdk_event_type_get_type", &Gdk_event_type_get_type},
-	{"gdk_events_pending", &Gdk_events_pending},
-	{"gdk_exit", &Gdk_exit},
-	{"gdk_extension_mode_get_type", &Gdk_extension_mode_get_type},
-	{"gdk_fill_get_type", &Gdk_fill_get_type},
-	{"gdk_fill_rule_get_type", &Gdk_fill_rule_get_type},
-	{"gdk_filter_return_get_type", &Gdk_filter_return_get_type},
-	{"gdk_flush", &Gdk_flush},
-	{"gdk_font_equal", &Gdk_font_equal},
-	{"gdk_font_from_description", &Gdk_font_from_description},
-	{"gdk_font_from_description_for_display", &Gdk_font_from_description_for_display},
-	{"gdk_font_get_display", &Gdk_font_get_display},
-	{"gdk_font_get_type", &Gdk_font_get_type},
-	{"gdk_font_id", &Gdk_font_id},
-	{"gdk_font_load", &Gdk_font_load},
-	{"gdk_font_load_for_display", &Gdk_font_load_for_display},
-	{"gdk_font_ref", &Gdk_font_ref},
-	{"gdk_font_type_get_type", &Gdk_font_type_get_type},
-	{"gdk_font_unref", &Gdk_font_unref},
-	{"gdk_fontset_load", &Gdk_fontset_load},
-	{"gdk_fontset_load_for_display", &Gdk_fontset_load_for_display},
-	{"gdk_free_compound_text", &Gdk_free_compound_text},
-	{"gdk_free_text_list", &Gdk_free_text_list},
-	{"gdk_function_get_type", &Gdk_function_get_type},
-	{"gdk_gc_copy", &Gdk_gc_copy},
-	{"gdk_gc_get_colormap", &Gdk_gc_get_colormap},
-	{"gdk_gc_get_screen", &Gdk_gc_get_screen},
-	{"gdk_gc_get_type", &Gdk_gc_get_type},
-	{"gdk_gc_get_values", &Gdk_gc_get_values},
-	{"gdk_gc_new", &Gdk_gc_new},
-	{"gdk_gc_new_with_values", &Gdk_gc_new_with_values},
-	{"gdk_gc_offset", &Gdk_gc_offset},
-	{"gdk_gc_ref", &Gdk_gc_ref},
-	{"gdk_gc_set_background", &Gdk_gc_set_background},
-	{"gdk_gc_set_clip_mask", &Gdk_gc_set_clip_mask},
-	{"gdk_gc_set_clip_origin", &Gdk_gc_set_clip_origin},
-	{"gdk_gc_set_clip_rectangle", &Gdk_gc_set_clip_rectangle},
-	{"gdk_gc_set_clip_region", &Gdk_gc_set_clip_region},
-	{"gdk_gc_set_colormap", &Gdk_gc_set_colormap},
-	{"gdk_gc_set_dashes", &Gdk_gc_set_dashes},
-	{"gdk_gc_set_exposures", &Gdk_gc_set_exposures},
-	{"gdk_gc_set_fill", &Gdk_gc_set_fill},
-	{"gdk_gc_set_font", &Gdk_gc_set_font},
-	{"gdk_gc_set_foreground", &Gdk_gc_set_foreground},
-	{"gdk_gc_set_function", &Gdk_gc_set_function},
-	{"gdk_gc_set_line_attributes", &Gdk_gc_set_line_attributes},
-	{"gdk_gc_set_rgb_bg_color", &Gdk_gc_set_rgb_bg_color},
-	{"gdk_gc_set_rgb_fg_color", &Gdk_gc_set_rgb_fg_color},
-	{"gdk_gc_set_stipple", &Gdk_gc_set_stipple},
-	{"gdk_gc_set_subwindow", &Gdk_gc_set_subwindow},
-	{"gdk_gc_set_tile", &Gdk_gc_set_tile},
-	{"gdk_gc_set_ts_origin", &Gdk_gc_set_ts_origin},
-	{"gdk_gc_set_values", &Gdk_gc_set_values},
-	{"gdk_gc_unref", &Gdk_gc_unref},
-	{"gdk_gc_values_mask_get_type", &Gdk_gc_values_mask_get_type},
-	{"gdk_get_default_root_window", &Gdk_get_default_root_window},
-	{"gdk_get_display", &Gdk_get_display},
-	{"gdk_get_display_arg_name", &Gdk_get_display_arg_name},
-	{"gdk_get_program_class", &Gdk_get_program_class},
-	{"gdk_get_show_events", &Gdk_get_show_events},
-	{"gdk_get_use_xshm", &Gdk_get_use_xshm},
-	{"gdk_grab_status_get_type", &Gdk_grab_status_get_type},
-	{"gdk_gravity_get_type", &Gdk_gravity_get_type},
-	{"gdk_image_get", &Gdk_image_get},
-	{"gdk_image_get_bits_per_pixel", &Gdk_image_get_bits_per_pixel},
-	{"gdk_image_get_byte_order", &Gdk_image_get_byte_order},
-	{"gdk_image_get_bytes_per_line", &Gdk_image_get_bytes_per_line},
-	{"gdk_image_get_bytes_per_pixel", &Gdk_image_get_bytes_per_pixel},
-	{"gdk_image_get_colormap", &Gdk_image_get_colormap},
-	{"gdk_image_get_depth", &Gdk_image_get_depth},
-	{"gdk_image_get_height", &Gdk_image_get_height},
-	{"gdk_image_get_image_type", &Gdk_image_get_image_type},
-	{"gdk_image_get_pixel", &Gdk_image_get_pixel},
-	{"gdk_image_get_pixels", &Gdk_image_get_pixels},
-	{"gdk_image_get_type", &Gdk_image_get_type},
-	{"gdk_image_get_visual", &Gdk_image_get_visual},
-	{"gdk_image_get_width", &Gdk_image_get_width},
-	{"gdk_image_new", &Gdk_image_new},
-	{"gdk_image_put_pixel", &Gdk_image_put_pixel},
-	{"gdk_image_ref", &Gdk_image_ref},
-	{"gdk_image_set_colormap", &Gdk_image_set_colormap},
-	{"gdk_image_type_get_type", &Gdk_image_type_get_type},
-	{"gdk_image_unref", &Gdk_image_unref},
-	{"gdk_init", &Gdk_init},
-	{"gdk_init_check", &Gdk_init_check},
-	{"gdk_input_add", &Gdk_input_add},
-	{"gdk_input_add_full", &Gdk_input_add_full},
-	{"gdk_input_condition_get_type", &Gdk_input_condition_get_type},
-	{"gdk_input_mode_get_type", &Gdk_input_mode_get_type},
-	{"gdk_input_remove", &Gdk_input_remove},
-	{"gdk_input_set_extension_events", &Gdk_input_set_extension_events},
-	{"gdk_input_source_get_type", &Gdk_input_source_get_type},
-	{"gdk_join_style_get_type", &Gdk_join_style_get_type},
-	{"gdk_keyboard_grab", &Gdk_keyboard_grab},
-	{"gdk_keyboard_grab_info_libgtk_only", &Gdk_keyboard_grab_info_libgtk_only},
-	{"gdk_keyboard_ungrab", &Gdk_keyboard_ungrab},
-	{"gdk_keymap_add_virtual_modifiers", &Gdk_keymap_add_virtual_modifiers},
-	{"gdk_keymap_get_caps_lock_state", &Gdk_keymap_get_caps_lock_state},
-	{"gdk_keymap_get_default", &Gdk_keymap_get_default},
-	{"gdk_keymap_get_direction", &Gdk_keymap_get_direction},
-	{"gdk_keymap_get_entries_for_keycode", &Gdk_keymap_get_entries_for_keycode},
-	{"gdk_keymap_get_entries_for_keyval", &Gdk_keymap_get_entries_for_keyval},
-	{"gdk_keymap_get_for_display", &Gdk_keymap_get_for_display},
-	{"gdk_keymap_get_type", &Gdk_keymap_get_type},
-	{"gdk_keymap_have_bidi_layouts", &Gdk_keymap_have_bidi_layouts},
-	{"gdk_keymap_lookup_key", &Gdk_keymap_lookup_key},
-	{"gdk_keymap_map_virtual_modifiers", &Gdk_keymap_map_virtual_modifiers},
-	{"gdk_keymap_translate_keyboard_state", &Gdk_keymap_translate_keyboard_state},
-	{"gdk_keyval_convert_case", &Gdk_keyval_convert_case},
-	{"gdk_keyval_from_name", &Gdk_keyval_from_name},
-	{"gdk_keyval_is_lower", &Gdk_keyval_is_lower},
-	{"gdk_keyval_is_upper", &Gdk_keyval_is_upper},
-	{"gdk_keyval_name", &Gdk_keyval_name},
-	{"gdk_keyval_to_lower", &Gdk_keyval_to_lower},
-	{"gdk_keyval_to_unicode", &Gdk_keyval_to_unicode},
-	{"gdk_keyval_to_upper", &Gdk_keyval_to_upper},
-	{"gdk_line_style_get_type", &Gdk_line_style_get_type},
-	{"gdk_list_visuals", &Gdk_list_visuals},
-	{"gdk_mbstowcs", &Gdk_mbstowcs},
-	{"gdk_modifier_type_get_type", &Gdk_modifier_type_get_type},
-	// Undocumented {"gdk_net_wm_supports", &Gdk_net_wm_supports},
-	{"gdk_notify_startup_complete", &Gdk_notify_startup_complete},
-	{"gdk_notify_startup_complete_with_id", &Gdk_notify_startup_complete_with_id},
-	{"gdk_notify_type_get_type", &Gdk_notify_type_get_type},
-	{"gdk_offscreen_window_get_embedder", &Gdk_offscreen_window_get_embedder},
-	{"gdk_offscreen_window_get_pixmap", &Gdk_offscreen_window_get_pixmap},
-	// Undocumented {"gdk_offscreen_window_get_type", &Gdk_offscreen_window_get_type},
-	{"gdk_offscreen_window_set_embedder", &Gdk_offscreen_window_set_embedder},
-	{"gdk_overlap_type_get_type", &Gdk_overlap_type_get_type},
-	{"gdk_owner_change_get_type", &Gdk_owner_change_get_type},
-	{"gdk_pango_attr_emboss_color_new", &Gdk_pango_attr_emboss_color_new},
-	{"gdk_pango_attr_embossed_new", &Gdk_pango_attr_embossed_new},
-	{"gdk_pango_attr_stipple_new", &Gdk_pango_attr_stipple_new},
-	{"gdk_pango_context_get", &Gdk_pango_context_get},
-	{"gdk_pango_context_get_for_screen", &Gdk_pango_context_get_for_screen},
-	{"gdk_pango_context_set_colormap", &Gdk_pango_context_set_colormap},
-	{"gdk_pango_layout_get_clip_region", &Gdk_pango_layout_get_clip_region},
-	{"gdk_pango_layout_line_get_clip_region", &Gdk_pango_layout_line_get_clip_region},
-	{"gdk_pango_renderer_get_default", &Gdk_pango_renderer_get_default},
-	{"gdk_pango_renderer_get_type", &Gdk_pango_renderer_get_type},
-	{"gdk_pango_renderer_new", &Gdk_pango_renderer_new},
-	{"gdk_pango_renderer_set_drawable", &Gdk_pango_renderer_set_drawable},
-	{"gdk_pango_renderer_set_gc", &Gdk_pango_renderer_set_gc},
-	{"gdk_pango_renderer_set_override_color", &Gdk_pango_renderer_set_override_color},
-	{"gdk_pango_renderer_set_stipple", &Gdk_pango_renderer_set_stipple},
-	{"gdk_parse_args", &Gdk_parse_args},
-	{"gdk_pixbuf_get_from_drawable", &Gdk_pixbuf_get_from_drawable},
-	{"gdk_pixbuf_get_from_image", &Gdk_pixbuf_get_from_image},
-	{"gdk_pixbuf_render_pixmap_and_mask", &Gdk_pixbuf_render_pixmap_and_mask},
-	{"gdk_pixbuf_render_pixmap_and_mask_for_colormap", &Gdk_pixbuf_render_pixmap_and_mask_for_colormap},
-	{"gdk_pixbuf_render_threshold_alpha", &Gdk_pixbuf_render_threshold_alpha},
-	{"gdk_pixbuf_render_to_drawable", &Gdk_pixbuf_render_to_drawable},
-	{"gdk_pixbuf_render_to_drawable_alpha", &Gdk_pixbuf_render_to_drawable_alpha},
-	{"gdk_pixmap_colormap_create_from_xpm", &Gdk_pixmap_colormap_create_from_xpm},
-	{"gdk_pixmap_colormap_create_from_xpm_d", &Gdk_pixmap_colormap_create_from_xpm_d},
-	{"gdk_pixmap_create_from_data", &Gdk_pixmap_create_from_data},
-	{"gdk_pixmap_create_from_xpm", &Gdk_pixmap_create_from_xpm},
-	{"gdk_pixmap_create_from_xpm_d", &Gdk_pixmap_create_from_xpm_d},
-	{"gdk_pixmap_foreign_new", &Gdk_pixmap_foreign_new},
-	{"gdk_pixmap_foreign_new_for_display", &Gdk_pixmap_foreign_new_for_display},
-	{"gdk_pixmap_foreign_new_for_screen", &Gdk_pixmap_foreign_new_for_screen},
-	{"gdk_pixmap_get_size", &Gdk_pixmap_get_size},
-	{"gdk_pixmap_get_type", &Gdk_pixmap_get_type},
-	{"gdk_pixmap_lookup", &Gdk_pixmap_lookup},
-	{"gdk_pixmap_lookup_for_display", &Gdk_pixmap_lookup_for_display},
-	{"gdk_pixmap_new", &Gdk_pixmap_new},
-	{"gdk_pointer_grab", &Gdk_pointer_grab},
-	{"gdk_pointer_grab_info_libgtk_only", &Gdk_pointer_grab_info_libgtk_only},
-	{"gdk_pointer_is_grabbed", &Gdk_pointer_is_grabbed},
-	{"gdk_pointer_ungrab", &Gdk_pointer_ungrab},
-	{"gdk_pre_parse_libgtk_only", &Gdk_pre_parse_libgtk_only},
-	{"gdk_prop_mode_get_type", &Gdk_prop_mode_get_type},
-	{"gdk_property_change", &Gdk_property_change},
-	{"gdk_property_delete", &Gdk_property_delete},
-	{"gdk_property_get", &Gdk_property_get},
-	{"gdk_property_state_get_type", &Gdk_property_state_get_type},
-	{"gdk_query_depths", &Gdk_query_depths},
-	{"gdk_query_visual_types", &Gdk_query_visual_types},
-	{"gdk_rectangle_get_type", &Gdk_rectangle_get_type},
-	{"gdk_rectangle_intersect", &Gdk_rectangle_intersect},
-	{"gdk_rectangle_union", &Gdk_rectangle_union},
-	{"gdk_region_copy", &Gdk_region_copy},
-	{"gdk_region_destroy", &Gdk_region_destroy},
-	{"gdk_region_empty", &Gdk_region_empty},
-	{"gdk_region_equal", &Gdk_region_equal},
-	{"gdk_region_get_clipbox", &Gdk_region_get_clipbox},
-	{"gdk_region_get_rectangles", &Gdk_region_get_rectangles},
-	{"gdk_region_intersect", &Gdk_region_intersect},
-	{"gdk_region_new", &Gdk_region_new},
-	{"gdk_region_offset", &Gdk_region_offset},
-	{"gdk_region_point_in", &Gdk_region_point_in},
-	{"gdk_region_polygon", &Gdk_region_polygon},
-	{"gdk_region_rect_equal", &Gdk_region_rect_equal},
-	{"gdk_region_rect_in", &Gdk_region_rect_in},
-	{"gdk_region_rectangle", &Gdk_region_rectangle},
-	{"gdk_region_shrink", &Gdk_region_shrink},
-	{"gdk_region_spans_intersect_foreach", &Gdk_region_spans_intersect_foreach},
-	{"gdk_region_subtract", &Gdk_region_subtract},
-	{"gdk_region_union", &Gdk_region_union},
-	{"gdk_region_union_with_rect", &Gdk_region_union_with_rect},
-	{"gdk_region_xor", &Gdk_region_xor},
-	{"gdk_rgb_cmap_free", &Gdk_rgb_cmap_free},
-	{"gdk_rgb_cmap_new", &Gdk_rgb_cmap_new},
-	{"gdk_rgb_colormap_ditherable", &Gdk_rgb_colormap_ditherable},
-	{"gdk_rgb_dither_get_type", &Gdk_rgb_dither_get_type},
-	{"gdk_rgb_ditherable", &Gdk_rgb_ditherable},
-	{"gdk_rgb_find_color", &Gdk_rgb_find_color},
-	{"gdk_rgb_gc_set_background", &Gdk_rgb_gc_set_background},
-	{"gdk_rgb_gc_set_foreground", &Gdk_rgb_gc_set_foreground},
-	{"gdk_rgb_get_colormap", &Gdk_rgb_get_colormap},
-	{"gdk_rgb_get_visual", &Gdk_rgb_get_visual},
-	{"gdk_rgb_init", &Gdk_rgb_init},
-	{"gdk_rgb_set_install", &Gdk_rgb_set_install},
-	{"gdk_rgb_set_min_colors", &Gdk_rgb_set_min_colors},
-	{"gdk_rgb_set_verbose", &Gdk_rgb_set_verbose},
-	{"gdk_rgb_xpixel_from_rgb", &Gdk_rgb_xpixel_from_rgb},
-	{"gdk_screen_broadcast_client_message", &Gdk_screen_broadcast_client_message},
-	{"gdk_screen_get_active_window", &Gdk_screen_get_active_window},
-	{"gdk_screen_get_default", &Gdk_screen_get_default},
-	{"gdk_screen_get_default_colormap", &Gdk_screen_get_default_colormap},
-	{"gdk_screen_get_display", &Gdk_screen_get_display},
-	{"gdk_screen_get_font_options", &Gdk_screen_get_font_options},
-	{"gdk_screen_get_height", &Gdk_screen_get_height},
-	{"gdk_screen_get_height_mm", &Gdk_screen_get_height_mm},
-	{"gdk_screen_get_monitor_at_point", &Gdk_screen_get_monitor_at_point},
-	{"gdk_screen_get_monitor_at_window", &Gdk_screen_get_monitor_at_window},
-	{"gdk_screen_get_monitor_geometry", &Gdk_screen_get_monitor_geometry},
-	{"gdk_screen_get_monitor_height_mm", &Gdk_screen_get_monitor_height_mm},
-	{"gdk_screen_get_monitor_plug_name", &Gdk_screen_get_monitor_plug_name},
-	{"gdk_screen_get_monitor_width_mm", &Gdk_screen_get_monitor_width_mm},
-	{"gdk_screen_get_n_monitors", &Gdk_screen_get_n_monitors},
-	{"gdk_screen_get_number", &Gdk_screen_get_number},
-	{"gdk_screen_get_primary_monitor", &Gdk_screen_get_primary_monitor},
-	{"gdk_screen_get_resolution", &Gdk_screen_get_resolution},
-	{"gdk_screen_get_rgb_colormap", &Gdk_screen_get_rgb_colormap},
-	{"gdk_screen_get_rgb_visual", &Gdk_screen_get_rgb_visual},
-	{"gdk_screen_get_rgba_colormap", &Gdk_screen_get_rgba_colormap},
-	{"gdk_screen_get_rgba_visual", &Gdk_screen_get_rgba_visual},
-	{"gdk_screen_get_root_window", &Gdk_screen_get_root_window},
-	{"gdk_screen_get_setting", &Gdk_screen_get_setting},
-	{"gdk_screen_get_system_colormap", &Gdk_screen_get_system_colormap},
-	{"gdk_screen_get_system_visual", &Gdk_screen_get_system_visual},
-	{"gdk_screen_get_toplevel_windows", &Gdk_screen_get_toplevel_windows},
-	{"gdk_screen_get_type", &Gdk_screen_get_type},
-	{"gdk_screen_get_width", &Gdk_screen_get_width},
-	{"gdk_screen_get_width_mm", &Gdk_screen_get_width_mm},
-	{"gdk_screen_get_window_stack", &Gdk_screen_get_window_stack},
-	{"gdk_screen_height", &Gdk_screen_height},
-	{"gdk_screen_height_mm", &Gdk_screen_height_mm},
-	{"gdk_screen_is_composited", &Gdk_screen_is_composited},
-	{"gdk_screen_list_visuals", &Gdk_screen_list_visuals},
-	{"gdk_screen_make_display_name", &Gdk_screen_make_display_name},
-	{"gdk_screen_set_default_colormap", &Gdk_screen_set_default_colormap},
-	{"gdk_screen_set_font_options", &Gdk_screen_set_font_options},
-	{"gdk_screen_set_resolution", &Gdk_screen_set_resolution},
-	{"gdk_screen_width", &Gdk_screen_width},
-	{"gdk_screen_width_mm", &Gdk_screen_width_mm},
-	{"gdk_scroll_direction_get_type", &Gdk_scroll_direction_get_type},
-	{"gdk_selection_convert", &Gdk_selection_convert},
-	{"gdk_selection_owner_get", &Gdk_selection_owner_get},
-	{"gdk_selection_owner_get_for_display", &Gdk_selection_owner_get_for_display},
-	{"gdk_selection_owner_set", &Gdk_selection_owner_set},
-	{"gdk_selection_owner_set_for_display", &Gdk_selection_owner_set_for_display},
-	{"gdk_selection_property_get", &Gdk_selection_property_get},
-	{"gdk_selection_send_notify", &Gdk_selection_send_notify},
-	{"gdk_selection_send_notify_for_display", &Gdk_selection_send_notify_for_display},
-	{"gdk_set_double_click_time", &Gdk_set_double_click_time},
-	{"gdk_set_locale", &Gdk_set_locale},
-	{"gdk_set_pointer_hooks", &Gdk_set_pointer_hooks},
-	{"gdk_set_program_class", &Gdk_set_program_class},
-	{"gdk_set_show_events", &Gdk_set_show_events},
-	{"gdk_set_sm_client_id", &Gdk_set_sm_client_id},
-	{"gdk_set_use_xshm", &Gdk_set_use_xshm},
-	{"gdk_setting_action_get_type", &Gdk_setting_action_get_type},
-	{"gdk_setting_get", &Gdk_setting_get},
-	{"gdk_spawn_command_line_on_screen", &Gdk_spawn_command_line_on_screen},
-	{"gdk_spawn_on_screen", &Gdk_spawn_on_screen},
-	{"gdk_spawn_on_screen_with_pipes", &Gdk_spawn_on_screen_with_pipes},
-	{"gdk_status_get_type", &Gdk_status_get_type},
-	{"gdk_string_extents", &Gdk_string_extents},
-	{"gdk_string_height", &Gdk_string_height},
-	{"gdk_string_measure", &Gdk_string_measure},
-	{"gdk_string_to_compound_text", &Gdk_string_to_compound_text},
-	{"gdk_string_to_compound_text_for_display", &Gdk_string_to_compound_text_for_display},
-	{"gdk_string_width", &Gdk_string_width},
-	{"gdk_subwindow_mode_get_type", &Gdk_subwindow_mode_get_type},
-	{"gdk_synthesize_window_state", &Gdk_synthesize_window_state},
-	{"gdk_test_render_sync", &Gdk_test_render_sync},
-	{"gdk_test_simulate_button", &Gdk_test_simulate_button},
-	{"gdk_test_simulate_key", &Gdk_test_simulate_key},
-	{"gdk_text_extents", &Gdk_text_extents},
-	{"gdk_text_extents_wc", &Gdk_text_extents_wc},
-	{"gdk_text_height", &Gdk_text_height},
-	{"gdk_text_measure", &Gdk_text_measure},
-	{"gdk_text_property_to_text_list", &Gdk_text_property_to_text_list},
-	{"gdk_text_property_to_text_list_for_display", &Gdk_text_property_to_text_list_for_display},
-	{"gdk_text_property_to_utf8_list", &Gdk_text_property_to_utf8_list},
-	{"gdk_text_property_to_utf8_list_for_display", &Gdk_text_property_to_utf8_list_for_display},
-	{"gdk_text_width", &Gdk_text_width},
-	{"gdk_text_width_wc", &Gdk_text_width_wc},
-	{"gdk_threads_add_idle", &Gdk_threads_add_idle},
-	{"gdk_threads_add_idle_full", &Gdk_threads_add_idle_full},
-	{"gdk_threads_add_timeout", &Gdk_threads_add_timeout},
-	{"gdk_threads_add_timeout_full", &Gdk_threads_add_timeout_full},
-	{"gdk_threads_add_timeout_seconds", &Gdk_threads_add_timeout_seconds},
-	{"gdk_threads_add_timeout_seconds_full", &Gdk_threads_add_timeout_seconds_full},
-	{"gdk_threads_enter", &Gdk_threads_enter},
-	{"gdk_threads_init", &Gdk_threads_init},
-	{"gdk_threads_leave", &Gdk_threads_leave},
-	{"gdk_threads_set_lock_functions", &Gdk_threads_set_lock_functions},
-	{"gdk_unicode_to_keyval", &Gdk_unicode_to_keyval},
-	{"gdk_utf8_to_compound_text", &Gdk_utf8_to_compound_text},
-	{"gdk_utf8_to_compound_text_for_display", &Gdk_utf8_to_compound_text_for_display},
-	{"gdk_utf8_to_string_target", &Gdk_utf8_to_string_target},
-	{"gdk_visibility_state_get_type", &Gdk_visibility_state_get_type},
-	{"gdk_visual_get_best", &Gdk_visual_get_best},
-	{"gdk_visual_get_best_depth", &Gdk_visual_get_best_depth},
-	{"gdk_visual_get_best_type", &Gdk_visual_get_best_type},
-	{"gdk_visual_get_best_with_both", &Gdk_visual_get_best_with_both},
-	{"gdk_visual_get_best_with_depth", &Gdk_visual_get_best_with_depth},
-	{"gdk_visual_get_best_with_type", &Gdk_visual_get_best_with_type},
-	{"gdk_visual_get_bits_per_rgb", &Gdk_visual_get_bits_per_rgb},
-	{"gdk_visual_get_blue_pixel_details", &Gdk_visual_get_blue_pixel_details},
-	{"gdk_visual_get_byte_order", &Gdk_visual_get_byte_order},
-	{"gdk_visual_get_colormap_size", &Gdk_visual_get_colormap_size},
-	{"gdk_visual_get_depth", &Gdk_visual_get_depth},
-	{"gdk_visual_get_green_pixel_details", &Gdk_visual_get_green_pixel_details},
-	{"gdk_visual_get_red_pixel_details", &Gdk_visual_get_red_pixel_details},
-	{"gdk_visual_get_screen", &Gdk_visual_get_screen},
-	{"gdk_visual_get_system", &Gdk_visual_get_system},
-	{"gdk_visual_get_type", &Gdk_visual_get_type},
-	{"gdk_visual_get_visual_type", &Gdk_visual_get_visual_type},
-	{"gdk_visual_type_get_type", &Gdk_visual_type_get_type},
-	{"gdk_wcstombs", &Gdk_wcstombs},
-	{"gdk_win32_begin_direct_draw_libgtk_only", &Gdk_win32_begin_direct_draw_libgtk_only},
-	{"gdk_win32_drawable_get_handle", &Gdk_win32_drawable_get_handle},
-	{"gdk_win32_end_direct_draw_libgtk_only", &Gdk_win32_end_direct_draw_libgtk_only},
-	{"gdk_win32_handle_table_lookup", &Gdk_win32_handle_table_lookup},
-	{"gdk_win32_hdc_get", &Gdk_win32_hdc_get},
-	{"gdk_win32_hdc_release", &Gdk_win32_hdc_release},
-	{"gdk_win32_icon_to_pixbuf_libgtk_only", &Gdk_win32_icon_to_pixbuf_libgtk_only},
-	{"gdk_win32_pixbuf_to_hicon_libgtk_only", &Gdk_win32_pixbuf_to_hicon_libgtk_only},
-	{"gdk_win32_selection_add_targets", &Gdk_win32_selection_add_targets},
-	{"gdk_win32_set_modal_dialog_libgtk_only", &Gdk_win32_set_modal_dialog_libgtk_only},
-	{"gdk_win32_window_foreign_new_for_display", &Gdk_win32_window_foreign_new_for_display},
-	{"gdk_win32_window_get_impl_hwnd", &Gdk_win32_window_get_impl_hwnd},
-	{"gdk_win32_window_is_win32", &Gdk_win32_window_is_win32},
-	{"gdk_win32_window_lookup_for_display", &Gdk_win32_window_lookup_for_display},
-	{"gdk_window_add_filter", &Gdk_window_add_filter},
-	{"gdk_window_at_pointer", &Gdk_window_at_pointer},
-	{"gdk_window_attributes_type_get_type", &Gdk_window_attributes_type_get_type},
-	{"gdk_window_beep", &Gdk_window_beep},
-	{"gdk_window_begin_move_drag", &Gdk_window_begin_move_drag},
-	{"gdk_window_begin_paint_rect", &Gdk_window_begin_paint_rect},
-	{"gdk_window_begin_paint_region", &Gdk_window_begin_paint_region},
-	{"gdk_window_begin_resize_drag", &Gdk_window_begin_resize_drag},
-	{"gdk_window_class_get_type", &Gdk_window_class_get_type},
-	{"gdk_window_clear", &Gdk_window_clear},
-	{"gdk_window_clear_area", &Gdk_window_clear_area},
-	{"gdk_window_clear_area_e", &Gdk_window_clear_area_e},
-	{"gdk_window_configure_finished", &Gdk_window_configure_finished},
-	{"gdk_window_constrain_size", &Gdk_window_constrain_size},
-	{"gdk_window_coords_from_parent", &Gdk_window_coords_from_parent},
-	{"gdk_window_coords_to_parent", &Gdk_window_coords_to_parent},
-	{"gdk_window_create_similar_surface", &Gdk_window_create_similar_surface},
-	{"gdk_window_deiconify", &Gdk_window_deiconify},
-	{"gdk_window_destroy", &Gdk_window_destroy},
-	{"gdk_window_destroy_notify", &Gdk_window_destroy_notify},
-	{"gdk_window_edge_get_type", &Gdk_window_edge_get_type},
-	{"gdk_window_enable_synchronized_configure", &Gdk_window_enable_synchronized_configure},
-	{"gdk_window_end_paint", &Gdk_window_end_paint},
-	{"gdk_window_ensure_native", &Gdk_window_ensure_native},
-	{"gdk_window_flush", &Gdk_window_flush},
-	{"gdk_window_focus", &Gdk_window_focus},
-	{"gdk_window_foreign_new", &Gdk_window_foreign_new},
-	{"gdk_window_foreign_new_for_display", &Gdk_window_foreign_new_for_display},
-	{"gdk_window_freeze_toplevel_updates_libgtk_only", &Gdk_window_freeze_toplevel_updates_libgtk_only},
-	{"gdk_window_freeze_updates", &Gdk_window_freeze_updates},
-	{"gdk_window_fullscreen", &Gdk_window_fullscreen},
-	{"gdk_window_geometry_changed", &Gdk_window_geometry_changed},
-	{"gdk_window_get_accept_focus", &Gdk_window_get_accept_focus},
-	{"gdk_window_get_background_pattern", &Gdk_window_get_background_pattern},
-	{"gdk_window_get_children", &Gdk_window_get_children},
-	{"gdk_window_get_composited", &Gdk_window_get_composited},
-	{"gdk_window_get_cursor", &Gdk_window_get_cursor},
-	{"gdk_window_get_decorations", &Gdk_window_get_decorations},
-	{"gdk_window_get_deskrelative_origin", &Gdk_window_get_deskrelative_origin},
-	{"gdk_window_get_display", &Gdk_window_get_display},
-	{"gdk_window_get_effective_parent", &Gdk_window_get_effective_parent},
-	{"gdk_window_get_effective_toplevel", &Gdk_window_get_effective_toplevel},
-	{"gdk_window_get_events", &Gdk_window_get_events},
-	{"gdk_window_get_focus_on_map", &Gdk_window_get_focus_on_map},
-	{"gdk_window_get_frame_extents", &Gdk_window_get_frame_extents},
-	{"gdk_window_get_geometry", &Gdk_window_get_geometry},
-	{"gdk_window_get_group", &Gdk_window_get_group},
-	{"gdk_window_get_height", &Gdk_window_get_height},
-	{"gdk_window_get_internal_paint_info", &Gdk_window_get_internal_paint_info},
-	{"gdk_window_get_modal_hint", &Gdk_window_get_modal_hint},
-	{"gdk_window_get_origin", &Gdk_window_get_origin},
-	{"gdk_window_get_parent", &Gdk_window_get_parent},
-	{"gdk_window_get_pointer", &Gdk_window_get_pointer},
-	{"gdk_window_get_position", &Gdk_window_get_position},
-	{"gdk_window_get_root_coords", &Gdk_window_get_root_coords},
-	{"gdk_window_get_root_origin", &Gdk_window_get_root_origin},
-	{"gdk_window_get_screen", &Gdk_window_get_screen},
-	{"gdk_window_get_state", &Gdk_window_get_state},
-	{"gdk_window_get_toplevel", &Gdk_window_get_toplevel},
-	{"gdk_window_get_toplevels", &Gdk_window_get_toplevels},
-	{"gdk_window_get_type_hint", &Gdk_window_get_type_hint},
-	{"gdk_window_get_update_area", &Gdk_window_get_update_area},
-	{"gdk_window_get_user_data", &Gdk_window_get_user_data},
-	{"gdk_window_get_visual", &Gdk_window_get_visual},
-	{"gdk_window_get_width", &Gdk_window_get_width},
-	{"gdk_window_get_window_type", &Gdk_window_get_window_type},
-	{"gdk_window_has_native", &Gdk_window_has_native},
-	{"gdk_window_hide", &Gdk_window_hide},
-	{"gdk_window_hints_get_type", &Gdk_window_hints_get_type},
-	{"gdk_window_iconify", &Gdk_window_iconify},
-	// Undocumented {"gdk_window_impl_get_type", &Gdk_window_impl_get_type},
-	{"gdk_window_input_shape_combine_mask", &Gdk_window_input_shape_combine_mask},
-	{"gdk_window_input_shape_combine_region", &Gdk_window_input_shape_combine_region},
-	{"gdk_window_invalidate_maybe_recurse", &Gdk_window_invalidate_maybe_recurse},
-	{"gdk_window_invalidate_rect", &Gdk_window_invalidate_rect},
-	{"gdk_window_invalidate_region", &Gdk_window_invalidate_region},
-	{"gdk_window_is_destroyed", &Gdk_window_is_destroyed},
-	{"gdk_window_is_input_only", &Gdk_window_is_input_only},
-	{"gdk_window_is_shaped", &Gdk_window_is_shaped},
-	{"gdk_window_is_viewable", &Gdk_window_is_viewable},
-	{"gdk_window_is_visible", &Gdk_window_is_visible},
-	{"gdk_window_lookup", &Gdk_window_lookup},
-	{"gdk_window_lookup_for_display", &Gdk_window_lookup_for_display},
-	{"gdk_window_lower", &Gdk_window_lower},
-	{"gdk_window_maximize", &Gdk_window_maximize},
-	{"gdk_window_merge_child_input_shapes", &Gdk_window_merge_child_input_shapes},
-	{"gdk_window_merge_child_shapes", &Gdk_window_merge_child_shapes},
-	{"gdk_window_move", &Gdk_window_move},
-	{"gdk_window_move_region", &Gdk_window_move_region},
-	{"gdk_window_move_resize", &Gdk_window_move_resize},
-	{"gdk_window_new", &Gdk_window_new},
-	{"gdk_window_object_get_type", &Gdk_window_object_get_type},
-	{"gdk_window_peek_children", &Gdk_window_peek_children},
-	{"gdk_window_process_all_updates", &Gdk_window_process_all_updates},
-	{"gdk_window_process_updates", &Gdk_window_process_updates},
-	{"gdk_window_raise", &Gdk_window_raise},
-	{"gdk_window_redirect_to_drawable", &Gdk_window_redirect_to_drawable},
-	{"gdk_window_register_dnd", &Gdk_window_register_dnd},
-	{"gdk_window_remove_filter", &Gdk_window_remove_filter},
-	{"gdk_window_remove_redirection", &Gdk_window_remove_redirection},
-	{"gdk_window_reparent", &Gdk_window_reparent},
-	{"gdk_window_resize", &Gdk_window_resize},
-	{"gdk_window_restack", &Gdk_window_restack},
-	{"gdk_window_scroll", &Gdk_window_scroll},
-	{"gdk_window_set_accept_focus", &Gdk_window_set_accept_focus},
-	{"gdk_window_set_back_pixmap", &Gdk_window_set_back_pixmap},
-	{"gdk_window_set_background", &Gdk_window_set_background},
-	{"gdk_window_set_child_input_shapes", &Gdk_window_set_child_input_shapes},
-	{"gdk_window_set_child_shapes", &Gdk_window_set_child_shapes},
-	{"gdk_window_set_composited", &Gdk_window_set_composited},
-	{"gdk_window_set_cursor", &Gdk_window_set_cursor},
-	{"gdk_window_set_debug_updates", &Gdk_window_set_debug_updates},
-	{"gdk_window_set_decorations", &Gdk_window_set_decorations},
-	{"gdk_window_set_events", &Gdk_window_set_events},
-	{"gdk_window_set_focus_on_map", &Gdk_window_set_focus_on_map},
-	{"gdk_window_set_functions", &Gdk_window_set_functions},
-	{"gdk_window_set_geometry_hints", &Gdk_window_set_geometry_hints},
-	{"gdk_window_set_group", &Gdk_window_set_group},
-	{"gdk_window_set_hints", &Gdk_window_set_hints},
-	{"gdk_window_set_icon", &Gdk_window_set_icon},
-	{"gdk_window_set_icon_list", &Gdk_window_set_icon_list},
-	{"gdk_window_set_icon_name", &Gdk_window_set_icon_name},
-	{"gdk_window_set_keep_above", &Gdk_window_set_keep_above},
-	{"gdk_window_set_keep_below", &Gdk_window_set_keep_below},
-	{"gdk_window_set_modal_hint", &Gdk_window_set_modal_hint},
-	{"gdk_window_set_opacity", &Gdk_window_set_opacity},
-	{"gdk_window_set_override_redirect", &Gdk_window_set_override_redirect},
-	{"gdk_window_set_role", &Gdk_window_set_role},
-	{"gdk_window_set_skip_pager_hint", &Gdk_window_set_skip_pager_hint},
-	{"gdk_window_set_skip_taskbar_hint", &Gdk_window_set_skip_taskbar_hint},
-	{"gdk_window_set_startup_id", &Gdk_window_set_startup_id},
-	{"gdk_window_set_static_gravities", &Gdk_window_set_static_gravities},
-	{"gdk_window_set_title", &Gdk_window_set_title},
-	{"gdk_window_set_transient_for", &Gdk_window_set_transient_for},
-	{"gdk_window_set_type_hint", &Gdk_window_set_type_hint},
-	{"gdk_window_set_urgency_hint", &Gdk_window_set_urgency_hint},
-	{"gdk_window_set_user_data", &Gdk_window_set_user_data},
-	{"gdk_window_shape_combine_mask", &Gdk_window_shape_combine_mask},
-	{"gdk_window_shape_combine_region", &Gdk_window_shape_combine_region},
-	{"gdk_window_show", &Gdk_window_show},
-	{"gdk_window_show_unraised", &Gdk_window_show_unraised},
-	{"gdk_window_state_get_type", &Gdk_window_state_get_type},
-	{"gdk_window_stick", &Gdk_window_stick},
-	{"gdk_window_thaw_toplevel_updates_libgtk_only", &Gdk_window_thaw_toplevel_updates_libgtk_only},
-	{"gdk_window_thaw_updates", &Gdk_window_thaw_updates},
-	{"gdk_window_type_get_type", &Gdk_window_type_get_type},
-	{"gdk_window_type_hint_get_type", &Gdk_window_type_hint_get_type},
-	{"gdk_window_unfullscreen", &Gdk_window_unfullscreen},
-	{"gdk_window_unmaximize", &Gdk_window_unmaximize},
-	{"gdk_window_unstick", &Gdk_window_unstick},
-	{"gdk_window_withdraw", &Gdk_window_withdraw},
-	{"gdk_wm_decoration_get_type", &Gdk_wm_decoration_get_type},
-	{"gdk_wm_function_get_type", &Gdk_wm_function_get_type},
+	{"gdk_add_client_message_filter", &AddClientMessageFilter},
+	{"gdk_add_option_entries_libgtk_only", &AddOptionEntriesLibgtkOnly},
+	{"gdk_app_launch_context_get_type", &AppLaunchContextGetType},
+	{"gdk_app_launch_context_new", &AppLaunchContextNew},
+	{"gdk_app_launch_context_set_desktop", &AppLaunchContextSetDesktop},
+	{"gdk_app_launch_context_set_display", &AppLaunchContextSetDisplay},
+	{"gdk_app_launch_context_set_icon", &AppLaunchContextSetIcon},
+	{"gdk_app_launch_context_set_icon_name", &AppLaunchContextSetIconName},
+	{"gdk_app_launch_context_set_screen", &AppLaunchContextSetScreen},
+	{"gdk_app_launch_context_set_timestamp", &AppLaunchContextSetTimestamp},
+	{"gdk_atom_intern", &AtomIntern},
+	{"gdk_atom_intern_static_string", &AtomInternStaticString},
+	{"gdk_atom_name", &AtomName},
+	{"gdk_axis_use_get_type", &AxisUseGetType},
+	{"gdk_beep", &Beep},
+	{"gdk_bitmap_create_from_data", &BitmapCreateFromData},
+	{"gdk_byte_order_get_type", &ByteOrderGetType},
+	{"gdk_cairo_create", &CairoCreate},
+	{"gdk_cairo_rectangle", &CairoRectangle},
+	{"gdk_cairo_region", &CairoRegion},
+	{"gdk_cairo_reset_clip", &CairoResetClip},
+	{"gdk_cairo_set_source_color", &CairoSetSourceColor},
+	{"gdk_cairo_set_source_pixbuf", &CairoSetSourcePixbuf},
+	{"gdk_cairo_set_source_pixmap", &CairoSetSourcePixmap},
+	{"gdk_cairo_set_source_window", &CairoSetSourceWindow},
+	{"gdk_cap_style_get_type", &CapStyleGetType},
+	{"gdk_char_height", &CharHeight},
+	{"gdk_char_measure", &CharMeasure},
+	{"gdk_char_width", &CharWidth},
+	{"gdk_char_width_wc", &CharWidthWc},
+	{"gdk_color_alloc", &ColorAlloc},
+	{"gdk_color_black", &ColorBlack},
+	{"gdk_color_change", &ColorChange},
+	{"gdk_color_copy", &ColorCopy},
+	{"gdk_color_equal", &ColorEqual},
+	{"gdk_color_free", &ColorFree},
+	{"gdk_color_get_type", &ColorGetType},
+	{"gdk_color_hash", &ColorHash},
+	{"gdk_color_parse", &ColorParse},
+	{"gdk_color_to_string", &ColorToString},
+	{"gdk_color_white", &ColorWhite},
+	{"gdk_colormap_alloc_color", &ColormapAllocColor},
+	{"gdk_colormap_alloc_colors", &ColormapAllocColors},
+	{"gdk_colormap_change", &ColormapChange},
+	{"gdk_colormap_free_colors", &ColormapFreeColors},
+	{"gdk_colormap_get_screen", &ColormapGetScreen},
+	{"gdk_colormap_get_system", &ColormapGetSystem},
+	{"gdk_colormap_get_system_size", &ColormapGetSystemSize},
+	{"gdk_colormap_get_type", &ColormapGetType},
+	{"gdk_colormap_get_visual", &ColormapGetVisual},
+	{"gdk_colormap_new", &ColormapNew},
+	{"gdk_colormap_query_color", &ColormapQueryColor},
+	{"gdk_colormap_ref", &ColormapRef},
+	{"gdk_colormap_unref", &ColormapUnref},
+	{"gdk_colors_alloc", &ColorsAlloc},
+	{"gdk_colors_free", &ColorsFree},
+	{"gdk_colors_store", &ColorsStore},
+	{"gdk_crossing_mode_get_type", &CrossingModeGetType},
+	{"gdk_cursor_get_cursor_type", &CursorGetCursorType},
+	{"gdk_cursor_get_display", &CursorGetDisplay},
+	{"gdk_cursor_get_image", &CursorGetImage},
+	{"gdk_cursor_get_type", &CursorGetType},
+	{"gdk_cursor_new", &CursorNew},
+	{"gdk_cursor_new_for_display", &CursorNewForDisplay},
+	{"gdk_cursor_new_from_name", &CursorNewFromName},
+	{"gdk_cursor_new_from_pixbuf", &CursorNewFromPixbuf},
+	{"gdk_cursor_new_from_pixmap", &CursorNewFromPixmap},
+	{"gdk_cursor_ref", &CursorRef},
+	{"gdk_cursor_type_get_type", &CursorTypeGetType},
+	{"gdk_cursor_unref", &CursorUnref},
+	{"gdk_device_free_history", &DeviceFreeHistory},
+	{"gdk_device_get_axis", &DeviceGetAxis},
+	{"gdk_device_get_axis_use", &DeviceGetAxisUse},
+	{"gdk_device_get_core_pointer", &DeviceGetCorePointer},
+	{"gdk_device_get_has_cursor", &DeviceGetHasCursor},
+	{"gdk_device_get_history", &DeviceGetHistory},
+	{"gdk_device_get_key", &DeviceGetKey},
+	{"gdk_device_get_mode", &DeviceGetMode},
+	{"gdk_device_get_n_axes", &DeviceGetNAxes},
+	{"gdk_device_get_n_keys", &DeviceGetNKeys},
+	{"gdk_device_get_name", &DeviceGetName},
+	{"gdk_device_get_source", &DeviceGetSource},
+	{"gdk_device_get_state", &DeviceGetState},
+	{"gdk_device_get_type", &DeviceGetType},
+	{"gdk_device_set_axis_use", &DeviceSetAxisUse},
+	{"gdk_device_set_key", &DeviceSetKey},
+	{"gdk_device_set_mode", &DeviceSetMode},
+	{"gdk_device_set_source", &DeviceSetSource},
+	{"gdk_devices_list", &DevicesList},
+	{"gdk_display_add_client_message_filter", &DisplayAddClientMessageFilter},
+	{"gdk_display_beep", &DisplayBeep},
+	{"gdk_display_close", &DisplayClose},
+	{"gdk_display_flush", &DisplayFlush},
+	{"gdk_display_get_core_pointer", &DisplayGetCorePointer},
+	{"gdk_display_get_default", &DisplayGetDefault},
+	{"gdk_display_get_default_cursor_size", &DisplayGetDefaultCursorSize},
+	{"gdk_display_get_default_group", &DisplayGetDefaultGroup},
+	{"gdk_display_get_default_screen", &DisplayGetDefaultScreen},
+	{"gdk_display_get_event", &DisplayGetEvent},
+	{"gdk_display_get_maximal_cursor_size", &DisplayGetMaximalCursorSize},
+	{"gdk_display_get_n_screens", &DisplayGetNScreens},
+	{"gdk_display_get_name", &DisplayGetName},
+	{"gdk_display_get_pointer", &DisplayGetPointer},
+	{"gdk_display_get_screen", &DisplayGetScreen},
+	{"gdk_display_get_type", &DisplayGetType},
+	{"gdk_display_get_window_at_pointer", &DisplayGetWindowAtPointer},
+	{"gdk_display_is_closed", &DisplayIsClosed},
+	{"gdk_display_keyboard_ungrab", &DisplayKeyboardUngrab},
+	{"gdk_display_list_devices", &DisplayListDevices},
+	{"gdk_display_manager_get", &DisplayManagerGet},
+	{"gdk_display_manager_get_default_display", &DisplayManagerGetDefaultDisplay},
+	{"gdk_display_manager_get_type", &DisplayManagerGetType},
+	{"gdk_display_manager_list_displays", &DisplayManagerListDisplays},
+	{"gdk_display_manager_set_default_display", &DisplayManagerSetDefaultDisplay},
+	{"gdk_display_open", &DisplayOpen},
+	{"gdk_display_open_default_libgtk_only", &DisplayOpenDefaultLibgtkOnly},
+	{"gdk_display_peek_event", &DisplayPeekEvent},
+	{"gdk_display_pointer_is_grabbed", &DisplayPointerIsGrabbed},
+	{"gdk_display_pointer_ungrab", &DisplayPointerUngrab},
+	{"gdk_display_put_event", &DisplayPutEvent},
+	{"gdk_display_request_selection_notification", &DisplayRequestSelectionNotification},
+	{"gdk_display_set_double_click_distance", &DisplaySetDoubleClickDistance},
+	{"gdk_display_set_double_click_time", &DisplaySetDoubleClickTime},
+	{"gdk_display_set_pointer_hooks", &DisplaySetPointerHooks},
+	{"gdk_display_store_clipboard", &DisplayStoreClipboard},
+	{"gdk_display_supports_clipboard_persistence", &DisplaySupportsClipboardPersistence},
+	{"gdk_display_supports_composite", &DisplaySupportsComposite},
+	{"gdk_display_supports_cursor_alpha", &DisplaySupportsCursorAlpha},
+	{"gdk_display_supports_cursor_color", &DisplaySupportsCursorColor},
+	{"gdk_display_supports_input_shapes", &DisplaySupportsInputShapes},
+	{"gdk_display_supports_selection_notification", &DisplaySupportsSelectionNotification},
+	{"gdk_display_supports_shapes", &DisplaySupportsShapes},
+	{"gdk_display_sync", &DisplaySync},
+	{"gdk_display_warp_pointer", &DisplayWarpPointer},
+	{"gdk_drag_abort", &DragAbort},
+	{"gdk_drag_action_get_type", &DragActionGetType},
+	{"gdk_drag_begin", &DragBegin},
+	{"gdk_drag_context_get_actions", &DragContextGetActions},
+	{"gdk_drag_context_get_dest_window", &DragContextGetDestWindow},
+	{"gdk_drag_context_get_protocol", &DragContextGetProtocol},
+	{"gdk_drag_context_get_selected_action", &DragContextGetSelectedAction},
+	{"gdk_drag_context_get_source_window", &DragContextGetSourceWindow},
+	{"gdk_drag_context_get_suggested_action", &DragContextGetSuggestedAction},
+	{"gdk_drag_context_get_type", &DragContextGetType},
+	{"gdk_drag_context_list_targets", &DragContextListTargets},
+	{"gdk_drag_context_new", &DragContextNew},
+	{"gdk_drag_context_ref", &DragContextRef},
+	{"gdk_drag_context_unref", &DragContextUnref},
+	{"gdk_drag_drop", &DragDrop},
+	{"gdk_drag_drop_succeeded", &DragDropSucceeded},
+	{"gdk_drag_find_window", &DragFindWindow},
+	{"gdk_drag_find_window_for_screen", &DragFindWindowForScreen},
+	{"gdk_drag_get_protocol", &DragGetProtocol},
+	{"gdk_drag_get_protocol_for_display", &DragGetProtocolForDisplay},
+	{"gdk_drag_get_selection", &DragGetSelection},
+	{"gdk_drag_motion", &DragMotion},
+	{"gdk_drag_protocol_get_type", &DragProtocolGetType},
+	{"gdk_drag_status", &DragStatus},
+	{"gdk_draw_arc", &DrawArc},
+	{"gdk_draw_drawable", &DrawDrawable},
+	{"gdk_draw_glyphs", &DrawGlyphs},
+	{"gdk_draw_glyphs_transformed", &DrawGlyphsTransformed},
+	{"gdk_draw_gray_image", &DrawGrayImage},
+	{"gdk_draw_image", &DrawImage},
+	{"gdk_draw_indexed_image", &DrawIndexedImage},
+	{"gdk_draw_layout", &DrawLayout},
+	{"gdk_draw_layout_line", &DrawLayoutLine},
+	{"gdk_draw_layout_line_with_colors", &DrawLayoutLineWithColors},
+	{"gdk_draw_layout_with_colors", &DrawLayoutWithColors},
+	{"gdk_draw_line", &DrawLine},
+	{"gdk_draw_lines", &DrawLines},
+	{"gdk_draw_pixbuf", &DrawPixbuf},
+	{"gdk_draw_point", &DrawPoint},
+	{"gdk_draw_points", &DrawPoints},
+	{"gdk_draw_polygon", &DrawPolygon},
+	{"gdk_draw_rectangle", &DrawRectangle},
+	{"gdk_draw_rgb_32_image", &DrawRgb32Image},
+	{"gdk_draw_rgb_32_image_dithalign", &DrawRgb32ImageDithalign},
+	{"gdk_draw_rgb_image", &DrawRgbImage},
+	{"gdk_draw_rgb_image_dithalign", &DrawRgbImageDithalign},
+	{"gdk_draw_segments", &DrawSegments},
+	{"gdk_draw_string", &DrawString},
+	{"gdk_draw_text", &DrawText},
+	{"gdk_draw_text_wc", &DrawTextWc},
+	{"gdk_draw_trapezoids", &DrawTrapezoids},
+	{"gdk_drawable_copy_to_image", &DrawableCopyToImage},
+	{"gdk_drawable_get_clip_region", &DrawableGetClipRegion},
+	{"gdk_drawable_get_colormap", &DrawableGetColormap},
+	{"gdk_drawable_get_data", &DrawableGetData},
+	{"gdk_drawable_get_depth", &DrawableGetDepth},
+	{"gdk_drawable_get_display", &DrawableGetDisplay},
+	{"gdk_drawable_get_image", &DrawableGetImage},
+	{"gdk_drawable_get_screen", &DrawableGetScreen},
+	{"gdk_drawable_get_size", &DrawableGetSize},
+	{"gdk_drawable_get_type", &DrawableGetType},
+	{"gdk_drawable_get_visible_region", &DrawableGetVisibleRegion},
+	{"gdk_drawable_get_visual", &DrawableGetVisual},
+	{"gdk_drawable_ref", &DrawableRef},
+	{"gdk_drawable_set_colormap", &DrawableSetColormap},
+	{"gdk_drawable_set_data", &DrawableSetData},
+	{"gdk_drawable_unref", &DrawableUnref},
+	{"gdk_drop_finish", &DropFinish},
+	{"gdk_drop_reply", &DropReply},
+	{"gdk_error_trap_pop", &ErrorTrapPop},
+	{"gdk_error_trap_push", &ErrorTrapPush},
+	{"gdk_event_copy", &EventCopy},
+	{"gdk_event_free", &EventFree},
+	{"gdk_event_get", &EventGet},
+	{"gdk_event_get_axis", &EventGetAxis},
+	{"gdk_event_get_coords", &EventGetCoords},
+	{"gdk_event_get_graphics_expose", &EventGetGraphicsExpose},
+	{"gdk_event_get_root_coords", &EventGetRootCoords},
+	{"gdk_event_get_screen", &EventGetScreen},
+	{"gdk_event_get_state", &EventGetState},
+	{"gdk_event_get_time", &EventGetTime},
+	{"gdk_event_get_type", &EventGetType},
+	{"gdk_event_handler_set", &EventHandlerSet},
+	{"gdk_event_mask_get_type", &EventMaskGetType},
+	{"gdk_event_new", &EventNew},
+	{"gdk_event_peek", &EventPeek},
+	{"gdk_event_put", &EventPut},
+	{"gdk_event_request_motions", &EventRequestMotions},
+	{"gdk_event_send_client_message", &EventSendClientMessage},
+	{"gdk_event_send_client_message_for_display", &EventSendClientMessageForDisplay},
+	{"gdk_event_send_clientmessage_toall", &EventSendClientmessageToall},
+	{"gdk_event_set_screen", &EventSetScreen},
+	{"gdk_event_type_get_type", &EventTypeGetType},
+	{"gdk_events_pending", &EventsPending},
+	{"gdk_exit", &Exit},
+	{"gdk_extension_mode_get_type", &ExtensionModeGetType},
+	{"gdk_fill_get_type", &FillGetType},
+	{"gdk_fill_rule_get_type", &FillRuleGetType},
+	{"gdk_filter_return_get_type", &FilterReturnGetType},
+	{"gdk_flush", &Flush},
+	{"gdk_font_equal", &FontEqual},
+	{"gdk_font_from_description", &FontFromDescription},
+	{"gdk_font_from_description_for_display", &FontFromDescriptionForDisplay},
+	{"gdk_font_get_display", &FontGetDisplay},
+	{"gdk_font_get_type", &FontGetType},
+	{"gdk_font_id", &FontId},
+	{"gdk_font_load", &FontLoad},
+	{"gdk_font_load_for_display", &FontLoadForDisplay},
+	{"gdk_font_ref", &FontRef},
+	{"gdk_font_type_get_type", &FontTypeGetType},
+	{"gdk_font_unref", &FontUnref},
+	{"gdk_fontset_load", &FontsetLoad},
+	{"gdk_fontset_load_for_display", &FontsetLoadForDisplay},
+	{"gdk_free_compound_text", &FreeCompoundText},
+	{"gdk_free_text_list", &FreeTextList},
+	{"gdk_function_get_type", &FunctionGetType},
+	{"gdk_gc_copy", &GcCopy},
+	{"gdk_gc_get_colormap", &GcGetColormap},
+	{"gdk_gc_get_screen", &GcGetScreen},
+	{"gdk_gc_get_type", &GcGetType},
+	{"gdk_gc_get_values", &GcGetValues},
+	{"gdk_gc_new", &GcNew},
+	{"gdk_gc_new_with_values", &GcNewWithValues},
+	{"gdk_gc_offset", &GcOffset},
+	{"gdk_gc_ref", &GcRef},
+	{"gdk_gc_set_background", &GcSetBackground},
+	{"gdk_gc_set_clip_mask", &GcSetClipMask},
+	{"gdk_gc_set_clip_origin", &GcSetClipOrigin},
+	{"gdk_gc_set_clip_rectangle", &GcSetClipRectangle},
+	{"gdk_gc_set_clip_region", &GcSetClipRegion},
+	{"gdk_gc_set_colormap", &GcSetColormap},
+	{"gdk_gc_set_dashes", &GcSetDashes},
+	{"gdk_gc_set_exposures", &GcSetExposures},
+	{"gdk_gc_set_fill", &GcSetFill},
+	{"gdk_gc_set_font", &GcSetFont},
+	{"gdk_gc_set_foreground", &GcSetForeground},
+	{"gdk_gc_set_function", &GcSetFunction},
+	{"gdk_gc_set_line_attributes", &GcSetLineAttributes},
+	{"gdk_gc_set_rgb_bg_color", &GcSetRgbBgColor},
+	{"gdk_gc_set_rgb_fg_color", &GcSetRgbFgColor},
+	{"gdk_gc_set_stipple", &GcSetStipple},
+	{"gdk_gc_set_subwindow", &GcSetSubwindow},
+	{"gdk_gc_set_tile", &GcSetTile},
+	{"gdk_gc_set_ts_origin", &GcSetTsOrigin},
+	{"gdk_gc_set_values", &GcSetValues},
+	{"gdk_gc_unref", &GcUnref},
+	{"gdk_gc_values_mask_get_type", &GcValuesMaskGetType},
+	{"gdk_get_default_root_window", &GetDefaultRootWindow},
+	{"gdk_get_display", &GetDisplay},
+	{"gdk_get_display_arg_name", &GetDisplayArgName},
+	{"gdk_get_program_class", &GetProgramClass},
+	{"gdk_get_show_events", &GetShowEvents},
+	{"gdk_get_use_xshm", &GetUseXshm},
+	{"gdk_grab_status_get_type", &GrabStatusGetType},
+	{"gdk_gravity_get_type", &GravityGetType},
+	{"gdk_image_get", &ImageGet},
+	{"gdk_image_get_bits_per_pixel", &ImageGetBitsPerPixel},
+	{"gdk_image_get_byte_order", &ImageGetByteOrder},
+	{"gdk_image_get_bytes_per_line", &ImageGetBytesPerLine},
+	{"gdk_image_get_bytes_per_pixel", &ImageGetBytesPerPixel},
+	{"gdk_image_get_colormap", &ImageGetColormap},
+	{"gdk_image_get_depth", &ImageGetDepth},
+	{"gdk_image_get_height", &ImageGetHeight},
+	{"gdk_image_get_image_type", &ImageGetImageType},
+	{"gdk_image_get_pixel", &ImageGetPixel},
+	{"gdk_image_get_pixels", &ImageGetPixels},
+	{"gdk_image_get_type", &ImageGetType},
+	{"gdk_image_get_visual", &ImageGetVisual},
+	{"gdk_image_get_width", &ImageGetWidth},
+	{"gdk_image_new", &ImageNew},
+	{"gdk_image_put_pixel", &ImagePutPixel},
+	{"gdk_image_ref", &ImageRef},
+	{"gdk_image_set_colormap", &ImageSetColormap},
+	{"gdk_image_type_get_type", &ImageTypeGetType},
+	{"gdk_image_unref", &ImageUnref},
+	{"gdk_init", &Init},
+	{"gdk_init_check", &InitCheck},
+	{"gdk_input_add", &InputAdd},
+	{"gdk_input_add_full", &InputAddFull},
+	{"gdk_input_condition_get_type", &InputConditionGetType},
+	{"gdk_input_mode_get_type", &InputModeGetType},
+	{"gdk_input_remove", &InputRemove},
+	{"gdk_input_set_extension_events", &InputSetExtensionEvents},
+	{"gdk_input_source_get_type", &InputSourceGetType},
+	{"gdk_join_style_get_type", &JoinStyleGetType},
+	{"gdk_keyboard_grab", &KeyboardGrab},
+	{"gdk_keyboard_grab_info_libgtk_only", &KeyboardGrabInfoLibgtkOnly},
+	{"gdk_keyboard_ungrab", &KeyboardUngrab},
+	{"gdk_keymap_add_virtual_modifiers", &KeymapAddVirtualModifiers},
+	{"gdk_keymap_get_caps_lock_state", &KeymapGetCapsLockState},
+	{"gdk_keymap_get_default", &KeymapGetDefault},
+	{"gdk_keymap_get_direction", &KeymapGetDirection},
+	{"gdk_keymap_get_entries_for_keycode", &KeymapGetEntriesForKeycode},
+	{"gdk_keymap_get_entries_for_keyval", &KeymapGetEntriesForKeyval},
+	{"gdk_keymap_get_for_display", &KeymapGetForDisplay},
+	{"gdk_keymap_get_type", &KeymapGetType},
+	{"gdk_keymap_have_bidi_layouts", &KeymapHaveBidiLayouts},
+	{"gdk_keymap_lookup_key", &KeymapLookupKey},
+	{"gdk_keymap_map_virtual_modifiers", &KeymapMapVirtualModifiers},
+	{"gdk_keymap_translate_keyboard_state", &KeymapTranslateKeyboardState},
+	{"gdk_keyval_convert_case", &KeyvalConvertCase},
+	{"gdk_keyval_from_name", &KeyvalFromName},
+	{"gdk_keyval_is_lower", &KeyvalIsLower},
+	{"gdk_keyval_is_upper", &KeyvalIsUpper},
+	{"gdk_keyval_name", &KeyvalName},
+	{"gdk_keyval_to_lower", &KeyvalToLower},
+	{"gdk_keyval_to_unicode", &KeyvalToUnicode},
+	{"gdk_keyval_to_upper", &KeyvalToUpper},
+	{"gdk_line_style_get_type", &LineStyleGetType},
+	{"gdk_list_visuals", &ListVisuals},
+	{"gdk_mbstowcs", &Mbstowcs},
+	{"gdk_modifier_type_get_type", &ModifierTypeGetType},
+	// Undocumented {"gdk_net_wm_supports", &NetWmSupports},
+	{"gdk_notify_startup_complete", &NotifyStartupComplete},
+	{"gdk_notify_startup_complete_with_id", &NotifyStartupCompleteWithId},
+	{"gdk_notify_type_get_type", &NotifyTypeGetType},
+	{"gdk_offscreen_window_get_embedder", &OffscreenWindowGetEmbedder},
+	{"gdk_offscreen_window_get_pixmap", &OffscreenWindowGetPixmap},
+	// Undocumented {"gdk_offscreen_window_get_type", &OffscreenWindowGetType},
+	{"gdk_offscreen_window_set_embedder", &OffscreenWindowSetEmbedder},
+	{"gdk_overlap_type_get_type", &OverlapTypeGetType},
+	{"gdk_owner_change_get_type", &OwnerChangeGetType},
+	{"gdk_pango_attr_emboss_color_new", &PangoAttrEmbossColorNew},
+	{"gdk_pango_attr_embossed_new", &PangoAttrEmbossedNew},
+	{"gdk_pango_attr_stipple_new", &PangoAttrStippleNew},
+	{"gdk_pango_context_get", &PangoContextGet},
+	{"gdk_pango_context_get_for_screen", &PangoContextGetForScreen},
+	{"gdk_pango_context_set_colormap", &PangoContextSetColormap},
+	{"gdk_pango_layout_get_clip_region", &PangoLayoutGetClipRegion},
+	{"gdk_pango_layout_line_get_clip_region", &PangoLayoutLineGetClipRegion},
+	{"gdk_pango_renderer_get_default", &PangoRendererGetDefault},
+	{"gdk_pango_renderer_get_type", &PangoRendererGetType},
+	{"gdk_pango_renderer_new", &PangoRendererNew},
+	{"gdk_pango_renderer_set_drawable", &PangoRendererSetDrawable},
+	{"gdk_pango_renderer_set_gc", &PangoRendererSetGc},
+	{"gdk_pango_renderer_set_override_color", &PangoRendererSetOverrideColor},
+	{"gdk_pango_renderer_set_stipple", &PangoRendererSetStipple},
+	{"gdk_parse_args", &ParseArgs},
+	{"gdk_pixbuf_get_from_drawable", &PixbufGetFromDrawable},
+	{"gdk_pixbuf_get_from_image", &PixbufGetFromImage},
+	{"gdk_pixbuf_render_pixmap_and_mask", &PixbufRenderPixmapAndMask},
+	{"gdk_pixbuf_render_pixmap_and_mask_for_colormap", &PixbufRenderPixmapAndMaskForColormap},
+	{"gdk_pixbuf_render_threshold_alpha", &PixbufRenderThresholdAlpha},
+	{"gdk_pixbuf_render_to_drawable", &PixbufRenderToDrawable},
+	{"gdk_pixbuf_render_to_drawable_alpha", &PixbufRenderToDrawableAlpha},
+	{"gdk_pixmap_colormap_create_from_xpm", &PixmapColormapCreateFromXpm},
+	{"gdk_pixmap_colormap_create_from_xpm_d", &PixmapColormapCreateFromXpmD},
+	{"gdk_pixmap_create_from_data", &PixmapCreateFromData},
+	{"gdk_pixmap_create_from_xpm", &PixmapCreateFromXpm},
+	{"gdk_pixmap_create_from_xpm_d", &PixmapCreateFromXpmD},
+	{"gdk_pixmap_foreign_new", &PixmapForeignNew},
+	{"gdk_pixmap_foreign_new_for_display", &PixmapForeignNewForDisplay},
+	{"gdk_pixmap_foreign_new_for_screen", &PixmapForeignNewForScreen},
+	{"gdk_pixmap_get_size", &PixmapGetSize},
+	{"gdk_pixmap_get_type", &PixmapGetType},
+	{"gdk_pixmap_lookup", &PixmapLookup},
+	{"gdk_pixmap_lookup_for_display", &PixmapLookupForDisplay},
+	{"gdk_pixmap_new", &PixmapNew},
+	{"gdk_pointer_grab", &PointerGrab},
+	{"gdk_pointer_grab_info_libgtk_only", &PointerGrabInfoLibgtkOnly},
+	{"gdk_pointer_is_grabbed", &PointerIsGrabbed},
+	{"gdk_pointer_ungrab", &PointerUngrab},
+	{"gdk_pre_parse_libgtk_only", &PreParseLibgtkOnly},
+	{"gdk_prop_mode_get_type", &PropModeGetType},
+	{"gdk_property_change", &PropertyChange},
+	{"gdk_property_delete", &PropertyDelete},
+	{"gdk_property_get", &PropertyGet},
+	{"gdk_property_state_get_type", &PropertyStateGetType},
+	{"gdk_query_depths", &QueryDepths},
+	{"gdk_query_visual_types", &QueryVisualTypes},
+	{"gdk_rectangle_get_type", &RectangleGetType},
+	{"gdk_rectangle_intersect", &RectangleIntersect},
+	{"gdk_rectangle_union", &RectangleUnion},
+	{"gdk_region_copy", &RegionCopy},
+	{"gdk_region_destroy", &RegionDestroy},
+	{"gdk_region_empty", &RegionEmpty},
+	{"gdk_region_equal", &RegionEqual},
+	{"gdk_region_get_clipbox", &RegionGetClipbox},
+	{"gdk_region_get_rectangles", &RegionGetRectangles},
+	{"gdk_region_intersect", &RegionIntersect},
+	{"gdk_region_new", &RegionNew},
+	{"gdk_region_offset", &RegionOffset},
+	{"gdk_region_point_in", &RegionPointIn},
+	{"gdk_region_polygon", &RegionPolygon},
+	{"gdk_region_rect_equal", &RegionRectEqual},
+	{"gdk_region_rect_in", &RegionRectIn},
+	{"gdk_region_rectangle", &RegionRectangle},
+	{"gdk_region_shrink", &RegionShrink},
+	{"gdk_region_spans_intersect_foreach", &RegionSpansIntersectForeach},
+	{"gdk_region_subtract", &RegionSubtract},
+	{"gdk_region_union", &RegionUnion},
+	{"gdk_region_union_with_rect", &RegionUnionWithRect},
+	{"gdk_region_xor", &RegionXor},
+	{"gdk_rgb_cmap_free", &RgbCmapFree},
+	{"gdk_rgb_cmap_new", &RgbCmapNew},
+	{"gdk_rgb_colormap_ditherable", &RgbColormapDitherable},
+	{"gdk_rgb_dither_get_type", &RgbDitherGetType},
+	{"gdk_rgb_ditherable", &RgbDitherable},
+	{"gdk_rgb_find_color", &RgbFindColor},
+	{"gdk_rgb_gc_set_background", &RgbGcSetBackground},
+	{"gdk_rgb_gc_set_foreground", &RgbGcSetForeground},
+	{"gdk_rgb_get_colormap", &RgbGetColormap},
+	{"gdk_rgb_get_visual", &RgbGetVisual},
+	{"gdk_rgb_init", &RgbInit},
+	{"gdk_rgb_set_install", &RgbSetInstall},
+	{"gdk_rgb_set_min_colors", &RgbSetMinColors},
+	{"gdk_rgb_set_verbose", &RgbSetVerbose},
+	{"gdk_rgb_xpixel_from_rgb", &RgbXpixelFromRgb},
+	{"gdk_screen_broadcast_client_message", &ScreenBroadcastClientMessage},
+	{"gdk_screen_get_active_window", &ScreenGetActiveWindow},
+	{"gdk_screen_get_default", &ScreenGetDefault},
+	{"gdk_screen_get_default_colormap", &ScreenGetDefaultColormap},
+	{"gdk_screen_get_display", &ScreenGetDisplay},
+	{"gdk_screen_get_font_options", &ScreenGetFontOptions},
+	{"gdk_screen_get_height", &ScreenGetHeight},
+	{"gdk_screen_get_height_mm", &ScreenGetHeightMm},
+	{"gdk_screen_get_monitor_at_point", &ScreenGetMonitorAtPoint},
+	{"gdk_screen_get_monitor_at_window", &ScreenGetMonitorAtWindow},
+	{"gdk_screen_get_monitor_geometry", &ScreenGetMonitorGeometry},
+	{"gdk_screen_get_monitor_height_mm", &ScreenGetMonitorHeightMm},
+	{"gdk_screen_get_monitor_plug_name", &ScreenGetMonitorPlugName},
+	{"gdk_screen_get_monitor_width_mm", &ScreenGetMonitorWidthMm},
+	{"gdk_screen_get_n_monitors", &ScreenGetNMonitors},
+	{"gdk_screen_get_number", &ScreenGetNumber},
+	{"gdk_screen_get_primary_monitor", &ScreenGetPrimaryMonitor},
+	{"gdk_screen_get_resolution", &ScreenGetResolution},
+	{"gdk_screen_get_rgb_colormap", &ScreenGetRgbColormap},
+	{"gdk_screen_get_rgb_visual", &ScreenGetRgbVisual},
+	{"gdk_screen_get_rgba_colormap", &ScreenGetRgbaColormap},
+	{"gdk_screen_get_rgba_visual", &ScreenGetRgbaVisual},
+	{"gdk_screen_get_root_window", &ScreenGetRootWindow},
+	{"gdk_screen_get_setting", &ScreenGetSetting},
+	{"gdk_screen_get_system_colormap", &ScreenGetSystemColormap},
+	{"gdk_screen_get_system_visual", &ScreenGetSystemVisual},
+	{"gdk_screen_get_toplevel_windows", &ScreenGetToplevelWindows},
+	{"gdk_screen_get_type", &ScreenGetType},
+	{"gdk_screen_get_width", &ScreenGetWidth},
+	{"gdk_screen_get_width_mm", &ScreenGetWidthMm},
+	{"gdk_screen_get_window_stack", &ScreenGetWindowStack},
+	{"gdk_screen_height", &ScreenHeight},
+	{"gdk_screen_height_mm", &ScreenHeightMm},
+	{"gdk_screen_is_composited", &ScreenIsComposited},
+	{"gdk_screen_list_visuals", &ScreenListVisuals},
+	{"gdk_screen_make_display_name", &ScreenMakeDisplayName},
+	{"gdk_screen_set_default_colormap", &ScreenSetDefaultColormap},
+	{"gdk_screen_set_font_options", &ScreenSetFontOptions},
+	{"gdk_screen_set_resolution", &ScreenSetResolution},
+	{"gdk_screen_width", &ScreenWidth},
+	{"gdk_screen_width_mm", &ScreenWidthMm},
+	{"gdk_scroll_direction_get_type", &ScrollDirectionGetType},
+	{"gdk_selection_convert", &SelectionConvert},
+	{"gdk_selection_owner_get", &SelectionOwnerGet},
+	{"gdk_selection_owner_get_for_display", &SelectionOwnerGetForDisplay},
+	{"gdk_selection_owner_set", &SelectionOwnerSet},
+	{"gdk_selection_owner_set_for_display", &SelectionOwnerSetForDisplay},
+	{"gdk_selection_property_get", &SelectionPropertyGet},
+	{"gdk_selection_send_notify", &SelectionSendNotify},
+	{"gdk_selection_send_notify_for_display", &SelectionSendNotifyForDisplay},
+	{"gdk_set_double_click_time", &SetDoubleClickTime},
+	{"gdk_set_locale", &SetLocale},
+	{"gdk_set_pointer_hooks", &SetPointerHooks},
+	{"gdk_set_program_class", &SetProgramClass},
+	{"gdk_set_show_events", &SetShowEvents},
+	{"gdk_set_sm_client_id", &SetSmClientId},
+	{"gdk_set_use_xshm", &SetUseXshm},
+	{"gdk_setting_action_get_type", &SettingActionGetType},
+	{"gdk_setting_get", &SettingGet},
+	{"gdk_spawn_command_line_on_screen", &SpawnCommandLineOnScreen},
+	{"gdk_spawn_on_screen", &SpawnOnScreen},
+	{"gdk_spawn_on_screen_with_pipes", &SpawnOnScreenWithPipes},
+	{"gdk_status_get_type", &StatusGetType},
+	{"gdk_string_extents", &StringExtents},
+	{"gdk_string_height", &StringHeight},
+	{"gdk_string_measure", &StringMeasure},
+	{"gdk_string_to_compound_text", &StringToCompoundText},
+	{"gdk_string_to_compound_text_for_display", &StringToCompoundTextForDisplay},
+	{"gdk_string_width", &StringWidth},
+	{"gdk_subwindow_mode_get_type", &SubwindowModeGetType},
+	{"gdk_synthesize_window_state", &SynthesizeWindowState},
+	{"gdk_test_render_sync", &TestRenderSync},
+	{"gdk_test_simulate_button", &TestSimulateButton},
+	{"gdk_test_simulate_key", &TestSimulateKey},
+	{"gdk_text_extents", &TextExtents},
+	{"gdk_text_extents_wc", &TextExtentsWc},
+	{"gdk_text_height", &TextHeight},
+	{"gdk_text_measure", &TextMeasure},
+	{"gdk_text_property_to_text_list", &TextPropertyToTextList},
+	{"gdk_text_property_to_text_list_for_display", &TextPropertyToTextListForDisplay},
+	{"gdk_text_property_to_utf8_list", &TextPropertyToUtf8List},
+	{"gdk_text_property_to_utf8_list_for_display", &TextPropertyToUtf8ListForDisplay},
+	{"gdk_text_width", &TextWidth},
+	{"gdk_text_width_wc", &TextWidthWc},
+	{"gdk_threads_add_idle", &ThreadsAddIdle},
+	{"gdk_threads_add_idle_full", &ThreadsAddIdleFull},
+	{"gdk_threads_add_timeout", &ThreadsAddTimeout},
+	{"gdk_threads_add_timeout_full", &ThreadsAddTimeoutFull},
+	{"gdk_threads_add_timeout_seconds", &ThreadsAddTimeoutSeconds},
+	{"gdk_threads_add_timeout_seconds_full", &ThreadsAddTimeoutSecondsFull},
+	{"gdk_threads_enter", &ThreadsEnter},
+	{"gdk_threads_init", &ThreadsInit},
+	{"gdk_threads_leave", &ThreadsLeave},
+	{"gdk_threads_set_lock_functions", &ThreadsSetLockFunctions},
+	{"gdk_unicode_to_keyval", &UnicodeToKeyval},
+	{"gdk_utf8_to_compound_text", &Utf8ToCompoundText},
+	{"gdk_utf8_to_compound_text_for_display", &Utf8ToCompoundTextForDisplay},
+	{"gdk_utf8_to_string_target", &Utf8ToStringTarget},
+	{"gdk_visibility_state_get_type", &VisibilityStateGetType},
+	{"gdk_visual_get_best", &VisualGetBest},
+	{"gdk_visual_get_best_depth", &VisualGetBestDepth},
+	{"gdk_visual_get_best_type", &VisualGetBestType},
+	{"gdk_visual_get_best_with_both", &VisualGetBestWithBoth},
+	{"gdk_visual_get_best_with_depth", &VisualGetBestWithDepth},
+	{"gdk_visual_get_best_with_type", &VisualGetBestWithType},
+	{"gdk_visual_get_bits_per_rgb", &VisualGetBitsPerRgb},
+	{"gdk_visual_get_blue_pixel_details", &VisualGetBluePixelDetails},
+	{"gdk_visual_get_byte_order", &VisualGetByteOrder},
+	{"gdk_visual_get_colormap_size", &VisualGetColormapSize},
+	{"gdk_visual_get_depth", &VisualGetDepth},
+	{"gdk_visual_get_green_pixel_details", &VisualGetGreenPixelDetails},
+	{"gdk_visual_get_red_pixel_details", &VisualGetRedPixelDetails},
+	{"gdk_visual_get_screen", &VisualGetScreen},
+	{"gdk_visual_get_system", &VisualGetSystem},
+	{"gdk_visual_get_type", &VisualGetType},
+	{"gdk_visual_get_visual_type", &VisualGetVisualType},
+	{"gdk_visual_type_get_type", &VisualTypeGetType},
+	{"gdk_wcstombs", &Wcstombs},
+	{"gdk_win32_begin_direct_draw_libgtk_only", &Win32BeginDirectDrawLibgtkOnly},
+	{"gdk_win32_drawable_get_handle", &Win32DrawableGetHandle},
+	{"gdk_win32_end_direct_draw_libgtk_only", &Win32EndDirectDrawLibgtkOnly},
+	{"gdk_win32_handle_table_lookup", &Win32HandleTableLookup},
+	{"gdk_win32_hdc_get", &Win32HdcGet},
+	{"gdk_win32_hdc_release", &Win32HdcRelease},
+	{"gdk_win32_icon_to_pixbuf_libgtk_only", &Win32IconToPixbufLibgtkOnly},
+	{"gdk_win32_pixbuf_to_hicon_libgtk_only", &Win32PixbufToHiconLibgtkOnly},
+	{"gdk_win32_selection_add_targets", &Win32SelectionAddTargets},
+	{"gdk_win32_set_modal_dialog_libgtk_only", &Win32SetModalDialogLibgtkOnly},
+	{"gdk_win32_window_foreign_new_for_display", &Win32WindowForeignNewForDisplay},
+	{"gdk_win32_window_get_impl_hwnd", &Win32WindowGetImplHwnd},
+	{"gdk_win32_window_is_win32", &Win32WindowIsWin32},
+	{"gdk_win32_window_lookup_for_display", &Win32WindowLookupForDisplay},
+	{"gdk_window_add_filter", &WindowAddFilter},
+	{"gdk_window_at_pointer", &WindowAtPointer},
+	{"gdk_window_attributes_type_get_type", &WindowAttributesTypeGetType},
+	{"gdk_window_beep", &WindowBeep},
+	{"gdk_window_begin_move_drag", &WindowBeginMoveDrag},
+	{"gdk_window_begin_paint_rect", &WindowBeginPaintRect},
+	{"gdk_window_begin_paint_region", &WindowBeginPaintRegion},
+	{"gdk_window_begin_resize_drag", &WindowBeginResizeDrag},
+	{"gdk_window_class_get_type", &WindowClassGetType},
+	{"gdk_window_clear", &WindowClear},
+	{"gdk_window_clear_area", &WindowClearArea},
+	{"gdk_window_clear_area_e", &WindowClearAreaE},
+	{"gdk_window_configure_finished", &WindowConfigureFinished},
+	{"gdk_window_constrain_size", &WindowConstrainSize},
+	{"gdk_window_coords_from_parent", &WindowCoordsFromParent},
+	{"gdk_window_coords_to_parent", &WindowCoordsToParent},
+	{"gdk_window_create_similar_surface", &WindowCreateSimilarSurface},
+	{"gdk_window_deiconify", &WindowDeiconify},
+	{"gdk_window_destroy", &WindowDestroy},
+	{"gdk_window_destroy_notify", &WindowDestroyNotify},
+	{"gdk_window_edge_get_type", &WindowEdgeGetType},
+	{"gdk_window_enable_synchronized_configure", &WindowEnableSynchronizedConfigure},
+	{"gdk_window_end_paint", &WindowEndPaint},
+	{"gdk_window_ensure_native", &WindowEnsureNative},
+	{"gdk_window_flush", &WindowFlush},
+	{"gdk_window_focus", &WindowFocus},
+	{"gdk_window_foreign_new", &WindowForeignNew},
+	{"gdk_window_foreign_new_for_display", &WindowForeignNewForDisplay},
+	{"gdk_window_freeze_toplevel_updates_libgtk_only", &WindowFreezeToplevelUpdatesLibgtkOnly},
+	{"gdk_window_freeze_updates", &WindowFreezeUpdates},
+	{"gdk_window_fullscreen", &WindowFullscreen},
+	{"gdk_window_geometry_changed", &WindowGeometryChanged},
+	{"gdk_window_get_accept_focus", &WindowGetAcceptFocus},
+	{"gdk_window_get_background_pattern", &WindowGetBackgroundPattern},
+	{"gdk_window_get_children", &WindowGetChildren},
+	{"gdk_window_get_composited", &WindowGetComposited},
+	{"gdk_window_get_cursor", &WindowGetCursor},
+	{"gdk_window_get_decorations", &WindowGetDecorations},
+	{"gdk_window_get_deskrelative_origin", &WindowGetDeskrelativeOrigin},
+	{"gdk_window_get_display", &WindowGetDisplay},
+	{"gdk_window_get_effective_parent", &WindowGetEffectiveParent},
+	{"gdk_window_get_effective_toplevel", &WindowGetEffectiveToplevel},
+	{"gdk_window_get_events", &WindowGetEvents},
+	{"gdk_window_get_focus_on_map", &WindowGetFocusOnMap},
+	{"gdk_window_get_frame_extents", &WindowGetFrameExtents},
+	{"gdk_window_get_geometry", &WindowGetGeometry},
+	{"gdk_window_get_group", &WindowGetGroup},
+	{"gdk_window_get_height", &WindowGetHeight},
+	{"gdk_window_get_internal_paint_info", &WindowGetInternalPaintInfo},
+	{"gdk_window_get_modal_hint", &WindowGetModalHint},
+	{"gdk_window_get_origin", &WindowGetOrigin},
+	{"gdk_window_get_parent", &WindowGetParent},
+	{"gdk_window_get_pointer", &WindowGetPointer},
+	{"gdk_window_get_position", &WindowGetPosition},
+	{"gdk_window_get_root_coords", &WindowGetRootCoords},
+	{"gdk_window_get_root_origin", &WindowGetRootOrigin},
+	{"gdk_window_get_screen", &WindowGetScreen},
+	{"gdk_window_get_state", &WindowGetState},
+	{"gdk_window_get_toplevel", &WindowGetToplevel},
+	{"gdk_window_get_toplevels", &WindowGetToplevels},
+	{"gdk_window_get_type_hint", &WindowGetTypeHint},
+	{"gdk_window_get_update_area", &WindowGetUpdateArea},
+	{"gdk_window_get_user_data", &WindowGetUserData},
+	{"gdk_window_get_visual", &WindowGetVisual},
+	{"gdk_window_get_width", &WindowGetWidth},
+	{"gdk_window_get_window_type", &WindowGetWindowType},
+	{"gdk_window_has_native", &WindowHasNative},
+	{"gdk_window_hide", &WindowHide},
+	{"gdk_window_hints_get_type", &WindowHintsGetType},
+	{"gdk_window_iconify", &WindowIconify},
+	// Undocumented {"gdk_window_impl_get_type", &WindowImplGetType},
+	{"gdk_window_input_shape_combine_mask", &WindowInputShapeCombineMask},
+	{"gdk_window_input_shape_combine_region", &WindowInputShapeCombineRegion},
+	{"gdk_window_invalidate_maybe_recurse", &WindowInvalidateMaybeRecurse},
+	{"gdk_window_invalidate_rect", &WindowInvalidateRect},
+	{"gdk_window_invalidate_region", &WindowInvalidateRegion},
+	{"gdk_window_is_destroyed", &WindowIsDestroyed},
+	{"gdk_window_is_input_only", &WindowIsInputOnly},
+	{"gdk_window_is_shaped", &WindowIsShaped},
+	{"gdk_window_is_viewable", &WindowIsViewable},
+	{"gdk_window_is_visible", &WindowIsVisible},
+	{"gdk_window_lookup", &WindowLookup},
+	{"gdk_window_lookup_for_display", &WindowLookupForDisplay},
+	{"gdk_window_lower", &WindowLower},
+	{"gdk_window_maximize", &WindowMaximize},
+	{"gdk_window_merge_child_input_shapes", &WindowMergeChildInputShapes},
+	{"gdk_window_merge_child_shapes", &WindowMergeChildShapes},
+	{"gdk_window_move", &WindowMove},
+	{"gdk_window_move_region", &WindowMoveRegion},
+	{"gdk_window_move_resize", &WindowMoveResize},
+	{"gdk_window_new", &WindowNew},
+	{"gdk_window_object_get_type", &WindowObjectGetType},
+	{"gdk_window_peek_children", &WindowPeekChildren},
+	{"gdk_window_process_all_updates", &WindowProcessAllUpdates},
+	{"gdk_window_process_updates", &WindowProcessUpdates},
+	{"gdk_window_raise", &WindowRaise},
+	{"gdk_window_redirect_to_drawable", &WindowRedirectToDrawable},
+	{"gdk_window_register_dnd", &WindowRegisterDnd},
+	{"gdk_window_remove_filter", &WindowRemoveFilter},
+	{"gdk_window_remove_redirection", &WindowRemoveRedirection},
+	{"gdk_window_reparent", &WindowReparent},
+	{"gdk_window_resize", &WindowResize},
+	{"gdk_window_restack", &WindowRestack},
+	{"gdk_window_scroll", &WindowScroll},
+	{"gdk_window_set_accept_focus", &WindowSetAcceptFocus},
+	{"gdk_window_set_back_pixmap", &WindowSetBackPixmap},
+	{"gdk_window_set_background", &WindowSetBackground},
+	{"gdk_window_set_child_input_shapes", &WindowSetChildInputShapes},
+	{"gdk_window_set_child_shapes", &WindowSetChildShapes},
+	{"gdk_window_set_composited", &WindowSetComposited},
+	{"gdk_window_set_cursor", &WindowSetCursor},
+	{"gdk_window_set_debug_updates", &WindowSetDebugUpdates},
+	{"gdk_window_set_decorations", &WindowSetDecorations},
+	{"gdk_window_set_events", &WindowSetEvents},
+	{"gdk_window_set_focus_on_map", &WindowSetFocusOnMap},
+	{"gdk_window_set_functions", &WindowSetFunctions},
+	{"gdk_window_set_geometry_hints", &WindowSetGeometryHints},
+	{"gdk_window_set_group", &WindowSetGroup},
+	{"gdk_window_set_hints", &WindowSetHints},
+	{"gdk_window_set_icon", &WindowSetIcon},
+	{"gdk_window_set_icon_list", &WindowSetIconList},
+	{"gdk_window_set_icon_name", &WindowSetIconName},
+	{"gdk_window_set_keep_above", &WindowSetKeepAbove},
+	{"gdk_window_set_keep_below", &WindowSetKeepBelow},
+	{"gdk_window_set_modal_hint", &WindowSetModalHint},
+	{"gdk_window_set_opacity", &WindowSetOpacity},
+	{"gdk_window_set_override_redirect", &WindowSetOverrideRedirect},
+	{"gdk_window_set_role", &WindowSetRole},
+	{"gdk_window_set_skip_pager_hint", &WindowSetSkipPagerHint},
+	{"gdk_window_set_skip_taskbar_hint", &WindowSetSkipTaskbarHint},
+	{"gdk_window_set_startup_id", &WindowSetStartupId},
+	{"gdk_window_set_static_gravities", &WindowSetStaticGravities},
+	{"gdk_window_set_title", &WindowSetTitle},
+	{"gdk_window_set_transient_for", &WindowSetTransientFor},
+	{"gdk_window_set_type_hint", &WindowSetTypeHint},
+	{"gdk_window_set_urgency_hint", &WindowSetUrgencyHint},
+	{"gdk_window_set_user_data", &WindowSetUserData},
+	{"gdk_window_shape_combine_mask", &WindowShapeCombineMask},
+	{"gdk_window_shape_combine_region", &WindowShapeCombineRegion},
+	{"gdk_window_show", &WindowShow},
+	{"gdk_window_show_unraised", &WindowShowUnraised},
+	{"gdk_window_state_get_type", &WindowStateGetType},
+	{"gdk_window_stick", &WindowStick},
+	{"gdk_window_thaw_toplevel_updates_libgtk_only", &WindowThawToplevelUpdatesLibgtkOnly},
+	{"gdk_window_thaw_updates", &WindowThawUpdates},
+	{"gdk_window_type_get_type", &WindowTypeGetType},
+	{"gdk_window_type_hint_get_type", &WindowTypeHintGetType},
+	{"gdk_window_unfullscreen", &WindowUnfullscreen},
+	{"gdk_window_unmaximize", &WindowUnmaximize},
+	{"gdk_window_unstick", &WindowUnstick},
+	{"gdk_window_withdraw", &WindowWithdraw},
+	{"gdk_wm_decoration_get_type", &WmDecorationGetType},
+	{"gdk_wm_function_get_type", &WmFunctionGetType},
 }
 
 var apiListPixbuf = outside.Apis{
-	{"gdk_colorspace_get_type", &Gdk_colorspace_get_type},
-	{"gdk_interp_type_get_type", &Gdk_interp_type_get_type},
-	{"gdk_pixbuf_add_alpha", &Gdk_pixbuf_add_alpha},
-	{"gdk_pixbuf_alpha_mode_get_type", &Gdk_pixbuf_alpha_mode_get_type},
-	{"gdk_pixbuf_animation_get_height", &Gdk_pixbuf_animation_get_height},
-	{"gdk_pixbuf_animation_get_iter", &Gdk_pixbuf_animation_get_iter},
-	{"gdk_pixbuf_animation_get_static_image", &Gdk_pixbuf_animation_get_static_image},
-	{"gdk_pixbuf_animation_get_type", &Gdk_pixbuf_animation_get_type},
-	{"gdk_pixbuf_animation_get_width", &Gdk_pixbuf_animation_get_width},
-	{"gdk_pixbuf_animation_is_static_image", &Gdk_pixbuf_animation_is_static_image},
-	{"gdk_pixbuf_animation_iter_advance", &Gdk_pixbuf_animation_iter_advance},
-	{"gdk_pixbuf_animation_iter_get_delay_time", &Gdk_pixbuf_animation_iter_get_delay_time},
-	{"gdk_pixbuf_animation_iter_get_pixbuf", &Gdk_pixbuf_animation_iter_get_pixbuf},
-	{"gdk_pixbuf_animation_iter_get_type", &Gdk_pixbuf_animation_iter_get_type},
-	{"gdk_pixbuf_animation_iter_on_currently_loading_frame", &Gdk_pixbuf_animation_iter_on_currently_loading_frame},
-	{"gdk_pixbuf_animation_new_from_file", &Gdk_pixbuf_animation_new_from_file},
-	{"gdk_pixbuf_animation_new_from_file_utf8", &Gdk_pixbuf_animation_new_from_file_utf8},
-	{"gdk_pixbuf_animation_ref", &Gdk_pixbuf_animation_ref},
-	{"gdk_pixbuf_animation_unref", &Gdk_pixbuf_animation_unref},
-	{"gdk_pixbuf_apply_embedded_orientation", &Gdk_pixbuf_apply_embedded_orientation},
-	{"gdk_pixbuf_composite", &Gdk_pixbuf_composite},
-	{"gdk_pixbuf_composite_color", &Gdk_pixbuf_composite_color},
-	{"gdk_pixbuf_composite_color_simple", &Gdk_pixbuf_composite_color_simple},
-	{"gdk_pixbuf_copy", &Gdk_pixbuf_copy},
-	{"gdk_pixbuf_copy_area", &Gdk_pixbuf_copy_area},
-	{"gdk_pixbuf_error_get_type", &Gdk_pixbuf_error_get_type},
-	{"gdk_pixbuf_error_quark", &Gdk_pixbuf_error_quark},
-	{"gdk_pixbuf_fill", &Gdk_pixbuf_fill},
-	{"gdk_pixbuf_flip", &Gdk_pixbuf_flip},
-	{"gdk_pixbuf_format_copy", &Gdk_pixbuf_format_copy},
-	{"gdk_pixbuf_format_free", &Gdk_pixbuf_format_free},
-	{"gdk_pixbuf_format_get_description", &Gdk_pixbuf_format_get_description},
-	{"gdk_pixbuf_format_get_extensions", &Gdk_pixbuf_format_get_extensions},
-	{"gdk_pixbuf_format_get_license", &Gdk_pixbuf_format_get_license},
-	{"gdk_pixbuf_format_get_mime_types", &Gdk_pixbuf_format_get_mime_types},
-	{"gdk_pixbuf_format_get_name", &Gdk_pixbuf_format_get_name},
-	{"gdk_pixbuf_format_get_type", &Gdk_pixbuf_format_get_type},
-	{"gdk_pixbuf_format_is_disabled", &Gdk_pixbuf_format_is_disabled},
-	{"gdk_pixbuf_format_is_scalable", &Gdk_pixbuf_format_is_scalable},
-	{"gdk_pixbuf_format_is_writable", &Gdk_pixbuf_format_is_writable},
-	{"gdk_pixbuf_format_set_disabled", &Gdk_pixbuf_format_set_disabled},
-	{"gdk_pixbuf_from_pixdata", &Gdk_pixbuf_from_pixdata},
-	{"gdk_pixbuf_get_bits_per_sample", &Gdk_pixbuf_get_bits_per_sample},
-	{"gdk_pixbuf_get_colorspace", &Gdk_pixbuf_get_colorspace},
-	{"gdk_pixbuf_get_file_info", &Gdk_pixbuf_get_file_info},
-	{"gdk_pixbuf_get_formats", &Gdk_pixbuf_get_formats},
-	{"gdk_pixbuf_get_has_alpha", &Gdk_pixbuf_get_has_alpha},
-	{"gdk_pixbuf_get_height", &Gdk_pixbuf_get_height},
-	{"gdk_pixbuf_get_n_channels", &Gdk_pixbuf_get_n_channels},
-	{"gdk_pixbuf_get_option", &Gdk_pixbuf_get_option},
-	{"gdk_pixbuf_get_pixels", &Gdk_pixbuf_get_pixels},
-	{"gdk_pixbuf_get_rowstride", &Gdk_pixbuf_get_rowstride},
-	{"gdk_pixbuf_get_type", &Gdk_pixbuf_get_type},
-	{"gdk_pixbuf_get_width", &Gdk_pixbuf_get_width},
-	// Undocumented {"gdk_pixbuf_gettext", &Gdk_pixbuf_gettext},
-	{"gdk_pixbuf_loader_close", &Gdk_pixbuf_loader_close},
-	{"gdk_pixbuf_loader_get_animation", &Gdk_pixbuf_loader_get_animation},
-	{"gdk_pixbuf_loader_get_format", &Gdk_pixbuf_loader_get_format},
-	{"gdk_pixbuf_loader_get_pixbuf", &Gdk_pixbuf_loader_get_pixbuf},
-	{"gdk_pixbuf_loader_get_type", &Gdk_pixbuf_loader_get_type},
-	{"gdk_pixbuf_loader_new", &Gdk_pixbuf_loader_new},
-	{"gdk_pixbuf_loader_new_with_mime_type", &Gdk_pixbuf_loader_new_with_mime_type},
-	{"gdk_pixbuf_loader_new_with_type", &Gdk_pixbuf_loader_new_with_type},
-	{"gdk_pixbuf_loader_set_size", &Gdk_pixbuf_loader_set_size},
-	{"gdk_pixbuf_loader_write", &Gdk_pixbuf_loader_write},
-	{"gdk_pixbuf_new", &Gdk_pixbuf_new},
-	{"gdk_pixbuf_new_from_data", &Gdk_pixbuf_new_from_data},
-	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file", &Gdk_pixbuf_new_from_file},
-	// Win32 uese _utf8 {"gdk_pixbuf_new_from_file_at_scale", &Gdk_pixbuf_new_from_file_at_scale},
-	{"gdk_pixbuf_new_from_file_at_scale_utf8", &Gdk_pixbuf_new_from_file_at_scale},
-	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file_at_size", &Gdk_pixbuf_new_from_file_at_size},
-	{"gdk_pixbuf_new_from_file_at_size_utf8", &Gdk_pixbuf_new_from_file_at_size},
-	{"gdk_pixbuf_new_from_file_utf8", &Gdk_pixbuf_new_from_file},
-	{"gdk_pixbuf_new_from_inline", &Gdk_pixbuf_new_from_inline},
-	{"gdk_pixbuf_new_from_stream", &Gdk_pixbuf_new_from_stream},
-	{"gdk_pixbuf_new_from_stream_async", &Gdk_pixbuf_new_from_stream_async},
-	{"gdk_pixbuf_new_from_stream_at_scale", &Gdk_pixbuf_new_from_stream_at_scale},
-	{"gdk_pixbuf_new_from_stream_at_scale_async", &Gdk_pixbuf_new_from_stream_at_scale_async},
-	{"gdk_pixbuf_new_from_stream_finish", &Gdk_pixbuf_new_from_stream_finish},
-	{"gdk_pixbuf_new_from_xpm_data", &Gdk_pixbuf_new_from_xpm_data},
-	{"gdk_pixbuf_new_subpixbuf", &Gdk_pixbuf_new_subpixbuf},
-	{"gdk_pixbuf_non_anim_get_type", &Gdk_pixbuf_non_anim_get_type},
-	{"gdk_pixbuf_non_anim_new", &Gdk_pixbuf_non_anim_new},
-	{"gdk_pixbuf_ref", &Gdk_pixbuf_ref},
-	{"gdk_pixbuf_rotate_simple", &Gdk_pixbuf_rotate_simple},
-	{"gdk_pixbuf_rotation_get_type", &Gdk_pixbuf_rotation_get_type},
-	{"gdk_pixbuf_saturate_and_pixelate", &Gdk_pixbuf_saturate_and_pixelate},
-	// Win32 uses _utf8 {"gdk_pixbuf_save", &Gdk_pixbuf_save},
-	{"gdk_pixbuf_save_to_buffer", &Gdk_pixbuf_save_to_buffer},
-	{"gdk_pixbuf_save_to_bufferv", &Gdk_pixbuf_save_to_bufferv},
-	{"gdk_pixbuf_save_to_callback", &Gdk_pixbuf_save_to_callback},
-	{"gdk_pixbuf_save_to_callbackv", &Gdk_pixbuf_save_to_callbackv},
-	{"gdk_pixbuf_save_to_stream", &Gdk_pixbuf_save_to_stream},
-	{"gdk_pixbuf_save_to_stream_async", &Gdk_pixbuf_save_to_stream_async},
-	{"gdk_pixbuf_save_to_stream_finish", &Gdk_pixbuf_save_to_stream_finish},
-	{"gdk_pixbuf_save_utf8", &Gdk_pixbuf_save_utf8},
-	// Win32 uses _utf8 {"gdk_pixbuf_savev", &Gdk_pixbuf_savev},
-	{"gdk_pixbuf_savev_utf8", &Gdk_pixbuf_savev_utf8},
-	{"gdk_pixbuf_scale", &Gdk_pixbuf_scale},
-	{"gdk_pixbuf_scale_simple", &Gdk_pixbuf_scale_simple},
-	// Undocumented {"gdk_pixbuf_scaled_anim_get_type", &Gdk_pixbuf_scaled_anim_get_type},
-	// Undocumented {"gdk_pixbuf_scaled_anim_iter_get_type", &Gdk_pixbuf_scaled_anim_iter_get_type},
-	{"gdk_pixbuf_set_option", &Gdk_pixbuf_set_option},
-	{"gdk_pixbuf_simple_anim_add_frame", &Gdk_pixbuf_simple_anim_add_frame},
-	{"gdk_pixbuf_simple_anim_get_loop", &Gdk_pixbuf_simple_anim_get_loop},
-	{"gdk_pixbuf_simple_anim_get_type", &Gdk_pixbuf_simple_anim_get_type},
-	{"gdk_pixbuf_simple_anim_iter_get_type", &Gdk_pixbuf_simple_anim_iter_get_type},
-	{"gdk_pixbuf_simple_anim_new", &Gdk_pixbuf_simple_anim_new},
-	{"gdk_pixbuf_simple_anim_set_loop", &Gdk_pixbuf_simple_anim_set_loop},
-	{"gdk_pixbuf_unref", &Gdk_pixbuf_unref},
-	{"gdk_pixdata_deserialize", &Gdk_pixdata_deserialize},
-	{"gdk_pixdata_from_pixbuf", &Gdk_pixdata_from_pixbuf},
-	{"gdk_pixdata_serialize", &Gdk_pixdata_serialize},
-	{"gdk_pixdata_to_csource", &Gdk_pixdata_to_csource},
+	{"gdk_colorspace_get_type", &ColorspaceGetType},
+	{"gdk_interp_type_get_type", &InterpTypeGetType},
+	{"gdk_pixbuf_add_alpha", &PixbufAddAlpha},
+	{"gdk_pixbuf_alpha_mode_get_type", &PixbufAlphaModeGetType},
+	{"gdk_pixbuf_animation_get_height", &PixbufAnimationGetHeight},
+	{"gdk_pixbuf_animation_get_iter", &PixbufAnimationGetIter},
+	{"gdk_pixbuf_animation_get_static_image", &PixbufAnimationGetStaticImage},
+	{"gdk_pixbuf_animation_get_type", &PixbufAnimationGetType},
+	{"gdk_pixbuf_animation_get_width", &PixbufAnimationGetWidth},
+	{"gdk_pixbuf_animation_is_static_image", &PixbufAnimationIsStaticImage},
+	{"gdk_pixbuf_animation_iter_advance", &PixbufAnimationIterAdvance},
+	{"gdk_pixbuf_animation_iter_get_delay_time", &PixbufAnimationIterGetDelayTime},
+	{"gdk_pixbuf_animation_iter_get_pixbuf", &PixbufAnimationIterGetPixbuf},
+	{"gdk_pixbuf_animation_iter_get_type", &PixbufAnimationIterGetType},
+	{"gdk_pixbuf_animation_iter_on_currently_loading_frame", &PixbufAnimationIterOnCurrentlyLoadingFrame},
+	{"gdk_pixbuf_animation_new_from_file", &PixbufAnimationNewFromFile},
+	{"gdk_pixbuf_animation_new_from_file_utf8", &PixbufAnimationNewFromFileUtf8},
+	{"gdk_pixbuf_animation_ref", &PixbufAnimationRef},
+	{"gdk_pixbuf_animation_unref", &PixbufAnimationUnref},
+	{"gdk_pixbuf_apply_embedded_orientation", &PixbufApplyEmbeddedOrientation},
+	{"gdk_pixbuf_composite", &PixbufComposite},
+	{"gdk_pixbuf_composite_color", &PixbufCompositeColor},
+	{"gdk_pixbuf_composite_color_simple", &PixbufCompositeColorSimple},
+	{"gdk_pixbuf_copy", &PixbufCopy},
+	{"gdk_pixbuf_copy_area", &PixbufCopyArea},
+	{"gdk_pixbuf_error_get_type", &PixbufErrorGetType},
+	{"gdk_pixbuf_error_quark", &PixbufErrorQuark},
+	{"gdk_pixbuf_fill", &PixbufFill},
+	{"gdk_pixbuf_flip", &PixbufFlip},
+	{"gdk_pixbuf_format_copy", &PixbufFormatCopy},
+	{"gdk_pixbuf_format_free", &PixbufFormatFree},
+	{"gdk_pixbuf_format_get_description", &PixbufFormatGetDescription},
+	{"gdk_pixbuf_format_get_extensions", &PixbufFormatGetExtensions},
+	{"gdk_pixbuf_format_get_license", &PixbufFormatGetLicense},
+	{"gdk_pixbuf_format_get_mime_types", &PixbufFormatGetMimeTypes},
+	{"gdk_pixbuf_format_get_name", &PixbufFormatGetName},
+	{"gdk_pixbuf_format_get_type", &PixbufFormatGetType},
+	{"gdk_pixbuf_format_is_disabled", &PixbufFormatIsDisabled},
+	{"gdk_pixbuf_format_is_scalable", &PixbufFormatIsScalable},
+	{"gdk_pixbuf_format_is_writable", &PixbufFormatIsWritable},
+	{"gdk_pixbuf_format_set_disabled", &PixbufFormatSetDisabled},
+	{"gdk_pixbuf_from_pixdata", &PixbufFromPixdata},
+	{"gdk_pixbuf_get_bits_per_sample", &PixbufGetBitsPerSample},
+	{"gdk_pixbuf_get_colorspace", &PixbufGetColorspace},
+	{"gdk_pixbuf_get_file_info", &PixbufGetFileInfo},
+	{"gdk_pixbuf_get_formats", &PixbufGetFormats},
+	{"gdk_pixbuf_get_has_alpha", &PixbufGetHasAlpha},
+	{"gdk_pixbuf_get_height", &PixbufGetHeight},
+	{"gdk_pixbuf_get_n_channels", &PixbufGetNChannels},
+	{"gdk_pixbuf_get_option", &PixbufGetOption},
+	{"gdk_pixbuf_get_pixels", &PixbufGetPixels},
+	{"gdk_pixbuf_get_rowstride", &PixbufGetRowstride},
+	{"gdk_pixbuf_get_type", &PixbufGetType},
+	{"gdk_pixbuf_get_width", &PixbufGetWidth},
+	// Undocumented {"gdk_pixbuf_gettext", &PixbufGettext},
+	{"gdk_pixbuf_loader_close", &PixbufLoaderClose},
+	{"gdk_pixbuf_loader_get_animation", &PixbufLoaderGetAnimation},
+	{"gdk_pixbuf_loader_get_format", &PixbufLoaderGetFormat},
+	{"gdk_pixbuf_loader_get_pixbuf", &PixbufLoaderGetPixbuf},
+	{"gdk_pixbuf_loader_get_type", &PixbufLoaderGetType},
+	{"gdk_pixbuf_loader_new", &PixbufLoaderNew},
+	{"gdk_pixbuf_loader_new_with_mime_type", &PixbufLoaderNewWithMimeType},
+	{"gdk_pixbuf_loader_new_with_type", &PixbufLoaderNewWithType},
+	{"gdk_pixbuf_loader_set_size", &PixbufLoaderSetSize},
+	{"gdk_pixbuf_loader_write", &PixbufLoaderWrite},
+	{"gdk_pixbuf_new", &PixbufNew},
+	{"gdk_pixbuf_new_from_data", &PixbufNewFromData},
+	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file", &PixbufNewFromFile},
+	// Win32 uese _utf8 {"gdk_pixbuf_new_from_file_at_scale", &PixbufNewFromFileAtScale},
+	{"gdk_pixbuf_new_from_file_at_scale_utf8", &PixbufNewFromFileAtScale},
+	// Win32 uses _utf8 {"gdk_pixbuf_new_from_file_at_size", &PixbufNewFromFileAtSize},
+	{"gdk_pixbuf_new_from_file_at_size_utf8", &PixbufNewFromFileAtSize},
+	{"gdk_pixbuf_new_from_file_utf8", &PixbufNewFromFile},
+	{"gdk_pixbuf_new_from_inline", &PixbufNewFromInline},
+	{"gdk_pixbuf_new_from_stream", &PixbufNewFromStream},
+	{"gdk_pixbuf_new_from_stream_async", &PixbufNewFromStreamAsync},
+	{"gdk_pixbuf_new_from_stream_at_scale", &PixbufNewFromStreamAtScale},
+	{"gdk_pixbuf_new_from_stream_at_scale_async", &PixbufNewFromStreamAtScaleAsync},
+	{"gdk_pixbuf_new_from_stream_finish", &PixbufNewFromStreamFinish},
+	{"gdk_pixbuf_new_from_xpm_data", &PixbufNewFromXpmData},
+	{"gdk_pixbuf_new_subpixbuf", &PixbufNewSubpixbuf},
+	{"gdk_pixbuf_non_anim_get_type", &PixbufNonAnimGetType},
+	{"gdk_pixbuf_non_anim_new", &PixbufNonAnimNew},
+	{"gdk_pixbuf_ref", &PixbufRef},
+	{"gdk_pixbuf_rotate_simple", &PixbufRotateSimple},
+	{"gdk_pixbuf_rotation_get_type", &PixbufRotationGetType},
+	{"gdk_pixbuf_saturate_and_pixelate", &PixbufSaturateAndPixelate},
+	// Win32 uses _utf8 {"gdk_pixbuf_save", &PixbufSave},
+	{"gdk_pixbuf_save_to_buffer", &PixbufSaveToBuffer},
+	{"gdk_pixbuf_save_to_bufferv", &PixbufSaveToBufferv},
+	{"gdk_pixbuf_save_to_callback", &PixbufSaveToCallback},
+	{"gdk_pixbuf_save_to_callbackv", &PixbufSaveToCallbackv},
+	{"gdk_pixbuf_save_to_stream", &PixbufSaveToStream},
+	{"gdk_pixbuf_save_to_stream_async", &PixbufSaveToStreamAsync},
+	{"gdk_pixbuf_save_to_stream_finish", &PixbufSaveToStreamFinish},
+	{"gdk_pixbuf_save_utf8", &PixbufSaveUtf8},
+	// Win32 uses _utf8 {"gdk_pixbuf_savev", &PixbufSavev},
+	{"gdk_pixbuf_savev_utf8", &PixbufSavevUtf8},
+	{"gdk_pixbuf_scale", &PixbufScale},
+	{"gdk_pixbuf_scale_simple", &PixbufScaleSimple},
+	// Undocumented {"gdk_pixbuf_scaled_anim_get_type", &PixbufScaledAnimGetType},
+	// Undocumented {"gdk_pixbuf_scaled_anim_iter_get_type", &PixbufScaledAnimIterGetType},
+	{"gdk_pixbuf_set_option", &PixbufSetOption},
+	{"gdk_pixbuf_simple_anim_add_frame", &PixbufSimpleAnimAddFrame},
+	{"gdk_pixbuf_simple_anim_get_loop", &PixbufSimpleAnimGetLoop},
+	{"gdk_pixbuf_simple_anim_get_type", &PixbufSimpleAnimGetType},
+	{"gdk_pixbuf_simple_anim_iter_get_type", &PixbufSimpleAnimIterGetType},
+	{"gdk_pixbuf_simple_anim_new", &PixbufSimpleAnimNew},
+	{"gdk_pixbuf_simple_anim_set_loop", &PixbufSimpleAnimSetLoop},
+	{"gdk_pixbuf_unref", &PixbufUnref},
+	{"gdk_pixdata_deserialize", &PixdataDeserialize},
+	{"gdk_pixdata_from_pixbuf", &PixdataFromPixbuf},
+	{"gdk_pixdata_serialize", &PixdataSerialize},
+	{"gdk_pixdata_to_csource", &PixdataToCsource},
 }
 
 var dataList = outside.Data{

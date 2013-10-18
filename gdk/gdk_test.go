@@ -2,4 +2,4 @@ package gdk
 
 import "testing"
 
-func Test(t *testing.T) {}
+func TestInit(t *testing.T) {}

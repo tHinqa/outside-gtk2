@@ -83,7 +83,7 @@ var (
 
 	Cairo_push_group_with_content func(
 		cr *T.Cairo_t,
-		content T.Cairo_content_t)
+		content T.CairoContentT)
 
 	Cairo_pop_group func(
 		cr *T.Cairo_t) *T.Cairo_pattern_t
@@ -762,7 +762,7 @@ var (
 
 	Cairo_surface_create_similar func(
 		other *T.Cairo_surface_t,
-		content T.Cairo_content_t,
+		content T.CairoContentT,
 		width int,
 		height int) *T.Cairo_surface_t
 
@@ -795,7 +795,7 @@ var (
 		surface *T.Cairo_surface_t) T.Cairo_surface_type_t
 
 	Cairo_surface_get_content func(
-		surface *T.Cairo_surface_t) T.Cairo_content_t
+		surface *T.Cairo_surface_t) T.CairoContentT
 
 	Cairo_surface_write_to_png func(
 		surface *T.Cairo_surface_t,
@@ -915,7 +915,7 @@ var (
 		closure *T.Void) *T.Cairo_surface_t
 
 	Cairo_recording_surface_create func(
-		content T.Cairo_content_t,
+		content T.CairoContentT,
 		extents *T.Cairo_rectangle_t) *T.Cairo_surface_t
 
 	Cairo_recording_surface_ink_extents func(

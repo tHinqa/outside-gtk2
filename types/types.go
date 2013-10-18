@@ -8,7 +8,9 @@ type (
 	fix uintptr
 
 	Long_double fix
+	LongDouble  fix
 	Va_list     fix
+	VaList      fix
 	FILE        fix
 	Stat        fix
 
@@ -35,7 +37,9 @@ type (
 	GUint32       uint  // ANOMALLY size?
 	Long          int32 // TODO(t): Size?
 	Size_t        uintptr
+	SizeT         uintptr
 	Time_t        int
+	TimeT         int
 	Unsigned_char uint8
 	Unsigned_long uint32 //TODO(t): check  size
 
@@ -163,12 +167,16 @@ type (
 	Cairo_device_t                 struct{}
 	Cairo_font_face_t              struct{}
 	Cairo_font_options_t           struct{}
+	CairoFontOptionsT              struct{}
 	Cairo_pattern_t                struct{}
+	CairoPatternT                  struct{}
 	Cairo_region_t                 struct{}
 	Cairo_scaled_font_t            struct{}
 	Cairo_script_interpreter_t     struct{}
 	Cairo_surface_t                struct{}
+	CairoSurfaceT                  struct{}
 	Cairo_t                        struct{}
+	CairoT                         struct{}
 	FcCharSet                      struct{}
 	FcPattern                      struct{}
 	GAction                        struct{}
@@ -1989,12 +1997,12 @@ const (
 	CAIRO_STATUS_LAST_STATUS
 )
 
-type Cairo_content_t Enum
+type CairoContentT Enum
 
 const (
-	CAIRO_CONTENT_COLOR       Cairo_content_t = 0x1000
-	CAIRO_CONTENT_ALPHA       Cairo_content_t = 0x2000
-	CAIRO_CONTENT_COLOR_ALPHA Cairo_content_t = 0x3000
+	CAIRO_CONTENT_COLOR       CairoContentT = 0x1000
+	CAIRO_CONTENT_ALPHA       CairoContentT = 0x2000
+	CAIRO_CONTENT_COLOR_ALPHA CairoContentT = 0x3000
 )
 
 type Cairo_operator_t Enum
@@ -5242,7 +5250,7 @@ type (
 
 	Csi_surface_create_func_t func(
 		closure *Void,
-		content Cairo_content_t,
+		content CairoContentT,
 		width, height float64,
 		uid Long) *Cairo_surface_t
 
