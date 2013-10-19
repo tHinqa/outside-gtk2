@@ -14,44 +14,7 @@ var (
 	AlignmentGetType               func() T.GType
 	AnchorTypeGetType              func() T.GType
 	ArgFlagsGetType                func() T.GType
-	ArrowGetType                   func() T.GType
-	ArrowPlacementGetType          func() T.GType
-	ArrowTypeGetType               func() T.GType
-	AspectFrameGetType             func() T.GType
 	AttachOptionsGetType           func() T.GType
-	BinGetType                     func() T.GType
-	BorderGetType                  func() T.GType
-	BoxGetType                     func() T.GType
-	BuildableGetType               func() T.GType
-	BuilderErrorGetType            func() T.GType
-	BuilderGetType                 func() T.GType
-	CalendarDisplayOptionsGetType  func() T.GType
-	CalendarGetType                func() T.GType
-	CalendarNew                    func() *T.GtkWidget
-	CellEditableGetType            func() T.GType
-	CellLayoutGetType              func() T.GType
-	CellRendererAccelGetType       func() T.GType
-	CellRendererAccelModeGetType   func() T.GType
-	CellRendererComboGetType       func() T.GType
-	CellRendererGetType            func() T.GType
-	CellRendererModeGetType        func() T.GType
-	CellRendererPixbufGetType      func() T.GType
-	CellRendererProgressGetType    func() T.GType
-	CellRendererSpinGetType        func() T.GType
-	CellRendererSpinnerGetType     func() T.GType
-	CellRendererStateGetType       func() T.GType
-	CellRendererTextGetType        func() T.GType
-	CellRendererToggleGetType      func() T.GType
-	CellTypeGetType                func() T.GType
-	CellViewGetType                func() T.GType
-	CellViewNew                    func() *T.GtkWidget
-	CheckButtonGetType             func() T.GType
-	CheckButtonNew                 func() *T.GtkWidget
-	CheckMenuItemGetType           func() T.GType
-	CheckMenuItemNew               func() *T.GtkWidget
-	ClipboardGetType               func() T.GType
-	ClistDragPosGetType            func() T.GType
-	ClistGetType                   func() T.GType
 	ColorButtonGetType             func() T.GType
 	ColorButtonNew                 func() *T.GtkWidget
 	ColorSelectionDialogGetType    func() T.GType
@@ -1035,14 +998,6 @@ var (
 		width int,
 		height int)
 
-	BorderNew func() *T.GtkBorder
-
-	BorderCopy func(
-		border *T.GtkBorder) *T.GtkBorder
-
-	BorderFree func(
-		border *T.GtkBorder)
-
 	StyleGetStyleProperty func(
 		style *T.GtkStyle,
 		widgetType T.GType,
@@ -1624,10 +1579,6 @@ var (
 	WidgetGetSettings func(
 		widget *T.GtkWidget) *T.GtkSettings
 
-	WidgetGetClipboard func(
-		widget *T.GtkWidget,
-		selection T.GdkAtom) *T.GtkClipboard
-
 	WidgetGetSnapshot func(
 		widget *T.GtkWidget,
 		clipRect *T.GdkRectangle) *T.GdkPixmap
@@ -2017,9 +1968,6 @@ var (
 		container *T.GtkContainer,
 		callback T.GtkCallback,
 		callbackData T.Gpointer)
-
-	BinGetChild func(
-		bin *T.GtkBin) *T.GtkWidget
 
 	WindowNew func(
 		t T.GtkWindowType) *T.GtkWidget
@@ -2853,15 +2801,6 @@ var (
 		paddingLeft *uint,
 		paddingRight *uint)
 
-	ArrowNew func(
-		arrowType T.GtkArrowType,
-		shadowType T.GtkShadowType) *T.GtkWidget
-
-	ArrowSet func(
-		arrow *T.GtkArrow,
-		arrowType T.GtkArrowType,
-		shadowType T.GtkShadowType)
-
 	FrameNew func(
 		label string) *T.GtkWidget
 
@@ -2895,77 +2834,6 @@ var (
 
 	FrameGetShadowType func(
 		frame *T.GtkFrame) T.GtkShadowType
-
-	AspectFrameNew func(
-		label string,
-		xalign float32,
-		yalign float32,
-		ratio float32,
-		obeyChild T.Gboolean) *T.GtkWidget
-
-	AspectFrameSet func(
-		aspectFrame *T.GtkAspectFrame,
-		xalign float32,
-		yalign float32,
-		ratio float32,
-		obeyChild T.Gboolean)
-
-	BoxPackStart func(
-		box *T.GtkBox,
-		child *T.GtkWidget,
-		expand T.Gboolean,
-		fill T.Gboolean,
-		padding uint)
-
-	BoxPackEnd func(
-		box *T.GtkBox,
-		child *T.GtkWidget,
-		expand T.Gboolean,
-		fill T.Gboolean,
-		padding uint)
-
-	BoxPackStartDefaults func(
-		box *T.GtkBox,
-		widget *T.GtkWidget)
-
-	BoxPackEndDefaults func(
-		box *T.GtkBox,
-		widget *T.GtkWidget)
-
-	BoxSetHomogeneous func(
-		box *T.GtkBox,
-		homogeneous T.Gboolean)
-
-	BoxGetHomogeneous func(
-		box *T.GtkBox) T.Gboolean
-
-	BoxSetSpacing func(
-		box *T.GtkBox,
-		spacing int)
-
-	BoxGetSpacing func(
-		box *T.GtkBox) int
-
-	BoxReorderChild func(
-		box *T.GtkBox,
-		child *T.GtkWidget,
-		position int)
-
-	BoxQueryChildPacking func(
-		box *T.GtkBox,
-		child *T.GtkWidget,
-		expand *T.Gboolean,
-		fill *T.Gboolean,
-		padding *uint,
-		packType *T.GtkPackType)
-
-	BoxSetChildPacking func(
-		box *T.GtkBox,
-		child *T.GtkWidget,
-		expand T.Gboolean,
-		fill T.Gboolean,
-		padding uint,
-		packType T.GtkPackType)
 
 	BindingSetNew func(
 		setName string) *T.GtkBindingSet
@@ -3025,128 +2893,6 @@ var (
 		pathType T.GtkPathType,
 		pathPattern string,
 		priority T.GtkPathPriorityType)
-
-	BuilderNew func() *T.GtkBuilder
-
-	BuilderAddFromFile func(
-		builder *T.GtkBuilder,
-		filename string,
-		error **T.GError) uint
-
-	BuilderAddFromString func(
-		builder *T.GtkBuilder,
-		buffer string,
-		length T.Gsize,
-		error **T.GError) uint
-
-	BuilderAddObjectsFromFile func(
-		builder *T.GtkBuilder,
-		filename string,
-		objectIds **T.Gchar,
-		error **T.GError) uint
-
-	BuilderAddObjectsFromString func(
-		builder *T.GtkBuilder,
-		buffer string,
-		length T.Gsize,
-		objectIds **T.Gchar,
-		error **T.GError) uint
-
-	BuilderGetObject func(
-		builder *T.GtkBuilder,
-		name string) *T.GObject
-
-	BuilderGetObjects func(
-		builder *T.GtkBuilder) *T.GSList
-
-	BuilderConnectSignals func(
-		builder *T.GtkBuilder,
-		userData T.Gpointer)
-
-	BuilderConnectSignalsFull func(
-		builder *T.GtkBuilder,
-		f T.GtkBuilderConnectFunc,
-		userData T.Gpointer)
-
-	BuilderSetTranslationDomain func(
-		builder *T.GtkBuilder,
-		domain string)
-
-	BuilderGetTranslationDomain func(
-		builder *T.GtkBuilder) string
-
-	BuilderGetTypeFromName func(
-		builder *T.GtkBuilder,
-		typeName string) T.GType
-
-	BuilderValueFromString func(
-		builder *T.GtkBuilder,
-		pspec *T.GParamSpec,
-		string string,
-		value *T.GValue,
-		error **T.GError) T.Gboolean
-
-	BuilderValueFromStringType func(
-		builder *T.GtkBuilder,
-		t T.GType,
-		string string,
-		value *T.GValue,
-		error **T.GError) T.Gboolean
-
-	BuildableSetName func(
-		buildable *T.GtkBuildable,
-		name string)
-
-	BuildableGetName func(
-		buildable *T.GtkBuildable) string
-
-	BuildableAddChild func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		child *T.GObject,
-		typ string)
-
-	BuildableSetBuildableProperty func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		name string,
-		value *T.GValue)
-
-	BuildableConstructChild func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		name string) *T.GObject
-
-	BuildableCustomTagStart func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		child *T.GObject,
-		tagname string,
-		parser *T.GMarkupParser,
-		data *T.Gpointer) T.Gboolean
-
-	BuildableCustomTagEnd func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		child *T.GObject,
-		tagname string,
-		data *T.Gpointer)
-
-	BuildableCustomFinished func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		child *T.GObject,
-		tagname string,
-		data T.Gpointer)
-
-	BuildableParserFinished func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder)
-
-	BuildableGetInternalChild func(
-		buildable *T.GtkBuildable,
-		builder *T.GtkBuilder,
-		childname string) *T.GObject
 
 	ImageNewFromPixmap func(
 		pixmap *T.GdkPixmap,
@@ -3346,166 +3092,6 @@ var (
 		dataGpointer,
 		match T.GSignalMatchType,
 		action uint)
-
-	CalendarSelectMonth func(
-		calendar *T.GtkCalendar,
-		month uint,
-		year uint) T.Gboolean
-
-	CalendarSelectDay func(
-		calendar *T.GtkCalendar,
-		day uint)
-
-	CalendarMarkDay func(
-		calendar *T.GtkCalendar,
-		day uint) T.Gboolean
-
-	CalendarUnmarkDay func(
-		calendar *T.GtkCalendar,
-		day uint) T.Gboolean
-
-	CalendarClearMarks func(
-		calendar *T.GtkCalendar)
-
-	CalendarSetDisplayOptions func(
-		calendar *T.GtkCalendar,
-		flags T.GtkCalendarDisplayOptions)
-
-	CalendarGetDisplayOptions func(
-		calendar *T.GtkCalendar) T.GtkCalendarDisplayOptions
-
-	CalendarDisplayOptions func(
-		calendar *T.GtkCalendar,
-		flags T.GtkCalendarDisplayOptions)
-
-	CalendarGetDate func(
-		calendar *T.GtkCalendar,
-		year *uint,
-		month *uint,
-		day *uint)
-
-	CalendarSetDetailFunc func(
-		calendar *T.GtkCalendar,
-		f T.GtkCalendarDetailFunc,
-		dataGpointer,
-		destroy T.GDestroyNotify)
-
-	CalendarSetDetailWidthChars func(
-		calendar *T.GtkCalendar,
-		chars int)
-
-	CalendarSetDetailHeightRows func(
-		calendar *T.GtkCalendar,
-		rows int)
-
-	CalendarGetDetailWidthChars func(
-		calendar *T.GtkCalendar) int
-
-	CalendarGetDetailHeightRows func(
-		calendar *T.GtkCalendar) int
-
-	CalendarFreeze func(
-		calendar *T.GtkCalendar)
-
-	CalendarThaw func(
-		calendar *T.GtkCalendar)
-
-	CellEditableStartEditing func(
-		cellEditable *T.GtkCellEditable,
-		event *T.GdkEvent)
-
-	CellEditableEditingDone func(
-		cellEditable *T.GtkCellEditable)
-
-	CellEditableRemoveWidget func(
-		cellEditable *T.GtkCellEditable)
-
-	CellRendererGetSize func(
-		cell *T.GtkCellRenderer,
-		widget *T.GtkWidget,
-		cellArea *T.GdkRectangle,
-		xOffset *int,
-		yOffset *int,
-		width *int,
-		height *int)
-
-	CellRendererRender func(
-		cell *T.GtkCellRenderer,
-		window *T.GdkWindow,
-		widget *T.GtkWidget,
-		backgroundArea *T.GdkRectangle,
-		cellArea *T.GdkRectangle,
-		exposeArea *T.GdkRectangle,
-		flags T.GtkCellRendererState)
-
-	CellRendererActivate func(
-		cell *T.GtkCellRenderer,
-		event *T.GdkEvent,
-		widget *T.GtkWidget,
-		path string,
-		backgroundArea *T.GdkRectangle,
-		cellArea *T.GdkRectangle,
-		flags T.GtkCellRendererState) T.Gboolean
-
-	CellRendererStartEditing func(
-		cell *T.GtkCellRenderer,
-		event *T.GdkEvent,
-		widget *T.GtkWidget,
-		path string,
-		backgroundArea *T.GdkRectangle,
-		cellArea *T.GdkRectangle,
-		flags T.GtkCellRendererState) *T.GtkCellEditable
-
-	CellRendererSetFixedSize func(
-		cell *T.GtkCellRenderer,
-		width int,
-		height int)
-
-	CellRendererGetFixedSize func(
-		cell *T.GtkCellRenderer,
-		width *int,
-		height *int)
-
-	CellRendererSetAlignment func(
-		cell *T.GtkCellRenderer,
-		xalign float32,
-		yalign float32)
-
-	CellRendererGetAlignment func(
-		cell *T.GtkCellRenderer,
-		xalign *float32,
-		yalign *float32)
-
-	CellRendererSetPadding func(
-		cell *T.GtkCellRenderer,
-		xpad int,
-		ypad int)
-
-	CellRendererGetPadding func(
-		cell *T.GtkCellRenderer,
-		xpad *int,
-		ypad *int)
-
-	CellRendererSetVisible func(
-		cell *T.GtkCellRenderer,
-		visible T.Gboolean)
-
-	CellRendererGetVisible func(
-		cell *T.GtkCellRenderer) T.Gboolean
-
-	CellRendererSetSensitive func(
-		cell *T.GtkCellRenderer,
-		sensitive T.Gboolean)
-
-	CellRendererGetSensitive func(
-		cell *T.GtkCellRenderer) T.Gboolean
-
-	CellRendererEditingCanceled func(
-		cell *T.GtkCellRenderer)
-
-	CellRendererStopEditing func(
-		cell *T.GtkCellRenderer,
-		canceled T.Gboolean)
 
 	TreePathNew func() *T.GtkTreePath
 
@@ -3753,123 +3339,6 @@ var (
 	TreeSortableHasDefaultSortFunc func(
 		sortable *T.GtkTreeSortable) T.Gboolean
 
-	CellLayoutPackStart func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer,
-		expand T.Gboolean)
-
-	CellLayoutPackEnd func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer,
-		expand T.Gboolean)
-
-	CellLayoutGetCells func(
-		cellLayout *T.GtkCellLayout) *T.GList
-
-	CellLayoutClear func(
-		cellLayout *T.GtkCellLayout)
-
-	CellLayoutSetAttributes func(cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer, v ...VArg)
-
-	CellLayoutAddAttribute func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer,
-		attribute string,
-		column int)
-
-	CellLayoutSetCellDataFunc func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer,
-		f T.GtkCellLayoutDataFunc,
-		funcDataGpointer,
-		destroy T.GDestroyNotify)
-
-	CellLayoutClearAttributes func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer)
-
-	CellLayoutReorder func(
-		cellLayout *T.GtkCellLayout,
-		cell *T.GtkCellRenderer,
-		position int)
-
-	CellRendererTextNew func() *T.GtkCellRenderer
-
-	CellRendererTextSetFixedHeightFromFont func(
-		renderer *T.GtkCellRendererText,
-		numberOfRows int)
-
-	CellRendererAccelNew func() *T.GtkCellRenderer
-
-	CellRendererComboNew func() *T.GtkCellRenderer
-
-	CellRendererPixbufNew func() *T.GtkCellRenderer
-
-	CellRendererProgressNew func() *T.GtkCellRenderer
-
-	CellRendererSpinNew func() *T.GtkCellRenderer
-
-	CellRendererSpinnerNew func() *T.GtkCellRenderer
-
-	CellRendererToggleNew func() *T.GtkCellRenderer
-
-	CellRendererToggleGetRadio func(
-		toggle *T.GtkCellRendererToggle) T.Gboolean
-
-	CellRendererToggleSetRadio func(
-		toggle *T.GtkCellRendererToggle,
-		radio T.Gboolean)
-
-	CellRendererToggleGetActive func(
-		toggle *T.GtkCellRendererToggle) T.Gboolean
-
-	CellRendererToggleSetActive func(
-		toggle *T.GtkCellRendererToggle,
-		setting T.Gboolean)
-
-	CellRendererToggleGetActivatable func(
-		toggle *T.GtkCellRendererToggle) T.Gboolean
-
-	CellRendererToggleSetActivatable func(
-		toggle *T.GtkCellRendererToggle,
-		setting T.Gboolean)
-
-	CellViewNewWithText func(
-		text string) *T.GtkWidget
-
-	CellViewNewWithMarkup func(
-		markup string) *T.GtkWidget
-
-	CellViewNewWithPixbuf func(
-		pixbuf *T.GdkPixbuf) *T.GtkWidget
-
-	CellViewSetModel func(
-		cellView *T.GtkCellView,
-		model *T.GtkTreeModel)
-
-	CellViewGetModel func(
-		cellView *T.GtkCellView) *T.GtkTreeModel
-
-	CellViewSetDisplayedRow func(
-		cellView *T.GtkCellView,
-		path *T.GtkTreePath)
-
-	CellViewGetDisplayedRow func(
-		cellView *T.GtkCellView) *T.GtkTreePath
-
-	CellViewGetSizeOfRow func(
-		cellView *T.GtkCellView,
-		path *T.GtkTreePath,
-		requisition *T.GtkRequisition) T.Gboolean
-
-	CellViewSetBackgroundColor func(
-		cellView *T.GtkCellView,
-		color *T.GdkColor)
-
-	CellViewGetCellRenderers func(
-		cellView *T.GtkCellView) *T.GList
-
 	ToggleButtonNewWithLabel func(
 		label string) *T.GtkWidget
 
@@ -3899,12 +3368,6 @@ var (
 
 	ToggleButtonGetInconsistent func(
 		toggleButton *T.GtkToggleButton) T.Gboolean
-
-	CheckButtonNewWithLabel func(
-		label string) *T.GtkWidget
-
-	CheckButtonNewWithMnemonic func(
-		label string) *T.GtkWidget
 
 	ItemSelect func(item *T.GtkItem)
 
@@ -3972,40 +3435,6 @@ var (
 
 	MenuItemRemoveSubmenu func(
 		menuItem *T.GtkMenuItem)
-
-	CheckMenuItemNewWithLabel func(
-		label string) *T.GtkWidget
-
-	CheckMenuItemNewWithMnemonic func(
-		label string) *T.GtkWidget
-
-	CheckMenuItemSetActive func(
-		checkMenuItem *T.GtkCheckMenuItem,
-		isActive T.Gboolean)
-
-	CheckMenuItemGetActive func(
-		checkMenuItem *T.GtkCheckMenuItem) T.Gboolean
-
-	CheckMenuItemToggled func(
-		checkMenuItem *T.GtkCheckMenuItem)
-
-	CheckMenuItemSetInconsistent func(
-		checkMenuItem *T.GtkCheckMenuItem,
-		setting T.Gboolean)
-
-	CheckMenuItemGetInconsistent func(
-		checkMenuItem *T.GtkCheckMenuItem) T.Gboolean
-
-	CheckMenuItemSetDrawAsRadio func(
-		checkMenuItem *T.GtkCheckMenuItem,
-		drawAsRadio T.Gboolean)
-
-	CheckMenuItemGetDrawAsRadio func(
-		checkMenuItem *T.GtkCheckMenuItem) T.Gboolean
-
-	CheckMenuItemSetShowToggle func(
-		menuItem *T.GtkCheckMenuItem,
-		always T.Gboolean)
 
 	TextTagNew func(
 		name string) *T.GtkTextTag
@@ -4562,128 +3991,6 @@ var (
 
 	SelectionDataFree func(
 		data *T.GtkSelectionData)
-
-	ClipboardGetForDisplay func(
-		display *T.GdkDisplay,
-		selection T.GdkAtom) *T.GtkClipboard
-
-	ClipboardGet func(
-		selection T.GdkAtom) *T.GtkClipboard
-
-	ClipboardGetDisplay func(
-		clipboard *T.GtkClipboard) *T.GdkDisplay
-
-	ClipboardSetWithData func(
-		clipboard *T.GtkClipboard,
-		targets *T.GtkTargetEntry,
-		nTargets uint,
-		getFunc T.GtkClipboardGetFunc,
-		clearFunc T.GtkClipboardClearFunc,
-		userData T.Gpointer) T.Gboolean
-
-	ClipboardSetWithOwner func(
-		clipboard *T.GtkClipboard,
-		targets *T.GtkTargetEntry,
-		nTargets uint,
-		getFunc T.GtkClipboardGetFunc,
-		clearFunc T.GtkClipboardClearFunc,
-		owner *T.GObject) T.Gboolean
-
-	ClipboardGetOwner func(
-		clipboard *T.GtkClipboard) *T.GObject
-
-	ClipboardClear func(
-		clipboard *T.GtkClipboard)
-
-	ClipboardSetText func(
-		clipboard *T.GtkClipboard,
-		text string,
-		len int)
-
-	ClipboardSetImage func(
-		clipboard *T.GtkClipboard,
-		pixbuf *T.GdkPixbuf)
-
-	ClipboardRequestContents func(
-		clipboard *T.GtkClipboard,
-		target T.GdkAtom,
-		callback T.GtkClipboardReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardRequestText func(
-		clipboard *T.GtkClipboard,
-		callback T.GtkClipboardTextReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardRequestRichText func(
-		clipboard *T.GtkClipboard,
-		buffer *T.GtkTextBuffer,
-		callback T.GtkClipboardRichTextReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardRequestImage func(
-		clipboard *T.GtkClipboard,
-		callback T.GtkClipboardImageReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardRequestUris func(
-		clipboard *T.GtkClipboard,
-		callback T.GtkClipboardURIReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardRequestTargets func(
-		clipboard *T.GtkClipboard,
-		callback T.GtkClipboardTargetsReceivedFunc,
-		userData T.Gpointer)
-
-	ClipboardWaitForContents func(
-		clipboard *T.GtkClipboard,
-		target T.GdkAtom) *T.GtkSelectionData
-
-	ClipboardWaitForText func(
-		clipboard *T.GtkClipboard) string
-
-	ClipboardWaitForRichText func(
-		clipboard *T.GtkClipboard,
-		buffer *T.GtkTextBuffer,
-		format *T.GdkAtom,
-		length *T.Gsize) *uint8
-
-	ClipboardWaitForImage func(
-		clipboard *T.GtkClipboard) *T.GdkPixbuf
-
-	ClipboardWaitForUris func(
-		clipboard *T.GtkClipboard) **T.Gchar
-
-	ClipboardWaitForTargets func(
-		clipboard *T.GtkClipboard,
-		targets **T.GdkAtom,
-		nTargets *int) T.Gboolean
-
-	ClipboardWaitIsTextAvailable func(
-		clipboard *T.GtkClipboard) T.Gboolean
-
-	ClipboardWaitIsRichTextAvailable func(
-		clipboard *T.GtkClipboard,
-		buffer *T.GtkTextBuffer) T.Gboolean
-
-	ClipboardWaitIsImageAvailable func(
-		clipboard *T.GtkClipboard) T.Gboolean
-
-	ClipboardWaitIsUrisAvailable func(
-		clipboard *T.GtkClipboard) T.Gboolean
-
-	ClipboardWaitIsTargetAvailable func(
-		clipboard *T.GtkClipboard,
-		target T.GdkAtom) T.Gboolean
-
-	ClipboardSetCanStore func(
-		clipboard *T.GtkClipboard,
-		targets *T.GtkTargetEntry,
-		nTargets int)
-
-	ClipboardStore func(
-		clipboard *T.GtkClipboard)
 
 	ColorButtonNewWithColor func(
 		color *T.GdkColor) *T.GtkWidget
@@ -5387,10 +4694,10 @@ var (
 
 	EntrySetInnerBorder func(
 		entry *T.GtkEntry,
-		border *T.GtkBorder)
+		border *Border)
 
 	EntryGetInnerBorder func(
-		entry *T.GtkEntry) *T.GtkBorder
+		entry *T.GtkEntry) *Border
 
 	EntrySetOverwriteMode func(
 		entry *T.GtkEntry,
@@ -11307,265 +10614,6 @@ var (
 		max float64,
 		step float64) *T.GtkWidget
 
-	ClistNew func(columns int) *T.GtkWidget
-
-	ClistNewWithTitles func(columns int,
-		titles **T.Gchar) *T.GtkWidget
-
-	ClistSetHadjustment func(clist *T.GtkCList,
-		adjustment *T.GtkAdjustment)
-
-	ClistSetVadjustment func(clist *T.GtkCList,
-		adjustment *T.GtkAdjustment)
-
-	ClistGetHadjustment func(clist *T.GtkCList) *T.GtkAdjustment
-
-	ClistGetVadjustment func(clist *T.GtkCList) *T.GtkAdjustment
-
-	ClistSetShadowType func(clist *T.GtkCList,
-		t T.GtkShadowType)
-
-	ClistSetSelectionMode func(clist *T.GtkCList,
-		mode T.GtkSelectionMode)
-
-	ClistSetReorderable func(clist *T.GtkCList,
-		reorderable T.Gboolean)
-
-	ClistSetUseDragIcons func(clist *T.GtkCList,
-		useIcons T.Gboolean)
-
-	ClistSetButtonActions func(clist *T.GtkCList,
-		button uint,
-		buttonActions uint8)
-
-	ClistFreeze func(clist *T.GtkCList)
-
-	ClistThaw func(clist *T.GtkCList)
-
-	ClistColumnTitlesShow func(clist *T.GtkCList)
-
-	ClistColumnTitlesHide func(clist *T.GtkCList)
-
-	ClistColumnTitleActive func(clist *T.GtkCList,
-		column int)
-
-	ClistColumnTitlePassive func(clist *T.GtkCList,
-		column int)
-
-	ClistColumnTitlesActive func(clist *T.GtkCList)
-
-	ClistColumnTitlesPassive func(clist *T.GtkCList)
-
-	ClistSetColumnTitle func(clist *T.GtkCList,
-		column int,
-		title string)
-
-	ClistGetColumnTitle func(clist *T.GtkCList,
-		column int) string
-
-	ClistSetColumnWidget func(clist *T.GtkCList,
-		column int,
-		widget *T.GtkWidget)
-
-	ClistGetColumnWidget func(clist *T.GtkCList,
-		column int) *T.GtkWidget
-
-	ClistSetColumnJustification func(clist *T.GtkCList,
-		column int,
-		justification T.GtkJustification)
-
-	ClistSetColumnVisibility func(clist *T.GtkCList,
-		column int,
-		visible T.Gboolean)
-
-	ClistSetColumnResizeable func(clist *T.GtkCList,
-		column int,
-		resizeable T.Gboolean)
-
-	ClistSetColumnAutoResize func(clist *T.GtkCList,
-		column int,
-		autoResize T.Gboolean)
-
-	ClistColumnsAutosize func(clist *T.GtkCList) int
-
-	ClistOptimalColumnWidth func(clist *T.GtkCList,
-		column int) int
-
-	ClistSetColumnWidth func(clist *T.GtkCList,
-		column int,
-		width int)
-
-	ClistSetColumnMinWidth func(clist *T.GtkCList,
-		column int,
-		minWidth int)
-
-	ClistSetColumnMaxWidth func(clist *T.GtkCList,
-		column int,
-		maxWidth int)
-
-	ClistSetRowHeight func(clist *T.GtkCList,
-		height uint)
-
-	ClistMoveto func(clist *T.GtkCList,
-		row int,
-		column int,
-		rowAlign float32,
-		colAlign float32)
-
-	ClistRowIsVisible func(clist *T.GtkCList,
-		row int) T.GtkVisibility
-
-	ClistGetCellType func(clist *T.GtkCList,
-		row int,
-		column int) T.GtkCellType
-
-	ClistSetText func(clist *T.GtkCList,
-		row int,
-		column int,
-		text string)
-
-	ClistGetText func(clist *T.GtkCList,
-		row int,
-		column int,
-		text **T.Gchar) int
-
-	ClistSetPixmap func(clist *T.GtkCList,
-		row int,
-		column int,
-		pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap)
-
-	ClistGetPixmap func(clist *T.GtkCList,
-		row int,
-		column int,
-		pixmap **T.GdkPixmap,
-		mask **T.GdkBitmap) int
-
-	ClistSetPixtext func(clist *T.GtkCList,
-		row int,
-		column int,
-		text string,
-		spacing uint8,
-		pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap)
-
-	ClistGetPixtext func(clist *T.GtkCList,
-		row int,
-		column int,
-		text **T.Gchar,
-		spacing *uint8,
-		pixmap **T.GdkPixmap,
-		mask **T.GdkBitmap) int
-
-	ClistSetForeground func(clist *T.GtkCList,
-		row int,
-		color *T.GdkColor)
-
-	ClistSetBackground func(clist *T.GtkCList,
-		row int,
-		color *T.GdkColor)
-
-	ClistSetCellStyle func(clist *T.GtkCList,
-		row int,
-		column int,
-		style *T.GtkStyle)
-
-	ClistGetCellStyle func(clist *T.GtkCList,
-		row int,
-		column int) *T.GtkStyle
-
-	ClistSetRowStyle func(clist *T.GtkCList,
-		row int,
-		style *T.GtkStyle)
-
-	ClistGetRowStyle func(clist *T.GtkCList,
-		row int) *T.GtkStyle
-
-	ClistSetShift func(clist *T.GtkCList,
-		row int,
-		column int,
-		vertical int,
-		horizontal int)
-
-	ClistSetSelectable func(clist *T.GtkCList,
-		row int,
-		selectable T.Gboolean)
-
-	ClistGetSelectable func(clist *T.GtkCList,
-		row int) T.Gboolean
-
-	ClistPrepend func(clist *T.GtkCList,
-		text **T.Gchar) int
-
-	ClistAppend func(clist *T.GtkCList,
-		text **T.Gchar) int
-
-	ClistInsert func(clist *T.GtkCList,
-		row int,
-		text **T.Gchar) int
-
-	ClistRemove func(clist *T.GtkCList,
-		row int)
-
-	ClistSetRowData func(clist *T.GtkCList,
-		row int,
-		data T.Gpointer)
-
-	ClistSetRowDataFull func(clist *T.GtkCList,
-		row int,
-		dataGpointer,
-		destroy T.GDestroyNotify)
-
-	ClistGetRowData func(clist *T.GtkCList,
-		row int) T.Gpointer
-
-	ClistFindRowFromData func(clist *T.GtkCList,
-		data T.Gpointer) int
-
-	ClistSelectRow func(clist *T.GtkCList,
-		row int,
-		column int)
-
-	ClistUnselectRow func(clist *T.GtkCList,
-		row int,
-		column int)
-
-	ClistUndoSelection func(clist *T.GtkCList)
-
-	ClistClear func(clist *T.GtkCList)
-
-	ClistGetSelectionInfo func(clist *T.GtkCList,
-		x int,
-		y int,
-		row *int,
-		column *int) int
-
-	ClistSelectAll func(clist *T.GtkCList)
-
-	ClistUnselectAll func(clist *T.GtkCList)
-
-	ClistSwapRows func(clist *T.GtkCList,
-		row1 int,
-		row2 int)
-
-	ClistRowMove func(clist *T.GtkCList,
-		sourceRow int,
-		destRow int)
-
-	ClistSetCompareFunc func(clist *T.GtkCList,
-		cmpFunc T.GtkCListCompareFunc)
-
-	ClistSetSortColumn func(clist *T.GtkCList,
-		column int)
-
-	ClistSetSortType func(clist *T.GtkCList,
-		sortType T.GtkSortType)
-
-	ClistSort func(clist *T.GtkCList)
-
-	ClistSetAutoSort func(clist *T.GtkCList,
-		autoSort T.Gboolean)
-
 	ComboSetValueInList func(combo *T.GtkCombo,
 		val T.Gboolean,
 		okIfEmpty T.Gboolean)
@@ -12297,8 +11345,6 @@ var (
 		paramValues *T.GValue,
 		invocationHint T.Gpointer,
 		marshalData T.Gpointer)
-
-	BuilderErrorQuark func() T.GQuark
 
 	PrintContextSetCairoContext func(
 		context *T.GtkPrintContext,

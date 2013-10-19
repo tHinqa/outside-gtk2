@@ -5,8 +5,6 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-//============================================================
-
 type AboutDialog struct {
 	Parent T.GtkDialog
 	_      *struct{}
@@ -175,8 +173,6 @@ func (a *AboutDialog) SetLogoIconName(iconName string) {
 	AboutDialogSetLogoIconName(a, iconName)
 }
 
-//============================================================
-
 type AccelGroup struct {
 	Parent         T.GObject
 	LockCount      uint
@@ -312,8 +308,6 @@ func (a *AccelLabel) Refetch() T.Gboolean {
 	return AccelLabelRefetch(a)
 }
 
-//============================================================
-
 type Accessible struct {
 	Parent T.AtkObject
 	Widget *T.GtkWidget
@@ -338,8 +332,6 @@ func (a *Accessible) GetWidget() *T.GtkWidget {
 func (a *Accessible) ConnectWidgetDestroyed() {
 	AccessibleConnectWidgetDestroyed(a)
 }
-
-//============================================================
 
 type Action struct {
 	Object T.GObject
@@ -695,8 +687,6 @@ func (a *ActionGroup) TranslateString(str string) string {
 	return ActionGroupTranslateString(a, str)
 }
 
-//============================================================
-
 type Activatable struct{}
 
 var ActivatableGetType func() T.GType
@@ -733,8 +723,6 @@ func (a *Activatable) GetUseActionAppearance() T.Gboolean {
 func (a *Activatable) DoSetRelatedAction(action *T.GtkAction) {
 	ActivatableDoSetRelatedAction(a, action)
 }
-
-//============================================================
 
 type Adjustment struct {
 	Parent        T.GtkObject
@@ -829,8 +817,6 @@ func (a *Adjustment) SetPageSize(pageSize float64) {
 func (a *Adjustment) Configure(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) {
 	AdjustmentConfigure(a, value, lower, upper, stepIncrement, pageIncrement, pageSize)
 }
-
-//============================================================
 
 type Assistant struct {
 	Parent  T.GtkWindow
@@ -961,429 +947,68 @@ func (a *Assistant) UpdateButtonsState() {
 
 func (a *Assistant) Commit() { AssistantCommit(a) }
 
-//============================================================
-
-type Button struct {
-	Bin             T.GtkBin
-	EventWindow     *T.GdkWindow
-	LabelText       *T.Gchar
-	ActivateTimeout uint
-	Bits            uint
-	// Constructed : 1
-	// InButton : 1
-	// ButtonDown : 1
-	// Relief : 2
-	// UseUnderline : 1
-	// UseStock : 1
-	// Depressed : 1
-	// DepressOnActivate : 1
-	// FocusOnClick : 1
+type Arrow struct {
+	Misc       T.GtkMisc
+	ArrowType  int16
+	ShadowType int16
 }
 
-var (
-	ButtonGetType         func() T.GType
-	ButtonNew             func() *T.GtkWidget
-	ButtonNewFromStock    func(stockId string) *T.GtkWidget
-	ButtonNewWithLabel    func(label string) *T.GtkWidget
-	ButtonNewWithMnemonic func(label string) *T.GtkWidget
+type ArrowType T.Enum
 
-	ButtonActionGetType   func() T.GType
-	ButtonBoxGetType      func() T.GType
-	ButtonBoxStyleGetType func() T.GType
+const (
+	ARROW_UP ArrowType = iota
+	ARROW_DOWN
+	ARROW_LEFT
+	ARROW_RIGHT
+	ARROW_NONE
+)
 
-	ButtonsTypeGetType func() T.GType
+type ArrowPlacement T.Enum
+
+const (
+	ARROWS_BOTH ArrowPlacement = iota
+	ARROWS_START
+	ARROWS_END
 )
 
 var (
-	ButtonClicked          func(b *Button)
-	ButtonEnter            func(b *Button)
-	ButtonGetAlignment     func(b *Button, xalign, yalign *float32)
-	ButtonGetEventWindow   func(b *Button) *T.GdkWindow
-	ButtonGetFocusOnClick  func(b *Button) T.Gboolean
-	ButtonGetImage         func(b *Button) *T.GtkWidget
-	ButtonGetImagePosition func(b *Button) T.GtkPositionType
-	ButtonGetLabel         func(b *Button) string
-	ButtonGetRelief        func(b *Button) T.GtkReliefStyle
-	ButtonGetUseStock      func(b *Button) T.Gboolean
-	ButtonGetUseUnderline  func(b *Button) T.Gboolean
-	ButtonLeave            func(b *Button)
-	ButtonPressed          func(b *Button)
-	ButtonReleased         func(b *Button)
-	ButtonSetAlignment     func(b *Button, xalign, yalign float32)
-	ButtonSetFocusOnClick  func(b *Button, focusOnClick T.Gboolean)
-	ButtonSetImage         func(b *Button, image *T.GtkWidget)
-	ButtonSetImagePosition func(b *Button, position T.GtkPositionType)
-	ButtonSetLabel         func(b *Button, label string)
-	ButtonSetRelief        func(b *Button, newstyle T.GtkReliefStyle)
-	ButtonSetUseStock      func(b *Button, useStock T.Gboolean)
-	ButtonSetUseUnderline  func(b *Button, useUnderline T.Gboolean)
-)
-
-func (b *Button) Pressed() { ButtonPressed(b) }
-
-func (b *Button) Released() { ButtonReleased(b) }
-
-func (b *Button) Clicked() { ButtonClicked(b) }
-
-func (b *Button) Enter() { ButtonEnter(b) }
-
-func (b *Button) Leave() { ButtonLeave(b) }
-
-func (b *Button) SetRelief(newstyle T.GtkReliefStyle) {
-	ButtonSetRelief(b, newstyle)
-}
-
-func (b *Button) GetRelief() T.GtkReliefStyle {
-	return ButtonGetRelief(b)
-}
-
-func (b *Button) SetLabel(label string) {
-	ButtonSetLabel(b, label)
-}
-
-func (b *Button) GetLabel() string { return ButtonGetLabel(b) }
-
-func (b *Button) SetUseUnderline(useUnderline T.Gboolean) {
-	ButtonSetUseUnderline(b, useUnderline)
-}
-
-func (b *Button) GetUseUnderline() T.Gboolean {
-	return ButtonGetUseUnderline(b)
-}
-
-func (b *Button) SetUseStock(useStock T.Gboolean) {
-	ButtonSetUseStock(b, useStock)
-}
-
-func (b *Button) GetUseStock() T.Gboolean {
-	return ButtonGetUseStock(b)
-}
-
-func (b *Button) SetFocusOnClick(focusOnClick T.Gboolean) {
-	ButtonSetFocusOnClick(b, focusOnClick)
-}
-
-func (b *Button) GetFocusOnClick() T.Gboolean {
-	return ButtonGetFocusOnClick(b)
-}
-
-func (b *Button) SetAlignment(xalign, yalign float32) {
-	ButtonSetAlignment(b, xalign, yalign)
-}
-
-func (b *Button) GetAlignment(xalign, yalign *float32) {
-	ButtonGetAlignment(b, xalign, yalign)
-}
-
-func (b *Button) SetImage(image *T.GtkWidget) {
-	ButtonSetImage(b, image)
-}
-
-func (b *Button) GetImage() *T.GtkWidget {
-	return ButtonGetImage(b)
-}
-
-func (b *Button) SetImagePosition(position T.GtkPositionType) {
-	ButtonSetImagePosition(b, position)
-}
-
-func (b *Button) GetImagePosition() T.GtkPositionType {
-	return ButtonGetImagePosition(b)
-}
-
-func (b *Button) GetEventWindow() *T.GdkWindow {
-	return ButtonGetEventWindow(b)
-}
-
-//============================================================
-
-type ButtonBox struct {
-	Box            T.GtkBox
-	ChildMinWidth  int
-	ChildMinHeight int
-	ChildIpadX     int
-	ChildIpadY     int
-	LayoutStyle    T.GtkButtonBoxStyle
-}
-
-var (
-	ButtonBoxGetChildIpadding  func(b *ButtonBox, ipadX, ipadY *int)
-	ButtonBoxGetChildSecondary func(b *ButtonBox, child *T.GtkWidget) T.Gboolean
-	ButtonBoxGetChildSize      func(b *ButtonBox, minWidth, minHeight *int)
-	ButtonBoxGetLayout         func(b *ButtonBox) T.GtkButtonBoxStyle
-	ButtonBoxSetChildIpadding  func(b *ButtonBox, ipadX, ipadY int)
-	ButtonBoxSetChildSecondary func(b *ButtonBox, child *T.GtkWidget, isSecondary T.Gboolean)
-	ButtonBoxSetChildSize      func(b *ButtonBox, minWidth, minHeight int)
-	ButtonBoxSetLayout         func(b *ButtonBox, layoutStyle T.GtkButtonBoxStyle)
-)
-
-func (b *ButtonBox) GetLayout() T.GtkButtonBoxStyle {
-	return ButtonBoxGetLayout(b)
-}
-
-func (b *ButtonBox) SetLayout(layoutStyle T.GtkButtonBoxStyle) {
-	ButtonBoxSetLayout(b, layoutStyle)
-}
-
-func (b *ButtonBox) GetChildSecondary(child *T.GtkWidget) T.Gboolean {
-	return ButtonBoxGetChildSecondary(b, child)
-}
-
-func (b *ButtonBox) SetChildSecondary(child *T.GtkWidget, isSecondary T.Gboolean) {
-	ButtonBoxSetChildSecondary(b, child, isSecondary)
-}
-
-func (b *ButtonBox) SetChildSize(minWidth, minHeight int) {
-	ButtonBoxSetChildSize(b, minWidth, minHeight)
-}
-
-func (b *ButtonBox) SetChildIpadding(ipadX, ipadY int) {
-	ButtonBoxSetChildIpadding(b, ipadX, ipadY)
-}
-
-func (b *ButtonBox) GetChildSize(minWidth, minHeight *int) {
-	ButtonBoxGetChildSize(b, minWidth, minHeight)
-}
-
-func (b *ButtonBox) GetChildIpadding(ipadX, ipadY *int) {
-	ButtonBoxGetChildIpadding(b, ipadX, ipadY)
-}
-
-//============================================================
-
-type ComboBox struct {
-	ParentInstance T.GtkBin
-	_              *T.GtkComboBoxPrivate
-}
-
-type ComboBoxText struct {
-	ParentInstance *ComboBox
-	_              *T.GtkComboBoxTextPrivate
-}
-
-type ComboBoxEntry struct {
-	ParentInstance ComboBox
-	_              *T.GtkComboBoxEntryPrivate
-}
-
-var (
-	ComboBoxGetType              func() T.GType
-	ComboBoxNew                  func() *T.GtkWidget
-	ComboBoxNewWithEntry         func() *T.GtkWidget
-	ComboBoxNewWithModel         func(model *T.GtkTreeModel) *T.GtkWidget
-	ComboBoxNewWithModelAndEntry func(model *T.GtkTreeModel) *T.GtkWidget
-
-	ComboBoxTextGetType      func() T.GType
-	ComboBoxTextNew          func() *T.GtkWidget
-	ComboBoxTextNewWithEntry func() *T.GtkWidget
-
-	ComboBoxNewText func() *T.GtkWidget
-
-	ComboBoxEntryGetType      func() T.GType
-	ComboBoxEntryNew          func() *T.GtkWidget
-	ComboBoxEntryNewWithModel func(model *T.GtkTreeModel, textColumn int) *T.GtkWidget
-	ComboBoxEntryNewText      func() *T.GtkWidget
+	ArrowGetType          func() T.GType
+	ArrowTypeGetType      func() T.GType
+	ArrowPlacementGetType func() T.GType
 )
 
 var (
-	ComboBoxAppendText           func(c *ComboBox, text string)
-	ComboBoxGetActive            func(c *ComboBox) int
-	ComboBoxGetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter) T.Gboolean
-	ComboBoxGetActiveText        func(c *ComboBox) string
-	ComboBoxGetAddTearoffs       func(c *ComboBox) T.Gboolean
-	ComboBoxGetButtonSensitivity func(c *ComboBox) T.GtkSensitivityType
-	ComboBoxGetColumnSpanColumn  func(c *ComboBox) int
-	ComboBoxGetEntryTextColumn   func(c *ComboBox) int
-	ComboBoxGetFocusOnClick      func(c *ComboBox) T.Gboolean
-	ComboBoxGetHasEntry          func(c *ComboBox) T.Gboolean
-	ComboBoxGetModel             func(c *ComboBox) *T.GtkTreeModel
-	ComboBoxGetPopupAccessible   func(c *ComboBox) *T.AtkObject
-	ComboBoxGetRowSeparatorFunc  func(c *ComboBox) T.GtkTreeViewRowSeparatorFunc
-	ComboBoxGetRowSpanColumn     func(c *ComboBox) int
-	ComboBoxGetTitle             func(c *ComboBox) string
-	ComboBoxGetWrapWidth         func(c *ComboBox) int
-	ComboBoxInsertText           func(c *ComboBox, position int, text string)
-	ComboBoxPopdown              func(c *ComboBox)
-	ComboBoxPopup                func(c *ComboBox)
-	ComboBoxPrependText          func(c *ComboBox, text string)
-	ComboBoxRemoveText           func(c *ComboBox, position int)
-	ComboBoxSetActive            func(c *ComboBox, index int)
-	ComboBoxSetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter)
-	ComboBoxSetAddTearoffs       func(c *ComboBox, addTearoffs T.Gboolean)
-	ComboBoxSetButtonSensitivity func(c *ComboBox, sensitivity T.GtkSensitivityType)
-	ComboBoxSetColumnSpanColumn  func(c *ComboBox, columnSpan int)
-	ComboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
-	ComboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick T.Gboolean)
-	ComboBoxSetModel             func(c *ComboBox, model *T.GtkTreeModel)
-	ComboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify)
-	ComboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
-	ComboBoxSetTitle             func(c *ComboBox, title string)
-	ComboBoxSetWrapWidth         func(c *ComboBox, width int)
+	ArrowSet func(a *Arrow, arrowType T.GtkArrowType, shadowType T.GtkShadowType)
+
+	ArrowNew func(a ArrowType, shadowType T.GtkShadowType) *T.GtkWidget
 )
 
-func (c *ComboBox) GetWrapWidth() int {
-	return ComboBoxGetWrapWidth(c)
+func (a *Arrow) Set(arrowType T.GtkArrowType, shadowType T.GtkShadowType) {
+	ArrowSet(a, arrowType, shadowType)
 }
 
-func (c *ComboBox) SetWrapWidth(width int) {
-	ComboBoxSetWrapWidth(c, width)
+func (a ArrowType) New(shadowType T.GtkShadowType) *T.GtkWidget {
+	return ArrowNew(a, shadowType)
 }
 
-func (c *ComboBox) GetRowSpanColumn() int {
-	return ComboBoxGetRowSpanColumn(c)
-}
-
-func (c *ComboBox) SetRowSpanColumn(rowSpan int) {
-	ComboBoxSetRowSpanColumn(c, rowSpan)
-}
-
-func (c *ComboBox) GetColumnSpanColumn() int {
-	return ComboBoxGetColumnSpanColumn(c)
-}
-
-func (c *ComboBox) SetColumnSpanColumn(columnSpan int) {
-	ComboBoxSetColumnSpanColumn(c, columnSpan)
-}
-
-func (c *ComboBox) GetAddTearoffs() T.Gboolean {
-	return ComboBoxGetAddTearoffs(c)
-}
-
-func (c *ComboBox) SetAddTearoffs(addTearoffs T.Gboolean) {
-	ComboBoxSetAddTearoffs(c, addTearoffs)
-}
-
-func (c *ComboBox) GetTitle() string {
-	return ComboBoxGetTitle(c)
-}
-
-func (c *ComboBox) SetTitle(title string) {
-	ComboBoxSetTitle(c, title)
-}
-
-func (c *ComboBox) GetFocusOnClick() T.Gboolean {
-	return ComboBoxGetFocusOnClick(c)
-}
-
-func (c *ComboBox) SetFocusOnClick(focusOnClick T.Gboolean) {
-	ComboBoxSetFocusOnClick(c, focusOnClick)
-}
-
-func (c *ComboBox) GetActive() int { return ComboBoxGetActive(c) }
-
-func (c *ComboBox) SetActive(index int) {
-	ComboBoxSetActive(c, index)
-}
-
-func (c *ComboBox) GetActiveIter(iter *T.GtkTreeIter) T.Gboolean {
-	return ComboBoxGetActiveIter(c, iter)
-}
-
-func (c *ComboBox) SetActiveIter(iter *T.GtkTreeIter) {
-	ComboBoxSetActiveIter(c, iter)
-}
-
-func (c *ComboBox) SetModel(model *T.GtkTreeModel) {
-	ComboBoxSetModel(c, model)
-}
-
-func (c *ComboBox) GetModel() *T.GtkTreeModel {
-	return ComboBoxGetModel(c)
-}
-
-func (c *ComboBox) GetRowSeparatorFunc() T.GtkTreeViewRowSeparatorFunc {
-	return ComboBoxGetRowSeparatorFunc(c)
-}
-
-func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify) {
-	ComboBoxSetRowSeparatorFunc(c, f, dataGpointer, destroy)
-}
-
-func (c *ComboBox) SetButtonSensitivity(sensitivity T.GtkSensitivityType) {
-	ComboBoxSetButtonSensitivity(c, sensitivity)
-}
-
-func (c *ComboBox) GetButtonSensitivity() T.GtkSensitivityType {
-	return ComboBoxGetButtonSensitivity(c)
-}
-
-func (c *ComboBox) GetHasEntry() T.Gboolean {
-	return ComboBoxGetHasEntry(c)
-}
-
-func (c *ComboBox) SetEntryTextColumn(textColumn int) {
-	ComboBoxSetEntryTextColumn(c, textColumn)
-}
-
-func (c *ComboBox) GetEntryTextColumn() int {
-	return ComboBoxGetEntryTextColumn(c)
-}
-
-func (c *ComboBox) AppendText(text string) {
-	ComboBoxAppendText(c, text)
-}
-
-func (c *ComboBox) InsertText(position int, text string) {
-	ComboBoxInsertText(c, position, text)
-}
-
-func (c *ComboBox) PrependText(text string) {
-	ComboBoxPrependText(c, text)
-}
-
-func (c *ComboBox) RemoveText(position int) {
-	ComboBoxRemoveText(c, position)
-}
-
-func (c *ComboBox) GetActiveText() string {
-	return ComboBoxGetActiveText(c)
-}
-
-func (c *ComboBox) Popup() { ComboBoxPopup(c) }
-
-func (c *ComboBox) Popdown() { ComboBoxPopdown(c) }
-
-func (c *ComboBox) GetPopupAccessible() *T.AtkObject {
-	return ComboBoxGetPopupAccessible(c)
+type AspectFrame struct {
+	Frame            T.GtkFrame
+	Xalign           float32
+	Yalign           float32
+	Ratio            float32
+	ObeyChild        T.Gboolean
+	CenterAllocation T.GtkAllocation
 }
 
 var (
-	ComboBoxTextAppendText    func(c *ComboBoxText, text string)
-	ComboBoxTextGetActiveText func(c *ComboBoxText) string
-	ComboBoxTextInsertText    func(c *ComboBoxText, position int, text string)
-	ComboBoxTextPrependText   func(c *ComboBoxText, text string)
-	ComboBoxTextRemove        func(c *ComboBoxText, position int)
+	AspectFrameGetType func() T.GType
+	AspectFrameNew     func(label string, xalign, yalign, ratio float32, obeyChild T.Gboolean) *T.GtkWidget
 )
 
-func (c *ComboBoxText) AppendText(text string) {
-	ComboBoxTextAppendText(c, text)
-}
+var AspectFrameSet func(a *AspectFrame,
+	xalign, yalign, ratio float32, obeyChild T.Gboolean)
 
-func (c *ComboBoxText) InsertText(position int, text string) {
-	ComboBoxTextInsertText(c, position, text)
-}
-
-func (c *ComboBoxText) PrependText(text string) {
-	ComboBoxTextPrependText(c, text)
-}
-
-func (c *ComboBoxText) Remove(position int) {
-	ComboBoxTextRemove(c, position)
-}
-
-func (c *ComboBoxText) GetActiveText() string {
-	return ComboBoxTextGetActiveText(c)
-}
-
-var (
-	ComboBoxEntrySetTextColumn func(e *ComboBoxEntry, textColumn int)
-	ComboBoxEntryGetTextColumn func(e *ComboBoxEntry) int
-)
-
-func (e *ComboBoxEntry) SetTextColumn(textColumn int) {
-	ComboBoxEntrySetTextColumn(e, textColumn)
-}
-
-func (e *ComboBoxEntry) GetTextColumn() int {
-	return ComboBoxEntryGetTextColumn(e)
+func (a *AspectFrame) Set(
+	xalign, yalign, ratio float32, obeyChild T.Gboolean) {
+	AspectFrameSet(a, xalign, yalign, ratio, obeyChild)
 }

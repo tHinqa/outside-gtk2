@@ -655,7 +655,7 @@ type (
 		Separator   *GtkWidget
 	}
 
-	GtkBin struct {
+	GtkBin struct { // REMOVE
 		Container GtkContainer
 		Child     *GtkWidget
 	}
@@ -930,7 +930,7 @@ type (
 		Ypad   uint16
 	}
 
-	GtkCList struct {
+	GtkCList struct { // REMOVE
 		Container           GtkContainer
 		Flags               uint16
 		Reserved1           Gpointer
@@ -1071,7 +1071,7 @@ type (
 		Box GtkBox
 	}
 
-	GtkBox struct {
+	GtkBox struct { // REMOVE
 		Container   GtkContainer
 		Children    *GList
 		Spacing     int16
@@ -1632,7 +1632,7 @@ type (
 		Priv   *GtkIconViewPrivate
 	}
 
-	GtkCellRenderer struct {
+	GtkCellRenderer struct { // REMOVE
 		Parent GtkObject
 		Xalign float32
 		Yalign float32
@@ -1918,7 +1918,7 @@ type (
 		Toggle_button GtkToggleButton
 	}
 
-	GtkCheckMenuItem struct {
+	GtkCheckMenuItem struct { //REMOVE
 		Menu_item GtkMenuItem
 		Bits      uint
 		// active : 1
@@ -2670,21 +2670,6 @@ type (
 		Yscale float32
 	}
 
-	GtkArrow struct {
-		Misc        GtkMisc
-		Arrow_type  int16
-		Shadow_type int16
-	}
-
-	GtkAspectFrame struct {
-		Frame             GtkFrame
-		Xalign            float32
-		Yalign            float32
-		Ratio             float32
-		Obey_child        Gboolean
-		Center_allocation GtkAllocation
-	}
-
 	GtkAssistant struct { //REMOVE
 		Parent  GtkWindow
 		Cancel  *GtkWidget
@@ -2707,14 +2692,7 @@ type (
 		Parsed              uint // : 1
 	}
 
-	GtkBorder struct {
-		Left   int
-		Right  int
-		Top    int
-		Bottom int
-	}
-
-	GtkBuilder struct {
+	GtkBuilder struct { //REMOVE
 		Parent_instance GObject
 		Priv            *GtkBuilderPrivate
 	}
@@ -2728,7 +2706,7 @@ type (
 		Layout_style     GtkButtonBoxStyle
 	}
 
-	GtkCalendar struct {
+	GtkCalendar struct { // REMOVE
 		Widget            GtkWidget
 		Header_style      *GtkStyle
 		Label_style       *GtkStyle
@@ -2750,43 +2728,6 @@ type (
 		Priv              *GtkCalendarPrivate
 		Grow_space        [32]Gchar
 		_, _, _, _        func()
-	}
-
-	GtkCellRendererText struct {
-		Parent            GtkCellRenderer
-		Text              *Gchar
-		Font              *PangoFontDescription
-		Font_scale        float64
-		Foreground        PangoColor
-		Background        PangoColor
-		Extra_attrs       *PangoAttrList
-		Underline_style   PangoUnderline
-		Rise              int
-		Fixed_height_rows int
-		Bits              uint
-		// strikethrough : 1
-		// editable : 1
-		// scale_set : 1
-		// foreground_set : 1
-		// background_set : 1
-		// underline_set : 1
-		// rise_set : 1
-		// strikethrough_set : 1
-		// editable_set : 1
-		// calc_fixed_height : 1
-	}
-
-	GtkCellRendererToggle struct {
-		Parent GtkCellRenderer
-		Bits   uint
-		// active : 1;
-		// activatable : 1;
-		// radio : 1;
-	}
-
-	GtkCellView struct {
-		Parent_instance GtkWidget
-		Priv            *GtkCellViewPrivate
 	}
 
 	GtkColorButton struct {

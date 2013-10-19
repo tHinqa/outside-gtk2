@@ -304,11 +304,8 @@ type (
 	GtkActionGroupPrivate          struct{}
 	GtkActionPrivate               struct{}
 	GtkAssistantPrivate            struct{}
-	GtkBuildable                   struct{}
 	GtkBuilderPrivate              struct{}
 	GtkCalendarPrivate             struct{}
-	GtkCellEditable                struct{}
-	GtkCellLayout                  struct{}
 	GtkCellViewPrivate             struct{}
 	GtkClipboard                   struct{}
 	GtkColorButtonPrivate          struct{}
@@ -3182,15 +3179,7 @@ const (
 	GTK_ANCHOR_E  = GTK_ANCHOR_EAST
 )
 
-type GtkArrowPlacement Enum
-
-const (
-	GTK_ARROWS_BOTH GtkArrowPlacement = iota
-	GTK_ARROWS_START
-	GTK_ARROWS_END
-)
-
-type GtkArrowType Enum
+type GtkArrowType Enum // REMOVE
 
 const (
 	GTK_ARROW_UP GtkArrowType = iota
@@ -4148,16 +4137,6 @@ const (
 	GTK_CALENDAR_SHOW_DETAILS
 )
 
-type GtkCellRendererState Enum
-
-const (
-	GTK_CELL_RENDERER_SELECTED GtkCellRendererState = 1 << iota
-	GTK_CELL_RENDERER_PRELIT
-	GTK_CELL_RENDERER_INSENSITIVE
-	GTK_CELL_RENDERER_SORTED
-	GTK_CELL_RENDERER_FOCUSED
-)
-
 type GtkCellRendererMode Enum
 
 const (
@@ -5010,56 +4989,6 @@ type (
 		month uint,
 		day uint,
 		user_data Gpointer) string
-
-	GtkCellLayoutDataFunc func(
-		cell_layout *GtkCellLayout,
-		cell *GtkCellRenderer,
-		tree_model *GtkTreeModel,
-		iter *GtkTreeIter,
-		data Gpointer)
-
-	GtkClipboardClearFunc func(
-		clipboard *GtkClipboard,
-		user_data_or_owner Gpointer)
-
-	GtkClipboardGetFunc func(
-		clipboard *GtkClipboard,
-		selection_data *GtkSelectionData,
-		info uint,
-		user_data_or_owner Gpointer)
-
-	GtkClipboardImageReceivedFunc func(
-		clipboard *GtkClipboard,
-		pixbuf *GdkPixbuf,
-		data Gpointer)
-
-	GtkClipboardReceivedFunc func(
-		clipboard *GtkClipboard,
-		selection_data *GtkSelectionData,
-		data Gpointer)
-
-	GtkClipboardRichTextReceivedFunc func(
-		clipboard *GtkClipboard,
-		format GdkAtom,
-		text *uint8,
-		length Gsize,
-		data Gpointer)
-
-	GtkClipboardTargetsReceivedFunc func(
-		clipboard *GtkClipboard,
-		atoms *GdkAtom,
-		n_atoms int,
-		data Gpointer)
-
-	GtkClipboardTextReceivedFunc func(
-		clipboard *GtkClipboard,
-		text string,
-		data Gpointer)
-
-	GtkClipboardURIReceivedFunc func(
-		clipboard *GtkClipboard,
-		uris *string,
-		data Gpointer)
 
 	GtkColorSelectionChangePaletteFunc func(
 		colors *GdkColor,
