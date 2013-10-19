@@ -11,63 +11,375 @@ import (
 )
 
 var (
-	AccelGroupGetType func() T.GType
-
-	AccelGroupNew func() *T.GtkAccelGroup
-
-	AccelGroupGetIsLocked func(
-		accelGroup *T.GtkAccelGroup) T.Gboolean
-
-	AccelGroupGetModifierMask func(
-		accelGroup *T.GtkAccelGroup) T.GdkModifierType
-
-	AccelGroupLock func(accelGroup *T.GtkAccelGroup)
-
-	AccelGroupUnlock func(accelGroup *T.GtkAccelGroup)
-
-	AccelGroupConnect func(
-		accelGroup *T.GtkAccelGroup,
-		accelKey uint,
-		accelMods T.GdkModifierType,
-		accelFlags T.GtkAccelFlags,
-		closure *T.GClosure)
-
-	AccelGroupConnectByPath func(
-		accelGroup *T.GtkAccelGroup,
-		accelPath string,
-		closure *T.GClosure)
-
-	AccelGroupDisconnect func(
-		accelGroup *T.GtkAccelGroup,
-		closure *T.GClosure) T.Gboolean
-
-	AccelGroupDisconnectKey func(
-		accelGroup *T.GtkAccelGroup,
-		accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
-
-	AccelGroupActivate func(
-		accelGroup *T.GtkAccelGroup,
-		accelQuark T.GQuark,
-		acceleratable *T.GObject,
-		accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
-
-	AccelGroupsActivate func(
-		object *T.GObject,
-		accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
-
-	AccelGroupsFromObject func(
-		object *T.GObject) *T.GSList
-
-	AccelGroupFind func(
-		accelGroup *T.GtkAccelGroup,
-		findFunc T.GtkAccelGroupFindFunc,
-		data T.Gpointer) *T.GtkAccelKey
-
-	AccelGroupFromAccelClosure func(
-		closure *T.GClosure) *T.GtkAccelGroup
+	AccelFlagsGetType              func() T.GType
+	AccessibleGetType              func() T.GType
+	ActionGetType                  func() T.GType
+	ActionGroupGetType             func() T.GType
+	ActivatableGetType             func() T.GType
+	AdjustmentGetType              func() T.GType
+	AlignmentGetType               func() T.GType
+	AnchorTypeGetType              func() T.GType
+	ArgFlagsGetType                func() T.GType
+	ArrowGetType                   func() T.GType
+	ArrowPlacementGetType          func() T.GType
+	ArrowTypeGetType               func() T.GType
+	AspectFrameGetType             func() T.GType
+	AttachOptionsGetType           func() T.GType
+	BinGetType                     func() T.GType
+	BorderGetType                  func() T.GType
+	BoxGetType                     func() T.GType
+	BuildableGetType               func() T.GType
+	BuilderErrorGetType            func() T.GType
+	BuilderGetType                 func() T.GType
+	CalendarDisplayOptionsGetType  func() T.GType
+	CalendarGetType                func() T.GType
+	CalendarNew                    func() *T.GtkWidget
+	CellEditableGetType            func() T.GType
+	CellLayoutGetType              func() T.GType
+	CellRendererAccelGetType       func() T.GType
+	CellRendererAccelModeGetType   func() T.GType
+	CellRendererComboGetType       func() T.GType
+	CellRendererGetType            func() T.GType
+	CellRendererModeGetType        func() T.GType
+	CellRendererPixbufGetType      func() T.GType
+	CellRendererProgressGetType    func() T.GType
+	CellRendererSpinGetType        func() T.GType
+	CellRendererSpinnerGetType     func() T.GType
+	CellRendererStateGetType       func() T.GType
+	CellRendererTextGetType        func() T.GType
+	CellRendererToggleGetType      func() T.GType
+	CellTypeGetType                func() T.GType
+	CellViewGetType                func() T.GType
+	CellViewNew                    func() *T.GtkWidget
+	CheckButtonGetType             func() T.GType
+	CheckButtonNew                 func() *T.GtkWidget
+	CheckMenuItemGetType           func() T.GType
+	CheckMenuItemNew               func() *T.GtkWidget
+	ClipboardGetType               func() T.GType
+	ClistDragPosGetType            func() T.GType
+	ClistGetType                   func() T.GType
+	ColorButtonGetType             func() T.GType
+	ColorButtonNew                 func() *T.GtkWidget
+	ColorSelectionDialogGetType    func() T.GType
+	ColorSelectionGetType          func() T.GType
+	ColorSelectionNew              func() *T.GtkWidget
+	ComboGetType                   func() T.GType
+	ComboNew                       func() *T.GtkWidget
+	ContainerGetType               func() T.GType
+	CornerTypeGetType              func() T.GType
+	CtreeExpanderStyleGetType      func() T.GType
+	CtreeExpansionTypeGetType      func() T.GType
+	CtreeGetType                   func() T.GType
+	CtreeLineStyleGetType          func() T.GType
+	CtreeNodeGetType               func() T.GType
+	CtreePosGetType                func() T.GType
+	CurveGetType                   func() T.GType
+	CurveNew                       func() *T.GtkWidget
+	CurveTypeGetType               func() T.GType
+	DebugFlagGetType               func() T.GType
+	DeleteTypeGetType              func() T.GType
+	DestDefaultsGetType            func() T.GType
+	DialogFlagsGetType             func() T.GType
+	DialogGetType                  func() T.GType
+	DialogNew                      func() *T.GtkWidget
+	DirectionTypeGetType           func() T.GType
+	DragResultGetType              func() T.GType
+	DrawingAreaGetType             func() T.GType
+	DrawingAreaNew                 func() *T.GtkWidget
+	EditableGetType                func() T.GType
+	EntryBufferGetType             func() T.GType
+	EntryCompletionGetType         func() T.GType
+	EntryGetType                   func() T.GType
+	EntryIconPositionGetType       func() T.GType
+	EntryNew                       func() *T.GtkWidget
+	EventBoxGetType                func() T.GType
+	EventBoxNew                    func() *T.GtkWidget
+	ExpanderGetType                func() T.GType
+	ExpanderStyleGetType           func() T.GType
+	FileChooserActionGetType       func() T.GType
+	FileChooserButtonGetType       func() T.GType
+	FileChooserConfirmationGetType func() T.GType
+	FileChooserDialogGetType       func() T.GType
+	FileChooserErrorGetType        func() T.GType
+	FileChooserGetType             func() T.GType
+	FileChooserWidgetGetType       func() T.GType
+	FileFilterFlagsGetType         func() T.GType
+	FileFilterGetType              func() T.GType
+	FileSelectionGetType           func() T.GType
+	FixedGetType                   func() T.GType
+	FixedNew                       func() *T.GtkWidget
+	FontButtonGetType              func() T.GType
+	FontButtonNew                  func() *T.GtkWidget
+	FontSelectionDialogGetType     func() T.GType
+	FontSelectionGetType           func() T.GType
+	FontSelectionNew               func() *T.GtkWidget
+	FrameGetType                   func() T.GType
+	GammaCurveGetType              func() T.GType
+	GammaCurveNew                  func() *T.GtkWidget
+	HandleBoxGetType               func() T.GType
+	HandleBoxNew                   func() *T.GtkWidget
+	HboxGetType                    func() T.GType
+	HbuttonBoxGetType              func() T.GType
+	HbuttonBoxNew                  func() *T.GtkWidget
+	HpanedGetType                  func() T.GType
+	HpanedNew                      func() *T.GtkWidget
+	HrulerGetType                  func() T.GType
+	HrulerNew                      func() *T.GtkWidget
+	HscaleGetType                  func() T.GType
+	HscrollbarGetType              func() T.GType
+	HseparatorGetType              func() T.GType
+	HseparatorNew                  func() *T.GtkWidget
+	HsvGetType                     func() T.GType
+	HsvNew                         func() *T.GtkWidget
+	IconFactoryGetType             func() T.GType
+	IconInfoGetType                func() T.GType
+	IconLookupFlagsGetType         func() T.GType
+	IconSetGetType                 func() T.GType
+	IconSizeGetType                func() T.GType
+	IconSourceGetType              func() T.GType
+	IconThemeErrorGetType          func() T.GType
+	IconThemeGetType               func() T.GType
+	IconViewDropPositionGetType    func() T.GType
+	IconViewGetType                func() T.GType
+	IconViewNew                    func() *T.GtkWidget
+	IdentifierGetType              func() T.GType
+	ImageGetType                   func() T.GType
+	ImageMenuItemGetType           func() T.GType
+	ImageMenuItemNew               func() *T.GtkWidget
+	ImageNew                       func() *T.GtkWidget
+	ImageTypeGetType               func() T.GType
+	ImContextGetType               func() T.GType
+	ImContextSimpleGetType         func() T.GType
+	ImMulticontextGetType          func() T.GType
+	ImPreeditStyleGetType          func() T.GType
+	ImStatusStyleGetType           func() T.GType
+	InfoBarGetType                 func() T.GType
+	InfoBarNew                     func() *T.GtkWidget
+	InputDialogGetType             func() T.GType
+	InputDialogNew                 func() *T.GtkWidget
+	InvisibleGetType               func() T.GType
+	InvisibleNew                   func() *T.GtkWidget
+	ItemFactoryGetType             func() T.GType
+	ItemGetType                    func() T.GType
+	JustificationGetType           func() T.GType
+	LabelGetType                   func() T.GType
+	LayoutGetType                  func() T.GType
+	LinkButtonGetType              func() T.GType
+	ListGetType                    func() T.GType
+	ListItemGetType                func() T.GType
+	ListItemNew                    func() *T.GtkWidget
+	ListNew                        func() *T.GtkWidget
+	ListStoreGetType               func() T.GType
+	MatchTypeGetType               func() T.GType
+	MenuBarGetType                 func() T.GType
+	MenuBarNew                     func() *T.GtkWidget
+	MenuDirectionTypeGetType       func() T.GType
+	MenuGetType                    func() T.GType
+	MenuItemGetType                func() T.GType
+	MenuItemNew                    func() *T.GtkWidget
+	MenuNew                        func() *T.GtkWidget
+	MenuShellGetType               func() T.GType
+	MenuToolButtonGetType          func() T.GType
+	MessageDialogGetType           func() T.GType
+	MessageTypeGetType             func() T.GType
+	MetricTypeGetType              func() T.GType
+	MiscGetType                    func() T.GType
+	MountOperationGetType          func() T.GType
+	MovementStepGetType            func() T.GType
+	NotebookGetType                func() T.GType
+	NotebookNew                    func() *T.GtkWidget
+	NotebookTabGetType             func() T.GType
+	NumberUpLayoutGetType          func() T.GType
+	ObjectFlagsGetType             func() T.GType
+	ObjectGetType                  func() T.GType
+	OffscreenWindowGetType         func() T.GType
+	OffscreenWindowNew             func() *T.GtkWidget
+	OldEditableGetType             func() T.GType
+	OptionMenuGetType              func() T.GType
+	OptionMenuNew                  func() *T.GtkWidget
+	OrientableGetType              func() T.GType
+	OrientationGetType             func() T.GType
+	PackDirectionGetType           func() T.GType
+	PackTypeGetType                func() T.GType
+	PageOrientationGetType         func() T.GType
+	PageSetGetType                 func() T.GType
+	PageSetupGetType               func() T.GType
+	PanedGetType                   func() T.GType
+	PaperSizeGetType               func() T.GType
+	PathPriorityTypeGetType        func() T.GType
+	PathTypeGetType                func() T.GType
+	PixmapGetType                  func() T.GType
+	PlugGetType                    func() T.GType
+	PolicyTypeGetType              func() T.GType
+	PositionTypeGetType            func() T.GType
+	PreviewGetType                 func() T.GType
+	PreviewTypeGetType             func() T.GType
+	PrintContextGetType            func() T.GType
+	PrintDuplexGetType             func() T.GType
+	PrintErrorGetType              func() T.GType
+	PrintOperationActionGetType    func() T.GType
+	PrintOperationGetType          func() T.GType
+	PrintOperationPreviewGetType   func() T.GType
+	PrintOperationResultGetType    func() T.GType
+	PrintPagesGetType              func() T.GType
+	PrintQualityGetType            func() T.GType
+	PrintSettingsGetType           func() T.GType
+	PrintStatusGetType             func() T.GType
+	PrivateFlagsGetType            func() T.GType
+	ProgressBarGetType             func() T.GType
+	ProgressBarNew                 func() *T.GtkWidget
+	ProgressBarOrientationGetType  func() T.GType
+	ProgressBarStyleGetType        func() T.GType
+	ProgressGetType                func() T.GType
+	RadioActionGetType             func() T.GType
+	RadioButtonGetType             func() T.GType
+	RadioMenuItemGetType           func() T.GType
+	RadioToolButtonGetType         func() T.GType
+	RangeGetType                   func() T.GType
+	RcFlagsGetType                 func() T.GType
+	RcStyleGetType                 func() T.GType
+	RcTokenTypeGetType             func() T.GType
+	RecentActionGetType            func() T.GType
+	RecentChooserDialogGetType     func() T.GType
+	RecentChooserErrorGetType      func() T.GType
+	RecentChooserGetType           func() T.GType
+	RecentChooserMenuGetType       func() T.GType
+	RecentChooserMenuNew           func() *T.GtkWidget
+	RecentChooserWidgetGetType     func() T.GType
+	RecentChooserWidgetNew         func() *T.GtkWidget
+	RecentFilterFlagsGetType       func() T.GType
+	RecentFilterGetType            func() T.GType
+	RecentInfoGetType              func() T.GType
+	RecentManagerErrorGetType      func() T.GType
+	RecentManagerGetType           func() T.GType
+	RecentSortTypeGetType          func() T.GType
+	ReliefStyleGetType             func() T.GType
+	RequisitionGetType             func() T.GType
+	ResizeModeGetType              func() T.GType
+	ResponseTypeGetType            func() T.GType
+	RulerGetType                   func() T.GType
+	ScaleButtonGetType             func() T.GType
+	ScaleGetType                   func() T.GType
+	ScrollbarGetType               func() T.GType
+	ScrolledWindowGetType          func() T.GType
+	ScrollStepGetType              func() T.GType
+	ScrollTypeGetType              func() T.GType
+	SelectionDataGetType           func() T.GType
+	SelectionModeGetType           func() T.GType
+	SensitivityTypeGetType         func() T.GType
+	SeparatorGetType               func() T.GType
+	SeparatorMenuItemGetType       func() T.GType
+	SeparatorMenuItemNew           func() *T.GtkWidget
+	SeparatorToolItemGetType       func() T.GType
+	SettingsGetType                func() T.GType
+	ShadowTypeGetType              func() T.GType
+	SideTypeGetType                func() T.GType
+	SignalRunTypeGetType           func() T.GType
+	SizeGroupGetType               func() T.GType
+	SizeGroupModeGetType           func() T.GType
+	SocketGetType                  func() T.GType
+	SocketNew                      func() *T.GtkWidget
+	SortTypeGetType                func() T.GType
+	SpinButtonGetType              func() T.GType
+	SpinButtonUpdatePolicyGetType  func() T.GType
+	SpinnerGetType                 func() T.GType
+	SpinnerNew                     func() *T.GtkWidget
+	SpinTypeGetType                func() T.GType
+	StateTypeGetType               func() T.GType
+	StatusbarGetType               func() T.GType
+	StatusbarNew                   func() *T.GtkWidget
+	StatusIconGetType              func() T.GType
+	StyleGetType                   func() T.GType
+	SubmenuDirectionGetType        func() T.GType
+	SubmenuPlacementGetType        func() T.GType
+	TableGetType                   func() T.GType
+	TargetFlagsGetType             func() T.GType
+	TargetListGetType              func() T.GType
+	TearoffMenuItemGetType         func() T.GType
+	TearoffMenuItemNew             func() *T.GtkWidget
+	TextAttributesGetType          func() T.GType
+	TextBufferGetType              func() T.GType
+	TextBufferTargetInfoGetType    func() T.GType
+	TextChildAnchorGetType         func() T.GType
+	TextDirectionGetType           func() T.GType
+	TextIterGetType                func() T.GType
+	TextMarkGetType                func() T.GType
+	TextSearchFlagsGetType         func() T.GType
+	TextTagGetType                 func() T.GType
+	TextTagTableGetType            func() T.GType
+	TextViewGetType                func() T.GType
+	TextViewNew                    func() *T.GtkWidget
+	TextWindowTypeGetType          func() T.GType
+	TipsQueryGetType               func() T.GType
+	TipsQueryNew                   func() *T.GtkWidget
+	ToggleActionGetType            func() T.GType
+	ToggleButtonGetType            func() T.GType
+	ToggleButtonNew                func() *T.GtkWidget
+	ToggleToolButtonGetType        func() T.GType
+	ToolbarChildTypeGetType        func() T.GType
+	ToolbarGetType                 func() T.GType
+	ToolbarNew                     func() *T.GtkWidget
+	ToolbarSpaceStyleGetType       func() T.GType
+	ToolbarStyleGetType            func() T.GType
+	ToolButtonGetType              func() T.GType
+	ToolItemGetType                func() T.GType
+	ToolItemGroupGetType           func() T.GType
+	ToolPaletteDragTargetsGetType  func() T.GType
+	ToolPaletteGetType             func() T.GType
+	ToolPaletteNew                 func() *T.GtkWidget
+	ToolShellGetType               func() T.GType
+	TooltipGetType                 func() T.GType
+	TooltipsGetType                func() T.GType
+	TreeDragDestGetType            func() T.GType
+	TreeDragSourceGetType          func() T.GType
+	TreeGetType                    func() T.GType
+	TreeItemGetType                func() T.GType
+	TreeItemNew                    func() *T.GtkWidget
+	TreeIterGetType                func() T.GType
+	TreeModelFilterGetType         func() T.GType
+	TreeModelFlagsGetType          func() T.GType
+	TreeModelGetType               func() T.GType
+	TreeModelSortGetType           func() T.GType
+	TreeNew                        func() *T.GtkWidget
+	TreePathGetType                func() T.GType
+	TreeRowReferenceGetType        func() T.GType
+	TreeSelectionGetType           func() T.GType
+	TreeSortableGetType            func() T.GType
+	TreeStoreGetType               func() T.GType
+	TreeViewColumnGetType          func() T.GType
+	TreeViewColumnSizingGetType    func() T.GType
+	TreeViewDropPositionGetType    func() T.GType
+	TreeViewGetType                func() T.GType
+	TreeViewGridLinesGetType       func() T.GType
+	TreeViewModeGetType            func() T.GType
+	TreeViewNew                    func() *T.GtkWidget
+	UiManagerGetType               func() T.GType
+	UiManagerItemTypeGetType       func() T.GType
+	UnitGetType                    func() T.GType
+	UpdateTypeGetType              func() T.GType
+	VboxGetType                    func() T.GType
+	VbuttonBoxGetType              func() T.GType
+	VbuttonBoxNew                  func() *T.GtkWidget
+	ViewportGetType                func() T.GType
+	VisibilityGetType              func() T.GType
+	VolumeButtonGetType            func() T.GType
+	VolumeButtonNew                func() *T.GtkWidget
+	VpanedGetType                  func() T.GType
+	VpanedNew                      func() *T.GtkWidget
+	VrulerGetType                  func() T.GType
+	VrulerNew                      func() *T.GtkWidget
+	VscaleGetType                  func() T.GType
+	VscrollbarGetType              func() T.GType
+	VseparatorGetType              func() T.GType
+	VseparatorNew                  func() *T.GtkWidget
+	WidgetFlagsGetType             func() T.GType
+	WidgetGetType                  func() T.GType
+	WidgetHelpTypeGetType          func() T.GType
+	WindowGetType                  func() T.GType
+	WindowGroupGetType             func() T.GType
+	WindowPositionGetType          func() T.GType
+	WindowTypeGetType              func() T.GType
+	WrapModeGetType                func() T.GType
 
 	AcceleratorValid func(
 		keyval uint,
@@ -91,248 +403,6 @@ var (
 
 	AcceleratorGetDefaultModMask func() uint
 
-	AccelGroupQuery func(
-		accelGroup *T.GtkAccelGroup,
-		accelKey uint,
-		accelMods T.GdkModifierType,
-		nEntries *uint) *T.GtkAccelGroupEntry
-
-	AccelFlagsGetType func() T.GType
-
-	AssistantPageTypeGetType func() T.GType
-
-	BuilderErrorGetType func() T.GType
-
-	CalendarDisplayOptionsGetType func() T.GType
-
-	CellRendererStateGetType func() T.GType
-
-	CellRendererModeGetType func() T.GType
-
-	CellRendererAccelModeGetType func() T.GType
-
-	DebugFlagGetType func() T.GType
-
-	DialogFlagsGetType func() T.GType
-
-	ResponseTypeGetType func() T.GType
-
-	DestDefaultsGetType func() T.GType
-
-	TargetFlagsGetType func() T.GType
-
-	EntryIconPositionGetType func() T.GType
-
-	AnchorTypeGetType func() T.GType
-
-	ArrowPlacementGetType func() T.GType
-
-	ArrowTypeGetType func() T.GType
-
-	AttachOptionsGetType func() T.GType
-
-	ButtonBoxStyleGetType func() T.GType
-
-	CurveTypeGetType func() T.GType
-
-	DeleteTypeGetType func() T.GType
-
-	DirectionTypeGetType func() T.GType
-
-	ExpanderStyleGetType func() T.GType
-
-	IconSizeGetType func() T.GType
-
-	SensitivityTypeGetType func() T.GType
-
-	SideTypeGetType func() T.GType
-
-	TextDirectionGetType func() T.GType
-
-	JustificationGetType func() T.GType
-
-	MatchTypeGetType func() T.GType
-
-	MenuDirectionTypeGetType func() T.GType
-
-	MessageTypeGetType func() T.GType
-
-	MetricTypeGetType func() T.GType
-
-	MovementStepGetType func() T.GType
-
-	ScrollStepGetType func() T.GType
-
-	OrientationGetType func() T.GType
-
-	CornerTypeGetType func() T.GType
-
-	PackTypeGetType func() T.GType
-
-	PathPriorityTypeGetType func() T.GType
-
-	PathTypeGetType func() T.GType
-
-	PolicyTypeGetType func() T.GType
-
-	PositionTypeGetType func() T.GType
-
-	PreviewTypeGetType func() T.GType
-
-	ReliefStyleGetType func() T.GType
-
-	ResizeModeGetType func() T.GType
-
-	SignalRunTypeGetType func() T.GType
-
-	ScrollTypeGetType func() T.GType
-
-	SelectionModeGetType func() T.GType
-
-	ShadowTypeGetType func() T.GType
-
-	StateTypeGetType func() T.GType
-
-	SubmenuDirectionGetType func() T.GType
-
-	SubmenuPlacementGetType func() T.GType
-
-	ToolbarStyleGetType func() T.GType
-
-	UpdateTypeGetType func() T.GType
-
-	VisibilityGetType func() T.GType
-
-	WindowPositionGetType func() T.GType
-
-	WindowTypeGetType func() T.GType
-
-	WrapModeGetType func() T.GType
-
-	SortTypeGetType func() T.GType
-
-	ImPreeditStyleGetType func() T.GType
-
-	ImStatusStyleGetType func() T.GType
-
-	PackDirectionGetType func() T.GType
-
-	PrintPagesGetType func() T.GType
-
-	PageSetGetType func() T.GType
-
-	NumberUpLayoutGetType func() T.GType
-
-	PageOrientationGetType func() T.GType
-
-	PrintQualityGetType func() T.GType
-
-	PrintDuplexGetType func() T.GType
-
-	UnitGetType func() T.GType
-
-	TreeViewGridLinesGetType func() T.GType
-
-	DragResultGetType func() T.GType
-
-	FileChooserActionGetType func() T.GType
-
-	FileChooserConfirmationGetType func() T.GType
-
-	FileChooserErrorGetType func() T.GType
-
-	FileFilterFlagsGetType func() T.GType
-
-	IconLookupFlagsGetType func() T.GType
-
-	IconThemeErrorGetType func() T.GType
-
-	IconViewDropPositionGetType func() T.GType
-
-	ImageTypeGetType func() T.GType
-
-	ButtonsTypeGetType func() T.GType
-
-	NotebookTabGetType func() T.GType
-
-	ObjectFlagsGetType func() T.GType
-
-	ArgFlagsGetType func() T.GType
-
-	PrintStatusGetType func() T.GType
-
-	PrintOperationResultGetType func() T.GType
-
-	PrintOperationActionGetType func() T.GType
-
-	PrintErrorGetType func() T.GType
-
-	PrivateFlagsGetType func() T.GType
-
-	ProgressBarStyleGetType func() T.GType
-
-	ProgressBarOrientationGetType func() T.GType
-
-	RcFlagsGetType func() T.GType
-
-	RcTokenTypeGetType func() T.GType
-
-	RecentSortTypeGetType func() T.GType
-
-	RecentChooserErrorGetType func() T.GType
-
-	RecentFilterFlagsGetType func() T.GType
-
-	RecentManagerErrorGetType func() T.GType
-
-	SizeGroupModeGetType func() T.GType
-
-	SpinButtonUpdatePolicyGetType func() T.GType
-
-	SpinTypeGetType func() T.GType
-
-	TextBufferTargetInfoGetType func() T.GType
-
-	TextSearchFlagsGetType func() T.GType
-
-	TextWindowTypeGetType func() T.GType
-
-	ToolbarChildTypeGetType func() T.GType
-
-	ToolbarSpaceStyleGetType func() T.GType
-
-	ToolPaletteDragTargetsGetType func() T.GType
-
-	TreeModelFlagsGetType func() T.GType
-
-	TreeViewDropPositionGetType func() T.GType
-
-	TreeViewColumnSizingGetType func() T.GType
-
-	UiManagerItemTypeGetType func() T.GType
-
-	WidgetFlagsGetType func() T.GType
-
-	WidgetHelpTypeGetType func() T.GType
-
-	TreeViewModeGetType func() T.GType
-
-	CellTypeGetType func() T.GType
-
-	ClistDragPosGetType func() T.GType
-
-	ButtonActionGetType func() T.GType
-
-	CtreePosGetType func() T.GType
-
-	CtreeLineStyleGetType func() T.GType
-
-	CtreeExpanderStyleGetType func() T.GType
-
-	CtreeExpansionTypeGetType func() T.GType
-
-	IdentifierGetType func() T.GType
-
 	TypeInit func(
 		debugFlags T.GTypeDebugFlags)
 
@@ -345,8 +415,6 @@ var (
 
 	TypeNew func(
 		t T.GtkType) T.Gpointer
-
-	ObjectGetType func() T.GType
 
 	ObjectSink func(
 		object *T.GtkObject)
@@ -438,8 +506,6 @@ var (
 		argFlags uint,
 		argId uint)
 
-	AdjustmentGetType func() T.GType
-
 	AdjustmentNew func(
 		value float64,
 		lower float64,
@@ -504,8 +570,6 @@ var (
 		stepIncrement float64,
 		pageIncrement float64,
 		pageSize float64)
-
-	StyleGetType func() T.GType
 
 	StyleNew func() *T.GtkStyle
 
@@ -1042,8 +1106,6 @@ var (
 		width int,
 		height int)
 
-	BorderGetType func() T.GType
-
 	BorderNew func() *T.GtkBorder
 
 	BorderCopy func(
@@ -1144,8 +1206,6 @@ var (
 		rcStyle *T.GtkRcStyle,
 		pattern string)
 
-	RcStyleGetType func() T.GType
-
 	RcStyleNew func() *T.GtkRcStyle
 
 	RcStyleCopy func(
@@ -1186,8 +1246,6 @@ var (
 	RcParsePriority func(
 		scanner *T.GScanner,
 		priority *T.GtkPathPriorityType) uint
-
-	SettingsGetType func() T.GType
 
 	SettingsGetDefault func() *T.GtkSettings
 
@@ -1248,8 +1306,6 @@ var (
 		name string,
 		vDouble float64,
 		origin string)
-
-	WidgetGetType func() T.GType
 
 	WidgetNew func(t T.GType, firstPropertyName string,
 		v ...VArg) *T.GtkWidget
@@ -1887,15 +1943,11 @@ var (
 	WidgetGetHasTooltip func(
 		widget *T.GtkWidget) T.Gboolean
 
-	RequisitionGetType func() T.GType
-
 	RequisitionCopy func(
 		requisition *T.GtkRequisition) *T.GtkRequisition
 
 	RequisitionFree func(
 		requisition *T.GtkRequisition)
-
-	ContainerGetType func() T.GType
 
 	ContainerSetBorderWidth func(
 		container *T.GtkContainer,
@@ -2037,12 +2089,8 @@ var (
 		callback T.GtkCallback,
 		callbackData T.Gpointer)
 
-	BinGetType func() T.GType
-
 	BinGetChild func(
 		bin *T.GtkBin) *T.GtkWidget
-
-	WindowGetType func() T.GType
 
 	WindowNew func(
 		t T.GtkWindowType) *T.GtkWidget
@@ -2431,8 +2479,6 @@ var (
 	WindowGetWindowType func(
 		window *T.GtkWindow) T.GtkWindowType
 
-	WindowGroupGetType func() T.GType
-
 	WindowGroupNew func() *T.GtkWindowGroup
 
 	WindowGroupAddWindow func(
@@ -2456,10 +2502,6 @@ var (
 
 	WindowGroupGetCurrentGrab func(
 		windowGroup *T.GtkWindowGroup) *T.GtkWidget
-
-	DialogGetType func() T.GType
-
-	DialogNew func() *T.GtkWidget
 
 	DialogNewWithButtons func(
 		title string, parent *T.GtkWindow,
@@ -2527,130 +2569,6 @@ var (
 	DialogGetContentArea func(
 		dialog *T.GtkDialog) *T.GtkWidget
 
-	AboutDialogGetType func() T.GType
-
-	AboutDialogNew func() *T.GtkWidget
-
-	ShowAboutDialog func(parent *T.GtkWindow,
-		firstPropertyName string, v ...VArg)
-
-	AboutDialogGetName func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetName func(
-		about *T.GtkAboutDialog,
-		name string)
-
-	AboutDialogGetProgramName func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetProgramName func(
-		about *T.GtkAboutDialog,
-		name string)
-
-	AboutDialogGetVersion func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetVersion func(
-		about *T.GtkAboutDialog,
-		version string)
-
-	AboutDialogGetCopyright func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetCopyright func(
-		about *T.GtkAboutDialog,
-		copyright string)
-
-	AboutDialogGetComments func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetComments func(
-		about *T.GtkAboutDialog,
-		comments string)
-
-	AboutDialogGetLicense func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetLicense func(
-		about *T.GtkAboutDialog,
-		license string)
-
-	AboutDialogGetWrapLicense func(
-		about *T.GtkAboutDialog) T.Gboolean
-
-	AboutDialogSetWrapLicense func(
-		about *T.GtkAboutDialog,
-		wrapLicense T.Gboolean)
-
-	AboutDialogGetWebsite func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetWebsite func(
-		about *T.GtkAboutDialog,
-		website string)
-
-	AboutDialogGetWebsiteLabel func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetWebsiteLabel func(
-		about *T.GtkAboutDialog,
-		websiteLabel string)
-
-	AboutDialogGetAuthors func(
-		about *T.GtkAboutDialog) **T.Gchar
-
-	AboutDialogSetAuthors func(
-		about *T.GtkAboutDialog,
-		authors **T.Gchar)
-
-	AboutDialogGetDocumenters func(
-		about *T.GtkAboutDialog) **T.Gchar
-
-	AboutDialogSetDocumenters func(
-		about *T.GtkAboutDialog,
-		documenters **T.Gchar)
-
-	AboutDialogGetArtists func(
-		about *T.GtkAboutDialog) **T.Gchar
-
-	AboutDialogSetArtists func(
-		about *T.GtkAboutDialog,
-		artists **T.Gchar)
-
-	AboutDialogGetTranslatorCredits func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetTranslatorCredits func(
-		about *T.GtkAboutDialog,
-		translatorCredits string)
-
-	AboutDialogGetLogo func(
-		about *T.GtkAboutDialog) *T.GdkPixbuf
-
-	AboutDialogSetLogo func(
-		about *T.GtkAboutDialog,
-		logo *T.GdkPixbuf)
-
-	AboutDialogGetLogoIconName func(
-		about *T.GtkAboutDialog) string
-
-	AboutDialogSetLogoIconName func(
-		about *T.GtkAboutDialog,
-		iconName string)
-
-	AboutDialogSetEmailHook func(
-		f T.GtkAboutDialogActivateLinkFunc,
-		dataGpointer,
-		destroy T.GDestroyNotify) T.GtkAboutDialogActivateLinkFunc
-
-	AboutDialogSetUrlHook func(
-		f T.GtkAboutDialogActivateLinkFunc,
-		dataGpointer,
-		destroy T.GDestroyNotify) T.GtkAboutDialogActivateLinkFunc
-
-	MiscGetType func() T.GType
-
 	MiscSetAlignment func(
 		misc *T.GtkMisc,
 		xalign float32,
@@ -2670,8 +2588,6 @@ var (
 		misc *T.GtkMisc,
 		xpad *int,
 		ypad *int)
-
-	MenuShellGetType func() T.GType
 
 	MenuShellAppend func(
 		menuShell *T.GtkMenuShell,
@@ -2714,10 +2630,6 @@ var (
 	MenuShellSetTakeFocus func(
 		menuShell *T.GtkMenuShell,
 		takeFocus T.Gboolean)
-
-	MenuGetType func() T.GType
-
-	MenuNew func() *T.GtkWidget
 
 	MenuPopup func(
 		menu *T.GtkMenu,
@@ -2813,8 +2725,6 @@ var (
 
 	MenuGetReserveToggleSize func(
 		menu *T.GtkMenu) T.Gboolean
-
-	LabelGetType func() T.GType
 
 	LabelNew func(
 		str string) *T.GtkWidget
@@ -2982,80 +2892,10 @@ var (
 		label *T.GtkLabel,
 		string string) uint
 
-	AccelLabelGetType func() T.GType
+	AccelGroupsActivate func(object *T.GObject, accelKey uint,
+		accelMods T.GdkModifierType) T.Gboolean
 
-	AccelLabelNew func(
-		string string) *T.GtkWidget
-
-	AccelLabelGetAccelWidget func(
-		accelLabel *T.GtkAccelLabel) *T.GtkWidget
-
-	AccelLabelGetAccelWidth func(
-		accelLabel *T.GtkAccelLabel) uint
-
-	AccelLabelSetAccelWidget func(
-		accelLabel *T.GtkAccelLabel,
-		accelWidget *T.GtkWidget)
-
-	AccelLabelSetAccelClosure func(
-		accelLabel *T.GtkAccelLabel,
-		accelClosure *T.GClosure)
-
-	AccelLabelRefetch func(
-		accelLabel *T.GtkAccelLabel) T.Gboolean
-
-	AccelMapAddEntry func(
-		accelPath string,
-		accelKey uint,
-		accelMods T.GdkModifierType)
-
-	AccelMapLookupEntry func(
-		accelPath string,
-		key *T.GtkAccelKey) T.Gboolean
-
-	AccelMapChangeEntry func(
-		accelPath string,
-		accelKey uint,
-		accelMods T.GdkModifierType,
-		replace T.Gboolean) T.Gboolean
-
-	AccelMapLoad func(
-		fileName string)
-
-	AccelMapSave func(
-		fileName string)
-
-	AccelMapForeach func(
-		dataGpointer,
-		foreachFunc T.GtkAccelMapForeach)
-
-	AccelMapLoadFd func(
-		fd int)
-
-	AccelMapLoadScanner func(
-		scanner *T.GScanner)
-
-	AccelMapSaveFd func(
-		fd int)
-
-	AccelMapLockPath func(
-		accelPath string)
-
-	AccelMapUnlockPath func(
-		accelPath string)
-
-	AccelMapAddFilter func(
-		filterPattern string)
-
-	AccelMapForeachUnfiltered func(
-		dataGpointer,
-		foreachFunc T.GtkAccelMapForeach)
-
-	AccelMapGetType func() T.GType
-
-	AccelMapGet func() *T.GtkAccelMap
-
-	AccessibleGetType func() T.GType
+	AccelGroupsFromObject func(object *T.GObject) *T.GSList
 
 	AccessibleSetWidget func(
 		accessible *T.GtkAccessible,
@@ -3066,8 +2906,6 @@ var (
 
 	AccessibleConnectWidgetDestroyed func(
 		accessible *T.GtkAccessible)
-
-	ActionGetType func() T.GType
 
 	ActionNew func(
 		name string,
@@ -3232,8 +3070,6 @@ var (
 	ActionGetAlwaysShowImage func(
 		action *T.GtkAction) T.Gboolean
 
-	ActionGroupGetType func() T.GType
-
 	ActionGroupNew func(
 		name string) *T.GtkActionGroup
 
@@ -3329,9 +3165,7 @@ var (
 
 	ActionGroupTranslateString func(
 		actionGroup *T.GtkActionGroup,
-		string string) string
-
-	ActivatableGetType func() T.GType
+		str string) string
 
 	ActivatableSyncActionProperties func(
 		activatable *T.GtkActivatable,
@@ -3354,8 +3188,6 @@ var (
 	ActivatableDoSetRelatedAction func(
 		activatable *T.GtkActivatable,
 		action *T.GtkAction)
-
-	AlignmentGetType func() T.GType
 
 	AlignmentNew func(
 		xalign float32,
@@ -3384,8 +3216,6 @@ var (
 		paddingLeft *uint,
 		paddingRight *uint)
 
-	ArrowGetType func() T.GType
-
 	ArrowNew func(
 		arrowType T.GtkArrowType,
 		shadowType T.GtkShadowType) *T.GtkWidget
@@ -3394,8 +3224,6 @@ var (
 		arrow *T.GtkArrow,
 		arrowType T.GtkArrowType,
 		shadowType T.GtkShadowType)
-
-	FrameGetType func() T.GType
 
 	FrameNew func(
 		label string) *T.GtkWidget
@@ -3431,8 +3259,6 @@ var (
 	FrameGetShadowType func(
 		frame *T.GtkFrame) T.GtkShadowType
 
-	AspectFrameGetType func() T.GType
-
 	AspectFrameNew func(
 		label string,
 		xalign float32,
@@ -3446,104 +3272,6 @@ var (
 		yalign float32,
 		ratio float32,
 		obeyChild T.Gboolean)
-
-	AssistantGetType func() T.GType
-
-	AssistantNew func() *T.GtkWidget
-
-	AssistantGetCurrentPage func(
-		assistant *T.GtkAssistant) int
-
-	AssistantSetCurrentPage func(
-		assistant *T.GtkAssistant,
-		pageNum int)
-
-	AssistantGetNPages func(
-		assistant *T.GtkAssistant) int
-
-	AssistantGetNthPage func(
-		assistant *T.GtkAssistant,
-		pageNum int) *T.GtkWidget
-
-	AssistantPrependPage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) int
-
-	AssistantAppendPage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) int
-
-	AssistantInsertPage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		position int) int
-
-	AssistantSetForwardPageFunc func(
-		assistant *T.GtkAssistant,
-		pageFunc T.GtkAssistantPageFunc,
-		dataGpointer,
-		destroy T.GDestroyNotify)
-
-	AssistantSetPageType func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		t T.GtkAssistantPageType)
-
-	AssistantGetPageType func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) T.GtkAssistantPageType
-
-	AssistantSetPageTitle func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		title string)
-
-	AssistantGetPageTitle func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) string
-
-	AssistantSetPageHeaderImage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		pixbuf *T.GdkPixbuf)
-
-	AssistantGetPageHeaderImage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) *T.GdkPixbuf
-
-	AssistantSetPageSideImage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		pixbuf *T.GdkPixbuf)
-
-	AssistantGetPageSideImage func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) *T.GdkPixbuf
-
-	AssistantSetPageComplete func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget,
-		complete T.Gboolean)
-
-	AssistantGetPageComplete func(
-		assistant *T.GtkAssistant,
-		page *T.GtkWidget) T.Gboolean
-
-	AssistantAddActionWidget func(
-		assistant *T.GtkAssistant,
-		child *T.GtkWidget)
-
-	AssistantRemoveActionWidget func(
-		assistant *T.GtkAssistant,
-		child *T.GtkWidget)
-
-	AssistantUpdateButtonsState func(
-		assistant *T.GtkAssistant)
-
-	AssistantCommit func(
-		assistant *T.GtkAssistant)
-
-	BoxGetType func() T.GType
 
 	BoxPackStart func(
 		box *T.GtkBox,
@@ -3601,44 +3329,6 @@ var (
 		fill T.Gboolean,
 		padding uint,
 		packType T.GtkPackType)
-
-	ButtonBoxGetType func() T.GType
-
-	ButtonBoxGetLayout func(
-		widget *T.GtkButtonBox) T.GtkButtonBoxStyle
-
-	ButtonBoxSetLayout func(
-		widget *T.GtkButtonBox,
-		layoutStyle T.GtkButtonBoxStyle)
-
-	ButtonBoxGetChildSecondary func(
-		widget *T.GtkButtonBox,
-		child *T.GtkWidget) T.Gboolean
-
-	ButtonBoxSetChildSecondary func(
-		widget *T.GtkButtonBox,
-		child *T.GtkWidget,
-		isSecondary T.Gboolean)
-
-	ButtonBoxSetChildSize func(
-		widget *T.GtkButtonBox,
-		minWidth int,
-		minHeight int)
-
-	ButtonBoxSetChildIpadding func(
-		widget *T.GtkButtonBox,
-		ipadX int,
-		ipadY int)
-
-	ButtonBoxGetChildSize func(
-		widget *T.GtkButtonBox,
-		minWidth *int,
-		minHeight *int)
-
-	ButtonBoxGetChildIpadding func(
-		widget *T.GtkButtonBox,
-		ipadX *int,
-		ipadY *int)
 
 	BindingSetNew func(
 		setName string) *T.GtkBindingSet
@@ -3698,8 +3388,6 @@ var (
 		pathType T.GtkPathType,
 		pathPattern string,
 		priority T.GtkPathPriorityType)
-
-	BuilderGetType func() T.GType
 
 	BuilderNew func() *T.GtkBuilder
 
@@ -3768,8 +3456,6 @@ var (
 		value *T.GValue,
 		error **T.GError) T.Gboolean
 
-	BuildableGetType func() T.GType
-
 	BuildableSetName func(
 		buildable *T.GtkBuildable,
 		name string)
@@ -3824,10 +3510,6 @@ var (
 		buildable *T.GtkBuildable,
 		builder *T.GtkBuilder,
 		childname string) *T.GObject
-
-	ImageGetType func() T.GType
-
-	ImageNew func() *T.GtkWidget
 
 	ImageNewFromPixmap func(
 		pixmap *T.GdkPixmap,
@@ -3963,96 +3645,6 @@ var (
 		val **T.GdkImage,
 		mask **T.GdkBitmap)
 
-	ButtonGetType func() T.GType
-
-	ButtonNew func() *T.GtkWidget
-
-	ButtonNewWithLabel func(
-		label string) *T.GtkWidget
-
-	ButtonNewFromStock func(
-		stockId string) *T.GtkWidget
-
-	ButtonNewWithMnemonic func(
-		label string) *T.GtkWidget
-
-	ButtonPressed func(
-		button *T.GtkButton)
-
-	ButtonReleased func(
-		button *T.GtkButton)
-
-	ButtonClicked func(
-		button *T.GtkButton)
-
-	ButtonEnter func(
-		button *T.GtkButton)
-
-	ButtonLeave func(
-		button *T.GtkButton)
-
-	ButtonSetRelief func(
-		button *T.GtkButton,
-		newstyle T.GtkReliefStyle)
-
-	ButtonGetRelief func(
-		button *T.GtkButton) T.GtkReliefStyle
-
-	ButtonSetLabel func(
-		button *T.GtkButton,
-		label string)
-
-	ButtonGetLabel func(
-		button *T.GtkButton) string
-
-	ButtonSetUseUnderline func(
-		button *T.GtkButton,
-		useUnderline T.Gboolean)
-
-	ButtonGetUseUnderline func(
-		button *T.GtkButton) T.Gboolean
-
-	ButtonSetUseStock func(
-		button *T.GtkButton,
-		useStock T.Gboolean)
-
-	ButtonGetUseStock func(
-		button *T.GtkButton) T.Gboolean
-
-	ButtonSetFocusOnClick func(
-		button *T.GtkButton,
-		focusOnClick T.Gboolean)
-
-	ButtonGetFocusOnClick func(
-		button *T.GtkButton) T.Gboolean
-
-	ButtonSetAlignment func(
-		button *T.GtkButton,
-		xalign float32,
-		yalign float32)
-
-	ButtonGetAlignment func(
-		button *T.GtkButton,
-		xalign *float32,
-		yalign *float32)
-
-	ButtonSetImage func(
-		button *T.GtkButton,
-		image *T.GtkWidget)
-
-	ButtonGetImage func(
-		button *T.GtkButton) *T.GtkWidget
-
-	ButtonSetImagePosition func(
-		button *T.GtkButton,
-		position T.GtkPositionType)
-
-	ButtonGetImagePosition func(
-		button *T.GtkButton) T.GtkPositionType
-
-	ButtonGetEventWindow func(
-		button *T.GtkButton) *T.GdkWindow
-
 	SignalNewv func(
 		name string,
 		signalFlags T.GtkSignalRunType,
@@ -4118,10 +3710,6 @@ var (
 		match T.GSignalMatchType,
 		action uint)
 
-	CalendarGetType func() T.GType
-
-	CalendarNew func() *T.GtkWidget
-
 	CalendarSelectMonth func(
 		calendar *T.GtkCalendar,
 		month uint,
@@ -4185,8 +3773,6 @@ var (
 	CalendarThaw func(
 		calendar *T.GtkCalendar)
 
-	CellEditableGetType func() T.GType
-
 	CellEditableStartEditing func(
 		cellEditable *T.GtkCellEditable,
 		event *T.GdkEvent)
@@ -4196,8 +3782,6 @@ var (
 
 	CellEditableRemoveWidget func(
 		cellEditable *T.GtkCellEditable)
-
-	CellRendererGetType func() T.GType
 
 	CellRendererGetSize func(
 		cell *T.GtkCellRenderer,
@@ -4323,8 +3907,6 @@ var (
 	TreePathCopy func(
 		path *T.GtkTreePath) *T.GtkTreePath
 
-	TreePathGetType func() T.GType
-
 	TreePathCompare func(
 		a *T.GtkTreePath,
 		b *T.GtkTreePath) int
@@ -4348,8 +3930,6 @@ var (
 	TreePathIsDescendant func(
 		path *T.GtkTreePath,
 		ancestor *T.GtkTreePath) T.Gboolean
-
-	TreeRowReferenceGetType func() T.GType
 
 	TreeRowReferenceNew func(
 		model *T.GtkTreeModel,
@@ -4394,10 +3974,6 @@ var (
 
 	TreeIterFree func(
 		iter *T.GtkTreeIter)
-
-	TreeIterGetType func() T.GType
-
-	TreeModelGetType func() T.GType
 
 	TreeModelGetFlags func(
 		treeModel *T.GtkTreeModel) T.GtkTreeModelFlags
@@ -4511,8 +4087,6 @@ var (
 		iter *T.GtkTreeIter,
 		newOrder *int)
 
-	TreeSortableGetType func() T.GType
-
 	TreeSortableSortColumnChanged func(
 		sortable *T.GtkTreeSortable)
 
@@ -4541,205 +4115,6 @@ var (
 
 	TreeSortableHasDefaultSortFunc func(
 		sortable *T.GtkTreeSortable) T.Gboolean
-
-	TreeViewColumnGetType func() T.GType
-
-	TreeViewColumnNew func() *T.GtkTreeViewColumn
-
-	TreeViewColumnNewWithAttributes func(
-		title string, cell *T.GtkCellRenderer,
-		v ...VArg) *T.GtkTreeViewColumn
-
-	TreeViewColumnPackStart func(
-		treeColumn *T.GtkTreeViewColumn,
-		cell *T.GtkCellRenderer,
-		expand T.Gboolean)
-
-	TreeViewColumnPackEnd func(
-		treeColumn *T.GtkTreeViewColumn,
-		cell *T.GtkCellRenderer,
-		expand T.Gboolean)
-
-	TreeViewColumnClear func(
-		treeColumn *T.GtkTreeViewColumn)
-
-	TreeViewColumnGetCellRenderers func(
-		treeColumn *T.GtkTreeViewColumn) *T.GList
-
-	TreeViewColumnAddAttribute func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellRenderer *T.GtkCellRenderer,
-		attribute string,
-		column int)
-
-	TreeViewColumnSetAttributes func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellRenderer *T.GtkCellRenderer, v ...VArg)
-
-	TreeViewColumnSetCellDataFunc func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellRenderer *T.GtkCellRenderer,
-		f T.GtkTreeCellDataFunc,
-		funcDataGpointer,
-		destroy T.GDestroyNotify)
-
-	TreeViewColumnClearAttributes func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellRenderer *T.GtkCellRenderer)
-
-	TreeViewColumnSetSpacing func(
-		treeColumn *T.GtkTreeViewColumn,
-		spacing int)
-
-	TreeViewColumnGetSpacing func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnSetVisible func(
-		treeColumn *T.GtkTreeViewColumn,
-		visible T.Gboolean)
-
-	TreeViewColumnGetVisible func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetResizable func(
-		treeColumn *T.GtkTreeViewColumn,
-		resizable T.Gboolean)
-
-	TreeViewColumnGetResizable func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetSizing func(
-		treeColumn *T.GtkTreeViewColumn,
-		typ T.GtkTreeViewColumnSizing)
-
-	TreeViewColumnGetSizing func(
-		treeColumn *T.GtkTreeViewColumn) T.GtkTreeViewColumnSizing
-
-	TreeViewColumnGetWidth func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnGetFixedWidth func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnSetFixedWidth func(
-		treeColumn *T.GtkTreeViewColumn,
-		fixedWidth int)
-
-	TreeViewColumnSetMinWidth func(
-		treeColumn *T.GtkTreeViewColumn,
-		minWidth int)
-
-	TreeViewColumnGetMinWidth func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnSetMaxWidth func(
-		treeColumn *T.GtkTreeViewColumn,
-		maxWidth int)
-
-	TreeViewColumnGetMaxWidth func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnClicked func(
-		treeColumn *T.GtkTreeViewColumn)
-
-	TreeViewColumnSetTitle func(
-		treeColumn *T.GtkTreeViewColumn,
-		title string)
-
-	TreeViewColumnGetTitle func(
-		treeColumn *T.GtkTreeViewColumn) string
-
-	TreeViewColumnSetExpand func(
-		treeColumn *T.GtkTreeViewColumn,
-		expand T.Gboolean)
-
-	TreeViewColumnGetExpand func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetClickable func(
-		treeColumn *T.GtkTreeViewColumn,
-		clickable T.Gboolean)
-
-	TreeViewColumnGetClickable func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetWidget func(
-		treeColumn *T.GtkTreeViewColumn,
-		widget *T.GtkWidget)
-
-	TreeViewColumnGetWidget func(
-		treeColumn *T.GtkTreeViewColumn) *T.GtkWidget
-
-	TreeViewColumnSetAlignment func(
-		treeColumn *T.GtkTreeViewColumn,
-		xalign float32)
-
-	TreeViewColumnGetAlignment func(
-		treeColumn *T.GtkTreeViewColumn) float32
-
-	TreeViewColumnSetReorderable func(
-		treeColumn *T.GtkTreeViewColumn,
-		reorderable T.Gboolean)
-
-	TreeViewColumnGetReorderable func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetSortColumnId func(
-		treeColumn *T.GtkTreeViewColumn,
-		sortColumnId int)
-
-	TreeViewColumnGetSortColumnId func(
-		treeColumn *T.GtkTreeViewColumn) int
-
-	TreeViewColumnSetSortIndicator func(
-		treeColumn *T.GtkTreeViewColumn,
-		setting T.Gboolean)
-
-	TreeViewColumnGetSortIndicator func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnSetSortOrder func(
-		treeColumn *T.GtkTreeViewColumn,
-		order T.GtkSortType)
-
-	TreeViewColumnGetSortOrder func(
-		treeColumn *T.GtkTreeViewColumn) T.GtkSortType
-
-	TreeViewColumnCellSetCellData func(
-		treeColumn *T.GtkTreeViewColumn,
-		treeModel *T.GtkTreeModel,
-		iter *T.GtkTreeIter,
-		isExpander T.Gboolean,
-		isExpanded T.Gboolean)
-
-	TreeViewColumnCellGetSize func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellArea *T.GdkRectangle,
-		xOffset *int,
-		yOffset *int,
-		width *int,
-		height *int)
-
-	TreeViewColumnCellIsVisible func(
-		treeColumn *T.GtkTreeViewColumn) T.Gboolean
-
-	TreeViewColumnFocusCell func(
-		treeColumn *T.GtkTreeViewColumn,
-		cell *T.GtkCellRenderer)
-
-	TreeViewColumnCellGetPosition func(
-		treeColumn *T.GtkTreeViewColumn,
-		cellRenderer *T.GtkCellRenderer,
-		startPos *int,
-		width *int) T.Gboolean
-
-	TreeViewColumnQueueResize func(
-		treeColumn *T.GtkTreeViewColumn)
-
-	TreeViewColumnGetTreeView func(
-		treeColumn *T.GtkTreeViewColumn) *T.GtkWidget
-
-	CellLayoutGetType func() T.GType
 
 	CellLayoutPackStart func(
 		cellLayout *T.GtkCellLayout,
@@ -4782,39 +4157,23 @@ var (
 		cell *T.GtkCellRenderer,
 		position int)
 
-	CellRendererTextGetType func() T.GType
-
 	CellRendererTextNew func() *T.GtkCellRenderer
 
 	CellRendererTextSetFixedHeightFromFont func(
 		renderer *T.GtkCellRendererText,
 		numberOfRows int)
 
-	CellRendererAccelGetType func() T.GType
-
 	CellRendererAccelNew func() *T.GtkCellRenderer
-
-	CellRendererComboGetType func() T.GType
 
 	CellRendererComboNew func() *T.GtkCellRenderer
 
-	CellRendererPixbufGetType func() T.GType
-
 	CellRendererPixbufNew func() *T.GtkCellRenderer
-
-	CellRendererProgressGetType func() T.GType
 
 	CellRendererProgressNew func() *T.GtkCellRenderer
 
-	CellRendererSpinGetType func() T.GType
-
 	CellRendererSpinNew func() *T.GtkCellRenderer
 
-	CellRendererSpinnerGetType func() T.GType
-
 	CellRendererSpinnerNew func() *T.GtkCellRenderer
-
-	CellRendererToggleGetType func() T.GType
 
 	CellRendererToggleNew func() *T.GtkCellRenderer
 
@@ -4838,10 +4197,6 @@ var (
 	CellRendererToggleSetActivatable func(
 		toggle *T.GtkCellRendererToggle,
 		setting T.Gboolean)
-
-	CellViewGetType func() T.GType
-
-	CellViewNew func() *T.GtkWidget
 
 	CellViewNewWithText func(
 		text string) *T.GtkWidget
@@ -4878,10 +4233,6 @@ var (
 	CellViewGetCellRenderers func(
 		cellView *T.GtkCellView) *T.GList
 
-	ToggleButtonGetType func() T.GType
-
-	ToggleButtonNew func() *T.GtkWidget
-
 	ToggleButtonNewWithLabel func(
 		label string) *T.GtkWidget
 
@@ -4912,30 +4263,17 @@ var (
 	ToggleButtonGetInconsistent func(
 		toggleButton *T.GtkToggleButton) T.Gboolean
 
-	CheckButtonGetType func() T.GType
-
-	CheckButtonNew func() *T.GtkWidget
-
 	CheckButtonNewWithLabel func(
 		label string) *T.GtkWidget
 
 	CheckButtonNewWithMnemonic func(
 		label string) *T.GtkWidget
 
-	ItemGetType func() T.GType
+	ItemSelect func(item *T.GtkItem)
 
-	ItemSelect func(
-		item *T.GtkItem)
+	ItemDeselect func(item *T.GtkItem)
 
-	ItemDeselect func(
-		item *T.GtkItem)
-
-	ItemToggle func(
-		item *T.GtkItem)
-
-	MenuItemGetType func() T.GType
-
-	MenuItemNew func() *T.GtkWidget
+	ItemToggle func(item *T.GtkItem)
 
 	MenuItemNewWithLabel func(
 		label string) *T.GtkWidget
@@ -4998,10 +4336,6 @@ var (
 	MenuItemRemoveSubmenu func(
 		menuItem *T.GtkMenuItem)
 
-	CheckMenuItemGetType func() T.GType
-
-	CheckMenuItemNew func() *T.GtkWidget
-
 	CheckMenuItemNewWithLabel func(
 		label string) *T.GtkWidget
 
@@ -5036,8 +4370,6 @@ var (
 		menuItem *T.GtkCheckMenuItem,
 		always T.Gboolean)
 
-	TextTagGetType func() T.GType
-
 	TextTagNew func(
 		name string) *T.GtkTextTag
 
@@ -5069,10 +4401,6 @@ var (
 	TextAttributesRef func(
 		values *T.GtkTextAttributes) *T.GtkTextAttributes
 
-	TextAttributesGetType func() T.GType
-
-	TextChildAnchorGetType func() T.GType
-
 	TextChildAnchorNew func() *T.GtkTextChildAnchor
 
 	TextChildAnchorGetWidgets func(
@@ -5089,8 +4417,6 @@ var (
 
 	TextIterFree func(
 		iter *T.GtkTextIter)
-
-	TextIterGetType func() T.GType
 
 	TextIterGetOffset func(
 		iter *T.GtkTextIter) int
@@ -5594,17 +4920,11 @@ var (
 		widget *T.GtkWidget,
 		event *T.GdkEventSelection) T.Gboolean
 
-	SelectionDataGetType func() T.GType
-
 	SelectionDataCopy func(
 		data *T.GtkSelectionData) *T.GtkSelectionData
 
 	SelectionDataFree func(
 		data *T.GtkSelectionData)
-
-	TargetListGetType func() T.GType
-
-	ClipboardGetType func() T.GType
 
 	ClipboardGetForDisplay func(
 		display *T.GdkDisplay,
@@ -5728,10 +5048,6 @@ var (
 	ClipboardStore func(
 		clipboard *T.GtkClipboard)
 
-	ColorButtonGetType func() T.GType
-
-	ColorButtonNew func() *T.GtkWidget
-
 	ColorButtonNewWithColor func(
 		color *T.GdkColor) *T.GtkWidget
 
@@ -5764,15 +5080,9 @@ var (
 	ColorButtonGetTitle func(
 		colorButton *T.GtkColorButton) string
 
-	VboxGetType func() T.GType
-
 	VboxNew func(
 		homogeneous T.Gboolean,
 		spacing int) *T.GtkWidget
-
-	ColorSelectionGetType func() T.GType
-
-	ColorSelectionNew func() *T.GtkWidget
 
 	ColorSelectionGetHasOpacityControl func(
 		colorsel *T.GtkColorSelection) T.Gboolean
@@ -5847,8 +5157,6 @@ var (
 	ColorSelectionSetUpdatePolicy func(
 		colorsel *T.GtkColorSelection,
 		policy T.GtkUpdateType)
-
-	ColorSelectionDialogGetType func() T.GType
 
 	ColorSelectionDialogNew func(
 		title string) *T.GtkWidget
@@ -6021,8 +5329,6 @@ var (
 		hotX int,
 		hotY int)
 
-	EditableGetType func() T.GType
-
 	EditableSelectRegion func(
 		editable *T.GtkEditable,
 		startPos int,
@@ -6075,8 +5381,6 @@ var (
 	EditableGetEditable func(
 		editable *T.GtkEditable) T.Gboolean
 
-	ImContextGetType func() T.GType
-
 	ImContextSetClientWindow func(
 		context *T.GtkIMContext,
 		window *T.GdkWindow)
@@ -6124,8 +5428,6 @@ var (
 		offset int,
 		nChars int) T.Gboolean
 
-	EntryBufferGetType func() T.GType
-
 	EntryBufferNew func(
 		initialChars string,
 		nInitialChars int) *T.GtkEntryBuffer
@@ -6172,8 +5474,6 @@ var (
 		buffer *T.GtkEntryBuffer,
 		position uint,
 		nChars uint)
-
-	ListStoreGetType func() T.GType
 
 	ListStoreNew func(nColumns int,
 		v ...VArg) *T.GtkListStore
@@ -6272,8 +5572,6 @@ var (
 		iter *T.GtkTreeIter,
 		position *T.GtkTreeIter)
 
-	TreeModelFilterGetType func() T.GType
-
 	TreeModelFilterNew func(
 		childModel *T.GtkTreeModel,
 		root *T.GtkTreePath) *T.GtkTreeModel
@@ -6322,8 +5620,6 @@ var (
 
 	TreeModelFilterClearCache func(
 		filter *T.GtkTreeModelFilter)
-
-	EntryCompletionGetType func() T.GType
 
 	EntryCompletionNew func() *T.GtkEntryCompletion
 
@@ -6414,10 +5710,6 @@ var (
 
 	EntryCompletionGetTextColumn func(
 		completion *T.GtkEntryCompletion) int
-
-	EntryGetType func() T.GType
-
-	EntryNew func() *T.GtkWidget
 
 	EntryNewWithBuffer func(
 		buffer *T.GtkEntryBuffer) *T.GtkWidget
@@ -6680,10 +5972,6 @@ var (
 		entry *T.GtkEntry,
 		editable T.Gboolean)
 
-	TreeViewGetType func() T.GType
-
-	TreeViewNew func() *T.GtkWidget
-
 	TreeViewNewWithModel func(
 		model *T.GtkTreeModel) *T.GtkWidget
 
@@ -6737,15 +6025,15 @@ var (
 
 	TreeViewAppendColumn func(
 		treeView *T.GtkTreeView,
-		column *T.GtkTreeViewColumn) int
+		column *TreeViewColumn) int
 
 	TreeViewRemoveColumn func(
 		treeView *T.GtkTreeView,
-		column *T.GtkTreeViewColumn) int
+		column *TreeViewColumn) int
 
 	TreeViewInsertColumn func(
 		treeView *T.GtkTreeView,
-		column *T.GtkTreeViewColumn,
+		column *TreeViewColumn,
 		position int) int
 
 	TreeViewInsertColumnWithAttributes func(
@@ -6763,22 +6051,22 @@ var (
 
 	TreeViewGetColumn func(
 		treeView *T.GtkTreeView,
-		n int) *T.GtkTreeViewColumn
+		n int) *TreeViewColumn
 
 	TreeViewGetColumns func(
 		treeView *T.GtkTreeView) *T.GList
 
 	TreeViewMoveColumnAfter func(
 		treeView *T.GtkTreeView,
-		column *T.GtkTreeViewColumn,
-		baseColumn *T.GtkTreeViewColumn)
+		column *TreeViewColumn,
+		baseColumn *TreeViewColumn)
 
 	TreeViewSetExpanderColumn func(
 		treeView *T.GtkTreeView,
-		column *T.GtkTreeViewColumn)
+		column *TreeViewColumn)
 
 	TreeViewGetExpanderColumn func(
-		treeView *T.GtkTreeView) *T.GtkTreeViewColumn
+		treeView *T.GtkTreeView) *TreeViewColumn
 
 	TreeViewSetColumnDragFunction func(
 		treeView *T.GtkTreeView,
@@ -6794,7 +6082,7 @@ var (
 	TreeViewScrollToCell func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		column *T.GtkTreeViewColumn,
+		column *TreeViewColumn,
 		useAlign T.Gboolean,
 		rowAlign float32,
 		colAlign float32)
@@ -6802,7 +6090,7 @@ var (
 	TreeViewRowActivated func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		column *T.GtkTreeViewColumn)
+		column *TreeViewColumn)
 
 	TreeViewExpandAll func(
 		treeView *T.GtkTreeView)
@@ -6842,20 +6130,20 @@ var (
 	TreeViewSetCursor func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		focusColumn *T.GtkTreeViewColumn,
+		focusColumn *TreeViewColumn,
 		startEditing T.Gboolean)
 
 	TreeViewSetCursorOnCell func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		focusColumn *T.GtkTreeViewColumn,
+		focusColumn *TreeViewColumn,
 		focusCell *T.GtkCellRenderer,
 		startEditing T.Gboolean)
 
 	TreeViewGetCursor func(
 		treeView *T.GtkTreeView,
 		path **T.GtkTreePath,
-		focusColumn **T.GtkTreeViewColumn)
+		focusColumn **TreeViewColumn)
 
 	TreeViewGetBinWindow func(
 		treeView *T.GtkTreeView) *T.GdkWindow
@@ -6865,20 +6153,20 @@ var (
 		x int,
 		y int,
 		path **T.GtkTreePath,
-		column **T.GtkTreeViewColumn,
+		column **TreeViewColumn,
 		cellX *int,
 		cellY *int) T.Gboolean
 
 	TreeViewGetCellArea func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		column *T.GtkTreeViewColumn,
+		column *TreeViewColumn,
 		rect *T.GdkRectangle)
 
 	TreeViewGetBackgroundArea func(
 		treeView *T.GtkTreeView,
 		path *T.GtkTreePath,
-		column *T.GtkTreeViewColumn,
+		column *TreeViewColumn,
 		rect *T.GdkRectangle)
 
 	TreeViewGetVisibleRect func(
@@ -7108,7 +6396,7 @@ var (
 		treeView *T.GtkTreeView,
 		tooltip *T.GtkTooltip,
 		path *T.GtkTreePath,
-		column *T.GtkTreeViewColumn,
+		column *TreeViewColumn,
 		cell *T.GtkCellRenderer)
 
 	TreeViewGetTooltipContext func(
@@ -7127,194 +6415,10 @@ var (
 	TreeViewGetTooltipColumn func(
 		treeView *T.GtkTreeView) int
 
-	ComboBoxGetType func() T.GType
-
-	ComboBoxNew func() *T.GtkWidget
-
-	ComboBoxNewWithEntry func() *T.GtkWidget
-
-	ComboBoxNewWithModel func(
-		model *T.GtkTreeModel) *T.GtkWidget
-
-	ComboBoxNewWithModelAndEntry func(
-		model *T.GtkTreeModel) *T.GtkWidget
-
-	ComboBoxGetWrapWidth func(
-		comboBox *T.GtkComboBox) int
-
-	ComboBoxSetWrapWidth func(
-		comboBox *T.GtkComboBox,
-		width int)
-
-	ComboBoxGetRowSpanColumn func(
-		comboBox *T.GtkComboBox) int
-
-	ComboBoxSetRowSpanColumn func(
-		comboBox *T.GtkComboBox,
-		rowSpan int)
-
-	ComboBoxGetColumnSpanColumn func(
-		comboBox *T.GtkComboBox) int
-
-	ComboBoxSetColumnSpanColumn func(
-		comboBox *T.GtkComboBox,
-		columnSpan int)
-
-	ComboBoxGetAddTearoffs func(
-		comboBox *T.GtkComboBox) T.Gboolean
-
-	ComboBoxSetAddTearoffs func(
-		comboBox *T.GtkComboBox,
-		addTearoffs T.Gboolean)
-
-	ComboBoxGetTitle func(
-		comboBox *T.GtkComboBox) string
-
-	ComboBoxSetTitle func(
-		comboBox *T.GtkComboBox,
-		title string)
-
-	ComboBoxGetFocusOnClick func(
-		combo *T.GtkComboBox) T.Gboolean
-
-	ComboBoxSetFocusOnClick func(
-		combo *T.GtkComboBox,
-		focusOnClick T.Gboolean)
-
-	ComboBoxGetActive func(
-		comboBox *T.GtkComboBox) int
-
-	ComboBoxSetActive func(
-		comboBox *T.GtkComboBox,
-		index int)
-
-	ComboBoxGetActiveIter func(
-		comboBox *T.GtkComboBox,
-		iter *T.GtkTreeIter) T.Gboolean
-
-	ComboBoxSetActiveIter func(
-		comboBox *T.GtkComboBox,
-		iter *T.GtkTreeIter)
-
-	ComboBoxSetModel func(
-		comboBox *T.GtkComboBox,
-		model *T.GtkTreeModel)
-
-	ComboBoxGetModel func(
-		comboBox *T.GtkComboBox) *T.GtkTreeModel
-
-	ComboBoxGetRowSeparatorFunc func(
-		comboBox *T.GtkComboBox) T.GtkTreeViewRowSeparatorFunc
-
-	ComboBoxSetRowSeparatorFunc func(
-		comboBox *T.GtkComboBox,
-		f T.GtkTreeViewRowSeparatorFunc,
-		dataGpointer,
-		destroy T.GDestroyNotify)
-
-	ComboBoxSetButtonSensitivity func(
-		comboBox *T.GtkComboBox,
-		sensitivity T.GtkSensitivityType)
-
-	ComboBoxGetButtonSensitivity func(
-		comboBox *T.GtkComboBox) T.GtkSensitivityType
-
-	ComboBoxGetHasEntry func(
-		comboBox *T.GtkComboBox) T.Gboolean
-
-	ComboBoxSetEntryTextColumn func(
-		comboBox *T.GtkComboBox,
-		textColumn int)
-
-	ComboBoxGetEntryTextColumn func(
-		comboBox *T.GtkComboBox) int
-
-	ComboBoxNewText func() *T.GtkWidget
-
-	ComboBoxAppendText func(
-		comboBox *T.GtkComboBox,
-		text string)
-
-	ComboBoxInsertText func(
-		comboBox *T.GtkComboBox,
-		position int,
-		text string)
-
-	ComboBoxPrependText func(
-		comboBox *T.GtkComboBox,
-		text string)
-
-	ComboBoxRemoveText func(
-		comboBox *T.GtkComboBox,
-		position int)
-
-	ComboBoxGetActiveText func(
-		comboBox *T.GtkComboBox) string
-
-	ComboBoxPopup func(
-		comboBox *T.GtkComboBox)
-
-	ComboBoxPopdown func(
-		comboBox *T.GtkComboBox)
-
-	ComboBoxGetPopupAccessible func(
-		comboBox *T.GtkComboBox) *T.AtkObject
-
-	ComboBoxEntryGetType func() T.GType
-
-	ComboBoxEntryNew func() *T.GtkWidget
-
-	ComboBoxEntryNewWithModel func(
-		model *T.GtkTreeModel,
-		textColumn int) *T.GtkWidget
-
-	ComboBoxEntrySetTextColumn func(
-		entryBox *T.GtkComboBoxEntry,
-		textColumn int)
-
-	ComboBoxEntryGetTextColumn func(
-		entryBox *T.GtkComboBoxEntry) int
-
-	ComboBoxEntryNewText func() *T.GtkWidget
-
-	ComboBoxTextGetType func() T.GType
-
-	ComboBoxTextNew func() *T.GtkWidget
-
-	ComboBoxTextNewWithEntry func() *T.GtkWidget
-
-	ComboBoxTextAppendText func(
-		comboBox *T.GtkComboBoxText,
-		text string)
-
-	ComboBoxTextInsertText func(
-		comboBox *T.GtkComboBoxText,
-		position int,
-		text string)
-
-	ComboBoxTextPrependText func(
-		comboBox *T.GtkComboBoxText,
-		text string)
-
-	ComboBoxTextRemove func(
-		comboBox *T.GtkComboBoxText,
-		position int)
-
-	ComboBoxTextGetActiveText func(
-		comboBox *T.GtkComboBoxText) string
-
-	DrawingAreaGetType func() T.GType
-
-	DrawingAreaNew func() *T.GtkWidget
-
 	DrawingAreaSize func(
 		darea *T.GtkDrawingArea,
 		width int,
 		height int)
-
-	EventBoxGetType func() T.GType
-
-	EventBoxNew func() *T.GtkWidget
 
 	EventBoxGetVisibleWindow func(
 		eventBox *T.GtkEventBox) T.Gboolean
@@ -7329,8 +6433,6 @@ var (
 	EventBoxSetAboveChild func(
 		eventBox *T.GtkEventBox,
 		aboveChild T.Gboolean)
-
-	ExpanderGetType func() T.GType
 
 	ExpanderNew func(
 		label string) *T.GtkWidget
@@ -7387,10 +6489,6 @@ var (
 	ExpanderGetLabelFill func(
 		expander *T.GtkExpander) T.Gboolean
 
-	FixedGetType func() T.GType
-
-	FixedNew func() *T.GtkWidget
-
 	FixedPut func(
 		fixed *T.GtkFixed,
 		widget *T.GtkWidget,
@@ -7409,8 +6507,6 @@ var (
 
 	FixedGetHasWindow func(
 		fixed *T.GtkFixed) T.Gboolean
-
-	FileFilterGetType func() T.GType
 
 	FileFilterNew func() *T.GtkFileFilter
 
@@ -7445,8 +6541,6 @@ var (
 	FileFilterFilter func(
 		filter *T.GtkFileFilter,
 		filterInfo *T.GtkFileFilterInfo) T.Gboolean
-
-	FileChooserGetType func() T.GType
 
 	FileChooserErrorQuark func() T.GQuark
 
@@ -7661,13 +6755,9 @@ var (
 	FileChooserListShortcutFolderUris func(
 		chooser *T.GtkFileChooser) *T.GSList
 
-	HboxGetType func() T.GType
-
 	HboxNew func(
 		homogeneous T.Gboolean,
 		spacing int) *T.GtkWidget
-
-	FileChooserButtonGetType func() T.GType
 
 	FileChooserButtonNew func(
 		title string,
@@ -7702,8 +6792,6 @@ var (
 		button *T.GtkFileChooserButton,
 		focusOnClick T.Gboolean)
 
-	FileChooserDialogGetType func() T.GType
-
 	FileChooserDialogNew func(title string, parent *T.GtkWindow,
 		action T.GtkFileChooserAction, firstButtonText string,
 		v ...VArg) *T.GtkWidget
@@ -7713,18 +6801,12 @@ var (
 		backend string, firstButtonText string,
 		v ...VArg) *T.GtkWidget
 
-	FileChooserWidgetGetType func() T.GType
-
 	FileChooserWidgetNew func(
 		action T.GtkFileChooserAction) *T.GtkWidget
 
 	FileChooserWidgetNewWithBackend func(
 		action T.GtkFileChooserAction,
 		backend string) *T.GtkWidget
-
-	FontButtonGetType func() T.GType
-
-	FontButtonNew func() *T.GtkWidget
 
 	FontButtonNewWithFont func(
 		fontname string) *T.GtkWidget
@@ -7771,10 +6853,6 @@ var (
 		fontButton *T.GtkFontButton,
 		showSize T.Gboolean)
 
-	FontSelectionGetType func() T.GType
-
-	FontSelectionNew func() *T.GtkWidget
-
 	FontSelectionGetFamilyList func(
 		fontsel *T.GtkFontSelection) *T.GtkWidget
 
@@ -7815,8 +6893,6 @@ var (
 	FontSelectionSetPreviewText func(
 		fontsel *T.GtkFontSelection,
 		text string)
-
-	FontSelectionDialogGetType func() T.GType
 
 	FontSelectionDialogNew func(
 		title string) *T.GtkWidget
@@ -7859,10 +6935,6 @@ var (
 	GcRelease func(
 		gc *T.GdkGC)
 
-	HandleBoxGetType func() T.GType
-
-	HandleBoxNew func() *T.GtkWidget
-
 	HandleBoxSetShadowType func(
 		handleBox *T.GtkHandleBox,
 		t T.GtkShadowType)
@@ -7887,10 +6959,6 @@ var (
 	HandleBoxGetChildDetached func(
 		handleBox *T.GtkHandleBox) T.Gboolean
 
-	HbuttonBoxGetType func() T.GType
-
-	HbuttonBoxNew func() *T.GtkWidget
-
 	HbuttonBoxGetSpacingDefault func() int
 
 	HbuttonBoxGetLayoutDefault func() T.GtkButtonBoxStyle
@@ -7900,8 +6968,6 @@ var (
 
 	HbuttonBoxSetLayoutDefault func(
 		layout T.GtkButtonBoxStyle)
-
-	PanedGetType func() T.GType
 
 	PanedAdd1 func(
 		paned *T.GtkPaned,
@@ -7945,12 +7011,6 @@ var (
 		child1Req int,
 		child2Req int)
 
-	HpanedGetType func() T.GType
-
-	HpanedNew func() *T.GtkWidget
-
-	RulerGetType func() T.GType
-
 	RulerSetMetric func(
 		ruler *T.GtkRuler,
 		metric T.GtkMetricType)
@@ -7977,12 +7037,6 @@ var (
 
 	RulerDrawPos func(
 		ruler *T.GtkRuler)
-
-	HrulerGetType func() T.GType
-
-	HrulerNew func() *T.GtkWidget
-
-	RangeGetType func() T.GType
 
 	RangeSetUpdatePolicy func(
 		r *T.GtkRange,
@@ -8094,8 +7148,6 @@ var (
 	RangeGetRoundDigits func(
 		r *T.GtkRange) int
 
-	ScaleGetType func() T.GType
-
 	ScaleSetDigits func(
 		scale *T.GtkScale,
 		digits int)
@@ -8134,8 +7186,6 @@ var (
 	ScaleClearMarks func(
 		scale *T.GtkScale)
 
-	HscaleGetType func() T.GType
-
 	HscaleNew func(
 		adjustment *T.GtkAdjustment) *T.GtkWidget
 
@@ -8144,22 +7194,8 @@ var (
 		max float64,
 		step float64) *T.GtkWidget
 
-	ScrollbarGetType func() T.GType
-
-	HscrollbarGetType func() T.GType
-
 	HscrollbarNew func(
 		adjustment *T.GtkAdjustment) *T.GtkWidget
-
-	SeparatorGetType func() T.GType
-
-	HseparatorGetType func() T.GType
-
-	HseparatorNew func() *T.GtkWidget
-
-	HsvGetType func() T.GType
-
-	HsvNew func() *T.GtkWidget
 
 	HsvSetColor func(
 		hsv *T.GtkHSV, h, s, v float64)
@@ -8183,8 +7219,6 @@ var (
 	HsvToRgb func(h, s, v float64, r, g, b *float64)
 
 	RgbToHsv func(r, g, b float64, h, s, v *float64)
-
-	IconFactoryGetType func() T.GType
 
 	IconFactoryNew func() *T.GtkIconFactory
 
@@ -8232,8 +7266,6 @@ var (
 	IconSizeGetName func(
 		size T.GtkIconSize) string
 
-	IconSetGetType func() T.GType
-
 	IconSetNew func() *T.GtkIconSet
 
 	IconSetNewFromPixbuf func(
@@ -8265,8 +7297,6 @@ var (
 		iconSet *T.GtkIconSet,
 		sizes **T.GtkIconSize,
 		nSizes *int)
-
-	IconSourceGetType func() T.GType
 
 	IconSourceNew func() *T.GtkIconSource
 
@@ -8340,8 +7370,6 @@ var (
 		source *T.GtkIconSource) T.GtkIconSize
 
 	IconThemeErrorQuark func() T.GQuark
-
-	IconThemeGetType func() T.GType
 
 	IconThemeNew func() *T.GtkIconTheme
 
@@ -8427,8 +7455,6 @@ var (
 		size int,
 		pixbuf *T.GdkPixbuf)
 
-	IconInfoGetType func() T.GType
-
 	IconInfoCopy func(
 		iconInfo *T.GtkIconInfo) *T.GtkIconInfo
 
@@ -8468,8 +7494,6 @@ var (
 	IconInfoGetDisplayName func(
 		iconInfo *T.GtkIconInfo) string
 
-	TooltipGetType func() T.GType
-
 	TooltipSetMarkup func(
 		tooltip *T.GtkTooltip,
 		markup string)
@@ -8507,10 +7531,6 @@ var (
 
 	TooltipTriggerTooltipQuery func(
 		display *T.GdkDisplay)
-
-	IconViewGetType func() T.GType
-
-	IconViewNew func() *T.GtkWidget
 
 	IconViewNewWithModel func(
 		model *T.GtkTreeModel) *T.GtkWidget
@@ -8767,10 +7787,6 @@ var (
 	IconViewGetTooltipColumn func(
 		iconView *T.GtkIconView) int
 
-	ImageMenuItemGetType func() T.GType
-
-	ImageMenuItemNew func() *T.GtkWidget
-
 	ImageMenuItemNewWithLabel func(
 		label string) *T.GtkWidget
 
@@ -8806,8 +7822,6 @@ var (
 		imageMenuItem *T.GtkImageMenuItem,
 		accelGroup *T.GtkAccelGroup)
 
-	ImContextSimpleGetType func() T.GType
-
 	ImContextSimpleNew func() *T.GtkIMContext
 
 	ImContextSimpleAddTable func(
@@ -8815,8 +7829,6 @@ var (
 		data *uint16,
 		maxSeqLen int,
 		nSeqs int)
-
-	ImMulticontextGetType func() T.GType
 
 	ImMulticontextNew func() *T.GtkIMContext
 
@@ -8830,10 +7842,6 @@ var (
 	ImMulticontextSetContextId func(
 		context *T.GtkIMMulticontext,
 		contextId string)
-
-	InfoBarGetType func() T.GType
-
-	InfoBarNew func() *T.GtkWidget
 
 	InfoBarNewWithButtons func(
 		firstButtonText string, v ...VArg) *T.GtkWidget
@@ -8877,10 +7885,6 @@ var (
 	InfoBarGetMessageType func(
 		infoBar *T.GtkInfoBar) T.GtkMessageType
 
-	InvisibleGetType func() T.GType
-
-	InvisibleNew func() *T.GtkWidget
-
 	InvisibleNewForScreen func(
 		screen *T.GdkScreen) *T.GtkWidget
 
@@ -8890,8 +7894,6 @@ var (
 
 	InvisibleGetScreen func(
 		invisible *T.GtkInvisible) *T.GdkScreen
-
-	LayoutGetType func() T.GType
 
 	LayoutNew func(
 		hadjustment *T.GtkAdjustment,
@@ -8941,8 +7943,6 @@ var (
 
 	LayoutThaw func(
 		layout *T.GtkLayout)
-
-	LinkButtonGetType func() T.GType
 
 	LinkButtonNew func(
 		uri string) *T.GtkWidget
@@ -9144,10 +8144,6 @@ var (
 		widget *T.GtkWidget,
 		event *T.GdkEvent)
 
-	MenuBarGetType func() T.GType
-
-	MenuBarNew func() *T.GtkWidget
-
 	MenuBarGetPackDirection func(
 		menubar *T.GtkMenuBar) T.GtkPackDirection
 
@@ -9161,8 +8157,6 @@ var (
 	MenuBarSetChildPackDirection func(
 		menubar *T.GtkMenuBar,
 		childPackDir T.GtkPackDirection)
-
-	TooltipsGetType func() T.GType
 
 	TooltipsNew func() *T.GtkTooltips
 
@@ -9193,8 +8187,6 @@ var (
 		tooltips **T.GtkTooltips,
 		currentWidget **T.GtkWidget) T.Gboolean
 
-	SizeGroupGetType func() T.GType
-
 	SizeGroupNew func(
 		mode T.GtkSizeGroupMode) *T.GtkSizeGroup
 
@@ -9222,8 +8214,6 @@ var (
 
 	SizeGroupGetWidgets func(
 		sizeGroup *T.GtkSizeGroup) *T.GSList
-
-	ToolItemGetType func() T.GType
 
 	ToolItemNew func() *T.GtkToolItem
 
@@ -9325,8 +8315,6 @@ var (
 	ToolItemToolbarReconfigured func(
 		toolItem *T.GtkToolItem)
 
-	ToolButtonGetType func() T.GType
-
 	ToolButtonNew func(
 		iconWidget *T.GtkWidget,
 		label string) *T.GtkToolItem
@@ -9376,8 +8364,6 @@ var (
 	ToolButtonGetLabelWidget func(
 		button *T.GtkToolButton) *T.GtkWidget
 
-	MenuToolButtonGetType func() T.GType
-
 	MenuToolButtonNew func(
 		iconWidget *T.GtkWidget,
 		label string) *T.GtkToolItem
@@ -9405,8 +8391,6 @@ var (
 	MenuToolButtonSetArrowTooltipMarkup func(
 		button *T.GtkMenuToolButton,
 		markup string)
-
-	MessageDialogGetType func() T.GType
 
 	MessageDialogNew func(
 		parent *T.GtkWindow,
@@ -9448,8 +8432,6 @@ var (
 	MessageDialogGetMessageArea func(
 		messageDialog *T.GtkMessageDialog) *T.GtkWidget
 
-	MountOperationGetType func() T.GType
-
 	MountOperationNew func(
 		parent *T.GtkWindow) *T.GMountOperation
 
@@ -9469,10 +8451,6 @@ var (
 
 	MountOperationGetScreen func(
 		op *T.GtkMountOperation) *T.GdkScreen
-
-	NotebookGetType func() T.GType
-
-	NotebookNew func() *T.GtkWidget
 
 	NotebookAppendPage func(
 		notebook *T.GtkNotebook,
@@ -9701,17 +8679,11 @@ var (
 		widget *T.GtkWidget,
 		packType T.GtkPackType)
 
-	OffscreenWindowGetType func() T.GType
-
-	OffscreenWindowNew func() *T.GtkWidget
-
 	OffscreenWindowGetPixmap func(
 		offscreen *T.GtkOffscreenWindow) *T.GdkPixmap
 
 	OffscreenWindowGetPixbuf func(
 		offscreen *T.GtkOffscreenWindow) *T.GdkPixbuf
-
-	OrientableGetType func() T.GType
 
 	OrientableSetOrientation func(
 		orientable *T.GtkOrientable,
@@ -9719,8 +8691,6 @@ var (
 
 	OrientableGetOrientation func(
 		orientable *T.GtkOrientable) T.GtkOrientation
-
-	PaperSizeGetType func() T.GType
 
 	PaperSizeNew func(
 		name string) *T.GtkPaperSize
@@ -9804,8 +8774,6 @@ var (
 		size *T.GtkPaperSize,
 		keyFile *T.GKeyFile,
 		groupName string)
-
-	PageSetupGetType func() T.GType
 
 	PageSetupNew func() *T.GtkPageSetup
 
@@ -9912,10 +8880,6 @@ var (
 		keyFile *T.GKeyFile,
 		groupName string)
 
-	SocketGetType func() T.GType
-
-	SocketNew func() *T.GtkWidget
-
 	SocketAddId func(
 		socket *T.GtkSocket,
 		windowId T.GdkNativeWindow)
@@ -9929,8 +8893,6 @@ var (
 	SocketSteal func(
 		socket *T.GtkSocket,
 		wid T.GdkNativeWindow)
-
-	PlugGetType func() T.GType
 
 	PlugConstruct func(
 		plug *T.GtkPlug,
@@ -9957,10 +8919,8 @@ var (
 	PlugGetSocketWindow func(
 		plug *T.GtkPlug) *T.GdkWindow
 
-	PrintContextGetType func() T.GType
-
 	PrintContextGetCairoContext func(
-		context *T.GtkPrintContext) *T.CairoT
+		context *T.GtkPrintContext) *T.Cairo
 
 	PrintContextGetPageSetup func(
 		context *T.GtkPrintContext) *T.GtkPageSetup
@@ -9992,8 +8952,6 @@ var (
 
 	PrintContextCreatePangoLayout func(
 		context *T.GtkPrintContext) *T.PangoLayout
-
-	PrintSettingsGetType func() T.GType
 
 	PrintSettingsNew func() *T.GtkPrintSettings
 
@@ -10285,8 +9243,6 @@ var (
 		settings *T.GtkPrintSettings,
 		outputBin string)
 
-	PrintOperationPreviewGetType func() T.GType
-
 	PrintOperationPreviewRenderPage func(
 		preview *T.GtkPrintOperationPreview,
 		pageNr int)
@@ -10299,8 +9255,6 @@ var (
 		pageNr int) T.Gboolean
 
 	PrintErrorQuark func() T.GQuark
-
-	PrintOperationGetType func() T.GType
 
 	PrintOperationNew func() *T.GtkPrintOperation
 
@@ -10422,8 +9376,6 @@ var (
 		doneCb T.GtkPageSetupDoneFunc,
 		data T.Gpointer)
 
-	ProgressGetType func() T.GType
-
 	ProgressSetShowText func(
 		progress *T.GtkProgress,
 		showText T.Gboolean)
@@ -10475,10 +9427,6 @@ var (
 	ProgressGetPercentageFromValue func(
 		progress *T.GtkProgress,
 		value float64) float64
-
-	ProgressBarGetType func() T.GType
-
-	ProgressBarNew func() *T.GtkWidget
 
 	ProgressBarPulse func(
 		pbar *T.GtkProgressBar)
@@ -10541,8 +9489,6 @@ var (
 		pbar *T.GtkProgressBar,
 		percentage float64)
 
-	ToggleActionGetType func() T.GType
-
 	ToggleActionNew func(
 		name string,
 		label string,
@@ -10566,8 +9512,6 @@ var (
 	ToggleActionGetDrawAsRadio func(
 		action *T.GtkToggleAction) T.Gboolean
 
-	RadioActionGetType func() T.GType
-
 	RadioActionNew func(
 		name string,
 		label string,
@@ -10588,8 +9532,6 @@ var (
 	RadioActionSetCurrentValue func(
 		action *T.GtkRadioAction,
 		currentValue int)
-
-	RadioButtonGetType func() T.GType
 
 	RadioButtonNew func(
 		group *T.GSList) *T.GtkWidget
@@ -10620,8 +9562,6 @@ var (
 		radioButton *T.GtkRadioButton,
 		group *T.GSList)
 
-	RadioMenuItemGetType func() T.GType
-
 	RadioMenuItemNew func(
 		group *T.GSList) *T.GtkWidget
 
@@ -10651,8 +9591,6 @@ var (
 		radioMenuItem *T.GtkRadioMenuItem,
 		group *T.GSList)
 
-	ToggleToolButtonGetType func() T.GType
-
 	ToggleToolButtonNew func() *T.GtkToolItem
 
 	ToggleToolButtonNewFromStock func(
@@ -10664,8 +9602,6 @@ var (
 
 	ToggleToolButtonGetActive func(
 		button *T.GtkToggleToolButton) T.Gboolean
-
-	RadioToolButtonGetType func() T.GType
 
 	RadioToolButtonNew func(
 		group *T.GSList) *T.GtkToolItem
@@ -10689,8 +9625,6 @@ var (
 		group *T.GSList)
 
 	RecentManagerErrorQuark func() T.GQuark
-
-	RecentManagerGetType func() T.GType
 
 	RecentManagerNew func() *T.GtkRecentManager
 
@@ -10745,8 +9679,6 @@ var (
 	RecentManagerPurgeItems func(
 		manager *T.GtkRecentManager,
 		error **T.GError) int
-
-	RecentInfoGetType func() T.GType
 
 	RecentInfoRef func(
 		info *T.GtkRecentInfo) *T.GtkRecentInfo
@@ -10827,8 +9759,6 @@ var (
 		infoA *T.GtkRecentInfo,
 		infoB *T.GtkRecentInfo) T.Gboolean
 
-	RecentActionGetType func() T.GType
-
 	RecentActionNew func(
 		name string,
 		label string,
@@ -10848,8 +9778,6 @@ var (
 	RecentActionSetShowNumbers func(
 		action *T.GtkRecentAction,
 		showNumbers T.Gboolean)
-
-	RecentFilterGetType func() T.GType
 
 	RecentFilterNew func() *T.GtkRecentFilter
 
@@ -10898,8 +9826,6 @@ var (
 		filterInfo *T.GtkRecentFilterInfo) T.Gboolean
 
 	RecentChooserErrorQuark func() T.GQuark
-
-	RecentChooserGetType func() T.GType
 
 	RecentChooserSetShowPrivate func(
 		chooser *T.GtkRecentChooser,
@@ -11021,8 +9947,6 @@ var (
 	RecentChooserGetFilter func(
 		chooser *T.GtkRecentChooser) *T.GtkRecentFilter
 
-	RecentChooserDialogGetType func() T.GType
-
 	RecentChooserDialogNew func(
 		title string, parent *T.GtkWindow,
 		firstButtonText string, v ...VArg) *T.GtkWidget
@@ -11031,10 +9955,6 @@ var (
 		title string, parent *T.GtkWindow,
 		manager *T.GtkRecentManager,
 		firstButtonText string, v ...VArg) *T.GtkWidget
-
-	RecentChooserMenuGetType func() T.GType
-
-	RecentChooserMenuNew func() *T.GtkWidget
 
 	RecentChooserMenuNewForManager func(
 		manager *T.GtkRecentManager) *T.GtkWidget
@@ -11046,14 +9966,8 @@ var (
 		menu *T.GtkRecentChooserMenu,
 		showNumbers T.Gboolean)
 
-	RecentChooserWidgetGetType func() T.GType
-
-	RecentChooserWidgetNew func() *T.GtkWidget
-
 	RecentChooserWidgetNewForManager func(
 		manager *T.GtkRecentManager) *T.GtkWidget
-
-	ScaleButtonGetType func() T.GType
 
 	ScaleButtonNew func(
 		size T.GtkIconSize,
@@ -11096,12 +10010,8 @@ var (
 		button *T.GtkScaleButton,
 		orientation T.GtkOrientation)
 
-	VscrollbarGetType func() T.GType
-
 	VscrollbarNew func(
 		adjustment *T.GtkAdjustment) *T.GtkWidget
-
-	ViewportGetType func() T.GType
 
 	ViewportNew func(
 		hadjustment *T.GtkAdjustment,
@@ -11133,8 +10043,6 @@ var (
 
 	ViewportGetViewWindow func(
 		viewport *T.GtkViewport) *T.GdkWindow
-
-	ScrolledWindowGetType func() T.GType
 
 	ScrolledWindowNew func(
 		hadjustment *T.GtkAdjustment,
@@ -11191,12 +10099,6 @@ var (
 		scrolledWindow *T.GtkScrolledWindow,
 		child *T.GtkWidget)
 
-	SeparatorMenuItemGetType func() T.GType
-
-	SeparatorMenuItemNew func() *T.GtkWidget
-
-	SeparatorToolItemGetType func() T.GType
-
 	SeparatorToolItemNew func() *T.GtkToolItem
 
 	SeparatorToolItemGetDraw func(
@@ -11211,8 +10113,6 @@ var (
 		uri string,
 		timestamp T.GUint32,
 		error **T.GError) T.Gboolean
-
-	SpinButtonGetType func() T.GType
 
 	SpinButtonConfigure func(
 		spinButton *T.GtkSpinButton,
@@ -11310,19 +10210,11 @@ var (
 	SpinButtonUpdate func(
 		spinButton *T.GtkSpinButton)
 
-	SpinnerGetType func() T.GType
-
-	SpinnerNew func() *T.GtkWidget
-
 	SpinnerStart func(
 		spinner *T.GtkSpinner)
 
 	SpinnerStop func(
 		spinner *T.GtkSpinner)
-
-	StatusbarGetType func() T.GType
-
-	StatusbarNew func() *T.GtkWidget
 
 	StatusbarGetContextId func(
 		statusbar *T.GtkStatusbar,
@@ -11355,8 +10247,6 @@ var (
 
 	StatusbarGetMessageArea func(
 		statusbar *T.GtkStatusbar) *T.GtkWidget
-
-	StatusIconGetType func() T.GType
 
 	StatusIconNew func() *T.GtkStatusIcon
 
@@ -11515,8 +10405,6 @@ var (
 		dataGpointer,
 		notify T.GDestroyNotify)
 
-	TableGetType func() T.GType
-
 	TableNew func(
 		rows uint,
 		columns uint,
@@ -11591,8 +10479,6 @@ var (
 		rows *uint,
 		columns *uint)
 
-	TextTagTableGetType func() T.GType
-
 	TextTagTableNew func() *T.GtkTextTagTable
 
 	TextTagTableAdd func(
@@ -11614,8 +10500,6 @@ var (
 
 	TextTagTableGetSize func(
 		table *T.GtkTextTagTable) int
-
-	TextMarkGetType func() T.GType
 
 	TextMarkSetVisible func(
 		mark *T.GtkTextMark,
@@ -11639,8 +10523,6 @@ var (
 
 	TextMarkGetLeftGravity func(
 		mark *T.GtkTextMark) T.Gboolean
-
-	TextBufferGetType func() T.GType
 
 	TextBufferNew func(
 		table *T.GtkTextTagTable) *T.GtkTextBuffer
@@ -11992,10 +10874,6 @@ var (
 		length T.Gsize,
 		error **T.GError) T.Gboolean
 
-	TextViewGetType func() T.GType
-
-	TextViewNew func() *T.GtkWidget
-
 	TextViewNewWithBuffer func(buffer *T.GtkTextBuffer) *T.GtkWidget
 
 	TextViewSetBuffer func(textView *T.GtkTextView,
@@ -12190,8 +11068,6 @@ var (
 
 	TextViewGetDefaultAttributes func(textView *T.GtkTextView) *T.GtkTextAttributes
 
-	PixmapGetType func() T.GType
-
 	PixmapNew func(pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap) *T.GtkWidget
 
@@ -12205,10 +11081,6 @@ var (
 
 	PixmapSetBuildInsensitive func(pixmap *T.GtkPixmap,
 		build T.Gboolean)
-
-	ToolbarGetType func() T.GType
-
-	ToolbarNew func() *T.GtkWidget
 
 	ToolbarInsert func(toolbar *T.GtkToolbar,
 		item *T.GtkToolItem,
@@ -12351,8 +11223,6 @@ var (
 		tooltipPrivateText string,
 		position int)
 
-	ToolItemGroupGetType func() T.GType
-
 	ToolItemGroupNew func(label string) *T.GtkWidget
 
 	ToolItemGroupSetLabel func(group *T.GtkToolItemGroup,
@@ -12399,10 +11269,6 @@ var (
 	ToolItemGroupGetDropItem func(group *T.GtkToolItemGroup,
 		x int,
 		y int) *T.GtkToolItem
-
-	ToolPaletteGetType func() T.GType
-
-	ToolPaletteNew func() *T.GtkWidget
 
 	ToolPaletteSetGroupPosition func(palette *T.GtkToolPalette,
 		group *T.GtkToolItemGroup,
@@ -12466,8 +11332,6 @@ var (
 	ToolPaletteGetDragTargetItem func() *T.GtkTargetEntry
 
 	ToolPaletteGetDragTargetGroup func() *T.GtkTargetEntry
-
-	ToolShellGetType func() T.GType
 
 	ToolShellGetIconSize func(shell *T.GtkToolShell) T.GtkIconSize
 
@@ -12534,8 +11398,6 @@ var (
 	TestFindLabel func(widget *T.GtkWidget,
 		labelPattern string) *T.GtkWidget
 
-	TreeDragSourceGetType func() T.GType
-
 	TreeDragSourceRowDraggable func(dragSource *T.GtkTreeDragSource,
 		path *T.GtkTreePath) T.Gboolean
 
@@ -12545,8 +11407,6 @@ var (
 	TreeDragSourceDragDataGet func(dragSource *T.GtkTreeDragSource,
 		path *T.GtkTreePath,
 		selectionData *T.GtkSelectionData) T.Gboolean
-
-	TreeDragDestGetType func() T.GType
 
 	TreeDragDestDragDataReceived func(dragDest *T.GtkTreeDragDest,
 		dest *T.GtkTreePath,
@@ -12563,8 +11423,6 @@ var (
 	TreeGetRowDragData func(selectionData *T.GtkSelectionData,
 		treeModel **T.GtkTreeModel,
 		path **T.GtkTreePath) T.Gboolean
-
-	TreeModelSortGetType func() T.GType
 
 	TreeModelSortNewWithModel func(childModel *T.GtkTreeModel) *T.GtkTreeModel
 
@@ -12590,8 +11448,6 @@ var (
 
 	TreeModelSortIterIsValid func(treeModelSort *T.GtkTreeModelSort,
 		iter *T.GtkTreeIter) T.Gboolean
-
-	TreeSelectionGetType func() T.GType
 
 	TreeSelectionSetMode func(selection *T.GtkTreeSelection,
 		typ T.GtkSelectionMode)
@@ -12651,8 +11507,6 @@ var (
 	TreeSelectionUnselectRange func(selection *T.GtkTreeSelection,
 		startPath *T.GtkTreePath,
 		endPath *T.GtkTreePath)
-
-	TreeStoreGetType func() T.GType
 
 	TreeStoreNew func(
 		nColumns int, v ...VArg) *T.GtkTreeStore
@@ -12749,8 +11603,6 @@ var (
 		iter *T.GtkTreeIter,
 		position *T.GtkTreeIter)
 
-	UiManagerGetType func() T.GType
-
 	UiManagerNew func() *T.GtkUIManager
 
 	UiManagerSetAddTearoffs func(self *T.GtkUIManager,
@@ -12804,10 +11656,6 @@ var (
 
 	UiManagerNewMergeId func(self *T.GtkUIManager) uint
 
-	VbuttonBoxGetType func() T.GType
-
-	VbuttonBoxNew func() *T.GtkWidget
-
 	VbuttonBoxGetSpacingDefault func() int
 
 	VbuttonBoxSetSpacingDefault func(spacing int)
@@ -12816,31 +11664,11 @@ var (
 
 	VbuttonBoxSetLayoutDefault func(layout T.GtkButtonBoxStyle)
 
-	VolumeButtonGetType func() T.GType
-
-	VolumeButtonNew func() *T.GtkWidget
-
-	VpanedGetType func() T.GType
-
-	VpanedNew func() *T.GtkWidget
-
-	VrulerGetType func() T.GType
-
-	VrulerNew func() *T.GtkWidget
-
-	VscaleGetType func() T.GType
-
 	VscaleNew func(adjustment *T.GtkAdjustment) *T.GtkWidget
 
 	VscaleNewWithRange func(min float64,
 		max float64,
 		step float64) *T.GtkWidget
-
-	VseparatorGetType func() T.GType
-
-	VseparatorNew func() *T.GtkWidget
-
-	ClistGetType func() T.GType
 
 	ClistNew func(columns int) *T.GtkWidget
 
@@ -13101,10 +11929,6 @@ var (
 	ClistSetAutoSort func(clist *T.GtkCList,
 		autoSort T.Gboolean)
 
-	ComboGetType func() T.GType
-
-	ComboNew func() *T.GtkWidget
-
 	ComboSetValueInList func(combo *T.GtkCombo,
 		val T.Gboolean,
 		okIfEmpty T.Gboolean)
@@ -13126,8 +11950,6 @@ var (
 		strings *T.GList)
 
 	ComboDisableActivate func(combo *T.GtkCombo)
-
-	CtreeGetType func() T.GType
 
 	CtreeNewWithTitles func(columns int,
 		treeColumn int,
@@ -13422,12 +12244,6 @@ var (
 	CtreeSortRecursive func(ctree *T.GtkCTree,
 		node *T.GtkCTreeNode)
 
-	CtreeNodeGetType func() T.GType
-
-	CurveGetType func() T.GType
-
-	CurveNew func() *T.GtkWidget
-
 	CurveReset func(curve *T.GtkCurve)
 
 	CurveSetGamma func(curve *T.GtkCurve,
@@ -13450,8 +12266,6 @@ var (
 	CurveSetCurveType func(curve *T.GtkCurve,
 		t T.GtkCurveType)
 
-	FileSelectionGetType func() T.GType
-
 	FileSelectionNew func(title string) *T.GtkWidget
 
 	FileSelectionSetFilename func(filesel *T.GtkFileSelection,
@@ -13472,16 +12286,6 @@ var (
 		selectMultiple T.Gboolean)
 
 	FileSelectionGetSelectMultiple func(filesel *T.GtkFileSelection) T.Gboolean
-
-	GammaCurveGetType func() T.GType
-
-	GammaCurveNew func() *T.GtkWidget
-
-	InputDialogGetType func() T.GType
-
-	InputDialogNew func() *T.GtkWidget
-
-	ItemFactoryGetType func() T.GType
 
 	ItemFactoryNew func(containerType T.GType,
 		path string,
@@ -13571,101 +12375,11 @@ var (
 	ItemFactoriesPathDelete func(ifactoryPath string,
 		path string)
 
-	ListGetType func() T.GType
-
-	ListNew func() *T.GtkWidget
-
-	ListInsertItems func(list *T.GtkList,
-		items *T.GList,
-		position int)
-
-	ListAppendItems func(list *T.GtkList,
-		items *T.GList)
-
-	ListPrependItems func(list *T.GtkList,
-		items *T.GList)
-
-	ListRemoveItems func(list *T.GtkList,
-		items *T.GList)
-
-	ListRemoveItemsNoUnref func(list *T.GtkList,
-		items *T.GList)
-
-	ListClearItems func(list *T.GtkList,
-		start int,
-		end int)
-
-	ListSelectItem func(list *T.GtkList,
-		item int)
-
-	ListUnselectItem func(list *T.GtkList,
-		item int)
-
-	ListSelectChild func(list *T.GtkList,
-		child *T.GtkWidget)
-
-	ListUnselectChild func(list *T.GtkList,
-		child *T.GtkWidget)
-
-	ListChildPosition func(list *T.GtkList,
-		child *T.GtkWidget) int
-
-	ListSetSelectionMode func(list *T.GtkList,
-		mode T.GtkSelectionMode)
-
-	ListExtendSelection func(list *T.GtkList,
-		scrollType T.GtkScrollType,
-		position float32,
-		autoStartSelection T.Gboolean)
-
-	ListStartSelection func(list *T.GtkList)
-
-	ListEndSelection func(list *T.GtkList)
-
-	ListSelectAll func(list *T.GtkList)
-
-	ListUnselectAll func(list *T.GtkList)
-
-	ListScrollHorizontal func(list *T.GtkList,
-		scrollType T.GtkScrollType,
-		position float32)
-
-	ListScrollVertical func(list *T.GtkList,
-		scrollType T.GtkScrollType,
-		position float32)
-
-	ListToggleAddMode func(list *T.GtkList)
-
-	ListToggleFocusRow func(list *T.GtkList)
-
-	ListToggleRow func(list *T.GtkList,
-		item *T.GtkWidget)
-
-	ListUndoSelection func(list *T.GtkList)
-
-	ListEndDragSelection func(list *T.GtkList)
-
-	ListItemGetType func() T.GType
-
-	ListItemNew func() *T.GtkWidget
-
-	ListItemNewWithLabel func(label string) *T.GtkWidget
-
-	ListItemSelect func(listItem *T.GtkListItem)
-
-	ListItemDeselect func(listItem *T.GtkListItem)
-
-	OldEditableGetType func() T.GType
-
 	OldEditableClaimSelection func(oldEditable *T.GtkOldEditable,
 		claim T.Gboolean,
 		time T.GUint32)
 
 	OldEditableChanged func(oldEditable *T.GtkOldEditable)
-
-	OptionMenuGetType func() T.GType
-
-	OptionMenuNew func() *T.GtkWidget
 
 	OptionMenuGetMenu func(optionMenu *T.GtkOptionMenu) *T.GtkWidget
 
@@ -13678,8 +12392,6 @@ var (
 
 	OptionMenuSetHistory func(optionMenu *T.GtkOptionMenu,
 		index uint)
-
-	PreviewGetType func() T.GType
 
 	PreviewUninit func()
 
@@ -13729,10 +12441,6 @@ var (
 	PreviewGetInfo func() *T.GtkPreviewInfo
 
 	PreviewReset func()
-
-	TipsQueryGetType func() T.GType
-
-	TipsQueryNew func() *T.GtkWidget
 
 	TipsQueryStartQuery func(tipsQuery *T.GtkTipsQuery)
 
@@ -13957,16 +12665,8 @@ var (
 
 	PrintContextSetCairoContext func(
 		context *T.GtkPrintContext,
-		cr *T.CairoT,
+		cr *T.Cairo,
 		dpiX, dpiY float64)
-
-	TearoffMenuItemGetType func() T.GType
-
-	TearoffMenuItemNew func() *T.GtkWidget
-
-	TreeGetType func() T.GType
-
-	TreeNew func() *T.GtkWidget
 
 	TreeAppend func(tree *T.GtkTree, treeItem *T.GtkWidget)
 
@@ -14003,10 +12703,6 @@ var (
 
 	TreeRemoveItem func(tree *T.GtkTree, child *T.GtkWidget)
 
-	TreeItemGetType func() T.GType
-
-	TreeItemNew func() *T.GtkWidget
-
 	TreeItemNewWithLabel func(label string) *T.GtkWidget
 
 	TreeItemSetSubtree func(
@@ -14034,5 +12730,603 @@ var (
 
 	TypeFlagsFindValue func(
 		flagsType T.GtkType,
+
 		valueName string) *T.GtkFlagValue
+
+	// misc
+
+	TreeViewColumnNew func() *TreeViewColumn
+
+	// funcs with methods
+
+	TreeViewColumnNewWithAttributes func(
+		title string, cell *T.GtkCellRenderer,
+		v ...VArg) *TreeViewColumn
+
+	TreeViewColumnPackStart func(
+		treeColumn *TreeViewColumn,
+		cell *T.GtkCellRenderer,
+		expand T.Gboolean)
+
+	TreeViewColumnPackEnd func(
+		treeColumn *TreeViewColumn,
+		cell *T.GtkCellRenderer,
+		expand T.Gboolean)
+
+	TreeViewColumnClear func(
+		treeColumn *TreeViewColumn)
+
+	TreeViewColumnGetCellRenderers func(
+		treeColumn *TreeViewColumn) *T.GList
+
+	TreeViewColumnAddAttribute func(
+		treeColumn *TreeViewColumn,
+		cellRenderer *T.GtkCellRenderer,
+		attribute string,
+		column int)
+
+	TreeViewColumnSetAttributes func(
+		treeColumn *TreeViewColumn,
+		cellRenderer *T.GtkCellRenderer, v ...VArg)
+
+	TreeViewColumnSetCellDataFunc func(
+		treeColumn *TreeViewColumn,
+		cellRenderer *T.GtkCellRenderer,
+		f T.GtkTreeCellDataFunc,
+		funcDataGpointer,
+		destroy T.GDestroyNotify)
+
+	TreeViewColumnClearAttributes func(
+		treeColumn *TreeViewColumn,
+		cellRenderer *T.GtkCellRenderer)
+
+	TreeViewColumnSetSpacing func(
+		treeColumn *TreeViewColumn,
+		spacing int)
+
+	TreeViewColumnGetSpacing func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnSetVisible func(
+		treeColumn *TreeViewColumn,
+		visible T.Gboolean)
+
+	TreeViewColumnGetVisible func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetResizable func(
+		treeColumn *TreeViewColumn,
+		resizable T.Gboolean)
+
+	TreeViewColumnGetResizable func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetSizing func(
+		treeColumn *TreeViewColumn,
+		typ T.GtkTreeViewColumnSizing)
+
+	TreeViewColumnGetSizing func(
+		treeColumn *TreeViewColumn) T.GtkTreeViewColumnSizing
+
+	TreeViewColumnGetWidth func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnGetFixedWidth func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnSetFixedWidth func(
+		treeColumn *TreeViewColumn,
+		fixedWidth int)
+
+	TreeViewColumnSetMinWidth func(
+		treeColumn *TreeViewColumn,
+		minWidth int)
+
+	TreeViewColumnGetMinWidth func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnSetMaxWidth func(
+		treeColumn *TreeViewColumn,
+		maxWidth int)
+
+	TreeViewColumnGetMaxWidth func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnClicked func(
+		treeColumn *TreeViewColumn)
+
+	TreeViewColumnSetTitle func(
+		treeColumn *TreeViewColumn,
+		title string)
+
+	TreeViewColumnGetTitle func(
+		treeColumn *TreeViewColumn) string
+
+	TreeViewColumnSetExpand func(
+		treeColumn *TreeViewColumn,
+		expand T.Gboolean)
+
+	TreeViewColumnGetExpand func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetClickable func(
+		treeColumn *TreeViewColumn,
+		clickable T.Gboolean)
+
+	TreeViewColumnGetClickable func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetWidget func(
+		treeColumn *TreeViewColumn,
+		widget *T.GtkWidget)
+
+	TreeViewColumnGetWidget func(
+		treeColumn *TreeViewColumn) *T.GtkWidget
+
+	TreeViewColumnSetAlignment func(
+		treeColumn *TreeViewColumn,
+		xalign float32)
+
+	TreeViewColumnGetAlignment func(
+		treeColumn *TreeViewColumn) float32
+
+	TreeViewColumnSetReorderable func(
+		treeColumn *TreeViewColumn,
+		reorderable T.Gboolean)
+
+	TreeViewColumnGetReorderable func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetSortColumnId func(
+		treeColumn *TreeViewColumn,
+		sortColumnId int)
+
+	TreeViewColumnGetSortColumnId func(
+		treeColumn *TreeViewColumn) int
+
+	TreeViewColumnSetSortIndicator func(
+		treeColumn *TreeViewColumn,
+		setting T.Gboolean)
+
+	TreeViewColumnGetSortIndicator func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnSetSortOrder func(
+		treeColumn *TreeViewColumn,
+		order T.GtkSortType)
+
+	TreeViewColumnGetSortOrder func(
+		treeColumn *TreeViewColumn) T.GtkSortType
+
+	TreeViewColumnCellSetCellData func(
+		treeColumn *TreeViewColumn,
+		treeModel *T.GtkTreeModel,
+		iter *T.GtkTreeIter,
+		isExpander T.Gboolean,
+		isExpanded T.Gboolean)
+
+	TreeViewColumnCellGetSize func(
+		treeColumn *TreeViewColumn,
+		cellArea *T.GdkRectangle,
+		xOffset *int,
+		yOffset *int,
+		width *int,
+		height *int)
+
+	TreeViewColumnCellIsVisible func(
+		treeColumn *TreeViewColumn) T.Gboolean
+
+	TreeViewColumnFocusCell func(
+		treeColumn *TreeViewColumn,
+		cell *T.GtkCellRenderer)
+
+	TreeViewColumnCellGetPosition func(
+		treeColumn *TreeViewColumn,
+		cellRenderer *T.GtkCellRenderer,
+		startPos *int,
+		width *int) T.Gboolean
+
+	TreeViewColumnQueueResize func(
+		treeColumn *TreeViewColumn)
+
+	TreeViewColumnGetTreeView func(
+		treeColumn *TreeViewColumn) *T.GtkWidget
+
+	// funcs with methods
+
+	ListInsertItems func(list *List,
+		items *T.GList,
+		position int)
+
+	ListAppendItems func(list *List,
+		items *T.GList)
+
+	ListPrependItems func(list *List,
+		items *T.GList)
+
+	ListRemoveItems func(list *List,
+		items *T.GList)
+
+	ListRemoveItemsNoUnref func(list *List,
+		items *T.GList)
+
+	ListClearItems func(list *List,
+		start int,
+		end int)
+
+	ListSelectItem func(list *List,
+		item int)
+
+	ListUnselectItem func(list *List,
+		item int)
+
+	ListSelectChild func(list *List,
+		child *T.GtkWidget)
+
+	ListUnselectChild func(list *List,
+		child *T.GtkWidget)
+
+	ListChildPosition func(list *List,
+		child *T.GtkWidget) int
+
+	ListSetSelectionMode func(list *List,
+		mode T.GtkSelectionMode)
+
+	ListExtendSelection func(list *List,
+		scrollType T.GtkScrollType,
+		position float32,
+		autoStartSelection T.Gboolean)
+
+	ListStartSelection func(list *List)
+
+	ListEndSelection func(list *List)
+
+	ListSelectAll func(list *List)
+
+	ListUnselectAll func(list *List)
+
+	ListScrollHorizontal func(list *List,
+		scrollType T.GtkScrollType,
+		position float32)
+
+	ListScrollVertical func(list *List,
+		scrollType T.GtkScrollType,
+		position float32)
+
+	ListToggleAddMode func(list *List)
+
+	ListToggleFocusRow func(list *List)
+
+	ListToggleRow func(list *List,
+		item *T.GtkWidget)
+
+	ListUndoSelection func(list *List)
+
+	ListEndDragSelection func(list *List)
+
+	ListItemNewWithLabel func(label string) *T.GtkWidget
+
+	ListItemSelect func(listItem *ListItem)
+
+	ListItemDeselect func(listItem *ListItem)
 )
+
+type (
+	List struct {
+		Container        T.GtkContainer
+		Children         *T.GList
+		Selection        *T.GList
+		Undo_selection   *T.GList
+		Undo_unselection *T.GList
+		Last_focus_child *T.GtkWidget
+		Undo_focus_child *T.GtkWidget
+		Htimer           uint
+		Vtimer           uint
+		Anchor           int
+		Drag_pos         int
+		Anchor_state     T.GtkStateType
+		Bits             uint
+		// selection_mode : 2
+		// drag_selection : 1
+		// add_mode : 1
+	}
+
+	ListItem struct {
+		Item T.GtkItem
+	}
+)
+
+type TreeViewColumn struct{}
+
+func (tc *TreeViewColumn) PackStart(
+	cell *T.GtkCellRenderer, expand T.Gboolean) {
+	TreeViewColumnPackEnd(tc, cell, expand)
+}
+
+func (tc *TreeViewColumn) Clear() { TreeViewColumnClear(tc) }
+
+func (tc *TreeViewColumn) GetCellRenderers() *T.GList {
+	return TreeViewColumnGetCellRenderers(tc)
+}
+
+func (tc *TreeViewColumn) AddAttribute(
+	cellRenderer *T.GtkCellRenderer,
+	attribute string, column int) {
+	TreeViewColumnAddAttribute(
+		tc, cellRenderer, attribute, column)
+}
+
+func (tc *TreeViewColumn) SetAttributes(
+	cellRenderer *T.GtkCellRenderer, v ...VArg) {
+	TreeViewColumnSetAttributes(tc, cellRenderer, v)
+}
+
+func (tc *TreeViewColumn) SetCellDataFunc(
+	cellRenderer *T.GtkCellRenderer, f T.GtkTreeCellDataFunc,
+	funcDataGpointer, destroy T.GDestroyNotify) {
+	TreeViewColumnSetCellDataFunc(
+		tc, cellRenderer, f, funcDataGpointer, destroy)
+}
+
+func (tc *TreeViewColumn) ClearAttributes(
+	cellRenderer *T.GtkCellRenderer) {
+	TreeViewColumnClearAttributes(tc, cellRenderer)
+}
+
+func (tc *TreeViewColumn) SetSpacing(spacing int) {
+	TreeViewColumnSetSpacing(tc, spacing)
+}
+
+func (tc *TreeViewColumn) GetSpacing() int {
+	return TreeViewColumnGetSpacing(tc)
+}
+
+func (tc *TreeViewColumn) SetVisible(visible T.Gboolean) {
+	TreeViewColumnSetVisible(tc, visible)
+}
+
+func (tc *TreeViewColumn) GetVisible() T.Gboolean {
+	return TreeViewColumnGetVisible(tc)
+}
+
+func (tc *TreeViewColumn) SetResizable(resizable T.Gboolean) {
+	TreeViewColumnSetResizable(tc, resizable)
+}
+
+func (tc *TreeViewColumn) GetResizable() T.Gboolean {
+	return TreeViewColumnGetResizable(tc)
+}
+
+func (tc *TreeViewColumn) SetSizing(typ T.GtkTreeViewColumnSizing) {
+	TreeViewColumnSetSizing(tc, typ)
+}
+
+func (tc *TreeViewColumn) GetSizing() T.GtkTreeViewColumnSizing {
+	return TreeViewColumnGetSizing(tc)
+}
+
+func (tc *TreeViewColumn) GetWidth() int {
+	return TreeViewColumnGetWidth(tc)
+}
+
+func (tc *TreeViewColumn) GetFixedWidth() int {
+	return TreeViewColumnGetFixedWidth(tc)
+}
+
+func (tc *TreeViewColumn) SetFixedWidth(fixedWidth int) {
+	TreeViewColumnSetFixedWidth(tc, fixedWidth)
+}
+
+func (tc *TreeViewColumn) SetMinWidth(minWidth int) {
+	TreeViewColumnSetMinWidth(tc, minWidth)
+}
+
+func (tc *TreeViewColumn) GetMinWidth() int {
+	return TreeViewColumnGetMinWidth(tc)
+}
+
+func (tc *TreeViewColumn) SetMaxWidth(maxWidth int) {
+	TreeViewColumnSetMaxWidth(tc, maxWidth)
+}
+
+func (tc *TreeViewColumn) GetMaxWidth() int {
+	return TreeViewColumnGetMaxWidth(tc)
+}
+
+func (tc *TreeViewColumn) Clicked() {
+	TreeViewColumnClicked(tc)
+}
+
+func (tc *TreeViewColumn) SetTitle(title string) {
+	TreeViewColumnSetTitle(tc, title)
+}
+
+func (tc *TreeViewColumn) GetTitle() string {
+	return TreeViewColumnGetTitle(tc)
+}
+
+func (tc *TreeViewColumn) SetExpand(expand T.Gboolean) {
+	TreeViewColumnSetExpand(tc, expand)
+}
+
+func (tc *TreeViewColumn) GetExpand() T.Gboolean {
+	return TreeViewColumnGetExpand(tc)
+}
+
+func (tc *TreeViewColumn) SetClickable(clickable T.Gboolean) {
+	TreeViewColumnSetClickable(tc, clickable)
+}
+
+func (tc *TreeViewColumn) GetClickable() T.Gboolean {
+	return TreeViewColumnGetClickable(tc)
+}
+
+func (tc *TreeViewColumn) SetWidget(widget *T.GtkWidget) {
+	TreeViewColumnSetWidget(tc, widget)
+}
+
+func (tc *TreeViewColumn) GetWidget() *T.GtkWidget {
+	return TreeViewColumnGetWidget(tc)
+}
+
+func (tc *TreeViewColumn) SetAlignment(xalign float32) {
+	TreeViewColumnSetAlignment(tc, xalign)
+}
+
+func (tc *TreeViewColumn) GetAlignment() float32 {
+	return TreeViewColumnGetAlignment(tc)
+}
+
+func (tc *TreeViewColumn) SetReorderable(reorderable T.Gboolean) {
+	TreeViewColumnSetReorderable(tc, reorderable)
+}
+
+func (tc *TreeViewColumn) GetReorderable() T.Gboolean {
+	return TreeViewColumnGetReorderable(tc)
+}
+
+func (tc *TreeViewColumn) SetSortColumnId(sortColumnId int) {
+	TreeViewColumnSetSortColumnId(tc, sortColumnId)
+}
+
+func (tc *TreeViewColumn) GetSortColumnId() int {
+	return TreeViewColumnGetSortColumnId(tc)
+}
+
+func (tc *TreeViewColumn) SetSortIndicator(setting T.Gboolean) {
+	TreeViewColumnSetSortIndicator(tc, setting)
+}
+
+func (tc *TreeViewColumn) GetSortIndicator() T.Gboolean {
+	return TreeViewColumnGetSortIndicator(tc)
+}
+
+func (tc *TreeViewColumn) SetSortOrder(order T.GtkSortType) {
+	TreeViewColumnSetSortOrder(tc, order)
+}
+
+func (tc *TreeViewColumn) GetSortOrder() T.GtkSortType {
+	return TreeViewColumnGetSortOrder(tc)
+}
+
+func (tc *TreeViewColumn) CellSetCellData(
+	treeModel *T.GtkTreeModel, iter *T.GtkTreeIter,
+	isExpander, isExpanded T.Gboolean) {
+	TreeViewColumnCellSetCellData(
+		tc, treeModel, iter, isExpander, isExpanded)
+}
+
+func (tc *TreeViewColumn) CellGetSize(cellArea *T.GdkRectangle,
+	xOffset, yOffset, width, height *int) {
+	TreeViewColumnCellGetSize(
+		tc, cellArea, xOffset, yOffset, width, height)
+}
+
+func (tc *TreeViewColumn) CellIsVisible() T.Gboolean {
+	return TreeViewColumnCellIsVisible(tc)
+}
+
+func (tc *TreeViewColumn) FocusCell(cell *T.GtkCellRenderer) {
+	TreeViewColumnFocusCell(tc, cell)
+}
+
+func (tc *TreeViewColumn) CellGetPosition(
+	cellRenderer *T.GtkCellRenderer, startPos *int,
+	width *int) T.Gboolean {
+	return TreeViewColumnCellGetPosition(
+		tc, cellRenderer, startPos, width)
+}
+
+func (tc *TreeViewColumn) QueueResize() {
+	TreeViewColumnQueueResize(tc)
+}
+
+func (tc *TreeViewColumn) GetTreeView() *T.GtkWidget {
+	return TreeViewColumnGetTreeView(tc)
+}
+
+func (l *List) InsertItems(items *T.GList, position int) {
+	ListInsertItems(l, items, position)
+}
+
+func (l *List) AppendItems(items *T.GList) {
+	ListAppendItems(l, items)
+}
+
+func (l *List) PrependItems(items *T.GList) {
+	ListPrependItems(l, items)
+}
+
+func (l *List) RemoveItems(items *T.GList) {
+	ListRemoveItems(l, items)
+}
+
+func (l *List) RemoveItemsNoUnref(items *T.GList) {
+	ListRemoveItemsNoUnref(l, items)
+}
+
+func (l *List) ClearItems(start int, end int) {
+	ListClearItems(l, start, end)
+}
+
+func (l *List) SelectItem(item int) { ListSelectItem(l, item) }
+
+func (l *List) UnselectItem(item int) {
+	ListUnselectItem(l, item)
+}
+
+func (l *List) SelectChild(child *T.GtkWidget) {
+	ListSelectChild(l, child)
+}
+
+func (l *List) UnselectChild(child *T.GtkWidget) {
+	ListUnselectChild(l, child)
+}
+
+func (l *List) ChildPosition(child *T.GtkWidget) int {
+	return ListChildPosition(l, child)
+}
+
+func (l *List) SetSelectionMode(mode T.GtkSelectionMode) {
+	ListSetSelectionMode(l, mode)
+}
+
+func (l *List) ExtendSelection(scrollType T.GtkScrollType,
+	position float32, autoStartSelection T.Gboolean) {
+	ListExtendSelection(
+		l, scrollType, position, autoStartSelection)
+}
+
+func (l *List) StartSelection() { ListStartSelection(l) }
+
+func (l *List) EndSelection() { ListEndSelection(l) }
+
+func (l *List) SelectAll() { ListSelectAll(l) }
+
+func (l *List) UnselectAll() { ListUnselectAll(l) }
+
+func (l *List) ScrollHorizontal(
+	scrollType T.GtkScrollType, position float32) {
+	ListScrollHorizontal(l, scrollType, position)
+}
+
+func (l *List) ScrollVertical(
+	scrollType T.GtkScrollType, position float32) {
+	ListScrollVertical(l, scrollType, position)
+}
+
+func (l *List) ToggleAddMode() { ListToggleAddMode(l) }
+
+func (l *List) ToggleFocusRow() { ListToggleFocusRow(l) }
+
+func (l *List) ToggleRow(item *T.GtkWidget) {
+	ListToggleRow(l, item)
+}
+
+func (l *List) UndoSelection() { ListUndoSelection(l) }
+
+func (l *List) EndDragSelection() { ListEndDragSelection(l) }
+
+func (i *ListItem) ItemSelect() { ListItemSelect(i) }
+
+func (i *ListItem) ItemDeselect() { ListItemDeselect(i) }

@@ -16,1089 +16,1089 @@ func init() {
 }
 
 var (
-	G_app_info_get_type func() T.GType
+	AppInfoGetType func() T.GType
 
-	G_app_info_create_from_commandline func(
+	AppInfoCreateFromCommandline func(
 		commandline string,
-		application_name string,
+		applicationName string,
 		flags T.GAppInfoCreateFlags,
 		err **T.GError) *T.GAppInfo
 
-	G_app_info_dup func(appinfo *T.GAppInfo) *T.GAppInfo
+	AppInfoDup func(appinfo *T.GAppInfo) *T.GAppInfo
 
-	G_app_info_equal func(
+	AppInfoEqual func(
 		appinfo1 *T.GAppInfo, appinfo2 *T.GAppInfo) T.Gboolean
 
-	G_app_info_get_id func(appinfo *T.GAppInfo) string
+	AppInfoGetId func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_name func(appinfo *T.GAppInfo) string
+	AppInfoGetName func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_display_name func(appinfo *T.GAppInfo) string
+	AppInfoGetDisplayName func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_description func(appinfo *T.GAppInfo) string
+	AppInfoGetDescription func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_executable func(appinfo *T.GAppInfo) string
+	AppInfoGetExecutable func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_commandline func(appinfo *T.GAppInfo) string
+	AppInfoGetCommandline func(appinfo *T.GAppInfo) string
 
-	G_app_info_get_icon func(appinfo *T.GAppInfo) *T.GIcon
+	AppInfoGetIcon func(appinfo *T.GAppInfo) *T.GIcon
 
-	G_app_info_launch func(
+	AppInfoLaunch func(
 		appinfo *T.GAppInfo,
 		files *T.GList,
-		launch_context *T.GAppLaunchContext,
+		launchContext *T.GAppLaunchContext,
 		err **T.GError) T.Gboolean
 
-	G_app_info_supports_uris func(appinfo *T.GAppInfo) T.Gboolean
+	AppInfoSupportsUris func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_supports_files func(appinfo *T.GAppInfo) T.Gboolean
+	AppInfoSupportsFiles func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_launch_uris func(
+	AppInfoLaunchUris func(
 		appinfo *T.GAppInfo,
 		uris *T.GList,
-		launch_context *T.GAppLaunchContext,
+		launchContext *T.GAppLaunchContext,
 		err **T.GError) T.Gboolean
 
-	G_app_info_should_show func(appinfo *T.GAppInfo) T.Gboolean
+	AppInfoShouldShow func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_set_as_default_for_type func(
+	AppInfoSetAsDefaultForType func(
 		appinfo *T.GAppInfo,
-		content_type string,
+		contentType string,
 		err **T.GError) T.Gboolean
 
-	G_app_info_set_as_default_for_extension func(
+	AppInfoSetAsDefaultForExtension func(
 		appinfo *T.GAppInfo,
 		extension string,
 		err **T.GError) T.Gboolean
 
-	G_app_info_add_supports_type func(
+	AppInfoAddSupportsType func(
 		appinfo *T.GAppInfo,
-		content_type string,
+		contentType string,
 		err **T.GError) T.Gboolean
 
-	G_app_info_can_remove_supports_type func(
+	AppInfoCanRemoveSupportsType func(
 		appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_remove_supports_type func(
+	AppInfoRemoveSupportsType func(
 		appinfo *T.GAppInfo,
-		content_type string,
+		contentType string,
 		err **T.GError) T.Gboolean
 
-	G_app_info_can_delete func(appinfo *T.GAppInfo) T.Gboolean
+	AppInfoCanDelete func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_delete func(appinfo *T.GAppInfo) T.Gboolean
+	AppInfoDelete func(appinfo *T.GAppInfo) T.Gboolean
 
-	G_app_info_set_as_last_used_for_type func(
+	AppInfoSetAsLastUsedForType func(
 		appinfo *T.GAppInfo,
-		content_type string,
+		contentType string,
 		err **T.GError) T.Gboolean
 
-	G_app_info_get_all func() *T.GList
+	AppInfoGetAll func() *T.GList
 
-	G_app_info_get_all_for_type func(content_type string) *T.GList
+	AppInfoGetAllForType func(contentType string) *T.GList
 
-	G_app_info_get_recommended_for_type func(
-		content_type string) *T.GList
+	AppInfoGetRecommendedForType func(
+		contentType string) *T.GList
 
-	G_app_info_get_fallback_for_type func(
-		content_type string) *T.GList
+	AppInfoGetFallbackForType func(
+		contentType string) *T.GList
 
-	G_app_info_reset_type_associations func(content_type string)
+	AppInfoResetTypeAssociations func(contentType string)
 
-	G_app_info_get_default_for_type func(
-		content_type string,
-		must_support_uris T.Gboolean) *T.GAppInfo
+	AppInfoGetDefaultForType func(
+		contentType string,
+		mustSupportUris T.Gboolean) *T.GAppInfo
 
-	G_app_info_get_default_for_uri_scheme func(
-		uri_scheme string) *T.GAppInfo
+	AppInfoGetDefaultForUriScheme func(
+		uriScheme string) *T.GAppInfo
 
-	G_app_info_launch_default_for_uri func(
+	AppInfoLaunchDefaultForUri func(
 		uri string,
-		launch_context *T.GAppLaunchContext,
+		launchContext *T.GAppLaunchContext,
 		err **T.GError) T.Gboolean
 
-	G_app_launch_context_get_type func() T.GType
+	AppLaunchContextGetType func() T.GType
 
-	G_app_launch_context_new func() *T.GAppLaunchContext
+	AppLaunchContextNew func() *T.GAppLaunchContext
 
-	G_app_launch_context_get_display func(
+	AppLaunchContextGetDisplay func(
 		context *T.GAppLaunchContext,
 		info *T.GAppInfo,
 		files *T.GList) string
 
-	G_app_launch_context_get_startup_notify_id func(
+	AppLaunchContextGetStartupNotifyId func(
 		context *T.GAppLaunchContext,
 		info *T.GAppInfo,
 		files *T.GList) string
 
-	G_app_launch_context_launch_failed func(
+	AppLaunchContextLaunchFailed func(
 		context *T.GAppLaunchContext,
-		startup_notify_id string)
+		startupNotifyId string)
 
-	G_action_get_type func() T.GType
+	ActionGetType func() T.GType
 
-	G_action_get_name func(action *T.GAction) string
+	ActionGetName func(action *T.GAction) string
 
-	G_action_get_parameter_type func(action *T.GAction) *T.GVariantType
+	ActionGetParameterType func(action *T.GAction) *T.GVariantType
 
-	G_action_get_state_type func(action *T.GAction) *T.GVariantType
+	ActionGetStateType func(action *T.GAction) *T.GVariantType
 
-	G_action_get_state_hint func(action *T.GAction) *T.GVariant
+	ActionGetStateHint func(action *T.GAction) *T.GVariant
 
-	G_action_get_enabled func(action *T.GAction) T.Gboolean
+	ActionGetEnabled func(action *T.GAction) T.Gboolean
 
-	G_action_get_state func(action *T.GAction) *T.GVariant
+	ActionGetState func(action *T.GAction) *T.GVariant
 
-	G_action_set_state func(action *T.GAction, value *T.GVariant)
+	ActionSetState func(action *T.GAction, value *T.GVariant)
 
-	G_action_activate func(action *T.GAction, parameter *T.GVariant)
+	ActionActivate func(action *T.GAction, parameter *T.GVariant)
 
-	G_simple_action_get_type func() T.GType
+	SimpleActionGetType func() T.GType
 
-	G_simple_action_new func(
-		name string, parameter_type *T.GVariantType) *T.GSimpleAction
+	SimpleActionNew func(
+		name string, parameterType *T.GVariantType) *T.GSimpleAction
 
-	G_simple_action_new_stateful func(
+	SimpleActionNewStateful func(
 		name string,
-		parameter_type *T.GVariantType,
+		parameterType *T.GVariantType,
 		state *T.GVariant) *T.GSimpleAction
 
-	G_simple_action_set_enabled func(
+	SimpleActionSetEnabled func(
 		simple *T.GSimpleAction,
 		enabled T.Gboolean)
 
-	G_action_group_get_type func() T.GType
+	ActionGroupGetType func() T.GType
 
-	G_action_group_has_action func(
-		action_group *T.GActionGroup,
-		action_name string) T.Gboolean
+	ActionGroupHasAction func(
+		actionGroup *T.GActionGroup,
+		actionName string) T.Gboolean
 
-	G_action_group_list_actions func(
-		action_group *T.GActionGroup) **T.Gchar
+	ActionGroupListActions func(
+		actionGroup *T.GActionGroup) **T.Gchar
 
-	G_action_group_get_action_parameter_type func(
-		action_group *T.GActionGroup,
-		action_name string) *T.GVariantType
+	ActionGroupGetActionParameterType func(
+		actionGroup *T.GActionGroup,
+		actionName string) *T.GVariantType
 
-	G_action_group_get_action_state_type func(
-		action_group *T.GActionGroup,
-		action_name string) *T.GVariantType
+	ActionGroupGetActionStateType func(
+		actionGroup *T.GActionGroup,
+		actionName string) *T.GVariantType
 
-	G_action_group_get_action_state_hint func(
-		action_group *T.GActionGroup,
-		action_name string) *T.GVariant
+	ActionGroupGetActionStateHint func(
+		actionGroup *T.GActionGroup,
+		actionName string) *T.GVariant
 
-	G_action_group_get_action_enabled func(
-		action_group *T.GActionGroup,
-		action_name string) T.Gboolean
+	ActionGroupGetActionEnabled func(
+		actionGroup *T.GActionGroup,
+		actionName string) T.Gboolean
 
-	G_action_group_get_action_state func(
-		action_group *T.GActionGroup,
-		action_name string) *T.GVariant
+	ActionGroupGetActionState func(
+		actionGroup *T.GActionGroup,
+		actionName string) *T.GVariant
 
-	G_action_group_change_action_state func(
-		action_group *T.GActionGroup,
-		action_name string,
+	ActionGroupChangeActionState func(
+		actionGroup *T.GActionGroup,
+		actionName string,
 		value *T.GVariant)
 
-	G_action_group_activate_action func(
-		action_group *T.GActionGroup,
-		action_name string,
+	ActionGroupActivateAction func(
+		actionGroup *T.GActionGroup,
+		actionName string,
 		parameter *T.GVariant)
 
-	G_action_group_action_added func(
-		action_group *T.GActionGroup,
-		action_name string)
+	ActionGroupActionAdded func(
+		actionGroup *T.GActionGroup,
+		actionName string)
 
-	G_action_group_action_removed func(
-		action_group *T.GActionGroup,
-		action_name string)
+	ActionGroupActionRemoved func(
+		actionGroup *T.GActionGroup,
+		actionName string)
 
-	G_action_group_action_enabled_changed func(
-		action_group *T.GActionGroup,
-		action_name string,
+	ActionGroupActionEnabledChanged func(
+		actionGroup *T.GActionGroup,
+		actionName string,
 		enabled T.Gboolean)
 
-	G_action_group_action_state_changed func(
-		action_group *T.GActionGroup,
-		action_name string,
+	ActionGroupActionStateChanged func(
+		actionGroup *T.GActionGroup,
+		actionName string,
 		state *T.GVariant)
 
-	G_simple_action_group_get_type func() T.GType
+	SimpleActionGroupGetType func() T.GType
 
-	G_simple_action_group_new func() *T.GSimpleActionGroup
+	SimpleActionGroupNew func() *T.GSimpleActionGroup
 
-	G_simple_action_group_lookup func(
+	SimpleActionGroupLookup func(
 		simple *T.GSimpleActionGroup,
-		action_name string) *T.GAction
+		actionName string) *T.GAction
 
-	G_simple_action_group_insert func(
+	SimpleActionGroupInsert func(
 		simple *T.GSimpleActionGroup,
 		action *T.GAction)
 
-	G_simple_action_group_remove func(
+	SimpleActionGroupRemove func(
 		simple *T.GSimpleActionGroup,
-		action_name string)
+		actionName string)
 
-	G_application_get_type func() T.GType
+	ApplicationGetType func() T.GType
 
-	G_application_id_is_valid func(
-		application_id string) T.Gboolean
+	ApplicationIdIsValid func(
+		applicationId string) T.Gboolean
 
-	G_application_new func(
-		application_id string,
+	ApplicationNew func(
+		applicationId string,
 		flags T.GApplicationFlags) *T.GApplication
 
-	G_application_get_application_id func(
+	ApplicationGetApplicationId func(
 		application *T.GApplication) string
 
-	G_application_set_application_id func(
+	ApplicationSetApplicationId func(
 		application *T.GApplication,
-		application_id string)
+		applicationId string)
 
-	G_application_get_inactivity_timeout func(
+	ApplicationGetInactivityTimeout func(
 		application *T.GApplication) uint
 
-	G_application_set_inactivity_timeout func(
+	ApplicationSetInactivityTimeout func(
 		application *T.GApplication,
-		inactivity_timeout uint)
+		inactivityTimeout uint)
 
-	G_application_get_flags func(
+	ApplicationGetFlags func(
 		application *T.GApplication) T.GApplicationFlags
 
-	G_application_set_flags func(
+	ApplicationSetFlags func(
 		application *T.GApplication,
 		flags T.GApplicationFlags)
 
-	G_application_set_action_group func(
+	ApplicationSetActionGroup func(
 		application *T.GApplication,
-		action_group *T.GActionGroup)
+		actionGroup *T.GActionGroup)
 
-	G_application_get_is_registered func(
+	ApplicationGetIsRegistered func(
 		application *T.GApplication) T.Gboolean
 
-	G_application_get_is_remote func(
+	ApplicationGetIsRemote func(
 		application *T.GApplication) T.Gboolean
 
-	G_application_register func(
+	ApplicationRegister func(
 		application *T.GApplication,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_application_hold func(
+	ApplicationHold func(
 		application *T.GApplication)
 
-	G_application_release func(
+	ApplicationRelease func(
 		application *T.GApplication)
 
-	G_application_activate func(
+	ApplicationActivate func(
 		application *T.GApplication)
 
-	G_application_open func(
+	ApplicationOpen func(
 		application *T.GApplication,
 		files **T.GFile,
-		n_files int,
+		nFiles int,
 		hint string)
 
-	G_application_run func(
+	ApplicationRun func(
 		application *T.GApplication,
 		argc int,
 		argv **T.Char) int
 
-	G_application_command_line_get_type func() T.GType
+	ApplicationCommandLineGetType func() T.GType
 
-	G_application_command_line_get_arguments func(
+	ApplicationCommandLineGetArguments func(
 		cmdline *T.GApplicationCommandLine,
 		argc *int) **T.Gchar
 
-	G_application_command_line_get_environ func(
+	ApplicationCommandLineGetEnviron func(
 		cmdline *T.GApplicationCommandLine) **T.Gchar
 
-	G_application_command_line_getenv func(
+	ApplicationCommandLineGetenv func(
 		cmdline *T.GApplicationCommandLine,
 		name string) string
 
-	G_application_command_line_get_cwd func(
+	ApplicationCommandLineGetCwd func(
 		cmdline *T.GApplicationCommandLine) string
 
-	G_application_command_line_get_is_remote func(
+	ApplicationCommandLineGetIsRemote func(
 		cmdline *T.GApplicationCommandLine) T.Gboolean
 
-	G_application_command_line_print func(
+	ApplicationCommandLinePrint func(
 		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
-	G_application_command_line_printerr func(
+	ApplicationCommandLinePrinterr func(
 		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
 
-	G_application_command_line_get_exit_status func(
+	ApplicationCommandLineGetExitStatus func(
 		cmdline *T.GApplicationCommandLine) int
 
-	G_application_command_line_set_exit_status func(
+	ApplicationCommandLineSetExitStatus func(
 		cmdline *T.GApplicationCommandLine,
-		exit_status int)
+		exitStatus int)
 
-	G_application_command_line_get_platform_data func(
+	ApplicationCommandLineGetPlatformData func(
 		cmdline *T.GApplicationCommandLine) *T.GVariant
 
-	G_initable_get_type func() T.GType
+	InitableGetType func() T.GType
 
-	G_initable_init func(
+	InitableInit func(
 		initable *T.GInitable,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_initable_new func(object_type T.GType,
+	InitableNew func(objectType T.GType,
 		cancellable *T.GCancellable, e **T.GError,
-		first_property_name string, v ...VArg) T.Gpointer
+		firstPropertyName string, v ...VArg) T.Gpointer
 
-	G_initable_newv func(
-		object_type T.GType,
-		n_parameters uint,
+	InitableNewv func(
+		objectType T.GType,
+		nParameters uint,
 		parameters *T.GParameter,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gpointer
 
-	G_initable_new_valist func(
-		object_type T.GType,
-		first_property_name string,
-		var_args T.Va_list,
+	InitableNewValist func(
+		objectType T.GType,
+		firstPropertyName string,
+		varArgs T.VaList,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GObject
 
-	G_async_initable_get_type func() T.GType
+	AsyncInitableGetType func() T.GType
 
-	G_async_initable_init_async func(
+	AsyncInitableInitAsync func(
 		initable *T.GAsyncInitable,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_async_initable_init_finish func(
+	AsyncInitableInitFinish func(
 		initable *T.GAsyncInitable,
 		res *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_async_initable_new_async func(object_type T.GType,
-		io_priority int, cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback, user_data T.Gpointer,
-		first_property_name string, v ...VArg)
+	AsyncInitableNewAsync func(objectType T.GType,
+		ioPriority int, cancellable *T.GCancellable,
+		callback T.GAsyncReadyCallback, userData T.Gpointer,
+		firstPropertyName string, v ...VArg)
 
-	G_async_initable_newv_async func(
-		object_type T.GType,
-		n_parameters uint,
+	AsyncInitableNewvAsync func(
+		objectType T.GType,
+		nParameters uint,
 		parameters *T.GParameter,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_async_initable_new_valist_async func(
-		object_type T.GType,
-		first_property_name string,
-		var_args T.Va_list,
-		io_priority int,
+	AsyncInitableNewValistAsync func(
+		objectType T.GType,
+		firstPropertyName string,
+		varArgs T.VaList,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_async_initable_new_finish func(
+	AsyncInitableNewFinish func(
 		initable *T.GAsyncInitable,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GObject
 
-	G_async_result_get_type func() T.GType
+	AsyncResultGetType func() T.GType
 
-	G_async_result_get_user_data func(
+	AsyncResultGetUserData func(
 		res *T.GAsyncResult) T.Gpointer
 
-	G_async_result_get_source_object func(
+	AsyncResultGetSourceObject func(
 		res *T.GAsyncResult) *T.GObject
 
-	G_input_stream_get_type func() T.GType
+	InputStreamGetType func() T.GType
 
-	G_input_stream_read func(
+	InputStreamRead func(
 		stream *T.GInputStream,
 		buffer *T.Void,
 		count T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_input_stream_read_all func(
+	InputStreamReadAll func(
 		stream *T.GInputStream,
 		buffer *T.Void,
 		count T.Gsize,
-		bytes_read *T.Gsize,
+		bytesRead *T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_input_stream_skip func(
+	InputStreamSkip func(
 		stream *T.GInputStream,
 		count T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_input_stream_close func(
+	InputStreamClose func(
 		stream *T.GInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_input_stream_read_async func(
+	InputStreamReadAsync func(
 		stream *T.GInputStream,
 		buffer *T.Void,
 		count T.Gsize,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_input_stream_read_finish func(
+	InputStreamReadFinish func(
 		stream *T.GInputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gssize
 
-	G_input_stream_skip_async func(
+	InputStreamSkipAsync func(
 		stream *T.GInputStream,
 		count T.Gsize,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_input_stream_skip_finish func(
+	InputStreamSkipFinish func(
 		stream *T.GInputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gssize
 
-	G_input_stream_close_async func(
+	InputStreamCloseAsync func(
 		stream *T.GInputStream,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_input_stream_close_finish func(
+	InputStreamCloseFinish func(
 		stream *T.GInputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_input_stream_is_closed func(
+	InputStreamIsClosed func(
 		stream *T.GInputStream) T.Gboolean
 
-	G_input_stream_has_pending func(
+	InputStreamHasPending func(
 		stream *T.GInputStream) T.Gboolean
 
-	G_input_stream_set_pending func(
+	InputStreamSetPending func(
 		stream *T.GInputStream,
 		err **T.GError) T.Gboolean
 
-	G_input_stream_clear_pending func(
+	InputStreamClearPending func(
 		stream *T.GInputStream)
 
-	G_filter_input_stream_get_type func() T.GType
+	FilterInputStreamGetType func() T.GType
 
-	G_filter_input_stream_get_base_stream func(
+	FilterInputStreamGetBaseStream func(
 		stream *T.GFilterInputStream) *T.GInputStream
 
-	G_filter_input_stream_get_close_base_stream func(
+	FilterInputStreamGetCloseBaseStream func(
 		stream *T.GFilterInputStream) T.Gboolean
 
-	G_filter_input_stream_set_close_base_stream func(
+	FilterInputStreamSetCloseBaseStream func(
 		stream *T.GFilterInputStream,
-		close_base T.Gboolean)
+		closeBase T.Gboolean)
 
-	G_buffered_input_stream_get_type func() T.GType
+	BufferedInputStreamGetType func() T.GType
 
-	G_buffered_input_stream_new func(
-		base_stream *T.GInputStream) *T.GInputStream
+	BufferedInputStreamNew func(
+		baseStream *T.GInputStream) *T.GInputStream
 
-	G_buffered_input_stream_new_sized func(
-		base_stream *T.GInputStream,
+	BufferedInputStreamNewSized func(
+		baseStream *T.GInputStream,
 		size T.Gsize) *T.GInputStream
 
-	G_buffered_input_stream_get_buffer_size func(
+	BufferedInputStreamGetBufferSize func(
 		stream *T.GBufferedInputStream) T.Gsize
 
-	G_buffered_input_stream_set_buffer_size func(
+	BufferedInputStreamSetBufferSize func(
 		stream *T.GBufferedInputStream,
 		size T.Gsize)
 
-	G_buffered_input_stream_get_available func(
+	BufferedInputStreamGetAvailable func(
 		stream *T.GBufferedInputStream) T.Gsize
 
-	G_buffered_input_stream_peek func(
+	BufferedInputStreamPeek func(
 		stream *T.GBufferedInputStream,
 		buffer *T.Void,
 		offset T.Gsize,
 		count T.Gsize) T.Gsize
 
-	G_buffered_input_stream_peek_buffer func(
+	BufferedInputStreamPeekBuffer func(
 		stream *T.GBufferedInputStream,
 		count *T.Gsize) *T.Void
 
-	G_buffered_input_stream_fill func(
+	BufferedInputStreamFill func(
 		stream *T.GBufferedInputStream,
 		count T.Gssize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_buffered_input_stream_fill_async func(
+	BufferedInputStreamFillAsync func(
 		stream *T.GBufferedInputStream,
 		count T.Gssize,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_buffered_input_stream_fill_finish func(
+	BufferedInputStreamFillFinish func(
 		stream *T.GBufferedInputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gssize
 
-	G_buffered_input_stream_read_byte func(
+	BufferedInputStreamReadByte func(
 		stream *T.GBufferedInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) int
 
-	G_output_stream_get_type func() T.GType
+	OutputStreamGetType func() T.GType
 
-	G_output_stream_write func(
+	OutputStreamWrite func(
 		stream *T.GOutputStream,
 		buffer *T.Void,
 		count T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_output_stream_write_all func(
+	OutputStreamWriteAll func(
 		stream *T.GOutputStream,
 		buffer *T.Void,
 		count T.Gsize,
-		bytes_written *T.Gsize,
+		bytesWritten *T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_splice func(
+	OutputStreamSplice func(
 		stream *T.GOutputStream,
 		source *T.GInputStream,
 		flags T.GOutputStreamSpliceFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_output_stream_flush func(
+	OutputStreamFlush func(
 		stream *T.GOutputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_close func(
+	OutputStreamClose func(
 		stream *T.GOutputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_write_async func(
+	OutputStreamWriteAsync func(
 		stream *T.GOutputStream,
 		buffer *T.Void,
 		count T.Gsize,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_output_stream_write_finish func(
+	OutputStreamWriteFinish func(
 		stream *T.GOutputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gssize
 
-	G_output_stream_splice_async func(
+	OutputStreamSpliceAsync func(
 		stream *T.GOutputStream,
 		source *T.GInputStream,
 		flags T.GOutputStreamSpliceFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_output_stream_splice_finish func(
+	OutputStreamSpliceFinish func(
 		stream *T.GOutputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gssize
 
-	G_output_stream_flush_async func(
+	OutputStreamFlushAsync func(
 		stream *T.GOutputStream,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_output_stream_flush_finish func(
+	OutputStreamFlushFinish func(
 		stream *T.GOutputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_close_async func(
+	OutputStreamCloseAsync func(
 		stream *T.GOutputStream,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_output_stream_close_finish func(
+	OutputStreamCloseFinish func(
 		stream *T.GOutputStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_is_closed func(
+	OutputStreamIsClosed func(
 		stream *T.GOutputStream) T.Gboolean
 
-	G_output_stream_is_closing func(
+	OutputStreamIsClosing func(
 		stream *T.GOutputStream) T.Gboolean
 
-	G_output_stream_has_pending func(
+	OutputStreamHasPending func(
 		stream *T.GOutputStream) T.Gboolean
 
-	G_output_stream_set_pending func(
+	OutputStreamSetPending func(
 		stream *T.GOutputStream,
 		err **T.GError) T.Gboolean
 
-	G_output_stream_clear_pending func(
+	OutputStreamClearPending func(
 		stream *T.GOutputStream)
 
-	G_filter_output_stream_get_type func() T.GType
+	FilterOutputStreamGetType func() T.GType
 
-	G_filter_output_stream_get_base_stream func(
+	FilterOutputStreamGetBaseStream func(
 		stream *T.GFilterOutputStream) *T.GOutputStream
 
-	G_filter_output_stream_get_close_base_stream func(
+	FilterOutputStreamGetCloseBaseStream func(
 		stream *T.GFilterOutputStream) T.Gboolean
 
-	G_filter_output_stream_set_close_base_stream func(
+	FilterOutputStreamSetCloseBaseStream func(
 		stream *T.GFilterOutputStream,
-		close_base T.Gboolean)
+		closeBase T.Gboolean)
 
-	G_buffered_output_stream_get_type func() T.GType
+	BufferedOutputStreamGetType func() T.GType
 
-	G_buffered_output_stream_new func(
-		base_stream *T.GOutputStream) *T.GOutputStream
+	BufferedOutputStreamNew func(
+		baseStream *T.GOutputStream) *T.GOutputStream
 
-	G_buffered_output_stream_new_sized func(
-		base_stream *T.GOutputStream,
+	BufferedOutputStreamNewSized func(
+		baseStream *T.GOutputStream,
 		size T.Gsize) *T.GOutputStream
 
-	G_buffered_output_stream_get_buffer_size func(
+	BufferedOutputStreamGetBufferSize func(
 		stream *T.GBufferedOutputStream) T.Gsize
 
-	G_buffered_output_stream_set_buffer_size func(
+	BufferedOutputStreamSetBufferSize func(
 		stream *T.GBufferedOutputStream,
 		size T.Gsize)
 
-	G_buffered_output_stream_get_auto_grow func(
+	BufferedOutputStreamGetAutoGrow func(
 		stream *T.GBufferedOutputStream) T.Gboolean
 
-	G_buffered_output_stream_set_auto_grow func(
+	BufferedOutputStreamSetAutoGrow func(
 		stream *T.GBufferedOutputStream,
-		auto_grow T.Gboolean)
+		autoGrow T.Gboolean)
 
-	G_cancellable_get_type func() T.GType
+	CancellableGetType func() T.GType
 
-	G_cancellable_new func() *T.GCancellable
+	CancellableNew func() *T.GCancellable
 
-	G_cancellable_is_cancelled func(
+	CancellableIsCancelled func(
 		cancellable *T.GCancellable) T.Gboolean
 
-	G_cancellable_set_error_if_cancelled func(
+	CancellableSetErrorIfCancelled func(
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_cancellable_get_fd func(
+	CancellableGetFd func(
 		cancellable *T.GCancellable) int
 
-	G_cancellable_make_pollfd func(
+	CancellableMakePollfd func(
 		cancellable *T.GCancellable,
 		pollfd *T.GPollFD) T.Gboolean
 
-	G_cancellable_release_fd func(
+	CancellableReleaseFd func(
 		cancellable *T.GCancellable)
 
-	G_cancellable_source_new func(
+	CancellableSourceNew func(
 		cancellable *T.GCancellable) *T.GSource
 
-	G_cancellable_get_current func() *T.GCancellable
+	CancellableGetCurrent func() *T.GCancellable
 
-	G_cancellable_push_current func(
+	CancellablePushCurrent func(
 		cancellable *T.GCancellable)
 
-	G_cancellable_pop_current func(
+	CancellablePopCurrent func(
 		cancellable *T.GCancellable)
 
-	G_cancellable_reset func(
+	CancellableReset func(
 		cancellable *T.GCancellable)
 
-	G_cancellable_connect func(
+	CancellableConnect func(
 		cancellable *T.GCancellable,
 		callback T.GCallback,
 		data T.Gpointer,
-		data_destroy_func T.GDestroyNotify) T.Gulong
+		dataDestroyFunc T.GDestroyNotify) T.Gulong
 
-	G_cancellable_disconnect func(
+	CancellableDisconnect func(
 		cancellable *T.GCancellable,
-		handler_id T.Gulong)
+		handlerId T.Gulong)
 
-	G_cancellable_cancel func(
+	CancellableCancel func(
 		cancellable *T.GCancellable)
 
-	G_converter_get_type func() T.GType
+	ConverterGetType func() T.GType
 
-	G_converter_convert func(
+	ConverterConvert func(
 		converter *T.GConverter,
 		inbuf *T.Void,
-		inbuf_size T.Gsize,
+		inbufSize T.Gsize,
 		outbuf *T.Void,
-		outbuf_size T.Gsize,
+		outbufSize T.Gsize,
 		flags T.GConverterFlags,
-		bytes_read *T.Gsize,
-		bytes_written *T.Gsize,
+		bytesRead *T.Gsize,
+		bytesWritten *T.Gsize,
 		err **T.GError) T.GConverterResult
 
-	G_converter_reset func(
+	ConverterReset func(
 		converter *T.GConverter)
 
-	G_charset_converter_get_type func() T.GType
+	CharsetConverterGetType func() T.GType
 
-	G_charset_converter_new func(
-		to_charset string,
-		from_charset string,
+	CharsetConverterNew func(
+		toCharset string,
+		fromCharset string,
 		err **T.GError) *T.GcharsetConverter
 
-	G_charset_converter_set_use_fallback func(
+	CharsetConverterSetUseFallback func(
 		converter *T.GcharsetConverter,
-		use_fallback T.Gboolean)
+		useFallback T.Gboolean)
 
-	G_charset_converter_get_use_fallback func(
+	CharsetConverterGetUseFallback func(
 		converter *T.GcharsetConverter) T.Gboolean
 
-	G_charset_converter_get_num_fallbacks func(
+	CharsetConverterGetNumFallbacks func(
 		converter *T.GcharsetConverter) uint
 
-	G_content_type_equals func(
+	ContentTypeEquals func(
 		type1 string,
 		type2 string) T.Gboolean
 
-	G_content_type_is_a func(
+	ContentTypeIsA func(
 		typ string,
 		supertype string) T.Gboolean
 
-	G_content_type_is_unknown func(
+	ContentTypeIsUnknown func(
 		typ string) T.Gboolean
 
-	G_content_type_get_description func(
+	ContentTypeGetDescription func(
 		typ string) string
 
-	G_content_type_get_mime_type func(
+	ContentTypeGetMimeType func(
 		typ string) string
 
-	G_content_type_get_icon func(
+	ContentTypeGetIcon func(
 		typ string) *T.GIcon
 
-	G_content_type_can_be_executable func(
+	ContentTypeCanBeExecutable func(
 		typ string) T.Gboolean
 
-	G_content_type_from_mime_type func(
-		mime_type string) string
+	ContentTypeFromMimeType func(
+		mimeType string) string
 
-	G_content_type_guess func(
+	ContentTypeGuess func(
 		filename string,
 		data *T.Guchar,
-		data_size T.Gsize,
-		result_uncertain *T.Gboolean) string
+		dataSize T.Gsize,
+		resultUncertain *T.Gboolean) string
 
-	G_content_type_guess_for_tree func(
+	ContentTypeGuessForTree func(
 		root *T.GFile) **T.Gchar
 
-	G_content_types_get_registered func() *T.GList
+	ContentTypesGetRegistered func() *T.GList
 
-	G_converter_input_stream_get_type func() T.GType
+	ConverterInputStreamGetType func() T.GType
 
-	G_converter_input_stream_new func(
-		base_stream *T.GInputStream,
+	ConverterInputStreamNew func(
+		baseStream *T.GInputStream,
 		converter *T.GConverter) *T.GInputStream
 
-	G_converter_input_stream_get_converter func(
-		converter_stream *T.GConverterInputStream) *T.GConverter
+	ConverterInputStreamGetConverter func(
+		converterStream *T.GConverterInputStream) *T.GConverter
 
-	G_converter_output_stream_get_type func() T.GType
+	ConverterOutputStreamGetType func() T.GType
 
-	G_converter_output_stream_new func(
-		base_stream *T.GOutputStream,
+	ConverterOutputStreamNew func(
+		baseStream *T.GOutputStream,
 		converter *T.GConverter) *T.GOutputStream
 
-	G_converter_output_stream_get_converter func(
-		converter_stream *T.GConverterOutputStream) *T.GConverter
+	ConverterOutputStreamGetConverter func(
+		converterStream *T.GConverterOutputStream) *T.GConverter
 
-	G_credentials_get_type func() T.GType
+	CredentialsGetType func() T.GType
 
-	G_credentials_new func() *T.GCredentials
+	CredentialsNew func() *T.GCredentials
 
-	G_credentials_to_string func(
+	CredentialsToString func(
 		credentials *T.GCredentials) string
 
-	G_credentials_get_native func(
+	CredentialsGetNative func(
 		credentials *T.GCredentials,
-		native_type T.GCredentialsType) T.Gpointer
+		nativeType T.GCredentialsType) T.Gpointer
 
-	G_credentials_set_native func(
+	CredentialsSetNative func(
 		credentials *T.GCredentials,
-		native_type T.GCredentialsType,
+		nativeType T.GCredentialsType,
 		native T.Gpointer)
 
-	G_credentials_is_same_user func(
+	CredentialsIsSameUser func(
 		credentials *T.GCredentials,
-		other_credentials *T.GCredentials,
+		otherCredentials *T.GCredentials,
 		err **T.GError) T.Gboolean
 
-	G_data_input_stream_get_type func() T.GType
+	DataInputStreamGetType func() T.GType
 
-	G_data_input_stream_new func(
-		base_stream *T.GInputStream) *T.GDataInputStream
+	DataInputStreamNew func(
+		baseStream *T.GInputStream) *T.GDataInputStream
 
-	G_data_input_stream_set_byte_order func(
+	DataInputStreamSetByteOrder func(
 		stream *T.GDataInputStream,
 		order T.GDataStreamByteOrder)
 
-	G_data_input_stream_get_byte_order func(
+	DataInputStreamGetByteOrder func(
 		stream *T.GDataInputStream) T.GDataStreamByteOrder
 
-	G_data_input_stream_set_newline_type func(
+	DataInputStreamSetNewlineType func(
 		stream *T.GDataInputStream,
 		typ T.GDataStreamNewlineType)
 
-	G_data_input_stream_get_newline_type func(
+	DataInputStreamGetNewlineType func(
 		stream *T.GDataInputStream) T.GDataStreamNewlineType
 
-	G_data_input_stream_read_byte func(
+	DataInputStreamReadByte func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Guchar
 
-	G_data_input_stream_read_int16 func(
+	DataInputStreamReadInt16 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) int16
 
-	G_data_input_stream_read_uint16 func(
+	DataInputStreamReadUint16 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) uint16
 
-	G_data_input_stream_read_int32 func(
+	DataInputStreamReadInt32 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.GInt32
 
-	G_data_input_stream_read_uint32 func(
+	DataInputStreamReadUint32 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.GUint32
 
-	G_data_input_stream_read_int64 func(
+	DataInputStreamReadInt64 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) int64
 
-	G_data_input_stream_read_uint64 func(
+	DataInputStreamReadUint64 func(
 		stream *T.GDataInputStream,
 		cancellable *T.GCancellable,
 		err **T.GError) uint64
 
-	G_data_input_stream_read_line func(
+	DataInputStreamReadLine func(
 		stream *T.GDataInputStream,
 		length *T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	G_data_input_stream_read_line_async func(
+	DataInputStreamReadLineAsync func(
 		stream *T.GDataInputStream,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_data_input_stream_read_line_finish func(
+	DataInputStreamReadLineFinish func(
 		stream *T.GDataInputStream,
 		result *T.GAsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
-	G_data_input_stream_read_until func(
+	DataInputStreamReadUntil func(
 		stream *T.GDataInputStream,
-		stop_chars string,
+		stopChars string,
 		length *T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	G_data_input_stream_read_until_async func(
+	DataInputStreamReadUntilAsync func(
 		stream *T.GDataInputStream,
-		stop_chars string,
-		io_priority int,
+		stopChars string,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_data_input_stream_read_until_finish func(
+	DataInputStreamReadUntilFinish func(
 		stream *T.GDataInputStream,
 		result *T.GAsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
-	G_data_input_stream_read_upto func(
+	DataInputStreamReadUpto func(
 		stream *T.GDataInputStream,
-		stop_chars string,
-		stop_chars_len T.Gssize,
+		stopChars string,
+		stopCharsLen T.Gssize,
 		length *T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	G_data_input_stream_read_upto_async func(
+	DataInputStreamReadUptoAsync func(
 		stream *T.GDataInputStream,
-		stop_chars string,
-		stop_chars_len T.Gssize,
-		io_priority int,
+		stopChars string,
+		stopCharsLen T.Gssize,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_data_input_stream_read_upto_finish func(
+	DataInputStreamReadUptoFinish func(
 		stream *T.GDataInputStream,
 		result *T.GAsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
-	G_data_output_stream_get_type func() T.GType
+	DataOutputStreamGetType func() T.GType
 
-	G_data_output_stream_new func(
-		base_stream *T.GOutputStream) *T.GDataOutputStream
+	DataOutputStreamNew func(
+		baseStream *T.GOutputStream) *T.GDataOutputStream
 
-	G_data_output_stream_set_byte_order func(
+	DataOutputStreamSetByteOrder func(
 		stream *T.GDataOutputStream,
 		order T.GDataStreamByteOrder)
 
-	G_data_output_stream_get_byte_order func(
+	DataOutputStreamGetByteOrder func(
 		stream *T.GDataOutputStream) T.GDataStreamByteOrder
 
-	G_data_output_stream_put_byte func(
+	DataOutputStreamPutByte func(
 		stream *T.GDataOutputStream,
 		data T.Guchar,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_int16 func(
+	DataOutputStreamPutInt16 func(
 		stream *T.GDataOutputStream,
 		data int16,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_uint16 func(
+	DataOutputStreamPutUint16 func(
 		stream *T.GDataOutputStream,
 		data uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_int32 func(
+	DataOutputStreamPutInt32 func(
 		stream *T.GDataOutputStream,
 		data T.GInt32,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_uint32 func(
+	DataOutputStreamPutUint32 func(
 		stream *T.GDataOutputStream,
 		data T.GUint32,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_int64 func(
+	DataOutputStreamPutInt64 func(
 		stream *T.GDataOutputStream,
 		data int64,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_uint64 func(
+	DataOutputStreamPutUint64 func(
 		stream *T.GDataOutputStream,
 		data uint64,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_data_output_stream_put_string func(
+	DataOutputStreamPutString func(
 		stream *T.GDataOutputStream,
 		str string,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_dbus_is_address func(
+	DbusIsAddress func(
 		string string) T.Gboolean
 
-	G_dbus_is_supported_address func(
+	DbusIsSupportedAddress func(
 		string string,
 		err **T.GError) T.Gboolean
 
-	G_dbus_address_get_stream func(
+	DbusAddressGetStream func(
 		address string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_address_get_stream_finish func(
+	DbusAddressGetStreamFinish func(
 		res *T.GAsyncResult,
-		out_guid **T.Gchar,
+		outGuid **T.Gchar,
 		err **T.GError) *T.GIOStream
 
-	G_dbus_address_get_stream_sync func(
+	DbusAddressGetStreamSync func(
 		address string,
-		out_guid **T.Gchar,
+		outGuid **T.Gchar,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GIOStream
 
-	G_dbus_address_get_for_bus_sync func(
-		bus_type T.GBusType,
+	DbusAddressGetForBusSync func(
+		busType T.GBusType,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	G_dbus_auth_observer_get_type func() T.GType
+	DbusAuthObserverGetType func() T.GType
 
-	G_dbus_auth_observer_new func() *T.GDBusAuthObserver
+	DbusAuthObserverNew func() *T.GDBusAuthObserver
 
-	G_dbus_auth_observer_authorize_authenticated_peer func(
+	DbusAuthObserverAuthorizeAuthenticatedPeer func(
 		observer *T.GDBusAuthObserver,
 		stream *T.GIOStream,
 		credentials *T.GCredentials) T.Gboolean
 
-	G_dbus_connection_get_type func() T.GType
+	DbusConnectionGetType func() T.GType
 
-	G_bus_get func(
-		bus_type T.GBusType,
+	BusGet func(
+		busType T.GBusType,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_bus_get_finish func(
+	BusGetFinish func(
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusConnection
 
-	G_bus_get_sync func(
-		bus_type T.GBusType,
+	BusGetSync func(
+		busType T.GBusType,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusConnection
 
-	G_dbus_connection_new func(
+	DbusConnectionNew func(
 		stream *T.GIOStream,
 		guid string,
 		flags T.GDBusConnectionFlags,
 		observer *T.GDBusAuthObserver,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_new_finish func(
+	DbusConnectionNewFinish func(
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusConnection
 
-	G_dbus_connection_new_sync func(
+	DbusConnectionNewSync func(
 		stream *T.GIOStream,
 		guid string,
 		flags T.GDBusConnectionFlags,
@@ -1106,789 +1106,789 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusConnection
 
-	G_dbus_connection_new_for_address func(
+	DbusConnectionNewForAddress func(
 		address string,
 		flags T.GDBusConnectionFlags,
 		observer *T.GDBusAuthObserver,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_new_for_address_finish func(
+	DbusConnectionNewForAddressFinish func(
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusConnection
 
-	G_dbus_connection_new_for_address_sync func(
+	DbusConnectionNewForAddressSync func(
 		address string,
 		flags T.GDBusConnectionFlags,
 		observer *T.GDBusAuthObserver,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusConnection
 
-	G_dbus_connection_start_message_processing func(
+	DbusConnectionStartMessageProcessing func(
 		connection *T.GDBusConnection)
 
-	G_dbus_connection_is_closed func(
+	DbusConnectionIsClosed func(
 		connection *T.GDBusConnection) T.Gboolean
 
-	G_dbus_connection_get_stream func(
+	DbusConnectionGetStream func(
 		connection *T.GDBusConnection) *T.GIOStream
 
-	G_dbus_connection_get_guid func(
+	DbusConnectionGetGuid func(
 		connection *T.GDBusConnection) string
 
-	G_dbus_connection_get_unique_name func(
+	DbusConnectionGetUniqueName func(
 		connection *T.GDBusConnection) string
 
-	G_dbus_connection_get_peer_credentials func(
+	DbusConnectionGetPeerCredentials func(
 		connection *T.GDBusConnection) *T.GCredentials
 
-	G_dbus_connection_get_exit_on_close func(
+	DbusConnectionGetExitOnClose func(
 		connection *T.GDBusConnection) T.Gboolean
 
-	G_dbus_connection_set_exit_on_close func(
+	DbusConnectionSetExitOnClose func(
 		connection *T.GDBusConnection,
-		exit_on_close T.Gboolean)
+		exitOnClose T.Gboolean)
 
-	G_dbus_connection_get_capabilities func(
+	DbusConnectionGetCapabilities func(
 		connection *T.GDBusConnection) T.GDBusCapabilityFlags
 
-	G_dbus_connection_close func(
+	DbusConnectionClose func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_close_finish func(
+	DbusConnectionCloseFinish func(
 		connection *T.GDBusConnection,
 		res *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_close_sync func(
+	DbusConnectionCloseSync func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_flush func(
+	DbusConnectionFlush func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_flush_finish func(
+	DbusConnectionFlushFinish func(
 		connection *T.GDBusConnection,
 		res *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_flush_sync func(
+	DbusConnectionFlushSync func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_send_message func(
+	DbusConnectionSendMessage func(
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		out_serial *T.GUint32,
+		outSerial *T.GUint32,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_send_message_with_reply func(
+	DbusConnectionSendMessageWithReply func(
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		timeout_msec int,
-		out_serial *T.GUint32,
+		timeoutMsec int,
+		outSerial *T.GUint32,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_send_message_with_reply_finish func(
+	DbusConnectionSendMessageWithReplyFinish func(
 		connection *T.GDBusConnection,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusMessage
 
-	G_dbus_connection_send_message_with_reply_sync func(
+	DbusConnectionSendMessageWithReplySync func(
 		connection *T.GDBusConnection,
 		message *T.GDBusMessage,
 		flags T.GDBusSendMessageFlags,
-		timeout_msec int,
-		out_serial *T.GUint32,
+		timeoutMsec int,
+		outSerial *T.GUint32,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusMessage
 
-	G_dbus_connection_emit_signal func(
+	DbusConnectionEmitSignal func(
 		connection *T.GDBusConnection,
-		destination_bus_name string,
-		object_path string,
-		interface_name string,
-		signal_name string,
+		destinationBusName string,
+		objectPath string,
+		interfaceName string,
+		signalName string,
 		parameters *T.GVariant,
 		err **T.GError) T.Gboolean
 
-	G_dbus_connection_call func(
+	DbusConnectionCall func(
 		connection *T.GDBusConnection,
-		bus_name string,
-		object_path string,
-		interface_name string,
-		method_name string,
+		busName string,
+		objectPath string,
+		interfaceName string,
+		methodName string,
 		parameters *T.GVariant,
-		reply_type *T.GVariantType,
+		replyType *T.GVariantType,
 		flags T.GDBusCallFlags,
-		timeout_msec int,
+		timeoutMsec int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_connection_call_finish func(
+	DbusConnectionCallFinish func(
 		connection *T.GDBusConnection,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GVariant
 
-	G_dbus_connection_call_sync func(
+	DbusConnectionCallSync func(
 		connection *T.GDBusConnection,
-		bus_name string,
-		object_path string,
-		interface_name string,
-		method_name string,
+		busName string,
+		objectPath string,
+		interfaceName string,
+		methodName string,
 		parameters *T.GVariant,
-		reply_type *T.GVariantType,
+		replyType *T.GVariantType,
 		flags T.GDBusCallFlags,
-		timeout_msec int,
+		timeoutMsec int,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GVariant
 
-	G_dbus_connection_register_object func(
+	DbusConnectionRegisterObject func(
 		connection *T.GDBusConnection,
-		object_path string,
-		interface_info *T.GDBusInterfaceInfo,
+		objectPath string,
+		interfaceInfo *T.GDBusInterfaceInfo,
 		vtable *T.GDBusInterfaceVTable,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify,
 		err **T.GError) uint
 
-	G_dbus_connection_unregister_object func(
+	DbusConnectionUnregisterObject func(
 		connection *T.GDBusConnection,
-		registration_id uint) T.Gboolean
+		registrationId uint) T.Gboolean
 
-	G_dbus_connection_register_subtree func(
+	DbusConnectionRegisterSubtree func(
 		connection *T.GDBusConnection,
-		object_path string,
+		objectPath string,
 		vtable *T.GDBusSubtreeVTable,
 		flags T.GDBusSubtreeFlags,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify,
 		err **T.GError) uint
 
-	G_dbus_connection_unregister_subtree func(
+	DbusConnectionUnregisterSubtree func(
 		connection *T.GDBusConnection,
-		registration_id uint) T.Gboolean
+		registrationId uint) T.Gboolean
 
-	G_dbus_connection_signal_subscribe func(
+	DbusConnectionSignalSubscribe func(
 		connection *T.GDBusConnection,
 		sender string,
-		interface_name string,
+		interfaceName string,
 		member string,
-		object_path string,
+		objectPath string,
 		arg0 string,
 		flags T.GDBusSignalFlags,
 		callback T.GDBusSignalCallback,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_dbus_connection_signal_unsubscribe func(
+	DbusConnectionSignalUnsubscribe func(
 		connection *T.GDBusConnection,
-		subscription_id uint)
+		subscriptionId uint)
 
-	G_dbus_connection_add_filter func(
+	DbusConnectionAddFilter func(
 		connection *T.GDBusConnection,
-		filter_function T.GDBusMessageFilterFunction,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		filterFunction T.GDBusMessageFilterFunction,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_dbus_connection_remove_filter func(
+	DbusConnectionRemoveFilter func(
 		connection *T.GDBusConnection,
-		filter_id uint)
+		filterId uint)
 
-	G_dbus_error_quark func() T.GQuark
+	DbusErrorQuark func() T.GQuark
 
-	G_dbus_error_is_remote_error func(
+	DbusErrorIsRemoteError func(
 		err *T.GError) T.Gboolean
 
-	G_dbus_error_get_remote_error func(
+	DbusErrorGetRemoteError func(
 		err *T.GError) string
 
-	G_dbus_error_strip_remote_error func(
+	DbusErrorStripRemoteError func(
 		err *T.GError) T.Gboolean
 
-	G_dbus_error_register_error func(
-		error_domain T.GQuark,
-		error_code int,
-		dbus_error_name string) T.Gboolean
+	DbusErrorRegisterError func(
+		errorDomain T.GQuark,
+		errorCode int,
+		dbusErrorName string) T.Gboolean
 
-	G_dbus_error_unregister_error func(
-		error_domain T.GQuark,
-		error_code int,
-		dbus_error_name string) T.Gboolean
+	DbusErrorUnregisterError func(
+		errorDomain T.GQuark,
+		errorCode int,
+		dbusErrorName string) T.Gboolean
 
-	G_dbus_error_register_error_domain func(
-		error_domain_quark_name string,
-		quark_volatile *T.Gsize,
+	DbusErrorRegisterErrorDomain func(
+		errorDomainQuarkName string,
+		quarkVolatile *T.Gsize,
 		entries *T.GDBusErrorEntry,
-		num_entries uint)
+		numEntries uint)
 
-	G_dbus_error_new_for_dbus_error func(
-		dbus_error_name string,
-		dbus_error_message string) *T.GError
+	DbusErrorNewForDbusError func(
+		dbusErrorName string,
+		dbusErrorMessage string) *T.GError
 
-	G_dbus_error_set_dbus_error func(e **T.GError,
-		dbus_error_name, dbus_error_message,
+	DbusErrorSetDbusError func(e **T.GError,
+		dbusErrorName, dbusErrorMessage,
 		format string, v ...VArg)
 
-	G_dbus_error_set_dbus_error_valist func(
+	DbusErrorSetDbusErrorValist func(
 		err **T.GError,
-		dbus_error_name string,
-		dbus_error_message string,
+		dbusErrorName string,
+		dbusErrorMessage string,
 		format string,
-		var_args T.Va_list)
+		varArgs T.VaList)
 
-	G_dbus_error_encode_gerror func(
+	DbusErrorEncodeGerror func(
 		err *T.GError) string
 
-	G_dbus_annotation_info_lookup func(
+	DbusAnnotationInfoLookup func(
 		annotations **T.GDBusAnnotationInfo,
 		name string) string
 
-	G_dbus_interface_info_lookup_method func(
+	DbusInterfaceInfoLookupMethod func(
 		info *T.GDBusInterfaceInfo,
 		name string) *T.GDBusMethodInfo
 
-	G_dbus_interface_info_lookup_signal func(
+	DbusInterfaceInfoLookupSignal func(
 		info *T.GDBusInterfaceInfo,
 		name string) *T.GDBusSignalInfo
 
-	G_dbus_interface_info_lookup_property func(
+	DbusInterfaceInfoLookupProperty func(
 		info *T.GDBusInterfaceInfo,
 		name string) *T.GDBusPropertyInfo
 
-	G_dbus_interface_info_generate_xml func(
+	DbusInterfaceInfoGenerateXml func(
 		info *T.GDBusInterfaceInfo,
 		indent uint,
-		string_builder *T.GString)
+		stringBuilder *T.GString)
 
-	G_dbus_node_info_new_for_xml func(
-		xml_data string,
+	DbusNodeInfoNewForXml func(
+		xmlData string,
 		err **T.GError) *T.GDBusNodeInfo
 
-	G_dbus_node_info_lookup_interface func(
+	DbusNodeInfoLookupInterface func(
 		info *T.GDBusNodeInfo,
 		name string) *T.GDBusInterfaceInfo
 
-	G_dbus_node_info_generate_xml func(
+	DbusNodeInfoGenerateXml func(
 		info *T.GDBusNodeInfo,
 		indent uint,
-		string_builder *T.GString)
+		stringBuilder *T.GString)
 
-	G_dbus_node_info_ref func(
+	DbusNodeInfoRef func(
 		info *T.GDBusNodeInfo) *T.GDBusNodeInfo
 
-	G_dbus_interface_info_ref func(
+	DbusInterfaceInfoRef func(
 		info *T.GDBusInterfaceInfo) *T.GDBusInterfaceInfo
 
-	G_dbus_method_info_ref func(
+	DbusMethodInfoRef func(
 		info *T.GDBusMethodInfo) *T.GDBusMethodInfo
 
-	G_dbus_signal_info_ref func(
+	DbusSignalInfoRef func(
 		info *T.GDBusSignalInfo) *T.GDBusSignalInfo
 
-	G_dbus_property_info_ref func(
+	DbusPropertyInfoRef func(
 		info *T.GDBusPropertyInfo) *T.GDBusPropertyInfo
 
-	G_dbus_arg_info_ref func(
+	DbusArgInfoRef func(
 		info *T.GDBusArgInfo) *T.GDBusArgInfo
 
-	G_dbus_annotation_info_ref func(
+	DbusAnnotationInfoRef func(
 		info *T.GDBusAnnotationInfo) *T.GDBusAnnotationInfo
 
-	G_dbus_node_info_unref func(
+	DbusNodeInfoUnref func(
 		info *T.GDBusNodeInfo)
 
-	G_dbus_interface_info_unref func(
+	DbusInterfaceInfoUnref func(
 		info *T.GDBusInterfaceInfo)
 
-	G_dbus_method_info_unref func(
+	DbusMethodInfoUnref func(
 		info *T.GDBusMethodInfo)
 
-	G_dbus_signal_info_unref func(
+	DbusSignalInfoUnref func(
 		info *T.GDBusSignalInfo)
 
-	G_dbus_property_info_unref func(
+	DbusPropertyInfoUnref func(
 		info *T.GDBusPropertyInfo)
 
-	G_dbus_arg_info_unref func(
+	DbusArgInfoUnref func(
 		info *T.GDBusArgInfo)
 
-	G_dbus_annotation_info_unref func(
+	DbusAnnotationInfoUnref func(
 		info *T.GDBusAnnotationInfo)
 
-	G_dbus_node_info_get_type func() T.GType
+	DbusNodeInfoGetType func() T.GType
 
-	G_dbus_interface_info_get_type func() T.GType
+	DbusInterfaceInfoGetType func() T.GType
 
-	G_dbus_method_info_get_type func() T.GType
+	DbusMethodInfoGetType func() T.GType
 
-	G_dbus_signal_info_get_type func() T.GType
+	DbusSignalInfoGetType func() T.GType
 
-	G_dbus_property_info_get_type func() T.GType
+	DbusPropertyInfoGetType func() T.GType
 
-	G_dbus_arg_info_get_type func() T.GType
+	DbusArgInfoGetType func() T.GType
 
-	G_dbus_annotation_info_get_type func() T.GType
+	DbusAnnotationInfoGetType func() T.GType
 
-	G_dbus_message_get_type func() T.GType
+	DbusMessageGetType func() T.GType
 
-	G_dbus_message_new func() *T.GDBusMessage
+	DbusMessageNew func() *T.GDBusMessage
 
-	G_dbus_message_new_signal func(
+	DbusMessageNewSignal func(
 		path string,
 		interface_ string,
 		signal string) *T.GDBusMessage
 
-	G_dbus_message_new_method_call func(
+	DbusMessageNewMethodCall func(
 		name string,
 		path string,
 		interface_ string,
 		method string) *T.GDBusMessage
 
-	G_dbus_message_new_method_reply func(
-		method_call_message *T.GDBusMessage) *T.GDBusMessage
+	DbusMessageNewMethodReply func(
+		methodCallMessage *T.GDBusMessage) *T.GDBusMessage
 
-	G_dbus_message_new_method_error func(
-		method_call_message *T.GDBusMessage,
-		error_name, error_message_format string,
+	DbusMessageNewMethodError func(
+		methodCallMessage *T.GDBusMessage,
+		errorName, errorMessageFormat string,
 		v ...VArg) *T.GDBusMessage
 
-	G_dbus_message_new_method_error_valist func(
-		method_call_message *T.GDBusMessage,
-		error_name string,
-		error_message_format string,
-		var_args T.Va_list) *T.GDBusMessage
+	DbusMessageNewMethodErrorValist func(
+		methodCallMessage *T.GDBusMessage,
+		errorName string,
+		errorMessageFormat string,
+		varArgs T.VaList) *T.GDBusMessage
 
-	G_dbus_message_new_method_error_literal func(
-		method_call_message *T.GDBusMessage,
-		error_name string,
-		error_message string) *T.GDBusMessage
+	DbusMessageNewMethodErrorLiteral func(
+		methodCallMessage *T.GDBusMessage,
+		errorName string,
+		errorMessage string) *T.GDBusMessage
 
-	G_dbus_message_print func(
+	DbusMessagePrint func(
 		message *T.GDBusMessage,
 		indent uint) string
 
-	G_dbus_message_get_locked func(
+	DbusMessageGetLocked func(
 		message *T.GDBusMessage) T.Gboolean
 
-	G_dbus_message_lock func(
+	DbusMessageLock func(
 		message *T.GDBusMessage)
 
-	G_dbus_message_copy func(
+	DbusMessageCopy func(
 		message *T.GDBusMessage,
 		err **T.GError) *T.GDBusMessage
 
-	G_dbus_message_get_byte_order func(
+	DbusMessageGetByteOrder func(
 		message *T.GDBusMessage) T.GDBusMessageByteOrder
 
-	G_dbus_message_set_byte_order func(
+	DbusMessageSetByteOrder func(
 		message *T.GDBusMessage,
-		byte_order T.GDBusMessageByteOrder)
+		byteOrder T.GDBusMessageByteOrder)
 
-	G_dbus_message_get_message_type func(
+	DbusMessageGetMessageType func(
 		message *T.GDBusMessage) T.GDBusMessageType
 
-	G_dbus_message_set_message_type func(
+	DbusMessageSetMessageType func(
 		message *T.GDBusMessage,
 		typ T.GDBusMessageType)
 
-	G_dbus_message_get_flags func(
+	DbusMessageGetFlags func(
 		message *T.GDBusMessage) T.GDBusMessageFlags
 
-	G_dbus_message_set_flags func(
+	DbusMessageSetFlags func(
 		message *T.GDBusMessage,
 		flags T.GDBusMessageFlags)
 
-	G_dbus_message_get_serial func(
+	DbusMessageGetSerial func(
 		message *T.GDBusMessage) T.GUint32
 
-	G_dbus_message_set_serial func(
+	DbusMessageSetSerial func(
 		message *T.GDBusMessage,
 		serial T.GUint32)
 
-	G_dbus_message_get_header func(
+	DbusMessageGetHeader func(
 		message *T.GDBusMessage,
-		header_field T.GDBusMessageHeaderField) *T.GVariant
+		headerField T.GDBusMessageHeaderField) *T.GVariant
 
-	G_dbus_message_set_header func(
+	DbusMessageSetHeader func(
 		message *T.GDBusMessage,
-		header_field T.GDBusMessageHeaderField,
+		headerField T.GDBusMessageHeaderField,
 		value *T.GVariant)
 
-	G_dbus_message_get_header_fields func(
+	DbusMessageGetHeaderFields func(
 		message *T.GDBusMessage) *T.Guchar
 
-	G_dbus_message_get_body func(
+	DbusMessageGetBody func(
 		message *T.GDBusMessage) *T.GVariant
 
-	G_dbus_message_set_body func(
+	DbusMessageSetBody func(
 		message *T.GDBusMessage,
 		body *T.GVariant)
 
-	G_dbus_message_get_unix_fd_list func(
+	DbusMessageGetUnixFdList func(
 		message *T.GDBusMessage) *T.GUnixFDList
 
-	G_dbus_message_set_unix_fd_list func(
+	DbusMessageSetUnixFdList func(
 		message *T.GDBusMessage,
-		fd_list *T.GUnixFDList)
+		fdList *T.GUnixFDList)
 
-	G_dbus_message_get_reply_serial func(
+	DbusMessageGetReplySerial func(
 		message *T.GDBusMessage) T.GUint32
 
-	G_dbus_message_set_reply_serial func(
+	DbusMessageSetReplySerial func(
 		message *T.GDBusMessage,
 		value T.GUint32)
 
-	G_dbus_message_get_interface func(
+	DbusMessageGetInterface func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_interface func(
+	DbusMessageSetInterface func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_member func(
+	DbusMessageGetMember func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_member func(
+	DbusMessageSetMember func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_path func(
+	DbusMessageGetPath func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_path func(
+	DbusMessageSetPath func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_sender func(
+	DbusMessageGetSender func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_sender func(
+	DbusMessageSetSender func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_destination func(
+	DbusMessageGetDestination func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_destination func(
+	DbusMessageSetDestination func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_error_name func(
+	DbusMessageGetErrorName func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_error_name func(
+	DbusMessageSetErrorName func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_signature func(
+	DbusMessageGetSignature func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_set_signature func(
+	DbusMessageSetSignature func(
 		message *T.GDBusMessage,
 		value string)
 
-	G_dbus_message_get_num_unix_fds func(
+	DbusMessageGetNumUnixFds func(
 		message *T.GDBusMessage) T.GUint32
 
-	G_dbus_message_set_num_unix_fds func(
+	DbusMessageSetNumUnixFds func(
 		message *T.GDBusMessage,
 		value T.GUint32)
 
-	G_dbus_message_get_arg0 func(
+	DbusMessageGetArg0 func(
 		message *T.GDBusMessage) string
 
-	G_dbus_message_new_from_blob func(
+	DbusMessageNewFromBlob func(
 		blob *T.Guchar,
-		blob_len T.Gsize,
+		blobLen T.Gsize,
 		capabilities T.GDBusCapabilityFlags,
 		err **T.GError) *T.GDBusMessage
 
-	G_dbus_message_bytes_needed func(
+	DbusMessageBytesNeeded func(
 		blob *T.Guchar,
-		blob_len T.Gsize,
+		blobLen T.Gsize,
 		err **T.GError) T.Gssize
 
-	G_dbus_message_to_blob func(
+	DbusMessageToBlob func(
 		message *T.GDBusMessage,
-		out_size *T.Gsize,
+		outSize *T.Gsize,
 		capabilities T.GDBusCapabilityFlags,
 		err **T.GError) *T.Guchar
 
-	G_dbus_message_to_gerror func(
+	DbusMessageToGerror func(
 		message *T.GDBusMessage,
 		err **T.GError) T.Gboolean
 
-	G_dbus_method_invocation_get_type func() T.GType
+	DbusMethodInvocationGetType func() T.GType
 
-	G_dbus_method_invocation_get_sender func(
+	DbusMethodInvocationGetSender func(
 		invocation *T.GDBusMethodInvocation) string
 
-	G_dbus_method_invocation_get_object_path func(
+	DbusMethodInvocationGetObjectPath func(
 		invocation *T.GDBusMethodInvocation) string
 
-	G_dbus_method_invocation_get_interface_name func(
+	DbusMethodInvocationGetInterfaceName func(
 		invocation *T.GDBusMethodInvocation) string
 
-	G_dbus_method_invocation_get_method_name func(
+	DbusMethodInvocationGetMethodName func(
 		invocation *T.GDBusMethodInvocation) string
 
-	G_dbus_method_invocation_get_method_info func(
+	DbusMethodInvocationGetMethodInfo func(
 		invocation *T.GDBusMethodInvocation) *T.GDBusMethodInfo
 
-	G_dbus_method_invocation_get_connection func(
+	DbusMethodInvocationGetConnection func(
 		invocation *T.GDBusMethodInvocation) *T.GDBusConnection
 
-	G_dbus_method_invocation_get_message func(
+	DbusMethodInvocationGetMessage func(
 		invocation *T.GDBusMethodInvocation) *T.GDBusMessage
 
-	G_dbus_method_invocation_get_parameters func(
+	DbusMethodInvocationGetParameters func(
 		invocation *T.GDBusMethodInvocation) *T.GVariant
 
-	G_dbus_method_invocation_get_user_data func(
+	DbusMethodInvocationGetUserData func(
 		invocation *T.GDBusMethodInvocation) T.Gpointer
 
-	G_dbus_method_invocation_return_value func(
+	DbusMethodInvocationReturnValue func(
 		invocation *T.GDBusMethodInvocation,
 		parameters *T.GVariant)
 
-	G_dbus_method_invocation_return_error func(
+	DbusMethodInvocationReturnError func(
 		invocation *T.GDBusMethodInvocation,
 		domain T.GQuark, code int, format string, v ...VArg)
 
-	G_dbus_method_invocation_return_error_valist func(
+	DbusMethodInvocationReturnErrorValist func(
 		invocation *T.GDBusMethodInvocation,
 		domain T.GQuark,
 		code int,
 		format string,
-		var_args T.Va_list)
+		varArgs T.VaList)
 
-	G_dbus_method_invocation_return_error_literal func(
+	DbusMethodInvocationReturnErrorLiteral func(
 		invocation *T.GDBusMethodInvocation,
 		domain T.GQuark,
 		code int,
 		message string)
 
-	G_dbus_method_invocation_return_gerror func(
+	DbusMethodInvocationReturnGerror func(
 		invocation *T.GDBusMethodInvocation,
 		err *T.GError)
 
-	G_dbus_method_invocation_return_dbus_error func(
+	DbusMethodInvocationReturnDbusError func(
 		invocation *T.GDBusMethodInvocation,
-		error_name string,
-		error_message string)
+		errorName string,
+		errorMessage string)
 
-	G_bus_own_name func(
-		bus_type T.GBusType,
+	BusOwnName func(
+		busType T.GBusType,
 		name string,
 		flags T.GBusNameOwnerFlags,
-		bus_acquired_handler T.GBusAcquiredCallback,
-		name_acquired_handler T.GBusNameAcquiredCallback,
-		name_lost_handler T.GBusNameLostCallback,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		busAcquiredHandler T.GBusAcquiredCallback,
+		nameAcquiredHandler T.GBusNameAcquiredCallback,
+		nameLostHandler T.GBusNameLostCallback,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_bus_own_name_on_connection func(
+	BusOwnNameOnConnection func(
 		connection *T.GDBusConnection,
 		name string,
 		flags T.GBusNameOwnerFlags,
-		name_acquired_handler T.GBusNameAcquiredCallback,
-		name_lost_handler T.GBusNameLostCallback,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		nameAcquiredHandler T.GBusNameAcquiredCallback,
+		nameLostHandler T.GBusNameLostCallback,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_bus_own_name_with_closures func(
-		bus_type T.GBusType,
+	BusOwnNameWithClosures func(
+		busType T.GBusType,
 		name string,
 		flags T.GBusNameOwnerFlags,
-		bus_acquired_closure *T.GClosure,
-		name_acquired_closure *T.GClosure,
-		name_lost_closure *T.GClosure) uint
+		busAcquiredClosure *T.GClosure,
+		nameAcquiredClosure *T.GClosure,
+		nameLostClosure *T.GClosure) uint
 
-	G_bus_own_name_on_connection_with_closures func(
+	BusOwnNameOnConnectionWithClosures func(
 
 		connection *T.GDBusConnection,
 		name string,
 		flags T.GBusNameOwnerFlags,
-		name_acquired_closure *T.GClosure,
-		name_lost_closure *T.GClosure) uint
+		nameAcquiredClosure *T.GClosure,
+		nameLostClosure *T.GClosure) uint
 
-	G_bus_unown_name func(
-		owner_id uint)
+	BusUnownName func(
+		ownerId uint)
 
-	G_bus_watch_name func(
-		bus_type T.GBusType,
+	BusWatchName func(
+		busType T.GBusType,
 		name string,
 		flags T.GBusNameWatcherFlags,
-		name_appeared_handler T.GBusNameAppearedCallback,
-		name_vanished_handler T.GBusNameVanishedCallback,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		nameAppearedHandler T.GBusNameAppearedCallback,
+		nameVanishedHandler T.GBusNameVanishedCallback,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_bus_watch_name_on_connection func(
+	BusWatchNameOnConnection func(
 		connection *T.GDBusConnection,
 		name string,
 		flags T.GBusNameWatcherFlags,
-		name_appeared_handler T.GBusNameAppearedCallback,
-		name_vanished_handler T.GBusNameVanishedCallback,
-		user_data T.Gpointer,
-		user_data_free_func T.GDestroyNotify) uint
+		nameAppearedHandler T.GBusNameAppearedCallback,
+		nameVanishedHandler T.GBusNameVanishedCallback,
+		userData T.Gpointer,
+		userDataFreeFunc T.GDestroyNotify) uint
 
-	G_bus_watch_name_with_closures func(
-		bus_type T.GBusType,
+	BusWatchNameWithClosures func(
+		busType T.GBusType,
 		name string,
 		flags T.GBusNameWatcherFlags,
-		name_appeared_closure *T.GClosure,
-		name_vanished_closure *T.GClosure) uint
+		nameAppearedClosure *T.GClosure,
+		nameVanishedClosure *T.GClosure) uint
 
-	G_bus_watch_name_on_connection_with_closures func(
+	BusWatchNameOnConnectionWithClosures func(
 
 		connection *T.GDBusConnection,
 		name string,
 		flags T.GBusNameWatcherFlags,
-		name_appeared_closure *T.GClosure,
-		name_vanished_closure *T.GClosure) uint
+		nameAppearedClosure *T.GClosure,
+		nameVanishedClosure *T.GClosure) uint
 
-	G_bus_unwatch_name func(
-		watcher_id uint)
+	BusUnwatchName func(
+		watcherId uint)
 
-	G_dbus_proxy_get_type func() T.GType
+	DbusProxyGetType func() T.GType
 
-	G_dbus_proxy_new func(
+	DbusProxyNew func(
 		connection *T.GDBusConnection,
 		flags T.GDBusProxyFlags,
 		info *T.GDBusInterfaceInfo,
 		name string,
-		object_path string,
-		interface_name string,
+		objectPath string,
+		interfaceName string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_proxy_new_finish func(
+	DbusProxyNewFinish func(
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusProxy
 
-	G_dbus_proxy_new_sync func(
+	DbusProxyNewSync func(
 		connection *T.GDBusConnection,
 		flags T.GDBusProxyFlags,
 		info *T.GDBusInterfaceInfo,
 		name string,
-		object_path string,
-		interface_name string,
+		objectPath string,
+		interfaceName string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusProxy
 
-	G_dbus_proxy_new_for_bus func(
-		bus_type T.GBusType,
+	DbusProxyNewForBus func(
+		busType T.GBusType,
 		flags T.GDBusProxyFlags,
 		info *T.GDBusInterfaceInfo,
 		name string,
-		object_path string,
-		interface_name string,
+		objectPath string,
+		interfaceName string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_proxy_new_for_bus_finish func(
+	DbusProxyNewForBusFinish func(
 		res *T.GAsyncResult,
 		err **T.GError) *T.GDBusProxy
 
-	G_dbus_proxy_new_for_bus_sync func(
-		bus_type T.GBusType,
+	DbusProxyNewForBusSync func(
+		busType T.GBusType,
 		flags T.GDBusProxyFlags,
 		info *T.GDBusInterfaceInfo,
 		name string,
-		object_path string,
-		interface_name string,
+		objectPath string,
+		interfaceName string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusProxy
 
-	G_dbus_proxy_get_connection func(
+	DbusProxyGetConnection func(
 		proxy *T.GDBusProxy) *T.GDBusConnection
 
-	G_dbus_proxy_get_flags func(
+	DbusProxyGetFlags func(
 		proxy *T.GDBusProxy) T.GDBusProxyFlags
 
-	G_dbus_proxy_get_name func(
+	DbusProxyGetName func(
 		proxy *T.GDBusProxy) string
 
-	G_dbus_proxy_get_name_owner func(
+	DbusProxyGetNameOwner func(
 		proxy *T.GDBusProxy) string
 
-	G_dbus_proxy_get_object_path func(
+	DbusProxyGetObjectPath func(
 		proxy *T.GDBusProxy) string
 
-	G_dbus_proxy_get_interface_name func(
+	DbusProxyGetInterfaceName func(
 		proxy *T.GDBusProxy) string
 
-	G_dbus_proxy_get_default_timeout func(
+	DbusProxyGetDefaultTimeout func(
 		proxy *T.GDBusProxy) int
 
-	G_dbus_proxy_set_default_timeout func(
+	DbusProxySetDefaultTimeout func(
 		proxy *T.GDBusProxy,
-		timeout_msec int)
+		timeoutMsec int)
 
-	G_dbus_proxy_get_interface_info func(
+	DbusProxyGetInterfaceInfo func(
 		proxy *T.GDBusProxy) *T.GDBusInterfaceInfo
 
-	G_dbus_proxy_set_interface_info func(
+	DbusProxySetInterfaceInfo func(
 		proxy *T.GDBusProxy,
 		info *T.GDBusInterfaceInfo)
 
-	G_dbus_proxy_get_cached_property func(
+	DbusProxyGetCachedProperty func(
 		proxy *T.GDBusProxy,
-		property_name string) *T.GVariant
+		propertyName string) *T.GVariant
 
-	G_dbus_proxy_set_cached_property func(
+	DbusProxySetCachedProperty func(
 		proxy *T.GDBusProxy,
-		property_name string,
+		propertyName string,
 		value *T.GVariant)
 
-	G_dbus_proxy_get_cached_property_names func(
+	DbusProxyGetCachedPropertyNames func(
 		proxy *T.GDBusProxy) **T.Gchar
 
-	G_dbus_proxy_call func(
+	DbusProxyCall func(
 		proxy *T.GDBusProxy,
-		method_name string,
+		methodName string,
 		parameters *T.GVariant,
 		flags T.GDBusCallFlags,
-		timeout_msec int,
+		timeoutMsec int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_dbus_proxy_call_finish func(
+	DbusProxyCallFinish func(
 		proxy *T.GDBusProxy,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GVariant
 
-	G_dbus_proxy_call_sync func(
+	DbusProxyCallSync func(
 		proxy *T.GDBusProxy,
-		method_name string,
+		methodName string,
 		parameters *T.GVariant,
 		flags T.GDBusCallFlags,
-		timeout_msec int,
+		timeoutMsec int,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GVariant
 
-	G_dbus_server_get_type func() T.GType
+	DbusServerGetType func() T.GType
 
-	G_dbus_server_new_sync func(
+	DbusServerNewSync func(
 		address string,
 		flags T.GDBusServerFlags,
 		guid string,
@@ -1896,638 +1896,638 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GDBusServer
 
-	G_dbus_server_get_client_address func(
+	DbusServerGetClientAddress func(
 		server *T.GDBusServer) string
 
-	G_dbus_server_get_guid func(
+	DbusServerGetGuid func(
 		server *T.GDBusServer) string
 
-	G_dbus_server_get_flags func(
+	DbusServerGetFlags func(
 		server *T.GDBusServer) T.GDBusServerFlags
 
-	G_dbus_server_start func(
+	DbusServerStart func(
 		server *T.GDBusServer)
 
-	G_dbus_server_stop func(
+	DbusServerStop func(
 		server *T.GDBusServer)
 
-	G_dbus_server_is_active func(
+	DbusServerIsActive func(
 		server *T.GDBusServer) T.Gboolean
 
-	G_dbus_is_guid func(
+	DbusIsGuid func(
 		string string) T.Gboolean
 
-	G_dbus_generate_guid func() string
+	DbusGenerateGuid func() string
 
-	G_dbus_is_name func(
+	DbusIsName func(
 		string string) T.Gboolean
 
-	G_dbus_is_unique_name func(
+	DbusIsUniqueName func(
 		string string) T.Gboolean
 
-	G_dbus_is_member_name func(
+	DbusIsMemberName func(
 		string string) T.Gboolean
 
-	G_dbus_is_interface_name func(
+	DbusIsInterfaceName func(
 		string string) T.Gboolean
 
-	G_drive_get_type func() T.GType
+	DriveGetType func() T.GType
 
-	G_drive_get_name func(drive *T.GDrive) string
+	DriveGetName func(drive *T.GDrive) string
 
-	G_drive_get_icon func(drive *T.GDrive) *T.GIcon
+	DriveGetIcon func(drive *T.GDrive) *T.GIcon
 
-	G_drive_has_volumes func(drive *T.GDrive) T.Gboolean
+	DriveHasVolumes func(drive *T.GDrive) T.Gboolean
 
-	G_drive_get_volumes func(drive *T.GDrive) *T.GList
+	DriveGetVolumes func(drive *T.GDrive) *T.GList
 
-	G_drive_is_media_removable func(drive *T.GDrive) T.Gboolean
+	DriveIsMediaRemovable func(drive *T.GDrive) T.Gboolean
 
-	G_drive_has_media func(drive *T.GDrive) T.Gboolean
+	DriveHasMedia func(drive *T.GDrive) T.Gboolean
 
-	G_drive_is_media_check_automatic func(drive *T.GDrive) T.Gboolean
+	DriveIsMediaCheckAutomatic func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_poll_for_media func(drive *T.GDrive) T.Gboolean
+	DriveCanPollForMedia func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_eject func(drive *T.GDrive) T.Gboolean
+	DriveCanEject func(drive *T.GDrive) T.Gboolean
 
-	G_drive_eject func(
+	DriveEject func(
 		drive *T.GDrive,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_drive_eject_finish func(
+	DriveEjectFinish func(
 		drive *T.GDrive,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_drive_poll_for_media func(
+	DrivePollForMedia func(
 		drive *T.GDrive,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_drive_poll_for_media_finish func(
+	DrivePollForMediaFinish func(
 		drive *T.GDrive,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_drive_get_identifier func(drive *T.GDrive, kind string) string
+	DriveGetIdentifier func(drive *T.GDrive, kind string) string
 
-	G_drive_enumerate_identifiers func(
+	DriveEnumerateIdentifiers func(
 		drive *T.GDrive) **T.Char
 
-	G_drive_get_start_stop_type func(
+	DriveGetStartStopType func(
 		drive *T.GDrive) T.GDriveStartStopType
 
-	G_drive_can_start func(drive *T.GDrive) T.Gboolean
+	DriveCanStart func(drive *T.GDrive) T.Gboolean
 
-	G_drive_can_start_degraded func(drive *T.GDrive) T.Gboolean
+	DriveCanStartDegraded func(drive *T.GDrive) T.Gboolean
 
-	G_drive_start func(
+	DriveStart func(
 		drive *T.GDrive,
 		flags T.GDriveStartFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_drive_start_finish func(
+	DriveStartFinish func(
 		drive *T.GDrive,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_drive_can_stop func(drive *T.GDrive) T.Gboolean
+	DriveCanStop func(drive *T.GDrive) T.Gboolean
 
-	G_drive_stop func(
+	DriveStop func(
 		drive *T.GDrive,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_drive_stop_finish func(
+	DriveStopFinish func(
 		drive *T.GDrive,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_drive_eject_with_operation func(
+	DriveEjectWithOperation func(
 		drive *T.GDrive,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_drive_eject_with_operation_finish func(
+	DriveEjectWithOperationFinish func(
 		drive *T.GDrive,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_icon_get_type func() T.GType
+	IconGetType func() T.GType
 
-	G_icon_hash func(icon T.Gconstpointer) uint
+	IconHash func(icon T.Gconstpointer) uint
 
-	G_icon_equal func(icon1 *T.GIcon, icon2 *T.GIcon) T.Gboolean
+	IconEqual func(icon1 *T.GIcon, icon2 *T.GIcon) T.Gboolean
 
-	G_icon_to_string func(icon *T.GIcon) string
+	IconToString func(icon *T.GIcon) string
 
-	G_icon_new_for_string func(str string, err **T.GError) *T.GIcon
+	IconNewForString func(str string, err **T.GError) *T.GIcon
 
-	G_emblem_get_type func() T.GType
+	EmblemGetType func() T.GType
 
-	G_emblem_new func(icon *T.GIcon) *T.GEmblem
+	EmblemNew func(icon *T.GIcon) *T.GEmblem
 
-	G_emblem_new_with_origin func(
+	EmblemNewWithOrigin func(
 		icon *T.GIcon, origin T.GEmblemOrigin) *T.GEmblem
 
-	G_emblem_get_icon func(emblem *T.GEmblem) *T.GIcon
+	EmblemGetIcon func(emblem *T.GEmblem) *T.GIcon
 
-	G_emblem_get_origin func(emblem *T.GEmblem) T.GEmblemOrigin
+	EmblemGetOrigin func(emblem *T.GEmblem) T.GEmblemOrigin
 
-	G_emblemed_icon_get_type func() T.GType
+	EmblemedIconGetType func() T.GType
 
-	G_emblemed_icon_new func(icon *T.GIcon, emblem *T.GEmblem) *T.GIcon
+	EmblemedIconNew func(icon *T.GIcon, emblem *T.GEmblem) *T.GIcon
 
-	G_emblemed_icon_get_icon func(emblemed *T.GEmblemedIcon) *T.GIcon
+	EmblemedIconGetIcon func(emblemed *T.GEmblemedIcon) *T.GIcon
 
-	G_emblemed_icon_get_emblems func(
+	EmblemedIconGetEmblems func(
 		emblemed *T.GEmblemedIcon) *T.GList
 
-	G_emblemed_icon_add_emblem func(
+	EmblemedIconAddEmblem func(
 		emblemed *T.GEmblemedIcon, emblem *T.GEmblem)
 
-	G_emblemed_icon_clear_emblems func(emblemed *T.GEmblemedIcon)
+	EmblemedIconClearEmblems func(emblemed *T.GEmblemedIcon)
 
-	G_file_attribute_info_list_get_type func() T.GType
+	FileAttributeInfoListGetType func() T.GType
 
-	G_file_attribute_info_list_new func() *T.GFileAttributeInfoList
+	FileAttributeInfoListNew func() *T.GFileAttributeInfoList
 
-	G_file_attribute_info_list_ref func(
+	FileAttributeInfoListRef func(
 		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
 
-	G_file_attribute_info_list_unref func(
+	FileAttributeInfoListUnref func(
 		list *T.GFileAttributeInfoList)
 
-	G_file_attribute_info_list_dup func(
+	FileAttributeInfoListDup func(
 		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
 
-	G_file_attribute_info_list_lookup func(
+	FileAttributeInfoListLookup func(
 		list *T.GFileAttributeInfoList,
 		name string) *T.GFileAttributeInfo
 
-	G_file_attribute_info_list_add func(
+	FileAttributeInfoListAdd func(
 		list *T.GFileAttributeInfoList,
 		name string,
 		typ T.GFileAttributeType,
 		flags T.GFileAttributeInfoFlags)
 
-	G_file_enumerator_get_type func() T.GType
+	FileEnumeratorGetType func() T.GType
 
-	G_file_enumerator_next_file func(
+	FileEnumeratorNextFile func(
 		enumerator *T.GFileEnumerator,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_enumerator_close func(
+	FileEnumeratorClose func(
 		enumerator *T.GFileEnumerator,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_enumerator_next_files_async func(
+	FileEnumeratorNextFilesAsync func(
 		enumerator *T.GFileEnumerator,
-		num_files int,
-		io_priority int,
+		numFiles int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_enumerator_next_files_finish func(
+	FileEnumeratorNextFilesFinish func(
 		enumerator *T.GFileEnumerator,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GList
 
-	G_file_enumerator_close_async func(
+	FileEnumeratorCloseAsync func(
 		enumerator *T.GFileEnumerator,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_enumerator_close_finish func(
+	FileEnumeratorCloseFinish func(
 		enumerator *T.GFileEnumerator,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_enumerator_is_closed func(
+	FileEnumeratorIsClosed func(
 		enumerator *T.GFileEnumerator) T.Gboolean
 
-	G_file_enumerator_has_pending func(
+	FileEnumeratorHasPending func(
 		enumerator *T.GFileEnumerator) T.Gboolean
 
-	G_file_enumerator_set_pending func(
+	FileEnumeratorSetPending func(
 		enumerator *T.GFileEnumerator,
 		pending T.Gboolean)
 
-	G_file_enumerator_get_container func(
+	FileEnumeratorGetContainer func(
 		enumerator *T.GFileEnumerator) *T.GFile
 
-	G_file_get_type func() T.GType
+	FileGetType func() T.GType
 
-	G_file_new_for_path func(path string) *T.GFile
+	FileNewForPath func(path string) *T.GFile
 
-	G_file_new_for_uri func(uri string) *T.GFile
+	FileNewForUri func(uri string) *T.GFile
 
-	G_file_new_for_commandline_arg func(arg string) *T.GFile
+	FileNewForCommandlineArg func(arg string) *T.GFile
 
-	G_file_parse_name func(parse_name string) *T.GFile
+	FileParseName func(parseName string) *T.GFile
 
-	G_file_dup func(file *T.GFile) *T.GFile
+	FileDup func(file *T.GFile) *T.GFile
 
-	G_file_hash func(file T.Gconstpointer) uint
+	FileHash func(file T.Gconstpointer) uint
 
-	G_file_equal func(file1 *T.GFile, file2 *T.GFile) T.Gboolean
+	FileEqual func(file1 *T.GFile, file2 *T.GFile) T.Gboolean
 
-	G_file_get_basename func(file *T.GFile) string
+	FileGetBasename func(file *T.GFile) string
 
-	G_file_get_path func(file *T.GFile) string
+	FileGetPath func(file *T.GFile) string
 
-	G_file_get_uri func(file *T.GFile) string
+	FileGetUri func(file *T.GFile) string
 
-	G_file_get_parse_name func(file *T.GFile) string
+	FileGetParseName func(file *T.GFile) string
 
-	G_file_get_parent func(file *T.GFile) *T.GFile
+	FileGetParent func(file *T.GFile) *T.GFile
 
-	G_file_has_parent func(file *T.GFile, parent *T.GFile) T.Gboolean
+	FileHasParent func(file *T.GFile, parent *T.GFile) T.Gboolean
 
-	G_file_get_child func(file *T.GFile, name string) *T.GFile
+	FileGetChild func(file *T.GFile, name string) *T.GFile
 
-	G_file_get_child_for_display_name func(
-		file *T.GFile, display_name string, err **T.GError) *T.GFile
+	FileGetChildForDisplayName func(
+		file *T.GFile, displayName string, err **T.GError) *T.GFile
 
-	G_file_has_prefix func(file *T.GFile, prefix *T.GFile) T.Gboolean
+	FileHasPrefix func(file *T.GFile, prefix *T.GFile) T.Gboolean
 
-	G_file_get_relative_path func(
+	FileGetRelativePath func(
 		parent *T.GFile, descendant *T.GFile) string
 
-	G_file_resolve_relative_path func(
-		file *T.GFile, relative_path string) *T.GFile
+	FileResolveRelativePath func(
+		file *T.GFile, relativePath string) *T.GFile
 
-	G_file_is_native func(file *T.GFile) T.Gboolean
+	FileIsNative func(file *T.GFile) T.Gboolean
 
-	G_file_has_uri_scheme func(
-		file *T.GFile, uri_scheme string) T.Gboolean
+	FileHasUriScheme func(
+		file *T.GFile, uriScheme string) T.Gboolean
 
-	G_file_get_uri_scheme func(file *T.GFile) string
+	FileGetUriScheme func(file *T.GFile) string
 
-	G_file_read func(
+	FileRead func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInputStream
 
-	G_file_read_async func(
+	FileReadAsync func(
 		file *T.GFile,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_read_finish func(
+	FileReadFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileInputStream
 
-	G_file_append_to func(
+	FileAppendTo func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_create func(
+	FileCreate func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_replace func(
+	FileReplace func(
 		file *T.GFile,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_append_to_async func(
+	FileAppendToAsync func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_append_to_finish func(
+	FileAppendToFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_create_async func(
+	FileCreateAsync func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_create_finish func(
+	FileCreateFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_replace_async func(
+	FileReplaceAsync func(
 		file *T.GFile,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_replace_finish func(
+	FileReplaceFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
-	G_file_open_readwrite func(
+	FileOpenReadwrite func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_open_readwrite_async func(
+	FileOpenReadwriteAsync func(
 		file *T.GFile,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_open_readwrite_finish func(
+	FileOpenReadwriteFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_create_readwrite func(
+	FileCreateReadwrite func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_create_readwrite_async func(
+	FileCreateReadwriteAsync func(
 		file *T.GFile,
 		flags T.GFileCreateFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_create_readwrite_finish func(
+	FileCreateReadwriteFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_replace_readwrite func(
+	FileReplaceReadwrite func(
 		file *T.GFile,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_replace_readwrite_async func(
+	FileReplaceReadwriteAsync func(
 		file *T.GFile,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_replace_readwrite_finish func(
+	FileReplaceReadwriteFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileIOStream
 
-	G_file_query_exists func(
+	FileQueryExists func(
 		file *T.GFile,
 		cancellable *T.GCancellable) T.Gboolean
 
-	G_file_query_file_type func(
+	FileQueryFileType func(
 		file *T.GFile,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable) T.GFileType
 
-	G_file_query_info func(
+	FileQueryInfo func(
 		file *T.GFile,
 		attributes string,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_query_info_async func(
+	FileQueryInfoAsync func(
 		file *T.GFile,
 		attributes string,
 		flags T.GFileQueryInfoFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_query_info_finish func(
+	FileQueryInfoFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileInfo
 
-	G_file_query_filesystem_info func(
+	FileQueryFilesystemInfo func(
 		file *T.GFile,
 		attributes string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_query_filesystem_info_async func(
+	FileQueryFilesystemInfoAsync func(
 		file *T.GFile,
 		attributes string,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_query_filesystem_info_finish func(
+	FileQueryFilesystemInfoFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileInfo
 
-	G_file_find_enclosing_mount func(
+	FileFindEnclosingMount func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GMount
 
-	G_file_find_enclosing_mount_async func(
+	FileFindEnclosingMountAsync func(
 		file *T.GFile,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_find_enclosing_mount_finish func(
+	FileFindEnclosingMountFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GMount
 
-	G_file_enumerate_children func(
+	FileEnumerateChildren func(
 		file *T.GFile,
 		attributes string,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileEnumerator
 
-	G_file_enumerate_children_async func(
+	FileEnumerateChildrenAsync func(
 		file *T.GFile,
 		attributes string,
 		flags T.GFileQueryInfoFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_enumerate_children_finish func(
+	FileEnumerateChildrenFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFileEnumerator
 
-	G_file_set_display_name func(
+	FileSetDisplayName func(
 		file *T.GFile,
-		display_name string,
+		displayName string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFile
 
-	G_file_set_display_name_async func(
+	FileSetDisplayNameAsync func(
 		file *T.GFile,
-		display_name string,
-		io_priority int,
+		displayName string,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_set_display_name_finish func(
+	FileSetDisplayNameFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) *T.GFile
 
-	G_file_delete func(
+	FileDelete func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_trash func(
+	FileTrash func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_copy func(
+	FileCopy func(
 		source *T.GFile,
 		destination *T.GFile,
 		flags T.GFileCopyFlags,
 		cancellable *T.GCancellable,
-		progress_callback T.GFileProgressCallback,
-		progress_callback_data T.Gpointer,
+		progressCallback T.GFileProgressCallback,
+		progressCallbackData T.Gpointer,
 		err **T.GError) T.Gboolean
 
-	G_file_copy_async func(
+	FileCopyAsync func(
 		source *T.GFile,
 		destination *T.GFile,
 		flags T.GFileCopyFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
-		progress_callback T.GFileProgressCallback,
-		progress_callback_data T.Gpointer,
+		progressCallback T.GFileProgressCallback,
+		progressCallbackData T.Gpointer,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_copy_finish func(
+	FileCopyFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_move func(
+	FileMove func(
 		source *T.GFile,
 		destination *T.GFile,
 		flags T.GFileCopyFlags,
 		cancellable *T.GCancellable,
-		progress_callback T.GFileProgressCallback,
-		progress_callback_data T.Gpointer,
+		progressCallback T.GFileProgressCallback,
+		progressCallbackData T.Gpointer,
 		err **T.GError) T.Gboolean
 
-	G_file_make_directory func(
+	FileMakeDirectory func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_make_directory_with_parents func(
+	FileMakeDirectoryWithParents func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_make_symbolic_link func(
+	FileMakeSymbolicLink func(
 		file *T.GFile,
-		symlink_value string,
+		symlinkValue string,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_query_settable_attributes func(
+	FileQuerySettableAttributes func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileAttributeInfoList
 
-	G_file_query_writable_namespaces func(
+	FileQueryWritableNamespaces func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileAttributeInfoList
 
-	G_file_set_attribute func(
+	FileSetAttribute func(
 		file *T.GFile,
 		attribute string,
 		typ T.GFileAttributeType,
-		value_p T.Gpointer,
+		valueP T.Gpointer,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attributes_from_info func(
+	FileSetAttributesFromInfo func(
 		file *T.GFile,
 		info *T.GFileInfo,
 		flags T.GFileQueryInfoFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attributes_async func(
+	FileSetAttributesAsync func(
 		file *T.GFile,
 		info *T.GFileInfo,
 		flags T.GFileQueryInfoFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_set_attributes_finish func(
+	FileSetAttributesFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		info **T.GFileInfo,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_string func(
+	FileSetAttributeString func(
 		file *T.GFile,
 		attribute string,
 		value string,
@@ -2535,7 +2535,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_byte_string func(
+	FileSetAttributeByteString func(
 		file *T.GFile,
 		attribute string,
 		value string,
@@ -2543,7 +2543,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_uint32 func(
+	FileSetAttributeUint32 func(
 		file *T.GFile,
 		attribute string,
 		value T.GUint32,
@@ -2551,7 +2551,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_int32 func(
+	FileSetAttributeInt32 func(
 		file *T.GFile,
 		attribute string,
 		value T.GInt32,
@@ -2559,7 +2559,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_uint64 func(
+	FileSetAttributeUint64 func(
 		file *T.GFile,
 		attribute string,
 		value uint64,
@@ -2567,7 +2567,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_set_attribute_int64 func(
+	FileSetAttributeInt64 func(
 		file *T.GFile,
 		attribute string,
 		value int64,
@@ -2575,1458 +2575,1458 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_mount_enclosing_volume func(
+	FileMountEnclosingVolume func(
 		location *T.GFile,
 		flags T.GMountMountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_mount_enclosing_volume_finish func(
+	FileMountEnclosingVolumeFinish func(
 		location *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_mount_mountable func(
+	FileMountMountable func(
 		file *T.GFile,
 		flags T.GMountMountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_mount_mountable_finish func(
+	FileMountMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GFile
 
-	G_file_unmount_mountable func(
+	FileUnmountMountable func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_unmount_mountable_finish func(
+	FileUnmountMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_unmount_mountable_with_operation func(
+	FileUnmountMountableWithOperation func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_unmount_mountable_with_operation_finish func(
+	FileUnmountMountableWithOperationFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_eject_mountable func(
+	FileEjectMountable func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_eject_mountable_finish func(
+	FileEjectMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_eject_mountable_with_operation func(
+	FileEjectMountableWithOperation func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_eject_mountable_with_operation_finish func(
+	FileEjectMountableWithOperationFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_copy_attributes func(
+	FileCopyAttributes func(
 		source *T.GFile,
 		destination *T.GFile,
 		flags T.GFileCopyFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_monitor_directory func(
+	FileMonitorDirectory func(
 		file *T.GFile,
 		flags T.GFileMonitorFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileMonitor
 
-	G_file_monitor_file func(
+	FileMonitorFile func(
 		file *T.GFile,
 		flags T.GFileMonitorFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileMonitor
 
-	G_file_monitor func(
+	FileMonitor func(
 		file *T.GFile,
 		flags T.GFileMonitorFlags,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileMonitor
 
-	G_file_start_mountable func(
+	FileStartMountable func(
 		file *T.GFile,
 		flags T.GDriveStartFlags,
-		start_operation *T.GMountOperation,
+		startOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_start_mountable_finish func(
+	FileStartMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_stop_mountable func(
+	FileStopMountable func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_stop_mountable_finish func(
+	FileStopMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_poll_mountable func(
+	FilePollMountable func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_poll_mountable_finish func(
+	FilePollMountableFinish func(
 		file *T.GFile,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_file_query_default_handler func(
+	FileQueryDefaultHandler func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GAppInfo
 
-	G_file_load_contents func(
+	FileLoadContents func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		contents **T.Char,
 		length *T.Gsize,
-		etag_out **T.Char,
+		etagOut **T.Char,
 		err **T.GError) T.Gboolean
 
-	G_file_load_contents_async func(
+	FileLoadContentsAsync func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_load_contents_finish func(
+	FileLoadContentsFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		contents **T.Char,
 		length *T.Gsize,
-		etag_out **T.Char,
+		etagOut **T.Char,
 		err **T.GError) T.Gboolean
 
-	G_file_load_partial_contents_async func(
+	FileLoadPartialContentsAsync func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
-		read_more_callback T.GFileReadMoreCallback,
+		readMoreCallback T.GFileReadMoreCallback,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_load_partial_contents_finish func(
+	FileLoadPartialContentsFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
 		contents **T.Char,
 		length *T.Gsize,
-		etag_out **T.Char,
+		etagOut **T.Char,
 		err **T.GError) T.Gboolean
 
-	G_file_replace_contents func(
+	FileReplaceContents func(
 		file *T.GFile,
 		contents string,
 		length T.Gsize,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
-		new_etag **T.Char,
+		newEtag **T.Char,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_file_replace_contents_async func(
+	FileReplaceContentsAsync func(
 		file *T.GFile,
 		contents string,
 		length T.Gsize,
 		etag string,
-		make_backup T.Gboolean,
+		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_replace_contents_finish func(
+	FileReplaceContentsFinish func(
 		file *T.GFile,
 		res *T.GAsyncResult,
-		new_etag **T.Char,
+		newEtag **T.Char,
 		err **T.GError) T.Gboolean
 
-	G_file_supports_thread_contexts func(file *T.GFile) T.Gboolean
+	FileSupportsThreadContexts func(file *T.GFile) T.Gboolean
 
-	G_file_icon_get_type func() T.GType
+	FileIconGetType func() T.GType
 
-	G_file_icon_new func(file *T.GFile) *T.GIcon
+	FileIconNew func(file *T.GFile) *T.GIcon
 
-	G_file_icon_get_file func(icon *T.GFileIcon) *T.GFile
+	FileIconGetFile func(icon *T.GFileIcon) *T.GFile
 
-	G_file_info_get_type func() T.GType
+	FileInfoGetType func() T.GType
 
-	G_file_info_new func() *T.GFileInfo
+	FileInfoNew func() *T.GFileInfo
 
-	G_file_info_dup func(other *T.GFileInfo) *T.GFileInfo
+	FileInfoDup func(other *T.GFileInfo) *T.GFileInfo
 
-	G_file_info_copy_into func(src_info, dest_info *T.GFileInfo)
+	FileInfoCopyInto func(srcInfo, destInfo *T.GFileInfo)
 
-	G_file_info_has_attribute func(
+	FileInfoHasAttribute func(
 		info *T.GFileInfo, attribute string) T.Gboolean
 
-	G_file_info_has_namespace func(
-		info *T.GFileInfo, name_space string) T.Gboolean
+	FileInfoHasNamespace func(
+		info *T.GFileInfo, nameSpace string) T.Gboolean
 
-	G_file_info_list_attributes func(
-		info *T.GFileInfo, name_space string) **T.Char
+	FileInfoListAttributes func(
+		info *T.GFileInfo, nameSpace string) **T.Char
 
-	G_file_info_get_attribute_data func(
+	FileInfoGetAttributeData func(
 		info *T.GFileInfo,
 		attribute string,
 		typ *T.GFileAttributeType,
-		value_pp *T.Gpointer,
+		valuePp *T.Gpointer,
 		status *T.GFileAttributeStatus) T.Gboolean
 
-	G_file_info_get_attribute_type func(
+	FileInfoGetAttributeType func(
 		info *T.GFileInfo,
 		attribute string) T.GFileAttributeType
 
-	G_file_info_remove_attribute func(
+	FileInfoRemoveAttribute func(
 		info *T.GFileInfo,
 		attribute string)
 
-	G_file_info_get_attribute_status func(
+	FileInfoGetAttributeStatus func(
 		info *T.GFileInfo,
 		attribute string) T.GFileAttributeStatus
 
-	G_file_info_set_attribute_status func(
+	FileInfoSetAttributeStatus func(
 		info *T.GFileInfo,
 		attribute string,
 		status T.GFileAttributeStatus) T.Gboolean
 
-	G_file_info_get_attribute_as_string func(
+	FileInfoGetAttributeAsString func(
 		info *T.GFileInfo,
 		attribute string) string
 
-	G_file_info_get_attribute_string func(
+	FileInfoGetAttributeString func(
 		info *T.GFileInfo,
 		attribute string) string
 
-	G_file_info_get_attribute_byte_string func(
+	FileInfoGetAttributeByteString func(
 		info *T.GFileInfo,
 		attribute string) string
 
-	G_file_info_get_attribute_boolean func(
+	FileInfoGetAttributeBoolean func(
 		info *T.GFileInfo,
 		attribute string) T.Gboolean
 
-	G_file_info_get_attribute_uint32 func(
+	FileInfoGetAttributeUint32 func(
 		info *T.GFileInfo,
 		attribute string) T.GUint32
 
-	G_file_info_get_attribute_int32 func(
+	FileInfoGetAttributeInt32 func(
 		info *T.GFileInfo,
 		attribute string) T.GInt32
 
-	G_file_info_get_attribute_uint64 func(
+	FileInfoGetAttributeUint64 func(
 		info *T.GFileInfo,
 		attribute string) uint64
 
-	G_file_info_get_attribute_int64 func(
+	FileInfoGetAttributeInt64 func(
 		info *T.GFileInfo,
 		attribute string) int64
 
-	G_file_info_get_attribute_object func(
+	FileInfoGetAttributeObject func(
 		info *T.GFileInfo,
 		attribute string) *T.GObject
 
-	G_file_info_get_attribute_stringv func(
+	FileInfoGetAttributeStringv func(
 		info *T.GFileInfo,
 		attribute string) **T.Char
 
-	G_file_info_set_attribute func(
+	FileInfoSetAttribute func(
 		info *T.GFileInfo,
 		attribute string,
 		typ T.GFileAttributeType,
-		value_p T.Gpointer)
+		valueP T.Gpointer)
 
-	G_file_info_set_attribute_string func(
+	FileInfoSetAttributeString func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value string)
+		attrValue string)
 
-	G_file_info_set_attribute_byte_string func(
+	FileInfoSetAttributeByteString func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value string)
+		attrValue string)
 
-	G_file_info_set_attribute_boolean func(
+	FileInfoSetAttributeBoolean func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.Gboolean)
+		attrValue T.Gboolean)
 
-	G_file_info_set_attribute_uint32 func(
+	FileInfoSetAttributeUint32 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.GUint32)
+		attrValue T.GUint32)
 
-	G_file_info_set_attribute_int32 func(
+	FileInfoSetAttributeInt32 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value T.GInt32)
+		attrValue T.GInt32)
 
-	G_file_info_set_attribute_uint64 func(
+	FileInfoSetAttributeUint64 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value uint64)
+		attrValue uint64)
 
-	G_file_info_set_attribute_int64 func(
+	FileInfoSetAttributeInt64 func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value int64)
+		attrValue int64)
 
-	G_file_info_set_attribute_object func(
+	FileInfoSetAttributeObject func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value *T.GObject)
+		attrValue *T.GObject)
 
-	G_file_info_set_attribute_stringv func(
+	FileInfoSetAttributeStringv func(
 		info *T.GFileInfo,
 		attribute string,
-		attr_value **T.Char)
+		attrValue **T.Char)
 
-	G_file_info_clear_status func(
+	FileInfoClearStatus func(
 		info *T.GFileInfo)
 
-	G_file_info_get_file_type func(
+	FileInfoGetFileType func(
 		info *T.GFileInfo) T.GFileType
 
-	G_file_info_get_is_hidden func(
+	FileInfoGetIsHidden func(
 		info *T.GFileInfo) T.Gboolean
 
-	G_file_info_get_is_backup func(
+	FileInfoGetIsBackup func(
 		info *T.GFileInfo) T.Gboolean
 
-	G_file_info_get_is_symlink func(
+	FileInfoGetIsSymlink func(
 		info *T.GFileInfo) T.Gboolean
 
-	G_file_info_get_name func(
+	FileInfoGetName func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_display_name func(
+	FileInfoGetDisplayName func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_edit_name func(
+	FileInfoGetEditName func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_icon func(
+	FileInfoGetIcon func(
 		info *T.GFileInfo) *T.GIcon
 
-	G_file_info_get_content_type func(
+	FileInfoGetContentType func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_size func(
+	FileInfoGetSize func(
 		info *T.GFileInfo) T.Goffset
 
-	G_file_info_get_modification_time func(
+	FileInfoGetModificationTime func(
 		info *T.GFileInfo,
 		result *T.GTimeVal)
 
-	G_file_info_get_symlink_target func(
+	FileInfoGetSymlinkTarget func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_etag func(
+	FileInfoGetEtag func(
 		info *T.GFileInfo) string
 
-	G_file_info_get_sort_order func(
+	FileInfoGetSortOrder func(
 		info *T.GFileInfo) T.GInt32
 
-	G_file_info_set_attribute_mask func(
+	FileInfoSetAttributeMask func(
 		info *T.GFileInfo,
 		mask *T.GFileAttributeMatcher)
 
-	G_file_info_unset_attribute_mask func(
+	FileInfoUnsetAttributeMask func(
 		info *T.GFileInfo)
 
-	G_file_info_set_file_type func(
+	FileInfoSetFileType func(
 		info *T.GFileInfo,
 		typ T.GFileType)
 
-	G_file_info_set_is_hidden func(
+	FileInfoSetIsHidden func(
 		info *T.GFileInfo,
-		is_hidden T.Gboolean)
+		isHidden T.Gboolean)
 
-	G_file_info_set_is_symlink func(
+	FileInfoSetIsSymlink func(
 		info *T.GFileInfo,
-		is_symlink T.Gboolean)
+		isSymlink T.Gboolean)
 
-	G_file_info_set_name func(
+	FileInfoSetName func(
 		info *T.GFileInfo,
 		name string)
 
-	G_file_info_set_display_name func(
+	FileInfoSetDisplayName func(
 		info *T.GFileInfo,
-		display_name string)
+		displayName string)
 
-	G_file_info_set_edit_name func(
+	FileInfoSetEditName func(
 		info *T.GFileInfo,
-		edit_name string)
+		editName string)
 
-	G_file_info_set_icon func(
+	FileInfoSetIcon func(
 		info *T.GFileInfo,
 		icon *T.GIcon)
 
-	G_file_info_set_content_type func(
+	FileInfoSetContentType func(
 		info *T.GFileInfo,
-		content_type string)
+		contentType string)
 
-	G_file_info_set_size func(
+	FileInfoSetSize func(
 		info *T.GFileInfo,
 		size T.Goffset)
 
-	G_file_info_set_modification_time func(
+	FileInfoSetModificationTime func(
 		info *T.GFileInfo,
 		mtime *T.GTimeVal)
 
-	G_file_info_set_symlink_target func(
+	FileInfoSetSymlinkTarget func(
 		info *T.GFileInfo,
-		symlink_target string)
+		symlinkTarget string)
 
-	G_file_info_set_sort_order func(
+	FileInfoSetSortOrder func(
 		info *T.GFileInfo,
-		sort_order T.GInt32)
+		sortOrder T.GInt32)
 
-	G_file_attribute_matcher_get_type func() T.GType
+	FileAttributeMatcherGetType func() T.GType
 
-	G_file_attribute_matcher_new func(
+	FileAttributeMatcherNew func(
 		attributes string) *T.GFileAttributeMatcher
 
-	G_file_attribute_matcher_ref func(
+	FileAttributeMatcherRef func(
 		matcher *T.GFileAttributeMatcher) *T.GFileAttributeMatcher
 
-	G_file_attribute_matcher_unref func(
+	FileAttributeMatcherUnref func(
 		matcher *T.GFileAttributeMatcher)
 
-	G_file_attribute_matcher_matches func(
+	FileAttributeMatcherMatches func(
 		matcher *T.GFileAttributeMatcher,
 		attribute string) T.Gboolean
 
-	G_file_attribute_matcher_matches_only func(
+	FileAttributeMatcherMatchesOnly func(
 		matcher *T.GFileAttributeMatcher,
 		attribute string) T.Gboolean
 
-	G_file_attribute_matcher_enumerate_namespace func(
+	FileAttributeMatcherEnumerateNamespace func(
 		matcher *T.GFileAttributeMatcher,
 		ns string) T.Gboolean
 
-	G_file_attribute_matcher_enumerate_next func(
+	FileAttributeMatcherEnumerateNext func(
 		matcher *T.GFileAttributeMatcher) string
 
-	G_file_input_stream_get_type func() T.GType
+	FileInputStreamGetType func() T.GType
 
-	G_file_input_stream_query_info func(
+	FileInputStreamQueryInfo func(
 		stream *T.GFileInputStream,
 		attributes string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_input_stream_query_info_async func(
+	FileInputStreamQueryInfoAsync func(
 		stream *T.GFileInputStream,
 		attributes string,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_input_stream_query_info_finish func(
+	FileInputStreamQueryInfoFinish func(
 		stream *T.GFileInputStream,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GFileInfo
 
-	G_io_error_quark func() T.GQuark
+	IoErrorQuark func() T.GQuark
 
-	G_io_error_from_errno func(
-		err_no int) T.GIOErrorEnum
+	IoErrorFromErrno func(
+		errNo int) T.GIOErrorEnum
 
-	G_io_error_from_win32_error func(
-		error_code int) T.GIOErrorEnum
+	IoErrorFromWin32Error func(
+		errorCode int) T.GIOErrorEnum
 
-	G_io_stream_get_type func() T.GType
+	IoStreamGetType func() T.GType
 
-	G_io_stream_get_input_stream func(
+	IoStreamGetInputStream func(
 		stream *T.GIOStream) *T.GInputStream
 
-	G_io_stream_get_output_stream func(
+	IoStreamGetOutputStream func(
 		stream *T.GIOStream) *T.GOutputStream
 
-	G_io_stream_splice_async func(
+	IoStreamSpliceAsync func(
 		stream1 *T.GIOStream,
 		stream2 *T.GIOStream,
 		flags T.GIOStreamSpliceFlags,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_io_stream_splice_finish func(
+	IoStreamSpliceFinish func(
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_io_stream_close func(
+	IoStreamClose func(
 		stream *T.GIOStream,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_io_stream_close_async func(
+	IoStreamCloseAsync func(
 		stream *T.GIOStream,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_io_stream_close_finish func(
+	IoStreamCloseFinish func(
 		stream *T.GIOStream,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_io_stream_is_closed func(
+	IoStreamIsClosed func(
 		stream *T.GIOStream) T.Gboolean
 
-	G_io_stream_has_pending func(
+	IoStreamHasPending func(
 		stream *T.GIOStream) T.Gboolean
 
-	G_io_stream_set_pending func(
+	IoStreamSetPending func(
 		stream *T.GIOStream,
 		err **T.GError) T.Gboolean
 
-	G_io_stream_clear_pending func(
+	IoStreamClearPending func(
 		stream *T.GIOStream)
 
-	G_file_io_stream_get_type func() T.GType
+	FileIoStreamGetType func() T.GType
 
-	G_file_io_stream_query_info func(
+	FileIoStreamQueryInfo func(
 		stream *T.GFileIOStream,
 		attributes string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_io_stream_query_info_async func(
+	FileIoStreamQueryInfoAsync func(
 		stream *T.GFileIOStream,
 		attributes string,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_io_stream_query_info_finish func(
+	FileIoStreamQueryInfoFinish func(
 		stream *T.GFileIOStream,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GFileInfo
 
-	G_file_io_stream_get_etag func(
+	FileIoStreamGetEtag func(
 		stream *T.GFileIOStream) string
 
-	G_file_monitor_get_type func() T.GType
+	FileMonitorGetType func() T.GType
 
-	G_file_monitor_cancel func(
+	FileMonitorCancel func(
 		monitor *T.GFileMonitor) T.Gboolean
 
-	G_file_monitor_is_cancelled func(
+	FileMonitorIsCancelled func(
 		monitor *T.GFileMonitor) T.Gboolean
 
-	G_file_monitor_set_rate_limit func(
+	FileMonitorSetRateLimit func(
 		monitor *T.GFileMonitor,
-		limit_msecs int)
+		limitMsecs int)
 
-	G_file_monitor_emit_event func(
+	FileMonitorEmitEvent func(
 		monitor *T.GFileMonitor,
 		child *T.GFile,
-		other_file *T.GFile,
-		event_type T.GFileMonitorEvent)
+		otherFile *T.GFile,
+		eventType T.GFileMonitorEvent)
 
-	G_filename_completer_get_type func() T.GType
+	FilenameCompleterGetType func() T.GType
 
-	G_filename_completer_new func() *T.GFilenameCompleter
+	FilenameCompleterNew func() *T.GFilenameCompleter
 
-	G_filename_completer_get_completion_suffix func(
+	FilenameCompleterGetCompletionSuffix func(
 		completer *T.GFilenameCompleter,
-		initial_text string) string
+		initialText string) string
 
-	G_filename_completer_get_completions func(
+	FilenameCompleterGetCompletions func(
 		completer *T.GFilenameCompleter,
-		initial_text string) **T.Char
+		initialText string) **T.Char
 
-	G_filename_completer_set_dirs_only func(
+	FilenameCompleterSetDirsOnly func(
 		completer *T.GFilenameCompleter,
-		dirs_only T.Gboolean)
+		dirsOnly T.Gboolean)
 
-	G_file_output_stream_get_type func() T.GType
+	FileOutputStreamGetType func() T.GType
 
-	G_file_output_stream_query_info func(
+	FileOutputStreamQueryInfo func(
 		stream *T.GFileOutputStream,
 		attributes string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GFileInfo
 
-	G_file_output_stream_query_info_async func(
+	FileOutputStreamQueryInfoAsync func(
 		stream *T.GFileOutputStream,
 		attributes string,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_file_output_stream_query_info_finish func(
+	FileOutputStreamQueryInfoFinish func(
 		stream *T.GFileOutputStream,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GFileInfo
 
-	G_file_output_stream_get_etag func(
+	FileOutputStreamGetEtag func(
 		stream *T.GFileOutputStream) string
 
-	G_inet_address_get_type func() T.GType
+	InetAddressGetType func() T.GType
 
-	G_inet_address_new_from_string func(
+	InetAddressNewFromString func(
 		string string) *T.GInetAddress
 
-	G_inet_address_new_from_bytes func(
+	InetAddressNewFromBytes func(
 		bytes *uint8,
 		family T.GSocketFamily) *T.GInetAddress
 
-	G_inet_address_new_loopback func(
+	InetAddressNewLoopback func(
 		family T.GSocketFamily) *T.GInetAddress
 
-	G_inet_address_new_any func(
+	InetAddressNewAny func(
 		family T.GSocketFamily) *T.GInetAddress
 
-	G_inet_address_to_string func(
+	InetAddressToString func(
 		address *T.GInetAddress) string
 
-	G_inet_address_to_bytes func(
+	InetAddressToBytes func(
 		address *T.GInetAddress) *uint8
 
-	G_inet_address_get_native_size func(
+	InetAddressGetNativeSize func(
 		address *T.GInetAddress) T.Gsize
 
-	G_inet_address_get_family func(
+	InetAddressGetFamily func(
 		address *T.GInetAddress) T.GSocketFamily
 
-	G_inet_address_get_is_any func(
+	InetAddressGetIsAny func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_loopback func(
+	InetAddressGetIsLoopback func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_link_local func(
+	InetAddressGetIsLinkLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_site_local func(
+	InetAddressGetIsSiteLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_multicast func(
+	InetAddressGetIsMulticast func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_mc_global func(
+	InetAddressGetIsMcGlobal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_mc_link_local func(
+	InetAddressGetIsMcLinkLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_mc_node_local func(
+	InetAddressGetIsMcNodeLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_mc_org_local func(
+	InetAddressGetIsMcOrgLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_inet_address_get_is_mc_site_local func(
+	InetAddressGetIsMcSiteLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	G_socket_address_get_type func() T.GType
+	SocketAddressGetType func() T.GType
 
-	G_socket_address_get_family func(
+	SocketAddressGetFamily func(
 		address *T.GSocketAddress) T.GSocketFamily
 
-	G_socket_address_new_from_native func(
+	SocketAddressNewFromNative func(
 		native T.Gpointer,
 		len T.Gsize) *T.GSocketAddress
 
-	G_socket_address_to_native func(
+	SocketAddressToNative func(
 		address *T.GSocketAddress,
 		dest T.Gpointer,
 		destlen T.Gsize,
 		err **T.GError) T.Gboolean
 
-	G_socket_address_get_native_size func(
+	SocketAddressGetNativeSize func(
 		address *T.GSocketAddress) T.Gssize
 
-	G_inet_socket_address_get_type func() T.GType
+	InetSocketAddressGetType func() T.GType
 
-	G_inet_socket_address_new func(
+	InetSocketAddressNew func(
 		address *T.GInetAddress,
 		port uint16) *T.GSocketAddress
 
-	G_inet_socket_address_get_address func(
+	InetSocketAddressGetAddress func(
 		address *T.GInetSocketAddress) *T.GInetAddress
 
-	G_inet_socket_address_get_port func(
+	InetSocketAddressGetPort func(
 		address *T.GInetSocketAddress) uint16
 
-	G_app_info_create_flags_get_type func() T.GType
+	AppInfoCreateFlagsGetType func() T.GType
 
-	G_converter_flags_get_type func() T.GType
+	ConverterFlagsGetType func() T.GType
 
-	G_converter_result_get_type func() T.GType
+	ConverterResultGetType func() T.GType
 
-	G_data_stream_byte_order_get_type func() T.GType
+	DataStreamByteOrderGetType func() T.GType
 
-	G_data_stream_newline_type_get_type func() T.GType
+	DataStreamNewlineTypeGetType func() T.GType
 
-	G_file_attribute_type_get_type func() T.GType
+	FileAttributeTypeGetType func() T.GType
 
-	G_file_attribute_info_flags_get_type func() T.GType
+	FileAttributeInfoFlagsGetType func() T.GType
 
-	G_file_attribute_status_get_type func() T.GType
+	FileAttributeStatusGetType func() T.GType
 
-	G_file_query_info_flags_get_type func() T.GType
+	FileQueryInfoFlagsGetType func() T.GType
 
-	G_file_create_flags_get_type func() T.GType
+	FileCreateFlagsGetType func() T.GType
 
-	G_mount_mount_flags_get_type func() T.GType
+	MountMountFlagsGetType func() T.GType
 
-	G_mount_unmount_flags_get_type func() T.GType
+	MountUnmountFlagsGetType func() T.GType
 
-	G_drive_start_flags_get_type func() T.GType
+	DriveStartFlagsGetType func() T.GType
 
-	G_drive_start_stop_type_get_type func() T.GType
+	DriveStartStopTypeGetType func() T.GType
 
-	G_file_copy_flags_get_type func() T.GType
+	FileCopyFlagsGetType func() T.GType
 
-	G_file_monitor_flags_get_type func() T.GType
+	FileMonitorFlagsGetType func() T.GType
 
-	G_file_type_get_type func() T.GType
+	FileTypeGetType func() T.GType
 
-	G_filesystem_preview_type_get_type func() T.GType
+	FilesystemPreviewTypeGetType func() T.GType
 
-	G_file_monitor_event_get_type func() T.GType
+	FileMonitorEventGetType func() T.GType
 
-	G_io_error_enum_get_type func() T.GType
+	IoErrorEnumGetType func() T.GType
 
-	G_ask_password_flags_get_type func() T.GType
+	AskPasswordFlagsGetType func() T.GType
 
-	G_password_save_get_type func() T.GType
+	PasswordSaveGetType func() T.GType
 
-	G_mount_operation_result_get_type func() T.GType
+	MountOperationResultGetType func() T.GType
 
-	G_output_stream_splice_flags_get_type func() T.GType
+	OutputStreamSpliceFlagsGetType func() T.GType
 
-	G_io_stream_splice_flags_get_type func() T.GType
+	IoStreamSpliceFlagsGetType func() T.GType
 
-	G_emblem_origin_get_type func() T.GType
+	EmblemOriginGetType func() T.GType
 
-	G_resolver_error_get_type func() T.GType
+	ResolverErrorGetType func() T.GType
 
-	G_socket_family_get_type func() T.GType
+	SocketFamilyGetType func() T.GType
 
-	G_socket_type_get_type func() T.GType
+	SocketTypeGetType func() T.GType
 
-	G_socket_msg_flags_get_type func() T.GType
+	SocketMsgFlagsGetType func() T.GType
 
-	G_socket_protocol_get_type func() T.GType
+	SocketProtocolGetType func() T.GType
 
-	G_zlib_compressor_format_get_type func() T.GType
+	ZlibCompressorFormatGetType func() T.GType
 
-	G_unix_socket_address_type_get_type func() T.GType
+	UnixSocketAddressTypeGetType func() T.GType
 
-	G_bus_type_get_type func() T.GType
+	BusTypeGetType func() T.GType
 
-	G_bus_name_owner_flags_get_type func() T.GType
+	BusNameOwnerFlagsGetType func() T.GType
 
-	G_bus_name_watcher_flags_get_type func() T.GType
+	BusNameWatcherFlagsGetType func() T.GType
 
-	G_dbus_proxy_flags_get_type func() T.GType
+	DbusProxyFlagsGetType func() T.GType
 
-	G_dbus_error_get_type func() T.GType
+	DbusErrorGetType func() T.GType
 
-	G_dbus_connection_flags_get_type func() T.GType
+	DbusConnectionFlagsGetType func() T.GType
 
-	G_dbus_capability_flags_get_type func() T.GType
+	DbusCapabilityFlagsGetType func() T.GType
 
-	G_dbus_call_flags_get_type func() T.GType
+	DbusCallFlagsGetType func() T.GType
 
-	G_dbus_message_type_get_type func() T.GType
+	DbusMessageTypeGetType func() T.GType
 
-	G_dbus_message_flags_get_type func() T.GType
+	DbusMessageFlagsGetType func() T.GType
 
-	G_dbus_message_header_field_get_type func() T.GType
+	DbusMessageHeaderFieldGetType func() T.GType
 
-	G_dbus_property_info_flags_get_type func() T.GType
+	DbusPropertyInfoFlagsGetType func() T.GType
 
-	G_dbus_subtree_flags_get_type func() T.GType
+	DbusSubtreeFlagsGetType func() T.GType
 
-	G_dbus_server_flags_get_type func() T.GType
+	DbusServerFlagsGetType func() T.GType
 
-	G_dbus_signal_flags_get_type func() T.GType
+	DbusSignalFlagsGetType func() T.GType
 
-	G_dbus_send_message_flags_get_type func() T.GType
+	DbusSendMessageFlagsGetType func() T.GType
 
-	G_credentials_type_get_type func() T.GType
+	CredentialsTypeGetType func() T.GType
 
-	G_dbus_message_byte_order_get_type func() T.GType
+	DbusMessageByteOrderGetType func() T.GType
 
-	G_application_flags_get_type func() T.GType
+	ApplicationFlagsGetType func() T.GType
 
-	G_tls_error_get_type func() T.GType
+	TlsErrorGetType func() T.GType
 
-	G_tls_certificate_flags_get_type func() T.GType
+	TlsCertificateFlagsGetType func() T.GType
 
-	G_tls_authentication_mode_get_type func() T.GType
+	TlsAuthenticationModeGetType func() T.GType
 
-	G_tls_rehandshake_mode_get_type func() T.GType
+	TlsRehandshakeModeGetType func() T.GType
 
-	G_settings_bind_flags_get_type func() T.GType
+	SettingsBindFlagsGetType func() T.GType
 
-	G_io_module_get_type func() T.GType
+	IoModuleGetType func() T.GType
 
-	G_io_module_new func(
+	IoModuleNew func(
 		filename string) *T.GIOModule
 
-	G_io_modules_scan_all_in_directory func(
+	IoModulesScanAllInDirectory func(
 		dirname string)
 
-	G_io_modules_load_all_in_directory func(
+	IoModulesLoadAllInDirectory func(
 		dirname string) *T.GList
 
-	G_io_extension_point_register func(
+	IoExtensionPointRegister func(
 		name string) *T.GIOExtensionPoint
 
-	G_io_extension_point_lookup func(
+	IoExtensionPointLookup func(
 		name string) *T.GIOExtensionPoint
 
-	G_io_extension_point_set_required_type func(
-		extension_point *T.GIOExtensionPoint,
+	IoExtensionPointSetRequiredType func(
+		extensionPoint *T.GIOExtensionPoint,
 		typ T.GType)
 
-	G_io_extension_point_get_required_type func(
-		extension_point *T.GIOExtensionPoint) T.GType
+	IoExtensionPointGetRequiredType func(
+		extensionPoint *T.GIOExtensionPoint) T.GType
 
-	G_io_extension_point_get_extensions func(
-		extension_point *T.GIOExtensionPoint) *T.GList
+	IoExtensionPointGetExtensions func(
+		extensionPoint *T.GIOExtensionPoint) *T.GList
 
-	G_io_extension_point_get_extension_by_name func(
-		extension_point *T.GIOExtensionPoint,
+	IoExtensionPointGetExtensionByName func(
+		extensionPoint *T.GIOExtensionPoint,
 		name string) *T.GIOExtension
 
-	G_io_extension_point_implement func(
-		extension_point_name string,
+	IoExtensionPointImplement func(
+		extensionPointName string,
 		typ T.GType,
-		extension_name string,
+		extensionName string,
 		priority int) *T.GIOExtension
 
-	G_io_extension_get_type func(
+	IoExtensionGetType func(
 		extension *T.GIOExtension) T.GType
 
-	G_io_extension_get_name func(
+	IoExtensionGetName func(
 		extension *T.GIOExtension) string
 
-	G_io_extension_get_priority func(
+	IoExtensionGetPriority func(
 		extension *T.GIOExtension) int
 
-	G_io_extension_ref_class func(
+	IoExtensionRefClass func(
 		extension *T.GIOExtension) *T.GTypeClass
 
-	G_io_module_load func(
+	IoModuleLoad func(
 		module *T.GIOModule)
 
-	G_io_module_unload func(
+	IoModuleUnload func(
 		module *T.GIOModule)
 
-	G_io_module_query func() **T.Char
+	IoModuleQuery func() **T.Char
 
-	G_io_scheduler_push_job func(
-		job_func T.GIOSchedulerJobFunc,
-		user_data T.Gpointer,
+	IoSchedulerPushJob func(
+		jobFunc T.GIOSchedulerJobFunc,
+		userData T.Gpointer,
 		notify T.GDestroyNotify,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable)
 
-	G_io_scheduler_cancel_all_jobs func()
+	IoSchedulerCancelAllJobs func()
 
-	G_io_scheduler_job_send_to_mainloop func(
+	IoSchedulerJobSendToMainloop func(
 		job *T.GIOSchedulerJob,
 		f T.GSourceFunc,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		notify T.GDestroyNotify) T.Gboolean
 
-	G_io_scheduler_job_send_to_mainloop_async func(
+	IoSchedulerJobSendToMainloopAsync func(
 		job *T.GIOSchedulerJob,
 		f T.GSourceFunc,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		notify T.GDestroyNotify)
 
-	G_loadable_icon_get_type func() T.GType
+	LoadableIconGetType func() T.GType
 
-	G_loadable_icon_load func(
+	LoadableIconLoad func(
 		icon *T.GLoadableIcon,
 		size int,
 		t **T.Char,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GInputStream
 
-	G_loadable_icon_load_async func(
+	LoadableIconLoadAsync func(
 		icon *T.GLoadableIcon,
 		size int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_loadable_icon_load_finish func(
+	LoadableIconLoadFinish func(
 		icon *T.GLoadableIcon,
 		res *T.GAsyncResult,
 		typ **T.Char,
 		err **T.GError) *T.GInputStream
 
-	G_memory_input_stream_get_type func() T.GType
+	MemoryInputStreamGetType func() T.GType
 
-	G_memory_input_stream_new func() *T.GInputStream
+	MemoryInputStreamNew func() *T.GInputStream
 
-	G_memory_input_stream_new_from_data func(
+	MemoryInputStreamNewFromData func(
 		data *T.Void,
 		len T.Gssize,
 		destroy T.GDestroyNotify) *T.GInputStream
 
-	G_memory_input_stream_add_data func(
+	MemoryInputStreamAddData func(
 		stream *T.GMemoryInputStream,
 		data *T.Void,
 		len T.Gssize,
 		destroy T.GDestroyNotify)
 
-	G_memory_output_stream_get_type func() T.GType
+	MemoryOutputStreamGetType func() T.GType
 
-	G_memory_output_stream_new func(
+	MemoryOutputStreamNew func(
 		data T.Gpointer,
 		size T.Gsize,
-		realloc_function T.GReallocFunc,
-		destroy_function T.GDestroyNotify) *T.GOutputStream
+		reallocFunction T.GReallocFunc,
+		destroyFunction T.GDestroyNotify) *T.GOutputStream
 
-	G_memory_output_stream_get_data func(
+	MemoryOutputStreamGetData func(
 		ostream *T.GMemoryOutputStream) T.Gpointer
 
-	G_memory_output_stream_get_size func(
+	MemoryOutputStreamGetSize func(
 		ostream *T.GMemoryOutputStream) T.Gsize
 
-	G_memory_output_stream_get_data_size func(
+	MemoryOutputStreamGetDataSize func(
 		ostream *T.GMemoryOutputStream) T.Gsize
 
-	G_memory_output_stream_steal_data func(
+	MemoryOutputStreamStealData func(
 		ostream *T.GMemoryOutputStream) T.Gpointer
 
-	G_mount_get_type func() T.GType
+	MountGetType func() T.GType
 
-	G_mount_get_root func(
+	MountGetRoot func(
 		mount *T.GMount) *T.GFile
 
-	G_mount_get_default_location func(
+	MountGetDefaultLocation func(
 		mount *T.GMount) *T.GFile
 
-	G_mount_get_name func(
+	MountGetName func(
 		mount *T.GMount) string
 
-	G_mount_get_icon func(
+	MountGetIcon func(
 		mount *T.GMount) *T.GIcon
 
-	G_mount_get_uuid func(
+	MountGetUuid func(
 		mount *T.GMount) string
 
-	G_mount_get_volume func(
+	MountGetVolume func(
 		mount *T.GMount) *T.GVolume
 
-	G_mount_get_drive func(
+	MountGetDrive func(
 		mount *T.GMount) *T.GDrive
 
-	G_mount_can_unmount func(
+	MountCanUnmount func(
 		mount *T.GMount) T.Gboolean
 
-	G_mount_can_eject func(
+	MountCanEject func(
 		mount *T.GMount) T.Gboolean
 
-	G_mount_unmount func(
+	MountUnmount func(
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_unmount_finish func(
+	MountUnmountFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_mount_eject func(
+	MountEject func(
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_eject_finish func(
+	MountEjectFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_mount_remount func(
+	MountRemount func(
 		mount *T.GMount,
 		flags T.GMountMountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_remount_finish func(
+	MountRemountFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_mount_guess_content_type func(
+	MountGuessContentType func(
 		mount *T.GMount,
-		force_rescan T.Gboolean,
+		forceRescan T.Gboolean,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_guess_content_type_finish func(
+	MountGuessContentTypeFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) **T.Gchar
 
-	G_mount_guess_content_type_sync func(
+	MountGuessContentTypeSync func(
 		mount *T.GMount,
-		force_rescan T.Gboolean,
+		forceRescan T.Gboolean,
 		cancellable *T.GCancellable,
 		err **T.GError) **T.Gchar
 
-	G_mount_is_shadowed func(
+	MountIsShadowed func(
 		mount *T.GMount) T.Gboolean
 
-	G_mount_shadow func(
+	MountShadow func(
 		mount *T.GMount)
 
-	G_mount_unshadow func(
+	MountUnshadow func(
 		mount *T.GMount)
 
-	G_mount_unmount_with_operation func(
+	MountUnmountWithOperation func(
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_unmount_with_operation_finish func(
+	MountUnmountWithOperationFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_mount_eject_with_operation func(
+	MountEjectWithOperation func(
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_mount_eject_with_operation_finish func(
+	MountEjectWithOperationFinish func(
 		mount *T.GMount,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_mount_operation_get_type func() T.GType
+	MountOperationGetType func() T.GType
 
-	G_mount_operation_new func() *T.GMountOperation
+	MountOperationNew func() *T.GMountOperation
 
-	G_mount_operation_get_username func(
+	MountOperationGetUsername func(
 		op *T.GMountOperation) string
 
-	G_mount_operation_set_username func(
+	MountOperationSetUsername func(
 		op *T.GMountOperation,
 		username string)
 
-	G_mount_operation_get_password func(
+	MountOperationGetPassword func(
 		op *T.GMountOperation) string
 
-	G_mount_operation_set_password func(
+	MountOperationSetPassword func(
 		op *T.GMountOperation,
 		password string)
 
-	G_mount_operation_get_anonymous func(
+	MountOperationGetAnonymous func(
 		op *T.GMountOperation) T.Gboolean
 
-	G_mount_operation_set_anonymous func(
+	MountOperationSetAnonymous func(
 		op *T.GMountOperation,
 		anonymous T.Gboolean)
 
-	G_mount_operation_get_domain func(
+	MountOperationGetDomain func(
 		op *T.GMountOperation) string
 
-	G_mount_operation_set_domain func(
+	MountOperationSetDomain func(
 		op *T.GMountOperation,
 		domain string)
 
-	G_mount_operation_get_password_save func(
+	MountOperationGetPasswordSave func(
 		op *T.GMountOperation) T.GPasswordSave
 
-	G_mount_operation_set_password_save func(
+	MountOperationSetPasswordSave func(
 		op *T.GMountOperation,
 		save T.GPasswordSave)
 
-	G_mount_operation_get_choice func(
+	MountOperationGetChoice func(
 		op *T.GMountOperation) int
 
-	G_mount_operation_set_choice func(
+	MountOperationSetChoice func(
 		op *T.GMountOperation,
 		choice int)
 
-	G_mount_operation_reply func(
+	MountOperationReply func(
 		op *T.GMountOperation,
 		result T.GMountOperationResult)
 
-	G_volume_monitor_get_type func() T.GType
+	VolumeMonitorGetType func() T.GType
 
-	G_volume_monitor_get func() *T.GVolumeMonitor
+	VolumeMonitorGet func() *T.GVolumeMonitor
 
-	G_volume_monitor_get_connected_drives func(
-		volume_monitor *T.GVolumeMonitor) *T.GList
+	VolumeMonitorGetConnectedDrives func(
+		volumeMonitor *T.GVolumeMonitor) *T.GList
 
-	G_volume_monitor_get_volumes func(
-		volume_monitor *T.GVolumeMonitor) *T.GList
+	VolumeMonitorGetVolumes func(
+		volumeMonitor *T.GVolumeMonitor) *T.GList
 
-	G_volume_monitor_get_mounts func(
-		volume_monitor *T.GVolumeMonitor) *T.GList
+	VolumeMonitorGetMounts func(
+		volumeMonitor *T.GVolumeMonitor) *T.GList
 
-	G_volume_monitor_get_volume_for_uuid func(
-		volume_monitor *T.GVolumeMonitor,
+	VolumeMonitorGetVolumeForUuid func(
+		volumeMonitor *T.GVolumeMonitor,
 		uuid string) *T.GVolume
 
-	G_volume_monitor_get_mount_for_uuid func(
-		volume_monitor *T.GVolumeMonitor,
+	VolumeMonitorGetMountForUuid func(
+		volumeMonitor *T.GVolumeMonitor,
 		uuid string) *T.GMount
 
-	G_volume_monitor_adopt_orphan_mount func(
+	VolumeMonitorAdoptOrphanMount func(
 		mount *T.GMount) *T.GVolume
 
-	G_native_volume_monitor_get_type func() T.GType
+	NativeVolumeMonitorGetType func() T.GType
 
-	G_network_address_get_type func() T.GType
+	NetworkAddressGetType func() T.GType
 
-	G_network_address_new func(
+	NetworkAddressNew func(
 		hostname string,
 		port uint16) *T.GSocketConnectable
 
-	G_network_address_parse func(
-		host_and_port string,
-		default_port uint16,
+	NetworkAddressParse func(
+		hostAndPort string,
+		defaultPort uint16,
 		err **T.GError) *T.GSocketConnectable
 
-	G_network_address_parse_uri func(
+	NetworkAddressParseUri func(
 		uri string,
-		default_port uint16,
+		defaultPort uint16,
 		err **T.GError) *T.GSocketConnectable
 
-	G_network_address_get_hostname func(
+	NetworkAddressGetHostname func(
 		addr *T.GNetworkAddress) string
 
-	G_network_address_get_port func(
+	NetworkAddressGetPort func(
 		addr *T.GNetworkAddress) uint16
 
-	G_network_address_get_scheme func(
+	NetworkAddressGetScheme func(
 		addr *T.GNetworkAddress) string
 
-	G_network_service_get_type func() T.GType
+	NetworkServiceGetType func() T.GType
 
-	G_network_service_new func(
+	NetworkServiceNew func(
 		service string,
 		protocol string,
 		domain string) *T.GSocketConnectable
 
-	G_network_service_get_service func(
+	NetworkServiceGetService func(
 		srv *T.GNetworkService) string
 
-	G_network_service_get_protocol func(
+	NetworkServiceGetProtocol func(
 		srv *T.GNetworkService) string
 
-	G_network_service_get_domain func(
+	NetworkServiceGetDomain func(
 		srv *T.GNetworkService) string
 
-	G_network_service_get_scheme func(
+	NetworkServiceGetScheme func(
 		srv *T.GNetworkService) string
 
-	G_network_service_set_scheme func(
+	NetworkServiceSetScheme func(
 		srv *T.GNetworkService,
 		scheme string)
 
-	G_permission_get_type func() T.GType
+	PermissionGetType func() T.GType
 
-	G_permission_acquire func(
+	PermissionAcquire func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_permission_acquire_async func(
+	PermissionAcquireAsync func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_permission_acquire_finish func(
+	PermissionAcquireFinish func(
 		permission *T.GPermission,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_permission_release func(
+	PermissionRelease func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_permission_release_async func(
+	PermissionReleaseAsync func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_permission_release_finish func(
+	PermissionReleaseFinish func(
 		permission *T.GPermission,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_permission_get_allowed func(
+	PermissionGetAllowed func(
 		permission *T.GPermission) T.Gboolean
 
-	G_permission_get_can_acquire func(
+	PermissionGetCanAcquire func(
 		permission *T.GPermission) T.Gboolean
 
-	G_permission_get_can_release func(
+	PermissionGetCanRelease func(
 		permission *T.GPermission) T.Gboolean
 
-	G_permission_impl_update func(
+	PermissionImplUpdate func(
 		permission *T.GPermission,
 		allowed T.Gboolean,
-		can_acquire T.Gboolean,
-		can_release T.Gboolean)
+		canAcquire T.Gboolean,
+		canRelease T.Gboolean)
 
-	G_pollable_input_stream_get_type func() T.GType
+	PollableInputStreamGetType func() T.GType
 
-	G_pollable_input_stream_can_poll func(
+	PollableInputStreamCanPoll func(
 		stream *T.GPollableInputStream) T.Gboolean
 
-	G_pollable_input_stream_is_readable func(
+	PollableInputStreamIsReadable func(
 		stream *T.GPollableInputStream) T.Gboolean
 
-	G_pollable_input_stream_create_source func(
+	PollableInputStreamCreateSource func(
 		stream *T.GPollableInputStream,
 		cancellable *T.GCancellable) *T.GSource
 
-	G_pollable_input_stream_read_nonblocking func(
+	PollableInputStreamReadNonblocking func(
 		stream *T.GPollableInputStream,
 		buffer *T.Void,
 		size T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_pollable_source_new func(
-		pollable_stream *T.GObject) *T.GSource
+	PollableSourceNew func(
+		pollableStream *T.GObject) *T.GSource
 
-	G_pollable_output_stream_get_type func() T.GType
+	PollableOutputStreamGetType func() T.GType
 
-	G_pollable_output_stream_can_poll func(
+	PollableOutputStreamCanPoll func(
 		stream *T.GPollableOutputStream) T.Gboolean
 
-	G_pollable_output_stream_is_writable func(
+	PollableOutputStreamIsWritable func(
 		stream *T.GPollableOutputStream) T.Gboolean
 
-	G_pollable_output_stream_create_source func(
+	PollableOutputStreamCreateSource func(
 		stream *T.GPollableOutputStream,
 		cancellable *T.GCancellable) *T.GSource
 
-	G_pollable_output_stream_write_nonblocking func(
+	PollableOutputStreamWriteNonblocking func(
 		stream *T.GPollableOutputStream,
 		buffer *T.Void,
 		size T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_proxy_get_type func() T.GType
+	ProxyGetType func() T.GType
 
-	G_proxy_get_default_for_protocol func(
+	ProxyGetDefaultForProtocol func(
 		protocol string) *T.GProxy
 
-	G_proxy_connect func(
+	ProxyConnect func(
 		proxy *T.GProxy,
 		connection *T.GIOStream,
-		proxy_address *T.GProxyAddress,
+		proxyAddress *T.GProxyAddress,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GIOStream
 
-	G_proxy_connect_async func(
+	ProxyConnectAsync func(
 		proxy *T.GProxy,
 		connection *T.GIOStream,
-		proxy_address *T.GProxyAddress,
+		proxyAddress *T.GProxyAddress,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_proxy_connect_finish func(
+	ProxyConnectFinish func(
 		proxy *T.GProxy,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GIOStream
 
-	G_proxy_supports_hostname func(
+	ProxySupportsHostname func(
 		proxy *T.GProxy) T.Gboolean
 
-	G_proxy_address_get_type func() T.GType
+	ProxyAddressGetType func() T.GType
 
-	G_proxy_address_new func(
+	ProxyAddressNew func(
 		inetaddr *T.GInetAddress,
 		port uint16,
 		protocol string,
-		dest_hostname string,
-		dest_port uint16,
+		destHostname string,
+		destPort uint16,
 		username string,
 		password string) *T.GSocketAddress
 
-	G_proxy_address_get_protocol func(
+	ProxyAddressGetProtocol func(
 		proxy *T.GProxyAddress) string
 
-	G_proxy_address_get_destination_hostname func(
+	ProxyAddressGetDestinationHostname func(
 		proxy *T.GProxyAddress) string
 
-	G_proxy_address_get_destination_port func(
+	ProxyAddressGetDestinationPort func(
 		proxy *T.GProxyAddress) uint16
 
-	G_proxy_address_get_username func(
+	ProxyAddressGetUsername func(
 		proxy *T.GProxyAddress) string
 
-	G_proxy_address_get_password func(
+	ProxyAddressGetPassword func(
 		proxy *T.GProxyAddress) string
 
-	G_socket_address_enumerator_get_type func() T.GType
+	SocketAddressEnumeratorGetType func() T.GType
 
-	G_socket_address_enumerator_next func(
+	SocketAddressEnumeratorNext func(
 		enumerator *T.GSocketAddressEnumerator,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketAddress
 
-	G_socket_address_enumerator_next_async func(
+	SocketAddressEnumeratorNextAsync func(
 		enumerator *T.GSocketAddressEnumerator,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_address_enumerator_next_finish func(
+	SocketAddressEnumeratorNextFinish func(
 		enumerator *T.GSocketAddressEnumerator,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketAddress
 
-	G_proxy_address_enumerator_get_type func() T.GType
+	ProxyAddressEnumeratorGetType func() T.GType
 
-	G_proxy_resolver_get_type func() T.GType
+	ProxyResolverGetType func() T.GType
 
-	G_proxy_resolver_get_default func() *T.GProxyResolver
+	ProxyResolverGetDefault func() *T.GProxyResolver
 
-	G_proxy_resolver_is_supported func(
+	ProxyResolverIsSupported func(
 		resolver *T.GProxyResolver) T.Gboolean
 
-	G_proxy_resolver_lookup func(
+	ProxyResolverLookup func(
 		resolver *T.GProxyResolver,
 		uri string,
 		cancellable *T.GCancellable,
 		err **T.GError) **T.Gchar
 
-	G_proxy_resolver_lookup_async func(
+	ProxyResolverLookupAsync func(
 		resolver *T.GProxyResolver,
 		uri string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_proxy_resolver_lookup_finish func(
+	ProxyResolverLookupFinish func(
 		resolver *T.GProxyResolver,
 		result *T.GAsyncResult,
 		err **T.GError) **T.Gchar
 
-	G_resolver_get_type func() T.GType
+	ResolverGetType func() T.GType
 
-	G_resolver_get_default func() *T.GResolver
+	ResolverGetDefault func() *T.GResolver
 
-	G_resolver_set_default func(
+	ResolverSetDefault func(
 		resolver *T.GResolver)
 
-	G_resolver_lookup_by_name func(
+	ResolverLookupByName func(
 		resolver *T.GResolver,
 		hostname string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GList
 
-	G_resolver_lookup_by_name_async func(
+	ResolverLookupByNameAsync func(
 		resolver *T.GResolver,
 		hostname string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_resolver_lookup_by_name_finish func(
+	ResolverLookupByNameFinish func(
 		resolver *T.GResolver,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GList
 
-	G_resolver_free_addresses func(
+	ResolverFreeAddresses func(
 		addresses *T.GList)
 
-	G_resolver_lookup_by_address func(
+	ResolverLookupByAddress func(
 		resolver *T.GResolver,
 		address *T.GInetAddress,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	G_resolver_lookup_by_address_async func(
+	ResolverLookupByAddressAsync func(
 		resolver *T.GResolver,
 		address *T.GInetAddress,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_resolver_lookup_by_address_finish func(
+	ResolverLookupByAddressFinish func(
 		resolver *T.GResolver,
 		result *T.GAsyncResult,
 		err **T.GError) string
 
-	G_resolver_lookup_service func(
+	ResolverLookupService func(
 		resolver *T.GResolver,
 		service string,
 		protocol string,
@@ -4034,566 +4034,566 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GList
 
-	G_resolver_lookup_service_async func(
+	ResolverLookupServiceAsync func(
 		resolver *T.GResolver,
 		service string,
 		protocol string,
 		domain string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_resolver_lookup_service_finish func(
+	ResolverLookupServiceFinish func(
 		resolver *T.GResolver,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GList
 
-	G_resolver_free_targets func(
+	ResolverFreeTargets func(
 		targets *T.GList)
 
-	G_resolver_error_quark func() T.GQuark
+	ResolverErrorQuark func() T.GQuark
 
-	G_seekable_get_type func() T.GType
+	SeekableGetType func() T.GType
 
-	G_seekable_tell func(
+	SeekableTell func(
 		seekable *T.GSeekable) T.Goffset
 
-	G_seekable_can_seek func(
+	SeekableCanSeek func(
 		seekable *T.GSeekable) T.Gboolean
 
-	G_seekable_seek func(
+	SeekableSeek func(
 		seekable *T.GSeekable,
 		offset T.Goffset,
 		typ T.GSeekType,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_seekable_can_truncate func(
+	SeekableCanTruncate func(
 		seekable *T.GSeekable) T.Gboolean
 
-	G_seekable_truncate func(
+	SeekableTruncate func(
 		seekable *T.GSeekable,
 		offset T.Goffset,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_settings_get_type func() T.GType
+	SettingsGetType func() T.GType
 
-	G_settings_list_schemas func() **T.Gchar
+	SettingsListSchemas func() **T.Gchar
 
-	G_settings_list_relocatable_schemas func() **T.Gchar
+	SettingsListRelocatableSchemas func() **T.Gchar
 
-	G_settings_new func(
+	SettingsNew func(
 		schema string) *T.GSettings
 
-	G_settings_new_with_path func(
+	SettingsNewWithPath func(
 		schema string,
 		path string) *T.GSettings
 
-	G_settings_new_with_backend func(
+	SettingsNewWithBackend func(
 		schema string,
 		backend *T.GSettingsBackend) *T.GSettings
 
-	G_settings_new_with_backend_and_path func(
+	SettingsNewWithBackendAndPath func(
 		schema string,
 		backend *T.GSettingsBackend,
 		path string) *T.GSettings
 
-	G_settings_list_children func(
+	SettingsListChildren func(
 		settings *T.GSettings) **T.Gchar
 
-	G_settings_list_keys func(
+	SettingsList_keys func(
 		settings *T.GSettings) **T.Gchar
 
-	G_settings_get_range func(
+	SettingsGetRange func(
 		settings *T.GSettings,
 		key string) *T.GVariant
 
-	G_settings_range_check func(
+	SettingsRangeCheck func(
 		settings *T.GSettings,
 		key string,
 		value *T.GVariant) T.Gboolean
 
-	G_settings_set_value func(
+	SettingsSetValue func(
 		settings *T.GSettings,
 		key string,
 		value *T.GVariant) T.Gboolean
 
-	G_settings_get_value func(
+	SettingsGetValue func(
 		settings *T.GSettings,
 		key string) *T.GVariant
 
-	G_settings_set func(settings *T.GSettings, key, format string,
+	SettingsSet func(settings *T.GSettings, key, format string,
 		v ...VArg) T.Gboolean
 
-	G_settings_get func(settings *T.GSettings, key, format string,
+	SettingsGet func(settings *T.GSettings, key, format string,
 		v ...VArg)
 
-	G_settings_reset func(settings *T.GSettings, key string)
+	SettingsReset func(settings *T.GSettings, key string)
 
-	G_settings_get_int func(settings *T.GSettings, key string) int
+	SettingsGetInt func(settings *T.GSettings, key string) int
 
-	G_settings_set_int func(
+	SettingsSetInt func(
 		settings *T.GSettings, key string, value int) T.Gboolean
 
-	G_settings_get_string func(
+	SettingsGetString func(
 		settings *T.GSettings, key string) string
 
-	G_settings_set_string func(
+	SettingsSetString func(
 		settings *T.GSettings, key, value string) T.Gboolean
 
-	G_settings_get_boolean func(
+	SettingsGetBoolean func(
 		settings *T.GSettings, key string) T.Gboolean
 
-	G_settings_set_boolean func(
+	SettingsSetBoolean func(
 		settings *T.GSettings, key string, value T.Gboolean) T.Gboolean
 
-	G_settings_get_double func(
+	SettingsGetDouble func(
 		settings *T.GSettings, key string) float64
 
-	G_settings_set_double func(settings *T.GSettings,
+	SettingsSetDouble func(settings *T.GSettings,
 		key string, value float64) T.Gboolean
 
-	G_settings_get_strv func(
+	SettingsGetStrv func(
 		settings *T.GSettings, key string) **T.Gchar
 
-	G_settings_set_strv func(settings *T.GSettings,
+	SettingsSetStrv func(settings *T.GSettings,
 		key string, value **T.Gchar) T.Gboolean
 
-	G_settings_get_enum func(
+	SettingsGetEnum func(
 		settings *T.GSettings, key string) int
 
-	G_settings_set_enum func(settings *T.GSettings,
+	SettingsSetEnum func(settings *T.GSettings,
 		key string, value int) T.Gboolean
 
-	G_settings_get_flags func(
+	SettingsGetFlags func(
 		settings *T.GSettings, key string) uint
 
-	G_settings_set_flags func(settings *T.GSettings,
+	SettingsSetFlags func(settings *T.GSettings,
 		key string, value uint) T.Gboolean
 
-	G_settings_get_child func(
+	SettingsGetChild func(
 		settings *T.GSettings,
 		name string) *T.GSettings
 
-	G_settings_is_writable func(
+	SettingsIsWritable func(
 		settings *T.GSettings, name string) T.Gboolean
 
-	G_settings_delay func(settings *T.GSettings)
+	SettingsDelay func(settings *T.GSettings)
 
-	G_settings_apply func(settings *T.GSettings)
+	SettingsApply func(settings *T.GSettings)
 
-	G_settings_revert func(settings *T.GSettings)
+	SettingsRevert func(settings *T.GSettings)
 
-	G_settings_get_has_unapplied func(
+	SettingsGetHasUnapplied func(
 		settings *T.GSettings) T.Gboolean
 
-	G_settings_sync func()
+	SettingsSync func()
 
-	G_settings_bind func(
+	SettingsBind func(
 		settings *T.GSettings,
 		key string,
 		object T.Gpointer,
 		property string,
 		flags T.GSettingsBindFlags)
 
-	G_settings_bind_with_mapping func(
+	SettingsBindWithMapping func(
 		settings *T.GSettings,
 		key string,
 		object T.Gpointer,
 		property string,
 		flags T.GSettingsBindFlags,
-		get_mapping T.GSettingsBindGetMapping,
-		set_mapping T.GSettingsBindSetMapping,
-		user_data T.Gpointer,
+		getMapping T.GSettingsBindGetMapping,
+		setMapping T.GSettingsBindSetMapping,
+		userData T.Gpointer,
 		destroy T.GDestroyNotify)
 
-	G_settings_bind_writable func(
+	SettingsBindWritable func(
 		settings *T.GSettings,
 		key string,
 		object T.Gpointer,
 		property string,
 		inverted T.Gboolean)
 
-	G_settings_unbind func(object T.Gpointer, property string)
+	SettingsUnbind func(object T.Gpointer, property string)
 
-	G_settings_get_mapped func(
+	SettingsGetMapped func(
 		settings *T.GSettings,
 		key string,
 		mapping T.GSettingsGetMapping,
-		user_data T.Gpointer) T.Gpointer
+		userData T.Gpointer) T.Gpointer
 
-	G_simple_async_result_get_type func() T.GType
+	SimpleAsyncResultGetType func() T.GType
 
-	G_simple_async_result_new func(
-		source_object *T.GObject,
+	SimpleAsyncResultNew func(
+		sourceObject *T.GObject,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer,
-		source_tag T.Gpointer) *T.GSimpleAsyncResult
+		userData T.Gpointer,
+		sourceTag T.Gpointer) *T.GSimpleAsyncResult
 
-	G_simple_async_result_new_error func(
-		source_object *T.GObject, callback T.GAsyncReadyCallback,
-		user_data T.Gpointer, domain T.GQuark, code int,
+	SimpleAsyncResultNewError func(
+		sourceObject *T.GObject, callback T.GAsyncReadyCallback,
+		userData T.Gpointer, domain T.GQuark, code int,
 		format string, v ...VArg) *T.GSimpleAsyncResult
 
-	G_simple_async_result_new_from_error func(
-		source_object *T.GObject,
+	SimpleAsyncResultNewFromError func(
+		sourceObject *T.GObject,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		err *T.GError) *T.GSimpleAsyncResult
 
-	G_simple_async_result_new_take_error func(
-		source_object *T.GObject,
+	SimpleAsyncResultNewTakeError func(
+		sourceObject *T.GObject,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		err *T.GError) *T.GSimpleAsyncResult
 
-	G_simple_async_result_set_op_res_gpointer func(
+	SimpleAsyncResultSetOpResGpointer func(
 		simple *T.GSimpleAsyncResult,
-		op_res T.Gpointer,
-		destroy_op_res T.GDestroyNotify)
+		opRes T.Gpointer,
+		destroyOpRes T.GDestroyNotify)
 
-	G_simple_async_result_get_op_res_gpointer func(
+	SimpleAsyncResultGetOpResGpointer func(
 		simple *T.GSimpleAsyncResult) T.Gpointer
 
-	G_simple_async_result_set_op_res_gssize func(
+	SimpleAsyncResultSetOpResGssize func(
 		simple *T.GSimpleAsyncResult,
-		op_res T.Gssize)
+		opRes T.Gssize)
 
-	G_simple_async_result_get_op_res_gssize func(
+	SimpleAsyncResultGetOpResGssize func(
 		simple *T.GSimpleAsyncResult) T.Gssize
 
-	G_simple_async_result_set_op_res_gboolean func(
+	SimpleAsyncResultSetOpResGboolean func(
 		simple *T.GSimpleAsyncResult,
-		op_res T.Gboolean)
+		opRes T.Gboolean)
 
-	G_simple_async_result_get_op_res_gboolean func(
+	SimpleAsyncResultGetOpResGboolean func(
 		simple *T.GSimpleAsyncResult) T.Gboolean
 
-	G_simple_async_result_get_source_tag func(
+	SimpleAsyncResultGetSourceTag func(
 		simple *T.GSimpleAsyncResult) T.Gpointer
 
-	G_simple_async_result_set_handle_cancellation func(
+	SimpleAsyncResultSetHandleCancellation func(
 		simple *T.GSimpleAsyncResult,
-		handle_cancellation T.Gboolean)
+		handleCancellation T.Gboolean)
 
-	G_simple_async_result_complete func(
+	SimpleAsyncResultComplete func(
 		simple *T.GSimpleAsyncResult)
 
-	G_simple_async_result_complete_in_idle func(
+	SimpleAsyncResultCompleteInIdle func(
 		simple *T.GSimpleAsyncResult)
 
-	G_simple_async_result_run_in_thread func(
+	SimpleAsyncResultRunInThread func(
 		simple *T.GSimpleAsyncResult,
 		f T.GSimpleAsyncThreadFunc,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable)
 
-	G_simple_async_result_set_from_error func(
+	SimpleAsyncResultSetFromError func(
 		simple *T.GSimpleAsyncResult,
 		err *T.GError)
 
-	G_simple_async_result_take_error func(
+	SimpleAsyncResultTakeError func(
 		simple *T.GSimpleAsyncResult,
 		err *T.GError)
 
-	G_simple_async_result_propagate_error func(
+	SimpleAsyncResultPropagateError func(
 		simple *T.GSimpleAsyncResult,
 		dest **T.GError) T.Gboolean
 
-	G_simple_async_result_set_error func(
+	SimpleAsyncResultSetError func(
 		simple *T.GSimpleAsyncResult, domain T.GQuark,
 		code int, format string, v ...VArg)
 
-	G_simple_async_result_set_error_va func(
+	SimpleAsyncResultSetErrorVa func(
 		simple *T.GSimpleAsyncResult,
 		domain T.GQuark,
 		code int,
 		format string,
-		args T.Va_list)
+		args T.VaList)
 
-	G_simple_async_result_is_valid func(
+	SimpleAsyncResultIsValid func(
 		result *T.GAsyncResult,
 		source *T.GObject,
-		source_tag T.Gpointer) T.Gboolean
+		sourceTag T.Gpointer) T.Gboolean
 
-	G_simple_async_report_error_in_idle func(object *T.GObject,
-		callback T.GAsyncReadyCallback, user_data T.Gpointer,
+	SimpleAsyncReportErrorInIdle func(object *T.GObject,
+		callback T.GAsyncReadyCallback, userData T.Gpointer,
 		domain T.GQuark, code int, format string, v ...VArg)
 
-	G_simple_async_report_gerror_in_idle func(
+	SimpleAsyncReportGerrorInIdle func(
 		object *T.GObject,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		err *T.GError)
 
-	G_simple_async_report_take_gerror_in_idle func(
+	SimpleAsyncReportTakeGerrorInIdle func(
 		object *T.GObject,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer,
+		userData T.Gpointer,
 		err *T.GError)
 
-	G_simple_permission_get_type func() T.GType
+	SimplePermissionGetType func() T.GType
 
-	G_simple_permission_new func(
+	SimplePermissionNew func(
 		allowed T.Gboolean) *T.GPermission
 
-	G_socket_client_get_type func() T.GType
+	SocketClientGetType func() T.GType
 
-	G_socket_client_new func() *T.GSocketClient
+	SocketClientNew func() *T.GSocketClient
 
-	G_socket_client_get_family func(
+	SocketClientGetFamily func(
 		client *T.GSocketClient) T.GSocketFamily
 
-	G_socket_client_set_family func(
+	SocketClientSetFamily func(
 		client *T.GSocketClient,
 		family T.GSocketFamily)
 
-	G_socket_client_get_socket_type func(
+	SocketClientGetSocketType func(
 		client *T.GSocketClient) T.GSocketType
 
-	G_socket_client_set_socket_type func(
+	SocketClientSetSocketType func(
 		client *T.GSocketClient,
 		t T.GSocketType)
 
-	G_socket_client_get_protocol func(
+	SocketClientGetProtocol func(
 		client *T.GSocketClient) T.GSocketProtocol
 
-	G_socket_client_set_protocol func(
+	SocketClientSetProtocol func(
 		client *T.GSocketClient,
 		protocol T.GSocketProtocol)
 
-	G_socket_client_get_local_address func(
+	SocketClientGetLocalAddress func(
 		client *T.GSocketClient) *T.GSocketAddress
 
-	G_socket_client_set_local_address func(
+	SocketClientSetLocalAddress func(
 		client *T.GSocketClient,
 		address *T.GSocketAddress)
 
-	G_socket_client_get_timeout func(
+	SocketClientGetTimeout func(
 		client *T.GSocketClient) uint
 
-	G_socket_client_set_timeout func(
+	SocketClientSetTimeout func(
 		client *T.GSocketClient,
 		timeout uint)
 
-	G_socket_client_get_enable_proxy func(
+	SocketClientGetEnableProxy func(
 		client *T.GSocketClient) T.Gboolean
 
-	G_socket_client_set_enable_proxy func(
+	SocketClientSetEnableProxy func(
 		client *T.GSocketClient,
 		enable T.Gboolean)
 
-	G_socket_client_get_tls func(
+	SocketClientGetTls func(
 		client *T.GSocketClient) T.Gboolean
 
-	G_socket_client_set_tls func(
+	SocketClientSetTls func(
 		client *T.GSocketClient,
 		tls T.Gboolean)
 
-	G_socket_client_get_tls_validation_flags func(
+	SocketClientGetTlsValidationFlags func(
 		client *T.GSocketClient) T.GTlsCertificateFlags
 
-	G_socket_client_set_tls_validation_flags func(
+	SocketClientSetTlsValidationFlags func(
 		client *T.GSocketClient,
 		flags T.GTlsCertificateFlags)
 
-	G_socket_client_connect func(
+	SocketClientConnect func(
 		client *T.GSocketClient,
 		connectable *T.GSocketConnectable,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_host func(
+	SocketClientConnectToHost func(
 		client *T.GSocketClient,
-		host_and_port string,
-		default_port uint16,
+		hostAndPort string,
+		defaultPort uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_service func(
+	SocketClientConnectToService func(
 		client *T.GSocketClient,
 		domain string,
 		service string,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_uri func(
+	SocketClientConnectToUri func(
 		client *T.GSocketClient,
 		uri string,
-		default_port uint16,
+		defaultPort uint16,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_async func(
+	SocketClientConnectAsync func(
 		client *T.GSocketClient,
 		connectable *T.GSocketConnectable,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_client_connect_finish func(
+	SocketClientConnectFinish func(
 		client *T.GSocketClient,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_host_async func(
+	SocketClientConnectToHostAsync func(
 		client *T.GSocketClient,
-		host_and_port string,
-		default_port uint16,
+		hostAndPort string,
+		defaultPort uint16,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_client_connect_to_host_finish func(
+	SocketClientConnectToHostFinish func(
 		client *T.GSocketClient,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_service_async func(
+	SocketClientConnectToServiceAsync func(
 		client *T.GSocketClient,
 		domain string,
 		service string,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_client_connect_to_service_finish func(
+	SocketClientConnectToServiceFinish func(
 		client *T.GSocketClient,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_connect_to_uri_async func(
+	SocketClientConnectToUriAsync func(
 		client *T.GSocketClient,
 		uri string,
-		default_port uint16,
+		defaultPort uint16,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_client_connect_to_uri_finish func(
+	SocketClientConnectToUriFinish func(
 		client *T.GSocketClient,
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_client_add_application_proxy func(
+	SocketClientAddApplicationProxy func(
 		client *T.GSocketClient,
 		protocol string)
 
-	G_socket_connectable_get_type func() T.GType
+	SocketConnectableGetType func() T.GType
 
-	G_socket_connectable_enumerate func(
+	SocketConnectableEnumerate func(
 		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
 
-	G_socket_connectable_proxy_enumerate func(
+	SocketConnectableProxyEnumerate func(
 		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
 
-	G_socket_get_type func() T.GType
+	SocketGetType func() T.GType
 
-	G_socket_new func(
+	SocketNew func(
 		family T.GSocketFamily,
 		t T.GSocketType,
 		protocol T.GSocketProtocol,
 		err **T.GError) *T.GSocket
 
-	G_socket_new_from_fd func(
+	SocketNewFromFd func(
 		fd int,
 		err **T.GError) *T.GSocket
 
-	G_socket_get_fd func(
+	SocketGetFd func(
 		socket *T.GSocket) int
 
-	G_socket_get_family func(
+	SocketGetFamily func(
 		socket *T.GSocket) T.GSocketFamily
 
-	G_socket_get_socket_type func(
+	SocketGetSocketType func(
 		socket *T.GSocket) T.GSocketType
 
-	G_socket_get_protocol func(
+	SocketGetProtocol func(
 		socket *T.GSocket) T.GSocketProtocol
 
-	G_socket_get_local_address func(
+	SocketGetLocalAddress func(
 		socket *T.GSocket,
 		err **T.GError) *T.GSocketAddress
 
-	G_socket_get_remote_address func(
+	SocketGetRemoteAddress func(
 		socket *T.GSocket,
 		err **T.GError) *T.GSocketAddress
 
-	G_socket_set_blocking func(
+	SocketSetBlocking func(
 		socket *T.GSocket,
 		blocking T.Gboolean)
 
-	G_socket_get_blocking func(
+	SocketGetBlocking func(
 		socket *T.GSocket) T.Gboolean
 
-	G_socket_set_keepalive func(
+	SocketSet_keepalive func(
 		socket *T.GSocket,
 		keepalive T.Gboolean)
 
-	G_socket_get_keepalive func(
+	SocketGet_keepalive func(
 		socket *T.GSocket) T.Gboolean
 
-	G_socket_get_listen_backlog func(
+	SocketGetListenBacklog func(
 		socket *T.GSocket) int
 
-	G_socket_set_listen_backlog func(
+	SocketSetListenBacklog func(
 		socket *T.GSocket,
 		backlog int)
 
-	G_socket_get_timeout func(
+	SocketGetTimeout func(
 		socket *T.GSocket) uint
 
-	G_socket_set_timeout func(
+	SocketSetTimeout func(
 		socket *T.GSocket,
 		timeout uint)
 
-	G_socket_is_connected func(
+	SocketIsConnected func(
 		socket *T.GSocket) T.Gboolean
 
-	G_socket_bind func(
+	SocketBind func(
 		socket *T.GSocket,
 		address *T.GSocketAddress,
-		allow_reuse T.Gboolean,
+		allowReuse T.Gboolean,
 		err **T.GError) T.Gboolean
 
-	G_socket_connect func(
+	SocketConnect func(
 		socket *T.GSocket,
 		address *T.GSocketAddress,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_socket_check_connect_result func(
+	SocketCheckConnectResult func(
 		socket *T.GSocket,
 		err **T.GError) T.Gboolean
 
-	G_socket_condition_check func(
+	SocketConditionCheck func(
 		socket *T.GSocket,
 		condition T.GIOCondition) T.GIOCondition
 
-	G_socket_condition_wait func(
+	SocketConditionWait func(
 		socket *T.GSocket,
 		condition T.GIOCondition,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_socket_accept func(
+	SocketAccept func(
 		socket *T.GSocket,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocket
 
-	G_socket_listen func(
+	SocketListen func(
 		socket *T.GSocket,
 		err **T.GError) T.Gboolean
 
-	G_socket_receive func(
+	SocketReceive func(
 		socket *T.GSocket,
 		buffer string,
 		size T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_receive_from func(
+	SocketReceiveFrom func(
 		socket *T.GSocket,
 		address **T.GSocketAddress,
 		buffer string,
@@ -4601,14 +4601,14 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_send func(
+	SocketSend func(
 		socket *T.GSocket,
 		buffer string,
 		size T.Gsize,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_send_to func(
+	SocketSendTo func(
 		socket *T.GSocket,
 		address *T.GSocketAddress,
 		buffer string,
@@ -4616,54 +4616,54 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_receive_message func(
+	SocketReceiveMessage func(
 		socket *T.GSocket,
 		address **T.GSocketAddress,
 		vectors *T.GInputVector,
-		num_vectors int,
+		numVectors int,
 		messages ***T.GSocketControlMessage,
-		num_messages *int,
+		numMessages *int,
 		flags *int,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_send_message func(
+	SocketSendMessage func(
 		socket *T.GSocket,
 		address *T.GSocketAddress,
 		vectors *T.GOutputVector,
-		num_vectors int,
+		numVectors int,
 		messages **T.GSocketControlMessage,
-		num_messages int,
+		numMessages int,
 		flags int,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_close func(
+	SocketClose func(
 		socket *T.GSocket,
 		err **T.GError) T.Gboolean
 
-	G_socket_shutdown func(
+	SocketShutdown func(
 		socket *T.GSocket,
-		shutdown_read T.Gboolean,
-		shutdown_write T.Gboolean,
+		shutdownRead T.Gboolean,
+		shutdownWrite T.Gboolean,
 		err **T.GError) T.Gboolean
 
-	G_socket_is_closed func(
+	SocketIsClosed func(
 		socket *T.GSocket) T.Gboolean
 
-	G_socket_create_source func(
+	SocketCreateSource func(
 		socket *T.GSocket,
 		condition T.GIOCondition,
 		cancellable *T.GCancellable) *T.GSource
 
-	G_socket_speaks_ipv4 func(
+	SocketSpeaksIpv4 func(
 		socket *T.GSocket) T.Gboolean
 
-	G_socket_get_credentials func(
+	SocketGetCredentials func(
 		socket *T.GSocket,
 		err **T.GError) *T.GCredentials
 
-	G_socket_receive_with_blocking func(
+	SocketReceiveWithBlocking func(
 		socket *T.GSocket,
 		buffer string,
 		size T.Gsize,
@@ -4671,7 +4671,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_send_with_blocking func(
+	SocketSendWithBlocking func(
 		socket *T.GSocket,
 		buffer string,
 		size T.Gsize,
@@ -4679,1842 +4679,1842 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	G_socket_connection_get_type func() T.GType
+	SocketConnectionGetType func() T.GType
 
-	G_socket_connection_get_socket func(
+	SocketConnectionGetSocket func(
 		connection *T.GSocketConnection) *T.GSocket
 
-	G_socket_connection_get_local_address func(
+	SocketConnectionGetLocalAddress func(
 		connection *T.GSocketConnection,
 		err **T.GError) *T.GSocketAddress
 
-	G_socket_connection_get_remote_address func(
+	SocketConnectionGetRemoteAddress func(
 		connection *T.GSocketConnection,
 		err **T.GError) *T.GSocketAddress
 
-	G_socket_connection_factory_register_type func(
+	SocketConnectionFactoryRegisterType func(
 
-		G_type T.GType,
+		GType T.GType,
 		family T.GSocketFamily,
 		t T.GSocketType,
 		protocol int)
 
-	G_socket_connection_factory_lookup_type func(
+	SocketConnectionFactoryLookupType func(
 		family T.GSocketFamily,
 		t T.GSocketType,
-		protocol_id int) T.GType
+		protocolId int) T.GType
 
-	G_socket_connection_factory_create_connection func(
+	SocketConnectionFactoryCreateConnection func(
 		socket *T.GSocket) *T.GSocketConnection
 
-	G_socket_control_message_get_type func() T.GType
+	SocketControlMessageGetType func() T.GType
 
-	G_socket_control_message_get_size func(
+	SocketControlMessageGetSize func(
 		message *T.GSocketControlMessage) T.Gsize
 
-	G_socket_control_message_get_level func(
+	SocketControlMessageGetLevel func(
 		message *T.GSocketControlMessage) int
 
-	G_socket_control_message_get_msg_type func(
+	SocketControlMessageGetMsgType func(
 		message *T.GSocketControlMessage) int
 
-	G_socket_control_message_serialize func(
+	SocketControlMessageSerialize func(
 		message *T.GSocketControlMessage,
 		data T.Gpointer)
 
-	G_socket_control_message_deserialize func(
+	SocketControlMessageDeserialize func(
 		level int,
 		typ int,
 		size T.Gsize,
 		data T.Gpointer) *T.GSocketControlMessage
 
-	G_socket_listener_get_type func() T.GType
+	SocketListenerGetType func() T.GType
 
-	G_socket_listener_new func() *T.GSocketListener
+	SocketListenerNew func() *T.GSocketListener
 
-	G_socket_listener_set_backlog func(
+	SocketListenerSetBacklog func(
 		listener *T.GSocketListener,
-		listen_backlog int)
+		listenBacklog int)
 
-	G_socket_listener_add_socket func(
+	SocketListenerAddSocket func(
 		listener *T.GSocketListener,
 		socket *T.GSocket,
-		source_object *T.GObject,
+		sourceObject *T.GObject,
 		err **T.GError) T.Gboolean
 
-	G_socket_listener_add_address func(
+	SocketListenerAddAddress func(
 		listener *T.GSocketListener,
 		address *T.GSocketAddress,
 		t T.GSocketType,
 		protocol T.GSocketProtocol,
-		source_object *T.GObject,
-		effective_address **T.GSocketAddress,
+		sourceObject *T.GObject,
+		effectiveAddress **T.GSocketAddress,
 		err **T.GError) T.Gboolean
 
-	G_socket_listener_add_inet_port func(
+	SocketListenerAddInetPort func(
 		listener *T.GSocketListener,
 		port uint16,
-		source_object *T.GObject,
+		sourceObject *T.GObject,
 		err **T.GError) T.Gboolean
 
-	G_socket_listener_add_any_inet_port func(
+	SocketListenerAddAnyInetPort func(
 		listener *T.GSocketListener,
-		source_object *T.GObject,
+		sourceObject *T.GObject,
 		err **T.GError) uint16
 
-	G_socket_listener_accept_socket func(
+	SocketListenerAcceptSocket func(
 		listener *T.GSocketListener,
-		source_object **T.GObject,
+		sourceObject **T.GObject,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocket
 
-	G_socket_listener_accept_socket_async func(
+	SocketListenerAcceptSocketAsync func(
 		listener *T.GSocketListener,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_listener_accept_socket_finish func(
+	SocketListenerAcceptSocketFinish func(
 		listener *T.GSocketListener,
 		result *T.GAsyncResult,
-		source_object **T.GObject,
+		sourceObject **T.GObject,
 		err **T.GError) *T.GSocket
 
-	G_socket_listener_accept func(
+	SocketListenerAccept func(
 		listener *T.GSocketListener,
-		source_object **T.GObject,
+		sourceObject **T.GObject,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_listener_accept_async func(
+	SocketListenerAcceptAsync func(
 		listener *T.GSocketListener,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_socket_listener_accept_finish func(
+	SocketListenerAcceptFinish func(
 		listener *T.GSocketListener,
 		result *T.GAsyncResult,
-		source_object **T.GObject,
+		sourceObject **T.GObject,
 		err **T.GError) *T.GSocketConnection
 
-	G_socket_listener_close func(
+	SocketListenerClose func(
 		listener *T.GSocketListener)
 
-	G_socket_service_get_type func() T.GType
+	SocketServiceGetType func() T.GType
 
-	G_socket_service_new func() *T.GSocketService
+	SocketServiceNew func() *T.GSocketService
 
-	G_socket_service_start func(
+	SocketServiceStart func(
 		service *T.GSocketService)
 
-	G_socket_service_stop func(
+	SocketServiceStop func(
 		service *T.GSocketService)
 
-	G_socket_service_is_active func(
+	SocketServiceIsActive func(
 		service *T.GSocketService) T.Gboolean
 
-	G_srv_target_get_type func() T.GType
+	SrvTargetGetType func() T.GType
 
-	G_srv_target_new func(
+	SrvTargetNew func(
 		hostname string,
 		port uint16,
 		priority uint16,
 		weight uint16) *T.GSrvTarget
 
-	G_srv_target_copy func(
+	SrvTargetCopy func(
 		target *T.GSrvTarget) *T.GSrvTarget
 
-	G_srv_target_free func(
+	SrvTargetFree func(
 		target *T.GSrvTarget)
 
-	G_srv_target_get_hostname func(
+	SrvTargetGetHostname func(
 		target *T.GSrvTarget) string
 
-	G_srv_target_get_port func(
+	SrvTargetGetPort func(
 		target *T.GSrvTarget) uint16
 
-	G_srv_target_get_priority func(
+	SrvTargetGetPriority func(
 		target *T.GSrvTarget) uint16
 
-	G_srv_target_get_weight func(
+	SrvTargetGetWeight func(
 		target *T.GSrvTarget) uint16
 
-	G_srv_target_list_sort func(
+	SrvTargetListSort func(
 		targets *T.GList) *T.GList
 
-	G_tcp_connection_get_type func() T.GType
+	TcpConnectionGetType func() T.GType
 
-	G_tcp_connection_set_graceful_disconnect func(
+	TcpConnectionSetGracefulDisconnect func(
 		connection *T.GTcpConnection,
-		graceful_disconnect T.Gboolean)
+		gracefulDisconnect T.Gboolean)
 
-	G_tcp_connection_get_graceful_disconnect func(
+	TcpConnectionGetGracefulDisconnect func(
 		connection *T.GTcpConnection) T.Gboolean
 
-	G_tcp_wrapper_connection_get_type func() T.GType
+	TcpWrapperConnectionGetType func() T.GType
 
-	G_tcp_wrapper_connection_new func(
-		base_io_stream *T.GIOStream,
+	TcpWrapperConnectionNew func(
+		baseIoStream *T.GIOStream,
 		socket *T.GSocket) *T.GSocketConnection
 
-	G_tcp_wrapper_connection_get_base_io_stream func(
+	TcpWrapperConnectionGetBaseIoStream func(
 		conn *T.GTcpWrapperConnection) *T.GIOStream
 
-	G_themed_icon_get_type func() T.GType
+	ThemedIconGetType func() T.GType
 
-	G_themed_icon_new func(
+	ThemedIconNew func(
 		iconname string) *T.GIcon
 
-	G_themed_icon_new_with_default_fallbacks func(
+	ThemedIconNewWithDefaultFallbacks func(
 		iconname string) *T.GIcon
 
-	G_themed_icon_new_from_names func(
+	ThemedIconNewFromNames func(
 		iconnames **T.Char,
 		len int) *T.GIcon
 
-	G_themed_icon_prepend_name func(
+	ThemedIconPrependName func(
 		icon *T.GThemedIcon,
 		iconname string)
 
-	G_themed_icon_append_name func(
+	ThemedIconAppendName func(
 		icon *T.GThemedIcon,
 		iconname string)
 
-	G_themed_icon_get_names func(
+	ThemedIconGetNames func(
 		icon *T.GThemedIcon) **T.Gchar
 
-	G_threaded_socket_service_get_type func() T.GType
+	ThreadedSocketServiceGetType func() T.GType
 
-	G_threaded_socket_service_new func(
-		max_threads int) *T.GSocketService
+	ThreadedSocketServiceNew func(
+		maxThreads int) *T.GSocketService
 
-	G_tls_backend_get_type func() T.GType
+	TlsBackendGetType func() T.GType
 
-	G_tls_backend_get_default func() *T.GTlsBackend
+	TlsBackendGetDefault func() *T.GTlsBackend
 
-	G_tls_backend_supports_tls func(
+	TlsBackendSupportsTls func(
 		backend *T.GTlsBackend) T.Gboolean
 
-	G_tls_backend_get_certificate_type func(
+	TlsBackendGetCertificateType func(
 		backend *T.GTlsBackend) T.GType
 
-	G_tls_backend_get_client_connection_type func(
+	TlsBackendGetClientConnectionType func(
 		backend *T.GTlsBackend) T.GType
 
-	G_tls_backend_get_server_connection_type func(
+	TlsBackendGetServerConnectionType func(
 		backend *T.GTlsBackend) T.GType
 
-	G_tls_certificate_get_type func() T.GType
+	TlsCertificateGetType func() T.GType
 
-	G_tls_certificate_new_from_pem func(
+	TlsCertificateNewFromPem func(
 		data string,
 		length T.Gssize,
 		err **T.GError) *T.GTlsCertificate
 
-	G_tls_certificate_new_from_file func(
+	TlsCertificateNewFromFile func(
 		file string,
 		err **T.GError) *T.GTlsCertificate
 
-	G_tls_certificate_new_from_files func(
-		cert_file string,
-		key_file string,
+	TlsCertificateNewFromFiles func(
+		certFile string,
+		keyFile string,
 		err **T.GError) *T.GTlsCertificate
 
-	G_tls_certificate_list_new_from_file func(
+	TlsCertificateListNewFromFile func(
 		file string,
 		err **T.GError) *T.GList
 
-	G_tls_certificate_get_issuer func(
+	TlsCertificateGetIssuer func(
 		cert *T.GTlsCertificate) *T.GTlsCertificate
 
-	G_tls_certificate_verify func(
+	TlsCertificateVerify func(
 		cert *T.GTlsCertificate,
 		identity *T.GSocketConnectable,
-		trusted_ca *T.GTlsCertificate) T.GTlsCertificateFlags
+		trustedCa *T.GTlsCertificate) T.GTlsCertificateFlags
 
-	G_tls_connection_get_type func() T.GType
+	TlsConnectionGetType func() T.GType
 
-	G_tls_connection_set_use_system_certdb func(
+	TlsConnectionSetUseSystemCertdb func(
 		conn *T.GTlsConnection,
-		use_system_certdb T.Gboolean)
+		useSystemCertdb T.Gboolean)
 
-	G_tls_connection_get_use_system_certdb func(
+	TlsConnectionGetUseSystemCertdb func(
 		conn *T.GTlsConnection) T.Gboolean
 
-	G_tls_connection_set_certificate func(
+	TlsConnectionSetCertificate func(
 		conn *T.GTlsConnection,
 		certificate *T.GTlsCertificate)
 
-	G_tls_connection_get_certificate func(
+	TlsConnectionGetCertificate func(
 		conn *T.GTlsConnection) *T.GTlsCertificate
 
-	G_tls_connection_get_peer_certificate func(
+	TlsConnectionGetPeerCertificate func(
 		conn *T.GTlsConnection) *T.GTlsCertificate
 
-	G_tls_connection_get_peer_certificate_errors func(
+	TlsConnectionGetPeerCertificateErrors func(
 		conn *T.GTlsConnection) T.GTlsCertificateFlags
 
-	G_tls_connection_set_require_close_notify func(
+	TlsConnectionSetRequireCloseNotify func(
 		conn *T.GTlsConnection,
-		require_close_notify T.Gboolean)
+		requireCloseNotify T.Gboolean)
 
-	G_tls_connection_get_require_close_notify func(
+	TlsConnectionGetRequireCloseNotify func(
 		conn *T.GTlsConnection) T.Gboolean
 
-	G_tls_connection_set_rehandshake_mode func(
+	TlsConnectionSetRehandshakeMode func(
 		conn *T.GTlsConnection,
 		mode T.GTlsRehandshakeMode)
 
-	G_tls_connection_get_rehandshake_mode func(
+	TlsConnectionGetRehandshakeMode func(
 		conn *T.GTlsConnection) T.GTlsRehandshakeMode
 
-	G_tls_connection_handshake func(
+	TlsConnectionHandshake func(
 		conn *T.GTlsConnection,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	G_tls_connection_handshake_async func(
+	TlsConnectionHandshakeAsync func(
 		conn *T.GTlsConnection,
-		io_priority int,
+		ioPriority int,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_tls_connection_handshake_finish func(
+	TlsConnectionHandshakeFinish func(
 		conn *T.GTlsConnection,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_tls_error_quark func() T.GQuark
+	TlsErrorQuark func() T.GQuark
 
-	G_tls_connection_emit_accept_certificate func(
+	TlsConnectionEmitAcceptCertificate func(
 		conn *T.GTlsConnection,
-		peer_cert *T.GTlsCertificate,
+		peerCert *T.GTlsCertificate,
 		errors T.GTlsCertificateFlags) T.Gboolean
 
-	G_tls_client_connection_get_type func() T.GType
+	TlsClientConnectionGetType func() T.GType
 
-	G_tls_client_connection_new func(
-		base_io_stream *T.GIOStream,
-		server_identity *T.GSocketConnectable,
+	TlsClientConnectionNew func(
+		baseIoStream *T.GIOStream,
+		serverIdentity *T.GSocketConnectable,
 		err **T.GError) *T.GIOStream
 
-	G_tls_client_connection_get_validation_flags func(
+	TlsClientConnectionGetValidationFlags func(
 		conn *T.GTlsClientConnection) T.GTlsCertificateFlags
 
-	G_tls_client_connection_set_validation_flags func(
+	TlsClientConnectionSetValidationFlags func(
 		conn *T.GTlsClientConnection,
 		flags T.GTlsCertificateFlags)
 
-	G_tls_client_connection_get_server_identity func(
+	TlsClientConnectionGetServerIdentity func(
 		conn *T.GTlsClientConnection) *T.GSocketConnectable
 
-	G_tls_client_connection_set_server_identity func(
+	TlsClientConnectionSetServerIdentity func(
 		conn *T.GTlsClientConnection,
 		identity *T.GSocketConnectable)
 
-	G_tls_client_connection_get_use_ssl3 func(
+	TlsClientConnectionGetUseSsl3 func(
 		conn *T.GTlsClientConnection) T.Gboolean
 
-	G_tls_client_connection_set_use_ssl3 func(
+	TlsClientConnectionSetUseSsl3 func(
 		conn *T.GTlsClientConnection,
-		use_ssl3 T.Gboolean)
+		useSsl3 T.Gboolean)
 
-	G_tls_client_connection_get_accepted_cas func(
+	TlsClientConnectionGetAcceptedCas func(
 		conn *T.GTlsClientConnection) *T.GList
 
-	G_tls_server_connection_get_type func() T.GType
+	TlsServerConnectionGetType func() T.GType
 
-	G_tls_server_connection_new func(
-		base_io_stream *T.GIOStream,
+	TlsServerConnectionNew func(
+		baseIoStream *T.GIOStream,
 		certificate *T.GTlsCertificate,
 		err **T.GError) *T.GIOStream
 
-	G_vfs_get_type func() T.GType
+	VfsGetType func() T.GType
 
-	G_vfs_is_active func(
+	VfsIsActive func(
 		vfs *T.GVfs) T.Gboolean
 
-	G_vfs_get_file_for_path func(
+	VfsGetFileForPath func(
 		vfs *T.GVfs,
 		path string) *T.GFile
 
-	G_vfs_get_file_for_uri func(
+	VfsGetFileForUri func(
 		vfs *T.GVfs,
 		uri string) *T.GFile
 
-	G_vfs_get_supported_uri_schemes func(
+	VfsGetSupportedUriSchemes func(
 		vfs *T.GVfs) **T.Gchar
 
-	G_vfs_parse_name func(
+	VfsParseName func(
 		vfs *T.GVfs,
-		parse_name string) *T.GFile
+		parseName string) *T.GFile
 
-	G_vfs_get_default func() *T.GVfs
+	VfsGetDefault func() *T.GVfs
 
-	G_vfs_get_local func() *T.GVfs
+	VfsGetLocal func() *T.GVfs
 
-	G_volume_get_type func() T.GType
+	VolumeGetType func() T.GType
 
-	G_volume_get_name func(
+	VolumeGetName func(
 		volume *T.GVolume) string
 
-	G_volume_get_icon func(
+	VolumeGetIcon func(
 		volume *T.GVolume) *T.GIcon
 
-	G_volume_get_uuid func(
+	VolumeGetUuid func(
 		volume *T.GVolume) string
 
-	G_volume_get_drive func(
+	VolumeGetDrive func(
 		volume *T.GVolume) *T.GDrive
 
-	G_volume_get_mount func(
+	VolumeGetMount func(
 		volume *T.GVolume) *T.GMount
 
-	G_volume_can_mount func(
+	VolumeCanMount func(
 		volume *T.GVolume) T.Gboolean
 
-	G_volume_can_eject func(
+	VolumeCanEject func(
 		volume *T.GVolume) T.Gboolean
 
-	G_volume_should_automount func(
+	VolumeShouldAutomount func(
 		volume *T.GVolume) T.Gboolean
 
-	G_volume_mount func(
+	VolumeMount func(
 		volume *T.GVolume,
 		flags T.GMountMountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_volume_mount_finish func(
+	VolumeMountFinish func(
 		volume *T.GVolume,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_volume_eject func(
+	VolumeEject func(
 		volume *T.GVolume,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_volume_eject_finish func(
+	VolumeEjectFinish func(
 		volume *T.GVolume,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_volume_get_identifier func(
+	VolumeGetIdentifier func(
 		volume *T.GVolume,
 		kind string) string
 
-	G_volume_enumerate_identifiers func(
+	VolumeEnumerateIdentifiers func(
 		volume *T.GVolume) **T.Char
 
-	G_volume_get_activation_root func(
+	VolumeGetActivationRoot func(
 		volume *T.GVolume) *T.GFile
 
-	G_volume_eject_with_operation func(
+	VolumeEjectWithOperation func(
 		volume *T.GVolume,
 		flags T.GMountUnmountFlags,
-		mount_operation *T.GMountOperation,
+		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback,
-		user_data T.Gpointer)
+		userData T.Gpointer)
 
-	G_volume_eject_with_operation_finish func(
+	VolumeEjectWithOperationFinish func(
 		volume *T.GVolume,
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	G_zlib_compressor_get_type func() T.GType
+	ZlibCompressorGetType func() T.GType
 
-	G_zlib_compressor_new func(
+	ZlibCompressorNew func(
 		format T.GZlibCompressorFormat,
 		level int) *T.GZlibCompressor
 
-	G_zlib_compressor_get_file_info func(
+	ZlibCompressorGetFileInfo func(
 		compressor *T.GZlibCompressor) *T.GFileInfo
 
-	G_zlib_compressor_set_file_info func(
+	ZlibCompressorSetFileInfo func(
 		compressor *T.GZlibCompressor,
-		file_info *T.GFileInfo)
+		fileInfo *T.GFileInfo)
 
-	G_zlib_decompressor_get_type func() T.GType
+	ZlibDecompressorGetType func() T.GType
 
-	G_zlib_decompressor_new func(
+	ZlibDecompressorNew func(
 		format T.GZlibCompressorFormat) *T.GZlibDecompressor
 
-	G_zlib_decompressor_get_file_info func(
+	ZlibDecompressorGetFileInfo func(
 		decompressor *T.GZlibDecompressor) *T.GFileInfo
 
-	G_win32_input_stream_get_type func() T.GType
+	Win32InputStreamGetType func() T.GType
 
-	G_win32_input_stream_new func(
+	Win32InputStreamNew func(
 		handle *T.Void,
-		close_handle T.Gboolean) *T.GInputStream
+		closeHandle T.Gboolean) *T.GInputStream
 
-	G_win32_input_stream_set_close_handle func(
+	Win32InputStreamSetCloseHandle func(
 		stream *T.GWin32InputStream,
-		close_handle T.Gboolean)
+		closeHandle T.Gboolean)
 
-	G_win32_input_stream_get_close_handle func(
+	Win32InputStreamGetCloseHandle func(
 		stream *T.GWin32InputStream) T.Gboolean
 
-	G_win32_input_stream_get_handle func(
+	Win32InputStreamGetHandle func(
 		stream *T.GWin32InputStream) *T.Void
 
-	G_win32_output_stream_get_type func() T.GType
+	Win32OutputStreamGetType func() T.GType
 
-	G_win32_output_stream_new func(
+	Win32OutputStreamNew func(
 		handle *T.Void,
-		close_handle T.Gboolean) *T.GOutputStream
+		closeHandle T.Gboolean) *T.GOutputStream
 
-	G_win32_output_stream_set_close_handle func(
+	Win32OutputStreamSetCloseHandle func(
 		stream *T.GWin32OutputStream,
-		close_handle T.Gboolean)
+		closeHandle T.Gboolean)
 
-	G_win32_output_stream_get_close_handle func(
+	Win32OutputStreamGetCloseHandle func(
 		stream *T.GWin32OutputStream) T.Gboolean
 
-	G_win32_output_stream_get_handle func(
+	Win32OutputStreamGetHandle func(
 		stream *T.GWin32OutputStream) *T.Void
 
-	G_settings_backend_get_type func() T.GType
+	SettingsBackendGetType func() T.GType
 
-	G_settings_backend_changed func(
+	SettingsBackendChanged func(
 		backend *T.GSettingsBackend,
 		key string,
-		origin_tag T.Gpointer)
+		originTag T.Gpointer)
 
-	G_settings_backend_path_changed func(
+	SettingsBackendPathChanged func(
 		backend *T.GSettingsBackend,
 		path string,
-		origin_tag T.Gpointer)
+		originTag T.Gpointer)
 
-	G_settings_backend_flatten_tree func(
+	SettingsBackendFlattenTree func(
 		tree *T.GTree,
 		path **T.Gchar,
 		keys ***T.Gchar,
 		values ***T.GVariant)
 
-	G_settings_backend_keys_changed func(
+	SettingsBackend_keysChanged func(
 		backend *T.GSettingsBackend,
 		path string,
 		items **T.Gchar,
-		origin_tag T.Gpointer)
+		originTag T.Gpointer)
 
-	G_settings_backend_path_writable_changed func(
+	SettingsBackendPathWritableChanged func(
 		backend *T.GSettingsBackend,
 		path string)
 
-	G_settings_backend_writable_changed func(
+	SettingsBackendWritableChanged func(
 		backend *T.GSettingsBackend,
 		key string)
 
-	G_settings_backend_changed_tree func(
+	SettingsBackendChangedTree func(
 		backend *T.GSettingsBackend,
 		tree *T.GTree,
-		origin_tag T.Gpointer)
+		originTag T.Gpointer)
 
-	G_settings_backend_get_default func() *T.GSettingsBackend
+	SettingsBackendGetDefault func() *T.GSettingsBackend
 
-	G_keyfile_settings_backend_new func(
+	KeyfileSettingsBackendNew func(
 		filename string,
-		root_path string,
-		root_group string) *T.GSettingsBackend
+		rootPath string,
+		rootGroup string) *T.GSettingsBackend
 
-	G_null_settings_backend_new func() *T.GSettingsBackend
+	NullSettingsBackendNew func() *T.GSettingsBackend
 
-	G_memory_settings_backend_new func() *T.GSettingsBackend
+	MemorySettingsBackendNew func() *T.GSettingsBackend
 )
 var dll = "libgio-2.0-0.dll"
 
 var apiList = outside.Apis{
-	{"g_action_activate", &G_action_activate},
-	{"g_action_get_enabled", &G_action_get_enabled},
-	{"g_action_get_name", &G_action_get_name},
-	{"g_action_get_parameter_type", &G_action_get_parameter_type},
-	{"g_action_get_state", &G_action_get_state},
-	{"g_action_get_state_hint", &G_action_get_state_hint},
-	{"g_action_get_state_type", &G_action_get_state_type},
-	{"g_action_get_type", &G_action_get_type},
-	{"g_action_group_action_added", &G_action_group_action_added},
-	{"g_action_group_action_enabled_changed", &G_action_group_action_enabled_changed},
-	{"g_action_group_action_removed", &G_action_group_action_removed},
-	{"g_action_group_action_state_changed", &G_action_group_action_state_changed},
-	{"g_action_group_activate_action", &G_action_group_activate_action},
-	{"g_action_group_change_action_state", &G_action_group_change_action_state},
-	{"g_action_group_get_action_enabled", &G_action_group_get_action_enabled},
-	{"g_action_group_get_action_parameter_type", &G_action_group_get_action_parameter_type},
-	{"g_action_group_get_action_state", &G_action_group_get_action_state},
-	{"g_action_group_get_action_state_hint", &G_action_group_get_action_state_hint},
-	{"g_action_group_get_action_state_type", &G_action_group_get_action_state_type},
-	{"g_action_group_get_type", &G_action_group_get_type},
-	{"g_action_group_has_action", &G_action_group_has_action},
-	{"g_action_group_list_actions", &G_action_group_list_actions},
-	{"g_action_set_state", &G_action_set_state},
-	{"g_app_info_add_supports_type", &G_app_info_add_supports_type},
-	{"g_app_info_can_delete", &G_app_info_can_delete},
-	{"g_app_info_can_remove_supports_type", &G_app_info_can_remove_supports_type},
-	{"g_app_info_create_flags_get_type", &G_app_info_create_flags_get_type},
-	{"g_app_info_create_from_commandline", &G_app_info_create_from_commandline},
-	{"g_app_info_delete", &G_app_info_delete},
-	{"g_app_info_dup", &G_app_info_dup},
-	{"g_app_info_equal", &G_app_info_equal},
-	{"g_app_info_get_all", &G_app_info_get_all},
-	{"g_app_info_get_all_for_type", &G_app_info_get_all_for_type},
-	{"g_app_info_get_commandline", &G_app_info_get_commandline},
-	{"g_app_info_get_default_for_type", &G_app_info_get_default_for_type},
-	{"g_app_info_get_default_for_uri_scheme", &G_app_info_get_default_for_uri_scheme},
-	{"g_app_info_get_description", &G_app_info_get_description},
-	{"g_app_info_get_display_name", &G_app_info_get_display_name},
-	{"g_app_info_get_executable", &G_app_info_get_executable},
-	{"g_app_info_get_fallback_for_type", &G_app_info_get_fallback_for_type},
-	{"g_app_info_get_icon", &G_app_info_get_icon},
-	{"g_app_info_get_id", &G_app_info_get_id},
-	{"g_app_info_get_name", &G_app_info_get_name},
-	{"g_app_info_get_recommended_for_type", &G_app_info_get_recommended_for_type},
-	{"g_app_info_get_type", &G_app_info_get_type},
-	{"g_app_info_launch", &G_app_info_launch},
-	{"g_app_info_launch_default_for_uri", &G_app_info_launch_default_for_uri},
-	{"g_app_info_launch_uris", &G_app_info_launch_uris},
-	{"g_app_info_remove_supports_type", &G_app_info_remove_supports_type},
-	{"g_app_info_reset_type_associations", &G_app_info_reset_type_associations},
-	{"g_app_info_set_as_default_for_extension", &G_app_info_set_as_default_for_extension},
-	{"g_app_info_set_as_default_for_type", &G_app_info_set_as_default_for_type},
-	{"g_app_info_set_as_last_used_for_type", &G_app_info_set_as_last_used_for_type},
-	{"g_app_info_should_show", &G_app_info_should_show},
-	{"g_app_info_supports_files", &G_app_info_supports_files},
-	{"g_app_info_supports_uris", &G_app_info_supports_uris},
-	{"g_app_launch_context_get_display", &G_app_launch_context_get_display},
-	{"g_app_launch_context_get_startup_notify_id", &G_app_launch_context_get_startup_notify_id},
-	{"g_app_launch_context_get_type", &G_app_launch_context_get_type},
-	{"g_app_launch_context_launch_failed", &G_app_launch_context_launch_failed},
-	{"g_app_launch_context_new", &G_app_launch_context_new},
-	{"g_application_activate", &G_application_activate},
-	{"g_application_command_line_get_arguments", &G_application_command_line_get_arguments},
-	{"g_application_command_line_get_cwd", &G_application_command_line_get_cwd},
-	{"g_application_command_line_get_environ", &G_application_command_line_get_environ},
-	{"g_application_command_line_get_exit_status", &G_application_command_line_get_exit_status},
-	{"g_application_command_line_get_is_remote", &G_application_command_line_get_is_remote},
-	{"g_application_command_line_get_platform_data", &G_application_command_line_get_platform_data},
-	{"g_application_command_line_get_type", &G_application_command_line_get_type},
-	{"g_application_command_line_getenv", &G_application_command_line_getenv},
-	{"g_application_command_line_print", &G_application_command_line_print},
-	{"g_application_command_line_printerr", &G_application_command_line_printerr},
-	{"g_application_command_line_set_exit_status", &G_application_command_line_set_exit_status},
-	{"g_application_flags_get_type", &G_application_flags_get_type},
-	{"g_application_get_application_id", &G_application_get_application_id},
-	{"g_application_get_flags", &G_application_get_flags},
-	{"g_application_get_inactivity_timeout", &G_application_get_inactivity_timeout},
-	{"g_application_get_is_registered", &G_application_get_is_registered},
-	{"g_application_get_is_remote", &G_application_get_is_remote},
-	{"g_application_get_type", &G_application_get_type},
-	{"g_application_hold", &G_application_hold},
-	{"g_application_id_is_valid", &G_application_id_is_valid},
-	{"g_application_new", &G_application_new},
-	{"g_application_open", &G_application_open},
-	{"g_application_register", &G_application_register},
-	{"g_application_release", &G_application_release},
-	{"g_application_run", &G_application_run},
-	{"g_application_set_action_group", &G_application_set_action_group},
-	{"g_application_set_application_id", &G_application_set_application_id},
-	{"g_application_set_flags", &G_application_set_flags},
-	{"g_application_set_inactivity_timeout", &G_application_set_inactivity_timeout},
-	{"g_ask_password_flags_get_type", &G_ask_password_flags_get_type},
-	{"g_async_initable_get_type", &G_async_initable_get_type},
-	{"g_async_initable_init_async", &G_async_initable_init_async},
-	{"g_async_initable_init_finish", &G_async_initable_init_finish},
-	{"g_async_initable_new_async", &G_async_initable_new_async},
-	{"g_async_initable_new_finish", &G_async_initable_new_finish},
-	{"g_async_initable_new_valist_async", &G_async_initable_new_valist_async},
-	{"g_async_initable_newv_async", &G_async_initable_newv_async},
-	{"g_async_result_get_source_object", &G_async_result_get_source_object},
-	{"g_async_result_get_type", &G_async_result_get_type},
-	{"g_async_result_get_user_data", &G_async_result_get_user_data},
-	{"g_buffered_input_stream_fill", &G_buffered_input_stream_fill},
-	{"g_buffered_input_stream_fill_async", &G_buffered_input_stream_fill_async},
-	{"g_buffered_input_stream_fill_finish", &G_buffered_input_stream_fill_finish},
-	{"g_buffered_input_stream_get_available", &G_buffered_input_stream_get_available},
-	{"g_buffered_input_stream_get_buffer_size", &G_buffered_input_stream_get_buffer_size},
-	{"g_buffered_input_stream_get_type", &G_buffered_input_stream_get_type},
-	{"g_buffered_input_stream_new", &G_buffered_input_stream_new},
-	{"g_buffered_input_stream_new_sized", &G_buffered_input_stream_new_sized},
-	{"g_buffered_input_stream_peek", &G_buffered_input_stream_peek},
-	{"g_buffered_input_stream_peek_buffer", &G_buffered_input_stream_peek_buffer},
-	{"g_buffered_input_stream_read_byte", &G_buffered_input_stream_read_byte},
-	{"g_buffered_input_stream_set_buffer_size", &G_buffered_input_stream_set_buffer_size},
-	{"g_buffered_output_stream_get_auto_grow", &G_buffered_output_stream_get_auto_grow},
-	{"g_buffered_output_stream_get_buffer_size", &G_buffered_output_stream_get_buffer_size},
-	{"g_buffered_output_stream_get_type", &G_buffered_output_stream_get_type},
-	{"g_buffered_output_stream_new", &G_buffered_output_stream_new},
-	{"g_buffered_output_stream_new_sized", &G_buffered_output_stream_new_sized},
-	{"g_buffered_output_stream_set_auto_grow", &G_buffered_output_stream_set_auto_grow},
-	{"g_buffered_output_stream_set_buffer_size", &G_buffered_output_stream_set_buffer_size},
-	{"g_bus_get", &G_bus_get},
-	{"g_bus_get_finish", &G_bus_get_finish},
-	{"g_bus_get_sync", &G_bus_get_sync},
-	{"g_bus_name_owner_flags_get_type", &G_bus_name_owner_flags_get_type},
-	{"g_bus_name_watcher_flags_get_type", &G_bus_name_watcher_flags_get_type},
-	{"g_bus_own_name", &G_bus_own_name},
-	{"g_bus_own_name_on_connection", &G_bus_own_name_on_connection},
-	{"g_bus_own_name_on_connection_with_closures", &G_bus_own_name_on_connection_with_closures},
-	{"g_bus_own_name_with_closures", &G_bus_own_name_with_closures},
-	{"g_bus_type_get_type", &G_bus_type_get_type},
-	{"g_bus_unown_name", &G_bus_unown_name},
-	{"g_bus_unwatch_name", &G_bus_unwatch_name},
-	{"g_bus_watch_name", &G_bus_watch_name},
-	{"g_bus_watch_name_on_connection", &G_bus_watch_name_on_connection},
-	{"g_bus_watch_name_on_connection_with_closures", &G_bus_watch_name_on_connection_with_closures},
-	{"g_bus_watch_name_with_closures", &G_bus_watch_name_with_closures},
-	{"g_cancellable_cancel", &G_cancellable_cancel},
-	{"g_cancellable_connect", &G_cancellable_connect},
-	{"g_cancellable_disconnect", &G_cancellable_disconnect},
-	{"g_cancellable_get_current", &G_cancellable_get_current},
-	{"g_cancellable_get_fd", &G_cancellable_get_fd},
-	{"g_cancellable_get_type", &G_cancellable_get_type},
-	{"g_cancellable_is_cancelled", &G_cancellable_is_cancelled},
-	{"g_cancellable_make_pollfd", &G_cancellable_make_pollfd},
-	{"g_cancellable_new", &G_cancellable_new},
-	{"g_cancellable_pop_current", &G_cancellable_pop_current},
-	{"g_cancellable_push_current", &G_cancellable_push_current},
-	{"g_cancellable_release_fd", &G_cancellable_release_fd},
-	{"g_cancellable_reset", &G_cancellable_reset},
-	{"g_cancellable_set_error_if_cancelled", &G_cancellable_set_error_if_cancelled},
-	{"g_cancellable_source_new", &G_cancellable_source_new},
-	{"g_charset_converter_get_num_fallbacks", &G_charset_converter_get_num_fallbacks},
-	{"g_charset_converter_get_type", &G_charset_converter_get_type},
-	{"g_charset_converter_get_use_fallback", &G_charset_converter_get_use_fallback},
-	{"g_charset_converter_new", &G_charset_converter_new},
-	{"g_charset_converter_set_use_fallback", &G_charset_converter_set_use_fallback},
-	{"g_content_type_can_be_executable", &G_content_type_can_be_executable},
-	{"g_content_type_equals", &G_content_type_equals},
-	{"g_content_type_from_mime_type", &G_content_type_from_mime_type},
-	{"g_content_type_get_description", &G_content_type_get_description},
-	{"g_content_type_get_icon", &G_content_type_get_icon},
-	{"g_content_type_get_mime_type", &G_content_type_get_mime_type},
-	{"g_content_type_guess", &G_content_type_guess},
-	{"g_content_type_guess_for_tree", &G_content_type_guess_for_tree},
-	{"g_content_type_is_a", &G_content_type_is_a},
-	{"g_content_type_is_unknown", &G_content_type_is_unknown},
-	{"g_content_types_get_registered", &G_content_types_get_registered},
-	{"g_converter_convert", &G_converter_convert},
-	{"g_converter_flags_get_type", &G_converter_flags_get_type},
-	{"g_converter_get_type", &G_converter_get_type},
-	{"g_converter_input_stream_get_converter", &G_converter_input_stream_get_converter},
-	{"g_converter_input_stream_get_type", &G_converter_input_stream_get_type},
-	{"g_converter_input_stream_new", &G_converter_input_stream_new},
-	{"g_converter_output_stream_get_converter", &G_converter_output_stream_get_converter},
-	{"g_converter_output_stream_get_type", &G_converter_output_stream_get_type},
-	{"g_converter_output_stream_new", &G_converter_output_stream_new},
-	{"g_converter_reset", &G_converter_reset},
-	{"g_converter_result_get_type", &G_converter_result_get_type},
-	{"g_credentials_get_native", &G_credentials_get_native},
-	{"g_credentials_get_type", &G_credentials_get_type},
-	{"g_credentials_is_same_user", &G_credentials_is_same_user},
-	{"g_credentials_new", &G_credentials_new},
-	{"g_credentials_set_native", &G_credentials_set_native},
-	{"g_credentials_to_string", &G_credentials_to_string},
-	{"g_credentials_type_get_type", &G_credentials_type_get_type},
-	{"g_data_input_stream_get_byte_order", &G_data_input_stream_get_byte_order},
-	{"g_data_input_stream_get_newline_type", &G_data_input_stream_get_newline_type},
-	{"g_data_input_stream_get_type", &G_data_input_stream_get_type},
-	{"g_data_input_stream_new", &G_data_input_stream_new},
-	{"g_data_input_stream_read_byte", &G_data_input_stream_read_byte},
-	{"g_data_input_stream_read_int16", &G_data_input_stream_read_int16},
-	{"g_data_input_stream_read_int32", &G_data_input_stream_read_int32},
-	{"g_data_input_stream_read_int64", &G_data_input_stream_read_int64},
-	{"g_data_input_stream_read_line", &G_data_input_stream_read_line},
-	{"g_data_input_stream_read_line_async", &G_data_input_stream_read_line_async},
-	{"g_data_input_stream_read_line_finish", &G_data_input_stream_read_line_finish},
-	{"g_data_input_stream_read_uint16", &G_data_input_stream_read_uint16},
-	{"g_data_input_stream_read_uint32", &G_data_input_stream_read_uint32},
-	{"g_data_input_stream_read_uint64", &G_data_input_stream_read_uint64},
-	{"g_data_input_stream_read_until", &G_data_input_stream_read_until},
-	{"g_data_input_stream_read_until_async", &G_data_input_stream_read_until_async},
-	{"g_data_input_stream_read_until_finish", &G_data_input_stream_read_until_finish},
-	{"g_data_input_stream_read_upto", &G_data_input_stream_read_upto},
-	{"g_data_input_stream_read_upto_async", &G_data_input_stream_read_upto_async},
-	{"g_data_input_stream_read_upto_finish", &G_data_input_stream_read_upto_finish},
-	{"g_data_input_stream_set_byte_order", &G_data_input_stream_set_byte_order},
-	{"g_data_input_stream_set_newline_type", &G_data_input_stream_set_newline_type},
-	{"g_data_output_stream_get_byte_order", &G_data_output_stream_get_byte_order},
-	{"g_data_output_stream_get_type", &G_data_output_stream_get_type},
-	{"g_data_output_stream_new", &G_data_output_stream_new},
-	{"g_data_output_stream_put_byte", &G_data_output_stream_put_byte},
-	{"g_data_output_stream_put_int16", &G_data_output_stream_put_int16},
-	{"g_data_output_stream_put_int32", &G_data_output_stream_put_int32},
-	{"g_data_output_stream_put_int64", &G_data_output_stream_put_int64},
-	{"g_data_output_stream_put_string", &G_data_output_stream_put_string},
-	{"g_data_output_stream_put_uint16", &G_data_output_stream_put_uint16},
-	{"g_data_output_stream_put_uint32", &G_data_output_stream_put_uint32},
-	{"g_data_output_stream_put_uint64", &G_data_output_stream_put_uint64},
-	{"g_data_output_stream_set_byte_order", &G_data_output_stream_set_byte_order},
-	{"g_data_stream_byte_order_get_type", &G_data_stream_byte_order_get_type},
-	{"g_data_stream_newline_type_get_type", &G_data_stream_newline_type_get_type},
-	{"g_dbus_address_get_for_bus_sync", &G_dbus_address_get_for_bus_sync},
-	{"g_dbus_address_get_stream", &G_dbus_address_get_stream},
-	{"g_dbus_address_get_stream_finish", &G_dbus_address_get_stream_finish},
-	{"g_dbus_address_get_stream_sync", &G_dbus_address_get_stream_sync},
-	{"g_dbus_annotation_info_get_type", &G_dbus_annotation_info_get_type},
-	{"g_dbus_annotation_info_lookup", &G_dbus_annotation_info_lookup},
-	{"g_dbus_annotation_info_ref", &G_dbus_annotation_info_ref},
-	{"g_dbus_annotation_info_unref", &G_dbus_annotation_info_unref},
-	{"g_dbus_arg_info_get_type", &G_dbus_arg_info_get_type},
-	{"g_dbus_arg_info_ref", &G_dbus_arg_info_ref},
-	{"g_dbus_arg_info_unref", &G_dbus_arg_info_unref},
-	{"g_dbus_auth_observer_authorize_authenticated_peer", &G_dbus_auth_observer_authorize_authenticated_peer},
-	{"g_dbus_auth_observer_get_type", &G_dbus_auth_observer_get_type},
-	{"g_dbus_auth_observer_new", &G_dbus_auth_observer_new},
-	{"g_dbus_call_flags_get_type", &G_dbus_call_flags_get_type},
-	{"g_dbus_capability_flags_get_type", &G_dbus_capability_flags_get_type},
-	{"g_dbus_connection_add_filter", &G_dbus_connection_add_filter},
-	{"g_dbus_connection_call", &G_dbus_connection_call},
-	{"g_dbus_connection_call_finish", &G_dbus_connection_call_finish},
-	{"g_dbus_connection_call_sync", &G_dbus_connection_call_sync},
-	{"g_dbus_connection_close", &G_dbus_connection_close},
-	{"g_dbus_connection_close_finish", &G_dbus_connection_close_finish},
-	{"g_dbus_connection_close_sync", &G_dbus_connection_close_sync},
-	{"g_dbus_connection_emit_signal", &G_dbus_connection_emit_signal},
-	{"g_dbus_connection_flags_get_type", &G_dbus_connection_flags_get_type},
-	{"g_dbus_connection_flush", &G_dbus_connection_flush},
-	{"g_dbus_connection_flush_finish", &G_dbus_connection_flush_finish},
-	{"g_dbus_connection_flush_sync", &G_dbus_connection_flush_sync},
-	{"g_dbus_connection_get_capabilities", &G_dbus_connection_get_capabilities},
-	{"g_dbus_connection_get_exit_on_close", &G_dbus_connection_get_exit_on_close},
-	{"g_dbus_connection_get_guid", &G_dbus_connection_get_guid},
-	{"g_dbus_connection_get_peer_credentials", &G_dbus_connection_get_peer_credentials},
-	{"g_dbus_connection_get_stream", &G_dbus_connection_get_stream},
-	{"g_dbus_connection_get_type", &G_dbus_connection_get_type},
-	{"g_dbus_connection_get_unique_name", &G_dbus_connection_get_unique_name},
-	{"g_dbus_connection_is_closed", &G_dbus_connection_is_closed},
-	{"g_dbus_connection_new", &G_dbus_connection_new},
-	{"g_dbus_connection_new_finish", &G_dbus_connection_new_finish},
-	{"g_dbus_connection_new_for_address", &G_dbus_connection_new_for_address},
-	{"g_dbus_connection_new_for_address_finish", &G_dbus_connection_new_for_address_finish},
-	{"g_dbus_connection_new_for_address_sync", &G_dbus_connection_new_for_address_sync},
-	{"g_dbus_connection_new_sync", &G_dbus_connection_new_sync},
-	{"g_dbus_connection_register_object", &G_dbus_connection_register_object},
-	{"g_dbus_connection_register_subtree", &G_dbus_connection_register_subtree},
-	{"g_dbus_connection_remove_filter", &G_dbus_connection_remove_filter},
-	{"g_dbus_connection_send_message", &G_dbus_connection_send_message},
-	{"g_dbus_connection_send_message_with_reply", &G_dbus_connection_send_message_with_reply},
-	{"g_dbus_connection_send_message_with_reply_finish", &G_dbus_connection_send_message_with_reply_finish},
-	{"g_dbus_connection_send_message_with_reply_sync", &G_dbus_connection_send_message_with_reply_sync},
-	{"g_dbus_connection_set_exit_on_close", &G_dbus_connection_set_exit_on_close},
-	{"g_dbus_connection_signal_subscribe", &G_dbus_connection_signal_subscribe},
-	{"g_dbus_connection_signal_unsubscribe", &G_dbus_connection_signal_unsubscribe},
-	{"g_dbus_connection_start_message_processing", &G_dbus_connection_start_message_processing},
-	{"g_dbus_connection_unregister_object", &G_dbus_connection_unregister_object},
-	{"g_dbus_connection_unregister_subtree", &G_dbus_connection_unregister_subtree},
-	{"g_dbus_error_encode_gerror", &G_dbus_error_encode_gerror},
-	{"g_dbus_error_get_remote_error", &G_dbus_error_get_remote_error},
-	{"g_dbus_error_get_type", &G_dbus_error_get_type},
-	{"g_dbus_error_is_remote_error", &G_dbus_error_is_remote_error},
-	{"g_dbus_error_new_for_dbus_error", &G_dbus_error_new_for_dbus_error},
-	{"g_dbus_error_quark", &G_dbus_error_quark},
-	{"g_dbus_error_register_error", &G_dbus_error_register_error},
-	{"g_dbus_error_register_error_domain", &G_dbus_error_register_error_domain},
-	{"g_dbus_error_set_dbus_error", &G_dbus_error_set_dbus_error},
-	{"g_dbus_error_set_dbus_error_valist", &G_dbus_error_set_dbus_error_valist},
-	{"g_dbus_error_strip_remote_error", &G_dbus_error_strip_remote_error},
-	{"g_dbus_error_unregister_error", &G_dbus_error_unregister_error},
-	{"g_dbus_generate_guid", &G_dbus_generate_guid},
-	{"g_dbus_interface_info_generate_xml", &G_dbus_interface_info_generate_xml},
-	{"g_dbus_interface_info_get_type", &G_dbus_interface_info_get_type},
-	{"g_dbus_interface_info_lookup_method", &G_dbus_interface_info_lookup_method},
-	{"g_dbus_interface_info_lookup_property", &G_dbus_interface_info_lookup_property},
-	{"g_dbus_interface_info_lookup_signal", &G_dbus_interface_info_lookup_signal},
-	{"g_dbus_interface_info_ref", &G_dbus_interface_info_ref},
-	{"g_dbus_interface_info_unref", &G_dbus_interface_info_unref},
-	{"g_dbus_is_address", &G_dbus_is_address},
-	{"g_dbus_is_guid", &G_dbus_is_guid},
-	{"g_dbus_is_interface_name", &G_dbus_is_interface_name},
-	{"g_dbus_is_member_name", &G_dbus_is_member_name},
-	{"g_dbus_is_name", &G_dbus_is_name},
-	{"g_dbus_is_supported_address", &G_dbus_is_supported_address},
-	{"g_dbus_is_unique_name", &G_dbus_is_unique_name},
-	{"g_dbus_message_byte_order_get_type", &G_dbus_message_byte_order_get_type},
-	{"g_dbus_message_bytes_needed", &G_dbus_message_bytes_needed},
-	{"g_dbus_message_copy", &G_dbus_message_copy},
-	{"g_dbus_message_flags_get_type", &G_dbus_message_flags_get_type},
-	{"g_dbus_message_get_arg0", &G_dbus_message_get_arg0},
-	{"g_dbus_message_get_body", &G_dbus_message_get_body},
-	{"g_dbus_message_get_byte_order", &G_dbus_message_get_byte_order},
-	{"g_dbus_message_get_destination", &G_dbus_message_get_destination},
-	{"g_dbus_message_get_error_name", &G_dbus_message_get_error_name},
-	{"g_dbus_message_get_flags", &G_dbus_message_get_flags},
-	{"g_dbus_message_get_header", &G_dbus_message_get_header},
-	{"g_dbus_message_get_header_fields", &G_dbus_message_get_header_fields},
-	{"g_dbus_message_get_interface", &G_dbus_message_get_interface},
-	{"g_dbus_message_get_locked", &G_dbus_message_get_locked},
-	{"g_dbus_message_get_member", &G_dbus_message_get_member},
-	{"g_dbus_message_get_message_type", &G_dbus_message_get_message_type},
-	{"g_dbus_message_get_num_unix_fds", &G_dbus_message_get_num_unix_fds},
-	{"g_dbus_message_get_path", &G_dbus_message_get_path},
-	{"g_dbus_message_get_reply_serial", &G_dbus_message_get_reply_serial},
-	{"g_dbus_message_get_sender", &G_dbus_message_get_sender},
-	{"g_dbus_message_get_serial", &G_dbus_message_get_serial},
-	{"g_dbus_message_get_signature", &G_dbus_message_get_signature},
-	{"g_dbus_message_get_type", &G_dbus_message_get_type},
-	{"g_dbus_message_header_field_get_type", &G_dbus_message_header_field_get_type},
-	{"g_dbus_message_lock", &G_dbus_message_lock},
-	{"g_dbus_message_new", &G_dbus_message_new},
-	{"g_dbus_message_new_from_blob", &G_dbus_message_new_from_blob},
-	{"g_dbus_message_new_method_call", &G_dbus_message_new_method_call},
-	{"g_dbus_message_new_method_error", &G_dbus_message_new_method_error},
-	{"g_dbus_message_new_method_error_literal", &G_dbus_message_new_method_error_literal},
-	{"g_dbus_message_new_method_error_valist", &G_dbus_message_new_method_error_valist},
-	{"g_dbus_message_new_method_reply", &G_dbus_message_new_method_reply},
-	{"g_dbus_message_new_signal", &G_dbus_message_new_signal},
-	{"g_dbus_message_print", &G_dbus_message_print},
-	{"g_dbus_message_set_body", &G_dbus_message_set_body},
-	{"g_dbus_message_set_byte_order", &G_dbus_message_set_byte_order},
-	{"g_dbus_message_set_destination", &G_dbus_message_set_destination},
-	{"g_dbus_message_set_error_name", &G_dbus_message_set_error_name},
-	{"g_dbus_message_set_flags", &G_dbus_message_set_flags},
-	{"g_dbus_message_set_header", &G_dbus_message_set_header},
-	{"g_dbus_message_set_interface", &G_dbus_message_set_interface},
-	{"g_dbus_message_set_member", &G_dbus_message_set_member},
-	{"g_dbus_message_set_message_type", &G_dbus_message_set_message_type},
-	{"g_dbus_message_set_num_unix_fds", &G_dbus_message_set_num_unix_fds},
-	{"g_dbus_message_set_path", &G_dbus_message_set_path},
-	{"g_dbus_message_set_reply_serial", &G_dbus_message_set_reply_serial},
-	{"g_dbus_message_set_sender", &G_dbus_message_set_sender},
-	{"g_dbus_message_set_serial", &G_dbus_message_set_serial},
-	{"g_dbus_message_set_signature", &G_dbus_message_set_signature},
-	{"g_dbus_message_to_blob", &G_dbus_message_to_blob},
-	{"g_dbus_message_to_gerror", &G_dbus_message_to_gerror},
-	{"g_dbus_message_type_get_type", &G_dbus_message_type_get_type},
-	{"g_dbus_method_info_get_type", &G_dbus_method_info_get_type},
-	{"g_dbus_method_info_ref", &G_dbus_method_info_ref},
-	{"g_dbus_method_info_unref", &G_dbus_method_info_unref},
-	{"g_dbus_method_invocation_get_connection", &G_dbus_method_invocation_get_connection},
-	{"g_dbus_method_invocation_get_interface_name", &G_dbus_method_invocation_get_interface_name},
-	{"g_dbus_method_invocation_get_message", &G_dbus_method_invocation_get_message},
-	{"g_dbus_method_invocation_get_method_info", &G_dbus_method_invocation_get_method_info},
-	{"g_dbus_method_invocation_get_method_name", &G_dbus_method_invocation_get_method_name},
-	{"g_dbus_method_invocation_get_object_path", &G_dbus_method_invocation_get_object_path},
-	{"g_dbus_method_invocation_get_parameters", &G_dbus_method_invocation_get_parameters},
-	{"g_dbus_method_invocation_get_sender", &G_dbus_method_invocation_get_sender},
-	{"g_dbus_method_invocation_get_type", &G_dbus_method_invocation_get_type},
-	{"g_dbus_method_invocation_get_user_data", &G_dbus_method_invocation_get_user_data},
-	{"g_dbus_method_invocation_return_dbus_error", &G_dbus_method_invocation_return_dbus_error},
-	{"g_dbus_method_invocation_return_error", &G_dbus_method_invocation_return_error},
-	{"g_dbus_method_invocation_return_error_literal", &G_dbus_method_invocation_return_error_literal},
-	{"g_dbus_method_invocation_return_error_valist", &G_dbus_method_invocation_return_error_valist},
-	{"g_dbus_method_invocation_return_gerror", &G_dbus_method_invocation_return_gerror},
-	{"g_dbus_method_invocation_return_value", &G_dbus_method_invocation_return_value},
-	{"g_dbus_node_info_generate_xml", &G_dbus_node_info_generate_xml},
-	{"g_dbus_node_info_get_type", &G_dbus_node_info_get_type},
-	{"g_dbus_node_info_lookup_interface", &G_dbus_node_info_lookup_interface},
-	{"g_dbus_node_info_new_for_xml", &G_dbus_node_info_new_for_xml},
-	{"g_dbus_node_info_ref", &G_dbus_node_info_ref},
-	{"g_dbus_node_info_unref", &G_dbus_node_info_unref},
-	{"g_dbus_property_info_flags_get_type", &G_dbus_property_info_flags_get_type},
-	{"g_dbus_property_info_get_type", &G_dbus_property_info_get_type},
-	{"g_dbus_property_info_ref", &G_dbus_property_info_ref},
-	{"g_dbus_property_info_unref", &G_dbus_property_info_unref},
-	{"g_dbus_proxy_call", &G_dbus_proxy_call},
-	{"g_dbus_proxy_call_finish", &G_dbus_proxy_call_finish},
-	{"g_dbus_proxy_call_sync", &G_dbus_proxy_call_sync},
-	{"g_dbus_proxy_flags_get_type", &G_dbus_proxy_flags_get_type},
-	{"g_dbus_proxy_get_cached_property", &G_dbus_proxy_get_cached_property},
-	{"g_dbus_proxy_get_cached_property_names", &G_dbus_proxy_get_cached_property_names},
-	{"g_dbus_proxy_get_connection", &G_dbus_proxy_get_connection},
-	{"g_dbus_proxy_get_default_timeout", &G_dbus_proxy_get_default_timeout},
-	{"g_dbus_proxy_get_flags", &G_dbus_proxy_get_flags},
-	{"g_dbus_proxy_get_interface_info", &G_dbus_proxy_get_interface_info},
-	{"g_dbus_proxy_get_interface_name", &G_dbus_proxy_get_interface_name},
-	{"g_dbus_proxy_get_name", &G_dbus_proxy_get_name},
-	{"g_dbus_proxy_get_name_owner", &G_dbus_proxy_get_name_owner},
-	{"g_dbus_proxy_get_object_path", &G_dbus_proxy_get_object_path},
-	{"g_dbus_proxy_get_type", &G_dbus_proxy_get_type},
-	{"g_dbus_proxy_new", &G_dbus_proxy_new},
-	{"g_dbus_proxy_new_finish", &G_dbus_proxy_new_finish},
-	{"g_dbus_proxy_new_for_bus", &G_dbus_proxy_new_for_bus},
-	{"g_dbus_proxy_new_for_bus_finish", &G_dbus_proxy_new_for_bus_finish},
-	{"g_dbus_proxy_new_for_bus_sync", &G_dbus_proxy_new_for_bus_sync},
-	{"g_dbus_proxy_new_sync", &G_dbus_proxy_new_sync},
-	{"g_dbus_proxy_set_cached_property", &G_dbus_proxy_set_cached_property},
-	{"g_dbus_proxy_set_default_timeout", &G_dbus_proxy_set_default_timeout},
-	{"g_dbus_proxy_set_interface_info", &G_dbus_proxy_set_interface_info},
-	{"g_dbus_send_message_flags_get_type", &G_dbus_send_message_flags_get_type},
-	{"g_dbus_server_flags_get_type", &G_dbus_server_flags_get_type},
-	{"g_dbus_server_get_client_address", &G_dbus_server_get_client_address},
-	{"g_dbus_server_get_flags", &G_dbus_server_get_flags},
-	{"g_dbus_server_get_guid", &G_dbus_server_get_guid},
-	{"g_dbus_server_get_type", &G_dbus_server_get_type},
-	{"g_dbus_server_is_active", &G_dbus_server_is_active},
-	{"g_dbus_server_new_sync", &G_dbus_server_new_sync},
-	{"g_dbus_server_start", &G_dbus_server_start},
-	{"g_dbus_server_stop", &G_dbus_server_stop},
-	{"g_dbus_signal_flags_get_type", &G_dbus_signal_flags_get_type},
-	{"g_dbus_signal_info_get_type", &G_dbus_signal_info_get_type},
-	{"g_dbus_signal_info_ref", &G_dbus_signal_info_ref},
-	{"g_dbus_signal_info_unref", &G_dbus_signal_info_unref},
-	{"g_dbus_subtree_flags_get_type", &G_dbus_subtree_flags_get_type},
-	{"g_drive_can_eject", &G_drive_can_eject},
-	{"g_drive_can_poll_for_media", &G_drive_can_poll_for_media},
-	{"g_drive_can_start", &G_drive_can_start},
-	{"g_drive_can_start_degraded", &G_drive_can_start_degraded},
-	{"g_drive_can_stop", &G_drive_can_stop},
-	{"g_drive_eject", &G_drive_eject},
-	{"g_drive_eject_finish", &G_drive_eject_finish},
-	{"g_drive_eject_with_operation", &G_drive_eject_with_operation},
-	{"g_drive_eject_with_operation_finish", &G_drive_eject_with_operation_finish},
-	{"g_drive_enumerate_identifiers", &G_drive_enumerate_identifiers},
-	{"g_drive_get_icon", &G_drive_get_icon},
-	{"g_drive_get_identifier", &G_drive_get_identifier},
-	{"g_drive_get_name", &G_drive_get_name},
-	{"g_drive_get_start_stop_type", &G_drive_get_start_stop_type},
-	{"g_drive_get_type", &G_drive_get_type},
-	{"g_drive_get_volumes", &G_drive_get_volumes},
-	{"g_drive_has_media", &G_drive_has_media},
-	{"g_drive_has_volumes", &G_drive_has_volumes},
-	{"g_drive_is_media_check_automatic", &G_drive_is_media_check_automatic},
-	{"g_drive_is_media_removable", &G_drive_is_media_removable},
-	{"g_drive_poll_for_media", &G_drive_poll_for_media},
-	{"g_drive_poll_for_media_finish", &G_drive_poll_for_media_finish},
-	{"g_drive_start", &G_drive_start},
-	{"g_drive_start_finish", &G_drive_start_finish},
-	{"g_drive_start_flags_get_type", &G_drive_start_flags_get_type},
-	{"g_drive_start_stop_type_get_type", &G_drive_start_stop_type_get_type},
-	{"g_drive_stop", &G_drive_stop},
-	{"g_drive_stop_finish", &G_drive_stop_finish},
-	{"g_emblem_get_icon", &G_emblem_get_icon},
-	{"g_emblem_get_origin", &G_emblem_get_origin},
-	{"g_emblem_get_type", &G_emblem_get_type},
-	{"g_emblem_new", &G_emblem_new},
-	{"g_emblem_new_with_origin", &G_emblem_new_with_origin},
-	{"g_emblem_origin_get_type", &G_emblem_origin_get_type},
-	{"g_emblemed_icon_add_emblem", &G_emblemed_icon_add_emblem},
-	{"g_emblemed_icon_clear_emblems", &G_emblemed_icon_clear_emblems},
-	{"g_emblemed_icon_get_emblems", &G_emblemed_icon_get_emblems},
-	{"g_emblemed_icon_get_icon", &G_emblemed_icon_get_icon},
-	{"g_emblemed_icon_get_type", &G_emblemed_icon_get_type},
-	{"g_emblemed_icon_new", &G_emblemed_icon_new},
-	{"g_file_append_to", &G_file_append_to},
-	{"g_file_append_to_async", &G_file_append_to_async},
-	{"g_file_append_to_finish", &G_file_append_to_finish},
-	{"g_file_attribute_info_flags_get_type", &G_file_attribute_info_flags_get_type},
-	{"g_file_attribute_info_list_add", &G_file_attribute_info_list_add},
-	{"g_file_attribute_info_list_dup", &G_file_attribute_info_list_dup},
-	{"g_file_attribute_info_list_get_type", &G_file_attribute_info_list_get_type},
-	{"g_file_attribute_info_list_lookup", &G_file_attribute_info_list_lookup},
-	{"g_file_attribute_info_list_new", &G_file_attribute_info_list_new},
-	{"g_file_attribute_info_list_ref", &G_file_attribute_info_list_ref},
-	{"g_file_attribute_info_list_unref", &G_file_attribute_info_list_unref},
-	{"g_file_attribute_matcher_enumerate_namespace", &G_file_attribute_matcher_enumerate_namespace},
-	{"g_file_attribute_matcher_enumerate_next", &G_file_attribute_matcher_enumerate_next},
-	{"g_file_attribute_matcher_get_type", &G_file_attribute_matcher_get_type},
-	{"g_file_attribute_matcher_matches", &G_file_attribute_matcher_matches},
-	{"g_file_attribute_matcher_matches_only", &G_file_attribute_matcher_matches_only},
-	{"g_file_attribute_matcher_new", &G_file_attribute_matcher_new},
-	{"g_file_attribute_matcher_ref", &G_file_attribute_matcher_ref},
-	{"g_file_attribute_matcher_unref", &G_file_attribute_matcher_unref},
-	{"g_file_attribute_status_get_type", &G_file_attribute_status_get_type},
-	{"g_file_attribute_type_get_type", &G_file_attribute_type_get_type},
-	{"g_file_copy", &G_file_copy},
-	{"g_file_copy_async", &G_file_copy_async},
-	{"g_file_copy_attributes", &G_file_copy_attributes},
-	{"g_file_copy_finish", &G_file_copy_finish},
-	{"g_file_copy_flags_get_type", &G_file_copy_flags_get_type},
-	{"g_file_create", &G_file_create},
-	{"g_file_create_async", &G_file_create_async},
-	{"g_file_create_finish", &G_file_create_finish},
-	{"g_file_create_flags_get_type", &G_file_create_flags_get_type},
-	{"g_file_create_readwrite", &G_file_create_readwrite},
-	{"g_file_create_readwrite_async", &G_file_create_readwrite_async},
-	{"g_file_create_readwrite_finish", &G_file_create_readwrite_finish},
-	{"g_file_delete", &G_file_delete},
-	{"g_file_dup", &G_file_dup},
-	{"g_file_eject_mountable", &G_file_eject_mountable},
-	{"g_file_eject_mountable_finish", &G_file_eject_mountable_finish},
-	{"g_file_eject_mountable_with_operation", &G_file_eject_mountable_with_operation},
-	{"g_file_eject_mountable_with_operation_finish", &G_file_eject_mountable_with_operation_finish},
-	{"g_file_enumerate_children", &G_file_enumerate_children},
-	{"g_file_enumerate_children_async", &G_file_enumerate_children_async},
-	{"g_file_enumerate_children_finish", &G_file_enumerate_children_finish},
-	{"g_file_enumerator_close", &G_file_enumerator_close},
-	{"g_file_enumerator_close_async", &G_file_enumerator_close_async},
-	{"g_file_enumerator_close_finish", &G_file_enumerator_close_finish},
-	{"g_file_enumerator_get_container", &G_file_enumerator_get_container},
-	{"g_file_enumerator_get_type", &G_file_enumerator_get_type},
-	{"g_file_enumerator_has_pending", &G_file_enumerator_has_pending},
-	{"g_file_enumerator_is_closed", &G_file_enumerator_is_closed},
-	{"g_file_enumerator_next_file", &G_file_enumerator_next_file},
-	{"g_file_enumerator_next_files_async", &G_file_enumerator_next_files_async},
-	{"g_file_enumerator_next_files_finish", &G_file_enumerator_next_files_finish},
-	{"g_file_enumerator_set_pending", &G_file_enumerator_set_pending},
-	{"g_file_equal", &G_file_equal},
-	{"g_file_find_enclosing_mount", &G_file_find_enclosing_mount},
-	{"g_file_find_enclosing_mount_async", &G_file_find_enclosing_mount_async},
-	{"g_file_find_enclosing_mount_finish", &G_file_find_enclosing_mount_finish},
-	{"g_file_get_basename", &G_file_get_basename},
-	{"g_file_get_child", &G_file_get_child},
-	{"g_file_get_child_for_display_name", &G_file_get_child_for_display_name},
-	{"g_file_get_parent", &G_file_get_parent},
-	{"g_file_get_parse_name", &G_file_get_parse_name},
-	{"g_file_get_path", &G_file_get_path},
-	{"g_file_get_relative_path", &G_file_get_relative_path},
-	{"g_file_get_type", &G_file_get_type},
-	{"g_file_get_uri", &G_file_get_uri},
-	{"g_file_get_uri_scheme", &G_file_get_uri_scheme},
-	{"g_file_has_parent", &G_file_has_parent},
-	{"g_file_has_prefix", &G_file_has_prefix},
-	{"g_file_has_uri_scheme", &G_file_has_uri_scheme},
-	{"g_file_hash", &G_file_hash},
-	{"g_file_icon_get_file", &G_file_icon_get_file},
-	{"g_file_icon_get_type", &G_file_icon_get_type},
-	{"g_file_icon_new", &G_file_icon_new},
-	{"g_file_info_clear_status", &G_file_info_clear_status},
-	{"g_file_info_copy_into", &G_file_info_copy_into},
-	{"g_file_info_dup", &G_file_info_dup},
-	{"g_file_info_get_attribute_as_string", &G_file_info_get_attribute_as_string},
-	{"g_file_info_get_attribute_boolean", &G_file_info_get_attribute_boolean},
-	{"g_file_info_get_attribute_byte_string", &G_file_info_get_attribute_byte_string},
-	{"g_file_info_get_attribute_data", &G_file_info_get_attribute_data},
-	{"g_file_info_get_attribute_int32", &G_file_info_get_attribute_int32},
-	{"g_file_info_get_attribute_int64", &G_file_info_get_attribute_int64},
-	{"g_file_info_get_attribute_object", &G_file_info_get_attribute_object},
-	{"g_file_info_get_attribute_status", &G_file_info_get_attribute_status},
-	{"g_file_info_get_attribute_string", &G_file_info_get_attribute_string},
-	{"g_file_info_get_attribute_stringv", &G_file_info_get_attribute_stringv},
-	{"g_file_info_get_attribute_type", &G_file_info_get_attribute_type},
-	{"g_file_info_get_attribute_uint32", &G_file_info_get_attribute_uint32},
-	{"g_file_info_get_attribute_uint64", &G_file_info_get_attribute_uint64},
-	{"g_file_info_get_content_type", &G_file_info_get_content_type},
-	{"g_file_info_get_display_name", &G_file_info_get_display_name},
-	{"g_file_info_get_edit_name", &G_file_info_get_edit_name},
-	{"g_file_info_get_etag", &G_file_info_get_etag},
-	{"g_file_info_get_file_type", &G_file_info_get_file_type},
-	{"g_file_info_get_icon", &G_file_info_get_icon},
-	{"g_file_info_get_is_backup", &G_file_info_get_is_backup},
-	{"g_file_info_get_is_hidden", &G_file_info_get_is_hidden},
-	{"g_file_info_get_is_symlink", &G_file_info_get_is_symlink},
-	{"g_file_info_get_modification_time", &G_file_info_get_modification_time},
-	{"g_file_info_get_name", &G_file_info_get_name},
-	{"g_file_info_get_size", &G_file_info_get_size},
-	{"g_file_info_get_sort_order", &G_file_info_get_sort_order},
-	{"g_file_info_get_symlink_target", &G_file_info_get_symlink_target},
-	{"g_file_info_get_type", &G_file_info_get_type},
-	{"g_file_info_has_attribute", &G_file_info_has_attribute},
-	{"g_file_info_has_namespace", &G_file_info_has_namespace},
-	{"g_file_info_list_attributes", &G_file_info_list_attributes},
-	{"g_file_info_new", &G_file_info_new},
-	{"g_file_info_remove_attribute", &G_file_info_remove_attribute},
-	{"g_file_info_set_attribute", &G_file_info_set_attribute},
-	{"g_file_info_set_attribute_boolean", &G_file_info_set_attribute_boolean},
-	{"g_file_info_set_attribute_byte_string", &G_file_info_set_attribute_byte_string},
-	{"g_file_info_set_attribute_int32", &G_file_info_set_attribute_int32},
-	{"g_file_info_set_attribute_int64", &G_file_info_set_attribute_int64},
-	{"g_file_info_set_attribute_mask", &G_file_info_set_attribute_mask},
-	{"g_file_info_set_attribute_object", &G_file_info_set_attribute_object},
-	{"g_file_info_set_attribute_status", &G_file_info_set_attribute_status},
-	{"g_file_info_set_attribute_string", &G_file_info_set_attribute_string},
-	{"g_file_info_set_attribute_stringv", &G_file_info_set_attribute_stringv},
-	{"g_file_info_set_attribute_uint32", &G_file_info_set_attribute_uint32},
-	{"g_file_info_set_attribute_uint64", &G_file_info_set_attribute_uint64},
-	{"g_file_info_set_content_type", &G_file_info_set_content_type},
-	{"g_file_info_set_display_name", &G_file_info_set_display_name},
-	{"g_file_info_set_edit_name", &G_file_info_set_edit_name},
-	{"g_file_info_set_file_type", &G_file_info_set_file_type},
-	{"g_file_info_set_icon", &G_file_info_set_icon},
-	{"g_file_info_set_is_hidden", &G_file_info_set_is_hidden},
-	{"g_file_info_set_is_symlink", &G_file_info_set_is_symlink},
-	{"g_file_info_set_modification_time", &G_file_info_set_modification_time},
-	{"g_file_info_set_name", &G_file_info_set_name},
-	{"g_file_info_set_size", &G_file_info_set_size},
-	{"g_file_info_set_sort_order", &G_file_info_set_sort_order},
-	{"g_file_info_set_symlink_target", &G_file_info_set_symlink_target},
-	{"g_file_info_unset_attribute_mask", &G_file_info_unset_attribute_mask},
-	{"g_file_input_stream_get_type", &G_file_input_stream_get_type},
-	{"g_file_input_stream_query_info", &G_file_input_stream_query_info},
-	{"g_file_input_stream_query_info_async", &G_file_input_stream_query_info_async},
-	{"g_file_input_stream_query_info_finish", &G_file_input_stream_query_info_finish},
-	{"g_file_io_stream_get_etag", &G_file_io_stream_get_etag},
-	{"g_file_io_stream_get_type", &G_file_io_stream_get_type},
-	{"g_file_io_stream_query_info", &G_file_io_stream_query_info},
-	{"g_file_io_stream_query_info_async", &G_file_io_stream_query_info_async},
-	{"g_file_io_stream_query_info_finish", &G_file_io_stream_query_info_finish},
-	{"g_file_is_native", &G_file_is_native},
-	{"g_file_load_contents", &G_file_load_contents},
-	{"g_file_load_contents_async", &G_file_load_contents_async},
-	{"g_file_load_contents_finish", &G_file_load_contents_finish},
-	{"g_file_load_partial_contents_async", &G_file_load_partial_contents_async},
-	{"g_file_load_partial_contents_finish", &G_file_load_partial_contents_finish},
-	{"g_file_make_directory", &G_file_make_directory},
-	{"g_file_make_directory_with_parents", &G_file_make_directory_with_parents},
-	{"g_file_make_symbolic_link", &G_file_make_symbolic_link},
-	{"g_file_monitor", &G_file_monitor},
-	{"g_file_monitor_cancel", &G_file_monitor_cancel},
-	{"g_file_monitor_directory", &G_file_monitor_directory},
-	{"g_file_monitor_emit_event", &G_file_monitor_emit_event},
-	{"g_file_monitor_event_get_type", &G_file_monitor_event_get_type},
-	{"g_file_monitor_file", &G_file_monitor_file},
-	{"g_file_monitor_flags_get_type", &G_file_monitor_flags_get_type},
-	{"g_file_monitor_get_type", &G_file_monitor_get_type},
-	{"g_file_monitor_is_cancelled", &G_file_monitor_is_cancelled},
-	{"g_file_monitor_set_rate_limit", &G_file_monitor_set_rate_limit},
-	{"g_file_mount_enclosing_volume", &G_file_mount_enclosing_volume},
-	{"g_file_mount_enclosing_volume_finish", &G_file_mount_enclosing_volume_finish},
-	{"g_file_mount_mountable", &G_file_mount_mountable},
-	{"g_file_mount_mountable_finish", &G_file_mount_mountable_finish},
-	{"g_file_move", &G_file_move},
-	{"g_file_new_for_commandline_arg", &G_file_new_for_commandline_arg},
-	{"g_file_new_for_path", &G_file_new_for_path},
-	{"g_file_new_for_uri", &G_file_new_for_uri},
-	{"g_file_open_readwrite", &G_file_open_readwrite},
-	{"g_file_open_readwrite_async", &G_file_open_readwrite_async},
-	{"g_file_open_readwrite_finish", &G_file_open_readwrite_finish},
-	{"g_file_output_stream_get_etag", &G_file_output_stream_get_etag},
-	{"g_file_output_stream_get_type", &G_file_output_stream_get_type},
-	{"g_file_output_stream_query_info", &G_file_output_stream_query_info},
-	{"g_file_output_stream_query_info_async", &G_file_output_stream_query_info_async},
-	{"g_file_output_stream_query_info_finish", &G_file_output_stream_query_info_finish},
-	{"g_file_parse_name", &G_file_parse_name},
-	{"g_file_poll_mountable", &G_file_poll_mountable},
-	{"g_file_poll_mountable_finish", &G_file_poll_mountable_finish},
-	{"g_file_query_default_handler", &G_file_query_default_handler},
-	{"g_file_query_exists", &G_file_query_exists},
-	{"g_file_query_file_type", &G_file_query_file_type},
-	{"g_file_query_filesystem_info", &G_file_query_filesystem_info},
-	{"g_file_query_filesystem_info_async", &G_file_query_filesystem_info_async},
-	{"g_file_query_filesystem_info_finish", &G_file_query_filesystem_info_finish},
-	{"g_file_query_info", &G_file_query_info},
-	{"g_file_query_info_async", &G_file_query_info_async},
-	{"g_file_query_info_finish", &G_file_query_info_finish},
-	{"g_file_query_info_flags_get_type", &G_file_query_info_flags_get_type},
-	{"g_file_query_settable_attributes", &G_file_query_settable_attributes},
-	{"g_file_query_writable_namespaces", &G_file_query_writable_namespaces},
-	{"g_file_read", &G_file_read},
-	{"g_file_read_async", &G_file_read_async},
-	{"g_file_read_finish", &G_file_read_finish},
-	{"g_file_replace", &G_file_replace},
-	{"g_file_replace_async", &G_file_replace_async},
-	{"g_file_replace_contents", &G_file_replace_contents},
-	{"g_file_replace_contents_async", &G_file_replace_contents_async},
-	{"g_file_replace_contents_finish", &G_file_replace_contents_finish},
-	{"g_file_replace_finish", &G_file_replace_finish},
-	{"g_file_replace_readwrite", &G_file_replace_readwrite},
-	{"g_file_replace_readwrite_async", &G_file_replace_readwrite_async},
-	{"g_file_replace_readwrite_finish", &G_file_replace_readwrite_finish},
-	{"g_file_resolve_relative_path", &G_file_resolve_relative_path},
-	{"g_file_set_attribute", &G_file_set_attribute},
-	{"g_file_set_attribute_byte_string", &G_file_set_attribute_byte_string},
-	{"g_file_set_attribute_int32", &G_file_set_attribute_int32},
-	{"g_file_set_attribute_int64", &G_file_set_attribute_int64},
-	{"g_file_set_attribute_string", &G_file_set_attribute_string},
-	{"g_file_set_attribute_uint32", &G_file_set_attribute_uint32},
-	{"g_file_set_attribute_uint64", &G_file_set_attribute_uint64},
-	{"g_file_set_attributes_async", &G_file_set_attributes_async},
-	{"g_file_set_attributes_finish", &G_file_set_attributes_finish},
-	{"g_file_set_attributes_from_info", &G_file_set_attributes_from_info},
-	{"g_file_set_display_name", &G_file_set_display_name},
-	{"g_file_set_display_name_async", &G_file_set_display_name_async},
-	{"g_file_set_display_name_finish", &G_file_set_display_name_finish},
-	{"g_file_start_mountable", &G_file_start_mountable},
-	{"g_file_start_mountable_finish", &G_file_start_mountable_finish},
-	{"g_file_stop_mountable", &G_file_stop_mountable},
-	{"g_file_stop_mountable_finish", &G_file_stop_mountable_finish},
-	{"g_file_supports_thread_contexts", &G_file_supports_thread_contexts},
-	{"g_file_trash", &G_file_trash},
-	{"g_file_type_get_type", &G_file_type_get_type},
-	{"g_file_unmount_mountable", &G_file_unmount_mountable},
-	{"g_file_unmount_mountable_finish", &G_file_unmount_mountable_finish},
-	{"g_file_unmount_mountable_with_operation", &G_file_unmount_mountable_with_operation},
-	{"g_file_unmount_mountable_with_operation_finish", &G_file_unmount_mountable_with_operation_finish},
-	{"g_filename_completer_get_completion_suffix", &G_filename_completer_get_completion_suffix},
-	{"g_filename_completer_get_completions", &G_filename_completer_get_completions},
-	{"g_filename_completer_get_type", &G_filename_completer_get_type},
-	{"g_filename_completer_new", &G_filename_completer_new},
-	{"g_filename_completer_set_dirs_only", &G_filename_completer_set_dirs_only},
-	{"g_filesystem_preview_type_get_type", &G_filesystem_preview_type_get_type},
-	{"g_filter_input_stream_get_base_stream", &G_filter_input_stream_get_base_stream},
-	{"g_filter_input_stream_get_close_base_stream", &G_filter_input_stream_get_close_base_stream},
-	{"g_filter_input_stream_get_type", &G_filter_input_stream_get_type},
-	{"g_filter_input_stream_set_close_base_stream", &G_filter_input_stream_set_close_base_stream},
-	{"g_filter_output_stream_get_base_stream", &G_filter_output_stream_get_base_stream},
-	{"g_filter_output_stream_get_close_base_stream", &G_filter_output_stream_get_close_base_stream},
-	{"g_filter_output_stream_get_type", &G_filter_output_stream_get_type},
-	{"g_filter_output_stream_set_close_base_stream", &G_filter_output_stream_set_close_base_stream},
-	{"g_icon_equal", &G_icon_equal},
-	{"g_icon_get_type", &G_icon_get_type},
-	{"g_icon_hash", &G_icon_hash},
-	{"g_icon_new_for_string", &G_icon_new_for_string},
-	{"g_icon_to_string", &G_icon_to_string},
-	{"g_inet_address_get_family", &G_inet_address_get_family},
-	{"g_inet_address_get_is_any", &G_inet_address_get_is_any},
-	{"g_inet_address_get_is_link_local", &G_inet_address_get_is_link_local},
-	{"g_inet_address_get_is_loopback", &G_inet_address_get_is_loopback},
-	{"g_inet_address_get_is_mc_global", &G_inet_address_get_is_mc_global},
-	{"g_inet_address_get_is_mc_link_local", &G_inet_address_get_is_mc_link_local},
-	{"g_inet_address_get_is_mc_node_local", &G_inet_address_get_is_mc_node_local},
-	{"g_inet_address_get_is_mc_org_local", &G_inet_address_get_is_mc_org_local},
-	{"g_inet_address_get_is_mc_site_local", &G_inet_address_get_is_mc_site_local},
-	{"g_inet_address_get_is_multicast", &G_inet_address_get_is_multicast},
-	{"g_inet_address_get_is_site_local", &G_inet_address_get_is_site_local},
-	{"g_inet_address_get_native_size", &G_inet_address_get_native_size},
-	{"g_inet_address_get_type", &G_inet_address_get_type},
-	{"g_inet_address_new_any", &G_inet_address_new_any},
-	{"g_inet_address_new_from_bytes", &G_inet_address_new_from_bytes},
-	{"g_inet_address_new_from_string", &G_inet_address_new_from_string},
-	{"g_inet_address_new_loopback", &G_inet_address_new_loopback},
-	{"g_inet_address_to_bytes", &G_inet_address_to_bytes},
-	{"g_inet_address_to_string", &G_inet_address_to_string},
-	{"g_inet_socket_address_get_address", &G_inet_socket_address_get_address},
-	{"g_inet_socket_address_get_port", &G_inet_socket_address_get_port},
-	{"g_inet_socket_address_get_type", &G_inet_socket_address_get_type},
-	{"g_inet_socket_address_new", &G_inet_socket_address_new},
-	{"g_initable_get_type", &G_initable_get_type},
-	{"g_initable_init", &G_initable_init},
-	{"g_initable_new", &G_initable_new},
-	{"g_initable_new_valist", &G_initable_new_valist},
-	{"g_initable_newv", &G_initable_newv},
-	{"g_input_stream_clear_pending", &G_input_stream_clear_pending},
-	{"g_input_stream_close", &G_input_stream_close},
-	{"g_input_stream_close_async", &G_input_stream_close_async},
-	{"g_input_stream_close_finish", &G_input_stream_close_finish},
-	{"g_input_stream_get_type", &G_input_stream_get_type},
-	{"g_input_stream_has_pending", &G_input_stream_has_pending},
-	{"g_input_stream_is_closed", &G_input_stream_is_closed},
-	{"g_input_stream_read", &G_input_stream_read},
-	{"g_input_stream_read_all", &G_input_stream_read_all},
-	{"g_input_stream_read_async", &G_input_stream_read_async},
-	{"g_input_stream_read_finish", &G_input_stream_read_finish},
-	{"g_input_stream_set_pending", &G_input_stream_set_pending},
-	{"g_input_stream_skip", &G_input_stream_skip},
-	{"g_input_stream_skip_async", &G_input_stream_skip_async},
-	{"g_input_stream_skip_finish", &G_input_stream_skip_finish},
-	{"g_io_error_enum_get_type", &G_io_error_enum_get_type},
-	{"g_io_error_from_errno", &G_io_error_from_errno},
-	{"g_io_error_from_win32_error", &G_io_error_from_win32_error},
-	{"g_io_error_quark", &G_io_error_quark},
-	{"g_io_extension_get_name", &G_io_extension_get_name},
-	{"g_io_extension_get_priority", &G_io_extension_get_priority},
-	{"g_io_extension_get_type", &G_io_extension_get_type},
-	{"g_io_extension_point_get_extension_by_name", &G_io_extension_point_get_extension_by_name},
-	{"g_io_extension_point_get_extensions", &G_io_extension_point_get_extensions},
-	{"g_io_extension_point_get_required_type", &G_io_extension_point_get_required_type},
-	{"g_io_extension_point_implement", &G_io_extension_point_implement},
-	{"g_io_extension_point_lookup", &G_io_extension_point_lookup},
-	{"g_io_extension_point_register", &G_io_extension_point_register},
-	{"g_io_extension_point_set_required_type", &G_io_extension_point_set_required_type},
-	{"g_io_extension_ref_class", &G_io_extension_ref_class},
-	{"g_io_module_get_type", &G_io_module_get_type},
-	{"g_io_module_new", &G_io_module_new},
-	{"g_io_modules_load_all_in_directory", &G_io_modules_load_all_in_directory},
-	{"g_io_modules_scan_all_in_directory", &G_io_modules_scan_all_in_directory},
-	{"g_io_scheduler_cancel_all_jobs", &G_io_scheduler_cancel_all_jobs},
-	{"g_io_scheduler_job_send_to_mainloop", &G_io_scheduler_job_send_to_mainloop},
-	{"g_io_scheduler_job_send_to_mainloop_async", &G_io_scheduler_job_send_to_mainloop_async},
-	{"g_io_scheduler_push_job", &G_io_scheduler_push_job},
-	{"g_io_stream_clear_pending", &G_io_stream_clear_pending},
-	{"g_io_stream_close", &G_io_stream_close},
-	{"g_io_stream_close_async", &G_io_stream_close_async},
-	{"g_io_stream_close_finish", &G_io_stream_close_finish},
-	{"g_io_stream_get_input_stream", &G_io_stream_get_input_stream},
-	{"g_io_stream_get_output_stream", &G_io_stream_get_output_stream},
-	{"g_io_stream_get_type", &G_io_stream_get_type},
-	{"g_io_stream_has_pending", &G_io_stream_has_pending},
-	{"g_io_stream_is_closed", &G_io_stream_is_closed},
-	{"g_io_stream_set_pending", &G_io_stream_set_pending},
-	{"g_io_stream_splice_async", &G_io_stream_splice_async},
-	{"g_io_stream_splice_finish", &G_io_stream_splice_finish},
-	{"g_io_stream_splice_flags_get_type", &G_io_stream_splice_flags_get_type},
-	{"g_keyfile_settings_backend_new", &G_keyfile_settings_backend_new},
-	{"g_loadable_icon_get_type", &G_loadable_icon_get_type},
-	{"g_loadable_icon_load", &G_loadable_icon_load},
-	{"g_loadable_icon_load_async", &G_loadable_icon_load_async},
-	{"g_loadable_icon_load_finish", &G_loadable_icon_load_finish},
-	{"g_memory_input_stream_add_data", &G_memory_input_stream_add_data},
-	{"g_memory_input_stream_get_type", &G_memory_input_stream_get_type},
-	{"g_memory_input_stream_new", &G_memory_input_stream_new},
-	{"g_memory_input_stream_new_from_data", &G_memory_input_stream_new_from_data},
-	{"g_memory_output_stream_get_data", &G_memory_output_stream_get_data},
-	{"g_memory_output_stream_get_data_size", &G_memory_output_stream_get_data_size},
-	{"g_memory_output_stream_get_size", &G_memory_output_stream_get_size},
-	{"g_memory_output_stream_get_type", &G_memory_output_stream_get_type},
-	{"g_memory_output_stream_new", &G_memory_output_stream_new},
-	{"g_memory_output_stream_steal_data", &G_memory_output_stream_steal_data},
-	{"g_memory_settings_backend_new", &G_memory_settings_backend_new},
-	{"g_mount_can_eject", &G_mount_can_eject},
-	{"g_mount_can_unmount", &G_mount_can_unmount},
-	{"g_mount_eject", &G_mount_eject},
-	{"g_mount_eject_finish", &G_mount_eject_finish},
-	{"g_mount_eject_with_operation", &G_mount_eject_with_operation},
-	{"g_mount_eject_with_operation_finish", &G_mount_eject_with_operation_finish},
-	{"g_mount_get_default_location", &G_mount_get_default_location},
-	{"g_mount_get_drive", &G_mount_get_drive},
-	{"g_mount_get_icon", &G_mount_get_icon},
-	{"g_mount_get_name", &G_mount_get_name},
-	{"g_mount_get_root", &G_mount_get_root},
-	{"g_mount_get_type", &G_mount_get_type},
-	{"g_mount_get_uuid", &G_mount_get_uuid},
-	{"g_mount_get_volume", &G_mount_get_volume},
-	{"g_mount_guess_content_type", &G_mount_guess_content_type},
-	{"g_mount_guess_content_type_finish", &G_mount_guess_content_type_finish},
-	{"g_mount_guess_content_type_sync", &G_mount_guess_content_type_sync},
-	{"g_mount_is_shadowed", &G_mount_is_shadowed},
-	{"g_mount_mount_flags_get_type", &G_mount_mount_flags_get_type},
-	{"g_mount_operation_get_anonymous", &G_mount_operation_get_anonymous},
-	{"g_mount_operation_get_choice", &G_mount_operation_get_choice},
-	{"g_mount_operation_get_domain", &G_mount_operation_get_domain},
-	{"g_mount_operation_get_password", &G_mount_operation_get_password},
-	{"g_mount_operation_get_password_save", &G_mount_operation_get_password_save},
-	{"g_mount_operation_get_type", &G_mount_operation_get_type},
-	{"g_mount_operation_get_username", &G_mount_operation_get_username},
-	{"g_mount_operation_new", &G_mount_operation_new},
-	{"g_mount_operation_reply", &G_mount_operation_reply},
-	{"g_mount_operation_result_get_type", &G_mount_operation_result_get_type},
-	{"g_mount_operation_set_anonymous", &G_mount_operation_set_anonymous},
-	{"g_mount_operation_set_choice", &G_mount_operation_set_choice},
-	{"g_mount_operation_set_domain", &G_mount_operation_set_domain},
-	{"g_mount_operation_set_password", &G_mount_operation_set_password},
-	{"g_mount_operation_set_password_save", &G_mount_operation_set_password_save},
-	{"g_mount_operation_set_username", &G_mount_operation_set_username},
-	{"g_mount_remount", &G_mount_remount},
-	{"g_mount_remount_finish", &G_mount_remount_finish},
-	{"g_mount_shadow", &G_mount_shadow},
-	{"g_mount_unmount", &G_mount_unmount},
-	{"g_mount_unmount_finish", &G_mount_unmount_finish},
-	{"g_mount_unmount_flags_get_type", &G_mount_unmount_flags_get_type},
-	{"g_mount_unmount_with_operation", &G_mount_unmount_with_operation},
-	{"g_mount_unmount_with_operation_finish", &G_mount_unmount_with_operation_finish},
-	{"g_mount_unshadow", &G_mount_unshadow},
-	{"g_native_volume_monitor_get_type", &G_native_volume_monitor_get_type},
-	{"g_network_address_get_hostname", &G_network_address_get_hostname},
-	{"g_network_address_get_port", &G_network_address_get_port},
-	{"g_network_address_get_scheme", &G_network_address_get_scheme},
-	{"g_network_address_get_type", &G_network_address_get_type},
-	{"g_network_address_new", &G_network_address_new},
-	{"g_network_address_parse", &G_network_address_parse},
-	{"g_network_address_parse_uri", &G_network_address_parse_uri},
-	{"g_network_service_get_domain", &G_network_service_get_domain},
-	{"g_network_service_get_protocol", &G_network_service_get_protocol},
-	{"g_network_service_get_scheme", &G_network_service_get_scheme},
-	{"g_network_service_get_service", &G_network_service_get_service},
-	{"g_network_service_get_type", &G_network_service_get_type},
-	{"g_network_service_new", &G_network_service_new},
-	{"g_network_service_set_scheme", &G_network_service_set_scheme},
-	{"g_null_settings_backend_new", &G_null_settings_backend_new},
-	{"g_output_stream_clear_pending", &G_output_stream_clear_pending},
-	{"g_output_stream_close", &G_output_stream_close},
-	{"g_output_stream_close_async", &G_output_stream_close_async},
-	{"g_output_stream_close_finish", &G_output_stream_close_finish},
-	{"g_output_stream_flush", &G_output_stream_flush},
-	{"g_output_stream_flush_async", &G_output_stream_flush_async},
-	{"g_output_stream_flush_finish", &G_output_stream_flush_finish},
-	{"g_output_stream_get_type", &G_output_stream_get_type},
-	{"g_output_stream_has_pending", &G_output_stream_has_pending},
-	{"g_output_stream_is_closed", &G_output_stream_is_closed},
-	{"g_output_stream_is_closing", &G_output_stream_is_closing},
-	{"g_output_stream_set_pending", &G_output_stream_set_pending},
-	{"g_output_stream_splice", &G_output_stream_splice},
-	{"g_output_stream_splice_async", &G_output_stream_splice_async},
-	{"g_output_stream_splice_finish", &G_output_stream_splice_finish},
-	{"g_output_stream_splice_flags_get_type", &G_output_stream_splice_flags_get_type},
-	{"g_output_stream_write", &G_output_stream_write},
-	{"g_output_stream_write_all", &G_output_stream_write_all},
-	{"g_output_stream_write_async", &G_output_stream_write_async},
-	{"g_output_stream_write_finish", &G_output_stream_write_finish},
-	{"g_password_save_get_type", &G_password_save_get_type},
-	{"g_permission_acquire", &G_permission_acquire},
-	{"g_permission_acquire_async", &G_permission_acquire_async},
-	{"g_permission_acquire_finish", &G_permission_acquire_finish},
-	{"g_permission_get_allowed", &G_permission_get_allowed},
-	{"g_permission_get_can_acquire", &G_permission_get_can_acquire},
-	{"g_permission_get_can_release", &G_permission_get_can_release},
-	{"g_permission_get_type", &G_permission_get_type},
-	{"g_permission_impl_update", &G_permission_impl_update},
-	{"g_permission_release", &G_permission_release},
-	{"g_permission_release_async", &G_permission_release_async},
-	{"g_permission_release_finish", &G_permission_release_finish},
-	{"g_pollable_input_stream_can_poll", &G_pollable_input_stream_can_poll},
-	{"g_pollable_input_stream_create_source", &G_pollable_input_stream_create_source},
-	{"g_pollable_input_stream_get_type", &G_pollable_input_stream_get_type},
-	{"g_pollable_input_stream_is_readable", &G_pollable_input_stream_is_readable},
-	{"g_pollable_input_stream_read_nonblocking", &G_pollable_input_stream_read_nonblocking},
-	{"g_pollable_output_stream_can_poll", &G_pollable_output_stream_can_poll},
-	{"g_pollable_output_stream_create_source", &G_pollable_output_stream_create_source},
-	{"g_pollable_output_stream_get_type", &G_pollable_output_stream_get_type},
-	{"g_pollable_output_stream_is_writable", &G_pollable_output_stream_is_writable},
-	{"g_pollable_output_stream_write_nonblocking", &G_pollable_output_stream_write_nonblocking},
-	{"g_pollable_source_new", &G_pollable_source_new},
-	{"g_proxy_address_enumerator_get_type", &G_proxy_address_enumerator_get_type},
-	{"g_proxy_address_get_destination_hostname", &G_proxy_address_get_destination_hostname},
-	{"g_proxy_address_get_destination_port", &G_proxy_address_get_destination_port},
-	{"g_proxy_address_get_password", &G_proxy_address_get_password},
-	{"g_proxy_address_get_protocol", &G_proxy_address_get_protocol},
-	{"g_proxy_address_get_type", &G_proxy_address_get_type},
-	{"g_proxy_address_get_username", &G_proxy_address_get_username},
-	{"g_proxy_address_new", &G_proxy_address_new},
-	{"g_proxy_connect", &G_proxy_connect},
-	{"g_proxy_connect_async", &G_proxy_connect_async},
-	{"g_proxy_connect_finish", &G_proxy_connect_finish},
-	{"g_proxy_get_default_for_protocol", &G_proxy_get_default_for_protocol},
-	{"g_proxy_get_type", &G_proxy_get_type},
-	{"g_proxy_resolver_get_default", &G_proxy_resolver_get_default},
-	{"g_proxy_resolver_get_type", &G_proxy_resolver_get_type},
-	{"g_proxy_resolver_is_supported", &G_proxy_resolver_is_supported},
-	{"g_proxy_resolver_lookup", &G_proxy_resolver_lookup},
-	{"g_proxy_resolver_lookup_async", &G_proxy_resolver_lookup_async},
-	{"g_proxy_resolver_lookup_finish", &G_proxy_resolver_lookup_finish},
-	{"g_proxy_supports_hostname", &G_proxy_supports_hostname},
-	{"g_resolver_error_get_type", &G_resolver_error_get_type},
-	{"g_resolver_error_quark", &G_resolver_error_quark},
-	{"g_resolver_free_addresses", &G_resolver_free_addresses},
-	{"g_resolver_free_targets", &G_resolver_free_targets},
-	{"g_resolver_get_default", &G_resolver_get_default},
-	{"g_resolver_get_type", &G_resolver_get_type},
-	{"g_resolver_lookup_by_address", &G_resolver_lookup_by_address},
-	{"g_resolver_lookup_by_address_async", &G_resolver_lookup_by_address_async},
-	{"g_resolver_lookup_by_address_finish", &G_resolver_lookup_by_address_finish},
-	{"g_resolver_lookup_by_name", &G_resolver_lookup_by_name},
-	{"g_resolver_lookup_by_name_async", &G_resolver_lookup_by_name_async},
-	{"g_resolver_lookup_by_name_finish", &G_resolver_lookup_by_name_finish},
-	{"g_resolver_lookup_service", &G_resolver_lookup_service},
-	{"g_resolver_lookup_service_async", &G_resolver_lookup_service_async},
-	{"g_resolver_lookup_service_finish", &G_resolver_lookup_service_finish},
-	{"g_resolver_set_default", &G_resolver_set_default},
-	{"g_seekable_can_seek", &G_seekable_can_seek},
-	{"g_seekable_can_truncate", &G_seekable_can_truncate},
-	{"g_seekable_get_type", &G_seekable_get_type},
-	{"g_seekable_seek", &G_seekable_seek},
-	{"g_seekable_tell", &G_seekable_tell},
-	{"g_seekable_truncate", &G_seekable_truncate},
-	{"g_settings_apply", &G_settings_apply},
-	{"g_settings_backend_changed", &G_settings_backend_changed},
-	{"g_settings_backend_changed_tree", &G_settings_backend_changed_tree},
-	{"g_settings_backend_flatten_tree", &G_settings_backend_flatten_tree},
-	{"g_settings_backend_get_default", &G_settings_backend_get_default},
-	{"g_settings_backend_get_type", &G_settings_backend_get_type},
-	{"g_settings_backend_keys_changed", &G_settings_backend_keys_changed},
-	{"g_settings_backend_path_changed", &G_settings_backend_path_changed},
-	{"g_settings_backend_path_writable_changed", &G_settings_backend_path_writable_changed},
-	{"g_settings_backend_writable_changed", &G_settings_backend_writable_changed},
-	{"g_settings_bind", &G_settings_bind},
-	{"g_settings_bind_flags_get_type", &G_settings_bind_flags_get_type},
-	{"g_settings_bind_with_mapping", &G_settings_bind_with_mapping},
-	{"g_settings_bind_writable", &G_settings_bind_writable},
-	{"g_settings_delay", &G_settings_delay},
-	{"g_settings_get", &G_settings_get},
-	{"g_settings_get_boolean", &G_settings_get_boolean},
-	{"g_settings_get_child", &G_settings_get_child},
-	{"g_settings_get_double", &G_settings_get_double},
-	{"g_settings_get_enum", &G_settings_get_enum},
-	{"g_settings_get_flags", &G_settings_get_flags},
-	{"g_settings_get_has_unapplied", &G_settings_get_has_unapplied},
-	{"g_settings_get_int", &G_settings_get_int},
-	{"g_settings_get_mapped", &G_settings_get_mapped},
-	{"g_settings_get_range", &G_settings_get_range},
-	{"g_settings_get_string", &G_settings_get_string},
-	{"g_settings_get_strv", &G_settings_get_strv},
-	{"g_settings_get_type", &G_settings_get_type},
-	{"g_settings_get_value", &G_settings_get_value},
-	{"g_settings_is_writable", &G_settings_is_writable},
-	{"g_settings_list_children", &G_settings_list_children},
-	{"g_settings_list_keys", &G_settings_list_keys},
-	{"g_settings_list_relocatable_schemas", &G_settings_list_relocatable_schemas},
-	{"g_settings_list_schemas", &G_settings_list_schemas},
-	{"g_settings_new", &G_settings_new},
-	{"g_settings_new_with_backend", &G_settings_new_with_backend},
-	{"g_settings_new_with_backend_and_path", &G_settings_new_with_backend_and_path},
-	{"g_settings_new_with_path", &G_settings_new_with_path},
-	{"g_settings_range_check", &G_settings_range_check},
-	{"g_settings_reset", &G_settings_reset},
-	{"g_settings_revert", &G_settings_revert},
-	{"g_settings_set", &G_settings_set},
-	{"g_settings_set_boolean", &G_settings_set_boolean},
-	{"g_settings_set_double", &G_settings_set_double},
-	{"g_settings_set_enum", &G_settings_set_enum},
-	{"g_settings_set_flags", &G_settings_set_flags},
-	{"g_settings_set_int", &G_settings_set_int},
-	{"g_settings_set_string", &G_settings_set_string},
-	{"g_settings_set_strv", &G_settings_set_strv},
-	{"g_settings_set_value", &G_settings_set_value},
-	{"g_settings_sync", &G_settings_sync},
-	{"g_settings_unbind", &G_settings_unbind},
-	// Undocumented {"g_simple_action_get_parameter_type", &G_simple_action_get_parameter_type},
-	{"g_simple_action_get_type", &G_simple_action_get_type},
-	{"g_simple_action_group_get_type", &G_simple_action_group_get_type},
-	{"g_simple_action_group_insert", &G_simple_action_group_insert},
-	{"g_simple_action_group_lookup", &G_simple_action_group_lookup},
-	{"g_simple_action_group_new", &G_simple_action_group_new},
-	{"g_simple_action_group_remove", &G_simple_action_group_remove},
-	{"g_simple_action_new", &G_simple_action_new},
-	{"g_simple_action_new_stateful", &G_simple_action_new_stateful},
-	{"g_simple_action_set_enabled", &G_simple_action_set_enabled},
-	{"g_simple_async_report_error_in_idle", &G_simple_async_report_error_in_idle},
-	{"g_simple_async_report_gerror_in_idle", &G_simple_async_report_gerror_in_idle},
-	{"g_simple_async_report_take_gerror_in_idle", &G_simple_async_report_take_gerror_in_idle},
-	{"g_simple_async_result_complete", &G_simple_async_result_complete},
-	{"g_simple_async_result_complete_in_idle", &G_simple_async_result_complete_in_idle},
-	{"g_simple_async_result_get_op_res_gboolean", &G_simple_async_result_get_op_res_gboolean},
-	{"g_simple_async_result_get_op_res_gpointer", &G_simple_async_result_get_op_res_gpointer},
-	{"g_simple_async_result_get_op_res_gssize", &G_simple_async_result_get_op_res_gssize},
-	{"g_simple_async_result_get_source_tag", &G_simple_async_result_get_source_tag},
-	{"g_simple_async_result_get_type", &G_simple_async_result_get_type},
-	{"g_simple_async_result_is_valid", &G_simple_async_result_is_valid},
-	{"g_simple_async_result_new", &G_simple_async_result_new},
-	{"g_simple_async_result_new_error", &G_simple_async_result_new_error},
-	{"g_simple_async_result_new_from_error", &G_simple_async_result_new_from_error},
-	{"g_simple_async_result_new_take_error", &G_simple_async_result_new_take_error},
-	{"g_simple_async_result_propagate_error", &G_simple_async_result_propagate_error},
-	{"g_simple_async_result_run_in_thread", &G_simple_async_result_run_in_thread},
-	{"g_simple_async_result_set_error", &G_simple_async_result_set_error},
-	{"g_simple_async_result_set_error_va", &G_simple_async_result_set_error_va},
-	{"g_simple_async_result_set_from_error", &G_simple_async_result_set_from_error},
-	{"g_simple_async_result_set_handle_cancellation", &G_simple_async_result_set_handle_cancellation},
-	{"g_simple_async_result_set_op_res_gboolean", &G_simple_async_result_set_op_res_gboolean},
-	{"g_simple_async_result_set_op_res_gpointer", &G_simple_async_result_set_op_res_gpointer},
-	{"g_simple_async_result_set_op_res_gssize", &G_simple_async_result_set_op_res_gssize},
-	{"g_simple_async_result_take_error", &G_simple_async_result_take_error},
-	{"g_simple_permission_get_type", &G_simple_permission_get_type},
-	{"g_simple_permission_new", &G_simple_permission_new},
-	{"g_socket_accept", &G_socket_accept},
-	{"g_socket_address_enumerator_get_type", &G_socket_address_enumerator_get_type},
-	{"g_socket_address_enumerator_next", &G_socket_address_enumerator_next},
-	{"g_socket_address_enumerator_next_async", &G_socket_address_enumerator_next_async},
-	{"g_socket_address_enumerator_next_finish", &G_socket_address_enumerator_next_finish},
-	{"g_socket_address_get_family", &G_socket_address_get_family},
-	{"g_socket_address_get_native_size", &G_socket_address_get_native_size},
-	{"g_socket_address_get_type", &G_socket_address_get_type},
-	{"g_socket_address_new_from_native", &G_socket_address_new_from_native},
-	{"g_socket_address_to_native", &G_socket_address_to_native},
-	{"g_socket_bind", &G_socket_bind},
-	{"g_socket_check_connect_result", &G_socket_check_connect_result},
-	{"g_socket_client_add_application_proxy", &G_socket_client_add_application_proxy},
-	{"g_socket_client_connect", &G_socket_client_connect},
-	{"g_socket_client_connect_async", &G_socket_client_connect_async},
-	{"g_socket_client_connect_finish", &G_socket_client_connect_finish},
-	{"g_socket_client_connect_to_host", &G_socket_client_connect_to_host},
-	{"g_socket_client_connect_to_host_async", &G_socket_client_connect_to_host_async},
-	{"g_socket_client_connect_to_host_finish", &G_socket_client_connect_to_host_finish},
-	{"g_socket_client_connect_to_service", &G_socket_client_connect_to_service},
-	{"g_socket_client_connect_to_service_async", &G_socket_client_connect_to_service_async},
-	{"g_socket_client_connect_to_service_finish", &G_socket_client_connect_to_service_finish},
-	{"g_socket_client_connect_to_uri", &G_socket_client_connect_to_uri},
-	{"g_socket_client_connect_to_uri_async", &G_socket_client_connect_to_uri_async},
-	{"g_socket_client_connect_to_uri_finish", &G_socket_client_connect_to_uri_finish},
-	{"g_socket_client_get_enable_proxy", &G_socket_client_get_enable_proxy},
-	{"g_socket_client_get_family", &G_socket_client_get_family},
-	{"g_socket_client_get_local_address", &G_socket_client_get_local_address},
-	{"g_socket_client_get_protocol", &G_socket_client_get_protocol},
-	{"g_socket_client_get_socket_type", &G_socket_client_get_socket_type},
-	{"g_socket_client_get_timeout", &G_socket_client_get_timeout},
-	{"g_socket_client_get_tls", &G_socket_client_get_tls},
-	{"g_socket_client_get_tls_validation_flags", &G_socket_client_get_tls_validation_flags},
-	{"g_socket_client_get_type", &G_socket_client_get_type},
-	{"g_socket_client_new", &G_socket_client_new},
-	{"g_socket_client_set_enable_proxy", &G_socket_client_set_enable_proxy},
-	{"g_socket_client_set_family", &G_socket_client_set_family},
-	{"g_socket_client_set_local_address", &G_socket_client_set_local_address},
-	{"g_socket_client_set_protocol", &G_socket_client_set_protocol},
-	{"g_socket_client_set_socket_type", &G_socket_client_set_socket_type},
-	{"g_socket_client_set_timeout", &G_socket_client_set_timeout},
-	{"g_socket_client_set_tls", &G_socket_client_set_tls},
-	{"g_socket_client_set_tls_validation_flags", &G_socket_client_set_tls_validation_flags},
-	{"g_socket_close", &G_socket_close},
-	{"g_socket_condition_check", &G_socket_condition_check},
-	{"g_socket_condition_wait", &G_socket_condition_wait},
-	{"g_socket_connect", &G_socket_connect},
-	{"g_socket_connectable_enumerate", &G_socket_connectable_enumerate},
-	{"g_socket_connectable_get_type", &G_socket_connectable_get_type},
-	{"g_socket_connectable_proxy_enumerate", &G_socket_connectable_proxy_enumerate},
-	{"g_socket_connection_factory_create_connection", &G_socket_connection_factory_create_connection},
-	{"g_socket_connection_factory_lookup_type", &G_socket_connection_factory_lookup_type},
-	{"g_socket_connection_factory_register_type", &G_socket_connection_factory_register_type},
-	{"g_socket_connection_get_local_address", &G_socket_connection_get_local_address},
-	{"g_socket_connection_get_remote_address", &G_socket_connection_get_remote_address},
-	{"g_socket_connection_get_socket", &G_socket_connection_get_socket},
-	{"g_socket_connection_get_type", &G_socket_connection_get_type},
-	{"g_socket_control_message_deserialize", &G_socket_control_message_deserialize},
-	{"g_socket_control_message_get_level", &G_socket_control_message_get_level},
-	{"g_socket_control_message_get_msg_type", &G_socket_control_message_get_msg_type},
-	{"g_socket_control_message_get_size", &G_socket_control_message_get_size},
-	{"g_socket_control_message_get_type", &G_socket_control_message_get_type},
-	{"g_socket_control_message_serialize", &G_socket_control_message_serialize},
-	{"g_socket_create_source", &G_socket_create_source},
-	{"g_socket_family_get_type", &G_socket_family_get_type},
-	{"g_socket_get_blocking", &G_socket_get_blocking},
-	{"g_socket_get_credentials", &G_socket_get_credentials},
-	{"g_socket_get_family", &G_socket_get_family},
-	{"g_socket_get_fd", &G_socket_get_fd},
-	{"g_socket_get_keepalive", &G_socket_get_keepalive},
-	{"g_socket_get_listen_backlog", &G_socket_get_listen_backlog},
-	{"g_socket_get_local_address", &G_socket_get_local_address},
-	{"g_socket_get_protocol", &G_socket_get_protocol},
-	{"g_socket_get_remote_address", &G_socket_get_remote_address},
-	{"g_socket_get_socket_type", &G_socket_get_socket_type},
-	{"g_socket_get_timeout", &G_socket_get_timeout},
-	{"g_socket_get_type", &G_socket_get_type},
-	{"g_socket_is_closed", &G_socket_is_closed},
-	{"g_socket_is_connected", &G_socket_is_connected},
-	{"g_socket_listen", &G_socket_listen},
-	{"g_socket_listener_accept", &G_socket_listener_accept},
-	{"g_socket_listener_accept_async", &G_socket_listener_accept_async},
-	{"g_socket_listener_accept_finish", &G_socket_listener_accept_finish},
-	{"g_socket_listener_accept_socket", &G_socket_listener_accept_socket},
-	{"g_socket_listener_accept_socket_async", &G_socket_listener_accept_socket_async},
-	{"g_socket_listener_accept_socket_finish", &G_socket_listener_accept_socket_finish},
-	{"g_socket_listener_add_address", &G_socket_listener_add_address},
-	{"g_socket_listener_add_any_inet_port", &G_socket_listener_add_any_inet_port},
-	{"g_socket_listener_add_inet_port", &G_socket_listener_add_inet_port},
-	{"g_socket_listener_add_socket", &G_socket_listener_add_socket},
-	{"g_socket_listener_close", &G_socket_listener_close},
-	{"g_socket_listener_get_type", &G_socket_listener_get_type},
-	{"g_socket_listener_new", &G_socket_listener_new},
-	{"g_socket_listener_set_backlog", &G_socket_listener_set_backlog},
-	{"g_socket_msg_flags_get_type", &G_socket_msg_flags_get_type},
-	{"g_socket_new", &G_socket_new},
-	{"g_socket_new_from_fd", &G_socket_new_from_fd},
-	{"g_socket_protocol_get_type", &G_socket_protocol_get_type},
-	{"g_socket_receive", &G_socket_receive},
-	{"g_socket_receive_from", &G_socket_receive_from},
-	{"g_socket_receive_message", &G_socket_receive_message},
-	{"g_socket_receive_with_blocking", &G_socket_receive_with_blocking},
-	{"g_socket_send", &G_socket_send},
-	{"g_socket_send_message", &G_socket_send_message},
-	{"g_socket_send_to", &G_socket_send_to},
-	{"g_socket_send_with_blocking", &G_socket_send_with_blocking},
-	{"g_socket_service_get_type", &G_socket_service_get_type},
-	{"g_socket_service_is_active", &G_socket_service_is_active},
-	{"g_socket_service_new", &G_socket_service_new},
-	{"g_socket_service_start", &G_socket_service_start},
-	{"g_socket_service_stop", &G_socket_service_stop},
-	{"g_socket_set_blocking", &G_socket_set_blocking},
-	{"g_socket_set_keepalive", &G_socket_set_keepalive},
-	{"g_socket_set_listen_backlog", &G_socket_set_listen_backlog},
-	{"g_socket_set_timeout", &G_socket_set_timeout},
-	{"g_socket_shutdown", &G_socket_shutdown},
-	{"g_socket_speaks_ipv4", &G_socket_speaks_ipv4},
-	{"g_socket_type_get_type", &G_socket_type_get_type},
-	{"g_srv_target_copy", &G_srv_target_copy},
-	{"g_srv_target_free", &G_srv_target_free},
-	{"g_srv_target_get_hostname", &G_srv_target_get_hostname},
-	{"g_srv_target_get_port", &G_srv_target_get_port},
-	{"g_srv_target_get_priority", &G_srv_target_get_priority},
-	{"g_srv_target_get_type", &G_srv_target_get_type},
-	{"g_srv_target_get_weight", &G_srv_target_get_weight},
-	{"g_srv_target_list_sort", &G_srv_target_list_sort},
-	{"g_srv_target_new", &G_srv_target_new},
-	{"g_tcp_connection_get_graceful_disconnect", &G_tcp_connection_get_graceful_disconnect},
-	{"g_tcp_connection_get_type", &G_tcp_connection_get_type},
-	{"g_tcp_connection_set_graceful_disconnect", &G_tcp_connection_set_graceful_disconnect},
-	{"g_tcp_wrapper_connection_get_base_io_stream", &G_tcp_wrapper_connection_get_base_io_stream},
-	{"g_tcp_wrapper_connection_get_type", &G_tcp_wrapper_connection_get_type},
-	{"g_tcp_wrapper_connection_new", &G_tcp_wrapper_connection_new},
-	{"g_themed_icon_append_name", &G_themed_icon_append_name},
-	{"g_themed_icon_get_names", &G_themed_icon_get_names},
-	{"g_themed_icon_get_type", &G_themed_icon_get_type},
-	{"g_themed_icon_new", &G_themed_icon_new},
-	{"g_themed_icon_new_from_names", &G_themed_icon_new_from_names},
-	{"g_themed_icon_new_with_default_fallbacks", &G_themed_icon_new_with_default_fallbacks},
-	{"g_themed_icon_prepend_name", &G_themed_icon_prepend_name},
-	// Undocumented {"g_threaded_resolver_get_type", &G_threaded_resolver_get_type},
-	{"g_threaded_socket_service_get_type", &G_threaded_socket_service_get_type},
-	{"g_threaded_socket_service_new", &G_threaded_socket_service_new},
-	{"g_tls_authentication_mode_get_type", &G_tls_authentication_mode_get_type},
-	{"g_tls_backend_get_certificate_type", &G_tls_backend_get_certificate_type},
-	{"g_tls_backend_get_client_connection_type", &G_tls_backend_get_client_connection_type},
-	{"g_tls_backend_get_default", &G_tls_backend_get_default},
-	{"g_tls_backend_get_server_connection_type", &G_tls_backend_get_server_connection_type},
-	{"g_tls_backend_get_type", &G_tls_backend_get_type},
-	{"g_tls_backend_supports_tls", &G_tls_backend_supports_tls},
-	{"g_tls_certificate_flags_get_type", &G_tls_certificate_flags_get_type},
-	{"g_tls_certificate_get_issuer", &G_tls_certificate_get_issuer},
-	{"g_tls_certificate_get_type", &G_tls_certificate_get_type},
-	{"g_tls_certificate_list_new_from_file", &G_tls_certificate_list_new_from_file},
-	{"g_tls_certificate_new_from_file", &G_tls_certificate_new_from_file},
-	{"g_tls_certificate_new_from_files", &G_tls_certificate_new_from_files},
-	{"g_tls_certificate_new_from_pem", &G_tls_certificate_new_from_pem},
-	{"g_tls_certificate_verify", &G_tls_certificate_verify},
-	{"g_tls_client_connection_get_accepted_cas", &G_tls_client_connection_get_accepted_cas},
-	{"g_tls_client_connection_get_server_identity", &G_tls_client_connection_get_server_identity},
-	{"g_tls_client_connection_get_type", &G_tls_client_connection_get_type},
-	{"g_tls_client_connection_get_use_ssl3", &G_tls_client_connection_get_use_ssl3},
-	{"g_tls_client_connection_get_validation_flags", &G_tls_client_connection_get_validation_flags},
-	{"g_tls_client_connection_new", &G_tls_client_connection_new},
-	{"g_tls_client_connection_set_server_identity", &G_tls_client_connection_set_server_identity},
-	{"g_tls_client_connection_set_use_ssl3", &G_tls_client_connection_set_use_ssl3},
-	{"g_tls_client_connection_set_validation_flags", &G_tls_client_connection_set_validation_flags},
-	{"g_tls_connection_emit_accept_certificate", &G_tls_connection_emit_accept_certificate},
-	{"g_tls_connection_get_certificate", &G_tls_connection_get_certificate},
-	{"g_tls_connection_get_peer_certificate", &G_tls_connection_get_peer_certificate},
-	{"g_tls_connection_get_peer_certificate_errors", &G_tls_connection_get_peer_certificate_errors},
-	{"g_tls_connection_get_rehandshake_mode", &G_tls_connection_get_rehandshake_mode},
-	{"g_tls_connection_get_require_close_notify", &G_tls_connection_get_require_close_notify},
-	{"g_tls_connection_get_type", &G_tls_connection_get_type},
-	{"g_tls_connection_get_use_system_certdb", &G_tls_connection_get_use_system_certdb},
-	{"g_tls_connection_handshake", &G_tls_connection_handshake},
-	{"g_tls_connection_handshake_async", &G_tls_connection_handshake_async},
-	{"g_tls_connection_handshake_finish", &G_tls_connection_handshake_finish},
-	{"g_tls_connection_set_certificate", &G_tls_connection_set_certificate},
-	{"g_tls_connection_set_rehandshake_mode", &G_tls_connection_set_rehandshake_mode},
-	{"g_tls_connection_set_require_close_notify", &G_tls_connection_set_require_close_notify},
-	{"g_tls_connection_set_use_system_certdb", &G_tls_connection_set_use_system_certdb},
-	{"g_tls_error_get_type", &G_tls_error_get_type},
-	{"g_tls_error_quark", &G_tls_error_quark},
-	{"g_tls_rehandshake_mode_get_type", &G_tls_rehandshake_mode_get_type},
-	{"g_tls_server_connection_get_type", &G_tls_server_connection_get_type},
-	{"g_tls_server_connection_new", &G_tls_server_connection_new},
-	{"g_unix_socket_address_type_get_type", &G_unix_socket_address_type_get_type},
-	{"g_vfs_get_default", &G_vfs_get_default},
-	{"g_vfs_get_file_for_path", &G_vfs_get_file_for_path},
-	{"g_vfs_get_file_for_uri", &G_vfs_get_file_for_uri},
-	{"g_vfs_get_local", &G_vfs_get_local},
-	{"g_vfs_get_supported_uri_schemes", &G_vfs_get_supported_uri_schemes},
-	{"g_vfs_get_type", &G_vfs_get_type},
-	{"g_vfs_is_active", &G_vfs_is_active},
-	{"g_vfs_parse_name", &G_vfs_parse_name},
-	{"g_volume_can_eject", &G_volume_can_eject},
-	{"g_volume_can_mount", &G_volume_can_mount},
-	{"g_volume_eject", &G_volume_eject},
-	{"g_volume_eject_finish", &G_volume_eject_finish},
-	{"g_volume_eject_with_operation", &G_volume_eject_with_operation},
-	{"g_volume_eject_with_operation_finish", &G_volume_eject_with_operation_finish},
-	{"g_volume_enumerate_identifiers", &G_volume_enumerate_identifiers},
-	{"g_volume_get_activation_root", &G_volume_get_activation_root},
-	{"g_volume_get_drive", &G_volume_get_drive},
-	{"g_volume_get_icon", &G_volume_get_icon},
-	{"g_volume_get_identifier", &G_volume_get_identifier},
-	{"g_volume_get_mount", &G_volume_get_mount},
-	{"g_volume_get_name", &G_volume_get_name},
-	{"g_volume_get_type", &G_volume_get_type},
-	{"g_volume_get_uuid", &G_volume_get_uuid},
-	{"g_volume_monitor_adopt_orphan_mount", &G_volume_monitor_adopt_orphan_mount},
-	{"g_volume_monitor_get", &G_volume_monitor_get},
-	{"g_volume_monitor_get_connected_drives", &G_volume_monitor_get_connected_drives},
-	{"g_volume_monitor_get_mount_for_uuid", &G_volume_monitor_get_mount_for_uuid},
-	{"g_volume_monitor_get_mounts", &G_volume_monitor_get_mounts},
-	{"g_volume_monitor_get_type", &G_volume_monitor_get_type},
-	{"g_volume_monitor_get_volume_for_uuid", &G_volume_monitor_get_volume_for_uuid},
-	{"g_volume_monitor_get_volumes", &G_volume_monitor_get_volumes},
-	{"g_volume_mount", &G_volume_mount},
-	{"g_volume_mount_finish", &G_volume_mount_finish},
-	{"g_volume_should_automount", &G_volume_should_automount},
-	{"g_win32_input_stream_get_close_handle", &G_win32_input_stream_get_close_handle},
-	{"g_win32_input_stream_get_handle", &G_win32_input_stream_get_handle},
-	{"g_win32_input_stream_get_type", &G_win32_input_stream_get_type},
-	{"g_win32_input_stream_new", &G_win32_input_stream_new},
-	{"g_win32_input_stream_set_close_handle", &G_win32_input_stream_set_close_handle},
-	{"g_win32_output_stream_get_close_handle", &G_win32_output_stream_get_close_handle},
-	{"g_win32_output_stream_get_handle", &G_win32_output_stream_get_handle},
-	{"g_win32_output_stream_get_type", &G_win32_output_stream_get_type},
-	{"g_win32_output_stream_new", &G_win32_output_stream_new},
-	{"g_win32_output_stream_set_close_handle", &G_win32_output_stream_set_close_handle},
-	// Undocumented {"g_win32_resolver_get_type", &G_win32_resolver_get_type},
-	{"g_zlib_compressor_format_get_type", &G_zlib_compressor_format_get_type},
-	{"g_zlib_compressor_get_file_info", &G_zlib_compressor_get_file_info},
-	{"g_zlib_compressor_get_type", &G_zlib_compressor_get_type},
-	{"g_zlib_compressor_new", &G_zlib_compressor_new},
-	{"g_zlib_compressor_set_file_info", &G_zlib_compressor_set_file_info},
-	{"g_zlib_decompressor_get_file_info", &G_zlib_decompressor_get_file_info},
-	{"g_zlib_decompressor_get_type", &G_zlib_decompressor_get_type},
-	{"g_zlib_decompressor_new", &G_zlib_decompressor_new},
+	{"g_action_activate", &ActionActivate},
+	{"g_action_get_enabled", &ActionGetEnabled},
+	{"g_action_get_name", &ActionGetName},
+	{"g_action_get_parameter_type", &ActionGetParameterType},
+	{"g_action_get_state", &ActionGetState},
+	{"g_action_get_state_hint", &ActionGetStateHint},
+	{"g_action_get_state_type", &ActionGetStateType},
+	{"g_action_get_type", &ActionGetType},
+	{"g_action_group_action_added", &ActionGroupActionAdded},
+	{"g_action_group_action_enabled_changed", &ActionGroupActionEnabledChanged},
+	{"g_action_group_action_removed", &ActionGroupActionRemoved},
+	{"g_action_group_action_state_changed", &ActionGroupActionStateChanged},
+	{"g_action_group_activate_action", &ActionGroupActivateAction},
+	{"g_action_group_change_action_state", &ActionGroupChangeActionState},
+	{"g_action_group_get_action_enabled", &ActionGroupGetActionEnabled},
+	{"g_action_group_get_action_parameter_type", &ActionGroupGetActionParameterType},
+	{"g_action_group_get_action_state", &ActionGroupGetActionState},
+	{"g_action_group_get_action_state_hint", &ActionGroupGetActionStateHint},
+	{"g_action_group_get_action_state_type", &ActionGroupGetActionStateType},
+	{"g_action_group_get_type", &ActionGroupGetType},
+	{"g_action_group_has_action", &ActionGroupHasAction},
+	{"g_action_group_list_actions", &ActionGroupListActions},
+	{"g_action_set_state", &ActionSetState},
+	{"g_app_info_add_supports_type", &AppInfoAddSupportsType},
+	{"g_app_info_can_delete", &AppInfoCanDelete},
+	{"g_app_info_can_remove_supports_type", &AppInfoCanRemoveSupportsType},
+	{"g_app_info_create_flags_get_type", &AppInfoCreateFlagsGetType},
+	{"g_app_info_create_from_commandline", &AppInfoCreateFromCommandline},
+	{"g_app_info_delete", &AppInfoDelete},
+	{"g_app_info_dup", &AppInfoDup},
+	{"g_app_info_equal", &AppInfoEqual},
+	{"g_app_info_get_all", &AppInfoGetAll},
+	{"g_app_info_get_all_for_type", &AppInfoGetAllForType},
+	{"g_app_info_get_commandline", &AppInfoGetCommandline},
+	{"g_app_info_get_default_for_type", &AppInfoGetDefaultForType},
+	{"g_app_info_get_default_for_uri_scheme", &AppInfoGetDefaultForUriScheme},
+	{"g_app_info_get_description", &AppInfoGetDescription},
+	{"g_app_info_get_display_name", &AppInfoGetDisplayName},
+	{"g_app_info_get_executable", &AppInfoGetExecutable},
+	{"g_app_info_get_fallback_for_type", &AppInfoGetFallbackForType},
+	{"g_app_info_get_icon", &AppInfoGetIcon},
+	{"g_app_info_get_id", &AppInfoGetId},
+	{"g_app_info_get_name", &AppInfoGetName},
+	{"g_app_info_get_recommended_for_type", &AppInfoGetRecommendedForType},
+	{"g_app_info_get_type", &AppInfoGetType},
+	{"g_app_info_launch", &AppInfoLaunch},
+	{"g_app_info_launch_default_for_uri", &AppInfoLaunchDefaultForUri},
+	{"g_app_info_launch_uris", &AppInfoLaunchUris},
+	{"g_app_info_remove_supports_type", &AppInfoRemoveSupportsType},
+	{"g_app_info_reset_type_associations", &AppInfoResetTypeAssociations},
+	{"g_app_info_set_as_default_for_extension", &AppInfoSetAsDefaultForExtension},
+	{"g_app_info_set_as_default_for_type", &AppInfoSetAsDefaultForType},
+	{"g_app_info_set_as_last_used_for_type", &AppInfoSetAsLastUsedForType},
+	{"g_app_info_should_show", &AppInfoShouldShow},
+	{"g_app_info_supports_files", &AppInfoSupportsFiles},
+	{"g_app_info_supports_uris", &AppInfoSupportsUris},
+	{"g_app_launch_context_get_display", &AppLaunchContextGetDisplay},
+	{"g_app_launch_context_get_startup_notify_id", &AppLaunchContextGetStartupNotifyId},
+	{"g_app_launch_context_get_type", &AppLaunchContextGetType},
+	{"g_app_launch_context_launch_failed", &AppLaunchContextLaunchFailed},
+	{"g_app_launch_context_new", &AppLaunchContextNew},
+	{"g_application_activate", &ApplicationActivate},
+	{"g_application_command_line_get_arguments", &ApplicationCommandLineGetArguments},
+	{"g_application_command_line_get_cwd", &ApplicationCommandLineGetCwd},
+	{"g_application_command_line_get_environ", &ApplicationCommandLineGetEnviron},
+	{"g_application_command_line_get_exit_status", &ApplicationCommandLineGetExitStatus},
+	{"g_application_command_line_get_is_remote", &ApplicationCommandLineGetIsRemote},
+	{"g_application_command_line_get_platform_data", &ApplicationCommandLineGetPlatformData},
+	{"g_application_command_line_get_type", &ApplicationCommandLineGetType},
+	{"g_application_command_line_getenv", &ApplicationCommandLineGetenv},
+	{"g_application_command_line_print", &ApplicationCommandLinePrint},
+	{"g_application_command_line_printerr", &ApplicationCommandLinePrinterr},
+	{"g_application_command_line_set_exit_status", &ApplicationCommandLineSetExitStatus},
+	{"g_application_flags_get_type", &ApplicationFlagsGetType},
+	{"g_application_get_application_id", &ApplicationGetApplicationId},
+	{"g_application_get_flags", &ApplicationGetFlags},
+	{"g_application_get_inactivity_timeout", &ApplicationGetInactivityTimeout},
+	{"g_application_get_is_registered", &ApplicationGetIsRegistered},
+	{"g_application_get_is_remote", &ApplicationGetIsRemote},
+	{"g_application_get_type", &ApplicationGetType},
+	{"g_application_hold", &ApplicationHold},
+	{"g_application_id_is_valid", &ApplicationIdIsValid},
+	{"g_application_new", &ApplicationNew},
+	{"g_application_open", &ApplicationOpen},
+	{"g_application_register", &ApplicationRegister},
+	{"g_application_release", &ApplicationRelease},
+	{"g_application_run", &ApplicationRun},
+	{"g_application_set_action_group", &ApplicationSetActionGroup},
+	{"g_application_set_application_id", &ApplicationSetApplicationId},
+	{"g_application_set_flags", &ApplicationSetFlags},
+	{"g_application_set_inactivity_timeout", &ApplicationSetInactivityTimeout},
+	{"g_ask_password_flags_get_type", &AskPasswordFlagsGetType},
+	{"g_async_initable_get_type", &AsyncInitableGetType},
+	{"g_async_initable_init_async", &AsyncInitableInitAsync},
+	{"g_async_initable_init_finish", &AsyncInitableInitFinish},
+	{"g_async_initable_new_async", &AsyncInitableNewAsync},
+	{"g_async_initable_new_finish", &AsyncInitableNewFinish},
+	{"g_async_initable_new_valist_async", &AsyncInitableNewValistAsync},
+	{"g_async_initable_newv_async", &AsyncInitableNewvAsync},
+	{"g_async_result_get_source_object", &AsyncResultGetSourceObject},
+	{"g_async_result_get_type", &AsyncResultGetType},
+	{"g_async_result_get_user_data", &AsyncResultGetUserData},
+	{"g_buffered_input_stream_fill", &BufferedInputStreamFill},
+	{"g_buffered_input_stream_fill_async", &BufferedInputStreamFillAsync},
+	{"g_buffered_input_stream_fill_finish", &BufferedInputStreamFillFinish},
+	{"g_buffered_input_stream_get_available", &BufferedInputStreamGetAvailable},
+	{"g_buffered_input_stream_get_buffer_size", &BufferedInputStreamGetBufferSize},
+	{"g_buffered_input_stream_get_type", &BufferedInputStreamGetType},
+	{"g_buffered_input_stream_new", &BufferedInputStreamNew},
+	{"g_buffered_input_stream_new_sized", &BufferedInputStreamNewSized},
+	{"g_buffered_input_stream_peek", &BufferedInputStreamPeek},
+	{"g_buffered_input_stream_peek_buffer", &BufferedInputStreamPeekBuffer},
+	{"g_buffered_input_stream_read_byte", &BufferedInputStreamReadByte},
+	{"g_buffered_input_stream_set_buffer_size", &BufferedInputStreamSetBufferSize},
+	{"g_buffered_output_stream_get_auto_grow", &BufferedOutputStreamGetAutoGrow},
+	{"g_buffered_output_stream_get_buffer_size", &BufferedOutputStreamGetBufferSize},
+	{"g_buffered_output_stream_get_type", &BufferedOutputStreamGetType},
+	{"g_buffered_output_stream_new", &BufferedOutputStreamNew},
+	{"g_buffered_output_stream_new_sized", &BufferedOutputStreamNewSized},
+	{"g_buffered_output_stream_set_auto_grow", &BufferedOutputStreamSetAutoGrow},
+	{"g_buffered_output_stream_set_buffer_size", &BufferedOutputStreamSetBufferSize},
+	{"g_bus_get", &BusGet},
+	{"g_bus_get_finish", &BusGetFinish},
+	{"g_bus_get_sync", &BusGetSync},
+	{"g_bus_name_owner_flags_get_type", &BusNameOwnerFlagsGetType},
+	{"g_bus_name_watcher_flags_get_type", &BusNameWatcherFlagsGetType},
+	{"g_bus_own_name", &BusOwnName},
+	{"g_bus_own_name_on_connection", &BusOwnNameOnConnection},
+	{"g_bus_own_name_on_connection_with_closures", &BusOwnNameOnConnectionWithClosures},
+	{"g_bus_own_name_with_closures", &BusOwnNameWithClosures},
+	{"g_bus_type_get_type", &BusTypeGetType},
+	{"g_bus_unown_name", &BusUnownName},
+	{"g_bus_unwatch_name", &BusUnwatchName},
+	{"g_bus_watch_name", &BusWatchName},
+	{"g_bus_watch_name_on_connection", &BusWatchNameOnConnection},
+	{"g_bus_watch_name_on_connection_with_closures", &BusWatchNameOnConnectionWithClosures},
+	{"g_bus_watch_name_with_closures", &BusWatchNameWithClosures},
+	{"g_cancellable_cancel", &CancellableCancel},
+	{"g_cancellable_connect", &CancellableConnect},
+	{"g_cancellable_disconnect", &CancellableDisconnect},
+	{"g_cancellable_get_current", &CancellableGetCurrent},
+	{"g_cancellable_get_fd", &CancellableGetFd},
+	{"g_cancellable_get_type", &CancellableGetType},
+	{"g_cancellable_is_cancelled", &CancellableIsCancelled},
+	{"g_cancellable_make_pollfd", &CancellableMakePollfd},
+	{"g_cancellable_new", &CancellableNew},
+	{"g_cancellable_pop_current", &CancellablePopCurrent},
+	{"g_cancellable_push_current", &CancellablePushCurrent},
+	{"g_cancellable_release_fd", &CancellableReleaseFd},
+	{"g_cancellable_reset", &CancellableReset},
+	{"g_cancellable_set_error_if_cancelled", &CancellableSetErrorIfCancelled},
+	{"g_cancellable_source_new", &CancellableSourceNew},
+	{"g_charset_converter_get_num_fallbacks", &CharsetConverterGetNumFallbacks},
+	{"g_charset_converter_get_type", &CharsetConverterGetType},
+	{"g_charset_converter_get_use_fallback", &CharsetConverterGetUseFallback},
+	{"g_charset_converter_new", &CharsetConverterNew},
+	{"g_charset_converter_set_use_fallback", &CharsetConverterSetUseFallback},
+	{"g_content_type_can_be_executable", &ContentTypeCanBeExecutable},
+	{"g_content_type_equals", &ContentTypeEquals},
+	{"g_content_type_from_mime_type", &ContentTypeFromMimeType},
+	{"g_content_type_get_description", &ContentTypeGetDescription},
+	{"g_content_type_get_icon", &ContentTypeGetIcon},
+	{"g_content_type_get_mime_type", &ContentTypeGetMimeType},
+	{"g_content_type_guess", &ContentTypeGuess},
+	{"g_content_type_guess_for_tree", &ContentTypeGuessForTree},
+	{"g_content_type_is_a", &ContentTypeIsA},
+	{"g_content_type_is_unknown", &ContentTypeIsUnknown},
+	{"g_content_types_get_registered", &ContentTypesGetRegistered},
+	{"g_converter_convert", &ConverterConvert},
+	{"g_converter_flags_get_type", &ConverterFlagsGetType},
+	{"g_converter_get_type", &ConverterGetType},
+	{"g_converter_input_stream_get_converter", &ConverterInputStreamGetConverter},
+	{"g_converter_input_stream_get_type", &ConverterInputStreamGetType},
+	{"g_converter_input_stream_new", &ConverterInputStreamNew},
+	{"g_converter_output_stream_get_converter", &ConverterOutputStreamGetConverter},
+	{"g_converter_output_stream_get_type", &ConverterOutputStreamGetType},
+	{"g_converter_output_stream_new", &ConverterOutputStreamNew},
+	{"g_converter_reset", &ConverterReset},
+	{"g_converter_result_get_type", &ConverterResultGetType},
+	{"g_credentials_get_native", &CredentialsGetNative},
+	{"g_credentials_get_type", &CredentialsGetType},
+	{"g_credentials_is_same_user", &CredentialsIsSameUser},
+	{"g_credentials_new", &CredentialsNew},
+	{"g_credentials_set_native", &CredentialsSetNative},
+	{"g_credentials_to_string", &CredentialsToString},
+	{"g_credentials_type_get_type", &CredentialsTypeGetType},
+	{"g_data_input_stream_get_byte_order", &DataInputStreamGetByteOrder},
+	{"g_data_input_stream_get_newline_type", &DataInputStreamGetNewlineType},
+	{"g_data_input_stream_get_type", &DataInputStreamGetType},
+	{"g_data_input_stream_new", &DataInputStreamNew},
+	{"g_data_input_stream_read_byte", &DataInputStreamReadByte},
+	{"g_data_input_stream_read_int16", &DataInputStreamReadInt16},
+	{"g_data_input_stream_read_int32", &DataInputStreamReadInt32},
+	{"g_data_input_stream_read_int64", &DataInputStreamReadInt64},
+	{"g_data_input_stream_read_line", &DataInputStreamReadLine},
+	{"g_data_input_stream_read_line_async", &DataInputStreamReadLineAsync},
+	{"g_data_input_stream_read_line_finish", &DataInputStreamReadLineFinish},
+	{"g_data_input_stream_read_uint16", &DataInputStreamReadUint16},
+	{"g_data_input_stream_read_uint32", &DataInputStreamReadUint32},
+	{"g_data_input_stream_read_uint64", &DataInputStreamReadUint64},
+	{"g_data_input_stream_read_until", &DataInputStreamReadUntil},
+	{"g_data_input_stream_read_until_async", &DataInputStreamReadUntilAsync},
+	{"g_data_input_stream_read_until_finish", &DataInputStreamReadUntilFinish},
+	{"g_data_input_stream_read_upto", &DataInputStreamReadUpto},
+	{"g_data_input_stream_read_upto_async", &DataInputStreamReadUptoAsync},
+	{"g_data_input_stream_read_upto_finish", &DataInputStreamReadUptoFinish},
+	{"g_data_input_stream_set_byte_order", &DataInputStreamSetByteOrder},
+	{"g_data_input_stream_set_newline_type", &DataInputStreamSetNewlineType},
+	{"g_data_output_stream_get_byte_order", &DataOutputStreamGetByteOrder},
+	{"g_data_output_stream_get_type", &DataOutputStreamGetType},
+	{"g_data_output_stream_new", &DataOutputStreamNew},
+	{"g_data_output_stream_put_byte", &DataOutputStreamPutByte},
+	{"g_data_output_stream_put_int16", &DataOutputStreamPutInt16},
+	{"g_data_output_stream_put_int32", &DataOutputStreamPutInt32},
+	{"g_data_output_stream_put_int64", &DataOutputStreamPutInt64},
+	{"g_data_output_stream_put_string", &DataOutputStreamPutString},
+	{"g_data_output_stream_put_uint16", &DataOutputStreamPutUint16},
+	{"g_data_output_stream_put_uint32", &DataOutputStreamPutUint32},
+	{"g_data_output_stream_put_uint64", &DataOutputStreamPutUint64},
+	{"g_data_output_stream_set_byte_order", &DataOutputStreamSetByteOrder},
+	{"g_data_stream_byte_order_get_type", &DataStreamByteOrderGetType},
+	{"g_data_stream_newline_type_get_type", &DataStreamNewlineTypeGetType},
+	{"g_dbus_address_get_for_bus_sync", &DbusAddressGetForBusSync},
+	{"g_dbus_address_get_stream", &DbusAddressGetStream},
+	{"g_dbus_address_get_stream_finish", &DbusAddressGetStreamFinish},
+	{"g_dbus_address_get_stream_sync", &DbusAddressGetStreamSync},
+	{"g_dbus_annotation_info_get_type", &DbusAnnotationInfoGetType},
+	{"g_dbus_annotation_info_lookup", &DbusAnnotationInfoLookup},
+	{"g_dbus_annotation_info_ref", &DbusAnnotationInfoRef},
+	{"g_dbus_annotation_info_unref", &DbusAnnotationInfoUnref},
+	{"g_dbus_arg_info_get_type", &DbusArgInfoGetType},
+	{"g_dbus_arg_info_ref", &DbusArgInfoRef},
+	{"g_dbus_arg_info_unref", &DbusArgInfoUnref},
+	{"g_dbus_auth_observer_authorize_authenticated_peer", &DbusAuthObserverAuthorizeAuthenticatedPeer},
+	{"g_dbus_auth_observer_get_type", &DbusAuthObserverGetType},
+	{"g_dbus_auth_observer_new", &DbusAuthObserverNew},
+	{"g_dbus_call_flags_get_type", &DbusCallFlagsGetType},
+	{"g_dbus_capability_flags_get_type", &DbusCapabilityFlagsGetType},
+	{"g_dbus_connection_add_filter", &DbusConnectionAddFilter},
+	{"g_dbus_connection_call", &DbusConnectionCall},
+	{"g_dbus_connection_call_finish", &DbusConnectionCallFinish},
+	{"g_dbus_connection_call_sync", &DbusConnectionCallSync},
+	{"g_dbus_connection_close", &DbusConnectionClose},
+	{"g_dbus_connection_close_finish", &DbusConnectionCloseFinish},
+	{"g_dbus_connection_close_sync", &DbusConnectionCloseSync},
+	{"g_dbus_connection_emit_signal", &DbusConnectionEmitSignal},
+	{"g_dbus_connection_flags_get_type", &DbusConnectionFlagsGetType},
+	{"g_dbus_connection_flush", &DbusConnectionFlush},
+	{"g_dbus_connection_flush_finish", &DbusConnectionFlushFinish},
+	{"g_dbus_connection_flush_sync", &DbusConnectionFlushSync},
+	{"g_dbus_connection_get_capabilities", &DbusConnectionGetCapabilities},
+	{"g_dbus_connection_get_exit_on_close", &DbusConnectionGetExitOnClose},
+	{"g_dbus_connection_get_guid", &DbusConnectionGetGuid},
+	{"g_dbus_connection_get_peer_credentials", &DbusConnectionGetPeerCredentials},
+	{"g_dbus_connection_get_stream", &DbusConnectionGetStream},
+	{"g_dbus_connection_get_type", &DbusConnectionGetType},
+	{"g_dbus_connection_get_unique_name", &DbusConnectionGetUniqueName},
+	{"g_dbus_connection_is_closed", &DbusConnectionIsClosed},
+	{"g_dbus_connection_new", &DbusConnectionNew},
+	{"g_dbus_connection_new_finish", &DbusConnectionNewFinish},
+	{"g_dbus_connection_new_for_address", &DbusConnectionNewForAddress},
+	{"g_dbus_connection_new_for_address_finish", &DbusConnectionNewForAddressFinish},
+	{"g_dbus_connection_new_for_address_sync", &DbusConnectionNewForAddressSync},
+	{"g_dbus_connection_new_sync", &DbusConnectionNewSync},
+	{"g_dbus_connection_register_object", &DbusConnectionRegisterObject},
+	{"g_dbus_connection_register_subtree", &DbusConnectionRegisterSubtree},
+	{"g_dbus_connection_remove_filter", &DbusConnectionRemoveFilter},
+	{"g_dbus_connection_send_message", &DbusConnectionSendMessage},
+	{"g_dbus_connection_send_message_with_reply", &DbusConnectionSendMessageWithReply},
+	{"g_dbus_connection_send_message_with_reply_finish", &DbusConnectionSendMessageWithReplyFinish},
+	{"g_dbus_connection_send_message_with_reply_sync", &DbusConnectionSendMessageWithReplySync},
+	{"g_dbus_connection_set_exit_on_close", &DbusConnectionSetExitOnClose},
+	{"g_dbus_connection_signal_subscribe", &DbusConnectionSignalSubscribe},
+	{"g_dbus_connection_signal_unsubscribe", &DbusConnectionSignalUnsubscribe},
+	{"g_dbus_connection_start_message_processing", &DbusConnectionStartMessageProcessing},
+	{"g_dbus_connection_unregister_object", &DbusConnectionUnregisterObject},
+	{"g_dbus_connection_unregister_subtree", &DbusConnectionUnregisterSubtree},
+	{"g_dbus_error_encode_gerror", &DbusErrorEncodeGerror},
+	{"g_dbus_error_get_remote_error", &DbusErrorGetRemoteError},
+	{"g_dbus_error_get_type", &DbusErrorGetType},
+	{"g_dbus_error_is_remote_error", &DbusErrorIsRemoteError},
+	{"g_dbus_error_new_for_dbus_error", &DbusErrorNewForDbusError},
+	{"g_dbus_error_quark", &DbusErrorQuark},
+	{"g_dbus_error_register_error", &DbusErrorRegisterError},
+	{"g_dbus_error_register_error_domain", &DbusErrorRegisterErrorDomain},
+	{"g_dbus_error_set_dbus_error", &DbusErrorSetDbusError},
+	{"g_dbus_error_set_dbus_error_valist", &DbusErrorSetDbusErrorValist},
+	{"g_dbus_error_strip_remote_error", &DbusErrorStripRemoteError},
+	{"g_dbus_error_unregister_error", &DbusErrorUnregisterError},
+	{"g_dbus_generate_guid", &DbusGenerateGuid},
+	{"g_dbus_interface_info_generate_xml", &DbusInterfaceInfoGenerateXml},
+	{"g_dbus_interface_info_get_type", &DbusInterfaceInfoGetType},
+	{"g_dbus_interface_info_lookup_method", &DbusInterfaceInfoLookupMethod},
+	{"g_dbus_interface_info_lookup_property", &DbusInterfaceInfoLookupProperty},
+	{"g_dbus_interface_info_lookup_signal", &DbusInterfaceInfoLookupSignal},
+	{"g_dbus_interface_info_ref", &DbusInterfaceInfoRef},
+	{"g_dbus_interface_info_unref", &DbusInterfaceInfoUnref},
+	{"g_dbus_is_address", &DbusIsAddress},
+	{"g_dbus_is_guid", &DbusIsGuid},
+	{"g_dbus_is_interface_name", &DbusIsInterfaceName},
+	{"g_dbus_is_member_name", &DbusIsMemberName},
+	{"g_dbus_is_name", &DbusIsName},
+	{"g_dbus_is_supported_address", &DbusIsSupportedAddress},
+	{"g_dbus_is_unique_name", &DbusIsUniqueName},
+	{"g_dbus_message_byte_order_get_type", &DbusMessageByteOrderGetType},
+	{"g_dbus_message_bytes_needed", &DbusMessageBytesNeeded},
+	{"g_dbus_message_copy", &DbusMessageCopy},
+	{"g_dbus_message_flags_get_type", &DbusMessageFlagsGetType},
+	{"g_dbus_message_get_arg0", &DbusMessageGetArg0},
+	{"g_dbus_message_get_body", &DbusMessageGetBody},
+	{"g_dbus_message_get_byte_order", &DbusMessageGetByteOrder},
+	{"g_dbus_message_get_destination", &DbusMessageGetDestination},
+	{"g_dbus_message_get_error_name", &DbusMessageGetErrorName},
+	{"g_dbus_message_get_flags", &DbusMessageGetFlags},
+	{"g_dbus_message_get_header", &DbusMessageGetHeader},
+	{"g_dbus_message_get_header_fields", &DbusMessageGetHeaderFields},
+	{"g_dbus_message_get_interface", &DbusMessageGetInterface},
+	{"g_dbus_message_get_locked", &DbusMessageGetLocked},
+	{"g_dbus_message_get_member", &DbusMessageGetMember},
+	{"g_dbus_message_get_message_type", &DbusMessageGetMessageType},
+	{"g_dbus_message_get_num_unix_fds", &DbusMessageGetNumUnixFds},
+	{"g_dbus_message_get_path", &DbusMessageGetPath},
+	{"g_dbus_message_get_reply_serial", &DbusMessageGetReplySerial},
+	{"g_dbus_message_get_sender", &DbusMessageGetSender},
+	{"g_dbus_message_get_serial", &DbusMessageGetSerial},
+	{"g_dbus_message_get_signature", &DbusMessageGetSignature},
+	{"g_dbus_message_get_type", &DbusMessageGetType},
+	{"g_dbus_message_header_field_get_type", &DbusMessageHeaderFieldGetType},
+	{"g_dbus_message_lock", &DbusMessageLock},
+	{"g_dbus_message_new", &DbusMessageNew},
+	{"g_dbus_message_new_from_blob", &DbusMessageNewFromBlob},
+	{"g_dbus_message_new_method_call", &DbusMessageNewMethodCall},
+	{"g_dbus_message_new_method_error", &DbusMessageNewMethodError},
+	{"g_dbus_message_new_method_error_literal", &DbusMessageNewMethodErrorLiteral},
+	{"g_dbus_message_new_method_error_valist", &DbusMessageNewMethodErrorValist},
+	{"g_dbus_message_new_method_reply", &DbusMessageNewMethodReply},
+	{"g_dbus_message_new_signal", &DbusMessageNewSignal},
+	{"g_dbus_message_print", &DbusMessagePrint},
+	{"g_dbus_message_set_body", &DbusMessageSetBody},
+	{"g_dbus_message_set_byte_order", &DbusMessageSetByteOrder},
+	{"g_dbus_message_set_destination", &DbusMessageSetDestination},
+	{"g_dbus_message_set_error_name", &DbusMessageSetErrorName},
+	{"g_dbus_message_set_flags", &DbusMessageSetFlags},
+	{"g_dbus_message_set_header", &DbusMessageSetHeader},
+	{"g_dbus_message_set_interface", &DbusMessageSetInterface},
+	{"g_dbus_message_set_member", &DbusMessageSetMember},
+	{"g_dbus_message_set_message_type", &DbusMessageSetMessageType},
+	{"g_dbus_message_set_num_unix_fds", &DbusMessageSetNumUnixFds},
+	{"g_dbus_message_set_path", &DbusMessageSetPath},
+	{"g_dbus_message_set_reply_serial", &DbusMessageSetReplySerial},
+	{"g_dbus_message_set_sender", &DbusMessageSetSender},
+	{"g_dbus_message_set_serial", &DbusMessageSetSerial},
+	{"g_dbus_message_set_signature", &DbusMessageSetSignature},
+	{"g_dbus_message_to_blob", &DbusMessageToBlob},
+	{"g_dbus_message_to_gerror", &DbusMessageToGerror},
+	{"g_dbus_message_type_get_type", &DbusMessageTypeGetType},
+	{"g_dbus_method_info_get_type", &DbusMethodInfoGetType},
+	{"g_dbus_method_info_ref", &DbusMethodInfoRef},
+	{"g_dbus_method_info_unref", &DbusMethodInfoUnref},
+	{"g_dbus_method_invocation_get_connection", &DbusMethodInvocationGetConnection},
+	{"g_dbus_method_invocation_get_interface_name", &DbusMethodInvocationGetInterfaceName},
+	{"g_dbus_method_invocation_get_message", &DbusMethodInvocationGetMessage},
+	{"g_dbus_method_invocation_get_method_info", &DbusMethodInvocationGetMethodInfo},
+	{"g_dbus_method_invocation_get_method_name", &DbusMethodInvocationGetMethodName},
+	{"g_dbus_method_invocation_get_object_path", &DbusMethodInvocationGetObjectPath},
+	{"g_dbus_method_invocation_get_parameters", &DbusMethodInvocationGetParameters},
+	{"g_dbus_method_invocation_get_sender", &DbusMethodInvocationGetSender},
+	{"g_dbus_method_invocation_get_type", &DbusMethodInvocationGetType},
+	{"g_dbus_method_invocation_get_user_data", &DbusMethodInvocationGetUserData},
+	{"g_dbus_method_invocation_return_dbus_error", &DbusMethodInvocationReturnDbusError},
+	{"g_dbus_method_invocation_return_error", &DbusMethodInvocationReturnError},
+	{"g_dbus_method_invocation_return_error_literal", &DbusMethodInvocationReturnErrorLiteral},
+	{"g_dbus_method_invocation_return_error_valist", &DbusMethodInvocationReturnErrorValist},
+	{"g_dbus_method_invocation_return_gerror", &DbusMethodInvocationReturnGerror},
+	{"g_dbus_method_invocation_return_value", &DbusMethodInvocationReturnValue},
+	{"g_dbus_node_info_generate_xml", &DbusNodeInfoGenerateXml},
+	{"g_dbus_node_info_get_type", &DbusNodeInfoGetType},
+	{"g_dbus_node_info_lookup_interface", &DbusNodeInfoLookupInterface},
+	{"g_dbus_node_info_new_for_xml", &DbusNodeInfoNewForXml},
+	{"g_dbus_node_info_ref", &DbusNodeInfoRef},
+	{"g_dbus_node_info_unref", &DbusNodeInfoUnref},
+	{"g_dbus_property_info_flags_get_type", &DbusPropertyInfoFlagsGetType},
+	{"g_dbus_property_info_get_type", &DbusPropertyInfoGetType},
+	{"g_dbus_property_info_ref", &DbusPropertyInfoRef},
+	{"g_dbus_property_info_unref", &DbusPropertyInfoUnref},
+	{"g_dbus_proxy_call", &DbusProxyCall},
+	{"g_dbus_proxy_call_finish", &DbusProxyCallFinish},
+	{"g_dbus_proxy_call_sync", &DbusProxyCallSync},
+	{"g_dbus_proxy_flags_get_type", &DbusProxyFlagsGetType},
+	{"g_dbus_proxy_get_cached_property", &DbusProxyGetCachedProperty},
+	{"g_dbus_proxy_get_cached_property_names", &DbusProxyGetCachedPropertyNames},
+	{"g_dbus_proxy_get_connection", &DbusProxyGetConnection},
+	{"g_dbus_proxy_get_default_timeout", &DbusProxyGetDefaultTimeout},
+	{"g_dbus_proxy_get_flags", &DbusProxyGetFlags},
+	{"g_dbus_proxy_get_interface_info", &DbusProxyGetInterfaceInfo},
+	{"g_dbus_proxy_get_interface_name", &DbusProxyGetInterfaceName},
+	{"g_dbus_proxy_get_name", &DbusProxyGetName},
+	{"g_dbus_proxy_get_name_owner", &DbusProxyGetNameOwner},
+	{"g_dbus_proxy_get_object_path", &DbusProxyGetObjectPath},
+	{"g_dbus_proxy_get_type", &DbusProxyGetType},
+	{"g_dbus_proxy_new", &DbusProxyNew},
+	{"g_dbus_proxy_new_finish", &DbusProxyNewFinish},
+	{"g_dbus_proxy_new_for_bus", &DbusProxyNewForBus},
+	{"g_dbus_proxy_new_for_bus_finish", &DbusProxyNewForBusFinish},
+	{"g_dbus_proxy_new_for_bus_sync", &DbusProxyNewForBusSync},
+	{"g_dbus_proxy_new_sync", &DbusProxyNewSync},
+	{"g_dbus_proxy_set_cached_property", &DbusProxySetCachedProperty},
+	{"g_dbus_proxy_set_default_timeout", &DbusProxySetDefaultTimeout},
+	{"g_dbus_proxy_set_interface_info", &DbusProxySetInterfaceInfo},
+	{"g_dbus_send_message_flags_get_type", &DbusSendMessageFlagsGetType},
+	{"g_dbus_server_flags_get_type", &DbusServerFlagsGetType},
+	{"g_dbus_server_get_client_address", &DbusServerGetClientAddress},
+	{"g_dbus_server_get_flags", &DbusServerGetFlags},
+	{"g_dbus_server_get_guid", &DbusServerGetGuid},
+	{"g_dbus_server_get_type", &DbusServerGetType},
+	{"g_dbus_server_is_active", &DbusServerIsActive},
+	{"g_dbus_server_new_sync", &DbusServerNewSync},
+	{"g_dbus_server_start", &DbusServerStart},
+	{"g_dbus_server_stop", &DbusServerStop},
+	{"g_dbus_signal_flags_get_type", &DbusSignalFlagsGetType},
+	{"g_dbus_signal_info_get_type", &DbusSignalInfoGetType},
+	{"g_dbus_signal_info_ref", &DbusSignalInfoRef},
+	{"g_dbus_signal_info_unref", &DbusSignalInfoUnref},
+	{"g_dbus_subtree_flags_get_type", &DbusSubtreeFlagsGetType},
+	{"g_drive_can_eject", &DriveCanEject},
+	{"g_drive_can_poll_for_media", &DriveCanPollForMedia},
+	{"g_drive_can_start", &DriveCanStart},
+	{"g_drive_can_start_degraded", &DriveCanStartDegraded},
+	{"g_drive_can_stop", &DriveCanStop},
+	{"g_drive_eject", &DriveEject},
+	{"g_drive_eject_finish", &DriveEjectFinish},
+	{"g_drive_eject_with_operation", &DriveEjectWithOperation},
+	{"g_drive_eject_with_operation_finish", &DriveEjectWithOperationFinish},
+	{"g_drive_enumerate_identifiers", &DriveEnumerateIdentifiers},
+	{"g_drive_get_icon", &DriveGetIcon},
+	{"g_drive_get_identifier", &DriveGetIdentifier},
+	{"g_drive_get_name", &DriveGetName},
+	{"g_drive_get_start_stop_type", &DriveGetStartStopType},
+	{"g_drive_get_type", &DriveGetType},
+	{"g_drive_get_volumes", &DriveGetVolumes},
+	{"g_drive_has_media", &DriveHasMedia},
+	{"g_drive_has_volumes", &DriveHasVolumes},
+	{"g_drive_is_media_check_automatic", &DriveIsMediaCheckAutomatic},
+	{"g_drive_is_media_removable", &DriveIsMediaRemovable},
+	{"g_drive_poll_for_media", &DrivePollForMedia},
+	{"g_drive_poll_for_media_finish", &DrivePollForMediaFinish},
+	{"g_drive_start", &DriveStart},
+	{"g_drive_start_finish", &DriveStartFinish},
+	{"g_drive_start_flags_get_type", &DriveStartFlagsGetType},
+	{"g_drive_start_stop_type_get_type", &DriveStartStopTypeGetType},
+	{"g_drive_stop", &DriveStop},
+	{"g_drive_stop_finish", &DriveStopFinish},
+	{"g_emblem_get_icon", &EmblemGetIcon},
+	{"g_emblem_get_origin", &EmblemGetOrigin},
+	{"g_emblem_get_type", &EmblemGetType},
+	{"g_emblem_new", &EmblemNew},
+	{"g_emblem_new_with_origin", &EmblemNewWithOrigin},
+	{"g_emblem_origin_get_type", &EmblemOriginGetType},
+	{"g_emblemed_icon_add_emblem", &EmblemedIconAddEmblem},
+	{"g_emblemed_icon_clear_emblems", &EmblemedIconClearEmblems},
+	{"g_emblemed_icon_get_emblems", &EmblemedIconGetEmblems},
+	{"g_emblemed_icon_get_icon", &EmblemedIconGetIcon},
+	{"g_emblemed_icon_get_type", &EmblemedIconGetType},
+	{"g_emblemed_icon_new", &EmblemedIconNew},
+	{"g_file_append_to", &FileAppendTo},
+	{"g_file_append_to_async", &FileAppendToAsync},
+	{"g_file_append_to_finish", &FileAppendToFinish},
+	{"g_file_attribute_info_flags_get_type", &FileAttributeInfoFlagsGetType},
+	{"g_file_attribute_info_list_add", &FileAttributeInfoListAdd},
+	{"g_file_attribute_info_list_dup", &FileAttributeInfoListDup},
+	{"g_file_attribute_info_list_get_type", &FileAttributeInfoListGetType},
+	{"g_file_attribute_info_list_lookup", &FileAttributeInfoListLookup},
+	{"g_file_attribute_info_list_new", &FileAttributeInfoListNew},
+	{"g_file_attribute_info_list_ref", &FileAttributeInfoListRef},
+	{"g_file_attribute_info_list_unref", &FileAttributeInfoListUnref},
+	{"g_file_attribute_matcher_enumerate_namespace", &FileAttributeMatcherEnumerateNamespace},
+	{"g_file_attribute_matcher_enumerate_next", &FileAttributeMatcherEnumerateNext},
+	{"g_file_attribute_matcher_get_type", &FileAttributeMatcherGetType},
+	{"g_file_attribute_matcher_matches", &FileAttributeMatcherMatches},
+	{"g_file_attribute_matcher_matches_only", &FileAttributeMatcherMatchesOnly},
+	{"g_file_attribute_matcher_new", &FileAttributeMatcherNew},
+	{"g_file_attribute_matcher_ref", &FileAttributeMatcherRef},
+	{"g_file_attribute_matcher_unref", &FileAttributeMatcherUnref},
+	{"g_file_attribute_status_get_type", &FileAttributeStatusGetType},
+	{"g_file_attribute_type_get_type", &FileAttributeTypeGetType},
+	{"g_file_copy", &FileCopy},
+	{"g_file_copy_async", &FileCopyAsync},
+	{"g_file_copy_attributes", &FileCopyAttributes},
+	{"g_file_copy_finish", &FileCopyFinish},
+	{"g_file_copy_flags_get_type", &FileCopyFlagsGetType},
+	{"g_file_create", &FileCreate},
+	{"g_file_create_async", &FileCreateAsync},
+	{"g_file_create_finish", &FileCreateFinish},
+	{"g_file_create_flags_get_type", &FileCreateFlagsGetType},
+	{"g_file_create_readwrite", &FileCreateReadwrite},
+	{"g_file_create_readwrite_async", &FileCreateReadwriteAsync},
+	{"g_file_create_readwrite_finish", &FileCreateReadwriteFinish},
+	{"g_file_delete", &FileDelete},
+	{"g_file_dup", &FileDup},
+	{"g_file_eject_mountable", &FileEjectMountable},
+	{"g_file_eject_mountable_finish", &FileEjectMountableFinish},
+	{"g_file_eject_mountable_with_operation", &FileEjectMountableWithOperation},
+	{"g_file_eject_mountable_with_operation_finish", &FileEjectMountableWithOperationFinish},
+	{"g_file_enumerate_children", &FileEnumerateChildren},
+	{"g_file_enumerate_children_async", &FileEnumerateChildrenAsync},
+	{"g_file_enumerate_children_finish", &FileEnumerateChildrenFinish},
+	{"g_file_enumerator_close", &FileEnumeratorClose},
+	{"g_file_enumerator_close_async", &FileEnumeratorCloseAsync},
+	{"g_file_enumerator_close_finish", &FileEnumeratorCloseFinish},
+	{"g_file_enumerator_get_container", &FileEnumeratorGetContainer},
+	{"g_file_enumerator_get_type", &FileEnumeratorGetType},
+	{"g_file_enumerator_has_pending", &FileEnumeratorHasPending},
+	{"g_file_enumerator_is_closed", &FileEnumeratorIsClosed},
+	{"g_file_enumerator_next_file", &FileEnumeratorNextFile},
+	{"g_file_enumerator_next_files_async", &FileEnumeratorNextFilesAsync},
+	{"g_file_enumerator_next_files_finish", &FileEnumeratorNextFilesFinish},
+	{"g_file_enumerator_set_pending", &FileEnumeratorSetPending},
+	{"g_file_equal", &FileEqual},
+	{"g_file_find_enclosing_mount", &FileFindEnclosingMount},
+	{"g_file_find_enclosing_mount_async", &FileFindEnclosingMountAsync},
+	{"g_file_find_enclosing_mount_finish", &FileFindEnclosingMountFinish},
+	{"g_file_get_basename", &FileGetBasename},
+	{"g_file_get_child", &FileGetChild},
+	{"g_file_get_child_for_display_name", &FileGetChildForDisplayName},
+	{"g_file_get_parent", &FileGetParent},
+	{"g_file_get_parse_name", &FileGetParseName},
+	{"g_file_get_path", &FileGetPath},
+	{"g_file_get_relative_path", &FileGetRelativePath},
+	{"g_file_get_type", &FileGetType},
+	{"g_file_get_uri", &FileGetUri},
+	{"g_file_get_uri_scheme", &FileGetUriScheme},
+	{"g_file_has_parent", &FileHasParent},
+	{"g_file_has_prefix", &FileHasPrefix},
+	{"g_file_has_uri_scheme", &FileHasUriScheme},
+	{"g_file_hash", &FileHash},
+	{"g_file_icon_get_file", &FileIconGetFile},
+	{"g_file_icon_get_type", &FileIconGetType},
+	{"g_file_icon_new", &FileIconNew},
+	{"g_file_info_clear_status", &FileInfoClearStatus},
+	{"g_file_info_copy_into", &FileInfoCopyInto},
+	{"g_file_info_dup", &FileInfoDup},
+	{"g_file_info_get_attribute_as_string", &FileInfoGetAttributeAsString},
+	{"g_file_info_get_attribute_boolean", &FileInfoGetAttributeBoolean},
+	{"g_file_info_get_attribute_byte_string", &FileInfoGetAttributeByteString},
+	{"g_file_info_get_attribute_data", &FileInfoGetAttributeData},
+	{"g_file_info_get_attribute_int32", &FileInfoGetAttributeInt32},
+	{"g_file_info_get_attribute_int64", &FileInfoGetAttributeInt64},
+	{"g_file_info_get_attribute_object", &FileInfoGetAttributeObject},
+	{"g_file_info_get_attribute_status", &FileInfoGetAttributeStatus},
+	{"g_file_info_get_attribute_string", &FileInfoGetAttributeString},
+	{"g_file_info_get_attribute_stringv", &FileInfoGetAttributeStringv},
+	{"g_file_info_get_attribute_type", &FileInfoGetAttributeType},
+	{"g_file_info_get_attribute_uint32", &FileInfoGetAttributeUint32},
+	{"g_file_info_get_attribute_uint64", &FileInfoGetAttributeUint64},
+	{"g_file_info_get_content_type", &FileInfoGetContentType},
+	{"g_file_info_get_display_name", &FileInfoGetDisplayName},
+	{"g_file_info_get_edit_name", &FileInfoGetEditName},
+	{"g_file_info_get_etag", &FileInfoGetEtag},
+	{"g_file_info_get_file_type", &FileInfoGetFileType},
+	{"g_file_info_get_icon", &FileInfoGetIcon},
+	{"g_file_info_get_is_backup", &FileInfoGetIsBackup},
+	{"g_file_info_get_is_hidden", &FileInfoGetIsHidden},
+	{"g_file_info_get_is_symlink", &FileInfoGetIsSymlink},
+	{"g_file_info_get_modification_time", &FileInfoGetModificationTime},
+	{"g_file_info_get_name", &FileInfoGetName},
+	{"g_file_info_get_size", &FileInfoGetSize},
+	{"g_file_info_get_sort_order", &FileInfoGetSortOrder},
+	{"g_file_info_get_symlink_target", &FileInfoGetSymlinkTarget},
+	{"g_file_info_get_type", &FileInfoGetType},
+	{"g_file_info_has_attribute", &FileInfoHasAttribute},
+	{"g_file_info_has_namespace", &FileInfoHasNamespace},
+	{"g_file_info_list_attributes", &FileInfoListAttributes},
+	{"g_file_info_new", &FileInfoNew},
+	{"g_file_info_remove_attribute", &FileInfoRemoveAttribute},
+	{"g_file_info_set_attribute", &FileInfoSetAttribute},
+	{"g_file_info_set_attribute_boolean", &FileInfoSetAttributeBoolean},
+	{"g_file_info_set_attribute_byte_string", &FileInfoSetAttributeByteString},
+	{"g_file_info_set_attribute_int32", &FileInfoSetAttributeInt32},
+	{"g_file_info_set_attribute_int64", &FileInfoSetAttributeInt64},
+	{"g_file_info_set_attribute_mask", &FileInfoSetAttributeMask},
+	{"g_file_info_set_attribute_object", &FileInfoSetAttributeObject},
+	{"g_file_info_set_attribute_status", &FileInfoSetAttributeStatus},
+	{"g_file_info_set_attribute_string", &FileInfoSetAttributeString},
+	{"g_file_info_set_attribute_stringv", &FileInfoSetAttributeStringv},
+	{"g_file_info_set_attribute_uint32", &FileInfoSetAttributeUint32},
+	{"g_file_info_set_attribute_uint64", &FileInfoSetAttributeUint64},
+	{"g_file_info_set_content_type", &FileInfoSetContentType},
+	{"g_file_info_set_display_name", &FileInfoSetDisplayName},
+	{"g_file_info_set_edit_name", &FileInfoSetEditName},
+	{"g_file_info_set_file_type", &FileInfoSetFileType},
+	{"g_file_info_set_icon", &FileInfoSetIcon},
+	{"g_file_info_set_is_hidden", &FileInfoSetIsHidden},
+	{"g_file_info_set_is_symlink", &FileInfoSetIsSymlink},
+	{"g_file_info_set_modification_time", &FileInfoSetModificationTime},
+	{"g_file_info_set_name", &FileInfoSetName},
+	{"g_file_info_set_size", &FileInfoSetSize},
+	{"g_file_info_set_sort_order", &FileInfoSetSortOrder},
+	{"g_file_info_set_symlink_target", &FileInfoSetSymlinkTarget},
+	{"g_file_info_unset_attribute_mask", &FileInfoUnsetAttributeMask},
+	{"g_file_input_stream_get_type", &FileInputStreamGetType},
+	{"g_file_input_stream_query_info", &FileInputStreamQueryInfo},
+	{"g_file_input_stream_query_info_async", &FileInputStreamQueryInfoAsync},
+	{"g_file_input_stream_query_info_finish", &FileInputStreamQueryInfoFinish},
+	{"g_file_io_stream_get_etag", &FileIoStreamGetEtag},
+	{"g_file_io_stream_get_type", &FileIoStreamGetType},
+	{"g_file_io_stream_query_info", &FileIoStreamQueryInfo},
+	{"g_file_io_stream_query_info_async", &FileIoStreamQueryInfoAsync},
+	{"g_file_io_stream_query_info_finish", &FileIoStreamQueryInfoFinish},
+	{"g_file_is_native", &FileIsNative},
+	{"g_file_load_contents", &FileLoadContents},
+	{"g_file_load_contents_async", &FileLoadContentsAsync},
+	{"g_file_load_contents_finish", &FileLoadContentsFinish},
+	{"g_file_load_partial_contents_async", &FileLoadPartialContentsAsync},
+	{"g_file_load_partial_contents_finish", &FileLoadPartialContentsFinish},
+	{"g_file_make_directory", &FileMakeDirectory},
+	{"g_file_make_directory_with_parents", &FileMakeDirectoryWithParents},
+	{"g_file_make_symbolic_link", &FileMakeSymbolicLink},
+	{"g_file_monitor", &FileMonitor},
+	{"g_file_monitor_cancel", &FileMonitorCancel},
+	{"g_file_monitor_directory", &FileMonitorDirectory},
+	{"g_file_monitor_emit_event", &FileMonitorEmitEvent},
+	{"g_file_monitor_event_get_type", &FileMonitorEventGetType},
+	{"g_file_monitor_file", &FileMonitorFile},
+	{"g_file_monitor_flags_get_type", &FileMonitorFlagsGetType},
+	{"g_file_monitor_get_type", &FileMonitorGetType},
+	{"g_file_monitor_is_cancelled", &FileMonitorIsCancelled},
+	{"g_file_monitor_set_rate_limit", &FileMonitorSetRateLimit},
+	{"g_file_mount_enclosing_volume", &FileMountEnclosingVolume},
+	{"g_file_mount_enclosing_volume_finish", &FileMountEnclosingVolumeFinish},
+	{"g_file_mount_mountable", &FileMountMountable},
+	{"g_file_mount_mountable_finish", &FileMountMountableFinish},
+	{"g_file_move", &FileMove},
+	{"g_file_new_for_commandline_arg", &FileNewForCommandlineArg},
+	{"g_file_new_for_path", &FileNewForPath},
+	{"g_file_new_for_uri", &FileNewForUri},
+	{"g_file_open_readwrite", &FileOpenReadwrite},
+	{"g_file_open_readwrite_async", &FileOpenReadwriteAsync},
+	{"g_file_open_readwrite_finish", &FileOpenReadwriteFinish},
+	{"g_file_output_stream_get_etag", &FileOutputStreamGetEtag},
+	{"g_file_output_stream_get_type", &FileOutputStreamGetType},
+	{"g_file_output_stream_query_info", &FileOutputStreamQueryInfo},
+	{"g_file_output_stream_query_info_async", &FileOutputStreamQueryInfoAsync},
+	{"g_file_output_stream_query_info_finish", &FileOutputStreamQueryInfoFinish},
+	{"g_file_parse_name", &FileParseName},
+	{"g_file_poll_mountable", &FilePollMountable},
+	{"g_file_poll_mountable_finish", &FilePollMountableFinish},
+	{"g_file_query_default_handler", &FileQueryDefaultHandler},
+	{"g_file_query_exists", &FileQueryExists},
+	{"g_file_query_file_type", &FileQueryFileType},
+	{"g_file_query_filesystem_info", &FileQueryFilesystemInfo},
+	{"g_file_query_filesystem_info_async", &FileQueryFilesystemInfoAsync},
+	{"g_file_query_filesystem_info_finish", &FileQueryFilesystemInfoFinish},
+	{"g_file_query_info", &FileQueryInfo},
+	{"g_file_query_info_async", &FileQueryInfoAsync},
+	{"g_file_query_info_finish", &FileQueryInfoFinish},
+	{"g_file_query_info_flags_get_type", &FileQueryInfoFlagsGetType},
+	{"g_file_query_settable_attributes", &FileQuerySettableAttributes},
+	{"g_file_query_writable_namespaces", &FileQueryWritableNamespaces},
+	{"g_file_read", &FileRead},
+	{"g_file_read_async", &FileReadAsync},
+	{"g_file_read_finish", &FileReadFinish},
+	{"g_file_replace", &FileReplace},
+	{"g_file_replace_async", &FileReplaceAsync},
+	{"g_file_replace_contents", &FileReplaceContents},
+	{"g_file_replace_contents_async", &FileReplaceContentsAsync},
+	{"g_file_replace_contents_finish", &FileReplaceContentsFinish},
+	{"g_file_replace_finish", &FileReplaceFinish},
+	{"g_file_replace_readwrite", &FileReplaceReadwrite},
+	{"g_file_replace_readwrite_async", &FileReplaceReadwriteAsync},
+	{"g_file_replace_readwrite_finish", &FileReplaceReadwriteFinish},
+	{"g_file_resolve_relative_path", &FileResolveRelativePath},
+	{"g_file_set_attribute", &FileSetAttribute},
+	{"g_file_set_attribute_byte_string", &FileSetAttributeByteString},
+	{"g_file_set_attribute_int32", &FileSetAttributeInt32},
+	{"g_file_set_attribute_int64", &FileSetAttributeInt64},
+	{"g_file_set_attribute_string", &FileSetAttributeString},
+	{"g_file_set_attribute_uint32", &FileSetAttributeUint32},
+	{"g_file_set_attribute_uint64", &FileSetAttributeUint64},
+	{"g_file_set_attributes_async", &FileSetAttributesAsync},
+	{"g_file_set_attributes_finish", &FileSetAttributesFinish},
+	{"g_file_set_attributes_from_info", &FileSetAttributesFromInfo},
+	{"g_file_set_display_name", &FileSetDisplayName},
+	{"g_file_set_display_name_async", &FileSetDisplayNameAsync},
+	{"g_file_set_display_name_finish", &FileSetDisplayNameFinish},
+	{"g_file_start_mountable", &FileStartMountable},
+	{"g_file_start_mountable_finish", &FileStartMountableFinish},
+	{"g_file_stop_mountable", &FileStopMountable},
+	{"g_file_stop_mountable_finish", &FileStopMountableFinish},
+	{"g_file_supports_thread_contexts", &FileSupportsThreadContexts},
+	{"g_file_trash", &FileTrash},
+	{"g_file_type_get_type", &FileTypeGetType},
+	{"g_file_unmount_mountable", &FileUnmountMountable},
+	{"g_file_unmount_mountable_finish", &FileUnmountMountableFinish},
+	{"g_file_unmount_mountable_with_operation", &FileUnmountMountableWithOperation},
+	{"g_file_unmount_mountable_with_operation_finish", &FileUnmountMountableWithOperationFinish},
+	{"g_filename_completer_get_completion_suffix", &FilenameCompleterGetCompletionSuffix},
+	{"g_filename_completer_get_completions", &FilenameCompleterGetCompletions},
+	{"g_filename_completer_get_type", &FilenameCompleterGetType},
+	{"g_filename_completer_new", &FilenameCompleterNew},
+	{"g_filename_completer_set_dirs_only", &FilenameCompleterSetDirsOnly},
+	{"g_filesystem_preview_type_get_type", &FilesystemPreviewTypeGetType},
+	{"g_filter_input_stream_get_base_stream", &FilterInputStreamGetBaseStream},
+	{"g_filter_input_stream_get_close_base_stream", &FilterInputStreamGetCloseBaseStream},
+	{"g_filter_input_stream_get_type", &FilterInputStreamGetType},
+	{"g_filter_input_stream_set_close_base_stream", &FilterInputStreamSetCloseBaseStream},
+	{"g_filter_output_stream_get_base_stream", &FilterOutputStreamGetBaseStream},
+	{"g_filter_output_stream_get_close_base_stream", &FilterOutputStreamGetCloseBaseStream},
+	{"g_filter_output_stream_get_type", &FilterOutputStreamGetType},
+	{"g_filter_output_stream_set_close_base_stream", &FilterOutputStreamSetCloseBaseStream},
+	{"g_icon_equal", &IconEqual},
+	{"g_icon_get_type", &IconGetType},
+	{"g_icon_hash", &IconHash},
+	{"g_icon_new_for_string", &IconNewForString},
+	{"g_icon_to_string", &IconToString},
+	{"g_inet_address_get_family", &InetAddressGetFamily},
+	{"g_inet_address_get_is_any", &InetAddressGetIsAny},
+	{"g_inet_address_get_is_link_local", &InetAddressGetIsLinkLocal},
+	{"g_inet_address_get_is_loopback", &InetAddressGetIsLoopback},
+	{"g_inet_address_get_is_mc_global", &InetAddressGetIsMcGlobal},
+	{"g_inet_address_get_is_mc_link_local", &InetAddressGetIsMcLinkLocal},
+	{"g_inet_address_get_is_mc_node_local", &InetAddressGetIsMcNodeLocal},
+	{"g_inet_address_get_is_mc_org_local", &InetAddressGetIsMcOrgLocal},
+	{"g_inet_address_get_is_mc_site_local", &InetAddressGetIsMcSiteLocal},
+	{"g_inet_address_get_is_multicast", &InetAddressGetIsMulticast},
+	{"g_inet_address_get_is_site_local", &InetAddressGetIsSiteLocal},
+	{"g_inet_address_get_native_size", &InetAddressGetNativeSize},
+	{"g_inet_address_get_type", &InetAddressGetType},
+	{"g_inet_address_new_any", &InetAddressNewAny},
+	{"g_inet_address_new_from_bytes", &InetAddressNewFromBytes},
+	{"g_inet_address_new_from_string", &InetAddressNewFromString},
+	{"g_inet_address_new_loopback", &InetAddressNewLoopback},
+	{"g_inet_address_to_bytes", &InetAddressToBytes},
+	{"g_inet_address_to_string", &InetAddressToString},
+	{"g_inet_socket_address_get_address", &InetSocketAddressGetAddress},
+	{"g_inet_socket_address_get_port", &InetSocketAddressGetPort},
+	{"g_inet_socket_address_get_type", &InetSocketAddressGetType},
+	{"g_inet_socket_address_new", &InetSocketAddressNew},
+	{"g_initable_get_type", &InitableGetType},
+	{"g_initable_init", &InitableInit},
+	{"g_initable_new", &InitableNew},
+	{"g_initable_new_valist", &InitableNewValist},
+	{"g_initable_newv", &InitableNewv},
+	{"g_input_stream_clear_pending", &InputStreamClearPending},
+	{"g_input_stream_close", &InputStreamClose},
+	{"g_input_stream_close_async", &InputStreamCloseAsync},
+	{"g_input_stream_close_finish", &InputStreamCloseFinish},
+	{"g_input_stream_get_type", &InputStreamGetType},
+	{"g_input_stream_has_pending", &InputStreamHasPending},
+	{"g_input_stream_is_closed", &InputStreamIsClosed},
+	{"g_input_stream_read", &InputStreamRead},
+	{"g_input_stream_read_all", &InputStreamReadAll},
+	{"g_input_stream_read_async", &InputStreamReadAsync},
+	{"g_input_stream_read_finish", &InputStreamReadFinish},
+	{"g_input_stream_set_pending", &InputStreamSetPending},
+	{"g_input_stream_skip", &InputStreamSkip},
+	{"g_input_stream_skip_async", &InputStreamSkipAsync},
+	{"g_input_stream_skip_finish", &InputStreamSkipFinish},
+	{"g_io_error_enum_get_type", &IoErrorEnumGetType},
+	{"g_io_error_from_errno", &IoErrorFromErrno},
+	{"g_io_error_from_win32_error", &IoErrorFromWin32Error},
+	{"g_io_error_quark", &IoErrorQuark},
+	{"g_io_extension_get_name", &IoExtensionGetName},
+	{"g_io_extension_get_priority", &IoExtensionGetPriority},
+	{"g_io_extension_get_type", &IoExtensionGetType},
+	{"g_io_extension_point_get_extension_by_name", &IoExtensionPointGetExtensionByName},
+	{"g_io_extension_point_get_extensions", &IoExtensionPointGetExtensions},
+	{"g_io_extension_point_get_required_type", &IoExtensionPointGetRequiredType},
+	{"g_io_extension_point_implement", &IoExtensionPointImplement},
+	{"g_io_extension_point_lookup", &IoExtensionPointLookup},
+	{"g_io_extension_point_register", &IoExtensionPointRegister},
+	{"g_io_extension_point_set_required_type", &IoExtensionPointSetRequiredType},
+	{"g_io_extension_ref_class", &IoExtensionRefClass},
+	{"g_io_module_get_type", &IoModuleGetType},
+	{"g_io_module_new", &IoModuleNew},
+	{"g_io_modules_load_all_in_directory", &IoModulesLoadAllInDirectory},
+	{"g_io_modules_scan_all_in_directory", &IoModulesScanAllInDirectory},
+	{"g_io_scheduler_cancel_all_jobs", &IoSchedulerCancelAllJobs},
+	{"g_io_scheduler_job_send_to_mainloop", &IoSchedulerJobSendToMainloop},
+	{"g_io_scheduler_job_send_to_mainloop_async", &IoSchedulerJobSendToMainloopAsync},
+	{"g_io_scheduler_push_job", &IoSchedulerPushJob},
+	{"g_io_stream_clear_pending", &IoStreamClearPending},
+	{"g_io_stream_close", &IoStreamClose},
+	{"g_io_stream_close_async", &IoStreamCloseAsync},
+	{"g_io_stream_close_finish", &IoStreamCloseFinish},
+	{"g_io_stream_get_input_stream", &IoStreamGetInputStream},
+	{"g_io_stream_get_output_stream", &IoStreamGetOutputStream},
+	{"g_io_stream_get_type", &IoStreamGetType},
+	{"g_io_stream_has_pending", &IoStreamHasPending},
+	{"g_io_stream_is_closed", &IoStreamIsClosed},
+	{"g_io_stream_set_pending", &IoStreamSetPending},
+	{"g_io_stream_splice_async", &IoStreamSpliceAsync},
+	{"g_io_stream_splice_finish", &IoStreamSpliceFinish},
+	{"g_io_stream_splice_flags_get_type", &IoStreamSpliceFlagsGetType},
+	{"g_keyfile_settings_backend_new", &KeyfileSettingsBackendNew},
+	{"g_loadable_icon_get_type", &LoadableIconGetType},
+	{"g_loadable_icon_load", &LoadableIconLoad},
+	{"g_loadable_icon_load_async", &LoadableIconLoadAsync},
+	{"g_loadable_icon_load_finish", &LoadableIconLoadFinish},
+	{"g_memory_input_stream_add_data", &MemoryInputStreamAddData},
+	{"g_memory_input_stream_get_type", &MemoryInputStreamGetType},
+	{"g_memory_input_stream_new", &MemoryInputStreamNew},
+	{"g_memory_input_stream_new_from_data", &MemoryInputStreamNewFromData},
+	{"g_memory_output_stream_get_data", &MemoryOutputStreamGetData},
+	{"g_memory_output_stream_get_data_size", &MemoryOutputStreamGetDataSize},
+	{"g_memory_output_stream_get_size", &MemoryOutputStreamGetSize},
+	{"g_memory_output_stream_get_type", &MemoryOutputStreamGetType},
+	{"g_memory_output_stream_new", &MemoryOutputStreamNew},
+	{"g_memory_output_stream_steal_data", &MemoryOutputStreamStealData},
+	{"g_memory_settings_backend_new", &MemorySettingsBackendNew},
+	{"g_mount_can_eject", &MountCanEject},
+	{"g_mount_can_unmount", &MountCanUnmount},
+	{"g_mount_eject", &MountEject},
+	{"g_mount_eject_finish", &MountEjectFinish},
+	{"g_mount_eject_with_operation", &MountEjectWithOperation},
+	{"g_mount_eject_with_operation_finish", &MountEjectWithOperationFinish},
+	{"g_mount_get_default_location", &MountGetDefaultLocation},
+	{"g_mount_get_drive", &MountGetDrive},
+	{"g_mount_get_icon", &MountGetIcon},
+	{"g_mount_get_name", &MountGetName},
+	{"g_mount_get_root", &MountGetRoot},
+	{"g_mount_get_type", &MountGetType},
+	{"g_mount_get_uuid", &MountGetUuid},
+	{"g_mount_get_volume", &MountGetVolume},
+	{"g_mount_guess_content_type", &MountGuessContentType},
+	{"g_mount_guess_content_type_finish", &MountGuessContentTypeFinish},
+	{"g_mount_guess_content_type_sync", &MountGuessContentTypeSync},
+	{"g_mount_is_shadowed", &MountIsShadowed},
+	{"g_mount_mount_flags_get_type", &MountMountFlagsGetType},
+	{"g_mount_operation_get_anonymous", &MountOperationGetAnonymous},
+	{"g_mount_operation_get_choice", &MountOperationGetChoice},
+	{"g_mount_operation_get_domain", &MountOperationGetDomain},
+	{"g_mount_operation_get_password", &MountOperationGetPassword},
+	{"g_mount_operation_get_password_save", &MountOperationGetPasswordSave},
+	{"g_mount_operation_get_type", &MountOperationGetType},
+	{"g_mount_operation_get_username", &MountOperationGetUsername},
+	{"g_mount_operation_new", &MountOperationNew},
+	{"g_mount_operation_reply", &MountOperationReply},
+	{"g_mount_operation_result_get_type", &MountOperationResultGetType},
+	{"g_mount_operation_set_anonymous", &MountOperationSetAnonymous},
+	{"g_mount_operation_set_choice", &MountOperationSetChoice},
+	{"g_mount_operation_set_domain", &MountOperationSetDomain},
+	{"g_mount_operation_set_password", &MountOperationSetPassword},
+	{"g_mount_operation_set_password_save", &MountOperationSetPasswordSave},
+	{"g_mount_operation_set_username", &MountOperationSetUsername},
+	{"g_mount_remount", &MountRemount},
+	{"g_mount_remount_finish", &MountRemountFinish},
+	{"g_mount_shadow", &MountShadow},
+	{"g_mount_unmount", &MountUnmount},
+	{"g_mount_unmount_finish", &MountUnmountFinish},
+	{"g_mount_unmount_flags_get_type", &MountUnmountFlagsGetType},
+	{"g_mount_unmount_with_operation", &MountUnmountWithOperation},
+	{"g_mount_unmount_with_operation_finish", &MountUnmountWithOperationFinish},
+	{"g_mount_unshadow", &MountUnshadow},
+	{"g_native_volume_monitor_get_type", &NativeVolumeMonitorGetType},
+	{"g_network_address_get_hostname", &NetworkAddressGetHostname},
+	{"g_network_address_get_port", &NetworkAddressGetPort},
+	{"g_network_address_get_scheme", &NetworkAddressGetScheme},
+	{"g_network_address_get_type", &NetworkAddressGetType},
+	{"g_network_address_new", &NetworkAddressNew},
+	{"g_network_address_parse", &NetworkAddressParse},
+	{"g_network_address_parse_uri", &NetworkAddressParseUri},
+	{"g_network_service_get_domain", &NetworkServiceGetDomain},
+	{"g_network_service_get_protocol", &NetworkServiceGetProtocol},
+	{"g_network_service_get_scheme", &NetworkServiceGetScheme},
+	{"g_network_service_get_service", &NetworkServiceGetService},
+	{"g_network_service_get_type", &NetworkServiceGetType},
+	{"g_network_service_new", &NetworkServiceNew},
+	{"g_network_service_set_scheme", &NetworkServiceSetScheme},
+	{"g_null_settings_backend_new", &NullSettingsBackendNew},
+	{"g_output_stream_clear_pending", &OutputStreamClearPending},
+	{"g_output_stream_close", &OutputStreamClose},
+	{"g_output_stream_close_async", &OutputStreamCloseAsync},
+	{"g_output_stream_close_finish", &OutputStreamCloseFinish},
+	{"g_output_stream_flush", &OutputStreamFlush},
+	{"g_output_stream_flush_async", &OutputStreamFlushAsync},
+	{"g_output_stream_flush_finish", &OutputStreamFlushFinish},
+	{"g_output_stream_get_type", &OutputStreamGetType},
+	{"g_output_stream_has_pending", &OutputStreamHasPending},
+	{"g_output_stream_is_closed", &OutputStreamIsClosed},
+	{"g_output_stream_is_closing", &OutputStreamIsClosing},
+	{"g_output_stream_set_pending", &OutputStreamSetPending},
+	{"g_output_stream_splice", &OutputStreamSplice},
+	{"g_output_stream_splice_async", &OutputStreamSpliceAsync},
+	{"g_output_stream_splice_finish", &OutputStreamSpliceFinish},
+	{"g_output_stream_splice_flags_get_type", &OutputStreamSpliceFlagsGetType},
+	{"g_output_stream_write", &OutputStreamWrite},
+	{"g_output_stream_write_all", &OutputStreamWriteAll},
+	{"g_output_stream_write_async", &OutputStreamWriteAsync},
+	{"g_output_stream_write_finish", &OutputStreamWriteFinish},
+	{"g_password_save_get_type", &PasswordSaveGetType},
+	{"g_permission_acquire", &PermissionAcquire},
+	{"g_permission_acquire_async", &PermissionAcquireAsync},
+	{"g_permission_acquire_finish", &PermissionAcquireFinish},
+	{"g_permission_get_allowed", &PermissionGetAllowed},
+	{"g_permission_get_can_acquire", &PermissionGetCanAcquire},
+	{"g_permission_get_can_release", &PermissionGetCanRelease},
+	{"g_permission_get_type", &PermissionGetType},
+	{"g_permission_impl_update", &PermissionImplUpdate},
+	{"g_permission_release", &PermissionRelease},
+	{"g_permission_release_async", &PermissionReleaseAsync},
+	{"g_permission_release_finish", &PermissionReleaseFinish},
+	{"g_pollable_input_stream_can_poll", &PollableInputStreamCanPoll},
+	{"g_pollable_input_stream_create_source", &PollableInputStreamCreateSource},
+	{"g_pollable_input_stream_get_type", &PollableInputStreamGetType},
+	{"g_pollable_input_stream_is_readable", &PollableInputStreamIsReadable},
+	{"g_pollable_input_stream_read_nonblocking", &PollableInputStreamReadNonblocking},
+	{"g_pollable_output_stream_can_poll", &PollableOutputStreamCanPoll},
+	{"g_pollable_output_stream_create_source", &PollableOutputStreamCreateSource},
+	{"g_pollable_output_stream_get_type", &PollableOutputStreamGetType},
+	{"g_pollable_output_stream_is_writable", &PollableOutputStreamIsWritable},
+	{"g_pollable_output_stream_write_nonblocking", &PollableOutputStreamWriteNonblocking},
+	{"g_pollable_source_new", &PollableSourceNew},
+	{"g_proxy_address_enumerator_get_type", &ProxyAddressEnumeratorGetType},
+	{"g_proxy_address_get_destination_hostname", &ProxyAddressGetDestinationHostname},
+	{"g_proxy_address_get_destination_port", &ProxyAddressGetDestinationPort},
+	{"g_proxy_address_get_password", &ProxyAddressGetPassword},
+	{"g_proxy_address_get_protocol", &ProxyAddressGetProtocol},
+	{"g_proxy_address_get_type", &ProxyAddressGetType},
+	{"g_proxy_address_get_username", &ProxyAddressGetUsername},
+	{"g_proxy_address_new", &ProxyAddressNew},
+	{"g_proxy_connect", &ProxyConnect},
+	{"g_proxy_connect_async", &ProxyConnectAsync},
+	{"g_proxy_connect_finish", &ProxyConnectFinish},
+	{"g_proxy_get_default_for_protocol", &ProxyGetDefaultForProtocol},
+	{"g_proxy_get_type", &ProxyGetType},
+	{"g_proxy_resolver_get_default", &ProxyResolverGetDefault},
+	{"g_proxy_resolver_get_type", &ProxyResolverGetType},
+	{"g_proxy_resolver_is_supported", &ProxyResolverIsSupported},
+	{"g_proxy_resolver_lookup", &ProxyResolverLookup},
+	{"g_proxy_resolver_lookup_async", &ProxyResolverLookupAsync},
+	{"g_proxy_resolver_lookup_finish", &ProxyResolverLookupFinish},
+	{"g_proxy_supports_hostname", &ProxySupportsHostname},
+	{"g_resolver_error_get_type", &ResolverErrorGetType},
+	{"g_resolver_error_quark", &ResolverErrorQuark},
+	{"g_resolver_free_addresses", &ResolverFreeAddresses},
+	{"g_resolver_free_targets", &ResolverFreeTargets},
+	{"g_resolver_get_default", &ResolverGetDefault},
+	{"g_resolver_get_type", &ResolverGetType},
+	{"g_resolver_lookup_by_address", &ResolverLookupByAddress},
+	{"g_resolver_lookup_by_address_async", &ResolverLookupByAddressAsync},
+	{"g_resolver_lookup_by_address_finish", &ResolverLookupByAddressFinish},
+	{"g_resolver_lookup_by_name", &ResolverLookupByName},
+	{"g_resolver_lookup_by_name_async", &ResolverLookupByNameAsync},
+	{"g_resolver_lookup_by_name_finish", &ResolverLookupByNameFinish},
+	{"g_resolver_lookup_service", &ResolverLookupService},
+	{"g_resolver_lookup_service_async", &ResolverLookupServiceAsync},
+	{"g_resolver_lookup_service_finish", &ResolverLookupServiceFinish},
+	{"g_resolver_set_default", &ResolverSetDefault},
+	{"g_seekable_can_seek", &SeekableCanSeek},
+	{"g_seekable_can_truncate", &SeekableCanTruncate},
+	{"g_seekable_get_type", &SeekableGetType},
+	{"g_seekable_seek", &SeekableSeek},
+	{"g_seekable_tell", &SeekableTell},
+	{"g_seekable_truncate", &SeekableTruncate},
+	{"g_settings_apply", &SettingsApply},
+	{"g_settings_backend_changed", &SettingsBackendChanged},
+	{"g_settings_backend_changed_tree", &SettingsBackendChangedTree},
+	{"g_settings_backend_flatten_tree", &SettingsBackendFlattenTree},
+	{"g_settings_backend_get_default", &SettingsBackendGetDefault},
+	{"g_settings_backend_get_type", &SettingsBackendGetType},
+	{"g_settings_backend_keys_changed", &SettingsBackend_keysChanged},
+	{"g_settings_backend_path_changed", &SettingsBackendPathChanged},
+	{"g_settings_backend_path_writable_changed", &SettingsBackendPathWritableChanged},
+	{"g_settings_backend_writable_changed", &SettingsBackendWritableChanged},
+	{"g_settings_bind", &SettingsBind},
+	{"g_settings_bind_flags_get_type", &SettingsBindFlagsGetType},
+	{"g_settings_bind_with_mapping", &SettingsBindWithMapping},
+	{"g_settings_bind_writable", &SettingsBindWritable},
+	{"g_settings_delay", &SettingsDelay},
+	{"g_settings_get", &SettingsGet},
+	{"g_settings_get_boolean", &SettingsGetBoolean},
+	{"g_settings_get_child", &SettingsGetChild},
+	{"g_settings_get_double", &SettingsGetDouble},
+	{"g_settings_get_enum", &SettingsGetEnum},
+	{"g_settings_get_flags", &SettingsGetFlags},
+	{"g_settings_get_has_unapplied", &SettingsGetHasUnapplied},
+	{"g_settings_get_int", &SettingsGetInt},
+	{"g_settings_get_mapped", &SettingsGetMapped},
+	{"g_settings_get_range", &SettingsGetRange},
+	{"g_settings_get_string", &SettingsGetString},
+	{"g_settings_get_strv", &SettingsGetStrv},
+	{"g_settings_get_type", &SettingsGetType},
+	{"g_settings_get_value", &SettingsGetValue},
+	{"g_settings_is_writable", &SettingsIsWritable},
+	{"g_settings_list_children", &SettingsListChildren},
+	{"g_settings_list_keys", &SettingsList_keys},
+	{"g_settings_list_relocatable_schemas", &SettingsListRelocatableSchemas},
+	{"g_settings_list_schemas", &SettingsListSchemas},
+	{"g_settings_new", &SettingsNew},
+	{"g_settings_new_with_backend", &SettingsNewWithBackend},
+	{"g_settings_new_with_backend_and_path", &SettingsNewWithBackendAndPath},
+	{"g_settings_new_with_path", &SettingsNewWithPath},
+	{"g_settings_range_check", &SettingsRangeCheck},
+	{"g_settings_reset", &SettingsReset},
+	{"g_settings_revert", &SettingsRevert},
+	{"g_settings_set", &SettingsSet},
+	{"g_settings_set_boolean", &SettingsSetBoolean},
+	{"g_settings_set_double", &SettingsSetDouble},
+	{"g_settings_set_enum", &SettingsSetEnum},
+	{"g_settings_set_flags", &SettingsSetFlags},
+	{"g_settings_set_int", &SettingsSetInt},
+	{"g_settings_set_string", &SettingsSetString},
+	{"g_settings_set_strv", &SettingsSetStrv},
+	{"g_settings_set_value", &SettingsSetValue},
+	{"g_settings_sync", &SettingsSync},
+	{"g_settings_unbind", &SettingsUnbind},
+	// Undocumented {"g_simple_action_get_parameter_type", &SimpleActionGetParameterType},
+	{"g_simple_action_get_type", &SimpleActionGetType},
+	{"g_simple_action_group_get_type", &SimpleActionGroupGetType},
+	{"g_simple_action_group_insert", &SimpleActionGroupInsert},
+	{"g_simple_action_group_lookup", &SimpleActionGroupLookup},
+	{"g_simple_action_group_new", &SimpleActionGroupNew},
+	{"g_simple_action_group_remove", &SimpleActionGroupRemove},
+	{"g_simple_action_new", &SimpleActionNew},
+	{"g_simple_action_new_stateful", &SimpleActionNewStateful},
+	{"g_simple_action_set_enabled", &SimpleActionSetEnabled},
+	{"g_simple_async_report_error_in_idle", &SimpleAsyncReportErrorInIdle},
+	{"g_simple_async_report_gerror_in_idle", &SimpleAsyncReportGerrorInIdle},
+	{"g_simple_async_report_take_gerror_in_idle", &SimpleAsyncReportTakeGerrorInIdle},
+	{"g_simple_async_result_complete", &SimpleAsyncResultComplete},
+	{"g_simple_async_result_complete_in_idle", &SimpleAsyncResultCompleteInIdle},
+	{"g_simple_async_result_get_op_res_gboolean", &SimpleAsyncResultGetOpResGboolean},
+	{"g_simple_async_result_get_op_res_gpointer", &SimpleAsyncResultGetOpResGpointer},
+	{"g_simple_async_result_get_op_res_gssize", &SimpleAsyncResultGetOpResGssize},
+	{"g_simple_async_result_get_source_tag", &SimpleAsyncResultGetSourceTag},
+	{"g_simple_async_result_get_type", &SimpleAsyncResultGetType},
+	{"g_simple_async_result_is_valid", &SimpleAsyncResultIsValid},
+	{"g_simple_async_result_new", &SimpleAsyncResultNew},
+	{"g_simple_async_result_new_error", &SimpleAsyncResultNewError},
+	{"g_simple_async_result_new_from_error", &SimpleAsyncResultNewFromError},
+	{"g_simple_async_result_new_take_error", &SimpleAsyncResultNewTakeError},
+	{"g_simple_async_result_propagate_error", &SimpleAsyncResultPropagateError},
+	{"g_simple_async_result_run_in_thread", &SimpleAsyncResultRunInThread},
+	{"g_simple_async_result_set_error", &SimpleAsyncResultSetError},
+	{"g_simple_async_result_set_error_va", &SimpleAsyncResultSetErrorVa},
+	{"g_simple_async_result_set_from_error", &SimpleAsyncResultSetFromError},
+	{"g_simple_async_result_set_handle_cancellation", &SimpleAsyncResultSetHandleCancellation},
+	{"g_simple_async_result_set_op_res_gboolean", &SimpleAsyncResultSetOpResGboolean},
+	{"g_simple_async_result_set_op_res_gpointer", &SimpleAsyncResultSetOpResGpointer},
+	{"g_simple_async_result_set_op_res_gssize", &SimpleAsyncResultSetOpResGssize},
+	{"g_simple_async_result_take_error", &SimpleAsyncResultTakeError},
+	{"g_simple_permission_get_type", &SimplePermissionGetType},
+	{"g_simple_permission_new", &SimplePermissionNew},
+	{"g_socket_accept", &SocketAccept},
+	{"g_socket_address_enumerator_get_type", &SocketAddressEnumeratorGetType},
+	{"g_socket_address_enumerator_next", &SocketAddressEnumeratorNext},
+	{"g_socket_address_enumerator_next_async", &SocketAddressEnumeratorNextAsync},
+	{"g_socket_address_enumerator_next_finish", &SocketAddressEnumeratorNextFinish},
+	{"g_socket_address_get_family", &SocketAddressGetFamily},
+	{"g_socket_address_get_native_size", &SocketAddressGetNativeSize},
+	{"g_socket_address_get_type", &SocketAddressGetType},
+	{"g_socket_address_new_from_native", &SocketAddressNewFromNative},
+	{"g_socket_address_to_native", &SocketAddressToNative},
+	{"g_socket_bind", &SocketBind},
+	{"g_socket_check_connect_result", &SocketCheckConnectResult},
+	{"g_socket_client_add_application_proxy", &SocketClientAddApplicationProxy},
+	{"g_socket_client_connect", &SocketClientConnect},
+	{"g_socket_client_connect_async", &SocketClientConnectAsync},
+	{"g_socket_client_connect_finish", &SocketClientConnectFinish},
+	{"g_socket_client_connect_to_host", &SocketClientConnectToHost},
+	{"g_socket_client_connect_to_host_async", &SocketClientConnectToHostAsync},
+	{"g_socket_client_connect_to_host_finish", &SocketClientConnectToHostFinish},
+	{"g_socket_client_connect_to_service", &SocketClientConnectToService},
+	{"g_socket_client_connect_to_service_async", &SocketClientConnectToServiceAsync},
+	{"g_socket_client_connect_to_service_finish", &SocketClientConnectToServiceFinish},
+	{"g_socket_client_connect_to_uri", &SocketClientConnectToUri},
+	{"g_socket_client_connect_to_uri_async", &SocketClientConnectToUriAsync},
+	{"g_socket_client_connect_to_uri_finish", &SocketClientConnectToUriFinish},
+	{"g_socket_client_get_enable_proxy", &SocketClientGetEnableProxy},
+	{"g_socket_client_get_family", &SocketClientGetFamily},
+	{"g_socket_client_get_local_address", &SocketClientGetLocalAddress},
+	{"g_socket_client_get_protocol", &SocketClientGetProtocol},
+	{"g_socket_client_get_socket_type", &SocketClientGetSocketType},
+	{"g_socket_client_get_timeout", &SocketClientGetTimeout},
+	{"g_socket_client_get_tls", &SocketClientGetTls},
+	{"g_socket_client_get_tls_validation_flags", &SocketClientGetTlsValidationFlags},
+	{"g_socket_client_get_type", &SocketClientGetType},
+	{"g_socket_client_new", &SocketClientNew},
+	{"g_socket_client_set_enable_proxy", &SocketClientSetEnableProxy},
+	{"g_socket_client_set_family", &SocketClientSetFamily},
+	{"g_socket_client_set_local_address", &SocketClientSetLocalAddress},
+	{"g_socket_client_set_protocol", &SocketClientSetProtocol},
+	{"g_socket_client_set_socket_type", &SocketClientSetSocketType},
+	{"g_socket_client_set_timeout", &SocketClientSetTimeout},
+	{"g_socket_client_set_tls", &SocketClientSetTls},
+	{"g_socket_client_set_tls_validation_flags", &SocketClientSetTlsValidationFlags},
+	{"g_socket_close", &SocketClose},
+	{"g_socket_condition_check", &SocketConditionCheck},
+	{"g_socket_condition_wait", &SocketConditionWait},
+	{"g_socket_connect", &SocketConnect},
+	{"g_socket_connectable_enumerate", &SocketConnectableEnumerate},
+	{"g_socket_connectable_get_type", &SocketConnectableGetType},
+	{"g_socket_connectable_proxy_enumerate", &SocketConnectableProxyEnumerate},
+	{"g_socket_connection_factory_create_connection", &SocketConnectionFactoryCreateConnection},
+	{"g_socket_connection_factory_lookup_type", &SocketConnectionFactoryLookupType},
+	{"g_socket_connection_factory_register_type", &SocketConnectionFactoryRegisterType},
+	{"g_socket_connection_get_local_address", &SocketConnectionGetLocalAddress},
+	{"g_socket_connection_get_remote_address", &SocketConnectionGetRemoteAddress},
+	{"g_socket_connection_get_socket", &SocketConnectionGetSocket},
+	{"g_socket_connection_get_type", &SocketConnectionGetType},
+	{"g_socket_control_message_deserialize", &SocketControlMessageDeserialize},
+	{"g_socket_control_message_get_level", &SocketControlMessageGetLevel},
+	{"g_socket_control_message_get_msg_type", &SocketControlMessageGetMsgType},
+	{"g_socket_control_message_get_size", &SocketControlMessageGetSize},
+	{"g_socket_control_message_get_type", &SocketControlMessageGetType},
+	{"g_socket_control_message_serialize", &SocketControlMessageSerialize},
+	{"g_socket_create_source", &SocketCreateSource},
+	{"g_socket_family_get_type", &SocketFamilyGetType},
+	{"g_socket_get_blocking", &SocketGetBlocking},
+	{"g_socket_get_credentials", &SocketGetCredentials},
+	{"g_socket_get_family", &SocketGetFamily},
+	{"g_socket_get_fd", &SocketGetFd},
+	{"g_socket_get_keepalive", &SocketGet_keepalive},
+	{"g_socket_get_listen_backlog", &SocketGetListenBacklog},
+	{"g_socket_get_local_address", &SocketGetLocalAddress},
+	{"g_socket_get_protocol", &SocketGetProtocol},
+	{"g_socket_get_remote_address", &SocketGetRemoteAddress},
+	{"g_socket_get_socket_type", &SocketGetSocketType},
+	{"g_socket_get_timeout", &SocketGetTimeout},
+	{"g_socket_get_type", &SocketGetType},
+	{"g_socket_is_closed", &SocketIsClosed},
+	{"g_socket_is_connected", &SocketIsConnected},
+	{"g_socket_listen", &SocketListen},
+	{"g_socket_listener_accept", &SocketListenerAccept},
+	{"g_socket_listener_accept_async", &SocketListenerAcceptAsync},
+	{"g_socket_listener_accept_finish", &SocketListenerAcceptFinish},
+	{"g_socket_listener_accept_socket", &SocketListenerAcceptSocket},
+	{"g_socket_listener_accept_socket_async", &SocketListenerAcceptSocketAsync},
+	{"g_socket_listener_accept_socket_finish", &SocketListenerAcceptSocketFinish},
+	{"g_socket_listener_add_address", &SocketListenerAddAddress},
+	{"g_socket_listener_add_any_inet_port", &SocketListenerAddAnyInetPort},
+	{"g_socket_listener_add_inet_port", &SocketListenerAddInetPort},
+	{"g_socket_listener_add_socket", &SocketListenerAddSocket},
+	{"g_socket_listener_close", &SocketListenerClose},
+	{"g_socket_listener_get_type", &SocketListenerGetType},
+	{"g_socket_listener_new", &SocketListenerNew},
+	{"g_socket_listener_set_backlog", &SocketListenerSetBacklog},
+	{"g_socket_msg_flags_get_type", &SocketMsgFlagsGetType},
+	{"g_socket_new", &SocketNew},
+	{"g_socket_new_from_fd", &SocketNewFromFd},
+	{"g_socket_protocol_get_type", &SocketProtocolGetType},
+	{"g_socket_receive", &SocketReceive},
+	{"g_socket_receive_from", &SocketReceiveFrom},
+	{"g_socket_receive_message", &SocketReceiveMessage},
+	{"g_socket_receive_with_blocking", &SocketReceiveWithBlocking},
+	{"g_socket_send", &SocketSend},
+	{"g_socket_send_message", &SocketSendMessage},
+	{"g_socket_send_to", &SocketSendTo},
+	{"g_socket_send_with_blocking", &SocketSendWithBlocking},
+	{"g_socket_service_get_type", &SocketServiceGetType},
+	{"g_socket_service_is_active", &SocketServiceIsActive},
+	{"g_socket_service_new", &SocketServiceNew},
+	{"g_socket_service_start", &SocketServiceStart},
+	{"g_socket_service_stop", &SocketServiceStop},
+	{"g_socket_set_blocking", &SocketSetBlocking},
+	{"g_socket_set_keepalive", &SocketSet_keepalive},
+	{"g_socket_set_listen_backlog", &SocketSetListenBacklog},
+	{"g_socket_set_timeout", &SocketSetTimeout},
+	{"g_socket_shutdown", &SocketShutdown},
+	{"g_socket_speaks_ipv4", &SocketSpeaksIpv4},
+	{"g_socket_type_get_type", &SocketTypeGetType},
+	{"g_srv_target_copy", &SrvTargetCopy},
+	{"g_srv_target_free", &SrvTargetFree},
+	{"g_srv_target_get_hostname", &SrvTargetGetHostname},
+	{"g_srv_target_get_port", &SrvTargetGetPort},
+	{"g_srv_target_get_priority", &SrvTargetGetPriority},
+	{"g_srv_target_get_type", &SrvTargetGetType},
+	{"g_srv_target_get_weight", &SrvTargetGetWeight},
+	{"g_srv_target_list_sort", &SrvTargetListSort},
+	{"g_srv_target_new", &SrvTargetNew},
+	{"g_tcp_connection_get_graceful_disconnect", &TcpConnectionGetGracefulDisconnect},
+	{"g_tcp_connection_get_type", &TcpConnectionGetType},
+	{"g_tcp_connection_set_graceful_disconnect", &TcpConnectionSetGracefulDisconnect},
+	{"g_tcp_wrapper_connection_get_base_io_stream", &TcpWrapperConnectionGetBaseIoStream},
+	{"g_tcp_wrapper_connection_get_type", &TcpWrapperConnectionGetType},
+	{"g_tcp_wrapper_connection_new", &TcpWrapperConnectionNew},
+	{"g_themed_icon_append_name", &ThemedIconAppendName},
+	{"g_themed_icon_get_names", &ThemedIconGetNames},
+	{"g_themed_icon_get_type", &ThemedIconGetType},
+	{"g_themed_icon_new", &ThemedIconNew},
+	{"g_themed_icon_new_from_names", &ThemedIconNewFromNames},
+	{"g_themed_icon_new_with_default_fallbacks", &ThemedIconNewWithDefaultFallbacks},
+	{"g_themed_icon_prepend_name", &ThemedIconPrependName},
+	// Undocumented {"g_threaded_resolver_get_type", &ThreadedResolverGetType},
+	{"g_threaded_socket_service_get_type", &ThreadedSocketServiceGetType},
+	{"g_threaded_socket_service_new", &ThreadedSocketServiceNew},
+	{"g_tls_authentication_mode_get_type", &TlsAuthenticationModeGetType},
+	{"g_tls_backend_get_certificate_type", &TlsBackendGetCertificateType},
+	{"g_tls_backend_get_client_connection_type", &TlsBackendGetClientConnectionType},
+	{"g_tls_backend_get_default", &TlsBackendGetDefault},
+	{"g_tls_backend_get_server_connection_type", &TlsBackendGetServerConnectionType},
+	{"g_tls_backend_get_type", &TlsBackendGetType},
+	{"g_tls_backend_supports_tls", &TlsBackendSupportsTls},
+	{"g_tls_certificate_flags_get_type", &TlsCertificateFlagsGetType},
+	{"g_tls_certificate_get_issuer", &TlsCertificateGetIssuer},
+	{"g_tls_certificate_get_type", &TlsCertificateGetType},
+	{"g_tls_certificate_list_new_from_file", &TlsCertificateListNewFromFile},
+	{"g_tls_certificate_new_from_file", &TlsCertificateNewFromFile},
+	{"g_tls_certificate_new_from_files", &TlsCertificateNewFromFiles},
+	{"g_tls_certificate_new_from_pem", &TlsCertificateNewFromPem},
+	{"g_tls_certificate_verify", &TlsCertificateVerify},
+	{"g_tls_client_connection_get_accepted_cas", &TlsClientConnectionGetAcceptedCas},
+	{"g_tls_client_connection_get_server_identity", &TlsClientConnectionGetServerIdentity},
+	{"g_tls_client_connection_get_type", &TlsClientConnectionGetType},
+	{"g_tls_client_connection_get_use_ssl3", &TlsClientConnectionGetUseSsl3},
+	{"g_tls_client_connection_get_validation_flags", &TlsClientConnectionGetValidationFlags},
+	{"g_tls_client_connection_new", &TlsClientConnectionNew},
+	{"g_tls_client_connection_set_server_identity", &TlsClientConnectionSetServerIdentity},
+	{"g_tls_client_connection_set_use_ssl3", &TlsClientConnectionSetUseSsl3},
+	{"g_tls_client_connection_set_validation_flags", &TlsClientConnectionSetValidationFlags},
+	{"g_tls_connection_emit_accept_certificate", &TlsConnectionEmitAcceptCertificate},
+	{"g_tls_connection_get_certificate", &TlsConnectionGetCertificate},
+	{"g_tls_connection_get_peer_certificate", &TlsConnectionGetPeerCertificate},
+	{"g_tls_connection_get_peer_certificate_errors", &TlsConnectionGetPeerCertificateErrors},
+	{"g_tls_connection_get_rehandshake_mode", &TlsConnectionGetRehandshakeMode},
+	{"g_tls_connection_get_require_close_notify", &TlsConnectionGetRequireCloseNotify},
+	{"g_tls_connection_get_type", &TlsConnectionGetType},
+	{"g_tls_connection_get_use_system_certdb", &TlsConnectionGetUseSystemCertdb},
+	{"g_tls_connection_handshake", &TlsConnectionHandshake},
+	{"g_tls_connection_handshake_async", &TlsConnectionHandshakeAsync},
+	{"g_tls_connection_handshake_finish", &TlsConnectionHandshakeFinish},
+	{"g_tls_connection_set_certificate", &TlsConnectionSetCertificate},
+	{"g_tls_connection_set_rehandshake_mode", &TlsConnectionSetRehandshakeMode},
+	{"g_tls_connection_set_require_close_notify", &TlsConnectionSetRequireCloseNotify},
+	{"g_tls_connection_set_use_system_certdb", &TlsConnectionSetUseSystemCertdb},
+	{"g_tls_error_get_type", &TlsErrorGetType},
+	{"g_tls_error_quark", &TlsErrorQuark},
+	{"g_tls_rehandshake_mode_get_type", &TlsRehandshakeModeGetType},
+	{"g_tls_server_connection_get_type", &TlsServerConnectionGetType},
+	{"g_tls_server_connection_new", &TlsServerConnectionNew},
+	{"g_unix_socket_address_type_get_type", &UnixSocketAddressTypeGetType},
+	{"g_vfs_get_default", &VfsGetDefault},
+	{"g_vfs_get_file_for_path", &VfsGetFileForPath},
+	{"g_vfs_get_file_for_uri", &VfsGetFileForUri},
+	{"g_vfs_get_local", &VfsGetLocal},
+	{"g_vfs_get_supported_uri_schemes", &VfsGetSupportedUriSchemes},
+	{"g_vfs_get_type", &VfsGetType},
+	{"g_vfs_is_active", &VfsIsActive},
+	{"g_vfs_parse_name", &VfsParseName},
+	{"g_volume_can_eject", &VolumeCanEject},
+	{"g_volume_can_mount", &VolumeCanMount},
+	{"g_volume_eject", &VolumeEject},
+	{"g_volume_eject_finish", &VolumeEjectFinish},
+	{"g_volume_eject_with_operation", &VolumeEjectWithOperation},
+	{"g_volume_eject_with_operation_finish", &VolumeEjectWithOperationFinish},
+	{"g_volume_enumerate_identifiers", &VolumeEnumerateIdentifiers},
+	{"g_volume_get_activation_root", &VolumeGetActivationRoot},
+	{"g_volume_get_drive", &VolumeGetDrive},
+	{"g_volume_get_icon", &VolumeGetIcon},
+	{"g_volume_get_identifier", &VolumeGetIdentifier},
+	{"g_volume_get_mount", &VolumeGetMount},
+	{"g_volume_get_name", &VolumeGetName},
+	{"g_volume_get_type", &VolumeGetType},
+	{"g_volume_get_uuid", &VolumeGetUuid},
+	{"g_volume_monitor_adopt_orphan_mount", &VolumeMonitorAdoptOrphanMount},
+	{"g_volume_monitor_get", &VolumeMonitorGet},
+	{"g_volume_monitor_get_connected_drives", &VolumeMonitorGetConnectedDrives},
+	{"g_volume_monitor_get_mount_for_uuid", &VolumeMonitorGetMountForUuid},
+	{"g_volume_monitor_get_mounts", &VolumeMonitorGetMounts},
+	{"g_volume_monitor_get_type", &VolumeMonitorGetType},
+	{"g_volume_monitor_get_volume_for_uuid", &VolumeMonitorGetVolumeForUuid},
+	{"g_volume_monitor_get_volumes", &VolumeMonitorGetVolumes},
+	{"g_volume_mount", &VolumeMount},
+	{"g_volume_mount_finish", &VolumeMountFinish},
+	{"g_volume_should_automount", &VolumeShouldAutomount},
+	{"g_win32_input_stream_get_close_handle", &Win32InputStreamGetCloseHandle},
+	{"g_win32_input_stream_get_handle", &Win32InputStreamGetHandle},
+	{"g_win32_input_stream_get_type", &Win32InputStreamGetType},
+	{"g_win32_input_stream_new", &Win32InputStreamNew},
+	{"g_win32_input_stream_set_close_handle", &Win32InputStreamSetCloseHandle},
+	{"g_win32_output_stream_get_close_handle", &Win32OutputStreamGetCloseHandle},
+	{"g_win32_output_stream_get_handle", &Win32OutputStreamGetHandle},
+	{"g_win32_output_stream_get_type", &Win32OutputStreamGetType},
+	{"g_win32_output_stream_new", &Win32OutputStreamNew},
+	{"g_win32_output_stream_set_close_handle", &Win32OutputStreamSetCloseHandle},
+	// Undocumented {"g_win32_resolver_get_type", &Win32ResolverGetType},
+	{"g_zlib_compressor_format_get_type", &ZlibCompressorFormatGetType},
+	{"g_zlib_compressor_get_file_info", &ZlibCompressorGetFileInfo},
+	{"g_zlib_compressor_get_type", &ZlibCompressorGetType},
+	{"g_zlib_compressor_new", &ZlibCompressorNew},
+	{"g_zlib_compressor_set_file_info", &ZlibCompressorSetFileInfo},
+	{"g_zlib_decompressor_get_file_info", &ZlibDecompressorGetFileInfo},
+	{"g_zlib_decompressor_get_type", &ZlibDecompressorGetType},
+	{"g_zlib_decompressor_new", &ZlibDecompressorNew},
 }

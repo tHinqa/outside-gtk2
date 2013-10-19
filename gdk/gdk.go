@@ -637,10 +637,10 @@ var (
 
 	ScreenSetFontOptions func(
 		screen *T.GdkScreen,
-		options *T.CairoFontOptionsT)
+		options *T.CairoFontOptions)
 
 	ScreenGetFontOptions func(
-		screen *T.GdkScreen) *T.CairoFontOptionsT
+		screen *T.GdkScreen) *T.CairoFontOptions
 
 	ScreenSetResolution func(
 		screen *T.GdkScreen,
@@ -1292,40 +1292,40 @@ var (
 		height int) *T.GdkPixbuf
 
 	CairoCreate func(
-		drawable *T.GdkDrawable) *T.CairoT
+		drawable *T.GdkDrawable) *T.Cairo
 
 	CairoResetClip func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		drawable *T.GdkDrawable)
 
 	CairoSetSourceColor func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		color *T.GdkColor)
 
 	CairoSetSourcePixbuf func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		pixbuf *T.GdkPixbuf,
 		pixbufX float64,
 		pixbufY float64)
 
 	CairoSetSourcePixmap func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		pixmap *T.GdkPixmap,
 		pixmapX float64,
 		pixmapY float64)
 
 	CairoSetSourceWindow func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		window *T.GdkWindow,
 		x float64,
 		y float64)
 
 	CairoRectangle func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		rectangle *T.GdkRectangle)
 
 	CairoRegion func(
-		cr *T.CairoT,
+		cr *T.Cairo,
 		region *T.GdkRegion)
 
 	CursorGetType func() T.GType
@@ -2817,7 +2817,7 @@ var (
 		parentRelative T.Gboolean)
 
 	WindowGetBackgroundPattern func(
-		window *T.GdkWindow) *T.CairoPatternT
+		window *T.GdkWindow) *T.CairoPattern
 
 	WindowSetCursor func(
 		window *T.GdkWindow,
@@ -2951,9 +2951,9 @@ var (
 
 	WindowCreateSimilarSurface func(
 		window *T.GdkWindow,
-		content T.CairoContentT,
+		content T.CairoContent,
 		width int,
-		height int) *T.CairoSurfaceT
+		height int) *T.CairoSurface
 
 	WindowBeep func(
 		window *T.GdkWindow)

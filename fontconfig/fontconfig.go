@@ -557,21 +557,21 @@ var (
 	FcConfigParseAndLoad func(
 		config *FcConfig, file string, complain FcBool) FcBool
 
-	FcFreeTypeCharIndex func(face T.FT_Face, ucs4 FcChar32) uint
+	FcFreeTypeCharIndex func(face T.FTFace, ucs4 FcChar32) uint
 
 	FcFreeTypeCharSetAndSpacing func(
-		face T.FT_Face, blanks *FcBlanks, spacing *int) *T.FcCharSet
+		face T.FTFace, blanks *FcBlanks, spacing *int) *T.FcCharSet
 
 	FcFreeTypeCharSet func(
-		face T.FT_Face, blanks *FcBlanks) *T.FcCharSet
+		face T.FTFace, blanks *FcBlanks) *T.FcCharSet
 
 	FcPatternGetFTFace func(
-		p *T.FcPattern, object string, n int, f *T.FT_Face) FcResult
+		p *T.FcPattern, object string, n int, f *T.FTFace) FcResult
 
 	FcPatternAddFTFace func(
-		p *T.FcPattern, object string, f T.FT_Face) FcBool
+		p *T.FcPattern, object string, f T.FTFace) FcBool
 
-	FcFreeTypeQueryFace func(face T.FT_Face,
+	FcFreeTypeQueryFace func(face T.FTFace,
 		file string, id int, blanks *FcBlanks) *T.FcPattern
 )
 

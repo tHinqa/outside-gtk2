@@ -40,7 +40,7 @@ var (
 	Pango_fc_font_get_type func() T.GType
 
 	Pango_fc_font_lock_face func(
-		font *T.PangoFcFont) T.FT_Face
+		font *T.PangoFcFont) T.FTFace
 
 	Pango_fc_font_unlock_face func(
 		font *T.PangoFcFont)
@@ -170,14 +170,14 @@ var (
 		right T.PangoGlyph) int
 
 	Pango_ft2_font_get_face func(
-		font *T.PangoFont) T.FT_Face
+		font *T.PangoFont) T.FTFace
 
 	Pango_ft2_font_get_coverage func(
 		font *T.PangoFont,
 		language *T.PangoLanguage) *T.PangoCoverage
 
 	Pango_ot_info_get func(
-		face T.FT_Face) *T.PangoOTInfo
+		face T.FTFace) *T.PangoOTInfo
 
 	Pango_ot_info_find_script func(
 		info *T.PangoOTInfo,

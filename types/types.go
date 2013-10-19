@@ -14,7 +14,7 @@ type (
 	FILE        fix
 	Stat        fix
 
-	Cairo_bool_t  int
+	CairoBool     int
 	Char          int8
 	Enum          int
 	FT_Bool       uint8
@@ -40,8 +40,8 @@ type (
 	SizeT         uintptr
 	Time_t        int
 	TimeT         int
-	Unsigned_char uint8
-	Unsigned_long uint32 //TODO(t): check  size
+	UnsignedChar  uint8
+	UnsignedLong  uint32 //TODO(t): check  size
 
 	AtkAttributeSet        GSList
 	FT_Angle               FT_Fixed
@@ -49,7 +49,7 @@ type (
 	FT_CharMap             *FT_CharMapRec
 	FT_Driver              *FT_DriverRec
 	FT_F26Dot6             FT_Long
-	FT_Face                *FT_FaceRec
+	FTFace                 *FT_FaceRec
 	FT_Face_Internal       *FT_Face_InternalRec
 	FT_Fixed               FT_Long
 	FT_Glyph               *FT_GlyphRec
@@ -110,7 +110,7 @@ type (
 	GtkObjectInitFunc      GInstanceInitFunc
 	GtkType                GType
 	GType                  Gsize
-	Gulong                 Unsigned_long
+	Gulong                 UnsignedLong
 	Gunichar               GUint32
 	Gunichar2              uint16
 	GVoidFunc              func()
@@ -164,19 +164,15 @@ type (
 	AtkTable                       struct{}
 	AtkText                        struct{}
 	AtkValue                       struct{}
-	Cairo_device_t                 struct{}
-	Cairo_font_face_t              struct{}
-	Cairo_font_options_t           struct{}
-	CairoFontOptionsT              struct{}
-	Cairo_pattern_t                struct{}
-	CairoPatternT                  struct{}
-	Cairo_region_t                 struct{}
-	Cairo_scaled_font_t            struct{}
-	Cairo_script_interpreter_t     struct{}
-	Cairo_surface_t                struct{}
-	CairoSurfaceT                  struct{}
-	Cairo_t                        struct{}
-	CairoT                         struct{}
+	CairoDevice                    struct{}
+	CairoFontFace                  struct{}
+	CairoFontOptions               struct{}
+	CairoPattern                   struct{}
+	CairoRegion                    struct{}
+	CairoScaledFont                struct{}
+	CairoScriptInterpreter         struct{}
+	CairoSurface                   struct{}
+	Cairo                          struct{}
 	FcCharSet                      struct{}
 	FcPattern                      struct{}
 	GAction                        struct{}
@@ -1955,10 +1951,10 @@ const (
 	G_SETTINGS_BIND_DEFAULT GSettingsBindFlags = 0
 )
 
-type Cairo_status_t Enum
+type CairoStatus Enum
 
 const (
-	CAIRO_STATUS_SUCCESS Cairo_status_t = iota
+	CAIRO_STATUS_SUCCESS CairoStatus = iota
 	CAIRO_STATUS_NO_MEMORY
 	CAIRO_STATUS_INVALID_RESTORE
 	CAIRO_STATUS_INVALID_POP_GROUP
@@ -1997,18 +1993,18 @@ const (
 	CAIRO_STATUS_LAST_STATUS
 )
 
-type CairoContentT Enum
+type CairoContent Enum
 
 const (
-	CAIRO_CONTENT_COLOR       CairoContentT = 0x1000
-	CAIRO_CONTENT_ALPHA       CairoContentT = 0x2000
-	CAIRO_CONTENT_COLOR_ALPHA CairoContentT = 0x3000
+	CAIRO_CONTENT_COLOR       CairoContent = 0x1000
+	CAIRO_CONTENT_ALPHA       CairoContent = 0x2000
+	CAIRO_CONTENT_COLOR_ALPHA CairoContent = 0x3000
 )
 
-type Cairo_operator_t Enum
+type CairoOperator Enum
 
 const (
-	CAIRO_OPERATOR_CLEAR Cairo_operator_t = iota
+	CAIRO_OPERATOR_CLEAR CairoOperator = iota
 	CAIRO_OPERATOR_SOURCE
 	CAIRO_OPERATOR_OVER
 	CAIRO_OPERATOR_IN
@@ -2039,91 +2035,91 @@ const (
 	CAIRO_OPERATOR_HSL_LUMINOSITY
 )
 
-type Cairo_antialias_t Enum
+type CairoAntialias Enum
 
 const (
-	CAIRO_ANTIALIAS_DEFAULT Cairo_antialias_t = iota
+	CAIRO_ANTIALIAS_DEFAULT CairoAntialias = iota
 	CAIRO_ANTIALIAS_NONE
 	CAIRO_ANTIALIAS_GRAY
 	CAIRO_ANTIALIAS_SUBPIXEL
 )
 
-type Cairo_fill_rule_t Enum
+type CairoFillRule Enum
 
 const (
-	CAIRO_FILL_RULE_WINDING Cairo_fill_rule_t = iota
+	CAIRO_FILL_RULE_WINDING CairoFillRule = iota
 	CAIRO_FILL_RULE_EVEN_ODD
 )
 
-type Cairo_line_cap_t Enum
+type CairoLineCap Enum
 
 const (
-	CAIRO_LINE_CAP_BUTT Cairo_line_cap_t = iota
+	CAIRO_LINE_CAP_BUTT CairoLineCap = iota
 	CAIRO_LINE_CAP_ROUND
 	CAIRO_LINE_CAP_SQUARE
 )
 
-type Cairo_line_join_t Enum
+type CairoLineJoin Enum
 
 const (
-	CAIRO_LINE_JOIN_MITER Cairo_line_join_t = iota
+	CAIRO_LINE_JOIN_MITER CairoLineJoin = iota
 	CAIRO_LINE_JOIN_ROUND
 	CAIRO_LINE_JOIN_BEVEL
 )
 
-type Cairo_text_cluster_flags_t Enum
+type CairoTextClusterFlags Enum
 
 const (
-	CAIRO_TEXT_CLUSTER_FLAG_BACKWARD Cairo_text_cluster_flags_t = 1 << iota
+	CAIRO_TEXT_CLUSTER_FLAG_BACKWARD CairoTextClusterFlags = 1 << iota
 )
 
-type Cairo_font_slant_t Enum
+type CairoFontSlant Enum
 
 const (
-	CAIRO_FONT_SLANT_NORMAL Cairo_font_slant_t = iota
+	CAIRO_FONT_SLANT_NORMAL CairoFontSlant = iota
 	CAIRO_FONT_SLANT_ITALIC
 	CAIRO_FONT_SLANT_OBLIQUE
 )
 
-type Cairo_font_weight_t Enum
+type CairoFontWeight Enum
 
 const (
-	CAIRO_FONT_WEIGHT_NORMAL Cairo_font_weight_t = iota
+	CAIRO_FONT_WEIGHT_NORMAL CairoFontWeight = iota
 	CAIRO_FONT_WEIGHT_BOLD
 )
 
-type Cairo_subpixel_order_t Enum
+type CairoSubpixelOrder Enum
 
 const (
-	CAIRO_SUBPIXEL_ORDER_DEFAULT Cairo_subpixel_order_t = iota
+	CAIRO_SUBPIXEL_ORDER_DEFAULT CairoSubpixelOrder = iota
 	CAIRO_SUBPIXEL_ORDER_RGB
 	CAIRO_SUBPIXEL_ORDER_BGR
 	CAIRO_SUBPIXEL_ORDER_VRGB
 	CAIRO_SUBPIXEL_ORDER_VBGR
 )
 
-type Cairo_hint_style_t Enum
+type CairoHintStyle Enum
 
 const (
-	CAIRO_HINT_STYLE_DEFAULT Cairo_hint_style_t = iota
+	CAIRO_HINT_STYLE_DEFAULT CairoHintStyle = iota
 	CAIRO_HINT_STYLE_NONE
 	CAIRO_HINT_STYLE_SLIGHT
 	CAIRO_HINT_STYLE_MEDIUM
 	CAIRO_HINT_STYLE_FULL
 )
 
-type Cairo_hint_metrics_t Enum
+type CairoHintMetrics Enum
 
 const (
-	CAIRO_HINT_METRICS_DEFAULT Cairo_hint_metrics_t = iota
+	CAIRO_HINT_METRICS_DEFAULT CairoHintMetrics = iota
 	CAIRO_HINT_METRICS_OFF
 	CAIRO_HINT_METRICS_ON
 )
 
-type Cairo_font_type_t Enum
+type CairoFontType Enum
 
 const (
-	CAIRO_FONT_TYPE_TOY Cairo_font_type_t = iota
+	CAIRO_FONT_TYPE_TOY CairoFontType = iota
 	CAIRO_FONT_TYPE_FT
 	CAIRO_FONT_TYPE_WIN32
 	CAIRO_FONT_TYPE_QUARTZ
@@ -2139,10 +2135,10 @@ const (
 	CAIRO_PATH_CLOSE_PATH
 )
 
-type Cairo_device_type_t Enum
+type CairoDeviceType Enum
 
 const (
-	CAIRO_DEVICE_TYPE_DRM Cairo_device_type_t = iota
+	CAIRO_DEVICE_TYPE_DRM CairoDeviceType = iota
 	CAIRO_DEVICE_TYPE_GL
 	CAIRO_DEVICE_TYPE_SCRIPT
 	CAIRO_DEVICE_TYPE_XCB
@@ -2150,10 +2146,10 @@ const (
 	CAIRO_DEVICE_TYPE_XML
 )
 
-type Cairo_surface_type_t Enum
+type CairoSurfaceType Enum
 
 const (
-	CAIRO_SURFACE_TYPE_IMAGE Cairo_surface_type_t = iota
+	CAIRO_SURFACE_TYPE_IMAGE CairoSurfaceType = iota
 	CAIRO_SURFACE_TYPE_PDF
 	CAIRO_SURFACE_TYPE_PS
 	CAIRO_SURFACE_TYPE_XLIB
@@ -2179,10 +2175,10 @@ const (
 	CAIRO_SURFACE_TYPE_SUBSURFACE
 )
 
-type Cairo_format_t Enum
+type CairoFormat Enum
 
 const (
-	CAIRO_FORMAT_INVALID Cairo_format_t = iota - 1
+	CAIRO_FORMAT_INVALID CairoFormat = iota - 1
 	CAIRO_FORMAT_ARGB32
 	CAIRO_FORMAT_RGB24
 	CAIRO_FORMAT_A8
@@ -2190,28 +2186,28 @@ const (
 	CAIRO_FORMAT_RGB16_565
 )
 
-type Cairo_pattern_type_t Enum
+type CairoPatternType Enum
 
 const (
-	CAIRO_PATTERN_TYPE_SOLID Cairo_pattern_type_t = iota
+	CAIRO_PATTERN_TYPE_SOLID CairoPatternType = iota
 	CAIRO_PATTERN_TYPE_SURFACE
 	CAIRO_PATTERN_TYPE_LINEAR
 	CAIRO_PATTERN_TYPE_RADIAL
 )
 
-type Cairo_extend_t Enum
+type CairoExtend Enum
 
 const (
-	CAIRO_EXTEND_NONE Cairo_extend_t = iota
+	CAIRO_EXTEND_NONE CairoExtend = iota
 	CAIRO_EXTEND_REPEAT
 	CAIRO_EXTEND_REFLECT
 	CAIRO_EXTEND_PAD
 )
 
-type Cairo_filter_t Enum
+type CairoFilter Enum
 
 const (
-	CAIRO_FILTER_FAST Cairo_filter_t = iota
+	CAIRO_FILTER_FAST CairoFilter = iota
 	CAIRO_FILTER_GOOD
 	CAIRO_FILTER_BEST
 	CAIRO_FILTER_NEAREST
@@ -2219,10 +2215,10 @@ const (
 	CAIRO_FILTER_GAUSSIAN
 )
 
-type Cairo_region_overlap_t Enum
+type CairoRegionOverlap Enum
 
 const (
-	CAIRO_REGION_OVERLAP_IN Cairo_region_overlap_t = iota
+	CAIRO_REGION_OVERLAP_IN CairoRegionOverlap = iota
 	CAIRO_REGION_OVERLAP_OUT
 	CAIRO_REGION_OVERLAP_PART
 )
@@ -5194,7 +5190,7 @@ type (
 		data Gpointer)
 
 	PangoCairoShapeRendererFunc func(
-		cr *Cairo_t,
+		cr *Cairo,
 		attr *PangoAttrShape,
 		do_path Gboolean,
 		data Gpointer)
@@ -5210,59 +5206,59 @@ type (
 		font *PangoFont,
 		data Gpointer) Gboolean
 
-	Cairo_destroy_func_t func(data *Void)
+	CairoDestroyFunc func(data *Void)
 
-	Cairo_user_scaled_font_init_func_t func(
-		scaled_font *Cairo_scaled_font_t,
-		cr *Cairo_t,
-		extents *Cairo_font_extents_t) Cairo_status_t
+	CairoUserScaledFontInitFunc func(
+		scaled_font *CairoScaledFont,
+		cr *Cairo,
+		extents *CairoFontExtents) CairoStatus
 
-	Cairo_user_scaled_font_render_glyph_func_t func(
-		scaled_font *Cairo_scaled_font_t,
-		glyph Unsigned_long,
-		cr *Cairo_t,
-		extents *Cairo_text_extents_t) Cairo_status_t
+	CairoUserScaledFontRenderGlyphFunc func(
+		scaled_font *CairoScaledFont,
+		glyph UnsignedLong,
+		cr *Cairo,
+		extents *CairoTextExtents) CairoStatus
 
-	Cairo_user_scaled_font_text_to_glyphs_func_t func(
-		scaled_font *Cairo_scaled_font_t,
+	CairoUserScaledFontTextToGlyphsFunc func(
+		scaled_font *CairoScaledFont,
 		utf8 string,
 		utf8_len int,
-		glyphs **Cairo_glyph_t,
+		glyphs **CairoGlyph,
 		num_glyphs *int,
-		clusters **Cairo_text_cluster_t,
+		clusters **CairoTextCluster,
 		num_clusters *int,
-		cluster_flags *Cairo_text_cluster_flags_t) Cairo_status_t
+		cluster_flags *CairoTextClusterFlags) CairoStatus
 
-	Cairo_user_scaled_font_unicode_to_glyph_func_t func(
-		scaled_font *Cairo_scaled_font_t,
-		unicode Unsigned_long,
-		glyph_index *Unsigned_long) Cairo_status_t
+	CairoUserScaledFontUnicodeToGlyphFunc func(
+		scaled_font *CairoScaledFont,
+		unicode UnsignedLong,
+		glyph_index *UnsignedLong) CairoStatus
 
-	Cairo_write_func_t func(
+	CairoWriteFunc func(
 		closure *Void,
-		data *Unsigned_char,
-		length uint) Cairo_status_t
+		data *UnsignedChar,
+		length uint) CairoStatus
 
-	Cairo_read_func_t func(
+	CairoReadFunc func(
 		closure *Void,
-		data *Unsigned_char,
-		length uint) Cairo_status_t
+		data *UnsignedChar,
+		length uint) CairoStatus
 
-	Csi_surface_create_func_t func(
+	CsiSurfaceCreateFunc func(
 		closure *Void,
-		content CairoContentT,
+		content CairoContent,
 		width, height float64,
-		uid Long) *Cairo_surface_t
+		uid Long) *CairoSurface
 
-	Csi_destroy_func_t func(closure, ptr *Void)
+	CsiDestroyFunc func(closure, ptr *Void)
 
 	Csi_context_create_func_t func(
 		closure *Void,
-		surface *Cairo_surface_t) *Cairo_t
+		surface *CairoSurface) *Cairo
 
-	Csi_show_page_func_t func(closure *Void, cr *Cairo_t)
+	Csi_show_page_func_t func(closure *Void, cr *Cairo)
 
-	Csi_copy_page_func_t func(closure *Void, cr *Cairo_t)
+	Csi_copy_page_func_t func(closure *Void, cr *Cairo)
 
 	AtkEventListener func(obj *AtkObject)
 
@@ -5356,7 +5352,7 @@ type (
 		face_id FTC_FaceID,
 		library FT_Library,
 		request_data FT_Pointer,
-		aface *FT_Face) FT_Error
+		aface *FTFace) FT_Error
 
 	GBoxedCopyFunc func(boxed Gpointer) Gpointer
 

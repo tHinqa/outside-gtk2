@@ -15,44 +15,44 @@ func init() {
 }
 
 var (
-	G_module_supported func() T.Gboolean
+	ModuleSupported func() T.Gboolean
 
-	G_module_open func(
-		file_name string,
+	ModuleOpen func(
+		fileName string,
 		flags T.GModuleFlags) *T.GModule
 
-	G_module_close func(
+	ModuleClose func(
 		module *T.GModule) T.Gboolean
 
-	G_module_make_resident func(
+	ModuleMakeResident func(
 		module *T.GModule)
 
-	G_module_error func() string
+	ModuleError func() string
 
-	G_module_symbol func(
+	ModuleSymbol func(
 		module *T.GModule,
-		symbol_name string,
+		symbolName string,
 		symbol *T.Gpointer) T.Gboolean
 
-	G_module_name func(
+	ModuleName func(
 		module *T.GModule) string
 
-	G_module_build_path func(
+	ModuleBuildPath func(
 		directory string,
-		module_name string) string
+		moduleName string) string
 )
 
 var dll = "libgmodule-2.0-0.dll"
 
 var apiList = outside.Apis{
-	{"g_module_build_path", &G_module_build_path},
-	{"g_module_close", &G_module_close},
-	{"g_module_error", &G_module_error},
-	{"g_module_make_resident", &G_module_make_resident},
-	// Windows _utf8 {"g_module_name", &G_module_name},
-	{"g_module_name_utf8", &G_module_name},
-	// Windows _utf8 {"g_module_open", &G_module_open},
-	{"g_module_open_utf8", &G_module_open},
-	{"g_module_supported", &G_module_supported},
-	{"g_module_symbol", &G_module_symbol},
+	{"g_module_build_path", &ModuleBuildPath},
+	{"g_module_close", &ModuleClose},
+	{"g_module_error", &ModuleError},
+	{"g_module_make_resident", &ModuleMakeResident},
+	// Windows _utf8 {"g_module_name", &ModuleName},
+	{"g_module_name_utf8", &ModuleName},
+	// Windows _utf8 {"g_module_open", &ModuleOpen},
+	{"g_module_open_utf8", &ModuleOpen},
+	{"g_module_supported", &ModuleSupported},
+	{"g_module_symbol", &ModuleSymbol},
 }

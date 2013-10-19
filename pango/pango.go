@@ -1423,7 +1423,7 @@ var (
 	Pango_cairo_font_map_new func() *T.PangoFontMap
 
 	Pango_cairo_font_map_new_for_font_type func(
-		fonttype T.Cairo_font_type_t) *T.PangoFontMap
+		fonttype T.CairoFontType) *T.PangoFontMap
 
 	Pango_cairo_font_map_get_default func() *T.PangoFontMap
 
@@ -1431,7 +1431,7 @@ var (
 		fontmap *T.PangoCairoFontMap)
 
 	Pango_cairo_font_map_get_font_type func(
-		fontmap *T.PangoCairoFontMap) T.Cairo_font_type_t
+		fontmap *T.PangoCairoFontMap) T.CairoFontType
 
 	Pango_cairo_font_map_set_resolution func(
 		fontmap *T.PangoCairoFontMap,
@@ -1446,18 +1446,18 @@ var (
 	Pango_cairo_font_get_type func() T.GType
 
 	Pango_cairo_font_get_scaled_font func(
-		font *T.PangoCairoFont) *T.Cairo_scaled_font_t
+		font *T.PangoCairoFont) *T.CairoScaledFont
 
 	Pango_cairo_update_context func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		context *T.PangoContext)
 
 	Pango_cairo_context_set_font_options func(
 		context *T.PangoContext,
-		options *T.Cairo_font_options_t)
+		options *T.CairoFontOptions)
 
 	Pango_cairo_context_get_font_options func(
-		context *T.PangoContext) *T.Cairo_font_options_t
+		context *T.PangoContext) *T.CairoFontOptions
 
 	Pango_cairo_context_set_resolution func(
 		context *T.PangoContext,
@@ -1477,55 +1477,55 @@ var (
 		data *T.Gpointer) T.PangoCairoShapeRendererFunc
 
 	Pango_cairo_create_context func(
-		cr *T.Cairo_t) *T.PangoContext
+		cr *T.Cairo) *T.PangoContext
 
 	Pango_cairo_create_layout func(
-		cr *T.Cairo_t) *T.PangoLayout
+		cr *T.Cairo) *T.PangoLayout
 
 	Pango_cairo_update_layout func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		layout *T.PangoLayout)
 
 	Pango_cairo_show_glyph_string func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		font *T.PangoFont,
 		glyphs *T.PangoGlyphString)
 
 	Pango_cairo_show_glyph_item func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		text string,
 		glyph_item *T.PangoGlyphItem)
 
 	Pango_cairo_show_layout_line func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		line *T.PangoLayoutLine)
 
 	Pango_cairo_show_layout func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		layout *T.PangoLayout)
 
 	Pango_cairo_show_error_underline func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		x float64,
 		y float64,
 		width float64,
 		height float64)
 
 	Pango_cairo_glyph_string_path func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		font *T.PangoFont,
 		glyphs *T.PangoGlyphString)
 
 	Pango_cairo_layout_line_path func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		line *T.PangoLayoutLine)
 
 	Pango_cairo_layout_path func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		layout *T.PangoLayout)
 
 	Pango_cairo_error_underline_path func(
-		cr *T.Cairo_t,
+		cr *T.Cairo,
 		x float64,
 		y float64,
 		width float64,

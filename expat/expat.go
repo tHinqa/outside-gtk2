@@ -20,8 +20,8 @@ type (
 	XML_Parser struct{}
 	XML_Char   T.Char
 	XML_LChar  T.Char
-	XML_Bool   T.Unsigned_char
-	XML_Size   T.Unsigned_long
+	XML_Bool   T.UnsignedChar
+	XML_Size   T.UnsignedLong
 	XML_Index  T.Long
 
 	XML_ElementDeclHandler func(

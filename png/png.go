@@ -20,7 +20,7 @@ func init() {
 type (
 	Jmp_buf             [16]int
 	Png_alloc_size_t    Png_size_t
-	Png_byte            T.Unsigned_char
+	Png_byte            T.UnsignedChar
 	Png_bytep           *Png_byte
 	Png_bytepp          **Png_byte
 	Png_charp           *T.Char

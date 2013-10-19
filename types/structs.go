@@ -725,7 +725,7 @@ type (
 		Normal_gcs      *[32]GdkGC //TODO(t): CHECK
 		Exposure_gcs    *[32]GdkGC //TODO(t): CHECK
 		Subwindow_gcs   *[32]GdkGC //TODO(t): CHECK
-		Font_options    *Cairo_font_options_t
+		Font_options    *CairoFontOptions
 		Resolution      float64
 	}
 
@@ -740,7 +740,7 @@ type (
 		Translate_notify GDestroyNotify
 	}
 
-	GtkAccelGroup struct {
+	GtkAccelGroup struct { // REMOVE
 		Parent         GObject
 		Lock_count     uint
 		Modifier_mask  GdkModifierType
@@ -821,29 +821,6 @@ type (
 		Widget        *GtkWidget
 	}
 
-	GtkList struct {
-		Container        GtkContainer
-		Children         *GList
-		Selection        *GList
-		Undo_selection   *GList
-		Undo_unselection *GList
-		Last_focus_child *GtkWidget
-		Undo_focus_child *GtkWidget
-		Htimer           uint
-		Vtimer           uint
-		Anchor           int
-		Drag_pos         int
-		Anchor_state     GtkStateType
-		Bits             uint
-		// selection_mode : 2
-		// drag_selection : 1
-		// add_mode : 1
-	}
-
-	GtkListItem struct {
-		Item GtkItem
-	}
-
 	GtkItem struct {
 		Bin GtkBin
 	}
@@ -868,7 +845,7 @@ type (
 		Height    uint16
 	}
 
-	GtkButton struct {
+	GtkButton struct { // REMOVE
 		Bin              GtkBin
 		Event_window     *GdkWindow
 		Label_text       *Gchar
@@ -2360,12 +2337,12 @@ type (
 		Value *GValue
 	}
 
-	GtkAboutDialog struct {
+	GtkAboutDialog struct { // REMOVE
 		Parent_instance GtkDialog
 		Private_data    Gpointer
 	}
 
-	GtkAccelLabel struct {
+	GtkAccelLabel struct { //REMOVE
 		Label              GtkLabel
 		_                  uint
 		Accel_padding      uint
@@ -2722,7 +2699,7 @@ type (
 		Center_allocation GtkAllocation
 	}
 
-	GtkAssistant struct {
+	GtkAssistant struct { //REMOVE
 		Parent  GtkWindow
 		Cancel  *GtkWidget
 		Forward *GtkWidget
@@ -2756,7 +2733,7 @@ type (
 		Priv            *GtkBuilderPrivate
 	}
 
-	GtkButtonBox struct {
+	GtkButtonBox struct { // REMOVE
 		Box              GtkBox
 		Child_min_width  int
 		Child_min_height int
@@ -2844,17 +2821,17 @@ type (
 		Help_button     *GtkWidget
 	}
 
-	GtkComboBox struct {
+	GtkComboBox struct { // REMOVE
 		Parent_instance GtkBin
 		Priv            *GtkComboBoxPrivate
 	}
 
-	GtkComboBoxEntry struct {
+	GtkComboBoxEntry struct { // REMOVE
 		Parent_instance GtkComboBox
 		Priv            *GtkComboBoxEntryPrivate
 	}
 
-	GtkComboBoxText struct {
+	GtkComboBoxText struct { //REMOVE
 		Parent_instance GtkComboBox
 		Priv            *GtkComboBoxTextPrivate
 	}
@@ -3477,41 +3454,36 @@ type (
 		End_char    int
 	}
 
-	Cairo_user_data_key_t struct {
+	CairoUserDataKey struct {
 		Unused int
 	}
 
-	Cairo_matrix_t struct {
-		Xx float64
-		Yx float64
-		Xy float64
-		Yy float64
-		X0 float64
-		Y0 float64
+	CairoMatrix struct {
+		Xx, Yx, Xy, Yy, X0, Y0 float64
 	}
 
-	Cairo_rectangle_list_t struct {
-		Status         Cairo_status_t
-		Rectangles     *Cairo_rectangle_t
+	CairoRectangleList struct {
+		Status         CairoStatus
+		Rectangles     *CairoRectangle
 		Num_rectangles int
 	}
 
-	Cairo_rectangle_t struct {
+	CairoRectangle struct {
 		X, Y, Width, Height float64
 	}
 
-	Cairo_glyph_t struct {
-		Index Unsigned_long
+	CairoGlyph struct {
+		Index UnsignedLong
 		X     float64
 		Y     float64
 	}
 
-	Cairo_text_cluster_t struct {
+	CairoTextCluster struct {
 		Num_bytes  int
 		Num_glyphs int
 	}
 
-	Cairo_text_extents_t struct {
+	CairoTextExtents struct {
 		X_bearing float64
 		Y_bearing float64
 		Width     float64
@@ -3520,7 +3492,7 @@ type (
 		Y_advance float64
 	}
 
-	Cairo_font_extents_t struct {
+	CairoFontExtents struct {
 		Ascent        float64
 		Descent       float64
 		Height        float64
@@ -3528,8 +3500,8 @@ type (
 		Max_y_advance float64
 	}
 
-	Cairo_path_t struct {
-		Status   Cairo_status_t
+	CairoPath struct {
+		Status   CairoStatus
 		Data     *Cairo_path_data_t
 		Num_data int
 	}
@@ -3545,17 +3517,17 @@ type (
 		}
 	}
 
-	Cairo_rectangle_int_t struct {
+	CairoRectangleInt struct {
 		X, Y          int
 		Width, Height int
 	}
 
-	Cairo_script_interpreter_hooks_t struct {
+	CairoScriptInterpreterHooks struct {
 		Closure         *Void
-		Surface_create  Csi_surface_create_func_t
-		Surface_destroy Csi_destroy_func_t
+		Surface_create  CsiSurfaceCreateFunc
+		Surface_destroy CsiDestroyFunc
 		Context_create  Csi_context_create_func_t
-		Context_destroy Csi_destroy_func_t
+		Context_destroy CsiDestroyFunc
 		Show_page       Csi_show_page_func_t
 		Copy_page       Csi_copy_page_func_t
 	}
@@ -3760,7 +3732,7 @@ type (
 	}
 
 	FT_CharMapRec struct {
-		Face        FT_Face
+		Face        FTFace
 		Encoding    FT_Encoding
 		Platform_id uint16
 		Encoding_id uint16
@@ -3768,7 +3740,7 @@ type (
 
 	FT_GlyphSlotRec struct {
 		Library           FT_Library
-		Face              FT_Face
+		Face              FTFace
 		Next              FT_GlyphSlot
 		Reserved          uint
 		Generic           FT_Generic
@@ -3822,7 +3794,7 @@ type (
 	}
 
 	FT_SizeRec struct {
-		Face     FT_Face
+		Face     FTFace
 		Generic  FT_Generic
 		Metrics  FT_Size_Metrics
 		Internal FT_Size_Internal
@@ -4083,7 +4055,7 @@ type (
 		Rows         int
 		Width        int
 		Pitch        int
-		Buffer       *Unsigned_char
+		Buffer       *UnsignedChar
 		Num_grays    int16
 		Pixel_mode   Char
 		Palette_mode Char

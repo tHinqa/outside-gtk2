@@ -25,13 +25,13 @@ var (
 		domainname string, msgid string, category int) string
 
 	Libintl_ngettext func(
-		msgid1 string, msgid2 string, n T.Unsigned_long) string
+		msgid1 string, msgid2 string, n T.UnsignedLong) string
 
 	Libintl_dngettext func(domainname string,
-		msgid1 string, msgid2 string, n T.Unsigned_long) string
+		msgid1 string, msgid2 string, n T.UnsignedLong) string
 
 	Libintl_dcngettext func(domainname string, msgid1 string,
-		msgid2 string, n T.Unsigned_long, category int) string
+		msgid2 string, n T.UnsignedLong, category int) string
 
 	Libintl_textdomain func(domainname string) string
 

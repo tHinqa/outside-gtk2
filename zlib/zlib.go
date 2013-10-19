@@ -18,7 +18,7 @@ func init() {
 type (
 	GzFile         Voidp
 	Internal_state struct{}
-	ULong          T.Unsigned_long
+	ULong          T.UnsignedLong
 	ULongf         ULong
 	Voidp          *T.Void
 	Voidpf         *T.Void
@@ -36,11 +36,11 @@ type (
 
 	In_func func(
 		*T.Void,
-		**T.Unsigned_char) uint
+		**T.UnsignedChar) uint
 
 	Out_func func(
 		*T.Void,
-		*T.Unsigned_char,
+		*T.UnsignedChar,
 		uint) int
 
 	Z_stream struct {
@@ -275,7 +275,7 @@ var (
 	InflateBackInit_ func(
 		strm Z_streamp,
 		windowBits int,
-		window *T.Unsigned_char,
+		window *T.UnsignedChar,
 		version string,
 		stream_size int) int
 

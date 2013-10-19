@@ -24,1896 +24,1460 @@ type (
 	LOGFONTW struct{}
 )
 
-type Cairo_pdf_version_t T.Enum
+type PdfVersion T.Enum
 
 const (
-	CAIRO_PDF_VERSION_1_4 Cairo_pdf_version_t = iota
-	CAIRO_PDF_VERSION_1_5
+	PDF_VERSION_1_4 PdfVersion = iota
+	PDF_VERSION_1_5
 )
 
-type Cairo_ps_level_t T.Enum
+type PsLevel T.Enum
 
 const (
-	CAIRO_PS_LEVEL_2 Cairo_ps_level_t = iota
-	CAIRO_PS_LEVEL_3
+	PS_LEVEL_2 PsLevel = iota
+	PS_LEVEL_3
 )
 
-type Cairo_svg_version_t T.Enum
+type SvgVersion T.Enum
 
 const (
-	CAIRO_SVG_VERSION_1_1 Cairo_svg_version_t = iota
-	CAIRO_SVG_VERSION_1_2
+	SVG_VERSION_1_1 SvgVersion = iota
+	SVG_VERSION_1_2
 )
 
 var (
-	Cairo_version func() int
-
-	Cairo_version_string func() string
+	Version func() int
 
-	Cairo_create func(
-		target *T.Cairo_surface_t) *T.Cairo_t
+	VersionString func() string
 
-	Cairo_reference func(
-		cr *T.Cairo_t) *T.Cairo_t
-
-	Cairo_destroy func(
-		cr *T.Cairo_t)
+	Create func(target *T.CairoSurface) *T.Cairo
 
-	Cairo_get_reference_count func(
-		cr *T.Cairo_t) uint
-
-	Cairo_get_user_data func(
-		cr *T.Cairo_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_set_user_data func(
-		cr *T.Cairo_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_save func(
-		cr *T.Cairo_t)
+	Reference func(cr *T.Cairo) *T.Cairo
 
-	Cairo_restore func(
-		cr *T.Cairo_t)
+	Destroy func(cr *T.Cairo)
 
-	Cairo_push_group func(
-		cr *T.Cairo_t)
-
-	Cairo_push_group_with_content func(
-		cr *T.Cairo_t,
-		content T.CairoContentT)
-
-	Cairo_pop_group func(
-		cr *T.Cairo_t) *T.Cairo_pattern_t
-
-	Cairo_pop_group_to_source func(
-		cr *T.Cairo_t)
-
-	Cairo_set_operator func(
-		cr *T.Cairo_t,
-		op T.Cairo_operator_t)
-
-	Cairo_set_source func(
-		cr *T.Cairo_t,
-		source *T.Cairo_pattern_t)
-
-	Cairo_set_source_rgb func(
-		cr *T.Cairo_t,
-		red float64,
-		green float64,
-		blue float64)
-
-	Cairo_set_source_rgba func(
-		cr *T.Cairo_t,
-		red float64,
-		green float64,
-		blue float64,
-		alpha float64)
-
-	Cairo_set_source_surface func(
-		cr *T.Cairo_t,
-		surface *T.Cairo_surface_t,
-		x float64,
-		y float64)
-
-	Cairo_set_tolerance func(
-		cr *T.Cairo_t,
-		tolerance float64)
-
-	Cairo_set_antialias func(
-		cr *T.Cairo_t,
-		antialias T.Cairo_antialias_t)
-
-	Cairo_set_fill_rule func(
-		cr *T.Cairo_t,
-		fill_rule T.Cairo_fill_rule_t)
-
-	Cairo_set_line_width func(
-		cr *T.Cairo_t,
-		width float64)
-
-	Cairo_set_line_cap func(
-		cr *T.Cairo_t,
-		line_cap T.Cairo_line_cap_t)
-
-	Cairo_set_line_join func(
-		cr *T.Cairo_t,
-		line_join T.Cairo_line_join_t)
-
-	Cairo_set_dash func(
-		cr *T.Cairo_t,
-		dashes *float64,
-		num_dashes int,
-		offset float64)
-
-	Cairo_set_miter_limit func(
-		cr *T.Cairo_t,
-		limit float64)
-
-	Cairo_translate func(
-		cr *T.Cairo_t,
-		tx float64,
-		ty float64)
-
-	Cairo_scale func(
-		cr *T.Cairo_t,
-		sx float64,
-		sy float64)
-
-	Cairo_rotate func(
-		cr *T.Cairo_t,
-		angle float64)
-
-	Cairo_transform func(
-		cr *T.Cairo_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_set_matrix func(
-		cr *T.Cairo_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_identity_matrix func(
-		cr *T.Cairo_t)
-
-	Cairo_user_to_device func(
-		cr *T.Cairo_t,
-		x *float64,
-		y *float64)
-
-	Cairo_user_to_device_distance func(
-		cr *T.Cairo_t,
-		dx *float64,
-		dy *float64)
-
-	Cairo_device_to_user func(
-		cr *T.Cairo_t,
-		x *float64,
-		y *float64)
-
-	Cairo_device_to_user_distance func(
-		cr *T.Cairo_t,
-		dx *float64,
-		dy *float64)
-
-	Cairo_new_path func(
-		cr *T.Cairo_t)
-
-	Cairo_move_to func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64)
-
-	Cairo_new_sub_path func(
-		cr *T.Cairo_t)
-
-	Cairo_line_to func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64)
-
-	Cairo_curve_to func(
-		cr *T.Cairo_t,
-		x1 float64,
-		y1 float64,
-		x2 float64,
-		y2 float64,
-		x3 float64,
-		y3 float64)
-
-	Cairo_arc func(
-		cr *T.Cairo_t,
-		xc float64,
-		yc float64,
-		radius float64,
-		angle1 float64,
-		angle2 float64)
-
-	Cairo_arc_negative func(
-		cr *T.Cairo_t,
-		xc float64,
-		yc float64,
-		radius float64,
-		angle1 float64,
-		angle2 float64)
-
-	Cairo_rel_move_to func(
-		cr *T.Cairo_t,
-		dx float64,
-		dy float64)
-
-	Cairo_rel_line_to func(
-		cr *T.Cairo_t,
-		dx float64,
-		dy float64)
-
-	Cairo_rel_curve_to func(
-		cr *T.Cairo_t,
-		dx1 float64,
-		dy1 float64,
-		dx2 float64,
-		dy2 float64,
-		dx3 float64,
-		dy3 float64)
-
-	Cairo_rectangle func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64,
-		width float64,
-		height float64)
-
-	Cairo_close_path func(
-		cr *T.Cairo_t)
-
-	Cairo_path_extents func(
-		cr *T.Cairo_t,
-		x1 *float64,
-		y1 *float64,
-		x2 *float64,
-		y2 *float64)
-
-	Cairo_paint func(
-		cr *T.Cairo_t)
-
-	Cairo_paint_with_alpha func(
-		cr *T.Cairo_t,
-		alpha float64)
-
-	Cairo_mask func(
-		cr *T.Cairo_t,
-		pattern *T.Cairo_pattern_t)
-
-	Cairo_mask_surface func(
-		cr *T.Cairo_t,
-		surface *T.Cairo_surface_t,
-		surface_x float64,
-		surface_y float64)
-
-	Cairo_stroke func(
-		cr *T.Cairo_t)
-
-	Cairo_stroke_preserve func(
-		cr *T.Cairo_t)
-
-	Cairo_fill func(
-		cr *T.Cairo_t)
-
-	Cairo_fill_preserve func(
-		cr *T.Cairo_t)
-
-	Cairo_copy_page func(
-		cr *T.Cairo_t)
-
-	Cairo_show_page func(
-		cr *T.Cairo_t)
-
-	Cairo_in_stroke func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64) T.Cairo_bool_t
-
-	Cairo_in_fill func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64) T.Cairo_bool_t
-
-	Cairo_in_clip func(
-		cr *T.Cairo_t,
-		x float64,
-		y float64) T.Cairo_bool_t
-
-	Cairo_stroke_extents func(
-		cr *T.Cairo_t,
-		x1 *float64,
-		y1 *float64,
-		x2 *float64,
-		y2 *float64)
-
-	Cairo_fill_extents func(
-		cr *T.Cairo_t,
-		x1 *float64,
-		y1 *float64,
-		x2 *float64,
-		y2 *float64)
-
-	Cairo_reset_clip func(
-		cr *T.Cairo_t)
-
-	Cairo_clip func(
-		cr *T.Cairo_t)
-
-	Cairo_clip_preserve func(
-		cr *T.Cairo_t)
-
-	Cairo_clip_extents func(
-		cr *T.Cairo_t,
-		x1 *float64,
-		y1 *float64,
-		x2 *float64,
-		y2 *float64)
-
-	Cairo_copy_clip_rectangle_list func(
-		cr *T.Cairo_t) *T.Cairo_rectangle_list_t
-
-	Cairo_rectangle_list_destroy func(
-		rectangle_list *T.Cairo_rectangle_list_t)
-
-	Cairo_glyph_allocate func(
-		num_glyphs int) *T.Cairo_glyph_t
-
-	Cairo_glyph_free func(
-		glyphs *T.Cairo_glyph_t)
-
-	Cairo_text_cluster_allocate func(
-		num_clusters int) *T.Cairo_text_cluster_t
-
-	Cairo_text_cluster_free func(
-		clusters *T.Cairo_text_cluster_t)
-
-	Cairo_font_options_create func() *T.Cairo_font_options_t
-
-	Cairo_font_options_copy func(
-		original *T.Cairo_font_options_t) *T.Cairo_font_options_t
-
-	Cairo_font_options_destroy func(
-		options *T.Cairo_font_options_t)
-
-	Cairo_font_options_status func(
-		options *T.Cairo_font_options_t) T.Cairo_status_t
-
-	Cairo_font_options_merge func(
-		options *T.Cairo_font_options_t,
-		other *T.Cairo_font_options_t)
-
-	Cairo_font_options_equal func(
-		options *T.Cairo_font_options_t,
-		other *T.Cairo_font_options_t) T.Cairo_bool_t
-
-	Cairo_font_options_hash func(
-		options *T.Cairo_font_options_t) T.Unsigned_long
-
-	Cairo_font_options_set_antialias func(
-		options *T.Cairo_font_options_t,
-		antialias T.Cairo_antialias_t)
-
-	Cairo_font_options_get_antialias func(
-		options *T.Cairo_font_options_t) T.Cairo_antialias_t
-
-	Cairo_font_options_set_subpixel_order func(
-		options *T.Cairo_font_options_t,
-		subpixel_order T.Cairo_subpixel_order_t)
-
-	Cairo_font_options_get_subpixel_order func(
-		options *T.Cairo_font_options_t) T.Cairo_subpixel_order_t
-
-	Cairo_font_options_set_hint_style func(
-		options *T.Cairo_font_options_t,
-		hint_style T.Cairo_hint_style_t)
-
-	Cairo_font_options_get_hint_style func(
-		options *T.Cairo_font_options_t) T.Cairo_hint_style_t
-
-	Cairo_font_options_set_hint_metrics func(
-		options *T.Cairo_font_options_t,
-		hint_metrics T.Cairo_hint_metrics_t)
-
-	Cairo_font_options_get_hint_metrics func(
-		options *T.Cairo_font_options_t) T.Cairo_hint_metrics_t
-
-	Cairo_select_font_face func(
-		cr *T.Cairo_t,
-		family string,
-		slant T.Cairo_font_slant_t,
-		weight T.Cairo_font_weight_t)
-
-	Cairo_set_font_size func(
-		cr *T.Cairo_t,
-		size float64)
-
-	Cairo_set_font_matrix func(
-		cr *T.Cairo_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_get_font_matrix func(
-		cr *T.Cairo_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_set_font_options func(
-		cr *T.Cairo_t,
-		options *T.Cairo_font_options_t)
-
-	Cairo_get_font_options func(
-		cr *T.Cairo_t,
-		options *T.Cairo_font_options_t)
-
-	Cairo_set_font_face func(
-		cr *T.Cairo_t,
-		font_face *T.Cairo_font_face_t)
-
-	Cairo_get_font_face func(
-		cr *T.Cairo_t) *T.Cairo_font_face_t
-
-	Cairo_set_scaled_font func(
-		cr *T.Cairo_t,
-		scaled_font *T.Cairo_scaled_font_t)
-
-	Cairo_get_scaled_font func(
-		cr *T.Cairo_t) *T.Cairo_scaled_font_t
-
-	Cairo_show_text func(
-		cr *T.Cairo_t,
-		utf8 string)
-
-	Cairo_show_glyphs func(
-		cr *T.Cairo_t,
-		glyphs *T.Cairo_glyph_t,
-		num_glyphs int)
-
-	Cairo_show_text_glyphs func(
-		cr *T.Cairo_t,
-		utf8 string,
-		utf8_len int,
-		glyphs *T.Cairo_glyph_t,
-		num_glyphs int,
-		clusters *T.Cairo_text_cluster_t,
-		num_clusters int,
-		cluster_flags T.Cairo_text_cluster_flags_t)
-
-	Cairo_text_path func(
-		cr *T.Cairo_t,
-		utf8 string)
-
-	Cairo_glyph_path func(
-		cr *T.Cairo_t,
-		glyphs *T.Cairo_glyph_t,
-		num_glyphs int)
-
-	Cairo_text_extents func(
-		cr *T.Cairo_t,
-		utf8 string,
-		extents *T.Cairo_text_extents_t)
-
-	Cairo_glyph_extents func(
-		cr *T.Cairo_t,
-		glyphs *T.Cairo_glyph_t,
-		num_glyphs int,
-		extents *T.Cairo_text_extents_t)
-
-	Cairo_font_extents func(
-		cr *T.Cairo_t,
-		extents *T.Cairo_font_extents_t)
-
-	Cairo_font_face_reference func(
-		font_face *T.Cairo_font_face_t) *T.Cairo_font_face_t
-
-	Cairo_font_face_destroy func(
-		font_face *T.Cairo_font_face_t)
-
-	Cairo_font_face_get_reference_count func(
-		font_face *T.Cairo_font_face_t) uint
-
-	Cairo_font_face_status func(
-		font_face *T.Cairo_font_face_t) T.Cairo_status_t
-
-	Cairo_font_face_get_type func(
-		font_face *T.Cairo_font_face_t) T.Cairo_font_type_t
-
-	Cairo_font_face_get_user_data func(
-		font_face *T.Cairo_font_face_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_font_face_set_user_data func(
-		font_face *T.Cairo_font_face_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_scaled_font_create func(
-		font_face *T.Cairo_font_face_t,
-		font_matrix *T.Cairo_matrix_t,
-		ctm *T.Cairo_matrix_t,
-		options *T.Cairo_font_options_t) *T.Cairo_scaled_font_t
-
-	Cairo_scaled_font_reference func(
-		scaled_font *T.Cairo_scaled_font_t) *T.Cairo_scaled_font_t
-
-	Cairo_scaled_font_destroy func(
-		scaled_font *T.Cairo_scaled_font_t)
-
-	Cairo_scaled_font_get_reference_count func(
-		scaled_font *T.Cairo_scaled_font_t) uint
-
-	Cairo_scaled_font_status func(
-		scaled_font *T.Cairo_scaled_font_t) T.Cairo_status_t
-
-	Cairo_scaled_font_get_type func(
-		scaled_font *T.Cairo_scaled_font_t) T.Cairo_font_type_t
-
-	Cairo_scaled_font_get_user_data func(
-		scaled_font *T.Cairo_scaled_font_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_scaled_font_set_user_data func(
-		scaled_font *T.Cairo_scaled_font_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_scaled_font_extents func(
-		scaled_font *T.Cairo_scaled_font_t,
-		extents *T.Cairo_font_extents_t)
-
-	Cairo_scaled_font_text_extents func(
-		scaled_font *T.Cairo_scaled_font_t,
-		utf8 string,
-		extents *T.Cairo_text_extents_t)
-
-	Cairo_scaled_font_glyph_extents func(
-		scaled_font *T.Cairo_scaled_font_t,
-		glyphs *T.Cairo_glyph_t,
-		num_glyphs int,
-		extents *T.Cairo_text_extents_t)
-
-	Cairo_scaled_font_text_to_glyphs func(
-		scaled_font *T.Cairo_scaled_font_t,
-		x float64,
-		y float64,
-		utf8 string,
-		utf8_len int,
-		glyphs **T.Cairo_glyph_t,
-		num_glyphs *int,
-		clusters **T.Cairo_text_cluster_t,
-		num_clusters *int,
-		cluster_flags *T.Cairo_text_cluster_flags_t) T.Cairo_status_t
-
-	Cairo_scaled_font_get_font_face func(
-		scaled_font *T.Cairo_scaled_font_t) *T.Cairo_font_face_t
-
-	Cairo_scaled_font_get_font_matrix func(
-		scaled_font *T.Cairo_scaled_font_t,
-		font_matrix *T.Cairo_matrix_t)
-
-	Cairo_scaled_font_get_ctm func(
-		scaled_font *T.Cairo_scaled_font_t,
-		ctm *T.Cairo_matrix_t)
-
-	Cairo_scaled_font_get_scale_matrix func(
-		scaled_font *T.Cairo_scaled_font_t,
-		scale_matrix *T.Cairo_matrix_t)
-
-	Cairo_scaled_font_get_font_options func(
-		scaled_font *T.Cairo_scaled_font_t,
-		options *T.Cairo_font_options_t)
-
-	Cairo_toy_font_face_create func(
-		family string,
-		slant T.Cairo_font_slant_t,
-		weight T.Cairo_font_weight_t) *T.Cairo_font_face_t
-
-	Cairo_toy_font_face_get_family func(
-		font_face *T.Cairo_font_face_t) string
-
-	Cairo_toy_font_face_get_slant func(
-		font_face *T.Cairo_font_face_t) T.Cairo_font_slant_t
-
-	Cairo_toy_font_face_get_weight func(
-		font_face *T.Cairo_font_face_t) T.Cairo_font_weight_t
-
-	Cairo_user_font_face_create func() *T.Cairo_font_face_t
-
-	Cairo_user_font_face_set_init_func func(
-		font_face *T.Cairo_font_face_t,
-		init_func T.Cairo_user_scaled_font_init_func_t)
-
-	Cairo_user_font_face_set_render_glyph_func func(
-		font_face *T.Cairo_font_face_t,
-		render_glyph_func T.Cairo_user_scaled_font_render_glyph_func_t)
-
-	Cairo_user_font_face_set_text_to_glyphs_func func(
-		font_face *T.Cairo_font_face_t,
-		text_to_glyphs_func T.Cairo_user_scaled_font_text_to_glyphs_func_t)
-
-	Cairo_user_font_face_set_unicode_to_glyph_func func(
-		font_face *T.Cairo_font_face_t,
-		unicode_to_glyph_func T.Cairo_user_scaled_font_unicode_to_glyph_func_t)
-
-	Cairo_user_font_face_get_init_func func(
-		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_init_func_t
-
-	Cairo_user_font_face_get_render_glyph_func func(
-		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_render_glyph_func_t
-
-	Cairo_user_font_face_get_text_to_glyphs_func func(
-		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_text_to_glyphs_func_t
-
-	Cairo_user_font_face_get_unicode_to_glyph_func func(
-		font_face *T.Cairo_font_face_t) T.Cairo_user_scaled_font_unicode_to_glyph_func_t
+	GetReferenceCount func(cr *T.Cairo) uint
 
-	Cairo_get_operator func(
-		cr *T.Cairo_t) T.Cairo_operator_t
-
-	Cairo_get_source func(
-		cr *T.Cairo_t) *T.Cairo_pattern_t
-
-	Cairo_get_tolerance func(
-		cr *T.Cairo_t) float64
-
-	Cairo_get_antialias func(
-		cr *T.Cairo_t) T.Cairo_antialias_t
-
-	Cairo_has_current_point func(
-		cr *T.Cairo_t) T.Cairo_bool_t
-
-	Cairo_get_current_point func(
-		cr *T.Cairo_t,
-		x *float64,
-		y *float64)
-
-	Cairo_get_fill_rule func(
-		cr *T.Cairo_t) T.Cairo_fill_rule_t
-
-	Cairo_get_line_width func(
-		cr *T.Cairo_t) float64
-
-	Cairo_get_line_cap func(
-		cr *T.Cairo_t) T.Cairo_line_cap_t
-
-	Cairo_get_line_join func(
-		cr *T.Cairo_t) T.Cairo_line_join_t
-
-	Cairo_get_miter_limit func(
-		cr *T.Cairo_t) float64
-
-	Cairo_get_dash_count func(
-		cr *T.Cairo_t) int
-
-	Cairo_get_dash func(
-		cr *T.Cairo_t,
-		dashes *float64,
-		offset *float64)
-
-	Cairo_get_matrix func(
-		cr *T.Cairo_t,
-		matrix *T.Cairo_matrix_t)
+	GetUserData func(
+		cr *T.Cairo, key *T.CairoUserDataKey) *T.Void
 
-	Cairo_get_target func(
-		cr *T.Cairo_t) *T.Cairo_surface_t
-
-	Cairo_get_group_target func(
-		cr *T.Cairo_t) *T.Cairo_surface_t
-
-	Cairo_copy_path func(
-		cr *T.Cairo_t) *T.Cairo_path_t
+	SetUserData func(
+		cr *T.Cairo,
+		key *T.CairoUserDataKey,
+		userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
 
-	Cairo_copy_path_flat func(
-		cr *T.Cairo_t) *T.Cairo_path_t
-
-	Cairo_append_path func(
-		cr *T.Cairo_t,
-		path *T.Cairo_path_t)
-
-	Cairo_path_destroy func(
-		path *T.Cairo_path_t)
-
-	Cairo_status func(
-		cr *T.Cairo_t) T.Cairo_status_t
-
-	Cairo_status_to_string func(
-		status T.Cairo_status_t) string
-
-	Cairo_device_reference func(
-		device *T.Cairo_device_t) *T.Cairo_device_t
-
-	Cairo_device_get_type func(
-		device *T.Cairo_device_t) T.Cairo_device_type_t
-
-	Cairo_device_status func(
-		device *T.Cairo_device_t) T.Cairo_status_t
-
-	Cairo_device_acquire func(
-		device *T.Cairo_device_t) T.Cairo_status_t
-
-	Cairo_device_release func(
-		device *T.Cairo_device_t)
-
-	Cairo_device_flush func(
-		device *T.Cairo_device_t)
-
-	Cairo_device_finish func(
-		device *T.Cairo_device_t)
-
-	Cairo_device_destroy func(
-		device *T.Cairo_device_t)
-
-	Cairo_device_get_reference_count func(
-		device *T.Cairo_device_t) uint
-
-	Cairo_device_get_user_data func(
-		device *T.Cairo_device_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_device_set_user_data func(
-		device *T.Cairo_device_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_surface_create_similar func(
-		other *T.Cairo_surface_t,
-		content T.CairoContentT,
-		width int,
-		height int) *T.Cairo_surface_t
-
-	Cairo_surface_create_for_rectangle func(
-		target *T.Cairo_surface_t,
-		x float64,
-		y float64,
-		width float64,
-		height float64) *T.Cairo_surface_t
-
-	Cairo_surface_reference func(
-		surface *T.Cairo_surface_t) *T.Cairo_surface_t
-
-	Cairo_surface_finish func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_destroy func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_get_device func(
-		surface *T.Cairo_surface_t) *T.Cairo_device_t
-
-	Cairo_surface_get_reference_count func(
-		surface *T.Cairo_surface_t) uint
-
-	Cairo_surface_status func(
-		surface *T.Cairo_surface_t) T.Cairo_status_t
-
-	Cairo_surface_get_type func(
-		surface *T.Cairo_surface_t) T.Cairo_surface_type_t
-
-	Cairo_surface_get_content func(
-		surface *T.Cairo_surface_t) T.CairoContentT
-
-	Cairo_surface_write_to_png func(
-		surface *T.Cairo_surface_t,
-		filename string) T.Cairo_status_t
-
-	Cairo_surface_write_to_png_stream func(
-		surface *T.Cairo_surface_t,
-		write_func T.Cairo_write_func_t,
-		closure *T.Void) T.Cairo_status_t
-
-	Cairo_surface_get_user_data func(
-		surface *T.Cairo_surface_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_surface_set_user_data func(
-		surface *T.Cairo_surface_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_surface_get_mime_data func(
-		surface *T.Cairo_surface_t,
-		mime_type string,
-		data **T.Unsigned_char,
-		length *T.Unsigned_long)
-
-	Cairo_surface_set_mime_data func(
-		surface *T.Cairo_surface_t,
-		mime_type string,
-		data *T.Unsigned_char,
-		length T.Unsigned_long,
-		destroy T.Cairo_destroy_func_t,
-		closure *T.Void) T.Cairo_status_t
-
-	Cairo_surface_get_font_options func(
-		surface *T.Cairo_surface_t,
-		options *T.Cairo_font_options_t)
-
-	Cairo_surface_flush func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_mark_dirty func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_mark_dirty_rectangle func(
-		surface *T.Cairo_surface_t,
-		x int,
-		y int,
-		width int,
-		height int)
-
-	Cairo_surface_set_device_offset func(
-		surface *T.Cairo_surface_t,
-		x_offset float64,
-		y_offset float64)
-
-	Cairo_surface_get_device_offset func(
-		surface *T.Cairo_surface_t,
-		x_offset *float64,
-		y_offset *float64)
-
-	Cairo_surface_set_fallback_resolution func(
-		surface *T.Cairo_surface_t,
-		x_pixels_per_inch float64,
-		y_pixels_per_inch float64)
-
-	Cairo_surface_get_fallback_resolution func(
-		surface *T.Cairo_surface_t,
-		x_pixels_per_inch *float64,
-		y_pixels_per_inch *float64)
-
-	Cairo_surface_copy_page func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_show_page func(
-		surface *T.Cairo_surface_t)
-
-	Cairo_surface_has_show_text_glyphs func(
-		surface *T.Cairo_surface_t) T.Cairo_bool_t
-
-	Cairo_image_surface_create func(
-		format T.Cairo_format_t,
-		width int,
-		height int) *T.Cairo_surface_t
-
-	Cairo_format_stride_for_width func(
-		format T.Cairo_format_t,
-		width int) int
-
-	Cairo_image_surface_create_for_data func(
-		data *T.Unsigned_char,
-		format T.Cairo_format_t,
-		width int,
-		height int,
-		stride int) *T.Cairo_surface_t
-
-	Cairo_image_surface_get_data func(
-		surface *T.Cairo_surface_t) *T.Unsigned_char
-
-	Cairo_image_surface_get_format func(
-		surface *T.Cairo_surface_t) T.Cairo_format_t
-
-	Cairo_image_surface_get_width func(
-		surface *T.Cairo_surface_t) int
-
-	Cairo_image_surface_get_height func(
-		surface *T.Cairo_surface_t) int
-
-	Cairo_image_surface_get_stride func(
-		surface *T.Cairo_surface_t) int
-
-	Cairo_image_surface_create_from_png func(
-		filename string) *T.Cairo_surface_t
-
-	Cairo_image_surface_create_from_png_stream func(
-		read_func T.Cairo_read_func_t,
-		closure *T.Void) *T.Cairo_surface_t
-
-	Cairo_recording_surface_create func(
-		content T.CairoContentT,
-		extents *T.Cairo_rectangle_t) *T.Cairo_surface_t
-
-	Cairo_recording_surface_ink_extents func(
-		surface *T.Cairo_surface_t,
-		x0 *float64,
-		y0 *float64,
-		width *float64,
-		height *float64)
-
-	Cairo_pattern_create_rgb func(
-		red float64,
-		green float64,
-		blue float64) *T.Cairo_pattern_t
-
-	Cairo_pattern_create_rgba func(
-		red float64,
-		green float64,
-		blue float64,
-		alpha float64) *T.Cairo_pattern_t
-
-	Cairo_pattern_create_for_surface func(
-		surface *T.Cairo_surface_t) *T.Cairo_pattern_t
-
-	Cairo_pattern_create_linear func(
-		x0 float64,
-		y0 float64,
-		x1 float64,
-		y1 float64) *T.Cairo_pattern_t
-
-	Cairo_pattern_create_radial func(
-		cx0 float64,
-		cy0 float64,
-		radius0 float64,
-		cx1 float64,
-		cy1 float64,
-		radius1 float64) *T.Cairo_pattern_t
-
-	Cairo_pattern_reference func(
-		pattern *T.Cairo_pattern_t) *T.Cairo_pattern_t
-
-	Cairo_pattern_destroy func(
-		pattern *T.Cairo_pattern_t)
-
-	Cairo_pattern_get_reference_count func(
-		pattern *T.Cairo_pattern_t) uint
-
-	Cairo_pattern_status func(
-		pattern *T.Cairo_pattern_t) T.Cairo_status_t
-
-	Cairo_pattern_get_user_data func(
-		pattern *T.Cairo_pattern_t,
-		key *T.Cairo_user_data_key_t) *T.Void
-
-	Cairo_pattern_set_user_data func(
-		pattern *T.Cairo_pattern_t,
-		key *T.Cairo_user_data_key_t,
-		user_data *T.Void,
-		destroy T.Cairo_destroy_func_t) T.Cairo_status_t
-
-	Cairo_pattern_get_type func(
-		pattern *T.Cairo_pattern_t) T.Cairo_pattern_type_t
-
-	Cairo_pattern_add_color_stop_rgb func(
-		pattern *T.Cairo_pattern_t,
-		offset float64,
-		red float64,
-		green float64,
-		blue float64)
-
-	Cairo_pattern_add_color_stop_rgba func(
-		pattern *T.Cairo_pattern_t,
-		offset float64,
-		red float64,
-		green float64,
-		blue float64,
-		alpha float64)
-
-	Cairo_pattern_set_matrix func(
-		pattern *T.Cairo_pattern_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_pattern_get_matrix func(
-		pattern *T.Cairo_pattern_t,
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_pattern_set_extend func(
-		pattern *T.Cairo_pattern_t,
-		extend T.Cairo_extend_t)
-
-	Cairo_pattern_get_extend func(
-		pattern *T.Cairo_pattern_t) T.Cairo_extend_t
-
-	Cairo_pattern_set_filter func(
-		pattern *T.Cairo_pattern_t,
-		filter T.Cairo_filter_t)
-
-	Cairo_pattern_get_filter func(
-		pattern *T.Cairo_pattern_t) T.Cairo_filter_t
-
-	Cairo_pattern_get_rgba func(
-		pattern *T.Cairo_pattern_t,
-		red *float64,
-		green *float64,
-		blue *float64,
-		alpha *float64) T.Cairo_status_t
-
-	Cairo_pattern_get_surface func(
-		pattern *T.Cairo_pattern_t,
-		surface **T.Cairo_surface_t) T.Cairo_status_t
-
-	Cairo_pattern_get_color_stop_rgba func(
-		pattern *T.Cairo_pattern_t,
-		index int,
-		offset *float64,
-		red *float64,
-		green *float64,
-		blue *float64,
-		alpha *float64) T.Cairo_status_t
-
-	Cairo_pattern_get_color_stop_count func(
-		pattern *T.Cairo_pattern_t,
-		count *int) T.Cairo_status_t
-
-	Cairo_pattern_get_linear_points func(
-		pattern *T.Cairo_pattern_t,
-		x0 *float64,
-		y0 *float64,
-		x1 *float64,
-		y1 *float64) T.Cairo_status_t
-
-	Cairo_pattern_get_radial_circles func(
-		pattern *T.Cairo_pattern_t,
-		x0 *float64,
-		y0 *float64,
-		r0 *float64,
-		x1 *float64,
-		y1 *float64,
-		r1 *float64) T.Cairo_status_t
-
-	Cairo_matrix_init func(
-		matrix *T.Cairo_matrix_t,
-		xx float64,
-		yx float64,
-		xy float64,
-		yy float64,
-		x0 float64,
-		y0 float64)
-
-	Cairo_matrix_init_identity func(
-		matrix *T.Cairo_matrix_t)
-
-	Cairo_matrix_init_translate func(
-		matrix *T.Cairo_matrix_t,
-		tx float64,
-		ty float64)
-
-	Cairo_matrix_init_scale func(
-		matrix *T.Cairo_matrix_t,
-		sx float64,
-		sy float64)
-
-	Cairo_matrix_init_rotate func(
-		matrix *T.Cairo_matrix_t,
-		radians float64)
-
-	Cairo_matrix_translate func(
-		matrix *T.Cairo_matrix_t,
-		tx float64,
-		ty float64)
-
-	Cairo_matrix_scale func(
-		matrix *T.Cairo_matrix_t,
-		sx float64,
-		sy float64)
-
-	Cairo_matrix_rotate func(
-		matrix *T.Cairo_matrix_t,
-		radians float64)
-
-	Cairo_matrix_invert func(
-		matrix *T.Cairo_matrix_t) T.Cairo_status_t
-
-	Cairo_matrix_multiply func(
-		result *T.Cairo_matrix_t,
-		a *T.Cairo_matrix_t,
-		b *T.Cairo_matrix_t)
-
-	Cairo_matrix_transform_distance func(
-		matrix *T.Cairo_matrix_t,
-		dx *float64,
-		dy *float64)
-
-	Cairo_matrix_transform_point func(
-		matrix *T.Cairo_matrix_t,
-		x *float64,
-		y *float64)
-
-	Cairo_region_create func() *T.Cairo_region_t
-
-	Cairo_region_create_rectangle func(
-		rectangle *T.Cairo_rectangle_int_t) *T.Cairo_region_t
-
-	Cairo_region_create_rectangles func(
-		rects *T.Cairo_rectangle_int_t,
-		count int) *T.Cairo_region_t
-
-	Cairo_region_copy func(
-		original *T.Cairo_region_t) *T.Cairo_region_t
-
-	Cairo_region_reference func(
-		region *T.Cairo_region_t) *T.Cairo_region_t
-
-	Cairo_region_destroy func(
-		region *T.Cairo_region_t)
-
-	Cairo_region_equal func(
-		a *T.Cairo_region_t,
-		b *T.Cairo_region_t) T.Cairo_bool_t
-
-	Cairo_region_status func(
-		region *T.Cairo_region_t) T.Cairo_status_t
-
-	Cairo_region_get_extents func(
-		region *T.Cairo_region_t,
-		extents *T.Cairo_rectangle_int_t)
+	Save func(cr *T.Cairo)
 
-	Cairo_region_num_rectangles func(
-		region *T.Cairo_region_t) int
+	Restore func(cr *T.Cairo)
 
-	Cairo_region_get_rectangle func(
-		region *T.Cairo_region_t,
-		nth int,
-		rectangle *T.Cairo_rectangle_int_t)
+	PushGroup func(cr *T.Cairo)
 
-	Cairo_region_is_empty func(
-		region *T.Cairo_region_t) T.Cairo_bool_t
+	PushGroupWithContent func(
+		cr *T.Cairo, content T.CairoContent)
 
-	Cairo_region_contains_rectangle func(
-		region *T.Cairo_region_t,
-		rectangle *T.Cairo_rectangle_int_t) T.Cairo_region_overlap_t
+	PopGroup func(cr *T.Cairo) *T.CairoPattern
 
-	Cairo_region_contains_point func(
-		region *T.Cairo_region_t,
-		x int,
-		y int) T.Cairo_bool_t
+	PopGroupToSource func(cr *T.Cairo)
 
-	Cairo_region_translate func(
-		region *T.Cairo_region_t,
-		dx int,
-		dy int)
+	SetOperator func(cr *T.Cairo, op T.CairoOperator)
 
-	Cairo_region_subtract func(
-		dst *T.Cairo_region_t,
-		other *T.Cairo_region_t) T.Cairo_status_t
+	SetSource func(cr *T.Cairo, source *T.CairoPattern)
 
-	Cairo_region_subtract_rectangle func(
-		dst *T.Cairo_region_t,
-		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
+	SetSourceRgb func(cr *T.Cairo, red, green, blue float64)
 
-	Cairo_region_intersect func(
-		dst *T.Cairo_region_t,
-		other *T.Cairo_region_t) T.Cairo_status_t
+	SetSourceRgba func(
+		cr *T.Cairo, red, green, blue, alpha float64)
 
-	Cairo_region_intersect_rectangle func(
-		dst *T.Cairo_region_t,
-		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
+	SetSourceSurface func(
+		cr *T.Cairo, surface *T.CairoSurface, x, y float64)
 
-	Cairo_region_union func(
-		dst *T.Cairo_region_t,
-		other *T.Cairo_region_t) T.Cairo_status_t
+	SetTolerance func(cr *T.Cairo, tolerance float64)
 
-	Cairo_region_union_rectangle func(
-		dst *T.Cairo_region_t,
-		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
+	SetAntialias func(cr *T.Cairo, antialias T.CairoAntialias)
 
-	Cairo_region_xor func(
-		dst *T.Cairo_region_t,
-		other *T.Cairo_region_t) T.Cairo_status_t
+	SetFillRule func(cr *T.Cairo, fillRule T.CairoFillRule)
 
-	Cairo_region_xor_rectangle func(
-		dst *T.Cairo_region_t,
-		rectangle *T.Cairo_rectangle_int_t) T.Cairo_status_t
+	SetLineWidth func(cr *T.Cairo, width float64)
 
-	Cairo_debug_reset_static_data func()
+	SetLineCap func(cr *T.Cairo, lineCap T.CairoLineCap)
 
-	Cairo_gobject_context_get_type func()
+	SetLineJoin func(cr *T.Cairo, lineJoin T.CairoLineJoin)
 
-	Cairo_gobject_device_get_type func()
+	SetDash func(cr *T.Cairo,
+		dashes *float64, numDashes int, offset float64)
 
-	Cairo_gobject_pattern_get_type func()
+	SetMiterLimit func(cr *T.Cairo, limit float64)
 
-	Cairo_gobject_surface_get_type func()
+	Translate func(cr *T.Cairo, tx, ty float64)
 
-	Cairo_gobject_rectangle_get_type func()
+	Scale func(cr *T.Cairo, sx, sy float64)
 
-	Cairo_gobject_scaled_font_get_type func()
+	Rotate func(cr *T.Cairo, angle float64)
 
-	Cairo_gobject_font_face_get_type func()
+	Transform func(cr *T.Cairo, matrix *T.CairoMatrix)
 
-	Cairo_gobject_font_options_get_type func()
+	SetMatrix func(cr *T.Cairo, matrix *T.CairoMatrix)
 
-	Cairo_gobject_rectangle_int_get_type func()
+	IdentityMatrix func(cr *T.Cairo)
 
-	Cairo_gobject_region_get_type func()
+	UserToDevice func(cr *T.Cairo, x, y *float64)
 
-	Cairo_gobject_status_get_type func()
+	UserToDeviceDistance func(cr *T.Cairo, dx, dy *float64)
 
-	Cairo_gobject_content_get_type func()
+	DeviceToUser func(cr *T.Cairo, x, y *float64)
 
-	Cairo_gobject_operator_get_type func()
+	DeviceToUserDistance func(cr *T.Cairo, dx, dy *float64)
 
-	Cairo_gobject_antialias_get_type func()
+	NewPath func(cr *T.Cairo)
 
-	Cairo_gobject_fill_rule_get_type func()
+	MoveTo func(cr *T.Cairo, x, y float64)
 
-	Cairo_gobject_line_cap_get_type func()
+	NewSubPath func(cr *T.Cairo)
 
-	Cairo_gobject_line_join_get_type func()
+	LineTo func(cr *T.Cairo, x, y float64)
 
-	Cairo_gobject_text_cluster_flags_get_type func()
+	CurveTo func(cr *T.Cairo, x1, y1, x2, y2, x3, y3 float64)
 
-	Cairo_gobject_font_slant_get_type func()
+	Arc func(
+		cr *T.Cairo, xc, yc, radius, angle1, angle2 float64)
 
-	Cairo_gobject_font_weight_get_type func()
+	ArcNegative func(
+		cr *T.Cairo, xc, yc, radius, angle1, angle2 float64)
 
-	Cairo_gobject_subpixel_order_get_type func()
+	RelMoveTo func(cr *T.Cairo, dx, dy float64)
 
-	Cairo_gobject_hint_style_get_type func()
+	RelLineTo func(cr *T.Cairo, dx, dy float64)
 
-	Cairo_gobject_hint_metrics_get_type func()
+	RelCurveTo func(
+		cr *T.Cairo, dx1, dy1, dx2, dy2, dx3, dy3 float64)
 
-	Cairo_gobject_font_type_get_type func()
+	Rectangle func(cr *T.Cairo, x, y, width, height float64)
 
-	Cairo_gobject_path_data_type_get_type func()
+	ClosePath func(cr *T.Cairo)
 
-	Cairo_gobject_device_type_get_type func()
+	PathExtents func(cr *T.Cairo, x1, y1, x2, y2 *float64)
 
-	Cairo_gobject_surface_type_get_type func()
+	Paint func(cr *T.Cairo)
 
-	Cairo_gobject_format_get_type func()
+	PaintWithAlpha func(cr *T.Cairo, alpha float64)
 
-	Cairo_gobject_pattern_type_get_type func()
+	Mask func(cr *T.Cairo, pattern *T.CairoPattern)
 
-	Cairo_gobject_extend_get_type func()
+	MaskSurface func(cr *T.Cairo,
+		surface *T.CairoSurface, surfaceX, surfaceY float64)
 
-	Cairo_gobject_filter_get_type func()
+	Stroke func(cr *T.Cairo)
 
-	Cairo_gobject_region_overlap_get_type func()
+	StrokePreserve func(cr *T.Cairo)
 
-	Cairo_script_interpreter_create func() *T.Cairo_script_interpreter_t
+	Fill func(cr *T.Cairo)
 
-	Cairo_script_interpreter_install_hooks func(
-		ctx *T.Cairo_script_interpreter_t,
-		hooks *T.Cairo_script_interpreter_hooks_t)
+	FillPreserve func(cr *T.Cairo)
 
-	Cairo_script_interpreter_run func(
-		ctx *T.Cairo_script_interpreter_t,
-		filename string) T.Cairo_status_t
+	CopyPage func(cr *T.Cairo)
 
-	Cairo_script_interpreter_feed_stream func(
-		ctx *T.Cairo_script_interpreter_t,
-		stream *T.FILE) T.Cairo_status_t
+	ShowPage func(cr *T.Cairo)
 
-	Cairo_script_interpreter_feed_string func(
-		ctx *T.Cairo_script_interpreter_t,
+	InStroke func(cr *T.Cairo, x, y float64) T.CairoBool
+
+	InFill func(cr *T.Cairo, x, y float64) T.CairoBool
+
+	InClip func(cr *T.Cairo, x, y float64) T.CairoBool
+
+	StrokeExtents func(cr *T.Cairo, x1, y1, x2, y2 *float64)
+
+	FillExtents func(cr *T.Cairo, x1, y1, x2, y2 *float64)
+
+	ResetClip func(cr *T.Cairo)
+
+	Clip func(cr *T.Cairo)
+
+	ClipPreserve func(cr *T.Cairo)
+
+	ClipExtents func(cr *T.Cairo, x1, y1, x2, y2 *float64)
+
+	CopyClipRectangleList func(
+		cr *T.Cairo) *T.CairoRectangleList
+
+	RectangleListDestroy func(
+		rectangleList *T.CairoRectangleList)
+
+	GlyphAllocate func(numGlyphs int) *T.CairoGlyph
+
+	GlyphFree func(
+		glyphs *T.CairoGlyph)
+
+	TextClusterAllocate func(
+		numClusters int) *T.CairoTextCluster
+
+	TextClusterFree func(
+		clusters *T.CairoTextCluster)
+
+	FontOptionsCreate func() *T.CairoFontOptions
+
+	FontOptionsCopy func(
+		original *T.CairoFontOptions) *T.CairoFontOptions
+
+	FontOptionsDestroy func(options *T.CairoFontOptions)
+
+	FontOptionsStatus func(
+		options *T.CairoFontOptions) T.CairoStatus
+
+	FontOptionsMerge func(
+		options *T.CairoFontOptions, other *T.CairoFontOptions)
+
+	FontOptionsEqual func(options *T.CairoFontOptions,
+		other *T.CairoFontOptions) T.CairoBool
+
+	FontOptionsHash func(
+		options *T.CairoFontOptions) T.UnsignedLong
+
+	FontOptionsSetAntialias func(
+		options *T.CairoFontOptions, antialias T.CairoAntialias)
+
+	FontOptionsGetAntialias func(
+		options *T.CairoFontOptions) T.CairoAntialias
+
+	FontOptionsSetSubpixelOrder func(options *T.CairoFontOptions,
+		subpixelOrder T.CairoSubpixelOrder)
+
+	FontOptionsGetSubpixelOrder func(
+		options *T.CairoFontOptions) T.CairoSubpixelOrder
+
+	FontOptionsSetHintStyle func(
+		options *T.CairoFontOptions, hintStyle T.CairoHintStyle)
+
+	FontOptionsGetHintStyle func(
+		options *T.CairoFontOptions) T.CairoHintStyle
+
+	FontOptionsSetHintMetrics func(options *T.CairoFontOptions,
+		hintMetrics T.CairoHintMetrics)
+
+	FontOptionsGetHintMetrics func(
+		options *T.CairoFontOptions) T.CairoHintMetrics
+
+	SelectFontFace func(cr *T.Cairo, family string,
+		slant T.CairoFontSlant, weight T.CairoFontWeight)
+
+	SetFontSize func(cr *T.Cairo, size float64)
+
+	SetFontMatrix func(cr *T.Cairo, matrix *T.CairoMatrix)
+
+	GetFontMatrix func(cr *T.Cairo, matrix *T.CairoMatrix)
+
+	SetFontOptions func(cr *T.Cairo, options *T.CairoFontOptions)
+
+	GetFontOptions func(cr *T.Cairo, options *T.CairoFontOptions)
+
+	SetFontFace func(cr *T.Cairo, fontFace *T.CairoFontFace)
+
+	GetFontFace func(cr *T.Cairo) *T.CairoFontFace
+
+	SetScaledFont func(
+		cr *T.Cairo, scaledFont *T.CairoScaledFont)
+
+	GetScaledFont func(cr *T.Cairo) *T.CairoScaledFont
+
+	ShowText func(cr *T.Cairo, utf8 string)
+
+	ShowGlyphs func(
+		cr *T.Cairo, glyphs *T.CairoGlyph, numGlyphs int)
+
+	ShowTextGlyphs func(cr *T.Cairo, utf8 string, utf8Len int,
+		glyphs *T.CairoGlyph, numGlyphs int,
+		clusters *T.CairoTextCluster, numClusters int,
+		clusterFlags T.CairoTextClusterFlags)
+
+	TextPath func(cr *T.Cairo, utf8 string)
+
+	GlyphPath func(
+		cr *T.Cairo, glyphs *T.CairoGlyph, numGlyphs int)
+
+	TextExtents func(
+		cr *T.Cairo, utf8 string, extents *T.CairoTextExtents)
+
+	GlyphExtents func(cr *T.Cairo, glyphs *T.CairoGlyph,
+		numGlyphs int, extents *T.CairoTextExtents)
+
+	FontExtents func(cr *T.Cairo, extents *T.CairoFontExtents)
+
+	FontFaceReference func(
+		fontFace *T.CairoFontFace) *T.CairoFontFace
+
+	FontFaceDestroy func(fontFace *T.CairoFontFace)
+
+	FontFaceGetReferenceCount func(
+		fontFace *T.CairoFontFace) uint
+
+	FontFaceStatus func(fontFace *T.CairoFontFace) T.CairoStatus
+
+	FontFaceGetType func(
+		fontFace *T.CairoFontFace) T.CairoFontType
+
+	FontFaceGetUserData func(fontFace *T.CairoFontFace,
+		key *T.CairoUserDataKey) *T.Void
+
+	FontFaceSetUserData func(fontFace *T.CairoFontFace,
+		key *T.CairoUserDataKey, userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
+
+	ScaledFontCreate func(fontFace *T.CairoFontFace,
+		fontMatrix *T.CairoMatrix, ctm *T.CairoMatrix,
+		options *T.CairoFontOptions) *T.CairoScaledFont
+
+	ScaledFontReference func(
+		scaledFont *T.CairoScaledFont) *T.CairoScaledFont
+
+	ScaledFontDestroy func(scaledFont *T.CairoScaledFont)
+
+	ScaledFontGetReferenceCount func(
+		scaledFont *T.CairoScaledFont) uint
+
+	ScaledFontStatus func(
+		scaledFont *T.CairoScaledFont) T.CairoStatus
+
+	ScaledFontGetType func(
+		scaledFont *T.CairoScaledFont) T.CairoFontType
+
+	ScaledFontGetUserData func(scaledFont *T.CairoScaledFont,
+		key *T.CairoUserDataKey) *T.Void
+
+	ScaledFontSetUserData func(scaledFont *T.CairoScaledFont,
+		key *T.CairoUserDataKey, userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
+
+	ScaledFontExtents func(scaledFont *T.CairoScaledFont,
+		extents *T.CairoFontExtents)
+
+	ScaledFontTextExtents func(scaledFont *T.CairoScaledFont,
+		utf8 string, extents *T.CairoTextExtents)
+
+	ScaledFontGlyphExtents func(scaledFont *T.CairoScaledFont,
+		glyphs *T.CairoGlyph, numGlyphs int,
+		extents *T.CairoTextExtents)
+
+	ScaledFontTextToGlyphs func(scaledFont *T.CairoScaledFont,
+		x, y float64, utf8 string, utf8Len int,
+		glyphs **T.CairoGlyph, numGlyphs *int,
+		clusters **T.CairoTextCluster, numClusters *int,
+		clusterFlags *T.CairoTextClusterFlags) T.CairoStatus
+
+	ScaledFontGetFontFace func(
+		scaledFont *T.CairoScaledFont) *T.CairoFontFace
+
+	ScaledFontGetFontMatrix func(
+		scaledFont *T.CairoScaledFont, fontMatrix *T.CairoMatrix)
+
+	ScaledFontGetCtm func(
+		scaledFont *T.CairoScaledFont, ctm *T.CairoMatrix)
+
+	ScaledFontGetScaleMatrix func(scaledFont *T.CairoScaledFont,
+		scaleMatrix *T.CairoMatrix)
+
+	ScaledFontGetFontOptions func(scaledFont *T.CairoScaledFont,
+		options *T.CairoFontOptions)
+
+	ToyFontFaceCreate func(family string,
+		slant T.CairoFontSlant,
+		weight T.CairoFontWeight) *T.CairoFontFace
+
+	ToyFontFaceGetFamily func(
+		fontFace *T.CairoFontFace) string
+
+	ToyFontFaceGetSlant func(
+		fontFace *T.CairoFontFace) T.CairoFontSlant
+
+	ToyFontFaceGetWeight func(
+		fontFace *T.CairoFontFace) T.CairoFontWeight
+
+	UserFontFaceCreate func() *T.CairoFontFace
+
+	UserFontFaceSetInitFunc func(fontFace *T.CairoFontFace,
+		initFunc T.CairoUserScaledFontInitFunc)
+
+	UserFontFaceSetRenderGlyphFunc func(
+		fontFace *T.CairoFontFace,
+		renderGlyphFunc T.CairoUserScaledFontRenderGlyphFunc)
+
+	UserFontFaceSetTextToGlyphsFunc func(
+		fontFace *T.CairoFontFace,
+		textToGlyphsFunc T.CairoUserScaledFontTextToGlyphsFunc)
+
+	UserFontFaceSetUnicodeToGlyphFunc func(
+		fontFace *T.CairoFontFace,
+		unicodeToGlyphFunc T.CairoUserScaledFontUnicodeToGlyphFunc)
+
+	UserFontFaceGetInitFunc func(
+		fontFace *T.CairoFontFace) T.CairoUserScaledFontInitFunc
+
+	UserFontFaceGetRenderGlyphFunc func(
+		fontFace *T.CairoFontFace) T.CairoUserScaledFontRenderGlyphFunc
+
+	UserFontFaceGetTextToGlyphsFunc func(
+		fontFace *T.CairoFontFace) T.CairoUserScaledFontTextToGlyphsFunc
+
+	UserFontFaceGetUnicodeToGlyphFunc func(
+		fontFace *T.CairoFontFace) T.CairoUserScaledFontUnicodeToGlyphFunc
+
+	GetOperator func(cr *T.Cairo) T.CairoOperator
+
+	GetSource func(cr *T.Cairo) *T.CairoPattern
+
+	GetTolerance func(cr *T.Cairo) float64
+
+	GetAntialias func(cr *T.Cairo) T.CairoAntialias
+
+	HasCurrentPoint func(cr *T.Cairo) T.CairoBool
+
+	GetCurrentPoint func(cr *T.Cairo, x, y *float64)
+
+	GetFillRule func(cr *T.Cairo) T.CairoFillRule
+
+	GetLineWidth func(cr *T.Cairo) float64
+
+	GetLineCap func(cr *T.Cairo) T.CairoLineCap
+
+	GetLineJoin func(cr *T.Cairo) T.CairoLineJoin
+
+	GetMiterLimit func(cr *T.Cairo) float64
+
+	GetDashCount func(cr *T.Cairo) int
+
+	GetDash func(cr *T.Cairo, dashes, offset *float64)
+
+	GetMatrix func(cr *T.Cairo, matrix *T.CairoMatrix)
+
+	GetTarget func(cr *T.Cairo) *T.CairoSurface
+
+	GetGroupTarget func(cr *T.Cairo) *T.CairoSurface
+
+	CopyPath func(cr *T.Cairo) *T.CairoPath
+
+	CopyPathFlat func(cr *T.Cairo) *T.CairoPath
+
+	AppendPath func(cr *T.Cairo, path *T.CairoPath)
+
+	PathDestroy func(path *T.CairoPath)
+
+	Status func(cr *T.Cairo) T.CairoStatus
+
+	StatusToString func(status T.CairoStatus) string
+
+	DeviceReference func(device *T.CairoDevice) *T.CairoDevice
+
+	DeviceGetType func(device *T.CairoDevice) T.CairoDeviceType
+
+	DeviceStatus func(device *T.CairoDevice) T.CairoStatus
+
+	DeviceAcquire func(device *T.CairoDevice) T.CairoStatus
+
+	DeviceRelease func(device *T.CairoDevice)
+
+	DeviceFlush func(device *T.CairoDevice)
+
+	DeviceFinish func(device *T.CairoDevice)
+
+	DeviceDestroy func(device *T.CairoDevice)
+
+	DeviceGetReferenceCount func(device *T.CairoDevice) uint
+
+	DeviceGetUserData func(device *T.CairoDevice,
+		key *T.CairoUserDataKey) *T.Void
+
+	DeviceSetUserData func(device *T.CairoDevice,
+		key *T.CairoUserDataKey, userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
+
+	SurfaceCreateSimilar func(
+		other *T.CairoSurface, content T.CairoContent,
+		width, height int) *T.CairoSurface
+
+	SurfaceCreateForRectangle func(target *T.CairoSurface,
+		x, y, width, height float64) *T.CairoSurface
+
+	SurfaceReference func(
+		surface *T.CairoSurface) *T.CairoSurface
+
+	SurfaceFinish func(surface *T.CairoSurface)
+
+	SurfaceDestroy func(surface *T.CairoSurface)
+
+	SurfaceGetDevice func(surface *T.CairoSurface) *T.CairoDevice
+
+	SurfaceGetReferenceCount func(
+		surface *T.CairoSurface) uint
+
+	SurfaceStatus func(surface *T.CairoSurface) T.CairoStatus
+
+	SurfaceGetType func(
+		surface *T.CairoSurface) T.CairoSurfaceType
+
+	SurfaceGetContent func(
+		surface *T.CairoSurface) T.CairoContent
+
+	SurfaceWriteToPng func(
+		surface *T.CairoSurface, filename string) T.CairoStatus
+
+	SurfaceWriteToPngStream func(surface *T.CairoSurface,
+		writeFunc T.CairoWriteFunc,
+		closure *T.Void) T.CairoStatus
+
+	SurfaceGetUserData func(
+		surface *T.CairoSurface, key *T.CairoUserDataKey) *T.Void
+
+	SurfaceSetUserData func(surface *T.CairoSurface,
+		key *T.CairoUserDataKey, userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
+
+	SurfaceGetMimeData func(surface *T.CairoSurface,
+		mimeType string, data **T.UnsignedChar,
+		length *T.UnsignedLong)
+
+	SurfaceSetMimeData func(surface *T.CairoSurface,
+		mimeType string, data *T.UnsignedChar,
+		length T.UnsignedLong, destroy T.CairoDestroyFunc,
+		closure *T.Void) T.CairoStatus
+
+	SurfaceGetFontOptions func(
+		surface *T.CairoSurface, options *T.CairoFontOptions)
+
+	SurfaceFlush func(surface *T.CairoSurface)
+
+	SurfaceMarkDirty func(surface *T.CairoSurface)
+
+	SurfaceMarkDirtyRectangle func(
+		surface *T.CairoSurface, x, y, width, height int)
+
+	SurfaceSetDeviceOffset func(
+		surface *T.CairoSurface, xOffset, yOffset float64)
+
+	SurfaceGetDeviceOffset func(
+		surface *T.CairoSurface, xOffset, yOffset *float64)
+
+	SurfaceSetFallbackResolution func(surface *T.CairoSurface,
+		xPixelsPerInch, yPixelsPerInch float64)
+
+	SurfaceGetFallbackResolution func(surface *T.CairoSurface,
+		xPixelsPerInch, yPixelsPerInch *float64)
+
+	SurfaceCopyPage func(surface *T.CairoSurface)
+
+	SurfaceShowPage func(surface *T.CairoSurface)
+
+	SurfaceHasShowTextGlyphs func(
+		surface *T.CairoSurface) T.CairoBool
+
+	ImageSurfaceCreate func(format T.CairoFormat,
+		width, height int) *T.CairoSurface
+
+	FormatStrideForWidth func(
+		format T.CairoFormat, width int) int
+
+	ImageSurfaceCreateForData func(
+		data *T.UnsignedChar, format T.CairoFormat,
+		width, height, stride int) *T.CairoSurface
+
+	ImageSurfaceGetData func(
+		surface *T.CairoSurface) *T.UnsignedChar
+
+	ImageSurfaceGetFormat func(
+		surface *T.CairoSurface) T.CairoFormat
+
+	ImageSurfaceGetWidth func(surface *T.CairoSurface) int
+
+	ImageSurfaceGetHeight func(surface *T.CairoSurface) int
+
+	ImageSurfaceGetStride func(surface *T.CairoSurface) int
+
+	ImageSurfaceCreateFromPng func(
+		filename string) *T.CairoSurface
+
+	ImageSurfaceCreateFromPngStream func(
+		readFunc T.CairoReadFunc,
+		closure *T.Void) *T.CairoSurface
+
+	RecordingSurfaceCreate func(
+		content T.CairoContent,
+		extents *T.CairoRectangle) *T.CairoSurface
+
+	RecordingSurfaceInkExtents func(
+		surface *T.CairoSurface, x0, y0, width, height *float64)
+
+	PatternCreateRgb func(
+		red, green, blue float64) *T.CairoPattern
+
+	PatternCreateRgba func(
+		red, green, blue, alpha float64) *T.CairoPattern
+
+	PatternCreateForSurface func(
+		surface *T.CairoSurface) *T.CairoPattern
+
+	PatternCreateLinear func(
+		x0, y0, x1, y1 float64) *T.CairoPattern
+
+	PatternCreateRadial func(
+		cx0, cy0, radius0,
+		cx1, cy1, radius1 float64) *T.CairoPattern
+
+	PatternReference func(
+		pattern *T.CairoPattern) *T.CairoPattern
+
+	PatternDestroy func(pattern *T.CairoPattern)
+
+	PatternGetReferenceCount func(pattern *T.CairoPattern) uint
+
+	PatternStatus func(pattern *T.CairoPattern) T.CairoStatus
+
+	PatternGetUserData func(
+		pattern *T.CairoPattern, key *T.CairoUserDataKey) *T.Void
+
+	PatternSetUserData func(pattern *T.CairoPattern,
+		key *T.CairoUserDataKey, userData *T.Void,
+		destroy T.CairoDestroyFunc) T.CairoStatus
+
+	PatternGetType func(
+		pattern *T.CairoPattern) T.CairoPatternType
+
+	PatternAddColorStopRgb func(pattern *T.CairoPattern,
+		offset, red, green, blue float64)
+
+	PatternAddColorStopRgba func(pattern *T.CairoPattern,
+		offset, red, green, blue, alpha float64)
+
+	PatternSetMatrix func(
+		pattern *T.CairoPattern, matrix *T.CairoMatrix)
+
+	PatternGetMatrix func(
+		pattern *T.CairoPattern, matrix *T.CairoMatrix)
+
+	PatternSetExtend func(
+		pattern *T.CairoPattern, extend T.CairoExtend)
+
+	PatternGetExtend func(
+		pattern *T.CairoPattern) T.CairoExtend
+
+	PatternSetFilter func(
+		pattern *T.CairoPattern, filter T.CairoFilter)
+
+	PatternGetFilter func(
+		pattern *T.CairoPattern) T.CairoFilter
+
+	PatternGetRgba func(pattern *T.CairoPattern,
+		red, green, blue, alpha *float64) T.CairoStatus
+
+	PatternGetSurface func(pattern *T.CairoPattern,
+		surface **T.CairoSurface) T.CairoStatus
+
+	PatternGetColorStopRgba func(
+		pattern *T.CairoPattern, index int,
+		offset, red, green, blue, alpha *float64) T.CairoStatus
+
+	PatternGetColorStopCount func(
+		pattern *T.CairoPattern, count *int) T.CairoStatus
+
+	PatternGetLinearPoints func(pattern *T.CairoPattern,
+		x0, y0, x1, y1 *float64) T.CairoStatus
+
+	PatternGetRadialCircles func(pattern *T.CairoPattern,
+		x0, y0, r0, x1, y1, r1 *float64) T.CairoStatus
+
+	MatrixInit func(
+		matrix *T.CairoMatrix, xx, yx, xy, yy, x0, y0 float64)
+
+	MatrixInitIdentity func(matrix *T.CairoMatrix)
+
+	MatrixInitTranslate func(
+		matrix *T.CairoMatrix, tx, ty float64)
+
+	MatrixInitScale func(
+		matrix *T.CairoMatrix, sx, sy float64)
+
+	MatrixInitRotate func(matrix *T.CairoMatrix, radians float64)
+
+	MatrixTranslate func(matrix *T.CairoMatrix, tx, ty float64)
+
+	MatrixScale func(matrix *T.CairoMatrix, sx, sy float64)
+
+	MatrixRotate func(matrix *T.CairoMatrix, radians float64)
+
+	MatrixInvert func(matrix *T.CairoMatrix) T.CairoStatus
+
+	MatrixMultiply func(result, a, b *T.CairoMatrix)
+
+	MatrixTransformDistance func(
+		matrix *T.CairoMatrix, dx, dy *float64)
+
+	MatrixTransformPoint func(
+		matrix *T.CairoMatrix, x, y *float64)
+
+	RegionCreate func() *T.CairoRegion
+
+	RegionCreateRectangle func(
+		rectangle *T.CairoRectangleInt) *T.CairoRegion
+
+	RegionCreateRectangles func(
+		rects *T.CairoRectangleInt,
+		count int) *T.CairoRegion
+
+	RegionCopy func(original *T.CairoRegion) *T.CairoRegion
+
+	RegionReference func(region *T.CairoRegion) *T.CairoRegion
+
+	RegionDestroy func(region *T.CairoRegion)
+
+	RegionEqual func(a, b *T.CairoRegion) T.CairoBool
+
+	RegionStatus func(region *T.CairoRegion) T.CairoStatus
+
+	RegionGetExtents func(region *T.CairoRegion,
+		extents *T.CairoRectangleInt)
+
+	RegionNumRectangles func(region *T.CairoRegion) int
+
+	RegionGetRectangle func(region *T.CairoRegion,
+		nth int, rectangle *T.CairoRectangleInt)
+
+	RegionIsEmpty func(region *T.CairoRegion) T.CairoBool
+
+	RegionContainsRectangle func(region *T.CairoRegion,
+		rectangle *T.CairoRectangleInt) T.CairoRegionOverlap
+
+	RegionContainsPoint func(
+		region *T.CairoRegion, x, y int) T.CairoBool
+
+	RegionTranslate func(region *T.CairoRegion, dx, dy int)
+
+	RegionSubtract func(dst, other *T.CairoRegion) T.CairoStatus
+
+	RegionSubtractRectangle func(dst *T.CairoRegion,
+		rectangle *T.CairoRectangleInt) T.CairoStatus
+
+	RegionIntersect func(dst, other *T.CairoRegion) T.CairoStatus
+
+	RegionIntersectRectangle func(dst *T.CairoRegion,
+		rectangle *T.CairoRectangleInt) T.CairoStatus
+
+	RegionUnion func(dst, other *T.CairoRegion) T.CairoStatus
+
+	RegionUnionRectangle func(dst *T.CairoRegion,
+		rectangle *T.CairoRectangleInt) T.CairoStatus
+
+	RegionXor func(dst, other *T.CairoRegion) T.CairoStatus
+
+	RegionXorRectangle func(dst *T.CairoRegion,
+		rectangle *T.CairoRectangleInt) T.CairoStatus
+
+	DebugResetStaticData func()
+
+	GobjectContextGetType func()
+
+	GobjectDeviceGetType func()
+
+	GobjectPatternGetType func()
+
+	GobjectSurfaceGetType func()
+
+	GobjectRectangleGetType func()
+
+	GobjectScaledFontGetType func()
+
+	GobjectFontFaceGetType func()
+
+	GobjectFontOptionsGetType func()
+
+	GobjectRectangleIntGetType func()
+
+	GobjectRegionGetType func()
+
+	GobjectStatusGetType func()
+
+	GobjectContentGetType func()
+
+	GobjectOperatorGetType func()
+
+	GobjectAntialiasGetType func()
+
+	GobjectFillRuleGetType func()
+
+	GobjectLineCapGetType func()
+
+	GobjectLineJoinGetType func()
+
+	GobjectTextClusterFlagsGetType func()
+
+	GobjectFontSlantGetType func()
+
+	GobjectFontWeightGetType func()
+
+	GobjectSubpixelOrderGetType func()
+
+	GobjectHintStyleGetType func()
+
+	GobjectHintMetricsGetType func()
+
+	GobjectFontTypeGetType func()
+
+	GobjectPathDataTypeGetType func()
+
+	GobjectDeviceTypeGetType func()
+
+	GobjectSurfaceTypeGetType func()
+
+	GobjectFormatGetType func()
+
+	GobjectPatternTypeGetType func()
+
+	GobjectExtendGetType func()
+
+	GobjectFilterGetType func()
+
+	GobjectRegionOverlapGetType func()
+
+	ScriptInterpreterCreate func() *T.CairoScriptInterpreter
+
+	ScriptInterpreterInstallHooks func(
+		ctx *T.CairoScriptInterpreter,
+		hooks *T.CairoScriptInterpreterHooks)
+
+	ScriptInterpreterRun func(
+		ctx *T.CairoScriptInterpreter,
+		filename string) T.CairoStatus
+
+	ScriptInterpreterFeedStream func(
+		ctx *T.CairoScriptInterpreter,
+		stream *T.FILE) T.CairoStatus
+
+	ScriptInterpreterFeedString func(
+		ctx *T.CairoScriptInterpreter,
 		line string,
-		leng int) T.Cairo_status_t
+		leng int) T.CairoStatus
 
-	Cairo_script_interpreter_get_line_number func(
-		ctx *T.Cairo_script_interpreter_t) uint
+	ScriptInterpreterGetLineNumber func(
+		ctx *T.CairoScriptInterpreter) uint
 
-	Cairo_script_interpreter_reference func(
-		ctx *T.Cairo_script_interpreter_t) *T.Cairo_script_interpreter_t
+	ScriptInterpreterReference func(
+		ctx *T.CairoScriptInterpreter) *T.CairoScriptInterpreter
 
-	Cairo_script_interpreter_finish func(
-		ctx *T.Cairo_script_interpreter_t) T.Cairo_status_t
+	ScriptInterpreterFinish func(
+		ctx *T.CairoScriptInterpreter) T.CairoStatus
 
-	Cairo_script_interpreter_destroy func(
-		ctx *T.Cairo_script_interpreter_t) T.Cairo_status_t
+	ScriptInterpreterDestroy func(
+		ctx *T.CairoScriptInterpreter) T.CairoStatus
 
-	Cairo_script_interpreter_translate_stream func(
+	ScriptInterpreterTranslateStream func(
 		stream *T.FILE,
-		write_func T.Cairo_write_func_t,
-		closure *T.Void) T.Cairo_status_t
+		writeFunc T.CairoWriteFunc,
+		closure *T.Void) T.CairoStatus
 
-	Cairo_ft_font_face_create_for_ft_face func(
-		face T.FT_Face,
-		load_flags int) *T.Cairo_font_face_t
+	FtFontFaceCreateForFtFace func(
+		face T.FTFace,
+		loadFlags int) *T.CairoFontFace
 
-	Cairo_ft_scaled_font_lock_face func(
-		scaled_font *T.Cairo_scaled_font_t) T.FT_Face
+	FtScaledFontLockFace func(
+		scaledFont *T.CairoScaledFont) T.FTFace
 
-	Cairo_ft_scaled_font_unlock_face func(
-		scaled_font *T.Cairo_scaled_font_t)
+	FtScaledFontUnlockFace func(
+		scaledFont *T.CairoScaledFont)
 
-	Cairo_ft_font_face_create_for_pattern func(
-		pattern *T.FcPattern) *T.Cairo_font_face_t
+	FtFontFaceCreateForPattern func(
+		pattern *T.FcPattern) *T.CairoFontFace
 
-	Cairo_ft_font_options_substitute func(
-		options *T.Cairo_font_options_t,
+	FtFontOptionsSubstitute func(
+		options *T.CairoFontOptions,
 		pattern *T.FcPattern)
 
-	Cairo_pdf_surface_create func(
+	PdfSurfaceCreate func(
 		filename string,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_pdf_surface_create_for_stream func(
-		write_func T.Cairo_write_func_t,
+	PdfSurfaceCreateForStream func(
+		writeFunc T.CairoWriteFunc,
 		closure *T.Void,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_pdf_surface_restrict_to_version func(
-		surface *T.Cairo_surface_t,
-		version Cairo_pdf_version_t)
+	PdfSurfaceRestrictToVersion func(
+		surface *T.CairoSurface,
+		version PdfVersion)
 
-	Cairo_pdf_get_versions func(
-		versions **Cairo_pdf_version_t,
-		num_versions *int)
+	PdfGetVersions func(
+		versions **PdfVersion,
+		numVersions *int)
 
-	Cairo_pdf_version_to_string func(
-		version Cairo_pdf_version_t) string
+	PdfVersionToString func(
+		version PdfVersion) string
 
-	Cairo_pdf_surface_set_size func(
-		surface *T.Cairo_surface_t,
-		width_in_points float64,
-		height_in_points float64)
+	PdfSurfaceSetSize func(
+		surface *T.CairoSurface,
+		widthInPoints float64,
+		heightInPoints float64)
 
-	Cairo_ps_surface_create func(
+	PsSurfaceCreate func(
 		filename string,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_ps_surface_create_for_stream func(
-		write_func T.Cairo_write_func_t,
+	PsSurfaceCreateForStream func(
+		writeFunc T.CairoWriteFunc,
 		closure *T.Void,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_ps_surface_restrict_to_level func(
-		surface *T.Cairo_surface_t,
-		level Cairo_ps_level_t)
+	PsSurfaceRestrictToLevel func(
+		surface *T.CairoSurface,
+		level PsLevel)
 
-	Cairo_ps_get_levels func(
-		levels **Cairo_ps_level_t,
-		num_levels *int)
+	PsGetLevels func(
+		levels **PsLevel,
+		numLevels *int)
 
-	Cairo_ps_level_to_string func(
-		level Cairo_ps_level_t)
+	PsLevelToString func(
+		level PsLevel)
 
-	Cairo_ps_surface_set_eps func(
-		surface *T.Cairo_surface_t,
-		eps T.Cairo_bool_t) string
+	PsSurfaceSetEps func(
+		surface *T.CairoSurface,
+		eps T.CairoBool) string
 
-	Cairo_ps_surface_get_eps func(
-		surface *T.Cairo_surface_t)
+	PsSurfaceGetEps func(
+		surface *T.CairoSurface)
 
-	Cairo_ps_surface_set_size func(
-		surface *T.Cairo_surface_t,
-		width_in_points float64,
-		height_in_points float64) T.Cairo_bool_t
+	PsSurfaceSetSize func(
+		surface *T.CairoSurface,
+		widthInPoints float64,
+		heightInPoints float64) T.CairoBool
 
-	Cairo_ps_surface_dsc_comment func(
-		surface *T.Cairo_surface_t,
+	PsSurfaceDscComment func(
+		surface *T.CairoSurface,
 		comment string)
 
-	Cairo_ps_surface_dsc_begin_setup func(
-		surface *T.Cairo_surface_t)
+	PsSurfaceDscBeginSetup func(
+		surface *T.CairoSurface)
 
-	Cairo_ps_surface_dsc_begin_page_setup func(
-		surface *T.Cairo_surface_t)
+	PsSurfaceDscBeginPageSetup func(
+		surface *T.CairoSurface)
 
-	Cairo_svg_surface_create func(
+	SvgSurfaceCreate func(
 		filename string,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_svg_surface_create_for_stream func(
-		write_func T.Cairo_write_func_t,
+	SvgSurfaceCreateForStream func(
+		writeFunc T.CairoWriteFunc,
 		closure *T.Void,
-		width_in_points float64,
-		height_in_points float64) *T.Cairo_surface_t
+		widthInPoints float64,
+		heightInPoints float64) *T.CairoSurface
 
-	Cairo_svg_surface_restrict_to_version func(
-		surface *T.Cairo_surface_t,
-		version Cairo_svg_version_t)
+	SvgSurfaceRestrictToVersion func(
+		surface *T.CairoSurface,
+		version SvgVersion)
 
-	Cairo_svg_get_versions func(
-		versions **Cairo_svg_version_t,
-		num_versions *int)
+	SvgGetVersions func(
+		versions **SvgVersion,
+		numVersions *int)
 
-	Cairo_svg_version_to_string func(
-		version Cairo_svg_version_t) string
+	SvgVersionToString func(
+		version SvgVersion) string
 
-	Cairo_win32_surface_create func(
-		hdc HDC) *T.Cairo_surface_t
+	Win32SurfaceCreate func(hdc HDC) *T.CairoSurface
 
-	Cairo_win32_printing_surface_create func(
-		hdc HDC) *T.Cairo_surface_t
+	Win32PrintingSurfaceCreate func(hdc HDC) *T.CairoSurface
 
-	Cairo_win32_surface_create_with_ddb func(
-		hdc HDC,
-		format T.Cairo_format_t,
+	Win32SurfaceCreateWithDdb func(hdc HDC, format T.CairoFormat,
+		width, height int) *T.CairoSurface
+
+	Win32SurfaceCreateWithDib func(
+		format T.CairoFormat,
 		width int,
-		height int) *T.Cairo_surface_t
+		height int) *T.CairoSurface
 
-	Cairo_win32_surface_create_with_dib func(
-		format T.Cairo_format_t,
-		width int,
-		height int) *T.Cairo_surface_t
+	Win32SurfaceGetDc func(
+		surface *T.CairoSurface) HDC
 
-	Cairo_win32_surface_get_dc func(
-		surface *T.Cairo_surface_t) HDC
+	Win32SurfaceGetImage func(
+		surface *T.CairoSurface) *T.CairoSurface
 
-	Cairo_win32_surface_get_image func(
-		surface *T.Cairo_surface_t) *T.Cairo_surface_t
+	Win32FontFaceCreateForLogfontw func(
+		logfont *LOGFONTW) *T.CairoFontFace
 
-	Cairo_win32_font_face_create_for_logfontw func(
-		logfont *LOGFONTW) *T.Cairo_font_face_t
+	Win32FontFaceCreateForHfont func(
+		font HFONT) *T.CairoFontFace
 
-	Cairo_win32_font_face_create_for_hfont func(
-		font HFONT) *T.Cairo_font_face_t
-
-	Cairo_win32_font_face_create_for_logfontw_hfont func(
+	Win32FontFaceCreateForLogfontwHfont func(
 		logfont *LOGFONTW,
-		font HFONT) *T.Cairo_font_face_t
+		font HFONT) *T.CairoFontFace
 
-	Cairo_win32_scaled_font_select_font func(
-		scaled_font *T.Cairo_scaled_font_t,
-		hdc HDC) T.Cairo_status_t
+	Win32ScaledFontSelectFont func(
+		scaledFont *T.CairoScaledFont,
+		hdc HDC) T.CairoStatus
 
-	Cairo_win32_scaled_font_done_font func(
-		scaled_font *T.Cairo_scaled_font_t)
+	Win32ScaledFontDoneFont func(
+		scaledFont *T.CairoScaledFont)
 
-	Cairo_win32_scaled_font_get_metrics_factor func(
-		scaled_font *T.Cairo_scaled_font_t) float64
+	Win32ScaledFontGetMetricsFactor func(
+		scaledFont *T.CairoScaledFont) float64
 
-	Cairo_win32_scaled_font_get_logical_to_device func(
-		scaled_font *T.Cairo_scaled_font_t,
-		logical_to_device *T.Cairo_matrix_t)
+	Win32ScaledFontGetLogicalToDevice func(
+		scaledFont *T.CairoScaledFont,
+		logicalToDevice *T.CairoMatrix)
 
-	Cairo_win32_scaled_font_get_device_to_logical func(
-		scaled_font *T.Cairo_scaled_font_t,
-		device_to_logical *T.Cairo_matrix_t)
+	Win32ScaledFontGetDeviceToLogical func(
+		scaledFont *T.CairoScaledFont,
+		deviceToLogical *T.CairoMatrix)
 )
 
 var dll = "libcairo-2.dll"
 
 var apiList = outside.Apis{
-	{"cairo_append_path", &Cairo_append_path},
-	{"cairo_arc", &Cairo_arc},
-	{"cairo_arc_negative", &Cairo_arc_negative},
-	{"cairo_clip", &Cairo_clip},
-	{"cairo_clip_extents", &Cairo_clip_extents},
-	{"cairo_clip_preserve", &Cairo_clip_preserve},
-	{"cairo_close_path", &Cairo_close_path},
-	{"cairo_copy_clip_rectangle_list", &Cairo_copy_clip_rectangle_list},
-	{"cairo_copy_page", &Cairo_copy_page},
-	{"cairo_copy_path", &Cairo_copy_path},
-	{"cairo_copy_path_flat", &Cairo_copy_path_flat},
-	{"cairo_create", &Cairo_create},
-	{"cairo_curve_to", &Cairo_curve_to},
-	{"cairo_debug_reset_static_data", &Cairo_debug_reset_static_data},
-	{"cairo_destroy", &Cairo_destroy},
-	{"cairo_device_acquire", &Cairo_device_acquire},
-	{"cairo_device_destroy", &Cairo_device_destroy},
-	{"cairo_device_finish", &Cairo_device_finish},
-	{"cairo_device_flush", &Cairo_device_flush},
-	{"cairo_device_get_reference_count", &Cairo_device_get_reference_count},
-	{"cairo_device_get_type", &Cairo_device_get_type},
-	{"cairo_device_get_user_data", &Cairo_device_get_user_data},
-	{"cairo_device_reference", &Cairo_device_reference},
-	{"cairo_device_release", &Cairo_device_release},
-	{"cairo_device_set_user_data", &Cairo_device_set_user_data},
-	{"cairo_device_status", &Cairo_device_status},
-	{"cairo_device_to_user", &Cairo_device_to_user},
-	{"cairo_device_to_user_distance", &Cairo_device_to_user_distance},
-	{"cairo_fill", &Cairo_fill},
-	{"cairo_fill_extents", &Cairo_fill_extents},
-	{"cairo_fill_preserve", &Cairo_fill_preserve},
-	{"cairo_font_extents", &Cairo_font_extents},
-	{"cairo_font_face_destroy", &Cairo_font_face_destroy},
-	{"cairo_font_face_get_reference_count", &Cairo_font_face_get_reference_count},
-	{"cairo_font_face_get_type", &Cairo_font_face_get_type},
-	{"cairo_font_face_get_user_data", &Cairo_font_face_get_user_data},
-	{"cairo_font_face_reference", &Cairo_font_face_reference},
-	{"cairo_font_face_set_user_data", &Cairo_font_face_set_user_data},
-	{"cairo_font_face_status", &Cairo_font_face_status},
-	{"cairo_font_options_copy", &Cairo_font_options_copy},
-	{"cairo_font_options_create", &Cairo_font_options_create},
-	{"cairo_font_options_destroy", &Cairo_font_options_destroy},
-	{"cairo_font_options_equal", &Cairo_font_options_equal},
-	{"cairo_font_options_get_antialias", &Cairo_font_options_get_antialias},
-	{"cairo_font_options_get_hint_metrics", &Cairo_font_options_get_hint_metrics},
-	{"cairo_font_options_get_hint_style", &Cairo_font_options_get_hint_style},
-	{"cairo_font_options_get_subpixel_order", &Cairo_font_options_get_subpixel_order},
-	{"cairo_font_options_hash", &Cairo_font_options_hash},
-	{"cairo_font_options_merge", &Cairo_font_options_merge},
-	{"cairo_font_options_set_antialias", &Cairo_font_options_set_antialias},
-	{"cairo_font_options_set_hint_metrics", &Cairo_font_options_set_hint_metrics},
-	{"cairo_font_options_set_hint_style", &Cairo_font_options_set_hint_style},
-	{"cairo_font_options_set_subpixel_order", &Cairo_font_options_set_subpixel_order},
-	{"cairo_font_options_status", &Cairo_font_options_status},
-	{"cairo_format_stride_for_width", &Cairo_format_stride_for_width},
-	{"cairo_ft_font_face_create_for_ft_face", &Cairo_ft_font_face_create_for_ft_face},
-	{"cairo_ft_font_face_create_for_pattern", &Cairo_ft_font_face_create_for_pattern},
-	{"cairo_ft_font_options_substitute", &Cairo_ft_font_options_substitute},
-	{"cairo_ft_scaled_font_lock_face", &Cairo_ft_scaled_font_lock_face},
-	{"cairo_ft_scaled_font_unlock_face", &Cairo_ft_scaled_font_unlock_face},
-	{"cairo_get_antialias", &Cairo_get_antialias},
-	{"cairo_get_current_point", &Cairo_get_current_point},
-	{"cairo_get_dash", &Cairo_get_dash},
-	{"cairo_get_dash_count", &Cairo_get_dash_count},
-	{"cairo_get_fill_rule", &Cairo_get_fill_rule},
-	{"cairo_get_font_face", &Cairo_get_font_face},
-	{"cairo_get_font_matrix", &Cairo_get_font_matrix},
-	{"cairo_get_font_options", &Cairo_get_font_options},
-	{"cairo_get_group_target", &Cairo_get_group_target},
-	{"cairo_get_line_cap", &Cairo_get_line_cap},
-	{"cairo_get_line_join", &Cairo_get_line_join},
-	{"cairo_get_line_width", &Cairo_get_line_width},
-	{"cairo_get_matrix", &Cairo_get_matrix},
-	{"cairo_get_miter_limit", &Cairo_get_miter_limit},
-	{"cairo_get_operator", &Cairo_get_operator},
-	{"cairo_get_reference_count", &Cairo_get_reference_count},
-	{"cairo_get_scaled_font", &Cairo_get_scaled_font},
-	{"cairo_get_source", &Cairo_get_source},
-	{"cairo_get_target", &Cairo_get_target},
-	{"cairo_get_tolerance", &Cairo_get_tolerance},
-	{"cairo_get_user_data", &Cairo_get_user_data},
-	{"cairo_glyph_allocate", &Cairo_glyph_allocate},
-	{"cairo_glyph_extents", &Cairo_glyph_extents},
-	{"cairo_glyph_free", &Cairo_glyph_free},
-	{"cairo_glyph_path", &Cairo_glyph_path},
-	{"cairo_has_current_point", &Cairo_has_current_point},
-	{"cairo_identity_matrix", &Cairo_identity_matrix},
-	{"cairo_image_surface_create", &Cairo_image_surface_create},
-	{"cairo_image_surface_create_for_data", &Cairo_image_surface_create_for_data},
-	{"cairo_image_surface_create_from_png", &Cairo_image_surface_create_from_png},
-	{"cairo_image_surface_create_from_png_stream", &Cairo_image_surface_create_from_png_stream},
-	{"cairo_image_surface_get_data", &Cairo_image_surface_get_data},
-	{"cairo_image_surface_get_format", &Cairo_image_surface_get_format},
-	{"cairo_image_surface_get_height", &Cairo_image_surface_get_height},
-	{"cairo_image_surface_get_stride", &Cairo_image_surface_get_stride},
-	{"cairo_image_surface_get_width", &Cairo_image_surface_get_width},
-	{"cairo_in_clip", &Cairo_in_clip},
-	{"cairo_in_fill", &Cairo_in_fill},
-	{"cairo_in_stroke", &Cairo_in_stroke},
-	{"cairo_line_to", &Cairo_line_to},
-	{"cairo_mask", &Cairo_mask},
-	{"cairo_mask_surface", &Cairo_mask_surface},
-	{"cairo_matrix_init", &Cairo_matrix_init},
-	{"cairo_matrix_init_identity", &Cairo_matrix_init_identity},
-	{"cairo_matrix_init_rotate", &Cairo_matrix_init_rotate},
-	{"cairo_matrix_init_scale", &Cairo_matrix_init_scale},
-	{"cairo_matrix_init_translate", &Cairo_matrix_init_translate},
-	{"cairo_matrix_invert", &Cairo_matrix_invert},
-	{"cairo_matrix_multiply", &Cairo_matrix_multiply},
-	{"cairo_matrix_rotate", &Cairo_matrix_rotate},
-	{"cairo_matrix_scale", &Cairo_matrix_scale},
-	{"cairo_matrix_transform_distance", &Cairo_matrix_transform_distance},
-	{"cairo_matrix_transform_point", &Cairo_matrix_transform_point},
-	{"cairo_matrix_translate", &Cairo_matrix_translate},
-	{"cairo_move_to", &Cairo_move_to},
-	{"cairo_new_path", &Cairo_new_path},
-	{"cairo_new_sub_path", &Cairo_new_sub_path},
-	{"cairo_paint", &Cairo_paint},
-	{"cairo_paint_with_alpha", &Cairo_paint_with_alpha},
-	{"cairo_path_destroy", &Cairo_path_destroy},
-	{"cairo_path_extents", &Cairo_path_extents},
-	{"cairo_pattern_add_color_stop_rgb", &Cairo_pattern_add_color_stop_rgb},
-	{"cairo_pattern_add_color_stop_rgba", &Cairo_pattern_add_color_stop_rgba},
-	{"cairo_pattern_create_for_surface", &Cairo_pattern_create_for_surface},
-	{"cairo_pattern_create_linear", &Cairo_pattern_create_linear},
-	{"cairo_pattern_create_radial", &Cairo_pattern_create_radial},
-	{"cairo_pattern_create_rgb", &Cairo_pattern_create_rgb},
-	{"cairo_pattern_create_rgba", &Cairo_pattern_create_rgba},
-	{"cairo_pattern_destroy", &Cairo_pattern_destroy},
-	{"cairo_pattern_get_color_stop_count", &Cairo_pattern_get_color_stop_count},
-	{"cairo_pattern_get_color_stop_rgba", &Cairo_pattern_get_color_stop_rgba},
-	{"cairo_pattern_get_extend", &Cairo_pattern_get_extend},
-	{"cairo_pattern_get_filter", &Cairo_pattern_get_filter},
-	{"cairo_pattern_get_linear_points", &Cairo_pattern_get_linear_points},
-	{"cairo_pattern_get_matrix", &Cairo_pattern_get_matrix},
-	{"cairo_pattern_get_radial_circles", &Cairo_pattern_get_radial_circles},
-	{"cairo_pattern_get_reference_count", &Cairo_pattern_get_reference_count},
-	{"cairo_pattern_get_rgba", &Cairo_pattern_get_rgba},
-	{"cairo_pattern_get_surface", &Cairo_pattern_get_surface},
-	{"cairo_pattern_get_type", &Cairo_pattern_get_type},
-	{"cairo_pattern_get_user_data", &Cairo_pattern_get_user_data},
-	{"cairo_pattern_reference", &Cairo_pattern_reference},
-	{"cairo_pattern_set_extend", &Cairo_pattern_set_extend},
-	{"cairo_pattern_set_filter", &Cairo_pattern_set_filter},
-	{"cairo_pattern_set_matrix", &Cairo_pattern_set_matrix},
-	{"cairo_pattern_set_user_data", &Cairo_pattern_set_user_data},
-	{"cairo_pattern_status", &Cairo_pattern_status},
-	{"cairo_pdf_get_versions", &Cairo_pdf_get_versions},
-	{"cairo_pdf_surface_create", &Cairo_pdf_surface_create},
-	{"cairo_pdf_surface_create_for_stream", &Cairo_pdf_surface_create_for_stream},
-	{"cairo_pdf_surface_restrict_to_version", &Cairo_pdf_surface_restrict_to_version},
-	{"cairo_pdf_surface_set_size", &Cairo_pdf_surface_set_size},
-	{"cairo_pdf_version_to_string", &Cairo_pdf_version_to_string},
-	{"cairo_pop_group", &Cairo_pop_group},
-	{"cairo_pop_group_to_source", &Cairo_pop_group_to_source},
-	{"cairo_ps_get_levels", &Cairo_ps_get_levels},
-	{"cairo_ps_level_to_string", &Cairo_ps_level_to_string},
-	{"cairo_ps_surface_create", &Cairo_ps_surface_create},
-	{"cairo_ps_surface_create_for_stream", &Cairo_ps_surface_create_for_stream},
-	{"cairo_ps_surface_dsc_begin_page_setup", &Cairo_ps_surface_dsc_begin_page_setup},
-	{"cairo_ps_surface_dsc_begin_setup", &Cairo_ps_surface_dsc_begin_setup},
-	{"cairo_ps_surface_dsc_comment", &Cairo_ps_surface_dsc_comment},
-	{"cairo_ps_surface_get_eps", &Cairo_ps_surface_get_eps},
-	{"cairo_ps_surface_restrict_to_level", &Cairo_ps_surface_restrict_to_level},
-	{"cairo_ps_surface_set_eps", &Cairo_ps_surface_set_eps},
-	{"cairo_ps_surface_set_size", &Cairo_ps_surface_set_size},
-	{"cairo_push_group", &Cairo_push_group},
-	{"cairo_push_group_with_content", &Cairo_push_group_with_content},
-	{"cairo_recording_surface_create", &Cairo_recording_surface_create},
-	{"cairo_recording_surface_ink_extents", &Cairo_recording_surface_ink_extents},
-	{"cairo_rectangle", &Cairo_rectangle},
-	{"cairo_rectangle_list_destroy", &Cairo_rectangle_list_destroy},
-	{"cairo_reference", &Cairo_reference},
-	{"cairo_region_contains_point", &Cairo_region_contains_point},
-	{"cairo_region_contains_rectangle", &Cairo_region_contains_rectangle},
-	{"cairo_region_copy", &Cairo_region_copy},
-	{"cairo_region_create", &Cairo_region_create},
-	{"cairo_region_create_rectangle", &Cairo_region_create_rectangle},
-	{"cairo_region_create_rectangles", &Cairo_region_create_rectangles},
-	{"cairo_region_destroy", &Cairo_region_destroy},
-	{"cairo_region_equal", &Cairo_region_equal},
-	{"cairo_region_get_extents", &Cairo_region_get_extents},
-	{"cairo_region_get_rectangle", &Cairo_region_get_rectangle},
-	{"cairo_region_intersect", &Cairo_region_intersect},
-	{"cairo_region_intersect_rectangle", &Cairo_region_intersect_rectangle},
-	{"cairo_region_is_empty", &Cairo_region_is_empty},
-	{"cairo_region_num_rectangles", &Cairo_region_num_rectangles},
-	{"cairo_region_reference", &Cairo_region_reference},
-	{"cairo_region_status", &Cairo_region_status},
-	{"cairo_region_subtract", &Cairo_region_subtract},
-	{"cairo_region_subtract_rectangle", &Cairo_region_subtract_rectangle},
-	{"cairo_region_translate", &Cairo_region_translate},
-	{"cairo_region_union", &Cairo_region_union},
-	{"cairo_region_union_rectangle", &Cairo_region_union_rectangle},
-	{"cairo_region_xor", &Cairo_region_xor},
-	{"cairo_region_xor_rectangle", &Cairo_region_xor_rectangle},
-	{"cairo_rel_curve_to", &Cairo_rel_curve_to},
-	{"cairo_rel_line_to", &Cairo_rel_line_to},
-	{"cairo_rel_move_to", &Cairo_rel_move_to},
-	{"cairo_reset_clip", &Cairo_reset_clip},
-	{"cairo_restore", &Cairo_restore},
-	{"cairo_rotate", &Cairo_rotate},
-	{"cairo_save", &Cairo_save},
-	{"cairo_scale", &Cairo_scale},
-	{"cairo_scaled_font_create", &Cairo_scaled_font_create},
-	{"cairo_scaled_font_destroy", &Cairo_scaled_font_destroy},
-	{"cairo_scaled_font_extents", &Cairo_scaled_font_extents},
-	{"cairo_scaled_font_get_ctm", &Cairo_scaled_font_get_ctm},
-	{"cairo_scaled_font_get_font_face", &Cairo_scaled_font_get_font_face},
-	{"cairo_scaled_font_get_font_matrix", &Cairo_scaled_font_get_font_matrix},
-	{"cairo_scaled_font_get_font_options", &Cairo_scaled_font_get_font_options},
-	{"cairo_scaled_font_get_reference_count", &Cairo_scaled_font_get_reference_count},
-	{"cairo_scaled_font_get_scale_matrix", &Cairo_scaled_font_get_scale_matrix},
-	{"cairo_scaled_font_get_type", &Cairo_scaled_font_get_type},
-	{"cairo_scaled_font_get_user_data", &Cairo_scaled_font_get_user_data},
-	{"cairo_scaled_font_glyph_extents", &Cairo_scaled_font_glyph_extents},
-	{"cairo_scaled_font_reference", &Cairo_scaled_font_reference},
-	{"cairo_scaled_font_set_user_data", &Cairo_scaled_font_set_user_data},
-	{"cairo_scaled_font_status", &Cairo_scaled_font_status},
-	{"cairo_scaled_font_text_extents", &Cairo_scaled_font_text_extents},
-	{"cairo_scaled_font_text_to_glyphs", &Cairo_scaled_font_text_to_glyphs},
-	{"cairo_select_font_face", &Cairo_select_font_face},
-	{"cairo_set_antialias", &Cairo_set_antialias},
-	{"cairo_set_dash", &Cairo_set_dash},
-	{"cairo_set_fill_rule", &Cairo_set_fill_rule},
-	{"cairo_set_font_face", &Cairo_set_font_face},
-	{"cairo_set_font_matrix", &Cairo_set_font_matrix},
-	{"cairo_set_font_options", &Cairo_set_font_options},
-	{"cairo_set_font_size", &Cairo_set_font_size},
-	{"cairo_set_line_cap", &Cairo_set_line_cap},
-	{"cairo_set_line_join", &Cairo_set_line_join},
-	{"cairo_set_line_width", &Cairo_set_line_width},
-	{"cairo_set_matrix", &Cairo_set_matrix},
-	{"cairo_set_miter_limit", &Cairo_set_miter_limit},
-	{"cairo_set_operator", &Cairo_set_operator},
-	{"cairo_set_scaled_font", &Cairo_set_scaled_font},
-	{"cairo_set_source", &Cairo_set_source},
-	{"cairo_set_source_rgb", &Cairo_set_source_rgb},
-	{"cairo_set_source_rgba", &Cairo_set_source_rgba},
-	{"cairo_set_source_surface", &Cairo_set_source_surface},
-	{"cairo_set_tolerance", &Cairo_set_tolerance},
-	{"cairo_set_user_data", &Cairo_set_user_data},
-	{"cairo_show_glyphs", &Cairo_show_glyphs},
-	{"cairo_show_page", &Cairo_show_page},
-	{"cairo_show_text", &Cairo_show_text},
-	{"cairo_show_text_glyphs", &Cairo_show_text_glyphs},
-	{"cairo_status", &Cairo_status},
-	{"cairo_status_to_string", &Cairo_status_to_string},
-	{"cairo_stroke", &Cairo_stroke},
-	{"cairo_stroke_extents", &Cairo_stroke_extents},
-	{"cairo_stroke_preserve", &Cairo_stroke_preserve},
-	{"cairo_surface_copy_page", &Cairo_surface_copy_page},
-	{"cairo_surface_create_for_rectangle", &Cairo_surface_create_for_rectangle},
-	{"cairo_surface_create_similar", &Cairo_surface_create_similar},
-	{"cairo_surface_destroy", &Cairo_surface_destroy},
-	{"cairo_surface_finish", &Cairo_surface_finish},
-	{"cairo_surface_flush", &Cairo_surface_flush},
-	{"cairo_surface_get_content", &Cairo_surface_get_content},
-	{"cairo_surface_get_device", &Cairo_surface_get_device},
-	{"cairo_surface_get_device_offset", &Cairo_surface_get_device_offset},
-	{"cairo_surface_get_fallback_resolution", &Cairo_surface_get_fallback_resolution},
-	{"cairo_surface_get_font_options", &Cairo_surface_get_font_options},
-	{"cairo_surface_get_mime_data", &Cairo_surface_get_mime_data},
-	{"cairo_surface_get_reference_count", &Cairo_surface_get_reference_count},
-	{"cairo_surface_get_type", &Cairo_surface_get_type},
-	{"cairo_surface_get_user_data", &Cairo_surface_get_user_data},
-	{"cairo_surface_has_show_text_glyphs", &Cairo_surface_has_show_text_glyphs},
-	{"cairo_surface_mark_dirty", &Cairo_surface_mark_dirty},
-	{"cairo_surface_mark_dirty_rectangle", &Cairo_surface_mark_dirty_rectangle},
-	{"cairo_surface_reference", &Cairo_surface_reference},
-	{"cairo_surface_set_device_offset", &Cairo_surface_set_device_offset},
-	{"cairo_surface_set_fallback_resolution", &Cairo_surface_set_fallback_resolution},
-	{"cairo_surface_set_mime_data", &Cairo_surface_set_mime_data},
-	{"cairo_surface_set_user_data", &Cairo_surface_set_user_data},
-	{"cairo_surface_show_page", &Cairo_surface_show_page},
-	{"cairo_surface_status", &Cairo_surface_status},
-	{"cairo_surface_write_to_png", &Cairo_surface_write_to_png},
-	{"cairo_surface_write_to_png_stream", &Cairo_surface_write_to_png_stream},
-	{"cairo_svg_get_versions", &Cairo_svg_get_versions},
-	{"cairo_svg_surface_create", &Cairo_svg_surface_create},
-	{"cairo_svg_surface_create_for_stream", &Cairo_svg_surface_create_for_stream},
-	{"cairo_svg_surface_restrict_to_version", &Cairo_svg_surface_restrict_to_version},
-	{"cairo_svg_version_to_string", &Cairo_svg_version_to_string},
-	{"cairo_text_cluster_allocate", &Cairo_text_cluster_allocate},
-	{"cairo_text_cluster_free", &Cairo_text_cluster_free},
-	{"cairo_text_extents", &Cairo_text_extents},
-	{"cairo_text_path", &Cairo_text_path},
-	{"cairo_toy_font_face_create", &Cairo_toy_font_face_create},
-	{"cairo_toy_font_face_get_family", &Cairo_toy_font_face_get_family},
-	{"cairo_toy_font_face_get_slant", &Cairo_toy_font_face_get_slant},
-	{"cairo_toy_font_face_get_weight", &Cairo_toy_font_face_get_weight},
-	{"cairo_transform", &Cairo_transform},
-	{"cairo_translate", &Cairo_translate},
-	{"cairo_user_font_face_create", &Cairo_user_font_face_create},
-	{"cairo_user_font_face_get_init_func", &Cairo_user_font_face_get_init_func},
-	{"cairo_user_font_face_get_render_glyph_func", &Cairo_user_font_face_get_render_glyph_func},
-	{"cairo_user_font_face_get_text_to_glyphs_func", &Cairo_user_font_face_get_text_to_glyphs_func},
-	{"cairo_user_font_face_get_unicode_to_glyph_func", &Cairo_user_font_face_get_unicode_to_glyph_func},
-	{"cairo_user_font_face_set_init_func", &Cairo_user_font_face_set_init_func},
-	{"cairo_user_font_face_set_render_glyph_func", &Cairo_user_font_face_set_render_glyph_func},
-	{"cairo_user_font_face_set_text_to_glyphs_func", &Cairo_user_font_face_set_text_to_glyphs_func},
-	{"cairo_user_font_face_set_unicode_to_glyph_func", &Cairo_user_font_face_set_unicode_to_glyph_func},
-	{"cairo_user_to_device", &Cairo_user_to_device},
-	{"cairo_user_to_device_distance", &Cairo_user_to_device_distance},
-	{"cairo_version", &Cairo_version},
-	{"cairo_version_string", &Cairo_version_string},
-	{"cairo_win32_font_face_create_for_hfont", &Cairo_win32_font_face_create_for_hfont},
-	{"cairo_win32_font_face_create_for_logfontw", &Cairo_win32_font_face_create_for_logfontw},
-	{"cairo_win32_font_face_create_for_logfontw_hfont", &Cairo_win32_font_face_create_for_logfontw_hfont},
-	{"cairo_win32_printing_surface_create", &Cairo_win32_printing_surface_create},
-	{"cairo_win32_scaled_font_done_font", &Cairo_win32_scaled_font_done_font},
-	{"cairo_win32_scaled_font_get_device_to_logical", &Cairo_win32_scaled_font_get_device_to_logical},
-	{"cairo_win32_scaled_font_get_logical_to_device", &Cairo_win32_scaled_font_get_logical_to_device},
-	{"cairo_win32_scaled_font_get_metrics_factor", &Cairo_win32_scaled_font_get_metrics_factor},
-	{"cairo_win32_scaled_font_select_font", &Cairo_win32_scaled_font_select_font},
-	{"cairo_win32_surface_create", &Cairo_win32_surface_create},
-	{"cairo_win32_surface_create_with_ddb", &Cairo_win32_surface_create_with_ddb},
-	{"cairo_win32_surface_create_with_dib", &Cairo_win32_surface_create_with_dib},
-	{"cairo_win32_surface_get_dc", &Cairo_win32_surface_get_dc},
-	{"cairo_win32_surface_get_image", &Cairo_win32_surface_get_image},
+	{"cairo_append_path", &AppendPath},
+	{"cairo_arc", &Arc},
+	{"cairo_arc_negative", &ArcNegative},
+	{"cairo_clip", &Clip},
+	{"cairo_clip_extents", &ClipExtents},
+	{"cairo_clip_preserve", &ClipPreserve},
+	{"cairo_close_path", &ClosePath},
+	{"cairo_copy_clip_rectangle_list", &CopyClipRectangleList},
+	{"cairo_copy_page", &CopyPage},
+	{"cairo_copy_path", &CopyPath},
+	{"cairo_copy_path_flat", &CopyPathFlat},
+	{"cairo_create", &Create},
+	{"cairo_curve_to", &CurveTo},
+	{"cairo_debug_reset_static_data", &DebugResetStaticData},
+	{"cairo_destroy", &Destroy},
+	{"cairo_device_acquire", &DeviceAcquire},
+	{"cairo_device_destroy", &DeviceDestroy},
+	{"cairo_device_finish", &DeviceFinish},
+	{"cairo_device_flush", &DeviceFlush},
+	{"cairo_device_get_reference_count", &DeviceGetReferenceCount},
+	{"cairo_device_get_type", &DeviceGetType},
+	{"cairo_device_get_user_data", &DeviceGetUserData},
+	{"cairo_device_reference", &DeviceReference},
+	{"cairo_device_release", &DeviceRelease},
+	{"cairo_device_set_user_data", &DeviceSetUserData},
+	{"cairo_device_status", &DeviceStatus},
+	{"cairo_device_to_user", &DeviceToUser},
+	{"cairo_device_to_user_distance", &DeviceToUserDistance},
+	{"cairo_fill", &Fill},
+	{"cairo_fill_extents", &FillExtents},
+	{"cairo_fill_preserve", &FillPreserve},
+	{"cairo_font_extents", &FontExtents},
+	{"cairo_font_face_destroy", &FontFaceDestroy},
+	{"cairo_font_face_get_reference_count", &FontFaceGetReferenceCount},
+	{"cairo_font_face_get_type", &FontFaceGetType},
+	{"cairo_font_face_get_user_data", &FontFaceGetUserData},
+	{"cairo_font_face_reference", &FontFaceReference},
+	{"cairo_font_face_set_user_data", &FontFaceSetUserData},
+	{"cairo_font_face_status", &FontFaceStatus},
+	{"cairo_font_options_copy", &FontOptionsCopy},
+	{"cairo_font_options_create", &FontOptionsCreate},
+	{"cairo_font_options_destroy", &FontOptionsDestroy},
+	{"cairo_font_options_equal", &FontOptionsEqual},
+	{"cairo_font_options_get_antialias", &FontOptionsGetAntialias},
+	{"cairo_font_options_get_hint_metrics", &FontOptionsGetHintMetrics},
+	{"cairo_font_options_get_hint_style", &FontOptionsGetHintStyle},
+	{"cairo_font_options_get_subpixel_order", &FontOptionsGetSubpixelOrder},
+	{"cairo_font_options_hash", &FontOptionsHash},
+	{"cairo_font_options_merge", &FontOptionsMerge},
+	{"cairo_font_options_set_antialias", &FontOptionsSetAntialias},
+	{"cairo_font_options_set_hint_metrics", &FontOptionsSetHintMetrics},
+	{"cairo_font_options_set_hint_style", &FontOptionsSetHintStyle},
+	{"cairo_font_options_set_subpixel_order", &FontOptionsSetSubpixelOrder},
+	{"cairo_font_options_status", &FontOptionsStatus},
+	{"cairo_format_stride_for_width", &FormatStrideForWidth},
+	{"cairo_ft_font_face_create_for_ft_face", &FtFontFaceCreateForFtFace},
+	{"cairo_ft_font_face_create_for_pattern", &FtFontFaceCreateForPattern},
+	{"cairo_ft_font_options_substitute", &FtFontOptionsSubstitute},
+	{"cairo_ft_scaled_font_lock_face", &FtScaledFontLockFace},
+	{"cairo_ft_scaled_font_unlock_face", &FtScaledFontUnlockFace},
+	{"cairo_get_antialias", &GetAntialias},
+	{"cairo_get_current_point", &GetCurrentPoint},
+	{"cairo_get_dash", &GetDash},
+	{"cairo_get_dash_count", &GetDashCount},
+	{"cairo_get_fill_rule", &GetFillRule},
+	{"cairo_get_font_face", &GetFontFace},
+	{"cairo_get_font_matrix", &GetFontMatrix},
+	{"cairo_get_font_options", &GetFontOptions},
+	{"cairo_get_group_target", &GetGroupTarget},
+	{"cairo_get_line_cap", &GetLineCap},
+	{"cairo_get_line_join", &GetLineJoin},
+	{"cairo_get_line_width", &GetLineWidth},
+	{"cairo_get_matrix", &GetMatrix},
+	{"cairo_get_miter_limit", &GetMiterLimit},
+	{"cairo_get_operator", &GetOperator},
+	{"cairo_get_reference_count", &GetReferenceCount},
+	{"cairo_get_scaled_font", &GetScaledFont},
+	{"cairo_get_source", &GetSource},
+	{"cairo_get_target", &GetTarget},
+	{"cairo_get_tolerance", &GetTolerance},
+	{"cairo_get_user_data", &GetUserData},
+	{"cairo_glyph_allocate", &GlyphAllocate},
+	{"cairo_glyph_extents", &GlyphExtents},
+	{"cairo_glyph_free", &GlyphFree},
+	{"cairo_glyph_path", &GlyphPath},
+	{"cairo_has_current_point", &HasCurrentPoint},
+	{"cairo_identity_matrix", &IdentityMatrix},
+	{"cairo_image_surface_create", &ImageSurfaceCreate},
+	{"cairo_image_surface_create_for_data", &ImageSurfaceCreateForData},
+	{"cairo_image_surface_create_from_png", &ImageSurfaceCreateFromPng},
+	{"cairo_image_surface_create_from_png_stream", &ImageSurfaceCreateFromPngStream},
+	{"cairo_image_surface_get_data", &ImageSurfaceGetData},
+	{"cairo_image_surface_get_format", &ImageSurfaceGetFormat},
+	{"cairo_image_surface_get_height", &ImageSurfaceGetHeight},
+	{"cairo_image_surface_get_stride", &ImageSurfaceGetStride},
+	{"cairo_image_surface_get_width", &ImageSurfaceGetWidth},
+	{"cairo_in_clip", &InClip},
+	{"cairo_in_fill", &InFill},
+	{"cairo_in_stroke", &InStroke},
+	{"cairo_line_to", &LineTo},
+	{"cairo_mask", &Mask},
+	{"cairo_mask_surface", &MaskSurface},
+	{"cairo_matrix_init", &MatrixInit},
+	{"cairo_matrix_init_identity", &MatrixInitIdentity},
+	{"cairo_matrix_init_rotate", &MatrixInitRotate},
+	{"cairo_matrix_init_scale", &MatrixInitScale},
+	{"cairo_matrix_init_translate", &MatrixInitTranslate},
+	{"cairo_matrix_invert", &MatrixInvert},
+	{"cairo_matrix_multiply", &MatrixMultiply},
+	{"cairo_matrix_rotate", &MatrixRotate},
+	{"cairo_matrix_scale", &MatrixScale},
+	{"cairo_matrix_transform_distance", &MatrixTransformDistance},
+	{"cairo_matrix_transform_point", &MatrixTransformPoint},
+	{"cairo_matrix_translate", &MatrixTranslate},
+	{"cairo_move_to", &MoveTo},
+	{"cairo_new_path", &NewPath},
+	{"cairo_new_sub_path", &NewSubPath},
+	{"cairo_paint", &Paint},
+	{"cairo_paint_with_alpha", &PaintWithAlpha},
+	{"cairo_path_destroy", &PathDestroy},
+	{"cairo_path_extents", &PathExtents},
+	{"cairo_pattern_add_color_stop_rgb", &PatternAddColorStopRgb},
+	{"cairo_pattern_add_color_stop_rgba", &PatternAddColorStopRgba},
+	{"cairo_pattern_create_for_surface", &PatternCreateForSurface},
+	{"cairo_pattern_create_linear", &PatternCreateLinear},
+	{"cairo_pattern_create_radial", &PatternCreateRadial},
+	{"cairo_pattern_create_rgb", &PatternCreateRgb},
+	{"cairo_pattern_create_rgba", &PatternCreateRgba},
+	{"cairo_pattern_destroy", &PatternDestroy},
+	{"cairo_pattern_get_color_stop_count", &PatternGetColorStopCount},
+	{"cairo_pattern_get_color_stop_rgba", &PatternGetColorStopRgba},
+	{"cairo_pattern_get_extend", &PatternGetExtend},
+	{"cairo_pattern_get_filter", &PatternGetFilter},
+	{"cairo_pattern_get_linear_points", &PatternGetLinearPoints},
+	{"cairo_pattern_get_matrix", &PatternGetMatrix},
+	{"cairo_pattern_get_radial_circles", &PatternGetRadialCircles},
+	{"cairo_pattern_get_reference_count", &PatternGetReferenceCount},
+	{"cairo_pattern_get_rgba", &PatternGetRgba},
+	{"cairo_pattern_get_surface", &PatternGetSurface},
+	{"cairo_pattern_get_type", &PatternGetType},
+	{"cairo_pattern_get_user_data", &PatternGetUserData},
+	{"cairo_pattern_reference", &PatternReference},
+	{"cairo_pattern_set_extend", &PatternSetExtend},
+	{"cairo_pattern_set_filter", &PatternSetFilter},
+	{"cairo_pattern_set_matrix", &PatternSetMatrix},
+	{"cairo_pattern_set_user_data", &PatternSetUserData},
+	{"cairo_pattern_status", &PatternStatus},
+	{"cairo_pdf_get_versions", &PdfGetVersions},
+	{"cairo_pdf_surface_create", &PdfSurfaceCreate},
+	{"cairo_pdf_surface_create_for_stream", &PdfSurfaceCreateForStream},
+	{"cairo_pdf_surface_restrict_to_version", &PdfSurfaceRestrictToVersion},
+	{"cairo_pdf_surface_set_size", &PdfSurfaceSetSize},
+	{"cairo_pdf_version_to_string", &PdfVersionToString},
+	{"cairo_pop_group", &PopGroup},
+	{"cairo_pop_group_to_source", &PopGroupToSource},
+	{"cairo_ps_get_levels", &PsGetLevels},
+	{"cairo_ps_level_to_string", &PsLevelToString},
+	{"cairo_ps_surface_create", &PsSurfaceCreate},
+	{"cairo_ps_surface_create_for_stream", &PsSurfaceCreateForStream},
+	{"cairo_ps_surface_dsc_begin_page_setup", &PsSurfaceDscBeginPageSetup},
+	{"cairo_ps_surface_dsc_begin_setup", &PsSurfaceDscBeginSetup},
+	{"cairo_ps_surface_dsc_comment", &PsSurfaceDscComment},
+	{"cairo_ps_surface_get_eps", &PsSurfaceGetEps},
+	{"cairo_ps_surface_restrict_to_level", &PsSurfaceRestrictToLevel},
+	{"cairo_ps_surface_set_eps", &PsSurfaceSetEps},
+	{"cairo_ps_surface_set_size", &PsSurfaceSetSize},
+	{"cairo_push_group", &PushGroup},
+	{"cairo_push_group_with_content", &PushGroupWithContent},
+	{"cairo_recording_surface_create", &RecordingSurfaceCreate},
+	{"cairo_recording_surface_ink_extents", &RecordingSurfaceInkExtents},
+	{"cairo_rectangle", &Rectangle},
+	{"cairo_rectangle_list_destroy", &RectangleListDestroy},
+	{"cairo_reference", &Reference},
+	{"cairo_region_contains_point", &RegionContainsPoint},
+	{"cairo_region_contains_rectangle", &RegionContainsRectangle},
+	{"cairo_region_copy", &RegionCopy},
+	{"cairo_region_create", &RegionCreate},
+	{"cairo_region_create_rectangle", &RegionCreateRectangle},
+	{"cairo_region_create_rectangles", &RegionCreateRectangles},
+	{"cairo_region_destroy", &RegionDestroy},
+	{"cairo_region_equal", &RegionEqual},
+	{"cairo_region_get_extents", &RegionGetExtents},
+	{"cairo_region_get_rectangle", &RegionGetRectangle},
+	{"cairo_region_intersect", &RegionIntersect},
+	{"cairo_region_intersect_rectangle", &RegionIntersectRectangle},
+	{"cairo_region_is_empty", &RegionIsEmpty},
+	{"cairo_region_num_rectangles", &RegionNumRectangles},
+	{"cairo_region_reference", &RegionReference},
+	{"cairo_region_status", &RegionStatus},
+	{"cairo_region_subtract", &RegionSubtract},
+	{"cairo_region_subtract_rectangle", &RegionSubtractRectangle},
+	{"cairo_region_translate", &RegionTranslate},
+	{"cairo_region_union", &RegionUnion},
+	{"cairo_region_union_rectangle", &RegionUnionRectangle},
+	{"cairo_region_xor", &RegionXor},
+	{"cairo_region_xor_rectangle", &RegionXorRectangle},
+	{"cairo_rel_curve_to", &RelCurveTo},
+	{"cairo_rel_line_to", &RelLineTo},
+	{"cairo_rel_move_to", &RelMoveTo},
+	{"cairo_reset_clip", &ResetClip},
+	{"cairo_restore", &Restore},
+	{"cairo_rotate", &Rotate},
+	{"cairo_save", &Save},
+	{"cairo_scale", &Scale},
+	{"cairo_scaled_font_create", &ScaledFontCreate},
+	{"cairo_scaled_font_destroy", &ScaledFontDestroy},
+	{"cairo_scaled_font_extents", &ScaledFontExtents},
+	{"cairo_scaled_font_get_ctm", &ScaledFontGetCtm},
+	{"cairo_scaled_font_get_font_face", &ScaledFontGetFontFace},
+	{"cairo_scaled_font_get_font_matrix", &ScaledFontGetFontMatrix},
+	{"cairo_scaled_font_get_font_options", &ScaledFontGetFontOptions},
+	{"cairo_scaled_font_get_reference_count", &ScaledFontGetReferenceCount},
+	{"cairo_scaled_font_get_scale_matrix", &ScaledFontGetScaleMatrix},
+	{"cairo_scaled_font_get_type", &ScaledFontGetType},
+	{"cairo_scaled_font_get_user_data", &ScaledFontGetUserData},
+	{"cairo_scaled_font_glyph_extents", &ScaledFontGlyphExtents},
+	{"cairo_scaled_font_reference", &ScaledFontReference},
+	{"cairo_scaled_font_set_user_data", &ScaledFontSetUserData},
+	{"cairo_scaled_font_status", &ScaledFontStatus},
+	{"cairo_scaled_font_text_extents", &ScaledFontTextExtents},
+	{"cairo_scaled_font_text_to_glyphs", &ScaledFontTextToGlyphs},
+	{"cairo_select_font_face", &SelectFontFace},
+	{"cairo_set_antialias", &SetAntialias},
+	{"cairo_set_dash", &SetDash},
+	{"cairo_set_fill_rule", &SetFillRule},
+	{"cairo_set_font_face", &SetFontFace},
+	{"cairo_set_font_matrix", &SetFontMatrix},
+	{"cairo_set_font_options", &SetFontOptions},
+	{"cairo_set_font_size", &SetFontSize},
+	{"cairo_set_line_cap", &SetLineCap},
+	{"cairo_set_line_join", &SetLineJoin},
+	{"cairo_set_line_width", &SetLineWidth},
+	{"cairo_set_matrix", &SetMatrix},
+	{"cairo_set_miter_limit", &SetMiterLimit},
+	{"cairo_set_operator", &SetOperator},
+	{"cairo_set_scaled_font", &SetScaledFont},
+	{"cairo_set_source", &SetSource},
+	{"cairo_set_source_rgb", &SetSourceRgb},
+	{"cairo_set_source_rgba", &SetSourceRgba},
+	{"cairo_set_source_surface", &SetSourceSurface},
+	{"cairo_set_tolerance", &SetTolerance},
+	{"cairo_set_user_data", &SetUserData},
+	{"cairo_show_glyphs", &ShowGlyphs},
+	{"cairo_show_page", &ShowPage},
+	{"cairo_show_text", &ShowText},
+	{"cairo_show_text_glyphs", &ShowTextGlyphs},
+	{"cairo_status", &Status},
+	{"cairo_status_to_string", &StatusToString},
+	{"cairo_stroke", &Stroke},
+	{"cairo_stroke_extents", &StrokeExtents},
+	{"cairo_stroke_preserve", &StrokePreserve},
+	{"cairo_surface_copy_page", &SurfaceCopyPage},
+	{"cairo_surface_create_for_rectangle", &SurfaceCreateForRectangle},
+	{"cairo_surface_create_similar", &SurfaceCreateSimilar},
+	{"cairo_surface_destroy", &SurfaceDestroy},
+	{"cairo_surface_finish", &SurfaceFinish},
+	{"cairo_surface_flush", &SurfaceFlush},
+	{"cairo_surface_get_content", &SurfaceGetContent},
+	{"cairo_surface_get_device", &SurfaceGetDevice},
+	{"cairo_surface_get_device_offset", &SurfaceGetDeviceOffset},
+	{"cairo_surface_get_fallback_resolution", &SurfaceGetFallbackResolution},
+	{"cairo_surface_get_font_options", &SurfaceGetFontOptions},
+	{"cairo_surface_get_mime_data", &SurfaceGetMimeData},
+	{"cairo_surface_get_reference_count", &SurfaceGetReferenceCount},
+	{"cairo_surface_get_type", &SurfaceGetType},
+	{"cairo_surface_get_user_data", &SurfaceGetUserData},
+	{"cairo_surface_has_show_text_glyphs", &SurfaceHasShowTextGlyphs},
+	{"cairo_surface_mark_dirty", &SurfaceMarkDirty},
+	{"cairo_surface_mark_dirty_rectangle", &SurfaceMarkDirtyRectangle},
+	{"cairo_surface_reference", &SurfaceReference},
+	{"cairo_surface_set_device_offset", &SurfaceSetDeviceOffset},
+	{"cairo_surface_set_fallback_resolution", &SurfaceSetFallbackResolution},
+	{"cairo_surface_set_mime_data", &SurfaceSetMimeData},
+	{"cairo_surface_set_user_data", &SurfaceSetUserData},
+	{"cairo_surface_show_page", &SurfaceShowPage},
+	{"cairo_surface_status", &SurfaceStatus},
+	{"cairo_surface_write_to_png", &SurfaceWriteToPng},
+	{"cairo_surface_write_to_png_stream", &SurfaceWriteToPngStream},
+	{"cairo_svg_get_versions", &SvgGetVersions},
+	{"cairo_svg_surface_create", &SvgSurfaceCreate},
+	{"cairo_svg_surface_create_for_stream", &SvgSurfaceCreateForStream},
+	{"cairo_svg_surface_restrict_to_version", &SvgSurfaceRestrictToVersion},
+	{"cairo_svg_version_to_string", &SvgVersionToString},
+	{"cairo_text_cluster_allocate", &TextClusterAllocate},
+	{"cairo_text_cluster_free", &TextClusterFree},
+	{"cairo_text_extents", &TextExtents},
+	{"cairo_text_path", &TextPath},
+	{"cairo_toy_font_face_create", &ToyFontFaceCreate},
+	{"cairo_toy_font_face_get_family", &ToyFontFaceGetFamily},
+	{"cairo_toy_font_face_get_slant", &ToyFontFaceGetSlant},
+	{"cairo_toy_font_face_get_weight", &ToyFontFaceGetWeight},
+	{"cairo_transform", &Transform},
+	{"cairo_translate", &Translate},
+	{"cairo_user_font_face_create", &UserFontFaceCreate},
+	{"cairo_user_font_face_get_init_func", &UserFontFaceGetInitFunc},
+	{"cairo_user_font_face_get_render_glyph_func", &UserFontFaceGetRenderGlyphFunc},
+	{"cairo_user_font_face_get_text_to_glyphs_func", &UserFontFaceGetTextToGlyphsFunc},
+	{"cairo_user_font_face_get_unicode_to_glyph_func", &UserFontFaceGetUnicodeToGlyphFunc},
+	{"cairo_user_font_face_set_init_func", &UserFontFaceSetInitFunc},
+	{"cairo_user_font_face_set_render_glyph_func", &UserFontFaceSetRenderGlyphFunc},
+	{"cairo_user_font_face_set_text_to_glyphs_func", &UserFontFaceSetTextToGlyphsFunc},
+	{"cairo_user_font_face_set_unicode_to_glyph_func", &UserFontFaceSetUnicodeToGlyphFunc},
+	{"cairo_user_to_device", &UserToDevice},
+	{"cairo_user_to_device_distance", &UserToDeviceDistance},
+	{"cairo_version", &Version},
+	{"cairo_version_string", &VersionString},
+	{"cairo_win32_font_face_create_for_hfont", &Win32FontFaceCreateForHfont},
+	{"cairo_win32_font_face_create_for_logfontw", &Win32FontFaceCreateForLogfontw},
+	{"cairo_win32_font_face_create_for_logfontw_hfont", &Win32FontFaceCreateForLogfontwHfont},
+	{"cairo_win32_printing_surface_create", &Win32PrintingSurfaceCreate},
+	{"cairo_win32_scaled_font_done_font", &Win32ScaledFontDoneFont},
+	{"cairo_win32_scaled_font_get_device_to_logical", &Win32ScaledFontGetDeviceToLogical},
+	{"cairo_win32_scaled_font_get_logical_to_device", &Win32ScaledFontGetLogicalToDevice},
+	{"cairo_win32_scaled_font_get_metrics_factor", &Win32ScaledFontGetMetricsFactor},
+	{"cairo_win32_scaled_font_select_font", &Win32ScaledFontSelectFont},
+	{"cairo_win32_surface_create", &Win32SurfaceCreate},
+	{"cairo_win32_surface_create_with_ddb", &Win32SurfaceCreateWithDdb},
+	{"cairo_win32_surface_create_with_dib", &Win32SurfaceCreateWithDib},
+	{"cairo_win32_surface_get_dc", &Win32SurfaceGetDc},
+	{"cairo_win32_surface_get_image", &Win32SurfaceGetImage},
 }
 
 var dllGobject = "libcairo-gobject-2.dll"
 
 var apiListGobject = outside.Apis{
-	{"cairo_gobject_antialias_get_type", &Cairo_gobject_antialias_get_type},
-	{"cairo_gobject_content_get_type", &Cairo_gobject_content_get_type},
-	{"cairo_gobject_context_get_type", &Cairo_gobject_context_get_type},
-	{"cairo_gobject_device_get_type", &Cairo_gobject_device_get_type},
-	{"cairo_gobject_device_type_get_type", &Cairo_gobject_device_type_get_type},
-	{"cairo_gobject_extend_get_type", &Cairo_gobject_extend_get_type},
-	{"cairo_gobject_fill_rule_get_type", &Cairo_gobject_fill_rule_get_type},
-	{"cairo_gobject_filter_get_type", &Cairo_gobject_filter_get_type},
-	{"cairo_gobject_font_face_get_type", &Cairo_gobject_font_face_get_type},
-	{"cairo_gobject_font_options_get_type", &Cairo_gobject_font_options_get_type},
-	{"cairo_gobject_font_slant_get_type", &Cairo_gobject_font_slant_get_type},
-	{"cairo_gobject_font_type_get_type", &Cairo_gobject_font_type_get_type},
-	{"cairo_gobject_font_weight_get_type", &Cairo_gobject_font_weight_get_type},
-	{"cairo_gobject_format_get_type", &Cairo_gobject_format_get_type},
-	{"cairo_gobject_hint_metrics_get_type", &Cairo_gobject_hint_metrics_get_type},
-	{"cairo_gobject_hint_style_get_type", &Cairo_gobject_hint_style_get_type},
-	{"cairo_gobject_line_cap_get_type", &Cairo_gobject_line_cap_get_type},
-	{"cairo_gobject_line_join_get_type", &Cairo_gobject_line_join_get_type},
-	{"cairo_gobject_operator_get_type", &Cairo_gobject_operator_get_type},
-	{"cairo_gobject_path_data_type_get_type", &Cairo_gobject_path_data_type_get_type},
-	{"cairo_gobject_pattern_get_type", &Cairo_gobject_pattern_get_type},
-	{"cairo_gobject_pattern_type_get_type", &Cairo_gobject_pattern_type_get_type},
-	{"cairo_gobject_rectangle_get_type", &Cairo_gobject_rectangle_get_type},
-	{"cairo_gobject_rectangle_int_get_type", &Cairo_gobject_rectangle_int_get_type},
-	{"cairo_gobject_region_get_type", &Cairo_gobject_region_get_type},
-	{"cairo_gobject_region_overlap_get_type", &Cairo_gobject_region_overlap_get_type},
-	{"cairo_gobject_scaled_font_get_type", &Cairo_gobject_scaled_font_get_type},
-	{"cairo_gobject_status_get_type", &Cairo_gobject_status_get_type},
-	{"cairo_gobject_subpixel_order_get_type", &Cairo_gobject_subpixel_order_get_type},
-	{"cairo_gobject_surface_get_type", &Cairo_gobject_surface_get_type},
-	{"cairo_gobject_surface_type_get_type", &Cairo_gobject_surface_type_get_type},
-	{"cairo_gobject_text_cluster_flags_get_type", &Cairo_gobject_text_cluster_flags_get_type},
+	{"cairo_gobject_antialias_get_type", &GobjectAntialiasGetType},
+	{"cairo_gobject_content_get_type", &GobjectContentGetType},
+	{"cairo_gobject_context_get_type", &GobjectContextGetType},
+	{"cairo_gobject_device_get_type", &GobjectDeviceGetType},
+	{"cairo_gobject_device_type_get_type", &GobjectDeviceTypeGetType},
+	{"cairo_gobject_extend_get_type", &GobjectExtendGetType},
+	{"cairo_gobject_fill_rule_get_type", &GobjectFillRuleGetType},
+	{"cairo_gobject_filter_get_type", &GobjectFilterGetType},
+	{"cairo_gobject_font_face_get_type", &GobjectFontFaceGetType},
+	{"cairo_gobject_font_options_get_type", &GobjectFontOptionsGetType},
+	{"cairo_gobject_font_slant_get_type", &GobjectFontSlantGetType},
+	{"cairo_gobject_font_type_get_type", &GobjectFontTypeGetType},
+	{"cairo_gobject_font_weight_get_type", &GobjectFontWeightGetType},
+	{"cairo_gobject_format_get_type", &GobjectFormatGetType},
+	{"cairo_gobject_hint_metrics_get_type", &GobjectHintMetricsGetType},
+	{"cairo_gobject_hint_style_get_type", &GobjectHintStyleGetType},
+	{"cairo_gobject_line_cap_get_type", &GobjectLineCapGetType},
+	{"cairo_gobject_line_join_get_type", &GobjectLineJoinGetType},
+	{"cairo_gobject_operator_get_type", &GobjectOperatorGetType},
+	{"cairo_gobject_path_data_type_get_type", &GobjectPathDataTypeGetType},
+	{"cairo_gobject_pattern_get_type", &GobjectPatternGetType},
+	{"cairo_gobject_pattern_type_get_type", &GobjectPatternTypeGetType},
+	{"cairo_gobject_rectangle_get_type", &GobjectRectangleGetType},
+	{"cairo_gobject_rectangle_int_get_type", &GobjectRectangleIntGetType},
+	{"cairo_gobject_region_get_type", &GobjectRegionGetType},
+	{"cairo_gobject_region_overlap_get_type", &GobjectRegionOverlapGetType},
+	{"cairo_gobject_scaled_font_get_type", &GobjectScaledFontGetType},
+	{"cairo_gobject_status_get_type", &GobjectStatusGetType},
+	{"cairo_gobject_subpixel_order_get_type", &GobjectSubpixelOrderGetType},
+	{"cairo_gobject_surface_get_type", &GobjectSurfaceGetType},
+	{"cairo_gobject_surface_type_get_type", &GobjectSurfaceTypeGetType},
+	{"cairo_gobject_text_cluster_flags_get_type", &GobjectTextClusterFlagsGetType},
 }
 
 var dllScript = "libcairo-script-interpreter-2.dll"
 
 var apiListScript = outside.Apis{
-	// Undocumented {"_csi_alloc", &Csi_alloc},
-	// Undocumented {"_csi_alloc0", &Csi_alloc0},
-	// Undocumented {"_csi_array_execute", &Csi_array_execute},
-	// Undocumented {"_csi_error", &Csi_error},
-	// Undocumented {"_csi_file_as_string", &Csi_file_as_string},
-	// Undocumented {"_csi_file_execute", &Csi_file_execute},
-	// Undocumented {"_csi_file_free", &Csi_file_free},
-	// Undocumented {"_csi_free", &Csi_free},
-	// Undocumented {"_csi_hash_table_fini", &Csi_hash_table_fini},
-	// Undocumented {"_csi_hash_table_foreach", &Csi_hash_table_foreach},
-	// Undocumented {"_csi_hash_table_init", &Csi_hash_table_init},
-	// Undocumented {"_csi_hash_table_insert", &Csi_hash_table_insert},
-	// Undocumented {"_csi_hash_table_lookup", &Csi_hash_table_lookup},
-	// Undocumented {"_csi_hash_table_remove", &Csi_hash_table_remove},
-	// Undocumented {"_csi_integer_constants", &Csi_integer_constants},
-	// Undocumented {"_csi_intern_string", &Csi_intern_string},
-	// Undocumented {"_csi_name_define", &Csi_name_define},
-	// Undocumented {"_csi_name_lookup", &Csi_name_lookup},
-	// Undocumented {"_csi_name_undefine", &Csi_name_undefine},
-	// Undocumented {"_csi_operators", &Csi_operators},
-	// Undocumented {"_csi_parse_number", &Csi_parse_number},
-	// Undocumented {"_csi_perm_alloc", &Csi_perm_alloc},
-	// Undocumented {"_csi_real_constants", &Csi_real_constants},
-	// Undocumented {"_csi_realloc", &Csi_realloc},
-	// Undocumented {"_csi_scan_file", &Csi_scan_file},
-	// Undocumented {"_csi_scanner_fini", &Csi_scanner_fini},
-	// Undocumented {"_csi_scanner_init", &Csi_scanner_init},
-	// Undocumented {"_csi_slab_alloc", &Csi_slab_alloc},
-	// Undocumented {"_csi_slab_free", &Csi_slab_free},
-	// Undocumented {"_csi_stack_exch", &Csi_stack_exch},
-	// Undocumented {"_csi_stack_fini", &Csi_stack_fini},
-	// Undocumented {"_csi_stack_grow", &Csi_stack_grow},
-	// Undocumented {"_csi_stack_init", &Csi_stack_init},
-	// Undocumented {"_csi_stack_peek", &Csi_stack_peek},
-	// Undocumented {"_csi_stack_pop", &Csi_stack_pop},
-	// Undocumented {"_csi_stack_push_internal", &Csi_stack_push_internal},
-	// Undocumented {"_csi_stack_roll", &Csi_stack_roll},
-	// Undocumented {"_csi_translate_file", &Csi_translate_file},
-	// Undocumented {"_get_output_format", &Get_output_format},
-	{"cairo_script_interpreter_create", &Cairo_script_interpreter_create},
-	{"cairo_script_interpreter_destroy", &Cairo_script_interpreter_destroy},
-	{"cairo_script_interpreter_feed_stream", &Cairo_script_interpreter_feed_stream},
-	{"cairo_script_interpreter_feed_string", &Cairo_script_interpreter_feed_string},
-	{"cairo_script_interpreter_finish", &Cairo_script_interpreter_finish},
-	{"cairo_script_interpreter_get_line_number", &Cairo_script_interpreter_get_line_number},
-	{"cairo_script_interpreter_install_hooks", &Cairo_script_interpreter_install_hooks},
-	{"cairo_script_interpreter_reference", &Cairo_script_interpreter_reference},
-	{"cairo_script_interpreter_run", &Cairo_script_interpreter_run},
-	{"cairo_script_interpreter_translate_stream", &Cairo_script_interpreter_translate_stream},
-	// Undocumented {"csi_array_append", &Csi_array_append},
-	// Undocumented {"csi_array_free", &Csi_array_free},
-	// Undocumented {"csi_array_get", &Csi_array_get},
-	// Undocumented {"csi_array_new", &Csi_array_new},
-	// Undocumented {"csi_array_put", &Csi_array_put},
-	// Undocumented {"csi_dictionary_free", &Csi_dictionary_free},
-	// Undocumented {"csi_dictionary_get", &Csi_dictionary_get},
-	// Undocumented {"csi_dictionary_has", &Csi_dictionary_has},
-	// Undocumented {"csi_dictionary_new", &Csi_dictionary_new},
-	// Undocumented {"csi_dictionary_put", &Csi_dictionary_put},
-	// Undocumented {"csi_dictionary_remove", &Csi_dictionary_remove},
-	// Undocumented {"csi_file_close", &Csi_file_close},
-	// Undocumented {"csi_file_flush", &Csi_file_flush},
-	// Undocumented {"csi_file_getc", &Csi_file_getc},
-	// Undocumented {"csi_file_new", &Csi_file_new},
-	// Undocumented {"csi_file_new_ascii85_decode", &Csi_file_new_ascii85_decode},
-	// Undocumented {"csi_file_new_deflate_decode", &Csi_file_new_deflate_decode},
-	// Undocumented {"csi_file_new_for_bytes", &Csi_file_new_for_bytes},
-	// Undocumented {"csi_file_new_for_stream", &Csi_file_new_for_stream},
-	// Undocumented {"csi_file_new_from_string", &Csi_file_new_from_string},
-	// Undocumented {"csi_file_putc", &Csi_file_putc},
-	// Undocumented {"csi_file_read", &Csi_file_read},
-	// Undocumented {"csi_matrix_free", &Csi_matrix_free},
-	// Undocumented {"csi_matrix_new", &Csi_matrix_new},
-	// Undocumented {"csi_matrix_new_from_array", &Csi_matrix_new_from_array},
-	// Undocumented {"csi_matrix_new_from_matrix", &Csi_matrix_new_from_matrix},
-	// Undocumented {"csi_matrix_new_from_values", &Csi_matrix_new_from_values},
-	// Undocumented {"csi_name_new", &Csi_name_new},
-	// Undocumented {"csi_name_new_static", &Csi_name_new_static},
-	// Undocumented {"csi_object_as_file", &Csi_object_as_file},
-	// Undocumented {"csi_object_compare", &Csi_object_compare},
-	// Undocumented {"csi_object_eq", &Csi_object_eq},
-	// Undocumented {"csi_object_execute", &Csi_object_execute},
-	// Undocumented {"csi_object_free", &Csi_object_free},
-	// Undocumented {"csi_object_reference", &Csi_object_reference},
-	// Undocumented {"csi_string_deflate_new", &Csi_string_deflate_new},
-	// Undocumented {"csi_string_free", &Csi_string_free},
-	// Undocumented {"csi_string_new", &Csi_string_new},
-	// Undocumented {"csi_string_new_from_bytes", &Csi_string_new_from_bytes},
+	// Undocumented {"_csi_alloc", &CsiAlloc},
+	// Undocumented {"_csi_alloc0", &CsiAlloc0},
+	// Undocumented {"_csi_array_execute", &CsiArrayExecute},
+	// Undocumented {"_csi_error", &CsiError},
+	// Undocumented {"_csi_file_as_string", &CsiFileAsString},
+	// Undocumented {"_csi_file_execute", &CsiFileExecute},
+	// Undocumented {"_csi_file_free", &CsiFileFree},
+	// Undocumented {"_csi_free", &CsiFree},
+	// Undocumented {"_csi_hash_table_fini", &CsiHashTableFini},
+	// Undocumented {"_csi_hash_table_foreach", &CsiHashTableForeach},
+	// Undocumented {"_csi_hash_table_init", &CsiHashTableInit},
+	// Undocumented {"_csi_hash_table_insert", &CsiHashTableInsert},
+	// Undocumented {"_csi_hash_table_lookup", &CsiHashTableLookup},
+	// Undocumented {"_csi_hash_table_remove", &CsiHashTableRemove},
+	// Undocumented {"_csi_integer_constants", &CsiIntegerConstants},
+	// Undocumented {"_csi_intern_string", &CsiInternString},
+	// Undocumented {"_csi_name_define", &CsiNameDefine},
+	// Undocumented {"_csi_name_lookup", &CsiNameLookup},
+	// Undocumented {"_csi_name_undefine", &CsiNameUndefine},
+	// Undocumented {"_csi_operators", &CsiOperators},
+	// Undocumented {"_csi_parse_number", &CsiParseNumber},
+	// Undocumented {"_csi_perm_alloc", &CsiPermAlloc},
+	// Undocumented {"_csi_real_constants", &CsiRealConstants},
+	// Undocumented {"_csi_realloc", &CsiRealloc},
+	// Undocumented {"_csi_scan_file", &CsiScanFile},
+	// Undocumented {"_csi_scanner_fini", &CsiScannerFini},
+	// Undocumented {"_csi_scanner_init", &CsiScannerInit},
+	// Undocumented {"_csi_slab_alloc", &CsiSlabAlloc},
+	// Undocumented {"_csi_slab_free", &CsiSlabFree},
+	// Undocumented {"_csi_stack_exch", &CsiStackExch},
+	// Undocumented {"_csi_stack_fini", &CsiStackFini},
+	// Undocumented {"_csi_stack_grow", &CsiStackGrow},
+	// Undocumented {"_csi_stack_init", &CsiStackInit},
+	// Undocumented {"_csi_stack_peek", &CsiStackPeek},
+	// Undocumented {"_csi_stack_pop", &CsiStackPop},
+	// Undocumented {"_csi_stack_push_internal", &CsiStackPushInternal},
+	// Undocumented {"_csi_stack_roll", &CsiStackRoll},
+	// Undocumented {"_csi_translate_file", &CsiTranslateFile},
+	// Undocumented {"_get_output_format", &GetOutputFormat},
+	{"cairo_script_interpreter_create", &ScriptInterpreterCreate},
+	{"cairo_script_interpreter_destroy", &ScriptInterpreterDestroy},
+	{"cairo_script_interpreter_feed_stream", &ScriptInterpreterFeedStream},
+	{"cairo_script_interpreter_feed_string", &ScriptInterpreterFeedString},
+	{"cairo_script_interpreter_finish", &ScriptInterpreterFinish},
+	{"cairo_script_interpreter_get_line_number", &ScriptInterpreterGetLineNumber},
+	{"cairo_script_interpreter_install_hooks", &ScriptInterpreterInstallHooks},
+	{"cairo_script_interpreter_reference", &ScriptInterpreterReference},
+	{"cairo_script_interpreter_run", &ScriptInterpreterRun},
+	{"cairo_script_interpreter_translate_stream", &ScriptInterpreterTranslateStream},
+	// Undocumented {"csi_array_append", &CsiArrayAppend},
+	// Undocumented {"csi_array_free", &CsiArrayFree},
+	// Undocumented {"csi_array_get", &CsiArrayGet},
+	// Undocumented {"csi_array_new", &CsiArrayNew},
+	// Undocumented {"csi_array_put", &CsiArrayPut},
+	// Undocumented {"csi_dictionary_free", &CsiDictionaryFree},
+	// Undocumented {"csi_dictionary_get", &CsiDictionaryGet},
+	// Undocumented {"csi_dictionary_has", &CsiDictionaryHas},
+	// Undocumented {"csi_dictionary_new", &CsiDictionaryNew},
+	// Undocumented {"csi_dictionary_put", &CsiDictionaryPut},
+	// Undocumented {"csi_dictionary_remove", &CsiDictionaryRemove},
+	// Undocumented {"csi_file_close", &CsiFileClose},
+	// Undocumented {"csi_file_flush", &CsiFileFlush},
+	// Undocumented {"csi_file_getc", &CsiFileGetc},
+	// Undocumented {"csi_file_new", &CsiFileNew},
+	// Undocumented {"csi_file_new_ascii85_decode", &CsiFileNewAscii85Decode},
+	// Undocumented {"csi_file_new_deflate_decode", &CsiFileNewDeflateDecode},
+	// Undocumented {"csi_file_new_for_bytes", &CsiFileNewForBytes},
+	// Undocumented {"csi_file_new_for_stream", &CsiFileNewForStream},
+	// Undocumented {"csi_file_new_from_string", &CsiFileNewFromString},
+	// Undocumented {"csi_file_putc", &CsiFilePutc},
+	// Undocumented {"csi_file_read", &CsiFileRead},
+	// Undocumented {"csi_matrix_free", &CsiMatrixFree},
+	// Undocumented {"csi_matrix_new", &CsiMatrixNew},
+	// Undocumented {"csi_matrix_new_from_array", &CsiMatrixNewFromArray},
+	// Undocumented {"csi_matrix_new_from_matrix", &CsiMatrixNewFromMatrix},
+	// Undocumented {"csi_matrix_new_from_values", &CsiMatrixNewFromValues},
+	// Undocumented {"csi_name_new", &CsiNameNew},
+	// Undocumented {"csi_name_new_static", &CsiNameNewStatic},
+	// Undocumented {"csi_object_as_file", &CsiObjectAsFile},
+	// Undocumented {"csi_object_compare", &CsiObjectCompare},
+	// Undocumented {"csi_object_eq", &CsiObjectEq},
+	// Undocumented {"csi_object_execute", &CsiObjectExecute},
+	// Undocumented {"csi_object_free", &CsiObjectFree},
+	// Undocumented {"csi_object_reference", &CsiObjectReference},
+	// Undocumented {"csi_string_deflate_new", &CsiStringDeflateNew},
+	// Undocumented {"csi_string_free", &CsiStringFree},
+	// Undocumented {"csi_string_new", &CsiStringNew},
+	// Undocumented {"csi_string_new_from_bytes", &CsiStringNewFromBytes},
 }
