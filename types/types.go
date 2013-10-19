@@ -303,7 +303,6 @@ type (
 	GtkAccelMap                    struct{}
 	GtkActionGroupPrivate          struct{}
 	GtkActionPrivate               struct{}
-	GtkActivatable                 struct{}
 	GtkAssistantPrivate            struct{}
 	GtkBuildable                   struct{}
 	GtkBuilderPrivate              struct{}

@@ -749,7 +749,7 @@ type (
 		Priv_accels    *GtkAccelGroupEntry
 	}
 
-	GtkAccelGroupEntry struct {
+	GtkAccelGroupEntry struct { // REMOVE
 		Key              GtkAccelKey
 		Closure          *GClosure
 		Accel_path_quark GQuark
@@ -1003,7 +1003,7 @@ type (
 		Column int
 	}
 
-	GtkAdjustment struct {
+	GtkAdjustment struct { // REMOVE
 		Parent_instance GtkObject
 		Lower           float64
 		Upper           float64
@@ -1569,12 +1569,12 @@ type (
 		Private_data *GtkUIManagerPrivate
 	}
 
-	GtkActionGroup struct {
+	GtkActionGroup struct { // REMOVE
 		Parent       GObject
 		Private_data *GtkActionGroupPrivate
 	}
 
-	GtkAction struct {
+	GtkAction struct { // REMOVE
 		Object       GObject
 		Private_data *GtkActionPrivate
 	}
@@ -2660,20 +2660,6 @@ type (
 		Keyboard    Gboolean
 		Implicit    Gboolean
 		Grab_window *GdkWindow
-	}
-
-	GtkAccessible struct {
-		Parent AtkObject
-		Widget *GtkWidget
-	}
-
-	GtkActionEntry struct {
-		Name        *Gchar
-		Stock_id    *Gchar
-		Label       *Gchar
-		Accelerator *Gchar
-		Tooltip     *Gchar
-		Callback    GCallback
 	}
 
 	GtkAlignment struct {
