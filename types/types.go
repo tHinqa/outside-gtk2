@@ -312,9 +312,6 @@ type (
 	GtkComboBoxEntryPrivate        struct{}
 	GtkComboBoxPrivate             struct{}
 	GtkComboBoxTextPrivate         struct{}
-	GtkEditable                    struct{}
-	GtkEntryBufferPrivate          struct{}
-	GtkEntryCompletionPrivate      struct{}
 	GtkExpanderPrivate             struct{}
 	GtkFileChooser                 struct{}
 	GtkFileChooserButtonPrivate    struct{}
@@ -4192,13 +4189,6 @@ const (
 	GTK_TARGET_OTHER_WIDGET
 )
 
-type GtkEntryIconPosition Enum
-
-const (
-	GTK_ENTRY_ICON_PRIMARY GtkEntryIconPosition = iota
-	GTK_ENTRY_ICON_SECONDARY
-)
-
 type GtkTreeViewDropPosition Enum
 
 const (
@@ -4767,7 +4757,7 @@ type (
 	GtkCListCompareFunc func(clist *GtkCList,
 		ptr1 Gconstpointer, ptr2 Gconstpointer) int
 
-	GtkCTreeCompareDragFunc func(ctree *GtkCTree,
+	GtkCTreeCompareDragFunc func(ctree *GtkCTree, //REMOVE
 		source_node *GtkCTreeNode, new_parent *GtkCTreeNode,
 		new_sibling *GtkCTreeNode) Gboolean
 
@@ -4989,15 +4979,6 @@ type (
 		month uint,
 		day uint,
 		user_data Gpointer) string
-
-	GtkColorSelectionChangePaletteFunc func(
-		colors *GdkColor,
-		n_colors int)
-
-	GtkColorSelectionChangePaletteWithScreenFunc func(
-		screen *GdkScreen,
-		colors *GdkColor,
-		n_colors int)
 
 	GtkEntryCompletionMatchFunc func(
 		completion *GtkEntryCompletion,

@@ -594,25 +594,7 @@ type (
 		Height int
 	}
 
-	GtkCurve struct {
-		Graph         GtkDrawingArea
-		Cursor_type   int
-		Min_x         float32
-		Max_x         float32
-		Min_y         float32
-		Max_y         float32
-		Pixmap        *GdkPixmap
-		Curve_type    GtkCurveType
-		Height        int
-		Grab_point    int
-		Last          int
-		Num_points    int
-		Point         *GdkPoint
-		Num_ctlpoints int
-		Ctlpoint      [2]*float32 //TODO(t): float32 (*ctlpoint)[2]; ???
-	}
-
-	GtkDrawingArea struct {
+	GtkDrawingArea struct { //REMOVE
 		Widget    GtkWidget
 		Draw_data Gpointer
 	}
@@ -648,7 +630,7 @@ type (
 		Last_selected    *Gchar
 	}
 
-	GtkDialog struct {
+	GtkDialog struct { //REMOVE
 		Window      GtkWindow
 		Vbox        *GtkWidget
 		Action_area *GtkWidget
@@ -1048,25 +1030,6 @@ type (
 		*/
 	}
 
-	GtkCombo struct {
-		Hbox            GtkHBox
-		Entry           *GtkWidget
-		Button          *GtkWidget
-		Popup           *GtkWidget
-		Popwin          *GtkWidget
-		List            *GtkWidget
-		Entry_change_id uint
-		List_change_id  uint
-		Bits            uint
-		// value_in_list:1
-		// ok_if_empty:1
-		// case_sensitive:1
-		// use_arrows:1
-		// use_arrows_always:1
-		Current_button uint16
-		Activate_id    uint
-	}
-
 	GtkHBox struct {
 		Box GtkBox
 	}
@@ -1078,7 +1041,7 @@ type (
 		Homogeneous uint // : 1
 	}
 
-	GtkCTree struct {
+	GtkCTree struct { // REMOVE
 		Clist        GtkCList
 		Lines_gc     *GdkGC
 		Tree_indent  int
@@ -1091,7 +1054,7 @@ type (
 		Drag_compare GtkCTreeCompareDragFunc
 	}
 
-	GtkCTreeNode struct {
+	GtkCTreeNode struct { //REMOVE
 		List GList
 	}
 
@@ -1460,7 +1423,7 @@ type (
 		// snap_to_ticks : 1
 	}
 
-	GtkEntry struct {
+	GtkEntry struct { // REMOVE
 		Widget GtkWidget
 		Text   *Gchar
 		Bits   uint
@@ -2730,24 +2693,6 @@ type (
 		_, _, _, _        func()
 	}
 
-	GtkColorButton struct {
-		Button GtkButton
-		Priv   *GtkColorButtonPrivate
-	}
-
-	GtkColorSelection struct {
-		Parent_instance GtkVBox
-		Private_data    Gpointer
-	}
-
-	GtkColorSelectionDialog struct {
-		Parent_instance GtkDialog
-		Colorsel        *GtkWidget
-		Ok_button       *GtkWidget
-		Cancel_button   *GtkWidget
-		Help_button     *GtkWidget
-	}
-
 	GtkComboBox struct { // REMOVE
 		Parent_instance GtkBin
 		Priv            *GtkComboBoxPrivate
@@ -2792,14 +2737,9 @@ type (
 		_, _, _, _ func()
 	}
 
-	GtkEntryBuffer struct {
+	GtkEntryCompletion struct { //REMOVE
 		Parent_instance GObject
-		Priv            *GtkEntryBufferPrivate
-	}
-
-	GtkEntryCompletion struct {
-		Parent_instance GObject
-		Priv            *GtkEntryCompletionPrivate
+		Priv            *struct{}
 	}
 
 	GtkEventBox struct {
