@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -43,10 +46,10 @@ var (
 	FileChooserErrorGetType        func() T.GType
 	FileChooserWidgetGetType       func() T.GType
 
-	FileChooserDialogNew            func(title string, parent *T.GtkWindow, action FileChooserAction, firstButtonText string, v ...VArg) *T.GtkWidget
-	FileChooserDialogNewWithBackend func(title string, parent *T.GtkWindow, action FileChooserAction, backend string, firstButtonText string, v ...VArg) *T.GtkWidget
-	FileChooserWidgetNew            func(action FileChooserAction) *T.GtkWidget
-	FileChooserWidgetNewWithBackend func(action FileChooserAction, backend string) *T.GtkWidget
+	FileChooserDialogNew            func(title string, parent *T.GtkWindow, action FileChooserAction, firstButtonText string, v ...VArg) *Widget
+	FileChooserDialogNewWithBackend func(title string, parent *T.GtkWindow, action FileChooserAction, backend string, firstButtonText string, v ...VArg) *Widget
+	FileChooserWidgetNew            func(action FileChooserAction) *Widget
+	FileChooserWidgetNewWithBackend func(action FileChooserAction, backend string) *Widget
 
 	FileChooserAddFilter                  func(f *FileChooser, filter *FileFilter)
 	FileChooserAddShortcutFolder          func(f *FileChooser, folder string, error **T.GError) T.Gboolean
@@ -57,7 +60,7 @@ var (
 	FileChooserGetCurrentFolderFile       func(f *FileChooser) *T.GFile
 	FileChooserGetCurrentFolderUri        func(f *FileChooser) string
 	FileChooserGetDoOverwriteConfirmation func(f *FileChooser) T.Gboolean
-	FileChooserGetExtraWidget             func(f *FileChooser) *T.GtkWidget
+	FileChooserGetExtraWidget             func(f *FileChooser) *Widget
 	FileChooserGetFile                    func(f *FileChooser) *T.GFile
 	FileChooserGetFilename                func(f *FileChooser) string
 	FileChooserGetFilenames               func(f *FileChooser) *T.GSList
@@ -67,7 +70,7 @@ var (
 	FileChooserGetPreviewFile             func(f *FileChooser) *T.GFile
 	FileChooserGetPreviewFilename         func(f *FileChooser) string
 	FileChooserGetPreviewUri              func(f *FileChooser) string
-	FileChooserGetPreviewWidget           func(f *FileChooser) *T.GtkWidget
+	FileChooserGetPreviewWidget           func(f *FileChooser) *Widget
 	FileChooserGetPreviewWidgetActive     func(f *FileChooser) T.Gboolean
 	FileChooserGetSelectMultiple          func(f *FileChooser) T.Gboolean
 	FileChooserGetShowHidden              func(f *FileChooser) T.Gboolean
@@ -91,12 +94,12 @@ var (
 	FileChooserSetCurrentFolderUri        func(f *FileChooser, uri string) T.Gboolean
 	FileChooserSetCurrentName             func(f *FileChooser, name string)
 	FileChooserSetDoOverwriteConfirmation func(f *FileChooser, doOverwriteConfirmation T.Gboolean)
-	FileChooserSetExtraWidget             func(f *FileChooser, extraWidget *T.GtkWidget)
+	FileChooserSetExtraWidget             func(f *FileChooser, extraWidget *Widget)
 	FileChooserSetFile                    func(f *FileChooser, file *T.GFile, error **T.GError) T.Gboolean
 	FileChooserSetFilename                func(f *FileChooser, filename string) T.Gboolean
 	FileChooserSetFilter                  func(f *FileChooser, filter *FileFilter)
 	FileChooserSetLocalOnly               func(f *FileChooser, localOnly T.Gboolean)
-	FileChooserSetPreviewWidget           func(f *FileChooser, previewWidget *T.GtkWidget)
+	FileChooserSetPreviewWidget           func(f *FileChooser, previewWidget *Widget)
 	FileChooserSetPreviewWidgetActive     func(f *FileChooser, active T.Gboolean)
 	FileChooserSetSelectMultiple          func(f *FileChooser, selectMultiple T.Gboolean)
 	FileChooserSetShowHidden              func(f *FileChooser, showHidden T.Gboolean)
@@ -252,11 +255,11 @@ func (f *FileChooser) GetCurrentFolderFile() *T.GFile {
 	return FileChooserGetCurrentFolderFile(f)
 }
 
-func (f *FileChooser) SetPreviewWidget(previewWidget *T.GtkWidget) {
+func (f *FileChooser) SetPreviewWidget(previewWidget *Widget) {
 	FileChooserSetPreviewWidget(f, previewWidget)
 }
 
-func (f *FileChooser) GetPreviewWidget() *T.GtkWidget {
+func (f *FileChooser) GetPreviewWidget() *Widget {
 	return FileChooserGetPreviewWidget(f)
 }
 
@@ -288,11 +291,11 @@ func (f *FileChooser) GetPreviewFile() *T.GFile {
 	return FileChooserGetPreviewFile(f)
 }
 
-func (f *FileChooser) SetExtraWidget(extraWidget *T.GtkWidget) {
+func (f *FileChooser) SetExtraWidget(extraWidget *Widget) {
 	FileChooserSetExtraWidget(f, extraWidget)
 }
 
-func (f *FileChooser) GetExtraWidget() *T.GtkWidget {
+func (f *FileChooser) GetExtraWidget() *Widget {
 	return FileChooserGetExtraWidget(f)
 }
 
@@ -341,15 +344,15 @@ func (f *FileChooser) ListShortcutFolderUris() *T.GSList {
 }
 
 type FileChooserButton struct {
-	Parent T.GtkHBox
+	Parent HBox
 	_      *struct{}
 }
 
 var (
 	FileChooserButtonGetType        func() T.GType
-	FileChooserButtonNew            func(title string, action FileChooserAction) *T.GtkWidget
-	FileChooserButtonNewWithBackend func(title string, action FileChooserAction, backend string) *T.GtkWidget
-	FileChooserButtonNewWithDialog  func(dialog *T.GtkWidget) *T.GtkWidget
+	FileChooserButtonNew            func(title string, action FileChooserAction) *Widget
+	FileChooserButtonNewWithBackend func(title string, action FileChooserAction, backend string) *Widget
+	FileChooserButtonNewWithDialog  func(dialog *Widget) *Widget
 
 	FileChooserButtonGetTitle        func(f *FileChooserButton) string
 	FileChooserButtonSetTitle        func(f *FileChooserButton, title string)
@@ -457,33 +460,33 @@ func (f *FileFilter) Filter(filterInfo *FileFilterInfo) T.Gboolean {
 
 type FileSelection struct {
 	Parent_instance  Dialog
-	Dir_list         *T.GtkWidget
-	File_list        *T.GtkWidget
-	Selection_entry  *T.GtkWidget
-	Selection_text   *T.GtkWidget
-	Main_vbox        *T.GtkWidget
-	Ok_button        *T.GtkWidget
-	Cancel_button    *T.GtkWidget
-	Help_button      *T.GtkWidget
-	History_pulldown *T.GtkWidget
-	History_menu     *T.GtkWidget
+	Dir_list         *Widget
+	File_list        *Widget
+	Selection_entry  *Widget
+	Selection_text   *Widget
+	Main_vbox        *Widget
+	Ok_button        *Widget
+	Cancel_button    *Widget
+	Help_button      *Widget
+	History_pulldown *Widget
+	History_menu     *Widget
 	History_list     *T.GList
-	Fileop_dialog    *T.GtkWidget
-	Fileop_entry     *T.GtkWidget
+	Fileop_dialog    *Widget
+	Fileop_entry     *Widget
 	Fileop_file      *T.Gchar
 	Cmpl_state       T.Gpointer
-	Fileop_c_dir     *T.GtkWidget
-	Fileop_del_file  *T.GtkWidget
-	Fileop_ren_file  *T.GtkWidget
-	Button_area      *T.GtkWidget
-	Action_area      *T.GtkWidget
+	Fileop_c_dir     *Widget
+	Fileop_del_file  *Widget
+	Fileop_ren_file  *Widget
+	Button_area      *Widget
+	Action_area      *Widget
 	Selected_names   *T.GPtrArray
 	Last_selected    *T.Gchar
 }
 
 var (
 	FileSelectionGetType func() T.GType
-	FileSelectionNew     func(title string) *T.GtkWidget
+	FileSelectionNew     func(title string) *Widget
 
 	FileSelectionComplete          func(f *FileSelection, pattern string)
 	FileSelectionGetFilename       func(f *FileSelection) string
@@ -534,19 +537,19 @@ type Fixed struct {
 
 var (
 	FixedGetType func() T.GType
-	FixedNew     func() *T.GtkWidget
+	FixedNew     func() *Widget
 
 	FixedGetHasWindow func(f *Fixed) T.Gboolean
-	FixedMove         func(f *Fixed, widget *T.GtkWidget, x, y int)
-	FixedPut          func(f *Fixed, widget *T.GtkWidget, x, y int)
+	FixedMove         func(f *Fixed, widget *Widget, x, y int)
+	FixedPut          func(f *Fixed, widget *Widget, x, y int)
 	FixedSetHasWindow func(f *Fixed, hasWindow T.Gboolean)
 )
 
-func (f *Fixed) Put(widget *T.GtkWidget, x, y int) {
+func (f *Fixed) Put(widget *Widget, x, y int) {
 	FixedPut(f, widget, x, y)
 }
 
-func (f *Fixed) Move(widget *T.GtkWidget, x, y int) {
+func (f *Fixed) Move(widget *Widget, x, y int) {
 	FixedMove(f, widget, x, y)
 }
 
@@ -565,8 +568,8 @@ type FontButton struct {
 
 var (
 	FontButtonGetType     func() T.GType
-	FontButtonNew         func() *T.GtkWidget
-	FontButtonNewWithFont func(fontname string) *T.GtkWidget
+	FontButtonNew         func() *Widget
+	FontButtonNewWithFont func(fontname string) *Widget
 
 	FontButtonGetFontName  func(f *FontButton) string
 	FontButtonGetShowSize  func(f *FontButton) T.Gboolean
@@ -632,16 +635,16 @@ func (f *FontButton) SetShowSize(showSize T.Gboolean) {
 
 type FontSelection struct {
 	Parent_instance  T.GtkVBox
-	Font_entry       *T.GtkWidget
-	Family_list      *T.GtkWidget
-	Font_style_entry *T.GtkWidget
-	Face_list        *T.GtkWidget
-	Size_entry       *T.GtkWidget
-	Size_list        *T.GtkWidget
-	Pixels_button    *T.GtkWidget
-	Points_button    *T.GtkWidget
-	Filter_button    *T.GtkWidget
-	Preview_entry    *T.GtkWidget
+	Font_entry       *Widget
+	Family_list      *Widget
+	Font_style_entry *Widget
+	Face_list        *Widget
+	Size_entry       *Widget
+	Size_list        *Widget
+	Pixels_button    *Widget
+	Points_button    *Widget
+	Filter_button    *Widget
+	Preview_entry    *Widget
 	Family           *T.PangoFontFamily
 	Face             *T.PangoFontFace
 	Size             int
@@ -650,40 +653,40 @@ type FontSelection struct {
 
 var (
 	FontSelectionGetType func() T.GType
-	FontSelectionNew     func() *T.GtkWidget
+	FontSelectionNew     func() *Widget
 
 	FontSelectionGetFace         func(f *FontSelection) *T.PangoFontFace
-	FontSelectionGetFaceList     func(f *FontSelection) *T.GtkWidget
+	FontSelectionGetFaceList     func(f *FontSelection) *Widget
 	FontSelectionGetFamily       func(f *FontSelection) *T.PangoFontFamily
-	FontSelectionGetFamilyList   func(f *FontSelection) *T.GtkWidget
+	FontSelectionGetFamilyList   func(f *FontSelection) *Widget
 	FontSelectionGetFont         func(f *FontSelection) *T.GdkFont
 	FontSelectionGetFontName     func(f *FontSelection) string
-	FontSelectionGetPreviewEntry func(f *FontSelection) *T.GtkWidget
+	FontSelectionGetPreviewEntry func(f *FontSelection) *Widget
 	FontSelectionGetPreviewText  func(f *FontSelection) string
 	FontSelectionGetSize         func(f *FontSelection) int
-	FontSelectionGetSizeEntry    func(f *FontSelection) *T.GtkWidget
-	FontSelectionGetSizeList     func(f *FontSelection) *T.GtkWidget
+	FontSelectionGetSizeEntry    func(f *FontSelection) *Widget
+	FontSelectionGetSizeList     func(f *FontSelection) *Widget
 	FontSelectionSetFontName     func(f *FontSelection, fontname string) T.Gboolean
 	FontSelectionSetPreviewText  func(f *FontSelection, text string)
 )
 
-func (f *FontSelection) GetFamilyList() *T.GtkWidget {
+func (f *FontSelection) GetFamilyList() *Widget {
 	return FontSelectionGetFamilyList(f)
 }
 
-func (f *FontSelection) GetFaceList() *T.GtkWidget {
+func (f *FontSelection) GetFaceList() *Widget {
 	return FontSelectionGetFaceList(f)
 }
 
-func (f *FontSelection) GetSizeEntry() *T.GtkWidget {
+func (f *FontSelection) GetSizeEntry() *Widget {
 	return FontSelectionGetSizeEntry(f)
 }
 
-func (f *FontSelection) GetSizeList() *T.GtkWidget {
+func (f *FontSelection) GetSizeList() *Widget {
 	return FontSelectionGetSizeList(f)
 }
 
-func (f *FontSelection) GetPreviewEntry() *T.GtkWidget {
+func (f *FontSelection) GetPreviewEntry() *Widget {
 	return FontSelectionGetPreviewEntry(f)
 }
 
@@ -721,44 +724,44 @@ func (f *FontSelection) SetPreviewText(text string) {
 
 type FontSelectionDialog struct {
 	Parent       Dialog
-	Fontsel      *T.GtkWidget
-	MainVbox     *T.GtkWidget
-	ActionArea   *T.GtkWidget
-	OkButton     *T.GtkWidget
-	ApplyButton  *T.GtkWidget
-	CancelButton *T.GtkWidget
+	Fontsel      *Widget
+	MainVbox     *Widget
+	ActionArea   *Widget
+	OkButton     *Widget
+	ApplyButton  *Widget
+	CancelButton *Widget
 	DialogWidth  int
 	AutoResize   T.Gboolean
 }
 
 var (
 	FontSelectionDialogGetType func() T.GType
-	FontSelectionDialogNew     func(title string) *T.GtkWidget
+	FontSelectionDialogNew     func(title string) *Widget
 
-	FontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *T.GtkWidget
-	FontSelectionDialogGetCancelButton  func(f *FontSelectionDialog) *T.GtkWidget
+	FontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetCancelButton  func(f *FontSelectionDialog) *Widget
 	FontSelectionDialogGetFont          func(f *FontSelectionDialog) *T.GdkFont
 	FontSelectionDialogGetFontName      func(f *FontSelectionDialog) string
-	FontSelectionDialogGetFontSelection func(f *FontSelectionDialog) *T.GtkWidget
-	FontSelectionDialogGetOkButton      func(f *FontSelectionDialog) *T.GtkWidget
+	FontSelectionDialogGetFontSelection func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetOkButton      func(f *FontSelectionDialog) *Widget
 	FontSelectionDialogGetPreviewText   func(f *FontSelectionDialog) string
 	FontSelectionDialogSetFontName      func(f *FontSelectionDialog, fontname string) T.Gboolean
 	FontSelectionDialogSetPreviewText   func(f *FontSelectionDialog, text string)
 )
 
-func (f *FontSelectionDialog) GetOkButton() *T.GtkWidget {
+func (f *FontSelectionDialog) GetOkButton() *Widget {
 	return FontSelectionDialogGetOkButton(f)
 }
 
-func (f *FontSelectionDialog) GetApplyButton() *T.GtkWidget {
+func (f *FontSelectionDialog) GetApplyButton() *Widget {
 	return FontSelectionDialogGetApplyButton(f)
 }
 
-func (f *FontSelectionDialog) GetCancelButton() *T.GtkWidget {
+func (f *FontSelectionDialog) GetCancelButton() *Widget {
 	return FontSelectionDialogGetCancelButton(f)
 }
 
-func (f *FontSelectionDialog) GetFontSelection() *T.GtkWidget {
+func (f *FontSelectionDialog) GetFontSelection() *Widget {
 	return FontSelectionDialogGetFontSelection(f)
 }
 
@@ -784,7 +787,7 @@ func (f *FontSelectionDialog) SetPreviewText(text string) {
 
 type Frame struct {
 	Bin             Bin
-	LabelWidget     *T.GtkWidget
+	LabelWidget     *Widget
 	ShadowType      int16
 	LabelXalign     float32
 	LabelYalign     float32
@@ -793,15 +796,15 @@ type Frame struct {
 
 var (
 	FrameGetType func() T.GType
-	FrameNew     func(label string) *T.GtkWidget
+	FrameNew     func(label string) *Widget
 
 	FrameGetLabel       func(f *Frame) string
 	FrameGetLabelAlign  func(f *Frame, xalign, yalign *float32)
-	FrameGetLabelWidget func(f *Frame) *T.GtkWidget
+	FrameGetLabelWidget func(f *Frame) *Widget
 	FrameGetShadowType  func(f *Frame) T.GtkShadowType
 	FrameSetLabel       func(f *Frame, label string)
 	FrameSetLabelAlign  func(f *Frame, xalign, yalign float32)
-	FrameSetLabelWidget func(f *Frame, labelWidget *T.GtkWidget)
+	FrameSetLabelWidget func(f *Frame, labelWidget *Widget)
 	FrameSetShadowType  func(f *Frame, t T.GtkShadowType)
 )
 
@@ -813,11 +816,11 @@ func (f *Frame) GetLabel() string {
 	return FrameGetLabel(f)
 }
 
-func (f *Frame) SetLabelWidget(labelWidget *T.GtkWidget) {
+func (f *Frame) SetLabelWidget(labelWidget *Widget) {
 	FrameSetLabelWidget(f, labelWidget)
 }
 
-func (f *Frame) GetLabelWidget() *T.GtkWidget {
+func (f *Frame) GetLabelWidget() *Widget {
 	return FrameGetLabelWidget(f)
 }
 

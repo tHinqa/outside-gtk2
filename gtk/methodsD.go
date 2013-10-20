@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -7,9 +10,9 @@ import (
 
 type Dialog struct {
 	Window      T.GtkWindow
-	Vbox        *T.GtkWidget
-	Action_area *T.GtkWidget
-	Separator   *T.GtkWidget
+	Vbox        *Widget
+	Action_area *Widget
+	Separator   *Widget
 }
 
 type DialogFlags T.Enum
@@ -23,19 +26,19 @@ const (
 var (
 	DialogFlagsGetType   func() T.GType
 	DialogGetType        func() T.GType
-	DialogNew            func() *T.GtkWidget
-	DialogNewWithButtons func(title string, parent *T.GtkWindow, flags DialogFlags, firstButtonText string, v ...VArg) *T.GtkWidget
+	DialogNew            func() *Widget
+	DialogNewWithButtons func(title string, parent *T.GtkWindow, flags DialogFlags, firstButtonText string, v ...VArg) *Widget
 )
 
 var (
-	DialogAddActionWidget                    func(d *Dialog, child *T.GtkWidget, responseId int)
-	DialogAddButton                          func(d *Dialog, buttonText string, responseId int) *T.GtkWidget
+	DialogAddActionWidget                    func(d *Dialog, child *Widget, responseId int)
+	DialogAddButton                          func(d *Dialog, buttonText string, responseId int) *Widget
 	DialogAddButtons                         func(d *Dialog, firstButtonText string, v ...VArg)
-	DialogGetActionArea                      func(d *Dialog) *T.GtkWidget
-	DialogGetContentArea                     func(d *Dialog) *T.GtkWidget
+	DialogGetActionArea                      func(d *Dialog) *Widget
+	DialogGetContentArea                     func(d *Dialog) *Widget
 	DialogGetHasSeparator                    func(d *Dialog) T.Gboolean
-	DialogGetResponseForWidget               func(d *Dialog, widget *T.GtkWidget) int
-	DialogGetWidgetForResponse               func(d *Dialog, responseId int) *T.GtkWidget
+	DialogGetResponseForWidget               func(d *Dialog, widget *Widget) int
+	DialogGetWidgetForResponse               func(d *Dialog, responseId int) *Widget
 	DialogResponse                           func(d *Dialog, responseId int)
 	DialogRun                                func(d *Dialog) int
 	DialogSetAlternativeButtonOrder          func(d *Dialog, firstResponseId int, v ...VArg)
@@ -45,11 +48,11 @@ var (
 	DialogSetResponseSensitive               func(d *Dialog, responseId int, setting T.Gboolean)
 )
 
-func (d *Dialog) AddActionWidget(child *T.GtkWidget, responseId int) {
+func (d *Dialog) AddActionWidget(child *Widget, responseId int) {
 	DialogAddActionWidget(d, child, responseId)
 }
 
-func (d *Dialog) AddButton(buttonText string, responseId int) *T.GtkWidget {
+func (d *Dialog) AddButton(buttonText string, responseId int) *Widget {
 	return DialogAddButton(d, buttonText, responseId)
 }
 
@@ -65,11 +68,11 @@ func (d *Dialog) SetDefaultResponse(responseId int) {
 	DialogSetDefaultResponse(d, responseId)
 }
 
-func (d *Dialog) GetWidgetForResponse(responseId int) *T.GtkWidget {
+func (d *Dialog) GetWidgetForResponse(responseId int) *Widget {
 	return DialogGetWidgetForResponse(d, responseId)
 }
 
-func (d *Dialog) GetResponseForWidget(widget *T.GtkWidget) int {
+func (d *Dialog) GetResponseForWidget(widget *Widget) int {
 	return DialogGetResponseForWidget(d, widget)
 }
 
@@ -95,22 +98,22 @@ func (d *Dialog) Response(responseId int) {
 
 func (d *Dialog) Run() int { return DialogRun(d) }
 
-func (d *Dialog) GetActionArea() *T.GtkWidget {
+func (d *Dialog) GetActionArea() *Widget {
 	return DialogGetActionArea(d)
 }
 
-func (d *Dialog) GetContentArea() *T.GtkWidget {
+func (d *Dialog) GetContentArea() *Widget {
 	return DialogGetContentArea(d)
 }
 
 type DrawingArea struct {
-	Widget    T.GtkWidget
+	Widget    Widget
 	Draw_data T.Gpointer
 }
 
 var (
 	DrawingAreaGetType func() T.GType
-	DrawingAreaNew     func() *T.GtkWidget
+	DrawingAreaNew     func() *Widget
 
 	DrawingAreaSize func(d *DrawingArea, width int, height int)
 )

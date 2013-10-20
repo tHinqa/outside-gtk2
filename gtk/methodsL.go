@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -25,7 +28,7 @@ type Label struct {
 	Attrs          *T.PangoAttrList
 	EffectiveAttrs *T.PangoAttrList
 	Layout         *T.PangoLayout
-	MnemonicWidget *T.GtkWidget
+	MnemonicWidget *Widget
 	MnemonicWindow *T.GtkWindow
 	SelectInfo     *LabelSelectionInfo
 }
@@ -34,8 +37,8 @@ type LabelSelectionInfo struct{}
 
 var (
 	LabelGetType         func() T.GType
-	LabelNew             func(str string) *T.GtkWidget
-	LabelNewWithMnemonic func(str string) *T.GtkWidget
+	LabelNew             func(str string) *Widget
+	LabelNewWithMnemonic func(str string) *Widget
 
 	LabelGet                   func(l *Label, str **T.Gchar)
 	LabelGetAngle              func(l *Label) float64
@@ -50,7 +53,7 @@ var (
 	LabelGetLineWrapMode       func(l *Label) T.PangoWrapMode
 	LabelGetMaxWidthChars      func(l *Label) int
 	LabelGetMnemonicKeyval     func(l *Label) uint
-	LabelGetMnemonicWidget     func(l *Label) *T.GtkWidget
+	LabelGetMnemonicWidget     func(l *Label) *Widget
 	LabelGetSelectable         func(l *Label) T.Gboolean
 	LabelGetSelectionBounds    func(l *Label, start, end *int) T.Gboolean
 	LabelGetSingleLineMode     func(l *Label) T.Gboolean
@@ -71,7 +74,7 @@ var (
 	LabelSetMarkup             func(l *Label, str string)
 	LabelSetMarkupWithMnemonic func(l *Label, str string)
 	LabelSetMaxWidthChars      func(l *Label, nChars int)
-	LabelSetMnemonicWidget     func(l *Label, widget *T.GtkWidget)
+	LabelSetMnemonicWidget     func(l *Label, widget *Widget)
 	LabelSetPattern            func(l *Label, pattern string)
 	LabelSetSelectable         func(l *Label, setting T.Gboolean)
 	LabelSetSingleLineMode     func(l *Label, singleLineMode T.Gboolean)
@@ -135,11 +138,11 @@ func (l *Label) GetMnemonicKeyval() uint {
 	return LabelGetMnemonicKeyval(l)
 }
 
-func (l *Label) SetMnemonicWidget(widget *T.GtkWidget) {
+func (l *Label) SetMnemonicWidget(widget *Widget) {
 	LabelSetMnemonicWidget(l, widget)
 }
 
-func (l *Label) GetMnemonicWidget() *T.GtkWidget {
+func (l *Label) GetMnemonicWidget() *Widget {
 	return LabelGetMnemonicWidget(l)
 }
 
@@ -275,15 +278,15 @@ type Layout struct {
 
 var (
 	LayoutGetType func() T.GType
-	LayoutNew     func(hadjustment, vadjustment *Adjustment) *T.GtkWidget
+	LayoutNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
 	LayoutFreeze         func(l *Layout)
 	LayoutGetBinWindow   func(l *Layout) *T.GdkWindow
 	LayoutGetHadjustment func(l *Layout) *Adjustment
 	LayoutGetSize        func(l *Layout, width, height *uint)
 	LayoutGetVadjustment func(l *Layout) *Adjustment
-	LayoutMove           func(l *Layout, childWidget *T.GtkWidget, x, y int)
-	LayoutPut            func(l *Layout, childWidget *T.GtkWidget, x, y int)
+	LayoutMove           func(l *Layout, childWidget *Widget, x, y int)
+	LayoutPut            func(l *Layout, childWidget *Widget, x, y int)
 	LayoutSetHadjustment func(l *Layout, adjustment *Adjustment)
 	LayoutSetSize        func(l *Layout, width, height uint)
 	LayoutSetVadjustment func(l *Layout, adjustment *Adjustment)
@@ -294,11 +297,11 @@ func (l *Layout) GetBinWindow() *T.GdkWindow {
 	return LayoutGetBinWindow(l)
 }
 
-func (l *Layout) Put(childWidget *T.GtkWidget, x, y int) {
+func (l *Layout) Put(childWidget *Widget, x, y int) {
 	LayoutPut(l, childWidget, x, y)
 }
 
-func (l *Layout) Move(childWidget *T.GtkWidget, x, y int) {
+func (l *Layout) Move(childWidget *Widget, x, y int) {
 	LayoutMove(l, childWidget, x, y)
 }
 
@@ -459,8 +462,8 @@ func (l *ListStore) MoveBefore(iter *T.GtkTreeIter, position *T.GtkTreeIter) {
 
 var (
 	LinkButtonGetType      func() T.GType
-	LinkButtonNew          func(uri string) *T.GtkWidget
-	LinkButtonNewWithLabel func(uri string, label string) *T.GtkWidget
+	LinkButtonNew          func(uri string) *Widget
+	LinkButtonNewWithLabel func(uri string, label string) *Widget
 
 	LinkButtonSetUriHook func(f LinkButtonUriFunc, dataGpointer, destroy T.GDestroyNotify) LinkButtonUriFunc
 
@@ -476,8 +479,8 @@ type List struct {
 	Selection         *T.GList
 	UndoSelectionList *T.GList // Name ambuiguity with method
 	UndoUnselection   *T.GList
-	LastFocusChild    *T.GtkWidget
-	UndoFocusChild    *T.GtkWidget
+	LastFocusChild    *Widget
+	UndoFocusChild    *Widget
 	Htimer            uint
 	Vtimer            uint
 	Anchor            int
@@ -491,8 +494,8 @@ type List struct {
 
 var (
 	ListGetType          func() T.GType
-	ListNew              func() *T.GtkWidget
-	ListItemNewWithLabel func(label string) *T.GtkWidget
+	ListNew              func() *Widget
+	ListItemNewWithLabel func(label string) *Widget
 
 	ListInsertItems        func(l *List, items *T.GList, position int)
 	ListAppendItems        func(l *List, items *T.GList)
@@ -502,9 +505,9 @@ var (
 	ListClearItems         func(l *List, start int, end int)
 	ListSelectItem         func(l *List, item int)
 	ListUnselectItem       func(l *List, item int)
-	ListSelectChild        func(l *List, child *T.GtkWidget)
-	ListUnselectChild      func(l *List, child *T.GtkWidget)
-	ListChildPosition      func(l *List, child *T.GtkWidget) int
+	ListSelectChild        func(l *List, child *Widget)
+	ListUnselectChild      func(l *List, child *Widget)
+	ListChildPosition      func(l *List, child *Widget) int
 	ListSetSelectionMode   func(l *List, mode T.GtkSelectionMode)
 	ListExtendSelection    func(l *List, scrollType T.GtkScrollType, position float32, autoStartSelection T.Gboolean)
 	ListStartSelection     func(l *List)
@@ -515,7 +518,7 @@ var (
 	ListScrollVertical     func(l *List, scrollType T.GtkScrollType, position float32)
 	ListToggleAddMode      func(l *List)
 	ListToggleFocusRow     func(l *List)
-	ListToggleRow          func(l *List, item *T.GtkWidget)
+	ListToggleRow          func(l *List, item *Widget)
 	ListUndoSelection      func(l *List)
 	ListEndDragSelection   func(l *List)
 )
@@ -550,15 +553,15 @@ func (l *List) UnselectItem(item int) {
 	ListUnselectItem(l, item)
 }
 
-func (l *List) SelectChild(child *T.GtkWidget) {
+func (l *List) SelectChild(child *Widget) {
 	ListSelectChild(l, child)
 }
 
-func (l *List) UnselectChild(child *T.GtkWidget) {
+func (l *List) UnselectChild(child *Widget) {
 	ListUnselectChild(l, child)
 }
 
-func (l *List) ChildPosition(child *T.GtkWidget) int {
+func (l *List) ChildPosition(child *Widget) int {
 	return ListChildPosition(l, child)
 }
 
@@ -594,7 +597,7 @@ func (l *List) ToggleAddMode() { ListToggleAddMode(l) }
 
 func (l *List) ToggleFocusRow() { ListToggleFocusRow(l) }
 
-func (l *List) ToggleRow(item *T.GtkWidget) {
+func (l *List) ToggleRow(item *Widget) {
 	ListToggleRow(l, item)
 }
 
@@ -606,7 +609,7 @@ type ListItem struct{ Item Item }
 
 var (
 	ListItemGetType func() T.GType
-	ListItemNew     func() *T.GtkWidget
+	ListItemNew     func() *Widget
 
 	ListItemSelect   func(l *ListItem)
 	ListItemDeselect func(l *ListItem)

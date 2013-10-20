@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -103,7 +106,7 @@ var (
 	IconSetCopy       func(i *IconSet) *IconSet
 	IconSetGetSizes   func(i *IconSet, sizes **IconSize, nSizes *int)
 	IconSetRef        func(i *IconSet) *IconSet
-	IconSetRenderIcon func(i *IconSet, style *T.GtkStyle, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *T.GtkWidget, detail string) *T.GdkPixbuf
+	IconSetRenderIcon func(i *IconSet, style *T.GtkStyle, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
 	IconSetUnref      func(i *IconSet)
 )
 
@@ -115,7 +118,7 @@ func (i *IconSet) Copy() *IconSet { return IconSetCopy(i) }
 
 func (i *IconSet) RenderIcon(style *T.GtkStyle,
 	direction T.GtkTextDirection, state T.GtkStateType,
-	size IconSize, widget *T.GtkWidget, detail string) *T.GdkPixbuf {
+	size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
 	return IconSetRenderIcon(
 		i, style, direction, state, size, widget, detail)
 }
@@ -400,8 +403,8 @@ const (
 
 var (
 	IconViewGetType      func() T.GType
-	IconViewNew          func() *T.GtkWidget
-	IconViewNewWithModel func(model *T.GtkTreeModel) *T.GtkWidget
+	IconViewNew          func() *Widget
+	IconViewNewWithModel func(model *T.GtkTreeModel) *Widget
 
 	IconViewDropPositionGetType func() T.GType
 
@@ -740,16 +743,16 @@ const (
 
 var (
 	ImageGetType          func() T.GType
-	ImageNew              func() *T.GtkWidget
-	ImageNewFromPixmap    func(pixmap *T.GdkPixmap, mask *T.GdkBitmap) *T.GtkWidget
-	ImageNewFromImage     func(image *T.GdkImage, mask *T.GdkBitmap) *T.GtkWidget
-	ImageNewFromFile      func(filename string) *T.GtkWidget
-	ImageNewFromPixbuf    func(pixbuf *T.GdkPixbuf) *T.GtkWidget
-	ImageNewFromStock     func(stockId string, size IconSize) *T.GtkWidget
-	ImageNewFromIconSet   func(iconSet *IconSet, size IconSize) *T.GtkWidget
-	ImageNewFromAnimation func(animation *T.GdkPixbufAnimation) *T.GtkWidget
-	ImageNewFromIconName  func(iconName string, size IconSize) *T.GtkWidget
-	ImageNewFromGicon     func(icon *T.GIcon, size IconSize) *T.GtkWidget
+	ImageNew              func() *Widget
+	ImageNewFromPixmap    func(pixmap *T.GdkPixmap, mask *T.GdkBitmap) *Widget
+	ImageNewFromImage     func(image *T.GdkImage, mask *T.GdkBitmap) *Widget
+	ImageNewFromFile      func(filename string) *Widget
+	ImageNewFromPixbuf    func(pixbuf *T.GdkPixbuf) *Widget
+	ImageNewFromStock     func(stockId string, size IconSize) *Widget
+	ImageNewFromIconSet   func(iconSet *IconSet, size IconSize) *Widget
+	ImageNewFromAnimation func(animation *T.GdkPixbufAnimation) *Widget
+	ImageNewFromIconName  func(iconName string, size IconSize) *Widget
+	ImageNewFromGicon     func(icon *T.GIcon, size IconSize) *Widget
 
 	ImageClear            func(i *Image)
 	ImageGet              func(i *Image, val **T.GdkImage, mask **T.GdkBitmap)
@@ -872,22 +875,22 @@ func (i *Image) Get(val **T.GdkImage, mask **T.GdkBitmap) {
 
 type ImageMenuItem struct {
 	MenuItem T.GtkMenuItem
-	Image    *T.GtkWidget
+	Image    *Widget
 }
 
 var (
 	ImageMenuItemGetType         func() T.GType
-	ImageMenuItemNew             func() *T.GtkWidget
-	ImageMenuItemNewWithLabel    func(label string) *T.GtkWidget
-	ImageMenuItemNewWithMnemonic func(label string) *T.GtkWidget
-	ImageMenuItemNewFromStock    func(stockId string, accelGroup *AccelGroup) *T.GtkWidget
+	ImageMenuItemNew             func() *Widget
+	ImageMenuItemNewWithLabel    func(label string) *Widget
+	ImageMenuItemNewWithMnemonic func(label string) *Widget
+	ImageMenuItemNewFromStock    func(stockId string, accelGroup *AccelGroup) *Widget
 
 	ImageMenuItemGetAlwaysShowImage func(i *ImageMenuItem) T.Gboolean
-	ImageMenuItemGetImage           func(i *ImageMenuItem) *T.GtkWidget
+	ImageMenuItemGetImage           func(i *ImageMenuItem) *Widget
 	ImageMenuItemGetUseStock        func(i *ImageMenuItem) T.Gboolean
 	ImageMenuItemSetAccelGroup      func(i *ImageMenuItem, accelGroup *AccelGroup)
 	ImageMenuItemSetAlwaysShowImage func(i *ImageMenuItem, alwaysShow T.Gboolean)
-	ImageMenuItemSetImage           func(i *ImageMenuItem, image *T.GtkWidget)
+	ImageMenuItemSetImage           func(i *ImageMenuItem, image *Widget)
 	ImageMenuItemSetUseStock        func(i *ImageMenuItem, useStock T.Gboolean)
 )
 
@@ -899,11 +902,11 @@ func (i *ImageMenuItem) GetAlwaysShowImage() T.Gboolean {
 	return ImageMenuItemGetAlwaysShowImage(i)
 }
 
-func (i *ImageMenuItem) SetImage(image *T.GtkWidget) {
+func (i *ImageMenuItem) SetImage(image *Widget) {
 	ImageMenuItemSetImage(i, image)
 }
 
-func (i *ImageMenuItem) GetImage() *T.GtkWidget {
+func (i *ImageMenuItem) GetImage() *Widget {
 	return ImageMenuItemGetImage(i)
 }
 
@@ -1037,20 +1040,20 @@ func (i *IMMulticontext) SetContextId(contextId string) {
 }
 
 type InfoBar struct {
-	Parent T.GtkHBox
+	Parent HBox
 	_      *struct{}
 }
 
 var (
 	InfoBarGetType        func() T.GType
-	InfoBarNew            func() *T.GtkWidget
-	InfoBarNewWithButtons func(firstButtonText string, v ...VArg) *T.GtkWidget
+	InfoBarNew            func() *Widget
+	InfoBarNewWithButtons func(firstButtonText string, v ...VArg) *Widget
 
-	InfoBarAddActionWidget      func(i *InfoBar, child *T.GtkWidget, responseId int)
-	InfoBarAddButton            func(i *InfoBar, buttonText string, responseId int) *T.GtkWidget
+	InfoBarAddActionWidget      func(i *InfoBar, child *Widget, responseId int)
+	InfoBarAddButton            func(i *InfoBar, buttonText string, responseId int) *Widget
 	InfoBarAddButtons           func(i *InfoBar, firstButtonText string, v ...VArg)
-	InfoBarGetActionArea        func(i *InfoBar) *T.GtkWidget
-	InfoBarGetContentArea       func(i *InfoBar) *T.GtkWidget
+	InfoBarGetActionArea        func(i *InfoBar) *Widget
+	InfoBarGetContentArea       func(i *InfoBar) *Widget
 	InfoBarGetMessageType       func(i *InfoBar) T.GtkMessageType
 	InfoBarResponse             func(i *InfoBar, responseId int)
 	InfoBarSetDefaultResponse   func(i *InfoBar, responseId int)
@@ -1058,19 +1061,19 @@ var (
 	InfoBarSetResponseSensitive func(i *InfoBar, responseId int, setting T.Gboolean)
 )
 
-func (i *InfoBar) GetActionArea() *T.GtkWidget {
+func (i *InfoBar) GetActionArea() *Widget {
 	return InfoBarGetActionArea(i)
 }
 
-func (i *InfoBar) GetContentArea() *T.GtkWidget {
+func (i *InfoBar) GetContentArea() *Widget {
 	return InfoBarGetContentArea(i)
 }
 
-func (i *InfoBar) AddActionWidget(child *T.GtkWidget, responseId int) {
+func (i *InfoBar) AddActionWidget(child *Widget, responseId int) {
 	InfoBarAddActionWidget(i, child, responseId)
 }
 
-func (i *InfoBar) AddButton(buttonText string, responseId int) *T.GtkWidget {
+func (i *InfoBar) AddButton(buttonText string, responseId int) *Widget {
 	return InfoBarAddButton(i, buttonText, responseId)
 }
 
@@ -1099,15 +1102,15 @@ func (i *InfoBar) GetMessageType() T.GtkMessageType {
 }
 
 type Invisible struct {
-	Widget          T.GtkWidget
+	Widget          Widget
 	HasUserRefCount T.Gboolean
 	Screen          *T.GdkScreen
 }
 
 var (
 	InvisibleGetType      func() T.GType
-	InvisibleNew          func() *T.GtkWidget
-	InvisibleNewForScreen func(screen *T.GdkScreen) *T.GtkWidget
+	InvisibleNew          func() *Widget
+	InvisibleNewForScreen func(screen *T.GdkScreen) *Widget
 
 	InvisibleGetScreen func(i *Invisible) *T.GdkScreen
 	InvisibleSetScreen func(i *Invisible, screen *T.GdkScreen)
@@ -1144,7 +1147,7 @@ type (
 		Object           T.GtkObject
 		Path             *T.Gchar
 		Accel_group      *AccelGroup
-		Widget           *T.GtkWidget
+		Widget           *Widget
 		Items            *T.GSList
 		Translate_func   T.GtkTranslateFunc
 		Translate_data   T.Gpointer
@@ -1168,12 +1171,12 @@ var (
 	ItemFactoryNew     func(containerType T.GType, path string, accelGroup *AccelGroup) *ItemFactory
 
 	ItemFactoriesPathDelete        func(ifactoryPath string, path string)
-	ItemFactoryAddForeign          func(accelWidget *T.GtkWidget, fullPath string, accelGroup *AccelGroup, keyval uint, modifiers T.GdkModifierType)
+	ItemFactoryAddForeign          func(accelWidget *Widget, fullPath string, accelGroup *AccelGroup, keyval uint, modifiers T.GdkModifierType)
 	ItemFactoryCreateMenuEntries   func(nEntries uint, entries *T.GtkMenuEntry)
 	ItemFactoryFromPath            func(path string) *ItemFactory
-	ItemFactoryFromWidget          func(widget *T.GtkWidget) *ItemFactory
-	ItemFactoryPathFromWidget      func(widget *T.GtkWidget) string
-	ItemFactoryPopupDataFromWidget func(widget *T.GtkWidget) T.Gpointer
+	ItemFactoryFromWidget          func(widget *Widget) *ItemFactory
+	ItemFactoryPathFromWidget      func(widget *Widget) string
+	ItemFactoryPopupDataFromWidget func(widget *Widget) T.Gpointer
 
 	ItemFactoryConstruct         func(i *ItemFactory, containerType T.GType, path string, accelGroup *AccelGroup)
 	ItemFactoryCreateItem        func(i *ItemFactory, entry *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
@@ -1182,10 +1185,10 @@ var (
 	ItemFactoryDeleteEntries     func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry)
 	ItemFactoryDeleteEntry       func(i *ItemFactory, entry *ItemFactoryEntry)
 	ItemFactoryDeleteItem        func(i *ItemFactory, path string)
-	ItemFactoryGetItem           func(i *ItemFactory, path string) *T.GtkWidget
-	ItemFactoryGetItemByAction   func(i *ItemFactory, action uint) *T.GtkWidget
-	ItemFactoryGetWidget         func(i *ItemFactory, path string) *T.GtkWidget
-	ItemFactoryGetWidgetByAction func(i *ItemFactory, action uint) *T.GtkWidget
+	ItemFactoryGetItem           func(i *ItemFactory, path string) *Widget
+	ItemFactoryGetItemByAction   func(i *ItemFactory, action uint) *Widget
+	ItemFactoryGetWidget         func(i *ItemFactory, path string) *Widget
+	ItemFactoryGetWidgetByAction func(i *ItemFactory, action uint) *Widget
 	ItemFactoryPopup             func(i *ItemFactory, x uint, y uint, mouseButton uint, time T.GUint32)
 	ItemFactoryPopupData         func(i *ItemFactory) T.Gpointer
 	ItemFactoryPopupWithData     func(i *ItemFactory, popupData T.Gpointer, destroy T.GDestroyNotify, x uint, y uint, mouseButton uint, time T.GUint32)
@@ -1197,19 +1200,19 @@ func (i *ItemFactory) Construct(containerType T.GType,
 	ItemFactoryConstruct(i, containerType, path, accelGroup)
 }
 
-func (i *ItemFactory) GetItem(path string) *T.GtkWidget {
+func (i *ItemFactory) GetItem(path string) *Widget {
 	return ItemFactoryGetItem(i, path)
 }
 
-func (i *ItemFactory) GetWidget(path string) *T.GtkWidget {
+func (i *ItemFactory) GetWidget(path string) *Widget {
 	return ItemFactoryGetWidget(i, path)
 }
 
-func (i *ItemFactory) GetWidgetByAction(action uint) *T.GtkWidget {
+func (i *ItemFactory) GetWidgetByAction(action uint) *Widget {
 	return ItemFactoryGetWidgetByAction(i, action)
 }
 
-func (i *ItemFactory) GetItemByAction(action uint) *T.GtkWidget {
+func (i *ItemFactory) GetItemByAction(action uint) *Widget {
 	return ItemFactoryGetItemByAction(i, action)
 }
 

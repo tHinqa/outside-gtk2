@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -7,7 +10,7 @@ import (
 
 type (
 	Calendar struct {
-		Widget            T.GtkWidget
+		Widget            Widget
 		Header_style      *T.GtkStyle
 		Label_style       *T.GtkStyle
 		Month             int
@@ -48,120 +51,66 @@ const (
 var (
 	CalendarDisplayOptionsGetType func() T.GType
 	CalendarGetType               func() T.GType
-	CalendarNew                   func() *T.GtkWidget
+	CalendarNew                   func() *Widget
 )
 
 var (
-	CalendarClearMarks          func(c *Calendar)
-	CalendarFreeze              func(c *Calendar)
-	CalendarGetDate             func(c *Calendar, year, month, day *uint)
-	CalendarGetDetailHeightRows func(c *Calendar) int
-	CalendarGetDetailWidthChars func(c *Calendar) int
-	CalendarGetDisplayOptions   func(c *Calendar) CalendarDisplayOptions
-	CalendarMarkDay             func(c *Calendar, day uint) T.Gboolean
-	CalendarSelectDay           func(c *Calendar, day uint)
-	CalendarSelectMonth         func(c *Calendar, month, year uint) T.Gboolean
-	CalendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify)
-	CalendarSetDetailHeightRows func(c *Calendar, rows int)
-	CalendarSetDetailWidthChars func(c *Calendar, chars int)
-	CalendarSetDisplayOptions   func(c *Calendar, flags CalendarDisplayOptions)
-	CalendarThaw                func(c *Calendar)
-	CalendarUnmarkDay           func(c *Calendar, day uint) T.Gboolean
-
-//NOTE(t):Deprecated; We remove because name clash w/enum
-//CalendarDisplayOptions      func(c *Calendar, flags CalendarDisplayOptionsEnum)
+	calendarClearMarks          func(c *Calendar)
+	calendarDisplayOptions      func(c *Calendar, flags CalendarDisplayOptions)
+	calendarFreeze              func(c *Calendar)
+	calendarGetDate             func(c *Calendar, year, month, day *uint)
+	calendarGetDetailHeightRows func(c *Calendar) int
+	calendarGetDetailWidthChars func(c *Calendar) int
+	calendarGetDisplayOptions   func(c *Calendar) CalendarDisplayOptions
+	calendarMarkDay             func(c *Calendar, day uint) T.Gboolean
+	calendarSelectDay           func(c *Calendar, day uint)
+	calendarSelectMonth         func(c *Calendar, month, year uint) T.Gboolean
+	calendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify)
+	calendarSetDetailHeightRows func(c *Calendar, rows int)
+	calendarSetDetailWidthChars func(c *Calendar, chars int)
+	calendarSetDisplayOptions   func(c *Calendar, flags CalendarDisplayOptions)
+	calendarThaw                func(c *Calendar)
+	calendarUnmarkDay           func(c *Calendar, day uint) T.Gboolean
 )
 
+func (c *Calendar) ClearMarks()                                     { calendarClearMarks(c) }
+func (c *Calendar) DisplayOptions(flags CalendarDisplayOptions) { calendarDisplayOptions(c, flags) }
+func (c *Calendar) Freeze()                                         { calendarFreeze(c) }
+func (c *Calendar) GetDate(year, month, day *uint)                  { calendarGetDate(c, year, month, day) }
+func (c *Calendar) GetDetailHeightRows() int                        { return calendarGetDetailHeightRows(c) }
+func (c *Calendar) GetDetailWidthChars() int                        { return calendarGetDetailWidthChars(c) }
+func (c *Calendar) GetDisplayOptions() CalendarDisplayOptions       { return calendarGetDisplayOptions(c) }
+func (c *Calendar) MarkDay(day uint) T.Gboolean                     { return calendarMarkDay(c, day) }
+func (c *Calendar) SelectDay(day uint)                              { calendarSelectDay(c, day) }
 func (c *Calendar) SelectMonth(month, year uint) T.Gboolean {
-	return CalendarSelectMonth(c, month, year)
+	return calendarSelectMonth(c, month, year)
 }
-
-func (c *Calendar) SelectDay(day uint) { CalendarSelectDay(c, day) }
-
-func (c *Calendar) MarkDay(day uint) T.Gboolean {
-	return CalendarMarkDay(c, day)
-}
-
-func (c *Calendar) UnmarkDay(day uint) T.Gboolean {
-	return CalendarUnmarkDay(c, day)
-}
-
-func (c *Calendar) ClearMarks() { CalendarClearMarks(c) }
-
-func (c *Calendar) SetDisplayOptions(flags CalendarDisplayOptions) {
-	CalendarSetDisplayOptions(c, flags)
-}
-
-func (c *Calendar) GetDisplayOptions() CalendarDisplayOptions {
-	return CalendarGetDisplayOptions(c)
-}
-
-//NOTE(t):Deprecated; We remove because name clash w/enum
-// func (c *Calendar) DisplayOptions(flags CalendarDisplayOptionsEnum) {
-// 	CalendarDisplayOptions(c, flags)
-// }
-
-func (c *Calendar) GetDate(year, month, day *uint) {
-	CalendarGetDate(c, year, month, day)
-}
-
 func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify) {
-	CalendarSetDetailFunc(c, f, dataGpointer, destroy)
+	calendarSetDetailFunc(c, f, dataGpointer, destroy)
 }
-
-func (c *Calendar) SetDetailWidthChars(chars int) {
-	CalendarSetDetailWidthChars(c, chars)
+func (c *Calendar) SetDetailHeightRows(rows int)  { calendarSetDetailHeightRows(c, rows) }
+func (c *Calendar) SetDetailWidthChars(chars int) { calendarSetDetailWidthChars(c, chars) }
+func (c *Calendar) SetDisplayOptions(flags CalendarDisplayOptions) {
+	calendarSetDisplayOptions(c, flags)
 }
-
-func (c *Calendar) SetDetailHeightRows(rows int) {
-	CalendarSetDetailHeightRows(c, rows)
-}
-
-func (c *Calendar) GetDetailWidthChars() int {
-	return CalendarGetDetailWidthChars(c)
-}
-
-func (c *Calendar) GetDetailHeightRows() int {
-	return CalendarGetDetailHeightRows(c)
-}
-
-func (c *Calendar) Freeze() { CalendarFreeze(c) }
-
-func (c *Calendar) Thaw() { CalendarThaw(c) }
+func (c *Calendar) Thaw()                         { calendarThaw(c) }
+func (c *Calendar) UnmarkDay(day uint) T.Gboolean { return calendarUnmarkDay(c, day) }
 
 type CellEditable struct{}
 
 var CellEditableGetType func() T.GType
 
 var (
-	CellEditableEditingDone  func(c *CellEditable)
-	CellEditableRemoveWidget func(c *CellEditable)
-	CellEditableStartEditing func(c *CellEditable, event *T.GdkEvent)
+	cellEditableEditingDone  func(c *CellEditable)
+	cellEditableRemoveWidget func(c *CellEditable)
+	cellEditableStartEditing func(c *CellEditable, event *T.GdkEvent)
 )
 
-func (c *CellEditable) StartEditing(event *T.GdkEvent) {
-	CellEditableStartEditing(c, event)
-}
-
-func (c *CellEditable) EditingDone() { CellEditableEditingDone(c) }
-
-func (c *CellEditable) RemoveWidget() { CellEditableRemoveWidget(c) }
+func (c *CellEditable) EditingDone()                   { cellEditableEditingDone(c) }
+func (c *CellEditable) RemoveWidget()                  { cellEditableRemoveWidget(c) }
+func (c *CellEditable) StartEditing(event *T.GdkEvent) { cellEditableStartEditing(c, event) }
 
 type CellLayout struct{}
-
-var (
-	CellLayoutGetType func() T.GType
-
-	CellLayoutAddAttribute    func(c *CellLayout, cell *CellRenderer, attribute string, column int)
-	CellLayoutClear           func(c *CellLayout)
-	CellLayoutClearAttributes func(c *CellLayout, cell *CellRenderer)
-	CellLayoutGetCells        func(c *CellLayout) *T.GList
-	CellLayoutPackEnd         func(c *CellLayout, cell *CellRenderer, expand T.Gboolean)
-	CellLayoutPackStart       func(c *CellLayout, cell *CellRenderer, expand T.Gboolean)
-	CellLayoutReorder         func(c *CellLayout, cell *CellRenderer, position int)
-	CellLayoutSetAttributes   func(c *CellLayout, cell *CellRenderer, v ...VArg)
-	CellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcDataGpointer, destroy T.GDestroyNotify)
-)
 
 type CellLayoutDataFunc func(
 	cellLayout *CellLayout,
@@ -170,44 +119,36 @@ type CellLayoutDataFunc func(
 	iter *T.GtkTreeIter,
 	data T.Gpointer)
 
-func (c *CellLayout) PackStart(
-	cell *CellRenderer, expand T.Gboolean) {
-	CellLayoutPackStart(c, cell, expand)
+var (
+	CellLayoutGetType func() T.GType
+
+	cellLayoutAddAttribute    func(c *CellLayout, cell *CellRenderer, attribute string, column int)
+	cellLayoutClear           func(c *CellLayout)
+	cellLayoutClearAttributes func(c *CellLayout, cell *CellRenderer)
+	cellLayoutGetCells        func(c *CellLayout) *T.GList
+	cellLayoutPackEnd         func(c *CellLayout, cell *CellRenderer, expand T.Gboolean)
+	cellLayoutPackStart       func(c *CellLayout, cell *CellRenderer, expand T.Gboolean)
+	cellLayoutReorder         func(c *CellLayout, cell *CellRenderer, position int)
+	cellLayoutSetAttributes   func(c *CellLayout, cell *CellRenderer, v ...VArg)
+	cellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcDataGpointer, destroy T.GDestroyNotify)
+)
+
+func (c *CellLayout) AddAttribute(cell *CellRenderer, attribute string, column int) {
+	cellLayoutAddAttribute(c, cell, attribute, column)
 }
-
-func (c *CellLayout) PackEnd(
-	cell *CellRenderer, expand T.Gboolean) {
-	CellLayoutPackEnd(c, cell, expand)
+func (c *CellLayout) Clear()                             { cellLayoutClear(c) }
+func (c *CellLayout) ClearAttributes(cell *CellRenderer) { cellLayoutClearAttributes(c, cell) }
+func (c *CellLayout) GetCells() *T.GList                 { return cellLayoutGetCells(c) }
+func (c *CellLayout) PackEnd(cell *CellRenderer, expand T.Gboolean) {
+	cellLayoutPackEnd(c, cell, expand)
 }
-
-func (c *CellLayout) GetCells() *T.GList {
-	return CellLayoutGetCells(c)
+func (c *CellLayout) PackStart(cell *CellRenderer, expand T.Gboolean) {
+	cellLayoutPackStart(c, cell, expand)
 }
-
-func (c *CellLayout) Clear() { CellLayoutClear(c) }
-
-func (c *CellLayout) SetAttributes(
-	cell *CellRenderer, v ...VArg) {
-	CellLayoutSetAttributes(c, cell, v)
-}
-
-func (c *CellLayout) AddAttribute(
-	cell *CellRenderer, attribute string, column int) {
-	CellLayoutAddAttribute(c, cell, attribute, column)
-}
-
-func (c *CellLayout) SetCellDataFunc(
-	cell *CellRenderer, f CellLayoutDataFunc,
-	funcDataGpointer, destroy T.GDestroyNotify) {
-	CellLayoutSetCellDataFunc(c, cell, f, funcDataGpointer, destroy)
-}
-
-func (c *CellLayout) ClearAttributes(cell *CellRenderer) {
-	CellLayoutClearAttributes(c, cell)
-}
-
-func (c *CellLayout) Reorder(cell *CellRenderer, position int) {
-	CellLayoutReorder(c, cell, position)
+func (c *CellLayout) Reorder(cell *CellRenderer, position int)    { cellLayoutReorder(c, cell, position) }
+func (c *CellLayout) SetAttributes(cell *CellRenderer, v ...VArg) { cellLayoutSetAttributes(c, cell, v) }
+func (c *CellLayout) SetCellDataFunc(cell *CellRenderer, f CellLayoutDataFunc, funcDataGpointer, destroy T.GDestroyNotify) {
+	cellLayoutSetCellDataFunc(c, cell, f, funcDataGpointer, destroy)
 }
 
 type CellRenderer struct {
@@ -260,87 +201,52 @@ var (
 )
 
 var (
-	CellRendererActivate        func(c *CellRenderer, event *T.GdkEvent, widget *T.GtkWidget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean
-	CellRendererEditingCanceled func(c *CellRenderer)
-	CellRendererGetAlignment    func(c *CellRenderer, xalign, yalign *float32)
-	CellRendererGetFixedSize    func(c *CellRenderer, width, height *int)
-	CellRendererGetPadding      func(c *CellRenderer, xpad, ypad *int)
-	CellRendererGetSensitive    func(c *CellRenderer) T.Gboolean
-	CellRendererGetSize         func(c *CellRenderer, widget *T.GtkWidget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int)
-	CellRendererGetVisible      func(c *CellRenderer) T.Gboolean
-	CellRendererRender          func(c *CellRenderer, window *T.GdkWindow, widget *T.GtkWidget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState)
-	CellRendererSetAlignment    func(c *CellRenderer, xalign, yalign float32)
-	CellRendererSetFixedSize    func(c *CellRenderer, width, height int)
-	CellRendererSetPadding      func(c *CellRenderer, xpad, ypad int)
-	CellRendererSetSensitive    func(c *CellRenderer, sensitive T.Gboolean)
-	CellRendererSetVisible      func(c *CellRenderer, visible T.Gboolean)
-	CellRendererStartEditing    func(c *CellRenderer, event *T.GdkEvent, widget *T.GtkWidget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable
-	CellRendererStopEditing     func(c *CellRenderer, canceled T.Gboolean)
+	cellRendererActivate        func(c *CellRenderer, event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean
+	cellRendererEditingCanceled func(c *CellRenderer)
+	cellRendererGetAlignment    func(c *CellRenderer, xalign, yalign *float32)
+	cellRendererGetFixedSize    func(c *CellRenderer, width, height *int)
+	cellRendererGetPadding      func(c *CellRenderer, xpad, ypad *int)
+	cellRendererGetSensitive    func(c *CellRenderer) T.Gboolean
+	cellRendererGetSize         func(c *CellRenderer, widget *Widget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int)
+	cellRendererGetVisible      func(c *CellRenderer) T.Gboolean
+	cellRendererRender          func(c *CellRenderer, window *T.GdkWindow, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState)
+	cellRendererSetAlignment    func(c *CellRenderer, xalign, yalign float32)
+	cellRendererSetFixedSize    func(c *CellRenderer, width, height int)
+	cellRendererSetPadding      func(c *CellRenderer, xpad, ypad int)
+	cellRendererSetSensitive    func(c *CellRenderer, sensitive T.Gboolean)
+	cellRendererSetVisible      func(c *CellRenderer, visible T.Gboolean)
+	cellRendererStartEditing    func(c *CellRenderer, event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable
+	cellRendererStopEditing     func(c *CellRenderer, canceled T.Gboolean)
 )
 
-func (c *CellRenderer) GetSize(widget *T.GtkWidget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int) {
-	CellRendererGetSize(c, widget, cellArea, xOffset, yOffset, width, height)
+func (c *CellRenderer) Activate(event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean {
+	return cellRendererActivate(c, event, widget, path, backgroundArea, cellArea, flags)
 }
-
-func (c *CellRenderer) Render(window *T.GdkWindow, widget *T.GtkWidget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState) {
-	CellRendererRender(c, window, widget, backgroundArea, cellArea, exposeArea, flags)
-}
-
-func (c *CellRenderer) Activate(event *T.GdkEvent, widget *T.GtkWidget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean {
-	return CellRendererActivate(c, event, widget, path, backgroundArea, cellArea, flags)
-}
-
-func (c *CellRenderer) StartEditing(event *T.GdkEvent, widget *T.GtkWidget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable {
-	return CellRendererStartEditing(c, event, widget, path, backgroundArea, cellArea, flags)
-}
-
-func (c *CellRenderer) SetFixedSize(width, height int) {
-	CellRendererSetFixedSize(c, width, height)
-}
-
-func (c *CellRenderer) GetFixedSize(width, height *int) {
-	CellRendererGetFixedSize(c, width, height)
-}
-
-func (c *CellRenderer) SetAlignment(xalign, yalign float32) {
-	CellRendererSetAlignment(c, xalign, yalign)
-}
-
+func (c *CellRenderer) EditingCanceled() { cellRendererEditingCanceled(c) }
 func (c *CellRenderer) GetAlignment(xalign, yalign *float32) {
-	CellRendererGetAlignment(c, xalign, yalign)
+	cellRendererGetAlignment(c, xalign, yalign)
 }
-
-func (c *CellRenderer) SetPadding(xpad, ypad int) {
-	CellRendererSetPadding(c, xpad, ypad)
+func (c *CellRenderer) GetFixedSize(width, height *int) { cellRendererGetFixedSize(c, width, height) }
+func (c *CellRenderer) GetPadding(xpad, ypad *int)      { cellRendererGetPadding(c, xpad, ypad) }
+func (c *CellRenderer) GetSensitive() T.Gboolean        { return cellRendererGetSensitive(c) }
+func (c *CellRenderer) GetSize(widget *Widget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int) {
+	cellRendererGetSize(c, widget, cellArea, xOffset, yOffset, width, height)
 }
-
-func (c *CellRenderer) GetPadding(xpad, ypad *int) {
-	CellRendererGetPadding(c, xpad, ypad)
+func (c *CellRenderer) GetVisible() T.Gboolean { return cellRendererGetVisible(c) }
+func (c *CellRenderer) Render(window *T.GdkWindow, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState) {
+	cellRendererRender(c, window, widget, backgroundArea, cellArea, exposeArea, flags)
 }
-
-func (c *CellRenderer) SetVisible(visible T.Gboolean) {
-	CellRendererSetVisible(c, visible)
+func (c *CellRenderer) SetAlignment(xalign, yalign float32) {
+	cellRendererSetAlignment(c, xalign, yalign)
 }
-
-func (c *CellRenderer) GetVisible() T.Gboolean {
-	return CellRendererGetVisible(c)
+func (c *CellRenderer) SetFixedSize(width, height int)    { cellRendererSetFixedSize(c, width, height) }
+func (c *CellRenderer) SetPadding(xpad, ypad int)         { cellRendererSetPadding(c, xpad, ypad) }
+func (c *CellRenderer) SetSensitive(sensitive T.Gboolean) { cellRendererSetSensitive(c, sensitive) }
+func (c *CellRenderer) SetVisible(visible T.Gboolean)     { cellRendererSetVisible(c, visible) }
+func (c *CellRenderer) StartEditing(event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable {
+	return cellRendererStartEditing(c, event, widget, path, backgroundArea, cellArea, flags)
 }
-
-func (c *CellRenderer) SetSensitive(sensitive T.Gboolean) {
-	CellRendererSetSensitive(c, sensitive)
-}
-
-func (c *CellRenderer) GetSensitive() T.Gboolean {
-	return CellRendererGetSensitive(c)
-}
-
-func (c *CellRenderer) EditingCanceled() {
-	CellRendererEditingCanceled(c)
-}
-
-func (c *CellRenderer) StopEditing(canceled T.Gboolean) {
-	CellRendererStopEditing(c, canceled)
-}
+func (c *CellRenderer) StopEditing(canceled T.Gboolean) { cellRendererStopEditing(c, canceled) }
 
 type CellRendererText struct {
 	Parent          CellRenderer
@@ -370,11 +276,11 @@ var (
 	CellRendererTextGetType func() T.GType
 	CellRendererTextNew     func() *CellRenderer
 
-	CellRendererTextSetFixedHeightFromFont func(renderer *CellRendererText, numberOfRows int)
+	cellRendererTextSetFixedHeightFromFont func(renderer *CellRendererText, numberOfRows int)
 )
 
 func (c *CellRendererText) SetFixedHeightFromFont(numberOfRows int) {
-	CellRendererTextSetFixedHeightFromFont(c, numberOfRows)
+	cellRendererTextSetFixedHeightFromFont(c, numberOfRows)
 }
 
 type CellRendererToggle struct {
@@ -386,40 +292,25 @@ type CellRendererToggle struct {
 }
 
 var (
-	CellRendererToggleGetActivatable func(c *CellRendererToggle) T.Gboolean
-	CellRendererToggleGetActive      func(c *CellRendererToggle) T.Gboolean
-	CellRendererToggleGetRadio       func(c *CellRendererToggle) T.Gboolean
-	CellRendererToggleSetActivatable func(c *CellRendererToggle, setting T.Gboolean)
-	CellRendererToggleSetActive      func(c *CellRendererToggle, setting T.Gboolean)
-	CellRendererToggleSetRadio       func(c *CellRendererToggle, radio T.Gboolean)
+	cellRendererToggleGetActivatable func(c *CellRendererToggle) T.Gboolean
+	cellRendererToggleGetActive      func(c *CellRendererToggle) T.Gboolean
+	cellRendererToggleGetRadio       func(c *CellRendererToggle) T.Gboolean
+	cellRendererToggleSetActivatable func(c *CellRendererToggle, setting T.Gboolean)
+	cellRendererToggleSetActive      func(c *CellRendererToggle, setting T.Gboolean)
+	cellRendererToggleSetRadio       func(c *CellRendererToggle, radio T.Gboolean)
 )
 
-func (c *CellRendererToggle) GetRadio() T.Gboolean {
-	return CellRendererToggleGetRadio(c)
-}
-
-func (c *CellRendererToggle) SetRadio(radio T.Gboolean) {
-	CellRendererToggleSetRadio(c, radio)
-}
-
-func (c *CellRendererToggle) GetActive() T.Gboolean {
-	return CellRendererToggleGetActive(c)
-}
-
-func (c *CellRendererToggle) SetActive(setting T.Gboolean) {
-	CellRendererToggleSetActive(c, setting)
-}
-
-func (c *CellRendererToggle) GetActivatable() T.Gboolean {
-	return CellRendererToggleGetActivatable(c)
-}
-
+func (c *CellRendererToggle) GetActivatable() T.Gboolean { return cellRendererToggleGetActivatable(c) }
+func (c *CellRendererToggle) GetActive() T.Gboolean      { return cellRendererToggleGetActive(c) }
+func (c *CellRendererToggle) GetRadio() T.Gboolean       { return cellRendererToggleGetRadio(c) }
 func (c *CellRendererToggle) SetActivatable(setting T.Gboolean) {
-	CellRendererToggleSetActivatable(c, setting)
+	cellRendererToggleSetActivatable(c, setting)
 }
+func (c *CellRendererToggle) SetActive(setting T.Gboolean) { cellRendererToggleSetActive(c, setting) }
+func (c *CellRendererToggle) SetRadio(radio T.Gboolean)    { cellRendererToggleSetRadio(c, radio) }
 
 type CellView struct {
-	Parent T.GtkWidget
+	Parent Widget
 	_      struct{}
 }
 
@@ -427,56 +318,37 @@ var CellTypeGetType func() T.GType
 
 var (
 	CellViewGetType       func() T.GType
-	CellViewNew           func() *T.GtkWidget
-	CellViewNewWithText   func(text string) *T.GtkWidget
-	CellViewNewWithMarkup func(markup string) *T.GtkWidget
-	CellViewNewWithPixbuf func(pixbuf *T.GdkPixbuf) *T.GtkWidget
+	CellViewNew           func() *Widget
+	CellViewNewWithText   func(text string) *Widget
+	CellViewNewWithMarkup func(markup string) *Widget
+	CellViewNewWithPixbuf func(pixbuf *T.GdkPixbuf) *Widget
 )
 
 var (
-	CellViewGetCellRenderers   func(c *CellView) *T.GList
-	CellViewGetDisplayedRow    func(c *CellView) *T.GtkTreePath
-	CellViewGetModel           func(c *CellView) *T.GtkTreeModel
-	CellViewGetSizeOfRow       func(c *CellView, path *T.GtkTreePath, requisition *T.GtkRequisition) T.Gboolean
-	CellViewSetBackgroundColor func(c *CellView, color *T.GdkColor)
-	CellViewSetDisplayedRow    func(c *CellView, path *T.GtkTreePath)
-	CellViewSetModel           func(c *CellView, model *T.GtkTreeModel)
+	cellViewGetCellRenderers   func(c *CellView) *T.GList
+	cellViewGetDisplayedRow    func(c *CellView) *T.GtkTreePath
+	cellViewGetModel           func(c *CellView) *T.GtkTreeModel
+	cellViewGetSizeOfRow       func(c *CellView, path *T.GtkTreePath, requisition *T.GtkRequisition) T.Gboolean
+	cellViewSetBackgroundColor func(c *CellView, color *T.GdkColor)
+	cellViewSetDisplayedRow    func(c *CellView, path *T.GtkTreePath)
+	cellViewSetModel           func(c *CellView, model *T.GtkTreeModel)
 )
 
-func (c *CellView) SetModel(model *T.GtkTreeModel) {
-	CellViewSetModel(c, model)
+func (c *CellView) iewGetCellRenderers() *T.GList      { return cellViewGetCellRenderers(c) }
+func (c *CellView) iewGetDisplayedRow() *T.GtkTreePath { return cellViewGetDisplayedRow(c) }
+func (c *CellView) iewGetModel() *T.GtkTreeModel       { return cellViewGetModel(c) }
+func (c *CellView) iewGetSizeOfRow(path *T.GtkTreePath, requisition *T.GtkRequisition) T.Gboolean {
+	return cellViewGetSizeOfRow(c, path, requisition)
 }
-
-func (c *CellView) iewGetModel() *T.GtkTreeModel {
-	return CellViewGetModel(c)
-}
-
-func (c *CellView) iewSetDisplayedRow(path *T.GtkTreePath) {
-	CellViewSetDisplayedRow(c, path)
-}
-
-func (c *CellView) iewGetDisplayedRow() *T.GtkTreePath {
-	return CellViewGetDisplayedRow(c)
-}
-
-func (c *CellView) iewGetSizeOfRow(path *T.GtkTreePath,
-	requisition *T.GtkRequisition) T.Gboolean {
-	return CellViewGetSizeOfRow(c, path, requisition)
-}
-
-func (c *CellView) iewSetBackgroundColor(color *T.GdkColor) {
-	CellViewSetBackgroundColor(c, color)
-}
-
-func (c *CellView) iewGetCellRenderers() *T.GList {
-	return CellViewGetCellRenderers(c)
-}
+func (c *CellView) iewSetBackgroundColor(color *T.GdkColor) { cellViewSetBackgroundColor(c, color) }
+func (c *CellView) iewSetDisplayedRow(path *T.GtkTreePath)  { cellViewSetDisplayedRow(c, path) }
+func (c *CellView) SetModel(model *T.GtkTreeModel)          { cellViewSetModel(c, model) }
 
 var (
 	CheckButtonGetType         func() T.GType
-	CheckButtonNew             func() *T.GtkWidget
-	CheckButtonNewWithLabel    func(label string) *T.GtkWidget
-	CheckButtonNewWithMnemonic func(label string) *T.GtkWidget
+	CheckButtonNew             func() *Widget
+	CheckButtonNewWithLabel    func(label string) *Widget
+	CheckButtonNewWithMnemonic func(label string) *Widget
 )
 
 type CheckMenuItem struct {
@@ -490,256 +362,136 @@ type CheckMenuItem struct {
 
 var (
 	CheckMenuItemGetType         func() T.GType
-	CheckMenuItemNew             func() *T.GtkWidget
-	CheckMenuItemNewWithLabel    func(label string) *T.GtkWidget
-	CheckMenuItemNewWithMnemonic func(label string) *T.GtkWidget
+	CheckMenuItemNew             func() *Widget
+	CheckMenuItemNewWithLabel    func(label string) *Widget
+	CheckMenuItemNewWithMnemonic func(label string) *Widget
 )
 
 var (
-	CheckMenuItemGetActive       func(c *CheckMenuItem) T.Gboolean
-	CheckMenuItemGetDrawAsRadio  func(c *CheckMenuItem) T.Gboolean
-	CheckMenuItemGetInconsistent func(c *CheckMenuItem) T.Gboolean
-	CheckMenuItemSetActive       func(c *CheckMenuItem, isActive T.Gboolean)
-	CheckMenuItemSetDrawAsRadio  func(c *CheckMenuItem, drawAsRadio T.Gboolean)
-	CheckMenuItemSetInconsistent func(c *CheckMenuItem, setting T.Gboolean)
-	CheckMenuItemSetShowToggle   func(c *CheckMenuItem, always T.Gboolean)
-	CheckMenuItemToggled         func(c *CheckMenuItem)
+	checkMenuItemGetActive       func(c *CheckMenuItem) T.Gboolean
+	checkMenuItemGetDrawAsRadio  func(c *CheckMenuItem) T.Gboolean
+	checkMenuItemGetInconsistent func(c *CheckMenuItem) T.Gboolean
+	checkMenuItemSetActive       func(c *CheckMenuItem, isActive T.Gboolean)
+	checkMenuItemSetDrawAsRadio  func(c *CheckMenuItem, drawAsRadio T.Gboolean)
+	checkMenuItemSetInconsistent func(c *CheckMenuItem, setting T.Gboolean)
+	checkMenuItemSetShowToggle   func(c *CheckMenuItem, always T.Gboolean)
+	checkMenuItemToggled         func(c *CheckMenuItem)
 )
 
-func (c *CheckMenuItem) SetActive(isActive T.Gboolean) {
-	CheckMenuItemSetActive(c, isActive)
-}
-
-func (c *CheckMenuItem) GetActive() T.Gboolean {
-	return CheckMenuItemGetActive(c)
-}
-
-func (c *CheckMenuItem) Toggled() {
-	CheckMenuItemToggled(c)
-}
-
-func (c *CheckMenuItem) SetInconsistent(setting T.Gboolean) {
-	CheckMenuItemSetInconsistent(c, setting)
-}
-
-func (c *CheckMenuItem) GetInconsistent() T.Gboolean {
-	return CheckMenuItemGetInconsistent(c)
-}
-
+func (c *CheckMenuItem) GetActive() T.Gboolean         { return checkMenuItemGetActive(c) }
+func (c *CheckMenuItem) GetDrawAsRadio() T.Gboolean    { return checkMenuItemGetDrawAsRadio(c) }
+func (c *CheckMenuItem) GetInconsistent() T.Gboolean   { return checkMenuItemGetInconsistent(c) }
+func (c *CheckMenuItem) SetActive(isActive T.Gboolean) { checkMenuItemSetActive(c, isActive) }
 func (c *CheckMenuItem) SetDrawAsRadio(drawAsRadio T.Gboolean) {
-	CheckMenuItemSetDrawAsRadio(c, drawAsRadio)
+	checkMenuItemSetDrawAsRadio(c, drawAsRadio)
 }
-
-func (c *CheckMenuItem) GetDrawAsRadio() T.Gboolean {
-	return CheckMenuItemGetDrawAsRadio(c)
-}
-
-func (c *CheckMenuItem) SetShowToggle(always T.Gboolean) {
-	CheckMenuItemSetShowToggle(c, always)
-}
+func (c *CheckMenuItem) SetInconsistent(setting T.Gboolean) { checkMenuItemSetInconsistent(c, setting) }
+func (c *CheckMenuItem) SetShowToggle(always T.Gboolean)    { checkMenuItemSetShowToggle(c, always) }
+func (c *CheckMenuItem) Toggled()                           { checkMenuItemToggled(c) }
 
 type Clipboard struct{}
+
+type (
+	ClipboardClearFunc            func(clipboard *Clipboard, userDataOrOwner T.Gpointer)
+	ClipboardGetFunc              func(clipboard *Clipboard, selectionData *T.GtkSelectionData, info uint, userDataOrOwner T.Gpointer)
+	ClipboardImageReceivedFunc    func(clipboard *Clipboard, pixbuf *T.GdkPixbuf, data T.Gpointer)
+	ClipboardReceivedFunc         func(clipboard *Clipboard, selectionData *T.GtkSelectionData, data T.Gpointer)
+	ClipboardRichTextReceivedFunc func(clipboard *Clipboard, format T.GdkAtom, text *uint8, length T.Gsize, data T.Gpointer)
+	ClipboardTargetsReceivedFunc  func(clipboard *Clipboard, atoms *T.GdkAtom, nAtoms int, data T.Gpointer)
+	ClipboardTextReceivedFunc     func(clipboard *Clipboard, text string, data T.Gpointer)
+	ClipboardURIReceivedFunc      func(clipboard *Clipboard, uris *string, data T.Gpointer)
+)
 
 var (
 	ClipboardGetType       func() T.GType
 	ClipboardGet           func(selection T.GdkAtom) *Clipboard
 	ClipboardGetForDisplay func(display *T.GdkDisplay, selection T.GdkAtom) *Clipboard
-	WidgetGetClipboard     func(widget *T.GtkWidget, selection T.GdkAtom) *Clipboard
+	WidgetGetClipboard     func(widget *Widget, selection T.GdkAtom) *Clipboard
 )
 
 var (
-	ClipboardClear                   func(c *Clipboard)
-	ClipboardGetDisplay              func(c *Clipboard) *T.GdkDisplay
-	ClipboardGetOwner                func(c *Clipboard) *T.GObject
-	ClipboardRequestContents         func(c *Clipboard, target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer)
-	ClipboardRequestImage            func(c *Clipboard, callback ClipboardImageReceivedFunc, userData T.Gpointer)
-	ClipboardRequestRichText         func(c *Clipboard, buffer *T.GtkTextBuffer, callback ClipboardRichTextReceivedFunc, userData T.Gpointer)
-	ClipboardRequestTargets          func(c *Clipboard, callback ClipboardTargetsReceivedFunc, userData T.Gpointer)
-	ClipboardRequestText             func(c *Clipboard, callback ClipboardTextReceivedFunc, userData T.Gpointer)
-	ClipboardRequestUris             func(c *Clipboard, callback ClipboardURIReceivedFunc, userData T.Gpointer)
-	ClipboardSetCanStore             func(c *Clipboard, targets *T.GtkTargetEntry, nTargets int)
-	ClipboardSetImage                func(c *Clipboard, pixbuf *T.GdkPixbuf)
-	ClipboardSetText                 func(c *Clipboard, text string, len int)
-	ClipboardSetWithData             func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean
-	ClipboardSetWithOwner            func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean
-	ClipboardStore                   func(c *Clipboard)
-	ClipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *T.GtkSelectionData
-	ClipboardWaitForImage            func(c *Clipboard) *T.GdkPixbuf
-	ClipboardWaitForRichText         func(c *Clipboard, buffer *T.GtkTextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8
-	ClipboardWaitForTargets          func(c *Clipboard, targets **T.GdkAtom, nTargets *int) T.Gboolean
-	ClipboardWaitForText             func(c *Clipboard) string
-	ClipboardWaitForUris             func(c *Clipboard) **T.Gchar
-	ClipboardWaitIsImageAvailable    func(c *Clipboard) T.Gboolean
-	ClipboardWaitIsRichTextAvailable func(c *Clipboard, buffer *T.GtkTextBuffer) T.Gboolean
-	ClipboardWaitIsTargetAvailable   func(c *Clipboard, target T.GdkAtom) T.Gboolean
-	ClipboardWaitIsTextAvailable     func(c *Clipboard) T.Gboolean
-	ClipboardWaitIsUrisAvailable     func(c *Clipboard) T.Gboolean
+	clipboardClear                   func(c *Clipboard)
+	clipboardGetDisplay              func(c *Clipboard) *T.GdkDisplay
+	clipboardGetOwner                func(c *Clipboard) *T.GObject
+	clipboardRequestContents         func(c *Clipboard, target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer)
+	clipboardRequestImage            func(c *Clipboard, callback ClipboardImageReceivedFunc, userData T.Gpointer)
+	clipboardRequestRichText         func(c *Clipboard, buffer *T.GtkTextBuffer, callback ClipboardRichTextReceivedFunc, userData T.Gpointer)
+	clipboardRequestTargets          func(c *Clipboard, callback ClipboardTargetsReceivedFunc, userData T.Gpointer)
+	clipboardRequestText             func(c *Clipboard, callback ClipboardTextReceivedFunc, userData T.Gpointer)
+	clipboardRequestUris             func(c *Clipboard, callback ClipboardURIReceivedFunc, userData T.Gpointer)
+	clipboardSetCanStore             func(c *Clipboard, targets *T.GtkTargetEntry, nTargets int)
+	clipboardSetImage                func(c *Clipboard, pixbuf *T.GdkPixbuf)
+	clipboardSetText                 func(c *Clipboard, text string, len int)
+	clipboardSetWithData             func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean
+	clipboardSetWithOwner            func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean
+	clipboardStore                   func(c *Clipboard)
+	clipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *T.GtkSelectionData
+	clipboardWaitForImage            func(c *Clipboard) *T.GdkPixbuf
+	clipboardWaitForRichText         func(c *Clipboard, buffer *T.GtkTextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8
+	clipboardWaitForTargets          func(c *Clipboard, targets **T.GdkAtom, nTargets *int) T.Gboolean
+	clipboardWaitForText             func(c *Clipboard) string
+	clipboardWaitForUris             func(c *Clipboard) **T.Gchar
+	clipboardWaitIsImageAvailable    func(c *Clipboard) T.Gboolean
+	clipboardWaitIsRichTextAvailable func(c *Clipboard, buffer *T.GtkTextBuffer) T.Gboolean
+	clipboardWaitIsTargetAvailable   func(c *Clipboard, target T.GdkAtom) T.Gboolean
+	clipboardWaitIsTextAvailable     func(c *Clipboard) T.Gboolean
+	clipboardWaitIsUrisAvailable     func(c *Clipboard) T.Gboolean
 )
 
-type (
-	ClipboardClearFunc func(
-		clipboard *Clipboard,
-		userDataOrOwner T.Gpointer)
-
-	ClipboardGetFunc func(
-		clipboard *Clipboard,
-		selectionData *T.GtkSelectionData,
-		info uint,
-		userDataOrOwner T.Gpointer)
-
-	ClipboardImageReceivedFunc func(
-		clipboard *Clipboard,
-		pixbuf *T.GdkPixbuf,
-		data T.Gpointer)
-
-	ClipboardReceivedFunc func(
-		clipboard *Clipboard,
-		selectionData *T.GtkSelectionData,
-		data T.Gpointer)
-
-	ClipboardRichTextReceivedFunc func(
-		clipboard *Clipboard,
-		format T.GdkAtom,
-		text *uint8,
-		length T.Gsize,
-		data T.Gpointer)
-
-	ClipboardTargetsReceivedFunc func(
-		clipboard *Clipboard,
-		atoms *T.GdkAtom,
-		nAtoms int,
-		data T.Gpointer)
-
-	ClipboardTextReceivedFunc func(
-		clipboard *Clipboard,
-		text string,
-		data T.Gpointer)
-
-	ClipboardURIReceivedFunc func(
-		clipboard *Clipboard,
-		uris *string,
-		data T.Gpointer)
-)
-
-func (c *Clipboard) GetDisplay() *T.GdkDisplay {
-	return ClipboardGetDisplay(c)
+func (c *Clipboard) Clear()                    { clipboardClear(c) }
+func (c *Clipboard) GetDisplay() *T.GdkDisplay { return clipboardGetDisplay(c) }
+func (c *Clipboard) GetOwner() *T.GObject      { return clipboardGetOwner(c) }
+func (c *Clipboard) RequestContents(target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer) {
+	clipboardRequestContents(c, target, callback, userData)
 }
-
-func (c *Clipboard) SetWithData(targets *T.GtkTargetEntry,
-	nTargets uint, getFunc ClipboardGetFunc,
-	clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean {
-	return ClipboardSetWithData(
-		c, targets, nTargets, getFunc, clearFunc, userData)
+func (c *Clipboard) RequestImage(callback ClipboardImageReceivedFunc, userData T.Gpointer) {
+	clipboardRequestImage(c, callback, userData)
 }
-
-func (c *Clipboard) SetWithOwner(targets *T.GtkTargetEntry,
-	nTargets uint, getFunc ClipboardGetFunc,
-	clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean {
-	return ClipboardSetWithOwner(
-		c, targets, nTargets, getFunc, clearFunc, owner)
+func (c *Clipboard) RequestRichText(buffer *T.GtkTextBuffer, callback ClipboardRichTextReceivedFunc, userData T.Gpointer) {
+	clipboardRequestRichText(c, buffer, callback, userData)
 }
-
-func (c *Clipboard) GetOwner() *T.GObject {
-	return ClipboardGetOwner(c)
+func (c *Clipboard) RequestTargets(callback ClipboardTargetsReceivedFunc, userData T.Gpointer) {
+	clipboardRequestTargets(c, callback, userData)
 }
-
-func (c *Clipboard) Clear() {
-	ClipboardClear(c)
+func (c *Clipboard) RequestText(callback ClipboardTextReceivedFunc, userData T.Gpointer) {
+	clipboardRequestText(c, callback, userData)
 }
-
-func (c *Clipboard) SetText(text string, leng int) {
-	ClipboardSetText(c, text, leng)
+func (c *Clipboard) RequestUris(callback ClipboardURIReceivedFunc, userData T.Gpointer) {
+	clipboardRequestUris(c, callback, userData)
 }
-
-func (c *Clipboard) SetImage(pixbuf *T.GdkPixbuf) {
-	ClipboardSetImage(c, pixbuf)
+func (c *Clipboard) SetCanStore(targets *T.GtkTargetEntry, nTargets int) {
+	clipboardSetCanStore(c, targets, nTargets)
 }
-
-func (c *Clipboard) RequestContents(target T.GdkAtom,
-	callback ClipboardReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestContents(c, target, callback, userData)
+func (c *Clipboard) SetImage(pixbuf *T.GdkPixbuf)  { clipboardSetImage(c, pixbuf) }
+func (c *Clipboard) SetText(text string, leng int) { clipboardSetText(c, text, leng) }
+func (c *Clipboard) SetWithData(targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean {
+	return clipboardSetWithData(c, targets, nTargets, getFunc, clearFunc, userData)
 }
-
-func (c *Clipboard) RequestText(
-	callback ClipboardTextReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestText(c, callback, userData)
+func (c *Clipboard) SetWithOwner(targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean {
+	return clipboardSetWithOwner(c, targets, nTargets, getFunc, clearFunc, owner)
 }
-
-func (c *Clipboard) RequestRichText(buffer *T.GtkTextBuffer,
-	callback ClipboardRichTextReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestRichText(c, buffer, callback, userData)
+func (c *Clipboard) Store() { clipboardStore(c) }
+func (c *Clipboard) WaitForContents(target T.GdkAtom) *T.GtkSelectionData {
+	return clipboardWaitForContents(c, target)
 }
-
-func (c *Clipboard) RequestImage(
-	callback ClipboardImageReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestImage(c, callback, userData)
+func (c *Clipboard) WaitForImage() *T.GdkPixbuf { return clipboardWaitForImage(c) }
+func (c *Clipboard) WaitForRichText(buffer *T.GtkTextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8 {
+	return clipboardWaitForRichText(c, buffer, format, length)
 }
-
-func (c *Clipboard) RequestUris(
-	callback ClipboardURIReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestUris(c, callback, userData)
+func (c *Clipboard) WaitForTargets(targets **T.GdkAtom, nTargets *int) T.Gboolean {
+	return clipboardWaitForTargets(c, targets, nTargets)
 }
-
-func (c *Clipboard) RequestTargets(
-	callback ClipboardTargetsReceivedFunc, userData T.Gpointer) {
-	ClipboardRequestTargets(c, callback, userData)
+func (c *Clipboard) WaitForText() string              { return clipboardWaitForText(c) }
+func (c *Clipboard) WaitForUris() **T.Gchar           { return clipboardWaitForUris(c) }
+func (c *Clipboard) WaitIsImageAvailable() T.Gboolean { return clipboardWaitIsImageAvailable(c) }
+func (c *Clipboard) WaitIsRichTextAvailable(buffer *T.GtkTextBuffer) T.Gboolean {
+	return clipboardWaitIsRichTextAvailable(c, buffer)
 }
-
-func (c *Clipboard) WaitForContents(
-	target T.GdkAtom) *T.GtkSelectionData {
-	return ClipboardWaitForContents(c, target)
+func (c *Clipboard) WaitIsTargetAvailable(target T.GdkAtom) T.Gboolean {
+	return clipboardWaitIsTargetAvailable(c, target)
 }
-
-func (c *Clipboard) WaitForText() string {
-	return ClipboardWaitForText(c)
-}
-
-func (c *Clipboard) WaitForRichText(buffer *T.GtkTextBuffer,
-	format *T.GdkAtom, length *T.Gsize) *uint8 {
-	return ClipboardWaitForRichText(c, buffer, format, length)
-}
-
-func (c *Clipboard) WaitForImage() *T.GdkPixbuf {
-	return ClipboardWaitForImage(c)
-}
-
-func (c *Clipboard) WaitForUris() **T.Gchar {
-	return ClipboardWaitForUris(c)
-}
-
-func (c *Clipboard) WaitForTargets(
-	targets **T.GdkAtom, nTargets *int) T.Gboolean {
-	return ClipboardWaitForTargets(c, targets, nTargets)
-}
-
-func (c *Clipboard) WaitIsTextAvailable() T.Gboolean {
-	return ClipboardWaitIsTextAvailable(c)
-}
-
-func (c *Clipboard) WaitIsRichTextAvailable(
-	buffer *T.GtkTextBuffer) T.Gboolean {
-	return ClipboardWaitIsRichTextAvailable(c, buffer)
-}
-
-func (c *Clipboard) WaitIsImageAvailable() T.Gboolean {
-	return ClipboardWaitIsImageAvailable(c)
-}
-
-func (c *Clipboard) WaitIsUrisAvailable() T.Gboolean {
-	return ClipboardWaitIsUrisAvailable(c)
-}
-
-func (c *Clipboard) WaitIsTargetAvailable(
-	target T.GdkAtom) T.Gboolean {
-	return ClipboardWaitIsTargetAvailable(c, target)
-}
-
-func (c *Clipboard) SetCanStore(
-	targets *T.GtkTargetEntry, nTargets int) {
-	ClipboardSetCanStore(c, targets, nTargets)
-}
-
-func (c *Clipboard) Store() { ClipboardStore(c) }
+func (c *Clipboard) WaitIsTextAvailable() T.Gboolean { return clipboardWaitIsTextAvailable(c) }
+func (c *Clipboard) WaitIsUrisAvailable() T.Gboolean { return clipboardWaitIsUrisAvailable(c) }
 
 type (
 	CList struct {
@@ -796,7 +548,7 @@ type (
 	CListColumn struct {
 		Title         *T.Gchar
 		Area          T.GdkRectangle
-		Button        *T.GtkWidget
+		Button        *Widget
 		Window        *T.GdkWindow
 		Width         int
 		Min_width     int
@@ -844,362 +596,186 @@ const (
 
 var (
 	ClistGetType        func() T.GType
-	ClistNew            func(columns int) *T.GtkWidget
-	ClistNewWithTitles  func(columns int, titles **T.Gchar) *T.GtkWidget
+	ClistNew            func(columns int) *Widget
+	ClistNewWithTitles  func(columns int, titles **T.Gchar) *Widget
 	ClistDragPosGetType func() T.GType
 )
 
 var (
-	ClistAppend                 func(c *CList, text **T.Gchar) int
-	ClistClear                  func(c *CList)
-	ClistColumnsAutosize        func(c *CList) int
-	ClistColumnTitleActive      func(c *CList, column int)
-	ClistColumnTitlePassive     func(c *CList, column int)
-	ClistColumnTitlesActive     func(c *CList)
-	ClistColumnTitlesHide       func(c *CList)
-	ClistColumnTitlesPassive    func(c *CList)
-	ClistColumnTitlesShow       func(c *CList)
-	ClistFindRowFromData        func(c *CList, data T.Gpointer) int
-	ClistFreeze                 func(c *CList)
-	ClistGetCellStyle           func(c *CList, row, column int) *T.GtkStyle
-	ClistGetCellType            func(c *CList, row, column int) T.GtkCellType
-	ClistGetColumnTitle         func(c *CList, column int) string
-	ClistGetColumnWidget        func(c *CList, column int) *T.GtkWidget
-	ClistGetHadjustment         func(c *CList) *Adjustment
-	ClistGetPixmap              func(c *CList, row, column int, pixmap, mask **T.GdkBitmap) int
-	ClistGetPixtext             func(c *CList, row, column int, text **T.Gchar, spacing *uint8, pixmap, mask **T.GdkBitmap) int
-	ClistGetRowData             func(c *CList, row int) T.Gpointer
-	ClistGetRowStyle            func(c *CList, row int) *T.GtkStyle
-	ClistGetSelectable          func(c *CList, row int) T.Gboolean
-	ClistGetSelectionInfo       func(c *CList, x, y int, row, column *int) int
-	ClistGetText                func(c *CList, row, column int, text **T.Gchar) int
-	ClistGetVadjustment         func(c *CList) *Adjustment
-	ClistInsert                 func(c *CList, row int, text **T.Gchar) int
-	ClistMoveto                 func(c *CList, row, column int, rowAlign, colAlign float32)
-	ClistOptimalColumnWidth     func(c *CList, column int) int
-	ClistPrepend                func(c *CList, text **T.Gchar) int
-	ClistRemove                 func(c *CList, row int)
-	ClistRowIsVisible           func(c *CList, row int) T.GtkVisibility
-	ClistRowMove                func(c *CList, sourceRow, destRow int)
-	ClistSelectAll              func(c *CList)
-	ClistSelectRow              func(c *CList, row, column int)
-	ClistSetAutoSort            func(c *CList, autoSort T.Gboolean)
-	ClistSetBackground          func(c *CList, row int, color *T.GdkColor)
-	ClistSetButtonActions       func(c *CList, button uint, buttonActions uint8)
-	ClistSetCellStyle           func(c *CList, row, column int, style *T.GtkStyle)
-	ClistSetColumnAutoResize    func(c *CList, column int, autoResize T.Gboolean)
-	ClistSetColumnJustification func(c *CList, column int, justification T.GtkJustification)
-	ClistSetColumnMaxWidth      func(c *CList, column, maxWidth int)
-	ClistSetColumnMinWidth      func(c *CList, column, minWidth int)
-	ClistSetColumnResizeable    func(c *CList, column int, resizeable T.Gboolean)
-	ClistSetColumnTitle         func(c *CList, column int, title string)
-	ClistSetColumnVisibility    func(c *CList, column int, visible T.Gboolean)
-	ClistSetColumnWidget        func(c *CList, column int, widget *T.GtkWidget)
-	ClistSetColumnWidth         func(c *CList, column, width int)
-	ClistSetCompareFunc         func(c *CList, cmpFunc CListCompareFunc)
-	ClistSetForeground          func(c *CList, row int, color *T.GdkColor)
-	ClistSetHadjustment         func(c *CList, adjustment *Adjustment)
-	ClistSetPixmap              func(c *CList, row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
-	ClistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
-	ClistSetReorderable         func(c *CList, reorderable T.Gboolean)
-	ClistSetRowData             func(c *CList, row int, data T.Gpointer)
-	ClistSetRowDataFull         func(c *CList, row int, dataGpointer, destroy T.GDestroyNotify)
-	ClistSetRowHeight           func(c *CList, height uint)
-	ClistSetRowStyle            func(c *CList, row, style *T.GtkStyle)
-	ClistSetSelectable          func(c *CList, row int, selectable T.Gboolean)
-	ClistSetSelectionMode       func(c *CList, mode T.GtkSelectionMode)
-	ClistSetShadowType          func(c *CList, t T.GtkShadowType)
-	ClistSetShift               func(c *CList, row, column, vertical, horizontal int)
-	ClistSetSortColumn          func(c *CList, column int)
-	ClistSetSortType            func(c *CList, sortType T.GtkSortType)
-	ClistSetText                func(c *CList, row, column int, text string)
-	ClistSetUseDragIcons        func(c *CList, useIcons T.Gboolean)
-	ClistSetVadjustment         func(c *CList, adjustment *Adjustment)
-	ClistSort                   func(c *CList)
-	ClistSwapRows               func(c *CList, row1, row2 int)
-	ClistThaw                   func(c *CList)
-	ClistUndoSelection          func(c *CList)
-	ClistUnselectAll            func(c *CList)
-	ClistUnselectRow            func(c *CList, row, column int)
+	clistAppend                 func(c *CList, text **T.Gchar) int
+	clistClear                  func(c *CList)
+	clistColumnsAutosize        func(c *CList) int
+	clistColumnTitleActive      func(c *CList, column int)
+	clistColumnTitlePassive     func(c *CList, column int)
+	clistColumnTitlesActive     func(c *CList)
+	clistColumnTitlesHide       func(c *CList)
+	clistColumnTitlesPassive    func(c *CList)
+	clistColumnTitlesShow       func(c *CList)
+	clistFindRowFromData        func(c *CList, data T.Gpointer) int
+	clistFreeze                 func(c *CList)
+	clistGetCellStyle           func(c *CList, row, column int) *T.GtkStyle
+	clistGetCellType            func(c *CList, row, column int) T.GtkCellType
+	clistGetColumnTitle         func(c *CList, column int) string
+	clistGetColumnWidget        func(c *CList, column int) *Widget
+	clistGetHadjustment         func(c *CList) *Adjustment
+	clistGetPixmap              func(c *CList, row, column int, pixmap, mask **T.GdkBitmap) int
+	clistGetPixtext             func(c *CList, row, column int, text **T.Gchar, spacing *uint8, pixmap, mask **T.GdkBitmap) int
+	clistGetRowData             func(c *CList, row int) T.Gpointer
+	clistGetRowStyle            func(c *CList, row int) *T.GtkStyle
+	clistGetSelectable          func(c *CList, row int) T.Gboolean
+	clistGetSelectionInfo       func(c *CList, x, y int, row, column *int) int
+	clistGetText                func(c *CList, row, column int, text **T.Gchar) int
+	clistGetVadjustment         func(c *CList) *Adjustment
+	clistInsert                 func(c *CList, row int, text **T.Gchar) int
+	clistMoveto                 func(c *CList, row, column int, rowAlign, colAlign float32)
+	clistOptimalColumnWidth     func(c *CList, column int) int
+	clistPrepend                func(c *CList, text **T.Gchar) int
+	clistRemove                 func(c *CList, row int)
+	clistRowIsVisible           func(c *CList, row int) T.GtkVisibility
+	clistRowMove                func(c *CList, sourceRow, destRow int)
+	clistSelectAll              func(c *CList)
+	clistSelectRow              func(c *CList, row, column int)
+	clistSetAutoSort            func(c *CList, autoSort T.Gboolean)
+	clistSetBackground          func(c *CList, row int, color *T.GdkColor)
+	clistSetButtonActions       func(c *CList, button uint, buttonActions uint8)
+	clistSetCellStyle           func(c *CList, row, column int, style *T.GtkStyle)
+	clistSetColumnAutoResize    func(c *CList, column int, autoResize T.Gboolean)
+	clistSetColumnJustification func(c *CList, column int, justification T.GtkJustification)
+	clistSetColumnMaxWidth      func(c *CList, column, maxWidth int)
+	clistSetColumnMinWidth      func(c *CList, column, minWidth int)
+	clistSetColumnResizeable    func(c *CList, column int, resizeable T.Gboolean)
+	clistSetColumnTitle         func(c *CList, column int, title string)
+	clistSetColumnVisibility    func(c *CList, column int, visible T.Gboolean)
+	clistSetColumnWidget        func(c *CList, column int, widget *Widget)
+	clistSetColumnWidth         func(c *CList, column, width int)
+	clistSetCompareFunc         func(c *CList, cmpFunc CListCompareFunc)
+	clistSetForeground          func(c *CList, row int, color *T.GdkColor)
+	clistSetHadjustment         func(c *CList, adjustment *Adjustment)
+	clistSetPixmap              func(c *CList, row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	clistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
+	clistSetReorderable         func(c *CList, reorderable T.Gboolean)
+	clistSetRowData             func(c *CList, row int, data T.Gpointer)
+	clistSetRowDataFull         func(c *CList, row int, dataGpointer, destroy T.GDestroyNotify)
+	clistSetRowHeight           func(c *CList, height uint)
+	clistSetRowStyle            func(c *CList, row, style *T.GtkStyle)
+	clistSetSelectable          func(c *CList, row int, selectable T.Gboolean)
+	clistSetSelectionMode       func(c *CList, mode T.GtkSelectionMode)
+	clistSetShadowType          func(c *CList, t T.GtkShadowType)
+	clistSetShift               func(c *CList, row, column, vertical, horizontal int)
+	clistSetSortColumn          func(c *CList, column int)
+	clistSetSortType            func(c *CList, sortType T.GtkSortType)
+	clistSetText                func(c *CList, row, column int, text string)
+	clistSetUseDragIcons        func(c *CList, useIcons T.Gboolean)
+	clistSetVadjustment         func(c *CList, adjustment *Adjustment)
+	clistSort                   func(c *CList)
+	clistSwapRows               func(c *CList, row1, row2 int)
+	clistThaw                   func(c *CList)
+	clistUndoSelection          func(c *CList)
+	clistUnselectAll            func(c *CList)
+	clistUnselectRow            func(c *CList, row, column int)
 )
 
-func (c *CList) SetHadjustment(adjustment *Adjustment) {
-	ClistSetHadjustment(c, adjustment)
+func (c *CList) Append(text **T.Gchar) int                 { return clistAppend(c, text) }
+func (c *CList) Clear()                                    { clistClear(c) }
+func (c *CList) ColumnsAutosize() int                      { return clistColumnsAutosize(c) }
+func (c *CList) ColumnTitleActive(column int)              { clistColumnTitleActive(c, column) }
+func (c *CList) ColumnTitlePassive(column int)             { clistColumnTitlePassive(c, column) }
+func (c *CList) ColumnTitlesActive()                       { clistColumnTitlesActive(c) }
+func (c *CList) ColumnTitlesHide()                         { clistColumnTitlesHide(c) }
+func (c *CList) ColumnTitlesPassive()                      { clistColumnTitlesPassive(c) }
+func (c *CList) ColumnTitlesShow()                         { clistColumnTitlesShow(c) }
+func (c *CList) FindRowFromData(data T.Gpointer) int       { return clistFindRowFromData(c, data) }
+func (c *CList) Freeze()                                   { clistFreeze(c) }
+func (c *CList) GetCellStyle(row, column int) *T.GtkStyle  { return clistGetCellStyle(c, row, column) }
+func (c *CList) GetCellType(row, column int) T.GtkCellType { return clistGetCellType(c, row, column) }
+func (c *CList) GetColumnTitle(column int) string          { return clistGetColumnTitle(c, column) }
+func (c *CList) GetColumnWidget(column int) *Widget        { return clistGetColumnWidget(c, column) }
+func (c *CList) GetHadjustment() *Adjustment               { return clistGetHadjustment(c) }
+func (c *CList) GetPixmap(row, column int, pixmap, mask **T.GdkBitmap) int {
+	return clistGetPixmap(c, row, column, pixmap, mask)
 }
-
-func (c *CList) SetVadjustment(adjustment *Adjustment) {
-	ClistSetVadjustment(c, adjustment)
+func (c *CList) GetPixtext(row, column int, text **T.Gchar, spacing *uint8, pixmap, mask **T.GdkBitmap) int {
+	return clistGetPixtext(c, row, column, text, spacing, pixmap, mask)
 }
-
-func (c *CList) GetHadjustment() *Adjustment {
-	return ClistGetHadjustment(c)
-}
-
-func (c *CList) GetVadjustment() *Adjustment {
-	return ClistGetVadjustment(c)
-}
-
-func (c *CList) SetShadowType(t T.GtkShadowType) {
-	ClistSetShadowType(c, t)
-}
-
-func (c *CList) SetSelectionMode(mode T.GtkSelectionMode) {
-	ClistSetSelectionMode(c, mode)
-}
-
-func (c *CList) SetReorderable(reorderable T.Gboolean) {
-	ClistSetReorderable(c, reorderable)
-}
-
-func (c *CList) SetUseDragIcons(useIcons T.Gboolean) {
-	ClistSetUseDragIcons(c, useIcons)
-}
-
-func (c *CList) SetButtonActions(button uint, buttonActions uint8) {
-	ClistSetButtonActions(c, button, buttonActions)
-}
-
-func (c *CList) Freeze() { ClistFreeze(c) }
-
-func (c *CList) Thaw() { ClistThaw(c) }
-
-func (c *CList) ColumnTitlesShow() { ClistColumnTitlesShow(c) }
-
-func (c *CList) ColumnTitlesHide() { ClistColumnTitlesHide(c) }
-
-func (c *CList) ColumnTitleActive(column int) {
-	ClistColumnTitleActive(c, column)
-}
-
-func (c *CList) ColumnTitlePassive(column int) {
-	ClistColumnTitlePassive(c, column)
-}
-
-func (c *CList) ColumnTitlesActive() {
-	ClistColumnTitlesActive(c)
-}
-
-func (c *CList) ColumnTitlesPassive() {
-	ClistColumnTitlesPassive(c)
-}
-
-func (c *CList) SetColumnTitle(column int, title string) {
-	ClistSetColumnTitle(c, column, title)
-}
-
-func (c *CList) GetColumnTitle(column int) string {
-	return ClistGetColumnTitle(c, column)
-}
-
-func (c *CList) SetColumnWidget(column int, widget *T.GtkWidget) {
-	ClistSetColumnWidget(c, column, widget)
-}
-
-func (c *CList) GetColumnWidget(column int) *T.GtkWidget {
-	return ClistGetColumnWidget(c, column)
-}
-
-func (c *CList) SetColumnJustification(
-	column int, justification T.GtkJustification) {
-	ClistSetColumnJustification(c, column, justification)
-}
-
-func (c *CList) SetColumnVisibility(
-	column int, visible T.Gboolean) {
-	ClistSetColumnVisibility(c, column, visible)
-}
-
-func (c *CList) SetColumnResizeable(
-	column int, resizeable T.Gboolean) {
-	ClistSetColumnResizeable(c, column, resizeable)
-}
-
-func (c *CList) SetColumnAutoResize(
-	column int, autoResize T.Gboolean) {
-	ClistSetColumnAutoResize(c, column, autoResize)
-}
-
-func (c *CList) ColumnsAutosize() int {
-	return ClistColumnsAutosize(c)
-}
-
-func (c *CList) OptimalColumnWidth(column int) int {
-	return ClistOptimalColumnWidth(c, column)
-}
-
-func (c *CList) SetColumnWidth(column, width int) {
-	ClistSetColumnWidth(c, column, width)
-}
-
-func (c *CList) SetColumnMinWidth(column, minWidth int) {
-	ClistSetColumnMinWidth(c, column, minWidth)
-}
-
-func (c *CList) SetColumnMaxWidth(column, maxWidth int) {
-	ClistSetColumnMaxWidth(c, column, maxWidth)
-}
-
-func (c *CList) SetRowHeight(height uint) {
-	ClistSetRowHeight(c, height)
-}
-
-func (c *CList) Moveto(
-	row, column int, rowAlign, colAlign float32) {
-	ClistMoveto(c, row, column, rowAlign, colAlign)
-}
-
-func (c *CList) RowIsVisible(row int) T.GtkVisibility {
-	return ClistRowIsVisible(c, row)
-}
-
-func (c *CList) GetCellType(row, column int) T.GtkCellType {
-	return ClistGetCellType(c, row, column)
-}
-
-func (c *CList) SetText(row, column int, text string) {
-	ClistSetText(c, row, column, text)
-}
-
-func (c *CList) GetText(row, column int, text **T.Gchar) int {
-	return ClistGetText(c, row, column, text)
-}
-
-func (c *CList) SetPixmap(
-	row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
-	ClistSetPixmap(c, row, column, pixmap, mask)
-}
-
-func (c *CList) GetPixmap(
-	row, column int, pixmap, mask **T.GdkBitmap) int {
-	return ClistGetPixmap(c, row, column, pixmap, mask)
-}
-
-func (c *CList) SetPixtext(row, column int, text string,
-	spacing uint8, pixmap, mask *T.GdkBitmap) {
-	ClistSetPixtext(
-		c, row, column, text, spacing, pixmap, mask)
-}
-
-func (c *CList) GetPixtext(row, column int, text **T.Gchar,
-	spacing *uint8, pixmap, mask **T.GdkBitmap) int {
-	return ClistGetPixtext(
-		c, row, column, text, spacing, pixmap, mask)
-}
-
-func (c *CList) SetForeground(row int, color *T.GdkColor) {
-	ClistSetForeground(c, row, color)
-}
-
-func (c *CList) SetBackground(row int, color *T.GdkColor) {
-	ClistSetBackground(c, row, color)
-}
-
-func (c *CList) SetCellStyle(row, column int, style *T.GtkStyle) {
-	ClistSetCellStyle(c, row, column, style)
-}
-
-func (c *CList) GetCellStyle(row, column int) *T.GtkStyle {
-	return ClistGetCellStyle(c, row, column)
-}
-
-func (c *CList) SetRowStyle(row, style *T.GtkStyle) {
-	ClistSetRowStyle(c, row, style)
-}
-
-func (c *CList) GetRowStyle(row int) *T.GtkStyle {
-	return ClistGetRowStyle(c, row)
-}
-
-func (c *CList) SetShift(row, column, vertical, horizontal int) {
-	ClistSetShift(c, row, column, vertical, horizontal)
-}
-
-func (c *CList) SetSelectable(row int, selectable T.Gboolean) {
-	ClistSetSelectable(c, row, selectable)
-}
-
-func (c *CList) GetSelectable(row int) T.Gboolean {
-	return ClistGetSelectable(c, row)
-}
-
-func (c *CList) Prepend(text **T.Gchar) int {
-	return ClistPrepend(c, text)
-}
-
-func (c *CList) Append(text **T.Gchar) int {
-	return ClistAppend(c, text)
-}
-
-func (c *CList) Insert(row int, text **T.Gchar) int {
-	return ClistInsert(c, row, text)
-}
-
-func (c *CList) Remove(row int) {
-	ClistRemove(c, row)
-}
-
-func (c *CList) SetRowData(row int, data T.Gpointer) {
-	ClistSetRowData(c, row, data)
-}
-
-func (c *CList) SetRowDataFull(
-	row int, dataGpointer, destroy T.GDestroyNotify) {
-	ClistSetRowDataFull(c, row, dataGpointer, destroy)
-}
-
-func (c *CList) GetRowData(row int) T.Gpointer {
-	return ClistGetRowData(c, row)
-}
-
-func (c *CList) FindRowFromData(data T.Gpointer) int {
-	return ClistFindRowFromData(c, data)
-}
-
-func (c *CList) SelectRow(row, column int) {
-	ClistSelectRow(c, row, column)
-}
-
-func (c *CList) UnselectRow(row, column int) {
-	ClistUnselectRow(c, row, column)
-}
-
-func (c *CList) UndoSelection() { ClistUndoSelection(c) }
-
-func (c *CList) Clear() { ClistClear(c) }
-
+func (c *CList) GetRowData(row int) T.Gpointer    { return clistGetRowData(c, row) }
+func (c *CList) GetRowStyle(row int) *T.GtkStyle  { return clistGetRowStyle(c, row) }
+func (c *CList) GetSelectable(row int) T.Gboolean { return clistGetSelectable(c, row) }
 func (c *CList) GetSelectionInfo(x, y int, row, column *int) int {
-	return ClistGetSelectionInfo(c, x, y, row, column)
+	return clistGetSelectionInfo(c, x, y, row, column)
 }
-
-func (c *CList) SelectAll() { ClistSelectAll(c) }
-
-func (c *CList) UnselectAll() { ClistUnselectAll(c) }
-
-func (c *CList) SwapRows(row1, row2 int) {
-	ClistSwapRows(c, row1, row2)
+func (c *CList) GetText(row, column int, text **T.Gchar) int {
+	return clistGetText(c, row, column, text)
 }
-
-func (c *CList) RowMove(sourceRow, destRow int) {
-	ClistRowMove(c, sourceRow, destRow)
+func (c *CList) GetVadjustment() *Adjustment        { return clistGetVadjustment(c) }
+func (c *CList) Insert(row int, text **T.Gchar) int { return clistInsert(c, row, text) }
+func (c *CList) Moveto(row, column int, rowAlign, colAlign float32) {
+	clistMoveto(c, row, column, rowAlign, colAlign)
 }
-
-func (c *CList) SetCompareFunc(cmpFunc CListCompareFunc) {
-	ClistSetCompareFunc(c, cmpFunc)
+func (c *CList) OptimalColumnWidth(column int) int        { return clistOptimalColumnWidth(c, column) }
+func (c *CList) Prepend(text **T.Gchar) int               { return clistPrepend(c, text) }
+func (c *CList) Remove(row int)                           { clistRemove(c, row) }
+func (c *CList) RowIsVisible(row int) T.GtkVisibility     { return clistRowIsVisible(c, row) }
+func (c *CList) RowMove(sourceRow, destRow int)           { clistRowMove(c, sourceRow, destRow) }
+func (c *CList) SelectAll()                               { clistSelectAll(c) }
+func (c *CList) SelectRow(row, column int)                { clistSelectRow(c, row, column) }
+func (c *CList) SetAutoSort(autoSort T.Gboolean)          { clistSetAutoSort(c, autoSort) }
+func (c *CList) SetBackground(row int, color *T.GdkColor) { clistSetBackground(c, row, color) }
+func (c *CList) SetButtonActions(button uint, buttonActions uint8) {
+	clistSetButtonActions(c, button, buttonActions)
 }
-
-func (c *CList) SetSortColumn(column int) {
-	ClistSetSortColumn(c, column)
+func (c *CList) SetCellStyle(row, column int, style *T.GtkStyle) {
+	clistSetCellStyle(c, row, column, style)
 }
-
-func (c *CList) SetSortType(sortType T.GtkSortType) {
-	ClistSetSortType(c, sortType)
+func (c *CList) SetColumnAutoResize(column int, autoResize T.Gboolean) {
+	clistSetColumnAutoResize(c, column, autoResize)
 }
-
-func (c *CList) Sort() { ClistSort(c) }
-
-func (c *CList) SetAutoSort(autoSort T.Gboolean) {
-	ClistSetAutoSort(c, autoSort)
+func (c *CList) SetColumnJustification(column int, justification T.GtkJustification) {
+	clistSetColumnJustification(c, column, justification)
 }
+func (c *CList) SetColumnMaxWidth(column, maxWidth int) { clistSetColumnMaxWidth(c, column, maxWidth) }
+func (c *CList) SetColumnMinWidth(column, minWidth int) { clistSetColumnMinWidth(c, column, minWidth) }
+func (c *CList) SetColumnResizeable(column int, resizeable T.Gboolean) {
+	clistSetColumnResizeable(c, column, resizeable)
+}
+func (c *CList) SetColumnTitle(column int, title string) { clistSetColumnTitle(c, column, title) }
+func (c *CList) SetColumnVisibility(column int, visible T.Gboolean) {
+	clistSetColumnVisibility(c, column, visible)
+}
+func (c *CList) SetColumnWidget(column int, widget *Widget) { clistSetColumnWidget(c, column, widget) }
+func (c *CList) SetColumnWidth(column, width int)           { clistSetColumnWidth(c, column, width) }
+func (c *CList) SetCompareFunc(cmpFunc CListCompareFunc)    { clistSetCompareFunc(c, cmpFunc) }
+func (c *CList) SetForeground(row int, color *T.GdkColor)   { clistSetForeground(c, row, color) }
+func (c *CList) SetHadjustment(adjustment *Adjustment)      { clistSetHadjustment(c, adjustment) }
+func (c *CList) SetPixmap(row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
+	clistSetPixmap(c, row, column, pixmap, mask)
+}
+func (c *CList) SetPixtext(row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap) {
+	clistSetPixtext(c, row, column, text, spacing, pixmap, mask)
+}
+func (c *CList) SetReorderable(reorderable T.Gboolean) { clistSetReorderable(c, reorderable) }
+func (c *CList) SetRowData(row int, data T.Gpointer)   { clistSetRowData(c, row, data) }
+func (c *CList) SetRowDataFull(row int, dataGpointer, destroy T.GDestroyNotify) {
+	clistSetRowDataFull(c, row, dataGpointer, destroy)
+}
+func (c *CList) SetRowHeight(height uint)                     { clistSetRowHeight(c, height) }
+func (c *CList) SetRowStyle(row, style *T.GtkStyle)           { clistSetRowStyle(c, row, style) }
+func (c *CList) SetSelectable(row int, selectable T.Gboolean) { clistSetSelectable(c, row, selectable) }
+func (c *CList) SetSelectionMode(mode T.GtkSelectionMode)     { clistSetSelectionMode(c, mode) }
+func (c *CList) SetShadowType(t T.GtkShadowType)              { clistSetShadowType(c, t) }
+func (c *CList) SetShift(row, column, vertical, horizontal int) {
+	clistSetShift(c, row, column, vertical, horizontal)
+}
+func (c *CList) SetSortColumn(column int)              { clistSetSortColumn(c, column) }
+func (c *CList) SetSortType(sortType T.GtkSortType)    { clistSetSortType(c, sortType) }
+func (c *CList) SetText(row, column int, text string)  { clistSetText(c, row, column, text) }
+func (c *CList) SetUseDragIcons(useIcons T.Gboolean)   { clistSetUseDragIcons(c, useIcons) }
+func (c *CList) SetVadjustment(adjustment *Adjustment) { clistSetVadjustment(c, adjustment) }
+func (c *CList) Sort()                                 { clistSort(c) }
+func (c *CList) SwapRows(row1, row2 int)               { clistSwapRows(c, row1, row2) }
+func (c *CList) Thaw()                                 { clistThaw(c) }
+func (c *CList) UndoSelection()                        { clistUndoSelection(c) }
+func (c *CList) UnselectAll()                          { clistUnselectAll(c) }
+func (c *CList) UnselectRow(row, column int)           { clistUnselectRow(c, row, column) }
 
 type ColorButton struct {
 	Button Button
@@ -1208,52 +784,29 @@ type ColorButton struct {
 
 var (
 	ColorButtonGetType      func() T.GType
-	ColorButtonNew          func() *T.GtkWidget
-	ColorButtonNewWithColor func(color *T.GdkColor) *T.GtkWidget
+	ColorButtonNew          func() *Widget
+	ColorButtonNewWithColor func(color *T.GdkColor) *Widget
 )
 
 var (
-	ColorButtonGetAlpha    func(c *ColorButton) uint16
-	ColorButtonGetColor    func(c *ColorButton, color *T.GdkColor)
-	ColorButtonGetTitle    func(c *ColorButton) string
-	ColorButtonGetUseAlpha func(c *ColorButton) T.Gboolean
-	ColorButtonSetAlpha    func(c *ColorButton, alpha uint16)
-	ColorButtonSetColor    func(c *ColorButton, color *T.GdkColor)
-	ColorButtonSetTitle    func(c *ColorButton, title string)
-	ColorButtonSetUseAlpha func(c *ColorButton, useAlpha T.Gboolean)
+	colorButtonGetAlpha    func(c *ColorButton) uint16
+	colorButtonGetColor    func(c *ColorButton, color *T.GdkColor)
+	colorButtonGetTitle    func(c *ColorButton) string
+	colorButtonGetUseAlpha func(c *ColorButton) T.Gboolean
+	colorButtonSetAlpha    func(c *ColorButton, alpha uint16)
+	colorButtonSetColor    func(c *ColorButton, color *T.GdkColor)
+	colorButtonSetTitle    func(c *ColorButton, title string)
+	colorButtonSetUseAlpha func(c *ColorButton, useAlpha T.Gboolean)
 )
 
-func (c *ColorButton) SetColor(color *T.GdkColor) {
-	ColorButtonSetColor(c, color)
-}
-
-func (c *ColorButton) SetAlpha(alpha uint16) {
-	ColorButtonSetAlpha(c, alpha)
-}
-
-func (c *ColorButton) GetColor(color *T.GdkColor) {
-	ColorButtonGetColor(c, color)
-}
-
-func (c *ColorButton) GetAlpha() uint16 {
-	return ColorButtonGetAlpha(c)
-}
-
-func (c *ColorButton) SetUseAlpha(useAlpha T.Gboolean) {
-	ColorButtonSetUseAlpha(c, useAlpha)
-}
-
-func (c *ColorButton) GetUseAlpha() T.Gboolean {
-	return ColorButtonGetUseAlpha(c)
-}
-
-func (c *ColorButton) SetTitle(title string) {
-	ColorButtonSetTitle(c, title)
-}
-
-func (c *ColorButton) GetTitle() string {
-	return ColorButtonGetTitle(c)
-}
+func (c *ColorButton) GetAlpha() uint16                { return colorButtonGetAlpha(c) }
+func (c *ColorButton) GetColor(color *T.GdkColor)      { colorButtonGetColor(c, color) }
+func (c *ColorButton) GetTitle() string                { return colorButtonGetTitle(c) }
+func (c *ColorButton) GetUseAlpha() T.Gboolean         { return colorButtonGetUseAlpha(c) }
+func (c *ColorButton) SetAlpha(alpha uint16)           { colorButtonSetAlpha(c, alpha) }
+func (c *ColorButton) SetColor(color *T.GdkColor)      { colorButtonSetColor(c, color) }
+func (c *ColorButton) SetTitle(title string)           { colorButtonSetTitle(c, title) }
+func (c *ColorButton) SetUseAlpha(useAlpha T.Gboolean) { colorButtonSetUseAlpha(c, useAlpha) }
 
 type (
 	ColorSelection struct {
@@ -1270,7 +823,7 @@ type (
 
 var (
 	ColorSelectionGetType func() T.GType
-	ColorSelectionNew     func() *T.GtkWidget
+	ColorSelectionNew     func() *Widget
 
 	ColorSelectionPaletteFromString func(str string, colors **T.GdkColor, nColors *int) T.Gboolean
 	ColorSelectionPaletteToString   func(colors *T.GdkColor, nColors int) string
@@ -1280,111 +833,71 @@ var (
 )
 
 var (
-	ColorSelectionGetColor             func(c *ColorSelection, color *float64)
-	ColorSelectionGetCurrentAlpha      func(c *ColorSelection) uint16
-	ColorSelectionGetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
-	ColorSelectionGetHasOpacityControl func(c *ColorSelection) T.Gboolean
-	ColorSelectionGetHasPalette        func(c *ColorSelection) T.Gboolean
-	ColorSelectionGetPreviousAlpha     func(c *ColorSelection) uint16
-	ColorSelectionGetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
-	ColorSelectionIsAdjusting          func(c *ColorSelection) T.Gboolean
-	ColorSelectionSetColor             func(c *ColorSelection, color *float64)
-	ColorSelectionSetCurrentAlpha      func(c *ColorSelection, alpha uint16)
-	ColorSelectionSetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
-	ColorSelectionSetHasOpacityControl func(c *ColorSelection, hasOpacity T.Gboolean)
-	ColorSelectionSetHasPalette        func(c *ColorSelection, hasPalette T.Gboolean)
-	ColorSelectionSetPreviousAlpha     func(c *ColorSelection, alpha uint16)
-	ColorSelectionSetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
-	ColorSelectionSetUpdatePolicy      func(c *ColorSelection, policy T.GtkUpdateType)
+	colorSelectionGetColor             func(c *ColorSelection, color *float64)
+	colorSelectionGetCurrentAlpha      func(c *ColorSelection) uint16
+	colorSelectionGetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionGetHasOpacityControl func(c *ColorSelection) T.Gboolean
+	colorSelectionGetHasPalette        func(c *ColorSelection) T.Gboolean
+	colorSelectionGetPreviousAlpha     func(c *ColorSelection) uint16
+	colorSelectionGetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionIsAdjusting          func(c *ColorSelection) T.Gboolean
+	colorSelectionSetColor             func(c *ColorSelection, color *float64)
+	colorSelectionSetCurrentAlpha      func(c *ColorSelection, alpha uint16)
+	colorSelectionSetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionSetHasOpacityControl func(c *ColorSelection, hasOpacity T.Gboolean)
+	colorSelectionSetHasPalette        func(c *ColorSelection, hasPalette T.Gboolean)
+	colorSelectionSetPreviousAlpha     func(c *ColorSelection, alpha uint16)
+	colorSelectionSetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionSetUpdatePolicy      func(c *ColorSelection, policy T.GtkUpdateType)
 )
 
+func (c *ColorSelection) GetColor(color *float64)           { colorSelectionGetColor(c, color) }
+func (c *ColorSelection) GetCurrentAlpha() uint16           { return colorSelectionGetCurrentAlpha(c) }
+func (c *ColorSelection) GetCurrentColor(color *T.GdkColor) { colorSelectionGetCurrentColor(c, color) }
 func (c *ColorSelection) GetHasOpacityControl() T.Gboolean {
-	return ColorSelectionGetHasOpacityControl(c)
+	return colorSelectionGetHasOpacityControl(c)
 }
-
-func (c *ColorSelection) SetHasOpacityControl(
-	hasOpacity T.Gboolean) {
-	ColorSelectionSetHasOpacityControl(c, hasOpacity)
+func (c *ColorSelection) GetHasPalette() T.Gboolean          { return colorSelectionGetHasPalette(c) }
+func (c *ColorSelection) GetPreviousAlpha() uint16           { return colorSelectionGetPreviousAlpha(c) }
+func (c *ColorSelection) GetPreviousColor(color *T.GdkColor) { colorSelectionGetPreviousColor(c, color) }
+func (c *ColorSelection) IsAdjusting() T.Gboolean            { return colorSelectionIsAdjusting(c) }
+func (c *ColorSelection) SetColor(color *float64)            { colorSelectionSetColor(c, color) }
+func (c *ColorSelection) SetCurrentAlpha(alpha uint16)       { colorSelectionSetCurrentAlpha(c, alpha) }
+func (c *ColorSelection) SetCurrentColor(color *T.GdkColor)  { colorSelectionSetCurrentColor(c, color) }
+func (c *ColorSelection) SetHasOpacityControl(hasOpacity T.Gboolean) {
+	colorSelectionSetHasOpacityControl(c, hasOpacity)
 }
-
-func (c *ColorSelection) GetHasPalette() T.Gboolean {
-	return ColorSelectionGetHasPalette(c)
-}
-
 func (c *ColorSelection) SetHasPalette(hasPalette T.Gboolean) {
-	ColorSelectionSetHasPalette(c, hasPalette)
+	colorSelectionSetHasPalette(c, hasPalette)
 }
-
-func (c *ColorSelection) SetCurrentColor(color *T.GdkColor) {
-	ColorSelectionSetCurrentColor(c, color)
-}
-
-func (c *ColorSelection) SetCurrentAlpha(alpha uint16) {
-	ColorSelectionSetCurrentAlpha(c, alpha)
-}
-
-func (c *ColorSelection) GetCurrentColor(color *T.GdkColor) {
-	ColorSelectionGetCurrentColor(c, color)
-}
-
-func (c *ColorSelection) GetCurrentAlpha() uint16 {
-	return ColorSelectionGetCurrentAlpha(c)
-}
-
-func (c *ColorSelection) SetPreviousColor(color *T.GdkColor) {
-	ColorSelectionSetPreviousColor(c, color)
-}
-
-func (c *ColorSelection) SetPreviousAlpha(alpha uint16) {
-	ColorSelectionSetPreviousAlpha(c, alpha)
-}
-
-func (c *ColorSelection) GetPreviousColor(color *T.GdkColor) {
-	ColorSelectionGetPreviousColor(c, color)
-}
-
-func (c *ColorSelection) GetPreviousAlpha() uint16 {
-	return ColorSelectionGetPreviousAlpha(c)
-}
-
-func (c *ColorSelection) IsAdjusting() T.Gboolean {
-	return ColorSelectionIsAdjusting(c)
-}
-
-func (c *ColorSelection) SetColor(color *float64) {
-	ColorSelectionSetColor(c, color)
-}
-
-func (c *ColorSelection) GetColor(color *float64) {
-	ColorSelectionGetColor(c, color)
-}
-
+func (c *ColorSelection) SetPreviousAlpha(alpha uint16)      { colorSelectionSetPreviousAlpha(c, alpha) }
+func (c *ColorSelection) SetPreviousColor(color *T.GdkColor) { colorSelectionSetPreviousColor(c, color) }
 func (c *ColorSelection) SetUpdatePolicy(policy T.GtkUpdateType) {
-	ColorSelectionSetUpdatePolicy(c, policy)
+	colorSelectionSetUpdatePolicy(c, policy)
 }
 
 type ColorSelectionDialog struct {
 	Parent       Dialog
-	Colorsel     *T.GtkWidget
-	OkButton     *T.GtkWidget
-	CancelButton *T.GtkWidget
-	HelpButton   *T.GtkWidget
+	Colorsel     *Widget
+	OkButton     *Widget
+	CancelButton *Widget
+	HelpButton   *Widget
 }
 
 var (
 	ColorSelectionDialogGetType func() T.GType
-	ColorSelectionDialogNew     func(title string) *T.GtkWidget
+	ColorSelectionDialogNew     func(title string) *Widget
 
-	ColorSelectionDialogGetColorSelection func(c *ColorSelectionDialog) *T.GtkWidget
+	ColorSelectionDialogGetColorSelection func(c *ColorSelectionDialog) *Widget
 )
 
 type Combo struct {
-	Hbox          T.GtkHBox
-	Entry         *T.GtkWidget
-	Button        *T.GtkWidget
-	Popup         *T.GtkWidget
-	Popwin        *T.GtkWidget
-	List          *T.GtkWidget
+	Hbox          HBox
+	Entry         *Widget
+	Button        *Widget
+	Popup         *Widget
+	Popwin        *Widget
+	List          *Widget
 	EntryChangeId uint
 	ListChangeId  uint
 	Bits          uint
@@ -1399,45 +912,28 @@ type Combo struct {
 
 var (
 	ComboGetType func() T.GType
-	ComboNew     func() *T.GtkWidget
+	ComboNew     func() *Widget
 )
 
 var (
-	ComboSetValueInList     func(c *Combo, val T.Gboolean, okIfEmpty T.Gboolean)
-	ComboSetUseArrows       func(c *Combo, val T.Gboolean)
-	ComboSetUseArrowsAlways func(c *Combo, val T.Gboolean)
-	ComboSetCaseSensitive   func(c *Combo, val T.Gboolean)
-	ComboSetItemString      func(c *Combo, item *Item, itemValue string)
-	ComboSetPopdownStrings  func(c *Combo, strings *T.GList)
-	ComboDisableActivate    func(c *Combo)
+	comboSetValueInList     func(c *Combo, val T.Gboolean, okIfEmpty T.Gboolean)
+	comboSetUseArrows       func(c *Combo, val T.Gboolean)
+	comboSetUseArrowsAlways func(c *Combo, val T.Gboolean)
+	comboSetCaseSensitive   func(c *Combo, val T.Gboolean)
+	comboSetItemString      func(c *Combo, item *Item, itemValue string)
+	comboSetPopdownStrings  func(c *Combo, strings *T.GList)
+	comboDisableActivate    func(c *Combo)
 )
 
-func (c *Combo) SetValueInList(
-	val T.Gboolean, okIfEmpty T.Gboolean) {
-	ComboSetValueInList(c, val, okIfEmpty)
+func (c *Combo) DisableActivate()                           { comboDisableActivate(c) }
+func (c *Combo) SetCaseSensitive(val T.Gboolean)            { comboSetCaseSensitive(c, val) }
+func (c *Combo) SetItemString(item *Item, itemValue string) { comboSetItemString(c, item, itemValue) }
+func (c *Combo) SetPopdownStrings(strings *T.GList)         { comboSetPopdownStrings(c, strings) }
+func (c *Combo) SetUseArrows(val T.Gboolean)                { comboSetUseArrows(c, val) }
+func (c *Combo) SetUseArrowsAlways(val T.Gboolean)          { comboSetUseArrowsAlways(c, val) }
+func (c *Combo) SetValueInList(val T.Gboolean, okIfEmpty T.Gboolean) {
+	comboSetValueInList(c, val, okIfEmpty)
 }
-
-func (c *Combo) SetUseArrows(val T.Gboolean) {
-	ComboSetUseArrows(c, val)
-}
-
-func (c *Combo) SetUseArrowsAlways(val T.Gboolean) {
-	ComboSetUseArrowsAlways(c, val)
-}
-
-func (c *Combo) SetCaseSensitive(val T.Gboolean) {
-	ComboSetCaseSensitive(c, val)
-}
-
-func (c *Combo) SetItemString(item *Item, itemValue string) {
-	ComboSetItemString(c, item, itemValue)
-}
-
-func (c *Combo) SetPopdownStrings(strings *T.GList) {
-	ComboSetPopdownStrings(c, strings)
-}
-
-func (c *Combo) DisableActivate() { ComboDisableActivate(c) }
 
 type ComboBox struct {
 	ParentInstance Bin
@@ -1456,225 +952,124 @@ type ComboBoxEntry struct {
 
 var (
 	ComboBoxGetType              func() T.GType
-	ComboBoxNew                  func() *T.GtkWidget
-	ComboBoxNewWithEntry         func() *T.GtkWidget
-	ComboBoxNewWithModel         func(model *T.GtkTreeModel) *T.GtkWidget
-	ComboBoxNewWithModelAndEntry func(model *T.GtkTreeModel) *T.GtkWidget
+	ComboBoxNew                  func() *Widget
+	ComboBoxNewWithEntry         func() *Widget
+	ComboBoxNewWithModel         func(model *T.GtkTreeModel) *Widget
+	ComboBoxNewWithModelAndEntry func(model *T.GtkTreeModel) *Widget
 
 	ComboBoxTextGetType      func() T.GType
-	ComboBoxTextNew          func() *T.GtkWidget
-	ComboBoxTextNewWithEntry func() *T.GtkWidget
+	ComboBoxTextNew          func() *Widget
+	ComboBoxTextNewWithEntry func() *Widget
 
-	ComboBoxNewText func() *T.GtkWidget
+	ComboBoxNewText func() *Widget
 
 	ComboBoxEntryGetType      func() T.GType
-	ComboBoxEntryNew          func() *T.GtkWidget
-	ComboBoxEntryNewWithModel func(model *T.GtkTreeModel, textColumn int) *T.GtkWidget
-	ComboBoxEntryNewText      func() *T.GtkWidget
+	ComboBoxEntryNew          func() *Widget
+	ComboBoxEntryNewWithModel func(model *T.GtkTreeModel, textColumn int) *Widget
+	ComboBoxEntryNewText      func() *Widget
 )
 
 var (
-	ComboBoxAppendText           func(c *ComboBox, text string)
-	ComboBoxGetActive            func(c *ComboBox) int
-	ComboBoxGetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter) T.Gboolean
-	ComboBoxGetActiveText        func(c *ComboBox) string
-	ComboBoxGetAddTearoffs       func(c *ComboBox) T.Gboolean
-	ComboBoxGetButtonSensitivity func(c *ComboBox) T.GtkSensitivityType
-	ComboBoxGetColumnSpanColumn  func(c *ComboBox) int
-	ComboBoxGetEntryTextColumn   func(c *ComboBox) int
-	ComboBoxGetFocusOnClick      func(c *ComboBox) T.Gboolean
-	ComboBoxGetHasEntry          func(c *ComboBox) T.Gboolean
-	ComboBoxGetModel             func(c *ComboBox) *T.GtkTreeModel
-	ComboBoxGetPopupAccessible   func(c *ComboBox) *T.AtkObject
-	ComboBoxGetRowSeparatorFunc  func(c *ComboBox) T.GtkTreeViewRowSeparatorFunc
-	ComboBoxGetRowSpanColumn     func(c *ComboBox) int
-	ComboBoxGetTitle             func(c *ComboBox) string
-	ComboBoxGetWrapWidth         func(c *ComboBox) int
-	ComboBoxInsertText           func(c *ComboBox, position int, text string)
-	ComboBoxPopdown              func(c *ComboBox)
-	ComboBoxPopup                func(c *ComboBox)
-	ComboBoxPrependText          func(c *ComboBox, text string)
-	ComboBoxRemoveText           func(c *ComboBox, position int)
-	ComboBoxSetActive            func(c *ComboBox, index int)
-	ComboBoxSetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter)
-	ComboBoxSetAddTearoffs       func(c *ComboBox, addTearoffs T.Gboolean)
-	ComboBoxSetButtonSensitivity func(c *ComboBox, sensitivity T.GtkSensitivityType)
-	ComboBoxSetColumnSpanColumn  func(c *ComboBox, columnSpan int)
-	ComboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
-	ComboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick T.Gboolean)
-	ComboBoxSetModel             func(c *ComboBox, model *T.GtkTreeModel)
-	ComboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify)
-	ComboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
-	ComboBoxSetTitle             func(c *ComboBox, title string)
-	ComboBoxSetWrapWidth         func(c *ComboBox, width int)
+	comboBoxAppendText           func(c *ComboBox, text string)
+	comboBoxGetActive            func(c *ComboBox) int
+	comboBoxGetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter) T.Gboolean
+	comboBoxGetActiveText        func(c *ComboBox) string
+	comboBoxGetAddTearoffs       func(c *ComboBox) T.Gboolean
+	comboBoxGetButtonSensitivity func(c *ComboBox) T.GtkSensitivityType
+	comboBoxGetColumnSpanColumn  func(c *ComboBox) int
+	comboBoxGetEntryTextColumn   func(c *ComboBox) int
+	comboBoxGetFocusOnClick      func(c *ComboBox) T.Gboolean
+	comboBoxGetHasEntry          func(c *ComboBox) T.Gboolean
+	comboBoxGetModel             func(c *ComboBox) *T.GtkTreeModel
+	comboBoxGetPopupAccessible   func(c *ComboBox) *T.AtkObject
+	comboBoxGetRowSeparatorFunc  func(c *ComboBox) T.GtkTreeViewRowSeparatorFunc
+	comboBoxGetRowSpanColumn     func(c *ComboBox) int
+	comboBoxGetTitle             func(c *ComboBox) string
+	comboBoxGetWrapWidth         func(c *ComboBox) int
+	comboBoxInsertText           func(c *ComboBox, position int, text string)
+	comboBoxPopdown              func(c *ComboBox)
+	comboBoxPopup                func(c *ComboBox)
+	comboBoxPrependText          func(c *ComboBox, text string)
+	comboBoxRemoveText           func(c *ComboBox, position int)
+	comboBoxSetActive            func(c *ComboBox, index int)
+	comboBoxSetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter)
+	comboBoxSetAddTearoffs       func(c *ComboBox, addTearoffs T.Gboolean)
+	comboBoxSetButtonSensitivity func(c *ComboBox, sensitivity T.GtkSensitivityType)
+	comboBoxSetColumnSpanColumn  func(c *ComboBox, columnSpan int)
+	comboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
+	comboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick T.Gboolean)
+	comboBoxSetModel             func(c *ComboBox, model *T.GtkTreeModel)
+	comboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify)
+	comboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
+	comboBoxSetTitle             func(c *ComboBox, title string)
+	comboBoxSetWrapWidth         func(c *ComboBox, width int)
 )
 
-func (c *ComboBox) GetWrapWidth() int {
-	return ComboBoxGetWrapWidth(c)
-}
-
-func (c *ComboBox) SetWrapWidth(width int) {
-	ComboBoxSetWrapWidth(c, width)
-}
-
-func (c *ComboBox) GetRowSpanColumn() int {
-	return ComboBoxGetRowSpanColumn(c)
-}
-
-func (c *ComboBox) SetRowSpanColumn(rowSpan int) {
-	ComboBoxSetRowSpanColumn(c, rowSpan)
-}
-
-func (c *ComboBox) GetColumnSpanColumn() int {
-	return ComboBoxGetColumnSpanColumn(c)
-}
-
-func (c *ComboBox) SetColumnSpanColumn(columnSpan int) {
-	ComboBoxSetColumnSpanColumn(c, columnSpan)
-}
-
-func (c *ComboBox) GetAddTearoffs() T.Gboolean {
-	return ComboBoxGetAddTearoffs(c)
-}
-
-func (c *ComboBox) SetAddTearoffs(addTearoffs T.Gboolean) {
-	ComboBoxSetAddTearoffs(c, addTearoffs)
-}
-
-func (c *ComboBox) GetTitle() string {
-	return ComboBoxGetTitle(c)
-}
-
-func (c *ComboBox) SetTitle(title string) {
-	ComboBoxSetTitle(c, title)
-}
-
-func (c *ComboBox) GetFocusOnClick() T.Gboolean {
-	return ComboBoxGetFocusOnClick(c)
-}
-
-func (c *ComboBox) SetFocusOnClick(focusOnClick T.Gboolean) {
-	ComboBoxSetFocusOnClick(c, focusOnClick)
-}
-
-func (c *ComboBox) GetActive() int { return ComboBoxGetActive(c) }
-
-func (c *ComboBox) SetActive(index int) {
-	ComboBoxSetActive(c, index)
-}
-
+func (c *ComboBox) AppendText(text string) { comboBoxAppendText(c, text) }
+func (c *ComboBox) GetActive() int         { return comboBoxGetActive(c) }
 func (c *ComboBox) GetActiveIter(iter *T.GtkTreeIter) T.Gboolean {
-	return ComboBoxGetActiveIter(c, iter)
+	return comboBoxGetActiveIter(c, iter)
 }
-
-func (c *ComboBox) SetActiveIter(iter *T.GtkTreeIter) {
-	ComboBoxSetActiveIter(c, iter)
-}
-
-func (c *ComboBox) SetModel(model *T.GtkTreeModel) {
-	ComboBoxSetModel(c, model)
-}
-
-func (c *ComboBox) GetModel() *T.GtkTreeModel {
-	return ComboBoxGetModel(c)
-}
-
+func (c *ComboBox) GetActiveText() string                      { return comboBoxGetActiveText(c) }
+func (c *ComboBox) GetAddTearoffs() T.Gboolean                 { return comboBoxGetAddTearoffs(c) }
+func (c *ComboBox) GetButtonSensitivity() T.GtkSensitivityType { return comboBoxGetButtonSensitivity(c) }
+func (c *ComboBox) GetColumnSpanColumn() int                   { return comboBoxGetColumnSpanColumn(c) }
+func (c *ComboBox) GetEntryTextColumn() int                    { return comboBoxGetEntryTextColumn(c) }
+func (c *ComboBox) GetFocusOnClick() T.Gboolean                { return comboBoxGetFocusOnClick(c) }
+func (c *ComboBox) GetHasEntry() T.Gboolean                    { return comboBoxGetHasEntry(c) }
+func (c *ComboBox) GetModel() *T.GtkTreeModel                  { return comboBoxGetModel(c) }
+func (c *ComboBox) GetPopupAccessible() *T.AtkObject           { return comboBoxGetPopupAccessible(c) }
 func (c *ComboBox) GetRowSeparatorFunc() T.GtkTreeViewRowSeparatorFunc {
-	return ComboBoxGetRowSeparatorFunc(c)
+	return comboBoxGetRowSeparatorFunc(c)
 }
-
-func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify) {
-	ComboBoxSetRowSeparatorFunc(c, f, dataGpointer, destroy)
-}
-
+func (c *ComboBox) GetRowSpanColumn() int                 { return comboBoxGetRowSpanColumn(c) }
+func (c *ComboBox) GetTitle() string                      { return comboBoxGetTitle(c) }
+func (c *ComboBox) GetWrapWidth() int                     { return comboBoxGetWrapWidth(c) }
+func (c *ComboBox) InsertText(position int, text string)  { comboBoxInsertText(c, position, text) }
+func (c *ComboBox) Popdown()                              { comboBoxPopdown(c) }
+func (c *ComboBox) Popup()                                { comboBoxPopup(c) }
+func (c *ComboBox) PrependText(text string)               { comboBoxPrependText(c, text) }
+func (c *ComboBox) RemoveText(position int)               { comboBoxRemoveText(c, position) }
+func (c *ComboBox) SetActive(index int)                   { comboBoxSetActive(c, index) }
+func (c *ComboBox) SetActiveIter(iter *T.GtkTreeIter)     { comboBoxSetActiveIter(c, iter) }
+func (c *ComboBox) SetAddTearoffs(addTearoffs T.Gboolean) { comboBoxSetAddTearoffs(c, addTearoffs) }
 func (c *ComboBox) SetButtonSensitivity(sensitivity T.GtkSensitivityType) {
-	ComboBoxSetButtonSensitivity(c, sensitivity)
+	comboBoxSetButtonSensitivity(c, sensitivity)
 }
-
-func (c *ComboBox) GetButtonSensitivity() T.GtkSensitivityType {
-	return ComboBoxGetButtonSensitivity(c)
+func (c *ComboBox) SetColumnSpanColumn(columnSpan int)      { comboBoxSetColumnSpanColumn(c, columnSpan) }
+func (c *ComboBox) SetEntryTextColumn(textColumn int)       { comboBoxSetEntryTextColumn(c, textColumn) }
+func (c *ComboBox) SetFocusOnClick(focusOnClick T.Gboolean) { comboBoxSetFocusOnClick(c, focusOnClick) }
+func (c *ComboBox) SetModel(model *T.GtkTreeModel)          { comboBoxSetModel(c, model) }
+func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify) {
+	comboBoxSetRowSeparatorFunc(c, f, dataGpointer, destroy)
 }
-
-func (c *ComboBox) GetHasEntry() T.Gboolean {
-	return ComboBoxGetHasEntry(c)
-}
-
-func (c *ComboBox) SetEntryTextColumn(textColumn int) {
-	ComboBoxSetEntryTextColumn(c, textColumn)
-}
-
-func (c *ComboBox) GetEntryTextColumn() int {
-	return ComboBoxGetEntryTextColumn(c)
-}
-
-func (c *ComboBox) AppendText(text string) {
-	ComboBoxAppendText(c, text)
-}
-
-func (c *ComboBox) InsertText(position int, text string) {
-	ComboBoxInsertText(c, position, text)
-}
-
-func (c *ComboBox) PrependText(text string) {
-	ComboBoxPrependText(c, text)
-}
-
-func (c *ComboBox) RemoveText(position int) {
-	ComboBoxRemoveText(c, position)
-}
-
-func (c *ComboBox) GetActiveText() string {
-	return ComboBoxGetActiveText(c)
-}
-
-func (c *ComboBox) Popup() { ComboBoxPopup(c) }
-
-func (c *ComboBox) Popdown() { ComboBoxPopdown(c) }
-
-func (c *ComboBox) GetPopupAccessible() *T.AtkObject {
-	return ComboBoxGetPopupAccessible(c)
-}
+func (c *ComboBox) SetRowSpanColumn(rowSpan int) { comboBoxSetRowSpanColumn(c, rowSpan) }
+func (c *ComboBox) SetTitle(title string)        { comboBoxSetTitle(c, title) }
+func (c *ComboBox) SetWrapWidth(width int)       { comboBoxSetWrapWidth(c, width) }
 
 var (
-	ComboBoxTextAppendText    func(c *ComboBoxText, text string)
-	ComboBoxTextGetActiveText func(c *ComboBoxText) string
-	ComboBoxTextInsertText    func(c *ComboBoxText, position int, text string)
-	ComboBoxTextPrependText   func(c *ComboBoxText, text string)
-	ComboBoxTextRemove        func(c *ComboBoxText, position int)
+	comboBoxTextAppendText    func(c *ComboBoxText, text string)
+	comboBoxTextGetActiveText func(c *ComboBoxText) string
+	comboBoxTextInsertText    func(c *ComboBoxText, position int, text string)
+	comboBoxTextPrependText   func(c *ComboBoxText, text string)
+	comboBoxTextRemove        func(c *ComboBoxText, position int)
 )
 
-func (c *ComboBoxText) AppendText(text string) {
-	ComboBoxTextAppendText(c, text)
-}
-
+func (c *ComboBoxText) AppendText(text string) { comboBoxTextAppendText(c, text) }
+func (c *ComboBoxText) GetActiveText() string  { return comboBoxTextGetActiveText(c) }
 func (c *ComboBoxText) InsertText(position int, text string) {
-	ComboBoxTextInsertText(c, position, text)
+	comboBoxTextInsertText(c, position, text)
 }
-
-func (c *ComboBoxText) PrependText(text string) {
-	ComboBoxTextPrependText(c, text)
-}
-
-func (c *ComboBoxText) Remove(position int) {
-	ComboBoxTextRemove(c, position)
-}
-
-func (c *ComboBoxText) GetActiveText() string {
-	return ComboBoxTextGetActiveText(c)
-}
+func (c *ComboBoxText) PrependText(text string) { comboBoxTextPrependText(c, text) }
+func (c *ComboBoxText) Remove(position int)     { comboBoxTextRemove(c, position) }
 
 var (
-	ComboBoxEntrySetTextColumn func(e *ComboBoxEntry, textColumn int)
-	ComboBoxEntryGetTextColumn func(e *ComboBoxEntry) int
+	comboBoxEntrySetTextColumn func(e *ComboBoxEntry, textColumn int)
+	comboBoxEntryGetTextColumn func(e *ComboBoxEntry) int
 )
 
-func (e *ComboBoxEntry) SetTextColumn(textColumn int) {
-	ComboBoxEntrySetTextColumn(e, textColumn)
-}
-
-func (e *ComboBoxEntry) GetTextColumn() int {
-	return ComboBoxEntryGetTextColumn(e)
-}
+func (e *ComboBoxEntry) GetTextColumn() int           { return comboBoxEntryGetTextColumn(e) }
+func (e *ComboBoxEntry) SetTextColumn(textColumn int) { comboBoxEntrySetTextColumn(e, textColumn) }
 
 type (
 	CTree struct {
@@ -1739,8 +1134,8 @@ const (
 
 var (
 	CtreeGetType       func() T.GType
-	CtreeNew           func(columns int, treeColumn int) *T.GtkWidget
-	CtreeNewWithTitles func(columns int, treeColumn int, titles **T.Gchar) *T.GtkWidget
+	CtreeNew           func(columns int, treeColumn int) *Widget
+	CtreeNewWithTitles func(columns int, treeColumn int, titles **T.Gchar) *Widget
 
 	CtreeNodeGetType func() T.GType
 	CtreePosGetType  func() T.GType
@@ -1751,381 +1146,200 @@ var (
 )
 
 var (
-	CtreeCollapse                 func(c *CTree, node *CTreeNode)
-	CtreeCollapseRecursive        func(c *CTree, node *CTreeNode)
-	CtreeCollapseToDepth          func(c *CTree, node *CTreeNode, depth int)
-	CtreeExpand                   func(c *CTree, node *CTreeNode)
-	CtreeExpandRecursive          func(c *CTree, node *CTreeNode)
-	CtreeExpandToDepth            func(c *CTree, node *CTreeNode, depth int)
-	CtreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode
-	CtreeFind                     func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
-	CtreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *T.GList
-	CtreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList
-	CtreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
-	CtreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode
-	CtreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
-	CtreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
-	CtreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode
-	CtreeInsertNode               func(c *CTree, parent *CTreeNode, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf T.Gboolean, expanded T.Gboolean) *CTreeNode
-	CtreeIsAncestor               func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
-	CtreeIsHotSpot                func(c *CTree, x int, y int) T.Gboolean
-	CtreeIsViewable               func(c *CTree, node *CTreeNode) T.Gboolean
-	CtreeLast                     func(c *CTree, node *CTreeNode) *CTreeNode
-	CtreeMove                     func(c *CTree, node *CTreeNode, newParent *CTreeNode, newSibling *CTreeNode)
-	CtreeNodeGetCellStyle         func(c *CTree, node *CTreeNode, column int) *T.GtkStyle
-	CtreeNodeGetCellType          func(c *CTree, node *CTreeNode, column int) T.GtkCellType
-	CtreeNodeGetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
-	CtreeNodeGetPixtext           func(c *CTree, node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
-	CtreeNodeGetRowData           func(c *CTree, node *CTreeNode) T.Gpointer
-	CtreeNodeGetRowStyle          func(c *CTree, node *CTreeNode) *T.GtkStyle
-	CtreeNodeGetSelectable        func(c *CTree, node *CTreeNode) T.Gboolean
-	CtreeNodeGetText              func(c *CTree, node *CTreeNode, column int, text **T.Gchar) T.Gboolean
-	CtreeNodeIsVisible            func(c *CTree, node *CTreeNode) T.GtkVisibility
-	CtreeNodeMoveto               func(c *CTree, node *CTreeNode, column int, rowAlign, colAlign float32)
-	CtreeNodeNth                  func(c *CTree, row uint) *CTreeNode
-	CtreeNodeSetBackground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
-	CtreeNodeSetCellStyle         func(c *CTree, node *CTreeNode, column int, style *T.GtkStyle)
-	CtreeNodeSetForeground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
-	CtreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
-	CtreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
-	CtreeNodeSetRowData           func(c *CTree, node *CTreeNode, data T.Gpointer)
-	CtreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, dataGpointer, destroy T.GDestroyNotify)
-	CtreeNodeSetRowStyle          func(c *CTree, node *CTreeNode, style *T.GtkStyle)
-	CtreeNodeSetSelectable        func(c *CTree, node *CTreeNode, selectable T.Gboolean)
-	CtreeNodeSetShift             func(c *CTree, node *CTreeNode, column, vertical, horizontal int)
-	CtreeNodeSetText              func(c *CTree, node *CTreeNode, column int, text string)
-	CtreePostRecursive            func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
-	CtreePostRecursiveToDepth     func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
-	CtreePreRecursive             func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
-	CtreePreRecursiveToDepth      func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
-	CtreeRealSelectRecursive      func(c *CTree, node *CTreeNode, state int)
-	CtreeRemoveNode               func(c *CTree, node *CTreeNode)
-	CtreeSelect                   func(c *CTree, node *CTreeNode)
-	CtreeSelectRecursive          func(c *CTree, node *CTreeNode)
-	CtreeSetDragCompareFunc       func(c *CTree, cmpFunc CTreeCompareDragFunc)
-	CtreeSetExpanderStyle         func(c *CTree, expanderStyle CTreeExpanderStyle)
-	CtreeSetIndent                func(c *CTree, indent int)
-	CtreeSetLineStyle             func(c *CTree, lineStyle CTreeLineStyle)
-	CtreeSetNodeInfo              func(c *CTree, node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean)
-	CtreeSetShowStub              func(c *CTree, showStub T.Gboolean)
-	CtreeSetSpacing               func(c *CTree, spacing int)
-	CtreeSortNode                 func(c *CTree, node *CTreeNode)
-	CtreeSortRecursive            func(c *CTree, node *CTreeNode)
-	CtreeToggleExpansion          func(c *CTree, node *CTreeNode)
-	CtreeToggleExpansionRecursive func(c *CTree, node *CTreeNode)
-	CtreeUnselect                 func(c *CTree, node *CTreeNode)
-	CtreeUnselectRecursive        func(c *CTree, node *CTreeNode)
+	ctreeCollapse                 func(c *CTree, node *CTreeNode)
+	ctreeCollapseRecursive        func(c *CTree, node *CTreeNode)
+	ctreeCollapseToDepth          func(c *CTree, node *CTreeNode, depth int)
+	ctreeExpand                   func(c *CTree, node *CTreeNode)
+	ctreeExpandRecursive          func(c *CTree, node *CTreeNode)
+	ctreeExpandToDepth            func(c *CTree, node *CTreeNode, depth int)
+	ctreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode
+	ctreeFind                     func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
+	ctreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *T.GList
+	ctreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList
+	ctreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
+	ctreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode
+	ctreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
+	ctreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
+	ctreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode
+	ctreeInsertNode               func(c *CTree, parent *CTreeNode, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf T.Gboolean, expanded T.Gboolean) *CTreeNode
+	ctreeIsAncestor               func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
+	ctreeIsHotSpot                func(c *CTree, x int, y int) T.Gboolean
+	ctreeIsViewable               func(c *CTree, node *CTreeNode) T.Gboolean
+	ctreeLast                     func(c *CTree, node *CTreeNode) *CTreeNode
+	ctreeMove                     func(c *CTree, node *CTreeNode, newParent *CTreeNode, newSibling *CTreeNode)
+	ctreeNodeGetCellStyle         func(c *CTree, node *CTreeNode, column int) *T.GtkStyle
+	ctreeNodeGetCellType          func(c *CTree, node *CTreeNode, column int) T.GtkCellType
+	ctreeNodeGetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
+	ctreeNodeGetPixtext           func(c *CTree, node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
+	ctreeNodeGetRowData           func(c *CTree, node *CTreeNode) T.Gpointer
+	ctreeNodeGetRowStyle          func(c *CTree, node *CTreeNode) *T.GtkStyle
+	ctreeNodeGetSelectable        func(c *CTree, node *CTreeNode) T.Gboolean
+	ctreeNodeGetText              func(c *CTree, node *CTreeNode, column int, text **T.Gchar) T.Gboolean
+	ctreeNodeIsVisible            func(c *CTree, node *CTreeNode) T.GtkVisibility
+	ctreeNodeMoveto               func(c *CTree, node *CTreeNode, column int, rowAlign, colAlign float32)
+	ctreeNodeNth                  func(c *CTree, row uint) *CTreeNode
+	ctreeNodeSetBackground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
+	ctreeNodeSetCellStyle         func(c *CTree, node *CTreeNode, column int, style *T.GtkStyle)
+	ctreeNodeSetForeground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
+	ctreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	ctreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	ctreeNodeSetRowData           func(c *CTree, node *CTreeNode, data T.Gpointer)
+	ctreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, dataGpointer, destroy T.GDestroyNotify)
+	ctreeNodeSetRowStyle          func(c *CTree, node *CTreeNode, style *T.GtkStyle)
+	ctreeNodeSetSelectable        func(c *CTree, node *CTreeNode, selectable T.Gboolean)
+	ctreeNodeSetShift             func(c *CTree, node *CTreeNode, column, vertical, horizontal int)
+	ctreeNodeSetText              func(c *CTree, node *CTreeNode, column int, text string)
+	ctreePostRecursive            func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
+	ctreePostRecursiveToDepth     func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
+	ctreePreRecursive             func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
+	ctreePreRecursiveToDepth      func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
+	ctreeRealSelectRecursive      func(c *CTree, node *CTreeNode, state int)
+	ctreeRemoveNode               func(c *CTree, node *CTreeNode)
+	ctreeSelect                   func(c *CTree, node *CTreeNode)
+	ctreeSelectRecursive          func(c *CTree, node *CTreeNode)
+	ctreeSetDragCompareFunc       func(c *CTree, cmpFunc CTreeCompareDragFunc)
+	ctreeSetExpanderStyle         func(c *CTree, expanderStyle CTreeExpanderStyle)
+	ctreeSetIndent                func(c *CTree, indent int)
+	ctreeSetLineStyle             func(c *CTree, lineStyle CTreeLineStyle)
+	ctreeSetNodeInfo              func(c *CTree, node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean)
+	ctreeSetShowStub              func(c *CTree, showStub T.Gboolean)
+	ctreeSetSpacing               func(c *CTree, spacing int)
+	ctreeSortNode                 func(c *CTree, node *CTreeNode)
+	ctreeSortRecursive            func(c *CTree, node *CTreeNode)
+	ctreeToggleExpansion          func(c *CTree, node *CTreeNode)
+	ctreeToggleExpansionRecursive func(c *CTree, node *CTreeNode)
+	ctreeUnselect                 func(c *CTree, node *CTreeNode)
+	ctreeUnselectRecursive        func(c *CTree, node *CTreeNode)
 )
 
-func (c *CTree) InsertNode(parent, sibling *CTreeNode,
-	text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap,
-	maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap,
-	maskOpened *T.GdkBitmap, isLeaf,
-	expanded T.Gboolean) *CTreeNode {
-	return CtreeInsertNode(c, parent, sibling, text,
-		spacing, pixmapClosed, maskClosed, pixmapOpened,
-		maskOpened, isLeaf, expanded)
+func (c *CTree) Collapse(node *CTreeNode)                   { ctreeCollapse(c, node) }
+func (c *CTree) CollapseRecursive(node *CTreeNode)          { ctreeCollapseRecursive(c, node) }
+func (c *CTree) CollapseToDepth(node *CTreeNode, depth int) { ctreeCollapseToDepth(c, node, depth) }
+func (c *CTree) Expand(node *CTreeNode)                     { ctreeExpand(c, node) }
+func (c *CTree) ExpandRecursive(node *CTreeNode)            { ctreeExpandRecursive(c, node) }
+func (c *CTree) ExpandToDepth(node *CTreeNode, depth int)   { ctreeExpandToDepth(c, node, depth) }
+func (c *CTree) ExportToGnode(parent *T.GNode, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode {
+	return ctreeExportToGnode(c, parent, sibling, node, f, data)
 }
-
-func (c *CTree) RemoveNode(node *CTreeNode) {
-	CtreeRemoveNode(c, node)
+func (c *CTree) Find(node, child *CTreeNode) T.Gboolean { return ctreeFind(c, node, child) }
+func (c *CTree) FindAllByRowData(node *CTreeNode, data T.Gpointer) *T.GList {
+	return ctreeFindAllByRowData(c, node, data)
 }
-
-func (c *CTree) InsertGnode(parent, sibling *CTreeNode,
-	gnode *T.GNode, f CTreeGNodeFunc,
-	data T.Gpointer) *CTreeNode {
-	return CtreeInsertGnode(c, parent, sibling, gnode, f, data)
+func (c *CTree) FindAllByRowDataCustom(node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList {
+	return ctreeFindAllByRowDataCustom(c, node, dataGpointer, f)
 }
-
-func (c *CTree) ExportToGnode(parent *T.GNode, sibling *T.GNode,
-	node *CTreeNode, f CTreeGNodeFunc,
-	data T.Gpointer) *T.GNode {
-	return CtreeExportToGnode(c, parent, sibling, node, f, data)
+func (c *CTree) FindByRowData(node *CTreeNode, data T.Gpointer) *CTreeNode {
+	return ctreeFindByRowData(c, node, data)
 }
-
-func (c *CTree) PostRecursive(node *CTreeNode,
-	f CTreeFunc, data T.Gpointer) {
-	CtreePostRecursive(c, node, f, data)
+func (c *CTree) FindByRowDataCustom(node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode {
+	return ctreeFindByRowDataCustom(c, node, dataGpointer, f)
 }
-
-func (c *CTree) PostRecursiveToDepth(node *CTreeNode,
-	depth int, f CTreeFunc, data T.Gpointer) {
-	CtreePostRecursiveToDepth(c, node, depth, f, data)
+func (c *CTree) FindNodePtr(ctreeRow *CTreeRow) *CTreeNode { return ctreeFindNodePtr(c, ctreeRow) }
+func (c *CTree) GetNodeInfo(node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean {
+	return ctreeGetNodeInfo(c, node, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
-
-func (c *CTree) PreRecursive(node *CTreeNode,
-	f CTreeFunc, data T.Gpointer) {
-	CtreePreRecursive(c, node, f, data)
+func (c *CTree) InsertGnode(parent, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode {
+	return ctreeInsertGnode(c, parent, sibling, gnode, f, data)
 }
-
-func (c *CTree) PreRecursiveToDepth(node *CTreeNode,
-	depth int, f CTreeFunc, data T.Gpointer) {
-	CtreePreRecursiveToDepth(c, node, depth, f, data)
+func (c *CTree) InsertNode(parent, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) *CTreeNode {
+	return ctreeInsertNode(c, parent, sibling, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
-
-func (c *CTree) IsViewable(node *CTreeNode) T.Gboolean {
-	return CtreeIsViewable(c, node)
-}
-
-func (c *CTree) Last(node *CTreeNode) *CTreeNode {
-	return CtreeLast(c, node)
-}
-
-func (c *CTree) FindNodePtr(
-	ctreeRow *CTreeRow) *CTreeNode {
-	return CtreeFindNodePtr(c, ctreeRow)
-}
-
-func (c *CTree) NodeNth(row uint) *CTreeNode {
-	return CtreeNodeNth(c, row)
-}
-
-func (c *CTree) Find(node, child *CTreeNode) T.Gboolean {
-	return CtreeFind(c, node, child)
-}
-
-func (c *CTree) IsAncestor(
-	node, child *CTreeNode) T.Gboolean {
-	return CtreeIsAncestor(c, node, child)
-}
-
-func (c *CTree) FindByRowData(
-	node *CTreeNode, data T.Gpointer) *CTreeNode {
-	return CtreeFindByRowData(c, node, data)
-}
-
-func (c *CTree) FindAllByRowData(
-	node *CTreeNode, data T.Gpointer) *T.GList {
-	return CtreeFindAllByRowData(c, node, data)
-}
-
-func (c *CTree) FindByRowDataCustom(node *CTreeNode,
-	dataGpointer, f T.GCompareFunc) *CTreeNode {
-	return CtreeFindByRowDataCustom(c, node, dataGpointer, f)
-}
-
-func (c *CTree) FindAllByRowDataCustom(node *CTreeNode,
-	dataGpointer, f T.GCompareFunc) *T.GList {
-	return CtreeFindAllByRowDataCustom(c, node, dataGpointer, f)
-}
-
-func (c *CTree) IsHotSpot(x int, y int) T.Gboolean {
-	return CtreeIsHotSpot(c, x, y)
-}
-
+func (c *CTree) IsAncestor(node, child *CTreeNode) T.Gboolean { return ctreeIsAncestor(c, node, child) }
+func (c *CTree) IsHotSpot(x int, y int) T.Gboolean            { return ctreeIsHotSpot(c, x, y) }
+func (c *CTree) IsViewable(node *CTreeNode) T.Gboolean        { return ctreeIsViewable(c, node) }
+func (c *CTree) Last(node *CTreeNode) *CTreeNode              { return ctreeLast(c, node) }
 func (c *CTree) Move(node, newParent, newSibling *CTreeNode) {
-	CtreeMove(c, node, newParent, newSibling)
+	ctreeMove(c, node, newParent, newSibling)
 }
-
-func (c *CTree) Expand(node *CTreeNode) {
-	CtreeExpand(c, node)
+func (c *CTree) NodeGetCellStyle(node *CTreeNode, column int) *T.GtkStyle {
+	return ctreeNodeGetCellStyle(c, node, column)
 }
-
-func (c *CTree) ExpandRecursive(node *CTreeNode) {
-	CtreeExpandRecursive(c, node)
+func (c *CTree) NodeGetCellType(node *CTreeNode, column int) T.GtkCellType {
+	return ctreeNodeGetCellType(c, node, column)
 }
-
-func (c *CTree) ExpandToDepth(node *CTreeNode, depth int) {
-	CtreeExpandToDepth(c, node, depth)
+func (c *CTree) NodeGetPixmap(node *CTreeNode, column int, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean {
+	return ctreeNodeGetPixmap(c, node, column, pixmap, mask)
 }
-
-func (c *CTree) Collapse(node *CTreeNode) {
-	CtreeCollapse(c, node)
+func (c *CTree) NodeGetPixtext(node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean {
+	return ctreeNodeGetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
-
-func (c *CTree) CollapseRecursive(node *CTreeNode) {
-	CtreeCollapseRecursive(c, node)
+func (c *CTree) NodeGetRowData(node *CTreeNode) T.Gpointer    { return ctreeNodeGetRowData(c, node) }
+func (c *CTree) NodeGetRowStyle(node *CTreeNode) *T.GtkStyle  { return ctreeNodeGetRowStyle(c, node) }
+func (c *CTree) NodeGetSelectable(node *CTreeNode) T.Gboolean { return ctreeNodeGetSelectable(c, node) }
+func (c *CTree) NodeGetText(node *CTreeNode, column int, text **T.Gchar) T.Gboolean {
+	return ctreeNodeGetText(c, node, column, text)
 }
-
-func (c *CTree) CollapseToDepth(node *CTreeNode, depth int) {
-	CtreeCollapseToDepth(c, node, depth)
+func (c *CTree) NodeIsVisible(node *CTreeNode) T.GtkVisibility { return ctreeNodeIsVisible(c, node) }
+func (c *CTree) NodeMoveto(node *CTreeNode, column int, rowAlign, colAlign float32) {
+	ctreeNodeMoveto(c, node, column, rowAlign, colAlign)
 }
-
-func (c *CTree) ToggleExpansion(node *CTreeNode) {
-	CtreeToggleExpansion(c, node)
+func (c *CTree) NodeNth(row uint) *CTreeNode { return ctreeNodeNth(c, row) }
+func (c *CTree) NodeSetBackground(node *CTreeNode, color *T.GdkColor) {
+	ctreeNodeSetBackground(c, node, color)
 }
-
-func (c *CTree) ToggleExpansionRecursive(node *CTreeNode) {
-	CtreeToggleExpansionRecursive(c, node)
+func (c *CTree) NodeSetCellStyle(node *CTreeNode, column int, style *T.GtkStyle) {
+	ctreeNodeSetCellStyle(c, node, column, style)
 }
-
-func (c *CTree) Select(node *CTreeNode) {
-	CtreeSelect(c, node)
+func (c *CTree) NodeSetForeground(node *CTreeNode, color *T.GdkColor) {
+	ctreeNodeSetForeground(c, node, color)
 }
-
-func (c *CTree) SelectRecursive(node *CTreeNode) {
-	CtreeSelectRecursive(c, node)
-}
-
-func (c *CTree) Unselect(node *CTreeNode) {
-	CtreeUnselect(c, node)
-}
-
-func (c *CTree) UnselectRecursive(node *CTreeNode) {
-	CtreeUnselectRecursive(c, node)
-}
-
-func (c *CTree) RealSelectRecursive(
-	node *CTreeNode, state int) {
-	CtreeRealSelectRecursive(c, node, state)
-}
-
-func (c *CTree) NodeSetText(
-	node *CTreeNode, column int, text string) {
-	CtreeNodeSetText(c, node, column, text)
-}
-
 func (c *CTree) NodeSetPixmap(node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
-	CtreeNodeSetPixmap(c, node, column, pixmap, mask)
+	ctreeNodeSetPixmap(c, node, column, pixmap, mask)
 }
-
-func (c *CTree) NodeSetPixtext(node *CTreeNode, column int,
-	text string, spacing uint8, pixmap *T.GdkPixmap,
-	mask *T.GdkBitmap) {
-	CtreeNodeSetPixtext(
-		c, node, column, text, spacing, pixmap, mask)
+func (c *CTree) NodeSetPixtext(node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
+	ctreeNodeSetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
-
-func (c *CTree) SetNodeInfo(node *CTreeNode, text string,
-	spacing uint8, pixmapClosed *T.GdkPixmap,
-	maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap,
-	maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) {
-	CtreeSetNodeInfo(c, node, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
+func (c *CTree) NodeSetRowData(node *CTreeNode, data T.Gpointer) { ctreeNodeSetRowData(c, node, data) }
+func (c *CTree) NodeSetRowDataFull(node *CTreeNode, dataGpointer, destroy T.GDestroyNotify) {
+	ctreeNodeSetRowDataFull(c, node, dataGpointer, destroy)
 }
-
-func (c *CTree) NodeSetShift(
-	node *CTreeNode, column, vertical, horizontal int) {
-	CtreeNodeSetShift(c, node, column, vertical, horizontal)
+func (c *CTree) NodeSetRowStyle(node *CTreeNode, style *T.GtkStyle) {
+	ctreeNodeSetRowStyle(c, node, style)
 }
-
-func (c *CTree) NodeSetSelectable(
-	node *CTreeNode, selectable T.Gboolean) {
-	CtreeNodeSetSelectable(c, node, selectable)
+func (c *CTree) NodeSetSelectable(node *CTreeNode, selectable T.Gboolean) {
+	ctreeNodeSetSelectable(c, node, selectable)
 }
-
-func (c *CTree) NodeGetSelectable(
-	node *CTreeNode) T.Gboolean {
-	return CtreeNodeGetSelectable(c, node)
+func (c *CTree) NodeSetShift(node *CTreeNode, column, vertical, horizontal int) {
+	ctreeNodeSetShift(c, node, column, vertical, horizontal)
 }
-
-func (c *CTree) NodeGetCellType(
-	node *CTreeNode, column int) T.GtkCellType {
-	return CtreeNodeGetCellType(c, node, column)
+func (c *CTree) NodeSetText(node *CTreeNode, column int, text string) {
+	ctreeNodeSetText(c, node, column, text)
 }
-
-func (c *CTree) NodeGetText(node *CTreeNode,
-	column int, text **T.Gchar) T.Gboolean {
-	return CtreeNodeGetText(c, node, column, text)
+func (c *CTree) PostRecursive(node *CTreeNode, f CTreeFunc, data T.Gpointer) {
+	ctreePostRecursive(c, node, f, data)
 }
-
-func (c *CTree) NodeGetPixmap(node *CTreeNode, column int,
-	pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean {
-	return CtreeNodeGetPixmap(c, node, column, pixmap, mask)
+func (c *CTree) PostRecursiveToDepth(node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer) {
+	ctreePostRecursiveToDepth(c, node, depth, f, data)
 }
-
-func (c *CTree) NodeGetPixtext(node *CTreeNode, column int,
-	text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap,
-	mask **T.GdkBitmap) T.Gboolean {
-	return CtreeNodeGetPixtext(
-		c, node, column, text, spacing, pixmap, mask)
+func (c *CTree) PreRecursive(node *CTreeNode, f CTreeFunc, data T.Gpointer) {
+	ctreePreRecursive(c, node, f, data)
 }
-
-func (c *CTree) GetNodeInfo(node *CTreeNode, text **T.Gchar,
-	spacing *uint8, pixmapClosed **T.GdkPixmap,
-	maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap,
-	maskOpened **T.GdkBitmap, isLeaf,
-	expanded *T.Gboolean) T.Gboolean {
-	return CtreeGetNodeInfo(c, node, text, spacing, pixmapClosed,
-		maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
+func (c *CTree) PreRecursiveToDepth(node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer) {
+	ctreePreRecursiveToDepth(c, node, depth, f, data)
 }
-
-func (c *CTree) NodeSetRowStyle(
-	node *CTreeNode, style *T.GtkStyle) {
-	CtreeNodeSetRowStyle(c, node, style)
+func (c *CTree) RealSelectRecursive(node *CTreeNode, state int) {
+	ctreeRealSelectRecursive(c, node, state)
 }
-
-func (c *CTree) NodeGetRowStyle(
-	node *CTreeNode) *T.GtkStyle {
-	return CtreeNodeGetRowStyle(c, node)
+func (c *CTree) RemoveNode(node *CTreeNode)                      { ctreeRemoveNode(c, node) }
+func (c *CTree) Select(node *CTreeNode)                          { ctreeSelect(c, node) }
+func (c *CTree) SelectRecursive(node *CTreeNode)                 { ctreeSelectRecursive(c, node) }
+func (c *CTree) SetDragCompareFunc(cmpFunc CTreeCompareDragFunc) { ctreeSetDragCompareFunc(c, cmpFunc) }
+func (c *CTree) SetExpanderStyle(expanderStyle CTreeExpanderStyle) {
+	ctreeSetExpanderStyle(c, expanderStyle)
 }
-
-func (c *CTree) NodeSetCellStyle(
-	node *CTreeNode, column int, style *T.GtkStyle) {
-	CtreeNodeSetCellStyle(c, node, column, style)
+func (c *CTree) SetIndent(indent int)                  { ctreeSetIndent(c, indent) }
+func (c *CTree) SetLineStyle(lineStyle CTreeLineStyle) { ctreeSetLineStyle(c, lineStyle) }
+func (c *CTree) SetNodeInfo(node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) {
+	ctreeSetNodeInfo(c, node, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
-
-func (c *CTree) NodeGetCellStyle(
-	node *CTreeNode, column int) *T.GtkStyle {
-	return CtreeNodeGetCellStyle(c, node, column)
-}
-
-func (c *CTree) NodeSetForeground(
-	node *CTreeNode, color *T.GdkColor) {
-	CtreeNodeSetForeground(c, node, color)
-}
-
-func (c *CTree) NodeSetBackground(
-	node *CTreeNode, color *T.GdkColor) {
-	CtreeNodeSetBackground(c, node, color)
-}
-
-func (c *CTree) NodeSetRowData(
-	node *CTreeNode, data T.Gpointer) {
-	CtreeNodeSetRowData(c, node, data)
-}
-
-func (c *CTree) NodeSetRowDataFull(node *CTreeNode,
-	dataGpointer, destroy T.GDestroyNotify) {
-	CtreeNodeSetRowDataFull(c, node, dataGpointer, destroy)
-}
-
-func (c *CTree) NodeGetRowData(node *CTreeNode) T.Gpointer {
-	return CtreeNodeGetRowData(c, node)
-}
-
-func (c *CTree) NodeMoveto(node *CTreeNode,
-	column int, rowAlign, colAlign float32) {
-	CtreeNodeMoveto(c, node, column, rowAlign, colAlign)
-}
-
-func (c *CTree) NodeIsVisible(
-	node *CTreeNode) T.GtkVisibility {
-	return CtreeNodeIsVisible(c, node)
-}
-
-func (c *CTree) SetIndent(indent int) {
-	CtreeSetIndent(c, indent)
-}
-
-func (c *CTree) SetSpacing(spacing int) {
-	CtreeSetSpacing(c, spacing)
-}
-
-func (c *CTree) SetShowStub(showStub T.Gboolean) {
-	CtreeSetShowStub(c, showStub)
-}
-
-func (c *CTree) SetLineStyle(lineStyle CTreeLineStyle) {
-	CtreeSetLineStyle(c, lineStyle)
-}
-
-func (c *CTree) SetExpanderStyle(
-	expanderStyle CTreeExpanderStyle) {
-	CtreeSetExpanderStyle(c, expanderStyle)
-}
-
-func (c *CTree) SetDragCompareFunc(
-	cmpFunc CTreeCompareDragFunc) {
-	CtreeSetDragCompareFunc(c, cmpFunc)
-}
-
-func (c *CTree) SortNode(node *CTreeNode) {
-	CtreeSortNode(c, node)
-}
-
-func (c *CTree) SortRecursive(node *CTreeNode) {
-	CtreeSortRecursive(c, node)
-}
+func (c *CTree) SetShowStub(showStub T.Gboolean)          { ctreeSetShowStub(c, showStub) }
+func (c *CTree) SetSpacing(spacing int)                   { ctreeSetSpacing(c, spacing) }
+func (c *CTree) SortNode(node *CTreeNode)                 { ctreeSortNode(c, node) }
+func (c *CTree) SortRecursive(node *CTreeNode)            { ctreeSortRecursive(c, node) }
+func (c *CTree) ToggleExpansion(node *CTreeNode)          { ctreeToggleExpansion(c, node) }
+func (c *CTree) ToggleExpansionRecursive(node *CTreeNode) { ctreeToggleExpansionRecursive(c, node) }
+func (c *CTree) Unselect(node *CTreeNode)                 { ctreeUnselect(c, node) }
+func (c *CTree) UnselectRecursive(node *CTreeNode)        { ctreeUnselectRecursive(c, node) }
 
 type Curve struct {
 	Graph        DrawingArea
@@ -2147,35 +1361,20 @@ type Curve struct {
 
 var (
 	CurveGetType     func() T.GType
-	CurveNew         func() *T.GtkWidget
+	CurveNew         func() *Widget
 	CurveTypeGetType func() T.GType
 
-	CurveGetVector    func(c *Curve, veclen int, vector *float32)
-	CurveReset        func(c *Curve)
-	CurveSetCurveType func(c *Curve, t T.GtkCurveType)
-	CurveSetGamma     func(c *Curve, gamma float32)
-	CurveSetRange     func(c *Curve, minX, maxX, minY, maxY float32)
-	CurveSetVector    func(c *Curve, veclen int, vector *float32)
+	curveGetVector    func(c *Curve, veclen int, vector *float32)
+	curveReset        func(c *Curve)
+	curveSetCurveType func(c *Curve, t T.GtkCurveType)
+	curveSetGamma     func(c *Curve, gamma float32)
+	curveSetRange     func(c *Curve, minX, maxX, minY, maxY float32)
+	curveSetVector    func(c *Curve, veclen int, vector *float32)
 )
 
-func (c *Curve) Reset() { CurveReset(c) }
-
-func (c *Curve) SetGamma(gamma float32) {
-	CurveSetGamma(c, gamma)
-}
-
-func (c *Curve) SetRange(minX, maxX, minY, maxY float32) {
-	CurveSetRange(c, minX, maxX, minY, maxY)
-}
-
-func (c *Curve) GetVector(veclen int, vector *float32) {
-	CurveGetVector(c, veclen, vector)
-}
-
-func (c *Curve) SetVector(veclen int, vector *float32) {
-	CurveSetVector(c, veclen, vector)
-}
-
-func (c *Curve) SetCurveType(t T.GtkCurveType) {
-	CurveSetCurveType(c, t)
-}
+func (c *Curve) GetVector(veclen int, vector *float32)   { curveGetVector(c, veclen, vector) }
+func (c *Curve) Reset()                                  { curveReset(c) }
+func (c *Curve) SetCurveType(t T.GtkCurveType)           { curveSetCurveType(c, t) }
+func (c *Curve) SetGamma(gamma float32)                  { curveSetGamma(c, gamma) }
+func (c *Curve) SetRange(minX, maxX, minY, maxY float32) { curveSetRange(c, minX, maxX, minY, maxY) }
+func (c *Curve) SetVector(veclen int, vector *float32)   { curveSetVector(c, veclen, vector) }

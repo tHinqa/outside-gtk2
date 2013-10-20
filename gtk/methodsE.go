@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -70,7 +73,7 @@ func (e *Editable) GetEditable() T.Gboolean {
 }
 
 type Entry struct {
-	Widget T.GtkWidget
+	Widget Widget
 	Text   *T.Gchar
 	Bits   uint
 	// Editable : 1
@@ -81,7 +84,7 @@ type Entry struct {
 	TextMaxLength  uint16
 	TextArea       *T.GdkWindow
 	ImContext      *IMContext
-	PopupMenu      *T.GtkWidget
+	PopupMenu      *Widget
 	CurrentPos     int
 	SelectionBound int
 	CachedLayout   *T.PangoLayout
@@ -135,9 +138,9 @@ const (
 
 var (
 	EntryGetType          func() T.GType
-	EntryNew              func() *T.GtkWidget
-	EntryNewWithMaxLength func(max int) *T.GtkWidget
-	EntryNewWithBuffer    func(buffer *EntryBuffer) *T.GtkWidget
+	EntryNew              func() *Widget
+	EntryNewWithMaxLength func(max int) *Widget
+	EntryNewWithBuffer    func(buffer *EntryBuffer) *Widget
 
 	EntryIconPositionGetType func() T.GType
 
@@ -554,7 +557,7 @@ var (
 	EntryCompletionComplete            func(completion *EntryCompletion)
 	EntryCompletionDeleteAction        func(completion *EntryCompletion, index int)
 	EntryCompletionGetCompletionPrefix func(completion *EntryCompletion) string
-	EntryCompletionGetEntry            func(completion *EntryCompletion) *T.GtkWidget
+	EntryCompletionGetEntry            func(completion *EntryCompletion) *Widget
 	EntryCompletionGetInlineCompletion func(completion *EntryCompletion) T.Gboolean
 	EntryCompletionGetInlineSelection  func(completion *EntryCompletion) T.Gboolean
 	EntryCompletionGetMinimumKeyLength func(completion *EntryCompletion) int
@@ -577,7 +580,7 @@ var (
 	EntryCompletionSetTextColumn       func(completion *EntryCompletion, column int)
 )
 
-func (e *EntryCompletion) GetEntry() *T.GtkWidget {
+func (e *EntryCompletion) GetEntry() *Widget {
 	return EntryCompletionGetEntry(e)
 }
 
@@ -685,7 +688,7 @@ type EventBox struct{ Bin Bin }
 
 var (
 	EventBoxGetType func() T.GType
-	EventBoxNew     func() *T.GtkWidget
+	EventBoxNew     func() *Widget
 
 	EventBoxGetAboveChild    func(e *EventBox) T.Gboolean
 	EventBoxGetVisibleWindow func(e *EventBox) T.Gboolean
@@ -725,8 +728,8 @@ const (
 
 var (
 	ExpanderGetType         func() T.GType
-	ExpanderNew             func(label string) *T.GtkWidget
-	ExpanderNewWithMnemonic func(label string) *T.GtkWidget
+	ExpanderNew             func(label string) *Widget
+	ExpanderNewWithMnemonic func(label string) *Widget
 
 	ExpanderStyleGetType func() T.GType
 
@@ -740,8 +743,8 @@ var (
 	ExpanderGetUseUnderline func(e *Expander) T.Gboolean
 	ExpanderSetUseMarkup    func(e *Expander, useMarkup T.Gboolean)
 	ExpanderGetUseMarkup    func(e *Expander) T.Gboolean
-	ExpanderSetLabelWidget  func(e *Expander, labelWidget *T.GtkWidget)
-	ExpanderGetLabelWidget  func(e *Expander) *T.GtkWidget
+	ExpanderSetLabelWidget  func(e *Expander, labelWidget *Widget)
+	ExpanderGetLabelWidget  func(e *Expander) *Widget
 	ExpanderSetLabelFill    func(e *Expander, labelFill T.Gboolean)
 	ExpanderGetLabelFill    func(e *Expander) T.Gboolean
 )
@@ -786,11 +789,11 @@ func (e *Expander) GetUseMarkup() T.Gboolean {
 	return ExpanderGetUseMarkup(e)
 }
 
-func (e *Expander) SetLabelWidget(labelWidget *T.GtkWidget) {
+func (e *Expander) SetLabelWidget(labelWidget *Widget) {
 	ExpanderSetLabelWidget(e, labelWidget)
 }
 
-func (e *Expander) GetLabelWidget() *T.GtkWidget {
+func (e *Expander) GetLabelWidget() *Widget {
 	return ExpanderGetLabelWidget(e)
 }
 

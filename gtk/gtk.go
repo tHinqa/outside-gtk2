@@ -25,42 +25,40 @@ var (
 	DirectionTypeGetType          func() T.GType
 	DragResultGetType             func() T.GType
 	GammaCurveGetType             func() T.GType
-	GammaCurveNew                 func() *T.GtkWidget
-	HboxGetType                   func() T.GType
-	HboxNew                       func(homogeneous T.Gboolean, spacing int) *T.GtkWidget
+	GammaCurveNew                 func() *Widget
 	HbuttonBoxGetType             func() T.GType
-	HbuttonBoxNew                 func() *T.GtkWidget
+	HbuttonBoxNew                 func() *Widget
 	HbuttonBoxGetSpacingDefault   func() int
 	HbuttonBoxGetLayoutDefault    func() ButtonBoxStyle
 	HbuttonBoxSetSpacingDefault   func(spacing int)
 	HbuttonBoxSetLayoutDefault    func(layout ButtonBoxStyle)
 	HpanedGetType                 func() T.GType
-	HpanedNew                     func() *T.GtkWidget
+	HpanedNew                     func() *Widget
 	HrulerGetType                 func() T.GType
-	HrulerNew                     func() *T.GtkWidget
+	HrulerNew                     func() *Widget
 	HscaleGetType                 func() T.GType
-	HscaleNew                     func(adjustment *Adjustment) *T.GtkWidget
-	HscaleNewWithRange            func(min, max, step float64) *T.GtkWidget
+	HscaleNew                     func(adjustment *Adjustment) *Widget
+	HscaleNewWithRange            func(min, max, step float64) *Widget
 	HscrollbarGetType             func() T.GType
-	HscrollbarNew                 func(adjustment *Adjustment) *T.GtkWidget
+	HscrollbarNew                 func(adjustment *Adjustment) *Widget
 	HseparatorGetType             func() T.GType
-	HseparatorNew                 func() *T.GtkWidget
+	HseparatorNew                 func() *Widget
 	IconLookupFlagsGetType        func() T.GType
 	IdentifierGetType             func() T.GType
 	ImageTypeGetType              func() T.GType
 	ImPreeditStyleGetType         func() T.GType
 	ImStatusStyleGetType          func() T.GType
 	InputDialogGetType            func() T.GType
-	InputDialogNew                func() *T.GtkWidget
+	InputDialogNew                func() *Widget
 	JustificationGetType          func() T.GType
 	MatchTypeGetType              func() T.GType
 	MenuBarGetType                func() T.GType
-	MenuBarNew                    func() *T.GtkWidget
+	MenuBarNew                    func() *Widget
 	MenuDirectionTypeGetType      func() T.GType
 	MenuGetType                   func() T.GType
 	MenuItemGetType               func() T.GType
-	MenuItemNew                   func() *T.GtkWidget
-	MenuNew                       func() *T.GtkWidget
+	MenuItemNew                   func() *Widget
+	MenuNew                       func() *Widget
 	MenuShellGetType              func() T.GType
 	MenuToolButtonGetType         func() T.GType
 	MessageDialogGetType          func() T.GType
@@ -70,16 +68,16 @@ var (
 	MountOperationGetType         func() T.GType
 	MovementStepGetType           func() T.GType
 	NotebookGetType               func() T.GType
-	NotebookNew                   func() *T.GtkWidget
+	NotebookNew                   func() *Widget
 	NotebookTabGetType            func() T.GType
 	NumberUpLayoutGetType         func() T.GType
 	ObjectFlagsGetType            func() T.GType
 	ObjectGetType                 func() T.GType
 	OffscreenWindowGetType        func() T.GType
-	OffscreenWindowNew            func() *T.GtkWidget
+	OffscreenWindowNew            func() *Widget
 	OldEditableGetType            func() T.GType
 	OptionMenuGetType             func() T.GType
-	OptionMenuNew                 func() *T.GtkWidget
+	OptionMenuNew                 func() *Widget
 	OrientableGetType             func() T.GType
 	OrientationGetType            func() T.GType
 	PackDirectionGetType          func() T.GType
@@ -110,7 +108,7 @@ var (
 	PrintStatusGetType            func() T.GType
 	PrivateFlagsGetType           func() T.GType
 	ProgressBarGetType            func() T.GType
-	ProgressBarNew                func() *T.GtkWidget
+	ProgressBarNew                func() *Widget
 	ProgressBarOrientationGetType func() T.GType
 	ProgressBarStyleGetType       func() T.GType
 	ProgressGetType               func() T.GType
@@ -127,9 +125,9 @@ var (
 	RecentChooserErrorGetType     func() T.GType
 	RecentChooserGetType          func() T.GType
 	RecentChooserMenuGetType      func() T.GType
-	RecentChooserMenuNew          func() *T.GtkWidget
+	RecentChooserMenuNew          func() *Widget
 	RecentChooserWidgetGetType    func() T.GType
-	RecentChooserWidgetNew        func() *T.GtkWidget
+	RecentChooserWidgetNew        func() *Widget
 	RecentFilterFlagsGetType      func() T.GType
 	RecentFilterGetType           func() T.GType
 	RecentInfoGetType             func() T.GType
@@ -152,7 +150,7 @@ var (
 	SensitivityTypeGetType        func() T.GType
 	SeparatorGetType              func() T.GType
 	SeparatorMenuItemGetType      func() T.GType
-	SeparatorMenuItemNew          func() *T.GtkWidget
+	SeparatorMenuItemNew          func() *Widget
 	SeparatorToolItemGetType      func() T.GType
 	SettingsGetType               func() T.GType
 	ShadowTypeGetType             func() T.GType
@@ -161,16 +159,16 @@ var (
 	SizeGroupGetType              func() T.GType
 	SizeGroupModeGetType          func() T.GType
 	SocketGetType                 func() T.GType
-	SocketNew                     func() *T.GtkWidget
+	SocketNew                     func() *Widget
 	SortTypeGetType               func() T.GType
 	SpinButtonGetType             func() T.GType
 	SpinButtonUpdatePolicyGetType func() T.GType
 	SpinnerGetType                func() T.GType
-	SpinnerNew                    func() *T.GtkWidget
+	SpinnerNew                    func() *Widget
 	SpinTypeGetType               func() T.GType
 	StateTypeGetType              func() T.GType
 	StatusbarGetType              func() T.GType
-	StatusbarNew                  func() *T.GtkWidget
+	StatusbarNew                  func() *Widget
 	StatusIconGetType             func() T.GType
 	StyleGetType                  func() T.GType
 	SubmenuDirectionGetType       func() T.GType
@@ -179,7 +177,7 @@ var (
 	TargetFlagsGetType            func() T.GType
 	TargetListGetType             func() T.GType
 	TearoffMenuItemGetType        func() T.GType
-	TearoffMenuItemNew            func() *T.GtkWidget
+	TearoffMenuItemNew            func() *Widget
 	TextAttributesGetType         func() T.GType
 	TextBufferGetType             func() T.GType
 	TextBufferTargetInfoGetType   func() T.GType
@@ -191,17 +189,17 @@ var (
 	TextTagGetType                func() T.GType
 	TextTagTableGetType           func() T.GType
 	TextViewGetType               func() T.GType
-	TextViewNew                   func() *T.GtkWidget
+	TextViewNew                   func() *Widget
 	TextWindowTypeGetType         func() T.GType
 	TipsQueryGetType              func() T.GType
-	TipsQueryNew                  func() *T.GtkWidget
+	TipsQueryNew                  func() *Widget
 	ToggleActionGetType           func() T.GType
 	ToggleButtonGetType           func() T.GType
-	ToggleButtonNew               func() *T.GtkWidget
+	ToggleButtonNew               func() *Widget
 	ToggleToolButtonGetType       func() T.GType
 	ToolbarChildTypeGetType       func() T.GType
 	ToolbarGetType                func() T.GType
-	ToolbarNew                    func() *T.GtkWidget
+	ToolbarNew                    func() *Widget
 	ToolbarSpaceStyleGetType      func() T.GType
 	ToolbarStyleGetType           func() T.GType
 	ToolButtonGetType             func() T.GType
@@ -209,7 +207,7 @@ var (
 	ToolItemGroupGetType          func() T.GType
 	ToolPaletteDragTargetsGetType func() T.GType
 	ToolPaletteGetType            func() T.GType
-	ToolPaletteNew                func() *T.GtkWidget
+	ToolPaletteNew                func() *Widget
 	ToolShellGetType              func() T.GType
 	TooltipGetType                func() T.GType
 	TooltipsGetType               func() T.GType
@@ -217,13 +215,13 @@ var (
 	TreeDragSourceGetType         func() T.GType
 	TreeGetType                   func() T.GType
 	TreeItemGetType               func() T.GType
-	TreeItemNew                   func() *T.GtkWidget
+	TreeItemNew                   func() *Widget
 	TreeIterGetType               func() T.GType
 	TreeModelFilterGetType        func() T.GType
 	TreeModelFlagsGetType         func() T.GType
 	TreeModelGetType              func() T.GType
 	TreeModelSortGetType          func() T.GType
-	TreeNew                       func() *T.GtkWidget
+	TreeNew                       func() *Widget
 	TreePathGetType               func() T.GType
 	TreeRowReferenceGetType       func() T.GType
 	TreeSelectionGetType          func() T.GType
@@ -235,30 +233,28 @@ var (
 	TreeViewGetType               func() T.GType
 	TreeViewGridLinesGetType      func() T.GType
 	TreeViewModeGetType           func() T.GType
-	TreeViewNew                   func() *T.GtkWidget
+	TreeViewNew                   func() *Widget
 	UiManagerGetType              func() T.GType
 	UiManagerItemTypeGetType      func() T.GType
 	UnitGetType                   func() T.GType
 	UpdateTypeGetType             func() T.GType
 	VboxGetType                   func() T.GType
 	VbuttonBoxGetType             func() T.GType
-	VbuttonBoxNew                 func() *T.GtkWidget
+	VbuttonBoxNew                 func() *Widget
 	ViewportGetType               func() T.GType
 	VisibilityGetType             func() T.GType
 	VolumeButtonGetType           func() T.GType
-	VolumeButtonNew               func() *T.GtkWidget
+	VolumeButtonNew               func() *Widget
 	VpanedGetType                 func() T.GType
-	VpanedNew                     func() *T.GtkWidget
+	VpanedNew                     func() *Widget
 	VrulerGetType                 func() T.GType
-	VrulerNew                     func() *T.GtkWidget
+	VrulerNew                     func() *Widget
 	VscaleGetType                 func() T.GType
 	VscrollbarGetType             func() T.GType
 	VseparatorGetType             func() T.GType
-	VseparatorNew                 func() *T.GtkWidget
+	VseparatorNew                 func() *Widget
 	WidgetFlagsGetType            func() T.GType
-	WidgetGetType                 func() T.GType
 	WidgetHelpTypeGetType         func() T.GType
-	WindowGetType                 func() T.GType
 	WindowGroupGetType            func() T.GType
 	WindowPositionGetType         func() T.GType
 	WindowTypeGetType             func() T.GType
@@ -448,7 +444,7 @@ var (
 		direction T.GtkTextDirection,
 		state T.GtkStateType,
 		size IconSize,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string) *T.GdkPixbuf
 
 	DrawHline func(
@@ -657,7 +653,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x1 int,
 		x2 int,
@@ -668,7 +664,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		y1 int,
 		y2 int,
@@ -680,7 +676,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -693,7 +689,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		points *T.GdkPoint,
 		nPoints int,
@@ -705,7 +701,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		arrowType T.GtkArrowType,
 		fill T.Gboolean,
@@ -720,7 +716,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -733,7 +729,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -746,7 +742,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -759,7 +755,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -772,7 +768,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -785,7 +781,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -798,7 +794,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -814,7 +810,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -830,7 +826,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -843,7 +839,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -856,7 +852,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -870,7 +866,7 @@ var (
 		stateType T.GtkStateType,
 		shadowType T.GtkShadowType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -883,7 +879,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -895,7 +891,7 @@ var (
 		stateType T.GtkStateType,
 		useText T.Gboolean,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
@@ -906,7 +902,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		edge T.GdkWindowEdge,
 		x int,
@@ -919,7 +915,7 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		step uint,
 		x int,
@@ -955,14 +951,14 @@ var (
 		window *T.GdkWindow,
 		stateType T.GtkStateType,
 		area *T.GdkRectangle,
-		widget *T.GtkWidget,
+		widget *Widget,
 		detail string,
 		x int,
 		y int,
 		string string)
 
 	DrawInsertionCursor func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		drawable *T.GdkDrawable,
 		area *T.GdkRectangle,
 		location *T.GdkRectangle,
@@ -979,7 +975,7 @@ var (
 	RcGetDefaultFiles func() **T.Gchar
 
 	RcGetStyle func(
-		widget *T.GtkWidget) *T.GtkStyle
+		widget *Widget) *T.GtkStyle
 
 	RcGetStyleByPaths func(
 		settings *T.GtkSettings,
@@ -1120,506 +1116,6 @@ var (
 		vDouble float64,
 		origin string)
 
-	WidgetNew func(t T.GType, firstPropertyName string,
-		v ...VArg) *T.GtkWidget
-
-	WidgetDestroy func(
-		widget *T.GtkWidget)
-
-	WidgetDestroyed func(
-		widget *T.GtkWidget,
-		widgetPointer **T.GtkWidget)
-
-	WidgetRef func(
-		widget *T.GtkWidget) *T.GtkWidget
-
-	WidgetUnref func(
-		widget *T.GtkWidget)
-
-	WidgetSet func(widget *T.GtkWidget,
-		firstPropertyName string, v ...VArg)
-
-	WidgetHideAll func(
-		widget *T.GtkWidget)
-
-	WidgetUnparent func(
-		widget *T.GtkWidget)
-
-	WidgetShow func(
-		widget *T.GtkWidget)
-
-	WidgetShowNow func(
-		widget *T.GtkWidget)
-
-	WidgetHide func(
-		widget *T.GtkWidget)
-
-	WidgetShowAll func(
-		widget *T.GtkWidget)
-
-	WidgetSetNoShowAll func(
-		widget *T.GtkWidget,
-		noShowAll T.Gboolean)
-
-	WidgetGetNoShowAll func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetMap func(
-		widget *T.GtkWidget)
-
-	WidgetUnmap func(
-		widget *T.GtkWidget)
-
-	WidgetRealize func(
-		widget *T.GtkWidget)
-
-	WidgetUnrealize func(
-		widget *T.GtkWidget)
-
-	WidgetQueueDraw func(
-		widget *T.GtkWidget)
-
-	WidgetQueueDrawArea func(
-		widget *T.GtkWidget, x, y, width, height int)
-
-	WidgetQueueClear func(
-		widget *T.GtkWidget)
-
-	WidgetQueueClearArea func(
-		widget *T.GtkWidget, x, y, width, height int)
-
-	WidgetQueueResize func(widget *T.GtkWidget)
-
-	WidgetQueueResizeNoRedraw func(widget *T.GtkWidget)
-
-	WidgetDraw func(widget *T.GtkWidget, area *T.GdkRectangle)
-
-	WidgetSizeRequest func(
-		widget *T.GtkWidget,
-		requisition *T.GtkRequisition)
-
-	WidgetSizeAllocate func(
-		widget *T.GtkWidget,
-		allocation *T.GtkAllocation)
-
-	WidgetGetChildRequisition func(
-		widget *T.GtkWidget,
-		requisition *T.GtkRequisition)
-
-	WidgetAddAccelerator func(
-		widget *T.GtkWidget,
-		accelSignal string,
-		accelGroup *AccelGroup,
-		accelKey uint,
-		accelMods T.GdkModifierType,
-		accelFlags AccelFlags)
-
-	WidgetRemoveAccelerator func(
-		widget *T.GtkWidget,
-		accelGroup *AccelGroup,
-		accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
-
-	WidgetSetAccelPath func(
-		widget *T.GtkWidget,
-		accelPath string,
-		accelGroup *AccelGroup)
-
-	WidgetListAccelClosures func(
-		widget *T.GtkWidget) *T.GList
-
-	WidgetCanActivateAccel func(
-		widget *T.GtkWidget,
-		signalId uint) T.Gboolean
-
-	WidgetMnemonicActivate func(
-		widget *T.GtkWidget,
-		groupCycling T.Gboolean) T.Gboolean
-
-	WidgetEvent func(
-		widget *T.GtkWidget,
-		event *T.GdkEvent) T.Gboolean
-
-	WidgetSendExpose func(
-		widget *T.GtkWidget,
-		event *T.GdkEvent) int
-
-	WidgetSendFocusChange func(
-		widget *T.GtkWidget,
-		event *T.GdkEvent) T.Gboolean
-
-	WidgetActivate func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetScrollAdjustments func(
-		widget *T.GtkWidget,
-		hadjustment,
-		vadjustment *Adjustment) T.Gboolean
-
-	WidgetReparent func(
-		widget,
-		newParent *T.GtkWidget)
-
-	WidgetIntersect func(
-		widget *T.GtkWidget,
-		area,
-		intersection *T.GdkRectangle) T.Gboolean
-
-	WidgetRegionIntersect func(
-		widget *T.GtkWidget,
-		region *T.GdkRegion) *T.GdkRegion
-
-	WidgetFreezeChildNotify func(
-		widget *T.GtkWidget)
-
-	WidgetChildNotify func(
-		widget *T.GtkWidget,
-		childProperty string)
-
-	WidgetThawChildNotify func(
-		widget *T.GtkWidget)
-
-	WidgetSetCanFocus func(
-		widget *T.GtkWidget,
-		canFocus T.Gboolean)
-
-	WidgetGetCanFocus func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetHasFocus func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetIsFocus func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetGrabFocus func(
-		widget *T.GtkWidget)
-
-	WidgetSetCanDefault func(
-		widget *T.GtkWidget,
-		canDefault T.Gboolean)
-
-	WidgetGetCanDefault func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetHasDefault func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetGrabDefault func(
-		widget *T.GtkWidget)
-
-	WidgetSetReceivesDefault func(
-		widget *T.GtkWidget,
-		receivesDefault T.Gboolean)
-
-	WidgetGetReceivesDefault func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetHasGrab func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetName func(
-		widget *T.GtkWidget,
-		name string)
-
-	WidgetGetName func(
-		widget *T.GtkWidget) string
-
-	WidgetSetState func(
-		widget *T.GtkWidget,
-		state T.GtkStateType)
-
-	WidgetGetState func(
-		widget *T.GtkWidget) T.GtkStateType
-
-	WidgetSetSensitive func(
-		widget *T.GtkWidget,
-		sensitive T.Gboolean)
-
-	WidgetGetSensitive func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetIsSensitive func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetVisible func(
-		widget *T.GtkWidget,
-		visible T.Gboolean)
-
-	WidgetGetVisible func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetHasWindow func(
-		widget *T.GtkWidget,
-		hasWindow T.Gboolean)
-
-	WidgetGetHasWindow func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetIsToplevel func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetIsDrawable func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetRealized func(
-		widget *T.GtkWidget,
-		realized T.Gboolean)
-
-	WidgetGetRealized func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetMapped func(
-		widget *T.GtkWidget,
-		mapped T.Gboolean)
-
-	WidgetGetMapped func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetAppPaintable func(
-		widget *T.GtkWidget,
-		appPaintable T.Gboolean)
-
-	WidgetGetAppPaintable func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetDoubleBuffered func(
-		widget *T.GtkWidget,
-		doubleBuffered T.Gboolean)
-
-	WidgetGetDoubleBuffered func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetRedrawOnAllocate func(
-		widget *T.GtkWidget,
-		redrawOnAllocate T.Gboolean)
-
-	WidgetSetParent func(
-		widget *T.GtkWidget,
-		parent *T.GtkWidget)
-
-	WidgetGetParent func(
-		widget *T.GtkWidget) *T.GtkWidget
-
-	WidgetSetParentWindow func(
-		widget *T.GtkWidget,
-		parentWindow *T.GdkWindow)
-
-	WidgetGetParentWindow func(
-		widget *T.GtkWidget) *T.GdkWindow
-
-	WidgetSetChildVisible func(
-		widget *T.GtkWidget,
-		isVisible T.Gboolean)
-
-	WidgetGetChildVisible func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetWindow func(
-		widget *T.GtkWidget,
-		window *T.GdkWindow)
-
-	WidgetGetWindow func(
-		widget *T.GtkWidget) *T.GdkWindow
-
-	WidgetGetAllocation func(
-		widget *T.GtkWidget,
-		allocation *T.GtkAllocation)
-
-	WidgetSetAllocation func(
-		widget *T.GtkWidget,
-		allocation *T.GtkAllocation)
-
-	WidgetGetRequisition func(
-		widget *T.GtkWidget,
-		requisition *T.GtkRequisition)
-
-	WidgetChildFocus func(
-		widget *T.GtkWidget,
-		direction T.GtkDirectionType) T.Gboolean
-
-	WidgetKeynavFailed func(
-		widget *T.GtkWidget,
-		direction T.GtkDirectionType) T.Gboolean
-
-	WidgetErrorBell func(
-		widget *T.GtkWidget)
-
-	WidgetSetSizeRequest func(
-		widget *T.GtkWidget,
-		width int,
-		height int)
-
-	WidgetGetSizeRequest func(
-		widget *T.GtkWidget,
-		width *int,
-		height *int)
-
-	WidgetSetUposition func(
-		widget *T.GtkWidget,
-		x int,
-		y int)
-
-	WidgetSetUsize func(
-		widget *T.GtkWidget,
-		width int,
-		height int)
-
-	WidgetSetEvents func(
-		widget *T.GtkWidget,
-		events int)
-
-	WidgetAddEvents func(
-		widget *T.GtkWidget,
-		events int)
-
-	WidgetSetExtensionEvents func(
-		widget *T.GtkWidget,
-		mode T.GdkExtensionMode)
-
-	WidgetGetExtensionEvents func(
-		widget *T.GtkWidget) T.GdkExtensionMode
-
-	WidgetGetToplevel func(
-		widget *T.GtkWidget) *T.GtkWidget
-
-	WidgetGetAncestor func(
-		widget *T.GtkWidget,
-		widgetType T.GType) *T.GtkWidget
-
-	WidgetGetColormap func(
-		widget *T.GtkWidget) *T.GdkColormap
-
-	WidgetGetVisual func(
-		widget *T.GtkWidget) *T.GdkVisual
-
-	WidgetGetScreen func(
-		widget *T.GtkWidget) *T.GdkScreen
-
-	WidgetHasScreen func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetGetDisplay func(
-		widget *T.GtkWidget) *T.GdkDisplay
-
-	WidgetGetRootWindow func(
-		widget *T.GtkWidget) *T.GdkWindow
-
-	WidgetGetSettings func(
-		widget *T.GtkWidget) *T.GtkSettings
-
-	WidgetGetSnapshot func(
-		widget *T.GtkWidget,
-		clipRect *T.GdkRectangle) *T.GdkPixmap
-
-	WidgetGetAccessible func(
-		widget *T.GtkWidget) *T.AtkObject
-
-	WidgetSetColormap func(
-		widget *T.GtkWidget,
-		colormap *T.GdkColormap)
-
-	WidgetGetEvents func(
-		widget *T.GtkWidget) int
-
-	WidgetGetPointer func(
-		widget *T.GtkWidget,
-		x *int,
-		y *int)
-
-	WidgetIsAncestor func(
-		widget *T.GtkWidget,
-		ancestor *T.GtkWidget) T.Gboolean
-
-	WidgetTranslateCoordinates func(
-		srcWidget *T.GtkWidget,
-		destWidget *T.GtkWidget,
-		srcX int,
-		srcY int,
-		destX *int,
-		destY *int) T.Gboolean
-
-	WidgetHideOnDelete func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetStyleAttach func(
-		style *T.GtkWidget)
-
-	WidgetHasRcStyle func(
-		widget *T.GtkWidget) T.Gboolean
-
-	WidgetSetStyle func(
-		widget *T.GtkWidget,
-		style *T.GtkStyle)
-
-	WidgetEnsureStyle func(
-		widget *T.GtkWidget)
-
-	WidgetGetStyle func(
-		widget *T.GtkWidget) *T.GtkStyle
-
-	WidgetModifyStyle func(
-		widget *T.GtkWidget,
-		style *T.GtkRcStyle)
-
-	WidgetGetModifierStyle func(
-		widget *T.GtkWidget) *T.GtkRcStyle
-
-	WidgetModifyFg func(
-		widget *T.GtkWidget,
-		state T.GtkStateType,
-		color *T.GdkColor)
-
-	WidgetModifyBg func(
-		widget *T.GtkWidget,
-		state T.GtkStateType,
-		color *T.GdkColor)
-
-	WidgetModifyText func(
-		widget *T.GtkWidget,
-		state T.GtkStateType,
-		color *T.GdkColor)
-
-	WidgetModifyBase func(
-		widget *T.GtkWidget,
-		state T.GtkStateType,
-		color *T.GdkColor)
-
-	WidgetModifyCursor func(
-		widget *T.GtkWidget,
-		primary *T.GdkColor,
-		secondary *T.GdkColor)
-
-	WidgetModifyFont func(
-		widget *T.GtkWidget,
-		fontDesc *T.PangoFontDescription)
-
-	WidgetCreatePangoContext func(
-		widget *T.GtkWidget) *T.PangoContext
-
-	WidgetGetPangoContext func(
-		widget *T.GtkWidget) *T.PangoContext
-
-	WidgetCreatePangoLayout func(
-		widget *T.GtkWidget,
-		text string) *T.PangoLayout
-
-	WidgetRenderIcon func(
-		widget *T.GtkWidget,
-		stockId string,
-		size IconSize,
-		detail string) *T.GdkPixbuf
-
-	WidgetSetCompositeName func(
-		widget *T.GtkWidget,
-		name string)
-
-	WidgetGetCompositeName func(
-		widget *T.GtkWidget) string
-
-	WidgetResetRcStyles func(
-		widget *T.GtkWidget)
-
 	WidgetPushColormap func(
 		cmap *T.GdkColormap)
 
@@ -1647,16 +1143,16 @@ var (
 		nProperties *uint) **T.GParamSpec
 
 	WidgetStyleGetProperty func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		propertyName string,
 		value *T.GValue)
 
 	WidgetStyleGetValist func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		firstPropertyName string,
 		varArgs T.VaList)
 
-	WidgetStyleGet func(widget *T.GtkWidget,
+	WidgetStyleGet func(widget *Widget,
 		firstPropertyName string, v ...VArg)
 
 	WidgetSetDefaultColormap func(
@@ -1669,11 +1165,11 @@ var (
 	WidgetGetDefaultVisual func() *T.GdkVisual
 
 	WidgetSetDirection func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		dir T.GtkTextDirection)
 
 	WidgetGetDirection func(
-		widget *T.GtkWidget) T.GtkTextDirection
+		widget *Widget) T.GtkTextDirection
 
 	WidgetSetDefaultDirection func(
 		dir T.GtkTextDirection)
@@ -1681,76 +1177,76 @@ var (
 	WidgetGetDefaultDirection func() T.GtkTextDirection
 
 	WidgetIsComposited func(
-		widget *T.GtkWidget) T.Gboolean
+		widget *Widget) T.Gboolean
 
 	WidgetShapeCombineMask func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		shapeMask *T.GdkBitmap,
 		offsetX int,
 		offsetY int)
 
 	WidgetInputShapeCombineMask func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		shapeMask *T.GdkBitmap,
 		offsetX int,
 		offsetY int)
 
 	WidgetResetShapes func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	WidgetPath func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		pathLength *uint,
 		path **T.Gchar,
 		pathReversed **T.Gchar)
 
 	WidgetClassPath func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		pathLength *uint,
 		path **T.Gchar,
 		pathReversed **T.Gchar)
 
 	WidgetListMnemonicLabels func(
-		widget *T.GtkWidget) *T.GList
+		widget *Widget) *T.GList
 
 	WidgetAddMnemonicLabel func(
-		widget *T.GtkWidget,
-		label *T.GtkWidget)
+		widget *Widget,
+		label *Widget)
 
 	WidgetRemoveMnemonicLabel func(
-		widget *T.GtkWidget,
-		label *T.GtkWidget)
+		widget *Widget,
+		label *Widget)
 
 	WidgetSetTooltipWindow func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		customWindow *T.GtkWindow)
 
 	WidgetGetTooltipWindow func(
-		widget *T.GtkWidget) *T.GtkWindow
+		widget *Widget) *T.GtkWindow
 
 	WidgetTriggerTooltipQuery func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	WidgetSetTooltipText func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		text string)
 
 	WidgetGetTooltipText func(
-		widget *T.GtkWidget) string
+		widget *Widget) string
 
 	WidgetSetTooltipMarkup func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		markup string)
 
 	WidgetGetTooltipMarkup func(
-		widget *T.GtkWidget) string
+		widget *Widget) string
 
 	WidgetSetHasTooltip func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		hasTooltip T.Gboolean)
 
 	WidgetGetHasTooltip func(
-		widget *T.GtkWidget) T.Gboolean
+		widget *Widget) T.Gboolean
 
 	RequisitionCopy func(
 		requisition *T.GtkRequisition) *T.GtkRequisition
@@ -1767,11 +1263,11 @@ var (
 
 	ContainerAdd func(
 		container *T.GtkContainer,
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	ContainerRemove func(
 		container *T.GtkContainer,
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	ContainerSetResizeMode func(
 		container *T.GtkContainer,
@@ -1800,7 +1296,7 @@ var (
 
 	ContainerPropagateExpose func(
 		container *T.GtkContainer,
-		child *T.GtkWidget,
+		child *Widget,
 		event *T.GdkEventExpose)
 
 	ContainerSetFocusChain func(
@@ -1820,10 +1316,10 @@ var (
 
 	ContainerSetFocusChild func(
 		container *T.GtkContainer,
-		child *T.GtkWidget)
+		child *Widget)
 
 	ContainerGetFocusChild func(
-		container *T.GtkContainer) *T.GtkWidget
+		container *T.GtkContainer) *Widget
 
 	ContainerSetFocusVadjustment func(
 		container *T.GtkContainer,
@@ -1859,37 +1355,37 @@ var (
 		nProperties *uint) **T.GParamSpec
 
 	ContainerAddWithProperties func(
-		container *T.GtkContainer, widget *T.GtkWidget,
+		container *T.GtkContainer, widget *Widget,
 		firstPropName string, v ...VArg)
 
 	ContainerChildSet func(
-		container *T.GtkContainer, child *T.GtkWidget,
+		container *T.GtkContainer, child *Widget,
 		firstPropName string, v ...VArg)
 
 	ContainerChildGet func(container *T.GtkContainer,
-		child *T.GtkWidget, firstPropName string, v ...VArg)
+		child *Widget, firstPropName string, v ...VArg)
 
 	ContainerChildSetValist func(
 		container *T.GtkContainer,
-		child *T.GtkWidget,
+		child *Widget,
 		firstPropertyName string,
 		varArgs T.VaList)
 
 	ContainerChildGetValist func(
 		container *T.GtkContainer,
-		child *T.GtkWidget,
+		child *Widget,
 		firstPropertyName string,
 		varArgs T.VaList)
 
 	ContainerChildSetProperty func(
 		container *T.GtkContainer,
-		child *T.GtkWidget,
+		child *Widget,
 		propertyName string,
 		value *T.GValue)
 
 	ContainerChildGetProperty func(
 		container *T.GtkContainer,
-		child *T.GtkWidget,
+		child *Widget,
 		propertyName string,
 		value *T.GValue)
 
@@ -1898,416 +1394,8 @@ var (
 		callback T.GtkCallback,
 		callbackData T.Gpointer)
 
-	WindowNew func(
-		t T.GtkWindowType) *T.GtkWidget
-
-	WindowSetTitle func(
-		window *T.GtkWindow,
-		title string)
-
-	WindowGetTitle func(
-		window *T.GtkWindow) string
-
-	WindowSetWmclass func(
-		window *T.GtkWindow,
-		wmclassName string,
-		wmclassClass string)
-
-	WindowSetRole func(
-		window *T.GtkWindow,
-		role string)
-
-	WindowSetStartupId func(
-		window *T.GtkWindow,
-		startupId string)
-
-	WindowGetRole func(
-		window *T.GtkWindow) string
-
-	WindowAddAccelGroup func(
-		window *T.GtkWindow,
-		accelGroup *AccelGroup)
-
-	WindowRemoveAccelGroup func(
-		window *T.GtkWindow,
-		accelGroup *AccelGroup)
-
-	WindowSetPosition func(
-		window *T.GtkWindow,
-		position T.GtkWindowPosition)
-
-	WindowActivateFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFocus func(
-		window *T.GtkWindow,
-		focus *T.GtkWidget)
-
-	WindowGetFocus func(
-		window *T.GtkWindow) *T.GtkWidget
-
-	WindowSetDefault func(
-		window *T.GtkWindow,
-		defaultWidget *T.GtkWidget)
-
-	WindowGetDefaultWidget func(
-		window *T.GtkWindow) *T.GtkWidget
-
-	WindowActivateDefault func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetTransientFor func(
-		window *T.GtkWindow,
-		parent *T.GtkWindow)
-
-	WindowGetTransientFor func(
-		window *T.GtkWindow) *T.GtkWindow
-
-	WindowSetOpacity func(
-		window *T.GtkWindow,
-		opacity float64)
-
-	WindowGetOpacity func(
-		window *T.GtkWindow) float64
-
-	WindowSetTypeHint func(
-		window *T.GtkWindow,
-		hint T.GdkWindowTypeHint)
-
-	WindowGetTypeHint func(
-		window *T.GtkWindow) T.GdkWindowTypeHint
-
-	WindowSetSkipTaskbarHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetSkipTaskbarHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetSkipPagerHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetSkipPagerHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetUrgencyHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetUrgencyHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetAcceptFocus func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetAcceptFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFocusOnMap func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetFocusOnMap func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetDestroyWithParent func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDestroyWithParent func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetMnemonicsVisible func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetMnemonicsVisible func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetResizable func(
-		window *T.GtkWindow,
-		resizable T.Gboolean)
-
-	WindowGetResizable func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetGravity func(
-		window *T.GtkWindow,
-		gravity T.GdkGravity)
-
-	WindowGetGravity func(
-		window *T.GtkWindow) T.GdkGravity
-
-	WindowSetGeometryHints func(
-		window *T.GtkWindow,
-		geometryWidget *T.GtkWidget,
-		geometry *T.GdkGeometry,
-		geomMask T.GdkWindowHints)
-
-	WindowSetScreen func(
-		window *T.GtkWindow,
-		screen *T.GdkScreen)
-
-	WindowGetScreen func(
-		window *T.GtkWindow) *T.GdkScreen
-
-	WindowIsActive func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowHasToplevelFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetHasFrame func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetHasFrame func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFrameDimensions func(
-		window *T.GtkWindow,
-		left int,
-		top int,
-		right int,
-		bottom int)
-
-	WindowGetFrameDimensions func(
-		window *T.GtkWindow,
-		left *int,
-		top *int,
-		right *int,
-		bottom *int)
-
-	WindowSetDecorated func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDecorated func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetDeletable func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDeletable func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetIconList func(
-		window *T.GtkWindow,
-		list *T.GList)
-
-	WindowGetIconList func(
-		window *T.GtkWindow) *T.GList
-
-	WindowSetIcon func(
-		window *T.GtkWindow,
-		icon *T.GdkPixbuf)
-
-	WindowSetIconName func(
-		window *T.GtkWindow,
-		name string)
-
-	WindowSetIconFromFile func(
-		window *T.GtkWindow,
-		filename string,
-		err **T.GError) T.Gboolean
-
-	WindowGetIcon func(
-		window *T.GtkWindow) *T.GdkPixbuf
-
-	WindowGetIconName func(
-		window *T.GtkWindow) string
-
-	WindowSetDefaultIconList func(
-		list *T.GList)
-
-	WindowGetDefaultIconList func() *T.GList
-
-	WindowSetDefaultIcon func(
-		icon *T.GdkPixbuf)
-
-	WindowSetDefaultIconName func(
-		name string)
-
-	WindowGetDefaultIconName func() string
-
-	WindowSetDefaultIconFromFile func(
-		filename string,
-		err **T.GError) T.Gboolean
-
-	WindowSetAutoStartupNotification func(
-		setting T.Gboolean)
-
-	WindowSetModal func(
-		window *T.GtkWindow,
-		modal T.Gboolean)
-
-	WindowGetModal func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowListToplevels func() *T.GList
-
-	WindowAddMnemonic func(
-		window *T.GtkWindow,
-		keyval uint,
-		target *T.GtkWidget)
-
-	WindowRemoveMnemonic func(
-		window *T.GtkWindow,
-		keyval uint,
-		target *T.GtkWidget)
-
-	WindowMnemonicActivate func(
-		window *T.GtkWindow,
-		keyval uint,
-		modifier T.GdkModifierType) T.Gboolean
-
-	WindowSetMnemonicModifier func(
-		window *T.GtkWindow,
-		modifier T.GdkModifierType)
-
-	WindowGetMnemonicModifier func(
-		window *T.GtkWindow) T.GdkModifierType
-
-	WindowActivateKey func(
-		window *T.GtkWindow,
-		event *T.GdkEventKey) T.Gboolean
-
-	WindowPropagateKeyEvent func(
-		window *T.GtkWindow,
-		event *T.GdkEventKey) T.Gboolean
-
-	WindowPresent func(
-		window *T.GtkWindow)
-
-	WindowPresentWithTime func(
-		window *T.GtkWindow,
-		timestamp T.GUint32)
-
-	WindowIconify func(
-		window *T.GtkWindow)
-
-	WindowDeiconify func(
-		window *T.GtkWindow)
-
-	WindowStick func(
-		window *T.GtkWindow)
-
-	WindowUnstick func(
-		window *T.GtkWindow)
-
-	WindowMaximize func(
-		window *T.GtkWindow)
-
-	WindowUnmaximize func(
-		window *T.GtkWindow)
-
-	WindowFullscreen func(
-		window *T.GtkWindow)
-
-	WindowUnfullscreen func(
-		window *T.GtkWindow)
-
-	WindowSetKeepAbove func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowSetKeepBelow func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowBeginResizeDrag func(
-		window *T.GtkWindow,
-		edge T.GdkWindowEdge,
-		button int,
-		rootX int,
-		rootY int,
-		timestamp T.GUint32)
-
-	WindowBeginMoveDrag func(
-		window *T.GtkWindow,
-		button int,
-		rootX int,
-		rootY int,
-		timestamp T.GUint32)
-
-	WindowSetPolicy func(
-		window *T.GtkWindow,
-		allowShrink int,
-		allowGrow int,
-		autoShrink int)
-
-	WindowSetDefaultSize func(
-		window *T.GtkWindow,
-		width int,
-		height int)
-
-	WindowGetDefaultSize func(
-		window *T.GtkWindow,
-		width *int,
-		height *int)
-
-	WindowResize func(
-		window *T.GtkWindow,
-		width int,
-		height int)
-
-	WindowGetSize func(
-		window *T.GtkWindow,
-		width *int,
-		height *int)
-
-	WindowMove func(
-		window *T.GtkWindow,
-		x int,
-		y int)
-
-	WindowGetPosition func(
-		window *T.GtkWindow,
-		rootX *int,
-		rootY *int)
-
-	WindowParseGeometry func(
-		window *T.GtkWindow,
-		geometry string) T.Gboolean
-
-	WindowGetGroup func(
-		window *T.GtkWindow) *T.GtkWindowGroup
-
-	WindowHasGroup func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowReshowWithInitialSize func(
-		window *T.GtkWindow)
-
-	WindowGetWindowType func(
-		window *T.GtkWindow) T.GtkWindowType
-
-	WindowGroupNew func() *T.GtkWindowGroup
-
-	WindowGroupAddWindow func(
-		windowGroup *T.GtkWindowGroup,
-		window *T.GtkWindow)
-
-	WindowGroupRemoveWindow func(
-		windowGroup *T.GtkWindowGroup,
-		window *T.GtkWindow)
-
-	WindowGroupListWindows func(
-		windowGroup *T.GtkWindowGroup) *T.GList
-
-	WindowRemoveEmbeddedXid func(
-		window *T.GtkWindow,
-		xid T.GdkNativeWindow)
-
-	WindowAddEmbeddedXid func(
-		window *T.GtkWindow,
-		xid T.GdkNativeWindow)
-
 	WindowGroupGetCurrentGrab func(
-		windowGroup *T.GtkWindowGroup) *T.GtkWidget
+		windowGroup *T.GtkWindowGroup) *Widget
 
 	MiscSetAlignment func(
 		misc *T.GtkMisc,
@@ -2331,15 +1419,15 @@ var (
 
 	MenuShellAppend func(
 		menuShell *T.GtkMenuShell,
-		child *T.GtkWidget)
+		child *Widget)
 
 	MenuShellPrepend func(
 		menuShell *T.GtkMenuShell,
-		child *T.GtkWidget)
+		child *Widget)
 
 	MenuShellInsert func(
 		menuShell *T.GtkMenuShell,
-		child *T.GtkWidget,
+		child *Widget,
 		position int)
 
 	MenuShellDeactivate func(
@@ -2347,14 +1435,14 @@ var (
 
 	MenuShellSelectItem func(
 		menuShell *T.GtkMenuShell,
-		menuItem *T.GtkWidget)
+		menuItem *Widget)
 
 	MenuShellDeselect func(
 		menuShell *T.GtkMenuShell)
 
 	MenuShellActivateItem func(
 		menuShell *T.GtkMenuShell,
-		menuItem *T.GtkWidget,
+		menuItem *Widget,
 		forceDeactivate T.Gboolean)
 
 	MenuShellSelectFirst func(
@@ -2373,8 +1461,8 @@ var (
 
 	MenuPopup func(
 		menu *T.GtkMenu,
-		parentMenuShell *T.GtkWidget,
-		parentMenuItem *T.GtkWidget,
+		parentMenuShell *Widget,
+		parentMenuItem *Widget,
 		f T.GtkMenuPositionFunc,
 		dataGpointer,
 		button uint,
@@ -2387,7 +1475,7 @@ var (
 		menu *T.GtkMenu)
 
 	MenuGetActive func(
-		menu *T.GtkMenu) *T.GtkWidget
+		menu *T.GtkMenu) *Widget
 
 	MenuSetActive func(
 		menu *T.GtkMenu,
@@ -2409,14 +1497,14 @@ var (
 
 	MenuAttachToWidget func(
 		menu *T.GtkMenu,
-		attachWidget *T.GtkWidget,
+		attachWidget *Widget,
 		detacher T.GtkMenuDetachFunc)
 
 	MenuDetach func(
 		menu *T.GtkMenu)
 
 	MenuGetAttachWidget func(
-		menu *T.GtkMenu) *T.GtkWidget
+		menu *T.GtkMenu) *Widget
 
 	MenuSetTearoffState func(
 		menu *T.GtkMenu,
@@ -2434,7 +1522,7 @@ var (
 
 	MenuReorderChild func(
 		menu *T.GtkMenu,
-		child *T.GtkWidget,
+		child *Widget,
 		position int)
 
 	MenuSetScreen func(
@@ -2443,7 +1531,7 @@ var (
 
 	MenuAttach func(
 		menu *T.GtkMenu,
-		child *T.GtkWidget,
+		child *Widget,
 		leftAttach uint,
 		rightAttach uint,
 		topAttach uint,
@@ -2457,7 +1545,7 @@ var (
 		menu *T.GtkMenu) int
 
 	MenuGetForAttachWidget func(
-		widget *T.GtkWidget) *T.GList
+		widget *Widget) *T.GList
 
 	MenuSetReserveToggleSize func(
 		menu *T.GtkMenu,
@@ -2475,7 +1563,7 @@ var (
 		xalign float32,
 		yalign float32,
 		xscale float32,
-		yscale float32) *T.GtkWidget
+		yscale float32) *Widget
 
 	AlignmentSet func(
 		alignment *T.GtkAlignment,
@@ -2869,10 +1957,10 @@ var (
 		sortable *T.GtkTreeSortable) T.Gboolean
 
 	ToggleButtonNewWithLabel func(
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	ToggleButtonNewWithMnemonic func(
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	ToggleButtonSetMode func(
 		toggleButton *T.GtkToggleButton,
@@ -2899,17 +1987,17 @@ var (
 		toggleButton *T.GtkToggleButton) T.Gboolean
 
 	MenuItemNewWithLabel func(
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	MenuItemNewWithMnemonic func(
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	MenuItemSetSubmenu func(
 		menuItem *T.GtkMenuItem,
-		submenu *T.GtkWidget)
+		submenu *Widget)
 
 	MenuItemGetSubmenu func(
-		menuItem *T.GtkMenuItem) *T.GtkWidget
+		menuItem *T.GtkMenuItem) *Widget
 
 	MenuItemSelect func(
 		menuItem *T.GtkMenuItem)
@@ -3383,34 +2471,34 @@ var (
 		nTargets int)
 
 	SelectionOwnerSet func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom,
 		time T.GUint32) T.Gboolean
 
 	SelectionOwnerSetForDisplay func(
 		display *T.GdkDisplay,
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom,
 		time T.GUint32) T.Gboolean
 
 	SelectionAddTarget func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		info uint)
 
 	SelectionAddTargets func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom,
 		targets *T.GtkTargetEntry,
 		ntargets uint)
 
 	SelectionClearTargets func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom)
 
 	SelectionConvert func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		selection T.GdkAtom,
 		target T.GdkAtom,
 		time T.GUint32) T.Gboolean
@@ -3503,10 +2591,10 @@ var (
 		nTargets int) T.Gboolean
 
 	SelectionRemoveAll func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	SelectionClear func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		event *T.GdkEventSelection) T.Gboolean
 
 	SelectionDataCopy func(
@@ -3517,10 +2605,10 @@ var (
 
 	VboxNew func(
 		homogeneous T.Gboolean,
-		spacing int) *T.GtkWidget
+		spacing int) *Widget
 
 	DragGetData func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		context *T.GdkDragContext,
 		target T.GdkAtom,
 		time T.GUint32)
@@ -3532,104 +2620,104 @@ var (
 		time T.GUint32)
 
 	DragGetSourceWidget func(
-		context *T.GdkDragContext) *T.GtkWidget
+		context *T.GdkDragContext) *Widget
 
 	DragHighlight func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragUnhighlight func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragDestSet func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		flags T.GtkDestDefaults,
 		targets *T.GtkTargetEntry,
 		nTargets int,
 		actions T.GdkDragAction)
 
 	DragDestSetProxy func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		proxyWindow *T.GdkWindow,
 		protocol T.GdkDragProtocol,
 		useCoordinates T.Gboolean)
 
 	DragDestUnset func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragDestFindTarget func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		context *T.GdkDragContext,
 		targetList *T.GtkTargetList) T.GdkAtom
 
 	DragDestGetTargetList func(
-		widget *T.GtkWidget) *T.GtkTargetList
+		widget *Widget) *T.GtkTargetList
 
 	DragDestSetTargetList func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		targetList *T.GtkTargetList)
 
 	DragDestAddTextTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragDestAddImageTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragDestAddUriTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragDestSetTrackMotion func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		trackMotion T.Gboolean)
 
 	DragDestGetTrackMotion func(
-		widget *T.GtkWidget) T.Gboolean
+		widget *Widget) T.Gboolean
 
 	DragSourceSet func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		startButtonMask T.GdkModifierType,
 		targets *T.GtkTargetEntry,
 		nTargets int,
 		actions T.GdkDragAction)
 
 	DragSourceUnset func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragSourceGetTargetList func(
-		widget *T.GtkWidget) *T.GtkTargetList
+		widget *Widget) *T.GtkTargetList
 
 	DragSourceSetTargetList func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		targetList *T.GtkTargetList)
 
 	DragSourceAddTextTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragSourceAddImageTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragSourceAddUriTargets func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	DragSourceSetIcon func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		colormap *T.GdkColormap,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap)
 
 	DragSourceSetIconPixbuf func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		pixbuf *T.GdkPixbuf)
 
 	DragSourceSetIconStock func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		stockId string)
 
 	DragSourceSetIconName func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		iconName string)
 
 	DragBegin func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		targets *T.GtkTargetList,
 		actions T.GdkDragAction,
 		button int,
@@ -3637,7 +2725,7 @@ var (
 
 	DragSetIconWidget func(
 		context *T.GdkDragContext,
-		widget *T.GtkWidget,
+		widget *Widget,
 		hotX int,
 		hotY int)
 
@@ -3671,7 +2759,7 @@ var (
 		context *T.GdkDragContext)
 
 	DragCheckThreshold func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		startX int,
 		startY int,
 		currentX int,
@@ -3734,7 +2822,7 @@ var (
 		filter *T.GtkTreeModelFilter)
 
 	TreeViewNewWithModel func(
-		model *T.GtkTreeModel) *T.GtkWidget
+		model *T.GtkTreeModel) *Widget
 
 	TreeViewGetModel func(
 		treeView *T.GtkTreeView) *T.GtkTreeModel
@@ -4185,21 +3273,21 @@ var (
 
 	PanedAdd1 func(
 		paned *T.GtkPaned,
-		child *T.GtkWidget)
+		child *Widget)
 
 	PanedAdd2 func(
 		paned *T.GtkPaned,
-		child *T.GtkWidget)
+		child *Widget)
 
 	PanedPack1 func(
 		paned *T.GtkPaned,
-		child *T.GtkWidget,
+		child *Widget,
 		resize T.Gboolean,
 		shrink T.Gboolean)
 
 	PanedPack2 func(
 		paned *T.GtkPaned,
-		child *T.GtkWidget,
+		child *Widget,
 		resize T.Gboolean,
 		shrink T.Gboolean)
 
@@ -4211,10 +3299,10 @@ var (
 		position int)
 
 	PanedGetChild1 func(
-		paned *T.GtkPaned) *T.GtkWidget
+		paned *T.GtkPaned) *Widget
 
 	PanedGetChild2 func(
-		paned *T.GtkPaned) *T.GtkWidget
+		paned *T.GtkPaned) *Widget
 
 	PanedGetHandleWindow func(
 		paned *T.GtkPaned) *T.GdkWindow
@@ -4435,7 +3523,7 @@ var (
 
 	TooltipSetCustom func(
 		tooltip *T.GtkTooltip,
-		customWidget *T.GtkWidget)
+		customWidget *Widget)
 
 	TooltipSetTipArea func(
 		tooltip *T.GtkTooltip,
@@ -4516,12 +3604,12 @@ var (
 	False func() T.Gboolean
 
 	GrabAdd func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
-	GrabGetCurrent func() *T.GtkWidget
+	GrabGetCurrent func() *Widget
 
 	GrabRemove func(
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	InitAdd func(
 		function T.GtkFunction,
@@ -4612,10 +3700,10 @@ var (
 		state *T.GdkModifierType) T.Gboolean
 
 	GetEventWidget func(
-		event *T.GdkEvent) *T.GtkWidget
+		event *T.GdkEvent) *Widget
 
 	PropagateEvent func(
-		widget *T.GtkWidget,
+		widget *Widget,
 		event *T.GdkEvent)
 
 	MenuBarGetPackDirection func(
@@ -4646,12 +3734,12 @@ var (
 
 	TooltipsSetTip func(
 		tooltips *T.GtkTooltips,
-		widget *T.GtkWidget,
+		widget *Widget,
 		tipText string,
 		tipPrivate string)
 
 	TooltipsDataGet func(
-		widget *T.GtkWidget) *T.GtkTooltipsData
+		widget *Widget) *T.GtkTooltipsData
 
 	TooltipsForceWindow func(
 		tooltips *T.GtkTooltips)
@@ -4659,7 +3747,7 @@ var (
 	TooltipsGetInfoFromTipWindow func(
 		tipWindow *T.GtkWindow,
 		tooltips **T.GtkTooltips,
-		currentWidget **T.GtkWidget) T.Gboolean
+		currentWidget **Widget) T.Gboolean
 
 	SizeGroupNew func(
 		mode T.GtkSizeGroupMode) *T.GtkSizeGroup
@@ -4680,11 +3768,11 @@ var (
 
 	SizeGroupAddWidget func(
 		sizeGroup *T.GtkSizeGroup,
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	SizeGroupRemoveWidget func(
 		sizeGroup *T.GtkSizeGroup,
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	SizeGroupGetWidgets func(
 		sizeGroup *T.GtkSizeGroup) *T.GSList
@@ -4772,16 +3860,16 @@ var (
 		toolItem *T.GtkToolItem) *T.GtkSizeGroup
 
 	ToolItemRetrieveProxyMenuItem func(
-		toolItem *T.GtkToolItem) *T.GtkWidget
+		toolItem *T.GtkToolItem) *Widget
 
 	ToolItemGetProxyMenuItem func(
 		toolItem *T.GtkToolItem,
-		menuItemId string) *T.GtkWidget
+		menuItemId string) *Widget
 
 	ToolItemSetProxyMenuItem func(
 		toolItem *T.GtkToolItem,
 		menuItemId string,
-		menuItem *T.GtkWidget)
+		menuItem *Widget)
 
 	ToolItemRebuildMenu func(
 		toolItem *T.GtkToolItem)
@@ -4790,7 +3878,7 @@ var (
 		toolItem *T.GtkToolItem)
 
 	ToolButtonNew func(
-		iconWidget *T.GtkWidget,
+		iconWidget *Widget,
 		label string) *T.GtkToolItem
 
 	ToolButtonNewFromStock func(
@@ -4826,20 +3914,20 @@ var (
 
 	ToolButtonSetIconWidget func(
 		button *T.GtkToolButton,
-		iconWidget *T.GtkWidget)
+		iconWidget *Widget)
 
 	ToolButtonGetIconWidget func(
-		button *T.GtkToolButton) *T.GtkWidget
+		button *T.GtkToolButton) *Widget
 
 	ToolButtonSetLabelWidget func(
 		button *T.GtkToolButton,
-		labelWidget *T.GtkWidget)
+		labelWidget *Widget)
 
 	ToolButtonGetLabelWidget func(
-		button *T.GtkToolButton) *T.GtkWidget
+		button *T.GtkToolButton) *Widget
 
 	MenuToolButtonNew func(
-		iconWidget *T.GtkWidget,
+		iconWidget *Widget,
 		label string) *T.GtkToolItem
 
 	MenuToolButtonNewFromStock func(
@@ -4847,10 +3935,10 @@ var (
 
 	MenuToolButtonSetMenu func(
 		button *T.GtkMenuToolButton,
-		menu *T.GtkWidget)
+		menu *Widget)
 
 	MenuToolButtonGetMenu func(
-		button *T.GtkMenuToolButton) *T.GtkWidget
+		button *T.GtkMenuToolButton) *Widget
 
 	MenuToolButtonSetArrowTooltip func(
 		button *T.GtkMenuToolButton,
@@ -4872,7 +3960,7 @@ var (
 		t T.GtkMessageType,
 		buttons T.GtkButtonsType,
 		messageFormat string,
-		v ...VArg) *T.GtkWidget
+		v ...VArg) *Widget
 
 	MessageDialogNewWithMarkup func(
 		parent *T.GtkWindow,
@@ -4880,14 +3968,14 @@ var (
 		t T.GtkMessageType,
 		buttons T.GtkButtonsType,
 		messageFormat string,
-		v ...VArg) *T.GtkWidget
+		v ...VArg) *Widget
 
 	MessageDialogSetImage func(
 		dialog *T.GtkMessageDialog,
-		image *T.GtkWidget)
+		image *Widget)
 
 	MessageDialogGetImage func(
-		dialog *T.GtkMessageDialog) *T.GtkWidget
+		dialog *T.GtkMessageDialog) *Widget
 
 	MessageDialogSetMarkup func(
 		messageDialog *T.GtkMessageDialog,
@@ -4904,7 +3992,7 @@ var (
 		v ...VArg)
 
 	MessageDialogGetMessageArea func(
-		messageDialog *T.GtkMessageDialog) *T.GtkWidget
+		messageDialog *T.GtkMessageDialog) *Widget
 
 	MountOperationNew func(
 		parent *T.GtkWindow) *T.GMountOperation
@@ -4928,37 +4016,37 @@ var (
 
 	NotebookAppendPage func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget) int
+		child *Widget,
+		tabLabel *Widget) int
 
 	NotebookAppendPageMenu func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget,
-		menuLabel *T.GtkWidget) int
+		child *Widget,
+		tabLabel *Widget,
+		menuLabel *Widget) int
 
 	NotebookPrependPage func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget) int
+		child *Widget,
+		tabLabel *Widget) int
 
 	NotebookPrependPageMenu func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget,
-		menuLabel *T.GtkWidget) int
+		child *Widget,
+		tabLabel *Widget,
+		menuLabel *Widget) int
 
 	NotebookInsertPage func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget,
+		child *Widget,
+		tabLabel *Widget,
 		position int) int
 
 	NotebookInsertPageMenu func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget,
-		menuLabel *T.GtkWidget,
+		child *Widget,
+		tabLabel *Widget,
+		menuLabel *Widget,
 		position int) int
 
 	NotebookRemovePage func(
@@ -4996,14 +4084,14 @@ var (
 
 	NotebookGetNthPage func(
 		notebook *T.GtkNotebook,
-		pageNum int) *T.GtkWidget
+		pageNum int) *Widget
 
 	NotebookGetNPages func(
 		notebook *T.GtkNotebook) int
 
 	NotebookPageNum func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) int
+		child *Widget) int
 
 	NotebookSetCurrentPage func(
 		notebook *T.GtkNotebook,
@@ -5073,84 +4161,84 @@ var (
 
 	NotebookGetTabLabel func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) *T.GtkWidget
+		child *Widget) *Widget
 
 	NotebookSetTabLabel func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		tabLabel *T.GtkWidget)
+		child *Widget,
+		tabLabel *Widget)
 
 	NotebookSetTabLabelText func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		tabText string)
 
 	NotebookGetTabLabelText func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) string
+		child *Widget) string
 
 	NotebookGetMenuLabel func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) *T.GtkWidget
+		child *Widget) *Widget
 
 	NotebookSetMenuLabel func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
-		menuLabel *T.GtkWidget)
+		child *Widget,
+		menuLabel *Widget)
 
 	NotebookSetMenuLabelText func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		menuText string)
 
 	NotebookGetMenuLabelText func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) string
+		child *Widget) string
 
 	NotebookQueryTabLabelPacking func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		expand *T.Gboolean,
 		fill *T.Gboolean,
 		packType *T.GtkPackType)
 
 	NotebookSetTabLabelPacking func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		expand T.Gboolean,
 		fill T.Gboolean,
 		packType T.GtkPackType)
 
 	NotebookReorderChild func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		position int)
 
 	NotebookGetTabReorderable func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) T.Gboolean
+		child *Widget) T.Gboolean
 
 	NotebookSetTabReorderable func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		reorderable T.Gboolean)
 
 	NotebookGetTabDetachable func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget) T.Gboolean
+		child *Widget) T.Gboolean
 
 	NotebookSetTabDetachable func(
 		notebook *T.GtkNotebook,
-		child *T.GtkWidget,
+		child *Widget,
 		detachable T.Gboolean)
 
 	NotebookGetActionWidget func(
 		notebook *T.GtkNotebook,
-		packType T.GtkPackType) *T.GtkWidget
+		packType T.GtkPackType) *Widget
 
 	NotebookSetActionWidget func(
 		notebook *T.GtkNotebook,
-		widget *T.GtkWidget,
+		widget *Widget,
 		packType T.GtkPackType)
 
 	OffscreenWindowGetPixmap func(
@@ -5373,7 +4461,7 @@ var (
 		socketId T.GdkNativeWindow)
 
 	PlugNew func(
-		socketId T.GdkNativeWindow) *T.GtkWidget
+		socketId T.GdkNativeWindow) *Widget
 
 	PlugConstructForDisplay func(
 		plug *T.GtkPlug,
@@ -5382,7 +4470,7 @@ var (
 
 	PlugNewForDisplay func(
 		display *T.GdkDisplay,
-		socketId T.GdkNativeWindow) *T.GtkWidget
+		socketId T.GdkNativeWindow) *Widget
 
 	PlugGetId func(
 		plug *T.GtkPlug) T.GdkNativeWindow
@@ -5941,7 +5029,7 @@ var (
 		pbar *T.GtkProgressBar) T.PangoEllipsizeMode
 
 	ProgressBarNewWithAdjustment func(
-		adjustment *Adjustment) *T.GtkWidget
+		adjustment *Adjustment) *Widget
 
 	ProgressBarSetBarStyle func(
 		pbar *T.GtkProgressBar,
@@ -6008,26 +5096,26 @@ var (
 		currentValue int)
 
 	RadioButtonNew func(
-		group *T.GSList) *T.GtkWidget
+		group *T.GSList) *Widget
 
 	RadioButtonNewFromWidget func(
-		radioGroupMember *T.GtkRadioButton) *T.GtkWidget
+		radioGroupMember *T.GtkRadioButton) *Widget
 
 	RadioButtonNewWithLabel func(
 		group *T.GSList,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioButtonNewWithLabelFromWidget func(
 		radioGroupMember *T.GtkRadioButton,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioButtonNewWithMnemonic func(
 		group *T.GSList,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioButtonNewWithMnemonicFromWidget func(
 		radioGroupMember *T.GtkRadioButton,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioButtonGetGroup func(
 		radioButton *T.GtkRadioButton) *T.GSList
@@ -6037,26 +5125,26 @@ var (
 		group *T.GSList)
 
 	RadioMenuItemNew func(
-		group *T.GSList) *T.GtkWidget
+		group *T.GSList) *Widget
 
 	RadioMenuItemNewWithLabel func(
 		group *T.GSList,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioMenuItemNewWithMnemonic func(
 		group *T.GSList,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioMenuItemNewFromWidget func(
-		group *T.GtkRadioMenuItem) *T.GtkWidget
+		group *T.GtkRadioMenuItem) *Widget
 
 	RadioMenuItemNewWithMnemonicFromWidget func(
 		group *T.GtkRadioMenuItem,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioMenuItemNewWithLabelFromWidget func(
 		group *T.GtkRadioMenuItem,
-		label string) *T.GtkWidget
+		label string) *Widget
 
 	RadioMenuItemGetGroup func(
 		radioMenuItem *T.GtkRadioMenuItem) *T.GSList
@@ -6423,15 +5511,15 @@ var (
 
 	RecentChooserDialogNew func(
 		title string, parent *T.GtkWindow,
-		firstButtonText string, v ...VArg) *T.GtkWidget
+		firstButtonText string, v ...VArg) *Widget
 
 	RecentChooserDialogNewForManager func(
 		title string, parent *T.GtkWindow,
 		manager *T.GtkRecentManager,
-		firstButtonText string, v ...VArg) *T.GtkWidget
+		firstButtonText string, v ...VArg) *Widget
 
 	RecentChooserMenuNewForManager func(
-		manager *T.GtkRecentManager) *T.GtkWidget
+		manager *T.GtkRecentManager) *Widget
 
 	RecentChooserMenuGetShowNumbers func(
 		menu *T.GtkRecentChooserMenu) T.Gboolean
@@ -6441,14 +5529,14 @@ var (
 		showNumbers T.Gboolean)
 
 	RecentChooserWidgetNewForManager func(
-		manager *T.GtkRecentManager) *T.GtkWidget
+		manager *T.GtkRecentManager) *Widget
 
 	ScaleButtonNew func(
 		size IconSize,
 		min float64,
 		max float64,
 		step float64,
-		icons **T.Gchar) *T.GtkWidget
+		icons **T.Gchar) *Widget
 
 	ScaleButtonSetIcons func(
 		button *T.GtkScaleButton,
@@ -6469,13 +5557,13 @@ var (
 		adjustment *Adjustment)
 
 	ScaleButtonGetPlusButton func(
-		button *T.GtkScaleButton) *T.GtkWidget
+		button *T.GtkScaleButton) *Widget
 
 	ScaleButtonGetMinusButton func(
-		button *T.GtkScaleButton) *T.GtkWidget
+		button *T.GtkScaleButton) *Widget
 
 	ScaleButtonGetPopup func(
-		button *T.GtkScaleButton) *T.GtkWidget
+		button *T.GtkScaleButton) *Widget
 
 	ScaleButtonGetOrientation func(
 		button *T.GtkScaleButton) T.GtkOrientation
@@ -6485,11 +5573,11 @@ var (
 		orientation T.GtkOrientation)
 
 	VscrollbarNew func(
-		adjustment *Adjustment) *T.GtkWidget
+		adjustment *Adjustment) *Widget
 
 	ViewportNew func(
 		hadjustment,
-		vadjustment *Adjustment) *T.GtkWidget
+		vadjustment *Adjustment) *Widget
 
 	ViewportGetHadjustment func(
 		viewport *T.GtkViewport) *Adjustment
@@ -6520,7 +5608,7 @@ var (
 
 	ScrolledWindowNew func(
 		hadjustment,
-		vadjustment *Adjustment) *T.GtkWidget
+		vadjustment *Adjustment) *Widget
 
 	ScrolledWindowSetHadjustment func(
 		scrolledWindow *T.GtkScrolledWindow,
@@ -6537,10 +5625,10 @@ var (
 		scrolledWindow *T.GtkScrolledWindow) *Adjustment
 
 	ScrolledWindowGetHscrollbar func(
-		scrolledWindow *T.GtkScrolledWindow) *T.GtkWidget
+		scrolledWindow *T.GtkScrolledWindow) *Widget
 
 	ScrolledWindowGetVscrollbar func(
-		scrolledWindow *T.GtkScrolledWindow) *T.GtkWidget
+		scrolledWindow *T.GtkScrolledWindow) *Widget
 
 	ScrolledWindowSetPolicy func(
 		scrolledWindow *T.GtkScrolledWindow,
@@ -6571,7 +5659,7 @@ var (
 
 	ScrolledWindowAddWithViewport func(
 		scrolledWindow *T.GtkScrolledWindow,
-		child *T.GtkWidget)
+		child *Widget)
 
 	SeparatorToolItemNew func() *T.GtkToolItem
 
@@ -6597,12 +5685,12 @@ var (
 	SpinButtonNew func(
 		adjustment *Adjustment,
 		climbRate float64,
-		digits uint) *T.GtkWidget
+		digits uint) *Widget
 
 	SpinButtonNewWithRange func(
 		min,
 		max,
-		step float64) *T.GtkWidget
+		step float64) *Widget
 
 	SpinButtonSetAdjustment func(
 		spinButton *T.GtkSpinButton,
@@ -6720,7 +5808,7 @@ var (
 		statusbar *T.GtkStatusbar) T.Gboolean
 
 	StatusbarGetMessageArea func(
-		statusbar *T.GtkStatusbar) *T.GtkWidget
+		statusbar *T.GtkStatusbar) *Widget
 
 	StatusIconNew func() *T.GtkStatusIcon
 
@@ -6882,7 +5970,7 @@ var (
 	TableNew func(
 		rows,
 		columns uint,
-		homogeneous T.Gboolean) *T.GtkWidget
+		homogeneous T.Gboolean) *Widget
 
 	TableResize func(
 		table *T.GtkTable,
@@ -6891,7 +5979,7 @@ var (
 
 	TableAttach func(
 		table *T.GtkTable,
-		child *T.GtkWidget,
+		child *Widget,
 		leftAttach,
 		rightAttach,
 		topAttach,
@@ -6903,7 +5991,7 @@ var (
 
 	TableAttachDefaults func(
 		table *T.GtkTable,
-		widget *T.GtkWidget,
+		widget *Widget,
 		leftAttach,
 		rightAttach,
 		topAttach,
@@ -7348,7 +6436,7 @@ var (
 		length T.Gsize,
 		error **T.GError) T.Gboolean
 
-	TextViewNewWithBuffer func(buffer *T.GtkTextBuffer) *T.GtkWidget
+	TextViewNewWithBuffer func(buffer *T.GtkTextBuffer) *Widget
 
 	TextViewSetBuffer func(textView *T.GtkTextView,
 		buffer *T.GtkTextBuffer)
@@ -7466,17 +6554,17 @@ var (
 	TextViewResetImContext func(textView *T.GtkTextView)
 
 	TextViewAddChildAtAnchor func(textView *T.GtkTextView,
-		child *T.GtkWidget,
+		child *Widget,
 		anchor *T.GtkTextChildAnchor)
 
 	TextViewAddChildInWindow func(textView *T.GtkTextView,
-		child *T.GtkWidget,
+		child *Widget,
 		whichWindow T.GtkTextWindowType,
 		xpos int,
 		ypos int)
 
 	TextViewMoveChild func(textView *T.GtkTextView,
-		child *T.GtkWidget,
+		child *Widget,
 		xpos int,
 		ypos int)
 
@@ -7543,7 +6631,7 @@ var (
 	TextViewGetDefaultAttributes func(textView *T.GtkTextView) *T.GtkTextAttributes
 
 	PixmapNew func(pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap) *T.GtkWidget
+		mask *T.GdkBitmap) *Widget
 
 	PixmapSet func(pixmap *T.GtkPixmap,
 		val *T.GdkPixmap,
@@ -7611,26 +6699,26 @@ var (
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
-		userData T.Gpointer) *T.GtkWidget
+		userData T.Gpointer) *Widget
 
 	ToolbarPrependItem func(toolbar *T.GtkToolbar,
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
-		userData T.Gpointer) *T.GtkWidget
+		userData T.Gpointer) *Widget
 
 	ToolbarInsertItem func(toolbar *T.GtkToolbar,
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
 		userDataGpointer,
-		position int) *T.GtkWidget
+		position int) *Widget
 
 	ToolbarInsertStock func(toolbar *T.GtkToolbar,
 		stockId string,
@@ -7638,7 +6726,7 @@ var (
 		tooltipPrivateText string,
 		callback T.GCallback,
 		userDataGpointer,
-		position int) *T.GtkWidget
+		position int) *Widget
 
 	ToolbarAppendSpace func(toolbar *T.GtkToolbar)
 
@@ -7652,58 +6740,58 @@ var (
 
 	ToolbarAppendElement func(toolbar *T.GtkToolbar,
 		t T.GtkToolbarChildType,
-		widget *T.GtkWidget,
+		widget *Widget,
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
-		userData T.Gpointer) *T.GtkWidget
+		userData T.Gpointer) *Widget
 
 	ToolbarPrependElement func(toolbar *T.GtkToolbar,
 		t T.GtkToolbarChildType,
-		widget *T.GtkWidget,
+		widget *Widget,
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
-		userData T.Gpointer) *T.GtkWidget
+		userData T.Gpointer) *Widget
 
 	ToolbarInsertElement func(toolbar *T.GtkToolbar,
 		t T.GtkToolbarChildType,
-		widget *T.GtkWidget,
+		widget *Widget,
 		text string,
 		tooltipText string,
 		tooltipPrivateText string,
-		icon *T.GtkWidget,
+		icon *Widget,
 		callback T.GCallback,
 		userDataGpointer,
-		position int) *T.GtkWidget
+		position int) *Widget
 
 	ToolbarAppendWidget func(toolbar *T.GtkToolbar,
-		widget *T.GtkWidget,
+		widget *Widget,
 		tooltipText string,
 		tooltipPrivateText string)
 
 	ToolbarPrependWidget func(toolbar *T.GtkToolbar,
-		widget *T.GtkWidget,
+		widget *Widget,
 		tooltipText string,
 		tooltipPrivateText string)
 
 	ToolbarInsertWidget func(toolbar *T.GtkToolbar,
-		widget *T.GtkWidget,
+		widget *Widget,
 		tooltipText string,
 		tooltipPrivateText string,
 		position int)
 
-	ToolItemGroupNew func(label string) *T.GtkWidget
+	ToolItemGroupNew func(label string) *Widget
 
 	ToolItemGroupSetLabel func(group *T.GtkToolItemGroup,
 		label string)
 
 	ToolItemGroupSetLabelWidget func(group *T.GtkToolItemGroup,
-		labelWidget *T.GtkWidget)
+		labelWidget *Widget)
 
 	ToolItemGroupSetCollapsed func(group *T.GtkToolItemGroup,
 		collapsed T.Gboolean)
@@ -7716,7 +6804,7 @@ var (
 
 	ToolItemGroupGetLabel func(group *T.GtkToolItemGroup) string
 
-	ToolItemGroupGetLabelWidget func(group *T.GtkToolItemGroup) *T.GtkWidget
+	ToolItemGroupGetLabelWidget func(group *T.GtkToolItemGroup) *Widget
 
 	ToolItemGroupGetCollapsed func(group *T.GtkToolItemGroup) T.Gboolean
 
@@ -7788,13 +6876,13 @@ var (
 		y int) *T.GtkToolItemGroup
 
 	ToolPaletteGetDragItem func(palette *T.GtkToolPalette,
-		selection *T.GtkSelectionData) *T.GtkWidget
+		selection *T.GtkSelectionData) *Widget
 
 	ToolPaletteSetDragSource func(palette *T.GtkToolPalette,
 		targets T.GtkToolPaletteDragTargets)
 
 	ToolPaletteAddDragDest func(palette *T.GtkToolPalette,
-		widget *T.GtkWidget,
+		widget *Widget,
 		flags T.GtkDestDefaults,
 		targets T.GtkToolPaletteDragTargets,
 		actions T.GdkDragAction)
@@ -7831,46 +6919,46 @@ var (
 
 	TestListAllTypes func(nTypes *uint) *T.GType
 
-	TestFindWidget func(widget *T.GtkWidget,
+	TestFindWidget func(widget *Widget,
 		labelPattern string,
-		widgetType T.GType) *T.GtkWidget
+		widgetType T.GType) *Widget
 
 	TestCreateWidget func(widgetType T.GType,
-		firstPropertyName string, v ...VArg) *T.GtkWidget
+		firstPropertyName string, v ...VArg) *Widget
 
 	TestCreateSimpleWindow func(windowTitle string,
-		dialogText string) *T.GtkWidget
+		dialogText string) *Widget
 
 	TestDisplayButtonWindow func(windowTitle string,
-		dialogText string, v ...VArg) *T.GtkWidget
+		dialogText string, v ...VArg) *Widget
 
-	TestSliderSetPerc func(widget *T.GtkWidget,
+	TestSliderSetPerc func(widget *Widget,
 		percentage float64)
 
-	TestSliderGetValue func(widget *T.GtkWidget) float64
+	TestSliderGetValue func(widget *Widget) float64
 
 	TestSpinButtonClick func(spinner *T.GtkSpinButton,
 		button uint,
 		upwards T.Gboolean) T.Gboolean
 
-	TestWidgetClick func(widget *T.GtkWidget,
+	TestWidgetClick func(widget *Widget,
 		button uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
-	TestWidgetSendKey func(widget *T.GtkWidget,
+	TestWidgetSendKey func(widget *Widget,
 		keyval uint,
 		modifiers T.GdkModifierType) T.Gboolean
 
-	TestTextSet func(widget *T.GtkWidget,
+	TestTextSet func(widget *Widget,
 		string string)
 
-	TestTextGet func(widget *T.GtkWidget) string
+	TestTextGet func(widget *Widget) string
 
-	TestFindSibling func(baseWidget *T.GtkWidget,
-		widgetType T.GType) *T.GtkWidget
+	TestFindSibling func(baseWidget *Widget,
+		widgetType T.GType) *Widget
 
-	TestFindLabel func(widget *T.GtkWidget,
-		labelPattern string) *T.GtkWidget
+	TestFindLabel func(widget *Widget,
+		labelPattern string) *Widget
 
 	TreeDragSourceRowDraggable func(dragSource *T.GtkTreeDragSource,
 		path *T.GtkTreePath) T.Gboolean
@@ -8096,7 +7184,7 @@ var (
 	UiManagerGetAccelGroup func(self *T.GtkUIManager) *AccelGroup
 
 	UiManagerGetWidget func(self *T.GtkUIManager,
-		path string) *T.GtkWidget
+		path string) *Widget
 
 	UiManagerGetToplevels func(self *T.GtkUIManager,
 		types T.GtkUIManagerItemType) *T.GSList
@@ -8138,11 +7226,11 @@ var (
 
 	VbuttonBoxSetLayoutDefault func(layout ButtonBoxStyle)
 
-	VscaleNew func(adjustment *Adjustment) *T.GtkWidget
+	VscaleNew func(adjustment *Adjustment) *Widget
 
 	VscaleNewWithRange func(min float64,
 		max float64,
-		step float64) *T.GtkWidget
+		step float64) *Widget
 
 	OldEditableClaimSelection func(oldEditable *T.GtkOldEditable,
 		claim T.Gboolean,
@@ -8150,10 +7238,10 @@ var (
 
 	OldEditableChanged func(oldEditable *T.GtkOldEditable)
 
-	OptionMenuGetMenu func(optionMenu *T.GtkOptionMenu) *T.GtkWidget
+	OptionMenuGetMenu func(optionMenu *T.GtkOptionMenu) *Widget
 
 	OptionMenuSetMenu func(optionMenu *T.GtkOptionMenu,
-		menu *T.GtkWidget)
+		menu *Widget)
 
 	OptionMenuRemoveMenu func(optionMenu *T.GtkOptionMenu)
 
@@ -8164,7 +7252,7 @@ var (
 
 	PreviewUninit func()
 
-	PreviewNew func(t T.GtkPreviewType) *T.GtkWidget
+	PreviewNew func(t T.GtkPreviewType) *Widget
 
 	PreviewSize func(preview *T.GtkPreview,
 		width int,
@@ -8216,7 +7304,7 @@ var (
 	TipsQueryStopQuery func(tipsQuery *T.GtkTipsQuery)
 
 	TipsQuerySetCaller func(tipsQuery *T.GtkTipsQuery,
-		caller *T.GtkWidget)
+		caller *Widget)
 
 	TipsQuerySetLabels func(tipsQuery *T.GtkTipsQuery,
 		labelInactive string,
@@ -8435,12 +7523,12 @@ var (
 		cr *T.Cairo,
 		dpiX, dpiY float64)
 
-	TreeAppend func(tree *T.GtkTree, treeItem *T.GtkWidget)
+	TreeAppend func(tree *T.GtkTree, treeItem *Widget)
 
-	TreePrepend func(tree *T.GtkTree, treeItem *T.GtkWidget)
+	TreePrepend func(tree *T.GtkTree, treeItem *Widget)
 
 	TreeInsert func(
-		tree *T.GtkTree, treeItem *T.GtkWidget, position int)
+		tree *T.GtkTree, treeItem *Widget, position int)
 
 	TreeRemoveItems func(tree *T.GtkTree, items *T.GList)
 
@@ -8452,13 +7540,13 @@ var (
 	TreeUnselectItem func(tree *T.GtkTree, item int)
 
 	TreeSelectChild func(
-		tree *T.GtkTree, treeItem *T.GtkWidget)
+		tree *T.GtkTree, treeItem *Widget)
 
 	TreeUnselectChild func(
-		tree *T.GtkTree, treeItem *T.GtkWidget)
+		tree *T.GtkTree, treeItem *Widget)
 
 	TreeChildPosition func(
-		tree *T.GtkTree, child *T.GtkWidget) int
+		tree *T.GtkTree, child *Widget) int
 
 	TreeSetSelectionMode func(
 		tree *T.GtkTree, mode T.GtkSelectionMode)
@@ -8468,12 +7556,12 @@ var (
 
 	TreeSetViewLines func(tree *T.GtkTree, flag T.Gboolean)
 
-	TreeRemoveItem func(tree *T.GtkTree, child *T.GtkWidget)
+	TreeRemoveItem func(tree *T.GtkTree, child *Widget)
 
-	TreeItemNewWithLabel func(label string) *T.GtkWidget
+	TreeItemNewWithLabel func(label string) *Widget
 
 	TreeItemSetSubtree func(
-		treeItem *T.GtkTreeItem, subtree *T.GtkWidget)
+		treeItem *T.GtkTreeItem, subtree *Widget)
 
 	TreeItemRemoveSubtree func(treeItem *T.GtkTreeItem)
 
@@ -8625,10 +7713,10 @@ var (
 
 	TreeViewColumnSetWidget func(
 		treeColumn *TreeViewColumn,
-		widget *T.GtkWidget)
+		widget *Widget)
 
 	TreeViewColumnGetWidget func(
-		treeColumn *TreeViewColumn) *T.GtkWidget
+		treeColumn *TreeViewColumn) *Widget
 
 	TreeViewColumnSetAlignment func(
 		treeColumn *TreeViewColumn,
@@ -8697,7 +7785,7 @@ var (
 		treeColumn *TreeViewColumn)
 
 	TreeViewColumnGetTreeView func(
-		treeColumn *TreeViewColumn) *T.GtkWidget
+		treeColumn *TreeViewColumn) *Widget
 )
 
 type TreeViewColumn struct{}
@@ -8825,11 +7913,11 @@ func (tc *TreeViewColumn) GetClickable() T.Gboolean {
 	return TreeViewColumnGetClickable(tc)
 }
 
-func (tc *TreeViewColumn) SetWidget(widget *T.GtkWidget) {
+func (tc *TreeViewColumn) SetWidget(widget *Widget) {
 	TreeViewColumnSetWidget(tc, widget)
 }
 
-func (tc *TreeViewColumn) GetWidget() *T.GtkWidget {
+func (tc *TreeViewColumn) GetWidget() *Widget {
 	return TreeViewColumnGetWidget(tc)
 }
 
@@ -8905,6 +7993,6 @@ func (tc *TreeViewColumn) QueueResize() {
 	TreeViewColumnQueueResize(tc)
 }
 
-func (tc *TreeViewColumn) GetTreeView() *T.GtkWidget {
+func (tc *TreeViewColumn) GetTreeView() *Widget {
 	return TreeViewColumnGetTreeView(tc)
 }

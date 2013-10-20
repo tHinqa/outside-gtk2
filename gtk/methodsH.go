@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -25,7 +28,7 @@ type HandleBox struct {
 
 var (
 	HandleBoxGetType func() T.GType
-	HandleBoxNew     func() *T.GtkWidget
+	HandleBoxNew     func() *Widget
 
 	HandleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
 	HandleBoxGetHandlePosition func(h *HandleBox) T.GtkPositionType
@@ -65,13 +68,23 @@ func (h *HandleBox) GetChildDetached() T.Gboolean {
 }
 
 type HSV struct {
-	Parent T.GtkWidget
+	Parent Widget
 	_      T.Gpointer
 }
 
+type HBox struct {
+	Box Box
+}
+
+var (
+	HboxGetType func() T.GType
+
+	HboxNew func(homogeneous T.Gboolean, spacing int) *Widget
+)
+
 var (
 	HsvGetType func() T.GType
-	HsvNew     func() *T.GtkWidget
+	HsvNew     func() *Widget
 
 	HsvGetColor    func(hsv *HSV, h, s, v *float64)
 	HsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)

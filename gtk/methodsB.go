@@ -1,3 +1,6 @@
+// Copyright (c) 2013 Tony Wilson. All rights reserved.
+// See LICENCE file for permissions and restrictions.
+
 package gtk
 
 import (
@@ -7,14 +10,14 @@ import (
 
 type Bin struct {
 	Container T.GtkContainer
-	Child     *T.GtkWidget
+	Child     *Widget
 }
 
 var BinGetType func() T.GType
 
-var BinGetChild func(b *Bin) *T.GtkWidget
+var BinGetChild func(b *Bin) *Widget
 
-func (b *Bin) GetChild() *T.GtkWidget {
+func (b *Bin) GetChild() *Widget {
 	return BinGetChild(b)
 }
 
@@ -31,13 +34,12 @@ var (
 )
 
 var (
-	BorderCopy func(b *Border) *Border
-	BorderFree func(b *Border)
+	borderCopy func(b *Border) *Border
+	borderFree func(b *Border)
 )
 
-func (b *Border) Copy() *Border { return BorderCopy(b) }
-
-func (b *Border) Free() { BorderFree(b) }
+func (b *Border) Copy() *Border { return borderCopy(b) }
+func (b *Border) Free()         { borderFree(b) }
 
 type Box struct {
 	Container   T.GtkContainer
@@ -49,131 +51,80 @@ type Box struct {
 var BoxGetType func() T.GType
 
 var (
-	BoxGetHomogeneous    func(b *Box) T.Gboolean
-	BoxGetSpacing        func(b *Box) int
-	BoxPackEnd           func(b *Box, child *T.GtkWidget, expand T.Gboolean, fill T.Gboolean, padding uint)
-	BoxPackEndDefaults   func(b *Box, widget *T.GtkWidget)
-	BoxPackStart         func(b *Box, child *T.GtkWidget, expand T.Gboolean, fill T.Gboolean, padding uint)
-	BoxPackStartDefaults func(b *Box, widget *T.GtkWidget)
-	BoxQueryChildPacking func(b *Box, child *T.GtkWidget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *T.GtkPackType)
-	BoxReorderChild      func(b *Box, child *T.GtkWidget, position int)
-	BoxSetChildPacking   func(b *Box, child *T.GtkWidget, expand T.Gboolean, fill T.Gboolean, padding uint, packType T.GtkPackType)
-	BoxSetHomogeneous    func(b *Box, homogeneous T.Gboolean)
-	BoxSetSpacing        func(b *Box, spacing int)
+	boxGetHomogeneous    func(b *Box) T.Gboolean
+	boxGetSpacing        func(b *Box) int
+	boxPackEnd           func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint)
+	boxPackEndDefaults   func(b *Box, widget *Widget)
+	boxPackStart         func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint)
+	boxPackStartDefaults func(b *Box, widget *Widget)
+	boxQueryChildPacking func(b *Box, child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *T.GtkPackType)
+	boxReorderChild      func(b *Box, child *Widget, position int)
+	boxSetChildPacking   func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType T.GtkPackType)
+	boxSetHomogeneous    func(b *Box, homogeneous T.Gboolean)
+	boxSetSpacing        func(b *Box, spacing int)
 )
 
-func (b *Box) PackStart(child *T.GtkWidget,
-	expand T.Gboolean, fill T.Gboolean, padding uint) {
-	BoxPackStart(b, child, expand, fill, padding)
+func (b *Box) GetHomogeneous() T.Gboolean { return boxGetHomogeneous(b) }
+func (b *Box) GetSpacing() int            { return boxGetSpacing(b) }
+func (b *Box) PackEnd(child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint) {
+	boxPackEnd(b, child, expand, fill, padding)
 }
-
-func (b *Box) PackEnd(child *T.GtkWidget,
-	expand T.Gboolean, fill T.Gboolean, padding uint) {
-	BoxPackEnd(b, child, expand, fill, padding)
+func (b *Box) PackEndDefaults(widget *Widget) { boxPackEndDefaults(b, widget) }
+func (b *Box) PackStart(child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint) {
+	boxPackStart(b, child, expand, fill, padding)
 }
-
-func (b *Box) PackStartDefaults(widget *T.GtkWidget) {
-	BoxPackStartDefaults(b, widget)
+func (b *Box) PackStartDefaults(widget *Widget) { boxPackStartDefaults(b, widget) }
+func (b *Box) QueryChildPacking(child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *T.GtkPackType) {
+	boxQueryChildPacking(b, child, expand, fill, padding, packType)
 }
-
-func (b *Box) PackEndDefaults(widget *T.GtkWidget) {
-	BoxPackEndDefaults(b, widget)
+func (b *Box) ReorderChild(child *Widget, position int) { boxReorderChild(b, child, position) }
+func (b *Box) SetChildPacking(child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType T.GtkPackType) {
+	boxSetChildPacking(b, child, expand, fill, padding, packType)
 }
-
-func (b *Box) SetHomogeneous(homogeneous T.Gboolean) {
-	BoxSetHomogeneous(b, homogeneous)
-}
-
-func (b *Box) GetHomogeneous() T.Gboolean {
-	return BoxGetHomogeneous(b)
-}
-
-func (b *Box) SetSpacing(spacing int) { BoxSetSpacing(b, spacing) }
-
-func (b *Box) GetSpacing() int { return BoxGetSpacing(b) }
-
-func (b *Box) ReorderChild(child *T.GtkWidget, position int) {
-	BoxReorderChild(b, child, position)
-}
-
-func (b *Box) QueryChildPacking(
-	child *T.GtkWidget, expand *T.Gboolean, fill *T.Gboolean,
-	padding *uint, packType *T.GtkPackType) {
-	BoxQueryChildPacking(
-		b, child, expand, fill, padding, packType)
-}
-
-func (b *Box) SetChildPacking(
-	child *T.GtkWidget, expand T.Gboolean, fill T.Gboolean,
-	padding uint, packType T.GtkPackType) {
-	BoxSetChildPacking(b, child, expand, fill, padding, packType)
-}
+func (b *Box) SetHomogeneous(homogeneous T.Gboolean) { boxSetHomogeneous(b, homogeneous) }
+func (b *Box) SetSpacing(spacing int)                { boxSetSpacing(b, spacing) }
 
 type Buildable struct{}
 
 var BuildableGetType func() T.GType
 
 var (
-	BuildableAddChild             func(b *Buildable, builder *Builder, child *T.GObject, typ string)
-	BuildableConstructChild       func(b *Buildable, builder *Builder, name string) *T.GObject
-	BuildableCustomFinished       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data T.Gpointer)
-	BuildableCustomTagEnd         func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data *T.Gpointer)
-	BuildableCustomTagStart       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean
-	BuildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *T.GObject
-	BuildableGetName              func(b *Buildable) string
-	BuildableParserFinished       func(b *Buildable, builder *Builder)
-	BuildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *T.GValue)
-	BuildableSetName              func(b *Buildable, name string)
+	buildableAddChild             func(b *Buildable, builder *Builder, child *T.GObject, typ string)
+	buildableConstructChild       func(b *Buildable, builder *Builder, name string) *T.GObject
+	buildableCustomFinished       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data T.Gpointer)
+	buildableCustomTagEnd         func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data *T.Gpointer)
+	buildableCustomTagStart       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean
+	buildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *T.GObject
+	buildableGetName              func(b *Buildable) string
+	buildableParserFinished       func(b *Buildable, builder *Builder)
+	buildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *T.GValue)
+	buildableSetName              func(b *Buildable, name string)
 )
 
-func (b *Buildable) SetName(name string) {
-	BuildableSetName(b, name)
+func (b *Buildable) AddChild(builder *Builder, child *T.GObject, typ string) {
+	buildableAddChild(b, builder, child, typ)
 }
-
-func (b *Buildable) GetName() string {
-	return BuildableGetName(b)
+func (b *Buildable) ConstructChild(builder *Builder, name string) *T.GObject {
+	return buildableConstructChild(b, builder, name)
 }
-
-func (b *Buildable) AddChild(
-	builder *Builder, child *T.GObject, typ string) {
-	BuildableAddChild(b, builder, child, typ)
+func (b *Buildable) CustomFinished(builder *Builder, child *T.GObject, tagname string, data T.Gpointer) {
+	buildableCustomFinished(b, builder, child, tagname, data)
 }
-
-func (b *Buildable) SetBuildableProperty(
-	builder *Builder, name string, value *T.GValue) {
-	BuildableSetBuildableProperty(b, builder, name, value)
+func (b *Buildable) CustomTagEnd(builder *Builder, child *T.GObject, tagname string, data *T.Gpointer) {
+	buildableCustomTagEnd(b, builder, child, tagname, data)
 }
-
-func (b *Buildable) ConstructChild(
-	builder *Builder, name string) *T.GObject {
-	return BuildableConstructChild(b, builder, name)
+func (b *Buildable) CustomTagStart(builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean {
+	return buildableCustomTagStart(b, builder, child, tagname, parser, data)
 }
-
-func (b *Buildable) CustomTagStart(
-	builder *Builder, child *T.GObject, tagname string,
-	parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean {
-	return BuildableCustomTagStart(
-		b, builder, child, tagname, parser, data)
+func (b *Buildable) GetInternalChild(builder *Builder, childname string) *T.GObject {
+	return buildableGetInternalChild(b, builder, childname)
 }
-
-func (b *Buildable) CustomTagEnd(builder *Builder,
-	child *T.GObject, tagname string, data *T.Gpointer) {
-	BuildableCustomTagEnd(b, builder, child, tagname, data)
+func (b *Buildable) GetName() string                 { return buildableGetName(b) }
+func (b *Buildable) ParserFinished(builder *Builder) { buildableParserFinished(b, builder) }
+func (b *Buildable) SetBuildableProperty(builder *Builder, name string, value *T.GValue) {
+	buildableSetBuildableProperty(b, builder, name, value)
 }
-
-func (b *Buildable) CustomFinished(builder *Builder,
-	child *T.GObject, tagname string, data T.Gpointer) {
-	BuildableCustomFinished(b, builder, child, tagname, data)
-}
-
-func (b *Buildable) ParserFinished(builder *Builder) {
-	BuildableParserFinished(b, builder)
-}
-
-func (b *Buildable) GetInternalChild(
-	builder *Builder, childname string) *T.GObject {
-	return BuildableGetInternalChild(b, builder, childname)
-}
+func (b *Buildable) SetName(name string) { buildableSetName(b, name) }
 
 type (
 	Builder struct {
@@ -195,79 +146,47 @@ var (
 )
 
 var (
-	BuilderAddFromFile          func(b *Builder, filename string, err **T.GError) uint
-	BuilderAddFromString        func(b *Builder, buffer string, length T.Gsize, err **T.GError) uint
-	BuilderAddObjectsFromFile   func(b *Builder, filename string, objectIds **T.Gchar, err **T.GError) uint
-	BuilderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds **T.Gchar, err **T.GError) uint
-	BuilderConnectSignals       func(b *Builder, userData T.Gpointer)
-	BuilderConnectSignalsFull   func(b *Builder, f BuilderConnectFunc, userData T.Gpointer)
-	BuilderGetObject            func(b *Builder, name string) *T.GObject
-	BuilderGetObjects           func(b *Builder) *T.GSList
-	BuilderGetTranslationDomain func(b *Builder) string
-	BuilderGetTypeFromName      func(b *Builder, typeName string) T.GType
-	BuilderSetTranslationDomain func(b *Builder, domain string)
-	BuilderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) T.Gboolean
-	BuilderValueFromStringType  func(b *Builder, t T.GType, str string, value *T.GValue, err **T.GError) T.Gboolean
+	builderAddFromFile          func(b *Builder, filename string, err **T.GError) uint
+	builderAddFromString        func(b *Builder, buffer string, length T.Gsize, err **T.GError) uint
+	builderAddObjectsFromFile   func(b *Builder, filename string, objectIds **T.Gchar, err **T.GError) uint
+	builderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds **T.Gchar, err **T.GError) uint
+	builderConnectSignals       func(b *Builder, userData T.Gpointer)
+	builderConnectSignalsFull   func(b *Builder, f BuilderConnectFunc, userData T.Gpointer)
+	builderGetObject            func(b *Builder, name string) *T.GObject
+	builderGetObjects           func(b *Builder) *T.GSList
+	builderGetTranslationDomain func(b *Builder) string
+	builderGetTypeFromName      func(b *Builder, typeName string) T.GType
+	builderSetTranslationDomain func(b *Builder, domain string)
+	builderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) T.Gboolean
+	builderValueFromStringType  func(b *Builder, t T.GType, str string, value *T.GValue, err **T.GError) T.Gboolean
 )
 
-func (b *Builder) AddFromFile(
-	filename string, err **T.GError) uint {
-	return BuilderAddFromFile(b, filename, err)
+func (b *Builder) AddFromFile(filename string, err **T.GError) uint {
+	return builderAddFromFile(b, filename, err)
 }
-
-func (b *Builder) AddFromString(
-	buffer string, length T.Gsize, err **T.GError) uint {
-	return BuilderAddFromString(b, buffer, length, err)
+func (b *Builder) AddFromString(buffer string, length T.Gsize, err **T.GError) uint {
+	return builderAddFromString(b, buffer, length, err)
 }
-
-func (b *Builder) AddObjectsFromFile(
-	filename string, objectIds **T.Gchar, err **T.GError) uint {
-	return BuilderAddObjectsFromFile(b, filename, objectIds, err)
+func (b *Builder) AddObjectsFromFile(filename string, objectIds **T.Gchar, err **T.GError) uint {
+	return builderAddObjectsFromFile(b, filename, objectIds, err)
 }
-
-func (b *Builder) AddObjectsFromString(buffer string,
-	length T.Gsize, objectIds **T.Gchar, err **T.GError) uint {
-	return BuilderAddObjectsFromString(
-		b, buffer, length, objectIds, err)
+func (b *Builder) AddObjectsFromString(buffer string, length T.Gsize, objectIds **T.Gchar, err **T.GError) uint {
+	return builderAddObjectsFromString(b, buffer, length, objectIds, err)
 }
-
-func (b *Builder) GetObject(name string) *T.GObject {
-	return BuilderGetObject(b, name)
+func (b *Builder) ConnectSignals(userData T.Gpointer) { builderConnectSignals(b, userData) }
+func (b *Builder) ConnectSignalsFull(f BuilderConnectFunc, userData T.Gpointer) {
+	builderConnectSignalsFull(b, f, userData)
 }
-
-func (b *Builder) GetObjects() *T.GSList {
-	return BuilderGetObjects(b)
+func (b *Builder) GetObject(name string) *T.GObject        { return builderGetObject(b, name) }
+func (b *Builder) GetObjects() *T.GSList                   { return builderGetObjects(b) }
+func (b *Builder) GetTranslationDomain() string            { return builderGetTranslationDomain(b) }
+func (b *Builder) GetTypeFromName(typeName string) T.GType { return builderGetTypeFromName(b, typeName) }
+func (b *Builder) SetTranslationDomain(domain string)      { builderSetTranslationDomain(b, domain) }
+func (b *Builder) ValueFromString(pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) T.Gboolean {
+	return builderValueFromString(b, pspec, str, value, err)
 }
-
-func (b *Builder) ConnectSignals(userData T.Gpointer) {
-	BuilderConnectSignals(b, userData)
-}
-
-func (b *Builder) ConnectSignalsFull(
-	f BuilderConnectFunc, userData T.Gpointer) {
-	BuilderConnectSignalsFull(b, f, userData)
-}
-
-func (b *Builder) SetTranslationDomain(domain string) {
-	BuilderSetTranslationDomain(b, domain)
-}
-
-func (b *Builder) GetTranslationDomain() string {
-	return BuilderGetTranslationDomain(b)
-}
-
-func (b *Builder) GetTypeFromName(typeName string) T.GType {
-	return BuilderGetTypeFromName(b, typeName)
-}
-
-func (b *Builder) ValueFromString(pspec *T.GParamSpec,
-	str string, value *T.GValue, err **T.GError) T.Gboolean {
-	return BuilderValueFromString(b, pspec, str, value, err)
-}
-
-func (b *Builder) ValueFromStringType(t T.GType, str string,
-	value *T.GValue, err **T.GError) T.Gboolean {
-	return BuilderValueFromStringType(b, t, str, value, err)
+func (b *Builder) ValueFromStringType(t T.GType, str string, value *T.GValue, err **T.GError) T.Gboolean {
+	return builderValueFromStringType(b, t, str, value, err)
 }
 
 type Button struct {
@@ -289,10 +208,10 @@ type Button struct {
 
 var (
 	ButtonGetType         func() T.GType
-	ButtonNew             func() *T.GtkWidget
-	ButtonNewFromStock    func(stockId string) *T.GtkWidget
-	ButtonNewWithLabel    func(label string) *T.GtkWidget
-	ButtonNewWithMnemonic func(label string) *T.GtkWidget
+	ButtonNew             func() *Widget
+	ButtonNewFromStock    func(stockId string) *Widget
+	ButtonNewWithLabel    func(label string) *Widget
+	ButtonNewWithMnemonic func(label string) *Widget
 
 	ButtonActionGetType   func() T.GType
 	ButtonBoxGetType      func() T.GType
@@ -302,105 +221,52 @@ var (
 )
 
 var (
-	ButtonClicked          func(b *Button)
-	ButtonEnter            func(b *Button)
-	ButtonGetAlignment     func(b *Button, xalign, yalign *float32)
-	ButtonGetEventWindow   func(b *Button) *T.GdkWindow
-	ButtonGetFocusOnClick  func(b *Button) T.Gboolean
-	ButtonGetImage         func(b *Button) *T.GtkWidget
-	ButtonGetImagePosition func(b *Button) T.GtkPositionType
-	ButtonGetLabel         func(b *Button) string
-	ButtonGetRelief        func(b *Button) T.GtkReliefStyle
-	ButtonGetUseStock      func(b *Button) T.Gboolean
-	ButtonGetUseUnderline  func(b *Button) T.Gboolean
-	ButtonLeave            func(b *Button)
-	ButtonPressed          func(b *Button)
-	ButtonReleased         func(b *Button)
-	ButtonSetAlignment     func(b *Button, xalign, yalign float32)
-	ButtonSetFocusOnClick  func(b *Button, focusOnClick T.Gboolean)
-	ButtonSetImage         func(b *Button, image *T.GtkWidget)
-	ButtonSetImagePosition func(b *Button, position T.GtkPositionType)
-	ButtonSetLabel         func(b *Button, label string)
-	ButtonSetRelief        func(b *Button, newstyle T.GtkReliefStyle)
-	ButtonSetUseStock      func(b *Button, useStock T.Gboolean)
-	ButtonSetUseUnderline  func(b *Button, useUnderline T.Gboolean)
+	buttonClicked          func(b *Button)
+	buttonEnter            func(b *Button)
+	buttonGetAlignment     func(b *Button, xalign, yalign *float32)
+	buttonGetEventWindow   func(b *Button) *T.GdkWindow
+	buttonGetFocusOnClick  func(b *Button) T.Gboolean
+	buttonGetImage         func(b *Button) *Widget
+	buttonGetImagePosition func(b *Button) T.GtkPositionType
+	buttonGetLabel         func(b *Button) string
+	buttonGetRelief        func(b *Button) T.GtkReliefStyle
+	buttonGetUseStock      func(b *Button) T.Gboolean
+	buttonGetUseUnderline  func(b *Button) T.Gboolean
+	buttonLeave            func(b *Button)
+	buttonPressed          func(b *Button)
+	buttonReleased         func(b *Button)
+	buttonSetAlignment     func(b *Button, xalign, yalign float32)
+	buttonSetFocusOnClick  func(b *Button, focusOnClick T.Gboolean)
+	buttonSetImage         func(b *Button, image *Widget)
+	buttonSetImagePosition func(b *Button, position T.GtkPositionType)
+	buttonSetLabel         func(b *Button, label string)
+	buttonSetRelief        func(b *Button, newstyle T.GtkReliefStyle)
+	buttonSetUseStock      func(b *Button, useStock T.Gboolean)
+	buttonSetUseUnderline  func(b *Button, useUnderline T.Gboolean)
 )
 
-func (b *Button) Pressed() { ButtonPressed(b) }
-
-func (b *Button) Released() { ButtonReleased(b) }
-
-func (b *Button) Clicked() { ButtonClicked(b) }
-
-func (b *Button) Enter() { ButtonEnter(b) }
-
-func (b *Button) Leave() { ButtonLeave(b) }
-
-func (b *Button) SetRelief(newstyle T.GtkReliefStyle) {
-	ButtonSetRelief(b, newstyle)
-}
-
-func (b *Button) GetRelief() T.GtkReliefStyle {
-	return ButtonGetRelief(b)
-}
-
-func (b *Button) SetLabel(label string) {
-	ButtonSetLabel(b, label)
-}
-
-func (b *Button) GetLabel() string { return ButtonGetLabel(b) }
-
-func (b *Button) SetUseUnderline(useUnderline T.Gboolean) {
-	ButtonSetUseUnderline(b, useUnderline)
-}
-
-func (b *Button) GetUseUnderline() T.Gboolean {
-	return ButtonGetUseUnderline(b)
-}
-
-func (b *Button) SetUseStock(useStock T.Gboolean) {
-	ButtonSetUseStock(b, useStock)
-}
-
-func (b *Button) GetUseStock() T.Gboolean {
-	return ButtonGetUseStock(b)
-}
-
-func (b *Button) SetFocusOnClick(focusOnClick T.Gboolean) {
-	ButtonSetFocusOnClick(b, focusOnClick)
-}
-
-func (b *Button) GetFocusOnClick() T.Gboolean {
-	return ButtonGetFocusOnClick(b)
-}
-
-func (b *Button) SetAlignment(xalign, yalign float32) {
-	ButtonSetAlignment(b, xalign, yalign)
-}
-
-func (b *Button) GetAlignment(xalign, yalign *float32) {
-	ButtonGetAlignment(b, xalign, yalign)
-}
-
-func (b *Button) SetImage(image *T.GtkWidget) {
-	ButtonSetImage(b, image)
-}
-
-func (b *Button) GetImage() *T.GtkWidget {
-	return ButtonGetImage(b)
-}
-
-func (b *Button) SetImagePosition(position T.GtkPositionType) {
-	ButtonSetImagePosition(b, position)
-}
-
-func (b *Button) GetImagePosition() T.GtkPositionType {
-	return ButtonGetImagePosition(b)
-}
-
-func (b *Button) GetEventWindow() *T.GdkWindow {
-	return ButtonGetEventWindow(b)
-}
+func (b *Button) Clicked()                                    { buttonClicked(b) }
+func (b *Button) Enter()                                      { buttonEnter(b) }
+func (b *Button) GetAlignment(xalign, yalign *float32)        { buttonGetAlignment(b, xalign, yalign) }
+func (b *Button) GetEventWindow() *T.GdkWindow                { return buttonGetEventWindow(b) }
+func (b *Button) GetFocusOnClick() T.Gboolean                 { return buttonGetFocusOnClick(b) }
+func (b *Button) GetImage() *Widget                           { return buttonGetImage(b) }
+func (b *Button) GetImagePosition() T.GtkPositionType         { return buttonGetImagePosition(b) }
+func (b *Button) GetLabel() string                            { return buttonGetLabel(b) }
+func (b *Button) GetRelief() T.GtkReliefStyle                 { return buttonGetRelief(b) }
+func (b *Button) GetUseStock() T.Gboolean                     { return buttonGetUseStock(b) }
+func (b *Button) GetUseUnderline() T.Gboolean                 { return buttonGetUseUnderline(b) }
+func (b *Button) Leave()                                      { buttonLeave(b) }
+func (b *Button) Pressed()                                    { buttonPressed(b) }
+func (b *Button) Released()                                   { buttonReleased(b) }
+func (b *Button) SetAlignment(xalign, yalign float32)         { buttonSetAlignment(b, xalign, yalign) }
+func (b *Button) SetFocusOnClick(focusOnClick T.Gboolean)     { buttonSetFocusOnClick(b, focusOnClick) }
+func (b *Button) SetImage(image *Widget)                      { buttonSetImage(b, image) }
+func (b *Button) SetImagePosition(position T.GtkPositionType) { buttonSetImagePosition(b, position) }
+func (b *Button) SetLabel(label string)                       { buttonSetLabel(b, label) }
+func (b *Button) SetRelief(newstyle T.GtkReliefStyle)         { buttonSetRelief(b, newstyle) }
+func (b *Button) SetUseStock(useStock T.Gboolean)             { buttonSetUseStock(b, useStock) }
+func (b *Button) SetUseUnderline(useUnderline T.Gboolean)     { buttonSetUseUnderline(b, useUnderline) }
 
 type ButtonBox struct {
 	Box            Box
@@ -423,44 +289,29 @@ const (
 )
 
 var (
-	ButtonBoxGetChildIpadding  func(b *ButtonBox, ipadX, ipadY *int)
-	ButtonBoxGetChildSecondary func(b *ButtonBox, child *T.GtkWidget) T.Gboolean
-	ButtonBoxGetChildSize      func(b *ButtonBox, minWidth, minHeight *int)
-	ButtonBoxGetLayout         func(b *ButtonBox) ButtonBoxStyle
-	ButtonBoxSetChildIpadding  func(b *ButtonBox, ipadX, ipadY int)
-	ButtonBoxSetChildSecondary func(b *ButtonBox, child *T.GtkWidget, isSecondary T.Gboolean)
-	ButtonBoxSetChildSize      func(b *ButtonBox, minWidth, minHeight int)
-	ButtonBoxSetLayout         func(b *ButtonBox, layoutStyle ButtonBoxStyle)
+	buttonBoxGetChildIpadding  func(b *ButtonBox, ipadX, ipadY *int)
+	buttonBoxGetChildSecondary func(b *ButtonBox, child *Widget) T.Gboolean
+	buttonBoxGetChildSize      func(b *ButtonBox, minWidth, minHeight *int)
+	buttonBoxGetLayout         func(b *ButtonBox) ButtonBoxStyle
+	buttonBoxSetChildIpadding  func(b *ButtonBox, ipadX, ipadY int)
+	buttonBoxSetChildSecondary func(b *ButtonBox, child *Widget, isSecondary T.Gboolean)
+	buttonBoxSetChildSize      func(b *ButtonBox, minWidth, minHeight int)
+	buttonBoxSetLayout         func(b *ButtonBox, layoutStyle ButtonBoxStyle)
 )
 
-func (b *ButtonBox) GetLayout() ButtonBoxStyle {
-	return ButtonBoxGetLayout(b)
+func (b *ButtonBox) GetChildIpadding(ipadX, ipadY *int) { buttonBoxGetChildIpadding(b, ipadX, ipadY) }
+func (b *ButtonBox) GetChildSecondary(child *Widget) T.Gboolean {
+	return buttonBoxGetChildSecondary(b, child)
 }
-
-func (b *ButtonBox) SetLayout(layoutStyle ButtonBoxStyle) {
-	ButtonBoxSetLayout(b, layoutStyle)
-}
-
-func (b *ButtonBox) GetChildSecondary(child *T.GtkWidget) T.Gboolean {
-	return ButtonBoxGetChildSecondary(b, child)
-}
-
-func (b *ButtonBox) SetChildSecondary(child *T.GtkWidget, isSecondary T.Gboolean) {
-	ButtonBoxSetChildSecondary(b, child, isSecondary)
-}
-
-func (b *ButtonBox) SetChildSize(minWidth, minHeight int) {
-	ButtonBoxSetChildSize(b, minWidth, minHeight)
-}
-
-func (b *ButtonBox) SetChildIpadding(ipadX, ipadY int) {
-	ButtonBoxSetChildIpadding(b, ipadX, ipadY)
-}
-
 func (b *ButtonBox) GetChildSize(minWidth, minHeight *int) {
-	ButtonBoxGetChildSize(b, minWidth, minHeight)
+	buttonBoxGetChildSize(b, minWidth, minHeight)
 }
-
-func (b *ButtonBox) GetChildIpadding(ipadX, ipadY *int) {
-	ButtonBoxGetChildIpadding(b, ipadX, ipadY)
+func (b *ButtonBox) GetLayout() ButtonBoxStyle         { return buttonBoxGetLayout(b) }
+func (b *ButtonBox) SetChildIpadding(ipadX, ipadY int) { buttonBoxSetChildIpadding(b, ipadX, ipadY) }
+func (b *ButtonBox) SetChildSecondary(child *Widget, isSecondary T.Gboolean) {
+	buttonBoxSetChildSecondary(b, child, isSecondary)
 }
+func (b *ButtonBox) SetChildSize(minWidth, minHeight int) {
+	buttonBoxSetChildSize(b, minWidth, minHeight)
+}
+func (b *ButtonBox) SetLayout(layoutStyle ButtonBoxStyle) { buttonBoxSetLayout(b, layoutStyle) }

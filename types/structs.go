@@ -431,7 +431,7 @@ type (
 		X [16]Gsize
 	}
 
-	GtkWidget struct {
+	GtkWidget struct { //REMOVE
 		Object        GtkObject
 		Private_flags uint16
 		State         uint8
@@ -949,7 +949,7 @@ type (
 		*/
 	}
 
-	GtkHBox struct {
+	GtkHBox struct { //REMOVE
 		Box GtkBox
 	}
 
