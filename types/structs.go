@@ -604,32 +604,6 @@ type (
 		Y int
 	}
 
-	GtkFileSelection struct {
-		Parent_instance  GtkDialog
-		Dir_list         *GtkWidget
-		File_list        *GtkWidget
-		Selection_entry  *GtkWidget
-		Selection_text   *GtkWidget
-		Main_vbox        *GtkWidget
-		Ok_button        *GtkWidget
-		Cancel_button    *GtkWidget
-		Help_button      *GtkWidget
-		History_pulldown *GtkWidget
-		History_menu     *GtkWidget
-		History_list     *GList
-		Fileop_dialog    *GtkWidget
-		Fileop_entry     *GtkWidget
-		Fileop_file      *Gchar
-		Cmpl_state       Gpointer
-		Fileop_c_dir     *GtkWidget
-		Fileop_del_file  *GtkWidget
-		Fileop_ren_file  *GtkWidget
-		Button_area      *GtkWidget
-		Action_area      *GtkWidget
-		Selected_names   *GPtrArray
-		Last_selected    *Gchar
-	}
-
 	GtkDialog struct { //REMOVE
 		Window      GtkWindow
 		Vbox        *GtkWidget
@@ -1540,11 +1514,6 @@ type (
 	GtkAction struct { // REMOVE
 		Object       GObject
 		Private_data *GtkActionPrivate
-	}
-
-	GtkHSV struct {
-		Parent_instance GtkWidget
-		Priv            Gpointer
 	}
 
 	GtkIconFactory struct {
@@ -2737,99 +2706,6 @@ type (
 		_, _, _, _ func()
 	}
 
-	GtkEntryCompletion struct { //REMOVE
-		Parent_instance GObject
-		Priv            *struct{}
-	}
-
-	GtkEventBox struct {
-		Bin GtkBin
-	}
-
-	GtkExpander struct {
-		Bin  GtkBin
-		Priv *GtkExpanderPrivate
-	}
-
-	GtkFileChooserButton struct {
-		Parent GtkHBox
-		Priv   *GtkFileChooserButtonPrivate
-	}
-
-	GtkFileFilterInfo struct {
-		Contains     GtkFileFilterFlags
-		Filename     *Gchar
-		Uri          *Gchar
-		Display_name *Gchar
-		Mime_type    *Gchar
-	}
-
-	GtkFixed struct {
-		Container GtkContainer
-		Children  *GList
-	}
-
-	GtkFontButton struct {
-		Button GtkButton
-		Priv   *GtkFontButtonPrivate
-	}
-
-	GtkFontSelection struct {
-		Parent_instance  GtkVBox
-		Font_entry       *GtkWidget
-		Family_list      *GtkWidget
-		Font_style_entry *GtkWidget
-		Face_list        *GtkWidget
-		Size_entry       *GtkWidget
-		Size_list        *GtkWidget
-		Pixels_button    *GtkWidget
-		Points_button    *GtkWidget
-		Filter_button    *GtkWidget
-		Preview_entry    *GtkWidget
-		Family           *PangoFontFamily
-		Face             *PangoFontFace
-		Size             int
-		Font             *GdkFont
-	}
-
-	GtkFontSelectionDialog struct {
-		Parent_instance GtkDialog
-		Fontsel         *GtkWidget
-		Main_vbox       *GtkWidget
-		Action_area     *GtkWidget
-		Ok_button       *GtkWidget
-		Apply_button    *GtkWidget
-		Cancel_button   *GtkWidget
-		Dialog_width    int
-		Auto_resize     Gboolean
-	}
-
-	GtkFrame struct {
-		Bin              GtkBin
-		Label_widget     *GtkWidget
-		Shadow_type      int16
-		Label_xalign     float32
-		Label_yalign     float32
-		Child_allocation GtkAllocation
-	}
-
-	GtkHandleBox struct {
-		Bin          GtkBin
-		Bin_window   *GdkWindow
-		Float_window *GdkWindow
-		Shadow_type  GtkShadowType
-		Bits         uint
-		// handle_position : 2;
-		// float_window_mapped : 1;
-		// child_detached : 1;
-		// in_drag : 1;
-		// shrink_on_detach : 1;
-		// snap_edge : 3 // signed
-		Deskoff_x         int
-		Deskoff_y         int
-		Attach_allocation GtkAllocation
-		Float_allocation  GtkAllocation
-	}
 	/*
 	   GtkImage  struct
 	   {

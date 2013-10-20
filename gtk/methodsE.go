@@ -137,6 +137,9 @@ var (
 	EntryGetType          func() T.GType
 	EntryNew              func() *T.GtkWidget
 	EntryNewWithMaxLength func(max int) *T.GtkWidget
+	EntryNewWithBuffer    func(buffer *EntryBuffer) *T.GtkWidget
+
+	EntryIconPositionGetType func() T.GType
 
 	EntryAppendText               func(e *Entry, text string)
 	EntryGetActivatesDefault      func(e *Entry) T.Gboolean
@@ -529,4 +532,265 @@ func (e *EntryBuffer) EmitInsertedText(position uint, chars string, nChars uint)
 
 func (e *EntryBuffer) EmitDeletedText(position uint, nChars uint) {
 	EntryBufferEmitDeletedText(e, position, nChars)
+}
+
+type (
+	GtkEntryCompletion struct {
+		Parent T.GObject
+		_      *struct{}
+	}
+
+	EntryCompletionMatchFunc func(
+		completion *EntryCompletion,
+		key string,
+		iter *T.GtkTreeIter,
+		userData T.Gpointer) T.Gboolean
+)
+
+var (
+	EntryCompletionGetType func() T.GType
+	EntryCompletionNew     func() *EntryCompletion
+
+	EntryCompletionComplete            func(completion *EntryCompletion)
+	EntryCompletionDeleteAction        func(completion *EntryCompletion, index int)
+	EntryCompletionGetCompletionPrefix func(completion *EntryCompletion) string
+	EntryCompletionGetEntry            func(completion *EntryCompletion) *T.GtkWidget
+	EntryCompletionGetInlineCompletion func(completion *EntryCompletion) T.Gboolean
+	EntryCompletionGetInlineSelection  func(completion *EntryCompletion) T.Gboolean
+	EntryCompletionGetMinimumKeyLength func(completion *EntryCompletion) int
+	EntryCompletionGetModel            func(completion *EntryCompletion) *T.GtkTreeModel
+	EntryCompletionGetPopupCompletion  func(completion *EntryCompletion) T.Gboolean
+	EntryCompletionGetPopupSetWidth    func(completion *EntryCompletion) T.Gboolean
+	EntryCompletionGetPopupSingleMatch func(completion *EntryCompletion) T.Gboolean
+	EntryCompletionGetTextColumn       func(completion *EntryCompletion) int
+	EntryCompletionInsertActionMarkup  func(completion *EntryCompletion, index int, markup string)
+	EntryCompletionInsertActionText    func(completion *EntryCompletion, index int, text string)
+	EntryCompletionInsertPrefix        func(completion *EntryCompletion)
+	EntryCompletionSetInlineCompletion func(completion *EntryCompletion, inlineCompletion T.Gboolean)
+	EntryCompletionSetInlineSelection  func(completion *EntryCompletion, inlineSelection T.Gboolean)
+	EntryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcDataGpointer, funcNotify T.GDestroyNotify)
+	EntryCompletionSetMinimumKeyLength func(completion *EntryCompletion, length int)
+	EntryCompletionSetModel            func(completion *EntryCompletion, model *T.GtkTreeModel)
+	EntryCompletionSetPopupCompletion  func(completion *EntryCompletion, popupCompletion T.Gboolean)
+	EntryCompletionSetPopupSetWidth    func(completion *EntryCompletion, popupSetWidth T.Gboolean)
+	EntryCompletionSetPopupSingleMatch func(completion *EntryCompletion, popupSingleMatch T.Gboolean)
+	EntryCompletionSetTextColumn       func(completion *EntryCompletion, column int)
+)
+
+func (e *EntryCompletion) GetEntry() *T.GtkWidget {
+	return EntryCompletionGetEntry(e)
+}
+
+func (e *EntryCompletion) SetModel(model *T.GtkTreeModel) {
+	EntryCompletionSetModel(e, model)
+}
+
+func (e *EntryCompletion) GetModel() *T.GtkTreeModel {
+	return EntryCompletionGetModel(e)
+}
+
+func (e *EntryCompletion) SetMatchFunc(f EntryCompletionMatchFunc,
+	funcDataGpointer, funcNotify T.GDestroyNotify) {
+	EntryCompletionSetMatchFunc(
+		e, f, funcDataGpointer, funcNotify)
+}
+
+func (e *EntryCompletion) SetMinimumKeyLength(length int) {
+	EntryCompletionSetMinimumKeyLength(e, length)
+}
+
+func (e *EntryCompletion) GetMinimumKeyLength() int {
+	return EntryCompletionGetMinimumKeyLength(e)
+}
+
+func (e *EntryCompletion) Complete() {
+	EntryCompletionComplete(e)
+}
+
+func (e *EntryCompletion) InsertPrefix() {
+	EntryCompletionInsertPrefix(e)
+}
+
+func (e *EntryCompletion) InsertActionText(index int, text string) {
+	EntryCompletionInsertActionText(e, index, text)
+}
+
+func (e *EntryCompletion) InsertActionMarkup(
+	index int, markup string) {
+	EntryCompletionInsertActionMarkup(e, index, markup)
+}
+
+func (e *EntryCompletion) DeleteAction(index int) {
+	EntryCompletionDeleteAction(e, index)
+}
+
+func (e *EntryCompletion) SetInlineCompletion(
+	inlineCompletion T.Gboolean) {
+	EntryCompletionSetInlineCompletion(e, inlineCompletion)
+}
+
+func (e *EntryCompletion) GetInlineCompletion() T.Gboolean {
+	return EntryCompletionGetInlineCompletion(e)
+}
+
+func (e *EntryCompletion) SetInlineSelection(
+	inlineSelection T.Gboolean) {
+	EntryCompletionSetInlineSelection(e, inlineSelection)
+}
+
+func (e *EntryCompletion) GetInlineSelection() T.Gboolean {
+	return EntryCompletionGetInlineSelection(e)
+}
+
+func (e *EntryCompletion) SetPopupCompletion(
+	popupCompletion T.Gboolean) {
+	EntryCompletionSetPopupCompletion(e, popupCompletion)
+}
+
+func (e *EntryCompletion) GetPopupCompletion() T.Gboolean {
+	return EntryCompletionGetPopupCompletion(e)
+}
+
+func (e *EntryCompletion) SetPopupSetWidth(
+	popupSetWidth T.Gboolean) {
+	EntryCompletionSetPopupSetWidth(e, popupSetWidth)
+}
+
+func (e *EntryCompletion) GetPopupSetWidth() T.Gboolean {
+	return EntryCompletionGetPopupSetWidth(e)
+}
+
+func (e *EntryCompletion) SetPopupSingleMatch(
+	popupSingleMatch T.Gboolean) {
+	EntryCompletionSetPopupSingleMatch(e, popupSingleMatch)
+}
+
+func (e *EntryCompletion) GetPopupSingleMatch() T.Gboolean {
+	return EntryCompletionGetPopupSingleMatch(e)
+}
+
+func (e *EntryCompletion) GetCompletionPrefix() string {
+	return EntryCompletionGetCompletionPrefix(e)
+}
+
+func (e *EntryCompletion) SetTextColumn(column int) {
+	EntryCompletionSetTextColumn(e, column)
+}
+
+func (e *EntryCompletion) GetTextColumn() int {
+	return EntryCompletionGetTextColumn(e)
+}
+
+type EventBox struct {
+	Bin T.GtkBin
+}
+
+var (
+	EventBoxGetType func() T.GType
+	EventBoxNew     func() *T.GtkWidget
+
+	EventBoxGetAboveChild    func(e *EventBox) T.Gboolean
+	EventBoxGetVisibleWindow func(e *EventBox) T.Gboolean
+	EventBoxSetAboveChild    func(e *EventBox, aboveChild T.Gboolean)
+	EventBoxSetVisibleWindow func(e *EventBox, visibleWindow T.Gboolean)
+)
+
+func (e *EventBox) GetVisibleWindow() T.Gboolean {
+	return EventBoxGetVisibleWindow(e)
+}
+
+func (e *EventBox) SetVisibleWindow(visibleWindow T.Gboolean) {
+	EventBoxSetVisibleWindow(e, visibleWindow)
+}
+
+func (e *EventBox) GetAboveChild() T.Gboolean {
+	return EventBoxGetAboveChild(e)
+}
+
+func (e *EventBox) SetAboveChild(aboveChild T.Gboolean) {
+	EventBoxSetAboveChild(e, aboveChild)
+}
+
+type Expander struct {
+	Bin T.GtkBin
+	_   *struct{}
+}
+
+var (
+	ExpanderGetType         func() T.GType
+	ExpanderNew             func(label string) *T.GtkWidget
+	ExpanderNewWithMnemonic func(label string) *T.GtkWidget
+
+	ExpanderStyleGetType func() T.GType
+
+	ExpanderSetExpanded     func(e *Expander, expanded T.Gboolean)
+	ExpanderGetExpanded     func(e *Expander) T.Gboolean
+	ExpanderSetSpacing      func(e *Expander, spacing int)
+	ExpanderGetSpacing      func(e *Expander) int
+	ExpanderSetLabel        func(e *Expander, label string)
+	ExpanderGetLabel        func(e *Expander) string
+	ExpanderSetUseUnderline func(e *Expander, useUnderline T.Gboolean)
+	ExpanderGetUseUnderline func(e *Expander) T.Gboolean
+	ExpanderSetUseMarkup    func(e *Expander, useMarkup T.Gboolean)
+	ExpanderGetUseMarkup    func(e *Expander) T.Gboolean
+	ExpanderSetLabelWidget  func(e *Expander, labelWidget *T.GtkWidget)
+	ExpanderGetLabelWidget  func(e *Expander) *T.GtkWidget
+	ExpanderSetLabelFill    func(e *Expander, labelFill T.Gboolean)
+	ExpanderGetLabelFill    func(e *Expander) T.Gboolean
+)
+
+func (e *Expander) SetExpanded(expanded T.Gboolean) {
+	ExpanderSetExpanded(e, expanded)
+}
+
+func (e *Expander) GetExpanded() T.Gboolean {
+	return ExpanderGetExpanded(e)
+}
+
+func (e *Expander) SetSpacing(spacing int) {
+	ExpanderSetSpacing(e, spacing)
+}
+
+func (e *Expander) GetSpacing() int {
+	return ExpanderGetSpacing(e)
+}
+
+func (e *Expander) SetLabel(label string) {
+	ExpanderSetLabel(e, label)
+}
+
+func (e *Expander) GetLabel() string {
+	return ExpanderGetLabel(e)
+}
+
+func (e *Expander) SetUseUnderline(useUnderline T.Gboolean) {
+	ExpanderSetUseUnderline(e, useUnderline)
+}
+
+func (e *Expander) GetUseUnderline() T.Gboolean {
+	return ExpanderGetUseUnderline(e)
+}
+
+func (e *Expander) SetUseMarkup(useMarkup T.Gboolean) {
+	ExpanderSetUseMarkup(e, useMarkup)
+}
+
+func (e *Expander) GetUseMarkup() T.Gboolean {
+	return ExpanderGetUseMarkup(e)
+}
+
+func (e *Expander) SetLabelWidget(labelWidget *T.GtkWidget) {
+	ExpanderSetLabelWidget(e, labelWidget)
+}
+
+func (e *Expander) GetLabelWidget() *T.GtkWidget {
+	return ExpanderGetLabelWidget(e)
+}
+
+func (e *Expander) SetLabelFill(labelFill T.Gboolean) {
+	ExpanderSetLabelFill(e, labelFill)
+}
+
+func (e *Expander) GetLabelFill() T.Gboolean {
+	return ExpanderGetLabelFill(e)
 }

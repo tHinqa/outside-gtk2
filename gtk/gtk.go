@@ -11,307 +11,287 @@ import (
 )
 
 var (
-	AlignmentGetType               func() T.GType
-	AnchorTypeGetType              func() T.GType
-	ArgFlagsGetType                func() T.GType
-	AttachOptionsGetType           func() T.GType
-	ContainerGetType               func() T.GType
-	CornerTypeGetType              func() T.GType
-	DebugFlagGetType               func() T.GType
-	DeleteTypeGetType              func() T.GType
-	DestDefaultsGetType            func() T.GType
-	DirectionTypeGetType           func() T.GType
-	DragResultGetType              func() T.GType
-	EntryCompletionGetType         func() T.GType
-	EntryIconPositionGetType       func() T.GType
-	EventBoxGetType                func() T.GType
-	EventBoxNew                    func() *T.GtkWidget
-	ExpanderGetType                func() T.GType
-	ExpanderStyleGetType           func() T.GType
-	FileChooserActionGetType       func() T.GType
-	FileChooserButtonGetType       func() T.GType
-	FileChooserConfirmationGetType func() T.GType
-	FileChooserDialogGetType       func() T.GType
-	FileChooserErrorGetType        func() T.GType
-	FileChooserGetType             func() T.GType
-	FileChooserWidgetGetType       func() T.GType
-	FileFilterFlagsGetType         func() T.GType
-	FileFilterGetType              func() T.GType
-	FileSelectionGetType           func() T.GType
-	FixedGetType                   func() T.GType
-	FixedNew                       func() *T.GtkWidget
-	FontButtonGetType              func() T.GType
-	FontButtonNew                  func() *T.GtkWidget
-	FontSelectionDialogGetType     func() T.GType
-	FontSelectionGetType           func() T.GType
-	FontSelectionNew               func() *T.GtkWidget
-	FrameGetType                   func() T.GType
-	GammaCurveGetType              func() T.GType
-	GammaCurveNew                  func() *T.GtkWidget
-	HandleBoxGetType               func() T.GType
-	HandleBoxNew                   func() *T.GtkWidget
-	HboxGetType                    func() T.GType
-	HbuttonBoxGetType              func() T.GType
-	HbuttonBoxNew                  func() *T.GtkWidget
-	HpanedGetType                  func() T.GType
-	HpanedNew                      func() *T.GtkWidget
-	HrulerGetType                  func() T.GType
-	HrulerNew                      func() *T.GtkWidget
-	HscaleGetType                  func() T.GType
-	HscrollbarGetType              func() T.GType
-	HseparatorGetType              func() T.GType
-	HseparatorNew                  func() *T.GtkWidget
-	HsvGetType                     func() T.GType
-	HsvNew                         func() *T.GtkWidget
-	IconFactoryGetType             func() T.GType
-	IconInfoGetType                func() T.GType
-	IconLookupFlagsGetType         func() T.GType
-	IconSetGetType                 func() T.GType
-	IconSizeGetType                func() T.GType
-	IconSourceGetType              func() T.GType
-	IconThemeErrorGetType          func() T.GType
-	IconThemeGetType               func() T.GType
-	IconViewDropPositionGetType    func() T.GType
-	IconViewGetType                func() T.GType
-	IconViewNew                    func() *T.GtkWidget
-	IdentifierGetType              func() T.GType
-	ImageGetType                   func() T.GType
-	ImageMenuItemGetType           func() T.GType
-	ImageMenuItemNew               func() *T.GtkWidget
-	ImageNew                       func() *T.GtkWidget
-	ImageTypeGetType               func() T.GType
-	ImContextGetType               func() T.GType
-	ImContextSimpleGetType         func() T.GType
-	ImMulticontextGetType          func() T.GType
-	ImPreeditStyleGetType          func() T.GType
-	ImStatusStyleGetType           func() T.GType
-	InfoBarGetType                 func() T.GType
-	InfoBarNew                     func() *T.GtkWidget
-	InputDialogGetType             func() T.GType
-	InputDialogNew                 func() *T.GtkWidget
-	InvisibleGetType               func() T.GType
-	InvisibleNew                   func() *T.GtkWidget
-	ItemFactoryGetType             func() T.GType
-	ItemGetType                    func() T.GType
-	JustificationGetType           func() T.GType
-	LabelGetType                   func() T.GType
-	LayoutGetType                  func() T.GType
-	LinkButtonGetType              func() T.GType
-	ListGetType                    func() T.GType
-	ListItemGetType                func() T.GType
-	ListItemNew                    func() *T.GtkWidget
-	ListNew                        func() *T.GtkWidget
-	ListStoreGetType               func() T.GType
-	MatchTypeGetType               func() T.GType
-	MenuBarGetType                 func() T.GType
-	MenuBarNew                     func() *T.GtkWidget
-	MenuDirectionTypeGetType       func() T.GType
-	MenuGetType                    func() T.GType
-	MenuItemGetType                func() T.GType
-	MenuItemNew                    func() *T.GtkWidget
-	MenuNew                        func() *T.GtkWidget
-	MenuShellGetType               func() T.GType
-	MenuToolButtonGetType          func() T.GType
-	MessageDialogGetType           func() T.GType
-	MessageTypeGetType             func() T.GType
-	MetricTypeGetType              func() T.GType
-	MiscGetType                    func() T.GType
-	MountOperationGetType          func() T.GType
-	MovementStepGetType            func() T.GType
-	NotebookGetType                func() T.GType
-	NotebookNew                    func() *T.GtkWidget
-	NotebookTabGetType             func() T.GType
-	NumberUpLayoutGetType          func() T.GType
-	ObjectFlagsGetType             func() T.GType
-	ObjectGetType                  func() T.GType
-	OffscreenWindowGetType         func() T.GType
-	OffscreenWindowNew             func() *T.GtkWidget
-	OldEditableGetType             func() T.GType
-	OptionMenuGetType              func() T.GType
-	OptionMenuNew                  func() *T.GtkWidget
-	OrientableGetType              func() T.GType
-	OrientationGetType             func() T.GType
-	PackDirectionGetType           func() T.GType
-	PackTypeGetType                func() T.GType
-	PageOrientationGetType         func() T.GType
-	PageSetGetType                 func() T.GType
-	PageSetupGetType               func() T.GType
-	PanedGetType                   func() T.GType
-	PaperSizeGetType               func() T.GType
-	PathPriorityTypeGetType        func() T.GType
-	PathTypeGetType                func() T.GType
-	PixmapGetType                  func() T.GType
-	PlugGetType                    func() T.GType
-	PolicyTypeGetType              func() T.GType
-	PositionTypeGetType            func() T.GType
-	PreviewGetType                 func() T.GType
-	PreviewTypeGetType             func() T.GType
-	PrintContextGetType            func() T.GType
-	PrintDuplexGetType             func() T.GType
-	PrintErrorGetType              func() T.GType
-	PrintOperationActionGetType    func() T.GType
-	PrintOperationGetType          func() T.GType
-	PrintOperationPreviewGetType   func() T.GType
-	PrintOperationResultGetType    func() T.GType
-	PrintPagesGetType              func() T.GType
-	PrintQualityGetType            func() T.GType
-	PrintSettingsGetType           func() T.GType
-	PrintStatusGetType             func() T.GType
-	PrivateFlagsGetType            func() T.GType
-	ProgressBarGetType             func() T.GType
-	ProgressBarNew                 func() *T.GtkWidget
-	ProgressBarOrientationGetType  func() T.GType
-	ProgressBarStyleGetType        func() T.GType
-	ProgressGetType                func() T.GType
-	RadioActionGetType             func() T.GType
-	RadioButtonGetType             func() T.GType
-	RadioMenuItemGetType           func() T.GType
-	RadioToolButtonGetType         func() T.GType
-	RangeGetType                   func() T.GType
-	RcFlagsGetType                 func() T.GType
-	RcStyleGetType                 func() T.GType
-	RcTokenTypeGetType             func() T.GType
-	RecentActionGetType            func() T.GType
-	RecentChooserDialogGetType     func() T.GType
-	RecentChooserErrorGetType      func() T.GType
-	RecentChooserGetType           func() T.GType
-	RecentChooserMenuGetType       func() T.GType
-	RecentChooserMenuNew           func() *T.GtkWidget
-	RecentChooserWidgetGetType     func() T.GType
-	RecentChooserWidgetNew         func() *T.GtkWidget
-	RecentFilterFlagsGetType       func() T.GType
-	RecentFilterGetType            func() T.GType
-	RecentInfoGetType              func() T.GType
-	RecentManagerErrorGetType      func() T.GType
-	RecentManagerGetType           func() T.GType
-	RecentSortTypeGetType          func() T.GType
-	ReliefStyleGetType             func() T.GType
-	RequisitionGetType             func() T.GType
-	ResizeModeGetType              func() T.GType
-	ResponseTypeGetType            func() T.GType
-	RulerGetType                   func() T.GType
-	ScaleButtonGetType             func() T.GType
-	ScaleGetType                   func() T.GType
-	ScrollbarGetType               func() T.GType
-	ScrolledWindowGetType          func() T.GType
-	ScrollStepGetType              func() T.GType
-	ScrollTypeGetType              func() T.GType
-	SelectionDataGetType           func() T.GType
-	SelectionModeGetType           func() T.GType
-	SensitivityTypeGetType         func() T.GType
-	SeparatorGetType               func() T.GType
-	SeparatorMenuItemGetType       func() T.GType
-	SeparatorMenuItemNew           func() *T.GtkWidget
-	SeparatorToolItemGetType       func() T.GType
-	SettingsGetType                func() T.GType
-	ShadowTypeGetType              func() T.GType
-	SideTypeGetType                func() T.GType
-	SignalRunTypeGetType           func() T.GType
-	SizeGroupGetType               func() T.GType
-	SizeGroupModeGetType           func() T.GType
-	SocketGetType                  func() T.GType
-	SocketNew                      func() *T.GtkWidget
-	SortTypeGetType                func() T.GType
-	SpinButtonGetType              func() T.GType
-	SpinButtonUpdatePolicyGetType  func() T.GType
-	SpinnerGetType                 func() T.GType
-	SpinnerNew                     func() *T.GtkWidget
-	SpinTypeGetType                func() T.GType
-	StateTypeGetType               func() T.GType
-	StatusbarGetType               func() T.GType
-	StatusbarNew                   func() *T.GtkWidget
-	StatusIconGetType              func() T.GType
-	StyleGetType                   func() T.GType
-	SubmenuDirectionGetType        func() T.GType
-	SubmenuPlacementGetType        func() T.GType
-	TableGetType                   func() T.GType
-	TargetFlagsGetType             func() T.GType
-	TargetListGetType              func() T.GType
-	TearoffMenuItemGetType         func() T.GType
-	TearoffMenuItemNew             func() *T.GtkWidget
-	TextAttributesGetType          func() T.GType
-	TextBufferGetType              func() T.GType
-	TextBufferTargetInfoGetType    func() T.GType
-	TextChildAnchorGetType         func() T.GType
-	TextDirectionGetType           func() T.GType
-	TextIterGetType                func() T.GType
-	TextMarkGetType                func() T.GType
-	TextSearchFlagsGetType         func() T.GType
-	TextTagGetType                 func() T.GType
-	TextTagTableGetType            func() T.GType
-	TextViewGetType                func() T.GType
-	TextViewNew                    func() *T.GtkWidget
-	TextWindowTypeGetType          func() T.GType
-	TipsQueryGetType               func() T.GType
-	TipsQueryNew                   func() *T.GtkWidget
-	ToggleActionGetType            func() T.GType
-	ToggleButtonGetType            func() T.GType
-	ToggleButtonNew                func() *T.GtkWidget
-	ToggleToolButtonGetType        func() T.GType
-	ToolbarChildTypeGetType        func() T.GType
-	ToolbarGetType                 func() T.GType
-	ToolbarNew                     func() *T.GtkWidget
-	ToolbarSpaceStyleGetType       func() T.GType
-	ToolbarStyleGetType            func() T.GType
-	ToolButtonGetType              func() T.GType
-	ToolItemGetType                func() T.GType
-	ToolItemGroupGetType           func() T.GType
-	ToolPaletteDragTargetsGetType  func() T.GType
-	ToolPaletteGetType             func() T.GType
-	ToolPaletteNew                 func() *T.GtkWidget
-	ToolShellGetType               func() T.GType
-	TooltipGetType                 func() T.GType
-	TooltipsGetType                func() T.GType
-	TreeDragDestGetType            func() T.GType
-	TreeDragSourceGetType          func() T.GType
-	TreeGetType                    func() T.GType
-	TreeItemGetType                func() T.GType
-	TreeItemNew                    func() *T.GtkWidget
-	TreeIterGetType                func() T.GType
-	TreeModelFilterGetType         func() T.GType
-	TreeModelFlagsGetType          func() T.GType
-	TreeModelGetType               func() T.GType
-	TreeModelSortGetType           func() T.GType
-	TreeNew                        func() *T.GtkWidget
-	TreePathGetType                func() T.GType
-	TreeRowReferenceGetType        func() T.GType
-	TreeSelectionGetType           func() T.GType
-	TreeSortableGetType            func() T.GType
-	TreeStoreGetType               func() T.GType
-	TreeViewColumnGetType          func() T.GType
-	TreeViewColumnSizingGetType    func() T.GType
-	TreeViewDropPositionGetType    func() T.GType
-	TreeViewGetType                func() T.GType
-	TreeViewGridLinesGetType       func() T.GType
-	TreeViewModeGetType            func() T.GType
-	TreeViewNew                    func() *T.GtkWidget
-	UiManagerGetType               func() T.GType
-	UiManagerItemTypeGetType       func() T.GType
-	UnitGetType                    func() T.GType
-	UpdateTypeGetType              func() T.GType
-	VboxGetType                    func() T.GType
-	VbuttonBoxGetType              func() T.GType
-	VbuttonBoxNew                  func() *T.GtkWidget
-	ViewportGetType                func() T.GType
-	VisibilityGetType              func() T.GType
-	VolumeButtonGetType            func() T.GType
-	VolumeButtonNew                func() *T.GtkWidget
-	VpanedGetType                  func() T.GType
-	VpanedNew                      func() *T.GtkWidget
-	VrulerGetType                  func() T.GType
-	VrulerNew                      func() *T.GtkWidget
-	VscaleGetType                  func() T.GType
-	VscrollbarGetType              func() T.GType
-	VseparatorGetType              func() T.GType
-	VseparatorNew                  func() *T.GtkWidget
-	WidgetFlagsGetType             func() T.GType
-	WidgetGetType                  func() T.GType
-	WidgetHelpTypeGetType          func() T.GType
-	WindowGetType                  func() T.GType
-	WindowGroupGetType             func() T.GType
-	WindowPositionGetType          func() T.GType
-	WindowTypeGetType              func() T.GType
-	WrapModeGetType                func() T.GType
+	AlignmentGetType              func() T.GType
+	AnchorTypeGetType             func() T.GType
+	ArgFlagsGetType               func() T.GType
+	AttachOptionsGetType          func() T.GType
+	ContainerGetType              func() T.GType
+	CornerTypeGetType             func() T.GType
+	DebugFlagGetType              func() T.GType
+	DeleteTypeGetType             func() T.GType
+	DestDefaultsGetType           func() T.GType
+	DirectionTypeGetType          func() T.GType
+	DragResultGetType             func() T.GType
+	GammaCurveGetType             func() T.GType
+	GammaCurveNew                 func() *T.GtkWidget
+	HboxGetType                   func() T.GType
+	HboxNew                       func(homogeneous T.Gboolean, spacing int) *T.GtkWidget
+	HbuttonBoxGetType             func() T.GType
+	HbuttonBoxNew                 func() *T.GtkWidget
+	HbuttonBoxGetSpacingDefault   func() int
+	HbuttonBoxGetLayoutDefault    func() T.GtkButtonBoxStyle
+	HbuttonBoxSetSpacingDefault   func(spacing int)
+	HbuttonBoxSetLayoutDefault    func(layout T.GtkButtonBoxStyle)
+	HpanedGetType                 func() T.GType
+	HpanedNew                     func() *T.GtkWidget
+	HrulerGetType                 func() T.GType
+	HrulerNew                     func() *T.GtkWidget
+	HscaleGetType                 func() T.GType
+	HscaleNew                     func(adjustment *T.GtkAdjustment) *T.GtkWidget
+	HscaleNewWithRange            func(min, max, step float64) *T.GtkWidget
+	HscrollbarGetType             func() T.GType
+	HscrollbarNew                 func(adjustment *T.GtkAdjustment) *T.GtkWidget
+	HseparatorGetType             func() T.GType
+	HseparatorNew                 func() *T.GtkWidget
+	IconFactoryGetType            func() T.GType
+	IconInfoGetType               func() T.GType
+	IconLookupFlagsGetType        func() T.GType
+	IconSetGetType                func() T.GType
+	IconSizeGetType               func() T.GType
+	IconSourceGetType             func() T.GType
+	IconThemeErrorGetType         func() T.GType
+	IconThemeGetType              func() T.GType
+	IconViewDropPositionGetType   func() T.GType
+	IconViewGetType               func() T.GType
+	IconViewNew                   func() *T.GtkWidget
+	IdentifierGetType             func() T.GType
+	ImageGetType                  func() T.GType
+	ImageMenuItemGetType          func() T.GType
+	ImageMenuItemNew              func() *T.GtkWidget
+	ImageNew                      func() *T.GtkWidget
+	ImageTypeGetType              func() T.GType
+	ImContextGetType              func() T.GType
+	ImContextSimpleGetType        func() T.GType
+	ImMulticontextGetType         func() T.GType
+	ImPreeditStyleGetType         func() T.GType
+	ImStatusStyleGetType          func() T.GType
+	InfoBarGetType                func() T.GType
+	InfoBarNew                    func() *T.GtkWidget
+	InputDialogGetType            func() T.GType
+	InputDialogNew                func() *T.GtkWidget
+	InvisibleGetType              func() T.GType
+	InvisibleNew                  func() *T.GtkWidget
+	ItemFactoryGetType            func() T.GType
+	ItemGetType                   func() T.GType
+	JustificationGetType          func() T.GType
+	LabelGetType                  func() T.GType
+	LayoutGetType                 func() T.GType
+	LinkButtonGetType             func() T.GType
+	ListGetType                   func() T.GType
+	ListItemGetType               func() T.GType
+	ListItemNew                   func() *T.GtkWidget
+	ListNew                       func() *T.GtkWidget
+	ListStoreGetType              func() T.GType
+	MatchTypeGetType              func() T.GType
+	MenuBarGetType                func() T.GType
+	MenuBarNew                    func() *T.GtkWidget
+	MenuDirectionTypeGetType      func() T.GType
+	MenuGetType                   func() T.GType
+	MenuItemGetType               func() T.GType
+	MenuItemNew                   func() *T.GtkWidget
+	MenuNew                       func() *T.GtkWidget
+	MenuShellGetType              func() T.GType
+	MenuToolButtonGetType         func() T.GType
+	MessageDialogGetType          func() T.GType
+	MessageTypeGetType            func() T.GType
+	MetricTypeGetType             func() T.GType
+	MiscGetType                   func() T.GType
+	MountOperationGetType         func() T.GType
+	MovementStepGetType           func() T.GType
+	NotebookGetType               func() T.GType
+	NotebookNew                   func() *T.GtkWidget
+	NotebookTabGetType            func() T.GType
+	NumberUpLayoutGetType         func() T.GType
+	ObjectFlagsGetType            func() T.GType
+	ObjectGetType                 func() T.GType
+	OffscreenWindowGetType        func() T.GType
+	OffscreenWindowNew            func() *T.GtkWidget
+	OldEditableGetType            func() T.GType
+	OptionMenuGetType             func() T.GType
+	OptionMenuNew                 func() *T.GtkWidget
+	OrientableGetType             func() T.GType
+	OrientationGetType            func() T.GType
+	PackDirectionGetType          func() T.GType
+	PackTypeGetType               func() T.GType
+	PageOrientationGetType        func() T.GType
+	PageSetGetType                func() T.GType
+	PageSetupGetType              func() T.GType
+	PanedGetType                  func() T.GType
+	PaperSizeGetType              func() T.GType
+	PathPriorityTypeGetType       func() T.GType
+	PathTypeGetType               func() T.GType
+	PixmapGetType                 func() T.GType
+	PlugGetType                   func() T.GType
+	PolicyTypeGetType             func() T.GType
+	PositionTypeGetType           func() T.GType
+	PreviewGetType                func() T.GType
+	PreviewTypeGetType            func() T.GType
+	PrintContextGetType           func() T.GType
+	PrintDuplexGetType            func() T.GType
+	PrintErrorGetType             func() T.GType
+	PrintOperationActionGetType   func() T.GType
+	PrintOperationGetType         func() T.GType
+	PrintOperationPreviewGetType  func() T.GType
+	PrintOperationResultGetType   func() T.GType
+	PrintPagesGetType             func() T.GType
+	PrintQualityGetType           func() T.GType
+	PrintSettingsGetType          func() T.GType
+	PrintStatusGetType            func() T.GType
+	PrivateFlagsGetType           func() T.GType
+	ProgressBarGetType            func() T.GType
+	ProgressBarNew                func() *T.GtkWidget
+	ProgressBarOrientationGetType func() T.GType
+	ProgressBarStyleGetType       func() T.GType
+	ProgressGetType               func() T.GType
+	RadioActionGetType            func() T.GType
+	RadioButtonGetType            func() T.GType
+	RadioMenuItemGetType          func() T.GType
+	RadioToolButtonGetType        func() T.GType
+	RangeGetType                  func() T.GType
+	RcFlagsGetType                func() T.GType
+	RcStyleGetType                func() T.GType
+	RcTokenTypeGetType            func() T.GType
+	RecentActionGetType           func() T.GType
+	RecentChooserDialogGetType    func() T.GType
+	RecentChooserErrorGetType     func() T.GType
+	RecentChooserGetType          func() T.GType
+	RecentChooserMenuGetType      func() T.GType
+	RecentChooserMenuNew          func() *T.GtkWidget
+	RecentChooserWidgetGetType    func() T.GType
+	RecentChooserWidgetNew        func() *T.GtkWidget
+	RecentFilterFlagsGetType      func() T.GType
+	RecentFilterGetType           func() T.GType
+	RecentInfoGetType             func() T.GType
+	RecentManagerErrorGetType     func() T.GType
+	RecentManagerGetType          func() T.GType
+	RecentSortTypeGetType         func() T.GType
+	ReliefStyleGetType            func() T.GType
+	RequisitionGetType            func() T.GType
+	ResizeModeGetType             func() T.GType
+	ResponseTypeGetType           func() T.GType
+	RulerGetType                  func() T.GType
+	ScaleButtonGetType            func() T.GType
+	ScaleGetType                  func() T.GType
+	ScrollbarGetType              func() T.GType
+	ScrolledWindowGetType         func() T.GType
+	ScrollStepGetType             func() T.GType
+	ScrollTypeGetType             func() T.GType
+	SelectionDataGetType          func() T.GType
+	SelectionModeGetType          func() T.GType
+	SensitivityTypeGetType        func() T.GType
+	SeparatorGetType              func() T.GType
+	SeparatorMenuItemGetType      func() T.GType
+	SeparatorMenuItemNew          func() *T.GtkWidget
+	SeparatorToolItemGetType      func() T.GType
+	SettingsGetType               func() T.GType
+	ShadowTypeGetType             func() T.GType
+	SideTypeGetType               func() T.GType
+	SignalRunTypeGetType          func() T.GType
+	SizeGroupGetType              func() T.GType
+	SizeGroupModeGetType          func() T.GType
+	SocketGetType                 func() T.GType
+	SocketNew                     func() *T.GtkWidget
+	SortTypeGetType               func() T.GType
+	SpinButtonGetType             func() T.GType
+	SpinButtonUpdatePolicyGetType func() T.GType
+	SpinnerGetType                func() T.GType
+	SpinnerNew                    func() *T.GtkWidget
+	SpinTypeGetType               func() T.GType
+	StateTypeGetType              func() T.GType
+	StatusbarGetType              func() T.GType
+	StatusbarNew                  func() *T.GtkWidget
+	StatusIconGetType             func() T.GType
+	StyleGetType                  func() T.GType
+	SubmenuDirectionGetType       func() T.GType
+	SubmenuPlacementGetType       func() T.GType
+	TableGetType                  func() T.GType
+	TargetFlagsGetType            func() T.GType
+	TargetListGetType             func() T.GType
+	TearoffMenuItemGetType        func() T.GType
+	TearoffMenuItemNew            func() *T.GtkWidget
+	TextAttributesGetType         func() T.GType
+	TextBufferGetType             func() T.GType
+	TextBufferTargetInfoGetType   func() T.GType
+	TextChildAnchorGetType        func() T.GType
+	TextDirectionGetType          func() T.GType
+	TextIterGetType               func() T.GType
+	TextMarkGetType               func() T.GType
+	TextSearchFlagsGetType        func() T.GType
+	TextTagGetType                func() T.GType
+	TextTagTableGetType           func() T.GType
+	TextViewGetType               func() T.GType
+	TextViewNew                   func() *T.GtkWidget
+	TextWindowTypeGetType         func() T.GType
+	TipsQueryGetType              func() T.GType
+	TipsQueryNew                  func() *T.GtkWidget
+	ToggleActionGetType           func() T.GType
+	ToggleButtonGetType           func() T.GType
+	ToggleButtonNew               func() *T.GtkWidget
+	ToggleToolButtonGetType       func() T.GType
+	ToolbarChildTypeGetType       func() T.GType
+	ToolbarGetType                func() T.GType
+	ToolbarNew                    func() *T.GtkWidget
+	ToolbarSpaceStyleGetType      func() T.GType
+	ToolbarStyleGetType           func() T.GType
+	ToolButtonGetType             func() T.GType
+	ToolItemGetType               func() T.GType
+	ToolItemGroupGetType          func() T.GType
+	ToolPaletteDragTargetsGetType func() T.GType
+	ToolPaletteGetType            func() T.GType
+	ToolPaletteNew                func() *T.GtkWidget
+	ToolShellGetType              func() T.GType
+	TooltipGetType                func() T.GType
+	TooltipsGetType               func() T.GType
+	TreeDragDestGetType           func() T.GType
+	TreeDragSourceGetType         func() T.GType
+	TreeGetType                   func() T.GType
+	TreeItemGetType               func() T.GType
+	TreeItemNew                   func() *T.GtkWidget
+	TreeIterGetType               func() T.GType
+	TreeModelFilterGetType        func() T.GType
+	TreeModelFlagsGetType         func() T.GType
+	TreeModelGetType              func() T.GType
+	TreeModelSortGetType          func() T.GType
+	TreeNew                       func() *T.GtkWidget
+	TreePathGetType               func() T.GType
+	TreeRowReferenceGetType       func() T.GType
+	TreeSelectionGetType          func() T.GType
+	TreeSortableGetType           func() T.GType
+	TreeStoreGetType              func() T.GType
+	TreeViewColumnGetType         func() T.GType
+	TreeViewColumnSizingGetType   func() T.GType
+	TreeViewDropPositionGetType   func() T.GType
+	TreeViewGetType               func() T.GType
+	TreeViewGridLinesGetType      func() T.GType
+	TreeViewModeGetType           func() T.GType
+	TreeViewNew                   func() *T.GtkWidget
+	UiManagerGetType              func() T.GType
+	UiManagerItemTypeGetType      func() T.GType
+	UnitGetType                   func() T.GType
+	UpdateTypeGetType             func() T.GType
+	VboxGetType                   func() T.GType
+	VbuttonBoxGetType             func() T.GType
+	VbuttonBoxNew                 func() *T.GtkWidget
+	ViewportGetType               func() T.GType
+	VisibilityGetType             func() T.GType
+	VolumeButtonGetType           func() T.GType
+	VolumeButtonNew               func() *T.GtkWidget
+	VpanedGetType                 func() T.GType
+	VpanedNew                     func() *T.GtkWidget
+	VrulerGetType                 func() T.GType
+	VrulerNew                     func() *T.GtkWidget
+	VscaleGetType                 func() T.GType
+	VscrollbarGetType             func() T.GType
+	VseparatorGetType             func() T.GType
+	VseparatorNew                 func() *T.GtkWidget
+	WidgetFlagsGetType            func() T.GType
+	WidgetGetType                 func() T.GType
+	WidgetHelpTypeGetType         func() T.GType
+	WindowGetType                 func() T.GType
+	WindowGroupGetType            func() T.GType
+	WindowPositionGetType         func() T.GType
+	WindowTypeGetType             func() T.GType
+	WrapModeGetType               func() T.GType
 
 	AlternativeDialogButtonOrder func(
 		screen *T.GdkScreen) T.Gboolean
@@ -2713,40 +2693,6 @@ var (
 		paddingLeft *uint,
 		paddingRight *uint)
 
-	FrameNew func(
-		label string) *T.GtkWidget
-
-	FrameSetLabel func(
-		frame *T.GtkFrame,
-		label string)
-
-	FrameGetLabel func(
-		frame *T.GtkFrame) string
-
-	FrameSetLabelWidget func(
-		frame *T.GtkFrame,
-		labelWidget *T.GtkWidget)
-
-	FrameGetLabelWidget func(
-		frame *T.GtkFrame) *T.GtkWidget
-
-	FrameSetLabelAlign func(
-		frame *T.GtkFrame,
-		xalign float32,
-		yalign float32)
-
-	FrameGetLabelAlign func(
-		frame *T.GtkFrame,
-		xalign *float32,
-		yalign *float32)
-
-	FrameSetShadowType func(
-		frame *T.GtkFrame,
-		t T.GtkShadowType)
-
-	FrameGetShadowType func(
-		frame *T.GtkFrame) T.GtkShadowType
-
 	BindingSetNew func(
 		setName string) *T.GtkBindingSet
 
@@ -4266,99 +4212,6 @@ var (
 	TreeModelFilterClearCache func(
 		filter *T.GtkTreeModelFilter)
 
-	EntryCompletionNew func() *T.GtkEntryCompletion
-
-	EntryCompletionGetEntry func(
-		completion *T.GtkEntryCompletion) *T.GtkWidget
-
-	EntryCompletionSetModel func(
-		completion *T.GtkEntryCompletion,
-		model *T.GtkTreeModel)
-
-	EntryCompletionGetModel func(
-		completion *T.GtkEntryCompletion) *T.GtkTreeModel
-
-	EntryCompletionSetMatchFunc func(
-		completion *T.GtkEntryCompletion,
-		f T.GtkEntryCompletionMatchFunc,
-		funcDataGpointer,
-		funcNotify T.GDestroyNotify)
-
-	EntryCompletionSetMinimumKeyLength func(
-		completion *T.GtkEntryCompletion,
-		length int)
-
-	EntryCompletionGetMinimumKeyLength func(
-		completion *T.GtkEntryCompletion) int
-
-	EntryCompletionComplete func(
-		completion *T.GtkEntryCompletion)
-
-	EntryCompletionInsertPrefix func(
-		completion *T.GtkEntryCompletion)
-
-	EntryCompletionInsertActionText func(
-		completion *T.GtkEntryCompletion,
-		index int,
-		text string)
-
-	EntryCompletionInsertActionMarkup func(
-		completion *T.GtkEntryCompletion,
-		index int,
-		markup string)
-
-	EntryCompletionDeleteAction func(
-		completion *T.GtkEntryCompletion,
-		index int)
-
-	EntryCompletionSetInlineCompletion func(
-		completion *T.GtkEntryCompletion,
-		inlineCompletion T.Gboolean)
-
-	EntryCompletionGetInlineCompletion func(
-		completion *T.GtkEntryCompletion) T.Gboolean
-
-	EntryCompletionSetInlineSelection func(
-		completion *T.GtkEntryCompletion,
-		inlineSelection T.Gboolean)
-
-	EntryCompletionGetInlineSelection func(
-		completion *T.GtkEntryCompletion) T.Gboolean
-
-	EntryCompletionSetPopupCompletion func(
-		completion *T.GtkEntryCompletion,
-		popupCompletion T.Gboolean)
-
-	EntryCompletionGetPopupCompletion func(
-		completion *T.GtkEntryCompletion) T.Gboolean
-
-	EntryCompletionSetPopupSetWidth func(
-		completion *T.GtkEntryCompletion,
-		popupSetWidth T.Gboolean)
-
-	EntryCompletionGetPopupSetWidth func(
-		completion *T.GtkEntryCompletion) T.Gboolean
-
-	EntryCompletionSetPopupSingleMatch func(
-		completion *T.GtkEntryCompletion,
-		popupSingleMatch T.Gboolean)
-
-	EntryCompletionGetPopupSingleMatch func(
-		completion *T.GtkEntryCompletion) T.Gboolean
-
-	EntryCompletionGetCompletionPrefix func(
-		completion *T.GtkEntryCompletion) string
-
-	EntryCompletionSetTextColumn func(
-		completion *T.GtkEntryCompletion,
-		column int)
-
-	EntryCompletionGetTextColumn func(
-		completion *T.GtkEntryCompletion) int
-
-	EntryNewWithBuffer func(
-		buffer *EntryBuffer) *T.GtkWidget
-
 	TreeViewNewWithModel func(
 		model *T.GtkTreeModel) *T.GtkWidget
 
@@ -4376,15 +4229,13 @@ var (
 		treeView *T.GtkTreeView) *T.GtkAdjustment
 
 	TreeViewSetHadjustment func(
-		treeView *T.GtkTreeView,
-		adjustment *T.GtkAdjustment)
+		treeView *T.GtkTreeView, adjustment *T.GtkAdjustment)
 
 	TreeViewGetVadjustment func(
 		treeView *T.GtkTreeView) *T.GtkAdjustment
 
 	TreeViewSetVadjustment func(
-		treeView *T.GtkTreeView,
-		adjustment *T.GtkAdjustment)
+		treeView *T.GtkTreeView, adjustment *T.GtkAdjustment)
 
 	TreeViewGetHeadersVisible func(
 		treeView *T.GtkTreeView) T.Gboolean
@@ -4802,512 +4653,6 @@ var (
 	TreeViewGetTooltipColumn func(
 		treeView *T.GtkTreeView) int
 
-	EventBoxGetVisibleWindow func(
-		eventBox *T.GtkEventBox) T.Gboolean
-
-	EventBoxSetVisibleWindow func(
-		eventBox *T.GtkEventBox,
-		visibleWindow T.Gboolean)
-
-	EventBoxGetAboveChild func(
-		eventBox *T.GtkEventBox) T.Gboolean
-
-	EventBoxSetAboveChild func(
-		eventBox *T.GtkEventBox,
-		aboveChild T.Gboolean)
-
-	ExpanderNew func(
-		label string) *T.GtkWidget
-
-	ExpanderNewWithMnemonic func(
-		label string) *T.GtkWidget
-
-	ExpanderSetExpanded func(
-		expander *T.GtkExpander,
-		expanded T.Gboolean)
-
-	ExpanderGetExpanded func(
-		expander *T.GtkExpander) T.Gboolean
-
-	ExpanderSetSpacing func(
-		expander *T.GtkExpander,
-		spacing int)
-
-	ExpanderGetSpacing func(
-		expander *T.GtkExpander) int
-
-	ExpanderSetLabel func(
-		expander *T.GtkExpander,
-		label string)
-
-	ExpanderGetLabel func(
-		expander *T.GtkExpander) string
-
-	ExpanderSetUseUnderline func(
-		expander *T.GtkExpander,
-		useUnderline T.Gboolean)
-
-	ExpanderGetUseUnderline func(
-		expander *T.GtkExpander) T.Gboolean
-
-	ExpanderSetUseMarkup func(
-		expander *T.GtkExpander,
-		useMarkup T.Gboolean)
-
-	ExpanderGetUseMarkup func(
-		expander *T.GtkExpander) T.Gboolean
-
-	ExpanderSetLabelWidget func(
-		expander *T.GtkExpander,
-		labelWidget *T.GtkWidget)
-
-	ExpanderGetLabelWidget func(
-		expander *T.GtkExpander) *T.GtkWidget
-
-	ExpanderSetLabelFill func(
-		expander *T.GtkExpander,
-		labelFill T.Gboolean)
-
-	ExpanderGetLabelFill func(
-		expander *T.GtkExpander) T.Gboolean
-
-	FixedPut func(
-		fixed *T.GtkFixed,
-		widget *T.GtkWidget,
-		x int,
-		y int)
-
-	FixedMove func(
-		fixed *T.GtkFixed,
-		widget *T.GtkWidget,
-		x int,
-		y int)
-
-	FixedSetHasWindow func(
-		fixed *T.GtkFixed,
-		hasWindow T.Gboolean)
-
-	FixedGetHasWindow func(
-		fixed *T.GtkFixed) T.Gboolean
-
-	FileFilterNew func() *T.GtkFileFilter
-
-	FileFilterSetName func(
-		filter *T.GtkFileFilter,
-		name string)
-
-	FileFilterGetName func(
-		filter *T.GtkFileFilter) string
-
-	FileFilterAddMimeType func(
-		filter *T.GtkFileFilter,
-		mimeType string)
-
-	FileFilterAddPattern func(
-		filter *T.GtkFileFilter,
-		pattern string)
-
-	FileFilterAddPixbufFormats func(
-		filter *T.GtkFileFilter)
-
-	FileFilterAddCustom func(
-		filter *T.GtkFileFilter,
-		needed T.GtkFileFilterFlags,
-		f T.GtkFileFilterFunc,
-		dataGpointer,
-		notify T.GDestroyNotify)
-
-	FileFilterGetNeeded func(
-		filter *T.GtkFileFilter) T.GtkFileFilterFlags
-
-	FileFilterFilter func(
-		filter *T.GtkFileFilter,
-		filterInfo *T.GtkFileFilterInfo) T.Gboolean
-
-	FileChooserErrorQuark func() T.GQuark
-
-	FileChooserSetAction func(
-		chooser *T.GtkFileChooser,
-		action T.GtkFileChooserAction)
-
-	FileChooserGetAction func(
-		chooser *T.GtkFileChooser) T.GtkFileChooserAction
-
-	FileChooserSetLocalOnly func(
-		chooser *T.GtkFileChooser,
-		localOnly T.Gboolean)
-
-	FileChooserGetLocalOnly func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetSelectMultiple func(
-		chooser *T.GtkFileChooser,
-		selectMultiple T.Gboolean)
-
-	FileChooserGetSelectMultiple func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetShowHidden func(
-		chooser *T.GtkFileChooser,
-		showHidden T.Gboolean)
-
-	FileChooserGetShowHidden func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetDoOverwriteConfirmation func(
-		chooser *T.GtkFileChooser,
-		doOverwriteConfirmation T.Gboolean)
-
-	FileChooserGetDoOverwriteConfirmation func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetCreateFolders func(
-		chooser *T.GtkFileChooser,
-		createFolders T.Gboolean)
-
-	FileChooserGetCreateFolders func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetCurrentName func(
-		chooser *T.GtkFileChooser,
-		name string)
-
-	FileChooserGetFilename func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserSetFilename func(
-		chooser *T.GtkFileChooser,
-		filename string) T.Gboolean
-
-	FileChooserSelectFilename func(
-		chooser *T.GtkFileChooser,
-		filename string) T.Gboolean
-
-	FileChooserUnselectFilename func(
-		chooser *T.GtkFileChooser,
-		filename string)
-
-	FileChooserSelectAll func(
-		chooser *T.GtkFileChooser)
-
-	FileChooserUnselectAll func(
-		chooser *T.GtkFileChooser)
-
-	FileChooserGetFilenames func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	FileChooserSetCurrentFolder func(
-		chooser *T.GtkFileChooser,
-		filename string) T.Gboolean
-
-	FileChooserGetCurrentFolder func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserGetUri func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserSetUri func(
-		chooser *T.GtkFileChooser,
-		uri string) T.Gboolean
-
-	FileChooserSelectUri func(
-		chooser *T.GtkFileChooser,
-		uri string) T.Gboolean
-
-	FileChooserUnselectUri func(
-		chooser *T.GtkFileChooser,
-		uri string)
-
-	FileChooserGetUris func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	FileChooserSetCurrentFolderUri func(
-		chooser *T.GtkFileChooser,
-		uri string) T.Gboolean
-
-	FileChooserGetCurrentFolderUri func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserGetFile func(
-		chooser *T.GtkFileChooser) *T.GFile
-
-	FileChooserSetFile func(
-		chooser *T.GtkFileChooser,
-		file *T.GFile,
-		error **T.GError) T.Gboolean
-
-	FileChooserSelectFile func(
-		chooser *T.GtkFileChooser,
-		file *T.GFile,
-		error **T.GError) T.Gboolean
-
-	FileChooserUnselectFile func(
-		chooser *T.GtkFileChooser,
-		file *T.GFile)
-
-	FileChooserGetFiles func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	FileChooserSetCurrentFolderFile func(
-		chooser *T.GtkFileChooser,
-		file *T.GFile,
-		error **T.GError) T.Gboolean
-
-	FileChooserGetCurrentFolderFile func(
-		chooser *T.GtkFileChooser) *T.GFile
-
-	FileChooserSetPreviewWidget func(
-		chooser *T.GtkFileChooser,
-		previewWidget *T.GtkWidget)
-
-	FileChooserGetPreviewWidget func(
-		chooser *T.GtkFileChooser) *T.GtkWidget
-
-	FileChooserSetPreviewWidgetActive func(
-		chooser *T.GtkFileChooser,
-		active T.Gboolean)
-
-	FileChooserGetPreviewWidgetActive func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserSetUsePreviewLabel func(
-		chooser *T.GtkFileChooser,
-		useLabel T.Gboolean)
-
-	FileChooserGetUsePreviewLabel func(
-		chooser *T.GtkFileChooser) T.Gboolean
-
-	FileChooserGetPreviewFilename func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserGetPreviewUri func(
-		chooser *T.GtkFileChooser) string
-
-	FileChooserGetPreviewFile func(
-		chooser *T.GtkFileChooser) *T.GFile
-
-	FileChooserSetExtraWidget func(
-		chooser *T.GtkFileChooser,
-		extraWidget *T.GtkWidget)
-
-	FileChooserGetExtraWidget func(
-		chooser *T.GtkFileChooser) *T.GtkWidget
-
-	FileChooserAddFilter func(
-		chooser *T.GtkFileChooser,
-		filter *T.GtkFileFilter)
-
-	FileChooserRemoveFilter func(
-		chooser *T.GtkFileChooser,
-		filter *T.GtkFileFilter)
-
-	FileChooserListFilters func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	FileChooserSetFilter func(
-		chooser *T.GtkFileChooser,
-		filter *T.GtkFileFilter)
-
-	FileChooserGetFilter func(
-		chooser *T.GtkFileChooser) *T.GtkFileFilter
-
-	FileChooserAddShortcutFolder func(
-		chooser *T.GtkFileChooser,
-		folder string,
-		error **T.GError) T.Gboolean
-
-	FileChooserRemoveShortcutFolder func(
-		chooser *T.GtkFileChooser,
-		folder string,
-		error **T.GError) T.Gboolean
-
-	FileChooserListShortcutFolders func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	FileChooserAddShortcutFolderUri func(
-		chooser *T.GtkFileChooser,
-		uri string,
-		error **T.GError) T.Gboolean
-
-	FileChooserRemoveShortcutFolderUri func(
-		chooser *T.GtkFileChooser,
-		uri string,
-		error **T.GError) T.Gboolean
-
-	FileChooserListShortcutFolderUris func(
-		chooser *T.GtkFileChooser) *T.GSList
-
-	HboxNew func(
-		homogeneous T.Gboolean,
-		spacing int) *T.GtkWidget
-
-	FileChooserButtonNew func(
-		title string,
-		action T.GtkFileChooserAction) *T.GtkWidget
-
-	FileChooserButtonNewWithBackend func(
-		title string,
-		action T.GtkFileChooserAction,
-		backend string) *T.GtkWidget
-
-	FileChooserButtonNewWithDialog func(
-		dialog *T.GtkWidget) *T.GtkWidget
-
-	FileChooserButtonGetTitle func(
-		button *T.GtkFileChooserButton) string
-
-	FileChooserButtonSetTitle func(
-		button *T.GtkFileChooserButton,
-		title string)
-
-	FileChooserButtonGetWidthChars func(
-		button *T.GtkFileChooserButton) int
-
-	FileChooserButtonSetWidthChars func(
-		button *T.GtkFileChooserButton,
-		nChars int)
-
-	FileChooserButtonGetFocusOnClick func(
-		button *T.GtkFileChooserButton) T.Gboolean
-
-	FileChooserButtonSetFocusOnClick func(
-		button *T.GtkFileChooserButton,
-		focusOnClick T.Gboolean)
-
-	FileChooserDialogNew func(title string, parent *T.GtkWindow,
-		action T.GtkFileChooserAction, firstButtonText string,
-		v ...VArg) *T.GtkWidget
-
-	FileChooserDialogNewWithBackend func(title string,
-		parent *T.GtkWindow, action T.GtkFileChooserAction,
-		backend string, firstButtonText string,
-		v ...VArg) *T.GtkWidget
-
-	FileChooserWidgetNew func(
-		action T.GtkFileChooserAction) *T.GtkWidget
-
-	FileChooserWidgetNewWithBackend func(
-		action T.GtkFileChooserAction,
-		backend string) *T.GtkWidget
-
-	FontButtonNewWithFont func(
-		fontname string) *T.GtkWidget
-
-	FontButtonGetTitle func(
-		fontButton *T.GtkFontButton) string
-
-	FontButtonSetTitle func(
-		fontButton *T.GtkFontButton,
-		title string)
-
-	FontButtonGetUseFont func(
-		fontButton *T.GtkFontButton) T.Gboolean
-
-	FontButtonSetUseFont func(
-		fontButton *T.GtkFontButton,
-		useFont T.Gboolean)
-
-	FontButtonGetUseSize func(
-		fontButton *T.GtkFontButton) T.Gboolean
-
-	FontButtonSetUseSize func(
-		fontButton *T.GtkFontButton,
-		useSize T.Gboolean)
-
-	FontButtonGetFontName func(
-		fontButton *T.GtkFontButton) string
-
-	FontButtonSetFontName func(
-		fontButton *T.GtkFontButton,
-		fontname string) T.Gboolean
-
-	FontButtonGetShowStyle func(
-		fontButton *T.GtkFontButton) T.Gboolean
-
-	FontButtonSetShowStyle func(
-		fontButton *T.GtkFontButton,
-		showStyle T.Gboolean)
-
-	FontButtonGetShowSize func(
-		fontButton *T.GtkFontButton) T.Gboolean
-
-	FontButtonSetShowSize func(
-		fontButton *T.GtkFontButton,
-		showSize T.Gboolean)
-
-	FontSelectionGetFamilyList func(
-		fontsel *T.GtkFontSelection) *T.GtkWidget
-
-	FontSelectionGetFaceList func(
-		fontsel *T.GtkFontSelection) *T.GtkWidget
-
-	FontSelectionGetSizeEntry func(
-		fontsel *T.GtkFontSelection) *T.GtkWidget
-
-	FontSelectionGetSizeList func(
-		fontsel *T.GtkFontSelection) *T.GtkWidget
-
-	FontSelectionGetPreviewEntry func(
-		fontsel *T.GtkFontSelection) *T.GtkWidget
-
-	FontSelectionGetFamily func(
-		fontsel *T.GtkFontSelection) *T.PangoFontFamily
-
-	FontSelectionGetFace func(
-		fontsel *T.GtkFontSelection) *T.PangoFontFace
-
-	FontSelectionGetSize func(
-		fontsel *T.GtkFontSelection) int
-
-	FontSelectionGetFontName func(
-		fontsel *T.GtkFontSelection) string
-
-	FontSelectionGetFont func(
-		fontsel *T.GtkFontSelection) *T.GdkFont
-
-	FontSelectionSetFontName func(
-		fontsel *T.GtkFontSelection,
-		fontname string) T.Gboolean
-
-	FontSelectionGetPreviewText func(
-		fontsel *T.GtkFontSelection) string
-
-	FontSelectionSetPreviewText func(
-		fontsel *T.GtkFontSelection,
-		text string)
-
-	FontSelectionDialogNew func(
-		title string) *T.GtkWidget
-
-	FontSelectionDialogGetOkButton func(
-		fsd *T.GtkFontSelectionDialog) *T.GtkWidget
-
-	FontSelectionDialogGetApplyButton func(
-		fsd *T.GtkFontSelectionDialog) *T.GtkWidget
-
-	FontSelectionDialogGetCancelButton func(
-		fsd *T.GtkFontSelectionDialog) *T.GtkWidget
-
-	FontSelectionDialogGetFontSelection func(
-		fsd *T.GtkFontSelectionDialog) *T.GtkWidget
-
-	FontSelectionDialogGetFontName func(
-		fsd *T.GtkFontSelectionDialog) string
-
-	FontSelectionDialogGetFont func(
-		fsd *T.GtkFontSelectionDialog) *T.GdkFont
-
-	FontSelectionDialogSetFontName func(
-		fsd *T.GtkFontSelectionDialog,
-		fontname string) T.Gboolean
-
-	FontSelectionDialogGetPreviewText func(
-		fsd *T.GtkFontSelectionDialog) string
-
-	FontSelectionDialogSetPreviewText func(
-		fsd *T.GtkFontSelectionDialog,
-		text string)
-
 	GcGet func(
 		depth int,
 		colormap *T.GdkColormap,
@@ -5316,40 +4661,6 @@ var (
 
 	GcRelease func(
 		gc *T.GdkGC)
-
-	HandleBoxSetShadowType func(
-		handleBox *T.GtkHandleBox,
-		t T.GtkShadowType)
-
-	HandleBoxGetShadowType func(
-		handleBox *T.GtkHandleBox) T.GtkShadowType
-
-	HandleBoxSetHandlePosition func(
-		handleBox *T.GtkHandleBox,
-		position T.GtkPositionType)
-
-	HandleBoxGetHandlePosition func(
-		handleBox *T.GtkHandleBox) T.GtkPositionType
-
-	HandleBoxSetSnapEdge func(
-		handleBox *T.GtkHandleBox,
-		edge T.GtkPositionType)
-
-	HandleBoxGetSnapEdge func(
-		handleBox *T.GtkHandleBox) T.GtkPositionType
-
-	HandleBoxGetChildDetached func(
-		handleBox *T.GtkHandleBox) T.Gboolean
-
-	HbuttonBoxGetSpacingDefault func() int
-
-	HbuttonBoxGetLayoutDefault func() T.GtkButtonBoxStyle
-
-	HbuttonBoxSetSpacingDefault func(
-		spacing int)
-
-	HbuttonBoxSetLayoutDefault func(
-		layout T.GtkButtonBoxStyle)
 
 	PanedAdd1 func(
 		paned *T.GtkPaned,
@@ -5567,36 +4878,6 @@ var (
 
 	ScaleClearMarks func(
 		scale *T.GtkScale)
-
-	HscaleNew func(
-		adjustment *T.GtkAdjustment) *T.GtkWidget
-
-	HscaleNewWithRange func(
-		min float64,
-		max float64,
-		step float64) *T.GtkWidget
-
-	HscrollbarNew func(
-		adjustment *T.GtkAdjustment) *T.GtkWidget
-
-	HsvSetColor func(
-		hsv *T.GtkHSV, h, s, v float64)
-
-	HsvGetColor func(
-		hsv *T.GtkHSV, h, s, v *float64)
-
-	HsvSetMetrics func(
-		hsv *T.GtkHSV,
-		size int,
-		ringWidth int)
-
-	HsvGetMetrics func(
-		hsv *T.GtkHSV,
-		size *int,
-		ringWidth *int)
-
-	HsvIsAdjusting func(
-		hsv *T.GtkHSV) T.Gboolean
 
 	HsvToRgb func(h, s, v float64, r, g, b *float64)
 
@@ -10051,27 +9332,6 @@ var (
 	VscaleNewWithRange func(min float64,
 		max float64,
 		step float64) *T.GtkWidget
-
-	FileSelectionNew func(title string) *T.GtkWidget
-
-	FileSelectionSetFilename func(filesel *T.GtkFileSelection,
-		filename string)
-
-	FileSelectionGetFilename func(filesel *T.GtkFileSelection) string
-
-	FileSelectionComplete func(filesel *T.GtkFileSelection,
-		pattern string)
-
-	FileSelectionShowFileopButtons func(filesel *T.GtkFileSelection)
-
-	FileSelectionHideFileopButtons func(filesel *T.GtkFileSelection)
-
-	FileSelectionGetSelections func(filesel *T.GtkFileSelection) **T.Gchar
-
-	FileSelectionSetSelectMultiple func(filesel *T.GtkFileSelection,
-		selectMultiple T.Gboolean)
-
-	FileSelectionGetSelectMultiple func(filesel *T.GtkFileSelection) T.Gboolean
 
 	ItemFactoryNew func(containerType T.GType,
 		path string,

@@ -313,9 +313,6 @@ type (
 	GtkComboBoxPrivate             struct{}
 	GtkComboBoxTextPrivate         struct{}
 	GtkExpanderPrivate             struct{}
-	GtkFileChooser                 struct{}
-	GtkFileChooserButtonPrivate    struct{}
-	GtkFileFilter                  struct{}
 	GtkFontButtonPrivate           struct{}
 	GtkIconInfo                    struct{}
 	GtkIconSet                     struct{}
@@ -4198,41 +4195,6 @@ const (
 	GTK_TREE_VIEW_DROP_INTO_OR_AFTER
 )
 
-type GtkFileFilterFlags Enum
-
-const (
-	GTK_FILE_FILTER_FILENAME GtkFileFilterFlags = 1 << iota
-	GTK_FILE_FILTER_URI
-	GTK_FILE_FILTER_DISPLAY_NAME
-	GTK_FILE_FILTER_MIME_TYPE
-)
-
-type GtkFileChooserAction Enum
-
-const (
-	GTK_FILE_CHOOSER_ACTION_OPEN GtkFileChooserAction = iota
-	GTK_FILE_CHOOSER_ACTION_SAVE
-	GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
-	GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER
-)
-
-type GtkFileChooserConfirmation Enum
-
-const (
-	GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM GtkFileChooserConfirmation = iota
-	GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME
-	GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
-)
-
-type GtkFileChooserError Enum
-
-const (
-	GTK_FILE_CHOOSER_ERROR_NONEXISTENT GtkFileChooserError = iota
-	GTK_FILE_CHOOSER_ERROR_BAD_FILENAME
-	GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS
-	GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME
-)
-
 type GtkIconLookupFlags Enum
 
 const (
@@ -4979,16 +4941,6 @@ type (
 		month uint,
 		day uint,
 		user_data Gpointer) string
-
-	GtkEntryCompletionMatchFunc func(
-		completion *GtkEntryCompletion,
-		key string,
-		iter *GtkTreeIter,
-		user_data Gpointer) Gboolean
-
-	GtkFileFilterFunc func(
-		filter_info *GtkFileFilterInfo,
-		data Gpointer) Gboolean
 
 	GtkMenuDetachFunc func(
 		attach_widget *GtkWidget,

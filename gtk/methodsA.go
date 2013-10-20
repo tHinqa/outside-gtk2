@@ -992,7 +992,7 @@ func (a ArrowType) New(shadowType T.GtkShadowType) *T.GtkWidget {
 }
 
 type AspectFrame struct {
-	Frame            T.GtkFrame
+	Frame            Frame
 	Xalign           float32
 	Yalign           float32
 	Ratio            float32
