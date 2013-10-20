@@ -332,7 +332,7 @@ var apiList = outside.Apis{
 	{"gtk_button_set_use_underline", &ButtonSetUseUnderline},
 	{"gtk_buttons_type_get_type", &ButtonsTypeGetType},
 	{"gtk_calendar_clear_marks", &CalendarClearMarks},
-	{"gtk_calendar_display_options", &CalendarDisplayOptions},
+	// Deprecated {"gtk_calendar_display_options", &CalendarDisplayOptions},
 	{"gtk_calendar_display_options_get_type", &CalendarDisplayOptionsGetType},
 	{"gtk_calendar_freeze", &CalendarFreeze},
 	{"gtk_calendar_get_date", &CalendarGetDate},

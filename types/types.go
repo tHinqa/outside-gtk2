@@ -300,7 +300,6 @@ type (
 	GThemedIcon                    struct{}
 	GTimer                         struct{}
 	GTimeZone                      struct{}
-	GtkAccelMap                    struct{}
 	GtkActionGroupPrivate          struct{}
 	GtkActionPrivate               struct{}
 	GtkAssistantPrivate            struct{}
@@ -319,7 +318,6 @@ type (
 	GtkIMMulticontextPrivate       struct{}
 	GtkInfoBarPrivate              struct{}
 	GtkLabelSelectionInfo          struct{}
-	GtkLinkButtonPrivate           struct{}
 	GtkMenuToolButtonPrivate       struct{}
 	GtkMountOperationPrivate       struct{}
 	GtkNotebookPage                struct{}
@@ -3187,17 +3185,6 @@ const (
 	GTK_FILL
 )
 
-type GtkButtonBoxStyle Enum
-
-const (
-	GTK_BUTTONBOX_DEFAULT_STYLE GtkButtonBoxStyle = iota
-	GTK_BUTTONBOX_SPREAD
-	GTK_BUTTONBOX_EDGE
-	GTK_BUTTONBOX_START
-	GTK_BUTTONBOX_END
-	GTK_BUTTONBOX_CENTER
-)
-
 type GtkCurveType Enum
 
 const (
@@ -3228,15 +3215,6 @@ const (
 	GTK_DIR_DOWN
 	GTK_DIR_LEFT
 	GTK_DIR_RIGHT
-)
-
-type GtkExpanderStyle Enum
-
-const (
-	GTK_EXPANDER_COLLAPSED GtkExpanderStyle = iota
-	GTK_EXPANDER_SEMI_COLLAPSED
-	GTK_EXPANDER_SEMI_EXPANDED
-	GTK_EXPANDER_EXPANDED
 )
 
 type GtkIconSize Enum // REMOVE
@@ -3676,14 +3654,6 @@ const (
 	GTK_DRAG_RESULT_ERROR
 )
 
-type GtkAccelFlags Enum
-
-const (
-	GTK_ACCEL_VISIBLE GtkAccelFlags = 1 << iota
-	GTK_ACCEL_LOCKED
-	GTK_ACCEL_MASK GtkAccelFlags = 0x07
-)
-
 type GtkDebugFlag Enum
 
 const (
@@ -4054,14 +4024,6 @@ const (
 	GTK_WIDGET_HELP_WHATS_THIS
 )
 
-type GtkDialogFlags Enum
-
-const (
-	GTK_DIALOG_MODAL GtkDialogFlags = 1 << iota
-	GTK_DIALOG_DESTROY_WITH_PARENT
-	GTK_DIALOG_NO_SEPARATOR
-)
-
 type GtkResponseType Enum
 
 const (
@@ -4078,16 +4040,6 @@ const (
 	GTK_RESPONSE_HELP
 )
 
-type GtkAssistantPageType Enum
-
-const (
-	GTK_ASSISTANT_PAGE_CONTENT GtkAssistantPageType = iota
-	GTK_ASSISTANT_PAGE_INTRO
-	GTK_ASSISTANT_PAGE_CONFIRM
-	GTK_ASSISTANT_PAGE_SUMMARY
-	GTK_ASSISTANT_PAGE_PROGRESS
-)
-
 type GtkBuilderError Enum
 
 const (
@@ -4102,7 +4054,7 @@ const (
 	GTK_BUILDER_ERROR_DUPLICATE_ID
 )
 
-type GtkCalendarDisplayOptions Enum
+type GtkCalendarDisplayOptions Enum //REMOVE
 
 const (
 	GTK_CALENDAR_SHOW_HEADING GtkCalendarDisplayOptions = 1 << iota
@@ -4175,16 +4127,6 @@ const (
 	GTK_TREE_VIEW_DROP_AFTER
 	GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
 	GTK_TREE_VIEW_DROP_INTO_OR_AFTER
-)
-
-type GtkIconLookupFlags Enum
-
-const (
-	GTK_ICON_LOOKUP_NO_SVG GtkIconLookupFlags = 1 << iota
-	GTK_ICON_LOOKUP_FORCE_SVG
-	GTK_ICON_LOOKUP_USE_BUILTIN
-	GTK_ICON_LOOKUP_GENERIC_FALLBACK
-	GTK_ICON_LOOKUP_FORCE_SIZE
 )
 
 type GtkIconThemeError Enum
@@ -4406,7 +4348,7 @@ const (
 	GTK_CELL_WIDGET
 )
 
-type GtkCListDragPos Enum
+type GtkCListDragPos Enum //REMOVE
 
 const (
 	GTK_CLIST_DRAG_NONE GtkCListDragPos = iota
@@ -4430,24 +4372,6 @@ const (
 	GTK_CTREE_POS_BEFORE GtkCTreePos = iota
 	GTK_CTREE_POS_AS_CHILD
 	GTK_CTREE_POS_AFTER
-)
-
-type GtkCTreeLineStyle Enum
-
-const (
-	GTK_CTREE_LINES_NONE GtkCTreeLineStyle = iota
-	GTK_CTREE_LINES_SOLID
-	GTK_CTREE_LINES_DOTTED
-	GTK_CTREE_LINES_TABBED
-)
-
-type GtkCTreeExpanderStyle Enum
-
-const (
-	GTK_CTREE_EXPANDER_NONE GtkCTreeExpanderStyle = iota
-	GTK_CTREE_EXPANDER_SQUARE
-	GTK_CTREE_EXPANDER_TRIANGLE
-	GTK_CTREE_EXPANDER_CIRCULAR
 )
 
 type GtkCTreeExpansionType Enum
@@ -4683,23 +4607,14 @@ type (
 
 	GClosureNotify func(data Gpointer, closure *GClosure)
 
-	GtkItemFactoryCallback func()
-
 	GtkMenuCallback func(widget *GtkWidget, user_data Gpointer)
 
-	GtkCListCompareFunc func(clist *GtkCList,
+	GtkCListCompareFunc func(clist *GtkCList, //REMOVE
 		ptr1 Gconstpointer, ptr2 Gconstpointer) int
 
 	GtkCTreeCompareDragFunc func(ctree *GtkCTree, //REMOVE
 		source_node *GtkCTreeNode, new_parent *GtkCTreeNode,
 		new_sibling *GtkCTreeNode) Gboolean
-
-	GtkCTreeGNodeFunc func(ctree *GtkCTree, depth uint,
-		gnode *GNode, cnode *GtkCTreeNode,
-		data Gpointer) Gboolean
-
-	GtkCTreeFunc func(ctree *GtkCTree, node *GtkCTreeNode,
-		data Gpointer)
 
 	GCallback func()
 
@@ -4714,9 +4629,6 @@ type (
 		path *GtkTreePath, iter *GtkTreeIter, data Gpointer)
 
 	GtkFunction func(data Gpointer) Gboolean
-
-	GtkLinkButtonUriFunc func(button *GtkLinkButton,
-		link string, user_data Gpointer)
 
 	GtkCallbackMarshal func(object *GtkObject,
 		data Gpointer, n_args uint, args *GtkArg)
@@ -4864,21 +4776,6 @@ type (
 		param_values *GValue,
 		invocation_hint, marshal_data Gpointer)
 
-	GtkAboutDialogActivateLinkFunc func(
-		about *GtkAboutDialog, link string, data Gpointer)
-
-	GtkAccelGroupFindFunc func(
-		key *GtkAccelKey,
-		closure *GClosure,
-		data Gpointer) Gboolean
-
-	GtkAccelMapForeach func(
-		data Gpointer,
-		accel_path string,
-		accel_key uint,
-		accel_mods GdkModifierType,
-		changed Gboolean)
-
 	GtkCallback func(
 		widget *GtkWidget,
 		data Gpointer)
@@ -4889,26 +4786,6 @@ type (
 	GInstanceInitFunc func(
 		instance *GTypeInstance,
 		g_class Gpointer)
-
-	GtkAssistantPageFunc func(
-		current_page int,
-		data Gpointer) int
-
-	GtkBuilderConnectFunc func(
-		builder *GtkBuilder,
-		object *GObject,
-		signal_name string,
-		handler_name string,
-		connect_object *GObject,
-		flags GConnectFlags,
-		user_data Gpointer)
-
-	GtkCalendarDetailFunc func(
-		calendar *GtkCalendar,
-		year uint,
-		month uint,
-		day uint,
-		user_data Gpointer) string
 
 	GtkMenuDetachFunc func(
 		attach_widget *GtkWidget,

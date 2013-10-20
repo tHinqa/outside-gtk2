@@ -6,7 +6,7 @@ import (
 )
 
 type HandleBox struct {
-	Bin         T.GtkBin
+	Bin         Bin
 	BinWindow   *T.GdkWindow
 	FloatWindow *T.GdkWindow
 	ShadowType  T.GtkShadowType

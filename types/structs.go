@@ -685,27 +685,6 @@ type (
 		Resolution      float64
 	}
 
-	GtkAccelGroup struct { // REMOVE
-		Parent         GObject
-		Lock_count     uint
-		Modifier_mask  GdkModifierType
-		Acceleratables *GSList
-		N_accels       uint
-		Priv_accels    *GtkAccelGroupEntry
-	}
-
-	GtkAccelGroupEntry struct { // REMOVE
-		Key              GtkAccelKey
-		Closure          *GClosure
-		Accel_path_quark GQuark
-	}
-
-	GtkAccelKey struct {
-		Accel_key   uint
-		Accel_mods  GdkModifierType
-		Accel_flags uint //: 16
-	}
-
 	GClosure struct {
 		Bits uint
 		// ref_count : 15
@@ -747,15 +726,6 @@ type (
 	GClosureNotifyData struct {
 		Data   Gpointer
 		Notify GClosureNotify
-	}
-
-	GtkItemFactoryEntry struct {
-		Path            *Gchar
-		Accelerator     *Gchar
-		Callback        GtkItemFactoryCallback
-		Callback_action uint
-		Item_type       *Gchar
-		Extra_data      Gconstpointer
 	}
 
 	GtkMenuEntry struct {
@@ -842,7 +812,7 @@ type (
 		Ref_count uint
 	}
 
-	GtkLabel struct {
+	GtkLabel struct { // REMOVE
 		Misc  GtkMisc
 		Label *Gchar
 		Bits  uint
@@ -926,7 +896,7 @@ type (
 		Drag_highlight_pos  GtkCListDragPos
 	}
 
-	GtkCListColumn struct {
+	GtkCListColumn struct { //REMOVE
 		Title         *Gchar
 		Area          GdkRectangle
 		Button        *GtkWidget
@@ -943,7 +913,7 @@ type (
 		// button_passive : 1
 	}
 
-	GtkCListCellInfo struct {
+	GtkCListCellInfo struct { //REMOVE
 		Row    int
 		Column int
 	}
@@ -958,21 +928,7 @@ type (
 		Page_size       float64
 	}
 
-	GtkCListRow struct {
-		Cell       *_GtkCell
-		State      GtkStateType
-		Foreground GdkColor
-		Background GdkColor
-		Style      *GtkStyle
-		Data       Gpointer
-		Destroy    GDestroyNotify
-		Bits       uint
-		// fg_set : 1
-		// bg_set : 1
-		// selectable : 1
-	}
-
-	_GtkCell struct { // TODO(t):fix
+	GtkCell struct { // TODO(t):fix
 		Type       GtkCellType
 		Vertical   int16
 		Horizontal int16
@@ -1019,21 +975,6 @@ type (
 
 	GtkCTreeNode struct { //REMOVE
 		List GList
-	}
-
-	GtkCTreeRow struct {
-		Row           GtkCListRow
-		Parent        *GtkCTreeNode
-		Sibling       *GtkCTreeNode
-		Children      *GtkCTreeNode
-		Pixmap_closed *GdkPixmap
-		Mask_closed   *GdkBitmap
-		Pixmap_opened *GdkPixmap
-		Mask_opened   *GdkBitmap
-		Level         uint16
-		Bits          uint
-		// is_leaf : 1
-		// expanded : 1
 	}
 
 	GtkTextBuffer struct {
@@ -1590,25 +1531,6 @@ type (
 		// keyboard_mode : 1
 	}
 
-	GtkLayout struct {
-		Container    GtkContainer
-		Children     *GList
-		Width        uint
-		Height       uint
-		Hadjustment  *GtkAdjustment
-		Vadjustment  *GtkAdjustment
-		Bin_window   *GdkWindow
-		Visibility   GdkVisibilityState
-		Scroll_x     int
-		Scroll_y     int
-		Freeze_count uint
-	}
-
-	GtkLinkButton struct {
-		Parent_instance GtkButton
-		Priv            *GtkLinkButtonPrivate
-	}
-
 	GtkArg struct {
 		Type GType
 		Name *Gchar
@@ -1716,6 +1638,27 @@ type (
 		// active : 1
 		Accel_group *GtkAccelGroup
 		Toplevel    *GtkWidget
+	}
+
+	GtkAccelGroup struct { // REMOVE
+		Parent         GObject
+		Lock_count     uint
+		Modifier_mask  GdkModifierType
+		Acceleratables *GSList
+		N_accels       uint
+		Priv_accels    *GtkAccelGroupEntry
+	}
+
+	GtkAccelGroupEntry struct { // REMOVE
+		Key              GtkAccelKey
+		Closure          *GClosure
+		Accel_path_quark GQuark
+	}
+
+	GtkAccelKey struct { //REMOVE
+		Accel_key   uint
+		Accel_mods  GdkModifierType
+		Accel_flags uint //: 16
 	}
 
 	GtkPlug struct {
@@ -2569,15 +2512,6 @@ type (
 		Priv            *GtkBuilderPrivate
 	}
 
-	GtkButtonBox struct { // REMOVE
-		Box              GtkBox
-		Child_min_width  int
-		Child_min_height int
-		Child_ipad_x     int
-		Child_ipad_y     int
-		Layout_style     GtkButtonBoxStyle
-	}
-
 	GtkCalendar struct { // REMOVE
 		Widget            GtkWidget
 		Header_style      *GtkStyle
@@ -2644,23 +2578,6 @@ type (
 			value *GValue,
 			pspec *GParamSpec)
 		_, _, _, _ func()
-	}
-
-	GtkListStore struct {
-		Parent               GObject
-		Stamp                int
-		Seq                  Gpointer
-		_                    Gpointer
-		Sort_list            *GList
-		N_columns            int
-		Sort_column_id       int
-		Order                GtkSortType
-		Column_headers       *GType
-		Length               int
-		Default_sort_func    GtkTreeIterCompareFunc
-		Default_sort_data    Gpointer
-		Default_sort_destroy GDestroyNotify
-		Columns_dirty        uint // : 1
 	}
 
 	GtkPaned struct {

@@ -270,6 +270,16 @@ type IconTheme struct {
 	_      *struct{}
 }
 
+type IconLookupFlags T.Enum
+
+const (
+	ICON_LOOKUP_NO_SVG IconLookupFlags = 1 << iota
+	ICON_LOOKUP_FORCE_SVG
+	ICON_LOOKUP_USE_BUILTIN
+	ICON_LOOKUP_GENERIC_FALLBACK
+	ICON_LOOKUP_FORCE_SIZE
+)
+
 var (
 	IconThemeGetType func() T.GType
 	IconThemeNew     func() *IconTheme
@@ -282,16 +292,16 @@ var (
 	IconThemeAddBuiltinIcon func(iconName string, size int, pixbuf *T.GdkPixbuf)
 
 	IconThemeAppendSearchPath   func(i *IconTheme, path string)
-	IconThemeChooseIcon         func(i *IconTheme, iconNames **T.Gchar, size int, flags T.GtkIconLookupFlags) *IconInfo
+	IconThemeChooseIcon         func(i *IconTheme, iconNames **T.Gchar, size int, flags IconLookupFlags) *IconInfo
 	IconThemeGetExampleIconName func(i *IconTheme) string
 	IconThemeGetIconSizes       func(i *IconTheme, iconName string) *int
 	IconThemeGetSearchPath      func(i *IconTheme, path ***T.Gchar, nElements *int)
 	IconThemeHasIcon            func(i *IconTheme, iconName string) T.Gboolean
 	IconThemeListContexts       func(i *IconTheme) *T.GList
 	IconThemeListIcons          func(i *IconTheme, context string) *T.GList
-	IconThemeLoadIcon           func(i *IconTheme, iconName string, size int, flags T.GtkIconLookupFlags, error **T.GError) *T.GdkPixbuf
-	IconThemeLookupByGicon      func(i *IconTheme, icon *T.GIcon, size int, flags T.GtkIconLookupFlags) *IconInfo
-	IconThemeLookupIcon         func(i *IconTheme, iconName string, size int, flags T.GtkIconLookupFlags) *IconInfo
+	IconThemeLoadIcon           func(i *IconTheme, iconName string, size int, flags IconLookupFlags, error **T.GError) *T.GdkPixbuf
+	IconThemeLookupByGicon      func(i *IconTheme, icon *T.GIcon, size int, flags IconLookupFlags) *IconInfo
+	IconThemeLookupIcon         func(i *IconTheme, iconName string, size int, flags IconLookupFlags) *IconInfo
 	IconThemePrependSearchPath  func(i *IconTheme, path string)
 	IconThemeRescanIfNeeded     func(i *IconTheme) T.Gboolean
 	IconThemeSetCustomTheme     func(i *IconTheme, themeName string)
@@ -332,22 +342,22 @@ func (i *IconTheme) GetIconSizes(iconName string) *int {
 }
 
 func (i *IconTheme) LookupIcon(iconName string, size int,
-	flags T.GtkIconLookupFlags) *IconInfo {
+	flags IconLookupFlags) *IconInfo {
 	return IconThemeLookupIcon(i, iconName, size, flags)
 }
 
 func (i *IconTheme) ChooseIcon(iconNames **T.Gchar, size int,
-	flags T.GtkIconLookupFlags) *IconInfo {
+	flags IconLookupFlags) *IconInfo {
 	return IconThemeChooseIcon(i, iconNames, size, flags)
 }
 
 func (i *IconTheme) LoadIcon(iconName string, size int,
-	flags T.GtkIconLookupFlags, err **T.GError) *T.GdkPixbuf {
+	flags IconLookupFlags, err **T.GError) *T.GdkPixbuf {
 	return IconThemeLoadIcon(i, iconName, size, flags, err)
 }
 
 func (i *IconTheme) LookupByGicon(icon *T.GIcon, size int,
-	flags T.GtkIconLookupFlags) *IconInfo {
+	flags IconLookupFlags) *IconInfo {
 	return IconThemeLookupByGicon(i, icon, size, flags)
 }
 
@@ -401,10 +411,10 @@ var (
 	IconViewEnableModelDragSource          func(i *IconView, startButtonMask T.GdkModifierType, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction)
 	IconViewGetColumns                     func(i *IconView) int
 	IconViewGetColumnSpacing               func(i *IconView) int
-	IconViewGetCursor                      func(i *IconView, path **T.GtkTreePath, cell **T.GtkCellRenderer) T.Gboolean
+	IconViewGetCursor                      func(i *IconView, path **T.GtkTreePath, cell **CellRenderer) T.Gboolean
 	IconViewGetDestItemAtPos               func(i *IconView, dragX, dragY int, path **T.GtkTreePath, pos *IconViewDropPosition) T.Gboolean
 	IconViewGetDragDestItem                func(i *IconView, path **T.GtkTreePath, pos *IconViewDropPosition)
-	IconViewGetItemAtPos                   func(i *IconView, x, y int, path **T.GtkTreePath, cell **T.GtkCellRenderer) T.Gboolean
+	IconViewGetItemAtPos                   func(i *IconView, x, y int, path **T.GtkTreePath, cell **CellRenderer) T.Gboolean
 	IconViewGetItemColumn                  func(i *IconView, path *T.GtkTreePath) int
 	IconViewGetItemOrientation             func(i *IconView) T.GtkOrientation
 	IconViewGetItemPadding                 func(i *IconView) int
@@ -433,7 +443,7 @@ var (
 	IconViewSelectPath                     func(i *IconView, path *T.GtkTreePath)
 	IconViewSetColumns                     func(i *IconView, columns int)
 	IconViewSetColumnSpacing               func(i *IconView, columnSpacing int)
-	IconViewSetCursor                      func(i *IconView, path *T.GtkTreePath, cell *T.GtkCellRenderer, startEditing T.Gboolean)
+	IconViewSetCursor                      func(i *IconView, path *T.GtkTreePath, cell *CellRenderer, startEditing T.Gboolean)
 	IconViewSetDragDestItem                func(i *IconView, path *T.GtkTreePath, pos IconViewDropPosition)
 	IconViewSetItemOrientation             func(i *IconView, orientation T.GtkOrientation)
 	IconViewSetItemPadding                 func(i *IconView, itemPadding int)
@@ -448,7 +458,7 @@ var (
 	IconViewSetSelectionMode               func(i *IconView, mode T.GtkSelectionMode)
 	IconViewSetSpacing                     func(i *IconView, spacing int)
 	IconViewSetTextColumn                  func(i *IconView, column int)
-	IconViewSetTooltipCell                 func(i *IconView, tooltip *T.GtkTooltip, path *T.GtkTreePath, cell *T.GtkCellRenderer)
+	IconViewSetTooltipCell                 func(i *IconView, tooltip *T.GtkTooltip, path *T.GtkTreePath, cell *CellRenderer)
 	IconViewSetTooltipColumn               func(i *IconView, column int)
 	IconViewSetTooltipItem                 func(i *IconView, tooltip *T.GtkTooltip, path *T.GtkTreePath)
 	IconViewUnselectAll                    func(i *IconView)
@@ -565,7 +575,7 @@ func (i *IconView) GetPathAtPos(x, y int) *T.GtkTreePath {
 	return IconViewGetPathAtPos(i, x, y)
 }
 
-func (i *IconView) GetItemAtPos(x, y int, path **T.GtkTreePath, cell **T.GtkCellRenderer) T.Gboolean {
+func (i *IconView) GetItemAtPos(x, y int, path **T.GtkTreePath, cell **CellRenderer) T.Gboolean {
 	return IconViewGetItemAtPos(i, x, y, path, cell)
 }
 
@@ -617,11 +627,11 @@ func (i *IconView) ItemActivated(path *T.GtkTreePath) {
 	IconViewItemActivated(i, path)
 }
 
-func (i *IconView) SetCursor(path *T.GtkTreePath, cell *T.GtkCellRenderer, startEditing T.Gboolean) {
+func (i *IconView) SetCursor(path *T.GtkTreePath, cell *CellRenderer, startEditing T.Gboolean) {
 	IconViewSetCursor(i, path, cell, startEditing)
 }
 
-func (i *IconView) GetCursor(path **T.GtkTreePath, cell **T.GtkCellRenderer) T.Gboolean {
+func (i *IconView) GetCursor(path **T.GtkTreePath, cell **CellRenderer) T.Gboolean {
 	return IconViewGetCursor(i, path, cell)
 }
 
@@ -677,7 +687,7 @@ func (i *IconView) SetTooltipItem(tooltip *T.GtkTooltip, path *T.GtkTreePath) {
 	IconViewSetTooltipItem(i, tooltip, path)
 }
 
-func (i *IconView) SetTooltipCell(tooltip *T.GtkTooltip, path *T.GtkTreePath, cell *T.GtkCellRenderer) {
+func (i *IconView) SetTooltipCell(tooltip *T.GtkTooltip, path *T.GtkTreePath, cell *CellRenderer) {
 	IconViewSetTooltipCell(i, tooltip, path, cell)
 }
 
@@ -870,12 +880,12 @@ var (
 	ImageMenuItemNew             func() *T.GtkWidget
 	ImageMenuItemNewWithLabel    func(label string) *T.GtkWidget
 	ImageMenuItemNewWithMnemonic func(label string) *T.GtkWidget
-	ImageMenuItemNewFromStock    func(stockId string, accelGroup *T.GtkAccelGroup) *T.GtkWidget
+	ImageMenuItemNewFromStock    func(stockId string, accelGroup *AccelGroup) *T.GtkWidget
 
 	ImageMenuItemGetAlwaysShowImage func(i *ImageMenuItem) T.Gboolean
 	ImageMenuItemGetImage           func(i *ImageMenuItem) *T.GtkWidget
 	ImageMenuItemGetUseStock        func(i *ImageMenuItem) T.Gboolean
-	ImageMenuItemSetAccelGroup      func(i *ImageMenuItem, accelGroup *T.GtkAccelGroup)
+	ImageMenuItemSetAccelGroup      func(i *ImageMenuItem, accelGroup *AccelGroup)
 	ImageMenuItemSetAlwaysShowImage func(i *ImageMenuItem, alwaysShow T.Gboolean)
 	ImageMenuItemSetImage           func(i *ImageMenuItem, image *T.GtkWidget)
 	ImageMenuItemSetUseStock        func(i *ImageMenuItem, useStock T.Gboolean)
@@ -905,7 +915,7 @@ func (i *ImageMenuItem) GetUseStock() T.Gboolean {
 	return ImageMenuItemGetUseStock(i)
 }
 
-func (i *ImageMenuItem) SetAccelGroup(accelGroup *T.GtkAccelGroup) {
+func (i *ImageMenuItem) SetAccelGroup(accelGroup *AccelGroup) {
 	ImageMenuItemSetAccelGroup(i, accelGroup)
 }
 
@@ -989,7 +999,7 @@ type IMContextSimple struct {
 
 var (
 	ImContextSimpleGetType func() T.GType
-	ImContextSimpleNew     func() *T.GtkIMContext
+	ImContextSimpleNew     func() *IMContext
 
 	ImContextSimpleAddTable func(i *IMContextSimple, data *uint16, maxSeqLen, nSeqs int)
 )
@@ -1007,7 +1017,7 @@ type IMMulticontext struct {
 
 var (
 	ImMulticontextGetType func() T.GType
-	ImMulticontextNew     func() *T.GtkIMContext
+	ImMulticontextNew     func() *IMContext
 
 	ImMulticontextAppendMenuitems func(i *IMMulticontext, menushell *T.GtkMenuShell)
 	ImMulticontextGetContextId    func(i *IMMulticontext) string
@@ -1112,7 +1122,7 @@ func (i *Invisible) GetScreen() *T.GdkScreen {
 }
 
 type Item struct {
-	Bin T.GtkBin
+	Bin Bin
 }
 
 var (
@@ -1129,35 +1139,48 @@ func (i *Item) Deselect() { ItemDeselect(i) }
 
 func (i *Item) Toggle() { ItemToggle(i) }
 
-type ItemFactory struct {
-	Object           T.GtkObject
-	Path             *T.Gchar
-	Accel_group      *T.GtkAccelGroup
-	Widget           *T.GtkWidget
-	Items            *T.GSList
-	Translate_func   T.GtkTranslateFunc
-	Translate_data   T.Gpointer
-	Translate_notify T.GDestroyNotify
-}
+type (
+	ItemFactory struct {
+		Object           T.GtkObject
+		Path             *T.Gchar
+		Accel_group      *AccelGroup
+		Widget           *T.GtkWidget
+		Items            *T.GSList
+		Translate_func   T.GtkTranslateFunc
+		Translate_data   T.Gpointer
+		Translate_notify T.GDestroyNotify
+	}
+
+	ItemFactoryEntry struct {
+		Path            *T.Gchar
+		Accelerator     *T.Gchar
+		Callback        ItemFactoryCallback
+		Callback_action uint
+		Item_type       *T.Gchar
+		Extra_data      T.Gconstpointer
+	}
+
+	ItemFactoryCallback func()
+)
 
 var (
 	ItemFactoryGetType func() T.GType
-	ItemFactoryNew     func(containerType T.GType, path string, accelGroup *T.GtkAccelGroup) *ItemFactory
+	ItemFactoryNew     func(containerType T.GType, path string, accelGroup *AccelGroup) *ItemFactory
 
 	ItemFactoriesPathDelete        func(ifactoryPath string, path string)
-	ItemFactoryAddForeign          func(accelWidget *T.GtkWidget, fullPath string, accelGroup *T.GtkAccelGroup, keyval uint, modifiers T.GdkModifierType)
+	ItemFactoryAddForeign          func(accelWidget *T.GtkWidget, fullPath string, accelGroup *AccelGroup, keyval uint, modifiers T.GdkModifierType)
 	ItemFactoryCreateMenuEntries   func(nEntries uint, entries *T.GtkMenuEntry)
 	ItemFactoryFromPath            func(path string) *ItemFactory
 	ItemFactoryFromWidget          func(widget *T.GtkWidget) *ItemFactory
 	ItemFactoryPathFromWidget      func(widget *T.GtkWidget) string
 	ItemFactoryPopupDataFromWidget func(widget *T.GtkWidget) T.Gpointer
 
-	ItemFactoryConstruct         func(i *ItemFactory, containerType T.GType, path string, accelGroup *T.GtkAccelGroup)
-	ItemFactoryCreateItem        func(i *ItemFactory, entry *T.GtkItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
-	ItemFactoryCreateItems       func(i *ItemFactory, nEntries uint, entries *T.GtkItemFactoryEntry, callbackData T.Gpointer)
-	ItemFactoryCreateItemsAc     func(i *ItemFactory, nEntries uint, entries *T.GtkItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
-	ItemFactoryDeleteEntries     func(i *ItemFactory, nEntries uint, entries *T.GtkItemFactoryEntry)
-	ItemFactoryDeleteEntry       func(i *ItemFactory, entry *T.GtkItemFactoryEntry)
+	ItemFactoryConstruct         func(i *ItemFactory, containerType T.GType, path string, accelGroup *AccelGroup)
+	ItemFactoryCreateItem        func(i *ItemFactory, entry *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
+	ItemFactoryCreateItems       func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry, callbackData T.Gpointer)
+	ItemFactoryCreateItemsAc     func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
+	ItemFactoryDeleteEntries     func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry)
+	ItemFactoryDeleteEntry       func(i *ItemFactory, entry *ItemFactoryEntry)
 	ItemFactoryDeleteItem        func(i *ItemFactory, path string)
 	ItemFactoryGetItem           func(i *ItemFactory, path string) *T.GtkWidget
 	ItemFactoryGetItemByAction   func(i *ItemFactory, action uint) *T.GtkWidget
@@ -1170,7 +1193,7 @@ var (
 )
 
 func (i *ItemFactory) Construct(containerType T.GType,
-	path string, accelGroup *T.GtkAccelGroup) {
+	path string, accelGroup *AccelGroup) {
 	ItemFactoryConstruct(i, containerType, path, accelGroup)
 }
 
@@ -1190,13 +1213,13 @@ func (i *ItemFactory) GetItemByAction(action uint) *T.GtkWidget {
 	return ItemFactoryGetItemByAction(i, action)
 }
 
-func (i *ItemFactory) CreateItem(entry *T.GtkItemFactoryEntry,
+func (i *ItemFactory) CreateItem(entry *ItemFactoryEntry,
 	callbackData T.Gpointer, callbackType uint) {
 	ItemFactoryCreateItem(i, entry, callbackData, callbackType)
 }
 
 func (i *ItemFactory) CreateItems(nEntries uint,
-	entries *T.GtkItemFactoryEntry, callbackData T.Gpointer) {
+	entries *ItemFactoryEntry, callbackData T.Gpointer) {
 	ItemFactoryCreateItems(i, nEntries, entries, callbackData)
 }
 
@@ -1204,12 +1227,12 @@ func (i *ItemFactory) DeleteItem(path string) {
 	ItemFactoryDeleteItem(i, path)
 }
 
-func (i *ItemFactory) DeleteEntry(entry *T.GtkItemFactoryEntry) {
+func (i *ItemFactory) DeleteEntry(entry *ItemFactoryEntry) {
 	ItemFactoryDeleteEntry(i, entry)
 }
 
 func (i *ItemFactory) DeleteEntries(
-	nEntries uint, entries *T.GtkItemFactoryEntry) {
+	nEntries uint, entries *ItemFactoryEntry) {
 	ItemFactoryDeleteEntries(i, nEntries, entries)
 }
 
@@ -1235,7 +1258,7 @@ func (i *ItemFactory) SetTranslateFunc(
 }
 
 func (i *ItemFactory) CreateItemsAc(
-	nEntries uint, entries *T.GtkItemFactoryEntry,
+	nEntries uint, entries *ItemFactoryEntry,
 	callbackData T.Gpointer, callbackType uint) {
 	ItemFactoryCreateItemsAc(
 		i, nEntries, entries, callbackData, callbackType)

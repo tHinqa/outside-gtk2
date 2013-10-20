@@ -5,29 +5,45 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type Calendar struct {
-	Widget            T.GtkWidget
-	Header_style      *T.GtkStyle
-	Label_style       *T.GtkStyle
-	Month             int
-	Year              int
-	Selected_day      int
-	Day_month         [6][7]int
-	Day               [6][7]int
-	Num_marked_dates  int
-	Marked_date       [31]int
-	Display_flags     T.GtkCalendarDisplayOptions
-	Marked_date_color [31]T.GdkColor
-	Gc                *T.GdkGC
-	Xor_gc            *T.GdkGC
-	Focus_row         int
-	Focus_col         int
-	Highlight_row     int
-	Highlight_col     int
-	Priv              *T.GtkCalendarPrivate
-	Grow_space        [32]T.Gchar
-	_, _, _, _        func()
-}
+type (
+	Calendar struct {
+		Widget            T.GtkWidget
+		Header_style      *T.GtkStyle
+		Label_style       *T.GtkStyle
+		Month             int
+		Year              int
+		Selected_day      int
+		Day_month         [6][7]int
+		Day               [6][7]int
+		Num_marked_dates  int
+		Marked_date       [31]int
+		Display_flags     CalendarDisplayOptions
+		Marked_date_color [31]T.GdkColor
+		Gc                *T.GdkGC
+		Xor_gc            *T.GdkGC
+		Focus_row         int
+		Focus_col         int
+		Highlight_row     int
+		Highlight_col     int
+		_                 *struct{}
+		Grow_space        [32]T.Gchar
+		_, _, _, _        func()
+	}
+
+	CalendarDetailFunc func(calendar *Calendar,
+		year, month, day uint, userData T.Gpointer) string
+)
+
+type CalendarDisplayOptions T.Enum
+
+const (
+	CALENDAR_SHOW_HEADING CalendarDisplayOptions = 1 << iota
+	CALENDAR_SHOW_DAY_NAMES
+	CALENDAR_NO_MONTH_CHANGE
+	CALENDAR_SHOW_WEEK_NUMBERS
+	CALENDAR_WEEK_START_MONDAY
+	CALENDAR_SHOW_DETAILS
+)
 
 var (
 	CalendarDisplayOptionsGetType func() T.GType
@@ -37,21 +53,23 @@ var (
 
 var (
 	CalendarClearMarks          func(c *Calendar)
-	CalendarDisplayOptions      func(c *Calendar, flags T.GtkCalendarDisplayOptions)
 	CalendarFreeze              func(c *Calendar)
 	CalendarGetDate             func(c *Calendar, year, month, day *uint)
 	CalendarGetDetailHeightRows func(c *Calendar) int
 	CalendarGetDetailWidthChars func(c *Calendar) int
-	CalendarGetDisplayOptions   func(c *Calendar) T.GtkCalendarDisplayOptions
+	CalendarGetDisplayOptions   func(c *Calendar) CalendarDisplayOptions
 	CalendarMarkDay             func(c *Calendar, day uint) T.Gboolean
 	CalendarSelectDay           func(c *Calendar, day uint)
 	CalendarSelectMonth         func(c *Calendar, month, year uint) T.Gboolean
-	CalendarSetDetailFunc       func(c *Calendar, f T.GtkCalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify)
+	CalendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify)
 	CalendarSetDetailHeightRows func(c *Calendar, rows int)
 	CalendarSetDetailWidthChars func(c *Calendar, chars int)
-	CalendarSetDisplayOptions   func(c *Calendar, flags T.GtkCalendarDisplayOptions)
+	CalendarSetDisplayOptions   func(c *Calendar, flags CalendarDisplayOptions)
 	CalendarThaw                func(c *Calendar)
 	CalendarUnmarkDay           func(c *Calendar, day uint) T.Gboolean
+
+//NOTE(t):Deprecated; We remove because name clash w/enum
+//CalendarDisplayOptions      func(c *Calendar, flags CalendarDisplayOptionsEnum)
 )
 
 func (c *Calendar) SelectMonth(month, year uint) T.Gboolean {
@@ -70,23 +88,24 @@ func (c *Calendar) UnmarkDay(day uint) T.Gboolean {
 
 func (c *Calendar) ClearMarks() { CalendarClearMarks(c) }
 
-func (c *Calendar) SetDisplayOptions(flags T.GtkCalendarDisplayOptions) {
+func (c *Calendar) SetDisplayOptions(flags CalendarDisplayOptions) {
 	CalendarSetDisplayOptions(c, flags)
 }
 
-func (c *Calendar) GetDisplayOptions() T.GtkCalendarDisplayOptions {
+func (c *Calendar) GetDisplayOptions() CalendarDisplayOptions {
 	return CalendarGetDisplayOptions(c)
 }
 
-func (c *Calendar) DisplayOptions(flags T.GtkCalendarDisplayOptions) {
-	CalendarDisplayOptions(c, flags)
-}
+//NOTE(t):Deprecated; We remove because name clash w/enum
+// func (c *Calendar) DisplayOptions(flags CalendarDisplayOptionsEnum) {
+// 	CalendarDisplayOptions(c, flags)
+// }
 
 func (c *Calendar) GetDate(year, month, day *uint) {
 	CalendarGetDate(c, year, month, day)
 }
 
-func (c *Calendar) SetDetailFunc(f T.GtkCalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify) {
+func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify) {
 	CalendarSetDetailFunc(c, f, dataGpointer, destroy)
 }
 
@@ -109,8 +128,6 @@ func (c *Calendar) GetDetailHeightRows() int {
 func (c *Calendar) Freeze() { CalendarFreeze(c) }
 
 func (c *Calendar) Thaw() { CalendarThaw(c) }
-
-//============================================================
 
 type CellEditable struct{}
 
@@ -224,22 +241,22 @@ const (
 var (
 	CellRendererGetType          func() T.GType
 	CellRendererAccelGetType     func() T.GType
-	CellRendererAccelNew         func() *T.GtkCellRenderer
+	CellRendererAccelNew         func() *CellRenderer
 	CellRendererAccelModeGetType func() T.GType
 	CellRendererComboGetType     func() T.GType
-	CellRendererComboNew         func() *T.GtkCellRenderer
+	CellRendererComboNew         func() *CellRenderer
 	CellRendererModeGetType      func() T.GType
 	CellRendererPixbufGetType    func() T.GType
-	CellRendererPixbufNew        func() *T.GtkCellRenderer
+	CellRendererPixbufNew        func() *CellRenderer
 	CellRendererProgressGetType  func() T.GType
-	CellRendererProgressNew      func() *T.GtkCellRenderer
+	CellRendererProgressNew      func() *CellRenderer
 	CellRendererSpinGetType      func() T.GType
-	CellRendererSpinNew          func() *T.GtkCellRenderer
+	CellRendererSpinNew          func() *CellRenderer
 	CellRendererSpinnerGetType   func() T.GType
-	CellRendererSpinnerNew       func() *T.GtkCellRenderer
+	CellRendererSpinnerNew       func() *CellRenderer
 	CellRendererStateGetType     func() T.GType
 	CellRendererToggleGetType    func() T.GType
-	CellRendererToggleNew        func() *T.GtkCellRenderer
+	CellRendererToggleNew        func() *CellRenderer
 )
 
 var (
@@ -351,7 +368,7 @@ type CellRendererText struct {
 
 var (
 	CellRendererTextGetType func() T.GType
-	CellRendererTextNew     func() *T.GtkCellRenderer
+	CellRendererTextNew     func() *CellRenderer
 
 	CellRendererTextSetFixedHeightFromFont func(renderer *CellRendererText, numberOfRows int)
 )
@@ -724,56 +741,106 @@ func (c *Clipboard) SetCanStore(
 
 func (c *Clipboard) Store() { ClipboardStore(c) }
 
-type CList struct {
-	Container          T.GtkContainer
-	Flags              uint16
-	_                  T.Gpointer
-	_                  T.Gpointer
-	Freeze_count       uint
-	InternalAllocation T.GdkRectangle
-	Rows               int
-	RowHeight          int
-	RowList            *T.GList
-	RowListEnd         *T.GList
-	Columns            int
-	ColumnTitleArea    T.GdkRectangle
-	TitleWindow        *T.GdkWindow
-	Column             *T.GtkCListColumn
-	ClistWindow        *T.GdkWindow
-	ClistWindowWidth   int
-	ClistWindowHeight  int
-	Hoffset            int
-	Voffset            int
-	ShadowType         T.GtkShadowType
-	SelectionMode      T.GtkSelectionMode
-	Selection          *T.GList
-	SelectionWnd       *T.GList
-	UndoSelectionList  *T.GList
-	UndoUnselection    *T.GList
-	UndoAnchor         int
-	ButtonActions      [5]uint8
-	DragButton         uint8
-	ClickCell          T.GtkCListCellInfo
-	Hadjustment        *T.GtkAdjustment
-	Vadjustment        *T.GtkAdjustment
-	XorGc              *T.GdkGC
-	FgGc               *T.GdkGC
-	BgGc               *T.GdkGC
-	CursorDrag         *T.GdkCursor
-	XDrag              int
-	FocusRow           int
-	FocusHeaderColumn  int
-	Anchor             int
-	AnchorState        T.GtkStateType
-	DragPos            int
-	Htimer             int
-	Vtimer             int
-	SortType           T.GtkSortType
-	Compare            T.GtkCListCompareFunc
-	SortColumn         int
-	DragHighlightRow   int
-	DragHighlightPos   T.GtkCListDragPos
-}
+type (
+	CList struct {
+		Container          T.GtkContainer
+		Flags              uint16
+		_                  T.Gpointer
+		_                  T.Gpointer
+		Freeze_count       uint
+		InternalAllocation T.GdkRectangle
+		Rows               int
+		RowHeight          int
+		RowList            *T.GList
+		RowListEnd         *T.GList
+		Columns            int
+		ColumnTitleArea    T.GdkRectangle
+		TitleWindow        *T.GdkWindow
+		Column             *CListColumn
+		ClistWindow        *T.GdkWindow
+		ClistWindowWidth   int
+		ClistWindowHeight  int
+		Hoffset            int
+		Voffset            int
+		ShadowType         T.GtkShadowType
+		SelectionMode      T.GtkSelectionMode
+		Selection          *T.GList
+		SelectionWnd       *T.GList
+		UndoSelectionList  *T.GList
+		UndoUnselection    *T.GList
+		UndoAnchor         int
+		ButtonActions      [5]uint8
+		DragButton         uint8
+		ClickCell          CListCellInfo
+		Hadjustment        *Adjustment
+		Vadjustment        *Adjustment
+		XorGc              *T.GdkGC
+		FgGc               *T.GdkGC
+		BgGc               *T.GdkGC
+		CursorDrag         *T.GdkCursor
+		XDrag              int
+		FocusRow           int
+		FocusHeaderColumn  int
+		Anchor             int
+		AnchorState        T.GtkStateType
+		DragPos            int
+		Htimer             int
+		Vtimer             int
+		SortType           T.GtkSortType
+		Compare            CListCompareFunc
+		SortColumn         int
+		DragHighlightRow   int
+		DragHighlightPos   CListDragPos
+	}
+
+	CListColumn struct {
+		Title         *T.Gchar
+		Area          T.GdkRectangle
+		Button        *T.GtkWidget
+		Window        *T.GdkWindow
+		Width         int
+		Min_width     int
+		Max_width     int
+		Justification T.GtkJustification
+		Bits          uint
+		// Visible : 1
+		// WidthSet : 1
+		// Resizeable : 1
+		// AutoResize : 1
+		// ButtonPassive : 1
+	}
+
+	CListCellInfo struct {
+		Row    int
+		Column int
+	}
+
+	CListRow struct {
+		Cell       *T.GtkCell
+		State      T.GtkStateType
+		Foreground T.GdkColor
+		Background T.GdkColor
+		Style      *T.GtkStyle
+		Data       T.Gpointer
+		Destroy    T.GDestroyNotify
+		Bits       uint
+		// FgSet : 1
+		// BgSet : 1
+		// Selectable : 1
+	}
+
+	CListCompareFunc func(clist *CList,
+		ptr1, ptr2 T.Gconstpointer) int
+)
+
+type CListDragPos T.Enum
+
+const (
+	CLIST_DRAG_NONE CListDragPos = iota
+	CLIST_DRAG_BEFORE
+	CLIST_DRAG_INTO
+	CLIST_DRAG_AFTER
+)
 
 var (
 	ClistGetType        func() T.GType
@@ -798,7 +865,7 @@ var (
 	ClistGetCellType            func(c *CList, row, column int) T.GtkCellType
 	ClistGetColumnTitle         func(c *CList, column int) string
 	ClistGetColumnWidget        func(c *CList, column int) *T.GtkWidget
-	ClistGetHadjustment         func(c *CList) *T.GtkAdjustment
+	ClistGetHadjustment         func(c *CList) *Adjustment
 	ClistGetPixmap              func(c *CList, row, column int, pixmap, mask **T.GdkBitmap) int
 	ClistGetPixtext             func(c *CList, row, column int, text **T.Gchar, spacing *uint8, pixmap, mask **T.GdkBitmap) int
 	ClistGetRowData             func(c *CList, row int) T.Gpointer
@@ -806,7 +873,7 @@ var (
 	ClistGetSelectable          func(c *CList, row int) T.Gboolean
 	ClistGetSelectionInfo       func(c *CList, x, y int, row, column *int) int
 	ClistGetText                func(c *CList, row, column int, text **T.Gchar) int
-	ClistGetVadjustment         func(c *CList) *T.GtkAdjustment
+	ClistGetVadjustment         func(c *CList) *Adjustment
 	ClistInsert                 func(c *CList, row int, text **T.Gchar) int
 	ClistMoveto                 func(c *CList, row, column int, rowAlign, colAlign float32)
 	ClistOptimalColumnWidth     func(c *CList, column int) int
@@ -829,9 +896,9 @@ var (
 	ClistSetColumnVisibility    func(c *CList, column int, visible T.Gboolean)
 	ClistSetColumnWidget        func(c *CList, column int, widget *T.GtkWidget)
 	ClistSetColumnWidth         func(c *CList, column, width int)
-	ClistSetCompareFunc         func(c *CList, cmpFunc T.GtkCListCompareFunc)
+	ClistSetCompareFunc         func(c *CList, cmpFunc CListCompareFunc)
 	ClistSetForeground          func(c *CList, row int, color *T.GdkColor)
-	ClistSetHadjustment         func(c *CList, adjustment *T.GtkAdjustment)
+	ClistSetHadjustment         func(c *CList, adjustment *Adjustment)
 	ClistSetPixmap              func(c *CList, row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
 	ClistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
 	ClistSetReorderable         func(c *CList, reorderable T.Gboolean)
@@ -847,7 +914,7 @@ var (
 	ClistSetSortType            func(c *CList, sortType T.GtkSortType)
 	ClistSetText                func(c *CList, row, column int, text string)
 	ClistSetUseDragIcons        func(c *CList, useIcons T.Gboolean)
-	ClistSetVadjustment         func(c *CList, adjustment *T.GtkAdjustment)
+	ClistSetVadjustment         func(c *CList, adjustment *Adjustment)
 	ClistSort                   func(c *CList)
 	ClistSwapRows               func(c *CList, row1, row2 int)
 	ClistThaw                   func(c *CList)
@@ -856,19 +923,19 @@ var (
 	ClistUnselectRow            func(c *CList, row, column int)
 )
 
-func (c *CList) SetHadjustment(adjustment *T.GtkAdjustment) {
+func (c *CList) SetHadjustment(adjustment *Adjustment) {
 	ClistSetHadjustment(c, adjustment)
 }
 
-func (c *CList) SetVadjustment(adjustment *T.GtkAdjustment) {
+func (c *CList) SetVadjustment(adjustment *Adjustment) {
 	ClistSetVadjustment(c, adjustment)
 }
 
-func (c *CList) GetHadjustment() *T.GtkAdjustment {
+func (c *CList) GetHadjustment() *Adjustment {
 	return ClistGetHadjustment(c)
 }
 
-func (c *CList) GetVadjustment() *T.GtkAdjustment {
+func (c *CList) GetVadjustment() *Adjustment {
 	return ClistGetVadjustment(c)
 }
 
@@ -1116,7 +1183,7 @@ func (c *CList) RowMove(sourceRow, destRow int) {
 	ClistRowMove(c, sourceRow, destRow)
 }
 
-func (c *CList) SetCompareFunc(cmpFunc T.GtkCListCompareFunc) {
+func (c *CList) SetCompareFunc(cmpFunc CListCompareFunc) {
 	ClistSetCompareFunc(c, cmpFunc)
 }
 
@@ -1297,7 +1364,7 @@ func (c *ColorSelection) SetUpdatePolicy(policy T.GtkUpdateType) {
 }
 
 type ColorSelectionDialog struct {
-	Parent       T.GtkDialog
+	Parent       Dialog
 	Colorsel     *T.GtkWidget
 	OkButton     *T.GtkWidget
 	CancelButton *T.GtkWidget
@@ -1340,7 +1407,7 @@ var (
 	ComboSetUseArrows       func(c *Combo, val T.Gboolean)
 	ComboSetUseArrowsAlways func(c *Combo, val T.Gboolean)
 	ComboSetCaseSensitive   func(c *Combo, val T.Gboolean)
-	ComboSetItemString      func(c *Combo, item *T.GtkItem, itemValue string)
+	ComboSetItemString      func(c *Combo, item *Item, itemValue string)
 	ComboSetPopdownStrings  func(c *Combo, strings *T.GList)
 	ComboDisableActivate    func(c *Combo)
 )
@@ -1362,7 +1429,7 @@ func (c *Combo) SetCaseSensitive(val T.Gboolean) {
 	ComboSetCaseSensitive(c, val)
 }
 
-func (c *Combo) SetItemString(item *T.GtkItem, itemValue string) {
+func (c *Combo) SetItemString(item *Item, itemValue string) {
 	ComboSetItemString(c, item, itemValue)
 }
 
@@ -1373,18 +1440,18 @@ func (c *Combo) SetPopdownStrings(strings *T.GList) {
 func (c *Combo) DisableActivate() { ComboDisableActivate(c) }
 
 type ComboBox struct {
-	ParentInstance T.GtkBin
-	_              *T.GtkComboBoxPrivate
+	ParentInstance Bin
+	_              *struct{}
 }
 
 type ComboBoxText struct {
 	ParentInstance *ComboBox
-	_              *T.GtkComboBoxTextPrivate
+	_              *struct{}
 }
 
 type ComboBoxEntry struct {
 	ParentInstance ComboBox
-	_              *T.GtkComboBoxEntryPrivate
+	_              *struct{}
 }
 
 var (
@@ -1609,25 +1676,66 @@ func (e *ComboBoxEntry) GetTextColumn() int {
 	return ComboBoxEntryGetTextColumn(e)
 }
 
-type CTree struct {
-	Clist       CList
-	LinesGc     *T.GdkGC
-	TreeIndent  int
-	TreeSpacing int
-	TreeColumn  int
-	Bits        uint
-	// LineStyle : 2
-	// ExpanderStyle : 2
-	// ShowStub : 1
-	DragCompare CTreeCompareDragFunc
-}
+type (
+	CTree struct {
+		Clist       CList
+		LinesGc     *T.GdkGC
+		TreeIndent  int
+		TreeSpacing int
+		TreeColumn  int
+		Bits        uint
+		// LineStyle : 2
+		// ExpanderStyle : 2
+		// ShowStub : 1
+		DragCompare CTreeCompareDragFunc
+	}
 
-type CTreeNode struct {
-	List T.GList
-}
+	CTreeNode struct {
+		List T.GList
+	}
 
-type CTreeCompareDragFunc func(c *CTree,
-	source_node, new_parent, new_sibling *CTreeNode) T.Gboolean
+	CTreeRow struct {
+		Row           CListRow
+		Parent        *CTreeNode
+		Sibling       *CTreeNode
+		Children      *CTreeNode
+		Pixmap_closed *T.GdkPixmap
+		Mask_closed   *T.GdkBitmap
+		Pixmap_opened *T.GdkPixmap
+		Mask_opened   *T.GdkBitmap
+		Level         uint16
+		Bits          uint
+		// IsLeaf : 1
+		// Expanded : 1
+	}
+
+	CTreeFunc func(ctree *CTree, node *CTreeNode, data T.Gpointer)
+
+	CTreeCompareDragFunc func(c *CTree,
+		sourceNode, newParent, newSibling *CTreeNode) T.Gboolean
+
+	CTreeGNodeFunc func(ctree *CTree, depth uint,
+		gnode *T.GNode, cnode *CTreeNode,
+		data T.Gpointer) T.Gboolean
+)
+
+type CTreeExpanderStyle T.Enum
+
+const (
+	CTREE_EXPANDER_NONE CTreeExpanderStyle = iota
+	CTREE_EXPANDER_SQUARE
+	CTREE_EXPANDER_TRIANGLE
+	CTREE_EXPANDER_CIRCULAR
+)
+
+type CTreeLineStyle T.Enum
+
+const (
+	CTREE_LINES_NONE CTreeLineStyle = iota
+	CTREE_LINES_SOLID
+	CTREE_LINES_DOTTED
+	CTREE_LINES_TABBED
+)
 
 var (
 	CtreeGetType       func() T.GType
@@ -1649,15 +1757,15 @@ var (
 	CtreeExpand                   func(c *CTree, node *CTreeNode)
 	CtreeExpandRecursive          func(c *CTree, node *CTreeNode)
 	CtreeExpandToDepth            func(c *CTree, node *CTreeNode, depth int)
-	CtreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f T.GtkCTreeGNodeFunc, data T.Gpointer) *T.GNode
+	CtreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode
 	CtreeFind                     func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
 	CtreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *T.GList
 	CtreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList
 	CtreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
 	CtreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode
-	CtreeFindNodePtr              func(c *CTree, ctreeRow *T.GtkCTreeRow) *CTreeNode
+	CtreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
 	CtreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
-	CtreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f T.GtkCTreeGNodeFunc, data T.Gpointer) *CTreeNode
+	CtreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode
 	CtreeInsertNode               func(c *CTree, parent *CTreeNode, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf T.Gboolean, expanded T.Gboolean) *CTreeNode
 	CtreeIsAncestor               func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
 	CtreeIsHotSpot                func(c *CTree, x int, y int) T.Gboolean
@@ -1686,18 +1794,18 @@ var (
 	CtreeNodeSetSelectable        func(c *CTree, node *CTreeNode, selectable T.Gboolean)
 	CtreeNodeSetShift             func(c *CTree, node *CTreeNode, column, vertical, horizontal int)
 	CtreeNodeSetText              func(c *CTree, node *CTreeNode, column int, text string)
-	CtreePostRecursive            func(c *CTree, node *CTreeNode, f T.GtkCTreeFunc, data T.Gpointer)
-	CtreePostRecursiveToDepth     func(c *CTree, node *CTreeNode, depth int, f T.GtkCTreeFunc, data T.Gpointer)
-	CtreePreRecursive             func(c *CTree, node *CTreeNode, f T.GtkCTreeFunc, data T.Gpointer)
-	CtreePreRecursiveToDepth      func(c *CTree, node *CTreeNode, depth int, f T.GtkCTreeFunc, data T.Gpointer)
+	CtreePostRecursive            func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
+	CtreePostRecursiveToDepth     func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
+	CtreePreRecursive             func(c *CTree, node *CTreeNode, f CTreeFunc, data T.Gpointer)
+	CtreePreRecursiveToDepth      func(c *CTree, node *CTreeNode, depth int, f CTreeFunc, data T.Gpointer)
 	CtreeRealSelectRecursive      func(c *CTree, node *CTreeNode, state int)
 	CtreeRemoveNode               func(c *CTree, node *CTreeNode)
 	CtreeSelect                   func(c *CTree, node *CTreeNode)
 	CtreeSelectRecursive          func(c *CTree, node *CTreeNode)
-	CtreeSetDragCompareFunc       func(c *CTree, cmpFunc T.GtkCTreeCompareDragFunc)
-	CtreeSetExpanderStyle         func(c *CTree, expanderStyle T.GtkCTreeExpanderStyle)
+	CtreeSetDragCompareFunc       func(c *CTree, cmpFunc CTreeCompareDragFunc)
+	CtreeSetExpanderStyle         func(c *CTree, expanderStyle CTreeExpanderStyle)
 	CtreeSetIndent                func(c *CTree, indent int)
-	CtreeSetLineStyle             func(c *CTree, lineStyle T.GtkCTreeLineStyle)
+	CtreeSetLineStyle             func(c *CTree, lineStyle CTreeLineStyle)
 	CtreeSetNodeInfo              func(c *CTree, node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean)
 	CtreeSetShowStub              func(c *CTree, showStub T.Gboolean)
 	CtreeSetSpacing               func(c *CTree, spacing int)
@@ -1724,34 +1832,34 @@ func (c *CTree) RemoveNode(node *CTreeNode) {
 }
 
 func (c *CTree) InsertGnode(parent, sibling *CTreeNode,
-	gnode *T.GNode, f T.GtkCTreeGNodeFunc,
+	gnode *T.GNode, f CTreeGNodeFunc,
 	data T.Gpointer) *CTreeNode {
 	return CtreeInsertGnode(c, parent, sibling, gnode, f, data)
 }
 
 func (c *CTree) ExportToGnode(parent *T.GNode, sibling *T.GNode,
-	node *CTreeNode, f T.GtkCTreeGNodeFunc,
+	node *CTreeNode, f CTreeGNodeFunc,
 	data T.Gpointer) *T.GNode {
 	return CtreeExportToGnode(c, parent, sibling, node, f, data)
 }
 
 func (c *CTree) PostRecursive(node *CTreeNode,
-	f T.GtkCTreeFunc, data T.Gpointer) {
+	f CTreeFunc, data T.Gpointer) {
 	CtreePostRecursive(c, node, f, data)
 }
 
 func (c *CTree) PostRecursiveToDepth(node *CTreeNode,
-	depth int, f T.GtkCTreeFunc, data T.Gpointer) {
+	depth int, f CTreeFunc, data T.Gpointer) {
 	CtreePostRecursiveToDepth(c, node, depth, f, data)
 }
 
 func (c *CTree) PreRecursive(node *CTreeNode,
-	f T.GtkCTreeFunc, data T.Gpointer) {
+	f CTreeFunc, data T.Gpointer) {
 	CtreePreRecursive(c, node, f, data)
 }
 
 func (c *CTree) PreRecursiveToDepth(node *CTreeNode,
-	depth int, f T.GtkCTreeFunc, data T.Gpointer) {
+	depth int, f CTreeFunc, data T.Gpointer) {
 	CtreePreRecursiveToDepth(c, node, depth, f, data)
 }
 
@@ -1764,7 +1872,7 @@ func (c *CTree) Last(node *CTreeNode) *CTreeNode {
 }
 
 func (c *CTree) FindNodePtr(
-	ctreeRow *T.GtkCTreeRow) *CTreeNode {
+	ctreeRow *CTreeRow) *CTreeNode {
 	return CtreeFindNodePtr(c, ctreeRow)
 }
 
@@ -1997,17 +2105,17 @@ func (c *CTree) SetShowStub(showStub T.Gboolean) {
 	CtreeSetShowStub(c, showStub)
 }
 
-func (c *CTree) SetLineStyle(lineStyle T.GtkCTreeLineStyle) {
+func (c *CTree) SetLineStyle(lineStyle CTreeLineStyle) {
 	CtreeSetLineStyle(c, lineStyle)
 }
 
 func (c *CTree) SetExpanderStyle(
-	expanderStyle T.GtkCTreeExpanderStyle) {
+	expanderStyle CTreeExpanderStyle) {
 	CtreeSetExpanderStyle(c, expanderStyle)
 }
 
 func (c *CTree) SetDragCompareFunc(
-	cmpFunc T.GtkCTreeCompareDragFunc) {
+	cmpFunc CTreeCompareDragFunc) {
 	CtreeSetDragCompareFunc(c, cmpFunc)
 }
 
@@ -2020,7 +2128,7 @@ func (c *CTree) SortRecursive(node *CTreeNode) {
 }
 
 type Curve struct {
-	Graph        T.GtkDrawingArea
+	Graph        DrawingArea
 	CursorType   int
 	MinX         float32
 	MaxX         float32

@@ -5,17 +5,22 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type AboutDialog struct {
-	Parent T.GtkDialog
-	_      *struct{}
-}
+type (
+	AboutDialog struct {
+		Parent Dialog
+		_      *struct{}
+	}
+
+	AboutDialogActivateLinkFunc func(
+		about *AboutDialog, link string, data T.Gpointer)
+)
 
 var (
 	AboutDialogGetType func() T.GType
 	AboutDialogNew     func() *T.GtkWidget
 
-	AboutDialogSetEmailHook func(f T.GtkAboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) T.GtkAboutDialogActivateLinkFunc
-	AboutDialogSetUrlHook   func(f T.GtkAboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) T.GtkAboutDialogActivateLinkFunc
+	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
+	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 
 	ShowAboutDialog func(parent *T.GtkWindow, firstPropertyName string, v ...VArg)
 )
@@ -173,37 +178,65 @@ func (a *AboutDialog) SetLogoIconName(iconName string) {
 	AboutDialogSetLogoIconName(a, iconName)
 }
 
-type AccelGroup struct {
-	Parent         T.GObject
-	LockCount      uint
-	ModifierMask   T.GdkModifierType
-	Acceleratables *T.GSList
-	NAccels        uint
-	_              *AccelGroupEntry
-}
+type (
+	AccelMap struct{}
 
-type AccelGroupEntry struct {
-	Key            T.GtkAccelKey
-	Closure        *T.GClosure
-	AccelPathQuark T.GQuark
-}
+	AccelGroup struct {
+		Parent         T.GObject
+		LockCount      uint
+		ModifierMask   T.GdkModifierType
+		Acceleratables *T.GSList
+		NAccels        uint
+		_              *AccelGroupEntry
+	}
+
+	AccelGroupEntry struct {
+		Key            AccelKey
+		Closure        *T.GClosure
+		AccelPathQuark T.GQuark
+	}
+
+	AccelKey struct { //
+		AccelKey   uint
+		AccelMods  T.GdkModifierType
+		AccelFlags uint //: 16
+	}
+
+	AccelGroupFindFunc func(key *AccelKey,
+		closure *T.GClosure, data T.Gpointer) T.Gboolean
+
+	AccelMapForeachFunc func(
+		data T.Gpointer,
+		accelPath string,
+		accelKey uint,
+		accelMods T.GdkModifierType,
+		changed T.Gboolean)
+)
+
+type AccelFlags T.Enum
+
+const (
+	ACCEL_VISIBLE AccelFlags = 1 << iota
+	ACCEL_LOCKED
+	ACCEL_MASK AccelFlags = 0x07
+)
 
 type AccelLabel struct {
-	Label       T.GtkLabel
+	Label       Label
 	_           uint
 	Padding     uint //TODO(t):_?
 	Widget      *T.GtkWidget
 	Closure     *T.GClosure
-	Group       *T.GtkAccelGroup
+	Group       *AccelGroup
 	String      *T.Gchar
 	StringWidth uint16
 }
 
 var (
 	AccelGroupGetType func() T.GType
-	AccelGroupNew     func() *T.GtkAccelGroup
+	AccelGroupNew     func() *AccelGroup
 
-	AccelGroupFromAccelClosure func(closure *T.GClosure) *T.GtkAccelGroup
+	AccelGroupFromAccelClosure func(closure *T.GClosure) *AccelGroup
 
 	AccelLabelGetType func() T.GType
 	AccelLabelNew     func(str string) *T.GtkWidget
@@ -213,14 +246,14 @@ var (
 	AccelMapAddEntry          func(accelPath string, accelKey uint, accelMods T.GdkModifierType)
 	AccelMapAddFilter         func(filterPattern string)
 	AccelMapChangeEntry       func(accelPath string, accelKey uint, accelMods T.GdkModifierType, replace T.Gboolean) T.Gboolean
-	AccelMapForeach           func(dataGpointer, foreachFunc T.GtkAccelMapForeach)
-	AccelMapForeachUnfiltered func(dataGpointer, foreachFunc T.GtkAccelMapForeach)
-	AccelMapGet               func() *T.GtkAccelMap
+	AccelMapForeach           func(dataGpointer, foreachFunc AccelMapForeachFunc)
+	AccelMapForeachUnfiltered func(dataGpointer, foreachFunc AccelMapForeachFunc)
+	AccelMapGet               func() *AccelMap
 	AccelMapLoad              func(fileName string)
 	AccelMapLoadFd            func(fd int)
 	AccelMapLoadScanner       func(scanner *T.GScanner)
 	AccelMapLockPath          func(accelPath string)
-	AccelMapLookupEntry       func(accelPath string, key *T.GtkAccelKey) T.Gboolean
+	AccelMapLookupEntry       func(accelPath string, key *AccelKey) T.Gboolean
 	AccelMapSave              func(fileName string)
 	AccelMapSaveFd            func(fd int)
 	AccelMapUnlockPath        func(accelPath string)
@@ -230,15 +263,15 @@ var (
 
 var (
 	AccelGroupActivate        func(a *AccelGroup, accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
-	AccelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags T.GtkAccelFlags, closure *T.GClosure)
+	AccelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *T.GClosure)
 	AccelGroupConnectByPath   func(a *AccelGroup, accelPath string, closure *T.GClosure)
 	AccelGroupDisconnect      func(a *AccelGroup, closure *T.GClosure) T.Gboolean
 	AccelGroupDisconnectKey   func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
-	AccelGroupFind            func(a *AccelGroup, findFunc T.GtkAccelGroupFindFunc, data T.Gpointer) *T.GtkAccelKey
+	AccelGroupFind            func(a *AccelGroup, findFunc AccelGroupFindFunc, data T.Gpointer) *AccelKey
 	AccelGroupGetIsLocked     func(a *AccelGroup) T.Gboolean
 	AccelGroupGetModifierMask func(a *AccelGroup) T.GdkModifierType
 	AccelGroupLock            func(a *AccelGroup)
-	AccelGroupQuery           func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *T.GtkAccelGroupEntry
+	AccelGroupQuery           func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *AccelGroupEntry
 	AccelGroupUnlock          func(a *AccelGroup)
 
 	AccelLabelGetAccelWidget  func(a *AccelLabel) *T.GtkWidget
@@ -260,7 +293,7 @@ func (a *AccelGroup) Lock() { AccelGroupLock(a) }
 
 func (a *AccelGroup) Unlock() { AccelGroupUnlock(a) }
 
-func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags T.GtkAccelFlags, closure *T.GClosure) {
+func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *T.GClosure) {
 	AccelGroupConnect(a, accelKey, accelMods, accelFlags, closure)
 }
 
@@ -280,11 +313,11 @@ func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, acc
 	return AccelGroupActivate(a, accelQuark, acceleratable, accelKey, accelMods)
 }
 
-func (a *AccelGroup) Find(findFunc T.GtkAccelGroupFindFunc, data T.Gpointer) *T.GtkAccelKey {
+func (a *AccelGroup) Find(findFunc AccelGroupFindFunc, data T.Gpointer) *AccelKey {
 	return AccelGroupFind(a, findFunc, data)
 }
 
-func (a *AccelGroup) Query(accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *T.GtkAccelGroupEntry {
+func (a *AccelGroup) Query(accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *AccelGroupEntry {
 	return AccelGroupQuery(a, accelKey, accelMods, nEntries)
 }
 
@@ -354,7 +387,7 @@ type ActionEntry struct {
 
 var (
 	ActionGetType func() T.GType
-	ActionNew     func(name, label, tooltip, stockId string) *T.GtkAction
+	ActionNew     func(name, label, tooltip, stockId string) *Action
 
 	ActionGroupGetType func() T.GType
 	ActionGroupNew     func(name string) *ActionGroup
@@ -368,7 +401,7 @@ var (
 	ActionBlockActivateFrom     func(a *Action, proxy *T.GtkWidget)
 	ActionConnectAccelerator    func(a *Action)
 	ActionConnectProxy          func(a *Action, proxy *T.GtkWidget)
-	ActionCreateIcon            func(a *Action, iconSize T.GtkIconSize) *T.GtkWidget
+	ActionCreateIcon            func(a *Action, iconSize IconSize) *T.GtkWidget
 	ActionCreateMenu            func(a *Action) *T.GtkWidget
 	ActionCreateMenuItem        func(a *Action) *T.GtkWidget
 	ActionCreateToolItem        func(a *Action) *T.GtkWidget
@@ -442,7 +475,7 @@ func (a *Action) Activate() {
 	ActionActivate(a)
 }
 
-func (a *Action) CreateIcon(iconSize T.GtkIconSize) *T.GtkWidget {
+func (a *Action) CreateIcon(iconSize IconSize) *T.GtkWidget {
 	return ActionCreateIcon(a, iconSize)
 }
 
@@ -692,23 +725,23 @@ type Activatable struct{}
 var ActivatableGetType func() T.GType
 
 var (
-	ActivatableDoSetRelatedAction     func(a *Activatable, action *T.GtkAction)
-	ActivatableGetRelatedAction       func(a *Activatable) *T.GtkAction
+	ActivatableDoSetRelatedAction     func(a *Activatable, action *Action)
+	ActivatableGetRelatedAction       func(a *Activatable) *Action
 	ActivatableGetUseActionAppearance func(a *Activatable) T.Gboolean
-	ActivatableSetRelatedAction       func(a *Activatable, action *T.GtkAction)
+	ActivatableSetRelatedAction       func(a *Activatable, action *Action)
 	ActivatableSetUseActionAppearance func(a *Activatable, useAppearance T.Gboolean)
-	ActivatableSyncActionProperties   func(a *Activatable, action *T.GtkAction)
+	ActivatableSyncActionProperties   func(a *Activatable, action *Action)
 )
 
-func (a *Activatable) SyncActionProperties(action *T.GtkAction) {
+func (a *Activatable) SyncActionProperties(action *Action) {
 	ActivatableSyncActionProperties(a, action)
 }
 
-func (a *Activatable) SetRelatedAction(action *T.GtkAction) {
+func (a *Activatable) SetRelatedAction(action *Action) {
 	ActivatableSetRelatedAction(a, action)
 }
 
-func (a *Activatable) GetRelatedAction() *T.GtkAction {
+func (a *Activatable) GetRelatedAction() *Action {
 	return ActivatableGetRelatedAction(a)
 }
 
@@ -720,7 +753,7 @@ func (a *Activatable) GetUseActionAppearance() T.Gboolean {
 	return ActivatableGetUseActionAppearance(a)
 }
 
-func (a *Activatable) DoSetRelatedAction(action *T.GtkAction) {
+func (a *Activatable) DoSetRelatedAction(action *Action) {
 	ActivatableDoSetRelatedAction(a, action)
 }
 
@@ -818,16 +851,30 @@ func (a *Adjustment) Configure(value, lower, upper, stepIncrement, pageIncrement
 	AdjustmentConfigure(a, value, lower, upper, stepIncrement, pageIncrement, pageSize)
 }
 
-type Assistant struct {
-	Parent  T.GtkWindow
-	Cancel  *T.GtkWidget
-	Forward *T.GtkWidget
-	Back    *T.GtkWidget
-	Apply   *T.GtkWidget
-	Close   *T.GtkWidget
-	Last    *T.GtkWidget
-	_       *struct{}
-}
+type (
+	Assistant struct {
+		Parent  T.GtkWindow
+		Cancel  *T.GtkWidget
+		Forward *T.GtkWidget
+		Back    *T.GtkWidget
+		Apply   *T.GtkWidget
+		Close   *T.GtkWidget
+		Last    *T.GtkWidget
+		_       *struct{}
+	}
+
+	AssistantPageFunc func(currentPage int, data T.Gpointer) int
+)
+
+type AssistantPageType T.Enum
+
+const (
+	ASSISTANT_PAGE_CONTENT AssistantPageType = iota
+	ASSISTANT_PAGE_INTRO
+	ASSISTANT_PAGE_CONFIRM
+	ASSISTANT_PAGE_SUMMARY
+	ASSISTANT_PAGE_PROGRESS
+)
 
 var (
 	AssistantGetType func() T.GType
@@ -847,17 +894,17 @@ var (
 	AssistantGetPageHeaderImage func(a *Assistant, page *T.GtkWidget) *T.GdkPixbuf
 	AssistantGetPageSideImage   func(a *Assistant, page *T.GtkWidget) *T.GdkPixbuf
 	AssistantGetPageTitle       func(a *Assistant, page *T.GtkWidget) string
-	AssistantGetPageType        func(a *Assistant, page *T.GtkWidget) T.GtkAssistantPageType
+	AssistantGetPageType        func(a *Assistant, page *T.GtkWidget) AssistantPageType
 	AssistantInsertPage         func(a *Assistant, page *T.GtkWidget, position int) int
 	AssistantPrependPage        func(a *Assistant, page *T.GtkWidget) int
 	AssistantRemoveActionWidget func(a *Assistant, child *T.GtkWidget)
 	AssistantSetCurrentPage     func(a *Assistant, pageNum int)
-	AssistantSetForwardPageFunc func(a *Assistant, pageFunc T.GtkAssistantPageFunc, dataGpointer, destroy T.GDestroyNotify)
+	AssistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, dataGpointer, destroy T.GDestroyNotify)
 	AssistantSetPageComplete    func(a *Assistant, page *T.GtkWidget, complete T.Gboolean)
 	AssistantSetPageHeaderImage func(a *Assistant, page *T.GtkWidget, pixbuf *T.GdkPixbuf)
 	AssistantSetPageSideImage   func(a *Assistant, page *T.GtkWidget, pixbuf *T.GdkPixbuf)
 	AssistantSetPageTitle       func(a *Assistant, page *T.GtkWidget, title string)
-	AssistantSetPageType        func(a *Assistant, page *T.GtkWidget, t T.GtkAssistantPageType)
+	AssistantSetPageType        func(a *Assistant, page *T.GtkWidget, t AssistantPageType)
 	AssistantUpdateButtonsState func(a *Assistant)
 )
 
@@ -889,15 +936,15 @@ func (a *Assistant) InsertPage(page *T.GtkWidget, position int) int {
 	return AssistantInsertPage(a, page, position)
 }
 
-func (a *Assistant) SetForwardPageFunc(pageFunc T.GtkAssistantPageFunc, dataGpointer, destroy T.GDestroyNotify) {
+func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, dataGpointer, destroy T.GDestroyNotify) {
 	AssistantSetForwardPageFunc(a, pageFunc, dataGpointer, destroy)
 }
 
-func (a *Assistant) SetPageType(page *T.GtkWidget, t T.GtkAssistantPageType) {
+func (a *Assistant) SetPageType(page *T.GtkWidget, t AssistantPageType) {
 	AssistantSetPageType(a, page, t)
 }
 
-func (a *Assistant) GetPageType(page *T.GtkWidget) T.GtkAssistantPageType {
+func (a *Assistant) GetPageType(page *T.GtkWidget) AssistantPageType {
 	return AssistantGetPageType(a, page)
 }
 
@@ -978,12 +1025,12 @@ var (
 )
 
 var (
-	ArrowSet func(a *Arrow, arrowType T.GtkArrowType, shadowType T.GtkShadowType)
+	ArrowSet func(a *Arrow, arrowType ArrowType, shadowType T.GtkShadowType)
 
 	ArrowNew func(a ArrowType, shadowType T.GtkShadowType) *T.GtkWidget
 )
 
-func (a *Arrow) Set(arrowType T.GtkArrowType, shadowType T.GtkShadowType) {
+func (a *Arrow) Set(arrowType ArrowType, shadowType T.GtkShadowType) {
 	ArrowSet(a, arrowType, shadowType)
 }
 

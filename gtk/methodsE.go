@@ -80,7 +80,7 @@ type Entry struct {
 	TextLength     uint16
 	TextMaxLength  uint16
 	TextArea       *T.GdkWindow
-	ImContext      *T.GtkIMContext
+	ImContext      *IMContext
 	PopupMenu      *T.GtkWidget
 	CurrentPos     int
 	SelectionBound int
@@ -147,7 +147,7 @@ var (
 	EntryGetBuffer                func(e *Entry) *EntryBuffer
 	EntryGetCompletion            func(e *Entry) *EntryCompletion
 	EntryGetCurrentIconDragSource func(e *Entry) int
-	EntryGetCursorHadjustment     func(e *Entry) *T.GtkAdjustment
+	EntryGetCursorHadjustment     func(e *Entry) *Adjustment
 	EntryGetHasFrame              func(e *Entry) T.Gboolean
 	EntryGetIconActivatable       func(e *Entry, iconPos EntryIconPosition) T.Gboolean
 	EntryGetIconAtPos             func(e *Entry, x, y int) int
@@ -183,7 +183,7 @@ var (
 	EntrySetAlignment             func(e *Entry, xalign float32)
 	EntrySetBuffer                func(e *Entry, buffer *EntryBuffer)
 	EntrySetCompletion            func(e *Entry, completion *EntryCompletion)
-	EntrySetCursorHadjustment     func(e *Entry, adjustment *T.GtkAdjustment)
+	EntrySetCursorHadjustment     func(e *Entry, adjustment *Adjustment)
 	EntrySetEditable              func(e *Entry, editable T.Gboolean)
 	EntrySetHasFrame              func(e *Entry, setting T.Gboolean)
 	EntrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable T.Gboolean)
@@ -321,11 +321,11 @@ func (e *Entry) TextIndexToLayoutIndex(textIndex int) int {
 	return EntryTextIndexToLayoutIndex(e, textIndex)
 }
 
-func (e *Entry) SetCursorHadjustment(adjustment *T.GtkAdjustment) {
+func (e *Entry) SetCursorHadjustment(adjustment *Adjustment) {
 	EntrySetCursorHadjustment(e, adjustment)
 }
 
-func (e *Entry) GetCursorHadjustment() *T.GtkAdjustment {
+func (e *Entry) GetCursorHadjustment() *Adjustment {
 	return EntryGetCursorHadjustment(e)
 }
 
@@ -681,9 +681,7 @@ func (e *EntryCompletion) GetTextColumn() int {
 	return EntryCompletionGetTextColumn(e)
 }
 
-type EventBox struct {
-	Bin T.GtkBin
-}
+type EventBox struct{ Bin Bin }
 
 var (
 	EventBoxGetType func() T.GType
@@ -712,9 +710,18 @@ func (e *EventBox) SetAboveChild(aboveChild T.Gboolean) {
 }
 
 type Expander struct {
-	Bin T.GtkBin
+	Bin Bin
 	_   *struct{}
 }
+
+type ExpanderStyle T.Enum
+
+const (
+	EXPANDER_COLLAPSED ExpanderStyle = iota
+	EXPANDER_SEMI_COLLAPSED
+	EXPANDER_SEMI_EXPANDED
+	EXPANDER_EXPANDED
+)
 
 var (
 	ExpanderGetType         func() T.GType

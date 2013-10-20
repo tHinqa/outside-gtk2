@@ -12,11 +12,19 @@ type Dialog struct {
 	Separator   *T.GtkWidget
 }
 
+type DialogFlags T.Enum
+
+const (
+	DIALOG_MODAL DialogFlags = 1 << iota
+	DIALOG_DESTROY_WITH_PARENT
+	DIALOG_NO_SEPARATOR
+)
+
 var (
 	DialogFlagsGetType   func() T.GType
 	DialogGetType        func() T.GType
 	DialogNew            func() *T.GtkWidget
-	DialogNewWithButtons func(title string, parent *T.GtkWindow, flags T.GtkDialogFlags, firstButtonText string, v ...VArg) *T.GtkWidget
+	DialogNewWithButtons func(title string, parent *T.GtkWindow, flags DialogFlags, firstButtonText string, v ...VArg) *T.GtkWidget
 )
 
 var (

@@ -114,15 +114,15 @@ type Buildable struct{}
 var BuildableGetType func() T.GType
 
 var (
-	BuildableAddChild             func(b *Buildable, builder *T.GtkBuilder, child *T.GObject, typ string)
-	BuildableConstructChild       func(b *Buildable, builder *T.GtkBuilder, name string) *T.GObject
-	BuildableCustomFinished       func(b *Buildable, builder *T.GtkBuilder, child *T.GObject, tagname string, data T.Gpointer)
-	BuildableCustomTagEnd         func(b *Buildable, builder *T.GtkBuilder, child *T.GObject, tagname string, data *T.Gpointer)
-	BuildableCustomTagStart       func(b *Buildable, builder *T.GtkBuilder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean
-	BuildableGetInternalChild     func(b *Buildable, builder *T.GtkBuilder, childname string) *T.GObject
+	BuildableAddChild             func(b *Buildable, builder *Builder, child *T.GObject, typ string)
+	BuildableConstructChild       func(b *Buildable, builder *Builder, name string) *T.GObject
+	BuildableCustomFinished       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data T.Gpointer)
+	BuildableCustomTagEnd         func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data *T.Gpointer)
+	BuildableCustomTagStart       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean
+	BuildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *T.GObject
 	BuildableGetName              func(b *Buildable) string
-	BuildableParserFinished       func(b *Buildable, builder *T.GtkBuilder)
-	BuildableSetBuildableProperty func(b *Buildable, builder *T.GtkBuilder, name string, value *T.GValue)
+	BuildableParserFinished       func(b *Buildable, builder *Builder)
+	BuildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *T.GValue)
 	BuildableSetName              func(b *Buildable, name string)
 )
 
@@ -135,54 +135,60 @@ func (b *Buildable) GetName() string {
 }
 
 func (b *Buildable) AddChild(
-	builder *T.GtkBuilder, child *T.GObject, typ string) {
+	builder *Builder, child *T.GObject, typ string) {
 	BuildableAddChild(b, builder, child, typ)
 }
 
 func (b *Buildable) SetBuildableProperty(
-	builder *T.GtkBuilder, name string, value *T.GValue) {
+	builder *Builder, name string, value *T.GValue) {
 	BuildableSetBuildableProperty(b, builder, name, value)
 }
 
 func (b *Buildable) ConstructChild(
-	builder *T.GtkBuilder, name string) *T.GObject {
+	builder *Builder, name string) *T.GObject {
 	return BuildableConstructChild(b, builder, name)
 }
 
 func (b *Buildable) CustomTagStart(
-	builder *T.GtkBuilder, child *T.GObject, tagname string,
+	builder *Builder, child *T.GObject, tagname string,
 	parser *T.GMarkupParser, data *T.Gpointer) T.Gboolean {
 	return BuildableCustomTagStart(
 		b, builder, child, tagname, parser, data)
 }
 
-func (b *Buildable) CustomTagEnd(builder *T.GtkBuilder,
+func (b *Buildable) CustomTagEnd(builder *Builder,
 	child *T.GObject, tagname string, data *T.Gpointer) {
 	BuildableCustomTagEnd(b, builder, child, tagname, data)
 }
 
-func (b *Buildable) CustomFinished(builder *T.GtkBuilder,
+func (b *Buildable) CustomFinished(builder *Builder,
 	child *T.GObject, tagname string, data T.Gpointer) {
 	BuildableCustomFinished(b, builder, child, tagname, data)
 }
 
-func (b *Buildable) ParserFinished(builder *T.GtkBuilder) {
+func (b *Buildable) ParserFinished(builder *Builder) {
 	BuildableParserFinished(b, builder)
 }
 
 func (b *Buildable) GetInternalChild(
-	builder *T.GtkBuilder, childname string) *T.GObject {
+	builder *Builder, childname string) *T.GObject {
 	return BuildableGetInternalChild(b, builder, childname)
 }
 
-type Builder struct {
-	Parent T.GObject
-	_      *struct{}
-}
+type (
+	Builder struct {
+		Parent T.GObject
+		_      *struct{}
+	}
+
+	BuilderConnectFunc func(builder *Builder, object *T.GObject,
+		signalName, handlerName string, connectObject *T.GObject,
+		flags T.GConnectFlags, userData T.Gpointer)
+)
 
 var (
 	BuilderGetType func() T.GType
-	BuilderNew     func() *T.GtkBuilder
+	BuilderNew     func() *Builder
 
 	BuilderErrorGetType func() T.GType
 	BuilderErrorQuark   func() T.GQuark
@@ -194,7 +200,7 @@ var (
 	BuilderAddObjectsFromFile   func(b *Builder, filename string, objectIds **T.Gchar, err **T.GError) uint
 	BuilderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds **T.Gchar, err **T.GError) uint
 	BuilderConnectSignals       func(b *Builder, userData T.Gpointer)
-	BuilderConnectSignalsFull   func(b *Builder, f T.GtkBuilderConnectFunc, userData T.Gpointer)
+	BuilderConnectSignalsFull   func(b *Builder, f BuilderConnectFunc, userData T.Gpointer)
 	BuilderGetObject            func(b *Builder, name string) *T.GObject
 	BuilderGetObjects           func(b *Builder) *T.GSList
 	BuilderGetTranslationDomain func(b *Builder) string
@@ -238,7 +244,7 @@ func (b *Builder) ConnectSignals(userData T.Gpointer) {
 }
 
 func (b *Builder) ConnectSignalsFull(
-	f T.GtkBuilderConnectFunc, userData T.Gpointer) {
+	f BuilderConnectFunc, userData T.Gpointer) {
 	BuilderConnectSignalsFull(b, f, userData)
 }
 
@@ -265,7 +271,7 @@ func (b *Builder) ValueFromStringType(t T.GType, str string,
 }
 
 type Button struct {
-	Bin             T.GtkBin
+	Bin             Bin
 	EventWindow     *T.GdkWindow
 	LabelText       *T.Gchar
 	ActivateTimeout uint
@@ -402,25 +408,36 @@ type ButtonBox struct {
 	ChildMinHeight int
 	ChildIpadX     int
 	ChildIpadY     int
-	LayoutStyle    T.GtkButtonBoxStyle
+	LayoutStyle    ButtonBoxStyle
 }
+
+type ButtonBoxStyle T.Enum
+
+const (
+	BUTTONBOX_DEFAULT_STYLE ButtonBoxStyle = iota
+	BUTTONBOX_SPREAD
+	BUTTONBOX_EDGE
+	BUTTONBOX_START
+	BUTTONBOX_END
+	BUTTONBOX_CENTER
+)
 
 var (
 	ButtonBoxGetChildIpadding  func(b *ButtonBox, ipadX, ipadY *int)
 	ButtonBoxGetChildSecondary func(b *ButtonBox, child *T.GtkWidget) T.Gboolean
 	ButtonBoxGetChildSize      func(b *ButtonBox, minWidth, minHeight *int)
-	ButtonBoxGetLayout         func(b *ButtonBox) T.GtkButtonBoxStyle
+	ButtonBoxGetLayout         func(b *ButtonBox) ButtonBoxStyle
 	ButtonBoxSetChildIpadding  func(b *ButtonBox, ipadX, ipadY int)
 	ButtonBoxSetChildSecondary func(b *ButtonBox, child *T.GtkWidget, isSecondary T.Gboolean)
 	ButtonBoxSetChildSize      func(b *ButtonBox, minWidth, minHeight int)
-	ButtonBoxSetLayout         func(b *ButtonBox, layoutStyle T.GtkButtonBoxStyle)
+	ButtonBoxSetLayout         func(b *ButtonBox, layoutStyle ButtonBoxStyle)
 )
 
-func (b *ButtonBox) GetLayout() T.GtkButtonBoxStyle {
+func (b *ButtonBox) GetLayout() ButtonBoxStyle {
 	return ButtonBoxGetLayout(b)
 }
 
-func (b *ButtonBox) SetLayout(layoutStyle T.GtkButtonBoxStyle) {
+func (b *ButtonBox) SetLayout(layoutStyle ButtonBoxStyle) {
 	ButtonBoxSetLayout(b, layoutStyle)
 }
 

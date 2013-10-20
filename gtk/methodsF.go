@@ -456,7 +456,7 @@ func (f *FileFilter) Filter(filterInfo *FileFilterInfo) T.Gboolean {
 }
 
 type FileSelection struct {
-	Parent_instance  T.GtkDialog
+	Parent_instance  Dialog
 	Dir_list         *T.GtkWidget
 	File_list        *T.GtkWidget
 	Selection_entry  *T.GtkWidget
@@ -720,7 +720,7 @@ func (f *FontSelection) SetPreviewText(text string) {
 }
 
 type FontSelectionDialog struct {
-	Parent       T.GtkDialog
+	Parent       Dialog
 	Fontsel      *T.GtkWidget
 	MainVbox     *T.GtkWidget
 	ActionArea   *T.GtkWidget
@@ -783,7 +783,7 @@ func (f *FontSelectionDialog) SetPreviewText(text string) {
 }
 
 type Frame struct {
-	Bin             T.GtkBin
+	Bin             Bin
 	LabelWidget     *T.GtkWidget
 	ShadowType      int16
 	LabelXalign     float32
