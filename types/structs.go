@@ -685,17 +685,6 @@ type (
 		Resolution      float64
 	}
 
-	GtkItemFactory struct {
-		Object           GtkObject
-		Path             *Gchar
-		Accel_group      *GtkAccelGroup
-		Widget           *GtkWidget
-		Items            *GSList
-		Translate_func   GtkTranslateFunc
-		Translate_data   Gpointer
-		Translate_notify GDestroyNotify
-	}
-
 	GtkAccelGroup struct { // REMOVE
 		Parent         GObject
 		Lock_count     uint
@@ -777,7 +766,7 @@ type (
 		Widget        *GtkWidget
 	}
 
-	GtkItem struct {
+	GtkItem struct { //REMOVE
 		Bin GtkBin
 	}
 
@@ -1516,22 +1505,12 @@ type (
 		Private_data *GtkActionPrivate
 	}
 
-	GtkIconFactory struct {
-		Parent_instance GObject
-		Icons           *GHashTable
-	}
-
 	GtkSettings struct {
 		Parent_instance GObject
 		Queued_settings *GData
 		Property_values *GtkSettingsPropertyValue
 		Rc_context      *GtkRcContext
 		Screen          *GdkScreen
-	}
-
-	GtkIconTheme struct {
-		Parent_instance GObject
-		Priv            *GtkIconThemePrivate
 	}
 
 	GdkEvent struct {
@@ -1559,11 +1538,6 @@ type (
 		// grab_broken  GdkEventGrabBroken;
 	}
 
-	GtkIconView struct {
-		Parent GtkContainer
-		Priv   *GtkIconViewPrivate
-	}
-
 	GtkCellRenderer struct { // REMOVE
 		Parent GtkObject
 		Xalign float32
@@ -1580,11 +1554,6 @@ type (
 		// cell_background_set : 1
 		// sensitive : 1
 		// editing : 1
-	}
-
-	GtkImageMenuItem struct {
-		Menu_item GtkMenuItem
-		Image     *GtkWidget
 	}
 
 	GtkMenuItem struct {
@@ -1604,24 +1573,6 @@ type (
 		Timer uint
 	}
 
-	GtkIMContextSimple struct {
-		Object              GtkIMContext
-		Tables              *GSList
-		Compose_buffer      [7 + 1]uint
-		Tentative_match     Gunichar
-		Tentative_match_len int
-		Bits                uint
-		// in_hex_sequence : 1
-		// modifiers_dropped : 1
-	}
-
-	GtkIMMulticontext struct {
-		Object     GtkIMContext
-		Slave      *GtkIMContext
-		Priv       *GtkIMMulticontextPrivate
-		Context_id *Gchar
-	}
-
 	GtkMenuShell struct {
 		Container         GtkContainer
 		Children          *GList
@@ -1637,17 +1588,6 @@ type (
 		// menu_flag : 1
 		// ignore_enter : 1
 		// keyboard_mode : 1
-	}
-
-	GtkInfoBar struct {
-		Parent GtkHBox
-		Priv   *GtkInfoBarPrivate
-	}
-
-	GtkInvisible struct {
-		Widget             GtkWidget
-		Has_user_ref_count Gboolean
-		Screen             *GdkScreen
 	}
 
 	GtkLayout struct {
@@ -2706,26 +2646,6 @@ type (
 		_, _, _, _ func()
 	}
 
-	/*
-	   GtkImage  struct
-	   {
-	   misc  GtkMisc;
-	   storage_type  GtkImageType;
-	    union
-	    {
-	   pixmap  GtkImagePixmapData;
-	   image  GtkImageImageData;
-	   pixbuf  GtkImagePixbufData;
-	   stock  GtkImageStockData;
-	   icon_set  GtkImageIconSetData;
-	   anim  GtkImageAnimationData;
-	   name  GtkImageIconNameData;
-	   gicon  GtkImageGIconData;
-	    } data;
-	   mask  *GdkBitmap;
-	   icon_size  GtkIconSize;
-	   };
-	*/
 	GtkListStore struct {
 		Parent               GObject
 		Stamp                int

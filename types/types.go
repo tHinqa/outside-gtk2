@@ -128,7 +128,7 @@ type (
 	AtkObjectFactory simpleObject
 	AtkStateSet      simpleObject
 	GdkDrawable      simpleObject
-	GtkIMContext     simpleObject
+	GtkIMContext     simpleObject // REMOVE
 	PangoEngine      simpleObject
 	PangoFcDecoder   simpleObject
 
@@ -314,12 +314,8 @@ type (
 	GtkComboBoxTextPrivate         struct{}
 	GtkExpanderPrivate             struct{}
 	GtkFontButtonPrivate           struct{}
-	GtkIconInfo                    struct{}
-	GtkIconSet                     struct{}
-	GtkIconSource                  struct{}
 	GtkIconThemePrivate            struct{}
 	GtkIconViewPrivate             struct{}
-	GtkImage                       struct{}
 	GtkIMMulticontextPrivate       struct{}
 	GtkInfoBarPrivate              struct{}
 	GtkLabelSelectionInfo          struct{}
@@ -3243,7 +3239,7 @@ const (
 	GTK_EXPANDER_EXPANDED
 )
 
-type GtkIconSize Enum
+type GtkIconSize Enum // REMOVE
 
 const (
 	GTK_ICON_SIZE_INVALID GtkIconSize = iota
@@ -4106,20 +4102,6 @@ const (
 	GTK_BUILDER_ERROR_DUPLICATE_ID
 )
 
-type GtkImageType Enum
-
-const (
-	GTK_IMAGE_EMPTY GtkImageType = iota
-	GTK_IMAGE_PIXMAP
-	GTK_IMAGE_IMAGE
-	GTK_IMAGE_PIXBUF
-	GTK_IMAGE_STOCK
-	GTK_IMAGE_ICON_SET
-	GTK_IMAGE_ANIMATION
-	GTK_IMAGE_ICON_NAME
-	GTK_IMAGE_GICON
-)
-
 type GtkCalendarDisplayOptions Enum
 
 const (
@@ -4210,17 +4192,6 @@ type GtkIconThemeError Enum
 const (
 	GTK_ICON_THEME_NOT_FOUND GtkIconThemeError = iota
 	GTK_ICON_THEME_FAILED
-)
-
-type GtkIconViewDropPosition Enum
-
-const (
-	GTK_ICON_VIEW_NO_DROP GtkIconViewDropPosition = iota
-	GTK_ICON_VIEW_DROP_INTO
-	GTK_ICON_VIEW_DROP_LEFT
-	GTK_ICON_VIEW_DROP_RIGHT
-	GTK_ICON_VIEW_DROP_ABOVE
-	GTK_ICON_VIEW_DROP_BELOW
 )
 
 type GtkSizeGroupMode Enum
@@ -4741,9 +4712,6 @@ type (
 
 	GtkTreeSelectionForeachFunc func(model *GtkTreeModel,
 		path *GtkTreePath, iter *GtkTreeIter, data Gpointer)
-
-	GtkIconViewForeachFunc func(icon_view *GtkIconView,
-		path *GtkTreePath, data Gpointer)
 
 	GtkFunction func(data Gpointer) Gboolean
 

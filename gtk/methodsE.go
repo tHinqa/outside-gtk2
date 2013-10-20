@@ -156,7 +156,7 @@ var (
 	EntryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *T.GdkPixbuf
 	EntryGetIconSensitive         func(e *Entry, iconPos EntryIconPosition) T.Gboolean
 	EntryGetIconStock             func(e *Entry, iconPos EntryIconPosition) string
-	EntryGetIconStorageType       func(e *Entry, iconPos EntryIconPosition) T.GtkImageType
+	EntryGetIconStorageType       func(e *Entry, iconPos EntryIconPosition) ImageType
 	EntryGetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition) string
 	EntryGetIconTooltipText       func(e *Entry, iconPos EntryIconPosition) string
 	EntryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *T.GdkWindow
@@ -368,7 +368,7 @@ func (e *Entry) SetIconFromGicon(
 }
 
 func (e *Entry) GetIconStorageType(
-	iconPos EntryIconPosition) T.GtkImageType {
+	iconPos EntryIconPosition) ImageType {
 	return EntryGetIconStorageType(e, iconPos)
 }
 
