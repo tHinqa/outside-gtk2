@@ -65,7 +65,7 @@ var (
 	calendarMarkDay             func(c *Calendar, day uint) T.Gboolean
 	calendarSelectDay           func(c *Calendar, day uint)
 	calendarSelectMonth         func(c *Calendar, month, year uint) T.Gboolean
-	calendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify)
+	calendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	calendarSetDetailHeightRows func(c *Calendar, rows int)
 	calendarSetDetailWidthChars func(c *Calendar, chars int)
 	calendarSetDisplayOptions   func(c *Calendar, flags CalendarDisplayOptions)
@@ -73,20 +73,20 @@ var (
 	calendarUnmarkDay           func(c *Calendar, day uint) T.Gboolean
 )
 
-func (c *Calendar) ClearMarks()                                     { calendarClearMarks(c) }
+func (c *Calendar) ClearMarks()                                 { calendarClearMarks(c) }
 func (c *Calendar) DisplayOptions(flags CalendarDisplayOptions) { calendarDisplayOptions(c, flags) }
-func (c *Calendar) Freeze()                                         { calendarFreeze(c) }
-func (c *Calendar) GetDate(year, month, day *uint)                  { calendarGetDate(c, year, month, day) }
-func (c *Calendar) GetDetailHeightRows() int                        { return calendarGetDetailHeightRows(c) }
-func (c *Calendar) GetDetailWidthChars() int                        { return calendarGetDetailWidthChars(c) }
-func (c *Calendar) GetDisplayOptions() CalendarDisplayOptions       { return calendarGetDisplayOptions(c) }
-func (c *Calendar) MarkDay(day uint) T.Gboolean                     { return calendarMarkDay(c, day) }
-func (c *Calendar) SelectDay(day uint)                              { calendarSelectDay(c, day) }
+func (c *Calendar) Freeze()                                     { calendarFreeze(c) }
+func (c *Calendar) GetDate(year, month, day *uint)              { calendarGetDate(c, year, month, day) }
+func (c *Calendar) GetDetailHeightRows() int                    { return calendarGetDetailHeightRows(c) }
+func (c *Calendar) GetDetailWidthChars() int                    { return calendarGetDetailWidthChars(c) }
+func (c *Calendar) GetDisplayOptions() CalendarDisplayOptions   { return calendarGetDisplayOptions(c) }
+func (c *Calendar) MarkDay(day uint) T.Gboolean                 { return calendarMarkDay(c, day) }
+func (c *Calendar) SelectDay(day uint)                          { calendarSelectDay(c, day) }
 func (c *Calendar) SelectMonth(month, year uint) T.Gboolean {
 	return calendarSelectMonth(c, month, year)
 }
-func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, dataGpointer, destroy T.GDestroyNotify) {
-	calendarSetDetailFunc(c, f, dataGpointer, destroy)
+func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+	calendarSetDetailFunc(c, f, data, destroy)
 }
 func (c *Calendar) SetDetailHeightRows(rows int)  { calendarSetDetailHeightRows(c, rows) }
 func (c *Calendar) SetDetailWidthChars(chars int) { calendarSetDetailWidthChars(c, chars) }
@@ -130,7 +130,7 @@ var (
 	cellLayoutPackStart       func(c *CellLayout, cell *CellRenderer, expand T.Gboolean)
 	cellLayoutReorder         func(c *CellLayout, cell *CellRenderer, position int)
 	cellLayoutSetAttributes   func(c *CellLayout, cell *CellRenderer, v ...VArg)
-	cellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcDataGpointer, destroy T.GDestroyNotify)
+	cellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
 )
 
 func (c *CellLayout) AddAttribute(cell *CellRenderer, attribute string, column int) {
@@ -147,8 +147,8 @@ func (c *CellLayout) PackStart(cell *CellRenderer, expand T.Gboolean) {
 }
 func (c *CellLayout) Reorder(cell *CellRenderer, position int)    { cellLayoutReorder(c, cell, position) }
 func (c *CellLayout) SetAttributes(cell *CellRenderer, v ...VArg) { cellLayoutSetAttributes(c, cell, v) }
-func (c *CellLayout) SetCellDataFunc(cell *CellRenderer, f CellLayoutDataFunc, funcDataGpointer, destroy T.GDestroyNotify) {
-	cellLayoutSetCellDataFunc(c, cell, f, funcDataGpointer, destroy)
+func (c *CellLayout) SetCellDataFunc(cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
+	cellLayoutSetCellDataFunc(c, cell, f, funcData, destroy)
 }
 
 type CellRenderer struct {
@@ -655,7 +655,7 @@ var (
 	clistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
 	clistSetReorderable         func(c *CList, reorderable T.Gboolean)
 	clistSetRowData             func(c *CList, row int, data T.Gpointer)
-	clistSetRowDataFull         func(c *CList, row int, dataGpointer, destroy T.GDestroyNotify)
+	clistSetRowDataFull         func(c *CList, row int, data T.Gpointer, destroy T.GDestroyNotify)
 	clistSetRowHeight           func(c *CList, height uint)
 	clistSetRowStyle            func(c *CList, row, style *T.GtkStyle)
 	clistSetSelectable          func(c *CList, row int, selectable T.Gboolean)
@@ -754,8 +754,8 @@ func (c *CList) SetPixtext(row, column int, text string, spacing uint8, pixmap, 
 }
 func (c *CList) SetReorderable(reorderable T.Gboolean) { clistSetReorderable(c, reorderable) }
 func (c *CList) SetRowData(row int, data T.Gpointer)   { clistSetRowData(c, row, data) }
-func (c *CList) SetRowDataFull(row int, dataGpointer, destroy T.GDestroyNotify) {
-	clistSetRowDataFull(c, row, dataGpointer, destroy)
+func (c *CList) SetRowDataFull(row int, data T.Gpointer, destroy T.GDestroyNotify) {
+	clistSetRowDataFull(c, row, data, destroy)
 }
 func (c *CList) SetRowHeight(height uint)                     { clistSetRowHeight(c, height) }
 func (c *CList) SetRowStyle(row, style *T.GtkStyle)           { clistSetRowStyle(c, row, style) }
@@ -999,7 +999,7 @@ var (
 	comboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
 	comboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick T.Gboolean)
 	comboBoxSetModel             func(c *ComboBox, model *T.GtkTreeModel)
-	comboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify)
+	comboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	comboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
 	comboBoxSetTitle             func(c *ComboBox, title string)
 	comboBoxSetWrapWidth         func(c *ComboBox, width int)
@@ -1040,8 +1040,8 @@ func (c *ComboBox) SetColumnSpanColumn(columnSpan int)      { comboBoxSetColumnS
 func (c *ComboBox) SetEntryTextColumn(textColumn int)       { comboBoxSetEntryTextColumn(c, textColumn) }
 func (c *ComboBox) SetFocusOnClick(focusOnClick T.Gboolean) { comboBoxSetFocusOnClick(c, focusOnClick) }
 func (c *ComboBox) SetModel(model *T.GtkTreeModel)          { comboBoxSetModel(c, model) }
-func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, dataGpointer, destroy T.GDestroyNotify) {
-	comboBoxSetRowSeparatorFunc(c, f, dataGpointer, destroy)
+func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+	comboBoxSetRowSeparatorFunc(c, f, data, destroy)
 }
 func (c *ComboBox) SetRowSpanColumn(rowSpan int) { comboBoxSetRowSpanColumn(c, rowSpan) }
 func (c *ComboBox) SetTitle(title string)        { comboBoxSetTitle(c, title) }
@@ -1070,6 +1070,150 @@ var (
 
 func (e *ComboBoxEntry) GetTextColumn() int           { return comboBoxEntryGetTextColumn(e) }
 func (e *ComboBoxEntry) SetTextColumn(textColumn int) { comboBoxEntrySetTextColumn(e, textColumn) }
+
+var (
+	ContainerGetType func() T.GType
+
+	ContainerSetBorderWidth func(
+		container *T.GtkContainer,
+		borderWidth uint)
+
+	ContainerGetBorderWidth func(
+		container *T.GtkContainer) uint
+
+	ContainerAdd func(
+		container *T.GtkContainer,
+		widget *Widget)
+
+	ContainerRemove func(
+		container *T.GtkContainer,
+		widget *Widget)
+
+	ContainerSetResizeMode func(
+		container *T.GtkContainer,
+		resizeMode T.GtkResizeMode)
+
+	ContainerGetResizeMode func(
+		container *T.GtkContainer) T.GtkResizeMode
+
+	ContainerCheckResize func(
+		container *T.GtkContainer)
+
+	ContainerForeach func(
+		container *T.GtkContainer,
+		callback T.GtkCallback,
+		callbackData T.Gpointer)
+
+	ContainerForeachFull func(
+		container *T.GtkContainer,
+		callback T.GtkCallback,
+		marshal T.GtkCallbackMarshal,
+		callbackData T.Gpointer,
+		notify T.GDestroyNotify)
+
+	ContainerGetChildren func(
+		container *T.GtkContainer) *T.GList
+
+	ContainerPropagateExpose func(
+		container *T.GtkContainer,
+		child *Widget,
+		event *T.GdkEventExpose)
+
+	ContainerSetFocusChain func(
+		container *T.GtkContainer,
+		focusableWidgets *T.GList)
+
+	ContainerGetFocusChain func(
+		container *T.GtkContainer,
+		focusableWidgets **T.GList) T.Gboolean
+
+	ContainerUnsetFocusChain func(
+		container *T.GtkContainer)
+
+	ContainerSetReallocateRedraws func(
+		container *T.GtkContainer,
+		needsRedraws T.Gboolean)
+
+	ContainerSetFocusChild func(
+		container *T.GtkContainer,
+		child *Widget)
+
+	ContainerGetFocusChild func(
+		container *T.GtkContainer) *Widget
+
+	ContainerSetFocusVadjustment func(
+		container *T.GtkContainer,
+		adjustment *Adjustment)
+
+	ContainerGetFocusVadjustment func(
+		container *T.GtkContainer) *Adjustment
+
+	ContainerSetFocusHadjustment func(
+		container *T.GtkContainer,
+		adjustment *Adjustment)
+
+	ContainerGetFocusHadjustment func(
+		container *T.GtkContainer) *Adjustment
+
+	ContainerResizeChildren func(
+		container *T.GtkContainer)
+
+	ContainerChildType func(
+		container *T.GtkContainer) T.GType
+
+	ContainerClassInstallChildProperty func(
+		cclass *T.GtkContainerClass,
+		propertyId uint,
+		pspec *T.GParamSpec)
+
+	ContainerClassFindChildProperty func(
+		cclass *T.GObjectClass,
+		propertyName string) *T.GParamSpec
+
+	ContainerClassListChildProperties func(
+		cclass *T.GObjectClass,
+		nProperties *uint) **T.GParamSpec
+
+	ContainerAddWithProperties func(
+		container *T.GtkContainer, widget *Widget,
+		firstPropName string, v ...VArg)
+
+	ContainerChildSet func(
+		container *T.GtkContainer, child *Widget,
+		firstPropName string, v ...VArg)
+
+	ContainerChildGet func(container *T.GtkContainer,
+		child *Widget, firstPropName string, v ...VArg)
+
+	ContainerChildSetValist func(
+		container *T.GtkContainer,
+		child *Widget,
+		firstPropertyName string,
+		varArgs T.VaList)
+
+	ContainerChildGetValist func(
+		container *T.GtkContainer,
+		child *Widget,
+		firstPropertyName string,
+		varArgs T.VaList)
+
+	ContainerChildSetProperty func(
+		container *T.GtkContainer,
+		child *Widget,
+		propertyName string,
+		value *T.GValue)
+
+	ContainerChildGetProperty func(
+		container *T.GtkContainer,
+		child *Widget,
+		propertyName string,
+		value *T.GValue)
+
+	ContainerForall func(
+		container *T.GtkContainer,
+		callback T.GtkCallback,
+		callbackData T.Gpointer)
+)
 
 type (
 	CTree struct {
@@ -1155,9 +1299,9 @@ var (
 	ctreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode
 	ctreeFind                     func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
 	ctreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *T.GList
-	ctreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList
+	ctreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *T.GList
 	ctreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
-	ctreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode
+	ctreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *CTreeNode
 	ctreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
 	ctreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
 	ctreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode
@@ -1184,7 +1328,7 @@ var (
 	ctreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
 	ctreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
 	ctreeNodeSetRowData           func(c *CTree, node *CTreeNode, data T.Gpointer)
-	ctreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, dataGpointer, destroy T.GDestroyNotify)
+	ctreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, data T.Gpointer, destroy T.GDestroyNotify)
 	ctreeNodeSetRowStyle          func(c *CTree, node *CTreeNode, style *T.GtkStyle)
 	ctreeNodeSetSelectable        func(c *CTree, node *CTreeNode, selectable T.Gboolean)
 	ctreeNodeSetShift             func(c *CTree, node *CTreeNode, column, vertical, horizontal int)
@@ -1225,14 +1369,14 @@ func (c *CTree) Find(node, child *CTreeNode) T.Gboolean { return ctreeFind(c, no
 func (c *CTree) FindAllByRowData(node *CTreeNode, data T.Gpointer) *T.GList {
 	return ctreeFindAllByRowData(c, node, data)
 }
-func (c *CTree) FindAllByRowDataCustom(node *CTreeNode, dataGpointer, f T.GCompareFunc) *T.GList {
-	return ctreeFindAllByRowDataCustom(c, node, dataGpointer, f)
+func (c *CTree) FindAllByRowDataCustom(node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *T.GList {
+	return ctreeFindAllByRowDataCustom(c, node, data, f)
 }
 func (c *CTree) FindByRowData(node *CTreeNode, data T.Gpointer) *CTreeNode {
 	return ctreeFindByRowData(c, node, data)
 }
-func (c *CTree) FindByRowDataCustom(node *CTreeNode, dataGpointer, f T.GCompareFunc) *CTreeNode {
-	return ctreeFindByRowDataCustom(c, node, dataGpointer, f)
+func (c *CTree) FindByRowDataCustom(node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *CTreeNode {
+	return ctreeFindByRowDataCustom(c, node, data, f)
 }
 func (c *CTree) FindNodePtr(ctreeRow *CTreeRow) *CTreeNode { return ctreeFindNodePtr(c, ctreeRow) }
 func (c *CTree) GetNodeInfo(node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean {
@@ -1290,8 +1434,8 @@ func (c *CTree) NodeSetPixtext(node *CTreeNode, column int, text string, spacing
 	ctreeNodeSetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
 func (c *CTree) NodeSetRowData(node *CTreeNode, data T.Gpointer) { ctreeNodeSetRowData(c, node, data) }
-func (c *CTree) NodeSetRowDataFull(node *CTreeNode, dataGpointer, destroy T.GDestroyNotify) {
-	ctreeNodeSetRowDataFull(c, node, dataGpointer, destroy)
+func (c *CTree) NodeSetRowDataFull(node *CTreeNode, data T.Gpointer, destroy T.GDestroyNotify) {
+	ctreeNodeSetRowDataFull(c, node, data, destroy)
 }
 func (c *CTree) NodeSetRowStyle(node *CTreeNode, style *T.GtkStyle) {
 	ctreeNodeSetRowStyle(c, node, style)

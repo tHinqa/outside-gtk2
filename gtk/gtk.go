@@ -13,11 +13,9 @@ import (
 type simpleObject struct{ parent T.GObject }
 
 var (
-	AlignmentGetType              func() T.GType
 	AnchorTypeGetType             func() T.GType
 	ArgFlagsGetType               func() T.GType
 	AttachOptionsGetType          func() T.GType
-	ContainerGetType              func() T.GType
 	CornerTypeGetType             func() T.GType
 	DebugFlagGetType              func() T.GType
 	DeleteTypeGetType             func() T.GType
@@ -361,7 +359,7 @@ var (
 	ObjectSetDataByIdFull func(
 		object *T.GtkObject,
 		dataId T.GQuark,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	ObjectGetDataById func(
@@ -1254,146 +1252,6 @@ var (
 	RequisitionFree func(
 		requisition *T.GtkRequisition)
 
-	ContainerSetBorderWidth func(
-		container *T.GtkContainer,
-		borderWidth uint)
-
-	ContainerGetBorderWidth func(
-		container *T.GtkContainer) uint
-
-	ContainerAdd func(
-		container *T.GtkContainer,
-		widget *Widget)
-
-	ContainerRemove func(
-		container *T.GtkContainer,
-		widget *Widget)
-
-	ContainerSetResizeMode func(
-		container *T.GtkContainer,
-		resizeMode T.GtkResizeMode)
-
-	ContainerGetResizeMode func(
-		container *T.GtkContainer) T.GtkResizeMode
-
-	ContainerCheckResize func(
-		container *T.GtkContainer)
-
-	ContainerForeach func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		callbackData T.Gpointer)
-
-	ContainerForeachFull func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		marshal T.GtkCallbackMarshal,
-		callbackDataGpointer,
-		notify T.GDestroyNotify)
-
-	ContainerGetChildren func(
-		container *T.GtkContainer) *T.GList
-
-	ContainerPropagateExpose func(
-		container *T.GtkContainer,
-		child *Widget,
-		event *T.GdkEventExpose)
-
-	ContainerSetFocusChain func(
-		container *T.GtkContainer,
-		focusableWidgets *T.GList)
-
-	ContainerGetFocusChain func(
-		container *T.GtkContainer,
-		focusableWidgets **T.GList) T.Gboolean
-
-	ContainerUnsetFocusChain func(
-		container *T.GtkContainer)
-
-	ContainerSetReallocateRedraws func(
-		container *T.GtkContainer,
-		needsRedraws T.Gboolean)
-
-	ContainerSetFocusChild func(
-		container *T.GtkContainer,
-		child *Widget)
-
-	ContainerGetFocusChild func(
-		container *T.GtkContainer) *Widget
-
-	ContainerSetFocusVadjustment func(
-		container *T.GtkContainer,
-		adjustment *Adjustment)
-
-	ContainerGetFocusVadjustment func(
-		container *T.GtkContainer) *Adjustment
-
-	ContainerSetFocusHadjustment func(
-		container *T.GtkContainer,
-		adjustment *Adjustment)
-
-	ContainerGetFocusHadjustment func(
-		container *T.GtkContainer) *Adjustment
-
-	ContainerResizeChildren func(
-		container *T.GtkContainer)
-
-	ContainerChildType func(
-		container *T.GtkContainer) T.GType
-
-	ContainerClassInstallChildProperty func(
-		cclass *T.GtkContainerClass,
-		propertyId uint,
-		pspec *T.GParamSpec)
-
-	ContainerClassFindChildProperty func(
-		cclass *T.GObjectClass,
-		propertyName string) *T.GParamSpec
-
-	ContainerClassListChildProperties func(
-		cclass *T.GObjectClass,
-		nProperties *uint) **T.GParamSpec
-
-	ContainerAddWithProperties func(
-		container *T.GtkContainer, widget *Widget,
-		firstPropName string, v ...VArg)
-
-	ContainerChildSet func(
-		container *T.GtkContainer, child *Widget,
-		firstPropName string, v ...VArg)
-
-	ContainerChildGet func(container *T.GtkContainer,
-		child *Widget, firstPropName string, v ...VArg)
-
-	ContainerChildSetValist func(
-		container *T.GtkContainer,
-		child *Widget,
-		firstPropertyName string,
-		varArgs T.VaList)
-
-	ContainerChildGetValist func(
-		container *T.GtkContainer,
-		child *Widget,
-		firstPropertyName string,
-		varArgs T.VaList)
-
-	ContainerChildSetProperty func(
-		container *T.GtkContainer,
-		child *Widget,
-		propertyName string,
-		value *T.GValue)
-
-	ContainerChildGetProperty func(
-		container *T.GtkContainer,
-		child *Widget,
-		propertyName string,
-		value *T.GValue)
-
-	ContainerForall func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		callbackData T.Gpointer)
-
 	WindowGroupGetCurrentGrab func(
 		windowGroup *T.GtkWindowGroup) *Widget
 
@@ -1464,7 +1322,7 @@ var (
 		parentMenuShell *Widget,
 		parentMenuItem *Widget,
 		f T.GtkMenuPositionFunc,
-		dataGpointer,
+		data T.Gpointer,
 		button uint,
 		activateTime T.GUint32)
 
@@ -1559,33 +1417,6 @@ var (
 
 	AccelGroupsFromObject func(object *T.GObject) *T.GSList
 
-	AlignmentNew func(
-		xalign float32,
-		yalign float32,
-		xscale float32,
-		yscale float32) *Widget
-
-	AlignmentSet func(
-		alignment *T.GtkAlignment,
-		xalign float32,
-		yalign float32,
-		xscale float32,
-		yscale float32)
-
-	AlignmentSetPadding func(
-		alignment *T.GtkAlignment,
-		paddingTop uint,
-		paddingBottom uint,
-		paddingLeft uint,
-		paddingRight uint)
-
-	AlignmentGetPadding func(
-		alignment *T.GtkAlignment,
-		paddingTop *uint,
-		paddingBottom *uint,
-		paddingLeft *uint,
-		paddingRight *uint)
-
 	BindingSetNew func(
 		setName string) *T.GtkBindingSet
 
@@ -1674,7 +1505,7 @@ var (
 		object *T.GtkObject,
 		name string,
 		f T.GCallback,
-		funcDataGpointer,
+		funcData T.Gpointer,
 		aliveObject *T.GtkObject)
 
 	SignalConnectFull func(
@@ -1682,7 +1513,7 @@ var (
 		name string,
 		f T.GCallback,
 		unsupported T.GtkCallbackMarshal,
-		dataGpointer,
+		data T.Gpointer,
 		destroyFunc T.GDestroyNotify,
 		objectSignal int,
 		after int) T.Gulong
@@ -1706,7 +1537,7 @@ var (
 	SignalCompatMatched func(
 		object *T.GtkObject,
 		f T.GCallback,
-		dataGpointer,
+		data T.Gpointer,
 		match T.GSignalMatchType,
 		action uint)
 
@@ -1944,13 +1775,13 @@ var (
 		sortable *T.GtkTreeSortable,
 		sortColumnId int,
 		sortFunc T.GtkTreeIterCompareFunc,
-		userDataGpointer,
+		userData T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeSortableSetDefaultSortFunc func(
 		sortable *T.GtkTreeSortable,
 		sortFunc T.GtkTreeIterCompareFunc,
-		userDataGpointer,
+		userData T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeSortableHasDefaultSortFunc func(
@@ -2371,13 +2202,13 @@ var (
 	TextIterForwardFindChar func(
 		iter *T.GtkTextIter,
 		pred T.GtkTextCharPredicate,
-		userDataGpointer,
+		userData T.Gpointer,
 		limit *T.GtkTextIter) T.Gboolean
 
 	TextIterBackwardFindChar func(
 		iter *T.GtkTextIter,
 		pred T.GtkTextCharPredicate,
-		userDataGpointer,
+		userData T.Gpointer,
 		limit *T.GtkTextIter) T.Gboolean
 
 	TextIterForwardSearch func(
@@ -2779,7 +2610,7 @@ var (
 	TreeModelFilterSetVisibleFunc func(
 		filter *T.GtkTreeModelFilter,
 		f T.GtkTreeModelFilterVisibleFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeModelFilterSetModifyFunc func(
@@ -2787,7 +2618,7 @@ var (
 		nColumns int,
 		types *T.GType,
 		f T.GtkTreeModelFilterModifyFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeModelFilterSetVisibleColumn func(
@@ -2893,7 +2724,7 @@ var (
 		title string,
 		cell *CellRenderer,
 		f T.GtkTreeCellDataFunc,
-		dataGpointer,
+		data T.Gpointer,
 		dnotify T.GDestroyNotify) int
 
 	TreeViewGetColumn func(
@@ -2918,7 +2749,7 @@ var (
 	TreeViewSetColumnDragFunction func(
 		treeView *T.GtkTreeView,
 		f T.GtkTreeViewColumnDropFunc,
-		userDataGpointer,
+		userData T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeViewScrollToPoint func(
@@ -3099,7 +2930,7 @@ var (
 	TreeViewSetSearchEqualFunc func(
 		treeView *T.GtkTreeView,
 		searchEqualFunc T.GtkTreeViewSearchEqualFunc,
-		searchUserDataGpointer,
+		searchUserData T.Gpointer,
 		searchDestroy T.GDestroyNotify)
 
 	TreeViewGetSearchEntry func(
@@ -3115,7 +2946,7 @@ var (
 	TreeViewSetSearchPositionFunc func(
 		treeView *T.GtkTreeView,
 		f T.GtkTreeViewSearchPositionFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeViewConvertWidgetToTreeCoords func(
@@ -3163,7 +2994,7 @@ var (
 	TreeViewSetDestroyCountFunc func(
 		treeView *T.GtkTreeView,
 		f T.GtkTreeDestroyCountFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeViewSetFixedHeightMode func(
@@ -3203,7 +3034,7 @@ var (
 	TreeViewSetRowSeparatorFunc func(
 		treeView *T.GtkTreeView,
 		f T.GtkTreeViewRowSeparatorFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeViewGetGridLines func(
@@ -3628,7 +3459,7 @@ var (
 		mainLevel uint,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
 	QuitRemove func(
@@ -3646,7 +3477,7 @@ var (
 		interval T.GUint32,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
 	TimeoutRemove func(
@@ -3665,7 +3496,7 @@ var (
 		priority int,
 		function T.GtkFunction,
 		marshal T.GtkCallbackMarshal,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
 	IdleRemove func(
@@ -3679,7 +3510,7 @@ var (
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
 		marshal T.GtkCallbackMarshal,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
 	InputRemove func(
@@ -4055,7 +3886,7 @@ var (
 
 	NotebookSetWindowCreationHook func(
 		f T.GtkNotebookWindowCreationFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	NotebookSetGroupId func(
@@ -5377,7 +5208,7 @@ var (
 		filter *T.GtkRecentFilter,
 		needed T.GtkRecentFilterFlags,
 		f T.GtkRecentFilterFunc,
-		dataGpointer,
+		data T.Gpointer,
 		dataDestroy T.GDestroyNotify)
 
 	RecentFilterGetNeeded func(
@@ -5455,7 +5286,7 @@ var (
 	RecentChooserSetSortFunc func(
 		chooser *T.GtkRecentChooser,
 		sortFunc T.GtkRecentSortFunc,
-		sortDataGpointer,
+		sortData T.Gpointer,
 		dataDestroy T.GDestroyNotify)
 
 	RecentChooserSetCurrentUri func(
@@ -5964,7 +5795,7 @@ var (
 	StockSetTranslateFunc func(
 		domain string,
 		f T.GtkTranslateFunc,
-		dataGpointer,
+		data T.Gpointer,
 		notify T.GDestroyNotify)
 
 	TableNew func(
@@ -6376,7 +6207,7 @@ var (
 		buffer *T.GtkTextBuffer,
 		mimeType string,
 		function T.GtkTextBufferSerializeFunc,
-		userDataGpointer,
+		userData T.Gpointer,
 		userDataDestroy T.GDestroyNotify) T.GdkAtom
 
 	TextBufferRegisterSerializeTagset func(
@@ -6387,7 +6218,7 @@ var (
 		buffer *T.GtkTextBuffer,
 		mimeType string,
 		function T.GtkTextBufferDeserializeFunc,
-		userDataGpointer,
+		userData T.Gpointer,
 		userDataDestroy T.GDestroyNotify) T.GdkAtom
 
 	TextBufferRegisterDeserializeTagset func(
@@ -6717,7 +6548,7 @@ var (
 		tooltipPrivateText string,
 		icon *Widget,
 		callback T.GCallback,
-		userDataGpointer,
+		userData T.Gpointer,
 		position int) *Widget
 
 	ToolbarInsertStock func(toolbar *T.GtkToolbar,
@@ -6725,7 +6556,7 @@ var (
 		tooltipText string,
 		tooltipPrivateText string,
 		callback T.GCallback,
-		userDataGpointer,
+		userData T.Gpointer,
 		position int) *Widget
 
 	ToolbarAppendSpace func(toolbar *T.GtkToolbar)
@@ -6766,7 +6597,7 @@ var (
 		tooltipPrivateText string,
 		icon *Widget,
 		callback T.GCallback,
-		userDataGpointer,
+		userData T.Gpointer,
 		position int) *Widget
 
 	ToolbarAppendWidget func(toolbar *T.GtkToolbar,
@@ -7018,7 +6849,7 @@ var (
 
 	TreeSelectionSetSelectFunction func(selection *T.GtkTreeSelection,
 		f T.GtkTreeSelectionFunc,
-		dataGpointer,
+		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeSelectionGetUserData func(selection *T.GtkTreeSelection) T.Gpointer
@@ -7628,7 +7459,7 @@ var (
 		treeColumn *TreeViewColumn,
 		cellRenderer *CellRenderer,
 		f T.GtkTreeCellDataFunc,
-		funcDataGpointer,
+		funcData T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	TreeViewColumnClearAttributes func(
@@ -7815,9 +7646,9 @@ func (tc *TreeViewColumn) SetAttributes(
 
 func (tc *TreeViewColumn) SetCellDataFunc(
 	cellRenderer *CellRenderer, f T.GtkTreeCellDataFunc,
-	funcDataGpointer, destroy T.GDestroyNotify) {
+	funcData T.Gpointer, destroy T.GDestroyNotify) {
 	TreeViewColumnSetCellDataFunc(
-		tc, cellRenderer, f, funcDataGpointer, destroy)
+		tc, cellRenderer, f, funcData, destroy)
 }
 
 func (tc *TreeViewColumn) ClearAttributes(

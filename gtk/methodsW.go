@@ -342,412 +342,284 @@ func (w *Widget) Unparent()                                 { widgetUnparent(w) 
 func (w *Widget) Unrealize()                                { widgetUnrealize(w) }
 func (w *Widget) Unref()                                    { widgetUnref(w) }
 
+type Window struct {
+	Bin                   Bin
+	Title                 *T.Gchar
+	WmclassName           *T.Gchar
+	WmclassClass          *T.Gchar
+	WmRole                *T.Gchar
+	FocusWidget           *Widget
+	DefaultWidget         *Widget
+	TransientParent       *Window
+	GeometryInfo          *T.GtkWindowGeometryInfo
+	Frame                 *Window
+	Group                 *T.GtkWindowGroup
+	ConfigureRequestCount uint16
+	Bits                  uint
+	// AllowShrink : 1
+	// AllowGrow : 1
+	// ConfigureNotifyReceived : 1
+	// NeedDefaultPosition : 1
+	// NeedDefaultSize : 1
+	// Position : 3
+	// Type : 4
+	// HasUserRefCount : 1
+	// HasFocus : 1
+	// Modal : 1
+	// DestroyWithParent : 1
+	// has_frame : 1
+	// IconifyInitially : 1
+	// StickInitially : 1
+	// MaximizeInitially : 1
+	// Decorated : 1
+	// TypeHint : 3
+	// Gravity : 5
+	// IsActive : 1
+	// HasToplevelFocus : 1
+	FrameLeft          uint
+	FrameTop           uint
+	FrameRight         uint
+	FrameBottom        uint
+	KeysChangedHandler uint
+	MnemonicModifier   T.GdkModifierType
+	Screen             *T.GdkScreen
+}
+
 var (
 	WindowGetType func() T.GType
 	WindowNew     func(t T.GtkWindowType) *Widget
 
-	WindowSetTitle func(
-		window *T.GtkWindow,
-		title string)
-
-	WindowGetTitle func(
-		window *T.GtkWindow) string
-
-	WindowSetWmclass func(
-		window *T.GtkWindow,
-		wmclassName string,
-		wmclassClass string)
-
-	WindowSetRole func(
-		window *T.GtkWindow,
-		role string)
-
-	WindowSetStartupId func(
-		window *T.GtkWindow,
-		startupId string)
-
-	WindowGetRole func(
-		window *T.GtkWindow) string
-
-	WindowAddAccelGroup func(
-		window *T.GtkWindow,
-		accelGroup *AccelGroup)
-
-	WindowRemoveAccelGroup func(
-		window *T.GtkWindow,
-		accelGroup *AccelGroup)
-
-	WindowSetPosition func(
-		window *T.GtkWindow,
-		position T.GtkWindowPosition)
-
-	WindowActivateFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFocus func(
-		window *T.GtkWindow,
-		focus *Widget)
-
-	WindowGetFocus func(
-		window *T.GtkWindow) *Widget
-
-	WindowSetDefault func(
-		window *T.GtkWindow,
-		defaultWidget *Widget)
-
-	WindowGetDefaultWidget func(
-		window *T.GtkWindow) *Widget
-
-	WindowActivateDefault func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetTransientFor func(
-		window *T.GtkWindow,
-		parent *T.GtkWindow)
-
-	WindowGetTransientFor func(
-		window *T.GtkWindow) *T.GtkWindow
-
-	WindowSetOpacity func(
-		window *T.GtkWindow,
-		opacity float64)
-
-	WindowGetOpacity func(
-		window *T.GtkWindow) float64
-
-	WindowSetTypeHint func(
-		window *T.GtkWindow,
-		hint T.GdkWindowTypeHint)
-
-	WindowGetTypeHint func(
-		window *T.GtkWindow) T.GdkWindowTypeHint
-
-	WindowSetSkipTaskbarHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetSkipTaskbarHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetSkipPagerHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetSkipPagerHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetUrgencyHint func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetUrgencyHint func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetAcceptFocus func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetAcceptFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFocusOnMap func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetFocusOnMap func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetDestroyWithParent func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDestroyWithParent func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetMnemonicsVisible func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetMnemonicsVisible func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetResizable func(
-		window *T.GtkWindow,
-		resizable T.Gboolean)
-
-	WindowGetResizable func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetGravity func(
-		window *T.GtkWindow,
-		gravity T.GdkGravity)
-
-	WindowGetGravity func(
-		window *T.GtkWindow) T.GdkGravity
-
-	WindowSetGeometryHints func(
-		window *T.GtkWindow,
-		geometryWidget *Widget,
-		geometry *T.GdkGeometry,
-		geomMask T.GdkWindowHints)
-
-	WindowSetScreen func(
-		window *T.GtkWindow,
-		screen *T.GdkScreen)
-
-	WindowGetScreen func(
-		window *T.GtkWindow) *T.GdkScreen
-
-	WindowIsActive func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowHasToplevelFocus func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetHasFrame func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetHasFrame func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetFrameDimensions func(
-		window *T.GtkWindow,
-		left int,
-		top int,
-		right int,
-		bottom int)
-
-	WindowGetFrameDimensions func(
-		window *T.GtkWindow,
-		left *int,
-		top *int,
-		right *int,
-		bottom *int)
-
-	WindowSetDecorated func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDecorated func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetDeletable func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowGetDeletable func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowSetIconList func(
-		window *T.GtkWindow,
-		list *T.GList)
-
-	WindowGetIconList func(
-		window *T.GtkWindow) *T.GList
-
-	WindowSetIcon func(
-		window *T.GtkWindow,
-		icon *T.GdkPixbuf)
-
-	WindowSetIconName func(
-		window *T.GtkWindow,
-		name string)
-
-	WindowSetIconFromFile func(
-		window *T.GtkWindow,
-		filename string,
-		err **T.GError) T.Gboolean
-
-	WindowGetIcon func(
-		window *T.GtkWindow) *T.GdkPixbuf
-
-	WindowGetIconName func(
-		window *T.GtkWindow) string
-
-	WindowSetDefaultIconList func(
-		list *T.GList)
-
-	WindowGetDefaultIconList func() *T.GList
-
-	WindowSetDefaultIcon func(
-		icon *T.GdkPixbuf)
-
-	WindowSetDefaultIconName func(
-		name string)
-
-	WindowGetDefaultIconName func() string
-
-	WindowSetDefaultIconFromFile func(
-		filename string,
-		err **T.GError) T.Gboolean
-
-	WindowSetAutoStartupNotification func(
-		setting T.Gboolean)
-
-	WindowSetModal func(
-		window *T.GtkWindow,
-		modal T.Gboolean)
-
-	WindowGetModal func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowListToplevels func() *T.GList
-
-	WindowAddMnemonic func(
-		window *T.GtkWindow,
-		keyval uint,
-		target *Widget)
-
-	WindowRemoveMnemonic func(
-		window *T.GtkWindow,
-		keyval uint,
-		target *Widget)
-
-	WindowMnemonicActivate func(
-		window *T.GtkWindow,
-		keyval uint,
-		modifier T.GdkModifierType) T.Gboolean
-
-	WindowSetMnemonicModifier func(
-		window *T.GtkWindow,
-		modifier T.GdkModifierType)
-
-	WindowGetMnemonicModifier func(
-		window *T.GtkWindow) T.GdkModifierType
-
-	WindowActivateKey func(
-		window *T.GtkWindow,
-		event *T.GdkEventKey) T.Gboolean
-
-	WindowPropagateKeyEvent func(
-		window *T.GtkWindow,
-		event *T.GdkEventKey) T.Gboolean
-
-	WindowPresent func(
-		window *T.GtkWindow)
-
-	WindowPresentWithTime func(
-		window *T.GtkWindow,
-		timestamp T.GUint32)
-
-	WindowIconify func(
-		window *T.GtkWindow)
-
-	WindowDeiconify func(
-		window *T.GtkWindow)
-
-	WindowStick func(
-		window *T.GtkWindow)
-
-	WindowUnstick func(
-		window *T.GtkWindow)
-
-	WindowMaximize func(
-		window *T.GtkWindow)
-
-	WindowUnmaximize func(
-		window *T.GtkWindow)
-
-	WindowFullscreen func(
-		window *T.GtkWindow)
-
-	WindowUnfullscreen func(
-		window *T.GtkWindow)
-
-	WindowSetKeepAbove func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowSetKeepBelow func(
-		window *T.GtkWindow,
-		setting T.Gboolean)
-
-	WindowBeginResizeDrag func(
-		window *T.GtkWindow,
-		edge T.GdkWindowEdge,
-		button int,
-		rootX int,
-		rootY int,
-		timestamp T.GUint32)
-
-	WindowBeginMoveDrag func(
-		window *T.GtkWindow,
-		button int,
-		rootX int,
-		rootY int,
-		timestamp T.GUint32)
-
-	WindowSetPolicy func(
-		window *T.GtkWindow,
-		allowShrink int,
-		allowGrow int,
-		autoShrink int)
-
-	WindowSetDefaultSize func(
-		window *T.GtkWindow,
-		width int,
-		height int)
-
-	WindowGetDefaultSize func(
-		window *T.GtkWindow,
-		width *int,
-		height *int)
-
-	WindowResize func(
-		window *T.GtkWindow,
-		width int,
-		height int)
-
-	WindowGetSize func(
-		window *T.GtkWindow,
-		width *int,
-		height *int)
-
-	WindowMove func(
-		window *T.GtkWindow,
-		x int,
-		y int)
-
-	WindowGetPosition func(
-		window *T.GtkWindow,
-		rootX *int,
-		rootY *int)
-
-	WindowParseGeometry func(
-		window *T.GtkWindow,
-		geometry string) T.Gboolean
-
-	WindowGetGroup func(
-		window *T.GtkWindow) *T.GtkWindowGroup
-
-	WindowHasGroup func(
-		window *T.GtkWindow) T.Gboolean
-
-	WindowReshowWithInitialSize func(
-		window *T.GtkWindow)
-
-	WindowGetWindowType func(
-		window *T.GtkWindow) T.GtkWindowType
-
-	WindowGroupNew func() *T.GtkWindowGroup
-
-	WindowGroupAddWindow func(
-		windowGroup *T.GtkWindowGroup,
-		window *T.GtkWindow)
-
-	WindowGroupRemoveWindow func(
-		windowGroup *T.GtkWindowGroup,
-		window *T.GtkWindow)
-
-	WindowGroupListWindows func(
-		windowGroup *T.GtkWindowGroup) *T.GList
-
-	WindowRemoveEmbeddedXid func(
-		window *T.GtkWindow,
-		xid T.GdkNativeWindow)
-
-	WindowAddEmbeddedXid func(
-		window *T.GtkWindow,
-		xid T.GdkNativeWindow)
+	WindowGroupNew                   func() *T.GtkWindowGroup
+	WindowSetDefaultIconList         func(list *T.GList)
+	WindowGetDefaultIconList         func() *T.GList
+	WindowSetDefaultIcon             func(icon *T.GdkPixbuf)
+	WindowSetDefaultIconName         func(name string)
+	WindowGetDefaultIconName         func() string
+	WindowSetDefaultIconFromFile     func(filename string, err **T.GError) T.Gboolean
+	WindowListToplevels              func() *T.GList
+	WindowSetAutoStartupNotification func(setting T.Gboolean)
+
+	windowActivateDefault       func(w *Window) T.Gboolean
+	windowActivateFocus         func(w *Window) T.Gboolean
+	windowActivateKey           func(w *Window, event *T.GdkEventKey) T.Gboolean
+	windowAddAccelGroup         func(w *Window, accelGroup *AccelGroup)
+	windowAddEmbeddedXid        func(w *Window, xid T.GdkNativeWindow)
+	windowAddMnemonic           func(w *Window, keyval uint, target *Widget)
+	windowBeginMoveDrag         func(w *Window, button, rootX, rootY int, timestamp T.GUint32)
+	windowBeginResizeDrag       func(w *Window, edge T.GdkWindowEdge, button, rootX, rootY int, timestamp T.GUint32)
+	windowDeiconify             func(w *Window)
+	windowFullscreen            func(w *Window)
+	windowGetAcceptFocus        func(w *Window) T.Gboolean
+	windowGetDecorated          func(w *Window) T.Gboolean
+	windowGetDefaultSize        func(w *Window, width, height *int)
+	windowGetDefaultWidget      func(w *Window) *Widget
+	windowGetDeletable          func(w *Window) T.Gboolean
+	windowGetDestroyWithParent  func(w *Window) T.Gboolean
+	windowGetFocus              func(w *Window) *Widget
+	windowGetFocusOnMap         func(w *Window) T.Gboolean
+	windowGetFrameDimensions    func(w *Window, left, top, right, bottom *int)
+	windowGetGravity            func(w *Window) T.GdkGravity
+	windowGetGroup              func(w *Window) *T.GtkWindowGroup
+	windowGetHasFrame           func(w *Window) T.Gboolean
+	windowGetIcon               func(w *Window) *T.GdkPixbuf
+	windowGetIconList           func(w *Window) *T.GList
+	windowGetIconName           func(w *Window) string
+	windowGetMnemonicModifier   func(w *Window) T.GdkModifierType
+	windowGetMnemonicsVisible   func(w *Window) T.Gboolean
+	windowGetModal              func(w *Window) T.Gboolean
+	windowGetOpacity            func(w *Window) float64
+	windowGetPosition           func(w *Window, rootX, rootY *int)
+	windowGetResizable          func(w *Window) T.Gboolean
+	windowGetRole               func(w *Window) string
+	windowGetScreen             func(w *Window) *T.GdkScreen
+	windowGetSize               func(w *Window, width, height *int)
+	windowGetSkipPagerHint      func(w *Window) T.Gboolean
+	windowGetSkipTaskbarHint    func(w *Window) T.Gboolean
+	windowGetTitle              func(w *Window) string
+	windowGetTransientFor       func(w *Window) *T.GtkWindow
+	windowGetTypeHint           func(w *Window) T.GdkWindowTypeHint
+	windowGetUrgencyHint        func(w *Window) T.Gboolean
+	windowGetWindowType         func(w *Window) T.GtkWindowType
+	windowHasGroup              func(w *Window) T.Gboolean
+	windowHasToplevelFocus      func(w *Window) T.Gboolean
+	windowIconify               func(w *Window)
+	windowIsActive              func(w *Window) T.Gboolean
+	windowMaximize              func(w *Window)
+	windowMnemonicActivate      func(w *Window, keyval uint, modifier T.GdkModifierType) T.Gboolean
+	windowMove                  func(w *Window, x, y int)
+	windowParseGeometry         func(w *Window, geometry string) T.Gboolean
+	windowPresent               func(w *Window)
+	windowPresentWithTime       func(w *Window, timestamp T.GUint32)
+	windowPropagateKeyEvent     func(w *Window, event *T.GdkEventKey) T.Gboolean
+	windowRemoveAccelGroup      func(w *Window, accelGroup *AccelGroup)
+	windowRemoveEmbeddedXid     func(w *Window, xid T.GdkNativeWindow)
+	windowRemoveMnemonic        func(w *Window, keyval uint, target *Widget)
+	windowReshowWithInitialSize func(w *Window)
+	windowResize                func(w *Window, width, height int)
+	windowSetAcceptFocus        func(w *Window, setting T.Gboolean)
+	windowSetDecorated          func(w *Window, setting T.Gboolean)
+	windowSetDefault            func(w *Window, defaultWidget *Widget)
+	windowSetDefaultSize        func(w *Window, width, height int)
+	windowSetDeletable          func(w *Window, setting T.Gboolean)
+	windowSetDestroyWithParent  func(w *Window, setting T.Gboolean)
+	windowSetFocus              func(w *Window, focus *Widget)
+	windowSetFocusOnMap         func(w *Window, setting T.Gboolean)
+	windowSetFrameDimensions    func(w *Window, left, top, right, bottom int)
+	windowSetGeometryHints      func(w *Window, geometryWidget *Widget, geometry *T.GdkGeometry, geomMask T.GdkWindowHints)
+	windowSetGravity            func(w *Window, gravity T.GdkGravity)
+	windowSetHasFrame           func(w *Window, setting T.Gboolean)
+	windowSetIcon               func(w *Window, icon *T.GdkPixbuf)
+	windowSetIconFromFile       func(w *Window, filename string, err **T.GError) T.Gboolean
+	windowSetIconList           func(w *Window, list *T.GList)
+	windowSetIconName           func(w *Window, name string)
+	windowSetKeepAbove          func(w *Window, setting T.Gboolean)
+	windowSetKeepBelow          func(w *Window, setting T.Gboolean)
+	windowSetMnemonicModifier   func(w *Window, modifier T.GdkModifierType)
+	windowSetMnemonicsVisible   func(w *Window, setting T.Gboolean)
+	windowSetModal              func(w *Window, modal T.Gboolean)
+	windowSetOpacity            func(w *Window, opacity float64)
+	windowSetPolicy             func(w *Window, allowShrink, allowGrow, autoShrink int)
+	windowSetPosition           func(w *Window, position T.GtkWindowPosition)
+	windowSetResizable          func(w *Window, resizable T.Gboolean)
+	windowSetRole               func(w *Window, role string)
+	windowSetScreen             func(w *Window, screen *T.GdkScreen)
+	windowSetSkipPagerHint      func(w *Window, setting T.Gboolean)
+	windowSetSkipTaskbarHint    func(w *Window, setting T.Gboolean)
+	windowSetStartupId          func(w *Window, startupId string)
+	windowSetTitle              func(w *Window, title string)
+	windowSetTransientFor       func(w *Window, parent *T.GtkWindow)
+	windowSetTypeHint           func(w *Window, hint T.GdkWindowTypeHint)
+	windowSetUrgencyHint        func(w *Window, setting T.Gboolean)
+	windowSetWmclass            func(w *Window, wmclassName, wmclassClass string)
+	windowStick                 func(w *Window)
+	windowUnfullscreen          func(w *Window)
+	windowUnmaximize            func(w *Window)
+	windowUnstick               func(w *Window)
+
+	WindowGroupAddWindow    func(windowGroup *T.GtkWindowGroup, window *T.GtkWindow)
+	WindowGroupRemoveWindow func(windowGroup *T.GtkWindowGroup, window *T.GtkWindow)
+	WindowGroupListWindows  func(windowGroup *T.GtkWindowGroup) *T.GList
 )
+
+func (w *Window) ActivateDefault() T.Gboolean { return windowActivateDefault(w) }
+func (w *Window) ActivateFocus() T.Gboolean   { return windowActivateFocus(w) }
+func (w *Window) ActivateKey(event *T.GdkEventKey) T.Gboolean {
+	return windowActivateKey(w, event)
+}
+func (w *Window) AddAccelGroup(accelGroup *AccelGroup)    { windowAddAccelGroup(w, accelGroup) }
+func (w *Window) AddEmbeddedXid(xid T.GdkNativeWindow)    { windowAddEmbeddedXid(w, xid) }
+func (w *Window) AddMnemonic(keyval uint, target *Widget) { windowAddMnemonic(w, keyval, target) }
+func (w *Window) BeginMoveDrag(button, rootX, rootY int, timestamp T.GUint32) {
+	windowBeginMoveDrag(w, button, rootX, rootY, timestamp)
+}
+func (w *Window) BeginResizeDrag(edge T.GdkWindowEdge, button, rootX, rootY int, timestamp T.GUint32) {
+	windowBeginResizeDrag(w, edge, button, rootX, rootY, timestamp)
+}
+func (w *Window) Deiconify()                 { windowDeiconify(w) }
+func (w *Window) Fullscreen()                { windowFullscreen(w) }
+func (w *Window) GetAcceptFocus() T.Gboolean { return windowGetAcceptFocus(w) }
+func (w *Window) GetDecorated() T.Gboolean   { return windowGetDecorated(w) }
+func (w *Window) GetDefaultSize(width, height *int) {
+	windowGetDefaultSize(w, width, height)
+}
+func (w *Window) GetDefaultWidget() *Widget        { return windowGetDefaultWidget(w) }
+func (w *Window) GetDeletable() T.Gboolean         { return windowGetDeletable(w) }
+func (w *Window) GetDestroyWithParent() T.Gboolean { return windowGetDestroyWithParent(w) }
+func (w *Window) GetFocus() *Widget                { return windowGetFocus(w) }
+func (w *Window) GetFocusOnMap() T.Gboolean        { return windowGetFocusOnMap(w) }
+func (w *Window) GetFrameDimensions(left, top, right, bottom *int) {
+	windowGetFrameDimensions(w, left, top, right, bottom)
+}
+func (w *Window) GetGravity() T.GdkGravity               { return windowGetGravity(w) }
+func (w *Window) GetGroup() *T.GtkWindowGroup            { return windowGetGroup(w) }
+func (w *Window) GetHasFrame() T.Gboolean                { return windowGetHasFrame(w) }
+func (w *Window) GetIcon() *T.GdkPixbuf                  { return windowGetIcon(w) }
+func (w *Window) GetIconList() *T.GList                  { return windowGetIconList(w) }
+func (w *Window) GetIconName() string                    { return windowGetIconName(w) }
+func (w *Window) GetMnemonicModifier() T.GdkModifierType { return windowGetMnemonicModifier(w) }
+func (w *Window) GetMnemonicsVisible() T.Gboolean        { return windowGetMnemonicsVisible(w) }
+func (w *Window) GetModal() T.Gboolean                   { return windowGetModal(w) }
+func (w *Window) GetOpacity() float64                    { return windowGetOpacity(w) }
+func (w *Window) GetPosition(rootX, rootY *int)          { windowGetPosition(w, rootX, rootY) }
+func (w *Window) GetResizable() T.Gboolean               { return windowGetResizable(w) }
+func (w *Window) GetRole() string                        { return windowGetRole(w) }
+func (w *Window) GetScreen() *T.GdkScreen                { return windowGetScreen(w) }
+func (w *Window) GetSize(width, height *int)             { windowGetSize(w, width, height) }
+func (w *Window) GetSkipPagerHint() T.Gboolean           { return windowGetSkipPagerHint(w) }
+func (w *Window) GetSkipTaskbarHint() T.Gboolean         { return windowGetSkipTaskbarHint(w) }
+func (w *Window) GetTitle() string                       { return windowGetTitle(w) }
+func (w *Window) GetTransientFor() *T.GtkWindow          { return windowGetTransientFor(w) }
+func (w *Window) GetTypeHint() T.GdkWindowTypeHint       { return windowGetTypeHint(w) }
+func (w *Window) GetUrgencyHint() T.Gboolean             { return windowGetUrgencyHint(w) }
+func (w *Window) GetWindowType() T.GtkWindowType         { return windowGetWindowType(w) }
+func (w *Window) HasGroup() T.Gboolean                   { return windowHasGroup(w) }
+func (w *Window) HasToplevelFocus() T.Gboolean           { return windowHasToplevelFocus(w) }
+func (w *Window) Iconify()                               { windowIconify(w) }
+func (w *Window) IsActive() T.Gboolean                   { return windowIsActive(w) }
+func (w *Window) Maximize()                              { windowMaximize(w) }
+func (w *Window) MnemonicActivate(keyval uint, modifier T.GdkModifierType) T.Gboolean {
+	return windowMnemonicActivate(w, keyval, modifier)
+}
+func (w *Window) Move(x int, y int)                        { windowMove(w, x, y) }
+func (w *Window) ParseGeometry(geometry string) T.Gboolean { return windowParseGeometry(w, geometry) }
+func (w *Window) Present()                                 { windowPresent(w) }
+func (w *Window) PresentWithTime(timestamp T.GUint32)      { windowPresentWithTime(w, timestamp) }
+func (w *Window) PropagateKeyEvent(event *T.GdkEventKey) T.Gboolean {
+	return windowPropagateKeyEvent(w, event)
+}
+func (w *Window) RemoveAccelGroup(accelGroup *AccelGroup)    { windowRemoveAccelGroup(w, accelGroup) }
+func (w *Window) RemoveEmbeddedXid(xid T.GdkNativeWindow)    { windowRemoveEmbeddedXid(w, xid) }
+func (w *Window) RemoveMnemonic(keyval uint, target *Widget) { windowRemoveMnemonic(w, keyval, target) }
+func (w *Window) ReshowWithInitialSize()                     { windowReshowWithInitialSize(w) }
+func (w *Window) Resize(width, height int)                   { windowResize(w, width, height) }
+func (w *Window) SetAcceptFocus(setting T.Gboolean)          { windowSetAcceptFocus(w, setting) }
+func (w *Window) SetDecorated(setting T.Gboolean)            { windowSetDecorated(w, setting) }
+func (w *Window) SetDefault(defaultWidget *Widget)           { windowSetDefault(w, defaultWidget) }
+func (w *Window) SetDefaultSize(width, height int)           { windowSetDefaultSize(w, width, height) }
+func (w *Window) SetDeletable(setting T.Gboolean)            { windowSetDeletable(w, setting) }
+func (w *Window) SetDestroyWithParent(setting T.Gboolean)    { windowSetDestroyWithParent(w, setting) }
+func (w *Window) SetFocus(focus *Widget)                     { windowSetFocus(w, focus) }
+func (w *Window) SetFocusOnMap(setting T.Gboolean)           { windowSetFocusOnMap(w, setting) }
+func (w *Window) SetFrameDimensions(left, top, right, bottom int) {
+	windowSetFrameDimensions(w, left, top, right, bottom)
+}
+func (w *Window) SetGeometryHints(geometryWidget *Widget, geometry *T.GdkGeometry, geomMask T.GdkWindowHints) {
+	windowSetGeometryHints(w, geometryWidget, geometry, geomMask)
+}
+func (w *Window) SetGravity(gravity T.GdkGravity) { windowSetGravity(w, gravity) }
+func (w *Window) SetHasFrame(setting T.Gboolean)  { windowSetHasFrame(w, setting) }
+func (w *Window) SetIcon(icon *T.GdkPixbuf)       { windowSetIcon(w, icon) }
+func (w *Window) SetIconFromFile(filename string, err **T.GError) T.Gboolean {
+	return windowSetIconFromFile(w, filename, err)
+}
+func (w *Window) SetIconList(list *T.GList)       { windowSetIconList(w, list) }
+func (w *Window) SetIconName(name string)         { windowSetIconName(w, name) }
+func (w *Window) SetKeepAbove(setting T.Gboolean) { windowSetKeepAbove(w, setting) }
+func (w *Window) SetKeepBelow(setting T.Gboolean) { windowSetKeepBelow(w, setting) }
+func (w *Window) SetMnemonicModifier(modifier T.GdkModifierType) {
+	windowSetMnemonicModifier(w, modifier)
+}
+func (w *Window) SetMnemonicsVisible(setting T.Gboolean) { windowSetMnemonicsVisible(w, setting) }
+func (w *Window) SetModal(modal T.Gboolean)              { windowSetModal(w, modal) }
+func (w *Window) SetOpacity(opacity float64)             { windowSetOpacity(w, opacity) }
+func (w *Window) SetPolicy(allowShrink, allowGrow, autoShrink int) {
+	windowSetPolicy(w, allowShrink, allowGrow, autoShrink)
+}
+func (w *Window) SetPosition(position T.GtkWindowPosition) { windowSetPosition(w, position) }
+func (w *Window) SetResizable(resizable T.Gboolean)        { windowSetResizable(w, resizable) }
+func (w *Window) SetRole(role string)                      { windowSetRole(w, role) }
+func (w *Window) SetScreen(screen *T.GdkScreen)            { windowSetScreen(w, screen) }
+func (w *Window) SetSkipPagerHint(setting T.Gboolean)      { windowSetSkipPagerHint(w, setting) }
+func (w *Window) SetSkipTaskbarHint(setting T.Gboolean)    { windowSetSkipTaskbarHint(w, setting) }
+func (w *Window) SetStartupId(startupId string)            { windowSetStartupId(w, startupId) }
+func (w *Window) SetTitle(title string)                    { windowSetTitle(w, title) }
+func (w *Window) SetTransientFor(parent *T.GtkWindow)      { windowSetTransientFor(w, parent) }
+func (w *Window) SetTypeHint(hint T.GdkWindowTypeHint)     { windowSetTypeHint(w, hint) }
+func (w *Window) SetUrgencyHint(setting T.Gboolean)        { windowSetUrgencyHint(w, setting) }
+func (w *Window) SetWmclass(wmclassName, wmclassClass string) {
+	windowSetWmclass(w, wmclassName, wmclassClass)
+}
+func (w *Window) Stick()        { windowStick(w) }
+func (w *Window) Unfullscreen() { windowUnfullscreen(w) }
+func (w *Window) Unmaximize()   { windowUnmaximize(w) }
+func (w *Window) Unstick()      { windowUnstick(w) }

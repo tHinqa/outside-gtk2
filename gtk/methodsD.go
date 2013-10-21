@@ -31,79 +31,53 @@ var (
 )
 
 var (
-	DialogAddActionWidget                    func(d *Dialog, child *Widget, responseId int)
-	DialogAddButton                          func(d *Dialog, buttonText string, responseId int) *Widget
-	DialogAddButtons                         func(d *Dialog, firstButtonText string, v ...VArg)
-	DialogGetActionArea                      func(d *Dialog) *Widget
-	DialogGetContentArea                     func(d *Dialog) *Widget
-	DialogGetHasSeparator                    func(d *Dialog) T.Gboolean
-	DialogGetResponseForWidget               func(d *Dialog, widget *Widget) int
-	DialogGetWidgetForResponse               func(d *Dialog, responseId int) *Widget
-	DialogResponse                           func(d *Dialog, responseId int)
-	DialogRun                                func(d *Dialog) int
-	DialogSetAlternativeButtonOrder          func(d *Dialog, firstResponseId int, v ...VArg)
-	DialogSetAlternativeButtonOrderFromArray func(d *Dialog, nParams int, newOrder *int)
-	DialogSetDefaultResponse                 func(d *Dialog, responseId int)
-	DialogSetHasSeparator                    func(d *Dialog, setting T.Gboolean)
-	DialogSetResponseSensitive               func(d *Dialog, responseId int, setting T.Gboolean)
+	dialogAddActionWidget                    func(d *Dialog, child *Widget, responseId int)
+	dialogAddButton                          func(d *Dialog, buttonText string, responseId int) *Widget
+	dialogAddButtons                         func(d *Dialog, firstButtonText string, v ...VArg)
+	dialogGetActionArea                      func(d *Dialog) *Widget
+	dialogGetContentArea                     func(d *Dialog) *Widget
+	dialogGetHasSeparator                    func(d *Dialog) T.Gboolean
+	dialogGetResponseForWidget               func(d *Dialog, widget *Widget) int
+	dialogGetWidgetForResponse               func(d *Dialog, responseId int) *Widget
+	dialogResponse                           func(d *Dialog, responseId int)
+	dialogRun                                func(d *Dialog) int
+	dialogSetAlternativeButtonOrder          func(d *Dialog, firstResponseId int, v ...VArg)
+	dialogSetAlternativeButtonOrderFromArray func(d *Dialog, nParams int, newOrder *int)
+	dialogSetDefaultResponse                 func(d *Dialog, responseId int)
+	dialogSetHasSeparator                    func(d *Dialog, setting T.Gboolean)
+	dialogSetResponseSensitive               func(d *Dialog, responseId int, setting T.Gboolean)
 )
 
 func (d *Dialog) AddActionWidget(child *Widget, responseId int) {
-	DialogAddActionWidget(d, child, responseId)
+	dialogAddActionWidget(d, child, responseId)
 }
-
 func (d *Dialog) AddButton(buttonText string, responseId int) *Widget {
-	return DialogAddButton(d, buttonText, responseId)
+	return dialogAddButton(d, buttonText, responseId)
 }
-
 func (d *Dialog) AddButtons(firstButtonText string, v ...VArg) {
-	DialogAddButtons(d, firstButtonText, v)
+	dialogAddButtons(d, firstButtonText, v)
 }
-
-func (d *Dialog) SetResponseSensitive(responseId int, setting T.Gboolean) {
-	DialogSetResponseSensitive(d, responseId, setting)
-}
-
-func (d *Dialog) SetDefaultResponse(responseId int) {
-	DialogSetDefaultResponse(d, responseId)
-}
-
-func (d *Dialog) GetWidgetForResponse(responseId int) *Widget {
-	return DialogGetWidgetForResponse(d, responseId)
-}
-
+func (d *Dialog) GetActionArea() *Widget      { return dialogGetActionArea(d) }
+func (d *Dialog) GetContentArea() *Widget     { return dialogGetContentArea(d) }
+func (d *Dialog) GetHasSeparator() T.Gboolean { return dialogGetHasSeparator(d) }
 func (d *Dialog) GetResponseForWidget(widget *Widget) int {
-	return DialogGetResponseForWidget(d, widget)
+	return dialogGetResponseForWidget(d, widget)
 }
-
-func (d *Dialog) SetHasSeparator(setting T.Gboolean) {
-	DialogSetHasSeparator(d, setting)
+func (d *Dialog) GetWidgetForResponse(responseId int) *Widget {
+	return dialogGetWidgetForResponse(d, responseId)
 }
-
-func (d *Dialog) GetHasSeparator() T.Gboolean {
-	return DialogGetHasSeparator(d)
-}
-
+func (d *Dialog) Response(responseId int) { dialogResponse(d, responseId) }
+func (d *Dialog) Run() int                { return dialogRun(d) }
 func (d *Dialog) SetAlternativeButtonOrder(firstResponseId int, v ...VArg) {
-	DialogSetAlternativeButtonOrder(d, firstResponseId, v)
+	dialogSetAlternativeButtonOrder(d, firstResponseId, v)
 }
-
 func (d *Dialog) SetAlternativeButtonOrderFromArray(nParams int, newOrder *int) {
-	DialogSetAlternativeButtonOrderFromArray(d, nParams, newOrder)
+	dialogSetAlternativeButtonOrderFromArray(d, nParams, newOrder)
 }
-
-func (d *Dialog) Response(responseId int) {
-	DialogResponse(d, responseId)
-}
-
-func (d *Dialog) Run() int { return DialogRun(d) }
-
-func (d *Dialog) GetActionArea() *Widget {
-	return DialogGetActionArea(d)
-}
-
-func (d *Dialog) GetContentArea() *Widget {
-	return DialogGetContentArea(d)
+func (d *Dialog) SetDefaultResponse(responseId int)  { dialogSetDefaultResponse(d, responseId) }
+func (d *Dialog) SetHasSeparator(setting T.Gboolean) { dialogSetHasSeparator(d, setting) }
+func (d *Dialog) SetResponseSensitive(responseId int, setting T.Gboolean) {
+	dialogSetResponseSensitive(d, responseId, setting)
 }
 
 type DrawingArea struct {
@@ -115,9 +89,7 @@ var (
 	DrawingAreaGetType func() T.GType
 	DrawingAreaNew     func() *Widget
 
-	DrawingAreaSize func(d *DrawingArea, width int, height int)
+	drawingAreaSize func(d *DrawingArea, width int, height int)
 )
 
-func (d *DrawingArea) Size(width int, height int) {
-	DrawingAreaSize(d, width, height)
-}
+func (d *DrawingArea) Size(width int, height int) { drawingAreaSize(d, width, height) }

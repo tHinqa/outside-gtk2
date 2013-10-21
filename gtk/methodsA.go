@@ -22,8 +22,8 @@ var (
 	AboutDialogGetType func() T.GType
 	AboutDialogNew     func() *Widget
 
-	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
-	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, dataGpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
+	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
+	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 
 	ShowAboutDialog func(parent *T.GtkWindow, firstPropertyName string, v ...VArg)
 )
@@ -166,8 +166,8 @@ var (
 	AccelMapAddEntry          func(accelPath string, accelKey uint, accelMods T.GdkModifierType)
 	AccelMapAddFilter         func(filterPattern string)
 	AccelMapChangeEntry       func(accelPath string, accelKey uint, accelMods T.GdkModifierType, replace T.Gboolean) T.Gboolean
-	AccelMapForeach           func(dataGpointer, foreachFunc AccelMapForeachFunc)
-	AccelMapForeachUnfiltered func(dataGpointer, foreachFunc AccelMapForeachFunc)
+	AccelMapForeach           func(data T.Gpointer, foreachFunc AccelMapForeachFunc)
+	AccelMapForeachUnfiltered func(data T.Gpointer, foreachFunc AccelMapForeachFunc)
 	AccelMapGet               func() *AccelMap
 	AccelMapLoad              func(fileName string)
 	AccelMapLoadFd            func(fd int)
@@ -382,12 +382,12 @@ func (a *Action) UnblockActivateFrom(proxy *Widget) { actionUnblockActivateFrom(
 var (
 	actionGroupAddAction            func(a *ActionGroup, action *Action)
 	actionGroupAddActions           func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer)
-	actionGroupAddActionsFull       func(a *ActionGroup, entries *ActionEntry, nEntries uint, userDataGpointer, destroy T.GDestroyNotify)
+	actionGroupAddActionsFull       func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupAddActionWithAccel   func(a *ActionGroup, action *Action, accelerator string)
 	actionGroupAddRadioActions      func(a *ActionGroup, entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer)
-	actionGroupAddRadioActionsFull  func(a *ActionGroup, entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userDataGpointer, destroy T.GDestroyNotify)
+	actionGroupAddRadioActionsFull  func(a *ActionGroup, entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupAddToggleActions     func(a *ActionGroup, entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer)
-	actionGroupAddToggleActionsFull func(a *ActionGroup, entries *T.GtkToggleActionEntry, nEntries uint, userDataGpointer, destroy T.GDestroyNotify)
+	actionGroupAddToggleActionsFull func(a *ActionGroup, entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupGetAction            func(a *ActionGroup, actionName string) *Action
 	actionGroupGetName              func(a *ActionGroup) string
 	actionGroupGetSensitive         func(a *ActionGroup) T.Gboolean
@@ -395,7 +395,7 @@ var (
 	actionGroupListActions          func(a *ActionGroup) *T.GList
 	actionGroupRemoveAction         func(a *ActionGroup, action *Action)
 	actionGroupSetSensitive         func(a *ActionGroup, sensitive T.Gboolean)
-	actionGroupSetTranslateFunc     func(a *ActionGroup, f T.GtkTranslateFunc, dataGpointer, notify T.GDestroyNotify)
+	actionGroupSetTranslateFunc     func(a *ActionGroup, f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 	actionGroupSetTranslationDomain func(a *ActionGroup, domain string)
 	actionGroupSetVisible           func(a *ActionGroup, visible T.Gboolean)
 	actionGroupTranslateString      func(a *ActionGroup, str string) string
@@ -405,8 +405,8 @@ func (a *ActionGroup) AddAction(action *Action) { actionGroupAddAction(a, action
 func (a *ActionGroup) AddActions(entries *ActionEntry, nEntries uint, userData T.Gpointer) {
 	actionGroupAddActions(a, entries, nEntries, userData)
 }
-func (a *ActionGroup) AddActionsFull(entries *ActionEntry, nEntries uint, userDataGpointer, destroy T.GDestroyNotify) {
-	actionGroupAddActionsFull(a, entries, nEntries, userDataGpointer, destroy)
+func (a *ActionGroup) AddActionsFull(entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
+	actionGroupAddActionsFull(a, entries, nEntries, userData, destroy)
 }
 func (a *ActionGroup) AddActionWithAccel(action *Action, accelerator string) {
 	actionGroupAddActionWithAccel(a, action, accelerator)
@@ -414,14 +414,14 @@ func (a *ActionGroup) AddActionWithAccel(action *Action, accelerator string) {
 func (a *ActionGroup) AddRadioActions(entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer) {
 	actionGroupAddRadioActions(a, entries, nEntries, value, onChange, userData)
 }
-func (a *ActionGroup) AddRadioActionsFull(entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userDataGpointer, destroy T.GDestroyNotify) {
-	actionGroupAddRadioActionsFull(a, entries, nEntries, value, onChange, userDataGpointer, destroy)
+func (a *ActionGroup) AddRadioActionsFull(entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify) {
+	actionGroupAddRadioActionsFull(a, entries, nEntries, value, onChange, userData, destroy)
 }
 func (a *ActionGroup) AddToggleActions(entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer) {
 	actionGroupAddToggleActions(a, entries, nEntries, userData)
 }
-func (a *ActionGroup) AddToggleActionsFull(entries *T.GtkToggleActionEntry, nEntries uint, userDataGpointer, destroy T.GDestroyNotify) {
-	actionGroupAddToggleActionsFull(a, entries, nEntries, userDataGpointer, destroy)
+func (a *ActionGroup) AddToggleActionsFull(entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
+	actionGroupAddToggleActionsFull(a, entries, nEntries, userData, destroy)
 }
 func (a *ActionGroup) GetAction(actionName string) *Action { return actionGroupGetAction(a, actionName) }
 func (a *ActionGroup) GetName() string                     { return actionGroupGetName(a) }
@@ -430,8 +430,8 @@ func (a *ActionGroup) GetVisible() T.Gboolean              { return actionGroupG
 func (a *ActionGroup) ListActions() *T.GList               { return actionGroupListActions(a) }
 func (a *ActionGroup) RemoveAction(action *Action)         { actionGroupRemoveAction(a, action) }
 func (a *ActionGroup) SetSensitive(sensitive T.Gboolean)   { actionGroupSetSensitive(a, sensitive) }
-func (a *ActionGroup) SetTranslateFunc(f T.GtkTranslateFunc, dataGpointer, notify T.GDestroyNotify) {
-	actionGroupSetTranslateFunc(a, f, dataGpointer, notify)
+func (a *ActionGroup) SetTranslateFunc(f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
+	actionGroupSetTranslateFunc(a, f, data, notify)
 }
 func (a *ActionGroup) SetTranslationDomain(domain string) { actionGroupSetTranslationDomain(a, domain) }
 func (a *ActionGroup) SetVisible(visible T.Gboolean)      { actionGroupSetVisible(a, visible) }
@@ -516,6 +516,33 @@ func (a *Adjustment) SetUpper(upper float64) { adjustmentSetUpper(a, upper) }
 func (a *Adjustment) SetValue(value float64) { adjustmentSetValue(a, value) }
 func (a *Adjustment) ValueChanged()          { adjustmentValueChanged(a) }
 
+type Alignment struct {
+	Bin    Bin
+	Xalign float32
+	Yalign float32
+	Xscale float32
+	Yscale float32
+}
+
+var (
+	AlignmentGetType func() T.GType
+	AlignmentNew     func(xalign, yalign, xscale, yscale float32) *Widget
+
+	alignmentSet        func(a *Alignment, xalign, yalign, xscale, yscale float32)
+	alignmentSetPadding func(a *Alignment, paddingTop, paddingBottom, paddingLeft, paddingRight uint)
+	alignmentGetPadding func(a *Alignment, paddingTop, paddingBottom, paddingLeft, paddingRight *uint)
+)
+
+func (a *Alignment) Set(xalign, yalign, xscale, yscale float32) {
+	alignmentSet(a, xalign, yalign, xscale, yscale)
+}
+func (a *Alignment) SetPadding(paddingTop, paddingBottom, paddingLeft, paddingRight uint) {
+	alignmentSetPadding(a, paddingTop, paddingBottom, paddingLeft, paddingRight)
+}
+func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRight *uint) {
+	alignmentGetPadding(a, paddingTop, paddingBottom, paddingLeft, paddingRight)
+}
+
 type (
 	Assistant struct {
 		Parent  T.GtkWindow
@@ -564,7 +591,7 @@ var (
 	assistantPrependPage        func(a *Assistant, page *Widget) int
 	assistantRemoveActionWidget func(a *Assistant, child *Widget)
 	assistantSetCurrentPage     func(a *Assistant, pageNum int)
-	assistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, dataGpointer, destroy T.GDestroyNotify)
+	assistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	assistantSetPageComplete    func(a *Assistant, page *Widget, complete T.Gboolean)
 	assistantSetPageHeaderImage func(a *Assistant, page *Widget, pixbuf *T.GdkPixbuf)
 	assistantSetPageSideImage   func(a *Assistant, page *Widget, pixbuf *T.GdkPixbuf)
@@ -594,8 +621,8 @@ func (a *Assistant) InsertPage(page *Widget, position int) int {
 func (a *Assistant) PrependPage(page *Widget) int     { return assistantPrependPage(a, page) }
 func (a *Assistant) RemoveActionWidget(child *Widget) { assistantRemoveActionWidget(a, child) }
 func (a *Assistant) SetCurrentPage(pageNum int)       { assistantSetCurrentPage(a, pageNum) }
-func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, dataGpointer, destroy T.GDestroyNotify) {
-	assistantSetForwardPageFunc(a, pageFunc, dataGpointer, destroy)
+func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+	assistantSetForwardPageFunc(a, pageFunc, data, destroy)
 }
 func (a *Assistant) SetPageComplete(page *Widget, complete T.Gboolean) {
 	assistantSetPageComplete(a, page, complete)

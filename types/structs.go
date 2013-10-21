@@ -627,7 +627,7 @@ type (
 		// has_focus_chain : 1
 	}
 
-	GtkWindow struct {
+	GtkWindow struct { //REMOVE
 		Bin                     GtkBin
 		Title                   *Gchar
 		Wmclass_name            *Gchar
@@ -2475,14 +2475,6 @@ type (
 		Keyboard    Gboolean
 		Implicit    Gboolean
 		Grab_window *GdkWindow
-	}
-
-	GtkAlignment struct {
-		Bin    GtkBin
-		Xalign float32
-		Yalign float32
-		Xscale float32
-		Yscale float32
 	}
 
 	GtkAssistant struct { //REMOVE

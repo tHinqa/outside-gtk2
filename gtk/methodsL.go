@@ -465,7 +465,7 @@ var (
 	LinkButtonNew          func(uri string) *Widget
 	LinkButtonNewWithLabel func(uri string, label string) *Widget
 
-	LinkButtonSetUriHook func(f LinkButtonUriFunc, dataGpointer, destroy T.GDestroyNotify) LinkButtonUriFunc
+	LinkButtonSetUriHook func(f LinkButtonUriFunc, data T.Gpointer, destroy T.GDestroyNotify) LinkButtonUriFunc
 
 	LinkButtonGetUri     func(l *LinkButton) string
 	LinkButtonSetUri     func(l *LinkButton, uri string)
