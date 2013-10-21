@@ -357,15 +357,6 @@ type (
 	GtkToolPalettePrivate          struct{}
 	GtkToolShell                   struct{}
 	GtkTooltip                     struct{}
-	GtkTreeDragDest                struct{}
-	GtkTreeDragSource              struct{}
-	GtkTreeModel                   struct{} // REMOVE
-	GtkTreeModelFilterPrivate      struct{}
-	GtkTreePath                    struct{} // REMOVE
-	GtkTreeRowReference            struct{}
-	GtkTreeSortable                struct{}
-	GtkTreeViewColumn              struct{}
-	GtkTreeViewPrivate             struct{}
 	GtkUIManagerPrivate            struct{}
 	GtkWindowGeometryInfo          struct{}
 	GTlsBackend                    struct{}
@@ -4064,13 +4055,6 @@ const (
 	GTK_CELL_RENDERER_MODE_EDITABLE
 )
 
-type GtkTreeModelFlags Enum
-
-const (
-	GTK_TREE_MODEL_ITERS_PERSIST GtkTreeModelFlags = 1 << iota
-	GTK_TREE_MODEL_LIST_ONLY
-)
-
 type GtkCellRendererAccelMode Enum
 
 const (
@@ -4567,13 +4551,6 @@ const (
 	FT_STROKER_LINEJOIN_MITER
 )
 
-type GtkTreeViewMode Enum
-
-const (
-	GTK_TREE_VIEW_LINE GtkTreeViewMode = iota
-	GTK_TREE_VIEW_ITEM
-)
-
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
@@ -4591,16 +4568,6 @@ type (
 		new_sibling *GtkCTreeNode) Gboolean
 
 	GCallback func()
-
-	GtkTreeIterCompareFunc func(model *GtkTreeModel, // REMOVE
-		a, b *GtkTreeIter, user_data Gpointer) int
-
-	GtkTreeSelectionFunc func(selection *GtkTreeSelection, //REMOVE
-		model *GtkTreeModel, path *GtkTreePath,
-		path_currently_selected Gboolean, data Gpointer) Gboolean
-
-	GtkTreeSelectionForeachFunc func(model *GtkTreeModel,
-		path *GtkTreePath, iter *GtkTreeIter, data Gpointer)
 
 	GtkFunction func(data Gpointer) Gboolean
 
@@ -4773,24 +4740,6 @@ type (
 	GtkTextCharPredicate func(
 		ch Gunichar,
 		user_data Gpointer) Gboolean
-
-	GtkTreeModelFilterModifyFunc func(
-		model *GtkTreeModel,
-		iter *GtkTreeIter,
-		value *GValue,
-		column int,
-		data Gpointer)
-
-	GtkTreeModelFilterVisibleFunc func(
-		model *GtkTreeModel,
-		iter *GtkTreeIter,
-		data Gpointer) Gboolean
-
-	GtkTreeModelForeachFunc func(
-		model *GtkTreeModel,
-		path *GtkTreePath,
-		iter *GtkTreeIter,
-		data Gpointer) Gboolean
 
 	GtkWindowKeysForeachFunc func(
 		window *GtkWindow,

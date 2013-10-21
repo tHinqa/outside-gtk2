@@ -8,23 +8,337 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type TreeModel struct{}
+type (
+	Tree struct {
+		Container     T.GtkContainer
+		Children      *T.GList
+		RootTree      *Tree
+		TreeOwner     *Widget
+		Selection     *T.GList
+		Level         uint
+		IndentValue   uint
+		CurrentIndent uint
+		Bits          uint
+		// SelectionMode : 2
+		// ViewMode : 1
+		// ViewLine : 1
+	}
+)
 
-type TreePath struct{}
+var (
+	TreeNew     func() *Widget
+	TreeGetType func() T.GType
+
+	TreeAppend func(tree *Tree, treeItem *Widget)
+
+	TreePrepend func(tree *Tree, treeItem *Widget)
+
+	TreeInsert func(
+		tree *Tree, treeItem *Widget, position int)
+
+	TreeRemoveItems func(tree *Tree, items *T.GList)
+
+	TreeClearItems func(
+		tree *Tree, start int, end int)
+
+	TreeSelectItem func(tree *Tree, item int)
+
+	TreeUnselectItem func(tree *Tree, item int)
+
+	TreeSelectChild func(
+		tree *Tree, treeItem *Widget)
+
+	TreeUnselectChild func(
+		tree *Tree, treeItem *Widget)
+
+	TreeChildPosition func(
+		tree *Tree, child *Widget) int
+
+	TreeSetSelectionMode func(
+		tree *Tree, mode T.GtkSelectionMode)
+
+	TreeSetViewMode func(
+		tree *Tree, mode TreeViewMode)
+
+	TreeSetViewLines func(tree *Tree, flag T.Gboolean)
+
+	TreeRemoveItem func(tree *Tree, child *Widget)
+)
+
+type TreeDragSource struct{}
+
+var (
+	TreeDragSourceGetType func() T.GType
+
+	TreeDragSourceRowDraggable func(dragSource *TreeDragSource,
+		path *TreePath) T.Gboolean
+
+	TreeDragSourceDragDataDelete func(dragSource *TreeDragSource,
+		path *TreePath) T.Gboolean
+
+	TreeDragSourceDragDataGet func(dragSource *TreeDragSource,
+		path *TreePath,
+		selectionData *T.GtkSelectionData) T.Gboolean
+)
+
+type TreeDragDest struct{}
+
+var (
+	TreeDragDestGetType func() T.GType
+
+	TreeDragDestDragDataReceived func(dragDest *TreeDragDest,
+		dest *TreePath,
+		selectionData *T.GtkSelectionData) T.Gboolean
+
+	TreeDragDestRowDropPossible func(dragDest *TreeDragDest,
+		destPath *TreePath,
+		selectionData *T.GtkSelectionData) T.Gboolean
+)
+
+type TreeItem struct {
+	Item             Item
+	Subtree          *Widget
+	Pixmaps_box      *Widget
+	Plus_pix_widget  *Widget
+	Minus_pix_widget *Widget
+	Pixmaps          *T.GList
+	Expanded         uint // : 1
+}
+
+var (
+	TreeItemGetType func() T.GType
+	TreeItemNew     func() *Widget
+
+	TreeItemNewWithLabel func(label string) *Widget
+
+	TreeItemSetSubtree func(
+		treeItem *TreeItem, subtree *Widget)
+
+	TreeItemRemoveSubtree func(treeItem *TreeItem)
+
+	TreeItemSelect func(treeItem *TreeItem)
+
+	TreeItemDeselect func(treeItem *TreeItem)
+
+	TreeItemExpand func(treeItem *TreeItem)
+
+	TreeItemCollapse func(treeItem *TreeItem)
+)
+
+type TreeIter struct {
+	Stamp     int
+	UserData  T.Gpointer
+	UserData2 T.Gpointer
+	UserData3 T.Gpointer
+}
+
+var (
+	TreeIterGetType func() T.GType
+
+	TreeIterCopy func(iter *TreeIter) *TreeIter
+	TreeIterFree func(iter *TreeIter)
+)
 
 type (
-	TreeView struct {
-		Parent T.GtkContainer
-		_      *struct{}
-	}
+	TreeModel struct{}
 
-	TreeIter struct {
-		Stamp     int
-		UserData  T.Gpointer
-		UserData2 T.Gpointer
-		UserData3 T.Gpointer
-	}
+	TreeModelForeachFunc func(
+		model *TreeModel,
+		path *TreePath,
+		iter *TreeIter,
+		data T.Gpointer) T.Gboolean
+)
 
+type TreeModelFlags T.Enum
+
+const (
+	TREE_MODEL_ITERS_PERSIST TreeModelFlags = 1 << iota
+	TREE_MODEL_LIST_ONLY
+)
+
+var (
+	TreeModelFlagsGetType func() T.GType
+
+	TreeModelGetType func() T.GType
+
+	TreeModelGetFlags func(
+		treeModel *TreeModel) TreeModelFlags
+
+	TreeModelGetNColumns func(
+		treeModel *TreeModel) int
+
+	TreeModelGetColumnType func(
+		treeModel *TreeModel,
+		index int) T.GType
+
+	TreeModelGetIter func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		path *TreePath) T.Gboolean
+
+	TreeModelGetIterFromString func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		pathString string) T.Gboolean
+
+	TreeModelGetStringFromIter func(
+		treeModel *TreeModel,
+		iter *TreeIter) string
+
+	TreeModelGetIterFirst func(
+		treeModel *TreeModel,
+		iter *TreeIter) T.Gboolean
+
+	TreeModelGetPath func(
+		treeModel *TreeModel,
+		iter *TreeIter) *TreePath
+
+	TreeModelGetValue func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		column int,
+		value *T.GValue)
+
+	TreeModelIterNext func(
+		treeModel *TreeModel,
+		iter *TreeIter) T.Gboolean
+
+	TreeModelIterChildren func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		parent *TreeIter) T.Gboolean
+
+	TreeModelIterHasChild func(
+		treeModel *TreeModel,
+		iter *TreeIter) T.Gboolean
+
+	TreeModelIterNChildren func(
+		treeModel *TreeModel,
+		iter *TreeIter) int
+
+	TreeModelIterNthChild func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		parent *TreeIter,
+		n int) T.Gboolean
+
+	TreeModelIterParent func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		child *TreeIter) T.Gboolean
+
+	TreeModelRefNode func(
+		treeModel *TreeModel,
+		iter *TreeIter)
+
+	TreeModelUnrefNode func(
+		treeModel *TreeModel,
+		iter *TreeIter)
+
+	TreeModelGet func(treeModel *TreeModel,
+		iter *TreeIter, v ...VArg)
+
+	TreeModelGetValist func(
+		treeModel *TreeModel,
+		iter *TreeIter,
+		varArgs T.VaList)
+
+	TreeModelForeach func(
+		model *TreeModel,
+		f TreeModelForeachFunc,
+		userData T.Gpointer)
+
+	TreeModelRowChanged func(
+		treeModel *TreeModel,
+		path *TreePath,
+		iter *TreeIter)
+
+	TreeModelRowInserted func(
+		treeModel *TreeModel,
+		path *TreePath,
+		iter *TreeIter)
+
+	TreeModelRowHasChildToggled func(
+		treeModel *TreeModel,
+		path *TreePath,
+		iter *TreeIter)
+
+	TreeModelRowDeleted func(
+		treeModel *TreeModel,
+		path *TreePath)
+
+	TreeModelRowsReordered func(
+		treeModel *TreeModel,
+		path *TreePath,
+		iter *TreeIter,
+		newOrder *int)
+)
+
+var (
+	TreePathGetType func() T.GType
+	TreePathNew     func() *TreePath
+
+	TreePathNewFromString func(
+		path string) *TreePath
+
+	TreePathNewFromIndices func(firstIndex int,
+		v ...VArg) *TreePath
+
+	TreePathToString func(
+		path *TreePath) string
+
+	TreePathNewFirst func() *TreePath
+
+	TreePathAppendIndex func(
+		path *TreePath,
+		index int)
+
+	TreePathPrependIndex func(
+		path *TreePath,
+		index int)
+
+	TreePathGetDepth func(
+		path *TreePath) int
+
+	TreePathGetIndices func(
+		path *TreePath) *int
+
+	TreePathGetIndicesWithDepth func(
+		path *TreePath,
+		depth *int) *int
+
+	TreePathFree func(
+		path *TreePath)
+
+	TreePathCopy func(
+		path *TreePath) *TreePath
+
+	TreePathCompare func(
+		a *TreePath,
+		b *TreePath) int
+
+	TreePathNext func(
+		path *TreePath)
+
+	TreePathPrev func(
+		path *TreePath) T.Gboolean
+
+	TreePathUp func(
+		path *TreePath) T.Gboolean
+
+	TreePathDown func(
+		path *TreePath)
+
+	TreePathIsAncestor func(
+		path *TreePath,
+		descendant *TreePath) T.Gboolean
+
+	TreePathIsDescendant func(
+		path *TreePath,
+		ancestor *TreePath) T.Gboolean
+)
+
+type (
 	TreeSelection struct {
 		Parent   T.GObject
 		TreeView *TreeView
@@ -32,6 +346,402 @@ type (
 		UserFunc TreeSelectionFunc
 		UserData T.Gpointer
 		Destroy  T.GDestroyNotify
+	}
+
+	TreeSelectionForeachFunc func(model *TreeModel,
+		path *TreePath, iter *TreeIter, data T.Gpointer)
+)
+
+var (
+	TreeSelectionGetType func() T.GType
+
+	TreeSelectionSetMode func(selection *TreeSelection,
+		typ T.GtkSelectionMode)
+
+	TreeSelectionGetMode func(selection *TreeSelection) T.GtkSelectionMode
+
+	TreeSelectionSetSelectFunction func(selection *TreeSelection,
+		f TreeSelectionFunc,
+		data T.Gpointer,
+		destroy T.GDestroyNotify)
+
+	TreeSelectionGetUserData func(selection *TreeSelection) T.Gpointer
+
+	TreeSelectionGetTreeView func(selection *TreeSelection) *TreeView
+
+	TreeSelectionGetSelectFunction func(selection *TreeSelection) TreeSelectionFunc
+
+	TreeSelectionGetSelected func(selection *TreeSelection,
+		model **TreeModel,
+		iter *TreeIter) T.Gboolean
+
+	TreeSelectionGetSelectedRows func(selection *TreeSelection,
+		model **TreeModel) *T.GList
+
+	TreeSelectionCountSelectedRows func(selection *TreeSelection) int
+
+	TreeSelectionSelectedForeach func(selection *TreeSelection,
+		f TreeSelectionForeachFunc,
+		data T.Gpointer)
+
+	TreeSelectionSelectPath func(selection *TreeSelection,
+		path *TreePath)
+
+	TreeSelectionUnselectPath func(selection *TreeSelection,
+		path *TreePath)
+
+	TreeSelectionSelectIter func(selection *TreeSelection,
+		iter *TreeIter)
+
+	TreeSelectionUnselectIter func(selection *TreeSelection,
+		iter *TreeIter)
+
+	TreeSelectionPathIsSelected func(selection *TreeSelection,
+		path *TreePath) T.Gboolean
+
+	TreeSelectionIterIsSelected func(selection *TreeSelection,
+		iter *TreeIter) T.Gboolean
+
+	TreeSelectionSelectAll func(selection *TreeSelection)
+
+	TreeSelectionUnselectAll func(selection *TreeSelection)
+
+	TreeSelectionSelectRange func(selection *TreeSelection,
+		startPath *TreePath,
+		endPath *TreePath)
+
+	TreeSelectionUnselectRange func(selection *TreeSelection,
+		startPath *TreePath,
+		endPath *TreePath)
+)
+
+var (
+	TreeSetRowDragData func(selectionData *T.GtkSelectionData,
+		treeModel *TreeModel,
+		path *TreePath) T.Gboolean
+
+	TreeGetRowDragData func(selectionData *T.GtkSelectionData,
+		treeModel **TreeModel,
+		path **TreePath) T.Gboolean
+)
+
+type TreeSortable struct{}
+
+var (
+	TreeSortableGetType func() T.GType
+
+	TreeSortableSortColumnChanged func(
+		sortable *TreeSortable)
+
+	TreeSortableGetSortColumnId func(
+		sortable *TreeSortable,
+		sortColumnId *int,
+		order *T.GtkSortType) T.Gboolean
+
+	TreeSortableSetSortColumnId func(
+		sortable *TreeSortable,
+		sortColumnId int,
+		order T.GtkSortType)
+
+	TreeSortableSetSortFunc func(
+		sortable *TreeSortable,
+		sortColumnId int,
+		sortFunc TreeIterCompareFunc,
+		userData T.Gpointer,
+		destroy T.GDestroyNotify)
+
+	TreeSortableSetDefaultSortFunc func(
+		sortable *TreeSortable,
+		sortFunc TreeIterCompareFunc,
+		userData T.Gpointer,
+		destroy T.GDestroyNotify)
+
+	TreeSortableHasDefaultSortFunc func(
+		sortable *TreeSortable) T.Gboolean
+)
+
+type TreeStore struct {
+	Parent             T.GObject
+	Stamp              int
+	Root               T.Gpointer
+	Last               T.Gpointer
+	NColumns           int
+	SortColumnId       int
+	SortList           *T.GList
+	Order              T.GtkSortType
+	ColumnHeaders      *T.GType
+	DefaultSortFunc    TreeIterCompareFunc
+	DefaultSortData    T.Gpointer
+	DefaultSortDestroy T.GDestroyNotify
+	ColumnsDirty       uint // : 1
+}
+
+var (
+	TreeStoreGetType func() T.GType
+	TreeStoreNew     func(
+		nColumns int, v ...VArg) *TreeStore
+
+	TreeStoreNewv func(nColumns int,
+		types *T.GType) *TreeStore
+
+	TreeStoreSetColumnTypes func(treeStore *TreeStore,
+		nColumns int,
+		types *T.GType)
+
+	TreeStoreSetValue func(treeStore *TreeStore,
+		iter *TreeIter,
+		column int,
+		value *T.GValue)
+
+	TreeStoreSet func(treeStore *TreeStore,
+		iter *TreeIter, v ...VArg)
+
+	TreeStoreSetValuesv func(treeStore *TreeStore,
+		iter *TreeIter,
+		columns *int,
+		values *T.GValue,
+		nValues int)
+
+	TreeStoreSetValist func(treeStore *TreeStore,
+		iter *TreeIter,
+		varArgs T.VaList)
+
+	TreeStoreRemove func(treeStore *TreeStore,
+		iter *TreeIter) T.Gboolean
+
+	TreeStoreInsert func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter,
+		position int)
+
+	TreeStoreInsertBefore func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter,
+		sibling *TreeIter)
+
+	TreeStoreInsertAfter func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter,
+		sibling *TreeIter)
+
+	TreeStoreInsertWithValues func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter,
+		position int, v ...VArg)
+
+	TreeStoreInsertWithValuesv func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter,
+		position int,
+		columns *int,
+		values *T.GValue,
+		nValues int)
+
+	TreeStorePrepend func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter)
+
+	TreeStoreAppend func(treeStore *TreeStore,
+		iter *TreeIter,
+		parent *TreeIter)
+
+	TreeStoreIsAncestor func(treeStore *TreeStore,
+		iter *TreeIter,
+		descendant *TreeIter) T.Gboolean
+
+	TreeStoreIterDepth func(treeStore *TreeStore,
+		iter *TreeIter) int
+
+	TreeStoreClear func(treeStore *TreeStore)
+
+	TreeStoreIterIsValid func(treeStore *TreeStore,
+		iter *TreeIter) T.Gboolean
+
+	TreeStoreReorder func(treeStore *TreeStore,
+		parent *TreeIter,
+		newOrder *int)
+
+	TreeStoreSwap func(treeStore *TreeStore,
+		a *TreeIter,
+		b *TreeIter)
+
+	TreeStoreMoveBefore func(treeStore *TreeStore,
+		iter *TreeIter,
+		position *TreeIter)
+
+	TreeStoreMoveAfter func(treeStore *TreeStore,
+		iter *TreeIter,
+		position *TreeIter)
+)
+
+type TreeRowReference struct{}
+
+var (
+	TreeRowReferenceGetType func() T.GType
+	TreeRowReferenceNew     func(
+		model *TreeModel,
+		path *TreePath) *TreeRowReference
+
+	TreeRowReferenceNewProxy func(
+		proxy *T.GObject,
+		model *TreeModel,
+		path *TreePath) *TreeRowReference
+
+	TreeRowReferenceGetPath func(
+		reference *TreeRowReference) *TreePath
+
+	TreeRowReferenceGetModel func(
+		reference *TreeRowReference) *TreeModel
+
+	TreeRowReferenceValid func(
+		reference *TreeRowReference) T.Gboolean
+
+	TreeRowReferenceCopy func(
+		reference *TreeRowReference) *TreeRowReference
+
+	TreeRowReferenceFree func(
+		reference *TreeRowReference)
+
+	TreeRowReferenceInserted func(
+		proxy *T.GObject,
+		path *TreePath)
+
+	TreeRowReferenceDeleted func(
+		proxy *T.GObject,
+		path *TreePath)
+
+	TreeRowReferenceReordered func(
+		proxy *T.GObject,
+		path *TreePath,
+		iter *TreeIter,
+		newOrder *int)
+)
+
+type (
+	TreeModelFilter struct {
+		Parent T.GObject
+		_      *struct{}
+	}
+
+	TreeModelFilterVisibleFunc func(
+		model *TreeModel,
+		iter *TreeIter,
+		data T.Gpointer) T.Gboolean
+
+	TreeModelFilterModifyFunc func(
+		model *TreeModel,
+		iter *TreeIter,
+		value *T.GValue,
+		column int,
+		data T.Gpointer)
+)
+
+var (
+	TreeModelFilterGetType func() T.GType
+	TreeModelFilterNew     func(
+		childModel *TreeModel,
+		root *TreePath) *TreeModel
+
+	TreeModelFilterSetVisibleFunc func(
+		filter *TreeModelFilter,
+		f TreeModelFilterVisibleFunc,
+		data T.Gpointer,
+		destroy T.GDestroyNotify)
+
+	TreeModelFilterSetModifyFunc func(
+		filter *TreeModelFilter,
+		nColumns int,
+		types *T.GType,
+		f TreeModelFilterModifyFunc,
+		data T.Gpointer,
+		destroy T.GDestroyNotify)
+
+	TreeModelFilterSetVisibleColumn func(
+		filter *TreeModelFilter,
+		column int)
+
+	TreeModelFilterGetModel func(
+		filter *TreeModelFilter) *TreeModel
+
+	TreeModelFilterConvertChildIterToIter func(
+		filter *TreeModelFilter,
+		filterIter *TreeIter,
+		childIter *TreeIter) T.Gboolean
+
+	TreeModelFilterConvertIterToChildIter func(
+		filter *TreeModelFilter,
+		childIter *TreeIter,
+		filterIter *TreeIter)
+
+	TreeModelFilterConvertChildPathToPath func(
+		filter *TreeModelFilter,
+		childPath *TreePath) *TreePath
+
+	TreeModelFilterConvertPathToChildPath func(
+		filter *TreeModelFilter,
+		filterPath *TreePath) *TreePath
+
+	TreeModelFilterRefilter func(
+		filter *TreeModelFilter)
+
+	TreeModelFilterClearCache func(
+		filter *TreeModelFilter)
+)
+
+type TreeModelSort struct {
+	Parent             T.GObject
+	Root               T.Gpointer
+	Stamp              int
+	ChildFlags         uint
+	ChildModel         *TreeModel
+	ZeroRefCount       int
+	SortList           *T.GList
+	SortColumnId       int
+	Order              T.GtkSortType
+	DefaultSortFunc    TreeIterCompareFunc
+	DefaultSortData    T.Gpointer
+	DefaultSortDestroy T.GDestroyNotify
+	ChangedId          uint
+	InsertedId         uint
+	HasChildToggledId  uint
+	DeletedId          uint
+	ReorderedId        uint
+}
+
+var (
+	TreeModelSortGetType      func() T.GType
+	TreeModelSortNewWithModel func(childModel *TreeModel) *TreeModel
+
+	TreeModelSortGetModel func(treeModel *TreeModelSort) *TreeModel
+
+	TreeModelSortConvertChildPathToPath func(treeModelSort *TreeModelSort,
+		childPath *TreePath) *TreePath
+
+	TreeModelSortConvertChildIterToIter func(treeModelSort *TreeModelSort,
+		sortIter *TreeIter,
+		childIter *TreeIter) T.Gboolean
+
+	TreeModelSortConvertPathToChildPath func(treeModelSort *TreeModelSort,
+		sortedPath *TreePath) *TreePath
+
+	TreeModelSortConvertIterToChildIter func(treeModelSort *TreeModelSort,
+		childIter *TreeIter,
+		sortedIter *TreeIter)
+
+	TreeModelSortResetDefaultSortFunc func(treeModelSort *TreeModelSort)
+
+	TreeModelSortClearCache func(treeModelSort *TreeModelSort)
+
+	TreeModelSortIterIsValid func(treeModelSort *TreeModelSort,
+		iter *TreeIter) T.Gboolean
+)
+
+type TreePath struct{}
+
+type (
+	TreeView struct {
+		Parent T.GtkContainer
+		_      *struct{}
 	}
 
 	TreeViewRowSeparatorFunc func(
@@ -110,10 +820,21 @@ const (
 	TREE_VIEW_COLUMN_FIXED
 )
 
+type TreeViewMode T.Enum
+
+const (
+	TREE_VIEW_LINE TreeViewMode = iota
+	TREE_VIEW_ITEM
+)
+
 var (
 	TreeViewGetType      func() T.GType
 	TreeViewNew          func() *Widget
 	TreeViewNewWithModel func(model *TreeModel) *Widget
+
+	TreeViewDropPositionGetType func() T.GType
+	TreeViewGridLinesGetType    func() T.GType
+	TreeViewModeGetType         func() T.GType
 
 	treeViewAppendColumn                   func(t *TreeView, column *TreeViewColumn) int
 	treeViewCollapseAll                    func(t *TreeView)
@@ -396,12 +1117,52 @@ func (t *TreeView) WidgetToTreeCoords(wx, wy int, tx, ty *int) {
 	treeViewWidgetToTreeCoords(t, wx, wy, tx, ty)
 }
 
-type TreeViewColumn struct{}
+type TreeViewColumn struct {
+	Parent                  T.GtkObject
+	TreeView                *T.GtkWidget
+	Button                  *T.GtkWidget
+	Child                   *T.GtkWidget
+	Arrow                   *T.GtkWidget
+	Alignment               *T.GtkWidget
+	Window                  *T.GdkWindow
+	EditableWidget          *CellEditable
+	Xalign                  float32
+	PropertyChangedSignal   uint
+	Spacing                 int
+	ColumnType              TreeViewColumnSizing
+	RequestedWidth          int
+	ButtonRequest           int
+	ResizedWidth            int
+	Width                   int
+	FixedWidth              int
+	MinWidth                int
+	MaxWidth                int
+	DragX                   int
+	DragY                   int
+	Title                   *T.Gchar
+	CellList                *T.GList
+	SortClickedSignal       uint
+	SortColumnChangedSignal uint
+	SortColumnId            int
+	SortOrder               T.GtkSortType
+	Bits                    uint
+	// Visible : 1
+	// Resizable : 1
+	// Clickable : 1
+	// Dirty : 1
+	// ShowSortIndicator : 1
+	// MaybeReordered : 1
+	// Reorderable : 1
+	// UseResizedWidth : 1
+	// Expand : 1
+}
 
 var (
 	TreeViewColumnGetType           func() T.GType
 	TreeViewColumnNew               func() *TreeViewColumn
 	TreeViewColumnNewWithAttributes func(title string, cell *CellRenderer, v ...VArg) *TreeViewColumn
+
+	TreeViewColumnSizingGetType func() T.GType
 
 	treeViewColumnAddAttribute     func(t *TreeViewColumn, cellRenderer *CellRenderer, attribute string, column int)
 	treeViewColumnCellGetPosition  func(t *TreeViewColumn, cellRenderer *CellRenderer, startPos, width *int) T.Gboolean

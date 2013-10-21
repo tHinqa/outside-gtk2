@@ -604,13 +604,6 @@ type (
 		Y int
 	}
 
-	GtkDialog struct { //REMOVE
-		Window      GtkWindow
-		Vbox        *GtkWidget
-		Action_area *GtkWidget
-		Separator   *GtkWidget
-	}
-
 	GtkBin struct { // REMOVE
 		Container GtkContainer
 		Child     *GtkWidget
@@ -1372,63 +1365,6 @@ type (
 		Drag_start_y   int
 		Invisible_char Gunichar
 		Width_chars    int
-	}
-
-	GtkTreeModelSort struct {
-		Parent               GObject
-		Root                 Gpointer
-		Stamp                int
-		Child_flags          uint
-		Child_model          *GtkTreeModel
-		Zero_ref_count       int
-		Sort_list            *GList
-		Sort_column_id       int
-		Order                GtkSortType
-		Default_sort_func    GtkTreeIterCompareFunc
-		Default_sort_data    Gpointer
-		Default_sort_destroy GDestroyNotify
-		Changed_id           uint
-		Inserted_id          uint
-		Has_child_toggled_id uint
-		Deleted_id           uint
-		Reordered_id         uint
-	}
-
-	GtkTreeIter struct { //REMOVE
-		Stamp      int
-		User_data  Gpointer
-		User_data2 Gpointer
-		User_data3 Gpointer
-	}
-
-	GtkTreeSelection struct { //REMOVE
-		Parent    GObject
-		Tree_view *GtkTreeView
-		Type      GtkSelectionMode
-		User_func GtkTreeSelectionFunc
-		User_data Gpointer
-		Destroy   GDestroyNotify
-	}
-
-	GtkTreeView struct { //REMOVE
-		Parent GtkContainer
-		Priv   *GtkTreeViewPrivate
-	}
-
-	GtkTreeStore struct {
-		Parent               GObject
-		Stamp                int
-		Root                 Gpointer
-		Last                 Gpointer
-		N_columns            int
-		Sort_column_id       int
-		Sort_list            *GList
-		Order                GtkSortType
-		Column_headers       *GType
-		Default_sort_func    GtkTreeIterCompareFunc
-		Default_sort_data    Gpointer
-		Default_sort_destroy GDestroyNotify
-		Columns_dirty        uint // : 1
 	}
 
 	GtkUIManager struct {
@@ -2674,53 +2610,6 @@ type (
 		Origin *Gchar
 		Value  GValue
 	}
-
-	GtkTreeModelFilter struct {
-		Parent GObject
-		Priv   *GtkTreeModelFilterPrivate
-	}
-
-	/*
-	   GtkTreeViewColumn  struct
-	   {
-	   parent  GtkObject;
-	   tree_view  *GtkWidget;
-	   button  *GtkWidget;
-	   child  *GtkWidget;
-	   arrow  *GtkWidget;
-	   alignment  *GtkWidget;
-	   window  *GdkWindow;
-	   editable_widget  *GtkCellEditable;
-	   xalign  float32;
-	   property_changed_signal  uint;
-	   spacing  int;
-	   column_type  GtkTreeViewColumnSizing;
-	   requested_width  int;
-	   button_request  int;
-	   resized_width  int;
-	   width  int;
-	   fixed_width  int;
-	   min_width  int;
-	   max_width  int;
-	   drag_x  int;
-	   drag_y  int;
-	   title  *Gchar;
-	   cell_list  *GList;
-	   sort_clicked_signal  uint;
-	   sort_column_changed_signal  uint;
-	   sort_column_id  int;
-	   sort_order  GtkSortType;
-	    uint visible : 1;
-	    uint resizable : 1;
-	    uint clickable : 1;
-	    uint dirty : 1;
-	    uint show_sort_indicator : 1;
-	    uint maybe_reordered : 1;
-	    uint reorderable : 1;
-	    uint use_resized_width : 1;
-	    uint expand : 1;
-	   };
-	*/
 
 	GtkTypeInfo struct {
 		Type_name            *Gchar
@@ -4078,31 +3967,6 @@ type (
 			pspec *GParamSpec, value *GValue) Gboolean
 		Values_cmp func(pspec *GParamSpec,
 			value1 *GValue, value2 *GValue) int
-	}
-
-	GtkTree struct {
-		Container      GtkContainer
-		Children       *GList
-		Root_tree      *GtkTree
-		Tree_owner     *GtkWidget
-		Selection      *GList
-		Level          uint
-		Indent_value   uint
-		Current_indent uint
-		Bits           uint
-		// selection_mode : 2
-		// view_mode : 1
-		// view_line : 1
-	}
-
-	GtkTreeItem struct {
-		Item             GtkItem
-		Subtree          *GtkWidget
-		Pixmaps_box      *GtkWidget
-		Plus_pix_widget  *GtkWidget
-		Minus_pix_widget *GtkWidget
-		Pixmaps          *GList
-		Expanded         uint // : 1
 	}
 
 	PangoIncludedModule struct {
