@@ -1394,14 +1394,14 @@ type (
 		Reordered_id         uint
 	}
 
-	GtkTreeIter struct {
+	GtkTreeIter struct { //REMOVE
 		Stamp      int
 		User_data  Gpointer
 		User_data2 Gpointer
 		User_data3 Gpointer
 	}
 
-	GtkTreeSelection struct {
+	GtkTreeSelection struct { //REMOVE
 		Parent    GObject
 		Tree_view *GtkTreeView
 		Type      GtkSelectionMode
@@ -1410,7 +1410,7 @@ type (
 		Destroy   GDestroyNotify
 	}
 
-	GtkTreeView struct {
+	GtkTreeView struct { //REMOVE
 		Parent GtkContainer
 		Priv   *GtkTreeViewPrivate
 	}

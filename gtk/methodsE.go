@@ -336,7 +336,7 @@ type (
 	EntryCompletionMatchFunc func(
 		completion *EntryCompletion,
 		key string,
-		iter *T.GtkTreeIter,
+		iter *TreeIter,
 		userData T.Gpointer) T.Gboolean
 )
 
@@ -351,7 +351,7 @@ var (
 	entryCompletionGetInlineCompletion func(completion *EntryCompletion) T.Gboolean
 	entryCompletionGetInlineSelection  func(completion *EntryCompletion) T.Gboolean
 	entryCompletionGetMinimumKeyLength func(completion *EntryCompletion) int
-	entryCompletionGetModel            func(completion *EntryCompletion) *T.GtkTreeModel
+	entryCompletionGetModel            func(completion *EntryCompletion) *TreeModel
 	entryCompletionGetPopupCompletion  func(completion *EntryCompletion) T.Gboolean
 	entryCompletionGetPopupSetWidth    func(completion *EntryCompletion) T.Gboolean
 	entryCompletionGetPopupSingleMatch func(completion *EntryCompletion) T.Gboolean
@@ -363,7 +363,7 @@ var (
 	entryCompletionSetInlineSelection  func(completion *EntryCompletion, inlineSelection T.Gboolean)
 	entryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify)
 	entryCompletionSetMinimumKeyLength func(completion *EntryCompletion, length int)
-	entryCompletionSetModel            func(completion *EntryCompletion, model *T.GtkTreeModel)
+	entryCompletionSetModel            func(completion *EntryCompletion, model *TreeModel)
 	entryCompletionSetPopupCompletion  func(completion *EntryCompletion, popupCompletion T.Gboolean)
 	entryCompletionSetPopupSetWidth    func(completion *EntryCompletion, popupSetWidth T.Gboolean)
 	entryCompletionSetPopupSingleMatch func(completion *EntryCompletion, popupSingleMatch T.Gboolean)
@@ -379,7 +379,7 @@ func (e *EntryCompletion) GetInlineCompletion() T.Gboolean {
 }
 func (e *EntryCompletion) GetInlineSelection() T.Gboolean { return entryCompletionGetInlineSelection(e) }
 func (e *EntryCompletion) GetMinimumKeyLength() int       { return entryCompletionGetMinimumKeyLength(e) }
-func (e *EntryCompletion) GetModel() *T.GtkTreeModel      { return entryCompletionGetModel(e) }
+func (e *EntryCompletion) GetModel() *TreeModel           { return entryCompletionGetModel(e) }
 func (e *EntryCompletion) GetPopupCompletion() T.Gboolean { return entryCompletionGetPopupCompletion(e) }
 func (e *EntryCompletion) GetPopupSetWidth() T.Gboolean   { return entryCompletionGetPopupSetWidth(e) }
 func (e *EntryCompletion) GetPopupSingleMatch() T.Gboolean {
@@ -405,7 +405,7 @@ func (e *EntryCompletion) SetMatchFunc(f EntryCompletionMatchFunc, funcData T.Gp
 func (e *EntryCompletion) SetMinimumKeyLength(length int) {
 	entryCompletionSetMinimumKeyLength(e, length)
 }
-func (e *EntryCompletion) SetModel(model *T.GtkTreeModel) { entryCompletionSetModel(e, model) }
+func (e *EntryCompletion) SetModel(model *TreeModel) { entryCompletionSetModel(e, model) }
 func (e *EntryCompletion) SetPopupCompletion(popupCompletion T.Gboolean) {
 	entryCompletionSetPopupCompletion(e, popupCompletion)
 }

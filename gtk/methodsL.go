@@ -189,7 +189,7 @@ type ListStore struct {
 	Order              T.GtkSortType
 	ColumnHeaders      *T.GType
 	Length             int
-	DefaultSortFunc    T.GtkTreeIterCompareFunc
+	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
 	DefaultSortDestroy T.GDestroyNotify
 	ColumnsDirty       uint // : 1
@@ -210,66 +210,66 @@ var (
 	ListStoreNew     func(nColumns int, v ...VArg) *ListStore
 	ListStoreNewv    func(nColumns int, types *T.GType) *ListStore
 
-	listStoreAppend            func(l *ListStore, iter *T.GtkTreeIter)
+	listStoreAppend            func(l *ListStore, iter *TreeIter)
 	listStoreClear             func(l *ListStore)
-	listStoreInsert            func(l *ListStore, iter *T.GtkTreeIter, position int)
-	listStoreInsertAfter       func(l *ListStore, iter *T.GtkTreeIter, sibling *T.GtkTreeIter)
-	listStoreInsertBefore      func(l *ListStore, iter *T.GtkTreeIter, sibling *T.GtkTreeIter)
-	listStoreInsertWithValues  func(l *ListStore, iter *T.GtkTreeIter, position int, v ...VArg)
-	listStoreInsertWithValuesv func(l *ListStore, iter *T.GtkTreeIter, position int, columns *int, values *T.GValue, nValues int)
-	listStoreIterIsValid       func(l *ListStore, iter *T.GtkTreeIter) T.Gboolean
-	listStoreMoveAfter         func(l *ListStore, iter *T.GtkTreeIter, position *T.GtkTreeIter)
-	listStoreMoveBefore        func(l *ListStore, iter *T.GtkTreeIter, position *T.GtkTreeIter)
-	listStorePrepend           func(l *ListStore, iter *T.GtkTreeIter)
-	listStoreRemove            func(l *ListStore, iter *T.GtkTreeIter) T.Gboolean
+	listStoreInsert            func(l *ListStore, iter *TreeIter, position int)
+	listStoreInsertAfter       func(l *ListStore, iter *TreeIter, sibling *TreeIter)
+	listStoreInsertBefore      func(l *ListStore, iter *TreeIter, sibling *TreeIter)
+	listStoreInsertWithValues  func(l *ListStore, iter *TreeIter, position int, v ...VArg)
+	listStoreInsertWithValuesv func(l *ListStore, iter *TreeIter, position int, columns *int, values *T.GValue, nValues int)
+	listStoreIterIsValid       func(l *ListStore, iter *TreeIter) T.Gboolean
+	listStoreMoveAfter         func(l *ListStore, iter *TreeIter, position *TreeIter)
+	listStoreMoveBefore        func(l *ListStore, iter *TreeIter, position *TreeIter)
+	listStorePrepend           func(l *ListStore, iter *TreeIter)
+	listStoreRemove            func(l *ListStore, iter *TreeIter) T.Gboolean
 	listStoreReorder           func(l *ListStore, newOrder *int)
-	listStoreSet               func(l *ListStore, iter *T.GtkTreeIter, v ...VArg)
+	listStoreSet               func(l *ListStore, iter *TreeIter, v ...VArg)
 	listStoreSetColumnTypes    func(l *ListStore, nColumns int, types *T.GType)
-	listStoreSetValist         func(l *ListStore, iter *T.GtkTreeIter, varArgs T.VaList)
-	listStoreSetValue          func(l *ListStore, iter *T.GtkTreeIter, column int, value *T.GValue)
-	listStoreSetValuesv        func(l *ListStore, iter *T.GtkTreeIter, columns *int, values *T.GValue, nValues int)
-	listStoreSwap              func(l *ListStore, a, b *T.GtkTreeIter)
+	listStoreSetValist         func(l *ListStore, iter *TreeIter, varArgs T.VaList)
+	listStoreSetValue          func(l *ListStore, iter *TreeIter, column int, value *T.GValue)
+	listStoreSetValuesv        func(l *ListStore, iter *TreeIter, columns *int, values *T.GValue, nValues int)
+	listStoreSwap              func(l *ListStore, a, b *TreeIter)
 )
 
-func (l *ListStore) Append(iter *T.GtkTreeIter)               { listStoreAppend(l, iter) }
-func (l *ListStore) Clear()                                   { listStoreClear(l) }
-func (l *ListStore) Insert(iter *T.GtkTreeIter, position int) { listStoreInsert(l, iter, position) }
-func (l *ListStore) InsertAfter(iter *T.GtkTreeIter, sibling *T.GtkTreeIter) {
+func (l *ListStore) Append(iter *TreeIter)               { listStoreAppend(l, iter) }
+func (l *ListStore) Clear()                              { listStoreClear(l) }
+func (l *ListStore) Insert(iter *TreeIter, position int) { listStoreInsert(l, iter, position) }
+func (l *ListStore) InsertAfter(iter *TreeIter, sibling *TreeIter) {
 	listStoreInsertAfter(l, iter, sibling)
 }
-func (l *ListStore) InsertBefore(iter *T.GtkTreeIter, sibling *T.GtkTreeIter) {
+func (l *ListStore) InsertBefore(iter *TreeIter, sibling *TreeIter) {
 	listStoreInsertBefore(l, iter, sibling)
 }
-func (l *ListStore) InsertWithValues(iter *T.GtkTreeIter, position int, v ...VArg) {
+func (l *ListStore) InsertWithValues(iter *TreeIter, position int, v ...VArg) {
 	listStoreInsertWithValues(l, iter, position, v)
 }
-func (l *ListStore) InsertWithValuesv(iter *T.GtkTreeIter, position int, columns *int, values *T.GValue, nValues int) {
+func (l *ListStore) InsertWithValuesv(iter *TreeIter, position int, columns *int, values *T.GValue, nValues int) {
 	listStoreInsertWithValuesv(l, iter, position, columns, values, nValues)
 }
-func (l *ListStore) IterIsValid(iter *T.GtkTreeIter) T.Gboolean { return listStoreIterIsValid(l, iter) }
-func (l *ListStore) MoveAfter(iter *T.GtkTreeIter, position *T.GtkTreeIter) {
+func (l *ListStore) IterIsValid(iter *TreeIter) T.Gboolean { return listStoreIterIsValid(l, iter) }
+func (l *ListStore) MoveAfter(iter *TreeIter, position *TreeIter) {
 	listStoreMoveAfter(l, iter, position)
 }
-func (l *ListStore) MoveBefore(iter *T.GtkTreeIter, position *T.GtkTreeIter) {
+func (l *ListStore) MoveBefore(iter *TreeIter, position *TreeIter) {
 	listStoreMoveBefore(l, iter, position)
 }
-func (l *ListStore) Prepend(iter *T.GtkTreeIter)           { listStorePrepend(l, iter) }
-func (l *ListStore) Remove(iter *T.GtkTreeIter) T.Gboolean { return listStoreRemove(l, iter) }
-func (l *ListStore) Reorder(newOrder *int)                 { listStoreReorder(l, newOrder) }
-func (l *ListStore) Set(iter *T.GtkTreeIter, v ...VArg)    { listStoreSet(l, iter, v) }
+func (l *ListStore) Prepend(iter *TreeIter)           { listStorePrepend(l, iter) }
+func (l *ListStore) Remove(iter *TreeIter) T.Gboolean { return listStoreRemove(l, iter) }
+func (l *ListStore) Reorder(newOrder *int)            { listStoreReorder(l, newOrder) }
+func (l *ListStore) Set(iter *TreeIter, v ...VArg)    { listStoreSet(l, iter, v) }
 func (l *ListStore) SetColumnTypes(nColumns int, types *T.GType) {
 	listStoreSetColumnTypes(l, nColumns, types)
 }
-func (l *ListStore) SetValist(iter *T.GtkTreeIter, varArgs T.VaList) {
+func (l *ListStore) SetValist(iter *TreeIter, varArgs T.VaList) {
 	listStoreSetValist(l, iter, varArgs)
 }
-func (l *ListStore) SetValue(iter *T.GtkTreeIter, column int, value *T.GValue) {
+func (l *ListStore) SetValue(iter *TreeIter, column int, value *T.GValue) {
 	listStoreSetValue(l, iter, column, value)
 }
-func (l *ListStore) SetValuesv(iter *T.GtkTreeIter, columns *int, values *T.GValue, nValues int) {
+func (l *ListStore) SetValuesv(iter *TreeIter, columns *int, values *T.GValue, nValues int) {
 	listStoreSetValuesv(l, iter, columns, values, nValues)
 }
-func (l *ListStore) Swap(a, b *T.GtkTreeIter) { listStoreSwap(l, a, b) }
+func (l *ListStore) Swap(a, b *TreeIter) { listStoreSwap(l, a, b) }
 
 var (
 	LinkButtonGetType      func() T.GType

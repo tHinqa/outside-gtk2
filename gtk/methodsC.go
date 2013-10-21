@@ -115,8 +115,8 @@ type CellLayout struct{}
 type CellLayoutDataFunc func(
 	cellLayout *CellLayout,
 	cell *CellRenderer,
-	treeModel *T.GtkTreeModel,
-	iter *T.GtkTreeIter,
+	treeModel *TreeModel,
+	iter *TreeIter,
 	data T.Gpointer)
 
 var (
@@ -326,23 +326,23 @@ var (
 
 var (
 	cellViewGetCellRenderers   func(c *CellView) *T.GList
-	cellViewGetDisplayedRow    func(c *CellView) *T.GtkTreePath
-	cellViewGetModel           func(c *CellView) *T.GtkTreeModel
-	cellViewGetSizeOfRow       func(c *CellView, path *T.GtkTreePath, requisition *T.GtkRequisition) T.Gboolean
+	cellViewGetDisplayedRow    func(c *CellView) *TreePath
+	cellViewGetModel           func(c *CellView) *TreeModel
+	cellViewGetSizeOfRow       func(c *CellView, path *TreePath, requisition *T.GtkRequisition) T.Gboolean
 	cellViewSetBackgroundColor func(c *CellView, color *T.GdkColor)
-	cellViewSetDisplayedRow    func(c *CellView, path *T.GtkTreePath)
-	cellViewSetModel           func(c *CellView, model *T.GtkTreeModel)
+	cellViewSetDisplayedRow    func(c *CellView, path *TreePath)
+	cellViewSetModel           func(c *CellView, model *TreeModel)
 )
 
-func (c *CellView) iewGetCellRenderers() *T.GList      { return cellViewGetCellRenderers(c) }
-func (c *CellView) iewGetDisplayedRow() *T.GtkTreePath { return cellViewGetDisplayedRow(c) }
-func (c *CellView) iewGetModel() *T.GtkTreeModel       { return cellViewGetModel(c) }
-func (c *CellView) iewGetSizeOfRow(path *T.GtkTreePath, requisition *T.GtkRequisition) T.Gboolean {
+func (c *CellView) iewGetCellRenderers() *T.GList { return cellViewGetCellRenderers(c) }
+func (c *CellView) iewGetDisplayedRow() *TreePath { return cellViewGetDisplayedRow(c) }
+func (c *CellView) iewGetModel() *TreeModel       { return cellViewGetModel(c) }
+func (c *CellView) iewGetSizeOfRow(path *TreePath, requisition *T.GtkRequisition) T.Gboolean {
 	return cellViewGetSizeOfRow(c, path, requisition)
 }
 func (c *CellView) iewSetBackgroundColor(color *T.GdkColor) { cellViewSetBackgroundColor(c, color) }
-func (c *CellView) iewSetDisplayedRow(path *T.GtkTreePath)  { cellViewSetDisplayedRow(c, path) }
-func (c *CellView) SetModel(model *T.GtkTreeModel)          { cellViewSetModel(c, model) }
+func (c *CellView) iewSetDisplayedRow(path *TreePath)       { cellViewSetDisplayedRow(c, path) }
+func (c *CellView) SetModel(model *TreeModel)               { cellViewSetModel(c, model) }
 
 var (
 	CheckButtonGetType         func() T.GType
@@ -954,8 +954,8 @@ var (
 	ComboBoxGetType              func() T.GType
 	ComboBoxNew                  func() *Widget
 	ComboBoxNewWithEntry         func() *Widget
-	ComboBoxNewWithModel         func(model *T.GtkTreeModel) *Widget
-	ComboBoxNewWithModelAndEntry func(model *T.GtkTreeModel) *Widget
+	ComboBoxNewWithModel         func(model *TreeModel) *Widget
+	ComboBoxNewWithModelAndEntry func(model *TreeModel) *Widget
 
 	ComboBoxTextGetType      func() T.GType
 	ComboBoxTextNew          func() *Widget
@@ -965,14 +965,14 @@ var (
 
 	ComboBoxEntryGetType      func() T.GType
 	ComboBoxEntryNew          func() *Widget
-	ComboBoxEntryNewWithModel func(model *T.GtkTreeModel, textColumn int) *Widget
+	ComboBoxEntryNewWithModel func(model *TreeModel, textColumn int) *Widget
 	ComboBoxEntryNewText      func() *Widget
 )
 
 var (
 	comboBoxAppendText           func(c *ComboBox, text string)
 	comboBoxGetActive            func(c *ComboBox) int
-	comboBoxGetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter) T.Gboolean
+	comboBoxGetActiveIter        func(c *ComboBox, iter *TreeIter) T.Gboolean
 	comboBoxGetActiveText        func(c *ComboBox) string
 	comboBoxGetAddTearoffs       func(c *ComboBox) T.Gboolean
 	comboBoxGetButtonSensitivity func(c *ComboBox) T.GtkSensitivityType
@@ -980,9 +980,9 @@ var (
 	comboBoxGetEntryTextColumn   func(c *ComboBox) int
 	comboBoxGetFocusOnClick      func(c *ComboBox) T.Gboolean
 	comboBoxGetHasEntry          func(c *ComboBox) T.Gboolean
-	comboBoxGetModel             func(c *ComboBox) *T.GtkTreeModel
+	comboBoxGetModel             func(c *ComboBox) *TreeModel
 	comboBoxGetPopupAccessible   func(c *ComboBox) *T.AtkObject
-	comboBoxGetRowSeparatorFunc  func(c *ComboBox) T.GtkTreeViewRowSeparatorFunc
+	comboBoxGetRowSeparatorFunc  func(c *ComboBox) TreeViewRowSeparatorFunc
 	comboBoxGetRowSpanColumn     func(c *ComboBox) int
 	comboBoxGetTitle             func(c *ComboBox) string
 	comboBoxGetWrapWidth         func(c *ComboBox) int
@@ -992,14 +992,14 @@ var (
 	comboBoxPrependText          func(c *ComboBox, text string)
 	comboBoxRemoveText           func(c *ComboBox, position int)
 	comboBoxSetActive            func(c *ComboBox, index int)
-	comboBoxSetActiveIter        func(c *ComboBox, iter *T.GtkTreeIter)
+	comboBoxSetActiveIter        func(c *ComboBox, iter *TreeIter)
 	comboBoxSetAddTearoffs       func(c *ComboBox, addTearoffs T.Gboolean)
 	comboBoxSetButtonSensitivity func(c *ComboBox, sensitivity T.GtkSensitivityType)
 	comboBoxSetColumnSpanColumn  func(c *ComboBox, columnSpan int)
 	comboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
 	comboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick T.Gboolean)
-	comboBoxSetModel             func(c *ComboBox, model *T.GtkTreeModel)
-	comboBoxSetRowSeparatorFunc  func(c *ComboBox, f T.GtkTreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	comboBoxSetModel             func(c *ComboBox, model *TreeModel)
+	comboBoxSetRowSeparatorFunc  func(c *ComboBox, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	comboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
 	comboBoxSetTitle             func(c *ComboBox, title string)
 	comboBoxSetWrapWidth         func(c *ComboBox, width int)
@@ -1007,7 +1007,7 @@ var (
 
 func (c *ComboBox) AppendText(text string) { comboBoxAppendText(c, text) }
 func (c *ComboBox) GetActive() int         { return comboBoxGetActive(c) }
-func (c *ComboBox) GetActiveIter(iter *T.GtkTreeIter) T.Gboolean {
+func (c *ComboBox) GetActiveIter(iter *TreeIter) T.Gboolean {
 	return comboBoxGetActiveIter(c, iter)
 }
 func (c *ComboBox) GetActiveText() string                      { return comboBoxGetActiveText(c) }
@@ -1017,9 +1017,9 @@ func (c *ComboBox) GetColumnSpanColumn() int                   { return comboBox
 func (c *ComboBox) GetEntryTextColumn() int                    { return comboBoxGetEntryTextColumn(c) }
 func (c *ComboBox) GetFocusOnClick() T.Gboolean                { return comboBoxGetFocusOnClick(c) }
 func (c *ComboBox) GetHasEntry() T.Gboolean                    { return comboBoxGetHasEntry(c) }
-func (c *ComboBox) GetModel() *T.GtkTreeModel                  { return comboBoxGetModel(c) }
+func (c *ComboBox) GetModel() *TreeModel                       { return comboBoxGetModel(c) }
 func (c *ComboBox) GetPopupAccessible() *T.AtkObject           { return comboBoxGetPopupAccessible(c) }
-func (c *ComboBox) GetRowSeparatorFunc() T.GtkTreeViewRowSeparatorFunc {
+func (c *ComboBox) GetRowSeparatorFunc() TreeViewRowSeparatorFunc {
 	return comboBoxGetRowSeparatorFunc(c)
 }
 func (c *ComboBox) GetRowSpanColumn() int                 { return comboBoxGetRowSpanColumn(c) }
@@ -1031,7 +1031,7 @@ func (c *ComboBox) Popup()                                { comboBoxPopup(c) }
 func (c *ComboBox) PrependText(text string)               { comboBoxPrependText(c, text) }
 func (c *ComboBox) RemoveText(position int)               { comboBoxRemoveText(c, position) }
 func (c *ComboBox) SetActive(index int)                   { comboBoxSetActive(c, index) }
-func (c *ComboBox) SetActiveIter(iter *T.GtkTreeIter)     { comboBoxSetActiveIter(c, iter) }
+func (c *ComboBox) SetActiveIter(iter *TreeIter)          { comboBoxSetActiveIter(c, iter) }
 func (c *ComboBox) SetAddTearoffs(addTearoffs T.Gboolean) { comboBoxSetAddTearoffs(c, addTearoffs) }
 func (c *ComboBox) SetButtonSensitivity(sensitivity T.GtkSensitivityType) {
 	comboBoxSetButtonSensitivity(c, sensitivity)
@@ -1039,8 +1039,8 @@ func (c *ComboBox) SetButtonSensitivity(sensitivity T.GtkSensitivityType) {
 func (c *ComboBox) SetColumnSpanColumn(columnSpan int)      { comboBoxSetColumnSpanColumn(c, columnSpan) }
 func (c *ComboBox) SetEntryTextColumn(textColumn int)       { comboBoxSetEntryTextColumn(c, textColumn) }
 func (c *ComboBox) SetFocusOnClick(focusOnClick T.Gboolean) { comboBoxSetFocusOnClick(c, focusOnClick) }
-func (c *ComboBox) SetModel(model *T.GtkTreeModel)          { comboBoxSetModel(c, model) }
-func (c *ComboBox) SetRowSeparatorFunc(f T.GtkTreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (c *ComboBox) SetModel(model *TreeModel)               { comboBoxSetModel(c, model) }
+func (c *ComboBox) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	comboBoxSetRowSeparatorFunc(c, f, data, destroy)
 }
 func (c *ComboBox) SetRowSpanColumn(rowSpan int) { comboBoxSetRowSpanColumn(c, rowSpan) }

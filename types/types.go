@@ -359,9 +359,9 @@ type (
 	GtkTooltip                     struct{}
 	GtkTreeDragDest                struct{}
 	GtkTreeDragSource              struct{}
-	GtkTreeModel                   struct{}
+	GtkTreeModel                   struct{} // REMOVE
 	GtkTreeModelFilterPrivate      struct{}
-	GtkTreePath                    struct{}
+	GtkTreePath                    struct{} // REMOVE
 	GtkTreeRowReference            struct{}
 	GtkTreeSortable                struct{}
 	GtkTreeViewColumn              struct{}
@@ -3634,15 +3634,6 @@ const (
 	GTK_UNIT_MM
 )
 
-type GtkTreeViewGridLines Enum
-
-const (
-	GTK_TREE_VIEW_GRID_LINES_NONE GtkTreeViewGridLines = iota
-	GTK_TREE_VIEW_GRID_LINES_HORIZONTAL
-	GTK_TREE_VIEW_GRID_LINES_VERTICAL
-	GTK_TREE_VIEW_GRID_LINES_BOTH
-)
-
 type GtkDragResult Enum
 
 const (
@@ -4080,14 +4071,6 @@ const (
 	GTK_TREE_MODEL_LIST_ONLY
 )
 
-type GtkTreeViewColumnSizing Enum
-
-const (
-	GTK_TREE_VIEW_COLUMN_GROW_ONLY GtkTreeViewColumnSizing = iota
-	GTK_TREE_VIEW_COLUMN_AUTOSIZE
-	GTK_TREE_VIEW_COLUMN_FIXED
-)
-
 type GtkCellRendererAccelMode Enum
 
 const (
@@ -4118,15 +4101,6 @@ const (
 	GTK_TARGET_SAME_WIDGET
 	GTK_TARGET_OTHER_APP
 	GTK_TARGET_OTHER_WIDGET
-)
-
-type GtkTreeViewDropPosition Enum
-
-const (
-	GTK_TREE_VIEW_DROP_BEFORE GtkTreeViewDropPosition = iota
-	GTK_TREE_VIEW_DROP_AFTER
-	GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
-	GTK_TREE_VIEW_DROP_INTO_OR_AFTER
 )
 
 type GtkIconThemeError Enum
@@ -4618,10 +4592,10 @@ type (
 
 	GCallback func()
 
-	GtkTreeIterCompareFunc func(model *GtkTreeModel,
+	GtkTreeIterCompareFunc func(model *GtkTreeModel, // REMOVE
 		a, b *GtkTreeIter, user_data Gpointer) int
 
-	GtkTreeSelectionFunc func(selection *GtkTreeSelection,
+	GtkTreeSelectionFunc func(selection *GtkTreeSelection, //REMOVE
 		model *GtkTreeModel, path *GtkTreePath,
 		path_currently_selected Gboolean, data Gpointer) Gboolean
 
@@ -4800,19 +4774,6 @@ type (
 		ch Gunichar,
 		user_data Gpointer) Gboolean
 
-	GtkTreeCellDataFunc func(
-		tree_column *GtkTreeViewColumn,
-		cell *GtkCellRenderer,
-		tree_model *GtkTreeModel,
-		iter *GtkTreeIter,
-		data Gpointer)
-
-	GtkTreeDestroyCountFunc func(
-		tree_view *GtkTreeView,
-		path *GtkTreePath,
-		children int,
-		user_data Gpointer)
-
 	GtkTreeModelFilterModifyFunc func(
 		model *GtkTreeModel,
 		iter *GtkTreeIter,
@@ -4830,35 +4791,6 @@ type (
 		path *GtkTreePath,
 		iter *GtkTreeIter,
 		data Gpointer) Gboolean
-
-	GtkTreeViewColumnDropFunc func(
-		tree_view *GtkTreeView,
-		column *GtkTreeViewColumn,
-		prev_column *GtkTreeViewColumn,
-		next_column *GtkTreeViewColumn,
-		data Gpointer) Gboolean
-
-	GtkTreeViewMappingFunc func(
-		tree_view *GtkTreeView,
-		path *GtkTreePath,
-		user_data Gpointer)
-
-	GtkTreeViewRowSeparatorFunc func(
-		model *GtkTreeModel,
-		iter *GtkTreeIter,
-		data Gpointer) Gboolean
-
-	GtkTreeViewSearchEqualFunc func(
-		model *GtkTreeModel,
-		column int,
-		key string,
-		iter *GtkTreeIter,
-		search_data Gpointer) Gboolean
-
-	GtkTreeViewSearchPositionFunc func(
-		tree_view *GtkTreeView,
-		search_dialog *GtkWidget,
-		user_data Gpointer)
 
 	GtkWindowKeysForeachFunc func(
 		window *GtkWindow,
