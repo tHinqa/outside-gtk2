@@ -30,42 +30,24 @@ var (
 	HandleBoxGetType func() T.GType
 	HandleBoxNew     func() *Widget
 
-	HandleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
-	HandleBoxGetHandlePosition func(h *HandleBox) T.GtkPositionType
-	HandleBoxGetShadowType     func(h *HandleBox) T.GtkShadowType
-	HandleBoxGetSnapEdge       func(h *HandleBox) T.GtkPositionType
-	HandleBoxSetHandlePosition func(h *HandleBox, position T.GtkPositionType)
-	HandleBoxSetShadowType     func(h *HandleBox, t T.GtkShadowType)
-	HandleBoxSetSnapEdge       func(h *HandleBox, edge T.GtkPositionType)
+	handleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
+	handleBoxGetHandlePosition func(h *HandleBox) T.GtkPositionType
+	handleBoxGetShadowType     func(h *HandleBox) T.GtkShadowType
+	handleBoxGetSnapEdge       func(h *HandleBox) T.GtkPositionType
+	handleBoxSetHandlePosition func(h *HandleBox, position T.GtkPositionType)
+	handleBoxSetShadowType     func(h *HandleBox, t T.GtkShadowType)
+	handleBoxSetSnapEdge       func(h *HandleBox, edge T.GtkPositionType)
 )
 
-func (h *HandleBox) SetShadowType(t T.GtkShadowType) {
-	HandleBoxSetShadowType(h, t)
-}
-
-func (h *HandleBox) GetShadowType() T.GtkShadowType {
-	return HandleBoxGetShadowType(h)
-}
-
+func (h *HandleBox) GetChildDetached() T.Gboolean         { return handleBoxGetChildDetached(h) }
+func (h *HandleBox) GetHandlePosition() T.GtkPositionType { return handleBoxGetHandlePosition(h) }
+func (h *HandleBox) GetShadowType() T.GtkShadowType       { return handleBoxGetShadowType(h) }
+func (h *HandleBox) GetSnapEdge() T.GtkPositionType       { return handleBoxGetSnapEdge(h) }
 func (h *HandleBox) SetHandlePosition(position T.GtkPositionType) {
-	HandleBoxSetHandlePosition(h, position)
+	handleBoxSetHandlePosition(h, position)
 }
-
-func (h *HandleBox) GetHandlePosition() T.GtkPositionType {
-	return HandleBoxGetHandlePosition(h)
-}
-
-func (h *HandleBox) SetSnapEdge(edge T.GtkPositionType) {
-	HandleBoxSetSnapEdge(h, edge)
-}
-
-func (h *HandleBox) GetSnapEdge() T.GtkPositionType {
-	return HandleBoxGetSnapEdge(h)
-}
-
-func (h *HandleBox) GetChildDetached() T.Gboolean {
-	return HandleBoxGetChildDetached(h)
-}
+func (h *HandleBox) SetShadowType(t T.GtkShadowType)    { handleBoxSetShadowType(h, t) }
+func (h *HandleBox) SetSnapEdge(edge T.GtkPositionType) { handleBoxSetSnapEdge(h, edge) }
 
 type HSV struct {
 	Parent Widget
@@ -86,29 +68,15 @@ var (
 	HsvGetType func() T.GType
 	HsvNew     func() *Widget
 
-	HsvGetColor    func(hsv *HSV, h, s, v *float64)
-	HsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)
-	HsvIsAdjusting func(hsv *HSV) T.Gboolean
-	HsvSetColor    func(hsv *HSV, h, s, v float64)
-	HsvSetMetrics  func(hsv *HSV, size int, ringWidth int)
+	hsvGetColor    func(hsv *HSV, h, s, v *float64)
+	hsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)
+	hsvIsAdjusting func(hsv *HSV) T.Gboolean
+	hsvSetColor    func(hsv *HSV, h, s, v float64)
+	hsvSetMetrics  func(hsv *HSV, size int, ringWidth int)
 )
 
-func (hsv *HSV) SetColor(h, s, v float64) {
-	HsvSetColor(hsv, h, s, v)
-}
-
-func (hsv *HSV) GetColor(h, s, v *float64) {
-	HsvGetColor(hsv, h, s, v)
-}
-
-func (hsv *HSV) SetMetrics(size, ringWidth int) {
-	HsvSetMetrics(hsv, size, ringWidth)
-}
-
-func (hsv *HSV) GetMetrics(size, ringWidth *int) {
-	HsvGetMetrics(hsv, size, ringWidth)
-}
-
-func (hsv *HSV) IsAdjusting() T.Gboolean {
-	return HsvIsAdjusting(hsv)
-}
+func (hsv *HSV) GetColor(h, s, v *float64)       { hsvGetColor(hsv, h, s, v) }
+func (hsv *HSV) GetMetrics(size, ringWidth *int) { hsvGetMetrics(hsv, size, ringWidth) }
+func (hsv *HSV) IsAdjusting() T.Gboolean         { return hsvIsAdjusting(hsv) }
+func (hsv *HSV) SetColor(h, s, v float64)        { hsvSetColor(hsv, h, s, v) }
+func (hsv *HSV) SetMetrics(size, ringWidth int)  { hsvSetMetrics(hsv, size, ringWidth) }

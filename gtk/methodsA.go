@@ -207,7 +207,8 @@ func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, acc
 func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *T.GClosure) {
 	accelGroupConnect(a, accelKey, accelMods, accelFlags, closure)
 }
-func (a *AccelGroup) ConnectByPath(accelPath string, closure *T.GClosure) {
+func (a *AccelGroup) ConnectByPath(
+	accelPath string, closure *T.GClosure) {
 	accelGroupConnectByPath(a, accelPath, closure)
 }
 func (a *AccelGroup) Disconnect(closure *T.GClosure) T.Gboolean {
