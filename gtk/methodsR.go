@@ -8,6 +8,200 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
+type RadioAction struct {
+	Parent ToggleAction
+	_      *struct{}
+}
+
+var (
+	RadioActionGetType func() T.GType
+	RadioActionNew     func(name, label, tooltip, stockId string, value int) *RadioAction
+
+	radioActionGetCurrentValue func(r *RadioAction) int
+	radioActionGetGroup        func(r *RadioAction) *T.GSList
+	radioActionSetCurrentValue func(r *RadioAction, currentValue int)
+	radioActionSetGroup        func(r *RadioAction, group *T.GSList)
+)
+
+func (r *RadioAction) GetCurrentValue() int             { return radioActionGetCurrentValue(r) }
+func (r *RadioAction) GetGroup() *T.GSList              { return radioActionGetGroup(r) }
+func (r *RadioAction) SetCurrentValue(currentValue int) { radioActionSetCurrentValue(r, currentValue) }
+func (r *RadioAction) SetGroup(group *T.GSList)         { radioActionSetGroup(r, group) }
+
+type RadioButton struct {
+	CheckButton T.GtkCheckButton
+	Group       *T.GSList
+}
+
+var (
+	RadioButtonGetType                   func() T.GType
+	RadioButtonNew                       func(group *T.GSList) *Widget
+	RadioButtonNewFromWidget             func(radioGroupMember *RadioButton) *Widget
+	RadioButtonNewWithLabel              func(group *T.GSList, label string) *Widget
+	RadioButtonNewWithLabelFromWidget    func(radioGroupMember *RadioButton, label string) *Widget
+	RadioButtonNewWithMnemonic           func(group *T.GSList, label string) *Widget
+	RadioButtonNewWithMnemonicFromWidget func(radioGroupMember *RadioButton, label string) *Widget
+
+	radioButtonGetGroup func(r *RadioButton) *T.GSList
+	radioButtonSetGroup func(r *RadioButton, group *T.GSList)
+)
+
+func (r *RadioButton) GetGroup() *T.GSList      { return radioButtonGetGroup(r) }
+func (r *RadioButton) SetGroup(group *T.GSList) { radioButtonSetGroup(r, group) }
+
+type RadioMenuItem struct {
+	CheckMenuItem CheckMenuItem
+	Group         *T.GSList
+}
+
+var (
+	RadioMenuItemGetType                   func() T.GType
+	RadioMenuItemNew                       func(group *T.GSList) *Widget
+	RadioMenuItemNewFromWidget             func(group *RadioMenuItem) *Widget
+	RadioMenuItemNewWithLabel              func(group *T.GSList, label string) *Widget
+	RadioMenuItemNewWithLabelFromWidget    func(group *RadioMenuItem, label string) *Widget
+	RadioMenuItemNewWithMnemonic           func(group *T.GSList, label string) *Widget
+	RadioMenuItemNewWithMnemonicFromWidget func(group *RadioMenuItem, label string) *Widget
+
+	radioMenuItemGetGroup func(r *RadioMenuItem) *T.GSList
+	radioMenuItemSetGroup func(r *RadioMenuItem, group *T.GSList)
+)
+
+func (r *RadioMenuItem) GetGroup() *T.GSList      { return radioMenuItemGetGroup(r) }
+func (r *RadioMenuItem) SetGroup(group *T.GSList) { radioMenuItemSetGroup(r, group) }
+
+type RadioToolButton struct {
+	Parent ToggleToolButton
+}
+
+var (
+	RadioToolButtonGetType                func() T.GType
+	RadioToolButtonNew                    func(group *T.GSList) *ToolItem
+	RadioToolButtonNewFromStock           func(group *T.GSList, stockId string) *ToolItem
+	RadioToolButtonNewFromWidget          func(group *RadioToolButton) *ToolItem
+	RadioToolButtonNewWithStockFromWidget func(group *RadioToolButton, stockId string) *ToolItem
+
+	radioToolButtonGetGroup func(r *RadioToolButton) *T.GSList
+	radioToolButtonSetGroup func(r *RadioToolButton, group *T.GSList)
+)
+
+func (r *RadioToolButton) GetGroup() *T.GSList      { return radioToolButtonGetGroup(r) }
+func (r *RadioToolButton) SetGroup(group *T.GSList) { radioToolButtonSetGroup(r, group) }
+
+type (
+	Range struct {
+		Widget       Widget
+		Adjustment   *Adjustment
+		UpdatePolicy T.GtkUpdateType
+		Bits         uint
+		// Inverted : 1
+		// Flippable : 1
+		// HasStepperA : 1
+		// HasStepperB : 1
+		// HasStepperC : 1
+		// HasStepperD : 1
+		// NeedRecalc : 1
+		// SliderSizeFixed : 1
+		MinSliderSize int
+		Orientation   Orientation
+		RangeRect     T.GdkRectangle
+		SliderStart   int
+		SliderEnd     int
+		RoundDigits   int
+		Bits2         uint
+		// TroughClickForward : 1
+		// UpdatePending : 1
+		Layout                     *RangeLayout
+		Timer                      *RangeStepTimer
+		SlideInitialSliderPosition int
+		SlideInitialCoordinate     int
+		UpdateTimeoutId            uint
+		EventWindow                *T.GdkWindow
+	}
+
+	RangeLayout struct{}
+
+	RangeStepTimer struct{}
+)
+
+var (
+	RangeGetType func() T.GType
+
+	rangeGetAdjustment              func(r *Range) *Adjustment
+	rangeGetFillLevel               func(r *Range) float64
+	rangeGetFlippable               func(r *Range) T.Gboolean
+	rangeGetInverted                func(r *Range) T.Gboolean
+	rangeGetLowerStepperSensitivity func(r *Range) T.GtkSensitivityType
+	rangeGetMinSliderSize           func(r *Range) int
+	rangeGetRangeRect               func(r *Range, rangeRect *T.GdkRectangle)
+	rangeGetRestrictToFillLevel     func(r *Range) T.Gboolean
+	rangeGetRoundDigits             func(r *Range) int
+	rangeGetShowFillLevel           func(r *Range) T.Gboolean
+	rangeGetSliderRange             func(r *Range, sliderStart, sliderEnd *int)
+	rangeGetSliderSizeFixed         func(r *Range) T.Gboolean
+	rangeGetUpdatePolicy            func(r *Range) T.GtkUpdateType
+	rangeGetUpperStepperSensitivity func(r *Range) T.GtkSensitivityType
+	rangeGetValue                   func(r *Range) float64
+	rangeSetAdjustment              func(r *Range, adjustment *Adjustment)
+	rangeSetFillLevel               func(r *Range, fillLevel float64)
+	rangeSetFlippable               func(r *Range, flippable T.Gboolean)
+	rangeSetIncrements              func(r *Range, step, page float64)
+	rangeSetInverted                func(r *Range, setting T.Gboolean)
+	rangeSetLowerStepperSensitivity func(r *Range, sensitivity T.GtkSensitivityType)
+	rangeSetMinSliderSize           func(r *Range, minSize T.Gboolean)
+	rangeSetRange                   func(r *Range, min, max float64)
+	rangeSetRestrictToFillLevel     func(r *Range, restrictToFillLevel T.Gboolean)
+	rangeSetRoundDigits             func(r *Range, roundDigits int)
+	rangeSetShowFillLevel           func(r *Range, showFillLevel T.Gboolean)
+	rangeSetSliderSizeFixed         func(r *Range, sizeFixed T.Gboolean)
+	rangeSetUpdatePolicy            func(r *Range, policy T.GtkUpdateType)
+	rangeSetUpperStepperSensitivity func(r *Range, sensitivity T.GtkSensitivityType)
+	rangeSetValue                   func(r *Range, value float64)
+)
+
+func (r *Range) GetAdjustment() *Adjustment { return rangeGetAdjustment(r) }
+func (r *Range) GetFillLevel() float64      { return rangeGetFillLevel(r) }
+func (r *Range) GetFlippable() T.Gboolean   { return rangeGetFlippable(r) }
+func (r *Range) GetInverted() T.Gboolean    { return rangeGetInverted(r) }
+func (r *Range) GetLowerStepperSensitivity() T.GtkSensitivityType {
+	return rangeGetLowerStepperSensitivity(r)
+}
+func (r *Range) GetMinSliderSize() int                  { return rangeGetMinSliderSize(r) }
+func (r *Range) GetRangeRect(rangeRect *T.GdkRectangle) { rangeGetRangeRect(r, rangeRect) }
+func (r *Range) GetRestrictToFillLevel() T.Gboolean     { return rangeGetRestrictToFillLevel(r) }
+func (r *Range) GetRoundDigits() int                    { return rangeGetRoundDigits(r) }
+func (r *Range) GetShowFillLevel() T.Gboolean           { return rangeGetShowFillLevel(r) }
+func (r *Range) GetSliderRange(sliderStart, sliderEnd *int) {
+	rangeGetSliderRange(r, sliderStart, sliderEnd)
+}
+func (r *Range) GetSliderSizeFixed() T.Gboolean   { return rangeGetSliderSizeFixed(r) }
+func (r *Range) GetUpdatePolicy() T.GtkUpdateType { return rangeGetUpdatePolicy(r) }
+func (r *Range) GetUpperStepperSensitivity() T.GtkSensitivityType {
+	return rangeGetUpperStepperSensitivity(r)
+}
+func (r *Range) GetValue() float64                    { return rangeGetValue(r) }
+func (r *Range) SetAdjustment(adjustment *Adjustment) { rangeSetAdjustment(r, adjustment) }
+func (r *Range) SetFillLevel(fillLevel float64)       { rangeSetFillLevel(r, fillLevel) }
+func (r *Range) SetFlippable(flippable T.Gboolean)    { rangeSetFlippable(r, flippable) }
+func (r *Range) SetIncrements(step, page float64)     { rangeSetIncrements(r, step, page) }
+func (r *Range) SetInverted(setting T.Gboolean)       { rangeSetInverted(r, setting) }
+func (r *Range) SetLowerStepperSensitivity(sensitivity T.GtkSensitivityType) {
+	rangeSetLowerStepperSensitivity(r, sensitivity)
+}
+func (r *Range) SetMinSliderSize(minSize T.Gboolean) { rangeSetMinSliderSize(r, minSize) }
+func (r *Range) SetRange(min, max float64)           { rangeSetRange(r, min, max) }
+func (r *Range) SetRestrictToFillLevel(restrictToFillLevel T.Gboolean) {
+	rangeSetRestrictToFillLevel(r, restrictToFillLevel)
+}
+func (r *Range) SetRoundDigits(roundDigits int)            { rangeSetRoundDigits(r, roundDigits) }
+func (r *Range) SetShowFillLevel(showFillLevel T.Gboolean) { rangeSetShowFillLevel(r, showFillLevel) }
+func (r *Range) SetSliderSizeFixed(sizeFixed T.Gboolean)   { rangeSetSliderSizeFixed(r, sizeFixed) }
+func (r *Range) SetUpdatePolicy(policy T.GtkUpdateType)    { rangeSetUpdatePolicy(r, policy) }
+func (r *Range) SetUpperStepperSensitivity(sensitivity T.GtkSensitivityType) {
+	rangeSetUpperStepperSensitivity(r, sensitivity)
+}
+func (r *Range) SetValue(value float64) { rangeSetValue(r, value) }
+
 type RecentAction struct {
 	Parent Action
 	_      *struct{}
@@ -340,3 +534,49 @@ func (r *RecentManager) RemoveItem(uri string, err **T.GError) T.Gboolean {
 }
 func (r *RecentManager) SetLimit(limit int)            { recentManagerSetLimit(r, limit) }
 func (r *RecentManager) SetScreen(screen *T.GdkScreen) { recentManagerSetScreen(r, screen) }
+
+type (
+	Ruler struct {
+		Widget       Widget
+		BackingStore *T.GdkPixmap
+		NonGrExpGc   *T.GdkGC
+		Metric       *RulerMetric
+		Xsrc         int
+		Ysrc         int
+		SliderSize   int
+		Lower        float64
+		Upper        float64
+		Position     float64
+		MaxSize      float64
+	}
+
+	RulerMetric struct {
+		MetricName    *T.Gchar
+		Abbrev        *T.Gchar
+		PixelsPerUnit float64
+		RulerScale    [10]float64
+		Subdivide     [5]int
+	}
+)
+
+var (
+	RulerGetType func() T.GType
+
+	rulerDrawPos   func(r *Ruler)
+	rulerDrawTicks func(r *Ruler)
+	rulerGetMetric func(r *Ruler) T.GtkMetricType
+	rulerGetRange  func(r *Ruler, lower, upper, position, maxSize *float64)
+	rulerSetMetric func(r *Ruler, metric T.GtkMetricType)
+	rulerSetRange  func(r *Ruler, lower, upper, position, maxSize float64)
+)
+
+func (r *Ruler) DrawPos()                   { rulerDrawPos(r) }
+func (r *Ruler) DrawTicks()                 { rulerDrawTicks(r) }
+func (r *Ruler) GetMetric() T.GtkMetricType { return rulerGetMetric(r) }
+func (r *Ruler) GetRange(lower, upper, position, maxSize *float64) {
+	rulerGetRange(r, lower, upper, position, maxSize)
+}
+func (r *Ruler) SetMetric(metric T.GtkMetricType) { rulerSetMetric(r, metric) }
+func (r *Ruler) SetRange(lower, upper, position, maxSize float64) {
+	rulerSetRange(r, lower, upper, position, maxSize)
+}

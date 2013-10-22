@@ -84,7 +84,7 @@ func (p *PageSetup) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
 }
 
 type Paned struct {
-	Container      T.GtkContainer
+	Container      Container
 	Child1         *Widget
 	Child2         *Widget
 	Handle         *T.GdkWindow
@@ -202,7 +202,7 @@ func (s *PaperSize) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
 }
 
 type Pixmap struct {
-	Misc              T.GtkMisc
+	Misc              Misc
 	Pixmap            *T.GdkPixmap
 	Mask              *T.GdkBitmap
 	PixmapInsensitive *T.GdkPixmap
@@ -226,7 +226,7 @@ type Plug struct {
 	Window         Window
 	SocketWindow   *T.GdkWindow
 	ModalityWindow *Widget
-	ModalityGroup  *T.GtkWindowGroup
+	ModalityGroup  *WindowGroup
 	GrabbedKeys    *T.GHashTable
 	SameApp        uint // : 1
 }

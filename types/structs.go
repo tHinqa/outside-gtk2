@@ -431,18 +431,7 @@ type (
 		X [16]Gsize
 	}
 
-	GtkWidget struct { //REMOVE
-		Object        GtkObject
-		Private_flags uint16
-		State         uint8
-		Saved_state   uint8
-		Name          *Gchar
-		Style         *GtkStyle
-		Requisition   GtkRequisition
-		Allocation    GtkAllocation
-		Window        *GdkWindow
-		Parent        *GtkWidget
-	}
+	GtkWidget struct{} //REMOVE
 
 	GtkRequisition struct {
 		Width  int
@@ -559,79 +548,12 @@ type (
 		Height int
 	}
 
-	GtkDrawingArea struct { //REMOVE
-		Widget    GtkWidget
-		Draw_data Gpointer
-	}
-
 	GdkPoint struct {
 		X int
 		Y int
 	}
 
-	GtkBin struct { // REMOVE
-		Container GtkContainer
-		Child     *GtkWidget
-	}
-
-	GtkContainer struct {
-		Widget      GtkWidget
-		Focus_child *GtkWidget
-		Bits        uint
-		// border_width : 16
-		// need_resize : 1
-		// resize_mode : 2
-		// reallocate_redraws : 1
-		// has_focus_chain : 1
-	}
-
-	GtkWindow struct { //REMOVE
-		Bin                     GtkBin
-		Title                   *Gchar
-		Wmclass_name            *Gchar
-		Wmclass_class           *Gchar
-		Wm_role                 *Gchar
-		Focus_widget            *GtkWidget
-		Default_widget          *GtkWidget
-		Transient_parent        *GtkWindow
-		Geometry_info           *GtkWindowGeometryInfo
-		Frame                   *GdkWindow
-		Group                   *GtkWindowGroup
-		Configure_request_count uint16
-		Bits                    uint
-		// allow_shrink : 1
-		// allow_grow : 1
-		// configure_notify_received : 1
-		// need_default_position : 1
-		// need_default_size : 1
-		// position : 3
-		// type : 4
-		// has_user_ref_count : 1
-		// has_focus : 1
-		// modal : 1
-		// destroy_with_parent : 1
-		// has_frame : 1
-		// iconify_initially : 1
-		// stick_initially : 1
-		// maximize_initially : 1
-		// decorated : 1
-		// type_hint : 3
-		// gravity : 5
-		// is_active : 1
-		// has_toplevel_focus : 1
-		Frame_left           uint
-		Frame_top            uint
-		Frame_right          uint
-		Frame_bottom         uint
-		Keys_changed_handler uint
-		Mnemonic_modifier    GdkModifierType
-		Screen               *GdkScreen
-	}
-
-	GtkWindowGroup struct {
-		Parent_instance GObject
-		Grabs           *GSList
-	}
+	GtkWindow struct{} //REMOVE
 
 	GdkScreen struct {
 		Parent_instance GObject
@@ -686,47 +608,6 @@ type (
 		Notify GClosureNotify
 	}
 
-	GtkItem struct { //REMOVE
-		Bin GtkBin
-	}
-
-	GtkOldEditable struct {
-		Widget              GtkWidget
-		Current_pos         uint
-		Selection_start_pos uint
-		Selection_end_pos   uint
-		Bits                uint
-		// has_selection : 1
-		// editable : 1
-		// visible : 1
-		Clipboard_text *Gchar
-	}
-
-	GtkOptionMenu struct {
-		Button    GtkButton
-		Menu      *GtkWidget
-		Menu_item *GtkWidget
-		Width     uint16
-		Height    uint16
-	}
-
-	GtkButton struct { // REMOVE
-		Bin              GtkBin
-		Event_window     *GdkWindow
-		Label_text       *Gchar
-		Activate_timeout uint
-		Bits             uint
-		// constructed : 1
-		// in_button : 1
-		// button_down : 1
-		// relief : 2
-		// use_underline : 1
-		// use_stock : 1
-		// depressed : 1
-		// depress_on_activate : 1
-		// focus_on_click : 1
-	}
-
 	GtkPreviewInfo struct {
 		Lookup *Guchar
 		Gamma  float64
@@ -737,115 +618,7 @@ type (
 		Ref_count uint
 	}
 
-	GtkLabel struct { // REMOVE
-		Misc  GtkMisc
-		Label *Gchar
-		Bits  uint
-		// jtype : 2
-		// wrap : 1
-		// use_underline : 1
-		// use_markup : 1
-		// ellipsize : 3
-		// single_line_mode : 1
-		// have_transform : 1
-		// in_click : 1
-		// wrap_mode : 3
-		// pattern_set : 1
-		// track_links : 1
-		Mnemonic_keyval uint
-		Text            *Gchar
-		Attrs           *PangoAttrList
-		Effective_attrs *PangoAttrList
-		Layout          *PangoLayout
-		Mnemonic_widget *GtkWidget
-		Mnemonic_window *GtkWindow
-		Select_info     *GtkLabelSelectionInfo
-	}
-
-	GtkMisc struct{} //REMOVE
-
-	GtkCList struct { // REMOVE
-		Container           GtkContainer
-		Flags               uint16
-		Reserved1           Gpointer
-		Reserved2           Gpointer
-		Freeze_count        uint
-		Internal_allocation GdkRectangle
-		Rows                int
-		Row_height          int
-		Row_list            *GList
-		Row_list_end        *GList
-		Columns             int
-		Column_title_area   GdkRectangle
-		Title_window        *GdkWindow
-		Column              *GtkCListColumn
-		Clist_window        *GdkWindow
-		Clist_window_width  int
-		Clist_window_height int
-		Hoffset             int
-		Voffset             int
-		Shadow_type         GtkShadowType
-		Selection_mode      GtkSelectionMode
-		Selection           *GList
-		Selection_end       *GList
-		Undo_selection      *GList
-		Undo_unselection    *GList
-		Undo_anchor         int
-		Button_actions      [5]uint8
-		Drag_button         uint8
-		Click_cell          GtkCListCellInfo
-		Hadjustment         *GtkAdjustment
-		Vadjustment         *GtkAdjustment
-		Xor_gc              *GdkGC
-		Fg_gc               *GdkGC
-		Bg_gc               *GdkGC
-		Cursor_drag         *GdkCursor
-		X_drag              int
-		Focus_row           int
-		Focus_header_column int
-		Anchor              int
-		Anchor_state        GtkStateType
-		Drag_pos            int
-		Htimer              int
-		Vtimer              int
-		Sort_type           GtkSortType
-		Compare             GtkCListCompareFunc
-		Sort_column         int
-		Drag_highlight_row  int
-		Drag_highlight_pos  GtkCListDragPos
-	}
-
-	GtkCListColumn struct { //REMOVE
-		Title         *Gchar
-		Area          GdkRectangle
-		Button        *GtkWidget
-		Window        *GdkWindow
-		Width         int
-		Min_width     int
-		Max_width     int
-		Justification GtkJustification
-		Bits          uint
-		// visible : 1
-		// width_set : 1
-		// resizeable : 1
-		// auto_resize : 1
-		// button_passive : 1
-	}
-
-	GtkCListCellInfo struct { //REMOVE
-		Row    int
-		Column int
-	}
-
-	GtkAdjustment struct { // REMOVE
-		Parent_instance GtkObject
-		Lower           float64
-		Upper           float64
-		Value           float64
-		Step_increment  float64
-		Page_increment  float64
-		Page_size       float64
-	}
+	GtkLabel struct{} // REMOVE
 
 	GtkCell struct { // TODO(t):fix
 		Type       GtkCellType
@@ -868,37 +641,9 @@ type (
 		*/
 	}
 
-	GtkHBox struct { //REMOVE
-		Box GtkBox
-	}
-
-	GtkBox struct { // REMOVE
-		Container   GtkContainer
-		Children    *GList
-		Spacing     int16
-		Homogeneous uint // : 1
-	}
-
-	GtkCTree struct { // REMOVE
-		Clist        GtkCList
-		Lines_gc     *GdkGC
-		Tree_indent  int
-		Tree_spacing int
-		Tree_column  int
-		Bits         uint
-		// line_style : 2
-		// expander_style : 2
-		// show_stub : 1
-		Drag_compare GtkCTreeCompareDragFunc
-	}
-
-	GtkCTreeNode struct { //REMOVE
-		List GList
-	}
+	GtkBox struct{} // REMOVE
 
 	GtkTextBuffer struct{} //REMOVE
-
-	GtkTextTagTable struct{} // REMOVE
 
 	GdkEventKey struct {
 		Type             GdkEventType
@@ -932,10 +677,6 @@ type (
 		// pad3 : 1
 		// pad4 : 1
 	}
-
-	GtkToolItem struct{} //REMOVE
-
-	GtkSelectionData struct{} //REMOVE
 
 	GdkDisplay struct {
 		Parent_instance   GObject
@@ -1024,68 +765,6 @@ type (
 		Info   uint
 	}
 
-	GtkEntry struct { // REMOVE
-		Widget GtkWidget
-		Text   *Gchar
-		Bits   uint
-		// editable : 1
-		// visible : 1
-		// overwrite_mode : 1
-		// in_drag : 1
-		Text_length     uint16
-		Text_max_length uint16
-		Text_area       *GdkWindow
-		Im_context      *GtkIMContext
-		Popup_menu      *GtkWidget
-		Current_pos     int
-		Selection_bound int
-		Cached_layout   *PangoLayout
-		Bits2           uint
-		// cache_includes_preedit : 1
-		// need_im_reset : 1
-		// has_frame : 1
-		// activates_default : 1
-		// cursor_visible : 1
-		// in_click : 1
-		// is_cell_renderer : 1
-		// editing_canceled : 1
-		// mouse_cursor_obscured : 1
-		// select_words : 1
-		// select_lines : 1
-		// resolved_dir : 4
-		// truncate_multiline : 1
-		Button         uint
-		Blink_timeout  uint
-		Recompute_idle uint
-		Scroll_offset  int
-		Ascent         int
-		Descent        int
-		X_text_size    uint16
-		X_n_bytes      uint16
-		Preedit_length uint16
-		Preedit_cursor uint16
-		Dnd_position   int
-		Drag_start_x   int
-		Drag_start_y   int
-		Invisible_char Gunichar
-		Width_chars    int
-	}
-
-	GtkUIManager struct {
-		Parent       GObject
-		Private_data *GtkUIManagerPrivate
-	}
-
-	GtkActionGroup struct { // REMOVE
-		Parent       GObject
-		Private_data *GtkActionGroupPrivate
-	}
-
-	GtkAction struct { // REMOVE
-		Object       GObject
-		Private_data *GtkActionPrivate
-	}
-
 	GdkEvent struct {
 		Type GdkEventType
 		// Union
@@ -1110,26 +789,6 @@ type (
 		// setting  GdkEventSetting;
 		// grab_broken  GdkEventGrabBroken;
 	}
-
-	GtkCellRenderer struct { // REMOVE
-		Parent GtkObject
-		Xalign float32
-		Yalign float32
-		Width  int
-		Height int
-		Xpad   uint16
-		Ypad   uint16
-		Bits   uint
-		// mode : 2;
-		// visible : 1
-		// is_expander : 1
-		// is_expanded : 1
-		// cell_background_set : 1
-		// sensitive : 1
-		// editing : 1
-	}
-
-	GtkMenuItem struct{} //REMOVE
 
 	GtkArg struct {
 		Type GType
@@ -1156,78 +815,9 @@ type (
 		Run_type  GSignalFlags
 	}
 
-	GtkToolButton struct{} //REMOVE
-
-	GtkDialog        struct{} //REMOVE
-	GtkMessageDialog struct {
-		Parent_instance GtkDialog
-		Image           *GtkWidget
-		Label           *GtkWidget
-	}
-
 	GMountOperation struct {
 		Parent_instance GObject
 		Priv            *GMountOperationPrivate
-	}
-
-	GtkMountOperation struct {
-		Parent_instance GMountOperation
-		Priv            *GtkMountOperationPrivate
-	}
-
-	GtkNotebook struct {
-		Container    GtkContainer
-		Cur_page     *GtkNotebookPage
-		Children     *GList
-		First_tab    *GList
-		Focus_tab    *GList
-		Menu         *GtkWidget
-		Event_window *GdkWindow
-		Timer        GUint32
-		Tab_hborder  uint16
-		Tab_vborder  uint16
-		Bits         uint
-		// show_tabs : 1
-		// homogeneous : 1
-		// show_border : 1
-		// tab_pos : 2
-		// scrollable : 1
-		// in_child : 3
-		// click_child : 3
-		// button : 2
-		// need_timer : 1
-		// child_has_focus : 1
-		// have_visible_child : 1
-		// focus_out : 1
-		// has_before_previous : 1
-		// has_before_next : 1
-		// has_after_previous : 1
-		// has_after_next : 1
-	}
-
-	GtkOffscreenWindow struct {
-		Parent_object GtkWindow
-	}
-
-	GtkAccelGroup struct { // REMOVE
-		Parent         GObject
-		Lock_count     uint
-		Modifier_mask  GdkModifierType
-		Acceleratables *GSList
-		N_accels       uint
-		Priv_accels    *GtkAccelGroupEntry
-	}
-
-	GtkAccelGroupEntry struct { // REMOVE
-		Key              GtkAccelKey
-		Closure          *GClosure
-		Accel_path_quark GQuark
-	}
-
-	GtkAccelKey struct { //REMOVE
-		Accel_key   uint
-		Accel_mods  GdkModifierType
-		Accel_flags uint //: 16
 	}
 
 	GtkPageRange struct {
@@ -1235,62 +825,13 @@ type (
 		End   int
 	}
 
-	GtkToggleAction struct{} // REMOVE
-
-	GtkRadioAction struct {
-		Parent       GtkToggleAction
-		Private_data *GtkRadioActionPrivate
-	}
-
-	GtkRadioButton struct {
-		Check_button GtkCheckButton
-		Group        *GSList
-	}
-
-	GtkRadioMenuItem struct {
-		Check_menu_item GtkCheckMenuItem
-		Group           *GSList
-	}
-
 	GtkCheckButton struct {
 		Toggle_button GtkToggleButton
 	}
 
-	GtkCheckMenuItem struct { //REMOVE
-		Menu_item GtkMenuItem
-		Bits      uint
-		// active : 1
-		// always_show_toggle : 1
-		// inconsistent : 1
-		// draw_as_radio : 1
-	}
-
 	GtkToggleButton struct{} // REMOVE
 
-	GtkToggleToolButton struct{} // REMOVE
-
-	GtkRadioToolButton struct {
-		Parent GtkToggleToolButton
-	}
-
-	GtkViewport struct {
-		Bin         GtkBin
-		Shadow_type GtkShadowType
-		View_window *GdkWindow
-		Bin_window  *GdkWindow
-		Hadjustment *GtkAdjustment
-		Vadjustment *GtkAdjustment
-	}
-
 	GtkMenu struct{} //REMOVE
-
-	GtkStockItem struct {
-		Stock_id           *Gchar
-		Label              *Gchar
-		Modifier           GdkModifierType
-		Keyval             uint
-		Translation_domain *Gchar
-	}
 
 	PangoLogAttr struct {
 		Bits uint
@@ -1489,22 +1030,6 @@ type (
 		Value *GValue
 	}
 
-	GtkAboutDialog struct { // REMOVE
-		Parent_instance GtkDialog
-		Private_data    Gpointer
-	}
-
-	GtkAccelLabel struct { //REMOVE
-		Label              GtkLabel
-		_                  uint
-		Accel_padding      uint
-		Accel_widget       *GtkWidget
-		Accel_closure      *GClosure
-		Accel_group        *GtkAccelGroup
-		Accel_string       *Gchar
-		Accel_string_width uint16
-	}
-
 	GtkAccelLabelClass struct {
 		Parent_class     GtkLabelClass
 		Signal_quote1    *Gchar
@@ -1676,101 +1201,6 @@ type (
 		Grab_window *GdkWindow
 	}
 
-	GtkAssistant struct { //REMOVE
-		Parent  GtkWindow
-		Cancel  *GtkWidget
-		Forward *GtkWidget
-		Back    *GtkWidget
-		Apply   *GtkWidget
-		Close   *GtkWidget
-		Last    *GtkWidget
-		Priv    *GtkAssistantPrivate
-	}
-
-	GtkBindingSet struct {
-		Set_name            *Gchar
-		Priority            int
-		Widget_path_pspecs  *GSList
-		Widget_class_pspecs *GSList
-		Class_branch_pspecs *GSList
-		Entries             *GtkBindingEntry
-		Current             *GtkBindingEntry
-		Parsed              uint // : 1
-	}
-
-	GtkBuilder struct { //REMOVE
-		Parent_instance GObject
-		Priv            *GtkBuilderPrivate
-	}
-
-	GtkCalendar struct { // REMOVE
-		Widget            GtkWidget
-		Header_style      *GtkStyle
-		Label_style       *GtkStyle
-		Month             int
-		Year              int
-		Selected_day      int
-		Day_month         [6][7]int
-		Day               [6][7]int
-		Num_marked_dates  int
-		Marked_date       [31]int
-		Display_flags     GtkCalendarDisplayOptions
-		Marked_date_color [31]GdkColor
-		Gc                *GdkGC
-		Xor_gc            *GdkGC
-		Focus_row         int
-		Focus_col         int
-		Highlight_row     int
-		Highlight_col     int
-		Priv              *GtkCalendarPrivate
-		Grow_space        [32]Gchar
-		_, _, _, _        func()
-	}
-
-	GtkComboBox struct { // REMOVE
-		Parent_instance GtkBin
-		Priv            *GtkComboBoxPrivate
-	}
-
-	GtkComboBoxEntry struct { // REMOVE
-		Parent_instance GtkComboBox
-		Priv            *GtkComboBoxEntryPrivate
-	}
-
-	GtkComboBoxText struct { //REMOVE
-		Parent_instance GtkComboBox
-		Priv            *GtkComboBoxTextPrivate
-	}
-
-	GtkContainerClass struct {
-		Parent_class GtkWidgetClass
-		Add          func(container *GtkContainer,
-			widget *GtkWidget)
-		Remove func(container *GtkContainer,
-			widget *GtkWidget)
-		Check_resize func(container *GtkContainer)
-		Forall       func(container *GtkContainer,
-			include_internals Gboolean,
-			callback GtkCallback,
-			callback_data Gpointer)
-		Set_focus_child func(container *GtkContainer,
-			widget *GtkWidget)
-		Child_type     func(container *GtkContainer) GType
-		Composite_name func(container *GtkContainer,
-			child *GtkWidget) *Gchar
-		Set_child_property func(container *GtkContainer,
-			child *GtkWidget,
-			property_id uint,
-			value *GValue,
-			pspec *GParamSpec)
-		Get_child_property func(container *GtkContainer,
-			child *GtkWidget,
-			property_id uint,
-			value *GValue,
-			pspec *GParamSpec)
-		_, _, _, _ func()
-	}
-
 	GtkToggleActionEntry struct {
 		Name        *Gchar
 		Stock_id    *Gchar
@@ -1781,36 +1211,6 @@ type (
 		Is_active   Gboolean
 	}
 
-	GtkRange struct {
-		Widget        GtkWidget
-		Adjustment    *GtkAdjustment
-		Update_policy GtkUpdateType
-		Bits          uint
-		// inverted : 1
-		// flippable : 1
-		// has_stepper_a : 1
-		// has_stepper_b : 1
-		// has_stepper_c : 1
-		// has_stepper_d : 1
-		// need_recalc : 1
-		// slider_size_fixed : 1
-		Min_slider_size int
-		Orientation     GtkOrientation
-		Range_rect      GdkRectangle
-		Slider_start    int
-		Slider_end      int
-		Round_digits    int
-		Bits2           uint
-		// trough_click_forward : 1
-		// update_pending : 1
-		Layout                        *GtkRangeLayout
-		Timer                         *GtkRangeStepTimer
-		Slide_initial_slider_position int
-		Slide_initial_coordinate      int
-		Update_timeout_id             uint
-		Event_window                  *GdkWindow
-	}
-
 	GtkRcProperty struct {
 		Type_name     GQuark
 		Property_name GQuark
@@ -1818,34 +1218,9 @@ type (
 		Value         GValue
 	}
 
-	GtkRuler struct {
-		Widget        GtkWidget
-		Backing_store *GdkPixmap
-		Non_gr_exp_gc *GdkGC
-		Metric        *GtkRulerMetric
-		Xsrc          int
-		Ysrc          int
-		Slider_size   int
-		Lower         float64
-		Upper         float64
-		Position      float64
-		Max_size      float64
-	}
-
 	GtkSettingsValue struct {
 		Origin *Gchar
 		Value  GValue
-	}
-
-	GtkTypeInfo struct {
-		Type_name            *Gchar
-		Object_size          uint
-		Class_size           uint
-		Class_init_func      GtkClassInitFunc
-		Object_init_func     GtkObjectInitFunc
-		Reserved_1           Gpointer
-		Reserved_2           Gpointer
-		Base_class_init_func GtkClassInitFunc
 	}
 
 	/*
@@ -1860,19 +1235,6 @@ type (
 	   };
 	*/
 
-	GtkBindingEntry struct {
-		Keyval      uint
-		Modifiers   GdkModifierType
-		Binding_set *GtkBindingSet
-		Bits        uint
-		// destroyed : 1
-		// in_emission : 1
-		// marks_unbound : 1
-		Set_next  *GtkBindingEntry
-		Hash_next *GtkBindingEntry
-		Signals   *GtkBindingSignal
-	}
-
 	PangoColor struct {
 		Red   uint16
 		Green uint16
@@ -1881,30 +1243,6 @@ type (
 
 	GtkVBox struct {
 		Box GtkBox
-	}
-
-	GtkRulerMetric struct {
-		Metric_name     *Gchar
-		Abbrev          *Gchar
-		Pixels_per_unit float64
-		Ruler_scale     [10]float64
-		Subdivide       [5]int
-	}
-
-	GtkBindingSignal struct {
-		Next        *GtkBindingSignal
-		Signal_name *Gchar
-		N_args      uint
-		Args        *GtkBindingArg
-	}
-
-	GtkBindingArg struct {
-		Arg_type GType
-		//Union {
-		// long_data  Glong;
-		Double_data float64
-		// string_data  *Gchar;
-		//}
 	}
 
 	GtkRadioActionEntry struct {

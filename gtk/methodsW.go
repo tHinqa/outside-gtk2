@@ -29,7 +29,7 @@ var (
 	WidgetHelpTypeGetType func() T.GType
 
 	WidgetGetDefaultColormap  func() *T.GdkColormap
-	WidgetGetDefaultDirection func() T.GtkTextDirection
+	WidgetGetDefaultDirection func() TextDirection
 	WidgetGetDefaultStyle     func() *T.GtkStyle
 	WidgetGetDefaultVisual    func() *T.GdkVisual
 	WidgetPopColormap         func()
@@ -37,7 +37,7 @@ var (
 	WidgetPushColormap        func(cmap *T.GdkColormap)
 	WidgetPushCompositeChild  func()
 	WidgetSetDefaultColormap  func(colormap *T.GdkColormap)
-	WidgetSetDefaultDirection func(dir T.GtkTextDirection)
+	WidgetSetDefaultDirection func(dir TextDirection)
 
 	//TODO(t): Methods?
 	WidgetTranslateCoordinates func(srcWidget *Widget, destWidget *Widget, srcX int, srcY int, destX *int, destY *int) T.Gboolean
@@ -70,7 +70,7 @@ var (
 	widgetGetChildVisible       func(w *Widget) T.Gboolean
 	widgetGetColormap           func(w *Widget) *T.GdkColormap
 	widgetGetCompositeName      func(w *Widget) string
-	widgetGetDirection          func(w *Widget) T.GtkTextDirection
+	widgetGetDirection          func(w *Widget) TextDirection
 	widgetGetDisplay            func(w *Widget) *T.GdkDisplay
 	widgetGetDoubleBuffered     func(w *Widget) T.Gboolean
 	widgetGetEvents             func(w *Widget) int
@@ -160,7 +160,7 @@ var (
 	widgetSetChildVisible       func(w *Widget, isVisible T.Gboolean)
 	widgetSetColormap           func(w *Widget, colormap *T.GdkColormap)
 	widgetSetCompositeName      func(w *Widget, name string)
-	widgetSetDirection          func(w *Widget, dir T.GtkTextDirection)
+	widgetSetDirection          func(w *Widget, dir TextDirection)
 	widgetSetDoubleBuffered     func(w *Widget, doubleBuffered T.Gboolean)
 	widgetSetEvents             func(w *Widget, events int)
 	widgetSetExtensionEvents    func(w *Widget, mode T.GdkExtensionMode)
@@ -242,7 +242,7 @@ func (w *Widget) GetChildRequisition(requisition *T.GtkRequisition) {
 func (w *Widget) GetChildVisible() T.Gboolean                  { return widgetGetChildVisible(w) }
 func (w *Widget) GetColormap() *T.GdkColormap                  { return widgetGetColormap(w) }
 func (w *Widget) GetCompositeName() string                     { return widgetGetCompositeName(w) }
-func (w *Widget) GetDirection() T.GtkTextDirection             { return widgetGetDirection(w) }
+func (w *Widget) GetDirection() TextDirection                  { return widgetGetDirection(w) }
 func (w *Widget) GetDisplay() *T.GdkDisplay                    { return widgetGetDisplay(w) }
 func (w *Widget) GetDoubleBuffered() T.Gboolean                { return widgetGetDoubleBuffered(w) }
 func (w *Widget) GetEvents() int                               { return widgetGetEvents(w) }
@@ -358,7 +358,7 @@ func (w *Widget) SetCanFocus(canFocus T.Gboolean)           { widgetSetCanFocus(
 func (w *Widget) SetChildVisible(isVisible T.Gboolean)      { widgetSetChildVisible(w, isVisible) }
 func (w *Widget) SetColormap(colormap *T.GdkColormap)       { widgetSetColormap(w, colormap) }
 func (w *Widget) SetCompositeName(name string)              { widgetSetCompositeName(w, name) }
-func (w *Widget) SetDirection(dir T.GtkTextDirection)       { widgetSetDirection(w, dir) }
+func (w *Widget) SetDirection(dir TextDirection)            { widgetSetDirection(w, dir) }
 func (w *Widget) SetDoubleBuffered(doubleBuffered T.Gboolean) {
 	widgetSetDoubleBuffered(w, doubleBuffered)
 }
@@ -445,7 +445,7 @@ type WidgetClass struct {
 	StyleSet func(widget *Widget,
 		previousStyle *T.GtkStyle)
 	DirectionChanged func(widget *Widget,
-		previousDirection T.GtkTextDirection)
+		previousDirection TextDirection)
 	GrabNotify func(widget *Widget,
 		wasGrabbed T.Gboolean)
 	ChildNotify func(widget *Widget,
@@ -510,10 +510,10 @@ type WidgetClass struct {
 	WindowStateEvent func(widget *Widget,
 		event *T.GdkEventWindowState) T.Gboolean
 	SelectionGet func(widget *Widget,
-		selectionData *T.GtkSelectionData,
+		selectionData *SelectionData,
 		info, time uint)
 	SelectionReceived func(widget *Widget,
-		selectionData *T.GtkSelectionData,
+		selectionData *SelectionData,
 		time uint)
 	DragBegin func(widget *Widget,
 		context *T.GdkDragContext)
@@ -521,7 +521,7 @@ type WidgetClass struct {
 		context *T.GdkDragContext)
 	DragDataGet func(widget *Widget,
 		context *T.GdkDragContext,
-		selectionData *T.GtkSelectionData,
+		selectionData *SelectionData,
 		info, time uint)
 	DragDataDelete func(widget *Widget,
 		context *T.GdkDragContext)
@@ -537,7 +537,7 @@ type WidgetClass struct {
 	DragDataReceived func(widget *Widget,
 		context *T.GdkDragContext,
 		x, y int,
-		selectionData *T.GtkSelectionData,
+		selectionData *SelectionData,
 		info, time uint)
 	PopupMenu func(widget *Widget) T.Gboolean
 	ShowHelp  func(widget *Widget,
@@ -587,7 +587,7 @@ type Window struct {
 	TransientParent       *Window
 	GeometryInfo          *T.GtkWindowGeometryInfo
 	Frame                 *Window
-	Group                 *T.GtkWindowGroup
+	Group                 *WindowGroup
 	ConfigureRequestCount uint16
 	Bits                  uint
 	// AllowShrink : 1
@@ -623,7 +623,7 @@ var (
 	WindowGetType func() T.GType
 	WindowNew     func(t T.GtkWindowType) *Widget
 
-	WindowGroupNew                   func() *T.GtkWindowGroup
+	WindowGroupNew                   func() *WindowGroup
 	WindowSetDefaultIconList         func(list *T.GList)
 	WindowGetDefaultIconList         func() *T.GList
 	WindowSetDefaultIcon             func(icon *T.GdkPixbuf)
@@ -653,7 +653,7 @@ var (
 	windowGetFocusOnMap         func(w *Window) T.Gboolean
 	windowGetFrameDimensions    func(w *Window, left, top, right, bottom *int)
 	windowGetGravity            func(w *Window) T.GdkGravity
-	windowGetGroup              func(w *Window) *T.GtkWindowGroup
+	windowGetGroup              func(w *Window) *WindowGroup
 	windowGetHasFrame           func(w *Window) T.Gboolean
 	windowGetIcon               func(w *Window) *T.GdkPixbuf
 	windowGetIconList           func(w *Window) *T.GList
@@ -729,10 +729,6 @@ var (
 	windowUnfullscreen          func(w *Window)
 	windowUnmaximize            func(w *Window)
 	windowUnstick               func(w *Window)
-
-	WindowGroupAddWindow    func(windowGroup *T.GtkWindowGroup, window *T.GtkWindow)
-	WindowGroupRemoveWindow func(windowGroup *T.GtkWindowGroup, window *T.GtkWindow)
-	WindowGroupListWindows  func(windowGroup *T.GtkWindowGroup) *T.GList
 )
 
 func (w *Window) ActivateDefault() T.Gboolean { return windowActivateDefault(w) }
@@ -765,7 +761,7 @@ func (w *Window) GetFrameDimensions(left, top, right, bottom *int) {
 	windowGetFrameDimensions(w, left, top, right, bottom)
 }
 func (w *Window) GetGravity() T.GdkGravity               { return windowGetGravity(w) }
-func (w *Window) GetGroup() *T.GtkWindowGroup            { return windowGetGroup(w) }
+func (w *Window) GetGroup() *WindowGroup                 { return windowGetGroup(w) }
 func (w *Window) GetHasFrame() T.Gboolean                { return windowGetHasFrame(w) }
 func (w *Window) GetIcon() *T.GdkPixbuf                  { return windowGetIcon(w) }
 func (w *Window) GetIconList() *T.GList                  { return windowGetIconList(w) }
@@ -857,3 +853,22 @@ func (w *Window) Stick()        { windowStick(w) }
 func (w *Window) Unfullscreen() { windowUnfullscreen(w) }
 func (w *Window) Unmaximize()   { windowUnmaximize(w) }
 func (w *Window) Unstick()      { windowUnstick(w) }
+
+type WindowGroup struct {
+	Parent T.GObject
+	Grabs  *T.GSList
+}
+
+var (
+	WindowGroupGetType func() T.GType
+
+	windowGroupAddWindow      func(w *WindowGroup, window *Window)
+	windowGroupGetCurrentGrab func(w *WindowGroup) *Widget
+	windowGroupListWindows    func(w *WindowGroup) *T.GList
+	windowGroupRemoveWindow   func(w *WindowGroup, window *Window)
+)
+
+func (w *WindowGroup) AddWindow(window *Window)    { windowGroupAddWindow(w, window) }
+func (w *WindowGroup) GetCurrentGrab() *Widget     { return windowGroupGetCurrentGrab(w) }
+func (w *WindowGroup) ListWindows() *T.GList       { return windowGroupListWindows(w) }
+func (w *WindowGroup) RemoveWindow(window *Window) { windowGroupRemoveWindow(w, window) }

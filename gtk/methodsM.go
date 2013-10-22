@@ -5,7 +5,7 @@ package gtk
 
 import (
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 type (
@@ -215,7 +215,7 @@ func (m *MenuItem) ToggleSizeAllocate(allocation int)  { menuItemToggleSizeAlloc
 func (m *MenuItem) ToggleSizeRequest(requisition *int) { menuItemToggleSizeRequest(m, requisition) }
 
 type MenuShell struct {
-	Container       T.GtkContainer
+	Container       Container
 	Children        *T.GList
 	ActiveMenuItem  *Widget
 	ParentMenuShell *Widget
@@ -262,14 +262,14 @@ func (m *MenuShell) SelectItem(menuItem *Widget)            { menuShellSelectIte
 func (m *MenuShell) SetTakeFocus(takeFocus T.Gboolean)      { menuShellSetTakeFocus(m, takeFocus) }
 
 type MenuToolButton struct {
-	Parent T.GtkToolButton
+	Parent ToolButton
 	_      *struct{}
 }
 
 var (
 	MenuToolButtonGetType      func() T.GType
-	MenuToolButtonNew          func(iconWidget *Widget, label string) *T.GtkToolItem
-	MenuToolButtonNewFromStock func(stockId string) *T.GtkToolItem
+	MenuToolButtonNew          func(iconWidget *Widget, label string) *ToolItem
+	MenuToolButtonNewFromStock func(stockId string) *ToolItem
 
 	menuToolButtonGetMenu               func(t *MenuToolButton) *Widget
 	menuToolButtonSetArrowTooltip       func(t *MenuToolButton, tooltips *Tooltips, tipText, tipPrivate string)
@@ -309,3 +309,55 @@ func (m *Misc) GetAlignment(xalign, yalign *float32) { miscGetAlignment(m, xalig
 func (m *Misc) GetPadding(xpad, ypad *int)           { miscGetPadding(m, xpad, ypad) }
 func (m *Misc) SetAlignment(xalign, yalign float32)  { miscSetAlignment(m, xalign, yalign) }
 func (m *Misc) SetPadding(xpad, ypad int)            { miscSetPadding(m, xpad, ypad) }
+
+type MessageDialog struct {
+	Parent Dialog
+	Image  *Widget
+	Label  *Widget
+}
+
+var (
+	MessageDialogGetType       func() T.GType
+	MessageDialogNew           func(parent *Window, flags DialogFlags, t T.GtkMessageType, buttons T.GtkButtonsType, messageFormat string, v ...VArg) *Widget
+	MessageDialogNewWithMarkup func(parent *Window, flags DialogFlags, t T.GtkMessageType, buttons T.GtkButtonsType, messageFormat string, v ...VArg) *Widget
+
+	messageDialogFormatSecondaryMarkup func(m *MessageDialog, messageFormat string, v ...VArg)
+	messageDialogFormatSecondaryText   func(m *MessageDialog, messageFormat string, v ...VArg)
+	messageDialogGetImage              func(m *MessageDialog) *Widget
+	messageDialogGetMessageArea        func(m *MessageDialog) *Widget
+	messageDialogSetImage              func(m *MessageDialog, image *Widget)
+	messageDialogSetMarkup             func(m *MessageDialog, str string)
+)
+
+func (m *MessageDialog) FormatSecondaryMarkup(messageFormat string, v ...VArg) {
+	messageDialogFormatSecondaryMarkup(m, messageFormat, v)
+}
+func (m *MessageDialog) FormatSecondaryText(messageFormat string, v ...VArg) {
+	messageDialogFormatSecondaryText(m, messageFormat, v)
+}
+func (m *MessageDialog) GetImage() *Widget       { return messageDialogGetImage(m) }
+func (m *MessageDialog) GetMessageArea() *Widget { return messageDialogGetMessageArea(m) }
+func (m *MessageDialog) SetImage(image *Widget)  { messageDialogSetImage(m, image) }
+func (m *MessageDialog) SetMarkup(str string)    { messageDialogSetMarkup(m, str) }
+
+type MountOperation struct {
+	Parent T.GMountOperation
+	_      *struct{}
+}
+
+var (
+	MountOperationGetType func() T.GType
+	MountOperationNew     func(parent *Window) *MountOperation
+
+	mountOperationGetParent func(m *MountOperation) *Window
+	mountOperationGetScreen func(m *MountOperation) *T.GdkScreen
+	mountOperationIsShowing func(m *MountOperation) T.Gboolean
+	mountOperationSetParent func(m *MountOperation, parent *Window)
+	mountOperationSetScreen func(m *MountOperation, screen *T.GdkScreen)
+)
+
+func (m *MountOperation) GetParent() *Window            { return mountOperationGetParent(m) }
+func (m *MountOperation) GetScreen() *T.GdkScreen       { return mountOperationGetScreen(m) }
+func (m *MountOperation) IsShowing() T.Gboolean         { return mountOperationIsShowing(m) }
+func (m *MountOperation) SetParent(parent *Window)      { mountOperationSetParent(m, parent) }
+func (m *MountOperation) SetScreen(screen *T.GdkScreen) { mountOperationSetScreen(m, screen) }

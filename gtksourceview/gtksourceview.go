@@ -81,14 +81,14 @@ type (
 
 	GtkSourceGutterDataFunc func(
 		gutter *GtkSourceGutter,
-		cell *T.GtkCellRenderer,
+		cell *G.CellRenderer,
 		line_number int,
 		current_line T.Gboolean,
 		data T.Gpointer)
 
 	GtkSourceGutterSizeFunc func(
 		gutter *GtkSourceGutter,
-		cell *T.GtkCellRenderer,
+		cell *G.CellRenderer,
 		data T.Gpointer)
 
 	GtkSourceViewMarkTooltipFunc func(
@@ -270,7 +270,7 @@ var (
 	Gtk_source_buffer_get_type func() T.GType
 
 	Gtk_source_buffer_new func(
-		table *T.GtkTextTagTable) *GtkSourceBuffer
+		table *G.TextTagTable) *GtkSourceBuffer
 
 	Gtk_source_buffer_new_with_language func(
 		language *GtkSourceLanguage) *GtkSourceBuffer
@@ -554,28 +554,28 @@ var (
 
 	Gtk_source_gutter_insert func(
 		gutter *GtkSourceGutter,
-		renderer *T.GtkCellRenderer,
+		renderer *G.CellRenderer,
 		position int)
 
 	Gtk_source_gutter_reorder func(
 		gutter *GtkSourceGutter,
-		renderer *T.GtkCellRenderer,
+		renderer *G.CellRenderer,
 		position int)
 
 	Gtk_source_gutter_remove func(
 		gutter *GtkSourceGutter,
-		renderer *T.GtkCellRenderer)
+		renderer *G.CellRenderer)
 
 	Gtk_source_gutter_set_cell_data_func func(
 		gutter *GtkSourceGutter,
-		renderer *T.GtkCellRenderer,
+		renderer *G.CellRenderer,
 		f GtkSourceGutterDataFunc,
 		func_data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	Gtk_source_gutter_set_cell_size_func func(
 		gutter *GtkSourceGutter,
-		renderer *T.GtkCellRenderer,
+		renderer *G.CellRenderer,
 		f GtkSourceGutterSizeFunc,
 		func_data T.Gpointer,
 		destroy T.GDestroyNotify)
@@ -736,7 +736,7 @@ var (
 
 	Gtk_source_view_get_gutter func(
 		view *GtkSourceView,
-		window_type T.GtkTextWindowType) *GtkSourceGutter
+		window_type G.TextWindowType) *GtkSourceGutter
 
 	Gtk_source_completion_item_get_type func() T.GType
 
@@ -961,14 +961,14 @@ var (
 
 	Gtk_source_print_compositor_paginate func(
 		compositor *GtkSourcePrintCompositor,
-		context *T.GtkPrintContext) T.Gboolean
+		context *G.PrintContext) T.Gboolean
 
 	Gtk_source_print_compositor_get_pagination_progress func(
 		compositor *GtkSourcePrintCompositor) float64
 
 	Gtk_source_print_compositor_draw_page func(
 		compositor *GtkSourcePrintCompositor,
-		context *T.GtkPrintContext,
+		context *G.PrintContext,
 		page_nr int)
 
 	Gtk_source_style_scheme_manager_get_type func() T.GType

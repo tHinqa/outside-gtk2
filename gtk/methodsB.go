@@ -5,20 +5,100 @@ package gtk
 
 import (
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 type Bin struct {
-	Container T.GtkContainer
+	Container Container
 	Child     *Widget
 }
 
 var BinGetType func() T.GType
 
-var BinGetChild func(b *Bin) *Widget
+var binGetChild func(b *Bin) *Widget
 
-func (b *Bin) GetChild() *Widget {
-	return BinGetChild(b)
+func (b *Bin) GetChild() *Widget { return binGetChild(b) }
+
+type (
+	BindingSet struct {
+		SetName           *T.Gchar
+		Priority          int
+		WidgetPathPspecs  *T.GSList
+		WidgetClassPspecs *T.GSList
+		ClassBranchPspecs *T.GSList
+		Entries           *BindingEntry
+		Current           *BindingEntry
+		Parsed            uint // : 1
+	}
+
+	BindingEntry struct {
+		Keyval     uint
+		Modifiers  T.GdkModifierType
+		BindingSet *BindingSet
+		Bits       uint
+		// Destroyed : 1
+		// InEmission : 1
+		// MarksUnbound : 1
+		SetNext  *BindingEntry
+		HashNext *BindingEntry
+		Signals  *BindingSignal
+	}
+
+	BindingSignal struct {
+		Next        *BindingSignal
+		Signal_name *T.Gchar
+		N_args      uint
+		Args        *BindingArg
+	}
+
+	BindingArg struct {
+		ArgType T.GType
+		// Union
+		// LongData  Glong
+		DoubleData float64 // largest for size
+		// StringData  *Gchar
+	}
+)
+
+var (
+	BindingSetNew func(setName string) *BindingSet
+
+	BindingParseBinding   func(scanner *T.GScanner) uint
+	BindingsActivate      func(object *T.GtkObject, keyval uint, modifiers T.GdkModifierType) T.Gboolean
+	BindingsActivateEvent func(object *T.GtkObject, event *T.GdkEventKey) T.Gboolean
+
+	BindingSetByClass func(objectClass T.Gpointer) *BindingSet
+	BindingSetFind    func(setName string) *BindingSet
+
+	bindingEntryAddSignal  func(b *BindingSet, keyval uint, modifiers T.GdkModifierType, signalName string, nArgs uint, varg ...VArg)
+	bindingEntryAddSignall func(b *BindingSet, keyval uint, modifiers T.GdkModifierType, signalName string, bindingArgs *T.GSList)
+	bindingEntryClear      func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
+	bindingEntryRemove     func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
+	bindingEntrySkip       func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
+	bindingSetActivate     func(b *BindingSet, keyval uint, modifiers T.GdkModifierType, object *T.GtkObject) T.Gboolean
+	bindingSetAddPath      func(b *BindingSet, pathType T.GtkPathType, pathPattern string, priority T.GtkPathPriorityType)
+)
+
+func (b *BindingSet) EntryAddSignal(keyval uint, modifiers T.GdkModifierType, signalName string, nArgs uint, varg ...VArg) {
+	bindingEntryAddSignal(b, keyval, modifiers, signalName, nArgs, varg)
+}
+func (b *BindingSet) EntryAddSignall(keyval uint, modifiers T.GdkModifierType, signalName string, bindingArgs *T.GSList) {
+	bindingEntryAddSignall(b, keyval, modifiers, signalName, bindingArgs)
+}
+func (b *BindingSet) EntryClear(keyval uint, modifiers T.GdkModifierType) {
+	bindingEntryClear(b, keyval, modifiers)
+}
+func (b *BindingSet) EntryRemove(keyval uint, modifiers T.GdkModifierType) {
+	bindingEntryRemove(b, keyval, modifiers)
+}
+func (b *BindingSet) EntrySkip(keyval uint, modifiers T.GdkModifierType) {
+	bindingEntrySkip(b, keyval, modifiers)
+}
+func (b *BindingSet) Activate(keyval uint, modifiers T.GdkModifierType, object *T.GtkObject) T.Gboolean {
+	return bindingSetActivate(b, keyval, modifiers, object)
+}
+func (b *BindingSet) AddPath(pathType T.GtkPathType, pathPattern string, priority T.GtkPathPriorityType) {
+	bindingSetAddPath(b, pathType, pathPattern, priority)
 }
 
 type Border struct {
@@ -42,7 +122,7 @@ func (b *Border) Copy() *Border { return borderCopy(b) }
 func (b *Border) Free()         { borderFree(b) }
 
 type Box struct {
-	Container   T.GtkContainer
+	Container   Container
 	Children    *T.GList
 	Spacing     int16
 	Homogeneous uint // : 1

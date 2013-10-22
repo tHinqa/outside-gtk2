@@ -98,6 +98,30 @@ func (a *AboutDialog) SetWrapLicense(wrapLicense T.Gboolean) {
 	aboutDialogSetWrapLicense(a, wrapLicense)
 }
 
+var (
+	AcceleratorGetDefaultModMask func() uint
+
+	AcceleratorGetLabel func(
+		acceleratorKey uint,
+		acceleratorMods T.GdkModifierType) string
+
+	AcceleratorName func(
+		acceleratorKey uint,
+		acceleratorMods T.GdkModifierType) string
+
+	AcceleratorParse func(
+		accelerator string,
+		acceleratorKey *uint,
+		acceleratorMods *T.GdkModifierType)
+
+	AcceleratorSetDefaultModMask func(
+		defaultModMask T.GdkModifierType)
+
+	AcceleratorValid func(
+		keyval uint,
+		modifiers T.GdkModifierType) T.Gboolean
+)
+
 type (
 	AccelMap struct{}
 
@@ -396,7 +420,7 @@ var (
 	actionGroupListActions          func(a *ActionGroup) *T.GList
 	actionGroupRemoveAction         func(a *ActionGroup, action *Action)
 	actionGroupSetSensitive         func(a *ActionGroup, sensitive T.Gboolean)
-	actionGroupSetTranslateFunc     func(a *ActionGroup, f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+	actionGroupSetTranslateFunc     func(a *ActionGroup, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 	actionGroupSetTranslationDomain func(a *ActionGroup, domain string)
 	actionGroupSetVisible           func(a *ActionGroup, visible T.Gboolean)
 	actionGroupTranslateString      func(a *ActionGroup, str string) string
@@ -431,7 +455,7 @@ func (a *ActionGroup) GetVisible() T.Gboolean              { return actionGroupG
 func (a *ActionGroup) ListActions() *T.GList               { return actionGroupListActions(a) }
 func (a *ActionGroup) RemoveAction(action *Action)         { actionGroupRemoveAction(a, action) }
 func (a *ActionGroup) SetSensitive(sensitive T.Gboolean)   { actionGroupSetSensitive(a, sensitive) }
-func (a *ActionGroup) SetTranslateFunc(f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (a *ActionGroup) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
 	actionGroupSetTranslateFunc(a, f, data, notify)
 }
 func (a *ActionGroup) SetTranslationDomain(domain string) { actionGroupSetTranslationDomain(a, domain) }
@@ -544,6 +568,45 @@ func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRi
 	alignmentGetPadding(a, paddingTop, paddingBottom, paddingLeft, paddingRight)
 }
 
+var AlternativeDialogButtonOrder func(
+	screen *T.GdkScreen) T.Gboolean
+
+type AnchorType T.Enum
+
+const (
+	ANCHOR_CENTER AnchorType = iota
+	ANCHOR_NORTH
+	ANCHOR_NORTH_WEST
+	ANCHOR_NORTH_EAST
+	ANCHOR_SOUTH
+	ANCHOR_SOUTH_WEST
+	ANCHOR_SOUTH_EAST
+	ANCHOR_WEST
+	ANCHOR_EAST
+	ANCHOR_N  = ANCHOR_NORTH
+	ANCHOR_NW = ANCHOR_NORTH_WEST
+	ANCHOR_NE = ANCHOR_NORTH_EAST
+	ANCHOR_S  = ANCHOR_SOUTH
+	ANCHOR_SW = ANCHOR_SOUTH_WEST
+	ANCHOR_SE = ANCHOR_SOUTH_EAST
+	ANCHOR_W  = ANCHOR_WEST
+	ANCHOR_E  = ANCHOR_EAST
+)
+
+var AnchorTypeGetType func() T.GType
+
+type ArgFlags T.Enum
+
+const (
+	ARG_READABLE       ArgFlags = ArgFlags(T.G_PARAM_READABLE)
+	ARG_WRITABLE                = ArgFlags(T.G_PARAM_WRITABLE)
+	ARG_CONSTRUCT               = ArgFlags(T.G_PARAM_CONSTRUCT)
+	ARG_CONSTRUCT_ONLY          = ArgFlags(T.G_PARAM_CONSTRUCT_ONLY)
+	ARG_CHILD_ARG      ArgFlags = 1 << iota
+)
+
+var ArgFlagsGetType func() T.GType
+
 type (
 	Assistant struct {
 		Parent  T.GtkWindow
@@ -639,7 +702,7 @@ func (a *Assistant) SetPageType(page *Widget, t AssistantPageType) { assistantSe
 func (a *Assistant) UpdateButtonsState()                           { assistantUpdateButtonsState(a) }
 
 type Arrow struct {
-	Misc       T.GtkMisc
+	Misc       Misc
 	ArrowType  int16
 	ShadowType int16
 }
@@ -699,3 +762,13 @@ var aspectFrameSet func(a *AspectFrame, xalign, yalign, ratio float32, obeyChild
 func (a *AspectFrame) Set(xalign, yalign, ratio float32, obeyChild T.Gboolean) {
 	aspectFrameSet(a, xalign, yalign, ratio, obeyChild)
 }
+
+var AttachOptionsGetType func() T.GType
+
+type AttachOptions T.Enum
+
+const (
+	EXPAND AttachOptions = 1 << iota
+	SHRINK
+	FILL
+)

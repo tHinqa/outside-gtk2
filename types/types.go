@@ -104,11 +104,9 @@ type (
 	GTime                  GInt32
 	GTimeSpan              int64
 	GtkAllocation          GdkRectangle
-	GtkClassInitFunc       GBaseInitFunc
 	GtkEnumValue           GEnumValue
 	GtkFlagValue           GFlagsValue
-	GtkObjectInitFunc      GInstanceInitFunc
-	GtkType                GType
+	GtkType                GType // REMOVE
 	GType                  Gsize
 	Gulong                 UnsignedLong
 	Gunichar               GUint32
@@ -128,7 +126,6 @@ type (
 	AtkObjectFactory simpleObject
 	AtkStateSet      simpleObject
 	GdkDrawable      simpleObject
-	GtkIMContext     simpleObject // REMOVE
 	PangoEngine      simpleObject
 	PangoFcDecoder   simpleObject
 
@@ -318,13 +315,7 @@ type (
 	GtkIMMulticontextPrivate       struct{}
 	GtkInfoBarPrivate              struct{}
 	GtkLabelSelectionInfo          struct{}
-	GtkMountOperationPrivate       struct{}
-	GtkNotebookPage                struct{}
-	GtkOrientable                  struct{}
 	GtkPageSetup                   struct{} //REMOVE
-	GtkRadioActionPrivate          struct{}
-	GtkRangeLayout                 struct{}
-	GtkRangeStepTimer              struct{}
 	GtkRcContext                   struct{}
 	GtkRecentActionPrivate         struct{}
 	GtkRecentChooserMenuPrivate    struct{}
@@ -338,14 +329,12 @@ type (
 	GtkTextLayout                  struct{}
 	GtkTextLogAttrCache            struct{}
 	GtkTextPendingScroll           struct{}
-	GtkTextWindow                  struct{}
 	GtkToggleActionPrivate         struct{}
 	GtkToggleToolButtonPrivate     struct{}
 	GtkToolButtonPrivate           struct{}
 	GtkToolItemGroupPrivate        struct{}
 	GtkToolItemPrivate             struct{}
 	GtkToolPalettePrivate          struct{}
-	GtkTooltip                     struct{} // REMOVE
 	GtkUIManagerPrivate            struct{}
 	GtkWindowGeometryInfo          struct{}
 	GTlsBackend                    struct{}
@@ -3125,46 +3114,6 @@ const (
 	GDK_VISUAL_DIRECT_COLOR
 )
 
-type GtkAnchorType Enum
-
-const (
-	GTK_ANCHOR_CENTER GtkAnchorType = iota
-	GTK_ANCHOR_NORTH
-	GTK_ANCHOR_NORTH_WEST
-	GTK_ANCHOR_NORTH_EAST
-	GTK_ANCHOR_SOUTH
-	GTK_ANCHOR_SOUTH_WEST
-	GTK_ANCHOR_SOUTH_EAST
-	GTK_ANCHOR_WEST
-	GTK_ANCHOR_EAST
-	GTK_ANCHOR_N  = GTK_ANCHOR_NORTH
-	GTK_ANCHOR_NW = GTK_ANCHOR_NORTH_WEST
-	GTK_ANCHOR_NE = GTK_ANCHOR_NORTH_EAST
-	GTK_ANCHOR_S  = GTK_ANCHOR_SOUTH
-	GTK_ANCHOR_SW = GTK_ANCHOR_SOUTH_WEST
-	GTK_ANCHOR_SE = GTK_ANCHOR_SOUTH_EAST
-	GTK_ANCHOR_W  = GTK_ANCHOR_WEST
-	GTK_ANCHOR_E  = GTK_ANCHOR_EAST
-)
-
-type GtkArrowType Enum // REMOVE
-
-const (
-	GTK_ARROW_UP GtkArrowType = iota
-	GTK_ARROW_DOWN
-	GTK_ARROW_LEFT
-	GTK_ARROW_RIGHT
-	GTK_ARROW_NONE
-)
-
-type GtkAttachOptions Enum
-
-const (
-	GTK_EXPAND GtkAttachOptions = 1 << iota
-	GTK_SHRINK
-	GTK_FILL
-)
-
 type GtkCurveType Enum
 
 const (
@@ -3197,18 +3146,6 @@ const (
 	GTK_DIR_RIGHT
 )
 
-type GtkIconSize Enum // REMOVE
-
-const (
-	GTK_ICON_SIZE_INVALID GtkIconSize = iota
-	GTK_ICON_SIZE_MENU
-	GTK_ICON_SIZE_SMALL_TOOLBAR
-	GTK_ICON_SIZE_LARGE_TOOLBAR
-	GTK_ICON_SIZE_BUTTON
-	GTK_ICON_SIZE_DND
-	GTK_ICON_SIZE_DIALOG
-)
-
 type GtkSensitivityType Enum
 
 const (
@@ -3224,14 +3161,6 @@ const (
 	GTK_SIDE_BOTTOM
 	GTK_SIDE_LEFT
 	GTK_SIDE_RIGHT
-)
-
-type GtkTextDirection Enum
-
-const (
-	GTK_TEXT_DIR_NONE GtkTextDirection = iota
-	GTK_TEXT_DIR_LTR
-	GTK_TEXT_DIR_RTL
 )
 
 type GtkJustification Enum
@@ -3296,13 +3225,6 @@ const (
 	GTK_SCROLL_HORIZONTAL_STEPS
 	GTK_SCROLL_HORIZONTAL_PAGES
 	GTK_SCROLL_HORIZONTAL_ENDS
-)
-
-type GtkOrientation Enum
-
-const (
-	GTK_ORIENTATION_HORIZONTAL GtkOrientation = iota
-	GTK_ORIENTATION_VERTICAL
 )
 
 type GtkCornerType Enum
@@ -3624,16 +3546,6 @@ const (
 	GTK_FLOATING
 	GTK_RESERVED_1
 	GTK_RESERVED_2
-)
-
-type GtkArgFlags Enum
-
-const (
-	GTK_ARG_READABLE       GtkArgFlags = GtkArgFlags(G_PARAM_READABLE)
-	GTK_ARG_WRITABLE                   = GtkArgFlags(G_PARAM_WRITABLE)
-	GTK_ARG_CONSTRUCT                  = GtkArgFlags(G_PARAM_CONSTRUCT)
-	GTK_ARG_CONSTRUCT_ONLY             = GtkArgFlags(G_PARAM_CONSTRUCT_ONLY)
-	GTK_ARG_CHILD_ARG      GtkArgFlags = 1 << iota
 )
 
 type GtkRcFlags Enum
@@ -4000,17 +3912,6 @@ const (
 	GTK_BUILDER_ERROR_DUPLICATE_ID
 )
 
-type GtkCalendarDisplayOptions Enum //REMOVE
-
-const (
-	GTK_CALENDAR_SHOW_HEADING GtkCalendarDisplayOptions = 1 << iota
-	GTK_CALENDAR_SHOW_DAY_NAMES
-	GTK_CALENDAR_NO_MONTH_CHANGE
-	GTK_CALENDAR_SHOW_WEEK_NUMBERS
-	GTK_CALENDAR_WEEK_START_MONDAY
-	GTK_CALENDAR_SHOW_DETAILS
-)
-
 type GtkCellRendererMode Enum
 
 const (
@@ -4024,13 +3925,6 @@ type GtkCellRendererAccelMode Enum
 const (
 	GTK_CELL_RENDERER_ACCEL_MODE_GTK GtkCellRendererAccelMode = iota
 	GTK_CELL_RENDERER_ACCEL_MODE_OTHER
-)
-
-type GtkTextSearchFlags Enum
-
-const (
-	GTK_TEXT_SEARCH_VISIBLE_ONLY GtkTextSearchFlags = 1 << iota
-	GTK_TEXT_SEARCH_TEXT_ONLY
 )
 
 type GtkDestDefaults Enum
@@ -4156,39 +4050,11 @@ const (
 	GTK_TEXT_BUFFER_TARGET_INFO_TEXT
 )
 
-type GtkTextWindowType Enum
-
-const (
-	GTK_TEXT_WINDOW_PRIVATE GtkTextWindowType = iota
-	GTK_TEXT_WINDOW_WIDGET
-	GTK_TEXT_WINDOW_TEXT
-	GTK_TEXT_WINDOW_LEFT
-	GTK_TEXT_WINDOW_RIGHT
-	GTK_TEXT_WINDOW_TOP
-	GTK_TEXT_WINDOW_BOTTOM
-)
-
 type GtkToolbarSpaceStyle Enum
 
 const (
 	GTK_TOOLBAR_SPACE_EMPTY GtkToolbarSpaceStyle = iota
 	GTK_TOOLBAR_SPACE_LINE
-)
-
-type GtkUIManagerItemType Enum
-
-const (
-	GTK_UI_MANAGER_MENUBAR GtkUIManagerItemType = 1 << iota
-	GTK_UI_MANAGER_MENU
-	GTK_UI_MANAGER_TOOLBAR
-	GTK_UI_MANAGER_PLACEHOLDER
-	GTK_UI_MANAGER_POPUP
-	GTK_UI_MANAGER_MENUITEM
-	GTK_UI_MANAGER_TOOLITEM
-	GTK_UI_MANAGER_SEPARATOR
-	GTK_UI_MANAGER_ACCELERATOR
-	GTK_UI_MANAGER_POPUP_WITH_ACCELS
-	GTK_UI_MANAGER_AUTO GtkUIManagerItemType = 0
 )
 
 type GtkCellType Enum
@@ -4199,15 +4065,6 @@ const (
 	GTK_CELL_PIXMAP
 	GTK_CELL_PIXTEXT
 	GTK_CELL_WIDGET
-)
-
-type GtkCListDragPos Enum //REMOVE
-
-const (
-	GTK_CLIST_DRAG_NONE GtkCListDragPos = iota
-	GTK_CLIST_DRAG_BEFORE
-	GTK_CLIST_DRAG_INTO
-	GTK_CLIST_DRAG_AFTER
 )
 
 type GtkButtonAction Enum
@@ -4449,16 +4306,7 @@ const (
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
-	GtkTranslateFunc func(path string, func_data Gpointer) string
-
 	GClosureNotify func(data Gpointer, closure *GClosure)
-
-	GtkCListCompareFunc func(clist *GtkCList, //REMOVE
-		ptr1 Gconstpointer, ptr2 Gconstpointer) int
-
-	GtkCTreeCompareDragFunc func(ctree *GtkCTree, //REMOVE
-		source_node *GtkCTreeNode, new_parent *GtkCTreeNode,
-		new_sibling *GtkCTreeNode) Gboolean
 
 	GCallback func()
 
@@ -4472,9 +4320,6 @@ type (
 
 	GtkKeySnoopFunc func(grab_widget *GtkWidget,
 		event *GdkEventKey, func_data Gpointer) int
-
-	GtkNotebookWindowCreationFunc func(source *GtkNotebook,
-		page *GtkWidget, x int, y int, data Gpointer) *GtkNotebook
 
 	GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
 		data Gpointer)

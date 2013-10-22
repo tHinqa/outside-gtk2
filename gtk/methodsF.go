@@ -339,7 +339,7 @@ func (f *FileSelection) SetSelectMultiple(selectMultiple T.Gboolean) {
 func (f *FileSelection) ShowFileopButtons() { fileSelectionShowFileopButtons(f) }
 
 type Fixed struct {
-	Container T.GtkContainer
+	Container Container
 	Children  *T.GList
 }
 

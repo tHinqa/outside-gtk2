@@ -76,7 +76,7 @@ var (
 	iconSetCopy       func(i *IconSet) *IconSet
 	iconSetGetSizes   func(i *IconSet, sizes **IconSize, nSizes *int)
 	iconSetRef        func(i *IconSet) *IconSet
-	iconSetRenderIcon func(i *IconSet, style *T.GtkStyle, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
+	iconSetRenderIcon func(i *IconSet, style *T.GtkStyle, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
 	iconSetUnref      func(i *IconSet)
 )
 
@@ -84,7 +84,7 @@ func (i *IconSet) AddSource(source *IconSource)           { iconSetAddSource(i, 
 func (i *IconSet) Copy() *IconSet                         { return iconSetCopy(i) }
 func (i *IconSet) GetSizes(sizes **IconSize, nSizes *int) { iconSetGetSizes(i, sizes, nSizes) }
 func (i *IconSet) Ref() *IconSet                          { return iconSetRef(i) }
-func (i *IconSet) RenderIcon(style *T.GtkStyle, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
+func (i *IconSet) RenderIcon(style *T.GtkStyle, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
 	return iconSetRenderIcon(i, style, direction, state, size, widget, detail)
 }
 func (i *IconSet) Unref() { iconSetUnref(i) }
@@ -123,7 +123,7 @@ var (
 
 	iconSourceCopy                   func(i *IconSource) *IconSource
 	iconSourceFree                   func(i *IconSource)
-	iconSourceGetDirection           func(i *IconSource) T.GtkTextDirection
+	iconSourceGetDirection           func(i *IconSource) TextDirection
 	iconSourceGetDirectionWildcarded func(i *IconSource) T.Gboolean
 	iconSourceGetFilename            func(i *IconSource) string
 	iconSourceGetIconName            func(i *IconSource) string
@@ -132,7 +132,7 @@ var (
 	iconSourceGetSizeWildcarded      func(i *IconSource) T.Gboolean
 	iconSourceGetState               func(i *IconSource) T.GtkStateType
 	iconSourceGetStateWildcarded     func(i *IconSource) T.Gboolean
-	iconSourceSetDirection           func(i *IconSource, direction T.GtkTextDirection)
+	iconSourceSetDirection           func(i *IconSource, direction TextDirection)
 	iconSourceSetDirectionWildcarded func(i *IconSource, setting T.Gboolean)
 	iconSourceSetFilename            func(i *IconSource, filename string)
 	iconSourceSetIconName            func(i *IconSource, iconName string)
@@ -143,18 +143,18 @@ var (
 	iconSourceSetStateWildcarded     func(i *IconSource, setting T.Gboolean)
 )
 
-func (i *IconSource) Copy() *IconSource                         { return iconSourceCopy(i) }
-func (i *IconSource) Free()                                     { iconSourceFree(i) }
-func (i *IconSource) GetDirection() T.GtkTextDirection          { return iconSourceGetDirection(i) }
-func (i *IconSource) GetDirectionWildcarded() T.Gboolean        { return iconSourceGetDirectionWildcarded(i) }
-func (i *IconSource) GetFilename() string                       { return iconSourceGetFilename(i) }
-func (i *IconSource) GetIconName() string                       { return iconSourceGetIconName(i) }
-func (i *IconSource) GetPixbuf() *T.GdkPixbuf                   { return iconSourceGetPixbuf(i) }
-func (i *IconSource) GetSize() IconSize                         { return iconSourceGetSize(i) }
-func (i *IconSource) GetSizeWildcarded() T.Gboolean             { return iconSourceGetSizeWildcarded(i) }
-func (i *IconSource) GetState() T.GtkStateType                  { return iconSourceGetState(i) }
-func (i *IconSource) GetStateWildcarded() T.Gboolean            { return iconSourceGetStateWildcarded(i) }
-func (i *IconSource) SetDirection(direction T.GtkTextDirection) { iconSourceSetDirection(i, direction) }
+func (i *IconSource) Copy() *IconSource                    { return iconSourceCopy(i) }
+func (i *IconSource) Free()                                { iconSourceFree(i) }
+func (i *IconSource) GetDirection() TextDirection          { return iconSourceGetDirection(i) }
+func (i *IconSource) GetDirectionWildcarded() T.Gboolean   { return iconSourceGetDirectionWildcarded(i) }
+func (i *IconSource) GetFilename() string                  { return iconSourceGetFilename(i) }
+func (i *IconSource) GetIconName() string                  { return iconSourceGetIconName(i) }
+func (i *IconSource) GetPixbuf() *T.GdkPixbuf              { return iconSourceGetPixbuf(i) }
+func (i *IconSource) GetSize() IconSize                    { return iconSourceGetSize(i) }
+func (i *IconSource) GetSizeWildcarded() T.Gboolean        { return iconSourceGetSizeWildcarded(i) }
+func (i *IconSource) GetState() T.GtkStateType             { return iconSourceGetState(i) }
+func (i *IconSource) GetStateWildcarded() T.Gboolean       { return iconSourceGetStateWildcarded(i) }
+func (i *IconSource) SetDirection(direction TextDirection) { iconSourceSetDirection(i, direction) }
 func (i *IconSource) SetDirectionWildcarded(setting T.Gboolean) {
 	iconSourceSetDirectionWildcarded(i, setting)
 }
@@ -241,7 +241,7 @@ func (i *IconTheme) SetSearchPath(path **T.Gchar, nElements int) {
 
 type (
 	IconView struct {
-		Parent T.GtkContainer
+		Parent Container
 		_      *struct{}
 	}
 
@@ -278,14 +278,14 @@ var (
 	iconViewGetDragDestItem                func(i *IconView, path **TreePath, pos *IconViewDropPosition)
 	iconViewGetItemAtPos                   func(i *IconView, x, y int, path **TreePath, cell **CellRenderer) T.Gboolean
 	iconViewGetItemColumn                  func(i *IconView, path *TreePath) int
-	iconViewGetItemOrientation             func(i *IconView) T.GtkOrientation
+	iconViewGetItemOrientation             func(i *IconView) Orientation
 	iconViewGetItemPadding                 func(i *IconView) int
 	iconViewGetItemRow                     func(i *IconView, path *TreePath) int
 	iconViewGetItemWidth                   func(i *IconView) int
 	iconViewGetMargin                      func(i *IconView) int
 	iconViewGetMarkupColumn                func(i *IconView) int
 	iconViewGetModel                       func(i *IconView) *TreeModel
-	iconViewGetOrientation                 func(i *IconView) T.GtkOrientation
+	iconViewGetOrientation                 func(i *IconView) Orientation
 	iconViewGetPathAtPos                   func(i *IconView, x, y int) *TreePath
 	iconViewGetPixbufColumn                func(i *IconView) int
 	iconViewGetReorderable                 func(i *IconView) T.Gboolean
@@ -307,22 +307,22 @@ var (
 	iconViewSetColumnSpacing               func(i *IconView, columnSpacing int)
 	iconViewSetCursor                      func(i *IconView, path *TreePath, cell *CellRenderer, startEditing T.Gboolean)
 	iconViewSetDragDestItem                func(i *IconView, path *TreePath, pos IconViewDropPosition)
-	iconViewSetItemOrientation             func(i *IconView, orientation T.GtkOrientation)
+	iconViewSetItemOrientation             func(i *IconView, orientation Orientation)
 	iconViewSetItemPadding                 func(i *IconView, itemPadding int)
 	iconViewSetItemWidth                   func(i *IconView, itemWidth int)
 	iconViewSetMargin                      func(i *IconView, margin int)
 	iconViewSetMarkupColumn                func(i *IconView, column int)
 	iconViewSetModel                       func(i *IconView, model *TreeModel)
-	iconViewSetOrientation                 func(i *IconView, orientation T.GtkOrientation)
+	iconViewSetOrientation                 func(i *IconView, orientation Orientation)
 	iconViewSetPixbufColumn                func(i *IconView, column int)
 	iconViewSetReorderable                 func(i *IconView, reorderable T.Gboolean)
 	iconViewSetRowSpacing                  func(i *IconView, rowSpacing int)
 	iconViewSetSelectionMode               func(i *IconView, mode T.GtkSelectionMode)
 	iconViewSetSpacing                     func(i *IconView, spacing int)
 	iconViewSetTextColumn                  func(i *IconView, column int)
-	iconViewSetTooltipCell                 func(i *IconView, tooltip *T.GtkTooltip, path *TreePath, cell *CellRenderer)
+	iconViewSetTooltipCell                 func(i *IconView, tooltip *Tooltip, path *TreePath, cell *CellRenderer)
 	iconViewSetTooltipColumn               func(i *IconView, column int)
-	iconViewSetTooltipItem                 func(i *IconView, tooltip *T.GtkTooltip, path *TreePath)
+	iconViewSetTooltipItem                 func(i *IconView, tooltip *Tooltip, path *TreePath)
 	iconViewUnselectAll                    func(i *IconView)
 	iconViewUnselectPath                   func(i *IconView, path *TreePath)
 	iconViewUnsetModelDragDest             func(i *IconView)
@@ -356,14 +356,14 @@ func (i *IconView) GetItemAtPos(x, y int, path **TreePath, cell **CellRenderer) 
 	return iconViewGetItemAtPos(i, x, y, path, cell)
 }
 func (i *IconView) GetItemColumn(path *TreePath) int     { return iconViewGetItemColumn(i, path) }
-func (i *IconView) GetItemOrientation() T.GtkOrientation { return iconViewGetItemOrientation(i) }
+func (i *IconView) GetItemOrientation() Orientation      { return iconViewGetItemOrientation(i) }
 func (i *IconView) GetItemPadding() int                  { return iconViewGetItemPadding(i) }
 func (i *IconView) GetItemRow(path *TreePath) int        { return iconViewGetItemRow(i, path) }
 func (i *IconView) GetItemWidth() int                    { return iconViewGetItemWidth(i) }
 func (i *IconView) GetMargin() int                       { return iconViewGetMargin(i) }
 func (i *IconView) GetMarkupColumn() int                 { return iconViewGetMarkupColumn(i) }
 func (i *IconView) GetModel() *TreeModel                 { return iconViewGetModel(i) }
-func (i *IconView) GetOrientation() T.GtkOrientation     { return iconViewGetOrientation(i) }
+func (i *IconView) GetOrientation() Orientation          { return iconViewGetOrientation(i) }
 func (i *IconView) GetPathAtPos(x, y int) *TreePath      { return iconViewGetPathAtPos(i, x, y) }
 func (i *IconView) GetPixbufColumn() int                 { return iconViewGetPixbufColumn(i) }
 func (i *IconView) GetReorderable() T.Gboolean           { return iconViewGetReorderable(i) }
@@ -399,7 +399,7 @@ func (i *IconView) SetCursor(path *TreePath, cell *CellRenderer, startEditing T.
 func (i *IconView) SetDragDestItem(path *TreePath, pos IconViewDropPosition) {
 	iconViewSetDragDestItem(i, path, pos)
 }
-func (i *IconView) SetItemOrientation(orientation T.GtkOrientation) {
+func (i *IconView) SetItemOrientation(orientation Orientation) {
 	iconViewSetItemOrientation(i, orientation)
 }
 func (i *IconView) SetItemPadding(itemPadding int) { iconViewSetItemPadding(i, itemPadding) }
@@ -407,7 +407,7 @@ func (i *IconView) SetItemWidth(itemWidth int)     { iconViewSetItemWidth(i, ite
 func (i *IconView) SetMargin(margin int)           { iconViewSetMargin(i, margin) }
 func (i *IconView) SetMarkupColumn(column int)     { iconViewSetMarkupColumn(i, column) }
 func (i *IconView) SetModel(model *TreeModel)      { iconViewSetModel(i, model) }
-func (i *IconView) SetOrientation(orientation T.GtkOrientation) {
+func (i *IconView) SetOrientation(orientation Orientation) {
 	iconViewSetOrientation(i, orientation)
 }
 func (i *IconView) SetPixbufColumn(column int)               { iconViewSetPixbufColumn(i, column) }
@@ -416,11 +416,11 @@ func (i *IconView) SetRowSpacing(rowSpacing int)             { iconViewSetRowSpa
 func (i *IconView) SetSelectionMode(mode T.GtkSelectionMode) { iconViewSetSelectionMode(i, mode) }
 func (i *IconView) SetSpacing(spacing int)                   { iconViewSetSpacing(i, spacing) }
 func (i *IconView) SetTextColumn(column int)                 { iconViewSetTextColumn(i, column) }
-func (i *IconView) SetTooltipCell(tooltip *T.GtkTooltip, path *TreePath, cell *CellRenderer) {
+func (i *IconView) SetTooltipCell(tooltip *Tooltip, path *TreePath, cell *CellRenderer) {
 	iconViewSetTooltipCell(i, tooltip, path, cell)
 }
 func (i *IconView) SetTooltipColumn(column int) { iconViewSetTooltipColumn(i, column) }
-func (i *IconView) SetTooltipItem(tooltip *T.GtkTooltip, path *TreePath) {
+func (i *IconView) SetTooltipItem(tooltip *Tooltip, path *TreePath) {
 	iconViewSetTooltipItem(i, tooltip, path)
 }
 func (i *IconView) UnselectAll()                { iconViewUnselectAll(i) }
@@ -730,7 +730,7 @@ type (
 		Accel_group      *AccelGroup
 		Widget           *Widget
 		Items            *T.GSList
-		Translate_func   T.GtkTranslateFunc
+		Translate_func   TranslateFunc
 		Translate_data   T.Gpointer
 		Translate_notify T.GDestroyNotify
 	}
@@ -773,7 +773,7 @@ var (
 	itemFactoryPopup             func(i *ItemFactory, x uint, y uint, mouseButton uint, time T.GUint32)
 	itemFactoryPopupData         func(i *ItemFactory) T.Gpointer
 	itemFactoryPopupWithData     func(i *ItemFactory, popupData T.Gpointer, destroy T.GDestroyNotify, x uint, y uint, mouseButton uint, time T.GUint32)
-	itemFactorySetTranslateFunc  func(i *ItemFactory, f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+	itemFactorySetTranslateFunc  func(i *ItemFactory, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 )
 
 func (i *ItemFactory) Construct(containerType T.GType, path string, accelGroup *AccelGroup) {
@@ -808,6 +808,6 @@ func (i *ItemFactory) PopupData() T.Gpointer { return itemFactoryPopupData(i) }
 func (i *ItemFactory) PopupWithData(popupData T.Gpointer, destroy T.GDestroyNotify, x, y, mouseButton uint, time T.GUint32) {
 	itemFactoryPopupWithData(i, popupData, destroy, x, y, mouseButton, time)
 }
-func (i *ItemFactory) SetTranslateFunc(f T.GtkTranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (i *ItemFactory) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
 	itemFactorySetTranslateFunc(i, f, data, notify)
 }

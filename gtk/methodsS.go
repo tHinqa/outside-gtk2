@@ -9,7 +9,7 @@ import (
 )
 
 type Scale struct {
-	Range  T.GtkRange
+	Range  Range
 	Digits int
 	Bits   uint
 	// DrawValue : 1
@@ -56,25 +56,25 @@ var (
 
 	scaleButtonGetAdjustment  func(s *ScaleButton) *Adjustment
 	scaleButtonGetMinusButton func(s *ScaleButton) *Widget
-	scaleButtonGetOrientation func(s *ScaleButton) T.GtkOrientation
+	scaleButtonGetOrientation func(s *ScaleButton) Orientation
 	scaleButtonGetPlusButton  func(s *ScaleButton) *Widget
 	scaleButtonGetPopup       func(s *ScaleButton) *Widget
 	scaleButtonGetValue       func(s *ScaleButton) float64
 	scaleButtonSetAdjustment  func(s *ScaleButton, adjustment *Adjustment)
 	scaleButtonSetIcons       func(s *ScaleButton, icons **T.Gchar)
-	scaleButtonSetOrientation func(s *ScaleButton, orientation T.GtkOrientation)
+	scaleButtonSetOrientation func(s *ScaleButton, orientation Orientation)
 	scaleButtonSetValue       func(s *ScaleButton, value float64)
 )
 
 func (s *ScaleButton) GetAdjustment() *Adjustment           { return scaleButtonGetAdjustment(s) }
 func (s *ScaleButton) GetMinusButton() *Widget              { return scaleButtonGetMinusButton(s) }
-func (s *ScaleButton) GetOrientation() T.GtkOrientation     { return scaleButtonGetOrientation(s) }
+func (s *ScaleButton) GetOrientation() Orientation          { return scaleButtonGetOrientation(s) }
 func (s *ScaleButton) GetPlusButton() *Widget               { return scaleButtonGetPlusButton(s) }
 func (s *ScaleButton) GetPopup() *Widget                    { return scaleButtonGetPopup(s) }
 func (s *ScaleButton) GetValue() float64                    { return scaleButtonGetValue(s) }
 func (s *ScaleButton) SetAdjustment(adjustment *Adjustment) { scaleButtonSetAdjustment(s, adjustment) }
 func (s *ScaleButton) SetIcons(icons **T.Gchar)             { scaleButtonSetIcons(s, icons) }
-func (s *ScaleButton) SetOrientation(orientation T.GtkOrientation) {
+func (s *ScaleButton) SetOrientation(orientation Orientation) {
 	scaleButtonSetOrientation(s, orientation)
 }
 func (s *ScaleButton) SetValue(value float64) { scaleButtonSetValue(s, value) }
@@ -211,7 +211,7 @@ func (s *SelectionData) TargetsIncludeText() T.Gboolean { return selectionDataTa
 func (s *SelectionData) TargetsIncludeUri() T.Gboolean  { return selectionDataTargetsIncludeUri(s) }
 
 type SeparatorToolItem struct {
-	Parent T.GtkToolItem
+	Parent ToolItem
 	_      *struct{}
 }
 
@@ -307,7 +307,7 @@ func (s *SizeGroup) SetIgnoreHidden(ignoreHidden T.Gboolean) {
 func (s *SizeGroup) SetMode(mode SizeGroupMode) { sizeGroupSetMode(s, mode) }
 
 type Socket struct {
-	Container     T.GtkContainer
+	Container     Container
 	RequestWidth  uint16
 	RequestHeight uint16
 	CurrentWidth  uint16
@@ -343,7 +343,7 @@ func (s *Socket) Steal(wid T.GdkNativeWindow)      { socketSteal(s, wid) }
 
 type SpinButton struct {
 	Entry        Entry
-	Adjustment   *T.GtkAdjustment
+	Adjustment   *Adjustment
 	Panel        *T.GdkWindow
 	Timer        T.GUint32
 	ClimbRate    float64
@@ -429,7 +429,7 @@ func (s *SpinButton) Spin(direction T.GtkSpinType, increment float64) {
 func (s *SpinButton) Update() { spinButtonUpdate(s) }
 
 type Spinner struct {
-	Parent T.GtkDrawingArea
+	Parent DrawingArea
 	_      *struct{}
 }
 
@@ -498,7 +498,7 @@ var (
 	StatusIconPositionMenu func(menu *Menu, x, y *int, pushIn *T.Gboolean, userData T.Gpointer)
 
 	statusIconGetBlinking      func(s *StatusIcon) T.Gboolean
-	statusIconGetGeometry      func(s *StatusIcon, screen **T.GdkScreen, area *T.GdkRectangle, orientation *T.GtkOrientation) T.Gboolean
+	statusIconGetGeometry      func(s *StatusIcon, screen **T.GdkScreen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean
 	statusIconGetGicon         func(s *StatusIcon) *T.GIcon
 	statusIconGetHasTooltip    func(s *StatusIcon) T.Gboolean
 	statusIconGetIconName      func(s *StatusIcon) string
@@ -530,7 +530,7 @@ var (
 )
 
 func (s *StatusIcon) GetBlinking() T.Gboolean { return statusIconGetBlinking(s) }
-func (s *StatusIcon) GetGeometry(screen **T.GdkScreen, area *T.GdkRectangle, orientation *T.GtkOrientation) T.Gboolean {
+func (s *StatusIcon) GetGeometry(screen **T.GdkScreen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean {
 	return statusIconGetGeometry(s, screen, area, orientation)
 }
 func (s *StatusIcon) GetGicon() *T.GIcon                  { return statusIconGetGicon(s) }
@@ -561,6 +561,25 @@ func (s *StatusIcon) SetTooltip(tooltipText string)       { statusIconSetTooltip
 func (s *StatusIcon) SetTooltipMarkup(markup string)      { statusIconSetTooltipMarkup(s, markup) }
 func (s *StatusIcon) SetTooltipText(text string)          { statusIconSetTooltipText(s, text) }
 func (s *StatusIcon) SetVisible(visible T.Gboolean)       { statusIconSetVisible(s, visible) }
+
+type StockItem struct {
+	StockId           *T.Gchar
+	Label             *T.Gchar
+	Modifier          T.GdkModifierType
+	Keyval            uint
+	TranslationDomain *T.Gchar
+}
+
+var (
+	StockListIds          func() *T.GSList
+	StockLookup           func(stockId string, item *StockItem) T.Gboolean
+	StockSetTranslateFunc func(domain string, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+
+	StockAdd       func(s *StockItem, nItems uint)
+	StockAddStatic func(s *StockItem, nItems uint)
+	StockItemCopy  func(s *StockItem) *StockItem
+	StockItemFree  func(s *StockItem)
+)
 
 type Style struct {
 	Parent          T.GObject
@@ -611,7 +630,7 @@ var (
 	styleLookupColor            func(s *Style, colorName string, color *T.GdkColor) T.Gboolean
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
 	styleRef                    func(s *Style) *T.GtkStyle
-	styleRenderIcon             func(s *Style, source *IconSource, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
+	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
 	styleSetBackground          func(s *Style, window *T.GdkWindow, stateType T.GtkStateType)
 	styleSetFont                func(s *Style, font *T.GdkFont)
 	styleUnref                  func(s *Style)
@@ -629,7 +648,7 @@ func (s *Style) LookupColor(colorName string, color *T.GdkColor) T.Gboolean {
 }
 func (s *Style) LookupIconSet(stockId string) *IconSet { return styleLookupIconSet(s, stockId) }
 func (s *Style) Ref() *T.GtkStyle                      { return styleRef(s) }
-func (s *Style) RenderIcon(source *IconSource, direction T.GtkTextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
+func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
 	return styleRenderIcon(s, source, direction, state, size, widget, detail)
 }
 func (s *Style) SetBackground(window *T.GdkWindow, stateType T.GtkStateType) {

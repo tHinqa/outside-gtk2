@@ -9,7 +9,7 @@ import (
 )
 
 type Label struct {
-	Misc  T.GtkMisc
+	Misc  Misc
 	Label *T.Gchar
 	Bits  uint
 	// JType : 2
@@ -136,7 +136,7 @@ func (l *Label) SetUseUnderline(setting T.Gboolean)         { labelSetUseUnderli
 func (l *Label) SetWidthChars(nChars int)                   { labelSetWidthChars(l, nChars) }
 
 type Layout struct {
-	Container    T.GtkContainer
+	Container    Container
 	Children     *T.GList
 	Width        uint
 	Height       uint
@@ -290,7 +290,7 @@ func (l *LinkButton) SetUri(uri string)             { linkButtonSetUri(l, uri) }
 func (l *LinkButton) SetVisited(visited T.Gboolean) { linkButtonSetVisited(l, visited) }
 
 type List struct {
-	Container         T.GtkContainer
+	Container         Container
 	Children          *T.GList
 	Selection         *T.GList
 	UndoSelectionList *T.GList // Name ambuiguity with method

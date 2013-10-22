@@ -389,13 +389,15 @@ func (c *CheckMenuItem) SetInconsistent(setting T.Gboolean) { checkMenuItemSetIn
 func (c *CheckMenuItem) SetShowToggle(always T.Gboolean)    { checkMenuItemSetShowToggle(c, always) }
 func (c *CheckMenuItem) Toggled()                           { checkMenuItemToggled(c) }
 
+type ClassInitFunc T.GBaseInitFunc
+
 type Clipboard struct{}
 
 type (
 	ClipboardClearFunc            func(clipboard *Clipboard, userDataOrOwner T.Gpointer)
-	ClipboardGetFunc              func(clipboard *Clipboard, selectionData *T.GtkSelectionData, info uint, userDataOrOwner T.Gpointer)
+	ClipboardGetFunc              func(clipboard *Clipboard, selectionData *SelectionData, info uint, userDataOrOwner T.Gpointer)
 	ClipboardImageReceivedFunc    func(clipboard *Clipboard, pixbuf *T.GdkPixbuf, data T.Gpointer)
-	ClipboardReceivedFunc         func(clipboard *Clipboard, selectionData *T.GtkSelectionData, data T.Gpointer)
+	ClipboardReceivedFunc         func(clipboard *Clipboard, selectionData *SelectionData, data T.Gpointer)
 	ClipboardRichTextReceivedFunc func(clipboard *Clipboard, format T.GdkAtom, text *uint8, length T.Gsize, data T.Gpointer)
 	ClipboardTargetsReceivedFunc  func(clipboard *Clipboard, atoms *T.GdkAtom, nAtoms int, data T.Gpointer)
 	ClipboardTextReceivedFunc     func(clipboard *Clipboard, text string, data T.Gpointer)
@@ -425,7 +427,7 @@ var (
 	clipboardSetWithData             func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean
 	clipboardSetWithOwner            func(c *Clipboard, targets *T.GtkTargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean
 	clipboardStore                   func(c *Clipboard)
-	clipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *T.GtkSelectionData
+	clipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *SelectionData
 	clipboardWaitForImage            func(c *Clipboard) *T.GdkPixbuf
 	clipboardWaitForRichText         func(c *Clipboard, buffer *T.GtkTextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8
 	clipboardWaitForTargets          func(c *Clipboard, targets **T.GdkAtom, nTargets *int) T.Gboolean
@@ -471,7 +473,7 @@ func (c *Clipboard) SetWithOwner(targets *T.GtkTargetEntry, nTargets uint, getFu
 	return clipboardSetWithOwner(c, targets, nTargets, getFunc, clearFunc, owner)
 }
 func (c *Clipboard) Store() { clipboardStore(c) }
-func (c *Clipboard) WaitForContents(target T.GdkAtom) *T.GtkSelectionData {
+func (c *Clipboard) WaitForContents(target T.GdkAtom) *SelectionData {
 	return clipboardWaitForContents(c, target)
 }
 func (c *Clipboard) WaitForImage() *T.GdkPixbuf { return clipboardWaitForImage(c) }
@@ -495,7 +497,7 @@ func (c *Clipboard) WaitIsUrisAvailable() T.Gboolean { return clipboardWaitIsUri
 
 type (
 	CList struct {
-		Container          T.GtkContainer
+		Container          Container
 		Flags              uint16
 		_                  T.Gpointer
 		_                  T.Gpointer
@@ -1071,149 +1073,141 @@ var (
 func (e *ComboBoxEntry) GetTextColumn() int           { return comboBoxEntryGetTextColumn(e) }
 func (e *ComboBoxEntry) SetTextColumn(textColumn int) { comboBoxEntrySetTextColumn(e, textColumn) }
 
+type Container struct {
+	Widget     Widget
+	FocusChild *Widget
+	Bits       uint
+	// BorderWidth : 16
+	// NeedResize : 1
+	// ResizeMode : 2
+	// ReallocateRedraws : 1
+	// HasFocusChain : 1
+}
+
 var (
 	ContainerGetType func() T.GType
 
-	ContainerSetBorderWidth func(
-		container *T.GtkContainer,
-		borderWidth uint)
-
-	ContainerGetBorderWidth func(
-		container *T.GtkContainer) uint
-
-	ContainerAdd func(
-		container *T.GtkContainer,
-		widget *Widget)
-
-	ContainerRemove func(
-		container *T.GtkContainer,
-		widget *Widget)
-
-	ContainerSetResizeMode func(
-		container *T.GtkContainer,
-		resizeMode T.GtkResizeMode)
-
-	ContainerGetResizeMode func(
-		container *T.GtkContainer) T.GtkResizeMode
-
-	ContainerCheckResize func(
-		container *T.GtkContainer)
-
-	ContainerForeach func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		callbackData T.Gpointer)
-
-	ContainerForeachFull func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		marshal T.GtkCallbackMarshal,
-		callbackData T.Gpointer,
-		notify T.GDestroyNotify)
-
-	ContainerGetChildren func(
-		container *T.GtkContainer) *T.GList
-
-	ContainerPropagateExpose func(
-		container *T.GtkContainer,
-		child *Widget,
-		event *T.GdkEventExpose)
-
-	ContainerSetFocusChain func(
-		container *T.GtkContainer,
-		focusableWidgets *T.GList)
-
-	ContainerGetFocusChain func(
-		container *T.GtkContainer,
-		focusableWidgets **T.GList) T.Gboolean
-
-	ContainerUnsetFocusChain func(
-		container *T.GtkContainer)
-
-	ContainerSetReallocateRedraws func(
-		container *T.GtkContainer,
-		needsRedraws T.Gboolean)
-
-	ContainerSetFocusChild func(
-		container *T.GtkContainer,
-		child *Widget)
-
-	ContainerGetFocusChild func(
-		container *T.GtkContainer) *Widget
-
-	ContainerSetFocusVadjustment func(
-		container *T.GtkContainer,
-		adjustment *Adjustment)
-
-	ContainerGetFocusVadjustment func(
-		container *T.GtkContainer) *Adjustment
-
-	ContainerSetFocusHadjustment func(
-		container *T.GtkContainer,
-		adjustment *Adjustment)
-
-	ContainerGetFocusHadjustment func(
-		container *T.GtkContainer) *Adjustment
-
-	ContainerResizeChildren func(
-		container *T.GtkContainer)
-
-	ContainerChildType func(
-		container *T.GtkContainer) T.GType
-
-	ContainerClassInstallChildProperty func(
-		cclass *T.GtkContainerClass,
-		propertyId uint,
-		pspec *T.GParamSpec)
-
-	ContainerClassFindChildProperty func(
-		cclass *T.GObjectClass,
-		propertyName string) *T.GParamSpec
-
-	ContainerClassListChildProperties func(
-		cclass *T.GObjectClass,
-		nProperties *uint) **T.GParamSpec
-
-	ContainerAddWithProperties func(
-		container *T.GtkContainer, widget *Widget,
-		firstPropName string, v ...VArg)
-
-	ContainerChildSet func(
-		container *T.GtkContainer, child *Widget,
-		firstPropName string, v ...VArg)
-
-	ContainerChildGet func(container *T.GtkContainer,
-		child *Widget, firstPropName string, v ...VArg)
-
-	ContainerChildSetValist func(
-		container *T.GtkContainer,
-		child *Widget,
-		firstPropertyName string,
-		varArgs T.VaList)
-
-	ContainerChildGetValist func(
-		container *T.GtkContainer,
-		child *Widget,
-		firstPropertyName string,
-		varArgs T.VaList)
-
-	ContainerChildSetProperty func(
-		container *T.GtkContainer,
-		child *Widget,
-		propertyName string,
-		value *T.GValue)
-
-	ContainerChildGetProperty func(
-		container *T.GtkContainer,
-		child *Widget,
-		propertyName string,
-		value *T.GValue)
-
-	ContainerForall func(
-		container *T.GtkContainer,
-		callback T.GtkCallback,
-		callbackData T.Gpointer)
+	containerAdd                  func(c *Container, widget *Widget)
+	containerAddWithProperties    func(c *Container, widget *Widget, firstPropName string, v ...VArg)
+	containerCheckResize          func(c *Container)
+	containerChildGet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
+	containerChildGetProperty     func(c *Container, child *Widget, propertyName string, value *T.GValue)
+	containerChildGetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
+	containerChildSet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
+	containerChildSetProperty     func(c *Container, child *Widget, propertyName string, value *T.GValue)
+	containerChildSetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
+	containerChildType            func(c *Container) T.GType
+	containerForall               func(c *Container, callback T.GtkCallback, callbackData T.Gpointer)
+	containerForeach              func(c *Container, callback T.GtkCallback, callbackData T.Gpointer)
+	containerForeachFull          func(c *Container, callback T.GtkCallback, marshal T.GtkCallbackMarshal, callbackData T.Gpointer, notify T.GDestroyNotify)
+	containerGetBorderWidth       func(c *Container) uint
+	containerGetChildren          func(c *Container) *T.GList
+	containerGetFocusChain        func(c *Container, focusableWidgets **T.GList) T.Gboolean
+	containerGetFocusChild        func(c *Container) *Widget
+	containerGetFocusHadjustment  func(c *Container) *Adjustment
+	containerGetFocusVadjustment  func(c *Container) *Adjustment
+	containerGetResizeMode        func(c *Container) T.GtkResizeMode
+	containerPropagateExpose      func(c *Container, child *Widget, event *T.GdkEventExpose)
+	containerRemove               func(c *Container, widget *Widget)
+	containerResizeChildren       func(c *Container)
+	containerSetBorderWidth       func(c *Container, borderWidth uint)
+	containerSetFocusChain        func(c *Container, focusableWidgets *T.GList)
+	containerSetFocusChild        func(c *Container, child *Widget)
+	containerSetFocusHadjustment  func(c *Container, adjustment *Adjustment)
+	containerSetFocusVadjustment  func(c *Container, adjustment *Adjustment)
+	containerSetReallocateRedraws func(c *Container, needsRedraws T.Gboolean)
+	containerSetResizeMode        func(c *Container, resizeMode T.GtkResizeMode)
+	containerUnsetFocusChain      func(c *Container)
 )
+
+func (c *Container) Add(widget *Widget) { containerAdd(c, widget) }
+func (c *Container) AddWithProperties(widget *Widget, firstPropName string, v ...VArg) {
+	containerAddWithProperties(c, widget, firstPropName, v)
+}
+func (c *Container) CheckResize() { containerCheckResize(c) }
+func (c *Container) ChildGet(child *Widget, firstPropName string, v ...VArg) {
+	containerChildGet(c, child, firstPropName, v)
+}
+func (c *Container) ChildGetProperty(child *Widget, propertyName string, value *T.GValue) {
+	containerChildGetProperty(c, child, propertyName, value)
+}
+func (c *Container) ChildGetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
+	containerChildGetValist(c, child, firstPropertyName, varArgs)
+}
+func (c *Container) ChildSet(child *Widget, firstPropName string, v ...VArg) {
+	containerChildSet(c, child, firstPropName, v)
+}
+func (c *Container) ChildSetProperty(child *Widget, propertyName string, value *T.GValue) {
+	containerChildSetProperty(c, child, propertyName, value)
+}
+func (c *Container) ChildSetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
+	containerChildSetValist(c, child, firstPropertyName, varArgs)
+}
+func (c *Container) ChildType() T.GType { return containerChildType(c) }
+func (c *Container) Forall(callback T.GtkCallback, callbackData T.Gpointer) {
+	containerForall(c, callback, callbackData)
+}
+func (c *Container) Foreach(callback T.GtkCallback, callbackData T.Gpointer) {
+	containerForeach(c, callback, callbackData)
+}
+func (c *Container) ForeachFull(callback T.GtkCallback, marshal T.GtkCallbackMarshal, callbackData T.Gpointer, notify T.GDestroyNotify) {
+	containerForeachFull(c, callback, marshal, callbackData, notify)
+}
+func (c *Container) GetBorderWidth() uint  { return containerGetBorderWidth(c) }
+func (c *Container) GetChildren() *T.GList { return containerGetChildren(c) }
+func (c *Container) GetFocusChain(focusableWidgets **T.GList) T.Gboolean {
+	return containerGetFocusChain(c, focusableWidgets)
+}
+func (c *Container) GetFocusChild() *Widget           { return containerGetFocusChild(c) }
+func (c *Container) GetFocusHadjustment() *Adjustment { return containerGetFocusHadjustment(c) }
+func (c *Container) GetFocusVadjustment() *Adjustment { return containerGetFocusVadjustment(c) }
+func (c *Container) GetResizeMode() T.GtkResizeMode   { return containerGetResizeMode(c) }
+func (c *Container) PropagateExpose(child *Widget, event *T.GdkEventExpose) {
+	containerPropagateExpose(c, child, event)
+}
+func (c *Container) Remove(widget *Widget)           { containerRemove(c, widget) }
+func (c *Container) ResizeChildren()                 { containerResizeChildren(c) }
+func (c *Container) SetBorderWidth(borderWidth uint) { containerSetBorderWidth(c, borderWidth) }
+func (c *Container) SetFocusChain(focusableWidgets *T.GList) {
+	containerSetFocusChain(c, focusableWidgets)
+}
+func (c *Container) SetFocusChild(child *Widget) { containerSetFocusChild(c, child) }
+func (c *Container) SetFocusHadjustment(adjustment *Adjustment) {
+	containerSetFocusHadjustment(c, adjustment)
+}
+func (c *Container) SetFocusVadjustment(adjustment *Adjustment) {
+	containerSetFocusVadjustment(c, adjustment)
+}
+func (c *Container) SetReallocateRedraws(needsRedraws T.Gboolean) {
+	containerSetReallocateRedraws(c, needsRedraws)
+}
+func (c *Container) SetResizeMode(resizeMode T.GtkResizeMode) { containerSetResizeMode(c, resizeMode) }
+func (c *Container) UnsetFocusChain()                         { containerUnsetFocusChain(c) }
+
+type ContainerClass struct {
+	ParentClass      WidgetClass
+	Add              func(c *Container, w *Widget)
+	Remove           func(c *Container, w *Widget)
+	CheckResize      func(c *Container)
+	Forall           func(c *Container, includeInternals T.Gboolean, callback T.GtkCallback, callbackData T.Gpointer)
+	SetFocusChild    func(c *Container, w *Widget)
+	ChildType        func(c *Container) T.GType
+	CompositeName    func(c *Container, child *Widget) *T.Gchar
+	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
+	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
+	_, _, _, _       func()
+}
+
+var (
+	ContainerClassFindChildProperty   func(cclass *T.GObjectClass, propertyName string) *T.GParamSpec
+	ContainerClassListChildProperties func(cclass *T.GObjectClass, nProperties *uint) **T.GParamSpec
+
+	containerClassInstallChildProperty func(cclass *ContainerClass, propertyId uint, pspec *T.GParamSpec)
+)
+
+func (c *ContainerClass) InstallChildProperty(propertyId uint, pspec *T.GParamSpec) {
+	containerClassInstallChildProperty(c, propertyId, pspec)
+}
 
 type (
 	CTree struct {
