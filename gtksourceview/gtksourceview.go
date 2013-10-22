@@ -7,6 +7,7 @@ package gtksourceview
 
 import (
 	"github.com/tHinqa/outside"
+	G "github.com/tHinqa/outside-gtk2/gtk"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -100,7 +101,7 @@ type (
 	}
 
 	GtkSourceMark struct {
-		Parent_instance T.GtkTextMark
+		Parent_instance G.TextMark
 		Priv            *GtkSourceMarkPrivate
 	}
 
@@ -135,7 +136,7 @@ type (
 	}
 
 	GtkSourceView struct {
-		Parent T.GtkTextView
+		Parent G.TextView
 		Priv   *GtkSourceViewPrivate
 	}
 
@@ -317,7 +318,7 @@ var (
 
 	Gtk_source_buffer_ensure_highlight func(
 		buffer *GtkSourceBuffer,
-		start, end *T.GtkTextIter)
+		start, end *G.TextIter)
 
 	Gtk_source_buffer_undo func(
 		buffer *GtkSourceBuffer)
@@ -334,21 +335,21 @@ var (
 	Gtk_source_buffer_create_source_mark func(
 		buffer *GtkSourceBuffer,
 		name, category string,
-		where *T.GtkTextIter) *GtkSourceMark
+		where *G.TextIter) *GtkSourceMark
 
 	Gtk_source_buffer_forward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		category string) T.Gboolean
 
 	Gtk_source_buffer_backward_iter_to_source_mark func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		category string) T.Gboolean
 
 	Gtk_source_buffer_get_source_marks_at_iter func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		category string) *T.GSList
 
 	Gtk_source_buffer_get_source_marks_at_line func(
@@ -358,27 +359,27 @@ var (
 
 	Gtk_source_buffer_remove_source_marks func(
 		buffer *GtkSourceBuffer,
-		start *T.GtkTextIter,
-		end *T.GtkTextIter,
+		start *G.TextIter,
+		end *G.TextIter,
 		category string)
 
 	Gtk_source_buffer_iter_has_context_class func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		context_class string) T.Gboolean
 
 	Gtk_source_buffer_get_context_classes_at_iter func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter) **T.Gchar
+		iter *G.TextIter) **T.Gchar
 
 	Gtk_source_buffer_iter_forward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		context_class string) T.Gboolean
 
 	Gtk_source_buffer_iter_backward_to_context_class_toggle func(
 		buffer *GtkSourceBuffer,
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		context_class string) T.Gboolean
 
 	Gtk_source_buffer_get_undo_manager func(
@@ -394,8 +395,8 @@ var (
 
 	Gtk_source_completion_info_move_to_iter func(
 		info *GtkSourceCompletionInfo,
-		view *T.GtkTextView,
-		iter *T.GtkTextIter)
+		view *G.TextView,
+		iter *G.TextIter)
 
 	Gtk_source_completion_info_set_sizing func(
 		info *GtkSourceCompletionInfo,
@@ -451,7 +452,7 @@ var (
 
 	Gtk_source_completion_context_get_iter func(
 		context *GtkSourceCompletionContext,
-		iter *T.GtkTextIter)
+		iter *G.TextIter)
 
 	Gtk_source_completion_context_get_activation func(
 		context *GtkSourceCompletionContext) GtkSourceCompletionActivation
@@ -488,12 +489,12 @@ var (
 		provider *GtkSourceCompletionProvider,
 		context *GtkSourceCompletionContext,
 		proposal *GtkSourceCompletionProposal,
-		iter *T.GtkTextIter) T.Gboolean
+		iter *G.TextIter) T.Gboolean
 
 	Gtk_source_completion_provider_activate_proposal func(
 		provider *GtkSourceCompletionProvider,
 		proposal *GtkSourceCompletionProposal,
-		iter *T.GtkTextIter) T.Gboolean
+		iter *G.TextIter) T.Gboolean
 
 	Gtk_source_completion_provider_get_interactive_delay func(
 		provider *GtkSourceCompletionProvider) int
@@ -534,11 +535,11 @@ var (
 
 	Gtk_source_completion_create_context func(
 		completion *GtkSourceCompletion,
-		position *T.GtkTextIter) *GtkSourceCompletionContext
+		position *G.TextIter) *GtkSourceCompletionContext
 
 	Gtk_source_completion_move_window func(
 		completion *GtkSourceCompletion,
-		iter *T.GtkTextIter)
+		iter *G.TextIter)
 
 	Gtk_source_completion_block_interactive func(
 		completion *GtkSourceCompletion)
@@ -784,20 +785,20 @@ var (
 		buffer *T.GtkTextBuffer)
 
 	Gtk_source_iter_forward_search func(
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		str string,
 		flags GtkSourceSearchFlags,
-		match_start *T.GtkTextIter,
-		match_end *T.GtkTextIter,
-		limit *T.GtkTextIter) T.Gboolean
+		match_start *G.TextIter,
+		match_end *G.TextIter,
+		limit *G.TextIter) T.Gboolean
 
 	Gtk_source_iter_backward_search func(
-		iter *T.GtkTextIter,
+		iter *G.TextIter,
 		str string,
 		flags GtkSourceSearchFlags,
-		match_start *T.GtkTextIter,
-		match_end *T.GtkTextIter,
-		limit *T.GtkTextIter) T.Gboolean
+		match_start *G.TextIter,
+		match_end *G.TextIter,
+		limit *G.TextIter) T.Gboolean
 
 	Gtk_source_language_manager_get_type func() T.GType
 

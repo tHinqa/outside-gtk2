@@ -318,26 +318,16 @@ type (
 	GtkIMMulticontextPrivate       struct{}
 	GtkInfoBarPrivate              struct{}
 	GtkLabelSelectionInfo          struct{}
-	GtkMenuToolButtonPrivate       struct{}
 	GtkMountOperationPrivate       struct{}
 	GtkNotebookPage                struct{}
 	GtkOrientable                  struct{}
-	GtkPageSetup                   struct{}
-	GtkPanedPrivate                struct{}
-	GtkPaperSize                   struct{}
-	GtkPrintContext                struct{}
-	GtkPrintOperationPreview       struct{}
-	GtkPrintOperationPrivate       struct{}
-	GtkPrintSettings               struct{}
+	GtkPageSetup                   struct{} //REMOVE
 	GtkRadioActionPrivate          struct{}
 	GtkRangeLayout                 struct{}
 	GtkRangeStepTimer              struct{}
 	GtkRcContext                   struct{}
 	GtkRecentActionPrivate         struct{}
-	GtkRecentChooser               struct{}
 	GtkRecentChooserMenuPrivate    struct{}
-	GtkRecentFilter                struct{}
-	GtkRecentInfo                  struct{}
 	GtkRecentManagerPrivate        struct{}
 	GtkScaleButtonPrivate          struct{}
 	GtkSeparatorToolItemPrivate    struct{}
@@ -355,8 +345,7 @@ type (
 	GtkToolItemGroupPrivate        struct{}
 	GtkToolItemPrivate             struct{}
 	GtkToolPalettePrivate          struct{}
-	GtkToolShell                   struct{}
-	GtkTooltip                     struct{}
+	GtkTooltip                     struct{} // REMOVE
 	GtkUIManagerPrivate            struct{}
 	GtkWindowGeometryInfo          struct{}
 	GTlsBackend                    struct{}
@@ -3265,15 +3254,6 @@ const (
 	GTK_MATCH_LAST
 )
 
-type GtkMenuDirectionType Enum
-
-const (
-	GTK_MENU_DIR_PARENT GtkMenuDirectionType = iota
-	GTK_MENU_DIR_CHILD
-	GTK_MENU_DIR_NEXT
-	GTK_MENU_DIR_PREV
-)
-
 type GtkMessageType Enum
 
 const (
@@ -3378,13 +3358,6 @@ const (
 	GTK_POS_BOTTOM
 )
 
-type GtkPreviewType Enum
-
-const (
-	GTK_PREVIEW_COLOR GtkPreviewType = iota
-	GTK_PREVIEW_GRAYSCALE
-)
-
 type GtkReliefStyle Enum
 
 const (
@@ -3475,15 +3448,6 @@ type GtkSubmenuPlacement Enum
 const (
 	GTK_TOP_BOTTOM GtkSubmenuPlacement = iota
 	GTK_LEFT_RIGHT
-)
-
-type GtkToolbarStyle Enum
-
-const (
-	GTK_TOOLBAR_ICONS GtkToolbarStyle = iota
-	GTK_TOOLBAR_TEXT
-	GTK_TOOLBAR_BOTH
-	GTK_TOOLBAR_BOTH_HORIZ
 )
 
 type GtkUpdateType Enum
@@ -4094,15 +4058,6 @@ const (
 	GTK_ICON_THEME_FAILED
 )
 
-type GtkSizeGroupMode Enum
-
-const (
-	GTK_SIZE_GROUP_NONE GtkSizeGroupMode = iota
-	GTK_SIZE_GROUP_HORIZONTAL
-	GTK_SIZE_GROUP_VERTICAL
-	GTK_SIZE_GROUP_BOTH
-)
-
 type GtkButtonsType Enum
 
 const (
@@ -4162,22 +4117,6 @@ const (
 	GTK_PRINT_ERROR_INVALID_FILE
 )
 
-type GtkProgressBarStyle Enum
-
-const (
-	GTK_PROGRESS_CONTINUOUS GtkProgressBarStyle = iota
-	GTK_PROGRESS_DISCRETE
-)
-
-type GtkProgressBarOrientation Enum
-
-const (
-	GTK_PROGRESS_LEFT_TO_RIGHT GtkProgressBarOrientation = iota
-	GTK_PROGRESS_RIGHT_TO_LEFT
-	GTK_PROGRESS_BOTTOM_TO_TOP
-	GTK_PROGRESS_TOP_TO_BOTTOM
-)
-
 type GtkRecentManagerError Enum
 
 const (
@@ -4190,38 +4129,11 @@ const (
 	GTK_RECENT_MANAGER_ERROR_UNKNOWN
 )
 
-type GtkRecentFilterFlags Enum
-
-const (
-	GTK_RECENT_FILTER_URI GtkRecentFilterFlags = 1 << iota
-	GTK_RECENT_FILTER_DISPLAY_NAME
-	GTK_RECENT_FILTER_MIME_TYPE
-	GTK_RECENT_FILTER_APPLICATION
-	GTK_RECENT_FILTER_GROUP
-	GTK_RECENT_FILTER_AGE
-)
-
-type GtkRecentSortType Enum
-
-const (
-	GTK_RECENT_SORT_NONE GtkRecentSortType = iota
-	GTK_RECENT_SORT_MRU
-	GTK_RECENT_SORT_LRU
-	GTK_RECENT_SORT_CUSTOM
-)
-
 type GtkRecentChooserError Enum
 
 const (
 	GTK_RECENT_CHOOSER_ERROR_NOT_FOUND GtkRecentChooserError = iota
 	GTK_RECENT_CHOOSER_ERROR_INVALID_URI
-)
-
-type GtkSpinButtonUpdatePolicy Enum
-
-const (
-	GTK_UPDATE_ALWAYS GtkSpinButtonUpdatePolicy = iota
-	GTK_UPDATE_IF_VALID
 )
 
 type GtkSpinType Enum
@@ -4256,28 +4168,11 @@ const (
 	GTK_TEXT_WINDOW_BOTTOM
 )
 
-type GtkToolbarChildType Enum
-
-const (
-	GTK_TOOLBAR_CHILD_SPACE GtkToolbarChildType = iota
-	GTK_TOOLBAR_CHILD_BUTTON
-	GTK_TOOLBAR_CHILD_TOGGLEBUTTON
-	GTK_TOOLBAR_CHILD_RADIOBUTTON
-	GTK_TOOLBAR_CHILD_WIDGET
-)
-
 type GtkToolbarSpaceStyle Enum
 
 const (
 	GTK_TOOLBAR_SPACE_EMPTY GtkToolbarSpaceStyle = iota
 	GTK_TOOLBAR_SPACE_LINE
-)
-
-type GtkToolPaletteDragTargets Enum
-
-const (
-	GTK_TOOL_PALETTE_DRAG_ITEMS GtkToolPaletteDragTargets = 1 << iota
-	GTK_TOOL_PALETTE_DRAG_GROUPS
 )
 
 type GtkUIManagerItemType Enum
@@ -4558,8 +4453,6 @@ type (
 
 	GClosureNotify func(data Gpointer, closure *GClosure)
 
-	GtkMenuCallback func(widget *GtkWidget, user_data Gpointer)
-
 	GtkCListCompareFunc func(clist *GtkCList, //REMOVE
 		ptr1 Gconstpointer, ptr2 Gconstpointer) int
 
@@ -4583,33 +4476,8 @@ type (
 	GtkNotebookWindowCreationFunc func(source *GtkNotebook,
 		page *GtkWidget, x int, y int, data Gpointer) *GtkNotebook
 
-	GtkPrintSettingsFunc func(key, value string,
-		user_data Gpointer)
-
 	GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
 		data Gpointer)
-
-	GtkRecentFilterFunc func(
-		filter_info *GtkRecentFilterInfo,
-		user_data Gpointer) Gboolean
-
-	GtkMenuPositionFunc func(menu *GtkMenu,
-		x, y *int, push_in *Gboolean, user_data Gpointer)
-
-	GtkRecentSortFunc func(
-		a, b *GtkRecentInfo, user_data Gpointer) int
-
-	GtkTextTagTableForeach func(tag *GtkTextTag, data Gpointer)
-
-	GtkTextBufferSerializeFunc func(
-		register_buffer, content_buffer *GtkTextBuffer,
-		start, end *GtkTextIter,
-		length *Gsize, user_data Gpointer) *uint8
-
-	GtkTextBufferDeserializeFunc func(
-		register_buffer, content_buffer *GtkTextBuffer,
-		iter *GtkTextIter, data *uint8, length Gsize,
-		create_tags Gboolean, user_data Gpointer, e **GError) Gboolean
 
 	GCompareDataFunc func(
 		a, b Gconstpointer, user_data Gpointer) int
@@ -4727,10 +4595,6 @@ type (
 	GInstanceInitFunc func(
 		instance *GTypeInstance,
 		g_class Gpointer)
-
-	GtkMenuDetachFunc func(
-		attach_widget *GtkWidget,
-		menu *GtkMenu)
 
 	GtkRcPropertyParser func(
 		pspec *GParamSpec,

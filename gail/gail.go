@@ -8,6 +8,7 @@ package gail
 import (
 	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
+	G "github.com/tHinqa/outside-gtk2/gtk"
 )
 
 func init() {
@@ -62,7 +63,7 @@ var (
 
 	Gail_misc_add_to_attr_set func(
 		attrib_set *T.AtkAttributeSet,
-		attrs *T.GtkTextAttributes,
+		attrs *G.TextAttributes,
 		attr T.AtkTextAttribute) *T.AtkAttributeSet
 
 	Gail_misc_buffer_get_run_attributes func(

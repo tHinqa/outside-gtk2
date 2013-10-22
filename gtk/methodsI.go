@@ -532,7 +532,7 @@ func (i *Image) SetFromStock(stockId string, size IconSize) { imageSetFromStock(
 func (i *Image) SetPixelSize(pixelSize int)                 { imageSetPixelSize(i, pixelSize) }
 
 type ImageMenuItem struct {
-	MenuItem T.GtkMenuItem
+	MenuItem MenuItem
 	Image    *Widget
 }
 
@@ -637,12 +637,12 @@ var (
 	ImMulticontextGetType func() T.GType
 	ImMulticontextNew     func() *IMContext
 
-	imMulticontextAppendMenuitems func(i *IMMulticontext, menushell *T.GtkMenuShell)
+	imMulticontextAppendMenuitems func(i *IMMulticontext, menushell *MenuShell)
 	imMulticontextGetContextId    func(i *IMMulticontext) string
 	imMulticontextSetContextId    func(i *IMMulticontext, contextId string)
 )
 
-func (i *IMMulticontext) AppendMenuitems(menushell *T.GtkMenuShell) {
+func (i *IMMulticontext) AppendMenuitems(menushell *MenuShell) {
 	imMulticontextAppendMenuitems(i, menushell)
 }
 func (i *IMMulticontext) GetContextId() string          { return imMulticontextGetContextId(i) }
@@ -753,7 +753,7 @@ var (
 
 	ItemFactoriesPathDelete        func(ifactoryPath string, path string)
 	ItemFactoryAddForeign          func(accelWidget *Widget, fullPath string, accelGroup *AccelGroup, keyval uint, modifiers T.GdkModifierType)
-	ItemFactoryCreateMenuEntries   func(nEntries uint, entries *T.GtkMenuEntry)
+	ItemFactoryCreateMenuEntries   func(nEntries uint, entries *MenuEntry)
 	ItemFactoryFromPath            func(path string) *ItemFactory
 	ItemFactoryFromWidget          func(widget *Widget) *ItemFactory
 	ItemFactoryPathFromWidget      func(widget *Widget) string

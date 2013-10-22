@@ -352,8 +352,8 @@ var (
 )
 
 type CheckMenuItem struct {
-	Menu_item T.GtkMenuItem
-	Bits      uint
+	MenuItem MenuItem
+	Bits     uint
 	// Active : 1
 	// AlwaysShowToggle : 1
 	// Inconsistent : 1

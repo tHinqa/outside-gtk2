@@ -9,175 +9,216 @@ import (
 )
 
 type Widget struct {
-	Object        T.GtkObject
-	Private_flags uint16
-	State         uint8
-	Saved_state   uint8
-	Name          *T.Gchar
-	Style         *T.GtkStyle
-	Requisition   T.GtkRequisition
-	Allocation    T.GtkAllocation
-	Window        *T.GdkWindow
-	Parent        *Widget
+	Object       T.GtkObject
+	PrivateFlags uint16
+	State        uint8
+	SavedState   uint8
+	Name         *T.Gchar
+	Style        *T.GtkStyle
+	Requisition  T.GtkRequisition
+	Allocation   T.GtkAllocation
+	Window       *T.GdkWindow
+	Parent       *Widget
 }
 
 var (
 	WidgetGetType func() T.GType
 	WidgetNew     func(t T.GType, firstPropertyName string, v ...VArg) *Widget
 
+	WidgetFlagsGetType    func() T.GType
+	WidgetHelpTypeGetType func() T.GType
+
+	WidgetGetDefaultColormap  func() *T.GdkColormap
+	WidgetGetDefaultDirection func() T.GtkTextDirection
+	WidgetGetDefaultStyle     func() *T.GtkStyle
+	WidgetGetDefaultVisual    func() *T.GdkVisual
+	WidgetPopColormap         func()
+	WidgetPopCompositeChild   func()
+	WidgetPushColormap        func(cmap *T.GdkColormap)
+	WidgetPushCompositeChild  func()
+	WidgetSetDefaultColormap  func(colormap *T.GdkColormap)
+	WidgetSetDefaultDirection func(dir T.GtkTextDirection)
+
 	//TODO(t): Methods?
 	WidgetTranslateCoordinates func(srcWidget *Widget, destWidget *Widget, srcX int, srcY int, destX *int, destY *int) T.Gboolean
 	WidgetStyleAttach          func(style *Widget)
 
-	widgetActivate             func(w *Widget) T.Gboolean
-	widgetAddAccelerator       func(w *Widget, accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags)
-	widgetAddEvents            func(w *Widget, events int)
-	widgetCanActivateAccel     func(w *Widget, signalId uint) T.Gboolean
-	widgetChildFocus           func(w *Widget, direction T.GtkDirectionType) T.Gboolean
-	widgetChildNotify          func(w *Widget, childProperty string)
-	widgetCreatePangoContext   func(w *Widget) *T.PangoContext
-	widgetCreatePangoLayout    func(w *Widget, text string) *T.PangoLayout
-	widgetDestroy              func(w *Widget)
-	widgetDestroyed            func(w *Widget, widgetPointer **Widget)
-	widgetDraw                 func(w *Widget, area *T.GdkRectangle)
-	widgetEnsureStyle          func(w *Widget)
-	widgetErrorBell            func(w *Widget)
-	widgetEvent                func(w *Widget, event *T.GdkEvent) T.Gboolean
-	widgetFreezeChildNotify    func(w *Widget)
-	widgetGetAccessible        func(w *Widget) *T.AtkObject
-	widgetGetAllocation        func(w *Widget, allocation *T.GtkAllocation)
-	widgetGetAncestor          func(w *Widget, widgetType T.GType) *Widget
-	widgetGetAppPaintable      func(w *Widget) T.Gboolean
-	widgetGetCanDefault        func(w *Widget) T.Gboolean
-	widgetGetCanFocus          func(w *Widget) T.Gboolean
-	widgetGetChildRequisition  func(w *Widget, requisition *T.GtkRequisition)
-	widgetGetChildVisible      func(w *Widget) T.Gboolean
-	widgetGetColormap          func(w *Widget) *T.GdkColormap
-	widgetGetCompositeName     func(w *Widget) string
-	widgetGetDisplay           func(w *Widget) *T.GdkDisplay
-	widgetGetDoubleBuffered    func(w *Widget) T.Gboolean
-	widgetGetEvents            func(w *Widget) int
-	widgetGetExtensionEvents   func(w *Widget) T.GdkExtensionMode
-	widgetGetHasWindow         func(w *Widget) T.Gboolean
-	widgetGetMapped            func(w *Widget) T.Gboolean
-	widgetGetModifierStyle     func(w *Widget) *T.GtkRcStyle
-	widgetGetName              func(w *Widget) string
-	widgetGetNoShowAll         func(w *Widget) T.Gboolean
-	widgetGetPangoContext      func(w *Widget) *T.PangoContext
-	widgetGetParent            func(w *Widget) *Widget
-	widgetGetParentWindow      func(w *Widget) *T.GdkWindow
-	widgetGetPointer           func(w *Widget, x *int, y *int)
-	widgetGetRealized          func(w *Widget) T.Gboolean
-	widgetGetReceivesDefault   func(w *Widget) T.Gboolean
-	widgetGetRequisition       func(w *Widget, requisition *T.GtkRequisition)
-	widgetGetRootWindow        func(w *Widget) *T.GdkWindow
-	widgetGetScreen            func(w *Widget) *T.GdkScreen
-	widgetGetSensitive         func(w *Widget) T.Gboolean
-	widgetGetSettings          func(w *Widget) *T.GtkSettings
-	widgetGetSizeRequest       func(w *Widget, width *int, height *int)
-	widgetGetSnapshot          func(w *Widget, clipRect *T.GdkRectangle) *T.GdkPixmap
-	widgetGetState             func(w *Widget) T.GtkStateType
-	widgetGetStyle             func(w *Widget) *T.GtkStyle
-	widgetGetToplevel          func(w *Widget) *Widget
-	widgetGetVisible           func(w *Widget) T.Gboolean
-	widgetGetVisual            func(w *Widget) *T.GdkVisual
-	widgetGetWindow            func(w *Widget) *T.GdkWindow
-	widgetGrabDefault          func(w *Widget)
-	widgetGrabFocus            func(w *Widget)
-	widgetHasDefault           func(w *Widget) T.Gboolean
-	widgetHasFocus             func(w *Widget) T.Gboolean
-	widgetHasGrab              func(w *Widget) T.Gboolean
-	widgetHasRcStyle           func(w *Widget) T.Gboolean
-	widgetHasScreen            func(w *Widget) T.Gboolean
-	widgetHide                 func(w *Widget)
-	widgetHideAll              func(w *Widget)
-	widgetHideOnDelete         func(w *Widget) T.Gboolean
-	widgetIntersect            func(w *Widget, area, intersection *T.GdkRectangle) T.Gboolean
-	widgetIsAncestor           func(w *Widget, ancestor *Widget) T.Gboolean
-	widgetIsDrawable           func(w *Widget) T.Gboolean
-	widgetIsFocus              func(w *Widget) T.Gboolean
-	widgetIsSensitive          func(w *Widget) T.Gboolean
-	widgetIsToplevel           func(w *Widget) T.Gboolean
-	widgetKeynavFailed         func(w *Widget, direction T.GtkDirectionType) T.Gboolean
-	widgetListAccelClosures    func(w *Widget) *T.GList
-	widgetMap                  func(w *Widget)
-	widgetMnemonicActivate     func(w *Widget, groupCycling T.Gboolean) T.Gboolean
-	widgetModifyBase           func(w *Widget, state T.GtkStateType, color *T.GdkColor)
-	widgetModifyBg             func(w *Widget, state T.GtkStateType, color *T.GdkColor)
-	widgetModifyCursor         func(w *Widget, primary *T.GdkColor, secondary *T.GdkColor)
-	widgetModifyFg             func(w *Widget, state T.GtkStateType, color *T.GdkColor)
-	widgetModifyFont           func(w *Widget, fontDesc *T.PangoFontDescription)
-	widgetModifyStyle          func(w *Widget, style *T.GtkRcStyle)
-	widgetModifyText           func(w *Widget, state T.GtkStateType, color *T.GdkColor)
-	widgetQueueClear           func(w *Widget)
-	widgetQueueClearArea       func(w *Widget, x, y, width, height int)
-	widgetQueueDraw            func(w *Widget)
-	widgetQueueDrawArea        func(w *Widget, x, y, width, height int)
-	widgetQueueResize          func(w *Widget)
-	widgetQueueResizeNoRedraw  func(w *Widget)
-	widgetRealize              func(w *Widget)
-	widgetRef                  func(w *Widget) *Widget
-	widgetRegionIntersect      func(w *Widget, region *T.GdkRegion) *T.GdkRegion
-	widgetRemoveAccelerator    func(w *Widget, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
-	widgetRenderIcon           func(w *Widget, stockId string, size IconSize, detail string) *T.GdkPixbuf
-	widgetReparent             func(widget, newParent *Widget)
-	widgetResetRcStyles        func(w *Widget)
-	widgetSendExpose           func(w *Widget, event *T.GdkEvent) int
-	widgetSendFocusChange      func(w *Widget, event *T.GdkEvent) T.Gboolean
-	widgetSet                  func(w *Widget, firstPropertyName string, v ...VArg)
-	widgetSetAccelPath         func(w *Widget, accelPath string, accelGroup *AccelGroup)
-	widgetSetAllocation        func(w *Widget, allocation *T.GtkAllocation)
-	widgetSetAppPaintable      func(w *Widget, appPaintable T.Gboolean)
-	widgetSetCanDefault        func(w *Widget, canDefault T.Gboolean)
-	widgetSetCanFocus          func(w *Widget, canFocus T.Gboolean)
-	widgetSetChildVisible      func(w *Widget, isVisible T.Gboolean)
-	widgetSetColormap          func(w *Widget, colormap *T.GdkColormap)
-	widgetSetCompositeName     func(w *Widget, name string)
-	widgetSetDoubleBuffered    func(w *Widget, doubleBuffered T.Gboolean)
-	widgetSetEvents            func(w *Widget, events int)
-	widgetSetExtensionEvents   func(w *Widget, mode T.GdkExtensionMode)
-	widgetSetHasWindow         func(w *Widget, hasWindow T.Gboolean)
-	widgetSetMapped            func(w *Widget, mapped T.Gboolean)
-	widgetSetName              func(w *Widget, name string)
-	widgetSetNoShowAll         func(w *Widget, noShowAll T.Gboolean)
-	widgetSetParent            func(w *Widget, parent *Widget)
-	widgetSetParentWindow      func(w *Widget, parentWindow *T.GdkWindow)
-	widgetSetRealized          func(w *Widget, realized T.Gboolean)
-	widgetSetReceivesDefault   func(w *Widget, receivesDefault T.Gboolean)
-	widgetSetRedrawOnAllocate  func(w *Widget, redrawOnAllocate T.Gboolean)
-	widgetSetScrollAdjustments func(w *Widget, hadjustment, vadjustment *Adjustment) T.Gboolean
-	widgetSetSensitive         func(w *Widget, sensitive T.Gboolean)
-	widgetSetSizeRequest       func(w *Widget, width int, height int)
-	widgetSetState             func(w *Widget, state T.GtkStateType)
-	widgetSetStyle             func(w *Widget, style *T.GtkStyle)
-	widgetSetUposition         func(w *Widget, x int, y int)
-	widgetSetUsize             func(w *Widget, width int, height int)
-	widgetSetVisible           func(w *Widget, visible T.Gboolean)
-	widgetSetWindow            func(w *Widget, window *T.GdkWindow)
-	widgetShow                 func(w *Widget)
-	widgetShowAll              func(w *Widget)
-	widgetShowNow              func(w *Widget)
-	widgetSizeAllocate         func(w *Widget, allocation *T.GtkAllocation)
-	widgetSizeRequest          func(w *Widget, requisition *T.GtkRequisition)
-	widgetThawChildNotify      func(w *Widget)
-	widgetUnmap                func(w *Widget)
-	widgetUnparent             func(w *Widget)
-	widgetUnrealize            func(w *Widget)
-	widgetUnref                func(w *Widget)
+	widgetActivate              func(w *Widget) T.Gboolean
+	widgetAddAccelerator        func(w *Widget, accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags)
+	widgetAddEvents             func(w *Widget, events int)
+	widgetAddMnemonicLabel      func(w *Widget, label *Widget)
+	widgetCanActivateAccel      func(w *Widget, signalId uint) T.Gboolean
+	widgetChildFocus            func(w *Widget, direction T.GtkDirectionType) T.Gboolean
+	widgetChildNotify           func(w *Widget, childProperty string)
+	widgetClassPath             func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
+	widgetCreatePangoContext    func(w *Widget) *T.PangoContext
+	widgetCreatePangoLayout     func(w *Widget, text string) *T.PangoLayout
+	widgetDestroy               func(w *Widget)
+	widgetDestroyed             func(w *Widget, widgetPointer **Widget)
+	widgetDraw                  func(w *Widget, area *T.GdkRectangle)
+	widgetEnsureStyle           func(w *Widget)
+	widgetErrorBell             func(w *Widget)
+	widgetEvent                 func(w *Widget, event *T.GdkEvent) T.Gboolean
+	widgetFreezeChildNotify     func(w *Widget)
+	widgetGetAccessible         func(w *Widget) *T.AtkObject
+	widgetGetAllocation         func(w *Widget, allocation *T.GtkAllocation)
+	widgetGetAncestor           func(w *Widget, widgetType T.GType) *Widget
+	widgetGetAppPaintable       func(w *Widget) T.Gboolean
+	widgetGetCanDefault         func(w *Widget) T.Gboolean
+	widgetGetCanFocus           func(w *Widget) T.Gboolean
+	widgetGetChildRequisition   func(w *Widget, requisition *T.GtkRequisition)
+	widgetGetChildVisible       func(w *Widget) T.Gboolean
+	widgetGetColormap           func(w *Widget) *T.GdkColormap
+	widgetGetCompositeName      func(w *Widget) string
+	widgetGetDirection          func(w *Widget) T.GtkTextDirection
+	widgetGetDisplay            func(w *Widget) *T.GdkDisplay
+	widgetGetDoubleBuffered     func(w *Widget) T.Gboolean
+	widgetGetEvents             func(w *Widget) int
+	widgetGetExtensionEvents    func(w *Widget) T.GdkExtensionMode
+	widgetGetHasTooltip         func(w *Widget) T.Gboolean
+	widgetGetHasWindow          func(w *Widget) T.Gboolean
+	widgetGetMapped             func(w *Widget) T.Gboolean
+	widgetGetModifierStyle      func(w *Widget) *T.GtkRcStyle
+	widgetGetName               func(w *Widget) string
+	widgetGetNoShowAll          func(w *Widget) T.Gboolean
+	widgetGetPangoContext       func(w *Widget) *T.PangoContext
+	widgetGetParent             func(w *Widget) *Widget
+	widgetGetParentWindow       func(w *Widget) *T.GdkWindow
+	widgetGetPointer            func(w *Widget, x *int, y *int)
+	widgetGetRealized           func(w *Widget) T.Gboolean
+	widgetGetReceivesDefault    func(w *Widget) T.Gboolean
+	widgetGetRequisition        func(w *Widget, requisition *T.GtkRequisition)
+	widgetGetRootWindow         func(w *Widget) *T.GdkWindow
+	widgetGetScreen             func(w *Widget) *T.GdkScreen
+	widgetGetSensitive          func(w *Widget) T.Gboolean
+	widgetGetSettings           func(w *Widget) *Settings
+	widgetGetSizeRequest        func(w *Widget, width *int, height *int)
+	widgetGetSnapshot           func(w *Widget, clipRect *T.GdkRectangle) *T.GdkPixmap
+	widgetGetState              func(w *Widget) T.GtkStateType
+	widgetGetStyle              func(w *Widget) *T.GtkStyle
+	widgetGetTooltipMarkup      func(w *Widget) string
+	widgetGetTooltipText        func(w *Widget) string
+	widgetGetTooltipWindow      func(w *Widget) *Window
+	widgetGetToplevel           func(w *Widget) *Widget
+	widgetGetVisible            func(w *Widget) T.Gboolean
+	widgetGetVisual             func(w *Widget) *T.GdkVisual
+	widgetGetWindow             func(w *Widget) *T.GdkWindow
+	widgetGrabDefault           func(w *Widget)
+	widgetGrabFocus             func(w *Widget)
+	widgetHasDefault            func(w *Widget) T.Gboolean
+	widgetHasFocus              func(w *Widget) T.Gboolean
+	widgetHasGrab               func(w *Widget) T.Gboolean
+	widgetHasRcStyle            func(w *Widget) T.Gboolean
+	widgetHasScreen             func(w *Widget) T.Gboolean
+	widgetHide                  func(w *Widget)
+	widgetHideAll               func(w *Widget)
+	widgetHideOnDelete          func(w *Widget) T.Gboolean
+	widgetInputShapeCombineMask func(w *Widget, shapeMask *T.GdkBitmap, offsetX, offsetY int)
+	widgetIntersect             func(w *Widget, area, intersection *T.GdkRectangle) T.Gboolean
+	widgetIsAncestor            func(w *Widget, ancestor *Widget) T.Gboolean
+	widgetIsComposited          func(w *Widget) T.Gboolean
+	widgetIsDrawable            func(w *Widget) T.Gboolean
+	widgetIsFocus               func(w *Widget) T.Gboolean
+	widgetIsSensitive           func(w *Widget) T.Gboolean
+	widgetIsToplevel            func(w *Widget) T.Gboolean
+	widgetKeynavFailed          func(w *Widget, direction T.GtkDirectionType) T.Gboolean
+	widgetListAccelClosures     func(w *Widget) *T.GList
+	widgetListMnemonicLabels    func(w *Widget) *T.GList
+	widgetMap                   func(w *Widget)
+	widgetMnemonicActivate      func(w *Widget, groupCycling T.Gboolean) T.Gboolean
+	widgetModifyBase            func(w *Widget, state T.GtkStateType, color *T.GdkColor)
+	widgetModifyBg              func(w *Widget, state T.GtkStateType, color *T.GdkColor)
+	widgetModifyCursor          func(w *Widget, primary *T.GdkColor, secondary *T.GdkColor)
+	widgetModifyFg              func(w *Widget, state T.GtkStateType, color *T.GdkColor)
+	widgetModifyFont            func(w *Widget, fontDesc *T.PangoFontDescription)
+	widgetModifyStyle           func(w *Widget, style *T.GtkRcStyle)
+	widgetModifyText            func(w *Widget, state T.GtkStateType, color *T.GdkColor)
+	widgetPath                  func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
+	widgetQueueClear            func(w *Widget)
+	widgetQueueClearArea        func(w *Widget, x, y, width, height int)
+	widgetQueueDraw             func(w *Widget)
+	widgetQueueDrawArea         func(w *Widget, x, y, width, height int)
+	widgetQueueResize           func(w *Widget)
+	widgetQueueResizeNoRedraw   func(w *Widget)
+	widgetRealize               func(w *Widget)
+	widgetRef                   func(w *Widget) *Widget
+	widgetRegionIntersect       func(w *Widget, region *T.GdkRegion) *T.GdkRegion
+	widgetRemoveAccelerator     func(w *Widget, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
+	widgetRemoveMnemonicLabel   func(w *Widget, label *Widget)
+	widgetRenderIcon            func(w *Widget, stockId string, size IconSize, detail string) *T.GdkPixbuf
+	widgetReparent              func(w, newParent *Widget)
+	widgetResetRcStyles         func(w *Widget)
+	widgetResetShapes           func(w *Widget)
+	widgetSendExpose            func(w *Widget, event *T.GdkEvent) int
+	widgetSendFocusChange       func(w *Widget, event *T.GdkEvent) T.Gboolean
+	widgetSet                   func(w *Widget, firstPropertyName string, v ...VArg)
+	widgetSetAccelPath          func(w *Widget, accelPath string, accelGroup *AccelGroup)
+	widgetSetAllocation         func(w *Widget, allocation *T.GtkAllocation)
+	widgetSetAppPaintable       func(w *Widget, appPaintable T.Gboolean)
+	widgetSetCanDefault         func(w *Widget, canDefault T.Gboolean)
+	widgetSetCanFocus           func(w *Widget, canFocus T.Gboolean)
+	widgetSetChildVisible       func(w *Widget, isVisible T.Gboolean)
+	widgetSetColormap           func(w *Widget, colormap *T.GdkColormap)
+	widgetSetCompositeName      func(w *Widget, name string)
+	widgetSetDirection          func(w *Widget, dir T.GtkTextDirection)
+	widgetSetDoubleBuffered     func(w *Widget, doubleBuffered T.Gboolean)
+	widgetSetEvents             func(w *Widget, events int)
+	widgetSetExtensionEvents    func(w *Widget, mode T.GdkExtensionMode)
+	widgetSetHasTooltip         func(w *Widget, hasTooltip T.Gboolean)
+	widgetSetHasWindow          func(w *Widget, hasWindow T.Gboolean)
+	widgetSetMapped             func(w *Widget, mapped T.Gboolean)
+	widgetSetName               func(w *Widget, name string)
+	widgetSetNoShowAll          func(w *Widget, noShowAll T.Gboolean)
+	widgetSetParent             func(w *Widget, parent *Widget)
+	widgetSetParentWindow       func(w *Widget, parentWindow *T.GdkWindow)
+	widgetSetRealized           func(w *Widget, realized T.Gboolean)
+	widgetSetReceivesDefault    func(w *Widget, receivesDefault T.Gboolean)
+	widgetSetRedrawOnAllocate   func(w *Widget, redrawOnAllocate T.Gboolean)
+	widgetSetScrollAdjustments  func(w *Widget, hadjustment, vadjustment *Adjustment) T.Gboolean
+	widgetSetSensitive          func(w *Widget, sensitive T.Gboolean)
+	widgetSetSizeRequest        func(w *Widget, width int, height int)
+	widgetSetState              func(w *Widget, state T.GtkStateType)
+	widgetSetStyle              func(w *Widget, style *T.GtkStyle)
+	widgetSetTooltipMarkup      func(w *Widget, markup string)
+	widgetSetTooltipText        func(w *Widget, text string)
+	widgetSetTooltipWindow      func(w *Widget, customWindow *Window)
+	widgetSetUposition          func(w *Widget, x int, y int)
+	widgetSetUsize              func(w *Widget, width int, height int)
+	widgetSetVisible            func(w *Widget, visible T.Gboolean)
+	widgetSetWindow             func(w *Widget, window *T.GdkWindow)
+	widgetShapeCombineMask      func(w *Widget, shapeMask *T.GdkBitmap, offsetX, offsetY int)
+	widgetShow                  func(w *Widget)
+	widgetShowAll               func(w *Widget)
+	widgetShowNow               func(w *Widget)
+	widgetSizeAllocate          func(w *Widget, allocation *T.GtkAllocation)
+	widgetSizeRequest           func(w *Widget, requisition *T.GtkRequisition)
+	widgetStyleGet              func(w *Widget, firstPropertyName string, v ...VArg)
+	widgetStyleGetProperty      func(w *Widget, propertyName string, value *T.GValue)
+	widgetStyleGetValist        func(w *Widget, firstPropertyName string, varArgs T.VaList)
+	widgetThawChildNotify       func(w *Widget)
+	widgetTriggerTooltipQuery   func(w *Widget)
+	widgetUnmap                 func(w *Widget)
+	widgetUnparent              func(w *Widget)
+	widgetUnrealize             func(w *Widget)
+	widgetUnref                 func(w *Widget)
 )
 
 func (w *Widget) Activate() T.Gboolean { return widgetActivate(w) }
 func (w *Widget) AddAccelerator(accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags) {
 	widgetAddAccelerator(w, accelSignal, accelGroup, accelKey, accelMods, accelFlags)
 }
-func (w *Widget) AddEvents(events int) { widgetAddEvents(w, events) }
+func (w *Widget) AddEvents(events int)           { widgetAddEvents(w, events) }
+func (w *Widget) AddMnemonicLabel(label *Widget) { widgetAddMnemonicLabel(w, label) }
 func (w *Widget) CanActivateAccel(signalId uint) T.Gboolean {
 	return widgetCanActivateAccel(w, signalId)
 }
 func (w *Widget) ChildFocus(direction T.GtkDirectionType) T.Gboolean {
 	return widgetChildFocus(w, direction)
 }
-func (w *Widget) ChildNotify(childProperty string)    { widgetChildNotify(w, childProperty) }
+func (w *Widget) ChildNotify(childProperty string) { widgetChildNotify(w, childProperty) }
+func (w *Widget) ClassPath(pathLength *uint, path, pathReversed **T.Gchar) {
+	widgetClassPath(w, pathLength, path, pathReversed)
+}
 func (w *Widget) CreatePangoContext() *T.PangoContext { return widgetCreatePangoContext(w) }
 func (w *Widget) CreatePangoLayout(text string) *T.PangoLayout {
 	return widgetCreatePangoLayout(w, text)
@@ -201,10 +242,12 @@ func (w *Widget) GetChildRequisition(requisition *T.GtkRequisition) {
 func (w *Widget) GetChildVisible() T.Gboolean                  { return widgetGetChildVisible(w) }
 func (w *Widget) GetColormap() *T.GdkColormap                  { return widgetGetColormap(w) }
 func (w *Widget) GetCompositeName() string                     { return widgetGetCompositeName(w) }
+func (w *Widget) GetDirection() T.GtkTextDirection             { return widgetGetDirection(w) }
 func (w *Widget) GetDisplay() *T.GdkDisplay                    { return widgetGetDisplay(w) }
 func (w *Widget) GetDoubleBuffered() T.Gboolean                { return widgetGetDoubleBuffered(w) }
 func (w *Widget) GetEvents() int                               { return widgetGetEvents(w) }
 func (w *Widget) GetExtensionEvents() T.GdkExtensionMode       { return widgetGetExtensionEvents(w) }
+func (w *Widget) GetHasTooltip() T.Gboolean                    { return widgetGetHasTooltip(w) }
 func (w *Widget) GetHasWindow() T.Gboolean                     { return widgetGetHasWindow(w) }
 func (w *Widget) GetMapped() T.Gboolean                        { return widgetGetMapped(w) }
 func (w *Widget) GetModifierStyle() *T.GtkRcStyle              { return widgetGetModifierStyle(w) }
@@ -220,31 +263,38 @@ func (w *Widget) GetRequisition(requisition *T.GtkRequisition) { widgetGetRequis
 func (w *Widget) GetRootWindow() *T.GdkWindow                  { return widgetGetRootWindow(w) }
 func (w *Widget) GetScreen() *T.GdkScreen                      { return widgetGetScreen(w) }
 func (w *Widget) GetSensitive() T.Gboolean                     { return widgetGetSensitive(w) }
-func (w *Widget) GetSettings() *T.GtkSettings                  { return widgetGetSettings(w) }
+func (w *Widget) GetSettings() *Settings                       { return widgetGetSettings(w) }
 func (w *Widget) GetSizeRequest(width, height *int)            { widgetGetSizeRequest(w, width, height) }
 func (w *Widget) GetSnapshot(clipRect *T.GdkRectangle) *T.GdkPixmap {
 	return widgetGetSnapshot(w, clipRect)
 }
-func (w *Widget) GetState() T.GtkStateType { return widgetGetState(w) }
-func (w *Widget) GetStyle() *T.GtkStyle    { return widgetGetStyle(w) }
-func (w *Widget) GetToplevel() *Widget     { return widgetGetToplevel(w) }
-func (w *Widget) GetVisible() T.Gboolean   { return widgetGetVisible(w) }
-func (w *Widget) GetVisual() *T.GdkVisual  { return widgetGetVisual(w) }
-func (w *Widget) GetWindow() *T.GdkWindow  { return widgetGetWindow(w) }
-func (w *Widget) GrabDefault()             { widgetGrabDefault(w) }
-func (w *Widget) GrabFocus()               { widgetGrabFocus(w) }
-func (w *Widget) HasDefault() T.Gboolean   { return widgetHasDefault(w) }
-func (w *Widget) HasFocus() T.Gboolean     { return widgetHasFocus(w) }
-func (w *Widget) HasGrab() T.Gboolean      { return widgetHasGrab(w) }
-func (w *Widget) HasRcStyle() T.Gboolean   { return widgetHasRcStyle(w) }
-func (w *Widget) HasScreen() T.Gboolean    { return widgetHasScreen(w) }
-func (w *Widget) Hide()                    { widgetHide(w) }
-func (w *Widget) HideAll()                 { widgetHideAll(w) }
-func (w *Widget) HideOnDelete() T.Gboolean { return widgetHideOnDelete(w) }
+func (w *Widget) GetState() T.GtkStateType  { return widgetGetState(w) }
+func (w *Widget) GetStyle() *T.GtkStyle     { return widgetGetStyle(w) }
+func (w *Widget) GetTooltipMarkup() string  { return widgetGetTooltipMarkup(w) }
+func (w *Widget) GetTooltipText() string    { return widgetGetTooltipText(w) }
+func (w *Widget) GetTooltipWindow() *Window { return widgetGetTooltipWindow(w) }
+func (w *Widget) GetToplevel() *Widget      { return widgetGetToplevel(w) }
+func (w *Widget) GetVisible() T.Gboolean    { return widgetGetVisible(w) }
+func (w *Widget) GetVisual() *T.GdkVisual   { return widgetGetVisual(w) }
+func (w *Widget) GetWindow() *T.GdkWindow   { return widgetGetWindow(w) }
+func (w *Widget) GrabDefault()              { widgetGrabDefault(w) }
+func (w *Widget) GrabFocus()                { widgetGrabFocus(w) }
+func (w *Widget) HasDefault() T.Gboolean    { return widgetHasDefault(w) }
+func (w *Widget) HasFocus() T.Gboolean      { return widgetHasFocus(w) }
+func (w *Widget) HasGrab() T.Gboolean       { return widgetHasGrab(w) }
+func (w *Widget) HasRcStyle() T.Gboolean    { return widgetHasRcStyle(w) }
+func (w *Widget) HasScreen() T.Gboolean     { return widgetHasScreen(w) }
+func (w *Widget) Hide()                     { widgetHide(w) }
+func (w *Widget) HideAll()                  { widgetHideAll(w) }
+func (w *Widget) HideOnDelete() T.Gboolean  { return widgetHideOnDelete(w) }
+func (w *Widget) InputShapeCombineMask(shapeMask *T.GdkBitmap, offsetX, offsetY int) {
+	widgetInputShapeCombineMask(w, shapeMask, offsetX, offsetY)
+}
 func (w *Widget) Intersect(area, intersection *T.GdkRectangle) T.Gboolean {
 	return widgetIntersect(w, area, intersection)
 }
 func (w *Widget) IsAncestor(ancestor *Widget) T.Gboolean { return widgetIsAncestor(w, ancestor) }
+func (w *Widget) IsComposited() T.Gboolean               { return widgetIsComposited(w) }
 func (w *Widget) IsDrawable() T.Gboolean                 { return widgetIsDrawable(w) }
 func (w *Widget) IsFocus() T.Gboolean                    { return widgetIsFocus(w) }
 func (w *Widget) IsSensitive() T.Gboolean                { return widgetIsSensitive(w) }
@@ -252,8 +302,9 @@ func (w *Widget) IsToplevel() T.Gboolean                 { return widgetIsToplev
 func (w *Widget) KeynavFailed(direction T.GtkDirectionType) T.Gboolean {
 	return widgetKeynavFailed(w, direction)
 }
-func (w *Widget) ListAccelClosures() *T.GList { return widgetListAccelClosures(w) }
-func (w *Widget) Map()                        { widgetMap(w) }
+func (w *Widget) ListAccelClosures() *T.GList  { return widgetListAccelClosures(w) }
+func (w *Widget) ListMnemonicLabels() *T.GList { return widgetListMnemonicLabels(w) }
+func (w *Widget) Map()                         { widgetMap(w) }
 func (w *Widget) MnemonicActivate(groupCycling T.Gboolean) T.Gboolean {
 	return widgetMnemonicActivate(w, groupCycling)
 }
@@ -270,6 +321,9 @@ func (w *Widget) ModifyStyle(style *T.GtkRcStyle)                  { widgetModif
 func (w *Widget) ModifyText(state T.GtkStateType, color *T.GdkColor) {
 	widgetModifyText(w, state, color)
 }
+func (w *Widget) Path(pathLength *uint, path, pathReversed **T.Gchar) {
+	widgetPath(w, pathLength, path, pathReversed)
+}
 func (w *Widget) QueueClear()                            { widgetQueueClear(w) }
 func (w *Widget) QueueClearArea(x, y, width, height int) { widgetQueueClearArea(w, x, y, width, height) }
 func (w *Widget) QueueDraw()                             { widgetQueueDraw(w) }
@@ -284,11 +338,13 @@ func (w *Widget) RegionIntersect(region *T.GdkRegion) *T.GdkRegion {
 func (w *Widget) RemoveAccelerator(accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
 	return widgetRemoveAccelerator(w, accelGroup, accelKey, accelMods)
 }
+func (w *Widget) RemoveMnemonicLabel(label *Widget) { widgetRemoveMnemonicLabel(w, label) }
 func (w *Widget) RenderIcon(stockId string, size IconSize, detail string) *T.GdkPixbuf {
 	return widgetRenderIcon(w, stockId, size, detail)
 }
 func (w *Widget) Reparent(newParent *Widget)                   { widgetReparent(w, newParent) }
 func (w *Widget) ResetRcStyles()                               { widgetResetRcStyles(w) }
+func (w *Widget) ResetShapes()                                 { widgetResetShapes(w) }
 func (w *Widget) SendExpose(event *T.GdkEvent) int             { return widgetSendExpose(w, event) }
 func (w *Widget) SendFocusChange(event *T.GdkEvent) T.Gboolean { return widgetSendFocusChange(w, event) }
 func (w *Widget) Set(firstPropertyName string, v ...VArg)      { widgetSet(w, firstPropertyName, v) }
@@ -302,11 +358,13 @@ func (w *Widget) SetCanFocus(canFocus T.Gboolean)           { widgetSetCanFocus(
 func (w *Widget) SetChildVisible(isVisible T.Gboolean)      { widgetSetChildVisible(w, isVisible) }
 func (w *Widget) SetColormap(colormap *T.GdkColormap)       { widgetSetColormap(w, colormap) }
 func (w *Widget) SetCompositeName(name string)              { widgetSetCompositeName(w, name) }
+func (w *Widget) SetDirection(dir T.GtkTextDirection)       { widgetSetDirection(w, dir) }
 func (w *Widget) SetDoubleBuffered(doubleBuffered T.Gboolean) {
 	widgetSetDoubleBuffered(w, doubleBuffered)
 }
 func (w *Widget) SetEvents(events int)                       { widgetSetEvents(w, events) }
 func (w *Widget) SetExtensionEvents(mode T.GdkExtensionMode) { widgetSetExtensionEvents(w, mode) }
+func (w *Widget) SetHasTooltip(hasTooltip T.Gboolean)        { widgetSetHasTooltip(w, hasTooltip) }
 func (w *Widget) SetHasWindow(hasWindow T.Gboolean)          { widgetSetHasWindow(w, hasWindow) }
 func (w *Widget) SetMapped(mapped T.Gboolean)                { widgetSetMapped(w, mapped) }
 func (w *Widget) SetName(name string)                        { widgetSetName(w, name) }
@@ -323,24 +381,200 @@ func (w *Widget) SetRedrawOnAllocate(redrawOnAllocate T.Gboolean) {
 func (w *Widget) SetScrollAdjustments(hadjustment, vadjustment *Adjustment) T.Gboolean {
 	return widgetSetScrollAdjustments(w, hadjustment, vadjustment)
 }
-func (w *Widget) SetSensitive(sensitive T.Gboolean)         { widgetSetSensitive(w, sensitive) }
-func (w *Widget) SetSizeRequest(width, height int)          { widgetSetSizeRequest(w, width, height) }
-func (w *Widget) SetState(state T.GtkStateType)             { widgetSetState(w, state) }
-func (w *Widget) SetStyle(style *T.GtkStyle)                { widgetSetStyle(w, style) }
-func (w *Widget) SetUposition(x, y int)                     { widgetSetUposition(w, x, y) }
-func (w *Widget) SetUsize(width, height int)                { widgetSetUsize(w, width, height) }
-func (w *Widget) SetVisible(visible T.Gboolean)             { widgetSetVisible(w, visible) }
-func (w *Widget) SetWindow(window *T.GdkWindow)             { widgetSetWindow(w, window) }
+func (w *Widget) SetSensitive(sensitive T.Gboolean)     { widgetSetSensitive(w, sensitive) }
+func (w *Widget) SetSizeRequest(width, height int)      { widgetSetSizeRequest(w, width, height) }
+func (w *Widget) SetState(state T.GtkStateType)         { widgetSetState(w, state) }
+func (w *Widget) SetStyle(style *T.GtkStyle)            { widgetSetStyle(w, style) }
+func (w *Widget) SetTooltipMarkup(markup string)        { widgetSetTooltipMarkup(w, markup) }
+func (w *Widget) SetTooltipText(text string)            { widgetSetTooltipText(w, text) }
+func (w *Widget) SetTooltipWindow(customWindow *Window) { widgetSetTooltipWindow(w, customWindow) }
+func (w *Widget) SetUposition(x, y int)                 { widgetSetUposition(w, x, y) }
+func (w *Widget) SetUsize(width, height int)            { widgetSetUsize(w, width, height) }
+func (w *Widget) SetVisible(visible T.Gboolean)         { widgetSetVisible(w, visible) }
+func (w *Widget) SetWindow(window *T.GdkWindow)         { widgetSetWindow(w, window) }
+func (w *Widget) ShapeCombineMask(shapeMask *T.GdkBitmap, offsetX, offsetY int) {
+	widgetShapeCombineMask(w, shapeMask, offsetX, offsetY)
+}
 func (w *Widget) Show()                                     { widgetShow(w) }
 func (w *Widget) ShowAll()                                  { widgetShowAll(w) }
 func (w *Widget) ShowNow()                                  { widgetShowNow(w) }
 func (w *Widget) SizeAllocate(allocation *T.GtkAllocation)  { widgetSizeAllocate(w, allocation) }
 func (w *Widget) SizeRequest(requisition *T.GtkRequisition) { widgetSizeRequest(w, requisition) }
-func (w *Widget) ThawChildNotify()                          { widgetThawChildNotify(w) }
-func (w *Widget) Unmap()                                    { widgetUnmap(w) }
-func (w *Widget) Unparent()                                 { widgetUnparent(w) }
-func (w *Widget) Unrealize()                                { widgetUnrealize(w) }
-func (w *Widget) Unref()                                    { widgetUnref(w) }
+func (w *Widget) StyleGet(firstPropertyName string, v ...VArg) {
+	widgetStyleGet(w, firstPropertyName, v)
+}
+func (w *Widget) StyleGetProperty(propertyName string, value *T.GValue) {
+	widgetStyleGetProperty(w, propertyName, value)
+}
+func (w *Widget) StyleGetValist(firstPropertyName string, varArgs T.VaList) {
+	widgetStyleGetValist(w, firstPropertyName, varArgs)
+}
+func (w *Widget) ThawChildNotify()     { widgetThawChildNotify(w) }
+func (w *Widget) TriggerTooltipQuery() { widgetTriggerTooltipQuery(w) }
+func (w *Widget) Unmap()               { widgetUnmap(w) }
+func (w *Widget) Unparent()            { widgetUnparent(w) }
+func (w *Widget) Unrealize()           { widgetUnrealize(w) }
+func (w *Widget) Unref()               { widgetUnref(w) }
+
+type WidgetClass struct {
+	ParentClass                    T.GtkObjectClass
+	ActivateSignal                 uint
+	SetScrollAdjustmentsSignal     uint
+	DispatchChildPropertiesChanged func(
+		widget *Widget,
+		nPspecs uint,
+		pspecs **T.GParamSpec)
+	Show        func(widget *Widget)
+	ShowAll     func(widget *Widget)
+	Hide        func(widget *Widget)
+	HideAll     func(widget *Widget)
+	Map         func(widget *Widget)
+	Unmap       func(widget *Widget)
+	Realize     func(widget *Widget)
+	Unrealize   func(widget *Widget)
+	SizeRequest func(widget *Widget,
+		requisition *T.GtkRequisition)
+	SizeAllocate func(widget *Widget,
+		allocation *T.GtkAllocation)
+	StateChanged func(widget *Widget,
+		previousState T.GtkStateType)
+	ParentSet func(widget *Widget,
+		previousParent *Widget)
+	HierarchyChanged func(widget *Widget,
+		previousToplevel *Widget)
+	StyleSet func(widget *Widget,
+		previousStyle *T.GtkStyle)
+	DirectionChanged func(widget *Widget,
+		previousDirection T.GtkTextDirection)
+	GrabNotify func(widget *Widget,
+		wasGrabbed T.Gboolean)
+	ChildNotify func(widget *Widget,
+		pspec *T.GParamSpec)
+	MnemonicActivate func(widget *Widget,
+		groupCycling T.Gboolean) T.Gboolean
+	GrabFocus func(widget *Widget)
+	Focus     func(widget *Widget,
+		direction T.GtkDirectionType) T.Gboolean
+	Event func(widget *Widget,
+		event *T.GdkEvent) T.Gboolean
+	ButtonPressEvent func(widget *Widget,
+		event *T.GdkEventButton) T.Gboolean
+	ButtonReleaseEvent func(widget *Widget,
+		event *T.GdkEventButton) T.Gboolean
+	ScrollEvent func(widget *Widget,
+		event *T.GdkEventScroll) T.Gboolean
+	MotionNotifyEvent func(widget *Widget,
+		event *T.GdkEventMotion) T.Gboolean
+	DeleteEvent func(widget *Widget,
+		event *T.GdkEventAny) T.Gboolean
+	DestroyEvent func(widget *Widget,
+		event *T.GdkEventAny) T.Gboolean
+	ExposeEvent func(widget *Widget,
+		event *T.GdkEventExpose) T.Gboolean
+	KeyPressEvent func(widget *Widget,
+		event *T.GdkEventKey) T.Gboolean
+	KeyReleaseEvent func(widget *Widget,
+		event *T.GdkEventKey) T.Gboolean
+	EnterNotifyEvent func(widget *Widget,
+		event *T.GdkEventCrossing) T.Gboolean
+	LeaveNotifyEvent func(widget *Widget,
+		event *T.GdkEventCrossing) T.Gboolean
+	ConfigureEvent func(widget *Widget,
+		event *T.GdkEventConfigure) T.Gboolean
+	FocusInEvent func(widget *Widget,
+		event *T.GdkEventFocus) T.Gboolean
+	FocusOutEvent func(widget *Widget,
+		event *T.GdkEventFocus) T.Gboolean
+	MapEvent func(widget *Widget,
+		event *T.GdkEventAny) T.Gboolean
+	UnmapEvent func(widget *Widget,
+		event *T.GdkEventAny) T.Gboolean
+	PropertyNotifyEvent func(widget *Widget,
+		event *T.GdkEventProperty) T.Gboolean
+	SelectionClearEvent func(widget *Widget,
+		event *T.GdkEventSelection) T.Gboolean
+	SelectionRequestEvent func(widget *Widget,
+		event *T.GdkEventSelection) T.Gboolean
+	SelectionNotifyEvent func(widget *Widget,
+		event *T.GdkEventSelection) T.Gboolean
+	ProximityInEvent func(widget *Widget,
+		event *T.GdkEventProximity) T.Gboolean
+	ProximityOutEvent func(widget *Widget,
+		event *T.GdkEventProximity) T.Gboolean
+	VisibilityNotifyEvent func(widget *Widget,
+		event *T.GdkEventVisibility) T.Gboolean
+	ClientEvent func(widget *Widget,
+		event *T.GdkEventClient) T.Gboolean
+	NoExposeEvent func(widget *Widget,
+		event *T.GdkEventAny) T.Gboolean
+	WindowStateEvent func(widget *Widget,
+		event *T.GdkEventWindowState) T.Gboolean
+	SelectionGet func(widget *Widget,
+		selectionData *T.GtkSelectionData,
+		info, time uint)
+	SelectionReceived func(widget *Widget,
+		selectionData *T.GtkSelectionData,
+		time uint)
+	DragBegin func(widget *Widget,
+		context *T.GdkDragContext)
+	DragEnd func(widget *Widget,
+		context *T.GdkDragContext)
+	DragDataGet func(widget *Widget,
+		context *T.GdkDragContext,
+		selectionData *T.GtkSelectionData,
+		info, time uint)
+	DragDataDelete func(widget *Widget,
+		context *T.GdkDragContext)
+	DragLeave func(widget *Widget,
+		context *T.GdkDragContext,
+		time uint)
+	DragMotion func(widget *Widget,
+		context *T.GdkDragContext,
+		x, y int, time uint) T.Gboolean
+	DragDrop func(widget *Widget,
+		context *T.GdkDragContext,
+		x, y int, time uint) T.Gboolean
+	DragDataReceived func(widget *Widget,
+		context *T.GdkDragContext,
+		x, y int,
+		selectionData *T.GtkSelectionData,
+		info, time uint)
+	PopupMenu func(widget *Widget) T.Gboolean
+	ShowHelp  func(widget *Widget,
+		helpType T.GtkWidgetHelpType) T.Gboolean
+	GetAccessible func(widget *Widget) *T.AtkObject
+	ScreenChanged func(widget *Widget,
+		previousScreen *T.GdkScreen) T.Gboolean
+	CanActivateAccel func(widget *Widget,
+		signalId uint) T.Gboolean
+	GrabBrokenEvent func(widget *Widget,
+		event *T.GdkEventGrabBroken) T.Gboolean
+	CompositedChanged func(widget *Widget)
+	QueryTooltip      func(widget *Widget,
+		x, y int, keyboardTooltip T.Gboolean,
+		tooltip *Tooltip) T.Gboolean
+	_, _, _ func()
+}
+
+var (
+	widgetClassFindStyleProperty          func(w *WidgetClass, propertyName string) *T.GParamSpec
+	widgetClassInstallStyleProperty       func(w *WidgetClass, pspec *T.GParamSpec)
+	widgetClassInstallStylePropertyParser func(w *WidgetClass, pspec *T.GParamSpec, parser T.GtkRcPropertyParser)
+	widgetClassListStyleProperties        func(w *WidgetClass, nProperties *uint) **T.GParamSpec
+)
+
+func (w *WidgetClass) FindStyleProperty(propertyName string) *T.GParamSpec {
+	return widgetClassFindStyleProperty(w, propertyName)
+}
+func (w *WidgetClass) InstallStyleProperty(pspec *T.GParamSpec) {
+	widgetClassInstallStyleProperty(w, pspec)
+}
+func (w *WidgetClass) InstallStylePropertyParser(pspec *T.GParamSpec, parser T.GtkRcPropertyParser) {
+	widgetClassInstallStylePropertyParser(w, pspec, parser)
+}
+func (w *WidgetClass) ListStyleProperties(nProperties *uint) **T.GParamSpec {
+	return widgetClassListStyleProperties(w, nProperties)
+}
 
 type Window struct {
 	Bin                   Bin
@@ -367,7 +601,7 @@ type Window struct {
 	// HasFocus : 1
 	// Modal : 1
 	// DestroyWithParent : 1
-	// has_frame : 1
+	// HasFrame : 1
 	// IconifyInitially : 1
 	// StickInitially : 1
 	// MaximizeInitially : 1

@@ -164,7 +164,7 @@ var (
 	entrySetEditable              func(e *Entry, editable T.Gboolean)
 	entrySetHasFrame              func(e *Entry, setting T.Gboolean)
 	entrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable T.Gboolean)
-	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *T.GtkTargetList, actions T.GdkDragAction)
+	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions T.GdkDragAction)
 	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *T.GIcon)
 	entrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
 	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *T.GdkPixbuf)
@@ -252,7 +252,7 @@ func (e *Entry) SetHasFrame(setting T.Gboolean)              { entrySetHasFrame(
 func (e *Entry) SetIconActivatable(iconPos EntryIconPosition, activatable T.Gboolean) {
 	entrySetIconActivatable(e, iconPos, activatable)
 }
-func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *T.GtkTargetList, actions T.GdkDragAction) {
+func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *TargetList, actions T.GdkDragAction) {
 	entrySetIconDragSource(e, iconPos, targetList, actions)
 }
 func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *T.GIcon) {
