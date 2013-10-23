@@ -627,6 +627,8 @@ func (r *RecentManager) RemoveItem(uri string, err **T.GError) T.Gboolean {
 func (r *RecentManager) SetLimit(limit int)            { recentManagerSetLimit(r, limit) }
 func (r *RecentManager) SetScreen(screen *T.GdkScreen) { recentManagerSetScreen(r, screen) }
 
+var RecentSortTypeGetType func() T.GType
+
 type ReliefStyle T.Enum
 
 const (
@@ -642,7 +644,15 @@ type Requisition struct {
 	Height int
 }
 
-var RequisitionGetType func() T.GType
+var (
+	RequisitionGetType func() T.GType
+
+	requisitionCopy func(r *Requisition) *Requisition
+	requisitionFree func(r *Requisition)
+)
+
+func (r *Requisition) Copy() *Requisition { return requisitionCopy(r) }
+func (r *Requisition) Free()              { requisitionFree(r) }
 
 type ResizeMode T.Enum
 
@@ -653,6 +663,24 @@ const (
 )
 
 var ResizeModeGetType func() T.GType
+
+type ResponseType T.Enum
+
+const (
+	RESPONSE_NONE ResponseType = -(iota + 1)
+	RESPONSE_REJECT
+	RESPONSE_ACCEPT
+	RESPONSE_DELETE_EVENT
+	RESPONSE_OK
+	RESPONSE_CANCEL
+	RESPONSE_CLOSE
+	RESPONSE_YES
+	RESPONSE_NO
+	RESPONSE_APPLY
+	RESPONSE_HELP
+)
+
+var ResponseTypeGetType func() T.GType
 
 type (
 	Ruler struct {

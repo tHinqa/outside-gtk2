@@ -444,6 +444,21 @@ const (
 
 var PrintDuplexGetType func() T.GType
 
+type PrintError T.Enum
+
+const (
+	PRINT_ERROR_GENERAL PrintError = iota
+	PRINT_ERROR_INTERNAL_ERROR
+	PRINT_ERROR_NOMEM
+	PRINT_ERROR_INVALID_FILE
+)
+
+var (
+	PrintErrorGetType func() T.GType
+
+	PrintErrorQuark func() T.GQuark
+)
+
 type PrintOperation struct {
 	Parent_instance T.GObject
 	_               *struct{}
@@ -603,7 +618,19 @@ const (
 )
 
 var PrintQualityGetType func() T.GType
+var (
+	PrintRunPageSetupDialog func(
+		parent *Window,
+		pageSetup *PageSetup,
+		settings *PrintSettings) *PageSetup
 
+	PrintRunPageSetupDialogAsync func(
+		parent *Window,
+		pageSetup *PageSetup,
+		settings *PrintSettings,
+		doneCb PageSetupDoneFunc,
+		data T.Gpointer)
+)
 var (
 	PrintSettingsGetType        func() T.GType
 	PrintSettingsNew            func() *PrintSettings
@@ -823,6 +850,8 @@ type Progress struct {
 	// ActivityMode : 1
 	// UseTextFormat : 1
 }
+
+var PrivateFlagsGetType func() T.GType //TODO(t):Use?
 
 var (
 	ProgressGetType func() T.GType

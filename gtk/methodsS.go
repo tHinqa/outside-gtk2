@@ -5,7 +5,7 @@ package gtk
 
 import (
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
+	. "github.com/tHinqa/outside/types"
 )
 
 type Scale struct {
@@ -79,6 +79,8 @@ func (s *ScaleButton) SetOrientation(orientation Orientation) {
 }
 func (s *ScaleButton) SetValue(value float64) { scaleButtonSetValue(s, value) }
 
+var ScrollbarGetType func() T.GType //TODO(t):Use?
+
 type ScrolledWindow struct {
 	Container  Bin
 	Hscrollbar *Widget
@@ -140,6 +142,8 @@ func (s *ScrolledWindow) SetVadjustment(vadjustment *Adjustment) {
 }
 func (s *ScrolledWindow) UnsetPlacement() { scrolledWindowUnsetPlacement(s) }
 
+var ScrollStepGetType func() T.GType //TODO(t):Use?
+
 type ScrollType T.Enum
 
 const (
@@ -176,7 +180,16 @@ type SelectionData struct {
 var (
 	SelectionDataGetType func() T.GType
 
-	selectionDataCopy                   func(s *SelectionData) *SelectionData
+	SelectionAddTarget          func(widget *Widget, selection, target T.GdkAtom, info uint)
+	SelectionAddTargets         func(widget *Widget, selection T.GdkAtom, targets *TargetEntry, ntargets uint)
+	SelectionClear              func(widget *Widget, event *T.GdkEventSelection) T.Gboolean
+	SelectionClearTargets       func(widget *Widget, selection T.GdkAtom)
+	SelectionConvert            func(widget *Widget, selection, target T.GdkAtom, time T.GUint32) T.Gboolean
+	selectionDataCopy           func(s *SelectionData) *SelectionData
+	SelectionOwnerSet           func(widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
+	SelectionOwnerSetForDisplay func(display *T.GdkDisplay, widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
+	SelectionRemoveAll          func(widget *Widget)
+
 	selectionDataFree                   func(s *SelectionData)
 	selectionDataGetData                func(s *SelectionData) *T.Guchar
 	selectionDataGetDataType            func(s *SelectionData) T.GdkAtom
@@ -255,6 +268,13 @@ const (
 
 var SensitivityTypeGetType func() T.GType
 
+var (
+	SeparatorGetType func() T.GType
+
+	SeparatorMenuItemGetType func() T.GType
+	SeparatorMenuItemNew     func() *Widget
+)
+
 type SeparatorToolItem struct {
 	Parent ToolItem
 	_      *struct{}
@@ -325,6 +345,17 @@ const (
 
 var ShadowTypeGetType func() T.GType
 
+type SideType T.Enum
+
+const (
+	SIDE_TOP SideType = iota
+	SIDE_BOTTOM
+	SIDE_LEFT
+	SIDE_RIGHT
+)
+
+var SideTypeGetType func() T.GType
+
 type SignalRunType T.Enum
 
 const (
@@ -335,6 +366,8 @@ const (
 	RUN_ACTION                   = SignalRunType(T.G_SIGNAL_ACTION)
 	RUN_NO_HOOKS                 = SignalRunType(T.G_SIGNAL_NO_HOOKS)
 )
+
+var SignalRunTypeGetType func() T.GType
 
 type SizeGroup struct {
 	Parent  T.GObject
@@ -422,6 +455,8 @@ const (
 	SORT_ASCENDING SortType = iota
 	SORT_DESCENDING
 )
+
+var SortTypeGetType func() T.GType
 
 type SpinButton struct {
 	Entry        Entry
@@ -734,7 +769,10 @@ var (
 	styleAttach                 func(s *Style, window *T.GdkWindow) *Style
 	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
+	styleGet                    func(s *Style, widgetType T.GType, firstPropertyName string, v ...VArg)
 	styleGetFont                func(s *Style) *T.GdkFont
+	styleGetStyleProperty       func(s *Style, widgetType T.GType, propertyName string, value *T.GValue)
+	styleGetValist              func(s *Style, widgetType T.GType, firstPropertyName string, varArgs T.VaList)
 	styleLookupColor            func(s *Style, colorName string, color *T.GdkColor) T.Gboolean
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
 	styleRef                    func(s *Style) *Style
@@ -750,7 +788,16 @@ func (s *Style) ApplyDefaultBackground(window *T.GdkWindow, setBg T.Gboolean, st
 func (s *Style) Attach(window *T.GdkWindow) *Style { return styleAttach(s, window) }
 func (s *Style) Copy() *Style                      { return styleCopy(s) }
 func (s *Style) Detach()                           { styleDetach(s) }
-func (s *Style) GetFont() *T.GdkFont               { return styleGetFont(s) }
+func (s *Style) Get(widgetType T.GType, firstPropertyName string, v ...VArg) {
+	styleGet(s, widgetType, firstPropertyName, v)
+}
+func (s *Style) GetFont() *T.GdkFont { return styleGetFont(s) }
+func (s *Style) GetStyleProperty(widgetType T.GType, propertyName string, value *T.GValue) {
+	styleGetStyleProperty(s, widgetType, propertyName, value)
+}
+func (s *Style) GetValist(widgetType T.GType, firstPropertyName string, varArgs T.VaList) {
+	styleGetValist(s, widgetType, firstPropertyName, varArgs)
+}
 func (s *Style) LookupColor(colorName string, color *T.GdkColor) T.Gboolean {
 	return styleLookupColor(s, colorName, color)
 }
@@ -764,3 +811,21 @@ func (s *Style) SetBackground(window *T.GdkWindow, stateType StateType) {
 }
 func (s *Style) SetFont(font *T.GdkFont) { styleSetFont(s, font) }
 func (s *Style) Unref()                  { styleUnref(s) }
+
+type SubmenuDirection T.Enum
+
+const (
+	DIRECTION_LEFT SubmenuDirection = iota
+	DIRECTION_RIGHT
+)
+
+var SubmenuDirectionGetType func() T.GType
+
+type SubmenuPlacement T.Enum
+
+const (
+	TOP_BOTTOM SubmenuPlacement = iota
+	LEFT_RIGHT
+)
+
+var SubmenuPlacementGetType func() T.GType

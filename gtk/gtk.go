@@ -13,128 +13,12 @@ import (
 type simpleObject struct{ parent T.GObject }
 
 var (
-	PrintErrorGetType        func() T.GType
-	PrivateFlagsGetType      func() T.GType
-	RecentSortTypeGetType    func() T.GType
-	ResponseTypeGetType      func() T.GType
-	ScrollbarGetType         func() T.GType
-	ScrollStepGetType        func() T.GType
-	TreeGetRowDragData       func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
-	TreeSetRowDragData       func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
-	SeparatorGetType         func() T.GType
-	SeparatorMenuItemGetType func() T.GType
-	SeparatorMenuItemNew     func() *Widget
-	SideTypeGetType          func() T.GType
-	SignalRunTypeGetType     func() T.GType
-	SortTypeGetType          func() T.GType
-	SubmenuDirectionGetType  func() T.GType
-	SubmenuPlacementGetType  func() T.GType
-	TargetFlagsGetType       func() T.GType
-	TearoffMenuItemGetType   func() T.GType
-	TearoffMenuItemNew       func() *Widget
+	True func() T.Gboolean
 
-	TypeInit func(
-		debugFlags T.GTypeDebugFlags)
+	False func() T.Gboolean
+)
 
-	TypeUnique func(
-		parentType Type,
-		gtkinfo *TypeInfo) Type
-
-	TypeClass func(
-		t Type) T.Gpointer
-
-	TypeNew func(
-		t Type) T.Gpointer
-
-	ObjectSink func(
-		object *Object)
-
-	ObjectDestroy func(
-		object *Object)
-
-	ObjectNew func(t T.GType, firstPropertyName string,
-		v ...VArg) *Object
-
-	ObjectRef func(
-		object *Object) *Object
-
-	ObjectUnref func(
-		object *Object)
-
-	ObjectWeakref func(
-		object *Object,
-		notify T.GDestroyNotify,
-		data T.Gpointer)
-
-	ObjectWeakunref func(
-		object *Object,
-		notify T.GDestroyNotify,
-		data T.Gpointer)
-
-	ObjectSetData func(
-		object *Object,
-		key string,
-		data T.Gpointer)
-
-	ObjectSetDataFull func(
-		object *Object,
-		key string,
-		data T.Gpointer,
-		destroy T.GDestroyNotify)
-
-	ObjectRemoveData func(
-		object *Object,
-		key string)
-
-	ObjectGetData func(
-		object *Object,
-		key string) T.Gpointer
-
-	ObjectRemoveNoNotify func(
-		object *Object,
-		key string)
-
-	ObjectSetUserData func(
-		object *Object,
-		data T.Gpointer)
-
-	ObjectGetUserData func(
-		object *Object) T.Gpointer
-
-	ObjectSetDataById func(
-		object *Object,
-		dataId T.GQuark,
-		data T.Gpointer)
-
-	ObjectSetDataByIdFull func(
-		object *Object,
-		dataId T.GQuark,
-		data T.Gpointer,
-		destroy T.GDestroyNotify)
-
-	ObjectGetDataById func(
-		object *Object,
-		dataId T.GQuark) T.Gpointer
-
-	ObjectRemoveDataById func(
-		object *Object,
-		dataId T.GQuark)
-
-	ObjectRemoveNoNotifyById func(
-		object *Object,
-		keyId T.GQuark)
-
-	ObjectGet func(object *Object,
-		firstPropertyName string, v ...VArg)
-
-	ObjectSet func(object *Object,
-		firstPropertyName string, v ...VArg)
-
-	ObjectAddArgType func(
-		argName string,
-		argType T.GType,
-		argFlags, argId uint)
-
+var (
 	DrawHline func(
 		style *Style,
 		window *T.GdkWindow,
@@ -502,21 +386,6 @@ var (
 		step uint,
 		x, y, width, height int)
 
-	StyleGetStyleProperty func(
-		style *Style,
-		widgetType T.GType,
-		propertyName string,
-		value *T.GValue)
-
-	StyleGetValist func(
-		style *Style,
-		widgetType T.GType,
-		firstPropertyName string,
-		varArgs T.VaList)
-
-	StyleGet func(style *Style, widgetType T.GType,
-		firstPropertyName string, v ...VArg)
-
 	DrawString func(
 		style *Style,
 		window *T.GdkWindow,
@@ -542,17 +411,6 @@ var (
 		direction TextDirection,
 		drawArrow T.Gboolean)
 
-	RequisitionCopy func(
-		requisition *Requisition) *Requisition
-
-	RequisitionFree func(
-		requisition *Requisition)
-
-	AccelGroupsActivate func(object *T.GObject, accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
-
-	AccelGroupsFromObject func(object *T.GObject) *T.GSList
-
 	SignalNewv func(
 		name string,
 		signalFlags SignalRunType,
@@ -569,8 +427,7 @@ var (
 		marshaller T.GSignalCMarshaller, returnVal T.GType,
 		nArgs uint, v ...VArg) uint
 
-	SignalEmitStopByName func(
-		object *Object, name string)
+	SignalEmitStopByName func(object *Object, name string)
 
 	SignalConnectObjectWhileAlive func(
 		object *Object,
@@ -609,225 +466,13 @@ var (
 		match T.GSignalMatchType,
 		action uint)
 
-	SelectionOwnerSet func(
-		widget *Widget,
-		selection T.GdkAtom,
-		time T.GUint32) T.Gboolean
-
-	SelectionOwnerSetForDisplay func(
-		display *T.GdkDisplay,
-		widget *Widget,
-		selection T.GdkAtom,
-		time T.GUint32) T.Gboolean
-
-	SelectionAddTarget func(
-		widget *Widget,
-		selection, target T.GdkAtom,
-		info uint)
-
-	SelectionAddTargets func(
-		widget *Widget,
-		selection T.GdkAtom,
-		targets *TargetEntry,
-		ntargets uint)
-
-	SelectionClearTargets func(
-		widget *Widget,
-		selection T.GdkAtom)
-
-	SelectionConvert func(
-		widget *Widget,
-		selection, target T.GdkAtom,
-		time T.GUint32) T.Gboolean
-
-	TargetsIncludeText func(
-		targets *T.GdkAtom,
-		nTargets int) T.Gboolean
-
-	TargetsIncludeRichText func(
-		targets *T.GdkAtom,
-		nTargets int,
-		buffer *TextBuffer) T.Gboolean
-
-	TargetsIncludeImage func(
-		targets *T.GdkAtom,
-		nTargets int,
-		writable T.Gboolean) T.Gboolean
-
-	TargetsIncludeUri func(
-		targets *T.GdkAtom,
-		nTargets int) T.Gboolean
-
-	SelectionRemoveAll func(
-		widget *Widget)
-
-	SelectionClear func(
-		widget *Widget,
-		event *T.GdkEventSelection) T.Gboolean
-
-	DragGetData func(
-		widget *Widget,
-		context *T.GdkDragContext,
-		target T.GdkAtom,
-		time T.GUint32)
-
-	DragFinish func(
-		context *T.GdkDragContext,
-		success, del T.Gboolean,
-		time T.GUint32)
-
-	DragGetSourceWidget func(
-		context *T.GdkDragContext) *Widget
-
-	DragHighlight func(
-		widget *Widget)
-
-	DragUnhighlight func(
-		widget *Widget)
-
-	DragDestSet func(
-		widget *Widget,
-		flags DestDefaults,
-		targets *TargetEntry,
-		nTargets int,
-		actions T.GdkDragAction)
-
-	DragDestSetProxy func(
-		widget *Widget,
-		proxyWindow *T.GdkWindow,
-		protocol T.GdkDragProtocol,
-		useCoordinates T.Gboolean)
-
-	DragDestUnset func(
-		widget *Widget)
-
-	DragDestFindTarget func(
-		widget *Widget,
-		context *T.GdkDragContext,
-		targetList *TargetList) T.GdkAtom
-
-	DragDestGetTargetList func(
-		widget *Widget) *TargetList
-
-	DragDestSetTargetList func(
-		widget *Widget,
-		targetList *TargetList)
-
-	DragDestAddTextTargets func(
-		widget *Widget)
-
-	DragDestAddImageTargets func(
-		widget *Widget)
-
-	DragDestAddUriTargets func(
-		widget *Widget)
-
-	DragDestSetTrackMotion func(
-		widget *Widget,
-		trackMotion T.Gboolean)
-
-	DragDestGetTrackMotion func(
-		widget *Widget) T.Gboolean
-
-	DragSourceSet func(
-		widget *Widget,
-		startButtonMask T.GdkModifierType,
-		targets *TargetEntry,
-		nTargets int,
-		actions T.GdkDragAction)
-
-	DragSourceUnset func(
-		widget *Widget)
-
-	DragSourceGetTargetList func(
-		widget *Widget) *TargetList
-
-	DragSourceSetTargetList func(
-		widget *Widget,
-		targetList *TargetList)
-
-	DragSourceAddTextTargets func(
-		widget *Widget)
-
-	DragSourceAddImageTargets func(
-		widget *Widget)
-
-	DragSourceAddUriTargets func(
-		widget *Widget)
-
-	DragSourceSetIcon func(
-		widget *Widget,
-		colormap *T.GdkColormap,
-		pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap)
-
-	DragSourceSetIconPixbuf func(
-		widget *Widget,
-		pixbuf *T.GdkPixbuf)
-
-	DragSourceSetIconStock func(
-		widget *Widget,
-		stockId string)
-
-	DragSourceSetIconName func(
-		widget *Widget,
-		iconName string)
-
-	DragBegin func(
-		widget *Widget,
-		targets *TargetList,
-		actions T.GdkDragAction,
-		button int,
-		event *T.GdkEvent) *T.GdkDragContext
-
-	DragSetIconWidget func(
-		context *T.GdkDragContext,
-		widget *Widget,
-		hotX, hotY int)
-
-	DragSetIconPixmap func(
-		context *T.GdkDragContext,
-		colormap *T.GdkColormap,
-		pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap,
-		hotX, hotY int)
-
-	DragSetIconPixbuf func(
-		context *T.GdkDragContext,
-		pixbuf *T.GdkPixbuf,
-		hotX, hotY int)
-
-	DragSetIconStock func(
-		context *T.GdkDragContext,
-		stockId string,
-		hotX, hotY int)
-
-	DragSetIconName func(
-		context *T.GdkDragContext,
-		iconName string,
-		hotX, hotY int)
-
-	DragSetIconDefault func(
-		context *T.GdkDragContext)
-
-	DragCheckThreshold func(
-		widget *Widget,
-		startX, startY, currentX, currentY int) T.Gboolean
-
-	DragSetDefaultIcon func(
-		colormap *T.GdkColormap,
-		pixmap *T.GdkPixmap,
-		mask *T.GdkBitmap,
-		hotX, hotY int)
-
 	GcGet func(
 		depth int,
 		colormap *T.GdkColormap,
 		values *T.GdkGCValues,
 		valuesMask T.GdkGCValuesMask) *T.GdkGC
 
-	GcRelease func(
-		gc *T.GdkGC)
+	GcRelease func(gc *T.GdkGC)
 
 	RgbToHsv func(r, g, b float64, h, s, v *float64)
 
@@ -862,8 +507,7 @@ var (
 		numChecks int,
 		sizeof_GtkWindow, sizeof_GtkBox T.SizeT) T.Gboolean
 
-	Exit func(
-		errorCode int)
+	Exit func(errorCode int)
 
 	SetLocale func() string
 
@@ -871,8 +515,7 @@ var (
 
 	EventsPending func() T.Gboolean
 
-	MainDoEvent func(
-		event *T.GdkEvent)
+	MainDoEvent func(event *T.GdkEvent)
 
 	Main func()
 
@@ -885,30 +528,18 @@ var (
 	MainIterationDo func(
 		blocking T.Gboolean) T.Gboolean
 
-	True func() T.Gboolean
-
-	False func() T.Gboolean
-
-	GrabAdd func(
-		widget *Widget)
+	GrabAdd func(widget *Widget)
 
 	GrabGetCurrent func() *Widget
 
-	GrabRemove func(
-		widget *Widget)
+	GrabRemove func(widget *Widget)
 
-	InitAdd func(
-		function Function,
-		data T.Gpointer)
+	InitAdd func(function Function, data T.Gpointer)
 
-	QuitAddDestroy func(
-		mainLevel uint,
-		object *Object)
+	QuitAddDestroy func(mainLevel uint, object *Object)
 
 	QuitAdd func(
-		mainLevel uint,
-		function Function,
-		data T.Gpointer) uint
+		mainLevel uint, function Function, data T.Gpointer) uint
 
 	QuitAddFull func(
 		mainLevel uint,
@@ -917,35 +548,14 @@ var (
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
-	QuitRemove func(
-		quitHandlerId uint)
+	QuitRemove func(quitHandlerId uint)
 
-	QuitRemoveByData func(
-		data T.Gpointer)
+	QuitRemoveByData func(data T.Gpointer)
 
-	TimeoutAdd func(
-		interval T.GUint32,
-		function Function,
-		data T.Gpointer) uint
-
-	TimeoutAddFull func(
-		interval T.GUint32,
-		function Function,
-		marshal CallbackMarshal,
-		data T.Gpointer,
-		destroy T.GDestroyNotify) uint
-
-	TimeoutRemove func(
-		timeoutHandlerId uint)
-
-	IdleAdd func(
-		function Function,
-		data T.Gpointer) uint
+	IdleAdd func(function Function, data T.Gpointer) uint
 
 	IdleAddPriority func(
-		priority int,
-		function Function,
-		data T.Gpointer) uint
+		priority int, function Function, data T.Gpointer) uint
 
 	IdleAddFull func(
 		priority int,
@@ -954,11 +564,9 @@ var (
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
-	IdleRemove func(
-		idleHandlerId uint)
+	IdleRemove func(idleHandlerId uint)
 
-	IdleRemoveByData func(
-		data T.Gpointer)
+	IdleRemoveByData func(data T.Gpointer)
 
 	InputAddFull func(
 		source int,
@@ -968,54 +576,22 @@ var (
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
-	InputRemove func(
-		inputHandlerId uint)
+	InputRemove func(inputHandlerId uint)
 
 	KeySnooperInstall func(
-		snooper KeySnoopFunc,
-		funcData T.Gpointer) uint
+		snooper KeySnoopFunc, funcData T.Gpointer) uint
 
-	KeySnooperRemove func(
-		snooperHandlerId uint)
+	KeySnooperRemove func(snooperHandlerId uint)
 
 	GetCurrentEvent func() *T.GdkEvent
 
 	GetCurrentEventTime func() T.GUint32
 
-	GetCurrentEventState func(
-		state *T.GdkModifierType) T.Gboolean
+	GetCurrentEventState func(state *T.GdkModifierType) T.Gboolean
 
-	GetEventWidget func(
-		event *T.GdkEvent) *Widget
+	GetEventWidget func(event *T.GdkEvent) *Widget
 
-	PropagateEvent func(
-		widget *Widget,
-		event *T.GdkEvent)
-
-	TooltipsDataGet func(
-		widget *Widget) *TooltipsData
-
-	TooltipsGetInfoFromTipWindow func(
-		tipWindow *Window,
-		tooltips **Tooltips,
-		currentWidget **Widget) T.Gboolean
-
-	TooltipTriggerTooltipQuery func(
-		display *T.GdkDisplay)
-
-	PrintErrorQuark func() T.GQuark
-
-	PrintRunPageSetupDialog func(
-		parent *Window,
-		pageSetup *PageSetup,
-		settings *PrintSettings) *PageSetup
-
-	PrintRunPageSetupDialogAsync func(
-		parent *Window,
-		pageSetup *PageSetup,
-		settings *PrintSettings,
-		doneCb PageSetupDoneFunc,
-		data T.Gpointer)
+	PropagateEvent func(widget *Widget, event *T.GdkEvent)
 
 	ShowUri func(
 		screen *T.GdkScreen,
@@ -1251,16 +827,4 @@ var (
 		nParamValues uint,
 		paramValues *T.GValue,
 		invocationHint, marshalData T.Gpointer)
-
-	TypeEnumGetValues func(enumType Type) *EnumValue
-
-	TypeFlagsGetValues func(flagsType Type) *FlagValue
-
-	TypeEnumFindValue func(
-		enumType Type,
-		valueName string) *EnumValue
-
-	TypeFlagsFindValue func(
-		flagsType Type,
-		valueName string) *FlagValue
 )

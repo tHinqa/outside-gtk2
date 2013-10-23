@@ -3104,15 +3104,6 @@ const (
 	GDK_VISUAL_DIRECT_COLOR
 )
 
-type GtkSideType Enum
-
-const (
-	GTK_SIDE_TOP GtkSideType = iota
-	GTK_SIDE_BOTTOM
-	GTK_SIDE_LEFT
-	GTK_SIDE_RIGHT
-)
-
 type GtkScrollStep Enum
 
 const (
@@ -3122,20 +3113,6 @@ const (
 	GTK_SCROLL_HORIZONTAL_STEPS
 	GTK_SCROLL_HORIZONTAL_PAGES
 	GTK_SCROLL_HORIZONTAL_ENDS
-)
-
-type GtkSubmenuDirection Enum
-
-const (
-	GTK_DIRECTION_LEFT GtkSubmenuDirection = iota
-	GTK_DIRECTION_RIGHT
-)
-
-type GtkSubmenuPlacement Enum
-
-const (
-	GTK_TOP_BOTTOM GtkSubmenuPlacement = iota
-	GTK_LEFT_RIGHT
 )
 
 type GtkIMPreeditStyle Enum
@@ -3472,22 +3449,6 @@ const (
 	GTK_NO_SHOW_ALL
 )
 
-type GtkResponseType Enum
-
-const (
-	GTK_RESPONSE_NONE GtkResponseType = -(iota + 1)
-	GTK_RESPONSE_REJECT
-	GTK_RESPONSE_ACCEPT
-	GTK_RESPONSE_DELETE_EVENT
-	GTK_RESPONSE_OK
-	GTK_RESPONSE_CANCEL
-	GTK_RESPONSE_CLOSE
-	GTK_RESPONSE_YES
-	GTK_RESPONSE_NO
-	GTK_RESPONSE_APPLY
-	GTK_RESPONSE_HELP
-)
-
 type GtkBuilderError Enum
 
 const (
@@ -3517,15 +3478,6 @@ const (
 	GTK_CELL_RENDERER_ACCEL_MODE_OTHER
 )
 
-type GtkTargetFlags Enum
-
-const (
-	GTK_TARGET_SAME_APP GtkTargetFlags = 1 << iota
-	GTK_TARGET_SAME_WIDGET
-	GTK_TARGET_OTHER_APP
-	GTK_TARGET_OTHER_WIDGET
-)
-
 type GtkIconThemeError Enum
 
 const (
@@ -3538,15 +3490,6 @@ type GtkNotebookTab Enum
 const (
 	GTK_NOTEBOOK_TAB_FIRST GtkNotebookTab = iota
 	GTK_NOTEBOOK_TAB_LAST
-)
-
-type GtkPrintError Enum
-
-const (
-	GTK_PRINT_ERROR_GENERAL GtkPrintError = iota
-	GTK_PRINT_ERROR_INTERNAL_ERROR
-	GTK_PRINT_ERROR_NOMEM
-	GTK_PRINT_ERROR_INVALID_FILE
 )
 
 type GtkRecentManagerError Enum

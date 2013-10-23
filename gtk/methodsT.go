@@ -80,6 +80,17 @@ type TargetEntry struct {
 	Info   uint
 }
 
+type TargetFlags T.Enum
+
+const (
+	TARGET_SAME_APP TargetFlags = 1 << iota
+	TARGET_SAME_WIDGET
+	TARGET_OTHER_APP
+	TARGET_OTHER_WIDGET
+)
+
+var TargetFlagsGetType func() T.GType
+
 type TargetList struct {
 	List     *T.GList
 	RefCount uint
@@ -122,6 +133,18 @@ func (t *TargetList) Remove(target T.GdkAtom) { targetListRemove(t, target) }
 func (t *TargetList) Find(target T.GdkAtom, info *uint) T.Gboolean {
 	return targetListFind(t, target, info)
 }
+
+var (
+	TargetsIncludeText     func(targets *T.GdkAtom, nTargets int) T.Gboolean
+	TargetsIncludeRichText func(targets *T.GdkAtom, nTargets int, buffer *TextBuffer) T.Gboolean
+	TargetsIncludeImage    func(targets *T.GdkAtom, nTargets int, writable T.Gboolean) T.Gboolean
+	TargetsIncludeUri      func(targets *T.GdkAtom, nTargets int) T.Gboolean
+)
+
+var (
+	TearoffMenuItemGetType func() T.GType //TODO(t):Use?
+	TearoffMenuItemNew     func() *Widget //TODO(t):Use?
+)
 
 type TextAppearance struct {
 	BgColor   T.GdkColor
@@ -983,6 +1006,12 @@ const (
 	TEXT_WINDOW_BOTTOM
 )
 
+var (
+	TimeoutAdd     func(interval T.GUint32, function Function, data T.Gpointer) uint
+	TimeoutAddFull func(interval T.GUint32, function Function, marshal CallbackMarshal, data T.Gpointer, destroy T.GDestroyNotify) uint
+	TimeoutRemove  func(timeoutHandlerId uint)
+)
+
 type TipsQuery struct {
 	Label Label
 	Bits  uint
@@ -1507,8 +1536,12 @@ func (t *ToolShell) GetTextOrientation() Orientation        { return toolShellGe
 func (t *ToolShell) GetTextSizeGroup() *SizeGroup           { return toolShellGetTextSizeGroup(t) }
 func (t *ToolShell) RebuildMenu()                           { toolShellRebuildMenu(t) }
 
+type Tooltip struct{}
+
 var (
 	TooltipGetType func() T.GType
+
+	TooltipTriggerTooltipQuery func(display *T.GdkDisplay)
 
 	tooltipSetCustom           func(t *Tooltip, customWidget *Widget)
 	tooltipSetIcon             func(t *Tooltip, pixbuf *T.GdkPixbuf)
@@ -1519,8 +1552,6 @@ var (
 	tooltipSetText             func(t *Tooltip, text string)
 	tooltipSetTipArea          func(t *Tooltip, rect *T.GdkRectangle)
 )
-
-type Tooltip struct{}
 
 func (t *Tooltip) SetCustom(customWidget *Widget) { tooltipSetCustom(t, customWidget) }
 func (t *Tooltip) SetIcon(pixbuf *T.GdkPixbuf)    { tooltipSetIcon(t, pixbuf) }
@@ -1564,6 +1595,9 @@ type (
 var (
 	TooltipsGetType func() T.GType
 	TooltipsNew     func() *Tooltips
+
+	TooltipsDataGet              func(widget *Widget) *TooltipsData
+	TooltipsGetInfoFromTipWindow func(tipWindow *Window, tooltips **Tooltips, currentWidget **Widget) T.Gboolean
 
 	tooltipsDisable     func(t *Tooltips)
 	tooltipsEnable      func(t *Tooltips)
@@ -1727,17 +1761,11 @@ type (
 		data T.Gpointer) T.Gboolean
 )
 
-type TreeModelFlags T.Enum
-
-const (
-	TREE_MODEL_ITERS_PERSIST TreeModelFlags = 1 << iota
-	TREE_MODEL_LIST_ONLY
-)
-
 var (
 	TreeModelGetType func() T.GType
 
-	TreeModelFlagsGetType func() T.GType
+	TreeGetRowDragData func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
+	TreeSetRowDragData func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
 
 	treeModelForeach            func(t *TreeModel, f TreeModelForeachFunc, userData T.Gpointer)
 	treeModelGet                func(t *TreeModel, iter *TreeIter, v ...VArg)
@@ -1873,6 +1901,15 @@ func (t *TreeModelFilter) SetVisibleColumn(column int) { treeModelFilterSetVisib
 func (t *TreeModelFilter) SetVisibleFunc(f TreeModelFilterVisibleFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	treeModelFilterSetVisibleFunc(t, f, data, destroy)
 }
+
+type TreeModelFlags T.Enum
+
+const (
+	TREE_MODEL_ITERS_PERSIST TreeModelFlags = 1 << iota
+	TREE_MODEL_LIST_ONLY
+)
+
+var TreeModelFlagsGetType func() T.GType
 
 type TreeModelSort struct {
 	Parent             T.GObject
@@ -2748,3 +2785,25 @@ type (
 		BaseClassInitFunc ClassInitFunc
 	}
 )
+
+var (
+	TypeInit func(debugFlags T.GTypeDebugFlags)
+
+	typeClass  func(t Type) T.Gpointer
+	typeNew    func(t Type) T.Gpointer
+	typeUnique func(t Type, gtkinfo *TypeInfo) Type
+
+	typeEnumFindValue  func(enumType Type, valueName string) *EnumValue
+	typeEnumGetValues  func(enumType Type) *EnumValue
+	typeFlagsFindValue func(flagsType Type, valueName string) *FlagValue
+	typeFlagsGetValues func(flagsType Type) *FlagValue
+)
+
+func (t Type) Class() T.Gpointer             { return typeClass(t) }
+func (t Type) New() T.Gpointer               { return typeNew(t) }
+func (t Type) Unique(gtkinfo *TypeInfo) Type { return typeUnique(t, gtkinfo) }
+
+func (t Type) EnumFindValue(valueName string) *EnumValue  { return typeEnumFindValue(t, valueName) }
+func (t Type) EnumGetValues() *EnumValue                  { return typeEnumGetValues(t) }
+func (t Type) FlagsFindValue(valueName string) *FlagValue { return typeFlagsFindValue(t, valueName) }
+func (t Type) FlagsGetValues() *FlagValue                 { return typeFlagsGetValues(t) }

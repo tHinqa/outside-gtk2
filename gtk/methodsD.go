@@ -140,6 +140,45 @@ var DirectionTypeGetType func() T.GType
 
 var DisableSetlocale func()
 
+var (
+	DragBegin                 func(widget *Widget, targets *TargetList, actions T.GdkDragAction, button int, event *T.GdkEvent) *T.GdkDragContext
+	DragCheckThreshold        func(widget *Widget, startX, startY, currentX, currentY int) T.Gboolean
+	DragDestAddImageTargets   func(widget *Widget)
+	DragDestAddTextTargets    func(widget *Widget)
+	DragDestAddUriTargets     func(widget *Widget)
+	DragDestFindTarget        func(widget *Widget, context *T.GdkDragContext, targetList *TargetList) T.GdkAtom
+	DragDestGetTargetList     func(widget *Widget) *TargetList
+	DragDestGetTrackMotion    func(widget *Widget) T.Gboolean
+	DragDestSet               func(widget *Widget, flags DestDefaults, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	DragDestSetProxy          func(widget *Widget, proxyWindow *T.GdkWindow, protocol T.GdkDragProtocol, useCoordinates T.Gboolean)
+	DragDestSetTargetList     func(widget *Widget, targetList *TargetList)
+	DragDestSetTrackMotion    func(widget *Widget, trackMotion T.Gboolean)
+	DragDestUnset             func(widget *Widget)
+	DragFinish                func(context *T.GdkDragContext, success, del T.Gboolean, time T.GUint32)
+	DragGetData               func(widget *Widget, context *T.GdkDragContext, target T.GdkAtom, time T.GUint32)
+	DragGetSourceWidget       func(context *T.GdkDragContext) *Widget
+	DragHighlight             func(widget *Widget)
+	DragSetDefaultIcon        func(colormap *T.GdkColormap, pixmap *T.GdkPixmap, mask *T.GdkBitmap, hotX, hotY int)
+	DragSetIconDefault        func(context *T.GdkDragContext)
+	DragSetIconName           func(context *T.GdkDragContext, iconName string, hotX, hotY int)
+	DragSetIconPixbuf         func(context *T.GdkDragContext, pixbuf *T.GdkPixbuf, hotX, hotY int)
+	DragSetIconPixmap         func(context *T.GdkDragContext, colormap *T.GdkColormap, pixmap *T.GdkPixmap, mask *T.GdkBitmap, hotX, hotY int)
+	DragSetIconStock          func(context *T.GdkDragContext, stockId string, hotX, hotY int)
+	DragSetIconWidget         func(context *T.GdkDragContext, widget *Widget, hotX, hotY int)
+	DragSourceAddImageTargets func(widget *Widget)
+	DragSourceAddTextTargets  func(widget *Widget)
+	DragSourceAddUriTargets   func(widget *Widget)
+	DragSourceGetTargetList   func(widget *Widget) *TargetList
+	DragSourceSet             func(widget *Widget, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	DragSourceSetIcon         func(widget *Widget, colormap *T.GdkColormap, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	DragSourceSetIconName     func(widget *Widget, iconName string)
+	DragSourceSetIconPixbuf   func(widget *Widget, pixbuf *T.GdkPixbuf)
+	DragSourceSetIconStock    func(widget *Widget, stockId string)
+	DragSourceSetTargetList   func(widget *Widget, targetList *TargetList)
+	DragSourceUnset           func(widget *Widget)
+	DragUnhighlight           func(widget *Widget)
+)
+
 type DragResult T.Enum
 
 const (

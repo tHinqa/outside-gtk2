@@ -122,6 +122,13 @@ var (
 		modifiers T.GdkModifierType) T.Gboolean
 )
 
+var (
+	AccelGroupsActivate func(object *T.GObject, accelKey uint,
+		accelMods T.GdkModifierType) T.Gboolean
+
+	AccelGroupsFromObject func(object *T.GObject) *T.GSList
+)
+
 type AccelLabelClass struct {
 	ParentClass    LabelClass
 	SignalQuote1   *T.Gchar
