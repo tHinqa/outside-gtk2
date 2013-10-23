@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -174,7 +175,7 @@ type SelectionData struct {
 	Format    int
 	Data      *T.Guchar
 	Length    int
-	Display   *T.GdkDisplay
+	Display   *D.Display
 }
 
 var (
@@ -187,23 +188,23 @@ var (
 	SelectionConvert            func(widget *Widget, selection, target T.GdkAtom, time T.GUint32) T.Gboolean
 	selectionDataCopy           func(s *SelectionData) *SelectionData
 	SelectionOwnerSet           func(widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
-	SelectionOwnerSetForDisplay func(display *T.GdkDisplay, widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
+	SelectionOwnerSetForDisplay func(display *D.Display, widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
 	SelectionRemoveAll          func(widget *Widget)
 
 	selectionDataFree                   func(s *SelectionData)
 	selectionDataGetData                func(s *SelectionData) *T.Guchar
 	selectionDataGetDataType            func(s *SelectionData) T.GdkAtom
-	selectionDataGetDisplay             func(s *SelectionData) *T.GdkDisplay
+	selectionDataGetDisplay             func(s *SelectionData) *D.Display
 	selectionDataGetFormat              func(s *SelectionData) int
 	selectionDataGetLength              func(s *SelectionData) int
-	selectionDataGetPixbuf              func(s *SelectionData) *T.GdkPixbuf
+	selectionDataGetPixbuf              func(s *SelectionData) *D.Pixbuf
 	selectionDataGetSelection           func(s *SelectionData) T.GdkAtom
 	selectionDataGetTarget              func(s *SelectionData) T.GdkAtom
 	selectionDataGetTargets             func(s *SelectionData, targets **T.GdkAtom, nAtoms *int) T.Gboolean
 	selectionDataGetText                func(s *SelectionData) *T.Guchar
 	selectionDataGetUris                func(s *SelectionData) **T.Gchar
 	selectionDataSet                    func(s *SelectionData, typ T.GdkAtom, format int, data *T.Guchar, length int)
-	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *T.GdkPixbuf) T.Gboolean
+	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *D.Pixbuf) T.Gboolean
 	selectionDataSetText                func(s *SelectionData, str string, len int) T.Gboolean
 	selectionDataSetUris                func(s *SelectionData, uris **T.Gchar) T.Gboolean
 	selectionDataTargetsIncludeImage    func(s *SelectionData, writable T.Gboolean) T.Gboolean
@@ -212,16 +213,16 @@ var (
 	selectionDataTargetsIncludeUri      func(s *SelectionData) T.Gboolean
 )
 
-func (s *SelectionData) Copy() *SelectionData      { return selectionDataCopy(s) }
-func (s *SelectionData) Free()                     { selectionDataFree(s) }
-func (s *SelectionData) GetData() *T.Guchar        { return selectionDataGetData(s) }
-func (s *SelectionData) GetDataType() T.GdkAtom    { return selectionDataGetDataType(s) }
-func (s *SelectionData) GetDisplay() *T.GdkDisplay { return selectionDataGetDisplay(s) }
-func (s *SelectionData) GetFormat() int            { return selectionDataGetFormat(s) }
-func (s *SelectionData) GetLength() int            { return selectionDataGetLength(s) }
-func (s *SelectionData) GetPixbuf() *T.GdkPixbuf   { return selectionDataGetPixbuf(s) }
-func (s *SelectionData) GetSelection() T.GdkAtom   { return selectionDataGetSelection(s) }
-func (s *SelectionData) GetTarget() T.GdkAtom      { return selectionDataGetTarget(s) }
+func (s *SelectionData) Copy() *SelectionData    { return selectionDataCopy(s) }
+func (s *SelectionData) Free()                   { selectionDataFree(s) }
+func (s *SelectionData) GetData() *T.Guchar      { return selectionDataGetData(s) }
+func (s *SelectionData) GetDataType() T.GdkAtom  { return selectionDataGetDataType(s) }
+func (s *SelectionData) GetDisplay() *D.Display  { return selectionDataGetDisplay(s) }
+func (s *SelectionData) GetFormat() int          { return selectionDataGetFormat(s) }
+func (s *SelectionData) GetLength() int          { return selectionDataGetLength(s) }
+func (s *SelectionData) GetPixbuf() *D.Pixbuf    { return selectionDataGetPixbuf(s) }
+func (s *SelectionData) GetSelection() T.GdkAtom { return selectionDataGetSelection(s) }
+func (s *SelectionData) GetTarget() T.GdkAtom    { return selectionDataGetTarget(s) }
 func (s *SelectionData) GetTargets(targets **T.GdkAtom, nAtoms *int) T.Gboolean {
 	return selectionDataGetTargets(s, targets, nAtoms)
 }
@@ -230,7 +231,7 @@ func (s *SelectionData) GetUris() **T.Gchar { return selectionDataGetUris(s) }
 func (s *SelectionData) Set(typ T.GdkAtom, format int, data *T.Guchar, length int) {
 	selectionDataSet(s, typ, format, data, length)
 }
-func (s *SelectionData) SetPixbuf(pixbuf *T.GdkPixbuf) T.Gboolean {
+func (s *SelectionData) SetPixbuf(pixbuf *D.Pixbuf) T.Gboolean {
 	return selectionDataSetPixbuf(s, pixbuf)
 }
 func (s *SelectionData) SetText(str string, leng int) T.Gboolean {
@@ -296,14 +297,14 @@ type Settings struct {
 	QueuedSettings  *T.GData
 	Property_values *SettingsPropertyValue
 	RcContext       *RcContext
-	Screen          *T.GdkScreen
+	Screen          *D.Screen
 }
 
 var (
 	SettingsGetType    func() T.GType
 	SettingsGetDefault func() *Settings
 
-	SettingsGetForScreen          func(screen *T.GdkScreen) *Settings
+	SettingsGetForScreen          func(screen *D.Screen) *Settings
 	SettingsInstallProperty       func(pspec *T.GParamSpec)
 	SettingsInstallPropertyParser func(pspec *T.GParamSpec, parser RcPropertyParser)
 
@@ -420,7 +421,7 @@ type Socket struct {
 	RequestHeight uint16
 	CurrentWidth  uint16
 	CurrentHeight uint16
-	PlugWindow    *T.GdkWindow
+	PlugWindow    *D.Window
 	PlugWidget    *Widget
 	XembedVersion int16
 	Bits          uint
@@ -440,13 +441,13 @@ var (
 
 	socketAddId         func(s *Socket, windowId T.GdkNativeWindow)
 	socketGetId         func(s *Socket) T.GdkNativeWindow
-	socketGetPlugWindow func(s *Socket) *T.GdkWindow
+	socketGetPlugWindow func(s *Socket) *D.Window
 	socketSteal         func(s *Socket, wid T.GdkNativeWindow)
 )
 
 func (s *Socket) AddId(windowId T.GdkNativeWindow) { socketAddId(s, windowId) }
 func (s *Socket) GetId() T.GdkNativeWindow         { return socketGetId(s) }
-func (s *Socket) GetPlugWindow() *T.GdkWindow      { return socketGetPlugWindow(s) }
+func (s *Socket) GetPlugWindow() *D.Window         { return socketGetPlugWindow(s) }
 func (s *Socket) Steal(wid T.GdkNativeWindow)      { socketSteal(s, wid) }
 
 type SortType T.Enum
@@ -461,7 +462,7 @@ var SortTypeGetType func() T.GType
 type SpinButton struct {
 	Entry        Entry
 	Adjustment   *Adjustment
-	Panel        *T.GdkWindow
+	Panel        *D.Window
 	Timer        T.GUint32
 	ClimbRate    float64
 	TimerStep    float64
@@ -595,7 +596,7 @@ type Statusbar struct {
 	Keys          *T.GSList
 	SeqContextId  uint
 	SeqMessageId  uint
-	Grip_window   *T.GdkWindow
+	Grip_window   *D.Window
 	HasResizeGrip uint // : 1
 }
 
@@ -635,18 +636,18 @@ var (
 	StatusIconNewFromFile     func(filename string) *StatusIcon
 	StatusIconNewFromGicon    func(icon *T.GIcon) *StatusIcon
 	StatusIconNewFromIconName func(iconName string) *StatusIcon
-	StatusIconNewFromPixbuf   func(pixbuf *T.GdkPixbuf) *StatusIcon
+	StatusIconNewFromPixbuf   func(pixbuf *D.Pixbuf) *StatusIcon
 	StatusIconNewFromStock    func(stockId string) *StatusIcon
 
 	StatusIconPositionMenu func(menu *Menu, x, y *int, pushIn *T.Gboolean, userData T.Gpointer)
 
 	statusIconGetBlinking      func(s *StatusIcon) T.Gboolean
-	statusIconGetGeometry      func(s *StatusIcon, screen **T.GdkScreen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean
+	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean
 	statusIconGetGicon         func(s *StatusIcon) *T.GIcon
 	statusIconGetHasTooltip    func(s *StatusIcon) T.Gboolean
 	statusIconGetIconName      func(s *StatusIcon) string
-	statusIconGetPixbuf        func(s *StatusIcon) *T.GdkPixbuf
-	statusIconGetScreen        func(s *StatusIcon) *T.GdkScreen
+	statusIconGetPixbuf        func(s *StatusIcon) *D.Pixbuf
+	statusIconGetScreen        func(s *StatusIcon) *D.Screen
 	statusIconGetSize          func(s *StatusIcon) int
 	statusIconGetStock         func(s *StatusIcon) string
 	statusIconGetStorageType   func(s *StatusIcon) ImageType
@@ -660,11 +661,11 @@ var (
 	statusIconSetFromFile      func(s *StatusIcon, filename string)
 	statusIconSetFromGicon     func(s *StatusIcon, icon *T.GIcon)
 	statusIconSetFromIconName  func(s *StatusIcon, iconName string)
-	statusIconSetFromPixbuf    func(s *StatusIcon, pixbuf *T.GdkPixbuf)
+	statusIconSetFromPixbuf    func(s *StatusIcon, pixbuf *D.Pixbuf)
 	statusIconSetFromStock     func(s *StatusIcon, stockId string)
 	statusIconSetHasTooltip    func(s *StatusIcon, hasTooltip T.Gboolean)
 	statusIconSetName          func(s *StatusIcon, name string)
-	statusIconSetScreen        func(s *StatusIcon, screen *T.GdkScreen)
+	statusIconSetScreen        func(s *StatusIcon, screen *D.Screen)
 	statusIconSetTitle         func(s *StatusIcon, title string)
 	statusIconSetTooltip       func(s *StatusIcon, tooltipText string)
 	statusIconSetTooltipMarkup func(s *StatusIcon, markup string)
@@ -673,14 +674,14 @@ var (
 )
 
 func (s *StatusIcon) GetBlinking() T.Gboolean { return statusIconGetBlinking(s) }
-func (s *StatusIcon) GetGeometry(screen **T.GdkScreen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean {
+func (s *StatusIcon) GetGeometry(screen **D.Screen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean {
 	return statusIconGetGeometry(s, screen, area, orientation)
 }
 func (s *StatusIcon) GetGicon() *T.GIcon                  { return statusIconGetGicon(s) }
 func (s *StatusIcon) GetHasTooltip() T.Gboolean           { return statusIconGetHasTooltip(s) }
 func (s *StatusIcon) GetIconName() string                 { return statusIconGetIconName(s) }
-func (s *StatusIcon) GetPixbuf() *T.GdkPixbuf             { return statusIconGetPixbuf(s) }
-func (s *StatusIcon) GetScreen() *T.GdkScreen             { return statusIconGetScreen(s) }
+func (s *StatusIcon) GetPixbuf() *D.Pixbuf                { return statusIconGetPixbuf(s) }
+func (s *StatusIcon) GetScreen() *D.Screen                { return statusIconGetScreen(s) }
 func (s *StatusIcon) GetSize() int                        { return statusIconGetSize(s) }
 func (s *StatusIcon) GetStock() string                    { return statusIconGetStock(s) }
 func (s *StatusIcon) GetStorageType() ImageType           { return statusIconGetStorageType(s) }
@@ -694,11 +695,11 @@ func (s *StatusIcon) SetBlinking(blinking T.Gboolean)     { statusIconSetBlinkin
 func (s *StatusIcon) SetFromFile(filename string)         { statusIconSetFromFile(s, filename) }
 func (s *StatusIcon) SetFromGicon(icon *T.GIcon)          { statusIconSetFromGicon(s, icon) }
 func (s *StatusIcon) SetFromIconName(iconName string)     { statusIconSetFromIconName(s, iconName) }
-func (s *StatusIcon) SetFromPixbuf(pixbuf *T.GdkPixbuf)   { statusIconSetFromPixbuf(s, pixbuf) }
+func (s *StatusIcon) SetFromPixbuf(pixbuf *D.Pixbuf)      { statusIconSetFromPixbuf(s, pixbuf) }
 func (s *StatusIcon) SetFromStock(stockId string)         { statusIconSetFromStock(s, stockId) }
 func (s *StatusIcon) SetHasTooltip(hasTooltip T.Gboolean) { statusIconSetHasTooltip(s, hasTooltip) }
 func (s *StatusIcon) SetName(name string)                 { statusIconSetName(s, name) }
-func (s *StatusIcon) SetScreen(screen *T.GdkScreen)       { statusIconSetScreen(s, screen) }
+func (s *StatusIcon) SetScreen(screen *D.Screen)          { statusIconSetScreen(s, screen) }
 func (s *StatusIcon) SetTitle(title string)               { statusIconSetTitle(s, title) }
 func (s *StatusIcon) SetTooltip(tooltipText string)       { statusIconSetTooltip(s, tooltipText) }
 func (s *StatusIcon) SetTooltipMarkup(markup string)      { statusIconSetTooltipMarkup(s, markup) }
@@ -726,16 +727,16 @@ var (
 
 type Style struct {
 	Parent          T.GObject
-	Fg              [5]T.GdkColor
-	Bg              [5]T.GdkColor
-	Light           [5]T.GdkColor
-	Dark            [5]T.GdkColor
-	Mid             [5]T.GdkColor
-	Text            [5]T.GdkColor
-	Base            [5]T.GdkColor
-	TextAa          [5]T.GdkColor
-	Black           T.GdkColor
-	White           T.GdkColor
+	Fg              [5]D.Color
+	Bg              [5]D.Color
+	Light           [5]D.Color
+	Dark            [5]D.Color
+	Mid             [5]D.Color
+	Text            [5]D.Color
+	Base            [5]D.Color
+	TextAa          [5]D.Color
+	Black           D.Color
+	White           D.Color
 	FontDesc        *T.PangoFontDescription
 	Xthickness      int
 	Ythickness      int
@@ -749,10 +750,10 @@ type Style struct {
 	TextAaGc        *[5]T.GdkGC //TODO(t): CHECK
 	BlackGc         *T.GdkGC
 	WhiteGc         *T.GdkGC
-	BgPixmap        *[5]T.GdkPixmap //TODO(t): CHECK
+	BgPixmap        *[5]D.Pixmap //TODO(t): CHECK
 	AttachCount     int
 	Depth           int
-	Colormap        *T.GdkColormap
+	Colormap        *D.Colormap
 	PrivateFont     *T.GdkFont
 	PrivateFontDesc *T.PangoFontDescription
 	RcStyle         *RcStyle
@@ -765,29 +766,29 @@ var (
 	StyleGetType func() T.GType
 	StyleNew     func() *Style
 
-	styleApplyDefaultBackground func(s *Style, window *T.GdkWindow, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int)
-	styleAttach                 func(s *Style, window *T.GdkWindow) *Style
+	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int)
+	styleAttach                 func(s *Style, window *D.Window) *Style
 	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
 	styleGet                    func(s *Style, widgetType T.GType, firstPropertyName string, v ...VArg)
 	styleGetFont                func(s *Style) *T.GdkFont
 	styleGetStyleProperty       func(s *Style, widgetType T.GType, propertyName string, value *T.GValue)
 	styleGetValist              func(s *Style, widgetType T.GType, firstPropertyName string, varArgs T.VaList)
-	styleLookupColor            func(s *Style, colorName string, color *T.GdkColor) T.Gboolean
+	styleLookupColor            func(s *Style, colorName string, color *D.Color) T.Gboolean
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
 	styleRef                    func(s *Style) *Style
-	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
-	styleSetBackground          func(s *Style, window *T.GdkWindow, stateType StateType)
+	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *D.Pixbuf
+	styleSetBackground          func(s *Style, window *D.Window, stateType StateType)
 	styleSetFont                func(s *Style, font *T.GdkFont)
 	styleUnref                  func(s *Style)
 )
 
-func (s *Style) ApplyDefaultBackground(window *T.GdkWindow, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int) {
+func (s *Style) ApplyDefaultBackground(window *D.Window, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int) {
 	styleApplyDefaultBackground(s, window, setBg, stateType, area, x, y, width, height)
 }
-func (s *Style) Attach(window *T.GdkWindow) *Style { return styleAttach(s, window) }
-func (s *Style) Copy() *Style                      { return styleCopy(s) }
-func (s *Style) Detach()                           { styleDetach(s) }
+func (s *Style) Attach(window *D.Window) *Style { return styleAttach(s, window) }
+func (s *Style) Copy() *Style                   { return styleCopy(s) }
+func (s *Style) Detach()                        { styleDetach(s) }
 func (s *Style) Get(widgetType T.GType, firstPropertyName string, v ...VArg) {
 	styleGet(s, widgetType, firstPropertyName, v)
 }
@@ -798,15 +799,15 @@ func (s *Style) GetStyleProperty(widgetType T.GType, propertyName string, value 
 func (s *Style) GetValist(widgetType T.GType, firstPropertyName string, varArgs T.VaList) {
 	styleGetValist(s, widgetType, firstPropertyName, varArgs)
 }
-func (s *Style) LookupColor(colorName string, color *T.GdkColor) T.Gboolean {
+func (s *Style) LookupColor(colorName string, color *D.Color) T.Gboolean {
 	return styleLookupColor(s, colorName, color)
 }
 func (s *Style) LookupIconSet(stockId string) *IconSet { return styleLookupIconSet(s, stockId) }
 func (s *Style) Ref() *Style                           { return styleRef(s) }
-func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
+func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *D.Pixbuf {
 	return styleRenderIcon(s, source, direction, state, size, widget, detail)
 }
-func (s *Style) SetBackground(window *T.GdkWindow, stateType StateType) {
+func (s *Style) SetBackground(window *D.Window, stateType StateType) {
 	styleSetBackground(s, window, stateType)
 }
 func (s *Style) SetFont(font *T.GdkFont) { styleSetFont(s, font) }

@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -147,8 +148,8 @@ var (
 )
 
 type TextAppearance struct {
-	BgColor   T.GdkColor
-	FgColor   T.GdkColor
+	BgColor   D.Color
+	FgColor   D.Color
 	BgStipple *T.GdkBitmap
 	FgStipple *T.GdkBitmap
 	Rise      int
@@ -181,7 +182,7 @@ type TextAttributes struct {
 	Tabs             *T.PangoTabArray
 	WrapMode         WrapMode
 	Language         *T.PangoLanguage
-	PgBgColor        *T.GdkColor
+	PgBgColor        *D.Color
 	Bits             uint
 	// Invisible : 1
 	// BgFullHeight : 1
@@ -290,7 +291,7 @@ var (
 	textBufferInsertChildAnchor           func(t *TextBuffer, iter *TextIter, anchor *TextChildAnchor)
 	textBufferInsertInteractive           func(t *TextBuffer, iter *TextIter, text string, leng int, defaultEditable T.Gboolean) T.Gboolean
 	textBufferInsertInteractiveAtCursor   func(t *TextBuffer, text string, leng int, defaultEditable T.Gboolean) T.Gboolean
-	textBufferInsertPixbuf                func(t *TextBuffer, iter *TextIter, pixbuf *T.GdkPixbuf)
+	textBufferInsertPixbuf                func(t *TextBuffer, iter *TextIter, pixbuf *D.Pixbuf)
 	textBufferInsertRange                 func(t *TextBuffer, iter, start, end *TextIter)
 	textBufferInsertRangeInteractive      func(t *TextBuffer, iter, start, end *TextIter, defaultEditable T.Gboolean) T.Gboolean
 	textBufferInsertWithTags              func(t *TextBuffer, iter *TextIter, text string, leng int, firstTag *TextTag, v ...VArg)
@@ -422,7 +423,7 @@ func (t *TextBuffer) InsertInteractive(iter *TextIter, text string, leng int, de
 func (t *TextBuffer) InsertInteractiveAtCursor(text string, leng int, defaultEditable T.Gboolean) T.Gboolean {
 	return textBufferInsertInteractiveAtCursor(t, text, leng, defaultEditable)
 }
-func (t *TextBuffer) InsertPixbuf(iter *TextIter, pixbuf *T.GdkPixbuf) {
+func (t *TextBuffer) InsertPixbuf(iter *TextIter, pixbuf *D.Pixbuf) {
 	textBufferInsertPixbuf(t, iter, pixbuf)
 }
 func (t *TextBuffer) InsertRange(iter, start, end *TextIter) {
@@ -594,7 +595,7 @@ var (
 	textIterGetLineOffset                  func(t *TextIter) int
 	textIterGetMarks                       func(t *TextIter) *T.GSList
 	textIterGetOffset                      func(t *TextIter) int
-	textIterGetPixbuf                      func(t *TextIter) *T.GdkPixbuf
+	textIterGetPixbuf                      func(t *TextIter) *D.Pixbuf
 	textIterGetSlice                       func(t *TextIter, end *TextIter) string
 	textIterGetTags                        func(t *TextIter) *T.GSList
 	textIterGetText                        func(t *TextIter, end *TextIter) string
@@ -730,7 +731,7 @@ func (t *TextIter) GetLineIndex() int                { return textIterGetLineInd
 func (t *TextIter) GetLineOffset() int               { return textIterGetLineOffset(t) }
 func (t *TextIter) GetMarks() *T.GSList              { return textIterGetMarks(t) }
 func (t *TextIter) GetOffset() int                   { return textIterGetOffset(t) }
-func (t *TextIter) GetPixbuf() *T.GdkPixbuf          { return textIterGetPixbuf(t) }
+func (t *TextIter) GetPixbuf() *D.Pixbuf             { return textIterGetPixbuf(t) }
 func (t *TextIter) GetSlice(end *TextIter) string    { return textIterGetSlice(t, end) }
 func (t *TextIter) GetTags() *T.GSList               { return textIterGetTags(t) }
 func (t *TextIter) GetText(end *TextIter) string     { return textIterGetText(t, end) }
@@ -948,8 +949,8 @@ var (
 	TextViewWindowToBufferCoords     func(t *TextView, win TextWindowType, windowX, windowY int, bufferX, bufferY *int)
 	TextViewGetHadjustment           func(t *TextView) *Adjustment
 	TextViewGetVadjustment           func(t *TextView) *Adjustment
-	TextViewGetWindow                func(t *TextView, win TextWindowType) *T.GdkWindow
-	TextViewGetWindowType            func(t *TextView, window *T.GdkWindow) TextWindowType
+	TextViewGetWindow                func(t *TextView, win TextWindowType) *D.Window
+	TextViewGetWindowType            func(t *TextView, window *D.Window) TextWindowType
 	TextViewSetBorderWindowSize      func(t *TextView, tw TextWindowType, size int)
 	TextViewGetBorderWindowSize      func(t *TextView, tw TextWindowType) int
 	TextViewForwardDisplayLine       func(t *TextView, iter *TextIter) T.Gboolean
@@ -1021,7 +1022,7 @@ type TipsQuery struct {
 	LabelNoTip    *T.Gchar
 	Caller        *Widget
 	LastCrossed   *Widget
-	QueryCursor   *T.GdkCursor
+	QueryCursor   *D.Cursor
 }
 
 var (
@@ -1541,10 +1542,10 @@ type Tooltip struct{}
 var (
 	TooltipGetType func() T.GType
 
-	TooltipTriggerTooltipQuery func(display *T.GdkDisplay)
+	TooltipTriggerTooltipQuery func(display *D.Display)
 
 	tooltipSetCustom           func(t *Tooltip, customWidget *Widget)
-	tooltipSetIcon             func(t *Tooltip, pixbuf *T.GdkPixbuf)
+	tooltipSetIcon             func(t *Tooltip, pixbuf *D.Pixbuf)
 	tooltipSetIconFromGicon    func(t *Tooltip, gicon *T.GIcon, size IconSize)
 	tooltipSetIconFromIconName func(t *Tooltip, iconName string, size IconSize)
 	tooltipSetIconFromStock    func(t *Tooltip, stockId string, size IconSize)
@@ -1554,7 +1555,7 @@ var (
 )
 
 func (t *Tooltip) SetCustom(customWidget *Widget) { tooltipSetCustom(t, customWidget) }
-func (t *Tooltip) SetIcon(pixbuf *T.GdkPixbuf)    { tooltipSetIcon(t, pixbuf) }
+func (t *Tooltip) SetIcon(pixbuf *D.Pixbuf)       { tooltipSetIcon(t, pixbuf) }
 func (t *Tooltip) SetIconFromGicon(gicon *T.GIcon, size IconSize) {
 	tooltipSetIconFromGicon(t, gicon, size)
 }
@@ -2332,14 +2333,14 @@ var (
 	treeViewConvertTreeToWidgetCoords      func(t *TreeView, tx, ty int, wx, wy *int)
 	treeViewConvertWidgetToBinWindowCoords func(t *TreeView, wx, wy int, bx, by *int)
 	treeViewConvertWidgetToTreeCoords      func(t *TreeView, wx, wy int, tx, ty *int)
-	treeViewCreateRowDragIcon              func(t *TreeView, path *TreePath) *T.GdkPixmap
+	treeViewCreateRowDragIcon              func(t *TreeView, path *TreePath) *D.Pixmap
 	treeViewEnableModelDragDest            func(t *TreeView, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
 	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
 	treeViewExpandAll                      func(t *TreeView)
 	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll T.Gboolean) T.Gboolean
 	treeViewExpandToPath                   func(t *TreeView, path *TreePath)
 	treeViewGetBackgroundArea              func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle)
-	treeViewGetBinWindow                   func(t *TreeView) *T.GdkWindow
+	treeViewGetBinWindow                   func(t *TreeView) *D.Window
 	treeViewGetCellArea                    func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle)
 	treeViewGetColumn                      func(t *TreeView, n int) *TreeViewColumn
 	treeViewGetColumns                     func(t *TreeView) *T.GList
@@ -2443,7 +2444,7 @@ func (t *TreeView) ConvertWidgetToBinWindowCoords(wx, wy int, bx, by *int) {
 func (t *TreeView) ConvertWidgetToTreeCoords(wx, wy int, tx, ty *int) {
 	treeViewConvertWidgetToTreeCoords(t, wx, wy, tx, ty)
 }
-func (t *TreeView) CreateRowDragIcon(path *TreePath) *T.GdkPixmap {
+func (t *TreeView) CreateRowDragIcon(path *TreePath) *D.Pixmap {
 	return treeViewCreateRowDragIcon(t, path)
 }
 func (t *TreeView) EnableModelDragDest(targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
@@ -2460,7 +2461,7 @@ func (t *TreeView) ExpandToPath(path *TreePath) { treeViewExpandToPath(t, path) 
 func (t *TreeView) GetBackgroundArea(path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle) {
 	treeViewGetBackgroundArea(t, path, column, rect)
 }
-func (t *TreeView) GetBinWindow() *T.GdkWindow { return treeViewGetBinWindow(t) }
+func (t *TreeView) GetBinWindow() *D.Window { return treeViewGetBinWindow(t) }
 func (t *TreeView) GetCellArea(path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle) {
 	treeViewGetCellArea(t, path, column, rect)
 }
@@ -2610,7 +2611,7 @@ type TreeViewColumn struct {
 	Child                   *Widget
 	Arrow                   *Widget
 	Alignment               *Widget
-	Window                  *T.GdkWindow
+	Window                  *D.Window
 	EditableWidget          *CellEditable
 	Xalign                  float32
 	PropertyChangedSignal   uint

@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -96,12 +97,12 @@ var (
 	OffscreenWindowGetType func() T.GType
 	OffscreenWindowNew     func() *Widget
 
-	offscreenWindowGetPixbuf func(o *OffscreenWindow) *T.GdkPixbuf
-	offscreenWindowGetPixmap func(o *OffscreenWindow) *T.GdkPixmap
+	offscreenWindowGetPixbuf func(o *OffscreenWindow) *D.Pixbuf
+	offscreenWindowGetPixmap func(o *OffscreenWindow) *D.Pixmap
 )
 
-func (o *OffscreenWindow) GetPixbuf() *T.GdkPixbuf { return offscreenWindowGetPixbuf(o) }
-func (o *OffscreenWindow) GetPixmap() *T.GdkPixmap { return offscreenWindowGetPixmap(o) }
+func (o *OffscreenWindow) GetPixbuf() *D.Pixbuf { return offscreenWindowGetPixbuf(o) }
+func (o *OffscreenWindow) GetPixmap() *D.Pixmap { return offscreenWindowGetPixmap(o) }
 
 type OldEditable struct {
 	Widget            Widget

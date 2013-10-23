@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -56,7 +57,7 @@ type Entry struct {
 	// InDrag : 1
 	TextLength     uint16
 	TextMaxLength  uint16
-	TextArea       *T.GdkWindow
+	TextArea       *D.Window
 	ImContext      *IMContext
 	PopupMenu      *Widget
 	CurrentPos     int
@@ -130,13 +131,13 @@ var (
 	entryGetIconAtPos             func(e *Entry, x, y int) int
 	entryGetIconGicon             func(e *Entry, iconPos EntryIconPosition) *T.GIcon
 	entryGetIconName              func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *T.GdkPixbuf
+	entryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *D.Pixbuf
 	entryGetIconSensitive         func(e *Entry, iconPos EntryIconPosition) T.Gboolean
 	entryGetIconStock             func(e *Entry, iconPos EntryIconPosition) string
 	entryGetIconStorageType       func(e *Entry, iconPos EntryIconPosition) ImageType
 	entryGetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition) string
 	entryGetIconTooltipText       func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *T.GdkWindow
+	entryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *D.Window
 	entryGetInnerBorder           func(e *Entry) *Border
 	entryGetInvisibleChar         func(e *Entry) T.Gunichar
 	entryGetLayout                func(e *Entry) *T.PangoLayout
@@ -147,7 +148,7 @@ var (
 	entryGetProgressPulseStep     func(e *Entry) float64
 	entryGetText                  func(e *Entry) string
 	entryGetTextLength            func(e *Entry) uint16
-	entryGetTextWindow            func(e *Entry) *T.GdkWindow
+	entryGetTextWindow            func(e *Entry) *D.Window
 	entryGetVisibility            func(e *Entry) T.Gboolean
 	entryGetWidthChars            func(e *Entry) int
 	entryImContextFilterKeypress  func(e *Entry, event *T.GdkEventKey) T.Gboolean
@@ -167,7 +168,7 @@ var (
 	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions T.GdkDragAction)
 	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *T.GIcon)
 	entrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
-	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *T.GdkPixbuf)
+	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *D.Pixbuf)
 	entrySetIconFromStock         func(e *Entry, iconPos EntryIconPosition, stockId string)
 	entrySetIconSensitive         func(e *Entry, iconPos EntryIconPosition, sensitive T.Gboolean)
 	entrySetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition, tooltip string)
@@ -200,7 +201,7 @@ func (e *Entry) GetIconActivatable(iconPos EntryIconPosition) T.Gboolean {
 func (e *Entry) GetIconAtPos(x, y int) int                       { return entryGetIconAtPos(e, x, y) }
 func (e *Entry) GetIconGicon(iconPos EntryIconPosition) *T.GIcon { return entryGetIconGicon(e, iconPos) }
 func (e *Entry) GetIconName(iconPos EntryIconPosition) string    { return entryGetIconName(e, iconPos) }
-func (e *Entry) GetIconPixbuf(iconPos EntryIconPosition) *T.GdkPixbuf {
+func (e *Entry) GetIconPixbuf(iconPos EntryIconPosition) *D.Pixbuf {
 	return entryGetIconPixbuf(e, iconPos)
 }
 func (e *Entry) GetIconSensitive(iconPos EntryIconPosition) T.Gboolean {
@@ -216,7 +217,7 @@ func (e *Entry) GetIconTooltipMarkup(iconPos EntryIconPosition) string {
 func (e *Entry) GetIconTooltipText(iconPos EntryIconPosition) string {
 	return entryGetIconTooltipText(e, iconPos)
 }
-func (e *Entry) GetIconWindow(iconPos EntryIconPosition) *T.GdkWindow {
+func (e *Entry) GetIconWindow(iconPos EntryIconPosition) *D.Window {
 	return entryGetIconWindow(e, iconPos)
 }
 func (e *Entry) GetInnerBorder() *Border       { return entryGetInnerBorder(e) }
@@ -229,7 +230,7 @@ func (e *Entry) GetProgressFraction() float64  { return entryGetProgressFraction
 func (e *Entry) GetProgressPulseStep() float64 { return entryGetProgressPulseStep(e) }
 func (e *Entry) GetText() string               { return entryGetText(e) }
 func (e *Entry) GetTextLength() uint16         { return entryGetTextLength(e) }
-func (e *Entry) GetTextWindow() *T.GdkWindow   { return entryGetTextWindow(e) }
+func (e *Entry) GetTextWindow() *D.Window      { return entryGetTextWindow(e) }
 func (e *Entry) GetVisibility() T.Gboolean     { return entryGetVisibility(e) }
 func (e *Entry) GetWidthChars() int            { return entryGetWidthChars(e) }
 func (e *Entry) ImContextFilterKeypress(event *T.GdkEventKey) T.Gboolean {
@@ -261,7 +262,7 @@ func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *T.GIcon) {
 func (e *Entry) SetIconFromIconName(iconPos EntryIconPosition, iconName string) {
 	entrySetIconFromIconName(e, iconPos, iconName)
 }
-func (e *Entry) SetIconFromPixbuf(iconPos EntryIconPosition, pixbuf *T.GdkPixbuf) {
+func (e *Entry) SetIconFromPixbuf(iconPos EntryIconPosition, pixbuf *D.Pixbuf) {
 	entrySetIconFromPixbuf(e, iconPos, pixbuf)
 }
 func (e *Entry) SetIconFromStock(iconPos EntryIconPosition, stockId string) {

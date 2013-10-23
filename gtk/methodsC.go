@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -21,7 +22,7 @@ type (
 		Num_marked_dates  int
 		Marked_date       [31]int
 		Display_flags     CalendarDisplayOptions
-		Marked_date_color [31]T.GdkColor
+		Marked_date_color [31]D.Color
 		Gc                *T.GdkGC
 		Xor_gc            *T.GdkGC
 		Focus_row         int
@@ -109,13 +110,13 @@ type Cell struct { // TODO(t):fix union
 	/* union
 	   text  *T.Gchar
 	   struct {
-			pixmap  *T.GdkPixmap
+			pixmap  *D.Pixmap
 			mask  *T.GdkBitmap
 	   }
 	   struct {
 			text  *T.Gchar
 			spacing  uint8
-			pixmap  *T.GdkPixmap
+			pixmap  *D.Pixmap
 			mask  *GdkBitmap
 	   }
 	   widget  *Widget
@@ -235,7 +236,7 @@ var (
 	cellRendererGetSensitive    func(c *CellRenderer) T.Gboolean
 	cellRendererGetSize         func(c *CellRenderer, widget *Widget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int)
 	cellRendererGetVisible      func(c *CellRenderer) T.Gboolean
-	cellRendererRender          func(c *CellRenderer, window *T.GdkWindow, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState)
+	cellRendererRender          func(c *CellRenderer, window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState)
 	cellRendererSetAlignment    func(c *CellRenderer, xalign, yalign float32)
 	cellRendererSetFixedSize    func(c *CellRenderer, width, height int)
 	cellRendererSetPadding      func(c *CellRenderer, xpad, ypad int)
@@ -259,7 +260,7 @@ func (c *CellRenderer) GetSize(widget *Widget, cellArea *T.GdkRectangle, xOffset
 	cellRendererGetSize(c, widget, cellArea, xOffset, yOffset, width, height)
 }
 func (c *CellRenderer) GetVisible() T.Gboolean { return cellRendererGetVisible(c) }
-func (c *CellRenderer) Render(window *T.GdkWindow, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState) {
+func (c *CellRenderer) Render(window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState) {
 	cellRendererRender(c, window, widget, backgroundArea, cellArea, exposeArea, flags)
 }
 func (c *CellRenderer) SetAlignment(xalign, yalign float32) {
@@ -357,7 +358,7 @@ var (
 	CellViewNew           func() *Widget
 	CellViewNewWithText   func(text string) *Widget
 	CellViewNewWithMarkup func(markup string) *Widget
-	CellViewNewWithPixbuf func(pixbuf *T.GdkPixbuf) *Widget
+	CellViewNewWithPixbuf func(pixbuf *D.Pixbuf) *Widget
 )
 
 var (
@@ -365,7 +366,7 @@ var (
 	cellViewGetDisplayedRow    func(c *CellView) *TreePath
 	cellViewGetModel           func(c *CellView) *TreeModel
 	cellViewGetSizeOfRow       func(c *CellView, path *TreePath, requisition *Requisition) T.Gboolean
-	cellViewSetBackgroundColor func(c *CellView, color *T.GdkColor)
+	cellViewSetBackgroundColor func(c *CellView, color *D.Color)
 	cellViewSetDisplayedRow    func(c *CellView, path *TreePath)
 	cellViewSetModel           func(c *CellView, model *TreeModel)
 )
@@ -376,9 +377,9 @@ func (c *CellView) GetModel() *TreeModel       { return cellViewGetModel(c) }
 func (c *CellView) GetSizeOfRow(path *TreePath, requisition *Requisition) T.Gboolean {
 	return cellViewGetSizeOfRow(c, path, requisition)
 }
-func (c *CellView) SetBackgroundColor(color *T.GdkColor) { cellViewSetBackgroundColor(c, color) }
-func (c *CellView) SetDisplayedRow(path *TreePath)       { cellViewSetDisplayedRow(c, path) }
-func (c *CellView) SetModel(model *TreeModel)            { cellViewSetModel(c, model) }
+func (c *CellView) SetBackgroundColor(color *D.Color) { cellViewSetBackgroundColor(c, color) }
+func (c *CellView) SetDisplayedRow(path *TreePath)    { cellViewSetDisplayedRow(c, path) }
+func (c *CellView) SetModel(model *TreeModel)         { cellViewSetModel(c, model) }
 
 var (
 	CheckButtonNew             func() *Widget
@@ -440,7 +441,7 @@ type Clipboard struct{}
 type (
 	ClipboardClearFunc            func(clipboard *Clipboard, userDataOrOwner T.Gpointer)
 	ClipboardGetFunc              func(clipboard *Clipboard, selectionData *SelectionData, info uint, userDataOrOwner T.Gpointer)
-	ClipboardImageReceivedFunc    func(clipboard *Clipboard, pixbuf *T.GdkPixbuf, data T.Gpointer)
+	ClipboardImageReceivedFunc    func(clipboard *Clipboard, pixbuf *D.Pixbuf, data T.Gpointer)
 	ClipboardReceivedFunc         func(clipboard *Clipboard, selectionData *SelectionData, data T.Gpointer)
 	ClipboardRichTextReceivedFunc func(clipboard *Clipboard, format T.GdkAtom, text *uint8, length T.Gsize, data T.Gpointer)
 	ClipboardTargetsReceivedFunc  func(clipboard *Clipboard, atoms *T.GdkAtom, nAtoms int, data T.Gpointer)
@@ -451,13 +452,13 @@ type (
 var (
 	ClipboardGetType       func() T.GType
 	ClipboardGet           func(selection T.GdkAtom) *Clipboard
-	ClipboardGetForDisplay func(display *T.GdkDisplay, selection T.GdkAtom) *Clipboard
+	ClipboardGetForDisplay func(display *D.Display, selection T.GdkAtom) *Clipboard
 	WidgetGetClipboard     func(widget *Widget, selection T.GdkAtom) *Clipboard
 )
 
 var (
 	clipboardClear                   func(c *Clipboard)
-	clipboardGetDisplay              func(c *Clipboard) *T.GdkDisplay
+	clipboardGetDisplay              func(c *Clipboard) *D.Display
 	clipboardGetOwner                func(c *Clipboard) *T.GObject
 	clipboardRequestContents         func(c *Clipboard, target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer)
 	clipboardRequestImage            func(c *Clipboard, callback ClipboardImageReceivedFunc, userData T.Gpointer)
@@ -466,13 +467,13 @@ var (
 	clipboardRequestText             func(c *Clipboard, callback ClipboardTextReceivedFunc, userData T.Gpointer)
 	clipboardRequestUris             func(c *Clipboard, callback ClipboardURIReceivedFunc, userData T.Gpointer)
 	clipboardSetCanStore             func(c *Clipboard, targets *TargetEntry, nTargets int)
-	clipboardSetImage                func(c *Clipboard, pixbuf *T.GdkPixbuf)
+	clipboardSetImage                func(c *Clipboard, pixbuf *D.Pixbuf)
 	clipboardSetText                 func(c *Clipboard, text string, len int)
 	clipboardSetWithData             func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean
 	clipboardSetWithOwner            func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean
 	clipboardStore                   func(c *Clipboard)
 	clipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *SelectionData
-	clipboardWaitForImage            func(c *Clipboard) *T.GdkPixbuf
+	clipboardWaitForImage            func(c *Clipboard) *D.Pixbuf
 	clipboardWaitForRichText         func(c *Clipboard, buffer *TextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8
 	clipboardWaitForTargets          func(c *Clipboard, targets **T.GdkAtom, nTargets *int) T.Gboolean
 	clipboardWaitForText             func(c *Clipboard) string
@@ -484,9 +485,9 @@ var (
 	clipboardWaitIsUrisAvailable     func(c *Clipboard) T.Gboolean
 )
 
-func (c *Clipboard) Clear()                    { clipboardClear(c) }
-func (c *Clipboard) GetDisplay() *T.GdkDisplay { return clipboardGetDisplay(c) }
-func (c *Clipboard) GetOwner() *T.GObject      { return clipboardGetOwner(c) }
+func (c *Clipboard) Clear()                 { clipboardClear(c) }
+func (c *Clipboard) GetDisplay() *D.Display { return clipboardGetDisplay(c) }
+func (c *Clipboard) GetOwner() *T.GObject   { return clipboardGetOwner(c) }
 func (c *Clipboard) RequestContents(target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer) {
 	clipboardRequestContents(c, target, callback, userData)
 }
@@ -508,7 +509,7 @@ func (c *Clipboard) RequestUris(callback ClipboardURIReceivedFunc, userData T.Gp
 func (c *Clipboard) SetCanStore(targets *TargetEntry, nTargets int) {
 	clipboardSetCanStore(c, targets, nTargets)
 }
-func (c *Clipboard) SetImage(pixbuf *T.GdkPixbuf)  { clipboardSetImage(c, pixbuf) }
+func (c *Clipboard) SetImage(pixbuf *D.Pixbuf)     { clipboardSetImage(c, pixbuf) }
 func (c *Clipboard) SetText(text string, leng int) { clipboardSetText(c, text, leng) }
 func (c *Clipboard) SetWithData(targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean {
 	return clipboardSetWithData(c, targets, nTargets, getFunc, clearFunc, userData)
@@ -520,7 +521,7 @@ func (c *Clipboard) Store() { clipboardStore(c) }
 func (c *Clipboard) WaitForContents(target T.GdkAtom) *SelectionData {
 	return clipboardWaitForContents(c, target)
 }
-func (c *Clipboard) WaitForImage() *T.GdkPixbuf { return clipboardWaitForImage(c) }
+func (c *Clipboard) WaitForImage() *D.Pixbuf { return clipboardWaitForImage(c) }
 func (c *Clipboard) WaitForRichText(buffer *TextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8 {
 	return clipboardWaitForRichText(c, buffer, format, length)
 }
@@ -553,9 +554,9 @@ type (
 		RowListEnd         *T.GList
 		Columns            int
 		ColumnTitleArea    T.GdkRectangle
-		TitleWindow        *T.GdkWindow
+		TitleWindow        *D.Window
 		Column             *CListColumn
-		ClistWindow        *T.GdkWindow
+		ClistWindow        *D.Window
 		ClistWindowWidth   int
 		ClistWindowHeight  int
 		Hoffset            int
@@ -575,7 +576,7 @@ type (
 		XorGc              *T.GdkGC
 		FgGc               *T.GdkGC
 		BgGc               *T.GdkGC
-		CursorDrag         *T.GdkCursor
+		CursorDrag         *D.Cursor
 		XDrag              int
 		FocusRow           int
 		FocusHeaderColumn  int
@@ -595,7 +596,7 @@ type (
 		Title         *T.Gchar
 		Area          T.GdkRectangle
 		Button        *Widget
-		Window        *T.GdkWindow
+		Window        *D.Window
 		Width         int
 		Min_width     int
 		Max_width     int
@@ -616,8 +617,8 @@ type (
 	CListRow struct {
 		Cell       *Cell
 		State      StateType
-		Foreground T.GdkColor
-		Background T.GdkColor
+		Foreground D.Color
+		Background D.Color
 		Style      *Style
 		Data       T.Gpointer
 		Destroy    T.GDestroyNotify
@@ -682,7 +683,7 @@ var (
 	clistSelectAll              func(c *CList)
 	clistSelectRow              func(c *CList, row, column int)
 	clistSetAutoSort            func(c *CList, autoSort T.Gboolean)
-	clistSetBackground          func(c *CList, row int, color *T.GdkColor)
+	clistSetBackground          func(c *CList, row int, color *D.Color)
 	clistSetButtonActions       func(c *CList, button uint, buttonActions uint8)
 	clistSetCellStyle           func(c *CList, row, column int, style *Style)
 	clistSetColumnAutoResize    func(c *CList, column int, autoResize T.Gboolean)
@@ -695,9 +696,9 @@ var (
 	clistSetColumnWidget        func(c *CList, column int, widget *Widget)
 	clistSetColumnWidth         func(c *CList, column, width int)
 	clistSetCompareFunc         func(c *CList, cmpFunc CListCompareFunc)
-	clistSetForeground          func(c *CList, row int, color *T.GdkColor)
+	clistSetForeground          func(c *CList, row int, color *D.Color)
 	clistSetHadjustment         func(c *CList, adjustment *Adjustment)
-	clistSetPixmap              func(c *CList, row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	clistSetPixmap              func(c *CList, row, column int, pixmap *D.Pixmap, mask *T.GdkBitmap)
 	clistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
 	clistSetReorderable         func(c *CList, reorderable T.Gboolean)
 	clistSetRowData             func(c *CList, row int, data T.Gpointer)
@@ -757,15 +758,15 @@ func (c *CList) Insert(row int, text **T.Gchar) int { return clistInsert(c, row,
 func (c *CList) Moveto(row, column int, rowAlign, colAlign float32) {
 	clistMoveto(c, row, column, rowAlign, colAlign)
 }
-func (c *CList) OptimalColumnWidth(column int) int        { return clistOptimalColumnWidth(c, column) }
-func (c *CList) Prepend(text **T.Gchar) int               { return clistPrepend(c, text) }
-func (c *CList) Remove(row int)                           { clistRemove(c, row) }
-func (c *CList) RowIsVisible(row int) Visibility          { return clistRowIsVisible(c, row) }
-func (c *CList) RowMove(sourceRow, destRow int)           { clistRowMove(c, sourceRow, destRow) }
-func (c *CList) SelectAll()                               { clistSelectAll(c) }
-func (c *CList) SelectRow(row, column int)                { clistSelectRow(c, row, column) }
-func (c *CList) SetAutoSort(autoSort T.Gboolean)          { clistSetAutoSort(c, autoSort) }
-func (c *CList) SetBackground(row int, color *T.GdkColor) { clistSetBackground(c, row, color) }
+func (c *CList) OptimalColumnWidth(column int) int     { return clistOptimalColumnWidth(c, column) }
+func (c *CList) Prepend(text **T.Gchar) int            { return clistPrepend(c, text) }
+func (c *CList) Remove(row int)                        { clistRemove(c, row) }
+func (c *CList) RowIsVisible(row int) Visibility       { return clistRowIsVisible(c, row) }
+func (c *CList) RowMove(sourceRow, destRow int)        { clistRowMove(c, sourceRow, destRow) }
+func (c *CList) SelectAll()                            { clistSelectAll(c) }
+func (c *CList) SelectRow(row, column int)             { clistSelectRow(c, row, column) }
+func (c *CList) SetAutoSort(autoSort T.Gboolean)       { clistSetAutoSort(c, autoSort) }
+func (c *CList) SetBackground(row int, color *D.Color) { clistSetBackground(c, row, color) }
 func (c *CList) SetButtonActions(button uint, buttonActions uint8) {
 	clistSetButtonActions(c, button, buttonActions)
 }
@@ -790,9 +791,9 @@ func (c *CList) SetColumnVisibility(column int, visible T.Gboolean) {
 func (c *CList) SetColumnWidget(column int, widget *Widget) { clistSetColumnWidget(c, column, widget) }
 func (c *CList) SetColumnWidth(column, width int)           { clistSetColumnWidth(c, column, width) }
 func (c *CList) SetCompareFunc(cmpFunc CListCompareFunc)    { clistSetCompareFunc(c, cmpFunc) }
-func (c *CList) SetForeground(row int, color *T.GdkColor)   { clistSetForeground(c, row, color) }
+func (c *CList) SetForeground(row int, color *D.Color)      { clistSetForeground(c, row, color) }
 func (c *CList) SetHadjustment(adjustment *Adjustment)      { clistSetHadjustment(c, adjustment) }
-func (c *CList) SetPixmap(row, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
+func (c *CList) SetPixmap(row, column int, pixmap *D.Pixmap, mask *T.GdkBitmap) {
 	clistSetPixmap(c, row, column, pixmap, mask)
 }
 func (c *CList) SetPixtext(row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap) {
@@ -831,26 +832,26 @@ type ColorButton struct {
 var (
 	ColorButtonGetType      func() T.GType
 	ColorButtonNew          func() *Widget
-	ColorButtonNewWithColor func(color *T.GdkColor) *Widget
+	ColorButtonNewWithColor func(color *D.Color) *Widget
 )
 
 var (
 	colorButtonGetAlpha    func(c *ColorButton) uint16
-	colorButtonGetColor    func(c *ColorButton, color *T.GdkColor)
+	colorButtonGetColor    func(c *ColorButton, color *D.Color)
 	colorButtonGetTitle    func(c *ColorButton) string
 	colorButtonGetUseAlpha func(c *ColorButton) T.Gboolean
 	colorButtonSetAlpha    func(c *ColorButton, alpha uint16)
-	colorButtonSetColor    func(c *ColorButton, color *T.GdkColor)
+	colorButtonSetColor    func(c *ColorButton, color *D.Color)
 	colorButtonSetTitle    func(c *ColorButton, title string)
 	colorButtonSetUseAlpha func(c *ColorButton, useAlpha T.Gboolean)
 )
 
 func (c *ColorButton) GetAlpha() uint16                { return colorButtonGetAlpha(c) }
-func (c *ColorButton) GetColor(color *T.GdkColor)      { colorButtonGetColor(c, color) }
+func (c *ColorButton) GetColor(color *D.Color)         { colorButtonGetColor(c, color) }
 func (c *ColorButton) GetTitle() string                { return colorButtonGetTitle(c) }
 func (c *ColorButton) GetUseAlpha() T.Gboolean         { return colorButtonGetUseAlpha(c) }
 func (c *ColorButton) SetAlpha(alpha uint16)           { colorButtonSetAlpha(c, alpha) }
-func (c *ColorButton) SetColor(color *T.GdkColor)      { colorButtonSetColor(c, color) }
+func (c *ColorButton) SetColor(color *D.Color)         { colorButtonSetColor(c, color) }
 func (c *ColorButton) SetTitle(title string)           { colorButtonSetTitle(c, title) }
 func (c *ColorButton) SetUseAlpha(useAlpha T.Gboolean) { colorButtonSetUseAlpha(c, useAlpha) }
 
@@ -861,18 +862,18 @@ type (
 	}
 
 	ColorSelectionChangePaletteFunc func(
-		colors *T.GdkColor, nColors int)
+		colors *D.Color, nColors int)
 
 	ColorSelectionChangePaletteWithScreenFunc func(
-		screen *T.GdkScreen, colors *T.GdkColor, nColors int)
+		screen *D.Screen, colors *D.Color, nColors int)
 )
 
 var (
 	ColorSelectionGetType func() T.GType
 	ColorSelectionNew     func() *Widget
 
-	ColorSelectionPaletteFromString func(str string, colors **T.GdkColor, nColors *int) T.Gboolean
-	ColorSelectionPaletteToString   func(colors *T.GdkColor, nColors int) string
+	ColorSelectionPaletteFromString func(str string, colors **D.Color, nColors *int) T.Gboolean
+	ColorSelectionPaletteToString   func(colors *D.Color, nColors int) string
 
 	ColorSelectionSetChangePaletteHook           func(f ColorSelectionChangePaletteFunc) ColorSelectionChangePaletteFunc
 	ColorSelectionSetChangePaletteWithScreenHook func(f ColorSelectionChangePaletteWithScreenFunc) ColorSelectionChangePaletteWithScreenFunc
@@ -881,43 +882,43 @@ var (
 var (
 	colorSelectionGetColor             func(c *ColorSelection, color *float64)
 	colorSelectionGetCurrentAlpha      func(c *ColorSelection) uint16
-	colorSelectionGetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionGetCurrentColor      func(c *ColorSelection, color *D.Color)
 	colorSelectionGetHasOpacityControl func(c *ColorSelection) T.Gboolean
 	colorSelectionGetHasPalette        func(c *ColorSelection) T.Gboolean
 	colorSelectionGetPreviousAlpha     func(c *ColorSelection) uint16
-	colorSelectionGetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionGetPreviousColor     func(c *ColorSelection, color *D.Color)
 	colorSelectionIsAdjusting          func(c *ColorSelection) T.Gboolean
 	colorSelectionSetColor             func(c *ColorSelection, color *float64)
 	colorSelectionSetCurrentAlpha      func(c *ColorSelection, alpha uint16)
-	colorSelectionSetCurrentColor      func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionSetCurrentColor      func(c *ColorSelection, color *D.Color)
 	colorSelectionSetHasOpacityControl func(c *ColorSelection, hasOpacity T.Gboolean)
 	colorSelectionSetHasPalette        func(c *ColorSelection, hasPalette T.Gboolean)
 	colorSelectionSetPreviousAlpha     func(c *ColorSelection, alpha uint16)
-	colorSelectionSetPreviousColor     func(c *ColorSelection, color *T.GdkColor)
+	colorSelectionSetPreviousColor     func(c *ColorSelection, color *D.Color)
 	colorSelectionSetUpdatePolicy      func(c *ColorSelection, policy UpdateType)
 )
 
-func (c *ColorSelection) GetColor(color *float64)           { colorSelectionGetColor(c, color) }
-func (c *ColorSelection) GetCurrentAlpha() uint16           { return colorSelectionGetCurrentAlpha(c) }
-func (c *ColorSelection) GetCurrentColor(color *T.GdkColor) { colorSelectionGetCurrentColor(c, color) }
+func (c *ColorSelection) GetColor(color *float64)        { colorSelectionGetColor(c, color) }
+func (c *ColorSelection) GetCurrentAlpha() uint16        { return colorSelectionGetCurrentAlpha(c) }
+func (c *ColorSelection) GetCurrentColor(color *D.Color) { colorSelectionGetCurrentColor(c, color) }
 func (c *ColorSelection) GetHasOpacityControl() T.Gboolean {
 	return colorSelectionGetHasOpacityControl(c)
 }
-func (c *ColorSelection) GetHasPalette() T.Gboolean          { return colorSelectionGetHasPalette(c) }
-func (c *ColorSelection) GetPreviousAlpha() uint16           { return colorSelectionGetPreviousAlpha(c) }
-func (c *ColorSelection) GetPreviousColor(color *T.GdkColor) { colorSelectionGetPreviousColor(c, color) }
-func (c *ColorSelection) IsAdjusting() T.Gboolean            { return colorSelectionIsAdjusting(c) }
-func (c *ColorSelection) SetColor(color *float64)            { colorSelectionSetColor(c, color) }
-func (c *ColorSelection) SetCurrentAlpha(alpha uint16)       { colorSelectionSetCurrentAlpha(c, alpha) }
-func (c *ColorSelection) SetCurrentColor(color *T.GdkColor)  { colorSelectionSetCurrentColor(c, color) }
+func (c *ColorSelection) GetHasPalette() T.Gboolean       { return colorSelectionGetHasPalette(c) }
+func (c *ColorSelection) GetPreviousAlpha() uint16        { return colorSelectionGetPreviousAlpha(c) }
+func (c *ColorSelection) GetPreviousColor(color *D.Color) { colorSelectionGetPreviousColor(c, color) }
+func (c *ColorSelection) IsAdjusting() T.Gboolean         { return colorSelectionIsAdjusting(c) }
+func (c *ColorSelection) SetColor(color *float64)         { colorSelectionSetColor(c, color) }
+func (c *ColorSelection) SetCurrentAlpha(alpha uint16)    { colorSelectionSetCurrentAlpha(c, alpha) }
+func (c *ColorSelection) SetCurrentColor(color *D.Color)  { colorSelectionSetCurrentColor(c, color) }
 func (c *ColorSelection) SetHasOpacityControl(hasOpacity T.Gboolean) {
 	colorSelectionSetHasOpacityControl(c, hasOpacity)
 }
 func (c *ColorSelection) SetHasPalette(hasPalette T.Gboolean) {
 	colorSelectionSetHasPalette(c, hasPalette)
 }
-func (c *ColorSelection) SetPreviousAlpha(alpha uint16)      { colorSelectionSetPreviousAlpha(c, alpha) }
-func (c *ColorSelection) SetPreviousColor(color *T.GdkColor) { colorSelectionSetPreviousColor(c, color) }
+func (c *ColorSelection) SetPreviousAlpha(alpha uint16)   { colorSelectionSetPreviousAlpha(c, alpha) }
+func (c *ColorSelection) SetPreviousColor(color *D.Color) { colorSelectionSetPreviousColor(c, color) }
 func (c *ColorSelection) SetUpdatePolicy(policy UpdateType) {
 	colorSelectionSetUpdatePolicy(c, policy)
 }
@@ -1287,9 +1288,9 @@ type (
 		Parent        *CTreeNode
 		Sibling       *CTreeNode
 		Children      *CTreeNode
-		Pixmap_closed *T.GdkPixmap
+		Pixmap_closed *D.Pixmap
 		Mask_closed   *T.GdkBitmap
-		Pixmap_opened *T.GdkPixmap
+		Pixmap_opened *D.Pixmap
 		Mask_opened   *T.GdkBitmap
 		Level         uint16
 		Bits          uint
@@ -1352,9 +1353,9 @@ var (
 	ctreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
 	ctreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *CTreeNode
 	ctreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
-	ctreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
+	ctreeGetNodeInfo              func(c *CTree, node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **D.Pixmap, maskClosed **T.GdkBitmap, pixmapOpened **D.Pixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean
 	ctreeInsertGnode              func(c *CTree, parent *CTreeNode, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode
-	ctreeInsertNode               func(c *CTree, parent *CTreeNode, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf T.Gboolean, expanded T.Gboolean) *CTreeNode
+	ctreeInsertNode               func(c *CTree, parent *CTreeNode, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *D.Pixmap, maskClosed *T.GdkBitmap, pixmapOpened *D.Pixmap, maskOpened *T.GdkBitmap, isLeaf T.Gboolean, expanded T.Gboolean) *CTreeNode
 	ctreeIsAncestor               func(c *CTree, node *CTreeNode, child *CTreeNode) T.Gboolean
 	ctreeIsHotSpot                func(c *CTree, x int, y int) T.Gboolean
 	ctreeIsViewable               func(c *CTree, node *CTreeNode) T.Gboolean
@@ -1362,8 +1363,8 @@ var (
 	ctreeMove                     func(c *CTree, node *CTreeNode, newParent *CTreeNode, newSibling *CTreeNode)
 	ctreeNodeGetCellStyle         func(c *CTree, node *CTreeNode, column int) *Style
 	ctreeNodeGetCellType          func(c *CTree, node *CTreeNode, column int) CellType
-	ctreeNodeGetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
-	ctreeNodeGetPixtext           func(c *CTree, node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean
+	ctreeNodeGetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap **D.Pixmap, mask **T.GdkBitmap) T.Gboolean
+	ctreeNodeGetPixtext           func(c *CTree, node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **D.Pixmap, mask **T.GdkBitmap) T.Gboolean
 	ctreeNodeGetRowData           func(c *CTree, node *CTreeNode) T.Gpointer
 	ctreeNodeGetRowStyle          func(c *CTree, node *CTreeNode) *Style
 	ctreeNodeGetSelectable        func(c *CTree, node *CTreeNode) T.Gboolean
@@ -1371,11 +1372,11 @@ var (
 	ctreeNodeIsVisible            func(c *CTree, node *CTreeNode) Visibility
 	ctreeNodeMoveto               func(c *CTree, node *CTreeNode, column int, rowAlign, colAlign float32)
 	ctreeNodeNth                  func(c *CTree, row uint) *CTreeNode
-	ctreeNodeSetBackground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
+	ctreeNodeSetBackground        func(c *CTree, node *CTreeNode, color *D.Color)
 	ctreeNodeSetCellStyle         func(c *CTree, node *CTreeNode, column int, style *Style)
-	ctreeNodeSetForeground        func(c *CTree, node *CTreeNode, color *T.GdkColor)
-	ctreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
-	ctreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap)
+	ctreeNodeSetForeground        func(c *CTree, node *CTreeNode, color *D.Color)
+	ctreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *D.Pixmap, mask *T.GdkBitmap)
+	ctreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *D.Pixmap, mask *T.GdkBitmap)
 	ctreeNodeSetRowData           func(c *CTree, node *CTreeNode, data T.Gpointer)
 	ctreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, data T.Gpointer, destroy T.GDestroyNotify)
 	ctreeNodeSetRowStyle          func(c *CTree, node *CTreeNode, style *Style)
@@ -1394,7 +1395,7 @@ var (
 	ctreeSetExpanderStyle         func(c *CTree, expanderStyle CTreeExpanderStyle)
 	ctreeSetIndent                func(c *CTree, indent int)
 	ctreeSetLineStyle             func(c *CTree, lineStyle CTreeLineStyle)
-	ctreeSetNodeInfo              func(c *CTree, node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean)
+	ctreeSetNodeInfo              func(c *CTree, node *CTreeNode, text string, spacing uint8, pixmapClosed *D.Pixmap, maskClosed *T.GdkBitmap, pixmapOpened *D.Pixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean)
 	ctreeSetShowStub              func(c *CTree, showStub T.Gboolean)
 	ctreeSetSpacing               func(c *CTree, spacing int)
 	ctreeSortNode                 func(c *CTree, node *CTreeNode)
@@ -1428,13 +1429,13 @@ func (c *CTree) FindByRowDataCustom(node *CTreeNode, data T.Gpointer, f T.GCompa
 	return ctreeFindByRowDataCustom(c, node, data, f)
 }
 func (c *CTree) FindNodePtr(ctreeRow *CTreeRow) *CTreeNode { return ctreeFindNodePtr(c, ctreeRow) }
-func (c *CTree) GetNodeInfo(node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **T.GdkPixmap, maskClosed **T.GdkBitmap, pixmapOpened **T.GdkPixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean {
+func (c *CTree) GetNodeInfo(node *CTreeNode, text **T.Gchar, spacing *uint8, pixmapClosed **D.Pixmap, maskClosed **T.GdkBitmap, pixmapOpened **D.Pixmap, maskOpened **T.GdkBitmap, isLeaf, expanded *T.Gboolean) T.Gboolean {
 	return ctreeGetNodeInfo(c, node, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
 func (c *CTree) InsertGnode(parent, sibling *CTreeNode, gnode *T.GNode, f CTreeGNodeFunc, data T.Gpointer) *CTreeNode {
 	return ctreeInsertGnode(c, parent, sibling, gnode, f, data)
 }
-func (c *CTree) InsertNode(parent, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) *CTreeNode {
+func (c *CTree) InsertNode(parent, sibling *CTreeNode, text **T.Gchar, spacing uint8, pixmapClosed *D.Pixmap, maskClosed *T.GdkBitmap, pixmapOpened *D.Pixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) *CTreeNode {
 	return ctreeInsertNode(c, parent, sibling, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
 func (c *CTree) IsAncestor(node, child *CTreeNode) T.Gboolean { return ctreeIsAncestor(c, node, child) }
@@ -1450,10 +1451,10 @@ func (c *CTree) NodeGetCellStyle(node *CTreeNode, column int) *Style {
 func (c *CTree) NodeGetCellType(node *CTreeNode, column int) CellType {
 	return ctreeNodeGetCellType(c, node, column)
 }
-func (c *CTree) NodeGetPixmap(node *CTreeNode, column int, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean {
+func (c *CTree) NodeGetPixmap(node *CTreeNode, column int, pixmap **D.Pixmap, mask **T.GdkBitmap) T.Gboolean {
 	return ctreeNodeGetPixmap(c, node, column, pixmap, mask)
 }
-func (c *CTree) NodeGetPixtext(node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **T.GdkPixmap, mask **T.GdkBitmap) T.Gboolean {
+func (c *CTree) NodeGetPixtext(node *CTreeNode, column int, text **T.Gchar, spacing *uint8, pixmap **D.Pixmap, mask **T.GdkBitmap) T.Gboolean {
 	return ctreeNodeGetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
 func (c *CTree) NodeGetRowData(node *CTreeNode) T.Gpointer    { return ctreeNodeGetRowData(c, node) }
@@ -1467,19 +1468,19 @@ func (c *CTree) NodeMoveto(node *CTreeNode, column int, rowAlign, colAlign float
 	ctreeNodeMoveto(c, node, column, rowAlign, colAlign)
 }
 func (c *CTree) NodeNth(row uint) *CTreeNode { return ctreeNodeNth(c, row) }
-func (c *CTree) NodeSetBackground(node *CTreeNode, color *T.GdkColor) {
+func (c *CTree) NodeSetBackground(node *CTreeNode, color *D.Color) {
 	ctreeNodeSetBackground(c, node, color)
 }
 func (c *CTree) NodeSetCellStyle(node *CTreeNode, column int, style *Style) {
 	ctreeNodeSetCellStyle(c, node, column, style)
 }
-func (c *CTree) NodeSetForeground(node *CTreeNode, color *T.GdkColor) {
+func (c *CTree) NodeSetForeground(node *CTreeNode, color *D.Color) {
 	ctreeNodeSetForeground(c, node, color)
 }
-func (c *CTree) NodeSetPixmap(node *CTreeNode, column int, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
+func (c *CTree) NodeSetPixmap(node *CTreeNode, column int, pixmap *D.Pixmap, mask *T.GdkBitmap) {
 	ctreeNodeSetPixmap(c, node, column, pixmap, mask)
 }
-func (c *CTree) NodeSetPixtext(node *CTreeNode, column int, text string, spacing uint8, pixmap *T.GdkPixmap, mask *T.GdkBitmap) {
+func (c *CTree) NodeSetPixtext(node *CTreeNode, column int, text string, spacing uint8, pixmap *D.Pixmap, mask *T.GdkBitmap) {
 	ctreeNodeSetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
 func (c *CTree) NodeSetRowData(node *CTreeNode, data T.Gpointer) { ctreeNodeSetRowData(c, node, data) }
@@ -1522,7 +1523,7 @@ func (c *CTree) SetExpanderStyle(expanderStyle CTreeExpanderStyle) {
 }
 func (c *CTree) SetIndent(indent int)                  { ctreeSetIndent(c, indent) }
 func (c *CTree) SetLineStyle(lineStyle CTreeLineStyle) { ctreeSetLineStyle(c, lineStyle) }
-func (c *CTree) SetNodeInfo(node *CTreeNode, text string, spacing uint8, pixmapClosed *T.GdkPixmap, maskClosed *T.GdkBitmap, pixmapOpened *T.GdkPixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) {
+func (c *CTree) SetNodeInfo(node *CTreeNode, text string, spacing uint8, pixmapClosed *D.Pixmap, maskClosed *T.GdkBitmap, pixmapOpened *D.Pixmap, maskOpened *T.GdkBitmap, isLeaf, expanded T.Gboolean) {
 	ctreeSetNodeInfo(c, node, text, spacing, pixmapClosed, maskClosed, pixmapOpened, maskOpened, isLeaf, expanded)
 }
 func (c *CTree) SetShowStub(showStub T.Gboolean)          { ctreeSetShowStub(c, showStub) }
@@ -1541,7 +1542,7 @@ type Curve struct {
 	MaxX         float32
 	MinY         float32
 	MaxY         float32
-	Pixmap       *T.GdkPixmap
+	Pixmap       *D.Pixmap
 	CurveType    CurveType
 	Height       int
 	GrabPoint    int

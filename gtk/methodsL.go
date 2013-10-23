@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -151,8 +152,8 @@ type Layout struct {
 	Height       uint
 	Hadjustment  *Adjustment
 	Vadjustment  *Adjustment
-	Bin_window   *T.GdkWindow
-	Visibility   T.GdkVisibilityState
+	Bin_window   *D.Window
+	Visibility   D.VisibilityState
 	Scroll_x     int
 	Scroll_y     int
 	Freeze_count uint
@@ -163,7 +164,7 @@ var (
 	LayoutNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
 	layoutFreeze         func(l *Layout)
-	layoutGetBinWindow   func(l *Layout) *T.GdkWindow
+	layoutGetBinWindow   func(l *Layout) *D.Window
 	layoutGetHadjustment func(l *Layout) *Adjustment
 	layoutGetSize        func(l *Layout, width, height *uint)
 	layoutGetVadjustment func(l *Layout) *Adjustment
@@ -176,7 +177,7 @@ var (
 )
 
 func (l *Layout) Freeze()                               { layoutFreeze(l) }
-func (l *Layout) GetBinWindow() *T.GdkWindow            { return layoutGetBinWindow(l) }
+func (l *Layout) GetBinWindow() *D.Window               { return layoutGetBinWindow(l) }
 func (l *Layout) GetHadjustment() *Adjustment           { return layoutGetHadjustment(l) }
 func (l *Layout) GetSize(width, height *uint)           { layoutGetSize(l, width, height) }
 func (l *Layout) GetVadjustment() *Adjustment           { return layoutGetVadjustment(l) }

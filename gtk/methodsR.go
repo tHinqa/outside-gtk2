@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -125,7 +126,7 @@ type (
 		SlideInitialSliderPosition int
 		SlideInitialCoordinate     int
 		UpdateTimeoutId            uint
-		EventWindow                *T.GdkWindow
+		EventWindow                *D.Window
 	}
 
 	RangeLayout struct{}
@@ -241,8 +242,8 @@ var (
 
 	RcScannerNew func() *T.GScanner
 
-	RcParseColor     func(scanner *T.GScanner, color *T.GdkColor) uint
-	RcParseColorFull func(scanner *T.GScanner, style *RcStyle, color *T.GdkColor) uint
+	RcParseColor     func(scanner *T.GScanner, color *D.Color) uint
+	RcParseColorFull func(scanner *T.GScanner, style *RcStyle, color *D.Color) uint
 	RcParseState     func(scanner *T.GScanner, state *StateType) uint
 	RcParsePriority  func(scanner *T.GScanner, priority *PathPriorityType) uint
 )
@@ -256,10 +257,10 @@ type RcStyle struct {
 	BgPixmapName    *[5]T.Gchar //TODO(t): CHECK
 	FontDesc        *T.PangoFontDescription
 	ColorFlags      [5]RcFlags
-	Fg              [5]T.GdkColor
-	Bg              [5]T.GdkColor
-	Text            [5]T.GdkColor
-	Base            [5]T.GdkColor
+	Fg              [5]D.Color
+	Bg              [5]D.Color
+	Text            [5]D.Color
+	Base            [5]D.Color
 	Xthickness      int
 	Ythickness      int
 	RcProperties    *T.GArray
@@ -458,7 +459,7 @@ var (
 	recentInfoGetDescription     func(r *RecentInfo) string
 	recentInfoGetDisplayName     func(r *RecentInfo) string
 	recentInfoGetGroups          func(r *RecentInfo, length *T.Gsize) **T.Gchar
-	recentInfoGetIcon            func(r *RecentInfo, size int) *T.GdkPixbuf
+	recentInfoGetIcon            func(r *RecentInfo, size int) *D.Pixbuf
 	recentInfoGetMimeType        func(r *RecentInfo) string
 	recentInfoGetModified        func(r *RecentInfo) T.TimeT
 	recentInfoGetPrivateHint     func(r *RecentInfo) T.Gboolean
@@ -487,7 +488,7 @@ func (r *RecentInfo) GetApplications(length *T.Gsize) **T.Gchar {
 func (r *RecentInfo) GetDescription() string              { return recentInfoGetDescription(r) }
 func (r *RecentInfo) GetDisplayName() string              { return recentInfoGetDisplayName(r) }
 func (r *RecentInfo) GetGroups(length *T.Gsize) **T.Gchar { return recentInfoGetGroups(r, length) }
-func (r *RecentInfo) GetIcon(size int) *T.GdkPixbuf       { return recentInfoGetIcon(r, size) }
+func (r *RecentInfo) GetIcon(size int) *D.Pixbuf          { return recentInfoGetIcon(r, size) }
 func (r *RecentInfo) GetMimeType() string                 { return recentInfoGetMimeType(r) }
 func (r *RecentInfo) GetModified() T.TimeT                { return recentInfoGetModified(r) }
 func (r *RecentInfo) GetPrivateHint() T.Gboolean          { return recentInfoGetPrivateHint(r) }
@@ -592,7 +593,7 @@ var (
 	RecentManagerErrorQuark   func() T.GQuark
 
 	RecentManagerGetDefault   func() *RecentManager
-	RecentManagerGetForScreen func(screen *T.GdkScreen) *RecentManager
+	RecentManagerGetForScreen func(screen *D.Screen) *RecentManager
 
 	recentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) T.Gboolean
 	recentManagerAddItem    func(r *RecentManager, uri string) T.Gboolean
@@ -604,7 +605,7 @@ var (
 	recentManagerPurgeItems func(r *RecentManager, err **T.GError) int
 	recentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) T.Gboolean
 	recentManagerSetLimit   func(r *RecentManager, limit int)
-	recentManagerSetScreen  func(r *RecentManager, screen *T.GdkScreen)
+	recentManagerSetScreen  func(r *RecentManager, screen *D.Screen)
 )
 
 func (r *RecentManager) AddFull(uri string, recentData *RecentData) T.Gboolean {
@@ -624,8 +625,8 @@ func (r *RecentManager) PurgeItems(err **T.GError) int { return recentManagerPur
 func (r *RecentManager) RemoveItem(uri string, err **T.GError) T.Gboolean {
 	return recentManagerRemoveItem(r, uri, err)
 }
-func (r *RecentManager) SetLimit(limit int)            { recentManagerSetLimit(r, limit) }
-func (r *RecentManager) SetScreen(screen *T.GdkScreen) { recentManagerSetScreen(r, screen) }
+func (r *RecentManager) SetLimit(limit int)         { recentManagerSetLimit(r, limit) }
+func (r *RecentManager) SetScreen(screen *D.Screen) { recentManagerSetScreen(r, screen) }
 
 var RecentSortTypeGetType func() T.GType
 
@@ -685,7 +686,7 @@ var ResponseTypeGetType func() T.GType
 type (
 	Ruler struct {
 		Widget       Widget
-		BackingStore *T.GdkPixmap
+		BackingStore *D.Pixmap
 		NonGrExpGc   *T.GdkGC
 		Metric       *RulerMetric
 		Xsrc         int

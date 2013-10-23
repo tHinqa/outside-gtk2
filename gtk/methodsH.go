@@ -4,14 +4,15 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type HandleBox struct {
 	Bin         Bin
-	BinWindow   *T.GdkWindow
-	FloatWindow *T.GdkWindow
+	BinWindow   *D.Window
+	FloatWindow *D.Window
 	ShadowType  ShadowType
 	Bits        uint
 	// HandlePosition : 2;
@@ -39,7 +40,7 @@ var (
 	handleBoxSetSnapEdge       func(h *HandleBox, edge PositionType)
 )
 
-func (h *HandleBox) GetChildDetached() T.Gboolean         { return handleBoxGetChildDetached(h) }
+func (h *HandleBox) GetChildDetached() T.Gboolean    { return handleBoxGetChildDetached(h) }
 func (h *HandleBox) GetHandlePosition() PositionType { return handleBoxGetHandlePosition(h) }
 func (h *HandleBox) GetShadowType() ShadowType       { return handleBoxGetShadowType(h) }
 func (h *HandleBox) GetSnapEdge() PositionType       { return handleBoxGetSnapEdge(h) }

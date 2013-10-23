@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -271,7 +272,7 @@ func (b *Builder) ValueFromStringType(t T.GType, str string, value *T.GValue, er
 
 type Button struct {
 	Bin             Bin
-	EventWindow     *T.GdkWindow
+	EventWindow     *D.Window
 	LabelText       *T.Gchar
 	ActivateTimeout uint
 	Bits            uint
@@ -304,7 +305,7 @@ var (
 	buttonClicked          func(b *Button)
 	buttonEnter            func(b *Button)
 	buttonGetAlignment     func(b *Button, xalign, yalign *float32)
-	buttonGetEventWindow   func(b *Button) *T.GdkWindow
+	buttonGetEventWindow   func(b *Button) *D.Window
 	buttonGetFocusOnClick  func(b *Button) T.Gboolean
 	buttonGetImage         func(b *Button) *Widget
 	buttonGetImagePosition func(b *Button) PositionType
@@ -328,7 +329,7 @@ var (
 func (b *Button) Clicked()                                { buttonClicked(b) }
 func (b *Button) Enter()                                  { buttonEnter(b) }
 func (b *Button) GetAlignment(xalign, yalign *float32)    { buttonGetAlignment(b, xalign, yalign) }
-func (b *Button) GetEventWindow() *T.GdkWindow            { return buttonGetEventWindow(b) }
+func (b *Button) GetEventWindow() *D.Window               { return buttonGetEventWindow(b) }
 func (b *Button) GetFocusOnClick() T.Gboolean             { return buttonGetFocusOnClick(b) }
 func (b *Button) GetImage() *Widget                       { return buttonGetImage(b) }
 func (b *Button) GetImagePosition() PositionType          { return buttonGetImagePosition(b) }

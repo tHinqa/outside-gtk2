@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -36,8 +37,8 @@ type (
 		TearoffHbox       *Widget
 		TearoffScrollbar  *Widget
 		TearoffAdjustment *Adjustment
-		ViewWindow        *T.GdkWindow
-		BinWindow         *T.GdkWindow
+		ViewWindow        *D.Window
+		BinWindow         *D.Window
 		ScrollOffset      int
 		SavedScrollOffset int
 		ScrollStep        int
@@ -107,7 +108,7 @@ var (
 	menuSetActive            func(m *Menu, index uint)
 	menuSetMonitor           func(m *Menu, monitorNum int)
 	menuSetReserveToggleSize func(m *Menu, reserveToggleSize T.Gboolean)
-	menuSetScreen            func(m *Menu, screen *T.GdkScreen)
+	menuSetScreen            func(m *Menu, screen *D.Screen)
 	menuSetTearoffState      func(m *Menu, tornOff T.Gboolean)
 	menuSetTitle             func(m *Menu, title string)
 )
@@ -140,7 +141,7 @@ func (m *Menu) SetMonitor(monitorNum int)                { menuSetMonitor(m, mon
 func (m *Menu) SetReserveToggleSize(reserveToggleSize T.Gboolean) {
 	menuSetReserveToggleSize(m, reserveToggleSize)
 }
-func (m *Menu) SetScreen(screen *T.GdkScreen)      { menuSetScreen(m, screen) }
+func (m *Menu) SetScreen(screen *D.Screen)         { menuSetScreen(m, screen) }
 func (m *Menu) SetTearoffState(tornOff T.Gboolean) { menuSetTearoffState(m, tornOff) }
 func (m *Menu) SetTitle(title string)              { menuSetTitle(m, title) }
 
@@ -169,7 +170,7 @@ type (
 	MenuItem struct {
 		Item             Item
 		Submenu          *Widget
-		EventWindow      *T.GdkWindow
+		EventWindow      *D.Window
 		ToggleSize       uint16
 		AcceleratorWidth uint16
 		AccelPath        *T.Gchar
@@ -389,17 +390,17 @@ var (
 	MountOperationNew     func(parent *Window) *MountOperation
 
 	mountOperationGetParent func(m *MountOperation) *Window
-	mountOperationGetScreen func(m *MountOperation) *T.GdkScreen
+	mountOperationGetScreen func(m *MountOperation) *D.Screen
 	mountOperationIsShowing func(m *MountOperation) T.Gboolean
 	mountOperationSetParent func(m *MountOperation, parent *Window)
-	mountOperationSetScreen func(m *MountOperation, screen *T.GdkScreen)
+	mountOperationSetScreen func(m *MountOperation, screen *D.Screen)
 )
 
-func (m *MountOperation) GetParent() *Window            { return mountOperationGetParent(m) }
-func (m *MountOperation) GetScreen() *T.GdkScreen       { return mountOperationGetScreen(m) }
-func (m *MountOperation) IsShowing() T.Gboolean         { return mountOperationIsShowing(m) }
-func (m *MountOperation) SetParent(parent *Window)      { mountOperationSetParent(m, parent) }
-func (m *MountOperation) SetScreen(screen *T.GdkScreen) { mountOperationSetScreen(m, screen) }
+func (m *MountOperation) GetParent() *Window         { return mountOperationGetParent(m) }
+func (m *MountOperation) GetScreen() *D.Screen       { return mountOperationGetScreen(m) }
+func (m *MountOperation) IsShowing() T.Gboolean      { return mountOperationIsShowing(m) }
+func (m *MountOperation) SetParent(parent *Window)   { mountOperationSetParent(m, parent) }
+func (m *MountOperation) SetScreen(screen *D.Screen) { mountOperationSetScreen(m, screen) }
 
 type MovementStep T.Enum
 

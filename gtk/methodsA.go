@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -35,7 +36,7 @@ var (
 	aboutDialogGetCopyright         func(a *AboutDialog) string
 	aboutDialogGetDocumenters       func(a *AboutDialog) **T.Gchar
 	aboutDialogGetLicense           func(a *AboutDialog) string
-	aboutDialogGetLogo              func(a *AboutDialog) *T.GdkPixbuf
+	aboutDialogGetLogo              func(a *AboutDialog) *D.Pixbuf
 	aboutDialogGetLogoIconName      func(a *AboutDialog) string
 	aboutDialogGetName              func(a *AboutDialog) string
 	aboutDialogGetProgramName       func(a *AboutDialog) string
@@ -50,7 +51,7 @@ var (
 	aboutDialogSetCopyright         func(a *AboutDialog, copyright string)
 	aboutDialogSetDocumenters       func(a *AboutDialog, documenters **T.Gchar)
 	aboutDialogSetLicense           func(a *AboutDialog, license string)
-	aboutDialogSetLogo              func(a *AboutDialog, logo *T.GdkPixbuf)
+	aboutDialogSetLogo              func(a *AboutDialog, logo *D.Pixbuf)
 	aboutDialogSetLogoIconName      func(a *AboutDialog, iconName string)
 	aboutDialogSetName              func(a *AboutDialog, name string)
 	aboutDialogSetProgramName       func(a *AboutDialog, name string)
@@ -67,7 +68,7 @@ func (a *AboutDialog) GetComments() string                  { return aboutDialog
 func (a *AboutDialog) GetCopyright() string                 { return aboutDialogGetCopyright(a) }
 func (a *AboutDialog) GetDocumenters() **T.Gchar            { return aboutDialogGetDocumenters(a) }
 func (a *AboutDialog) GetLicense() string                   { return aboutDialogGetLicense(a) }
-func (a *AboutDialog) GetLogo() *T.GdkPixbuf                { return aboutDialogGetLogo(a) }
+func (a *AboutDialog) GetLogo() *D.Pixbuf                   { return aboutDialogGetLogo(a) }
 func (a *AboutDialog) GetLogoIconName() string              { return aboutDialogGetLogoIconName(a) }
 func (a *AboutDialog) GetName() string                      { return aboutDialogGetName(a) }
 func (a *AboutDialog) GetProgramName() string               { return aboutDialogGetProgramName(a) }
@@ -82,7 +83,7 @@ func (a *AboutDialog) SetComments(comments string)          { aboutDialogSetComm
 func (a *AboutDialog) SetCopyright(copyright string)        { aboutDialogSetCopyright(a, copyright) }
 func (a *AboutDialog) SetDocumenters(documenters **T.Gchar) { aboutDialogSetDocumenters(a, documenters) }
 func (a *AboutDialog) SetLicense(license string)            { aboutDialogSetLicense(a, license) }
-func (a *AboutDialog) SetLogo(logo *T.GdkPixbuf)            { aboutDialogSetLogo(a, logo) }
+func (a *AboutDialog) SetLogo(logo *D.Pixbuf)               { aboutDialogSetLogo(a, logo) }
 func (a *AboutDialog) SetLogoIconName(iconName string)      { aboutDialogSetLogoIconName(a, iconName) }
 func (a *AboutDialog) SetName(name string)                  { aboutDialogSetName(a, name) }
 func (a *AboutDialog) SetProgramName(name string)           { aboutDialogSetProgramName(a, name) }
@@ -177,7 +178,7 @@ type (
 		changed T.Gboolean)
 )
 
-type AccelFlags T.Enum
+type AccelFlags Enum
 
 const (
 	ACCEL_VISIBLE AccelFlags = 1 << iota
@@ -591,9 +592,9 @@ func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRi
 type Allocation T.GdkRectangle
 
 var AlternativeDialogButtonOrder func(
-	screen *T.GdkScreen) T.Gboolean
+	screen *D.Screen) T.Gboolean
 
-type AnchorType T.Enum
+type AnchorType Enum
 
 const (
 	ANCHOR_CENTER AnchorType = iota
@@ -636,7 +637,7 @@ type Arg struct { //TODO(t):Fix union
 	// signal_data struct{f GCallback; d Gpointer}
 }
 
-type ArgFlags T.Enum
+type ArgFlags Enum
 
 const (
 	ARG_READABLE       ArgFlags = ArgFlags(T.G_PARAM_READABLE)
@@ -663,7 +664,7 @@ type (
 	AssistantPageFunc func(currentPage int, data T.Gpointer) int
 )
 
-type AssistantPageType T.Enum
+type AssistantPageType Enum
 
 const (
 	ASSISTANT_PAGE_CONTENT AssistantPageType = iota
@@ -688,8 +689,8 @@ var (
 	assistantGetNPages          func(a *Assistant) int
 	assistantGetNthPage         func(a *Assistant, pageNum int) *Widget
 	assistantGetPageComplete    func(a *Assistant, page *Widget) T.Gboolean
-	assistantGetPageHeaderImage func(a *Assistant, page *Widget) *T.GdkPixbuf
-	assistantGetPageSideImage   func(a *Assistant, page *Widget) *T.GdkPixbuf
+	assistantGetPageHeaderImage func(a *Assistant, page *Widget) *D.Pixbuf
+	assistantGetPageSideImage   func(a *Assistant, page *Widget) *D.Pixbuf
 	assistantGetPageTitle       func(a *Assistant, page *Widget) string
 	assistantGetPageType        func(a *Assistant, page *Widget) AssistantPageType
 	assistantInsertPage         func(a *Assistant, page *Widget, position int) int
@@ -698,8 +699,8 @@ var (
 	assistantSetCurrentPage     func(a *Assistant, pageNum int)
 	assistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	assistantSetPageComplete    func(a *Assistant, page *Widget, complete T.Gboolean)
-	assistantSetPageHeaderImage func(a *Assistant, page *Widget, pixbuf *T.GdkPixbuf)
-	assistantSetPageSideImage   func(a *Assistant, page *Widget, pixbuf *T.GdkPixbuf)
+	assistantSetPageHeaderImage func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
+	assistantSetPageSideImage   func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
 	assistantSetPageTitle       func(a *Assistant, page *Widget, title string)
 	assistantSetPageType        func(a *Assistant, page *Widget, t AssistantPageType)
 	assistantUpdateButtonsState func(a *Assistant)
@@ -712,10 +713,10 @@ func (a *Assistant) GetCurrentPage() int                     { return assistantG
 func (a *Assistant) GetNPages() int                          { return assistantGetNPages(a) }
 func (a *Assistant) GetNthPage(pageNum int) *Widget          { return assistantGetNthPage(a, pageNum) }
 func (a *Assistant) GetPageComplete(page *Widget) T.Gboolean { return assistantGetPageComplete(a, page) }
-func (a *Assistant) GetPageHeaderImage(page *Widget) *T.GdkPixbuf {
+func (a *Assistant) GetPageHeaderImage(page *Widget) *D.Pixbuf {
 	return assistantGetPageHeaderImage(a, page)
 }
-func (a *Assistant) GetPageSideImage(page *Widget) *T.GdkPixbuf {
+func (a *Assistant) GetPageSideImage(page *Widget) *D.Pixbuf {
 	return assistantGetPageSideImage(a, page)
 }
 func (a *Assistant) GetPageTitle(page *Widget) string           { return assistantGetPageTitle(a, page) }
@@ -732,10 +733,10 @@ func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, data T.Gpoint
 func (a *Assistant) SetPageComplete(page *Widget, complete T.Gboolean) {
 	assistantSetPageComplete(a, page, complete)
 }
-func (a *Assistant) SetPageHeaderImage(page *Widget, pixbuf *T.GdkPixbuf) {
+func (a *Assistant) SetPageHeaderImage(page *Widget, pixbuf *D.Pixbuf) {
 	assistantSetPageHeaderImage(a, page, pixbuf)
 }
-func (a *Assistant) SetPageSideImage(page *Widget, pixbuf *T.GdkPixbuf) {
+func (a *Assistant) SetPageSideImage(page *Widget, pixbuf *D.Pixbuf) {
 	assistantSetPageSideImage(a, page, pixbuf)
 }
 func (a *Assistant) SetPageTitle(page *Widget, title string)       { assistantSetPageTitle(a, page, title) }
@@ -748,7 +749,7 @@ type Arrow struct {
 	ShadowType int16
 }
 
-type ArrowType T.Enum
+type ArrowType Enum
 
 const (
 	ARROW_UP ArrowType = iota
@@ -758,7 +759,7 @@ const (
 	ARROW_NONE
 )
 
-type ArrowPlacement T.Enum
+type ArrowPlacement Enum
 
 const (
 	ARROWS_BOTH ArrowPlacement = iota
@@ -806,7 +807,7 @@ func (a *AspectFrame) Set(xalign, yalign, ratio float32, obeyChild T.Gboolean) {
 
 var AttachOptionsGetType func() T.GType
 
-type AttachOptions T.Enum
+type AttachOptions Enum
 
 const (
 	EXPAND AttachOptions = 1 << iota

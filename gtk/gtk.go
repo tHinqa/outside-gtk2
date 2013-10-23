@@ -6,11 +6,16 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
 
-type simpleObject struct{ parent T.GObject }
+type (
+	simpleObject struct{ parent T.GObject }
+
+	Enum int
+)
 
 var (
 	True func() T.Gboolean
@@ -21,26 +26,26 @@ var (
 var (
 	DrawHline func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		x1, x2, y int)
 
 	DrawVline func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		y1, y2, x int)
 
 	DrawShadow func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawPolygon func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		points *T.GdkPoint,
@@ -49,7 +54,7 @@ var (
 
 	DrawArrow func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		arrowType ArrowType,
@@ -58,49 +63,49 @@ var (
 
 	DrawDiamond func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawBox func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawFlatBox func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawCheck func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawOption func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawTab func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int)
 
 	DrawShadowGap func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int,
@@ -109,7 +114,7 @@ var (
 
 	DrawBoxGap func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int,
@@ -118,7 +123,7 @@ var (
 
 	DrawExtension func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int,
@@ -126,12 +131,12 @@ var (
 
 	DrawFocus func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		x, y, width, height int)
 
 	DrawSlider func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int,
@@ -139,7 +144,7 @@ var (
 
 	DrawHandle func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		x, y, width, height int,
@@ -147,14 +152,14 @@ var (
 
 	DrawExpander func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		x, y int,
 		expanderStyle ExpanderStyle)
 
 	DrawLayout func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		useText T.Gboolean,
 		x, y int,
@@ -162,14 +167,14 @@ var (
 
 	DrawResizeGrip func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
-		edge T.GdkWindowEdge,
+		edge D.WindowEdge,
 		x, y, width, height int)
 
 	PaintHline func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -178,7 +183,7 @@ var (
 
 	PaintVline func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -187,7 +192,7 @@ var (
 
 	PaintShadow func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -197,7 +202,7 @@ var (
 
 	PaintPolygon func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -209,7 +214,7 @@ var (
 
 	PaintArrow func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -221,7 +226,7 @@ var (
 
 	PaintDiamond func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -231,7 +236,7 @@ var (
 
 	PaintBox func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -241,7 +246,7 @@ var (
 
 	PaintFlatBox func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -251,7 +256,7 @@ var (
 
 	PaintCheck func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -261,7 +266,7 @@ var (
 
 	PaintOption func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -271,7 +276,7 @@ var (
 
 	PaintTab func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -281,7 +286,7 @@ var (
 
 	PaintShadowGap func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -293,7 +298,7 @@ var (
 
 	PaintBoxGap func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -305,7 +310,7 @@ var (
 
 	PaintExtension func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -316,7 +321,7 @@ var (
 
 	PaintFocus func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -325,7 +330,7 @@ var (
 
 	PaintSlider func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -336,7 +341,7 @@ var (
 
 	PaintHandle func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
 		area *T.GdkRectangle,
@@ -347,7 +352,7 @@ var (
 
 	PaintExpander func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -357,7 +362,7 @@ var (
 
 	PaintLayout func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		useText T.Gboolean,
 		area *T.GdkRectangle,
@@ -368,17 +373,17 @@ var (
 
 	PaintResizeGrip func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		edge T.GdkWindowEdge,
+		edge D.WindowEdge,
 		x, y, width, height int)
 
 	PaintSpinner func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -388,14 +393,14 @@ var (
 
 	DrawString func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		x, y int,
 		str string)
 
 	PaintString func(
 		style *Style,
-		window *T.GdkWindow,
+		window *D.Window,
 		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
@@ -468,7 +473,7 @@ var (
 
 	GcGet func(
 		depth int,
-		colormap *T.GdkColormap,
+		colormap *D.Colormap,
 		values *T.GdkGCValues,
 		valuesMask T.GdkGCValuesMask) *T.GdkGC
 
@@ -594,7 +599,7 @@ var (
 	PropagateEvent func(widget *Widget, event *T.GdkEvent)
 
 	ShowUri func(
-		screen *T.GdkScreen,
+		screen *D.Screen,
 		uri string,
 		timestamp T.GUint32,
 		error **T.GError) T.Gboolean

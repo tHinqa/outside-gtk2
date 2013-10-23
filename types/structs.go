@@ -463,12 +463,7 @@ type (
 		Closure_marshal  GSourceDummyMarshal
 	}
 
-	GdkColor struct {
-		Pixel GUint32
-		Red   uint16
-		Green uint16
-		Blue  uint16
-	}
+	GdkColor struct{} //REMOVE
 
 	GdkFont struct {
 		Type    GdkFontType
@@ -485,31 +480,9 @@ type (
 		Colormap        *GdkColormap
 	}
 
-	GdkColormap struct {
-		Parent_instance GObject
-		Size            int
-		Colors          *GdkColor
-		Visual          *GdkVisual
-		Windowing_data  Gpointer
-	}
+	GdkColormap struct{} //REMOVE
 
-	GdkVisual struct {
-		Parent_instance GObject
-		Type            GdkVisualType
-		Depth           int
-		Byte_order      GdkByteOrder
-		Colormap_size   int
-		Bits_per_rgb    int
-		Red_mask        GUint32
-		Red_shift       int
-		Red_prec        int
-		Green_mask      GUint32
-		Green_shift     int
-		Green_prec      int
-		Blue_mask       GUint32
-		Blue_shift      int
-		Blue_prec       int
-	}
+	GdkVisual struct{} //REMOVE
 
 	GdkRectangle struct {
 		X      int
@@ -525,15 +498,7 @@ type (
 
 	GtkWindow struct{} //REMOVE
 
-	GdkScreen struct {
-		Parent_instance GObject
-		Closed          uint       // : 1
-		Normal_gcs      *[32]GdkGC //TODO(t): CHECK
-		Exposure_gcs    *[32]GdkGC //TODO(t): CHECK
-		Subwindow_gcs   *[32]GdkGC //TODO(t): CHECK
-		Font_options    *CairoFontOptions
-		Resolution      float64
-	}
+	GdkScreen struct{} //REMOVE
 
 	GClosure struct {
 		Bits uint
@@ -578,10 +543,7 @@ type (
 		Notify GClosureNotify
 	}
 
-	GdkCursor struct {
-		Type      GdkCursorType
-		Ref_count uint
-	}
+	GdkCursor struct{} //REMOVE
 
 	GtkLabel struct{} // REMOVE
 
@@ -603,27 +565,7 @@ type (
 		Is_modifier      uint // : 1
 	}
 
-	GdkDisplay struct {
-		Parent_instance   GObject
-		Queued_events     *GList
-		Queued_tail       *GList
-		Button_click_time [2]GUint32
-		Button_window     [2]*GdkWindow
-		Button_number     [2]int
-		Double_click_time uint
-		Core_pointer      *GdkDevice
-		Pointer_hooks     *GdkDisplayPointerHooks
-		Bits              uint
-		// closed : 1
-		// ignore_core_events : 1
-		Double_click_distance uint
-		Button_x              [2]int
-		Button_y              [2]int
-		Pointer_grabs         *GList
-		Keyboard_grab         GdkKeyboardGrabInfo
-		Pointer_info          GdkPointerWindowInfo
-		Last_event_time       GUint32
-	}
+	GdkDisplay struct{} //REMOVE
 
 	GdkKeyboardGrabInfo struct {
 		Window        *GdkWindow
@@ -659,55 +601,13 @@ type (
 		Modifiers GdkModifierType
 	}
 
-	GdkDisplayPointerHooks struct {
-		Get_pointer func(
-			display *GdkDisplay,
-			screen **GdkScreen,
-			x *int,
-			y *int,
-			mask *GdkModifierType)
-		Window_get_pointer func(
-			display *GdkDisplay,
-			window *GdkWindow,
-			x *int,
-			y *int,
-			mask *GdkModifierType) *GdkWindow
-		Window_at_pointer func(
-			display *GdkDisplay,
-			win_x *int,
-			win_y *int) *GdkWindow
-	}
-
 	GdkDeviceAxis struct {
 		Use GdkAxisUse
 		Min float64
 		Max float64
 	}
 
-	GdkEvent struct {
-		Type GdkEventType
-		// Union
-		// any  GdkEventAny;
-		// expose  GdkEventExpose;
-		// no_expose  GdkEventNoExpose;
-		// visibility  GdkEventVisibility;
-		// motion  GdkEventMotion;
-		// button  GdkEventButton;
-		// scroll  GdkEventScroll;
-		// key  GdkEventKey;
-		// crossing  GdkEventCrossing;
-		// focus_change  GdkEventFocus;
-		// configure  GdkEventConfigure;
-		// property  GdkEventProperty;
-		// selection  GdkEventSelection;
-		// owner_change  GdkEventOwnerChange;
-		// proximity  GdkEventProximity;
-		// client  GdkEventClient;
-		// dnd  GdkEventDND;
-		// window_state  GdkEventWindowState;
-		// setting  GdkEventSetting;
-		// grab_broken  GdkEventGrabBroken;
-	}
+	GdkEvent struct{} //REMOTE
 
 	GSignalInvocationHint struct {
 		Signal_id uint
@@ -836,6 +736,7 @@ type (
 		Cap_style          GdkCapStyle
 		Join_style         GdkJoinStyle
 	}
+	GdkCapStyle Enum //REMOVE
 
 	GdkGeometry struct {
 		Min_width   int
@@ -981,6 +882,7 @@ type (
 		Focus      Gboolean
 		State      uint
 	}
+	GdkCrossingMode Enum //REMOVE
 
 	GdkEventConfigure struct {
 		Type       GdkEventType
@@ -1012,6 +914,7 @@ type (
 		Send_event int8
 		State      GdkVisibilityState
 	}
+	GdkVisibilityState Enum //REMOVE
 
 	GdkEventClient struct {
 		Type         GdkEventType
@@ -1032,6 +935,7 @@ type (
 		Changed_mask     GdkWindowState
 		New_window_state GdkWindowState
 	}
+	GdkWindowState Enum //REMOVE
 
 	GdkEventGrabBroken struct {
 		Yype        GdkEventType
@@ -1091,11 +995,6 @@ type (
 	GdkPangoRenderer struct {
 		Parent_instance PangoRenderer
 		Priv            *GdkPangoRendererPrivate
-	}
-
-	GdkPixbufLoader struct {
-		Parent_instance GObject
-		Priv            Gpointer
 	}
 
 	GAppLaunchContext struct {
@@ -1174,23 +1073,6 @@ type (
 
 	GdkTrapezoid struct {
 		Y1, X11, X21, Y2, X12, X22 float64
-	}
-
-	GdkWindowAttr struct {
-		Title             *Gchar
-		Event_mask        int
-		X, Y              int
-		Width             int
-		Height            int
-		Wclass            GdkWindowClass
-		Visual            *GdkVisual
-		Colormap          *GdkColormap
-		Window_type       GdkWindowType
-		Cursor            *GdkCursor
-		Wmclass_name      *Gchar
-		Wmclass_class     *Gchar
-		Override_redirect Gboolean
-		Type_hint         GdkWindowTypeHint
 	}
 
 	GInputStream struct {

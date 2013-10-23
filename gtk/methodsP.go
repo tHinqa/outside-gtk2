@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -135,9 +136,9 @@ type Paned struct {
 	Container      Container
 	Child1         *Widget
 	Child2         *Widget
-	Handle         *T.GdkWindow
+	Handle         *D.Window
 	XorGc          *T.GdkGC
-	CursorType     T.GdkCursorType
+	CursorType     D.CursorType
 	HandlePos      T.GdkRectangle
 	Child1Size     int
 	LastAllocation int
@@ -168,7 +169,7 @@ var (
 	panedComputePosition func(p *Paned, allocation, child1Req, child2Req int)
 	panedGetChild1       func(p *Paned) *Widget
 	panedGetChild2       func(p *Paned) *Widget
-	panedGetHandleWindow func(p *Paned) *T.GdkWindow
+	panedGetHandleWindow func(p *Paned) *D.Window
 	panedGetPosition     func(p *Paned) int
 	panedPack1           func(p *Paned, child *Widget, resize, shrink T.Gboolean)
 	panedPack2           func(p *Paned, child *Widget, resize, shrink T.Gboolean)
@@ -180,10 +181,10 @@ func (p *Paned) Add2(child *Widget) { panedAdd2(p, child) }
 func (p *Paned) ComputePosition(allocation, child1Req, child2Req int) {
 	panedComputePosition(p, allocation, child1Req, child2Req)
 }
-func (p *Paned) GetChild1() *Widget            { return panedGetChild1(p) }
-func (p *Paned) GetChild2() *Widget            { return panedGetChild2(p) }
-func (p *Paned) GetHandleWindow() *T.GdkWindow { return panedGetHandleWindow(p) }
-func (p *Paned) GetPosition() int              { return panedGetPosition(p) }
+func (p *Paned) GetChild1() *Widget         { return panedGetChild1(p) }
+func (p *Paned) GetChild2() *Widget         { return panedGetChild2(p) }
+func (p *Paned) GetHandleWindow() *D.Window { return panedGetHandleWindow(p) }
+func (p *Paned) GetPosition() int           { return panedGetPosition(p) }
 func (p *Paned) Pack1(child *Widget, resize T.Gboolean, shrink T.Gboolean) {
 	panedPack1(p, child, resize, shrink)
 }
@@ -275,28 +276,28 @@ var PathTypeGetType func() T.GType
 
 type Pixmap struct {
 	Misc              Misc
-	Pixmap            *T.GdkPixmap
+	Pixmap            *D.Pixmap
 	Mask              *T.GdkBitmap
-	PixmapInsensitive *T.GdkPixmap
+	PixmapInsensitive *D.Pixmap
 	BuildInsensitive  uint // : 1
 }
 
 var (
 	PixmapGetType func() T.GType
-	PixmapNew     func(pixmap *T.GdkPixmap, mask *T.GdkBitmap) *Widget
+	PixmapNew     func(pixmap *D.Pixmap, mask *T.GdkBitmap) *Widget
 
-	pixmapGet                 func(p *Pixmap, val **T.GdkPixmap, mask **T.GdkBitmap)
-	pixmapSet                 func(p *Pixmap, val *T.GdkPixmap, mask *T.GdkBitmap)
+	pixmapGet                 func(p *Pixmap, val **D.Pixmap, mask **T.GdkBitmap)
+	pixmapSet                 func(p *Pixmap, val *D.Pixmap, mask *T.GdkBitmap)
 	pixmapSetBuildInsensitive func(p *Pixmap, build T.Gboolean)
 )
 
-func (p *Pixmap) Get(val **T.GdkPixmap, mask **T.GdkBitmap) { pixmapGet(p, val, mask) }
-func (p *Pixmap) Set(val *T.GdkPixmap, mask *T.GdkBitmap)   { pixmapSet(p, val, mask) }
-func (p *Pixmap) SetBuildInsensitive(build T.Gboolean)      { pixmapSetBuildInsensitive(p, build) }
+func (p *Pixmap) Get(val **D.Pixmap, mask **T.GdkBitmap) { pixmapGet(p, val, mask) }
+func (p *Pixmap) Set(val *D.Pixmap, mask *T.GdkBitmap)   { pixmapSet(p, val, mask) }
+func (p *Pixmap) SetBuildInsensitive(build T.Gboolean)   { pixmapSetBuildInsensitive(p, build) }
 
 type Plug struct {
 	Window         Window
-	SocketWindow   *T.GdkWindow
+	SocketWindow   *D.Window
 	ModalityWindow *Widget
 	ModalityGroup  *WindowGroup
 	GrabbedKeys    *T.GHashTable
@@ -306,22 +307,22 @@ type Plug struct {
 var (
 	PlugGetType       func() T.GType
 	PlugNew           func(socketId T.GdkNativeWindow) *Widget
-	PlugNewForDisplay func(display *T.GdkDisplay, socketId T.GdkNativeWindow) *Widget
+	PlugNewForDisplay func(display *D.Display, socketId T.GdkNativeWindow) *Widget
 
 	plugConstruct           func(p *Plug, socketId T.GdkNativeWindow)
-	plugConstructForDisplay func(p *Plug, display *T.GdkDisplay, socketId T.GdkNativeWindow)
+	plugConstructForDisplay func(p *Plug, display *D.Display, socketId T.GdkNativeWindow)
 	plugGetEmbedded         func(p *Plug) T.Gboolean
 	plugGetId               func(p *Plug) T.GdkNativeWindow
-	plugGetSocketWindow     func(p *Plug) *T.GdkWindow
+	plugGetSocketWindow     func(p *Plug) *D.Window
 )
 
 func (p *Plug) Construct(socketId T.GdkNativeWindow) { plugConstruct(p, socketId) }
-func (p *Plug) ConstructForDisplay(display *T.GdkDisplay, socketId T.GdkNativeWindow) {
+func (p *Plug) ConstructForDisplay(display *D.Display, socketId T.GdkNativeWindow) {
 	plugConstructForDisplay(p, display, socketId)
 }
-func (p *Plug) GetEmbedded() T.Gboolean       { return plugGetEmbedded(p) }
-func (p *Plug) GetId() T.GdkNativeWindow      { return plugGetId(p) }
-func (p *Plug) GetSocketWindow() *T.GdkWindow { return plugGetSocketWindow(p) }
+func (p *Plug) GetEmbedded() T.Gboolean    { return plugGetEmbedded(p) }
+func (p *Plug) GetId() T.GdkNativeWindow   { return plugGetId(p) }
+func (p *Plug) GetSocketWindow() *D.Window { return plugGetSocketWindow(p) }
 
 type PolicyType T.Enum
 
@@ -361,9 +362,9 @@ var (
 	PreviewGetType func() T.GType
 	PreviewNew     func(t PreviewType) *Widget
 
-	PreviewGetCmap        func() *T.GdkColormap
+	PreviewGetCmap        func() *D.Colormap
 	PreviewGetInfo        func() *PreviewInfo
-	PreviewGetVisual      func() *T.GdkVisual
+	PreviewGetVisual      func() *D.Visual
 	PreviewReset          func()
 	PreviewSetColorCube   func(nredShades uint, ngreenShades, nblueShades, ngrayShades uint)
 	PreviewSetGamma       func(gamma float64)
@@ -372,14 +373,14 @@ var (
 	PreviewUninit         func()
 
 	previewDrawRow   func(p *Preview, data *T.Guchar, x, y, w int)
-	previewPut       func(p *Preview, window *T.GdkWindow, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int)
+	previewPut       func(p *Preview, window *D.Window, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int)
 	previewSetDither func(p *Preview, dither T.GdkRgbDither)
 	previewSetExpand func(p *Preview, expand T.Gboolean)
 	previewSize      func(p *Preview, width, height int)
 )
 
 func (p *Preview) DrawRow(data *T.Guchar, x, y, w int) { previewDrawRow(p, data, x, y, w) }
-func (p *Preview) Put(window *T.GdkWindow, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int) {
+func (p *Preview) Put(window *D.Window, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int) {
 	previewPut(p, window, gc, srcx, srcy, destx, desty, width, height)
 }
 func (p *Preview) SetDither(dither T.GdkRgbDither) { previewSetDither(p, dither) }
@@ -841,7 +842,7 @@ var PrintStatusGetType func() T.GType
 type Progress struct {
 	Widget          Widget
 	Adjustment      *Adjustment
-	OffscreenPixmap *T.GdkPixmap
+	OffscreenPixmap *D.Pixmap
 	Format          *T.Gchar
 	XAlign          float32
 	YAlign          float32

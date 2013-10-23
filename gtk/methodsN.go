@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -16,7 +17,7 @@ type (
 		FirstTab    *T.GList
 		FocusTab    *T.GList
 		Menu        *Widget
-		EventWindow *T.GdkWindow
+		EventWindow *D.Window
 		Timer       T.GUint32
 		TabHborder  uint16
 		TabVborder  uint16
@@ -133,7 +134,7 @@ func (n *Notebook) GetTabDetachable(child *Widget) T.Gboolean {
 func (n *Notebook) GetTabHborder() uint16                { return notebookGetTabHborder(n) }
 func (n *Notebook) GetTabLabel(child *Widget) *Widget    { return notebookGetTabLabel(n, child) }
 func (n *Notebook) GetTabLabelText(child *Widget) string { return notebookGetTabLabelText(n, child) }
-func (n *Notebook) GetTabPos() PositionType         { return notebookGetTabPos(n) }
+func (n *Notebook) GetTabPos() PositionType              { return notebookGetTabPos(n) }
 func (n *Notebook) GetTabReorderable(child *Widget) T.Gboolean {
 	return notebookGetTabReorderable(n, child)
 }

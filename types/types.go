@@ -92,7 +92,7 @@ type (
 	GdkNativeWindow        Gpointer
 	GdkPixmap              GdkDrawable
 	GdkWChar               GUint32
-	GdkWindow              GdkDrawable
+	GdkWindow              GdkDrawable // REMOVE
 	GInitiallyUnowned      GObject
 	GInitiallyUnownedClass GObjectClass
 	Goffset                int64
@@ -203,13 +203,7 @@ type (
 	GDBusServer                    struct{}
 	GDir                           struct{}
 	GdkAppLaunchContextPrivate     struct{}
-	GdkDisplayManager              struct{}
 	GdkPangoRendererPrivate        struct{}
-	GdkPixbuf                      struct{}
-	GdkPixbufAnimation             struct{}
-	GdkPixbufAnimationIter         struct{}
-	GdkPixbufFormat                struct{}
-	GdkPixbufSimpleAnim            struct{}
 	GdkRegion                      struct{}
 	GdkXEvent                      struct{}
 	GDrive                         struct{}
@@ -2575,49 +2569,7 @@ const (
 	GDK_FILTER_REMOVE
 )
 
-type GdkEventType Enum
-
-const (
-	GDK_NOTHING GdkEventType = iota - 1
-	GDK_DELETE
-	GDK_DESTROY
-	GDK_EXPOSE
-	GDK_MOTION_NOTIFY
-	GDK_BUTTON_PRESS
-	GDK_2BUTTON_PRESS
-	GDK_3BUTTON_PRESS
-	GDK_BUTTON_RELEASE
-	GDK_KEY_PRESS
-	GDK_KEY_RELEASE
-	GDK_ENTER_NOTIFY
-	GDK_LEAVE_NOTIFY
-	GDK_FOCUS_CHANGE
-	GDK_CONFIGURE
-	GDK_MAP
-	GDK_UNMAP
-	GDK_PROPERTY_NOTIFY
-	GDK_SELECTION_CLEAR
-	GDK_SELECTION_REQUEST
-	GDK_SELECTION_NOTIFY
-	GDK_PROXIMITY_IN
-	GDK_PROXIMITY_OUT
-	GDK_DRAG_ENTER
-	GDK_DRAG_LEAVE
-	GDK_DRAG_MOTION
-	GDK_DRAG_STATUS
-	GDK_DROP_START
-	GDK_DROP_FINISHED
-	GDK_CLIENT_EVENT
-	GDK_VISIBILITY_NOTIFY
-	GDK_NO_EXPOSE
-	GDK_SCROLL
-	GDK_WINDOW_STATE
-	GDK_SETTING
-	GDK_OWNER_CHANGE
-	GDK_GRAB_BROKEN
-	GDK_DAMAGE
-	GDK_EVENT_LAST
-)
+type GdkEventType Enum // REMOVE
 
 type GdkEventMask Enum
 
@@ -2646,14 +2598,6 @@ const (
 	GDK_ALL_EVENTS_MASK GdkEventMask = 0x3FFFFE
 )
 
-type GdkVisibilityState Enum
-
-const (
-	GDK_VISIBILITY_UNOBSCURED GdkVisibilityState = iota
-	GDK_VISIBILITY_PARTIAL
-	GDK_VISIBILITY_FULLY_OBSCURED
-)
-
 type GdkScrollDirection Enum
 
 const (
@@ -2674,34 +2618,11 @@ const (
 	GDK_NOTIFY_UNKNOWN
 )
 
-type GdkCrossingMode Enum
-
-const (
-	GDK_CROSSING_NORMAL GdkCrossingMode = iota
-	GDK_CROSSING_GRAB
-	GDK_CROSSING_UNGRAB
-	GDK_CROSSING_GTK_GRAB
-	GDK_CROSSING_GTK_UNGRAB
-	GDK_CROSSING_STATE_CHANGED
-)
-
 type GdkPropertyState Enum
 
 const (
 	GDK_PROPERTY_NEW_VALUE GdkPropertyState = iota
 	GDK_PROPERTY_DELETE
-)
-
-type GdkWindowState Enum
-
-const (
-	GDK_WINDOW_STATE_WITHDRAWN GdkWindowState = 1 << iota
-	GDK_WINDOW_STATE_ICONIFIED
-	GDK_WINDOW_STATE_MAXIMIZED
-	GDK_WINDOW_STATE_STICKY
-	GDK_WINDOW_STATE_FULLSCREEN
-	GDK_WINDOW_STATE_ABOVE
-	GDK_WINDOW_STATE_BELOW
 )
 
 type GdkSettingAction Enum
@@ -2728,17 +2649,6 @@ const (
 	GDK_RGB_DITHER_MAX
 )
 
-type GdkPixbufAlphaMode Enum
-
-const (
-	GDK_PIXBUF_ALPHA_BILEVEL GdkPixbufAlphaMode = iota
-	GDK_PIXBUF_ALPHA_FULL
-)
-
-type GdkColorspace Enum
-
-const GDK_COLORSPACE_RGB GdkColorspace = 0
-
 type GdkPixbufError Enum
 
 const (
@@ -2757,109 +2667,6 @@ const (
 	GDK_INTERP_TILES
 	GDK_INTERP_BILINEAR
 	GDK_INTERP_HYPER
-)
-
-type GdkPixbufRotation Enum
-
-const (
-	GDK_PIXBUF_ROTATE_NONE             GdkPixbufRotation = 0
-	GDK_PIXBUF_ROTATE_COUNTERCLOCKWISE GdkPixbufRotation = 90
-	GDK_PIXBUF_ROTATE_UPSIDEDOWN       GdkPixbufRotation = 180
-	GDK_PIXBUF_ROTATE_CLOCKWISE        GdkPixbufRotation = 270
-)
-
-type GdkCursorType Enum
-
-const (
-	GDK_X_CURSOR GdkCursorType = iota * 2
-	GDK_ARROW
-	GDK_BASED_ARROW_DOWN
-	GDK_BASED_ARROW_UP
-	GDK_BOAT
-	GDK_BOGOSITY
-	GDK_BOTTOM_LEFT_CORNER
-	GDK_BOTTOM_RIGHT_CORNER
-	GDK_BOTTOM_SIDE
-	GDK_BOTTOM_TEE
-	GDK_BOX_SPIRAL
-	GDK_CENTER_PTR
-	GDK_CIRCLE
-	GDK_CLOCK
-	GDK_COFFEE_MUG
-	GDK_CROSS
-	GDK_CROSS_REVERSE
-	GDK_CROSSHAIR
-	GDK_DIAMOND_CROSS
-	GDK_DOT
-	GDK_DOTBOX
-	GDK_DOUBLE_ARROW
-	GDK_DRAFT_LARGE
-	GDK_DRAFT_SMALL
-	GDK_DRAPED_BOX
-	GDK_EXCHANGE
-	GDK_FLEUR
-	GDK_GOBBLER
-	GDK_GUMBY
-	GDK_HAND1
-	GDK_HAND2
-	GDK_HEART
-	GDK_ICON
-	GDK_IRON_CROSS
-	GDK_LEFT_PTR
-	GDK_LEFT_SIDE
-	GDK_LEFT_TEE
-	GDK_LEFTBUTTON
-	GDK_LL_ANGLE
-	GDK_LR_ANGLE
-	GDK_MAN
-	GDK_MIDDLEBUTTON
-	GDK_MOUSE
-	GDK_PENCIL
-	GDK_PIRATE
-	GDK_PLUS
-	GDK_QUESTION_ARROW
-	GDK_RIGHT_PTR
-	GDK_RIGHT_SIDE
-	GDK_RIGHT_TEE
-	GDK_RIGHTBUTTON
-	GDK_RTL_LOGO
-	GDK_SAILBOAT
-	GDK_SB_DOWN_ARROW
-	GDK_SB_H_DOUBLE_ARROW
-	GDK_SB_LEFT_ARROW
-	GDK_SB_RIGHT_ARROW
-	GDK_SB_UP_ARROW
-	GDK_SB_V_DOUBLE_ARROW
-	GDK_SHUTTLE
-	GDK_SIZING
-	GDK_SPIDER
-	GDK_SPRAYCAN
-	GDK_STAR
-	GDK_TARGET
-	GDK_TCROSS
-	GDK_TOP_LEFT_ARROW
-	GDK_TOP_LEFT_CORNER
-	GDK_TOP_RIGHT_CORNER
-	GDK_TOP_SIDE
-	GDK_TOP_TEE
-	GDK_TREK
-	GDK_UL_ANGLE
-	GDK_UMBRELLA
-	GDK_UR_ANGLE
-	GDK_WATCH
-	GDK_XTERM
-	GDK_LAST_CURSOR                    = GDK_XTERM + 1
-	GDK_BLANK_CURSOR     GdkCursorType = -2
-	GDK_CURSOR_IS_PIXMAP GdkCursorType = -1
-)
-
-type GdkCapStyle Enum
-
-const (
-	GDK_CAP_NOT_LAST GdkCapStyle = iota
-	GDK_CAP_BUTT
-	GDK_CAP_ROUND
-	GDK_CAP_PROJECTING
 )
 
 type GdkFill Enum
@@ -2976,25 +2783,6 @@ const (
 	GDK_OVERLAP_RECTANGLE_PART
 )
 
-type GdkWindowClass Enum
-
-const (
-	GDK_INPUT_OUTPUT GdkWindowClass = iota
-	GDK_INPUT_ONLY
-)
-
-type GdkWindowType Enum
-
-const (
-	GDK_WINDOW_ROOT GdkWindowType = iota
-	GDK_WINDOW_TOPLEVEL
-	GDK_WINDOW_CHILD
-	GDK_WINDOW_DIALOG
-	GDK_WINDOW_TEMP
-	GDK_WINDOW_FOREIGN
-	GDK_WINDOW_OFFSCREEN
-)
-
 type GdkWindowAttributesType Enum
 
 const (
@@ -3007,39 +2795,6 @@ const (
 	GDK_WA_WMCLASS
 	GDK_WA_NOREDIR
 	GDK_WA_TYPE_HINT
-)
-
-type GdkWindowHints Enum
-
-const (
-	GDK_HINT_POS GdkWindowHints = 1 << iota
-	GDK_HINT_MIN_SIZE
-	GDK_HINT_MAX_SIZE
-	GDK_HINT_BASE_SIZE
-	GDK_HINT_ASPECT
-	GDK_HINT_RESIZE_INC
-	GDK_HINT_WIN_GRAVITY
-	GDK_HINT_USER_POS
-	GDK_HINT_USER_SIZE
-)
-
-type GdkWindowTypeHint Enum
-
-const (
-	GDK_WINDOW_TYPE_HINT_NORMAL GdkWindowTypeHint = iota
-	GDK_WINDOW_TYPE_HINT_DIALOG
-	GDK_WINDOW_TYPE_HINT_MENU
-	GDK_WINDOW_TYPE_HINT_TOOLBAR
-	GDK_WINDOW_TYPE_HINT_SPLASHSCREEN
-	GDK_WINDOW_TYPE_HINT_UTILITY
-	GDK_WINDOW_TYPE_HINT_DOCK
-	GDK_WINDOW_TYPE_HINT_DESKTOP
-	GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU
-	GDK_WINDOW_TYPE_HINT_POPUP_MENU
-	GDK_WINDOW_TYPE_HINT_TOOLTIP
-	GDK_WINDOW_TYPE_HINT_NOTIFICATION
-	GDK_WINDOW_TYPE_HINT_COMBO
-	GDK_WINDOW_TYPE_HINT_DND
 )
 
 type GdkWMDecoration Enum
@@ -3078,30 +2833,6 @@ const (
 	GDK_GRAVITY_SOUTH
 	GDK_GRAVITY_SOUTH_EAST
 	GDK_GRAVITY_STATIC
-)
-
-type GdkWindowEdge Enum
-
-const (
-	GDK_WINDOW_EDGE_NORTH_WEST GdkWindowEdge = iota
-	GDK_WINDOW_EDGE_NORTH
-	GDK_WINDOW_EDGE_NORTH_EAST
-	GDK_WINDOW_EDGE_WEST
-	GDK_WINDOW_EDGE_EAST
-	GDK_WINDOW_EDGE_SOUTH_WEST
-	GDK_WINDOW_EDGE_SOUTH
-	GDK_WINDOW_EDGE_SOUTH_EAST
-)
-
-type GdkVisualType Enum
-
-const (
-	GDK_VISUAL_STATIC_GRAY GdkVisualType = iota
-	GDK_VISUAL_GRAYSCALE
-	GDK_VISUAL_STATIC_COLOR
-	GDK_VISUAL_PSEUDO_COLOR
-	GDK_VISUAL_TRUE_COLOR
-	GDK_VISUAL_DIRECT_COLOR
 )
 
 type GtkScrollStep Enum
@@ -3905,16 +3636,6 @@ type (
 		xevent *GdkXEvent,
 		event *GdkEvent,
 		data Gpointer) GdkFilterReturn
-
-	GdkPixbufDestroyNotify func(
-		pixels *Guchar,
-		data Gpointer)
-
-	GdkPixbufSaveFunc func(
-		buf string,
-		count Gsize,
-		error **GError,
-		data Gpointer) Gboolean
 
 	GdkSpanFunc func(
 		span *GdkSpan,

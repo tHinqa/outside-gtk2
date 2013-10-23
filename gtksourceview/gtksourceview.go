@@ -7,6 +7,7 @@ package gtksourceview
 
 import (
 	"github.com/tHinqa/outside"
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	G "github.com/tHinqa/outside-gtk2/gtk"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -427,7 +428,7 @@ var (
 		proposal *GtkSourceCompletionProposal) string
 
 	Gtk_source_completion_proposal_get_icon func(
-		proposal *GtkSourceCompletionProposal) *T.GdkPixbuf
+		proposal *GtkSourceCompletionProposal) *D.Pixbuf
 
 	Gtk_source_completion_proposal_get_info func(
 		proposal *GtkSourceCompletionProposal) string
@@ -463,7 +464,7 @@ var (
 		provider *GtkSourceCompletionProvider) string
 
 	Gtk_source_completion_provider_get_icon func(
-		provider *GtkSourceCompletionProvider) *T.GdkPixbuf
+		provider *GtkSourceCompletionProvider) *D.Pixbuf
 
 	Gtk_source_completion_provider_populate func(
 		provider *GtkSourceCompletionProvider,
@@ -550,7 +551,7 @@ var (
 	Gtk_source_gutter_get_type func() T.GType
 
 	Gtk_source_gutter_get_window func(
-		gutter *GtkSourceGutter) *T.GdkWindow
+		gutter *GtkSourceGutter) *D.Window
 
 	Gtk_source_gutter_insert func(
 		gutter *GtkSourceGutter,
@@ -663,12 +664,12 @@ var (
 	Gtk_source_view_set_mark_category_pixbuf func(
 		view *GtkSourceView,
 		category string,
-		pixbuf *T.GdkPixbuf)
+		pixbuf *D.Pixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_pixbuf func(
 		view *GtkSourceView,
 		category string,
-		pixbuf *T.GdkPixbuf)
+		pixbuf *D.Pixbuf)
 
 	Gtk_source_view_set_mark_category_icon_from_stock func(
 		view *GtkSourceView,
@@ -682,17 +683,17 @@ var (
 
 	Gtk_source_view_get_mark_category_pixbuf func(
 		view *GtkSourceView,
-		category string) *T.GdkPixbuf
+		category string) *D.Pixbuf
 
 	Gtk_source_view_set_mark_category_background func(
 		view *GtkSourceView,
 		category string,
-		color *T.GdkColor)
+		color *D.Color)
 
 	Gtk_source_view_get_mark_category_background func(
 		view *GtkSourceView,
 		category string,
-		dest *T.GdkColor) T.Gboolean
+		dest *D.Color) T.Gboolean
 
 	Gtk_source_view_set_mark_category_tooltip_func func(
 		view *GtkSourceView,
@@ -743,13 +744,13 @@ var (
 	Gtk_source_completion_item_new func(
 		label string,
 		text string,
-		icon *T.GdkPixbuf,
+		icon *D.Pixbuf,
 		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_with_markup func(
 		markup string,
 		text string,
-		icon *T.GdkPixbuf,
+		icon *D.Pixbuf,
 		info string) *GtkSourceCompletionItem
 
 	Gtk_source_completion_item_new_from_stock func(
@@ -774,7 +775,7 @@ var (
 
 	Gtk_source_completion_words_new func(
 		name string,
-		icon *T.GdkPixbuf) *GtkSourceCompletionWords
+		icon *D.Pixbuf) *GtkSourceCompletionWords
 
 	Gtk_source_completion_words_register func(
 		words *GtkSourceCompletionWords,
