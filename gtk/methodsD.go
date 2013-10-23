@@ -8,8 +8,53 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
+type DebugFlag T.Enum
+
+const (
+	DEBUG_MISC DebugFlag = 1 << iota
+	DEBUG_PLUGSOCKET
+	DEBUG_TEXT
+	DEBUG_TREE
+	DEBUG_UPDATES
+	DEBUG_KEYBINDINGS
+	DEBUG_MULTIHEAD
+	DEBUG_MODULES
+	DEBUG_GEOMETRY
+	DEBUG_ICONTHEME
+	DEBUG_PRINTING
+	DEBUG_BUILDER
+)
+
+var DebugFlagGetType func() T.GType
+
+type DeleteType T.Enum
+
+const (
+	DELETE_CHARS DeleteType = iota
+	DELETE_WORD_ENDS
+	DELETE_WORDS
+	DELETE_DISPLAY_LINES
+	DELETE_DISPLAY_LINE_ENDS
+	DELETE_PARAGRAPH_ENDS
+	DELETE_PARAGRAPHS
+	DELETE_WHITESPACE
+)
+
+var DeleteTypeGetType func() T.GType
+
+type DestDefaults T.Enum
+
+const (
+	DEST_DEFAULT_MOTION DestDefaults = 1 << iota
+	DEST_DEFAULT_HIGHLIGHT
+	DEST_DEFAULT_DROP
+	DEST_DEFAULT_ALL DestDefaults = 0x07
+)
+
+var DestDefaultsGetType func() T.GType
+
 type Dialog struct {
-	Window      T.GtkWindow
+	Window      Window
 	Vbox        *Widget
 	Action_area *Widget
 	Separator   *Widget
@@ -27,7 +72,7 @@ var (
 	DialogFlagsGetType   func() T.GType
 	DialogGetType        func() T.GType
 	DialogNew            func() *Widget
-	DialogNewWithButtons func(title string, parent *T.GtkWindow, flags DialogFlags, firstButtonText string, v ...VArg) *Widget
+	DialogNewWithButtons func(title string, parent *Window, flags DialogFlags, firstButtonText string, v ...VArg) *Widget
 )
 
 var (
@@ -79,6 +124,34 @@ func (d *Dialog) SetHasSeparator(setting T.Gboolean) { dialogSetHasSeparator(d, 
 func (d *Dialog) SetResponseSensitive(responseId int, setting T.Gboolean) {
 	dialogSetResponseSensitive(d, responseId, setting)
 }
+
+type DirectionType T.Enum
+
+const (
+	DIR_TAB_FORWARD DirectionType = iota
+	DIR_TAB_BACKWARD
+	DIR_UP
+	DIR_DOWN
+	DIR_LEFT
+	DIR_RIGHT
+)
+
+var DirectionTypeGetType func() T.GType
+
+var DisableSetlocale func()
+
+type DragResult T.Enum
+
+const (
+	DRAG_RESULT_SUCCESS DragResult = iota
+	DRAG_RESULT_NO_TARGET
+	DRAG_RESULT_USER_CANCELLED
+	DRAG_RESULT_TIMEOUT_EXPIRED
+	DRAG_RESULT_GRAB_BROKEN
+	DRAG_RESULT_ERROR
+)
+
+var DragResultGetType func() T.GType
 
 type DrawingArea struct {
 	Widget    Widget

@@ -20,18 +20,18 @@ var (
 	ScaleGetType   func() T.GType
 	ScaleSetDigits func(scale *Scale, digits int)
 
-	scaleAddMark          func(s *Scale, value float64, position T.GtkPositionType, markup string)
+	scaleAddMark          func(s *Scale, value float64, position PositionType, markup string)
 	scaleClearMarks       func(s *Scale)
 	scaleGetDigits        func(s *Scale) int
 	scaleGetDrawValue     func(s *Scale) T.Gboolean
 	scaleGetLayout        func(s *Scale) *T.PangoLayout
 	scaleGetLayoutOffsets func(s *Scale, x, y *int)
-	scaleGetValuePos      func(s *Scale) T.GtkPositionType
+	scaleGetValuePos      func(s *Scale) PositionType
 	scaleSetDrawValue     func(s *Scale, drawValue T.Gboolean)
-	scaleSetValuePos      func(s *Scale, pos T.GtkPositionType)
+	scaleSetValuePos      func(s *Scale, pos PositionType)
 )
 
-func (s *Scale) AddMark(value float64, position T.GtkPositionType, markup string) {
+func (s *Scale) AddMark(value float64, position PositionType, markup string) {
 	scaleAddMark(s, value, position, markup)
 }
 func (s *Scale) ClearMarks()                       { scaleClearMarks(s) }
@@ -39,9 +39,9 @@ func (s *Scale) GetDigits() int                    { return scaleGetDigits(s) }
 func (s *Scale) GetDrawValue() T.Gboolean          { return scaleGetDrawValue(s) }
 func (s *Scale) GetLayout() *T.PangoLayout         { return scaleGetLayout(s) }
 func (s *Scale) GetLayoutOffsets(x, y *int)        { scaleGetLayoutOffsets(s, x, y) }
-func (s *Scale) GetValuePos() T.GtkPositionType    { return scaleGetValuePos(s) }
+func (s *Scale) GetValuePos() PositionType         { return scaleGetValuePos(s) }
 func (s *Scale) SetDrawValue(drawValue T.Gboolean) { scaleSetDrawValue(s, drawValue) }
-func (s *Scale) SetValuePos(pos T.GtkPositionType) { scaleSetValuePos(s, pos) }
+func (s *Scale) SetValuePos(pos PositionType)      { scaleSetValuePos(s, pos) }
 
 type ScaleButton struct {
 	Parent      Button
@@ -100,15 +100,15 @@ var (
 	scrolledWindowAddWithViewport func(s *ScrolledWindow, child *Widget)
 	scrolledWindowGetHadjustment  func(s *ScrolledWindow) *Adjustment
 	scrolledWindowGetHscrollbar   func(s *ScrolledWindow) *Widget
-	scrolledWindowGetPlacement    func(s *ScrolledWindow) T.GtkCornerType
-	scrolledWindowGetPolicy       func(s *ScrolledWindow, hscrollbarPolicy, vscrollbarPolicy *T.GtkPolicyType)
-	scrolledWindowGetShadowType   func(s *ScrolledWindow) T.GtkShadowType
+	scrolledWindowGetPlacement    func(s *ScrolledWindow) CornerType
+	scrolledWindowGetPolicy       func(s *ScrolledWindow, hscrollbarPolicy, vscrollbarPolicy *PolicyType)
+	scrolledWindowGetShadowType   func(s *ScrolledWindow) ShadowType
 	scrolledWindowGetVadjustment  func(s *ScrolledWindow) *Adjustment
 	scrolledWindowGetVscrollbar   func(s *ScrolledWindow) *Widget
 	scrolledWindowSetHadjustment  func(s *ScrolledWindow, hadjustment *Adjustment)
-	scrolledWindowSetPlacement    func(s *ScrolledWindow, windowPlacement T.GtkCornerType)
-	scrolledWindowSetPolicy       func(s *ScrolledWindow, hscrollbarPolicy, vscrollbarPolicy T.GtkPolicyType)
-	scrolledWindowSetShadowType   func(s *ScrolledWindow, t T.GtkShadowType)
+	scrolledWindowSetPlacement    func(s *ScrolledWindow, windowPlacement CornerType)
+	scrolledWindowSetPolicy       func(s *ScrolledWindow, hscrollbarPolicy, vscrollbarPolicy PolicyType)
+	scrolledWindowSetShadowType   func(s *ScrolledWindow, t ShadowType)
 	scrolledWindowSetVadjustment  func(s *ScrolledWindow, vadjustment *Adjustment)
 	scrolledWindowUnsetPlacement  func(s *ScrolledWindow)
 )
@@ -116,29 +116,52 @@ var (
 func (s *ScrolledWindow) AddWithViewport(child *Widget) {
 	scrolledWindowAddWithViewport(s, child)
 }
-func (s *ScrolledWindow) GetHadjustment() *Adjustment   { return scrolledWindowGetHadjustment(s) }
-func (s *ScrolledWindow) GetHscrollbar() *Widget        { return scrolledWindowGetHscrollbar(s) }
-func (s *ScrolledWindow) GetPlacement() T.GtkCornerType { return scrolledWindowGetPlacement(s) }
-func (s *ScrolledWindow) GetPolicy(hscrollbarPolicy, vscrollbarPolicy *T.GtkPolicyType) {
+func (s *ScrolledWindow) GetHadjustment() *Adjustment { return scrolledWindowGetHadjustment(s) }
+func (s *ScrolledWindow) GetHscrollbar() *Widget      { return scrolledWindowGetHscrollbar(s) }
+func (s *ScrolledWindow) GetPlacement() CornerType    { return scrolledWindowGetPlacement(s) }
+func (s *ScrolledWindow) GetPolicy(hscrollbarPolicy, vscrollbarPolicy *PolicyType) {
 	scrolledWindowGetPolicy(s, hscrollbarPolicy, vscrollbarPolicy)
 }
-func (s *ScrolledWindow) GetShadowType() T.GtkShadowType { return scrolledWindowGetShadowType(s) }
-func (s *ScrolledWindow) GetVadjustment() *Adjustment    { return scrolledWindowGetVadjustment(s) }
-func (s *ScrolledWindow) GetVscrollbar() *Widget         { return scrolledWindowGetVscrollbar(s) }
+func (s *ScrolledWindow) GetShadowType() ShadowType   { return scrolledWindowGetShadowType(s) }
+func (s *ScrolledWindow) GetVadjustment() *Adjustment { return scrolledWindowGetVadjustment(s) }
+func (s *ScrolledWindow) GetVscrollbar() *Widget      { return scrolledWindowGetVscrollbar(s) }
 func (s *ScrolledWindow) SetHadjustment(hadjustment *Adjustment) {
 	scrolledWindowSetHadjustment(s, hadjustment)
 }
-func (s *ScrolledWindow) SetPlacement(windowPlacement T.GtkCornerType) {
+func (s *ScrolledWindow) SetPlacement(windowPlacement CornerType) {
 	scrolledWindowSetPlacement(s, windowPlacement)
 }
-func (s *ScrolledWindow) SetPolicy(hscrollbarPolicy, vscrollbarPolicy T.GtkPolicyType) {
+func (s *ScrolledWindow) SetPolicy(hscrollbarPolicy, vscrollbarPolicy PolicyType) {
 	scrolledWindowSetPolicy(s, hscrollbarPolicy, vscrollbarPolicy)
 }
-func (s *ScrolledWindow) SetShadowType(t T.GtkShadowType) { scrolledWindowSetShadowType(s, t) }
+func (s *ScrolledWindow) SetShadowType(t ShadowType) { scrolledWindowSetShadowType(s, t) }
 func (s *ScrolledWindow) SetVadjustment(vadjustment *Adjustment) {
 	scrolledWindowSetVadjustment(s, vadjustment)
 }
 func (s *ScrolledWindow) UnsetPlacement() { scrolledWindowUnsetPlacement(s) }
+
+type ScrollType T.Enum
+
+const (
+	SCROLL_NONE ScrollType = iota
+	SCROLL_JUMP
+	SCROLL_STEP_BACKWARD
+	SCROLL_STEP_FORWARD
+	SCROLL_PAGE_BACKWARD
+	SCROLL_PAGE_FORWARD
+	SCROLL_STEP_UP
+	SCROLL_STEP_DOWN
+	SCROLL_PAGE_UP
+	SCROLL_PAGE_DOWN
+	SCROLL_STEP_LEFT
+	SCROLL_STEP_RIGHT
+	SCROLL_PAGE_LEFT
+	SCROLL_PAGE_RIGHT
+	SCROLL_START
+	SCROLL_END
+)
+
+var ScrollTypeGetType func() T.GType
 
 type SelectionData struct {
 	Selection T.GdkAtom
@@ -210,6 +233,28 @@ func (s *SelectionData) TargetsIncludeRichText(buffer *TextBuffer) T.Gboolean {
 func (s *SelectionData) TargetsIncludeText() T.Gboolean { return selectionDataTargetsIncludeText(s) }
 func (s *SelectionData) TargetsIncludeUri() T.Gboolean  { return selectionDataTargetsIncludeUri(s) }
 
+type SelectionMode T.Enum
+
+const (
+	SELECTION_NONE SelectionMode = iota
+	SELECTION_SINGLE
+	SELECTION_BROWSE
+	SELECTION_MULTIPLE
+	SELECTION_EXTENDED = SELECTION_MULTIPLE
+)
+
+var SelectionModeGetType func() T.GType
+
+type SensitivityType T.Enum
+
+const (
+	SENSITIVITY_AUTO SensitivityType = iota
+	SENSITIVITY_ON
+	SENSITIVITY_OFF
+)
+
+var SensitivityTypeGetType func() T.GType
+
 type SeparatorToolItem struct {
 	Parent ToolItem
 	_      *struct{}
@@ -229,8 +274,8 @@ func (s *SeparatorToolItem) SetDraw(draw T.Gboolean) { separatorToolItemSetDraw(
 type Settings struct {
 	Parent          T.GObject
 	QueuedSettings  *T.GData
-	Property_values *T.GtkSettingsPropertyValue
-	RcContext       *T.GtkRcContext
+	Property_values *SettingsPropertyValue
+	RcContext       *RcContext
 	Screen          *T.GdkScreen
 }
 
@@ -240,11 +285,11 @@ var (
 
 	SettingsGetForScreen          func(screen *T.GdkScreen) *Settings
 	SettingsInstallProperty       func(pspec *T.GParamSpec)
-	SettingsInstallPropertyParser func(pspec *T.GParamSpec, parser T.GtkRcPropertyParser)
+	SettingsInstallPropertyParser func(pspec *T.GParamSpec, parser RcPropertyParser)
 
 	settingsSetDoubleProperty func(s *Settings, name string, vDouble float64, origin string)
 	settingsSetLongProperty   func(s *Settings, name string, vLong T.Glong, origin string)
-	settingsSetPropertyValue  func(s *Settings, name string, svalue *T.GtkSettingsValue)
+	settingsSetPropertyValue  func(s *Settings, name string, svalue *SettingsValue)
 	settingsSetStringProperty func(s *Settings, name, vString, origin string)
 )
 
@@ -254,12 +299,42 @@ func (s *Settings) SetDoubleProperty(name string, vDouble float64, origin string
 func (s *Settings) SetLongProperty(name string, vLong T.Glong, origin string) {
 	settingsSetLongProperty(s, name, vLong, origin)
 }
-func (s *Settings) SetPropertyValue(name string, svalue *T.GtkSettingsValue) {
+func (s *Settings) SetPropertyValue(name string, svalue *SettingsValue) {
 	settingsSetPropertyValue(s, name, svalue)
 }
 func (s *Settings) SetStringProperty(name, vString, origin string) {
 	settingsSetStringProperty(s, name, vString, origin)
 }
+
+type SettingsPropertyValue struct{}
+
+type SettingsValue struct {
+	Origin *T.Gchar
+	Value  T.GValue
+}
+
+type ShadowType T.Enum
+
+const (
+	SHADOW_NONE ShadowType = iota
+	SHADOW_IN
+	SHADOW_OUT
+	SHADOW_ETCHED_IN
+	SHADOW_ETCHED_OUT
+)
+
+var ShadowTypeGetType func() T.GType
+
+type SignalRunType T.Enum
+
+const (
+	RUN_FIRST      SignalRunType = SignalRunType(T.G_SIGNAL_RUN_FIRST)
+	RUN_LAST                     = SignalRunType(T.G_SIGNAL_RUN_LAST)
+	RUN_BOTH                     = SignalRunType(RUN_FIRST | RUN_LAST)
+	RUN_NO_RECURSE               = SignalRunType(T.G_SIGNAL_NO_RECURSE)
+	RUN_ACTION                   = SignalRunType(T.G_SIGNAL_ACTION)
+	RUN_NO_HOOKS                 = SignalRunType(T.G_SIGNAL_NO_HOOKS)
+)
 
 type SizeGroup struct {
 	Parent  T.GObject
@@ -269,7 +344,7 @@ type SizeGroup struct {
 	// HaveWidth : 1
 	// HaveHeight : 1
 	// IgnoreHidden : 1
-	Requisition T.GtkRequisition
+	Requisition Requisition
 }
 
 type SizeGroupMode T.Enum
@@ -341,6 +416,13 @@ func (s *Socket) GetId() T.GdkNativeWindow         { return socketGetId(s) }
 func (s *Socket) GetPlugWindow() *T.GdkWindow      { return socketGetPlugWindow(s) }
 func (s *Socket) Steal(wid T.GdkNativeWindow)      { socketSteal(s, wid) }
 
+type SortType T.Enum
+
+const (
+	SORT_ASCENDING SortType = iota
+	SORT_DESCENDING
+)
+
 type SpinButton struct {
 	Entry        Entry
 	Adjustment   *Adjustment
@@ -395,7 +477,7 @@ var (
 	spinButtonSetUpdatePolicy func(s *SpinButton, policy SpinButtonUpdatePolicy)
 	spinButtonSetValue        func(s *SpinButton, value float64)
 	spinButtonSetWrap         func(s *SpinButton, wrap T.Gboolean)
-	spinButtonSpin            func(s *SpinButton, direction T.GtkSpinType, increment float64)
+	spinButtonSpin            func(s *SpinButton, direction SpinType, increment float64)
 	spinButtonUpdate          func(s *SpinButton)
 )
 
@@ -423,7 +505,7 @@ func (s *SpinButton) SetUpdatePolicy(policy SpinButtonUpdatePolicy) {
 }
 func (s *SpinButton) SetValue(value float64)  { spinButtonSetValue(s, value) }
 func (s *SpinButton) SetWrap(wrap T.Gboolean) { spinButtonSetWrap(s, wrap) }
-func (s *SpinButton) Spin(direction T.GtkSpinType, increment float64) {
+func (s *SpinButton) Spin(direction SpinType, increment float64) {
 	spinButtonSpin(s, direction, increment)
 }
 func (s *SpinButton) Update() { spinButtonUpdate(s) }
@@ -443,6 +525,32 @@ var (
 
 func (s *Spinner) Start() { spinnerStart(s) }
 func (s *Spinner) Stop()  { spinnerStop(s) }
+
+type SpinType T.Enum
+
+const (
+	SPIN_STEP_FORWARD SpinType = iota
+	SPIN_STEP_BACKWARD
+	SPIN_PAGE_FORWARD
+	SPIN_PAGE_BACKWARD
+	SPIN_HOME
+	SPIN_END
+	SPIN_USER_DEFINED
+)
+
+var SpinTypeGetType func() T.GType
+
+type StateType T.Enum
+
+const (
+	STATE_NORMAL StateType = iota
+	STATE_ACTIVE
+	STATE_PRELIGHT
+	STATE_SELECTED
+	STATE_INSENSITIVE
+)
+
+var StateTypeGetType func() T.GType
 
 type Statusbar struct {
 	ParentWidget  HBox
@@ -612,7 +720,7 @@ type Style struct {
 	Colormap        *T.GdkColormap
 	PrivateFont     *T.GdkFont
 	PrivateFontDesc *T.PangoFontDescription
-	RcStyle         *T.GtkRcStyle
+	RcStyle         *RcStyle
 	Styles          *T.GSList
 	PropertyCache   *T.GArray
 	IconFactories   *T.GSList
@@ -620,38 +728,38 @@ type Style struct {
 
 var (
 	StyleGetType func() T.GType
-	StyleNew     func() *T.GtkStyle
+	StyleNew     func() *Style
 
-	styleApplyDefaultBackground func(s *Style, window *T.GdkWindow, setBg T.Gboolean, stateType T.GtkStateType, area *T.GdkRectangle, x, y, width, height int)
-	styleAttach                 func(s *Style, window *T.GdkWindow) *T.GtkStyle
-	styleCopy                   func(s *Style) *T.GtkStyle
+	styleApplyDefaultBackground func(s *Style, window *T.GdkWindow, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int)
+	styleAttach                 func(s *Style, window *T.GdkWindow) *Style
+	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
 	styleGetFont                func(s *Style) *T.GdkFont
 	styleLookupColor            func(s *Style, colorName string, color *T.GdkColor) T.Gboolean
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
-	styleRef                    func(s *Style) *T.GtkStyle
-	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
-	styleSetBackground          func(s *Style, window *T.GdkWindow, stateType T.GtkStateType)
+	styleRef                    func(s *Style) *Style
+	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
+	styleSetBackground          func(s *Style, window *T.GdkWindow, stateType StateType)
 	styleSetFont                func(s *Style, font *T.GdkFont)
 	styleUnref                  func(s *Style)
 )
 
-func (s *Style) ApplyDefaultBackground(window *T.GdkWindow, setBg T.Gboolean, stateType T.GtkStateType, area *T.GdkRectangle, x, y, width, height int) {
+func (s *Style) ApplyDefaultBackground(window *T.GdkWindow, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int) {
 	styleApplyDefaultBackground(s, window, setBg, stateType, area, x, y, width, height)
 }
-func (s *Style) Attach(window *T.GdkWindow) *T.GtkStyle { return styleAttach(s, window) }
-func (s *Style) Copy() *T.GtkStyle                      { return styleCopy(s) }
-func (s *Style) Detach()                                { styleDetach(s) }
-func (s *Style) GetFont() *T.GdkFont                    { return styleGetFont(s) }
+func (s *Style) Attach(window *T.GdkWindow) *Style { return styleAttach(s, window) }
+func (s *Style) Copy() *Style                      { return styleCopy(s) }
+func (s *Style) Detach()                           { styleDetach(s) }
+func (s *Style) GetFont() *T.GdkFont               { return styleGetFont(s) }
 func (s *Style) LookupColor(colorName string, color *T.GdkColor) T.Gboolean {
 	return styleLookupColor(s, colorName, color)
 }
 func (s *Style) LookupIconSet(stockId string) *IconSet { return styleLookupIconSet(s, stockId) }
-func (s *Style) Ref() *T.GtkStyle                      { return styleRef(s) }
-func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
+func (s *Style) Ref() *Style                           { return styleRef(s) }
+func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
 	return styleRenderIcon(s, source, direction, state, size, widget, detail)
 }
-func (s *Style) SetBackground(window *T.GdkWindow, stateType T.GtkStateType) {
+func (s *Style) SetBackground(window *T.GdkWindow, stateType StateType) {
 	styleSetBackground(s, window, stateType)
 }
 func (s *Style) SetFont(font *T.GdkFont) { styleSetFont(s, font) }

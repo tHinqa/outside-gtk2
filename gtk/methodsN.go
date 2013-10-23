@@ -54,7 +54,7 @@ var (
 
 	notebookAppendPage           func(n *Notebook, child, tabLabel *Widget) int
 	notebookAppendPageMenu       func(n *Notebook, child, tabLabel, menuLabel *Widget) int
-	notebookGetActionWidget      func(n *Notebook, packType T.GtkPackType) *Widget
+	notebookGetActionWidget      func(n *Notebook, packType PackType) *Widget
 	notebookGetCurrentPage       func(n *Notebook) int
 	notebookGetGroup             func(n *Notebook) T.Gpointer
 	notebookGetGroupId           func(n *Notebook) int
@@ -70,7 +70,7 @@ var (
 	notebookGetTabHborder        func(n *Notebook) uint16
 	notebookGetTabLabel          func(n *Notebook, child *Widget) *Widget
 	notebookGetTabLabelText      func(n *Notebook, child *Widget) string
-	notebookGetTabPos            func(n *Notebook) T.GtkPositionType
+	notebookGetTabPos            func(n *Notebook) PositionType
 	notebookGetTabReorderable    func(n *Notebook, child *Widget) T.Gboolean
 	notebookGetTabVborder        func(n *Notebook) uint16
 	notebookInsertPage           func(n *Notebook, child, tabLabel *Widget, position int) int
@@ -82,10 +82,10 @@ var (
 	notebookPrependPage          func(n *Notebook, child, tabLabel *Widget) int
 	notebookPrependPageMenu      func(n *Notebook, child, tabLabel, menuLabel *Widget) int
 	notebookPrevPage             func(n *Notebook)
-	notebookQueryTabLabelPacking func(n *Notebook, child *Widget, expand, fill *T.Gboolean, packType *T.GtkPackType)
+	notebookQueryTabLabelPacking func(n *Notebook, child *Widget, expand, fill *T.Gboolean, packType *PackType)
 	notebookRemovePage           func(n *Notebook, pageNum int)
 	notebookReorderChild         func(n *Notebook, child *Widget, position int)
-	notebookSetActionWidget      func(n *Notebook, widget *Widget, packType T.GtkPackType)
+	notebookSetActionWidget      func(n *Notebook, widget *Widget, packType PackType)
 	notebookSetCurrentPage       func(n *Notebook, pageNum int)
 	notebookSetGroup             func(n *Notebook, group T.Gpointer)
 	notebookSetGroupId           func(n *Notebook, groupId int)
@@ -100,9 +100,9 @@ var (
 	notebookSetTabDetachable     func(n *Notebook, child *Widget, detachable T.Gboolean)
 	notebookSetTabHborder        func(n *Notebook, tabHborder uint)
 	notebookSetTabLabel          func(n *Notebook, child, tabLabel *Widget)
-	notebookSetTabLabelPacking   func(n *Notebook, child *Widget, expand, fill T.Gboolean, packType T.GtkPackType)
+	notebookSetTabLabelPacking   func(n *Notebook, child *Widget, expand, fill T.Gboolean, packType PackType)
 	notebookSetTabLabelText      func(n *Notebook, child *Widget, tabText string)
-	notebookSetTabPos            func(n *Notebook, pos T.GtkPositionType)
+	notebookSetTabPos            func(n *Notebook, pos PositionType)
 	notebookSetTabReorderable    func(n *Notebook, child *Widget, reorderable T.Gboolean)
 	notebookSetTabVborder        func(n *Notebook, tabVborder uint)
 )
@@ -113,7 +113,7 @@ func (n *Notebook) AppendPage(child, tabLabel *Widget) int {
 func (n *Notebook) AppendPageMenu(child, tabLabel, menuLabel *Widget) int {
 	return notebookAppendPageMenu(n, child, tabLabel, menuLabel)
 }
-func (n *Notebook) GetActionWidget(packType T.GtkPackType) *Widget {
+func (n *Notebook) GetActionWidget(packType PackType) *Widget {
 	return notebookGetActionWidget(n, packType)
 }
 func (n *Notebook) GetCurrentPage() int                   { return notebookGetCurrentPage(n) }
@@ -133,7 +133,7 @@ func (n *Notebook) GetTabDetachable(child *Widget) T.Gboolean {
 func (n *Notebook) GetTabHborder() uint16                { return notebookGetTabHborder(n) }
 func (n *Notebook) GetTabLabel(child *Widget) *Widget    { return notebookGetTabLabel(n, child) }
 func (n *Notebook) GetTabLabelText(child *Widget) string { return notebookGetTabLabelText(n, child) }
-func (n *Notebook) GetTabPos() T.GtkPositionType         { return notebookGetTabPos(n) }
+func (n *Notebook) GetTabPos() PositionType         { return notebookGetTabPos(n) }
 func (n *Notebook) GetTabReorderable(child *Widget) T.Gboolean {
 	return notebookGetTabReorderable(n, child)
 }
@@ -155,14 +155,14 @@ func (n *Notebook) PrependPageMenu(child, tabLabel, menuLabel *Widget) int {
 	return notebookPrependPageMenu(n, child, tabLabel, menuLabel)
 }
 func (n *Notebook) PrevPage() { notebookPrevPage(n) }
-func (n *Notebook) QueryTabLabelPacking(child *Widget, expand, fill *T.Gboolean, packType *T.GtkPackType) {
+func (n *Notebook) QueryTabLabelPacking(child *Widget, expand, fill *T.Gboolean, packType *PackType) {
 	notebookQueryTabLabelPacking(n, child, expand, fill, packType)
 }
 func (n *Notebook) RemovePage(pageNum int) { notebookRemovePage(n, pageNum) }
 func (n *Notebook) ReorderChild(child *Widget, position int) {
 	notebookReorderChild(n, child, position)
 }
-func (n *Notebook) SetActionWidget(widget *Widget, packType T.GtkPackType) {
+func (n *Notebook) SetActionWidget(widget *Widget, packType PackType) {
 	notebookSetActionWidget(n, widget, packType)
 }
 func (n *Notebook) SetCurrentPage(pageNum int)    { notebookSetCurrentPage(n, pageNum) }
@@ -185,14 +185,29 @@ func (n *Notebook) SetTabDetachable(child *Widget, detachable T.Gboolean) {
 }
 func (n *Notebook) SetTabHborder(tabHborder uint)       { notebookSetTabHborder(n, tabHborder) }
 func (n *Notebook) SetTabLabel(child, tabLabel *Widget) { notebookSetTabLabel(n, child, tabLabel) }
-func (n *Notebook) SetTabLabelPacking(child *Widget, expand, fill T.Gboolean, packType T.GtkPackType) {
+func (n *Notebook) SetTabLabelPacking(child *Widget, expand, fill T.Gboolean, packType PackType) {
 	notebookSetTabLabelPacking(n, child, expand, fill, packType)
 }
 func (n *Notebook) SetTabLabelText(child *Widget, tabText string) {
 	notebookSetTabLabelText(n, child, tabText)
 }
-func (n *Notebook) SetTabPos(pos T.GtkPositionType) { notebookSetTabPos(n, pos) }
+func (n *Notebook) SetTabPos(pos PositionType) { notebookSetTabPos(n, pos) }
 func (n *Notebook) SetTabReorderable(child *Widget, reorderable T.Gboolean) {
 	notebookSetTabReorderable(n, child, reorderable)
 }
 func (n *Notebook) SetTabVborder(tabVborder uint) { notebookSetTabVborder(n, tabVborder) }
+
+type NumberUpLayout T.Enum
+
+const (
+	NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM NumberUpLayout = iota
+	NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP
+	NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM
+	NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP
+	NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT
+	NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT
+	NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT
+	NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT
+)
+
+var NumberUpLayoutGetType func() T.GType

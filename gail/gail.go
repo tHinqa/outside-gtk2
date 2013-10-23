@@ -7,8 +7,8 @@ package gail
 
 import (
 	"github.com/tHinqa/outside"
-	T "github.com/tHinqa/outside-gtk2/types"
 	G "github.com/tHinqa/outside-gtk2/gtk"
+	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 func init() {
@@ -32,10 +32,10 @@ var (
 	Gail_misc_get_default_attributes func(
 		attrib_set *T.AtkAttributeSet,
 		layout *T.PangoLayout,
-		widget *T.GtkWidget) *T.AtkAttributeSet
+		widget *G.Widget) *T.AtkAttributeSet
 
 	Gail_misc_get_extents_from_pango_rectangle func(
-		widget *T.GtkWidget,
+		widget *G.Widget,
 		char_rect *T.PangoRectangle,
 		x_layout int,
 		y_layout int,
@@ -46,7 +46,7 @@ var (
 		coords T.AtkCoordType)
 
 	Gail_misc_get_index_at_point_in_layout func(
-		widget *T.GtkWidget,
+		widget *G.Widget,
 		layout *T.PangoLayout,
 		x_layout int,
 		y_layout int,
@@ -55,7 +55,7 @@ var (
 		coords T.AtkCoordType) int
 
 	Gail_misc_get_origins func(
-		widget *T.GtkWidget,
+		widget *G.Widget,
 		x_window *int,
 		y_window *int,
 		x_toplevel *int,
@@ -67,7 +67,7 @@ var (
 		attr T.AtkTextAttribute) *T.AtkAttributeSet
 
 	Gail_misc_buffer_get_run_attributes func(
-		buffer *T.GtkTextBuffer,
+		buffer *G.TextBuffer,
 		offset int,
 		start_offset *int,
 		end_offset *int) *T.AtkAttributeSet
@@ -82,7 +82,7 @@ var (
 
 	Gail_text_util_buffer_setup func(
 		textutil *T.GailTextUtil,
-		buffer *T.GtkTextBuffer)
+		buffer *G.TextBuffer)
 
 	Gail_text_util_get_text func(
 		textutil *T.GailTextUtil,

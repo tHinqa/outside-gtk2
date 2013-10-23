@@ -103,9 +103,6 @@ type (
 	GStaticMutex           *GMutex
 	GTime                  GInt32
 	GTimeSpan              int64
-	GtkAllocation          GdkRectangle
-	GtkEnumValue           GEnumValue
-	GtkFlagValue           GFlagsValue
 	GtkType                GType // REMOVE
 	GType                  Gsize
 	Gulong                 UnsignedLong
@@ -316,19 +313,13 @@ type (
 	GtkInfoBarPrivate              struct{}
 	GtkLabelSelectionInfo          struct{}
 	GtkPageSetup                   struct{} //REMOVE
-	GtkRcContext                   struct{}
 	GtkRecentActionPrivate         struct{}
 	GtkRecentChooserMenuPrivate    struct{}
 	GtkRecentManagerPrivate        struct{}
 	GtkScaleButtonPrivate          struct{}
 	GtkSeparatorToolItemPrivate    struct{}
-	GtkSettingsPropertyValue       struct{}
 	GtkSpinnerPrivate              struct{}
 	GtkStatusIconPrivate           struct{}
-	GtkTextBTree                   struct{}
-	GtkTextLayout                  struct{}
-	GtkTextLogAttrCache            struct{}
-	GtkTextPendingScroll           struct{}
 	GtkToggleActionPrivate         struct{}
 	GtkToggleToolButtonPrivate     struct{}
 	GtkToolButtonPrivate           struct{}
@@ -336,7 +327,6 @@ type (
 	GtkToolItemPrivate             struct{}
 	GtkToolPalettePrivate          struct{}
 	GtkUIManagerPrivate            struct{}
-	GtkWindowGeometryInfo          struct{}
 	GTlsBackend                    struct{}
 	GTlsCertificatePrivate         struct{}
 	GTlsClientConnection           struct{}
@@ -3114,46 +3104,6 @@ const (
 	GDK_VISUAL_DIRECT_COLOR
 )
 
-type GtkCurveType Enum
-
-const (
-	GTK_CURVE_TYPE_LINEAR GtkCurveType = iota
-	GTK_CURVE_TYPE_SPLINE
-	GTK_CURVE_TYPE_FREE
-)
-
-type GtkDeleteType Enum
-
-const (
-	GTK_DELETE_CHARS GtkDeleteType = iota
-	GTK_DELETE_WORD_ENDS
-	GTK_DELETE_WORDS
-	GTK_DELETE_DISPLAY_LINES
-	GTK_DELETE_DISPLAY_LINE_ENDS
-	GTK_DELETE_PARAGRAPH_ENDS
-	GTK_DELETE_PARAGRAPHS
-	GTK_DELETE_WHITESPACE
-)
-
-type GtkDirectionType Enum
-
-const (
-	GTK_DIR_TAB_FORWARD GtkDirectionType = iota
-	GTK_DIR_TAB_BACKWARD
-	GTK_DIR_UP
-	GTK_DIR_DOWN
-	GTK_DIR_LEFT
-	GTK_DIR_RIGHT
-)
-
-type GtkSensitivityType Enum
-
-const (
-	GTK_SENSITIVITY_AUTO GtkSensitivityType = iota
-	GTK_SENSITIVITY_ON
-	GTK_SENSITIVITY_OFF
-)
-
 type GtkSideType Enum
 
 const (
@@ -3161,59 +3111,6 @@ const (
 	GTK_SIDE_BOTTOM
 	GTK_SIDE_LEFT
 	GTK_SIDE_RIGHT
-)
-
-type GtkJustification Enum
-
-const (
-	GTK_JUSTIFY_LEFT GtkJustification = iota
-	GTK_JUSTIFY_RIGHT
-	GTK_JUSTIFY_CENTER
-	GTK_JUSTIFY_FILL
-)
-
-type GtkMatchType Enum
-
-const (
-	GTK_MATCH_ALL GtkMatchType = iota
-	GTK_MATCH_ALL_TAIL
-	GTK_MATCH_HEAD
-	GTK_MATCH_TAIL
-	GTK_MATCH_EXACT
-	GTK_MATCH_LAST
-)
-
-type GtkMessageType Enum
-
-const (
-	GTK_MESSAGE_INFO GtkMessageType = iota
-	GTK_MESSAGE_WARNING
-	GTK_MESSAGE_QUESTION
-	GTK_MESSAGE_ERROR
-	GTK_MESSAGE_OTHER
-)
-
-type GtkMetricType Enum
-
-const (
-	GTK_PIXELS GtkMetricType = iota
-	GTK_INCHES
-	GTK_CENTIMETERS
-)
-
-type GtkMovementStep Enum
-
-const (
-	GTK_MOVEMENT_LOGICAL_POSITIONS GtkMovementStep = iota
-	GTK_MOVEMENT_VISUAL_POSITIONS
-	GTK_MOVEMENT_WORDS
-	GTK_MOVEMENT_DISPLAY_LINES
-	GTK_MOVEMENT_DISPLAY_LINE_ENDS
-	GTK_MOVEMENT_PARAGRAPHS
-	GTK_MOVEMENT_PARAGRAPH_ENDS
-	GTK_MOVEMENT_PAGES
-	GTK_MOVEMENT_BUFFER_ENDS
-	GTK_MOVEMENT_HORIZONTAL_PAGES
 )
 
 type GtkScrollStep Enum
@@ -3225,137 +3122,6 @@ const (
 	GTK_SCROLL_HORIZONTAL_STEPS
 	GTK_SCROLL_HORIZONTAL_PAGES
 	GTK_SCROLL_HORIZONTAL_ENDS
-)
-
-type GtkCornerType Enum
-
-const (
-	GTK_CORNER_TOP_LEFT GtkCornerType = iota
-	GTK_CORNER_BOTTOM_LEFT
-	GTK_CORNER_TOP_RIGHT
-	GTK_CORNER_BOTTOM_RIGHT
-)
-
-type GtkPackType Enum
-
-const (
-	GTK_PACK_START GtkPackType = iota
-	GTK_PACK_END
-)
-
-type GtkPathPriorityType Enum
-
-const (
-	GTK_PATH_PRIO_LOWEST GtkPathPriorityType = iota * 2
-	_
-	GTK_PATH_PRIO_GTK
-	GTK_PATH_PRIO_APPLICATION
-	GTK_PATH_PRIO_THEME
-	GTK_PATH_PRIO_RC
-	GTK_PATH_PRIO_HIGHEST GtkPathPriorityType = iota*2 - 1
-)
-
-type GtkPathType Enum
-
-const (
-	GTK_PATH_WIDGET GtkPathType = iota
-	GTK_PATH_WIDGET_CLASS
-	GTK_PATH_CLASS
-)
-
-type GtkPolicyType Enum
-
-const (
-	GTK_POLICY_ALWAYS GtkPolicyType = iota
-	GTK_POLICY_AUTOMATIC
-	GTK_POLICY_NEVER
-)
-
-type GtkPositionType Enum
-
-const (
-	GTK_POS_LEFT GtkPositionType = iota
-	GTK_POS_RIGHT
-	GTK_POS_TOP
-	GTK_POS_BOTTOM
-)
-
-type GtkReliefStyle Enum
-
-const (
-	GTK_RELIEF_NORMAL GtkReliefStyle = iota
-	GTK_RELIEF_HALF
-	GTK_RELIEF_NONE
-)
-
-type GtkResizeMode Enum
-
-const (
-	GTK_RESIZE_PARENT GtkResizeMode = iota
-	GTK_RESIZE_QUEUE
-	GTK_RESIZE_IMMEDIATE
-)
-
-type GtkSignalRunType Enum
-
-const (
-	GTK_RUN_FIRST      GtkSignalRunType = GtkSignalRunType(G_SIGNAL_RUN_FIRST)
-	GTK_RUN_LAST                        = GtkSignalRunType(G_SIGNAL_RUN_LAST)
-	GTK_RUN_BOTH                        = GtkSignalRunType(GTK_RUN_FIRST | GTK_RUN_LAST)
-	GTK_RUN_NO_RECURSE                  = GtkSignalRunType(G_SIGNAL_NO_RECURSE)
-	GTK_RUN_ACTION                      = GtkSignalRunType(G_SIGNAL_ACTION)
-	GTK_RUN_NO_HOOKS                    = GtkSignalRunType(G_SIGNAL_NO_HOOKS)
-)
-
-type GtkScrollType Enum
-
-const (
-	GTK_SCROLL_NONE GtkScrollType = iota
-	GTK_SCROLL_JUMP
-	GTK_SCROLL_STEP_BACKWARD
-	GTK_SCROLL_STEP_FORWARD
-	GTK_SCROLL_PAGE_BACKWARD
-	GTK_SCROLL_PAGE_FORWARD
-	GTK_SCROLL_STEP_UP
-	GTK_SCROLL_STEP_DOWN
-	GTK_SCROLL_PAGE_UP
-	GTK_SCROLL_PAGE_DOWN
-	GTK_SCROLL_STEP_LEFT
-	GTK_SCROLL_STEP_RIGHT
-	GTK_SCROLL_PAGE_LEFT
-	GTK_SCROLL_PAGE_RIGHT
-	GTK_SCROLL_START
-	GTK_SCROLL_END
-)
-
-type GtkSelectionMode Enum
-
-const (
-	GTK_SELECTION_NONE GtkSelectionMode = iota
-	GTK_SELECTION_SINGLE
-	GTK_SELECTION_BROWSE
-	GTK_SELECTION_MULTIPLE
-	GTK_SELECTION_EXTENDED = GTK_SELECTION_MULTIPLE
-)
-
-type GtkShadowType Enum
-
-const (
-	GTK_SHADOW_NONE GtkShadowType = iota
-	GTK_SHADOW_IN
-	GTK_SHADOW_OUT
-	GTK_SHADOW_ETCHED_IN
-	GTK_SHADOW_ETCHED_OUT
-)
-
-type GtkStateType Enum
-
-const (
-	GTK_STATE_NORMAL GtkStateType = iota
-	GTK_STATE_ACTIVE
-	GTK_STATE_PRELIGHT
-	GTK_STATE_SELECTED
-	GTK_STATE_INSENSITIVE
 )
 
 type GtkSubmenuDirection Enum
@@ -3372,55 +3138,6 @@ const (
 	GTK_LEFT_RIGHT
 )
 
-type GtkUpdateType Enum
-
-const (
-	GTK_UPDATE_CONTINUOUS GtkUpdateType = iota
-	GTK_UPDATE_DISCONTINUOUS
-	GTK_UPDATE_DELAYED
-)
-
-type GtkVisibility Enum
-
-const (
-	GTK_VISIBILITY_NONE GtkVisibility = iota
-	GTK_VISIBILITY_PARTIAL
-	GTK_VISIBILITY_FULL
-)
-
-type GtkWindowPosition Enum
-
-const (
-	GTK_WIN_POS_NONE GtkWindowPosition = iota
-	GTK_WIN_POS_CENTER
-	GTK_WIN_POS_MOUSE
-	GTK_WIN_POS_CENTER_ALWAYS
-	GTK_WIN_POS_CENTER_ON_PARENT
-)
-
-type GtkWindowType Enum
-
-const (
-	GTK_WINDOW_TOPLEVEL GtkWindowType = iota
-	GTK_WINDOW_POPUP
-)
-
-type GtkWrapMode Enum
-
-const (
-	GTK_WRAP_NONE GtkWrapMode = iota
-	GTK_WRAP_CHAR
-	GTK_WRAP_WORD
-	GTK_WRAP_WORD_CHAR
-)
-
-type GtkSortType Enum
-
-const (
-	GTK_SORT_ASCENDING GtkSortType = iota
-	GTK_SORT_DESCENDING
-)
-
 type GtkIMPreeditStyle Enum
 
 const (
@@ -3435,126 +3152,6 @@ const (
 	GTK_IM_STATUS_NOTHING GtkIMStatusStyle = iota
 	GTK_IM_STATUS_CALLBACK
 	GTK_IM_STATUS_NONE
-)
-
-type GtkPackDirection Enum
-
-const (
-	GTK_PACK_DIRECTION_LTR GtkPackDirection = iota
-	GTK_PACK_DIRECTION_RTL
-	GTK_PACK_DIRECTION_TTB
-	GTK_PACK_DIRECTION_BTT
-)
-
-type GtkPrintPages Enum
-
-const (
-	GTK_PRINT_PAGES_ALL GtkPrintPages = iota
-	GTK_PRINT_PAGES_CURRENT
-	GTK_PRINT_PAGES_RANGES
-	GTK_PRINT_PAGES_SELECTION
-)
-
-type GtkPageSet Enum
-
-const (
-	GTK_PAGE_SET_ALL GtkPageSet = iota
-	GTK_PAGE_SET_EVEN
-	GTK_PAGE_SET_ODD
-)
-
-type GtkNumberUpLayout Enum
-
-const (
-	GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM GtkNumberUpLayout = iota
-	GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP
-	GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM
-	GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP
-	GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT
-	GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT
-	GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT
-	GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT
-)
-
-type GtkPageOrientation Enum
-
-const (
-	GTK_PAGE_ORIENTATION_PORTRAIT GtkPageOrientation = iota
-	GTK_PAGE_ORIENTATION_LANDSCAPE
-	GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT
-	GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE
-)
-
-type GtkPrintQuality Enum
-
-const (
-	GTK_PRINT_QUALITY_LOW GtkPrintQuality = iota
-	GTK_PRINT_QUALITY_NORMAL
-	GTK_PRINT_QUALITY_HIGH
-	GTK_PRINT_QUALITY_DRAFT
-)
-
-type GtkPrintDuplex Enum
-
-const (
-	GTK_PRINT_DUPLEX_SIMPLEX GtkPrintDuplex = iota
-	GTK_PRINT_DUPLEX_HORIZONTAL
-	GTK_PRINT_DUPLEX_VERTICAL
-)
-
-type GtkUnit Enum
-
-const (
-	GTK_UNIT_PIXEL GtkUnit = iota
-	GTK_UNIT_POINTS
-	GTK_UNIT_INCH
-	GTK_UNIT_MM
-)
-
-type GtkDragResult Enum
-
-const (
-	GTK_DRAG_RESULT_SUCCESS GtkDragResult = iota
-	GTK_DRAG_RESULT_NO_TARGET
-	GTK_DRAG_RESULT_USER_CANCELLED
-	GTK_DRAG_RESULT_TIMEOUT_EXPIRED
-	GTK_DRAG_RESULT_GRAB_BROKEN
-	GTK_DRAG_RESULT_ERROR
-)
-
-type GtkDebugFlag Enum
-
-const (
-	GTK_DEBUG_MISC GtkDebugFlag = 1 << iota
-	GTK_DEBUG_PLUGSOCKET
-	GTK_DEBUG_TEXT
-	GTK_DEBUG_TREE
-	GTK_DEBUG_UPDATES
-	GTK_DEBUG_KEYBINDINGS
-	GTK_DEBUG_MULTIHEAD
-	GTK_DEBUG_MODULES
-	GTK_DEBUG_GEOMETRY
-	GTK_DEBUG_ICONTHEME
-	GTK_DEBUG_PRINTING
-	GTK_DEBUG_BUILDER
-)
-
-type GtkObjectFlags Enum
-
-const (
-	GTK_IN_DESTRUCTION GtkObjectFlags = 1 << iota
-	GTK_FLOATING
-	GTK_RESERVED_1
-	GTK_RESERVED_2
-)
-
-type GtkRcFlags Enum
-
-const (
-	GTK_RC_FG GtkRcFlags = 1 << iota
-	GTK_RC_BG
-	GTK_RC_TEXT
-	GTK_RC_BASE
 )
 
 type GtkRcTokenType Enum
@@ -3875,13 +3472,6 @@ const (
 	GTK_NO_SHOW_ALL
 )
 
-type GtkWidgetHelpType Enum
-
-const (
-	GTK_WIDGET_HELP_TOOLTIP GtkWidgetHelpType = iota
-	GTK_WIDGET_HELP_WHATS_THIS
-)
-
 type GtkResponseType Enum
 
 const (
@@ -3927,15 +3517,6 @@ const (
 	GTK_CELL_RENDERER_ACCEL_MODE_OTHER
 )
 
-type GtkDestDefaults Enum
-
-const (
-	GTK_DEST_DEFAULT_MOTION GtkDestDefaults = 1 << iota
-	GTK_DEST_DEFAULT_HIGHLIGHT
-	GTK_DEST_DEFAULT_DROP
-	GTK_DEST_DEFAULT_ALL GtkDestDefaults = 0x07
-)
-
 type GtkTargetFlags Enum
 
 const (
@@ -3952,54 +3533,11 @@ const (
 	GTK_ICON_THEME_FAILED
 )
 
-type GtkButtonsType Enum
-
-const (
-	GTK_BUTTONS_NONE GtkButtonsType = iota
-	GTK_BUTTONS_OK
-	GTK_BUTTONS_CLOSE
-	GTK_BUTTONS_CANCEL
-	GTK_BUTTONS_YES_NO
-	GTK_BUTTONS_OK_CANCEL
-)
-
 type GtkNotebookTab Enum
 
 const (
 	GTK_NOTEBOOK_TAB_FIRST GtkNotebookTab = iota
 	GTK_NOTEBOOK_TAB_LAST
-)
-
-type GtkPrintStatus Enum
-
-const (
-	GTK_PRINT_STATUS_INITIAL GtkPrintStatus = iota
-	GTK_PRINT_STATUS_PREPARING
-	GTK_PRINT_STATUS_GENERATING_DATA
-	GTK_PRINT_STATUS_SENDING_DATA
-	GTK_PRINT_STATUS_PENDING
-	GTK_PRINT_STATUS_PENDING_ISSUE
-	GTK_PRINT_STATUS_PRINTING
-	GTK_PRINT_STATUS_FINISHED
-	GTK_PRINT_STATUS_FINISHED_ABORTED
-)
-
-type GtkPrintOperationResult Enum
-
-const (
-	GTK_PRINT_OPERATION_RESULT_ERROR GtkPrintOperationResult = iota
-	GTK_PRINT_OPERATION_RESULT_APPLY
-	GTK_PRINT_OPERATION_RESULT_CANCEL
-	GTK_PRINT_OPERATION_RESULT_IN_PROGRESS
-)
-
-type GtkPrintOperationAction Enum
-
-const (
-	GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG GtkPrintOperationAction = iota
-	GTK_PRINT_OPERATION_ACTION_PRINT
-	GTK_PRINT_OPERATION_ACTION_PREVIEW
-	GTK_PRINT_OPERATION_ACTION_EXPORT
 )
 
 type GtkPrintError Enum
@@ -4030,18 +3568,6 @@ const (
 	GTK_RECENT_CHOOSER_ERROR_INVALID_URI
 )
 
-type GtkSpinType Enum
-
-const (
-	GTK_SPIN_STEP_FORWARD GtkSpinType = iota
-	GTK_SPIN_STEP_BACKWARD
-	GTK_SPIN_PAGE_FORWARD
-	GTK_SPIN_PAGE_BACKWARD
-	GTK_SPIN_HOME
-	GTK_SPIN_END
-	GTK_SPIN_USER_DEFINED
-)
-
 type GtkTextBufferTargetInfo Enum
 
 const (
@@ -4055,16 +3581,6 @@ type GtkToolbarSpaceStyle Enum
 const (
 	GTK_TOOLBAR_SPACE_EMPTY GtkToolbarSpaceStyle = iota
 	GTK_TOOLBAR_SPACE_LINE
-)
-
-type GtkCellType Enum
-
-const (
-	GTK_CELL_EMPTY GtkCellType = iota
-	GTK_CELL_TEXT
-	GTK_CELL_PIXMAP
-	GTK_CELL_PIXTEXT
-	GTK_CELL_WIDGET
 )
 
 type GtkButtonAction Enum
@@ -4310,19 +3826,8 @@ type (
 
 	GCallback func()
 
-	GtkFunction func(data Gpointer) Gboolean
-
-	GtkCallbackMarshal func(object *GtkObject,
-		data Gpointer, n_args uint, args *GtkArg)
-
 	GdkInputFunction func(data Gpointer,
 		source int, condition GdkInputCondition)
-
-	GtkKeySnoopFunc func(grab_widget *GtkWidget,
-		event *GdkEventKey, func_data Gpointer) int
-
-	GtkPageSetupDoneFunc func(page_setup *GtkPageSetup,
-		data Gpointer)
 
 	GCompareDataFunc func(
 		a, b Gconstpointer, user_data Gpointer) int
@@ -4430,25 +3935,12 @@ type (
 		param_values *GValue,
 		invocation_hint, marshal_data Gpointer)
 
-	GtkCallback func(
-		widget *GtkWidget,
-		data Gpointer)
-
 	GBaseInitFunc func(
 		g_class Gpointer)
 
 	GInstanceInitFunc func(
 		instance *GTypeInstance,
 		g_class Gpointer)
-
-	GtkRcPropertyParser func(
-		pspec *GParamSpec,
-		rc_string *GString,
-		property_value *GValue) Gboolean
-
-	GtkTextCharPredicate func(
-		ch Gunichar,
-		user_data Gpointer) Gboolean
 
 	GtkWindowKeysForeachFunc func(
 		window *GtkWindow,

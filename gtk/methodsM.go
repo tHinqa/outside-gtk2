@@ -8,6 +8,19 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
+type MatchType T.Enum
+
+const (
+	MATCH_ALL MatchType = iota
+	MATCH_ALL_TAIL
+	MATCH_HEAD
+	MATCH_TAIL
+	MATCH_EXACT
+	MATCH_LAST
+)
+
+var MatchTypeGetType func() T.GType
+
 type (
 	Menu struct {
 		MenuShell         MenuShell
@@ -139,18 +152,18 @@ var (
 	MenuBarGetType func() T.GType
 	MenuBarNew     func() *Widget
 
-	menuBarGetChildPackDirection func(m *MenuBar) T.GtkPackDirection
-	menuBarGetPackDirection      func(m *MenuBar) T.GtkPackDirection
-	menuBarSetChildPackDirection func(m *MenuBar, childPackDir T.GtkPackDirection)
-	menuBarSetPackDirection      func(m *MenuBar, packDir T.GtkPackDirection)
+	menuBarGetChildPackDirection func(m *MenuBar) PackDirection
+	menuBarGetPackDirection      func(m *MenuBar) PackDirection
+	menuBarSetChildPackDirection func(m *MenuBar, childPackDir PackDirection)
+	menuBarSetPackDirection      func(m *MenuBar, packDir PackDirection)
 )
 
-func (m *MenuBar) GetChildPackDirection() T.GtkPackDirection { return menuBarGetChildPackDirection(m) }
-func (m *MenuBar) GetPackDirection() T.GtkPackDirection      { return menuBarGetPackDirection(m) }
-func (m *MenuBar) SetChildPackDirection(childPackDir T.GtkPackDirection) {
+func (m *MenuBar) GetChildPackDirection() PackDirection { return menuBarGetChildPackDirection(m) }
+func (m *MenuBar) GetPackDirection() PackDirection      { return menuBarGetPackDirection(m) }
+func (m *MenuBar) SetChildPackDirection(childPackDir PackDirection) {
 	menuBarSetChildPackDirection(m, childPackDir)
 }
-func (m *MenuBar) SetPackDirection(packDir T.GtkPackDirection) { menuBarSetPackDirection(m, packDir) }
+func (m *MenuBar) SetPackDirection(packDir PackDirection) { menuBarSetPackDirection(m, packDir) }
 
 type (
 	MenuItem struct {
@@ -288,6 +301,18 @@ func (t *MenuToolButton) SetArrowTooltipMarkup(markup string) {
 func (t *MenuToolButton) SetArrowTooltipText(text string) { menuToolButtonSetArrowTooltipText(t, text) }
 func (t *MenuToolButton) SetMenu(menu *Widget)            { menuToolButtonSetMenu(t, menu) }
 
+type MessageType T.Enum
+
+const (
+	MESSAGE_INFO MessageType = iota
+	MESSAGE_WARNING
+	MESSAGE_QUESTION
+	MESSAGE_ERROR
+	MESSAGE_OTHER
+)
+
+var MessageTypeGetType func() T.GType
+
 type Misc struct {
 	Widget Widget
 	Xalign float32
@@ -310,6 +335,10 @@ func (m *Misc) GetPadding(xpad, ypad *int)           { miscGetPadding(m, xpad, y
 func (m *Misc) SetAlignment(xalign, yalign float32)  { miscSetAlignment(m, xalign, yalign) }
 func (m *Misc) SetPadding(xpad, ypad int)            { miscSetPadding(m, xpad, ypad) }
 
+type MiscClass struct {
+	ParentClass WidgetClass
+}
+
 type MessageDialog struct {
 	Parent Dialog
 	Image  *Widget
@@ -318,8 +347,8 @@ type MessageDialog struct {
 
 var (
 	MessageDialogGetType       func() T.GType
-	MessageDialogNew           func(parent *Window, flags DialogFlags, t T.GtkMessageType, buttons T.GtkButtonsType, messageFormat string, v ...VArg) *Widget
-	MessageDialogNewWithMarkup func(parent *Window, flags DialogFlags, t T.GtkMessageType, buttons T.GtkButtonsType, messageFormat string, v ...VArg) *Widget
+	MessageDialogNew           func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
+	MessageDialogNewWithMarkup func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
 
 	messageDialogFormatSecondaryMarkup func(m *MessageDialog, messageFormat string, v ...VArg)
 	messageDialogFormatSecondaryText   func(m *MessageDialog, messageFormat string, v ...VArg)
@@ -339,6 +368,16 @@ func (m *MessageDialog) GetImage() *Widget       { return messageDialogGetImage(
 func (m *MessageDialog) GetMessageArea() *Widget { return messageDialogGetMessageArea(m) }
 func (m *MessageDialog) SetImage(image *Widget)  { messageDialogSetImage(m, image) }
 func (m *MessageDialog) SetMarkup(str string)    { messageDialogSetMarkup(m, str) }
+
+type MetricType T.Enum
+
+const (
+	PIXELS MetricType = iota
+	INCHES
+	CENTIMETERS
+)
+
+var MetricTypeGetType func() T.GType
 
 type MountOperation struct {
 	Parent T.GMountOperation
@@ -361,3 +400,20 @@ func (m *MountOperation) GetScreen() *T.GdkScreen       { return mountOperationG
 func (m *MountOperation) IsShowing() T.Gboolean         { return mountOperationIsShowing(m) }
 func (m *MountOperation) SetParent(parent *Window)      { mountOperationSetParent(m, parent) }
 func (m *MountOperation) SetScreen(screen *T.GdkScreen) { mountOperationSetScreen(m, screen) }
+
+type MovementStep T.Enum
+
+const (
+	MOVEMENT_LOGICAL_POSITIONS MovementStep = iota
+	MOVEMENT_VISUAL_POSITIONS
+	MOVEMENT_WORDS
+	MOVEMENT_DISPLAY_LINES
+	MOVEMENT_DISPLAY_LINE_ENDS
+	MOVEMENT_PARAGRAPHS
+	MOVEMENT_PARAGRAPH_ENDS
+	MOVEMENT_PAGES
+	MOVEMENT_BUFFER_ENDS
+	MOVEMENT_HORIZONTAL_PAGES
+)
+
+var MovementStepGetType func() T.GType

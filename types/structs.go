@@ -433,11 +433,6 @@ type (
 
 	GtkWidget struct{} //REMOVE
 
-	GtkRequisition struct {
-		Width  int
-		Height int
-	}
-
 	GTypeClass struct {
 		G_type GType
 	}
@@ -468,36 +463,11 @@ type (
 		Closure_marshal  GSourceDummyMarshal
 	}
 
-	GtkObject struct {
-		Parent_instance GInitiallyUnowned
-		Flags           GUint32
-	}
-
 	GdkColor struct {
 		Pixel GUint32
 		Red   uint16
 		Green uint16
 		Blue  uint16
-	}
-
-	GtkStyle struct{} //REMOVE
-
-	GtkRcStyle struct {
-		Parent_instance  GObject
-		Name             *Gchar
-		Bg_pixmap_name   *[5]Gchar //TODO(t): CHECK
-		Font_desc        *PangoFontDescription
-		Color_flags      [5]GtkRcFlags
-		Fg               [5]GdkColor
-		Bg               [5]GdkColor
-		Text             [5]GdkColor
-		Base             [5]GdkColor
-		Xthickness       int
-		Ythickness       int
-		Rc_properties    *GArray
-		Rc_style_lists   *GSList
-		Icon_factories   *GSList
-		Engine_specified uint //: 1;
 	}
 
 	GdkFont struct {
@@ -608,38 +578,12 @@ type (
 		Notify GClosureNotify
 	}
 
-	GtkPreviewInfo struct {
-		Lookup *Guchar
-		Gamma  float64
-	}
-
 	GdkCursor struct {
 		Type      GdkCursorType
 		Ref_count uint
 	}
 
 	GtkLabel struct{} // REMOVE
-
-	GtkCell struct { // TODO(t):fix
-		Type       GtkCellType
-		Vertical   int16
-		Horizontal int16
-		Style      *GtkStyle
-		/* union
-		   text  *Gchar;
-		   struct {
-				pixmap  *GdkPixmap;
-				mask  *GdkBitmap;
-		   } pm;
-		   struct {
-				text  *Gchar;
-				spacing  uint8;
-				pixmap  *GdkPixmap;
-				mask  *GdkBitmap;
-		   } pt;
-		   widget  *GtkWidget;
-		*/
-	}
 
 	GtkBox struct{} // REMOVE
 
@@ -657,25 +601,6 @@ type (
 		Hardware_keycode uint16
 		Group            uint8
 		Is_modifier      uint // : 1
-	}
-
-	GtkTextAppearance struct {
-		Bg_color   GdkColor
-		Fg_color   GdkColor
-		Bg_stipple *GdkBitmap
-		Fg_stipple *GdkBitmap
-		Rise       int
-		Padding1   Gpointer
-		Bits       uint
-		// underline : 4
-		// strikethrough : 1
-		// draw_bg : 1
-		// inside_selection : 1
-		// is_text : 1
-		// pad1 : 1
-		// pad2 : 1
-		// pad3 : 1
-		// pad4 : 1
 	}
 
 	GdkDisplay struct {
@@ -759,12 +684,6 @@ type (
 		Max float64
 	}
 
-	GtkTargetEntry struct {
-		Target *Gchar
-		Flags  uint
-		Info   uint
-	}
-
 	GdkEvent struct {
 		Type GdkEventType
 		// Union
@@ -790,25 +709,6 @@ type (
 		// grab_broken  GdkEventGrabBroken;
 	}
 
-	GtkArg struct {
-		Type GType
-		Name *Gchar
-		// Union
-		// Gchar char_data;
-		// uchar_data  Guchar;
-		// bool_data  Gboolean;
-		// int_data  int;
-		// uint_data  uint;
-		// long_data  glong;
-		// ulong_data  Gulong;
-		// float_data  float32;
-		// Double_data  float64;
-		// string_data  *Gchar;
-		// object_data  *GtkObject;
-		// pointer_data  Gpointer;
-		// signal_data struct{f GCallback; d Gpointer}
-	}
-
 	GSignalInvocationHint struct {
 		Signal_id uint
 		Detail    GQuark
@@ -819,17 +719,6 @@ type (
 		Parent_instance GObject
 		Priv            *GMountOperationPrivate
 	}
-
-	GtkPageRange struct {
-		Start int
-		End   int
-	}
-
-	GtkCheckButton struct {
-		Toggle_button GtkToggleButton
-	}
-
-	GtkToggleButton struct{} // REMOVE
 
 	GtkMenu struct{} //REMOVE
 
@@ -1030,54 +919,6 @@ type (
 		Value *GValue
 	}
 
-	GtkAccelLabelClass struct {
-		Parent_class     GtkLabelClass
-		Signal_quote1    *Gchar
-		Signal_quote2    *Gchar
-		Mod_name_shift   *Gchar
-		Mod_name_control *Gchar
-		Mod_name_alt     *Gchar
-		Mod_separator    *Gchar
-		Accel_seperator  *Gchar
-		Latin1_to_char   uint // : 1
-		_, _, _, _       func()
-	}
-
-	GtkLabelClass struct {
-		Parent_class GtkMiscClass
-		Move_cursor  func(
-			label *GtkLabel,
-			step GtkMovementStep,
-			count int,
-			extend_selection Gboolean)
-		Copy_clipboard func(
-			label *GtkLabel)
-		Populate_popup func(
-			label *GtkLabel,
-			menu *GtkMenu)
-		Activate_link func(
-			label *GtkLabel,
-			uri *Gchar) Gboolean
-		_, _, _ func()
-	}
-
-	GtkMiscClass struct {
-		Parent_class GtkWidgetClass
-	}
-
-	GtkWidgetClass struct{} //REMOVE
-
-	GtkObjectClass struct {
-		Parent_class GInitiallyUnownedClass
-		Set_arg      func(object *GtkObject,
-			arg *GtkArg,
-			arg_id uint)
-		Get_arg func(object *GtkObject,
-			arg *GtkArg,
-			arg_id uint)
-		Destroy func(object *GtkObject)
-	}
-
 	GdkEventButton struct {
 		Type           GdkEventType
 		Window         *GdkWindow
@@ -1201,26 +1042,11 @@ type (
 		Grab_window *GdkWindow
 	}
 
-	GtkToggleActionEntry struct {
-		Name        *Gchar
-		Stock_id    *Gchar
-		Label       *Gchar
-		Accelerator *Gchar
-		Tooltip     *Gchar
-		Callback    GCallback
-		Is_active   Gboolean
-	}
-
 	GtkRcProperty struct {
 		Type_name     GQuark
 		Property_name GQuark
 		Origin        *Gchar
 		Value         GValue
-	}
-
-	GtkSettingsValue struct {
-		Origin *Gchar
-		Value  GValue
 	}
 
 	/*
@@ -1239,19 +1065,6 @@ type (
 		Red   uint16
 		Green uint16
 		Blue  uint16
-	}
-
-	GtkVBox struct {
-		Box GtkBox
-	}
-
-	GtkRadioActionEntry struct {
-		Name        *Gchar
-		Stock_id    *Gchar
-		Label       *Gchar
-		Accelerator *Gchar
-		Tooltip     *Gchar
-		Value       int
 	}
 
 	GCancellable struct {

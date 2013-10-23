@@ -25,7 +25,7 @@ var (
 	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 
-	ShowAboutDialog func(parent *T.GtkWindow, firstPropertyName string, v ...VArg)
+	ShowAboutDialog func(parent *Window, firstPropertyName string, v ...VArg)
 )
 
 var (
@@ -121,6 +121,19 @@ var (
 		keyval uint,
 		modifiers T.GdkModifierType) T.Gboolean
 )
+
+type AccelLabelClass struct {
+	ParentClass    LabelClass
+	SignalQuote1   *T.Gchar
+	SignalQuote2   *T.Gchar
+	ModNameShift   *T.Gchar
+	ModNameControl *T.Gchar
+	ModNameAlt     *T.Gchar
+	ModSeparator   *T.Gchar
+	AccelSeperator *T.Gchar
+	Latin1ToChar   uint // : 1
+	_, _, _, _     func()
+}
 
 type (
 	AccelMap struct{}
@@ -409,10 +422,10 @@ var (
 	actionGroupAddActions           func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer)
 	actionGroupAddActionsFull       func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupAddActionWithAccel   func(a *ActionGroup, action *Action, accelerator string)
-	actionGroupAddRadioActions      func(a *ActionGroup, entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer)
-	actionGroupAddRadioActionsFull  func(a *ActionGroup, entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify)
-	actionGroupAddToggleActions     func(a *ActionGroup, entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer)
-	actionGroupAddToggleActionsFull func(a *ActionGroup, entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
+	actionGroupAddRadioActions      func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer)
+	actionGroupAddRadioActionsFull  func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify)
+	actionGroupAddToggleActions     func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer)
+	actionGroupAddToggleActionsFull func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupGetAction            func(a *ActionGroup, actionName string) *Action
 	actionGroupGetName              func(a *ActionGroup) string
 	actionGroupGetSensitive         func(a *ActionGroup) T.Gboolean
@@ -436,16 +449,16 @@ func (a *ActionGroup) AddActionsFull(entries *ActionEntry, nEntries uint, userDa
 func (a *ActionGroup) AddActionWithAccel(action *Action, accelerator string) {
 	actionGroupAddActionWithAccel(a, action, accelerator)
 }
-func (a *ActionGroup) AddRadioActions(entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer) {
+func (a *ActionGroup) AddRadioActions(entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer) {
 	actionGroupAddRadioActions(a, entries, nEntries, value, onChange, userData)
 }
-func (a *ActionGroup) AddRadioActionsFull(entries *T.GtkRadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (a *ActionGroup) AddRadioActionsFull(entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify) {
 	actionGroupAddRadioActionsFull(a, entries, nEntries, value, onChange, userData, destroy)
 }
-func (a *ActionGroup) AddToggleActions(entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer) {
+func (a *ActionGroup) AddToggleActions(entries *ToggleActionEntry, nEntries uint, userData T.Gpointer) {
 	actionGroupAddToggleActions(a, entries, nEntries, userData)
 }
-func (a *ActionGroup) AddToggleActionsFull(entries *T.GtkToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (a *ActionGroup) AddToggleActionsFull(entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
 	actionGroupAddToggleActionsFull(a, entries, nEntries, userData, destroy)
 }
 func (a *ActionGroup) GetAction(actionName string) *Action { return actionGroupGetAction(a, actionName) }
@@ -485,7 +498,7 @@ func (a *Activatable) SetUseActionAppearance(useAppearance T.Gboolean) {
 func (a *Activatable) SyncActionProperties(action *Action) { activatableSyncActionProperties(a, action) }
 
 type Adjustment struct {
-	Parent        T.GtkObject
+	Parent        Object
 	Lower         float64
 	Upper         float64
 	Value         float64
@@ -496,7 +509,7 @@ type Adjustment struct {
 
 var (
 	AdjustmentGetType func() T.GType
-	AdjustmentNew     func(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *T.GtkObject
+	AdjustmentNew     func(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Object
 )
 
 var (
@@ -568,6 +581,8 @@ func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRi
 	alignmentGetPadding(a, paddingTop, paddingBottom, paddingLeft, paddingRight)
 }
 
+type Allocation T.GdkRectangle
+
 var AlternativeDialogButtonOrder func(
 	screen *T.GdkScreen) T.Gboolean
 
@@ -595,6 +610,25 @@ const (
 
 var AnchorTypeGetType func() T.GType
 
+type Arg struct { //TODO(t):Fix union
+	Type T.GType
+	Name *T.Gchar
+	// Union
+	// Gchar char_data;
+	// uchar_data  Guchar;
+	// bool_data  Gboolean;
+	// int_data  int;
+	// uint_data  uint;
+	// long_data  glong;
+	// ulong_data  Gulong;
+	// float_data  float32;
+	// Double_data  float64;
+	// string_data  *Gchar;
+	// object_data  *Object;
+	// pointer_data  Gpointer;
+	// signal_data struct{f GCallback; d Gpointer}
+}
+
 type ArgFlags T.Enum
 
 const (
@@ -609,7 +643,7 @@ var ArgFlagsGetType func() T.GType
 
 type (
 	Assistant struct {
-		Parent  T.GtkWindow
+		Parent  Window
 		Cancel  *Widget
 		Forward *Widget
 		Back    *Widget
@@ -732,16 +766,16 @@ var (
 )
 
 var (
-	arrowSet func(a *Arrow, arrowType ArrowType, shadowType T.GtkShadowType)
+	arrowSet func(a *Arrow, arrowType ArrowType, shadowType ShadowType)
 
-	arrowNew func(a ArrowType, shadowType T.GtkShadowType) *Widget
+	arrowNew func(a ArrowType, shadowType ShadowType) *Widget
 )
 
-func (a *Arrow) Set(arrowType ArrowType, shadowType T.GtkShadowType) {
+func (a *Arrow) Set(arrowType ArrowType, shadowType ShadowType) {
 	arrowSet(a, arrowType, shadowType)
 }
 
-func (a ArrowType) New(shadowType T.GtkShadowType) *Widget { return arrowNew(a, shadowType) }
+func (a ArrowType) New(shadowType ShadowType) *Widget { return arrowNew(a, shadowType) }
 
 type AspectFrame struct {
 	Frame            Frame
@@ -749,7 +783,7 @@ type AspectFrame struct {
 	Yalign           float32
 	Ratio            float32
 	ObeyChild        T.Gboolean
-	CenterAllocation T.GtkAllocation
+	CenterAllocation Allocation
 }
 
 var (

@@ -8,6 +8,31 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+type Object struct {
+	Parent T.GInitiallyUnowned
+	Flags  T.GUint32 //TODO(t): ObjectFlags?
+}
+
+var ObjectGetType func() T.GType
+
+type ObjectClass struct {
+	ParentClass T.GInitiallyUnownedClass
+	SetArg      func(object *Object, arg *Arg, argId uint)
+	GetArg      func(object *Object, arg *Arg, argId uint)
+	Destroy     func(object *Object)
+}
+
+type ObjectFlags T.Enum
+
+const (
+	IN_DESTRUCTION ObjectFlags = 1 << iota
+	FLOATING
+	RESERVED_1
+	RESERVED_2
+)
+
+var ObjectFlagsGetType func() T.GType
+
 type ObjectInitFunc T.GInstanceInitFunc
 
 type OffscreenWindow struct {

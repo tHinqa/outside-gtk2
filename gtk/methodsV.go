@@ -8,9 +8,49 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+var (
+	VbuttonBoxGetType func() T.GType
+	VbuttonBoxNew     func() *Widget
+
+	VbuttonBoxGetLayoutDefault  func() ButtonBoxStyle
+	VbuttonBoxGetSpacingDefault func() int
+	VbuttonBoxSetLayoutDefault  func(layout ButtonBoxStyle)
+	VbuttonBoxSetSpacingDefault func(spacing int)
+
+	VisibilityGetType func() T.GType
+
+	VolumeButtonGetType func() T.GType
+	VolumeButtonNew     func() *Widget
+
+	VpanedGetType func() T.GType
+	VpanedNew     func() *Widget
+
+	VrulerGetType func() T.GType
+	VrulerNew     func() *Widget
+
+	VscaleGetType      func() T.GType
+	VscaleNew          func(adjustment *Adjustment) *Widget
+	VscaleNewWithRange func(min, max, step float64) *Widget
+
+	VscrollbarGetType func() T.GType
+	VscrollbarNew     func(adjustment *Adjustment) *Widget
+
+	VseparatorGetType func() T.GType
+	VseparatorNew     func() *Widget
+)
+
+type VBox struct {
+	Box Box
+}
+
+var (
+	VboxGetType func() T.GType
+	VboxNew     func(homogeneous T.Gboolean, spacing int) *Widget
+)
+
 type Viewport struct {
 	Bin         Bin
-	ShadowType  T.GtkShadowType
+	ShadowType  ShadowType
 	ViewWindow  *T.GdkWindow
 	BinWindow   *T.GdkWindow
 	Hadjustment *Adjustment
@@ -23,19 +63,27 @@ var (
 
 	viewportGetBinWindow   func(v *Viewport) *T.GdkWindow
 	viewportGetHadjustment func(v *Viewport) *Adjustment
-	viewportGetShadowType  func(v *Viewport) T.GtkShadowType
+	viewportGetShadowType  func(v *Viewport) ShadowType
 	viewportGetVadjustment func(v *Viewport) *Adjustment
 	viewportGetViewWindow  func(v *Viewport) *T.GdkWindow
 	viewportSetHadjustment func(v *Viewport, adjustment *Adjustment)
-	viewportSetShadowType  func(v *Viewport, t T.GtkShadowType)
+	viewportSetShadowType  func(v *Viewport, t ShadowType)
 	viewportSetVadjustment func(v *Viewport, adjustment *Adjustment)
 )
 
-func (v *Viewport) GetBinWindow() *T.GdkWindow            { return viewportGetBinWindow(v) }
-func (v *Viewport) GetHadjustment() *Adjustment           { return viewportGetHadjustment(v) }
-func (v *Viewport) GetShadowType() T.GtkShadowType        { return viewportGetShadowType(v) }
-func (v *Viewport) GetVadjustment() *Adjustment           { return viewportGetVadjustment(v) }
-func (v *Viewport) GetViewWindow() *T.GdkWindow           { return viewportGetViewWindow(v) }
-func (v *Viewport) SetHadjustment(adjustment *Adjustment) { viewportSetHadjustment(v, adjustment) }
-func (v *Viewport) SetShadowType(t T.GtkShadowType)       { viewportSetShadowType(v, t) }
-func (v *Viewport) SetVadjustment(adjustment *Adjustment) { viewportSetVadjustment(v, adjustment) }
+func (v *Viewport) GetBinWindow() *T.GdkWindow   { return viewportGetBinWindow(v) }
+func (v *Viewport) GetHadjustment() *Adjustment  { return viewportGetHadjustment(v) }
+func (v *Viewport) GetShadowType() ShadowType    { return viewportGetShadowType(v) }
+func (v *Viewport) GetVadjustment() *Adjustment  { return viewportGetVadjustment(v) }
+func (v *Viewport) GetViewWindow() *T.GdkWindow  { return viewportGetViewWindow(v) }
+func (v *Viewport) SetHadjustment(a *Adjustment) { viewportSetHadjustment(v, a) }
+func (v *Viewport) SetShadowType(t ShadowType)   { viewportSetShadowType(v, t) }
+func (v *Viewport) SetVadjustment(a *Adjustment) { viewportSetVadjustment(v, a) }
+
+type Visibility T.Enum
+
+const (
+	VISIBILITY_NONE Visibility = iota
+	VISIBILITY_PARTIAL
+	VISIBILITY_FULL
+)

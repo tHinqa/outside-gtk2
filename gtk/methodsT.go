@@ -74,6 +74,12 @@ func (t *Table) SetHomogeneous(homogeneous T.Gboolean) { tableSetHomogeneous(t, 
 func (t *Table) SetRowSpacing(row, spacing uint)       { tableSetRowSpacing(t, row, spacing) }
 func (t *Table) SetRowSpacings(spacing uint)           { tableSetRowSpacings(t, spacing) }
 
+type TargetEntry struct {
+	Target *T.Gchar
+	Flags  uint
+	Info   uint
+}
+
 type TargetList struct {
 	List     *T.GList
 	RefCount uint
@@ -81,10 +87,10 @@ type TargetList struct {
 
 var (
 	TargetListGetType func() T.GType
-	TargetListNew     func(targets *T.GtkTargetEntry, ntargets uint) *TargetList
+	TargetListNew     func(targets *TargetEntry, ntargets uint) *TargetList
 
-	TargetTableFree        func(targets *T.GtkTargetEntry, nTargets int)
-	TargetTableNewFromList func(tl *TargetList, nTargets *int) *T.GtkTargetEntry
+	TargetTableFree        func(targets *TargetEntry, nTargets int)
+	TargetTableNewFromList func(tl *TargetList, nTargets *int) *TargetEntry
 
 	targetListRef                func(t *TargetList) *TargetList
 	targetListUnref              func(t *TargetList)
@@ -93,7 +99,7 @@ var (
 	targetListAddRichTextTargets func(t *TargetList, info uint, deserializable T.Gboolean, buffer *TextBuffer)
 	targetListAddImageTargets    func(t *TargetList, info uint, writable T.Gboolean)
 	targetListAddUriTargets      func(t *TargetList, info uint)
-	targetListAddTable           func(t *TargetList, targets *T.GtkTargetEntry, ntargets uint)
+	targetListAddTable           func(t *TargetList, targets *TargetEntry, ntargets uint)
 	targetListRemove             func(t *TargetList, target T.GdkAtom)
 	targetListFind               func(t *TargetList, target T.GdkAtom, info *uint) T.Gboolean
 )
@@ -109,7 +115,7 @@ func (t *TargetList) AddImageTargets(info uint, writable T.Gboolean) {
 	targetListAddImageTargets(t, info, writable)
 }
 func (t *TargetList) AddUriTargets(info uint) { targetListAddUriTargets(t, info) }
-func (t *TargetList) AddTable(targets *T.GtkTargetEntry, ntargets uint) {
+func (t *TargetList) AddTable(targets *TargetEntry, ntargets uint) {
 	targetListAddTable(t, targets, ntargets)
 }
 func (t *TargetList) Remove(target T.GdkAtom) { targetListRemove(t, target) }
@@ -117,129 +123,29 @@ func (t *TargetList) Find(target T.GdkAtom, info *uint) T.Gboolean {
 	return targetListFind(t, target, info)
 }
 
-type TipsQuery struct {
-	Label Label
-	Bits  uint
-	// EmitAlways : 1
-	// InQuery : 1
-	LabelInactive *T.Gchar
-	LabelNoTip    *T.Gchar
-	Caller        *Widget
-	LastCrossed   *Widget
-	QueryCursor   *T.GdkCursor
+type TextAppearance struct {
+	BgColor   T.GdkColor
+	FgColor   T.GdkColor
+	BgStipple *T.GdkBitmap
+	FgStipple *T.GdkBitmap
+	Rise      int
+	Padding1  T.Gpointer
+	Bits      uint
+	// Underline : 4
+	// Strikethrough : 1
+	// DrawBg : 1
+	// InsideSelection : 1
+	// IsText : 1
+	// Pad1 : 1
+	// Pad2 : 1
+	// Pad3 : 1
+	// Pad4 : 1
 }
-
-var (
-	TipsQueryGetType func() T.GType
-	TipsQueryNew     func() *Widget
-
-	tipsQuerySetCaller  func(t *TipsQuery, caller *Widget)
-	tipsQuerySetLabels  func(t *TipsQuery, labelInactive, labelNoTip string)
-	tipsQueryStartQuery func(t *TipsQuery)
-	tipsQueryStopQuery  func(t *TipsQuery)
-)
-
-func (t *TipsQuery) SetCaller(caller *Widget) { tipsQuerySetCaller(t, caller) }
-func (t *TipsQuery) SetLabels(labelInactive, labelNoTip string) {
-	tipsQuerySetLabels(t, labelInactive, labelNoTip)
-}
-func (t *TipsQuery) StartQuery() { tipsQueryStartQuery(t) }
-func (t *TipsQuery) StopQuery()  { tipsQueryStopQuery(t) }
-
-type ToggleAction struct {
-	Parent       Action
-	Private_data *T.GtkToggleActionPrivate
-}
-
-var (
-	ToggleActionGetType func() T.GType
-	ToggleActionNew     func(name, label, tooltip, stockId string) *ToggleAction
-
-	toggleActionGetActive      func(t *ToggleAction) T.Gboolean
-	toggleActionGetDrawAsRadio func(t *ToggleAction) T.Gboolean
-	toggleActionSetActive      func(t *ToggleAction, isActive T.Gboolean)
-	toggleActionSetDrawAsRadio func(t *ToggleAction, drawAsRadio T.Gboolean)
-	toggleActionToggled        func(t *ToggleAction)
-)
-
-func (t *ToggleAction) GetActive() T.Gboolean         { return toggleActionGetActive(t) }
-func (t *ToggleAction) GetDrawAsRadio() T.Gboolean    { return toggleActionGetDrawAsRadio(t) }
-func (t *ToggleAction) SetActive(isActive T.Gboolean) { toggleActionSetActive(t, isActive) }
-func (t *ToggleAction) SetDrawAsRadio(drawAsRadio T.Gboolean) {
-	toggleActionSetDrawAsRadio(t, drawAsRadio)
-}
-func (t *ToggleAction) Toggled() { toggleActionToggled(t) }
-
-type ToggleButton struct {
-	Button Button
-	Bits   uint
-	// Active : 1
-	// DrawIndicator : 1
-	// Inconsistent : 1
-}
-
-var (
-	ToggleButtonGetType         func() T.GType
-	ToggleButtonNew             func() *Widget
-	ToggleButtonNewWithLabel    func(label string) *Widget
-	ToggleButtonNewWithMnemonic func(label string) *Widget
-
-	toggleButtonGetActive       func(t *ToggleButton) T.Gboolean
-	toggleButtonGetInconsistent func(t *ToggleButton) T.Gboolean
-	toggleButtonGetMode         func(t *ToggleButton) T.Gboolean
-	toggleButtonSetActive       func(t *ToggleButton, isActive T.Gboolean)
-	toggleButtonSetInconsistent func(t *ToggleButton, setting T.Gboolean)
-	toggleButtonSetMode         func(t *ToggleButton, drawIndicator T.Gboolean)
-	toggleButtonToggled         func(t *ToggleButton)
-)
-
-func (t *ToggleButton) GetActive() T.Gboolean              { return toggleButtonGetActive(t) }
-func (t *ToggleButton) GetInconsistent() T.Gboolean        { return toggleButtonGetInconsistent(t) }
-func (t *ToggleButton) GetMode() T.Gboolean                { return toggleButtonGetMode(t) }
-func (t *ToggleButton) SetActive(isActive T.Gboolean)      { toggleButtonSetActive(t, isActive) }
-func (t *ToggleButton) SetInconsistent(setting T.Gboolean) { toggleButtonSetInconsistent(t, setting) }
-func (t *ToggleButton) SetMode(drawIndicator T.Gboolean)   { toggleButtonSetMode(t, drawIndicator) }
-func (t *ToggleButton) Toggled()                           { toggleButtonToggled(t) }
-
-type ToggleToolButton struct {
-	Parent ToolButton
-	_      *struct{}
-}
-
-var (
-	ToggleToolButtonGetType      func() T.GType
-	ToggleToolButtonNew          func() *ToolItem
-	ToggleToolButtonNewFromStock func(stockId string) *ToolItem
-
-	toggleToolButtonGetActive func(t *ToggleToolButton) T.Gboolean
-	toggleToolButtonSetActive func(t *ToggleToolButton, isActive T.Gboolean)
-)
-
-func (t *ToggleToolButton) GetActive() T.Gboolean         { return toggleToolButtonGetActive(t) }
-func (t *ToggleToolButton) SetActive(isActive T.Gboolean) { toggleToolButtonSetActive(t, isActive) }
-
-type (
-	Toolbar struct {
-		Container   Container
-		NumChildren int
-		Children    *T.GList
-		Orientation Orientation
-		Style       ToolbarStyle
-		IconSize    IconSize
-		Tooltips    *Tooltips
-		ButtonMaxw  int
-		ButtonMaxh  int
-		_, _        uint
-		Bits        uint
-		// StyleSet : 1
-		// IconSizeSet : 1
-	}
-)
 
 type TextAttributes struct {
 	Refcount         uint
-	Appearance       T.GtkTextAppearance
-	Justification    T.GtkJustification
+	Appearance       TextAppearance
+	Justification    Justification
 	Direction        TextDirection
 	Font             *T.PangoFontDescription
 	FontScale        float64
@@ -250,7 +156,7 @@ type TextAttributes struct {
 	PixelsBelowLines int
 	PixelsInsideWrap int
 	Tabs             *T.PangoTabArray
-	WrapMode         T.GtkWrapMode
+	WrapMode         WrapMode
 	Language         *T.PangoLanguage
 	PgBgColor        *T.GdkColor
 	Bits             uint
@@ -279,14 +185,16 @@ func (t *TextAttributes) CopyValues(dest *TextAttributes) { textAttributesCopyVa
 func (t *TextAttributes) Ref() *TextAttributes            { return textAttributesRef(t) }
 func (t *TextAttributes) Unref()                          { textAttributesUnref(t) }
 
+type TextBTree struct{}
+
 type (
 	TextBuffer struct {
 		Parent                   T.GObject
 		TagTable                 *TextTagTable
-		Btree                    *T.GtkTextBTree
+		Btree                    *TextBTree
 		ClipboardContentsBuffers *T.GSList
 		SelectionClipboards      *T.GSList
-		LogAttrCache             *T.GtkTextLogAttrCache
+		LogAttrCache             *TextLogAttrCache
 		UserActionCount          uint
 		Bits                     uint
 		// Modified : 1
@@ -551,6 +459,9 @@ func (t *TextBuffer) UnregisterSerializeFormat(format T.GdkAtom) {
 	textBufferUnregisterSerializeFormat(t, format)
 }
 
+type TextCharPredicate func(
+	ch T.Gunichar, userData T.Gpointer) T.Gboolean
+
 type TextChildAnchor struct {
 	Parent  T.GObject
 	Segment T.Gpointer
@@ -601,7 +512,7 @@ var (
 	textIterBackwardChars                  func(t *TextIter, count int) T.Gboolean
 	textIterBackwardCursorPosition         func(t *TextIter) T.Gboolean
 	textIterBackwardCursorPositions        func(t *TextIter, count int) T.Gboolean
-	textIterBackwardFindChar               func(t *TextIter, pred T.GtkTextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
+	textIterBackwardFindChar               func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
 	textIterBackwardLine                   func(t *TextIter) T.Gboolean
 	textIterBackwardLines                  func(t *TextIter, count int) T.Gboolean
 	textIterBackwardSearch                 func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean
@@ -630,7 +541,7 @@ var (
 	textIterForwardChars                   func(t *TextIter, count int) T.Gboolean
 	textIterForwardCursorPosition          func(t *TextIter) T.Gboolean
 	textIterForwardCursorPositions         func(t *TextIter, count int) T.Gboolean
-	textIterForwardFindChar                func(t *TextIter, pred T.GtkTextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
+	textIterForwardFindChar                func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
 	textIterForwardLine                    func(t *TextIter) T.Gboolean
 	textIterForwardLines                   func(t *TextIter, count int) T.Gboolean
 	textIterForwardSearch                  func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean
@@ -695,7 +606,7 @@ func (t *TextIter) BackwardCursorPosition() T.Gboolean { return textIterBackward
 func (t *TextIter) BackwardCursorPositions(count int) T.Gboolean {
 	return textIterBackwardCursorPositions(t, count)
 }
-func (t *TextIter) BackwardFindChar(pred T.GtkTextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
+func (t *TextIter) BackwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
 	return textIterBackwardFindChar(t, pred, userData, limit)
 }
 func (t *TextIter) BackwardLine() T.Gboolean           { return textIterBackwardLine(t) }
@@ -748,7 +659,7 @@ func (t *TextIter) ForwardCursorPosition() T.Gboolean { return textIterForwardCu
 func (t *TextIter) ForwardCursorPositions(count int) T.Gboolean {
 	return textIterForwardCursorPositions(t, count)
 }
-func (t *TextIter) ForwardFindChar(pred T.GtkTextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
+func (t *TextIter) ForwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
 	return textIterForwardFindChar(t, pred, userData, limit)
 }
 func (t *TextIter) ForwardLine() T.Gboolean           { return textIterForwardLine(t) }
@@ -826,6 +737,11 @@ func (t *TextIter) StartsSentence() T.Gboolean              { return textIterSta
 func (t *TextIter) StartsWord() T.Gboolean                  { return textIterStartsWord(t) }
 func (t *TextIter) TogglesTag(tag *TextTag) T.Gboolean      { return textIterTogglesTag(t, tag) }
 
+type (
+	TextLayout       struct{}
+	TextLogAttrCache struct{}
+)
+
 type TextMark struct {
 	Parent  T.GObject
 	Segment T.Gpointer
@@ -842,6 +758,8 @@ var (
 	TextMarkGetBuffer      func(t *TextMark) *TextBuffer
 	TextMarkGetLeftGravity func(t *TextMark) T.Gboolean
 )
+
+type TextPendingScroll struct{}
 
 var TextSearchFlagsGetType func() T.GType
 
@@ -933,15 +851,15 @@ func (t *TextTagTable) Remove(tag *TextTag)         { textTagTableRemove(t, tag)
 
 type TextView struct {
 	Parent               Container
-	Layout               *T.GtkTextLayout
+	Layout               *TextLayout
 	Buffer               *TextBuffer
 	SelectionDragHandler uint
 	ScrollTimeout        uint
 	PixelsAboveLines     int
 	PixelsBelowLines     int
 	PixelsInsideWrap     int
-	WrapMode             T.GtkWrapMode
-	Justify              T.GtkJustification
+	WrapMode             WrapMode
+	Justify              Justification
 	LeftMargin           int
 	RightMargin          int
 	Indent               int
@@ -979,7 +897,7 @@ type TextView struct {
 	DragStartX               int
 	DragStartY               int
 	Children                 *T.GSList
-	PendingScroll            *T.GtkTextPendingScroll
+	PendingScroll            *TextPendingScroll
 	PendingPlaceCursorButton int
 }
 
@@ -1022,8 +940,8 @@ var (
 	TextViewAddChildAtAnchor         func(t *TextView, child *Widget, anchor *TextChildAnchor)
 	TextViewAddChildInWindow         func(t *TextView, child *Widget, whichWindow TextWindowType, xpos, ypos int)
 	TextViewMoveChild                func(t *TextView, child *Widget, xpos, ypos int)
-	TextViewSetWrapMode              func(t *TextView, wrapMode T.GtkWrapMode)
-	TextViewGetWrapMode              func(t *TextView) T.GtkWrapMode
+	TextViewSetWrapMode              func(t *TextView, wrapMode WrapMode)
+	TextViewGetWrapMode              func(t *TextView) WrapMode
 	TextViewSetEditable              func(t *TextView, setting T.Gboolean)
 	TextViewGetEditable              func(t *TextView) T.Gboolean
 	TextViewSetOverwrite             func(t *TextView, overwrite T.Gboolean)
@@ -1036,8 +954,8 @@ var (
 	TextViewGetPixelsBelowLines      func(t *TextView) int
 	TextViewSetPixelsInsideWrap      func(t *TextView, pixelsInsideWrap int)
 	TextViewGetPixelsInsideWrap      func(t *TextView) int
-	TextViewSetJustification         func(t *TextView, justification T.GtkJustification)
-	TextViewGetJustification         func(t *TextView) T.GtkJustification
+	TextViewSetJustification         func(t *TextView, justification Justification)
+	TextViewGetJustification         func(t *TextView) Justification
 	TextViewSetLeftMargin            func(t *TextView, leftMargin int)
 	TextViewGetLeftMargin            func(t *TextView) int
 	TextViewSetRightMargin           func(t *TextView, rightMargin int)
@@ -1063,6 +981,135 @@ const (
 	TEXT_WINDOW_RIGHT
 	TEXT_WINDOW_TOP
 	TEXT_WINDOW_BOTTOM
+)
+
+type TipsQuery struct {
+	Label Label
+	Bits  uint
+	// EmitAlways : 1
+	// InQuery : 1
+	LabelInactive *T.Gchar
+	LabelNoTip    *T.Gchar
+	Caller        *Widget
+	LastCrossed   *Widget
+	QueryCursor   *T.GdkCursor
+}
+
+var (
+	TipsQueryGetType func() T.GType
+	TipsQueryNew     func() *Widget
+
+	tipsQuerySetCaller  func(t *TipsQuery, caller *Widget)
+	tipsQuerySetLabels  func(t *TipsQuery, labelInactive, labelNoTip string)
+	tipsQueryStartQuery func(t *TipsQuery)
+	tipsQueryStopQuery  func(t *TipsQuery)
+)
+
+func (t *TipsQuery) SetCaller(caller *Widget) { tipsQuerySetCaller(t, caller) }
+func (t *TipsQuery) SetLabels(labelInactive, labelNoTip string) {
+	tipsQuerySetLabels(t, labelInactive, labelNoTip)
+}
+func (t *TipsQuery) StartQuery() { tipsQueryStartQuery(t) }
+func (t *TipsQuery) StopQuery()  { tipsQueryStopQuery(t) }
+
+type ToggleAction struct {
+	Parent Action
+	_      *struct{}
+}
+
+var (
+	ToggleActionGetType func() T.GType
+	ToggleActionNew     func(name, label, tooltip, stockId string) *ToggleAction
+
+	toggleActionGetActive      func(t *ToggleAction) T.Gboolean
+	toggleActionGetDrawAsRadio func(t *ToggleAction) T.Gboolean
+	toggleActionSetActive      func(t *ToggleAction, isActive T.Gboolean)
+	toggleActionSetDrawAsRadio func(t *ToggleAction, drawAsRadio T.Gboolean)
+	toggleActionToggled        func(t *ToggleAction)
+)
+
+func (t *ToggleAction) GetActive() T.Gboolean         { return toggleActionGetActive(t) }
+func (t *ToggleAction) GetDrawAsRadio() T.Gboolean    { return toggleActionGetDrawAsRadio(t) }
+func (t *ToggleAction) SetActive(isActive T.Gboolean) { toggleActionSetActive(t, isActive) }
+func (t *ToggleAction) SetDrawAsRadio(drawAsRadio T.Gboolean) {
+	toggleActionSetDrawAsRadio(t, drawAsRadio)
+}
+func (t *ToggleAction) Toggled() { toggleActionToggled(t) }
+
+type ToggleActionEntry struct {
+	Name        *T.Gchar
+	StockId     *T.Gchar
+	Label       *T.Gchar
+	Accelerator *T.Gchar
+	Tooltip     *T.Gchar
+	Callback    T.GCallback
+	IsActive    T.Gboolean
+}
+
+type ToggleButton struct {
+	Button Button
+	Bits   uint
+	// Active : 1
+	// DrawIndicator : 1
+	// Inconsistent : 1
+}
+
+var (
+	ToggleButtonGetType         func() T.GType
+	ToggleButtonNew             func() *Widget
+	ToggleButtonNewWithLabel    func(label string) *Widget
+	ToggleButtonNewWithMnemonic func(label string) *Widget
+
+	toggleButtonGetActive       func(t *ToggleButton) T.Gboolean
+	toggleButtonGetInconsistent func(t *ToggleButton) T.Gboolean
+	toggleButtonGetMode         func(t *ToggleButton) T.Gboolean
+	toggleButtonSetActive       func(t *ToggleButton, isActive T.Gboolean)
+	toggleButtonSetInconsistent func(t *ToggleButton, setting T.Gboolean)
+	toggleButtonSetMode         func(t *ToggleButton, drawIndicator T.Gboolean)
+	toggleButtonToggled         func(t *ToggleButton)
+)
+
+func (t *ToggleButton) GetActive() T.Gboolean              { return toggleButtonGetActive(t) }
+func (t *ToggleButton) GetInconsistent() T.Gboolean        { return toggleButtonGetInconsistent(t) }
+func (t *ToggleButton) GetMode() T.Gboolean                { return toggleButtonGetMode(t) }
+func (t *ToggleButton) SetActive(isActive T.Gboolean)      { toggleButtonSetActive(t, isActive) }
+func (t *ToggleButton) SetInconsistent(setting T.Gboolean) { toggleButtonSetInconsistent(t, setting) }
+func (t *ToggleButton) SetMode(drawIndicator T.Gboolean)   { toggleButtonSetMode(t, drawIndicator) }
+func (t *ToggleButton) Toggled()                           { toggleButtonToggled(t) }
+
+type ToggleToolButton struct {
+	Parent ToolButton
+	_      *struct{}
+}
+
+var (
+	ToggleToolButtonGetType      func() T.GType
+	ToggleToolButtonNew          func() *ToolItem
+	ToggleToolButtonNewFromStock func(stockId string) *ToolItem
+
+	toggleToolButtonGetActive func(t *ToggleToolButton) T.Gboolean
+	toggleToolButtonSetActive func(t *ToggleToolButton, isActive T.Gboolean)
+)
+
+func (t *ToggleToolButton) GetActive() T.Gboolean         { return toggleToolButtonGetActive(t) }
+func (t *ToggleToolButton) SetActive(isActive T.Gboolean) { toggleToolButtonSetActive(t, isActive) }
+
+type (
+	Toolbar struct {
+		Container   Container
+		NumChildren int
+		Children    *T.GList
+		Orientation Orientation
+		Style       ToolbarStyle
+		IconSize    IconSize
+		Tooltips    *Tooltips
+		ButtonMaxw  int
+		ButtonMaxh  int
+		_, _        uint
+		Bits        uint
+		// StyleSet : 1
+		// IconSizeSet : 1
+	}
 )
 
 type ToolbarStyle T.Enum
@@ -1101,7 +1148,7 @@ var (
 	toolbarGetNItems            func(t *Toolbar) int
 	toolbarGetNthItem           func(t *Toolbar, n int) *ToolItem
 	toolbarGetOrientation       func(t *Toolbar) Orientation
-	toolbarGetReliefStyle       func(t *Toolbar) T.GtkReliefStyle
+	toolbarGetReliefStyle       func(t *Toolbar) ReliefStyle
 	toolbarGetShowArrow         func(t *Toolbar) T.Gboolean
 	toolbarGetStyle             func(t *Toolbar) ToolbarStyle
 	toolbarGetTooltips          func(t *Toolbar) T.Gboolean
@@ -1136,17 +1183,17 @@ func (t *Toolbar) AppendSpace() { toolbarAppendSpace(t) }
 func (t *Toolbar) AppendWidget(widget *Widget, tooltipText, tooltipPrivateText string) {
 	toolbarAppendWidget(t, widget, tooltipText, tooltipPrivateText)
 }
-func (t *Toolbar) GetDropIndex(x, y int) int        { return toolbarGetDropIndex(t, x, y) }
-func (t *Toolbar) GetIconSize() IconSize            { return toolbarGetIconSize(t) }
-func (t *Toolbar) GetItemIndex(item *ToolItem) int  { return toolbarGetItemIndex(t, item) }
-func (t *Toolbar) GetNItems() int                   { return toolbarGetNItems(t) }
-func (t *Toolbar) GetNthItem(n int) *ToolItem       { return toolbarGetNthItem(t, n) }
-func (t *Toolbar) GetOrientation() Orientation      { return toolbarGetOrientation(t) }
-func (t *Toolbar) GetReliefStyle() T.GtkReliefStyle { return toolbarGetReliefStyle(t) }
-func (t *Toolbar) GetShowArrow() T.Gboolean         { return toolbarGetShowArrow(t) }
-func (t *Toolbar) GetStyle() ToolbarStyle           { return toolbarGetStyle(t) }
-func (t *Toolbar) GetTooltips() T.Gboolean          { return toolbarGetTooltips(t) }
-func (t *Toolbar) Insert(item *ToolItem, pos int)   { toolbarInsert(t, item, pos) }
+func (t *Toolbar) GetDropIndex(x, y int) int       { return toolbarGetDropIndex(t, x, y) }
+func (t *Toolbar) GetIconSize() IconSize           { return toolbarGetIconSize(t) }
+func (t *Toolbar) GetItemIndex(item *ToolItem) int { return toolbarGetItemIndex(t, item) }
+func (t *Toolbar) GetNItems() int                  { return toolbarGetNItems(t) }
+func (t *Toolbar) GetNthItem(n int) *ToolItem      { return toolbarGetNthItem(t, n) }
+func (t *Toolbar) GetOrientation() Orientation     { return toolbarGetOrientation(t) }
+func (t *Toolbar) GetReliefStyle() ReliefStyle     { return toolbarGetReliefStyle(t) }
+func (t *Toolbar) GetShowArrow() T.Gboolean        { return toolbarGetShowArrow(t) }
+func (t *Toolbar) GetStyle() ToolbarStyle          { return toolbarGetStyle(t) }
+func (t *Toolbar) GetTooltips() T.Gboolean         { return toolbarGetTooltips(t) }
+func (t *Toolbar) Insert(item *ToolItem, pos int)  { toolbarInsert(t, item, pos) }
 func (t *Toolbar) InsertElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget {
 	return toolbarInsertElement(t, ct, widget, text, tooltipText, tooltipPrivateText, icon, callback, userData, position)
 }
@@ -1237,7 +1284,7 @@ var (
 	toolItemGetIsImportant        func(t *ToolItem) T.Gboolean
 	toolItemGetOrientation        func(t *ToolItem) Orientation
 	toolItemGetProxyMenuItem      func(t *ToolItem, menuItemId string) *Widget
-	toolItemGetReliefStyle        func(t *ToolItem) T.GtkReliefStyle
+	toolItemGetReliefStyle        func(t *ToolItem) ReliefStyle
 	toolItemGetTextAlignment      func(t *ToolItem) float32
 	toolItemGetTextOrientation    func(t *ToolItem) Orientation
 	toolItemGetTextSizeGroup      func(t *ToolItem) *SizeGroup
@@ -1269,7 +1316,7 @@ func (t *ToolItem) GetOrientation() Orientation            { return toolItemGetO
 func (t *ToolItem) GetProxyMenuItem(menuItemId string) *Widget {
 	return toolItemGetProxyMenuItem(t, menuItemId)
 }
-func (t *ToolItem) GetReliefStyle() T.GtkReliefStyle      { return toolItemGetReliefStyle(t) }
+func (t *ToolItem) GetReliefStyle() ReliefStyle           { return toolItemGetReliefStyle(t) }
 func (t *ToolItem) GetTextAlignment() float32             { return toolItemGetTextAlignment(t) }
 func (t *ToolItem) GetTextOrientation() Orientation       { return toolItemGetTextOrientation(t) }
 func (t *ToolItem) GetTextSizeGroup() *SizeGroup          { return toolItemGetTextSizeGroup(t) }
@@ -1313,7 +1360,7 @@ var (
 	toolItemGroupGetCollapsed    func(t *ToolItemGroup) T.Gboolean
 	toolItemGroupGetDropItem     func(t *ToolItemGroup, x, y int) *ToolItem
 	toolItemGroupGetEllipsize    func(t *ToolItemGroup) T.PangoEllipsizeMode
-	toolItemGroupGetHeaderRelief func(t *ToolItemGroup) T.GtkReliefStyle
+	toolItemGroupGetHeaderRelief func(t *ToolItemGroup) ReliefStyle
 	toolItemGroupGetItemPosition func(t *ToolItemGroup, item *ToolItem) int
 	toolItemGroupGetLabel        func(t *ToolItemGroup) string
 	toolItemGroupGetLabelWidget  func(t *ToolItemGroup) *Widget
@@ -1322,7 +1369,7 @@ var (
 	toolItemGroupInsert          func(t *ToolItemGroup, item *ToolItem, position int)
 	toolItemGroupSetCollapsed    func(t *ToolItemGroup, collapsed T.Gboolean)
 	toolItemGroupSetEllipsize    func(t *ToolItemGroup, ellipsize T.PangoEllipsizeMode)
-	toolItemGroupSetHeaderRelief func(t *ToolItemGroup, style T.GtkReliefStyle)
+	toolItemGroupSetHeaderRelief func(t *ToolItemGroup, style ReliefStyle)
 	toolItemGroupSetItemPosition func(t *ToolItemGroup, item *ToolItem, position int)
 	toolItemGroupSetLabel        func(t *ToolItemGroup, label string)
 	toolItemGroupSetLabelWidget  func(t *ToolItemGroup, labelWidget *Widget)
@@ -1331,7 +1378,7 @@ var (
 func (t *ToolItemGroup) GetCollapsed() T.Gboolean           { return toolItemGroupGetCollapsed(t) }
 func (t *ToolItemGroup) GetDropItem(x, y int) *ToolItem     { return toolItemGroupGetDropItem(t, x, y) }
 func (t *ToolItemGroup) GetEllipsize() T.PangoEllipsizeMode { return toolItemGroupGetEllipsize(t) }
-func (t *ToolItemGroup) GetHeaderRelief() T.GtkReliefStyle  { return toolItemGroupGetHeaderRelief(t) }
+func (t *ToolItemGroup) GetHeaderRelief() ReliefStyle       { return toolItemGroupGetHeaderRelief(t) }
 func (t *ToolItemGroup) GetItemPosition(item *ToolItem) int {
 	return toolItemGroupGetItemPosition(t, item)
 }
@@ -1344,7 +1391,7 @@ func (t *ToolItemGroup) SetCollapsed(collapsed T.Gboolean)   { toolItemGroupSetC
 func (t *ToolItemGroup) SetEllipsize(ellipsize T.PangoEllipsizeMode) {
 	toolItemGroupSetEllipsize(t, ellipsize)
 }
-func (t *ToolItemGroup) SetHeaderRelief(style T.GtkReliefStyle) {
+func (t *ToolItemGroup) SetHeaderRelief(style ReliefStyle) {
 	toolItemGroupSetHeaderRelief(t, style)
 }
 func (t *ToolItemGroup) SetItemPosition(item *ToolItem, position int) {
@@ -1372,10 +1419,10 @@ var (
 	ToolPaletteNew     func() *Widget
 
 	ToolPaletteDragTargetsGetType func() T.GType
-	ToolPaletteGetDragTargetGroup func() *T.GtkTargetEntry
-	ToolPaletteGetDragTargetItem  func() *T.GtkTargetEntry
+	ToolPaletteGetDragTargetGroup func() *TargetEntry
+	ToolPaletteGetDragTargetItem  func() *TargetEntry
 
-	toolPaletteAddDragDest      func(t *ToolPalette, widget *Widget, flags T.GtkDestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction)
+	toolPaletteAddDragDest      func(t *ToolPalette, widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction)
 	toolPaletteGetDragItem      func(t *ToolPalette, selection *SelectionData) *Widget
 	toolPaletteGetDropGroup     func(t *ToolPalette, x, y int) *ToolItemGroup
 	toolPaletteGetDropItem      func(t *ToolPalette, x, y int) *ToolItem
@@ -1396,7 +1443,7 @@ var (
 	toolPaletteUnsetStyle       func(t *ToolPalette)
 )
 
-func (t *ToolPalette) AddDragDest(widget *Widget, flags T.GtkDestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction) {
+func (t *ToolPalette) AddDragDest(widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction) {
 	toolPaletteAddDragDest(t, widget, flags, targets, actions)
 }
 func (t *ToolPalette) GetDragItem(selection *SelectionData) *Widget {
@@ -1442,7 +1489,7 @@ var (
 	toolShellGetEllipsizeMode   func(t *ToolShell) T.PangoEllipsizeMode
 	toolShellGetIconSize        func(t *ToolShell) IconSize
 	toolShellGetOrientation     func(t *ToolShell) Orientation
-	toolShellGetReliefStyle     func(t *ToolShell) T.GtkReliefStyle
+	toolShellGetReliefStyle     func(t *ToolShell) ReliefStyle
 	toolShellGetStyle           func(t *ToolShell) ToolbarStyle
 	toolShellGetTextAlignment   func(t *ToolShell) float32
 	toolShellGetTextOrientation func(t *ToolShell) Orientation
@@ -1453,7 +1500,7 @@ var (
 func (t *ToolShell) GetEllipsizeMode() T.PangoEllipsizeMode { return toolShellGetEllipsizeMode(t) }
 func (t *ToolShell) GetIconSize() IconSize                  { return toolShellGetIconSize(t) }
 func (t *ToolShell) GetOrientation() Orientation            { return toolShellGetOrientation(t) }
-func (t *ToolShell) GetReliefStyle() T.GtkReliefStyle       { return toolShellGetReliefStyle(t) }
+func (t *ToolShell) GetReliefStyle() ReliefStyle            { return toolShellGetReliefStyle(t) }
 func (t *ToolShell) GetStyle() ToolbarStyle                 { return toolShellGetStyle(t) }
 func (t *ToolShell) GetTextAlignment() float32              { return toolShellGetTextAlignment(t) }
 func (t *ToolShell) GetTextOrientation() Orientation        { return toolShellGetTextOrientation(t) }
@@ -1492,7 +1539,7 @@ func (t *Tooltip) SetTipArea(rect *T.GdkRectangle) { tooltipSetTipArea(t, rect) 
 
 type (
 	Tooltips struct {
-		Parent         T.GtkObject
+		Parent         Object
 		TipWindow      *Widget
 		TipLabel       *Widget
 		ActiveTipsData *TooltipsData
@@ -1565,27 +1612,27 @@ var (
 	treeRemoveItems      func(t *Tree, items *T.GList)
 	treeSelectChild      func(t *Tree, treeItem *Widget)
 	treeSelectItem       func(t *Tree, item int)
-	treeSetSelectionMode func(t *Tree, mode T.GtkSelectionMode)
+	treeSetSelectionMode func(t *Tree, mode SelectionMode)
 	treeSetViewLines     func(t *Tree, flag T.Gboolean)
 	treeSetViewMode      func(t *Tree, mode TreeViewMode)
 	treeUnselectChild    func(t *Tree, treeItem *Widget)
 	treeUnselectItem     func(t *Tree, item int)
 )
 
-func (t *Tree) Append(treeItem *Widget)                  { treeAppend(t, treeItem) }
-func (t *Tree) ChildPosition(child *Widget) int          { return treeChildPosition(t, child) }
-func (t *Tree) ClearItems(start, end int)                { treeClearItems(t, start, end) }
-func (t *Tree) Insert(treeItem *Widget, position int)    { treeInsert(t, treeItem, position) }
-func (t *Tree) Prepend(treeItem *Widget)                 { treePrepend(t, treeItem) }
-func (t *Tree) RemoveItem(child *Widget)                 { treeRemoveItem(t, child) }
-func (t *Tree) RemoveItems(items *T.GList)               { treeRemoveItems(t, items) }
-func (t *Tree) SelectChild(treeItem *Widget)             { treeSelectChild(t, treeItem) }
-func (t *Tree) SelectItem(item int)                      { treeSelectItem(t, item) }
-func (t *Tree) SetSelectionMode(mode T.GtkSelectionMode) { treeSetSelectionMode(t, mode) }
-func (t *Tree) SetViewLines(flag T.Gboolean)             { treeSetViewLines(t, flag) }
-func (t *Tree) SetViewMode(mode TreeViewMode)            { treeSetViewMode(t, mode) }
-func (t *Tree) UnselectChild(treeItem *Widget)           { treeUnselectChild(t, treeItem) }
-func (t *Tree) UnselectItem(item int)                    { treeUnselectItem(t, item) }
+func (t *Tree) Append(treeItem *Widget)               { treeAppend(t, treeItem) }
+func (t *Tree) ChildPosition(child *Widget) int       { return treeChildPosition(t, child) }
+func (t *Tree) ClearItems(start, end int)             { treeClearItems(t, start, end) }
+func (t *Tree) Insert(treeItem *Widget, position int) { treeInsert(t, treeItem, position) }
+func (t *Tree) Prepend(treeItem *Widget)              { treePrepend(t, treeItem) }
+func (t *Tree) RemoveItem(child *Widget)              { treeRemoveItem(t, child) }
+func (t *Tree) RemoveItems(items *T.GList)            { treeRemoveItems(t, items) }
+func (t *Tree) SelectChild(treeItem *Widget)          { treeSelectChild(t, treeItem) }
+func (t *Tree) SelectItem(item int)                   { treeSelectItem(t, item) }
+func (t *Tree) SetSelectionMode(mode SelectionMode)   { treeSetSelectionMode(t, mode) }
+func (t *Tree) SetViewLines(flag T.Gboolean)          { treeSetViewLines(t, flag) }
+func (t *Tree) SetViewMode(mode TreeViewMode)         { treeSetViewMode(t, mode) }
+func (t *Tree) UnselectChild(treeItem *Widget)        { treeUnselectChild(t, treeItem) }
+func (t *Tree) UnselectItem(item int)                 { treeUnselectItem(t, item) }
 
 type TreeDragSource struct{}
 
@@ -1836,7 +1883,7 @@ type TreeModelSort struct {
 	ZeroRefCount       int
 	SortList           *T.GList
 	SortColumnId       int
-	Order              T.GtkSortType
+	Order              SortType
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
 	DefaultSortDestroy T.GDestroyNotify
@@ -1954,7 +2001,7 @@ type (
 	TreeSelection struct {
 		Parent   T.GObject
 		TreeView *TreeView
-		Type     T.GtkSelectionMode
+		Type     SelectionMode
 		UserFunc TreeSelectionFunc
 		UserData T.Gpointer
 		Destroy  T.GDestroyNotify
@@ -1968,7 +2015,7 @@ var (
 	TreeSelectionGetType func() T.GType
 
 	treeSelectionCountSelectedRows func(t *TreeSelection) int
-	treeSelectionGetMode           func(t *TreeSelection) T.GtkSelectionMode
+	treeSelectionGetMode           func(t *TreeSelection) SelectionMode
 	treeSelectionGetSelected       func(t *TreeSelection, model **TreeModel, iter *TreeIter) T.Gboolean
 	treeSelectionGetSelectedRows   func(t *TreeSelection, model **TreeModel) *T.GList
 	treeSelectionGetSelectFunction func(t *TreeSelection) TreeSelectionFunc
@@ -1981,7 +2028,7 @@ var (
 	treeSelectionSelectIter        func(t *TreeSelection, iter *TreeIter)
 	treeSelectionSelectPath        func(t *TreeSelection, path *TreePath)
 	treeSelectionSelectRange       func(t *TreeSelection, startPath *TreePath, endPath *TreePath)
-	treeSelectionSetMode           func(t *TreeSelection, typ T.GtkSelectionMode)
+	treeSelectionSetMode           func(t *TreeSelection, typ SelectionMode)
 	treeSelectionSetSelectFunction func(t *TreeSelection, f TreeSelectionFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	treeSelectionUnselectAll       func(t *TreeSelection)
 	treeSelectionUnselectIter      func(t *TreeSelection, iter *TreeIter)
@@ -1989,8 +2036,8 @@ var (
 	treeSelectionUnselectRange     func(t *TreeSelection, startPath *TreePath, endPath *TreePath)
 )
 
-func (t *TreeSelection) CountSelectedRows() int      { return treeSelectionCountSelectedRows(t) }
-func (t *TreeSelection) GetMode() T.GtkSelectionMode { return treeSelectionGetMode(t) }
+func (t *TreeSelection) CountSelectedRows() int { return treeSelectionCountSelectedRows(t) }
+func (t *TreeSelection) GetMode() SelectionMode { return treeSelectionGetMode(t) }
 func (t *TreeSelection) GetSelected(model **TreeModel, iter *TreeIter) T.Gboolean {
 	return treeSelectionGetSelected(t, model, iter)
 }
@@ -2017,7 +2064,7 @@ func (t *TreeSelection) SelectPath(path *TreePath) { treeSelectionSelectPath(t, 
 func (t *TreeSelection) SelectRange(startPath, endPath *TreePath) {
 	treeSelectionSelectRange(t, startPath, endPath)
 }
-func (t *TreeSelection) SetMode(typ T.GtkSelectionMode) { treeSelectionSetMode(t, typ) }
+func (t *TreeSelection) SetMode(typ SelectionMode) { treeSelectionSetMode(t, typ) }
 func (t *TreeSelection) SetSelectFunction(f TreeSelectionFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	treeSelectionSetSelectFunction(t, f, data, destroy)
 }
@@ -2033,22 +2080,22 @@ type TreeSortable struct{}
 var (
 	TreeSortableGetType func() T.GType
 
-	treeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *T.GtkSortType) T.Gboolean
+	treeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *SortType) T.Gboolean
 	treeSortableHasDefaultSortFunc func(t *TreeSortable) T.Gboolean
 	treeSortableSetDefaultSortFunc func(t *TreeSortable, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
-	treeSortableSetSortColumnId    func(t *TreeSortable, sortColumnId int, order T.GtkSortType)
+	treeSortableSetSortColumnId    func(t *TreeSortable, sortColumnId int, order SortType)
 	treeSortableSetSortFunc        func(t *TreeSortable, sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
 	treeSortableSortColumnChanged  func(t *TreeSortable)
 )
 
-func (t *TreeSortable) GetSortColumnId(sortColumnId *int, order *T.GtkSortType) T.Gboolean {
+func (t *TreeSortable) GetSortColumnId(sortColumnId *int, order *SortType) T.Gboolean {
 	return treeSortableGetSortColumnId(t, sortColumnId, order)
 }
 func (t *TreeSortable) HasDefaultSortFunc() T.Gboolean { return treeSortableHasDefaultSortFunc(t) }
 func (t *TreeSortable) SetDefaultSortFunc(sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
 	treeSortableSetDefaultSortFunc(t, sortFunc, userData, destroy)
 }
-func (t *TreeSortable) SetSortColumnId(sortColumnId int, order T.GtkSortType) {
+func (t *TreeSortable) SetSortColumnId(sortColumnId int, order SortType) {
 	treeSortableSetSortColumnId(t, sortColumnId, order)
 }
 func (t *TreeSortable) SetSortFunc(sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
@@ -2064,7 +2111,7 @@ type TreeStore struct {
 	NColumns           int
 	SortColumnId       int
 	SortList           *T.GList
-	Order              T.GtkSortType
+	Order              SortType
 	ColumnHeaders      *T.GType
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
@@ -2249,8 +2296,8 @@ var (
 	treeViewConvertWidgetToBinWindowCoords func(t *TreeView, wx, wy int, bx, by *int)
 	treeViewConvertWidgetToTreeCoords      func(t *TreeView, wx, wy int, tx, ty *int)
 	treeViewCreateRowDragIcon              func(t *TreeView, path *TreePath) *T.GdkPixmap
-	treeViewEnableModelDragDest            func(t *TreeView, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction)
-	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction)
+	treeViewEnableModelDragDest            func(t *TreeView, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
 	treeViewExpandAll                      func(t *TreeView)
 	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll T.Gboolean) T.Gboolean
 	treeViewExpandToPath                   func(t *TreeView, path *TreePath)
@@ -2362,10 +2409,10 @@ func (t *TreeView) ConvertWidgetToTreeCoords(wx, wy int, tx, ty *int) {
 func (t *TreeView) CreateRowDragIcon(path *TreePath) *T.GdkPixmap {
 	return treeViewCreateRowDragIcon(t, path)
 }
-func (t *TreeView) EnableModelDragDest(targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction) {
+func (t *TreeView) EnableModelDragDest(targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
 	treeViewEnableModelDragDest(t, targets, nTargets, actions)
 }
-func (t *TreeView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction) {
+func (t *TreeView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
 	treeViewEnableModelDragSource(t, startButtonMask, targets, nTargets, actions)
 }
 func (t *TreeView) ExpandAll() { treeViewExpandAll(t) }
@@ -2520,12 +2567,12 @@ func (t *TreeView) WidgetToTreeCoords(wx, wy int, tx, ty *int) {
 }
 
 type TreeViewColumn struct {
-	Parent                  T.GtkObject
-	TreeView                *T.GtkWidget
-	Button                  *T.GtkWidget
-	Child                   *T.GtkWidget
-	Arrow                   *T.GtkWidget
-	Alignment               *T.GtkWidget
+	Parent                  Object
+	TreeView                *Widget
+	Button                  *Widget
+	Child                   *Widget
+	Arrow                   *Widget
+	Alignment               *Widget
 	Window                  *T.GdkWindow
 	EditableWidget          *CellEditable
 	Xalign                  float32
@@ -2546,7 +2593,7 @@ type TreeViewColumn struct {
 	SortClickedSignal       uint
 	SortColumnChangedSignal uint
 	SortColumnId            int
-	SortOrder               T.GtkSortType
+	SortOrder               SortType
 	Bits                    uint
 	// Visible : 1
 	// Resizable : 1
@@ -2587,7 +2634,7 @@ var (
 	treeViewColumnGetSizing        func(t *TreeViewColumn) TreeViewColumnSizing
 	treeViewColumnGetSortColumnId  func(t *TreeViewColumn) int
 	treeViewColumnGetSortIndicator func(t *TreeViewColumn) T.Gboolean
-	treeViewColumnGetSortOrder     func(t *TreeViewColumn) T.GtkSortType
+	treeViewColumnGetSortOrder     func(t *TreeViewColumn) SortType
 	treeViewColumnGetSpacing       func(t *TreeViewColumn) int
 	treeViewColumnGetTitle         func(t *TreeViewColumn) string
 	treeViewColumnGetTreeView      func(t *TreeViewColumn) *Widget
@@ -2610,7 +2657,7 @@ var (
 	treeViewColumnSetSizing        func(t *TreeViewColumn, typ TreeViewColumnSizing)
 	treeViewColumnSetSortColumnId  func(t *TreeViewColumn, sortColumnId int)
 	treeViewColumnSetSortIndicator func(t *TreeViewColumn, setting T.Gboolean)
-	treeViewColumnSetSortOrder     func(t *TreeViewColumn, order T.GtkSortType)
+	treeViewColumnSetSortOrder     func(t *TreeViewColumn, order SortType)
 	treeViewColumnSetSpacing       func(t *TreeViewColumn, spacing int)
 	treeViewColumnSetTitle         func(t *TreeViewColumn, title string)
 	treeViewColumnSetVisible       func(t *TreeViewColumn, visible T.Gboolean)
@@ -2648,7 +2695,7 @@ func (t *TreeViewColumn) GetResizable() T.Gboolean        { return treeViewColum
 func (t *TreeViewColumn) GetSizing() TreeViewColumnSizing { return treeViewColumnGetSizing(t) }
 func (t *TreeViewColumn) GetSortColumnId() int            { return treeViewColumnGetSortColumnId(t) }
 func (t *TreeViewColumn) GetSortIndicator() T.Gboolean    { return treeViewColumnGetSortIndicator(t) }
-func (t *TreeViewColumn) GetSortOrder() T.GtkSortType     { return treeViewColumnGetSortOrder(t) }
+func (t *TreeViewColumn) GetSortOrder() SortType          { return treeViewColumnGetSortOrder(t) }
 func (t *TreeViewColumn) GetSpacing() int                 { return treeViewColumnGetSpacing(t) }
 func (t *TreeViewColumn) GetTitle() string                { return treeViewColumnGetTitle(t) }
 func (t *TreeViewColumn) GetTreeView() *Widget            { return treeViewColumnGetTreeView(t) }
@@ -2682,11 +2729,11 @@ func (t *TreeViewColumn) SetSortColumnId(sortColumnId int) {
 func (t *TreeViewColumn) SetSortIndicator(setting T.Gboolean) {
 	treeViewColumnSetSortIndicator(t, setting)
 }
-func (t *TreeViewColumn) SetSortOrder(order T.GtkSortType) { treeViewColumnSetSortOrder(t, order) }
-func (t *TreeViewColumn) SetSpacing(spacing int)           { treeViewColumnSetSpacing(t, spacing) }
-func (t *TreeViewColumn) SetTitle(title string)            { treeViewColumnSetTitle(t, title) }
-func (t *TreeViewColumn) SetVisible(visible T.Gboolean)    { treeViewColumnSetVisible(t, visible) }
-func (t *TreeViewColumn) SetWidget(widget *Widget)         { treeViewColumnSetWidget(t, widget) }
+func (t *TreeViewColumn) SetSortOrder(order SortType)   { treeViewColumnSetSortOrder(t, order) }
+func (t *TreeViewColumn) SetSpacing(spacing int)        { treeViewColumnSetSpacing(t, spacing) }
+func (t *TreeViewColumn) SetTitle(title string)         { treeViewColumnSetTitle(t, title) }
+func (t *TreeViewColumn) SetVisible(visible T.Gboolean) { treeViewColumnSetVisible(t, visible) }
+func (t *TreeViewColumn) SetWidget(widget *Widget)      { treeViewColumnSetWidget(t, widget) }
 
 type (
 	Type T.GType

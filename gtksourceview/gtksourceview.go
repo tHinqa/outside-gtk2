@@ -111,12 +111,12 @@ type (
 	}
 
 	GtkSourceBuffer struct {
-		Parent_instance T.GtkTextBuffer
+		Parent_instance G.TextBuffer
 		Priv            *GtkSourceBufferPrivate
 	}
 
 	GtkSourceCompletionInfo struct {
-		Parent T.GtkWindow
+		Parent G.Window
 		Priv   *GtkSourceCompletionInfoPrivate
 	}
 
@@ -126,7 +126,7 @@ type (
 	}
 
 	GtkSourceCompletion struct {
-		Parent T.GtkObject
+		Parent G.Object
 		Priv   *GtkSourceCompletionPrivate
 	}
 
@@ -407,10 +407,10 @@ var (
 
 	Gtk_source_completion_info_set_widget func(
 		info *GtkSourceCompletionInfo,
-		widget *T.GtkWidget)
+		widget *G.Widget)
 
 	Gtk_source_completion_info_get_widget func(
-		info *GtkSourceCompletionInfo) *T.GtkWidget
+		info *GtkSourceCompletionInfo) *G.Widget
 
 	Gtk_source_completion_info_process_resize func(
 		info *GtkSourceCompletionInfo)
@@ -478,7 +478,7 @@ var (
 
 	Gtk_source_completion_provider_get_info_widget func(
 		provider *GtkSourceCompletionProvider,
-		proposal *GtkSourceCompletionProposal) *T.GtkWidget
+		proposal *GtkSourceCompletionProposal) *G.Widget
 
 	Gtk_source_completion_provider_update_info func(
 		provider *GtkSourceCompletionProvider,
@@ -585,10 +585,10 @@ var (
 
 	Gtk_source_view_get_type func() T.GType
 
-	Gtk_source_view_new func() *T.GtkWidget
+	Gtk_source_view_new func() *G.Widget
 
 	Gtk_source_view_new_with_buffer func(
-		buffer *GtkSourceBuffer) *T.GtkWidget
+		buffer *GtkSourceBuffer) *G.Widget
 
 	Gtk_source_view_set_show_line_numbers func(
 		view *GtkSourceView,
@@ -778,11 +778,11 @@ var (
 
 	Gtk_source_completion_words_register func(
 		words *GtkSourceCompletionWords,
-		buffer *T.GtkTextBuffer)
+		buffer *G.TextBuffer)
 
 	Gtk_source_completion_words_unregister func(
 		words *GtkSourceCompletionWords,
-		buffer *T.GtkTextBuffer)
+		buffer *G.TextBuffer)
 
 	Gtk_source_iter_forward_search func(
 		iter *G.TextIter,
@@ -845,10 +845,10 @@ var (
 
 	Gtk_source_print_compositor_set_wrap_mode func(
 		compositor *GtkSourcePrintCompositor,
-		wrap_mode T.GtkWrapMode)
+		wrap_mode G.WrapMode)
 
 	Gtk_source_print_compositor_get_wrap_mode func(
-		compositor *GtkSourcePrintCompositor) T.GtkWrapMode
+		compositor *GtkSourcePrintCompositor) G.WrapMode
 
 	Gtk_source_print_compositor_set_highlight_syntax func(
 		compositor *GtkSourcePrintCompositor,
@@ -894,39 +894,39 @@ var (
 
 	Gtk_source_print_compositor_get_top_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) float64
+		unit G.Unit) float64
 
 	Gtk_source_print_compositor_set_top_margin func(
 		compositor *GtkSourcePrintCompositor,
 		margin float64,
-		unit T.GtkUnit)
+		unit G.Unit)
 
 	Gtk_source_print_compositor_get_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) float64
+		unit G.Unit) float64
 
 	Gtk_source_print_compositor_set_bottom_margin func(
 		compositor *GtkSourcePrintCompositor,
 		margin float64,
-		unit T.GtkUnit)
+		unit G.Unit)
 
 	Gtk_source_print_compositor_get_left_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) float64
+		unit G.Unit) float64
 
 	Gtk_source_print_compositor_set_left_margin func(
 		compositor *GtkSourcePrintCompositor,
 		margin float64,
-		unit T.GtkUnit)
+		unit G.Unit)
 
 	Gtk_source_print_compositor_get_right_margin func(
 		compositor *GtkSourcePrintCompositor,
-		unit T.GtkUnit) float64
+		unit G.Unit) float64
 
 	Gtk_source_print_compositor_set_right_margin func(
 		compositor *GtkSourcePrintCompositor,
 		margin float64,
-		unit T.GtkUnit)
+		unit G.Unit)
 
 	Gtk_source_print_compositor_set_print_header func(
 		compositor *GtkSourcePrintCompositor,

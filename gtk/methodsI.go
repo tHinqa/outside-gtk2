@@ -65,6 +65,18 @@ func (i *IconInfo) SetRawCoordinates(rawCoordinates T.Gboolean) {
 	iconInfoSetRawCoordinates(i, rawCoordinates)
 }
 
+type IconLookupFlags T.Enum
+
+const (
+	ICON_LOOKUP_NO_SVG IconLookupFlags = 1 << iota
+	ICON_LOOKUP_FORCE_SVG
+	ICON_LOOKUP_USE_BUILTIN
+	ICON_LOOKUP_GENERIC_FALLBACK
+	ICON_LOOKUP_FORCE_SIZE
+)
+
+var IconLookupFlagsGetType func() T.GType
+
 type IconSet struct{}
 
 var (
@@ -76,7 +88,7 @@ var (
 	iconSetCopy       func(i *IconSet) *IconSet
 	iconSetGetSizes   func(i *IconSet, sizes **IconSize, nSizes *int)
 	iconSetRef        func(i *IconSet) *IconSet
-	iconSetRenderIcon func(i *IconSet, style *T.GtkStyle, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
+	iconSetRenderIcon func(i *IconSet, style *Style, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf
 	iconSetUnref      func(i *IconSet)
 )
 
@@ -84,7 +96,7 @@ func (i *IconSet) AddSource(source *IconSource)           { iconSetAddSource(i, 
 func (i *IconSet) Copy() *IconSet                         { return iconSetCopy(i) }
 func (i *IconSet) GetSizes(sizes **IconSize, nSizes *int) { iconSetGetSizes(i, sizes, nSizes) }
 func (i *IconSet) Ref() *IconSet                          { return iconSetRef(i) }
-func (i *IconSet) RenderIcon(style *T.GtkStyle, direction TextDirection, state T.GtkStateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
+func (i *IconSet) RenderIcon(style *Style, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *T.GdkPixbuf {
 	return iconSetRenderIcon(i, style, direction, state, size, widget, detail)
 }
 func (i *IconSet) Unref() { iconSetUnref(i) }
@@ -130,7 +142,7 @@ var (
 	iconSourceGetPixbuf              func(i *IconSource) *T.GdkPixbuf
 	iconSourceGetSize                func(i *IconSource) IconSize
 	iconSourceGetSizeWildcarded      func(i *IconSource) T.Gboolean
-	iconSourceGetState               func(i *IconSource) T.GtkStateType
+	iconSourceGetState               func(i *IconSource) StateType
 	iconSourceGetStateWildcarded     func(i *IconSource) T.Gboolean
 	iconSourceSetDirection           func(i *IconSource, direction TextDirection)
 	iconSourceSetDirectionWildcarded func(i *IconSource, setting T.Gboolean)
@@ -139,7 +151,7 @@ var (
 	iconSourceSetPixbuf              func(i *IconSource, pixbuf *T.GdkPixbuf)
 	iconSourceSetSize                func(i *IconSource, size IconSize)
 	iconSourceSetSizeWildcarded      func(i *IconSource, setting T.Gboolean)
-	iconSourceSetState               func(i *IconSource, state T.GtkStateType)
+	iconSourceSetState               func(i *IconSource, state StateType)
 	iconSourceSetStateWildcarded     func(i *IconSource, setting T.Gboolean)
 )
 
@@ -152,7 +164,7 @@ func (i *IconSource) GetIconName() string                  { return iconSourceGe
 func (i *IconSource) GetPixbuf() *T.GdkPixbuf              { return iconSourceGetPixbuf(i) }
 func (i *IconSource) GetSize() IconSize                    { return iconSourceGetSize(i) }
 func (i *IconSource) GetSizeWildcarded() T.Gboolean        { return iconSourceGetSizeWildcarded(i) }
-func (i *IconSource) GetState() T.GtkStateType             { return iconSourceGetState(i) }
+func (i *IconSource) GetState() StateType                  { return iconSourceGetState(i) }
 func (i *IconSource) GetStateWildcarded() T.Gboolean       { return iconSourceGetStateWildcarded(i) }
 func (i *IconSource) SetDirection(direction TextDirection) { iconSourceSetDirection(i, direction) }
 func (i *IconSource) SetDirectionWildcarded(setting T.Gboolean) {
@@ -163,23 +175,13 @@ func (i *IconSource) SetIconName(iconName string)           { iconSourceSetIconN
 func (i *IconSource) SetPixbuf(pixbuf *T.GdkPixbuf)         { iconSourceSetPixbuf(i, pixbuf) }
 func (i *IconSource) SetSize(size IconSize)                 { iconSourceSetSize(i, size) }
 func (i *IconSource) SetSizeWildcarded(setting T.Gboolean)  { iconSourceSetSizeWildcarded(i, setting) }
-func (i *IconSource) SetState(state T.GtkStateType)         { iconSourceSetState(i, state) }
+func (i *IconSource) SetState(state StateType)              { iconSourceSetState(i, state) }
 func (i *IconSource) SetStateWildcarded(setting T.Gboolean) { iconSourceSetStateWildcarded(i, setting) }
 
 type IconTheme struct {
 	Parent T.GObject
 	_      *struct{}
 }
-
-type IconLookupFlags T.Enum
-
-const (
-	ICON_LOOKUP_NO_SVG IconLookupFlags = 1 << iota
-	ICON_LOOKUP_FORCE_SVG
-	ICON_LOOKUP_USE_BUILTIN
-	ICON_LOOKUP_GENERIC_FALLBACK
-	ICON_LOOKUP_FORCE_SIZE
-)
 
 var (
 	IconThemeGetType func() T.GType
@@ -269,8 +271,8 @@ var (
 
 	iconViewConvertWidgetToBinWindowCoords func(i *IconView, wx int, wy int, bx *int, by *int)
 	iconViewCreateDragIcon                 func(i *IconView, path *TreePath) *T.GdkPixmap
-	iconViewEnableModelDragDest            func(i *IconView, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction)
-	iconViewEnableModelDragSource          func(i *IconView, startButtonMask T.GdkModifierType, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction)
+	iconViewEnableModelDragDest            func(i *IconView, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	iconViewEnableModelDragSource          func(i *IconView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
 	iconViewGetColumns                     func(i *IconView) int
 	iconViewGetColumnSpacing               func(i *IconView) int
 	iconViewGetCursor                      func(i *IconView, path **TreePath, cell **CellRenderer) T.Gboolean
@@ -291,7 +293,7 @@ var (
 	iconViewGetReorderable                 func(i *IconView) T.Gboolean
 	iconViewGetRowSpacing                  func(i *IconView) int
 	iconViewGetSelectedItems               func(i *IconView) *T.GList
-	iconViewGetSelectionMode               func(i *IconView) T.GtkSelectionMode
+	iconViewGetSelectionMode               func(i *IconView) SelectionMode
 	iconViewGetSpacing                     func(i *IconView) int
 	iconViewGetTextColumn                  func(i *IconView) int
 	iconViewGetTooltipColumn               func(i *IconView) int
@@ -317,7 +319,7 @@ var (
 	iconViewSetPixbufColumn                func(i *IconView, column int)
 	iconViewSetReorderable                 func(i *IconView, reorderable T.Gboolean)
 	iconViewSetRowSpacing                  func(i *IconView, rowSpacing int)
-	iconViewSetSelectionMode               func(i *IconView, mode T.GtkSelectionMode)
+	iconViewSetSelectionMode               func(i *IconView, mode SelectionMode)
 	iconViewSetSpacing                     func(i *IconView, spacing int)
 	iconViewSetTextColumn                  func(i *IconView, column int)
 	iconViewSetTooltipCell                 func(i *IconView, tooltip *Tooltip, path *TreePath, cell *CellRenderer)
@@ -335,10 +337,10 @@ func (i *IconView) ConvertWidgetToBinWindowCoords(wx, wy int, bx, by *int) {
 func (i *IconView) CreateDragIcon(path *TreePath) *T.GdkPixmap {
 	return iconViewCreateDragIcon(i, path)
 }
-func (i *IconView) EnableModelDragDest(targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction) {
+func (i *IconView) EnableModelDragDest(targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
 	iconViewEnableModelDragDest(i, targets, nTargets, actions)
 }
-func (i *IconView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *T.GtkTargetEntry, nTargets int, actions T.GdkDragAction) {
+func (i *IconView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
 	iconViewEnableModelDragSource(i, startButtonMask, targets, nTargets, actions)
 }
 func (i *IconView) GetColumns() int       { return iconViewGetColumns(i) }
@@ -369,7 +371,7 @@ func (i *IconView) GetPixbufColumn() int                 { return iconViewGetPix
 func (i *IconView) GetReorderable() T.Gboolean           { return iconViewGetReorderable(i) }
 func (i *IconView) GetRowSpacing() int                   { return iconViewGetRowSpacing(i) }
 func (i *IconView) GetSelectedItems() *T.GList           { return iconViewGetSelectedItems(i) }
-func (i *IconView) GetSelectionMode() T.GtkSelectionMode { return iconViewGetSelectionMode(i) }
+func (i *IconView) GetSelectionMode() SelectionMode { return iconViewGetSelectionMode(i) }
 func (i *IconView) GetSpacing() int                      { return iconViewGetSpacing(i) }
 func (i *IconView) GetTextColumn() int                   { return iconViewGetTextColumn(i) }
 func (i *IconView) GetTooltipColumn() int                { return iconViewGetTooltipColumn(i) }
@@ -413,7 +415,7 @@ func (i *IconView) SetOrientation(orientation Orientation) {
 func (i *IconView) SetPixbufColumn(column int)               { iconViewSetPixbufColumn(i, column) }
 func (i *IconView) SetReorderable(reorderable T.Gboolean)    { iconViewSetReorderable(i, reorderable) }
 func (i *IconView) SetRowSpacing(rowSpacing int)             { iconViewSetRowSpacing(i, rowSpacing) }
-func (i *IconView) SetSelectionMode(mode T.GtkSelectionMode) { iconViewSetSelectionMode(i, mode) }
+func (i *IconView) SetSelectionMode(mode SelectionMode) { iconViewSetSelectionMode(i, mode) }
 func (i *IconView) SetSpacing(spacing int)                   { iconViewSetSpacing(i, spacing) }
 func (i *IconView) SetTextColumn(column int)                 { iconViewSetTextColumn(i, column) }
 func (i *IconView) SetTooltipCell(tooltip *Tooltip, path *TreePath, cell *CellRenderer) {
@@ -427,6 +429,8 @@ func (i *IconView) UnselectAll()                { iconViewUnselectAll(i) }
 func (i *IconView) UnselectPath(path *TreePath) { iconViewUnselectPath(i, path) }
 func (i *IconView) UnsetModelDragDest()         { iconViewUnsetModelDragDest(i) }
 func (i *IconView) UnsetModelDragSource()       { iconViewUnsetModelDragSource(i) }
+
+var IdentifierGetType func() T.GType
 
 type Image struct{}
 
@@ -448,20 +452,6 @@ type Image  struct  {
 	iconSize  GtkIconSize
 }
 */
-
-type ImageType T.Enum
-
-const (
-	IMAGE_EMPTY ImageType = iota
-	IMAGE_PIXMAP
-	IMAGE_IMAGE
-	IMAGE_PIXBUF
-	IMAGE_STOCK
-	IMAGE_ICON_SET
-	IMAGE_ANIMATION
-	IMAGE_ICON_NAME
-	IMAGE_GICON
-)
 
 var (
 	ImageGetType          func() T.GType
@@ -564,6 +554,22 @@ func (i *ImageMenuItem) SetAlwaysShowImage(alwaysShow T.Gboolean) {
 func (i *ImageMenuItem) SetImage(image *Widget)          { imageMenuItemSetImage(i, image) }
 func (i *ImageMenuItem) SetUseStock(useStock T.Gboolean) { imageMenuItemSetUseStock(i, useStock) }
 
+type ImageType T.Enum
+
+const (
+	IMAGE_EMPTY ImageType = iota
+	IMAGE_PIXMAP
+	IMAGE_IMAGE
+	IMAGE_PIXBUF
+	IMAGE_STOCK
+	IMAGE_ICON_SET
+	IMAGE_ANIMATION
+	IMAGE_ICON_NAME
+	IMAGE_GICON
+)
+
+var ImageTypeGetType func() T.GType
+
 type IMContext simpleObject
 
 var (
@@ -648,6 +654,10 @@ func (i *IMMulticontext) AppendMenuitems(menushell *MenuShell) {
 func (i *IMMulticontext) GetContextId() string          { return imMulticontextGetContextId(i) }
 func (i *IMMulticontext) SetContextId(contextId string) { imMulticontextSetContextId(i, contextId) }
 
+var ImPreeditStyleGetType func() T.GType
+
+var ImStatusStyleGetType func() T.GType
+
 type InfoBar struct {
 	Parent HBox
 	_      *struct{}
@@ -663,10 +673,10 @@ var (
 	infoBarAddButtons           func(i *InfoBar, firstButtonText string, v ...VArg)
 	infoBarGetActionArea        func(i *InfoBar) *Widget
 	infoBarGetContentArea       func(i *InfoBar) *Widget
-	infoBarGetMessageType       func(i *InfoBar) T.GtkMessageType
+	infoBarGetMessageType       func(i *InfoBar) MessageType
 	infoBarResponse             func(i *InfoBar, responseId int)
 	infoBarSetDefaultResponse   func(i *InfoBar, responseId int)
-	infoBarSetMessageType       func(i *InfoBar, messageType T.GtkMessageType)
+	infoBarSetMessageType       func(i *InfoBar, messageType MessageType)
 	infoBarSetResponseSensitive func(i *InfoBar, responseId int, setting T.Gboolean)
 )
 
@@ -679,15 +689,20 @@ func (i *InfoBar) AddButton(buttonText string, responseId int) *Widget {
 func (i *InfoBar) AddButtons(firstButtonText string, v ...VArg) {
 	infoBarAddButtons(i, firstButtonText, v)
 }
-func (i *InfoBar) GetActionArea() *Widget                      { return infoBarGetActionArea(i) }
-func (i *InfoBar) GetContentArea() *Widget                     { return infoBarGetContentArea(i) }
-func (i *InfoBar) GetMessageType() T.GtkMessageType            { return infoBarGetMessageType(i) }
-func (i *InfoBar) Response(responseId int)                     { infoBarResponse(i, responseId) }
-func (i *InfoBar) SetDefaultResponse(responseId int)           { infoBarSetDefaultResponse(i, responseId) }
-func (i *InfoBar) SetMessageType(messageType T.GtkMessageType) { infoBarSetMessageType(i, messageType) }
+func (i *InfoBar) GetActionArea() *Widget                 { return infoBarGetActionArea(i) }
+func (i *InfoBar) GetContentArea() *Widget                { return infoBarGetContentArea(i) }
+func (i *InfoBar) GetMessageType() MessageType            { return infoBarGetMessageType(i) }
+func (i *InfoBar) Response(responseId int)                { infoBarResponse(i, responseId) }
+func (i *InfoBar) SetDefaultResponse(responseId int)      { infoBarSetDefaultResponse(i, responseId) }
+func (i *InfoBar) SetMessageType(messageType MessageType) { infoBarSetMessageType(i, messageType) }
 func (i *InfoBar) SetResponseSensitive(responseId int, setting T.Gboolean) {
 	infoBarSetResponseSensitive(i, responseId, setting)
 }
+
+var (
+	InputDialogGetType func() T.GType
+	InputDialogNew     func() *Widget
+)
 
 type Invisible struct {
 	Widget          Widget
@@ -725,7 +740,7 @@ func (i *Item) Toggle()   { itemToggle(i) }
 
 type (
 	ItemFactory struct {
-		Object           T.GtkObject
+		Object           Object
 		Path             *T.Gchar
 		Accel_group      *AccelGroup
 		Widget           *Widget

@@ -13,108 +13,25 @@ import (
 type simpleObject struct{ parent T.GObject }
 
 var (
-	CornerTypeGetType           func() T.GType
-	DebugFlagGetType            func() T.GType
-	DeleteTypeGetType           func() T.GType
-	DestDefaultsGetType         func() T.GType
-	DirectionTypeGetType        func() T.GType
-	DragResultGetType           func() T.GType
-	GammaCurveGetType           func() T.GType
-	GammaCurveNew               func() *Widget
-	HbuttonBoxGetType           func() T.GType
-	HbuttonBoxNew               func() *Widget
-	HbuttonBoxGetSpacingDefault func() int
-	HbuttonBoxGetLayoutDefault  func() ButtonBoxStyle
-	HbuttonBoxSetSpacingDefault func(spacing int)
-	HbuttonBoxSetLayoutDefault  func(layout ButtonBoxStyle)
-	HpanedGetType               func() T.GType
-	HpanedNew                   func() *Widget
-	HrulerGetType               func() T.GType
-	HrulerNew                   func() *Widget
-	HscaleGetType               func() T.GType
-	HscaleNew                   func(adjustment *Adjustment) *Widget
-	HscaleNewWithRange          func(min, max, step float64) *Widget
-	HscrollbarGetType           func() T.GType
-	HscrollbarNew               func(adjustment *Adjustment) *Widget
-	HseparatorGetType           func() T.GType
-	HseparatorNew               func() *Widget
-	IconLookupFlagsGetType      func() T.GType
-	IdentifierGetType           func() T.GType
-	ImageTypeGetType            func() T.GType
-	ImPreeditStyleGetType       func() T.GType
-	ImStatusStyleGetType        func() T.GType
-	InputDialogGetType          func() T.GType
-	InputDialogNew              func() *Widget
-	JustificationGetType        func() T.GType
-	MatchTypeGetType            func() T.GType
-	MessageTypeGetType          func() T.GType
-	MetricTypeGetType           func() T.GType
-	MovementStepGetType         func() T.GType
-	NumberUpLayoutGetType       func() T.GType
-	ObjectFlagsGetType          func() T.GType
-	ObjectGetType               func() T.GType
-	PackDirectionGetType        func() T.GType
-	PackTypeGetType             func() T.GType
-	PageOrientationGetType      func() T.GType
-	PageSetGetType              func() T.GType
-	PathPriorityTypeGetType     func() T.GType
-	PathTypeGetType             func() T.GType
-	PolicyTypeGetType           func() T.GType
-	PositionTypeGetType         func() T.GType
-	PrintDuplexGetType          func() T.GType
-	PrintErrorGetType           func() T.GType
-	PrintPagesGetType           func() T.GType
-	PrintQualityGetType         func() T.GType
-	PrintStatusGetType          func() T.GType
-	PrivateFlagsGetType         func() T.GType
-	RcFlagsGetType              func() T.GType
-	RcStyleGetType              func() T.GType
-	RcTokenTypeGetType          func() T.GType
-	RecentSortTypeGetType       func() T.GType
-	ReliefStyleGetType          func() T.GType
-	RequisitionGetType          func() T.GType
-	ResizeModeGetType           func() T.GType
-	ResponseTypeGetType         func() T.GType
-	ScrollbarGetType            func() T.GType
-	ScrollStepGetType           func() T.GType
-	ScrollTypeGetType           func() T.GType
-	TreeGetRowDragData          func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
-	TreeSetRowDragData          func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
-	SelectionModeGetType        func() T.GType
-	SensitivityTypeGetType      func() T.GType
-	SeparatorGetType            func() T.GType
-	SeparatorMenuItemGetType    func() T.GType
-	SeparatorMenuItemNew        func() *Widget
-	ShadowTypeGetType           func() T.GType
-	SideTypeGetType             func() T.GType
-	SignalRunTypeGetType        func() T.GType
-	SortTypeGetType             func() T.GType
-	SpinTypeGetType             func() T.GType
-	StateTypeGetType            func() T.GType
-	SubmenuDirectionGetType     func() T.GType
-	SubmenuPlacementGetType     func() T.GType
-	TargetFlagsGetType          func() T.GType
-	TearoffMenuItemGetType      func() T.GType
-	TearoffMenuItemNew          func() *Widget
-	UnitGetType                 func() T.GType
-	UpdateTypeGetType           func() T.GType
-	VboxGetType                 func() T.GType
-	VbuttonBoxGetType           func() T.GType
-	VbuttonBoxNew               func() *Widget
-	VisibilityGetType           func() T.GType
-	VolumeButtonGetType         func() T.GType
-	VolumeButtonNew             func() *Widget
-	VpanedGetType               func() T.GType
-	VpanedNew                   func() *Widget
-	VrulerGetType               func() T.GType
-	VrulerNew                   func() *Widget
-	VscaleGetType               func() T.GType
-	VscrollbarGetType           func() T.GType
-	VseparatorGetType           func() T.GType
-	VseparatorNew               func() *Widget
-	WindowPositionGetType       func() T.GType
-	WindowTypeGetType           func() T.GType
-	WrapModeGetType             func() T.GType
+	PrintErrorGetType        func() T.GType
+	PrivateFlagsGetType      func() T.GType
+	RecentSortTypeGetType    func() T.GType
+	ResponseTypeGetType      func() T.GType
+	ScrollbarGetType         func() T.GType
+	ScrollStepGetType        func() T.GType
+	TreeGetRowDragData       func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
+	TreeSetRowDragData       func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
+	SeparatorGetType         func() T.GType
+	SeparatorMenuItemGetType func() T.GType
+	SeparatorMenuItemNew     func() *Widget
+	SideTypeGetType          func() T.GType
+	SignalRunTypeGetType     func() T.GType
+	SortTypeGetType          func() T.GType
+	SubmenuDirectionGetType  func() T.GType
+	SubmenuPlacementGetType  func() T.GType
+	TargetFlagsGetType       func() T.GType
+	TearoffMenuItemGetType   func() T.GType
+	TearoffMenuItemNew       func() *Widget
 
 	TypeInit func(
 		debugFlags T.GTypeDebugFlags)
@@ -130,336 +47,275 @@ var (
 		t Type) T.Gpointer
 
 	ObjectSink func(
-		object *T.GtkObject)
+		object *Object)
 
 	ObjectDestroy func(
-		object *T.GtkObject)
+		object *Object)
 
 	ObjectNew func(t T.GType, firstPropertyName string,
-		v ...VArg) *T.GtkObject
+		v ...VArg) *Object
 
 	ObjectRef func(
-		object *T.GtkObject) *T.GtkObject
+		object *Object) *Object
 
 	ObjectUnref func(
-		object *T.GtkObject)
+		object *Object)
 
 	ObjectWeakref func(
-		object *T.GtkObject,
+		object *Object,
 		notify T.GDestroyNotify,
 		data T.Gpointer)
 
 	ObjectWeakunref func(
-		object *T.GtkObject,
+		object *Object,
 		notify T.GDestroyNotify,
 		data T.Gpointer)
 
 	ObjectSetData func(
-		object *T.GtkObject,
+		object *Object,
 		key string,
 		data T.Gpointer)
 
 	ObjectSetDataFull func(
-		object *T.GtkObject,
+		object *Object,
 		key string,
 		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	ObjectRemoveData func(
-		object *T.GtkObject,
+		object *Object,
 		key string)
 
 	ObjectGetData func(
-		object *T.GtkObject,
+		object *Object,
 		key string) T.Gpointer
 
 	ObjectRemoveNoNotify func(
-		object *T.GtkObject,
+		object *Object,
 		key string)
 
 	ObjectSetUserData func(
-		object *T.GtkObject,
+		object *Object,
 		data T.Gpointer)
 
 	ObjectGetUserData func(
-		object *T.GtkObject) T.Gpointer
+		object *Object) T.Gpointer
 
 	ObjectSetDataById func(
-		object *T.GtkObject,
+		object *Object,
 		dataId T.GQuark,
 		data T.Gpointer)
 
 	ObjectSetDataByIdFull func(
-		object *T.GtkObject,
+		object *Object,
 		dataId T.GQuark,
 		data T.Gpointer,
 		destroy T.GDestroyNotify)
 
 	ObjectGetDataById func(
-		object *T.GtkObject,
+		object *Object,
 		dataId T.GQuark) T.Gpointer
 
 	ObjectRemoveDataById func(
-		object *T.GtkObject,
+		object *Object,
 		dataId T.GQuark)
 
 	ObjectRemoveNoNotifyById func(
-		object *T.GtkObject,
+		object *Object,
 		keyId T.GQuark)
 
-	ObjectGet func(object *T.GtkObject,
+	ObjectGet func(object *Object,
 		firstPropertyName string, v ...VArg)
 
-	ObjectSet func(object *T.GtkObject,
+	ObjectSet func(object *Object,
 		firstPropertyName string, v ...VArg)
 
 	ObjectAddArgType func(
 		argName string,
 		argType T.GType,
-		argFlags uint,
-		argId uint)
+		argFlags, argId uint)
 
 	DrawHline func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		x1 int,
-		x2 int,
-		y int)
+		stateType StateType,
+		x1, x2, y int)
 
 	DrawVline func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		y1 int,
-		y2 int,
-		x int)
+		stateType StateType,
+		y1, y2, x int)
 
 	DrawShadow func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawPolygon func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		points *T.GdkPoint,
 		npoints int,
 		fill T.Gboolean)
 
 	DrawArrow func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		arrowType ArrowType,
 		fill T.Gboolean,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	DrawDiamond func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawBox func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawFlatBox func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawCheck func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawOption func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawTab func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int)
 
 	DrawShadowGap func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType,
-		gapX int,
-		gapWidth int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int,
+		gapSide PositionType,
+		gapX, gapWidth int)
 
 	DrawBoxGap func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType,
-		gapX int,
-		gapWidth int)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int,
+		gapSide PositionType,
+		gapX, gapWidth int)
 
 	DrawExtension func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType)
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int,
+		gapSide PositionType)
 
 	DrawFocus func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	DrawSlider func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int,
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int,
 		orientation Orientation)
 
 	DrawHandle func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
-		x int,
-		y int,
-		width int,
-		height int,
+		stateType StateType,
+		shadowType ShadowType,
+		x, y, width, height int,
 		orientation Orientation)
 
 	DrawExpander func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		x int,
-		y int,
+		stateType StateType,
+		x, y int,
 		expanderStyle ExpanderStyle)
 
 	DrawLayout func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		useText T.Gboolean,
-		x int,
-		y int,
+		x, y int,
 		layout *T.PangoLayout)
 
 	DrawResizeGrip func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		edge T.GdkWindowEdge,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintHline func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x1 int,
-		x2 int,
-		y int)
+		x1, x2, y int)
 
 	PaintVline func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		y1 int,
-		y2 int,
-		x int)
+		y1, y2, x int)
 
 	PaintShadow func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintPolygon func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
@@ -468,396 +324,229 @@ var (
 		fill T.Gboolean)
 
 	PaintArrow func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
 		arrowType ArrowType,
 		fill T.Gboolean,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintDiamond func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintBox func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintFlatBox func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintCheck func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintOption func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintTab func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintShadowGap func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType,
-		gapX int,
-		gapWidth int)
+		x, y, width, height int,
+		gapSide PositionType,
+		gapX, gapWidth int)
 
 	PaintBoxGap func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType,
-		gapX int,
-		gapWidth int)
+		x, y, width, height int,
+		gapSide PositionType,
+		gapX, gapWidth int)
 
 	PaintExtension func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int,
-		gapSide T.GtkPositionType)
+		x, y, width, height int,
+		gapSide PositionType)
 
 	PaintFocus func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintSlider func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int,
+		x, y, width, height int,
 		orientation Orientation)
 
 	PaintHandle func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		shadowType T.GtkShadowType,
+		stateType StateType,
+		shadowType ShadowType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		width int,
-		height int,
+		x, y, width, height int,
 		orientation Orientation)
 
 	PaintExpander func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
+		x, y int,
 		expanderStyle ExpanderStyle)
 
 	PaintLayout func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		useText T.Gboolean,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
+		x, y int,
 		layout *T.PangoLayout)
 
 	PaintResizeGrip func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
 		edge T.GdkWindowEdge,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	PaintSpinner func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
 		step uint,
-		x int,
-		y int,
-		width int,
-		height int)
+		x, y, width, height int)
 
 	StyleGetStyleProperty func(
-		style *T.GtkStyle,
+		style *Style,
 		widgetType T.GType,
 		propertyName string,
 		value *T.GValue)
 
 	StyleGetValist func(
-		style *T.GtkStyle,
+		style *Style,
 		widgetType T.GType,
 		firstPropertyName string,
 		varArgs T.VaList)
 
-	StyleGet func(style *T.GtkStyle, widgetType T.GType,
+	StyleGet func(style *Style, widgetType T.GType,
 		firstPropertyName string, v ...VArg)
 
 	DrawString func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
-		x int,
-		y int,
-		string string)
+		stateType StateType,
+		x, y int,
+		str string)
 
 	PaintString func(
-		style *T.GtkStyle,
+		style *Style,
 		window *T.GdkWindow,
-		stateType T.GtkStateType,
+		stateType StateType,
 		area *T.GdkRectangle,
 		widget *Widget,
 		detail string,
-		x int,
-		y int,
-		string string)
+		x, y int,
+		str string)
 
 	DrawInsertionCursor func(
 		widget *Widget,
 		drawable *T.GdkDrawable,
-		area *T.GdkRectangle,
-		location *T.GdkRectangle,
+		area, location *T.GdkRectangle,
 		isPrimary T.Gboolean,
 		direction TextDirection,
 		drawArrow T.Gboolean)
 
-	RcAddDefaultFile func(
-		filename string)
-
-	RcSetDefaultFiles func(
-		filenames **T.Gchar)
-
-	RcGetDefaultFiles func() **T.Gchar
-
-	RcGetStyle func(
-		widget *Widget) *T.GtkStyle
-
-	RcGetStyleByPaths func(
-		settings *Settings,
-		widgetPath string,
-		classPath string,
-		t T.GType) *T.GtkStyle
-
-	RcReparseAllForSettings func(
-		settings *Settings,
-		forceLoad T.Gboolean) T.Gboolean
-
-	RcResetStyles func(
-		settings *Settings)
-
-	RcFindPixmapInPath func(
-		settings *Settings,
-		scanner *T.GScanner,
-		pixmapFile string) string
-
-	RcParse func(
-		filename string)
-
-	RcParseString func(
-		rcString string)
-
-	RcReparseAll func() T.Gboolean
-
-	RcAddWidgetNameStyle func(
-		rcStyle *T.GtkRcStyle,
-		pattern string)
-
-	RcAddWidgetClassStyle func(
-		rcStyle *T.GtkRcStyle,
-		pattern string)
-
-	RcAddClassStyle func(
-		rcStyle *T.GtkRcStyle,
-		pattern string)
-
-	RcStyleNew func() *T.GtkRcStyle
-
-	RcStyleCopy func(
-		orig *T.GtkRcStyle) *T.GtkRcStyle
-
-	RcStyleRef func(
-		rcStyle *T.GtkRcStyle)
-
-	RcStyleUnref func(
-		rcStyle *T.GtkRcStyle)
-
-	RcFindModuleInPath func(
-		moduleFile string) string
-
-	RcGetThemeDir func() string
-
-	RcGetModuleDir func() string
-
-	RcGetImModulePath func() string
-
-	RcGetImModuleFile func() string
-
-	RcScannerNew func() *T.GScanner
-
-	RcParseColor func(
-		scanner *T.GScanner,
-		color *T.GdkColor) uint
-
-	RcParseColorFull func(
-		scanner *T.GScanner,
-		style *T.GtkRcStyle,
-		color *T.GdkColor) uint
-
-	RcParseState func(
-		scanner *T.GScanner,
-		state *T.GtkStateType) uint
-
-	RcParsePriority func(
-		scanner *T.GScanner,
-		priority *T.GtkPathPriorityType) uint
-
-	RcPropertyParseColor func(
-		pspec *T.GParamSpec,
-		gstring *T.GString,
-		propertyValue *T.GValue) T.Gboolean
-
-	RcPropertyParseEnum func(
-		pspec *T.GParamSpec,
-		gstring *T.GString,
-		propertyValue *T.GValue) T.Gboolean
-
-	RcPropertyParseFlags func(
-		pspec *T.GParamSpec,
-		gstring *T.GString,
-		propertyValue *T.GValue) T.Gboolean
-
-	RcPropertyParseRequisition func(
-		pspec *T.GParamSpec,
-		gstring *T.GString,
-		propertyValue *T.GValue) T.Gboolean
-
-	RcPropertyParseBorder func(
-		pspec *T.GParamSpec,
-		gstring *T.GString,
-		propertyValue *T.GValue) T.Gboolean
-
 	RequisitionCopy func(
-		requisition *T.GtkRequisition) *T.GtkRequisition
+		requisition *Requisition) *Requisition
 
 	RequisitionFree func(
-		requisition *T.GtkRequisition)
+		requisition *Requisition)
 
 	AccelGroupsActivate func(object *T.GObject, accelKey uint,
 		accelMods T.GdkModifierType) T.Gboolean
@@ -866,7 +555,7 @@ var (
 
 	SignalNewv func(
 		name string,
-		signalFlags T.GtkSignalRunType,
+		signalFlags SignalRunType,
 		objectType T.GType,
 		functionOffset uint,
 		marshaller T.GSignalCMarshaller,
@@ -875,55 +564,46 @@ var (
 		args *T.GType) uint
 
 	SignalNew func(name string,
-		signalFlags T.GtkSignalRunType,
+		signalFlags SignalRunType,
 		objectType T.GType, functionOffset uint,
 		marshaller T.GSignalCMarshaller, returnVal T.GType,
 		nArgs uint, v ...VArg) uint
 
 	SignalEmitStopByName func(
-		object *T.GtkObject, name string)
+		object *Object, name string)
 
 	SignalConnectObjectWhileAlive func(
-		object *T.GtkObject,
+		object *Object,
 		name string,
 		f T.GCallback,
-		aliveObject *T.GtkObject)
+		aliveObject *Object)
 
 	SignalConnectWhileAlive func(
-		object *T.GtkObject,
+		object *Object,
 		name string,
 		f T.GCallback,
 		funcData T.Gpointer,
-		aliveObject *T.GtkObject)
+		aliveObject *Object)
 
 	SignalConnectFull func(
-		object *T.GtkObject,
+		object *Object,
 		name string,
 		f T.GCallback,
-		unsupported T.GtkCallbackMarshal,
+		unsupported CallbackMarshal,
 		data T.Gpointer,
 		destroyFunc T.GDestroyNotify,
-		objectSignal int,
-		after int) T.Gulong
+		objectSignal, after int) T.Gulong
 
-	SignalEmitv func(
-		object *T.GtkObject,
-		signalId uint,
-		args *T.GtkArg)
+	SignalEmitv func(object *Object, signalId uint, args *Arg)
 
-	SignalEmit func(object *T.GtkObject, signalId uint,
-		v ...VArg)
+	SignalEmit func(object *Object, signalId uint, v ...VArg)
 
-	SignalEmitByName func(object *T.GtkObject,
-		name string, v ...VArg)
+	SignalEmitByName func(object *Object, name string, v ...VArg)
 
-	SignalEmitvByName func(
-		object *T.GtkObject,
-		name string,
-		args *T.GtkArg)
+	SignalEmitvByName func(object *Object, name string, args *Arg)
 
 	SignalCompatMatched func(
-		object *T.GtkObject,
+		object *Object,
 		f T.GCallback,
 		data T.Gpointer,
 		match T.GSignalMatchType,
@@ -942,14 +622,13 @@ var (
 
 	SelectionAddTarget func(
 		widget *Widget,
-		selection T.GdkAtom,
-		target T.GdkAtom,
+		selection, target T.GdkAtom,
 		info uint)
 
 	SelectionAddTargets func(
 		widget *Widget,
 		selection T.GdkAtom,
-		targets *T.GtkTargetEntry,
+		targets *TargetEntry,
 		ntargets uint)
 
 	SelectionClearTargets func(
@@ -958,8 +637,7 @@ var (
 
 	SelectionConvert func(
 		widget *Widget,
-		selection T.GdkAtom,
-		target T.GdkAtom,
+		selection, target T.GdkAtom,
 		time T.GUint32) T.Gboolean
 
 	TargetsIncludeText func(
@@ -987,10 +665,6 @@ var (
 		widget *Widget,
 		event *T.GdkEventSelection) T.Gboolean
 
-	VboxNew func(
-		homogeneous T.Gboolean,
-		spacing int) *Widget
-
 	DragGetData func(
 		widget *Widget,
 		context *T.GdkDragContext,
@@ -999,8 +673,7 @@ var (
 
 	DragFinish func(
 		context *T.GdkDragContext,
-		success T.Gboolean,
-		del T.Gboolean,
+		success, del T.Gboolean,
 		time T.GUint32)
 
 	DragGetSourceWidget func(
@@ -1014,8 +687,8 @@ var (
 
 	DragDestSet func(
 		widget *Widget,
-		flags T.GtkDestDefaults,
-		targets *T.GtkTargetEntry,
+		flags DestDefaults,
+		targets *TargetEntry,
 		nTargets int,
 		actions T.GdkDragAction)
 
@@ -1059,7 +732,7 @@ var (
 	DragSourceSet func(
 		widget *Widget,
 		startButtonMask T.GdkModifierType,
-		targets *T.GtkTargetEntry,
+		targets *TargetEntry,
 		nTargets int,
 		actions T.GdkDragAction)
 
@@ -1110,51 +783,42 @@ var (
 	DragSetIconWidget func(
 		context *T.GdkDragContext,
 		widget *Widget,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	DragSetIconPixmap func(
 		context *T.GdkDragContext,
 		colormap *T.GdkColormap,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	DragSetIconPixbuf func(
 		context *T.GdkDragContext,
 		pixbuf *T.GdkPixbuf,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	DragSetIconStock func(
 		context *T.GdkDragContext,
 		stockId string,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	DragSetIconName func(
 		context *T.GdkDragContext,
 		iconName string,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	DragSetIconDefault func(
 		context *T.GdkDragContext)
 
 	DragCheckThreshold func(
 		widget *Widget,
-		startX int,
-		startY int,
-		currentX int,
-		currentY int) T.Gboolean
+		startX, startY, currentX, currentY int) T.Gboolean
 
 	DragSetDefaultIcon func(
 		colormap *T.GdkColormap,
 		pixmap *T.GdkPixmap,
 		mask *T.GdkBitmap,
-		hotX int,
-		hotY int)
+		hotX, hotY int)
 
 	GcGet func(
 		depth int,
@@ -1165,14 +829,9 @@ var (
 	GcRelease func(
 		gc *T.GdkGC)
 
-	HsvToRgb func(h, s, v float64, r, g, b *float64)
-
 	RgbToHsv func(r, g, b float64, h, s, v *float64)
 
 	IconSizeLookupForSettings func(settings *Settings, size IconSize, width *int, height *int) T.Gboolean
-
-	CheckVersion func(
-		requiredMajor, requiredMinor, requiredMicro uint) string
 
 	ParseArgs func(argc *int, argv ***T.Char) T.Gboolean
 
@@ -1195,22 +854,18 @@ var (
 		argc *int,
 		argv ***T.Char,
 		numChecks int,
-		sizeof_GtkWindow T.SizeT,
-		sizeof_GtkBox T.SizeT)
+		sizeof_GtkWindow, sizeof_GtkBox T.SizeT)
 
 	InitCheckAbiCheck func(
 		argc *int,
 		argv ***T.Char,
 		numChecks int,
-		sizeof_GtkWindow T.SizeT,
-		sizeof_GtkBox T.SizeT) T.Gboolean
+		sizeof_GtkWindow, sizeof_GtkBox T.SizeT) T.Gboolean
 
 	Exit func(
 		errorCode int)
 
 	SetLocale func() string
-
-	DisableSetlocale func()
 
 	GetDefaultLanguage func() *T.PangoLanguage
 
@@ -1243,22 +898,22 @@ var (
 		widget *Widget)
 
 	InitAdd func(
-		function T.GtkFunction,
+		function Function,
 		data T.Gpointer)
 
 	QuitAddDestroy func(
 		mainLevel uint,
-		object *T.GtkObject)
+		object *Object)
 
 	QuitAdd func(
 		mainLevel uint,
-		function T.GtkFunction,
+		function Function,
 		data T.Gpointer) uint
 
 	QuitAddFull func(
 		mainLevel uint,
-		function T.GtkFunction,
-		marshal T.GtkCallbackMarshal,
+		function Function,
+		marshal CallbackMarshal,
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
@@ -1270,13 +925,13 @@ var (
 
 	TimeoutAdd func(
 		interval T.GUint32,
-		function T.GtkFunction,
+		function Function,
 		data T.Gpointer) uint
 
 	TimeoutAddFull func(
 		interval T.GUint32,
-		function T.GtkFunction,
-		marshal T.GtkCallbackMarshal,
+		function Function,
+		marshal CallbackMarshal,
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
@@ -1284,18 +939,18 @@ var (
 		timeoutHandlerId uint)
 
 	IdleAdd func(
-		function T.GtkFunction,
+		function Function,
 		data T.Gpointer) uint
 
 	IdleAddPriority func(
 		priority int,
-		function T.GtkFunction,
+		function Function,
 		data T.Gpointer) uint
 
 	IdleAddFull func(
 		priority int,
-		function T.GtkFunction,
-		marshal T.GtkCallbackMarshal,
+		function Function,
+		marshal CallbackMarshal,
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
@@ -1309,7 +964,7 @@ var (
 		source int,
 		condition T.GdkInputCondition,
 		function T.GdkInputFunction,
-		marshal T.GtkCallbackMarshal,
+		marshal CallbackMarshal,
 		data T.Gpointer,
 		destroy T.GDestroyNotify) uint
 
@@ -1317,7 +972,7 @@ var (
 		inputHandlerId uint)
 
 	KeySnooperInstall func(
-		snooper T.GtkKeySnoopFunc,
+		snooper KeySnoopFunc,
 		funcData T.Gpointer) uint
 
 	KeySnooperRemove func(
@@ -1352,18 +1007,15 @@ var (
 
 	PrintRunPageSetupDialog func(
 		parent *Window,
-		pageSetup *T.GtkPageSetup,
-		settings *PrintSettings) *T.GtkPageSetup
+		pageSetup *PageSetup,
+		settings *PrintSettings) *PageSetup
 
 	PrintRunPageSetupDialogAsync func(
 		parent *Window,
-		pageSetup *T.GtkPageSetup,
+		pageSetup *PageSetup,
 		settings *PrintSettings,
-		doneCb T.GtkPageSetupDoneFunc,
+		doneCb PageSetupDoneFunc,
 		data T.Gpointer)
-
-	VscrollbarNew func(
-		adjustment *Adjustment) *Widget
 
 	ShowUri func(
 		screen *T.GdkScreen,
@@ -1408,7 +1060,7 @@ var (
 		modifiers T.GdkModifierType) T.Gboolean
 
 	TestTextSet func(widget *Widget,
-		string string)
+		str string)
 
 	TestTextGet func(widget *Widget) string
 
@@ -1418,239 +1070,197 @@ var (
 	TestFindLabel func(widget *Widget,
 		labelPattern string) *Widget
 
-	VbuttonBoxGetSpacingDefault func() int
-
-	VbuttonBoxSetSpacingDefault func(spacing int)
-
-	VbuttonBoxGetLayoutDefault func() ButtonBoxStyle
-
-	VbuttonBoxSetLayoutDefault func(layout ButtonBoxStyle)
-
-	VscaleNew func(adjustment *Adjustment) *Widget
-
-	VscaleNewWithRange func(min float64,
-		max float64,
-		step float64) *Widget
-
 	Marshal_BOOLEAN__VOID func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_POINTER_INT_INT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_INT_INT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_INT_INT_UINT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_STRING_STRING_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_ENUM__ENUM func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_INT__POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_INT__POINTER_CHAR_CHAR func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__ENUM_FLOAT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__ENUM_FLOAT_BOOLEAN func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__INT_INT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__INT_INT_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_INT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_STRING_STRING func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT_ENUM func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_INT_INT_POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT_UINT func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__STRING_INT_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_POINTER_UINT_ENUM_ENUM_POINTER func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_POINTER_UINT_UINT_ENUM func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_STRING func(
 		closure *T.GClosure,
 		returnValue *T.GValue,
 		nParamValues uint,
 		paramValues *T.GValue,
-		invocationHint T.Gpointer,
-		marshalData T.Gpointer)
+		invocationHint, marshalData T.Gpointer)
 
-	TypeEnumGetValues func(
-		enumType Type) *T.GtkEnumValue
+	TypeEnumGetValues func(enumType Type) *EnumValue
 
-	TypeFlagsGetValues func(
-		flagsType Type) *T.GtkFlagValue
+	TypeFlagsGetValues func(flagsType Type) *FlagValue
 
 	TypeEnumFindValue func(
 		enumType Type,
-		valueName string) *T.GtkEnumValue
+		valueName string) *EnumValue
 
 	TypeFlagsFindValue func(
 		flagsType Type,
-		valueName string) *T.GtkFlagValue
+		valueName string) *FlagValue
 )

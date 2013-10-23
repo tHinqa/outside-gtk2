@@ -8,6 +8,17 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+type Unit T.Enum
+
+const (
+	UNIT_PIXEL Unit = iota
+	UNIT_POINTS
+	UNIT_INCH
+	UNIT_MM
+)
+
+var UnitGetType func() T.GType
+
 type UIManager struct {
 	Parent T.GObject
 	_      *struct{}
@@ -81,3 +92,13 @@ func (u *UIManager) RemoveUi(mergeId uint) { uiManagerRemoveUi(u, mergeId) }
 func (u *UIManager) GetUi() string         { return uiManagerGetUi(u) }
 func (u *UIManager) EnsureUpdate()         { uiManagerEnsureUpdate(u) }
 func (u *UIManager) NewMergeId() uint      { return uiManagerNewMergeId(u) }
+
+type UpdateType T.Enum
+
+const (
+	UPDATE_CONTINUOUS UpdateType = iota
+	UPDATE_DISCONTINUOUS
+	UPDATE_DELAYED
+)
+
+var UpdateTypeGetType func() T.GType

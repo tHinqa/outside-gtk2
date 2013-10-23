@@ -29,7 +29,7 @@ type Label struct {
 	EffectiveAttrs *T.PangoAttrList
 	Layout         *T.PangoLayout
 	MnemonicWidget *Widget
-	MnemonicWindow *T.GtkWindow
+	MnemonicWindow *Window
 	SelectInfo     *LabelSelectionInfo
 }
 
@@ -45,7 +45,7 @@ var (
 	labelGetAttributes         func(l *Label) *T.PangoAttrList
 	labelGetCurrentUri         func(l *Label) string
 	labelGetEllipsize          func(l *Label) T.PangoEllipsizeMode
-	labelGetJustify            func(l *Label) T.GtkJustification
+	labelGetJustify            func(l *Label) Justification
 	labelGetLabel              func(l *Label) string
 	labelGetLayout             func(l *Label) *T.PangoLayout
 	labelGetLayoutOffsets      func(l *Label, x, y *int)
@@ -67,7 +67,7 @@ var (
 	labelSetAngle              func(l *Label, angle float64)
 	labelSetAttributes         func(l *Label, attrs *T.PangoAttrList)
 	labelSetEllipsize          func(l *Label, mode T.PangoEllipsizeMode)
-	labelSetJustify            func(l *Label, jtype T.GtkJustification)
+	labelSetJustify            func(l *Label, jtype Justification)
 	labelSetLabel              func(l *Label, str string)
 	labelSetLineWrap           func(l *Label, wrap T.Gboolean)
 	labelSetLineWrapMode       func(l *Label, wrapMode T.PangoWrapMode)
@@ -91,7 +91,7 @@ func (l *Label) GetAngle() float64                  { return labelGetAngle(l) }
 func (l *Label) GetAttributes() *T.PangoAttrList    { return labelGetAttributes(l) }
 func (l *Label) GetCurrentUri() string              { return labelGetCurrentUri(l) }
 func (l *Label) GetEllipsize() T.PangoEllipsizeMode { return labelGetEllipsize(l) }
-func (l *Label) GetJustify() T.GtkJustification     { return labelGetJustify(l) }
+func (l *Label) GetJustify() Justification          { return labelGetJustify(l) }
 func (l *Label) GetLabel() string                   { return labelGetLabel(l) }
 func (l *Label) GetLayout() *T.PangoLayout          { return labelGetLayout(l) }
 func (l *Label) GetLayoutOffsets(x, y *int)         { labelGetLayoutOffsets(l, x, y) }
@@ -115,7 +115,7 @@ func (l *Label) SelectRegion(startOffset, endOffset int)  { labelSelectRegion(l,
 func (l *Label) SetAngle(angle float64)                   { labelSetAngle(l, angle) }
 func (l *Label) SetAttributes(attrs *T.PangoAttrList)     { labelSetAttributes(l, attrs) }
 func (l *Label) SetEllipsize(mode T.PangoEllipsizeMode)   { labelSetEllipsize(l, mode) }
-func (l *Label) SetJustify(jtype T.GtkJustification)      { labelSetJustify(l, jtype) }
+func (l *Label) SetJustify(jtype Justification)           { labelSetJustify(l, jtype) }
 func (l *Label) SetLabel(str string)                      { labelSetLabel(l, str) }
 func (l *Label) SetLineWrap(wrap T.Gboolean)              { labelSetLineWrap(l, wrap) }
 func (l *Label) SetLineWrapMode(wrapMode T.PangoWrapMode) { labelSetLineWrapMode(l, wrapMode) }
@@ -134,6 +134,15 @@ func (l *Label) SetTrackVisitedLinks(trackLinks T.Gboolean) { labelSetTrackVisit
 func (l *Label) SetUseMarkup(setting T.Gboolean)            { labelSetUseMarkup(l, setting) }
 func (l *Label) SetUseUnderline(setting T.Gboolean)         { labelSetUseUnderline(l, setting) }
 func (l *Label) SetWidthChars(nChars int)                   { labelSetWidthChars(l, nChars) }
+
+type LabelClass struct {
+	Parent        MiscClass
+	MoveCursor    func(label *Label, step MovementStep, count int, extendSelection T.Gboolean)
+	CopyClipboard func(label *Label)
+	PopulatePopup func(label *Label, menu *Menu)
+	Activate_link func(label *Label, uri *T.Gchar) T.Gboolean
+	_, _, _       func()
+}
 
 type Layout struct {
 	Container    Container
@@ -186,7 +195,7 @@ type ListStore struct {
 	SortList           *T.GList
 	NColumns           int
 	SortColumnId       int
-	Order              T.GtkSortType
+	Order              SortType
 	ColumnHeaders      *T.GType
 	Length             int
 	DefaultSortFunc    TreeIterCompareFunc
@@ -301,7 +310,7 @@ type List struct {
 	Vtimer            uint
 	Anchor            int
 	DragPos           int
-	AnchorState       T.GtkStateType
+	AnchorState       StateType
 	Bits              uint
 	// SelectionMode : 2
 	// DragSelection : 1
@@ -324,14 +333,14 @@ var (
 	listSelectChild        func(l *List, child *Widget)
 	listUnselectChild      func(l *List, child *Widget)
 	listChildPosition      func(l *List, child *Widget) int
-	listSetSelectionMode   func(l *List, mode T.GtkSelectionMode)
-	listExtendSelection    func(l *List, scrollType T.GtkScrollType, position float32, autoStartSelection T.Gboolean)
+	listSetSelectionMode   func(l *List, mode SelectionMode)
+	listExtendSelection    func(l *List, scrollType ScrollType, position float32, autoStartSelection T.Gboolean)
 	listStartSelection     func(l *List)
 	listEndSelection       func(l *List)
 	listSelectAll          func(l *List)
 	listUnselectAll        func(l *List)
-	listScrollHorizontal   func(l *List, scrollType T.GtkScrollType, position float32)
-	listScrollVertical     func(l *List, scrollType T.GtkScrollType, position float32)
+	listScrollHorizontal   func(l *List, scrollType ScrollType, position float32)
+	listScrollVertical     func(l *List, scrollType ScrollType, position float32)
 	listToggleAddMode      func(l *List)
 	listToggleFocusRow     func(l *List)
 	listToggleRow          func(l *List, item *Widget)
@@ -344,31 +353,31 @@ func (l *List) ChildPosition(child *Widget) int { return listChildPosition(l, ch
 func (l *List) ClearItems(start int, end int)   { listClearItems(l, start, end) }
 func (l *List) EndDragSelection()               { listEndDragSelection(l) }
 func (l *List) EndSelection()                   { listEndSelection(l) }
-func (l *List) ExtendSelection(scrollType T.GtkScrollType, position float32, autoStartSelection T.Gboolean) {
+func (l *List) ExtendSelection(scrollType ScrollType, position float32, autoStartSelection T.Gboolean) {
 	listExtendSelection(l, scrollType, position, autoStartSelection)
 }
 func (l *List) InsertItems(items *T.GList, position int) { listInsertItems(l, items, position) }
 func (l *List) PrependItems(items *T.GList)              { listPrependItems(l, items) }
 func (l *List) RemoveItems(items *T.GList)               { listRemoveItems(l, items) }
 func (l *List) RemoveItemsNoUnref(items *T.GList)        { listRemoveItemsNoUnref(l, items) }
-func (l *List) ScrollHorizontal(scrollType T.GtkScrollType, position float32) {
+func (l *List) ScrollHorizontal(scrollType ScrollType, position float32) {
 	listScrollHorizontal(l, scrollType, position)
 }
-func (l *List) ScrollVertical(scrollType T.GtkScrollType, position float32) {
+func (l *List) ScrollVertical(scrollType ScrollType, position float32) {
 	listScrollVertical(l, scrollType, position)
 }
-func (l *List) SelectAll()                               { listSelectAll(l) }
-func (l *List) SelectChild(child *Widget)                { listSelectChild(l, child) }
-func (l *List) SelectItem(item int)                      { listSelectItem(l, item) }
-func (l *List) SetSelectionMode(mode T.GtkSelectionMode) { listSetSelectionMode(l, mode) }
-func (l *List) StartSelection()                          { listStartSelection(l) }
-func (l *List) ToggleAddMode()                           { listToggleAddMode(l) }
-func (l *List) ToggleFocusRow()                          { listToggleFocusRow(l) }
-func (l *List) ToggleRow(item *Widget)                   { listToggleRow(l, item) }
-func (l *List) UndoSelection()                           { listUndoSelection(l) }
-func (l *List) UnselectAll()                             { listUnselectAll(l) }
-func (l *List) UnselectChild(child *Widget)              { listUnselectChild(l, child) }
-func (l *List) UnselectItem(item int)                    { listUnselectItem(l, item) }
+func (l *List) SelectAll()                          { listSelectAll(l) }
+func (l *List) SelectChild(child *Widget)           { listSelectChild(l, child) }
+func (l *List) SelectItem(item int)                 { listSelectItem(l, item) }
+func (l *List) SetSelectionMode(mode SelectionMode) { listSetSelectionMode(l, mode) }
+func (l *List) StartSelection()                     { listStartSelection(l) }
+func (l *List) ToggleAddMode()                      { listToggleAddMode(l) }
+func (l *List) ToggleFocusRow()                     { listToggleFocusRow(l) }
+func (l *List) ToggleRow(item *Widget)              { listToggleRow(l, item) }
+func (l *List) UndoSelection()                      { listUndoSelection(l) }
+func (l *List) UnselectAll()                        { listUnselectAll(l) }
+func (l *List) UnselectChild(child *Widget)         { listUnselectChild(l, child) }
+func (l *List) UnselectItem(item int)               { listUnselectItem(l, item) }
 
 type ListItem struct{ Item Item }
 

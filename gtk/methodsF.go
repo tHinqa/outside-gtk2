@@ -46,8 +46,8 @@ var (
 	FileChooserErrorGetType        func() T.GType
 	FileChooserWidgetGetType       func() T.GType
 
-	FileChooserDialogNew            func(title string, parent *T.GtkWindow, action FileChooserAction, firstButtonText string, v ...VArg) *Widget
-	FileChooserDialogNewWithBackend func(title string, parent *T.GtkWindow, action FileChooserAction, backend string, firstButtonText string, v ...VArg) *Widget
+	FileChooserDialogNew            func(title string, parent *Window, action FileChooserAction, firstButtonText string, v ...VArg) *Widget
+	FileChooserDialogNewWithBackend func(title string, parent *Window, action FileChooserAction, backend string, firstButtonText string, v ...VArg) *Widget
 	FileChooserWidgetNew            func(action FileChooserAction) *Widget
 	FileChooserWidgetNewWithBackend func(action FileChooserAction, backend string) *Widget
 
@@ -358,6 +358,8 @@ func (f *Fixed) Move(widget *Widget, x, y int)     { fixedMove(f, widget, x, y) 
 func (f *Fixed) Put(widget *Widget, x, y int)      { fixedPut(f, widget, x, y) }
 func (f *Fixed) SetHasWindow(hasWindow T.Gboolean) { fixedSetHasWindow(f, hasWindow) }
 
+type FlagValue T.GFlagsValue
+
 type FontButton struct {
 	Button Button
 	_      *struct{}
@@ -398,7 +400,7 @@ func (f *FontButton) SetUseFont(useFont T.Gboolean)     { fontButtonSetUseFont(f
 func (f *FontButton) SetUseSize(useSize T.Gboolean)     { fontButtonSetUseSize(f, useSize) }
 
 type FontSelection struct {
-	Parent_instance  T.GtkVBox
+	Parent_instance  VBox
 	Font_entry       *Widget
 	Family_list      *Widget
 	Font_style_entry *Widget
@@ -497,7 +499,7 @@ type Frame struct {
 	ShadowType      int16
 	LabelXalign     float32
 	LabelYalign     float32
-	ChildAllocation T.GtkAllocation
+	ChildAllocation Allocation
 }
 
 var (
@@ -507,18 +509,20 @@ var (
 	frameGetLabel       func(f *Frame) string
 	frameGetLabelAlign  func(f *Frame, xalign, yalign *float32)
 	frameGetLabelWidget func(f *Frame) *Widget
-	frameGetShadowType  func(f *Frame) T.GtkShadowType
+	frameGetShadowType  func(f *Frame) ShadowType
 	frameSetLabel       func(f *Frame, label string)
 	frameSetLabelAlign  func(f *Frame, xalign, yalign float32)
 	frameSetLabelWidget func(f *Frame, labelWidget *Widget)
-	frameSetShadowType  func(f *Frame, t T.GtkShadowType)
+	frameSetShadowType  func(f *Frame, t ShadowType)
 )
 
 func (f *Frame) GetLabel() string                      { return frameGetLabel(f) }
 func (f *Frame) GetLabelAlign(xalign, yalign *float32) { frameGetLabelAlign(f, xalign, yalign) }
 func (f *Frame) GetLabelWidget() *Widget               { return frameGetLabelWidget(f) }
-func (f *Frame) GetShadowType() T.GtkShadowType        { return frameGetShadowType(f) }
+func (f *Frame) GetShadowType() ShadowType             { return frameGetShadowType(f) }
 func (f *Frame) SetLabel(label string)                 { frameSetLabel(f, label) }
 func (f *Frame) SetLabelAlign(xalign, yalign float32)  { frameSetLabelAlign(f, xalign, yalign) }
 func (f *Frame) SetLabelWidget(labelWidget *Widget)    { frameSetLabelWidget(f, labelWidget) }
-func (f *Frame) SetShadowType(t T.GtkShadowType)       { frameSetShadowType(f, t) }
+func (f *Frame) SetShadowType(t ShadowType)            { frameSetShadowType(f, t) }
+
+type Function func(data T.Gpointer) T.Gboolean

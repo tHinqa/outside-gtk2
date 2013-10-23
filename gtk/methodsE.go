@@ -417,6 +417,8 @@ func (e *EntryCompletion) SetPopupSingleMatch(popupSingleMatch T.Gboolean) {
 }
 func (e *EntryCompletion) SetTextColumn(column int) { entryCompletionSetTextColumn(e, column) }
 
+type EnumValue T.GEnumValue
+
 type EventBox struct{ Bin Bin }
 
 var (

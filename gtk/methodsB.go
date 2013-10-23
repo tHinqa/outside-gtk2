@@ -64,8 +64,8 @@ var (
 	BindingSetNew func(setName string) *BindingSet
 
 	BindingParseBinding   func(scanner *T.GScanner) uint
-	BindingsActivate      func(object *T.GtkObject, keyval uint, modifiers T.GdkModifierType) T.Gboolean
-	BindingsActivateEvent func(object *T.GtkObject, event *T.GdkEventKey) T.Gboolean
+	BindingsActivate      func(object *Object, keyval uint, modifiers T.GdkModifierType) T.Gboolean
+	BindingsActivateEvent func(object *Object, event *T.GdkEventKey) T.Gboolean
 
 	BindingSetByClass func(objectClass T.Gpointer) *BindingSet
 	BindingSetFind    func(setName string) *BindingSet
@@ -75,8 +75,8 @@ var (
 	bindingEntryClear      func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
 	bindingEntryRemove     func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
 	bindingEntrySkip       func(b *BindingSet, keyval uint, modifiers T.GdkModifierType)
-	bindingSetActivate     func(b *BindingSet, keyval uint, modifiers T.GdkModifierType, object *T.GtkObject) T.Gboolean
-	bindingSetAddPath      func(b *BindingSet, pathType T.GtkPathType, pathPattern string, priority T.GtkPathPriorityType)
+	bindingSetActivate     func(b *BindingSet, keyval uint, modifiers T.GdkModifierType, object *Object) T.Gboolean
+	bindingSetAddPath      func(b *BindingSet, pathType PathType, pathPattern string, priority PathPriorityType)
 )
 
 func (b *BindingSet) EntryAddSignal(keyval uint, modifiers T.GdkModifierType, signalName string, nArgs uint, varg ...VArg) {
@@ -94,10 +94,10 @@ func (b *BindingSet) EntryRemove(keyval uint, modifiers T.GdkModifierType) {
 func (b *BindingSet) EntrySkip(keyval uint, modifiers T.GdkModifierType) {
 	bindingEntrySkip(b, keyval, modifiers)
 }
-func (b *BindingSet) Activate(keyval uint, modifiers T.GdkModifierType, object *T.GtkObject) T.Gboolean {
+func (b *BindingSet) Activate(keyval uint, modifiers T.GdkModifierType, object *Object) T.Gboolean {
 	return bindingSetActivate(b, keyval, modifiers, object)
 }
-func (b *BindingSet) AddPath(pathType T.GtkPathType, pathPattern string, priority T.GtkPathPriorityType) {
+func (b *BindingSet) AddPath(pathType PathType, pathPattern string, priority PathPriorityType) {
 	bindingSetAddPath(b, pathType, pathPattern, priority)
 }
 
@@ -137,9 +137,9 @@ var (
 	boxPackEndDefaults   func(b *Box, widget *Widget)
 	boxPackStart         func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint)
 	boxPackStartDefaults func(b *Box, widget *Widget)
-	boxQueryChildPacking func(b *Box, child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *T.GtkPackType)
+	boxQueryChildPacking func(b *Box, child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *PackType)
 	boxReorderChild      func(b *Box, child *Widget, position int)
-	boxSetChildPacking   func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType T.GtkPackType)
+	boxSetChildPacking   func(b *Box, child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType PackType)
 	boxSetHomogeneous    func(b *Box, homogeneous T.Gboolean)
 	boxSetSpacing        func(b *Box, spacing int)
 )
@@ -154,11 +154,11 @@ func (b *Box) PackStart(child *Widget, expand T.Gboolean, fill T.Gboolean, paddi
 	boxPackStart(b, child, expand, fill, padding)
 }
 func (b *Box) PackStartDefaults(widget *Widget) { boxPackStartDefaults(b, widget) }
-func (b *Box) QueryChildPacking(child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *T.GtkPackType) {
+func (b *Box) QueryChildPacking(child *Widget, expand *T.Gboolean, fill *T.Gboolean, padding *uint, packType *PackType) {
 	boxQueryChildPacking(b, child, expand, fill, padding, packType)
 }
 func (b *Box) ReorderChild(child *Widget, position int) { boxReorderChild(b, child, position) }
-func (b *Box) SetChildPacking(child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType T.GtkPackType) {
+func (b *Box) SetChildPacking(child *Widget, expand T.Gboolean, fill T.Gboolean, padding uint, packType PackType) {
 	boxSetChildPacking(b, child, expand, fill, padding, packType)
 }
 func (b *Box) SetHomogeneous(homogeneous T.Gboolean) { boxSetHomogeneous(b, homogeneous) }
@@ -307,9 +307,9 @@ var (
 	buttonGetEventWindow   func(b *Button) *T.GdkWindow
 	buttonGetFocusOnClick  func(b *Button) T.Gboolean
 	buttonGetImage         func(b *Button) *Widget
-	buttonGetImagePosition func(b *Button) T.GtkPositionType
+	buttonGetImagePosition func(b *Button) PositionType
 	buttonGetLabel         func(b *Button) string
-	buttonGetRelief        func(b *Button) T.GtkReliefStyle
+	buttonGetRelief        func(b *Button) ReliefStyle
 	buttonGetUseStock      func(b *Button) T.Gboolean
 	buttonGetUseUnderline  func(b *Button) T.Gboolean
 	buttonLeave            func(b *Button)
@@ -318,35 +318,35 @@ var (
 	buttonSetAlignment     func(b *Button, xalign, yalign float32)
 	buttonSetFocusOnClick  func(b *Button, focusOnClick T.Gboolean)
 	buttonSetImage         func(b *Button, image *Widget)
-	buttonSetImagePosition func(b *Button, position T.GtkPositionType)
+	buttonSetImagePosition func(b *Button, position PositionType)
 	buttonSetLabel         func(b *Button, label string)
-	buttonSetRelief        func(b *Button, newstyle T.GtkReliefStyle)
+	buttonSetRelief        func(b *Button, newstyle ReliefStyle)
 	buttonSetUseStock      func(b *Button, useStock T.Gboolean)
 	buttonSetUseUnderline  func(b *Button, useUnderline T.Gboolean)
 )
 
-func (b *Button) Clicked()                                    { buttonClicked(b) }
-func (b *Button) Enter()                                      { buttonEnter(b) }
-func (b *Button) GetAlignment(xalign, yalign *float32)        { buttonGetAlignment(b, xalign, yalign) }
-func (b *Button) GetEventWindow() *T.GdkWindow                { return buttonGetEventWindow(b) }
-func (b *Button) GetFocusOnClick() T.Gboolean                 { return buttonGetFocusOnClick(b) }
-func (b *Button) GetImage() *Widget                           { return buttonGetImage(b) }
-func (b *Button) GetImagePosition() T.GtkPositionType         { return buttonGetImagePosition(b) }
-func (b *Button) GetLabel() string                            { return buttonGetLabel(b) }
-func (b *Button) GetRelief() T.GtkReliefStyle                 { return buttonGetRelief(b) }
-func (b *Button) GetUseStock() T.Gboolean                     { return buttonGetUseStock(b) }
-func (b *Button) GetUseUnderline() T.Gboolean                 { return buttonGetUseUnderline(b) }
-func (b *Button) Leave()                                      { buttonLeave(b) }
-func (b *Button) Pressed()                                    { buttonPressed(b) }
-func (b *Button) Released()                                   { buttonReleased(b) }
-func (b *Button) SetAlignment(xalign, yalign float32)         { buttonSetAlignment(b, xalign, yalign) }
-func (b *Button) SetFocusOnClick(focusOnClick T.Gboolean)     { buttonSetFocusOnClick(b, focusOnClick) }
-func (b *Button) SetImage(image *Widget)                      { buttonSetImage(b, image) }
-func (b *Button) SetImagePosition(position T.GtkPositionType) { buttonSetImagePosition(b, position) }
-func (b *Button) SetLabel(label string)                       { buttonSetLabel(b, label) }
-func (b *Button) SetRelief(newstyle T.GtkReliefStyle)         { buttonSetRelief(b, newstyle) }
-func (b *Button) SetUseStock(useStock T.Gboolean)             { buttonSetUseStock(b, useStock) }
-func (b *Button) SetUseUnderline(useUnderline T.Gboolean)     { buttonSetUseUnderline(b, useUnderline) }
+func (b *Button) Clicked()                                { buttonClicked(b) }
+func (b *Button) Enter()                                  { buttonEnter(b) }
+func (b *Button) GetAlignment(xalign, yalign *float32)    { buttonGetAlignment(b, xalign, yalign) }
+func (b *Button) GetEventWindow() *T.GdkWindow            { return buttonGetEventWindow(b) }
+func (b *Button) GetFocusOnClick() T.Gboolean             { return buttonGetFocusOnClick(b) }
+func (b *Button) GetImage() *Widget                       { return buttonGetImage(b) }
+func (b *Button) GetImagePosition() PositionType          { return buttonGetImagePosition(b) }
+func (b *Button) GetLabel() string                        { return buttonGetLabel(b) }
+func (b *Button) GetRelief() ReliefStyle                  { return buttonGetRelief(b) }
+func (b *Button) GetUseStock() T.Gboolean                 { return buttonGetUseStock(b) }
+func (b *Button) GetUseUnderline() T.Gboolean             { return buttonGetUseUnderline(b) }
+func (b *Button) Leave()                                  { buttonLeave(b) }
+func (b *Button) Pressed()                                { buttonPressed(b) }
+func (b *Button) Released()                               { buttonReleased(b) }
+func (b *Button) SetAlignment(xalign, yalign float32)     { buttonSetAlignment(b, xalign, yalign) }
+func (b *Button) SetFocusOnClick(focusOnClick T.Gboolean) { buttonSetFocusOnClick(b, focusOnClick) }
+func (b *Button) SetImage(image *Widget)                  { buttonSetImage(b, image) }
+func (b *Button) SetImagePosition(position PositionType)  { buttonSetImagePosition(b, position) }
+func (b *Button) SetLabel(label string)                   { buttonSetLabel(b, label) }
+func (b *Button) SetRelief(newstyle ReliefStyle)          { buttonSetRelief(b, newstyle) }
+func (b *Button) SetUseStock(useStock T.Gboolean)         { buttonSetUseStock(b, useStock) }
+func (b *Button) SetUseUnderline(useUnderline T.Gboolean) { buttonSetUseUnderline(b, useUnderline) }
 
 type ButtonBox struct {
 	Box            Box
@@ -395,3 +395,14 @@ func (b *ButtonBox) SetChildSize(minWidth, minHeight int) {
 	buttonBoxSetChildSize(b, minWidth, minHeight)
 }
 func (b *ButtonBox) SetLayout(layoutStyle ButtonBoxStyle) { buttonBoxSetLayout(b, layoutStyle) }
+
+type ButtonsType T.Enum
+
+const (
+	BUTTONS_NONE ButtonsType = iota
+	BUTTONS_OK
+	BUTTONS_CLOSE
+	BUTTONS_CANCEL
+	BUTTONS_YES_NO
+	BUTTONS_OK_CANCEL
+)

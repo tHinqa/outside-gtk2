@@ -12,7 +12,7 @@ type HandleBox struct {
 	Bin         Bin
 	BinWindow   *T.GdkWindow
 	FloatWindow *T.GdkWindow
-	ShadowType  T.GtkShadowType
+	ShadowType  ShadowType
 	Bits        uint
 	// HandlePosition : 2;
 	// FloatWindowMapped : 1;
@@ -22,8 +22,8 @@ type HandleBox struct {
 	// SnapEdge : 3 // signed?!
 	DeskoffX         int
 	DeskoffY         int
-	AttachAllocation T.GtkAllocation
-	FloatAllocation  T.GtkAllocation
+	AttachAllocation Allocation
+	FloatAllocation  Allocation
 }
 
 var (
@@ -31,28 +31,23 @@ var (
 	HandleBoxNew     func() *Widget
 
 	handleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
-	handleBoxGetHandlePosition func(h *HandleBox) T.GtkPositionType
-	handleBoxGetShadowType     func(h *HandleBox) T.GtkShadowType
-	handleBoxGetSnapEdge       func(h *HandleBox) T.GtkPositionType
-	handleBoxSetHandlePosition func(h *HandleBox, position T.GtkPositionType)
-	handleBoxSetShadowType     func(h *HandleBox, t T.GtkShadowType)
-	handleBoxSetSnapEdge       func(h *HandleBox, edge T.GtkPositionType)
+	handleBoxGetHandlePosition func(h *HandleBox) PositionType
+	handleBoxGetShadowType     func(h *HandleBox) ShadowType
+	handleBoxGetSnapEdge       func(h *HandleBox) PositionType
+	handleBoxSetHandlePosition func(h *HandleBox, position PositionType)
+	handleBoxSetShadowType     func(h *HandleBox, t ShadowType)
+	handleBoxSetSnapEdge       func(h *HandleBox, edge PositionType)
 )
 
 func (h *HandleBox) GetChildDetached() T.Gboolean         { return handleBoxGetChildDetached(h) }
-func (h *HandleBox) GetHandlePosition() T.GtkPositionType { return handleBoxGetHandlePosition(h) }
-func (h *HandleBox) GetShadowType() T.GtkShadowType       { return handleBoxGetShadowType(h) }
-func (h *HandleBox) GetSnapEdge() T.GtkPositionType       { return handleBoxGetSnapEdge(h) }
-func (h *HandleBox) SetHandlePosition(position T.GtkPositionType) {
+func (h *HandleBox) GetHandlePosition() PositionType { return handleBoxGetHandlePosition(h) }
+func (h *HandleBox) GetShadowType() ShadowType       { return handleBoxGetShadowType(h) }
+func (h *HandleBox) GetSnapEdge() PositionType       { return handleBoxGetSnapEdge(h) }
+func (h *HandleBox) SetHandlePosition(position PositionType) {
 	handleBoxSetHandlePosition(h, position)
 }
-func (h *HandleBox) SetShadowType(t T.GtkShadowType)    { handleBoxSetShadowType(h, t) }
-func (h *HandleBox) SetSnapEdge(edge T.GtkPositionType) { handleBoxSetSnapEdge(h, edge) }
-
-type HSV struct {
-	Parent Widget
-	_      T.Gpointer
-}
+func (h *HandleBox) SetShadowType(t ShadowType)    { handleBoxSetShadowType(h, t) }
+func (h *HandleBox) SetSnapEdge(edge PositionType) { handleBoxSetSnapEdge(h, edge) }
 
 type HBox struct {
 	Box Box
@@ -63,6 +58,41 @@ var (
 
 	HboxNew func(homogeneous T.Gboolean, spacing int) *Widget
 )
+var (
+	HbuttonBoxGetType func() T.GType
+	HbuttonBoxNew     func() *Widget
+
+	HbuttonBoxGetSpacingDefault func() int
+	HbuttonBoxGetLayoutDefault  func() ButtonBoxStyle
+	HbuttonBoxSetSpacingDefault func(spacing int)
+	HbuttonBoxSetLayoutDefault  func(layout ButtonBoxStyle)
+)
+var (
+	HpanedGetType func() T.GType
+	HpanedNew     func() *Widget
+)
+var (
+	HrulerGetType func() T.GType
+	HrulerNew     func() *Widget
+)
+var (
+	HscaleGetType      func() T.GType
+	HscaleNew          func(adjustment *Adjustment) *Widget
+	HscaleNewWithRange func(min, max, step float64) *Widget
+)
+var (
+	HscrollbarGetType func() T.GType
+	HscrollbarNew     func(adjustment *Adjustment) *Widget
+)
+var (
+	HseparatorGetType func() T.GType
+	HseparatorNew     func() *Widget
+)
+
+type HSV struct {
+	Parent Widget
+	_      T.Gpointer
+}
 
 var (
 	HsvGetType func() T.GType
@@ -80,3 +110,5 @@ func (hsv *HSV) GetMetrics(size, ringWidth *int) { hsvGetMetrics(hsv, size, ring
 func (hsv *HSV) IsAdjusting() T.Gboolean         { return hsvIsAdjusting(hsv) }
 func (hsv *HSV) SetColor(h, s, v float64)        { hsvSetColor(hsv, h, s, v) }
 func (hsv *HSV) SetMetrics(size, ringWidth int)  { hsvSetMetrics(hsv, size, ringWidth) }
+
+var HsvToRgb func(h, s, v float64, r, g, b *float64)
