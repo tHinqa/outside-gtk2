@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -18,7 +19,7 @@ const (
 	PACK_DIRECTION_BTT
 )
 
-var PackDirectionGetType func() T.GType
+var PackDirectionGetType func() O.Type
 
 type PackType Enum
 
@@ -27,7 +28,7 @@ const (
 	PACK_END
 )
 
-var PackTypeGetType func() T.GType
+var PackTypeGetType func() O.Type
 
 type PageOrientation Enum
 
@@ -38,7 +39,7 @@ const (
 	PAGE_ORIENTATION_REVERSE_LANDSCAPE
 )
 
-var PageOrientationGetType func() T.GType
+var PageOrientationGetType func() O.Type
 
 type PageRange struct {
 	Start int
@@ -53,12 +54,12 @@ const (
 	PAGE_SET_ODD
 )
 
-var PageSetGetType func() T.GType
+var PageSetGetType func() O.Type
 
 type PageSetup struct{}
 
 var (
-	PageSetupGetType        func() T.GType
+	PageSetupGetType        func() O.Type
 	PageSetupNew            func() *PageSetup
 	PageSetupNewFromFile    func(fileName string, error **T.GError) *PageSetup
 	PageSetupNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, error **T.GError) *PageSetup
@@ -162,7 +163,7 @@ type Paned struct {
 }
 
 var (
-	PanedGetType func() T.GType
+	PanedGetType func() O.Type
 
 	panedAdd1            func(p *Paned, child *Widget)
 	panedAdd2            func(p *Paned, child *Widget)
@@ -196,7 +197,7 @@ func (p *Paned) SetPosition(position int) { panedSetPosition(p, position) }
 type PaperSize struct{}
 
 var (
-	PaperSizeGetType        func() T.GType
+	PaperSizeGetType        func() O.Type
 	PaperSizeNew            func(name string) *PaperSize
 	PaperSizeNewCustom      func(name, displayName string, width, height float64, unit Unit) *PaperSize
 	PaperSizeNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, err **T.GError) *PaperSize
@@ -262,7 +263,7 @@ const (
 	PATH_PRIO_HIGHEST PathPriorityType = iota*2 - 1
 )
 
-var PathPriorityTypeGetType func() T.GType
+var PathPriorityTypeGetType func() O.Type
 
 type PathType Enum
 
@@ -272,7 +273,7 @@ const (
 	PATH_CLASS
 )
 
-var PathTypeGetType func() T.GType
+var PathTypeGetType func() O.Type
 
 type Pixmap struct {
 	Misc              Misc
@@ -283,7 +284,7 @@ type Pixmap struct {
 }
 
 var (
-	PixmapGetType func() T.GType
+	PixmapGetType func() O.Type
 	PixmapNew     func(pixmap *D.Pixmap, mask *T.GdkBitmap) *Widget
 
 	pixmapGet                 func(p *Pixmap, val **D.Pixmap, mask **T.GdkBitmap)
@@ -305,7 +306,7 @@ type Plug struct {
 }
 
 var (
-	PlugGetType       func() T.GType
+	PlugGetType       func() O.Type
 	PlugNew           func(socketId T.GdkNativeWindow) *Widget
 	PlugNewForDisplay func(display *D.Display, socketId T.GdkNativeWindow) *Widget
 
@@ -332,7 +333,7 @@ const (
 	POLICY_NEVER
 )
 
-var PolicyTypeGetType func() T.GType
+var PolicyTypeGetType func() O.Type
 
 type PositionType Enum
 
@@ -343,7 +344,7 @@ const (
 	POS_BOTTOM
 )
 
-var PositionTypeGetType func() T.GType
+var PositionTypeGetType func() O.Type
 
 type Preview struct {
 	Widget       Widget
@@ -359,7 +360,7 @@ type Preview struct {
 }
 
 var (
-	PreviewGetType func() T.GType
+	PreviewGetType func() O.Type
 	PreviewNew     func(t PreviewType) *Widget
 
 	PreviewGetCmap        func() *D.Colormap
@@ -399,12 +400,12 @@ const (
 	PREVIEW_GRAYSCALE
 )
 
-var PreviewTypeGetType func() T.GType
+var PreviewTypeGetType func() O.Type
 
 type PrintContext struct{}
 
 var (
-	PrintContextGetType func() T.GType
+	PrintContextGetType func() O.Type
 
 	printContextCreatePangoContext func(p *PrintContext) *T.PangoContext
 	printContextCreatePangoLayout  func(p *PrintContext) *T.PangoLayout
@@ -443,7 +444,7 @@ const (
 	PRINT_DUPLEX_VERTICAL
 )
 
-var PrintDuplexGetType func() T.GType
+var PrintDuplexGetType func() O.Type
 
 type PrintError Enum
 
@@ -455,7 +456,7 @@ const (
 )
 
 var (
-	PrintErrorGetType func() T.GType
+	PrintErrorGetType func() O.Type
 
 	PrintErrorQuark func() T.GQuark
 )
@@ -466,10 +467,10 @@ type PrintOperation struct {
 }
 
 var (
-	PrintOperationGetType       func() T.GType
+	PrintOperationGetType       func() O.Type
 	PrintOperationNew           func() *PrintOperation
-	PrintOperationActionGetType func() T.GType
-	PrintOperationResultGetType func() T.GType
+	PrintOperationActionGetType func() O.Type
+	PrintOperationResultGetType func() O.Type
 
 	printOperationCancel              func(p *PrintOperation)
 	printOperationDrawPageFinish      func(p *PrintOperation)
@@ -570,7 +571,7 @@ const (
 type PrintOperationPreview struct{}
 
 var (
-	PrintOperationPreviewGetType func() T.GType
+	PrintOperationPreviewGetType func() O.Type
 
 	printOperationPreviewEndPreview func(p *PrintOperationPreview)
 	printOperationPreviewIsSelected func(p *PrintOperationPreview, pageNr int) T.Gboolean
@@ -601,7 +602,7 @@ const (
 	PRINT_PAGES_SELECTION
 )
 
-var PrintPagesGetType func() T.GType
+var PrintPagesGetType func() O.Type
 
 type (
 	PrintSettings struct{}
@@ -618,7 +619,7 @@ const (
 	PRINT_QUALITY_DRAFT
 )
 
-var PrintQualityGetType func() T.GType
+var PrintQualityGetType func() O.Type
 var (
 	PrintRunPageSetupDialog func(
 		parent *Window,
@@ -633,7 +634,7 @@ var (
 		data T.Gpointer)
 )
 var (
-	PrintSettingsGetType        func() T.GType
+	PrintSettingsGetType        func() O.Type
 	PrintSettingsNew            func() *PrintSettings
 	PrintSettingsNewFromFile    func(fileName string, err **T.GError) *PrintSettings
 	PrintSettingsNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, err **T.GError) *PrintSettings
@@ -837,7 +838,7 @@ const (
 	PRINT_STATUS_FINISHED_ABORTED
 )
 
-var PrintStatusGetType func() T.GType
+var PrintStatusGetType func() O.Type
 
 type Progress struct {
 	Widget          Widget
@@ -852,10 +853,10 @@ type Progress struct {
 	// UseTextFormat : 1
 }
 
-var PrivateFlagsGetType func() T.GType //TODO(t):Use?
+var PrivateFlagsGetType func() O.Type //TODO(t):Use?
 
 var (
-	ProgressGetType func() T.GType
+	ProgressGetType func() O.Type
 
 	progressSetShowText            func(p *Progress, showText T.Gboolean)
 	progressSetTextAlignment       func(p *Progress, xAlign, yAlign float32)
@@ -922,12 +923,12 @@ const (
 )
 
 var (
-	ProgressBarGetType           func() T.GType
+	ProgressBarGetType           func() O.Type
 	ProgressBarNew               func() *Widget
 	ProgressBarNewWithAdjustment func(adjustment *Adjustment) *Widget
 
-	ProgressBarOrientationGetType func() T.GType
-	ProgressBarStyleGetType       func() T.GType
+	ProgressBarOrientationGetType func() O.Type
+	ProgressBarStyleGetType       func() O.Type
 
 	progressBarGetEllipsize      func(p *ProgressBar) T.PangoEllipsizeMode
 	progressBarGetFraction       func(p *ProgressBar) float64

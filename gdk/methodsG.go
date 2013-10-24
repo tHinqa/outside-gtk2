@@ -4,12 +4,13 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type GC struct {
-	Parent_instance T.GObject
+	Parent_instance O.Object
 	ClipXOrigin     int
 	ClipYOrigin     int
 	TsXOrigin       int
@@ -18,7 +19,7 @@ type GC struct {
 }
 
 var (
-	GcGetType       func() T.GType
+	GcGetType       func() O.Type
 	GcNew           func(drawable *Drawable) *GC
 	GcNewWithValues func(drawable *Drawable, values *GCValues, valuesMask GCValuesMask) *GC
 
@@ -127,7 +128,7 @@ const (
 	GC_JOIN_STYLE
 )
 
-var GcValuesMaskGetType func() T.GType
+var GcValuesMaskGetType func() O.Type
 
 type Geometry struct {
 	MinWidth   int
@@ -153,7 +154,7 @@ const (
 	GRAB_FROZEN
 )
 
-var GrabStatusGetType func() T.GType
+var GrabStatusGetType func() O.Type
 
 type Gravity Enum
 
@@ -170,4 +171,4 @@ const (
 	GRAVITY_STATIC
 )
 
-var GravityGetType func() T.GType
+var GravityGetType func() O.Type

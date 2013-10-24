@@ -5,12 +5,13 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 var (
-	VbuttonBoxGetType func() T.GType
+	VbuttonBoxGetType func() O.Type
 	VbuttonBoxNew     func() *Widget
 
 	VbuttonBoxGetLayoutDefault  func() ButtonBoxStyle
@@ -18,25 +19,25 @@ var (
 	VbuttonBoxSetLayoutDefault  func(layout ButtonBoxStyle)
 	VbuttonBoxSetSpacingDefault func(spacing int)
 
-	VisibilityGetType func() T.GType
+	VisibilityGetType func() O.Type
 
-	VolumeButtonGetType func() T.GType
+	VolumeButtonGetType func() O.Type
 	VolumeButtonNew     func() *Widget
 
-	VpanedGetType func() T.GType
+	VpanedGetType func() O.Type
 	VpanedNew     func() *Widget
 
-	VrulerGetType func() T.GType
+	VrulerGetType func() O.Type
 	VrulerNew     func() *Widget
 
-	VscaleGetType      func() T.GType
+	VscaleGetType      func() O.Type
 	VscaleNew          func(adjustment *Adjustment) *Widget
 	VscaleNewWithRange func(min, max, step float64) *Widget
 
-	VscrollbarGetType func() T.GType
+	VscrollbarGetType func() O.Type
 	VscrollbarNew     func(adjustment *Adjustment) *Widget
 
-	VseparatorGetType func() T.GType
+	VseparatorGetType func() O.Type
 	VseparatorNew     func() *Widget
 )
 
@@ -45,7 +46,7 @@ type VBox struct {
 }
 
 var (
-	VboxGetType func() T.GType
+	VboxGetType func() O.Type
 	VboxNew     func(homogeneous T.Gboolean, spacing int) *Widget
 )
 
@@ -59,7 +60,7 @@ type Viewport struct {
 }
 
 var (
-	ViewportGetType func() T.GType
+	ViewportGetType func() O.Type
 	ViewportNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
 	viewportGetBinWindow   func(v *Viewport) *D.Window

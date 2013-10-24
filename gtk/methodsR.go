@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -15,7 +16,7 @@ type RadioAction struct {
 }
 
 var (
-	RadioActionGetType func() T.GType
+	RadioActionGetType func() O.Type
 	RadioActionNew     func(name, label, tooltip, stockId string, value int) *RadioAction
 
 	radioActionGetCurrentValue func(r *RadioAction) int
@@ -44,7 +45,7 @@ type RadioButton struct {
 }
 
 var (
-	RadioButtonGetType                   func() T.GType
+	RadioButtonGetType                   func() O.Type
 	RadioButtonNew                       func(group *T.GSList) *Widget
 	RadioButtonNewFromWidget             func(radioGroupMember *RadioButton) *Widget
 	RadioButtonNewWithLabel              func(group *T.GSList, label string) *Widget
@@ -65,7 +66,7 @@ type RadioMenuItem struct {
 }
 
 var (
-	RadioMenuItemGetType                   func() T.GType
+	RadioMenuItemGetType                   func() O.Type
 	RadioMenuItemNew                       func(group *T.GSList) *Widget
 	RadioMenuItemNewFromWidget             func(group *RadioMenuItem) *Widget
 	RadioMenuItemNewWithLabel              func(group *T.GSList, label string) *Widget
@@ -85,7 +86,7 @@ type RadioToolButton struct {
 }
 
 var (
-	RadioToolButtonGetType                func() T.GType
+	RadioToolButtonGetType                func() O.Type
 	RadioToolButtonNew                    func(group *T.GSList) *ToolItem
 	RadioToolButtonNewFromStock           func(group *T.GSList, stockId string) *ToolItem
 	RadioToolButtonNewFromWidget          func(group *RadioToolButton) *ToolItem
@@ -135,7 +136,7 @@ type (
 )
 
 var (
-	RangeGetType func() T.GType
+	RangeGetType func() O.Type
 
 	rangeGetAdjustment              func(r *Range) *Adjustment
 	rangeGetFillLevel               func(r *Range) float64
@@ -215,8 +216,8 @@ func (r *Range) SetValue(value float64) { rangeSetValue(r, value) }
 type RcContext struct{}
 
 var (
-	RcFlagsGetType     func() T.GType
-	RcTokenTypeGetType func() T.GType
+	RcFlagsGetType     func() O.Type
+	RcTokenTypeGetType func() O.Type
 
 	RcAddDefaultFile           func(filename string)
 	RcFindModuleInPath         func(moduleFile string) string
@@ -226,7 +227,7 @@ var (
 	RcGetImModulePath          func() string
 	RcGetModuleDir             func() string
 	RcGetStyle                 func(widget *Widget) *Style
-	RcGetStyleByPaths          func(settings *Settings, widgetPath, classPath string, t T.GType) *Style
+	RcGetStyleByPaths          func(settings *Settings, widgetPath, classPath string, t O.Type) *Style
 	RcGetThemeDir              func() string
 	RcParse                    func(filename string)
 	RcParseString              func(rcString string)
@@ -279,7 +280,7 @@ const (
 )
 
 var (
-	RcStyleGetType func() T.GType
+	RcStyleGetType func() O.Type
 	RcStyleNew     func() *RcStyle
 
 	RcAddWidgetNameStyle  func(r *RcStyle, pattern string)
@@ -301,7 +302,7 @@ type RecentAction struct {
 }
 
 var (
-	RecentActionGetType       func() T.GType
+	RecentActionGetType       func() O.Type
 	RecentActionNew           func(name, label, tooltip, stockId string) *Action
 	RecentActionNewForManager func(name, label, tooltip, stockId string, manager *RecentManager) *Action
 
@@ -326,15 +327,15 @@ const (
 )
 
 var (
-	RecentChooserGetType func() T.GType
+	RecentChooserGetType func() O.Type
 
-	RecentChooserErrorGetType        func() T.GType
+	RecentChooserErrorGetType        func() O.Type
 	RecentChooserMenuNewForManager   func(manager *RecentManager) *Widget
-	RecentChooserWidgetGetType       func() T.GType
+	RecentChooserWidgetGetType       func() O.Type
 	RecentChooserWidgetNew           func() *Widget
 	RecentChooserWidgetNewForManager func(manager *RecentManager) *Widget
 
-	RecentChooserDialogGetType       func() T.GType
+	RecentChooserDialogGetType       func() O.Type
 	RecentChooserDialogNew           func(title string, parent *Window, firstButtonText string, v ...VArg) *Widget
 	RecentChooserDialogNewForManager func(title string, parent *Window, manager *RecentManager, firstButtonText string, v ...VArg) *Widget
 
@@ -429,7 +430,7 @@ type RecentChooserMenu struct {
 }
 
 var (
-	RecentChooserMenuGetType func() T.GType
+	RecentChooserMenuGetType func() O.Type
 	RecentChooserMenuNew     func() *Widget
 
 	recentChooserMenuGetShowNumbers func(r *RecentChooserMenu) T.Gboolean
@@ -449,7 +450,7 @@ type (
 )
 
 var (
-	RecentInfoGetType func() T.GType
+	RecentInfoGetType func() O.Type
 
 	recentInfoExists             func(r *RecentInfo) T.Gboolean
 	recentInfoGetAdded           func(r *RecentInfo) T.TimeT
@@ -536,10 +537,10 @@ const (
 )
 
 var (
-	RecentFilterGetType func() T.GType
+	RecentFilterGetType func() O.Type
 	RecentFilterNew     func() *RecentFilter
 
-	RecentFilterFlagsGetType func() T.GType
+	RecentFilterFlagsGetType func() O.Type
 
 	recentFilterAddAge           func(r *RecentFilter, days int)
 	recentFilterAddApplication   func(r *RecentFilter, application string)
@@ -586,10 +587,10 @@ type RecentData struct {
 }
 
 var (
-	RecentManagerGetType func() T.GType
+	RecentManagerGetType func() O.Type
 	RecentManagerNew     func() *RecentManager
 
-	RecentManagerErrorGetType func() T.GType
+	RecentManagerErrorGetType func() O.Type
 	RecentManagerErrorQuark   func() T.GQuark
 
 	RecentManagerGetDefault   func() *RecentManager
@@ -628,7 +629,7 @@ func (r *RecentManager) RemoveItem(uri string, err **T.GError) T.Gboolean {
 func (r *RecentManager) SetLimit(limit int)         { recentManagerSetLimit(r, limit) }
 func (r *RecentManager) SetScreen(screen *D.Screen) { recentManagerSetScreen(r, screen) }
 
-var RecentSortTypeGetType func() T.GType
+var RecentSortTypeGetType func() O.Type
 
 type ReliefStyle Enum
 
@@ -638,7 +639,7 @@ const (
 	RELIEF_NONE
 )
 
-var ReliefStyleGetType func() T.GType
+var ReliefStyleGetType func() O.Type
 
 type Requisition struct {
 	Width  int
@@ -646,7 +647,7 @@ type Requisition struct {
 }
 
 var (
-	RequisitionGetType func() T.GType
+	RequisitionGetType func() O.Type
 
 	requisitionCopy func(r *Requisition) *Requisition
 	requisitionFree func(r *Requisition)
@@ -663,7 +664,7 @@ const (
 	RESIZE_IMMEDIATE
 )
 
-var ResizeModeGetType func() T.GType
+var ResizeModeGetType func() O.Type
 
 type ResponseType Enum
 
@@ -681,7 +682,7 @@ const (
 	RESPONSE_HELP
 )
 
-var ResponseTypeGetType func() T.GType
+var ResponseTypeGetType func() O.Type
 
 type (
 	Ruler struct {
@@ -708,7 +709,7 @@ type (
 )
 
 var (
-	RulerGetType func() T.GType
+	RulerGetType func() O.Type
 
 	rulerDrawPos   func(r *Ruler)
 	rulerDrawTicks func(r *Ruler)

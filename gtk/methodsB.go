@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -14,7 +15,7 @@ type Bin struct {
 	Child     *Widget
 }
 
-var BinGetType func() T.GType
+var BinGetType func() O.Type
 
 var binGetChild func(b *Bin) *Widget
 
@@ -53,7 +54,7 @@ type (
 	}
 
 	BindingArg struct {
-		ArgType T.GType
+		ArgType O.Type
 		// Union
 		// LongData  Glong
 		DoubleData float64 // largest for size
@@ -110,7 +111,7 @@ type Border struct {
 }
 
 var (
-	BorderGetType func() T.GType
+	BorderGetType func() O.Type
 	BorderNew     func() *Border
 )
 
@@ -129,7 +130,7 @@ type Box struct {
 	Homogeneous uint // : 1
 }
 
-var BoxGetType func() T.GType
+var BoxGetType func() O.Type
 
 var (
 	boxGetHomogeneous    func(b *Box) T.Gboolean
@@ -167,7 +168,7 @@ func (b *Box) SetSpacing(spacing int)                { boxSetSpacing(b, spacing)
 
 type Buildable struct{}
 
-var BuildableGetType func() T.GType
+var BuildableGetType func() O.Type
 
 var (
 	buildableAddChild             func(b *Buildable, builder *Builder, child *T.GObject, typ string)
@@ -219,10 +220,10 @@ type (
 )
 
 var (
-	BuilderGetType func() T.GType
+	BuilderGetType func() O.Type
 	BuilderNew     func() *Builder
 
-	BuilderErrorGetType func() T.GType
+	BuilderErrorGetType func() O.Type
 	BuilderErrorQuark   func() T.GQuark
 )
 
@@ -236,10 +237,10 @@ var (
 	builderGetObject            func(b *Builder, name string) *T.GObject
 	builderGetObjects           func(b *Builder) *T.GSList
 	builderGetTranslationDomain func(b *Builder) string
-	builderGetTypeFromName      func(b *Builder, typeName string) T.GType
+	builderGetTypeFromName      func(b *Builder, typeName string) O.Type
 	builderSetTranslationDomain func(b *Builder, domain string)
 	builderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) T.Gboolean
-	builderValueFromStringType  func(b *Builder, t T.GType, str string, value *T.GValue, err **T.GError) T.Gboolean
+	builderValueFromStringType  func(b *Builder, t O.Type, str string, value *T.GValue, err **T.GError) T.Gboolean
 )
 
 func (b *Builder) AddFromFile(filename string, err **T.GError) uint {
@@ -258,15 +259,15 @@ func (b *Builder) ConnectSignals(userData T.Gpointer) { builderConnectSignals(b,
 func (b *Builder) ConnectSignalsFull(f BuilderConnectFunc, userData T.Gpointer) {
 	builderConnectSignalsFull(b, f, userData)
 }
-func (b *Builder) GetObject(name string) *T.GObject        { return builderGetObject(b, name) }
-func (b *Builder) GetObjects() *T.GSList                   { return builderGetObjects(b) }
-func (b *Builder) GetTranslationDomain() string            { return builderGetTranslationDomain(b) }
-func (b *Builder) GetTypeFromName(typeName string) T.GType { return builderGetTypeFromName(b, typeName) }
-func (b *Builder) SetTranslationDomain(domain string)      { builderSetTranslationDomain(b, domain) }
+func (b *Builder) GetObject(name string) *T.GObject       { return builderGetObject(b, name) }
+func (b *Builder) GetObjects() *T.GSList                  { return builderGetObjects(b) }
+func (b *Builder) GetTranslationDomain() string           { return builderGetTranslationDomain(b) }
+func (b *Builder) GetTypeFromName(typeName string) O.Type { return builderGetTypeFromName(b, typeName) }
+func (b *Builder) SetTranslationDomain(domain string)     { builderSetTranslationDomain(b, domain) }
 func (b *Builder) ValueFromString(pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) T.Gboolean {
 	return builderValueFromString(b, pspec, str, value, err)
 }
-func (b *Builder) ValueFromStringType(t T.GType, str string, value *T.GValue, err **T.GError) T.Gboolean {
+func (b *Builder) ValueFromStringType(t O.Type, str string, value *T.GValue, err **T.GError) T.Gboolean {
 	return builderValueFromStringType(b, t, str, value, err)
 }
 
@@ -288,17 +289,17 @@ type Button struct {
 }
 
 var (
-	ButtonGetType         func() T.GType
+	ButtonGetType         func() O.Type
 	ButtonNew             func() *Widget
 	ButtonNewFromStock    func(stockId string) *Widget
 	ButtonNewWithLabel    func(label string) *Widget
 	ButtonNewWithMnemonic func(label string) *Widget
 
-	ButtonActionGetType   func() T.GType
-	ButtonBoxGetType      func() T.GType
-	ButtonBoxStyleGetType func() T.GType
+	ButtonActionGetType   func() O.Type
+	ButtonBoxGetType      func() O.Type
+	ButtonBoxStyleGetType func() O.Type
 
-	ButtonsTypeGetType func() T.GType
+	ButtonsTypeGetType func() O.Type
 )
 
 var (

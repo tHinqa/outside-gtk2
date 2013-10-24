@@ -4,17 +4,18 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type Keymap struct {
-	Parent  T.GObject
+	Parent  O.Object
 	Display *Display
 }
 
 var (
-	KeymapGetType func() T.GType
+	KeymapGetType func() O.Type
 
 	KeymapGetDefault    func() *Keymap
 	KeymapGetForDisplay func(display *Display) *Keymap

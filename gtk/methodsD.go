@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -26,7 +27,7 @@ const (
 	DEBUG_BUILDER
 )
 
-var DebugFlagGetType func() T.GType
+var DebugFlagGetType func() O.Type
 
 type DeleteType Enum
 
@@ -41,7 +42,7 @@ const (
 	DELETE_WHITESPACE
 )
 
-var DeleteTypeGetType func() T.GType
+var DeleteTypeGetType func() O.Type
 
 type DestDefaults Enum
 
@@ -52,7 +53,7 @@ const (
 	DEST_DEFAULT_ALL DestDefaults = 0x07
 )
 
-var DestDefaultsGetType func() T.GType
+var DestDefaultsGetType func() O.Type
 
 type Dialog struct {
 	Window      Window
@@ -70,8 +71,8 @@ const (
 )
 
 var (
-	DialogFlagsGetType   func() T.GType
-	DialogGetType        func() T.GType
+	DialogFlagsGetType   func() O.Type
+	DialogGetType        func() O.Type
 	DialogNew            func() *Widget
 	DialogNewWithButtons func(title string, parent *Window, flags DialogFlags, firstButtonText string, v ...VArg) *Widget
 )
@@ -137,7 +138,7 @@ const (
 	DIR_RIGHT
 )
 
-var DirectionTypeGetType func() T.GType
+var DirectionTypeGetType func() O.Type
 
 var DisableSetlocale func()
 
@@ -191,7 +192,7 @@ const (
 	DRAG_RESULT_ERROR
 )
 
-var DragResultGetType func() T.GType
+var DragResultGetType func() O.Type
 
 type DrawingArea struct {
 	Widget    Widget
@@ -199,7 +200,7 @@ type DrawingArea struct {
 }
 
 var (
-	DrawingAreaGetType func() T.GType
+	DrawingAreaGetType func() O.Type
 	DrawingAreaNew     func() *Widget
 
 	drawingAreaSize func(d *DrawingArea, width int, height int)

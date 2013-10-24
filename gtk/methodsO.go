@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -15,10 +16,10 @@ type Object struct {
 }
 
 var (
-	ObjectGetType func() T.GType
-	ObjectNew     func(t T.GType, firstPropertyName string, v ...VArg) *Object
+	ObjectGetType func() O.Type
+	ObjectNew     func(t O.Type, firstPropertyName string, v ...VArg) *Object
 
-	ObjectAddArgType func(argName string, argType T.GType, argFlags, argId uint)
+	ObjectAddArgType func(argName string, argType O.Type, argFlags, argId uint)
 
 	objectDestroy            func(o *Object)
 	objectGet                func(o *Object, firstPropertyName string, v ...VArg)
@@ -85,7 +86,7 @@ const (
 	RESERVED_2
 )
 
-var ObjectFlagsGetType func() T.GType
+var ObjectFlagsGetType func() O.Type
 
 type ObjectInitFunc T.GInstanceInitFunc
 
@@ -94,7 +95,7 @@ type OffscreenWindow struct {
 }
 
 var (
-	OffscreenWindowGetType func() T.GType
+	OffscreenWindowGetType func() O.Type
 	OffscreenWindowNew     func() *Widget
 
 	offscreenWindowGetPixbuf func(o *OffscreenWindow) *D.Pixbuf
@@ -117,7 +118,7 @@ type OldEditable struct {
 }
 
 var (
-	OldEditableGetType func() T.GType
+	OldEditableGetType func() O.Type
 
 	oldEditableClaimSelection func(o *OldEditable, claim T.Gboolean, time T.GUint32)
 	oldEditableChanged        func(o *OldEditable)
@@ -137,7 +138,7 @@ type OptionMenu struct {
 }
 
 var (
-	OptionMenuGetType func() T.GType
+	OptionMenuGetType func() O.Type
 	OptionMenuNew     func() *Widget
 
 	optionMenuGetHistory func(o *OptionMenu) int
@@ -163,9 +164,9 @@ const (
 )
 
 var (
-	OrientableGetType func() T.GType
+	OrientableGetType func() O.Type
 
-	OrientationGetType func() T.GType
+	OrientationGetType func() O.Type
 
 	orientableGetOrientation func(o *Orientable) Orientation
 	orientableSetOrientation func(o *Orientable, orientation Orientation)

@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -20,7 +21,7 @@ type (
 )
 
 var (
-	AboutDialogGetType func() T.GType
+	AboutDialogGetType func() O.Type
 	AboutDialogNew     func() *Widget
 
 	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
@@ -198,15 +199,15 @@ type AccelLabel struct {
 }
 
 var (
-	AccelGroupGetType func() T.GType
+	AccelGroupGetType func() O.Type
 	AccelGroupNew     func() *AccelGroup
 
 	AccelGroupFromAccelClosure func(closure *T.GClosure) *AccelGroup
 
-	AccelLabelGetType func() T.GType
+	AccelLabelGetType func() O.Type
 	AccelLabelNew     func(str string) *Widget
 
-	AccelMapGetType func() T.GType
+	AccelMapGetType func() O.Type
 
 	AccelMapAddEntry          func(accelPath string, accelKey uint, accelMods T.GdkModifierType)
 	AccelMapAddFilter         func(filterPattern string)
@@ -223,7 +224,7 @@ var (
 	AccelMapSaveFd            func(fd int)
 	AccelMapUnlockPath        func(accelPath string)
 
-	AccelFlagsGetType func() T.GType
+	AccelFlagsGetType func() O.Type
 )
 
 var (
@@ -286,7 +287,7 @@ type Accessible struct {
 	Widget *Widget
 }
 
-var AccessibleGetType func() T.GType
+var AccessibleGetType func() O.Type
 
 var (
 	accessibleConnectWidgetDestroyed func(a *Accessible)
@@ -318,10 +319,10 @@ type ActionEntry struct {
 }
 
 var (
-	ActionGetType func() T.GType
+	ActionGetType func() O.Type
 	ActionNew     func(name, label, tooltip, stockId string) *Action
 
-	ActionGroupGetType func() T.GType
+	ActionGroupGetType func() O.Type
 	ActionGroupNew     func(name string) *ActionGroup
 
 	WidgetGetAction func(widget *Widget) *Action
@@ -485,7 +486,7 @@ func (a *ActionGroup) TranslateString(str string) string  { return actionGroupTr
 
 type Activatable struct{}
 
-var ActivatableGetType func() T.GType
+var ActivatableGetType func() O.Type
 
 var (
 	activatableDoSetRelatedAction     func(a *Activatable, action *Action)
@@ -516,7 +517,7 @@ type Adjustment struct {
 }
 
 var (
-	AdjustmentGetType func() T.GType
+	AdjustmentGetType func() O.Type
 	AdjustmentNew     func(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Object
 )
 
@@ -571,7 +572,7 @@ type Alignment struct {
 }
 
 var (
-	AlignmentGetType func() T.GType
+	AlignmentGetType func() O.Type
 	AlignmentNew     func(xalign, yalign, xscale, yscale float32) *Widget
 
 	alignmentSet        func(a *Alignment, xalign, yalign, xscale, yscale float32)
@@ -616,10 +617,10 @@ const (
 	ANCHOR_E  = ANCHOR_EAST
 )
 
-var AnchorTypeGetType func() T.GType
+var AnchorTypeGetType func() O.Type
 
 type Arg struct { //TODO(t):Fix union
-	Type T.GType
+	Type O.Type
 	Name *T.Gchar
 	// Union
 	// Gchar char_data;
@@ -640,14 +641,14 @@ type Arg struct { //TODO(t):Fix union
 type ArgFlags Enum
 
 const (
-	ARG_READABLE       ArgFlags = ArgFlags(T.G_PARAM_READABLE)
-	ARG_WRITABLE                = ArgFlags(T.G_PARAM_WRITABLE)
-	ARG_CONSTRUCT               = ArgFlags(T.G_PARAM_CONSTRUCT)
-	ARG_CONSTRUCT_ONLY          = ArgFlags(T.G_PARAM_CONSTRUCT_ONLY)
+	ARG_READABLE       ArgFlags = ArgFlags(O.PARAM_READABLE)
+	ARG_WRITABLE                = ArgFlags(O.PARAM_WRITABLE)
+	ARG_CONSTRUCT               = ArgFlags(O.PARAM_CONSTRUCT)
+	ARG_CONSTRUCT_ONLY          = ArgFlags(O.PARAM_CONSTRUCT_ONLY)
 	ARG_CHILD_ARG      ArgFlags = 1 << iota
 )
 
-var ArgFlagsGetType func() T.GType
+var ArgFlagsGetType func() O.Type
 
 type (
 	Assistant struct {
@@ -675,10 +676,10 @@ const (
 )
 
 var (
-	AssistantGetType func() T.GType
+	AssistantGetType func() O.Type
 	AssistantNew     func() *Widget
 
-	AssistantPageTypeGetType func() T.GType
+	AssistantPageTypeGetType func() O.Type
 )
 
 var (
@@ -768,9 +769,9 @@ const (
 )
 
 var (
-	ArrowGetType          func() T.GType
-	ArrowTypeGetType      func() T.GType
-	ArrowPlacementGetType func() T.GType
+	ArrowGetType          func() O.Type
+	ArrowTypeGetType      func() O.Type
+	ArrowPlacementGetType func() O.Type
 )
 
 var (
@@ -795,7 +796,7 @@ type AspectFrame struct {
 }
 
 var (
-	AspectFrameGetType func() T.GType
+	AspectFrameGetType func() O.Type
 	AspectFrameNew     func(label string, xalign, yalign, ratio float32, obeyChild T.Gboolean) *Widget
 )
 
@@ -805,7 +806,7 @@ func (a *AspectFrame) Set(xalign, yalign, ratio float32, obeyChild T.Gboolean) {
 	aspectFrameSet(a, xalign, yalign, ratio, obeyChild)
 }
 
-var AttachOptionsGetType func() T.GType
+var AttachOptionsGetType func() O.Type
 
 type AttachOptions Enum
 

@@ -7,6 +7,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -60,7 +61,7 @@ var (
 		inclusive *T.PangoRectangle,
 		nearest *T.PangoRectangle)
 
-	Pango_matrix_get_type func() T.GType
+	Pango_matrix_get_type func() O.Type
 
 	Pango_matrix_copy func(
 		matrix *T.PangoMatrix) *T.PangoMatrix
@@ -126,7 +127,7 @@ var (
 	Pango_script_iter_free func(
 		iter *T.PangoScriptIter)
 
-	Pango_language_get_type func() T.GType
+	Pango_language_get_type func() O.Type
 
 	Pango_language_from_string func(
 		language string) *T.PangoLanguage
@@ -185,7 +186,7 @@ var (
 		ch T.Gunichar,
 		mirrored_ch *T.Gunichar) T.Gboolean
 
-	Pango_font_description_get_type func() T.GType
+	Pango_font_description_get_type func() O.Type
 
 	Pango_font_description_new func() *T.PangoFontDescription
 
@@ -300,7 +301,7 @@ var (
 	Pango_font_description_to_filename func(
 		desc *T.PangoFontDescription) string
 
-	Pango_font_metrics_get_type func() T.GType
+	Pango_font_metrics_get_type func() O.Type
 
 	Pango_font_metrics_ref func(
 		metrics *T.PangoFontMetrics) *T.PangoFontMetrics
@@ -332,7 +333,7 @@ var (
 	Pango_font_metrics_get_strikethrough_thickness func(
 		metrics *T.PangoFontMetrics) int
 
-	Pango_font_family_get_type func() T.GType
+	Pango_font_family_get_type func() O.Type
 
 	Pango_font_family_list_faces func(
 		family *T.PangoFontFamily,
@@ -345,7 +346,7 @@ var (
 	Pango_font_family_is_monospace func(
 		family *T.PangoFontFamily) T.Gboolean
 
-	Pango_font_face_get_type func() T.GType
+	Pango_font_face_get_type func() O.Type
 
 	Pango_font_face_describe func(
 		face *T.PangoFontFace) *T.PangoFontDescription
@@ -361,7 +362,7 @@ var (
 	Pango_font_face_is_synthesized func(
 		face *T.PangoFontFace) T.Gboolean
 
-	Pango_font_get_type func() T.GType
+	Pango_font_get_type func() O.Type
 
 	Pango_font_describe func(
 		font *T.PangoFont) *T.PangoFontDescription
@@ -391,7 +392,7 @@ var (
 	Pango_font_get_font_map func(
 		font *T.PangoFont) *T.PangoFontMap
 
-	Pango_color_get_type func() T.GType
+	Pango_color_get_type func() O.Type
 
 	Pango_color_copy func(
 		src *T.PangoColor) *T.PangoColor
@@ -508,7 +509,7 @@ var (
 	Pango_attr_gravity_hint_new func(
 		hint T.PangoGravityHint) *T.PangoAttribute
 
-	Pango_attr_list_get_type func() T.GType
+	Pango_attr_list_get_type func() O.Type
 
 	Pango_attr_list_new func() *T.PangoAttrList
 
@@ -583,7 +584,7 @@ var (
 		accel_char *T.Gunichar,
 		error **T.GError) T.Gboolean
 
-	Pango_item_get_type func() T.GType
+	Pango_item_get_type func() O.Type
 
 	Pango_item_new func() *T.PangoItem
 
@@ -619,7 +620,7 @@ var (
 		log_attrs *T.PangoLogAttr,
 		attrs_len int)
 
-	Pango_fontset_get_type func() T.GType
+	Pango_fontset_get_type func() O.Type
 
 	Pango_fontset_get_font func(
 		fontset *T.PangoFontset,
@@ -633,7 +634,7 @@ var (
 		f T.PangoFontsetForeachFunc,
 		data T.Gpointer)
 
-	Pango_font_map_get_type func() T.GType
+	Pango_font_map_get_type func() O.Type
 
 	Pango_font_map_create_context func(
 		fontmap *T.PangoFontMap) *T.PangoContext
@@ -654,7 +655,7 @@ var (
 		families ***T.PangoFontFamily,
 		n_families *int)
 
-	Pango_context_get_type func() T.GType
+	Pango_context_get_type func() O.Type
 
 	Pango_context_new func() *T.PangoContext
 
@@ -752,7 +753,7 @@ var (
 		string *T.PangoGlyphString,
 		new_len int)
 
-	Pango_glyph_string_get_type func() T.GType
+	Pango_glyph_string_get_type func() O.Type
 
 	Pango_glyph_string_copy func(
 		string *T.PangoGlyphString) *T.PangoGlyphString
@@ -811,43 +812,43 @@ var (
 	Pango_reorder_items func(
 		logical_items *T.GList) *T.GList
 
-	Pango_attr_type_get_type func() T.GType
+	Pango_attr_type_get_type func() O.Type
 
-	Pango_underline_get_type func() T.GType
+	Pango_underline_get_type func() O.Type
 
-	Pango_bidi_type_get_type func() T.GType
+	Pango_bidi_type_get_type func() O.Type
 
-	Pango_direction_get_type func() T.GType
+	Pango_direction_get_type func() O.Type
 
-	Pango_coverage_level_get_type func() T.GType
+	Pango_coverage_level_get_type func() O.Type
 
-	Pango_style_get_type func() T.GType
+	Pango_style_get_type func() O.Type
 
-	Pango_variant_get_type func() T.GType
+	Pango_variant_get_type func() O.Type
 
-	Pango_weight_get_type func() T.GType
+	Pango_weight_get_type func() O.Type
 
-	Pango_stretch_get_type func() T.GType
+	Pango_stretch_get_type func() O.Type
 
-	Pango_font_mask_get_type func() T.GType
+	Pango_font_mask_get_type func() O.Type
 
-	Pango_gravity_get_type func() T.GType
+	Pango_gravity_get_type func() O.Type
 
-	Pango_gravity_hint_get_type func() T.GType
+	Pango_gravity_hint_get_type func() O.Type
 
-	Pango_alignment_get_type func() T.GType
+	Pango_alignment_get_type func() O.Type
 
-	Pango_wrap_mode_get_type func() T.GType
+	Pango_wrap_mode_get_type func() O.Type
 
-	Pango_ellipsize_mode_get_type func() T.GType
+	Pango_ellipsize_mode_get_type func() O.Type
 
-	Pango_render_part_get_type func() T.GType
+	Pango_render_part_get_type func() O.Type
 
-	Pango_script_get_type func() T.GType
+	Pango_script_get_type func() O.Type
 
-	Pango_tab_align_get_type func() T.GType
+	Pango_tab_align_get_type func() O.Type
 
-	Pango_glyph_item_get_type func() T.GType
+	Pango_glyph_item_get_type func() O.Type
 
 	Pango_glyph_item_split func(
 		orig *T.PangoGlyphItem,
@@ -876,7 +877,7 @@ var (
 		text string,
 		logical_widths *int)
 
-	Pango_glyph_item_iter_get_type func() T.GType
+	Pango_glyph_item_iter_get_type func() O.Type
 
 	Pango_glyph_item_iter_copy func(
 		orig *T.PangoGlyphItemIter) *T.PangoGlyphItemIter
@@ -908,7 +909,7 @@ var (
 		positions_in_pixels T.Gboolean, first_alignment T.PangoTabAlign,
 		first_position int, v ...VArg) *T.PangoTabArray
 
-	Pango_tab_array_get_type func() T.GType
+	Pango_tab_array_get_type func() O.Type
 
 	Pango_tab_array_copy func(
 		src *T.PangoTabArray) *T.PangoTabArray
@@ -943,7 +944,7 @@ var (
 	Pango_tab_array_get_positions_in_pixels func(
 		tab_array *T.PangoTabArray) T.Gboolean
 
-	Pango_layout_get_type func() T.GType
+	Pango_layout_get_type func() O.Type
 
 	Pango_layout_new func(
 		context *T.PangoContext) *T.PangoLayout
@@ -1163,7 +1164,7 @@ var (
 	Pango_layout_get_lines_readonly func(
 		layout *T.PangoLayout) *T.GSList
 
-	Pango_layout_line_get_type func() T.GType
+	Pango_layout_line_get_type func() O.Type
 
 	Pango_layout_line_ref func(
 		line *T.PangoLayoutLine) *T.PangoLayoutLine
@@ -1200,7 +1201,7 @@ var (
 		ink_rect *T.PangoRectangle,
 		logical_rect *T.PangoRectangle)
 
-	Pango_layout_iter_get_type func() T.GType
+	Pango_layout_iter_get_type func() O.Type
 
 	Pango_layout_get_iter func(
 		layout *T.PangoLayout) *T.PangoLayoutIter
@@ -1276,7 +1277,7 @@ var (
 	Pango_layout_iter_get_baseline func(
 		iter *T.PangoLayoutIter) int
 
-	Pango_renderer_get_type func() T.GType
+	Pango_renderer_get_type func() O.Type
 
 	Pango_renderer_draw_layout func(
 		renderer *T.PangoRenderer,
@@ -1386,7 +1387,7 @@ var (
 	Pango_scan_int func(pos **T.Char, out *int) T.Gboolean
 
 	Pango_parse_enum func(
-		t T.GType,
+		t O.Type,
 		str string,
 		value *int,
 		warn T.Gboolean,
@@ -1418,7 +1419,7 @@ var (
 	Pango_version_check func(
 		required_major, required_minor, required_micro int) string
 
-	Pango_cairo_font_map_get_type func() T.GType
+	Pango_cairo_font_map_get_type func() O.Type
 
 	Pango_cairo_font_map_new func() *T.PangoFontMap
 
@@ -1443,7 +1444,7 @@ var (
 	Pango_cairo_font_map_create_context func(
 		fontmap *T.PangoCairoFontMap) *T.PangoContext
 
-	Pango_cairo_font_get_type func() T.GType
+	Pango_cairo_font_get_type func() O.Type
 
 	Pango_cairo_font_get_scaled_font func(
 		font *T.PangoCairoFont) *T.CairoScaledFont
@@ -1541,11 +1542,11 @@ var (
 		attrs *T.PangoLogAttr,
 		attrs_len int)
 
-	Pango_engine_get_type func() T.GType
+	Pango_engine_get_type func() O.Type
 
-	Pango_engine_lang_get_type func() T.GType
+	Pango_engine_lang_get_type func() O.Type
 
-	Pango_engine_shape_get_type func() T.GType
+	Pango_engine_shape_get_type func() O.Type
 
 	Pango_find_map func(
 		language *T.PangoLanguage,
@@ -1567,7 +1568,7 @@ var (
 	Pango_fontset_simple_new func(
 		language *T.PangoLanguage) *T.PangoFontsetSimple
 
-	Pango_fontset_simple_get_type func() T.GType
+	Pango_fontset_simple_get_type func() O.Type
 
 	Pango_get_lib_subdirectory func() string
 

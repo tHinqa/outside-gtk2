@@ -7,6 +7,7 @@ package gio
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -16,7 +17,7 @@ func init() {
 }
 
 var (
-	AppInfoGetType func() T.GType
+	AppInfoGetType func() O.Type
 
 	AppInfoCreateFromCommandline func(
 		commandline string,
@@ -117,7 +118,7 @@ var (
 		launchContext *T.GAppLaunchContext,
 		err **T.GError) T.Gboolean
 
-	AppLaunchContextGetType func() T.GType
+	AppLaunchContextGetType func() O.Type
 
 	AppLaunchContextNew func() *T.GAppLaunchContext
 
@@ -135,7 +136,7 @@ var (
 		context *T.GAppLaunchContext,
 		startupNotifyId string)
 
-	ActionGetType func() T.GType
+	ActionGetType func() O.Type
 
 	ActionGetName func(action *T.GAction) string
 
@@ -153,7 +154,7 @@ var (
 
 	ActionActivate func(action *T.GAction, parameter *T.GVariant)
 
-	SimpleActionGetType func() T.GType
+	SimpleActionGetType func() O.Type
 
 	SimpleActionNew func(
 		name string, parameterType *T.GVariantType) *T.GSimpleAction
@@ -167,7 +168,7 @@ var (
 		simple *T.GSimpleAction,
 		enabled T.Gboolean)
 
-	ActionGroupGetType func() T.GType
+	ActionGroupGetType func() O.Type
 
 	ActionGroupHasAction func(
 		actionGroup *T.GActionGroup,
@@ -224,7 +225,7 @@ var (
 		actionName string,
 		state *T.GVariant)
 
-	SimpleActionGroupGetType func() T.GType
+	SimpleActionGroupGetType func() O.Type
 
 	SimpleActionGroupNew func() *T.GSimpleActionGroup
 
@@ -240,7 +241,7 @@ var (
 		simple *T.GSimpleActionGroup,
 		actionName string)
 
-	ApplicationGetType func() T.GType
+	ApplicationGetType func() O.Type
 
 	ApplicationIdIsValid func(
 		applicationId string) T.Gboolean
@@ -305,7 +306,7 @@ var (
 		argc int,
 		argv **T.Char) int
 
-	ApplicationCommandLineGetType func() T.GType
+	ApplicationCommandLineGetType func() O.Type
 
 	ApplicationCommandLineGetArguments func(
 		cmdline *T.GApplicationCommandLine,
@@ -339,32 +340,32 @@ var (
 	ApplicationCommandLineGetPlatformData func(
 		cmdline *T.GApplicationCommandLine) *T.GVariant
 
-	InitableGetType func() T.GType
+	InitableGetType func() O.Type
 
 	InitableInit func(
 		initable *T.GInitable,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	InitableNew func(objectType T.GType,
+	InitableNew func(objectType O.Type,
 		cancellable *T.GCancellable, e **T.GError,
 		firstPropertyName string, v ...VArg) T.Gpointer
 
 	InitableNewv func(
-		objectType T.GType,
+		objectType O.Type,
 		nParameters uint,
 		parameters *T.GParameter,
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gpointer
 
 	InitableNewValist func(
-		objectType T.GType,
+		objectType O.Type,
 		firstPropertyName string,
 		varArgs T.VaList,
 		cancellable *T.GCancellable,
-		err **T.GError) *T.GObject
+		err **T.GError) *O.Object
 
-	AsyncInitableGetType func() T.GType
+	AsyncInitableGetType func() O.Type
 
 	AsyncInitableInitAsync func(
 		initable *T.GAsyncInitable,
@@ -378,13 +379,13 @@ var (
 		res *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	AsyncInitableNewAsync func(objectType T.GType,
+	AsyncInitableNewAsync func(objectType O.Type,
 		ioPriority int, cancellable *T.GCancellable,
 		callback T.GAsyncReadyCallback, userData T.Gpointer,
 		firstPropertyName string, v ...VArg)
 
 	AsyncInitableNewvAsync func(
-		objectType T.GType,
+		objectType O.Type,
 		nParameters uint,
 		parameters *T.GParameter,
 		ioPriority int,
@@ -393,7 +394,7 @@ var (
 		userData T.Gpointer)
 
 	AsyncInitableNewValistAsync func(
-		objectType T.GType,
+		objectType O.Type,
 		firstPropertyName string,
 		varArgs T.VaList,
 		ioPriority int,
@@ -404,17 +405,17 @@ var (
 	AsyncInitableNewFinish func(
 		initable *T.GAsyncInitable,
 		res *T.GAsyncResult,
-		err **T.GError) *T.GObject
+		err **T.GError) *O.Object
 
-	AsyncResultGetType func() T.GType
+	AsyncResultGetType func() O.Type
 
 	AsyncResultGetUserData func(
 		res *T.GAsyncResult) T.Gpointer
 
 	AsyncResultGetSourceObject func(
-		res *T.GAsyncResult) *T.GObject
+		res *T.GAsyncResult) *O.Object
 
-	InputStreamGetType func() T.GType
+	InputStreamGetType func() O.Type
 
 	InputStreamRead func(
 		stream *T.GInputStream,
@@ -494,7 +495,7 @@ var (
 	InputStreamClearPending func(
 		stream *T.GInputStream)
 
-	FilterInputStreamGetType func() T.GType
+	FilterInputStreamGetType func() O.Type
 
 	FilterInputStreamGetBaseStream func(
 		stream *T.GFilterInputStream) *T.GInputStream
@@ -506,7 +507,7 @@ var (
 		stream *T.GFilterInputStream,
 		closeBase T.Gboolean)
 
-	BufferedInputStreamGetType func() T.GType
+	BufferedInputStreamGetType func() O.Type
 
 	BufferedInputStreamNew func(
 		baseStream *T.GInputStream) *T.GInputStream
@@ -559,7 +560,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) int
 
-	OutputStreamGetType func() T.GType
+	OutputStreamGetType func() O.Type
 
 	OutputStreamWrite func(
 		stream *T.GOutputStream,
@@ -661,7 +662,7 @@ var (
 	OutputStreamClearPending func(
 		stream *T.GOutputStream)
 
-	FilterOutputStreamGetType func() T.GType
+	FilterOutputStreamGetType func() O.Type
 
 	FilterOutputStreamGetBaseStream func(
 		stream *T.GFilterOutputStream) *T.GOutputStream
@@ -673,7 +674,7 @@ var (
 		stream *T.GFilterOutputStream,
 		closeBase T.Gboolean)
 
-	BufferedOutputStreamGetType func() T.GType
+	BufferedOutputStreamGetType func() O.Type
 
 	BufferedOutputStreamNew func(
 		baseStream *T.GOutputStream) *T.GOutputStream
@@ -696,7 +697,7 @@ var (
 		stream *T.GBufferedOutputStream,
 		autoGrow T.Gboolean)
 
-	CancellableGetType func() T.GType
+	CancellableGetType func() O.Type
 
 	CancellableNew func() *T.GCancellable
 
@@ -744,7 +745,7 @@ var (
 	CancellableCancel func(
 		cancellable *T.GCancellable)
 
-	ConverterGetType func() T.GType
+	ConverterGetType func() O.Type
 
 	ConverterConvert func(
 		converter *T.GConverter,
@@ -760,7 +761,7 @@ var (
 	ConverterReset func(
 		converter *T.GConverter)
 
-	CharsetConverterGetType func() T.GType
+	CharsetConverterGetType func() O.Type
 
 	CharsetConverterNew func(
 		toCharset string,
@@ -814,7 +815,7 @@ var (
 
 	ContentTypesGetRegistered func() *T.GList
 
-	ConverterInputStreamGetType func() T.GType
+	ConverterInputStreamGetType func() O.Type
 
 	ConverterInputStreamNew func(
 		baseStream *T.GInputStream,
@@ -823,7 +824,7 @@ var (
 	ConverterInputStreamGetConverter func(
 		converterStream *T.GConverterInputStream) *T.GConverter
 
-	ConverterOutputStreamGetType func() T.GType
+	ConverterOutputStreamGetType func() O.Type
 
 	ConverterOutputStreamNew func(
 		baseStream *T.GOutputStream,
@@ -832,7 +833,7 @@ var (
 	ConverterOutputStreamGetConverter func(
 		converterStream *T.GConverterOutputStream) *T.GConverter
 
-	CredentialsGetType func() T.GType
+	CredentialsGetType func() O.Type
 
 	CredentialsNew func() *T.GCredentials
 
@@ -853,7 +854,7 @@ var (
 		otherCredentials *T.GCredentials,
 		err **T.GError) T.Gboolean
 
-	DataInputStreamGetType func() T.GType
+	DataInputStreamGetType func() O.Type
 
 	DataInputStreamNew func(
 		baseStream *T.GInputStream) *T.GDataInputStream
@@ -970,7 +971,7 @@ var (
 		length *T.Gsize,
 		err **T.GError) string
 
-	DataOutputStreamGetType func() T.GType
+	DataOutputStreamGetType func() O.Type
 
 	DataOutputStreamNew func(
 		baseStream *T.GOutputStream) *T.GDataOutputStream
@@ -1059,7 +1060,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
-	DbusAuthObserverGetType func() T.GType
+	DbusAuthObserverGetType func() O.Type
 
 	DbusAuthObserverNew func() *T.GDBusAuthObserver
 
@@ -1068,7 +1069,7 @@ var (
 		stream *T.GIOStream,
 		credentials *T.GCredentials) T.Gboolean
 
-	DbusConnectionGetType func() T.GType
+	DbusConnectionGetType func() O.Type
 
 	BusGet func(
 		busType T.GBusType,
@@ -1430,21 +1431,21 @@ var (
 	DbusAnnotationInfoUnref func(
 		info *T.GDBusAnnotationInfo)
 
-	DbusNodeInfoGetType func() T.GType
+	DbusNodeInfoGetType func() O.Type
 
-	DbusInterfaceInfoGetType func() T.GType
+	DbusInterfaceInfoGetType func() O.Type
 
-	DbusMethodInfoGetType func() T.GType
+	DbusMethodInfoGetType func() O.Type
 
-	DbusSignalInfoGetType func() T.GType
+	DbusSignalInfoGetType func() O.Type
 
-	DbusPropertyInfoGetType func() T.GType
+	DbusPropertyInfoGetType func() O.Type
 
-	DbusArgInfoGetType func() T.GType
+	DbusArgInfoGetType func() O.Type
 
-	DbusAnnotationInfoGetType func() T.GType
+	DbusAnnotationInfoGetType func() O.Type
 
-	DbusMessageGetType func() T.GType
+	DbusMessageGetType func() O.Type
 
 	DbusMessageNew func() *T.GDBusMessage
 
@@ -1633,7 +1634,7 @@ var (
 		message *T.GDBusMessage,
 		err **T.GError) T.Gboolean
 
-	DbusMethodInvocationGetType func() T.GType
+	DbusMethodInvocationGetType func() O.Type
 
 	DbusMethodInvocationGetSender func(
 		invocation *T.GDBusMethodInvocation) string
@@ -1766,7 +1767,7 @@ var (
 	BusUnwatchName func(
 		watcherId uint)
 
-	DbusProxyGetType func() T.GType
+	DbusProxyGetType func() O.Type
 
 	DbusProxyNew func(
 		connection *T.GDBusConnection,
@@ -1886,7 +1887,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GVariant
 
-	DbusServerGetType func() T.GType
+	DbusServerGetType func() O.Type
 
 	DbusServerNewSync func(
 		address string,
@@ -1931,7 +1932,7 @@ var (
 	DbusIsInterfaceName func(
 		string string) T.Gboolean
 
-	DriveGetType func() T.GType
+	DriveGetType func() O.Type
 
 	DriveGetName func(drive *T.GDrive) string
 
@@ -2027,7 +2028,7 @@ var (
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	IconGetType func() T.GType
+	IconGetType func() O.Type
 
 	IconHash func(icon T.Gconstpointer) uint
 
@@ -2037,7 +2038,7 @@ var (
 
 	IconNewForString func(str string, err **T.GError) *T.GIcon
 
-	EmblemGetType func() T.GType
+	EmblemGetType func() O.Type
 
 	EmblemNew func(icon *T.GIcon) *T.GEmblem
 
@@ -2048,7 +2049,7 @@ var (
 
 	EmblemGetOrigin func(emblem *T.GEmblem) T.GEmblemOrigin
 
-	EmblemedIconGetType func() T.GType
+	EmblemedIconGetType func() O.Type
 
 	EmblemedIconNew func(icon *T.GIcon, emblem *T.GEmblem) *T.GIcon
 
@@ -2062,7 +2063,7 @@ var (
 
 	EmblemedIconClearEmblems func(emblemed *T.GEmblemedIcon)
 
-	FileAttributeInfoListGetType func() T.GType
+	FileAttributeInfoListGetType func() O.Type
 
 	FileAttributeInfoListNew func() *T.GFileAttributeInfoList
 
@@ -2085,7 +2086,7 @@ var (
 		typ T.GFileAttributeType,
 		flags T.GFileAttributeInfoFlags)
 
-	FileEnumeratorGetType func() T.GType
+	FileEnumeratorGetType func() O.Type
 
 	FileEnumeratorNextFile func(
 		enumerator *T.GFileEnumerator,
@@ -2135,7 +2136,7 @@ var (
 	FileEnumeratorGetContainer func(
 		enumerator *T.GFileEnumerator) *T.GFile
 
-	FileGetType func() T.GType
+	FileGetType func() O.Type
 
 	FileNewForPath func(path string) *T.GFile
 
@@ -2785,13 +2786,13 @@ var (
 
 	FileSupportsThreadContexts func(file *T.GFile) T.Gboolean
 
-	FileIconGetType func() T.GType
+	FileIconGetType func() O.Type
 
 	FileIconNew func(file *T.GFile) *T.GIcon
 
 	FileIconGetFile func(icon *T.GFileIcon) *T.GFile
 
-	FileInfoGetType func() T.GType
+	FileInfoGetType func() O.Type
 
 	FileInfoNew func() *T.GFileInfo
 
@@ -2866,7 +2867,7 @@ var (
 
 	FileInfoGetAttributeObject func(
 		info *T.GFileInfo,
-		attribute string) *T.GObject
+		attribute string) *O.Object
 
 	FileInfoGetAttributeStringv func(
 		info *T.GFileInfo,
@@ -2916,7 +2917,7 @@ var (
 	FileInfoSetAttributeObject func(
 		info *T.GFileInfo,
 		attribute string,
-		attrValue *T.GObject)
+		attrValue *O.Object)
 
 	FileInfoSetAttributeStringv func(
 		info *T.GFileInfo,
@@ -3024,7 +3025,7 @@ var (
 		info *T.GFileInfo,
 		sortOrder T.GInt32)
 
-	FileAttributeMatcherGetType func() T.GType
+	FileAttributeMatcherGetType func() O.Type
 
 	FileAttributeMatcherNew func(
 		attributes string) *T.GFileAttributeMatcher
@@ -3050,7 +3051,7 @@ var (
 	FileAttributeMatcherEnumerateNext func(
 		matcher *T.GFileAttributeMatcher) string
 
-	FileInputStreamGetType func() T.GType
+	FileInputStreamGetType func() O.Type
 
 	FileInputStreamQueryInfo func(
 		stream *T.GFileInputStream,
@@ -3079,7 +3080,7 @@ var (
 	IoErrorFromWin32Error func(
 		errorCode int) T.GIOErrorEnum
 
-	IoStreamGetType func() T.GType
+	IoStreamGetType func() O.Type
 
 	IoStreamGetInputStream func(
 		stream *T.GIOStream) *T.GInputStream
@@ -3130,7 +3131,7 @@ var (
 	IoStreamClearPending func(
 		stream *T.GIOStream)
 
-	FileIoStreamGetType func() T.GType
+	FileIoStreamGetType func() O.Type
 
 	FileIoStreamQueryInfo func(
 		stream *T.GFileIOStream,
@@ -3154,7 +3155,7 @@ var (
 	FileIoStreamGetEtag func(
 		stream *T.GFileIOStream) string
 
-	FileMonitorGetType func() T.GType
+	FileMonitorGetType func() O.Type
 
 	FileMonitorCancel func(
 		monitor *T.GFileMonitor) T.Gboolean
@@ -3172,7 +3173,7 @@ var (
 		otherFile *T.GFile,
 		eventType T.GFileMonitorEvent)
 
-	FilenameCompleterGetType func() T.GType
+	FilenameCompleterGetType func() O.Type
 
 	FilenameCompleterNew func() *T.GFilenameCompleter
 
@@ -3188,7 +3189,7 @@ var (
 		completer *T.GFilenameCompleter,
 		dirsOnly T.Gboolean)
 
-	FileOutputStreamGetType func() T.GType
+	FileOutputStreamGetType func() O.Type
 
 	FileOutputStreamQueryInfo func(
 		stream *T.GFileOutputStream,
@@ -3212,7 +3213,7 @@ var (
 	FileOutputStreamGetEtag func(
 		stream *T.GFileOutputStream) string
 
-	InetAddressGetType func() T.GType
+	InetAddressGetType func() O.Type
 
 	InetAddressNewFromString func(
 		string string) *T.GInetAddress
@@ -3269,7 +3270,7 @@ var (
 	InetAddressGetIsMcSiteLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	SocketAddressGetType func() T.GType
+	SocketAddressGetType func() O.Type
 
 	SocketAddressGetFamily func(
 		address *T.GSocketAddress) T.GSocketFamily
@@ -3287,7 +3288,7 @@ var (
 	SocketAddressGetNativeSize func(
 		address *T.GSocketAddress) T.Gssize
 
-	InetSocketAddressGetType func() T.GType
+	InetSocketAddressGetType func() O.Type
 
 	InetSocketAddressNew func(
 		address *T.GInetAddress,
@@ -3299,121 +3300,121 @@ var (
 	InetSocketAddressGetPort func(
 		address *T.GInetSocketAddress) uint16
 
-	AppInfoCreateFlagsGetType func() T.GType
+	AppInfoCreateFlagsGetType func() O.Type
 
-	ConverterFlagsGetType func() T.GType
+	ConverterFlagsGetType func() O.Type
 
-	ConverterResultGetType func() T.GType
+	ConverterResultGetType func() O.Type
 
-	DataStreamByteOrderGetType func() T.GType
+	DataStreamByteOrderGetType func() O.Type
 
-	DataStreamNewlineTypeGetType func() T.GType
+	DataStreamNewlineTypeGetType func() O.Type
 
-	FileAttributeTypeGetType func() T.GType
+	FileAttributeTypeGetType func() O.Type
 
-	FileAttributeInfoFlagsGetType func() T.GType
+	FileAttributeInfoFlagsGetType func() O.Type
 
-	FileAttributeStatusGetType func() T.GType
+	FileAttributeStatusGetType func() O.Type
 
-	FileQueryInfoFlagsGetType func() T.GType
+	FileQueryInfoFlagsGetType func() O.Type
 
-	FileCreateFlagsGetType func() T.GType
+	FileCreateFlagsGetType func() O.Type
 
-	MountMountFlagsGetType func() T.GType
+	MountMountFlagsGetType func() O.Type
 
-	MountUnmountFlagsGetType func() T.GType
+	MountUnmountFlagsGetType func() O.Type
 
-	DriveStartFlagsGetType func() T.GType
+	DriveStartFlagsGetType func() O.Type
 
-	DriveStartStopTypeGetType func() T.GType
+	DriveStartStopTypeGetType func() O.Type
 
-	FileCopyFlagsGetType func() T.GType
+	FileCopyFlagsGetType func() O.Type
 
-	FileMonitorFlagsGetType func() T.GType
+	FileMonitorFlagsGetType func() O.Type
 
-	FileTypeGetType func() T.GType
+	FileTypeGetType func() O.Type
 
-	FilesystemPreviewTypeGetType func() T.GType
+	FilesystemPreviewTypeGetType func() O.Type
 
-	FileMonitorEventGetType func() T.GType
+	FileMonitorEventGetType func() O.Type
 
-	IoErrorEnumGetType func() T.GType
+	IoErrorEnumGetType func() O.Type
 
-	AskPasswordFlagsGetType func() T.GType
+	AskPasswordFlagsGetType func() O.Type
 
-	PasswordSaveGetType func() T.GType
+	PasswordSaveGetType func() O.Type
 
-	MountOperationResultGetType func() T.GType
+	MountOperationResultGetType func() O.Type
 
-	OutputStreamSpliceFlagsGetType func() T.GType
+	OutputStreamSpliceFlagsGetType func() O.Type
 
-	IoStreamSpliceFlagsGetType func() T.GType
+	IoStreamSpliceFlagsGetType func() O.Type
 
-	EmblemOriginGetType func() T.GType
+	EmblemOriginGetType func() O.Type
 
-	ResolverErrorGetType func() T.GType
+	ResolverErrorGetType func() O.Type
 
-	SocketFamilyGetType func() T.GType
+	SocketFamilyGetType func() O.Type
 
-	SocketTypeGetType func() T.GType
+	SocketTypeGetType func() O.Type
 
-	SocketMsgFlagsGetType func() T.GType
+	SocketMsgFlagsGetType func() O.Type
 
-	SocketProtocolGetType func() T.GType
+	SocketProtocolGetType func() O.Type
 
-	ZlibCompressorFormatGetType func() T.GType
+	ZlibCompressorFormatGetType func() O.Type
 
-	UnixSocketAddressTypeGetType func() T.GType
+	UnixSocketAddressTypeGetType func() O.Type
 
-	BusTypeGetType func() T.GType
+	BusTypeGetType func() O.Type
 
-	BusNameOwnerFlagsGetType func() T.GType
+	BusNameOwnerFlagsGetType func() O.Type
 
-	BusNameWatcherFlagsGetType func() T.GType
+	BusNameWatcherFlagsGetType func() O.Type
 
-	DbusProxyFlagsGetType func() T.GType
+	DbusProxyFlagsGetType func() O.Type
 
-	DbusErrorGetType func() T.GType
+	DbusErrorGetType func() O.Type
 
-	DbusConnectionFlagsGetType func() T.GType
+	DbusConnectionFlagsGetType func() O.Type
 
-	DbusCapabilityFlagsGetType func() T.GType
+	DbusCapabilityFlagsGetType func() O.Type
 
-	DbusCallFlagsGetType func() T.GType
+	DbusCallFlagsGetType func() O.Type
 
-	DbusMessageTypeGetType func() T.GType
+	DbusMessageTypeGetType func() O.Type
 
-	DbusMessageFlagsGetType func() T.GType
+	DbusMessageFlagsGetType func() O.Type
 
-	DbusMessageHeaderFieldGetType func() T.GType
+	DbusMessageHeaderFieldGetType func() O.Type
 
-	DbusPropertyInfoFlagsGetType func() T.GType
+	DbusPropertyInfoFlagsGetType func() O.Type
 
-	DbusSubtreeFlagsGetType func() T.GType
+	DbusSubtreeFlagsGetType func() O.Type
 
-	DbusServerFlagsGetType func() T.GType
+	DbusServerFlagsGetType func() O.Type
 
-	DbusSignalFlagsGetType func() T.GType
+	DbusSignalFlagsGetType func() O.Type
 
-	DbusSendMessageFlagsGetType func() T.GType
+	DbusSendMessageFlagsGetType func() O.Type
 
-	CredentialsTypeGetType func() T.GType
+	CredentialsTypeGetType func() O.Type
 
-	DbusMessageByteOrderGetType func() T.GType
+	DbusMessageByteOrderGetType func() O.Type
 
-	ApplicationFlagsGetType func() T.GType
+	ApplicationFlagsGetType func() O.Type
 
-	TlsErrorGetType func() T.GType
+	TlsErrorGetType func() O.Type
 
-	TlsCertificateFlagsGetType func() T.GType
+	TlsCertificateFlagsGetType func() O.Type
 
-	TlsAuthenticationModeGetType func() T.GType
+	TlsAuthenticationModeGetType func() O.Type
 
-	TlsRehandshakeModeGetType func() T.GType
+	TlsRehandshakeModeGetType func() O.Type
 
-	SettingsBindFlagsGetType func() T.GType
+	SettingsBindFlagsGetType func() O.Type
 
-	IoModuleGetType func() T.GType
+	IoModuleGetType func() O.Type
 
 	IoModuleNew func(
 		filename string) *T.GIOModule
@@ -3432,10 +3433,10 @@ var (
 
 	IoExtensionPointSetRequiredType func(
 		extensionPoint *T.GIOExtensionPoint,
-		typ T.GType)
+		typ O.Type)
 
 	IoExtensionPointGetRequiredType func(
-		extensionPoint *T.GIOExtensionPoint) T.GType
+		extensionPoint *T.GIOExtensionPoint) O.Type
 
 	IoExtensionPointGetExtensions func(
 		extensionPoint *T.GIOExtensionPoint) *T.GList
@@ -3446,12 +3447,12 @@ var (
 
 	IoExtensionPointImplement func(
 		extensionPointName string,
-		typ T.GType,
+		typ O.Type,
 		extensionName string,
 		priority int) *T.GIOExtension
 
 	IoExtensionGetType func(
-		extension *T.GIOExtension) T.GType
+		extension *T.GIOExtension) O.Type
 
 	IoExtensionGetName func(
 		extension *T.GIOExtension) string
@@ -3460,7 +3461,7 @@ var (
 		extension *T.GIOExtension) int
 
 	IoExtensionRefClass func(
-		extension *T.GIOExtension) *T.GTypeClass
+		extension *T.GIOExtension) *O.TypeClass
 
 	IoModuleLoad func(
 		module *T.GIOModule)
@@ -3481,17 +3482,17 @@ var (
 
 	IoSchedulerJobSendToMainloop func(
 		job *T.GIOSchedulerJob,
-		f T.GSourceFunc,
+		f O.SourceFunc,
 		userData T.Gpointer,
 		notify T.GDestroyNotify) T.Gboolean
 
 	IoSchedulerJobSendToMainloopAsync func(
 		job *T.GIOSchedulerJob,
-		f T.GSourceFunc,
+		f O.SourceFunc,
 		userData T.Gpointer,
 		notify T.GDestroyNotify)
 
-	LoadableIconGetType func() T.GType
+	LoadableIconGetType func() O.Type
 
 	LoadableIconLoad func(
 		icon *T.GLoadableIcon,
@@ -3513,7 +3514,7 @@ var (
 		typ **T.Char,
 		err **T.GError) *T.GInputStream
 
-	MemoryInputStreamGetType func() T.GType
+	MemoryInputStreamGetType func() O.Type
 
 	MemoryInputStreamNew func() *T.GInputStream
 
@@ -3528,7 +3529,7 @@ var (
 		len T.Gssize,
 		destroy T.GDestroyNotify)
 
-	MemoryOutputStreamGetType func() T.GType
+	MemoryOutputStreamGetType func() O.Type
 
 	MemoryOutputStreamNew func(
 		data T.Gpointer,
@@ -3548,7 +3549,7 @@ var (
 	MemoryOutputStreamStealData func(
 		ostream *T.GMemoryOutputStream) T.Gpointer
 
-	MountGetType func() T.GType
+	MountGetType func() O.Type
 
 	MountGetRoot func(
 		mount *T.GMount) *T.GFile
@@ -3667,7 +3668,7 @@ var (
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	MountOperationGetType func() T.GType
+	MountOperationGetType func() O.Type
 
 	MountOperationNew func() *T.GMountOperation
 
@@ -3717,7 +3718,7 @@ var (
 		op *T.GMountOperation,
 		result T.GMountOperationResult)
 
-	VolumeMonitorGetType func() T.GType
+	VolumeMonitorGetType func() O.Type
 
 	VolumeMonitorGet func() *T.GVolumeMonitor
 
@@ -3741,9 +3742,9 @@ var (
 	VolumeMonitorAdoptOrphanMount func(
 		mount *T.GMount) *T.GVolume
 
-	NativeVolumeMonitorGetType func() T.GType
+	NativeVolumeMonitorGetType func() O.Type
 
-	NetworkAddressGetType func() T.GType
+	NetworkAddressGetType func() O.Type
 
 	NetworkAddressNew func(
 		hostname string,
@@ -3768,7 +3769,7 @@ var (
 	NetworkAddressGetScheme func(
 		addr *T.GNetworkAddress) string
 
-	NetworkServiceGetType func() T.GType
+	NetworkServiceGetType func() O.Type
 
 	NetworkServiceNew func(
 		service string,
@@ -3791,7 +3792,7 @@ var (
 		srv *T.GNetworkService,
 		scheme string)
 
-	PermissionGetType func() T.GType
+	PermissionGetType func() O.Type
 
 	PermissionAcquire func(
 		permission *T.GPermission,
@@ -3840,7 +3841,7 @@ var (
 		canAcquire T.Gboolean,
 		canRelease T.Gboolean)
 
-	PollableInputStreamGetType func() T.GType
+	PollableInputStreamGetType func() O.Type
 
 	PollableInputStreamCanPoll func(
 		stream *T.GPollableInputStream) T.Gboolean
@@ -3860,9 +3861,9 @@ var (
 		err **T.GError) T.Gssize
 
 	PollableSourceNew func(
-		pollableStream *T.GObject) *T.GSource
+		pollableStream *O.Object) *T.GSource
 
-	PollableOutputStreamGetType func() T.GType
+	PollableOutputStreamGetType func() O.Type
 
 	PollableOutputStreamCanPoll func(
 		stream *T.GPollableOutputStream) T.Gboolean
@@ -3881,7 +3882,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	ProxyGetType func() T.GType
+	ProxyGetType func() O.Type
 
 	ProxyGetDefaultForProtocol func(
 		protocol string) *T.GProxy
@@ -3909,7 +3910,7 @@ var (
 	ProxySupportsHostname func(
 		proxy *T.GProxy) T.Gboolean
 
-	ProxyAddressGetType func() T.GType
+	ProxyAddressGetType func() O.Type
 
 	ProxyAddressNew func(
 		inetaddr *T.GInetAddress,
@@ -3935,7 +3936,7 @@ var (
 	ProxyAddressGetPassword func(
 		proxy *T.GProxyAddress) string
 
-	SocketAddressEnumeratorGetType func() T.GType
+	SocketAddressEnumeratorGetType func() O.Type
 
 	SocketAddressEnumeratorNext func(
 		enumerator *T.GSocketAddressEnumerator,
@@ -3953,9 +3954,9 @@ var (
 		result *T.GAsyncResult,
 		err **T.GError) *T.GSocketAddress
 
-	ProxyAddressEnumeratorGetType func() T.GType
+	ProxyAddressEnumeratorGetType func() O.Type
 
-	ProxyResolverGetType func() T.GType
+	ProxyResolverGetType func() O.Type
 
 	ProxyResolverGetDefault func() *T.GProxyResolver
 
@@ -3980,7 +3981,7 @@ var (
 		result *T.GAsyncResult,
 		err **T.GError) **T.Gchar
 
-	ResolverGetType func() T.GType
+	ResolverGetType func() O.Type
 
 	ResolverGetDefault func() *T.GResolver
 
@@ -4053,7 +4054,7 @@ var (
 
 	ResolverErrorQuark func() T.GQuark
 
-	SeekableGetType func() T.GType
+	SeekableGetType func() O.Type
 
 	SeekableTell func(
 		seekable *T.GSeekable) T.Goffset
@@ -4077,7 +4078,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gboolean
 
-	SettingsGetType func() T.GType
+	SettingsGetType func() O.Type
 
 	SettingsListSchemas func() **T.Gchar
 
@@ -4223,27 +4224,27 @@ var (
 		mapping T.GSettingsGetMapping,
 		userData T.Gpointer) T.Gpointer
 
-	SimpleAsyncResultGetType func() T.GType
+	SimpleAsyncResultGetType func() O.Type
 
 	SimpleAsyncResultNew func(
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		callback T.GAsyncReadyCallback,
 		userData T.Gpointer,
 		sourceTag T.Gpointer) *T.GSimpleAsyncResult
 
 	SimpleAsyncResultNewError func(
-		sourceObject *T.GObject, callback T.GAsyncReadyCallback,
+		sourceObject *O.Object, callback T.GAsyncReadyCallback,
 		userData T.Gpointer, domain T.GQuark, code int,
 		format string, v ...VArg) *T.GSimpleAsyncResult
 
 	SimpleAsyncResultNewFromError func(
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		callback T.GAsyncReadyCallback,
 		userData T.Gpointer,
 		err *T.GError) *T.GSimpleAsyncResult
 
 	SimpleAsyncResultNewTakeError func(
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		callback T.GAsyncReadyCallback,
 		userData T.Gpointer,
 		err *T.GError) *T.GSimpleAsyncResult
@@ -4314,31 +4315,31 @@ var (
 
 	SimpleAsyncResultIsValid func(
 		result *T.GAsyncResult,
-		source *T.GObject,
+		source *O.Object,
 		sourceTag T.Gpointer) T.Gboolean
 
-	SimpleAsyncReportErrorInIdle func(object *T.GObject,
+	SimpleAsyncReportErrorInIdle func(object *O.Object,
 		callback T.GAsyncReadyCallback, userData T.Gpointer,
 		domain T.GQuark, code int, format string, v ...VArg)
 
 	SimpleAsyncReportGerrorInIdle func(
-		object *T.GObject,
+		object *O.Object,
 		callback T.GAsyncReadyCallback,
 		userData T.Gpointer,
 		err *T.GError)
 
 	SimpleAsyncReportTakeGerrorInIdle func(
-		object *T.GObject,
+		object *O.Object,
 		callback T.GAsyncReadyCallback,
 		userData T.Gpointer,
 		err *T.GError)
 
-	SimplePermissionGetType func() T.GType
+	SimplePermissionGetType func() O.Type
 
 	SimplePermissionNew func(
 		allowed T.Gboolean) *T.GPermission
 
-	SocketClientGetType func() T.GType
+	SocketClientGetType func() O.Type
 
 	SocketClientNew func() *T.GSocketClient
 
@@ -4480,7 +4481,7 @@ var (
 		client *T.GSocketClient,
 		protocol string)
 
-	SocketConnectableGetType func() T.GType
+	SocketConnectableGetType func() O.Type
 
 	SocketConnectableEnumerate func(
 		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
@@ -4488,7 +4489,7 @@ var (
 	SocketConnectableProxyEnumerate func(
 		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
 
-	SocketGetType func() T.GType
+	SocketGetType func() O.Type
 
 	SocketNew func(
 		family T.GSocketFamily,
@@ -4679,7 +4680,7 @@ var (
 		cancellable *T.GCancellable,
 		err **T.GError) T.Gssize
 
-	SocketConnectionGetType func() T.GType
+	SocketConnectionGetType func() O.Type
 
 	SocketConnectionGetSocket func(
 		connection *T.GSocketConnection) *T.GSocket
@@ -4694,7 +4695,7 @@ var (
 
 	SocketConnectionFactoryRegisterType func(
 
-		GType T.GType,
+		GType O.Type,
 		family T.GSocketFamily,
 		t T.GSocketType,
 		protocol int)
@@ -4702,12 +4703,12 @@ var (
 	SocketConnectionFactoryLookupType func(
 		family T.GSocketFamily,
 		t T.GSocketType,
-		protocolId int) T.GType
+		protocolId int) O.Type
 
 	SocketConnectionFactoryCreateConnection func(
 		socket *T.GSocket) *T.GSocketConnection
 
-	SocketControlMessageGetType func() T.GType
+	SocketControlMessageGetType func() O.Type
 
 	SocketControlMessageGetSize func(
 		message *T.GSocketControlMessage) T.Gsize
@@ -4728,7 +4729,7 @@ var (
 		size T.Gsize,
 		data T.Gpointer) *T.GSocketControlMessage
 
-	SocketListenerGetType func() T.GType
+	SocketListenerGetType func() O.Type
 
 	SocketListenerNew func() *T.GSocketListener
 
@@ -4739,7 +4740,7 @@ var (
 	SocketListenerAddSocket func(
 		listener *T.GSocketListener,
 		socket *T.GSocket,
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		err **T.GError) T.Gboolean
 
 	SocketListenerAddAddress func(
@@ -4747,24 +4748,24 @@ var (
 		address *T.GSocketAddress,
 		t T.GSocketType,
 		protocol T.GSocketProtocol,
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		effectiveAddress **T.GSocketAddress,
 		err **T.GError) T.Gboolean
 
 	SocketListenerAddInetPort func(
 		listener *T.GSocketListener,
 		port uint16,
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		err **T.GError) T.Gboolean
 
 	SocketListenerAddAnyInetPort func(
 		listener *T.GSocketListener,
-		sourceObject *T.GObject,
+		sourceObject *O.Object,
 		err **T.GError) uint16
 
 	SocketListenerAcceptSocket func(
 		listener *T.GSocketListener,
-		sourceObject **T.GObject,
+		sourceObject **O.Object,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocket
 
@@ -4777,12 +4778,12 @@ var (
 	SocketListenerAcceptSocketFinish func(
 		listener *T.GSocketListener,
 		result *T.GAsyncResult,
-		sourceObject **T.GObject,
+		sourceObject **O.Object,
 		err **T.GError) *T.GSocket
 
 	SocketListenerAccept func(
 		listener *T.GSocketListener,
-		sourceObject **T.GObject,
+		sourceObject **O.Object,
 		cancellable *T.GCancellable,
 		err **T.GError) *T.GSocketConnection
 
@@ -4795,13 +4796,13 @@ var (
 	SocketListenerAcceptFinish func(
 		listener *T.GSocketListener,
 		result *T.GAsyncResult,
-		sourceObject **T.GObject,
+		sourceObject **O.Object,
 		err **T.GError) *T.GSocketConnection
 
 	SocketListenerClose func(
 		listener *T.GSocketListener)
 
-	SocketServiceGetType func() T.GType
+	SocketServiceGetType func() O.Type
 
 	SocketServiceNew func() *T.GSocketService
 
@@ -4814,7 +4815,7 @@ var (
 	SocketServiceIsActive func(
 		service *T.GSocketService) T.Gboolean
 
-	SrvTargetGetType func() T.GType
+	SrvTargetGetType func() O.Type
 
 	SrvTargetNew func(
 		hostname string,
@@ -4843,7 +4844,7 @@ var (
 	SrvTargetListSort func(
 		targets *T.GList) *T.GList
 
-	TcpConnectionGetType func() T.GType
+	TcpConnectionGetType func() O.Type
 
 	TcpConnectionSetGracefulDisconnect func(
 		connection *T.GTcpConnection,
@@ -4852,7 +4853,7 @@ var (
 	TcpConnectionGetGracefulDisconnect func(
 		connection *T.GTcpConnection) T.Gboolean
 
-	TcpWrapperConnectionGetType func() T.GType
+	TcpWrapperConnectionGetType func() O.Type
 
 	TcpWrapperConnectionNew func(
 		baseIoStream *T.GIOStream,
@@ -4861,7 +4862,7 @@ var (
 	TcpWrapperConnectionGetBaseIoStream func(
 		conn *T.GTcpWrapperConnection) *T.GIOStream
 
-	ThemedIconGetType func() T.GType
+	ThemedIconGetType func() O.Type
 
 	ThemedIconNew func(
 		iconname string) *T.GIcon
@@ -4884,12 +4885,12 @@ var (
 	ThemedIconGetNames func(
 		icon *T.GThemedIcon) **T.Gchar
 
-	ThreadedSocketServiceGetType func() T.GType
+	ThreadedSocketServiceGetType func() O.Type
 
 	ThreadedSocketServiceNew func(
 		maxThreads int) *T.GSocketService
 
-	TlsBackendGetType func() T.GType
+	TlsBackendGetType func() O.Type
 
 	TlsBackendGetDefault func() *T.GTlsBackend
 
@@ -4897,15 +4898,15 @@ var (
 		backend *T.GTlsBackend) T.Gboolean
 
 	TlsBackendGetCertificateType func(
-		backend *T.GTlsBackend) T.GType
+		backend *T.GTlsBackend) O.Type
 
 	TlsBackendGetClientConnectionType func(
-		backend *T.GTlsBackend) T.GType
+		backend *T.GTlsBackend) O.Type
 
 	TlsBackendGetServerConnectionType func(
-		backend *T.GTlsBackend) T.GType
+		backend *T.GTlsBackend) O.Type
 
-	TlsCertificateGetType func() T.GType
+	TlsCertificateGetType func() O.Type
 
 	TlsCertificateNewFromPem func(
 		data string,
@@ -4933,7 +4934,7 @@ var (
 		identity *T.GSocketConnectable,
 		trustedCa *T.GTlsCertificate) T.GTlsCertificateFlags
 
-	TlsConnectionGetType func() T.GType
+	TlsConnectionGetType func() O.Type
 
 	TlsConnectionSetUseSystemCertdb func(
 		conn *T.GTlsConnection,
@@ -4993,7 +4994,7 @@ var (
 		peerCert *T.GTlsCertificate,
 		errors T.GTlsCertificateFlags) T.Gboolean
 
-	TlsClientConnectionGetType func() T.GType
+	TlsClientConnectionGetType func() O.Type
 
 	TlsClientConnectionNew func(
 		baseIoStream *T.GIOStream,
@@ -5024,14 +5025,14 @@ var (
 	TlsClientConnectionGetAcceptedCas func(
 		conn *T.GTlsClientConnection) *T.GList
 
-	TlsServerConnectionGetType func() T.GType
+	TlsServerConnectionGetType func() O.Type
 
 	TlsServerConnectionNew func(
 		baseIoStream *T.GIOStream,
 		certificate *T.GTlsCertificate,
 		err **T.GError) *T.GIOStream
 
-	VfsGetType func() T.GType
+	VfsGetType func() O.Type
 
 	VfsIsActive func(
 		vfs *T.GVfs) T.Gboolean
@@ -5055,7 +5056,7 @@ var (
 
 	VfsGetLocal func() *T.GVfs
 
-	VolumeGetType func() T.GType
+	VolumeGetType func() O.Type
 
 	VolumeGetName func(
 		volume *T.GVolume) string
@@ -5129,7 +5130,7 @@ var (
 		result *T.GAsyncResult,
 		err **T.GError) T.Gboolean
 
-	ZlibCompressorGetType func() T.GType
+	ZlibCompressorGetType func() O.Type
 
 	ZlibCompressorNew func(
 		format T.GZlibCompressorFormat,
@@ -5142,7 +5143,7 @@ var (
 		compressor *T.GZlibCompressor,
 		fileInfo *T.GFileInfo)
 
-	ZlibDecompressorGetType func() T.GType
+	ZlibDecompressorGetType func() O.Type
 
 	ZlibDecompressorNew func(
 		format T.GZlibCompressorFormat) *T.GZlibDecompressor
@@ -5150,7 +5151,7 @@ var (
 	ZlibDecompressorGetFileInfo func(
 		decompressor *T.GZlibDecompressor) *T.GFileInfo
 
-	Win32InputStreamGetType func() T.GType
+	Win32InputStreamGetType func() O.Type
 
 	Win32InputStreamNew func(
 		handle *T.Void,
@@ -5166,7 +5167,7 @@ var (
 	Win32InputStreamGetHandle func(
 		stream *T.GWin32InputStream) *T.Void
 
-	Win32OutputStreamGetType func() T.GType
+	Win32OutputStreamGetType func() O.Type
 
 	Win32OutputStreamNew func(
 		handle *T.Void,
@@ -5182,7 +5183,7 @@ var (
 	Win32OutputStreamGetHandle func(
 		stream *T.GWin32OutputStream) *T.Void
 
-	SettingsBackendGetType func() T.GType
+	SettingsBackendGetType func() O.Type
 
 	SettingsBackendChanged func(
 		backend *T.GSettingsBackend,

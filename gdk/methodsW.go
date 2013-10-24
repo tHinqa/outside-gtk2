@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -362,7 +363,7 @@ const (
 	INPUT_ONLY
 )
 
-var WindowClassGetType func() T.GType
+var WindowClassGetType func() O.Type
 
 type WindowEdge Enum
 
@@ -377,7 +378,7 @@ const (
 	WINDOW_EDGE_SOUTH_EAST
 )
 
-var WindowEdgeGetType func() T.GType
+var WindowEdgeGetType func() O.Type
 
 type WindowHints Enum
 
@@ -393,7 +394,7 @@ const (
 	HINT_USER_SIZE
 )
 
-var WindowHintsGetType func() T.GType
+var WindowHintsGetType func() O.Type
 
 type WindowState Enum
 
@@ -407,7 +408,7 @@ const (
 	WINDOW_STATE_BELOW
 )
 
-var WindowStateGetType func() T.GType
+var WindowStateGetType func() O.Type
 
 type WindowType Enum
 
@@ -421,7 +422,7 @@ const (
 	WINDOW_OFFSCREEN
 )
 
-var WindowTypeGetType func() T.GType
+var WindowTypeGetType func() O.Type
 
 type WindowTypeHint Enum
 
@@ -442,4 +443,4 @@ const (
 	WINDOW_TYPE_HINT_DND
 )
 
-var WindowTypeHintGetType func() T.GType
+var WindowTypeHintGetType func() O.Type

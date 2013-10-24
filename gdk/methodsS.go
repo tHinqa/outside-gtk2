@@ -4,12 +4,13 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type Screen struct {
-	Parent       T.GObject
+	Parent       O.Object
 	Closed       uint    // : 1
 	NormalGcs    *[32]GC //TODO(t): CHECK
 	ExposureGcs  *[32]GC //TODO(t): CHECK
@@ -19,7 +20,7 @@ type Screen struct {
 }
 
 var (
-	ScreenGetType func() T.GType
+	ScreenGetType func() O.Type
 
 	ScreenGetDefault func() *Screen
 

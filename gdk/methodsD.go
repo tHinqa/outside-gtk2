@@ -4,12 +4,13 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type Device struct {
-	Parent    T.GObject
+	Parent    O.Object
 	Name      *T.Gchar
 	Source    T.GdkInputSource
 	Mode      T.GdkInputMode
@@ -21,7 +22,7 @@ type Device struct {
 }
 
 var (
-	DeviceGetType func() T.GType
+	DeviceGetType func() O.Type
 
 	DeviceFreeHistory    func(events **T.GdkTimeCoord, nEvents int)
 	DeviceGetCorePointer func() *Device
@@ -82,7 +83,7 @@ type DeviceAxis struct {
 }
 
 type Display struct {
-	Parent          T.GObject
+	Parent          O.Object
 	QueuedEvents    *T.GList
 	QueuedTail      *T.GList
 	ButtonClickTime [2]T.GUint32
@@ -104,7 +105,7 @@ type Display struct {
 }
 
 var (
-	DisplayGetType func() T.GType
+	DisplayGetType func() O.Type
 
 	DisplayGetDefault            func() *Display
 	DisplayOpen                  func(displayName string) *Display
@@ -217,7 +218,7 @@ type DisplayPointerHooks struct {
 type DisplayManager struct{}
 
 var (
-	DisplayManagerGetType func() T.GType
+	DisplayManagerGetType func() O.Type
 
 	DisplayManagerGet func() *DisplayManager
 
@@ -243,10 +244,10 @@ const (
 	ACTION_ASK
 )
 
-var DragActionGetType func() T.GType
+var DragActionGetType func() O.Type
 
 type DragContext struct {
-	Parent          T.GObject
+	Parent          O.Object
 	Protocol        DragProtocol
 	Is_source       T.Gboolean
 	SourceWindow    *Window
@@ -260,7 +261,7 @@ type DragContext struct {
 }
 
 var (
-	DragContextGetType func() T.GType
+	DragContextGetType func() O.Type
 	DragContextNew     func() *DragContext
 
 	DragAbort                 func(context *DragContext, time T.GUint32)
@@ -311,12 +312,12 @@ const (
 	DRAG_PROTO_LOCAL
 )
 
-var DragProtocolGetType func() T.GType
+var DragProtocolGetType func() O.Type
 
 type Drawable simpleObject
 
 var (
-	DrawableGetType func() T.GType
+	DrawableGetType func() O.Type
 
 	DrawArc                  func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height, angle1, angle2 int)
 	DrawDrawable             func(drawable *Drawable, gc *GC, src *Drawable, xsrc, ysrc, xdest, ydest, width, height int)

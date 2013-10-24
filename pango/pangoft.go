@@ -2,6 +2,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -10,7 +11,7 @@ func init() {
 }
 
 var (
-	Pango_fc_decoder_get_type func() T.GType
+	Pango_fc_decoder_get_type func() O.Type
 
 	Pango_fc_decoder_get_charset func(
 		decoder *T.PangoFcDecoder,
@@ -37,7 +38,7 @@ var (
 		font *T.PangoFcFont,
 		glyphs *T.PangoGlyphString)
 
-	Pango_fc_font_get_type func() T.GType
+	Pango_fc_font_get_type func() O.Type
 
 	Pango_fc_font_lock_face func(
 		font *T.PangoFcFont) T.FTFace
@@ -78,7 +79,7 @@ var (
 	Pango_fc_font_map_shutdown func(
 		fcfontmap *T.PangoFcFontMap)
 
-	Pango_fc_font_map_get_type func() T.GType
+	Pango_fc_font_map_get_type func() O.Type
 
 	Pango_fc_font_map_cache_clear func(
 		fcfontmap *T.PangoFcFontMap)
@@ -134,7 +135,7 @@ var (
 		x int,
 		y int)
 
-	Pango_ft2_font_map_get_type func() T.GType
+	Pango_ft2_font_map_get_type func() O.Type
 
 	Pango_ft2_font_map_new func() *T.PangoFontMap
 
@@ -322,9 +323,9 @@ var (
 	Pango_ot_ruleset_description_free func(
 		desc *T.PangoOTRulesetDescription)
 
-	Pango_ot_info_get_type func() T.GType
+	Pango_ot_info_get_type func() O.Type
 
-	Pango_ot_ruleset_get_type func() T.GType
+	Pango_ot_ruleset_get_type func() O.Type
 )
 
 var dllFt = "libpangoft2-1.0-0.dll"

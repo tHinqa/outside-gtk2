@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -18,7 +19,7 @@ type Scale struct {
 }
 
 var (
-	ScaleGetType   func() T.GType
+	ScaleGetType   func() O.Type
 	ScaleSetDigits func(scale *Scale, digits int)
 
 	scaleAddMark          func(s *Scale, value float64, position PositionType, markup string)
@@ -52,7 +53,7 @@ type ScaleButton struct {
 }
 
 var (
-	ScaleButtonGetType func() T.GType
+	ScaleButtonGetType func() O.Type
 	ScaleButtonNew     func(size IconSize, min, max, step float64, icons **T.Gchar) *Widget
 
 	scaleButtonGetAdjustment  func(s *ScaleButton) *Adjustment
@@ -80,7 +81,7 @@ func (s *ScaleButton) SetOrientation(orientation Orientation) {
 }
 func (s *ScaleButton) SetValue(value float64) { scaleButtonSetValue(s, value) }
 
-var ScrollbarGetType func() T.GType //TODO(t):Use?
+var ScrollbarGetType func() O.Type //TODO(t):Use?
 
 type ScrolledWindow struct {
 	Container  Bin
@@ -97,7 +98,7 @@ type ScrolledWindow struct {
 }
 
 var (
-	ScrolledWindowGetType func() T.GType
+	ScrolledWindowGetType func() O.Type
 	ScrolledWindowNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
 	scrolledWindowAddWithViewport func(s *ScrolledWindow, child *Widget)
@@ -143,7 +144,7 @@ func (s *ScrolledWindow) SetVadjustment(vadjustment *Adjustment) {
 }
 func (s *ScrolledWindow) UnsetPlacement() { scrolledWindowUnsetPlacement(s) }
 
-var ScrollStepGetType func() T.GType //TODO(t):Use?
+var ScrollStepGetType func() O.Type //TODO(t):Use?
 
 type ScrollType Enum
 
@@ -166,7 +167,7 @@ const (
 	SCROLL_END
 )
 
-var ScrollTypeGetType func() T.GType
+var ScrollTypeGetType func() O.Type
 
 type SelectionData struct {
 	Selection D.Atom
@@ -179,7 +180,7 @@ type SelectionData struct {
 }
 
 var (
-	SelectionDataGetType func() T.GType
+	SelectionDataGetType func() O.Type
 
 	SelectionAddTarget          func(widget *Widget, selection, target D.Atom, info uint)
 	SelectionAddTargets         func(widget *Widget, selection D.Atom, targets *TargetEntry, ntargets uint)
@@ -257,7 +258,7 @@ const (
 	SELECTION_EXTENDED = SELECTION_MULTIPLE
 )
 
-var SelectionModeGetType func() T.GType
+var SelectionModeGetType func() O.Type
 
 type SensitivityType Enum
 
@@ -267,12 +268,12 @@ const (
 	SENSITIVITY_OFF
 )
 
-var SensitivityTypeGetType func() T.GType
+var SensitivityTypeGetType func() O.Type
 
 var (
-	SeparatorGetType func() T.GType
+	SeparatorGetType func() O.Type
 
-	SeparatorMenuItemGetType func() T.GType
+	SeparatorMenuItemGetType func() O.Type
 	SeparatorMenuItemNew     func() *Widget
 )
 
@@ -282,7 +283,7 @@ type SeparatorToolItem struct {
 }
 
 var (
-	SeparatorToolItemGetType func() T.GType
+	SeparatorToolItemGetType func() O.Type
 	SeparatorToolItemNew     func() *ToolItem
 
 	separatorToolItemGetDraw func(s *SeparatorToolItem) T.Gboolean
@@ -301,7 +302,7 @@ type Settings struct {
 }
 
 var (
-	SettingsGetType    func() T.GType
+	SettingsGetType    func() O.Type
 	SettingsGetDefault func() *Settings
 
 	SettingsGetForScreen          func(screen *D.Screen) *Settings
@@ -344,7 +345,7 @@ const (
 	SHADOW_ETCHED_OUT
 )
 
-var ShadowTypeGetType func() T.GType
+var ShadowTypeGetType func() O.Type
 
 type SideType Enum
 
@@ -355,7 +356,7 @@ const (
 	SIDE_RIGHT
 )
 
-var SideTypeGetType func() T.GType
+var SideTypeGetType func() O.Type
 
 type SignalRunType Enum
 
@@ -368,7 +369,7 @@ const (
 	RUN_NO_HOOKS                 = SignalRunType(T.G_SIGNAL_NO_HOOKS)
 )
 
-var SignalRunTypeGetType func() T.GType
+var SignalRunTypeGetType func() O.Type
 
 type SizeGroup struct {
 	Parent  T.GObject
@@ -391,10 +392,10 @@ const (
 )
 
 var (
-	SizeGroupGetType func() T.GType
+	SizeGroupGetType func() O.Type
 	SizeGroupNew     func(mode SizeGroupMode) *SizeGroup
 
-	SizeGroupModeGetType func() T.GType
+	SizeGroupModeGetType func() O.Type
 
 	sizeGroupAddWidget       func(s *SizeGroup, widget *Widget)
 	sizeGroupGetIgnoreHidden func(s *SizeGroup) T.Gboolean
@@ -436,7 +437,7 @@ type Socket struct {
 }
 
 var (
-	SocketGetType func() T.GType
+	SocketGetType func() O.Type
 	SocketNew     func() *Widget
 
 	socketAddId         func(s *Socket, windowId T.GdkNativeWindow)
@@ -457,7 +458,7 @@ const (
 	SORT_DESCENDING
 )
 
-var SortTypeGetType func() T.GType
+var SortTypeGetType func() O.Type
 
 type SpinButton struct {
 	Entry        Entry
@@ -487,11 +488,11 @@ const (
 )
 
 var (
-	SpinButtonGetType      func() T.GType
+	SpinButtonGetType      func() O.Type
 	SpinButtonNew          func(adjustment *Adjustment, climbRate float64, digits uint) *Widget
 	SpinButtonNewWithRange func(min, max, step float64) *Widget
 
-	SpinButtonUpdatePolicyGetType func() T.GType
+	SpinButtonUpdatePolicyGetType func() O.Type
 
 	spinButtonConfigure       func(s *SpinButton, adjustment *Adjustment, climbRate float64, digits uint)
 	spinButtonGetAdjustment   func(s *SpinButton) *Adjustment
@@ -552,7 +553,7 @@ type Spinner struct {
 }
 
 var (
-	SpinnerGetType func() T.GType
+	SpinnerGetType func() O.Type
 	SpinnerNew     func() *Widget
 
 	spinnerStart func(s *Spinner)
@@ -574,7 +575,7 @@ const (
 	SPIN_USER_DEFINED
 )
 
-var SpinTypeGetType func() T.GType
+var SpinTypeGetType func() O.Type
 
 type StateType Enum
 
@@ -586,7 +587,7 @@ const (
 	STATE_INSENSITIVE
 )
 
-var StateTypeGetType func() T.GType
+var StateTypeGetType func() O.Type
 
 type Statusbar struct {
 	ParentWidget  HBox
@@ -601,7 +602,7 @@ type Statusbar struct {
 }
 
 var (
-	StatusbarGetType func() T.GType
+	StatusbarGetType func() O.Type
 	StatusbarNew     func() *Widget
 
 	statusbarGetContextId     func(s *Statusbar, contextDescription string) uint
@@ -631,7 +632,7 @@ type StatusIcon struct {
 }
 
 var (
-	StatusIconGetType         func() T.GType
+	StatusIconGetType         func() O.Type
 	StatusIconNew             func() *StatusIcon
 	StatusIconNewFromFile     func(filename string) *StatusIcon
 	StatusIconNewFromGicon    func(icon *T.GIcon) *StatusIcon
@@ -763,17 +764,17 @@ type Style struct {
 }
 
 var (
-	StyleGetType func() T.GType
+	StyleGetType func() O.Type
 	StyleNew     func() *Style
 
 	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg T.Gboolean, stateType StateType, area *D.Rectangle, x, y, width, height int)
 	styleAttach                 func(s *Style, window *D.Window) *Style
 	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
-	styleGet                    func(s *Style, widgetType T.GType, firstPropertyName string, v ...VArg)
+	styleGet                    func(s *Style, widgetType O.Type, firstPropertyName string, v ...VArg)
 	styleGetFont                func(s *Style) *D.Font
-	styleGetStyleProperty       func(s *Style, widgetType T.GType, propertyName string, value *T.GValue)
-	styleGetValist              func(s *Style, widgetType T.GType, firstPropertyName string, varArgs T.VaList)
+	styleGetStyleProperty       func(s *Style, widgetType O.Type, propertyName string, value *T.GValue)
+	styleGetValist              func(s *Style, widgetType O.Type, firstPropertyName string, varArgs T.VaList)
 	styleLookupColor            func(s *Style, colorName string, color *D.Color) T.Gboolean
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
 	styleRef                    func(s *Style) *Style
@@ -789,14 +790,14 @@ func (s *Style) ApplyDefaultBackground(window *D.Window, setBg T.Gboolean, state
 func (s *Style) Attach(window *D.Window) *Style { return styleAttach(s, window) }
 func (s *Style) Copy() *Style                   { return styleCopy(s) }
 func (s *Style) Detach()                        { styleDetach(s) }
-func (s *Style) Get(widgetType T.GType, firstPropertyName string, v ...VArg) {
+func (s *Style) Get(widgetType O.Type, firstPropertyName string, v ...VArg) {
 	styleGet(s, widgetType, firstPropertyName, v)
 }
 func (s *Style) GetFont() *D.Font { return styleGetFont(s) }
-func (s *Style) GetStyleProperty(widgetType T.GType, propertyName string, value *T.GValue) {
+func (s *Style) GetStyleProperty(widgetType O.Type, propertyName string, value *T.GValue) {
 	styleGetStyleProperty(s, widgetType, propertyName, value)
 }
-func (s *Style) GetValist(widgetType T.GType, firstPropertyName string, varArgs T.VaList) {
+func (s *Style) GetValist(widgetType O.Type, firstPropertyName string, varArgs T.VaList) {
 	styleGetValist(s, widgetType, firstPropertyName, varArgs)
 }
 func (s *Style) LookupColor(colorName string, color *D.Color) T.Gboolean {
@@ -820,7 +821,7 @@ const (
 	DIRECTION_RIGHT
 )
 
-var SubmenuDirectionGetType func() T.GType
+var SubmenuDirectionGetType func() O.Type
 
 type SubmenuPlacement Enum
 
@@ -829,4 +830,4 @@ const (
 	LEFT_RIGHT
 )
 
-var SubmenuPlacementGetType func() T.GType
+var SubmenuPlacementGetType func() O.Type

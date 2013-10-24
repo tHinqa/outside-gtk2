@@ -4,7 +4,7 @@
 package gtk
 
 import (
-	T "github.com/tHinqa/outside-gtk2/types"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	// . "github.com/tHinqa/outside/types"
 )
 
@@ -17,4 +17,4 @@ const (
 	JUSTIFY_FILL
 )
 
-var JustificationGetType func() T.GType
+var JustificationGetType func() O.Type

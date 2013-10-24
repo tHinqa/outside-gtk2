@@ -7,6 +7,7 @@ package atk
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -28,9 +29,9 @@ var (
 	RoleRegister func(
 		name string) T.AtkRole
 
-	ObjectGetType func() T.GType
+	ObjectGetType func() O.Type
 
-	ImplementorGetType func() T.GType
+	ImplementorGetType func() O.Type
 
 	ImplementorRefAccessible func(
 		implementor *T.AtkImplementor) *T.AtkObject
@@ -124,7 +125,7 @@ var (
 	RoleGetLocalizedName func(
 		role T.AtkRole) string
 
-	ActionGetType func() T.GType
+	ActionGetType func() O.Type
 
 	ActionDoAction func(
 		action *T.AtkAction,
@@ -154,7 +155,7 @@ var (
 		action *T.AtkAction,
 		i int) string
 
-	UtilGetType func() T.GType
+	UtilGetType func() O.Type
 
 	AddFocusTracker func(
 		focusTracker T.AtkEventListener) uint
@@ -192,9 +193,9 @@ var (
 
 	//Atk_get_version func() int //NOTE: Not exposed
 
-	RectangleGetType func() T.GType
+	RectangleGetType func() O.Type
 
-	ComponentGetType func() T.GType
+	ComponentGetType func() O.Type
 
 	ComponentAddFocusHandler func(
 		component *T.AtkComponent,
@@ -266,7 +267,7 @@ var (
 	ComponentGetAlpha func(
 		component *T.AtkComponent) float64
 
-	DocumentGetType func() T.GType
+	DocumentGetType func() O.Type
 
 	DocumentGetDocumentType func(
 		document *T.AtkDocument) string
@@ -292,7 +293,7 @@ var (
 	TextAttributeRegister func(
 		name string) T.AtkTextAttribute
 
-	TextGetType func() T.GType
+	TextGetType func() O.Type
 
 	TextGetText func(
 		text *T.AtkText,
@@ -407,7 +408,7 @@ var (
 	TextAttributeGetValue func(
 		attr T.AtkTextAttribute, index int) string
 
-	EditableTextGetType func() T.GType
+	EditableTextGetType func() O.Type
 
 	EditableTextSetRunAttributes func(
 		text *T.AtkEditableText,
@@ -445,12 +446,12 @@ var (
 		position int)
 
 	GobjectAccessibleForObject func(
-		obj *T.GObject) *T.AtkObject
+		obj *O.Object) *T.AtkObject
 
 	GobjectAccessibleGetObject func(
-		obj *T.AtkGObjectAccessible) *T.GObject
+		obj *T.AtkGObjectAccessible) *O.Object
 
-	HyperlinkGetType func() T.GType
+	HyperlinkGetType func() O.Type
 
 	HyperlinkGetUri func(
 		link *T.AtkHyperlink,
@@ -478,12 +479,12 @@ var (
 	HyperlinkIsSelectedLink func(
 		link *T.AtkHyperlink) T.Gboolean
 
-	HyperlinkImplGetType func() T.GType
+	HyperlinkImplGetType func() O.Type
 
 	HyperlinkImplGetHyperlink func(
 		obj *T.AtkHyperlinkImpl) *T.AtkHyperlink
 
-	HypertextGetType func() T.GType
+	HypertextGetType func() O.Type
 
 	HypertextGetLink func(
 		hypertext *T.AtkHypertext,
@@ -496,7 +497,7 @@ var (
 		hypertext *T.AtkHypertext,
 		charIndex int) int
 
-	ImageGetType func() T.GType
+	ImageGetType func() O.Type
 
 	ImageGetImageDescription func(
 		image *T.AtkImage) string
@@ -520,48 +521,48 @@ var (
 		image *T.AtkImage) string
 
 	NoOpObjectNew func(
-		obj *T.GObject) *T.AtkObject
+		obj *O.Object) *T.AtkObject
 
-	ObjectFactoryGetType func() T.GType
+	ObjectFactoryGetType func() O.Type
 
 	ObjectFactoryCreateAccessible func(
 		factory *T.AtkObjectFactory,
-		obj *T.GObject) *T.AtkObject
+		obj *O.Object) *T.AtkObject
 
 	ObjectFactoryInvalidate func(
 		factory *T.AtkObjectFactory)
 
 	ObjectFactoryGetAccessibleType func(
-		factory *T.AtkObjectFactory) T.GType
+		factory *T.AtkObjectFactory) O.Type
 
-	NoOpObjectFactoryGetType func() T.GType
+	NoOpObjectFactoryGetType func() O.Type
 
 	NoOpObjectFactoryNew func() *T.AtkObjectFactory
 
-	PlugGetType func() T.GType
+	PlugGetType func() O.Type
 
 	PlugNew func() *T.AtkObject
 
 	PlugGetId func(plug *T.AtkPlug) string
 
-	RegistryGetType func() T.GType
+	RegistryGetType func() O.Type
 
 	RegistrySetFactoryType func(
 		registry *T.AtkRegistry,
-		t T.GType,
-		factoryType T.GType)
+		t O.Type,
+		factoryType O.Type)
 
 	RegistryGetFactoryType func(
 		registry *T.AtkRegistry,
-		t T.GType) T.GType
+		t O.Type) O.Type
 
 	RegistryGetFactory func(
 		registry *T.AtkRegistry,
-		t T.GType) *T.AtkObjectFactory
+		t O.Type) *T.AtkObjectFactory
 
 	GetDefaultRegistry func() *T.AtkRegistry
 
-	RelationGetType func() T.GType
+	RelationGetType func() O.Type
 
 	RelationTypeRegister func(
 		name string) T.AtkRelationType
@@ -591,7 +592,7 @@ var (
 		relation *T.AtkRelation,
 		target *T.AtkObject) T.Gboolean
 
-	RelationSetGetType func() T.GType
+	RelationSetGetType func() O.Type
 
 	RelationSetNew func() *T.AtkRelationSet
 
@@ -623,7 +624,7 @@ var (
 		relationship T.AtkRelationType,
 		target *T.AtkObject)
 
-	SelectionGetType func() T.GType
+	SelectionGetType func() O.Type
 
 	SelectionAddSelection func(
 		selection *T.AtkSelection,
@@ -659,7 +660,7 @@ var (
 	SocketIsOccupied func(
 		obj *T.AtkSocket) T.Gboolean
 
-	StateSetGetType func() T.GType
+	StateSetGetType func() O.Type
 
 	StateSetNew func() *T.AtkStateSet
 
@@ -703,7 +704,7 @@ var (
 		set *T.AtkStateSet,
 		compareSet *T.AtkStateSet) *T.AtkStateSet
 
-	StreamableContentGetType func() T.GType
+	StreamableContentGetType func() O.Type
 
 	StreamableContentGetNMimeTypes func(
 		streamable *T.AtkStreamableContent) int
@@ -720,7 +721,7 @@ var (
 		streamable *T.AtkStreamableContent,
 		mimeType string) string
 
-	TableGetType func() T.GType
+	TableGetType func() O.Type
 
 	TableRefAt func(
 		table *T.AtkTable,
@@ -843,7 +844,7 @@ var (
 		table *T.AtkTable,
 		column int) T.Gboolean
 
-	MiscGetType func() T.GType
+	MiscGetType func() O.Type
 
 	MiscThreadsEnter func(
 		misc *T.AtkMisc)
@@ -853,7 +854,7 @@ var (
 
 	MiscGetInstance func() *T.AtkMisc
 
-	ValueGetType func() T.GType
+	ValueGetType func() O.Type
 
 	ValueGetCurrentValue func(
 		obj *T.AtkValue, value *T.GValue)
@@ -870,29 +871,29 @@ var (
 	ValueGetMinimumIncrement func(
 		obj *T.AtkValue, value *T.GValue)
 
-	CoordTypeGetType func() T.GType
+	CoordTypeGetType func() O.Type
 
-	GobjectAccessibleGetType func() T.GType
+	GobjectAccessibleGetType func() O.Type
 
-	HyperlinkStateFlagsGetType func() T.GType
+	HyperlinkStateFlagsGetType func() O.Type
 
-	KeyEventTypeGetType func() T.GType
+	KeyEventTypeGetType func() O.Type
 
-	LayerGetType func() T.GType
+	LayerGetType func() O.Type
 
-	NoOpObjectGetType func() T.GType
+	NoOpObjectGetType func() O.Type
 
-	RelationTypeGetType func() T.GType
+	RelationTypeGetType func() O.Type
 
-	RoleGetType func() T.GType
+	RoleGetType func() O.Type
 
-	StateTypeGetType func() T.GType
+	StateTypeGetType func() O.Type
 
-	TextAttributeGetType func() T.GType
+	TextAttributeGetType func() O.Type
 
-	TextBoundaryGetType func() T.GType
+	TextBoundaryGetType func() O.Type
 
-	TextClipTypeGetType func() T.GType
+	TextClipTypeGetType func() O.Type
 )
 
 var dll = "libatk-1.0-0.dll"

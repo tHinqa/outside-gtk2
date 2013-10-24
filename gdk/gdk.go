@@ -7,6 +7,7 @@ package gdk
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -25,11 +26,11 @@ type (
 	HDC     uint32
 
 	Enum         int
-	simpleObject struct{ parent T.GObject }
+	simpleObject struct{ parent O.Object }
 )
 
 var (
-	InterpTypeGetType func() T.GType
+	InterpTypeGetType func() O.Type
 
 	InputSetExtensionEvents func(
 		window *Window, mask int, mode ExtensionMode)
@@ -71,53 +72,53 @@ var (
 
 	RgbColormapDitherable func(cmap *Colormap) T.Gboolean
 
-	FilterReturnGetType func() T.GType
+	FilterReturnGetType func() O.Type
 
-	ScrollDirectionGetType func() T.GType
+	ScrollDirectionGetType func() O.Type
 
-	NotifyTypeGetType func() T.GType
+	NotifyTypeGetType func() O.Type
 
-	SettingActionGetType func() T.GType
+	SettingActionGetType func() O.Type
 
-	OwnerChangeGetType func() T.GType
+	OwnerChangeGetType func() O.Type
 
-	FontTypeGetType func() T.GType
+	FontTypeGetType func() O.Type
 
-	FillGetType func() T.GType
+	FillGetType func() O.Type
 
-	FunctionGetType func() T.GType
+	FunctionGetType func() O.Type
 
-	JoinStyleGetType func() T.GType
+	JoinStyleGetType func() O.Type
 
-	LineStyleGetType func() T.GType
+	LineStyleGetType func() O.Type
 
-	SubwindowModeGetType func() T.GType
+	SubwindowModeGetType func() O.Type
 
-	InputSourceGetType func() T.GType
+	InputSourceGetType func() O.Type
 
-	InputModeGetType func() T.GType
+	InputModeGetType func() O.Type
 
-	AxisUseGetType func() T.GType
+	AxisUseGetType func() O.Type
 
-	FillRuleGetType func() T.GType
+	FillRuleGetType func() O.Type
 
-	OverlapTypeGetType func() T.GType
+	OverlapTypeGetType func() O.Type
 
-	RgbDitherGetType func() T.GType
+	RgbDitherGetType func() O.Type
 
-	ByteOrderGetType func() T.GType
+	ByteOrderGetType func() O.Type
 
-	ModifierTypeGetType func() T.GType
+	ModifierTypeGetType func() O.Type
 
-	InputConditionGetType func() T.GType
+	InputConditionGetType func() O.Type
 
-	StatusGetType func() T.GType
+	StatusGetType func() O.Type
 
-	WindowAttributesTypeGetType func() T.GType
+	WindowAttributesTypeGetType func() O.Type
 
-	WmDecorationGetType func() T.GType
+	WmDecorationGetType func() O.Type
 
-	WmFunctionGetType func() T.GType
+	WmFunctionGetType func() O.Type
 
 	StringWidth func(font *Font, s string) int
 
@@ -273,7 +274,7 @@ var (
 	WindowLookupForDisplay func(
 		display *Display, anid T.GdkNativeWindow) *Window
 
-	WindowObjectGetType func() T.GType
+	WindowObjectGetType func() O.Type
 
 	SetSmClientId func(smClientId string)
 
@@ -397,25 +398,25 @@ var (
 
 	ThreadsSetLockFunctions func(enterFn, leaveFn T.GCallback)
 
-	ThreadsAddIdleFull func(priority int, function T.GSourceFunc,
+	ThreadsAddIdleFull func(priority int, function O.SourceFunc,
 		data T.Gpointer, notify T.GDestroyNotify) uint
 
 	ThreadsAddIdle func(
-		function T.GSourceFunc, data T.Gpointer) uint
+		function O.SourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutFull func(
-		priority int, interval uint, function T.GSourceFunc,
+		priority int, interval uint, function O.SourceFunc,
 		data T.Gpointer, notify T.GDestroyNotify) uint
 
 	ThreadsAddTimeout func(interval uint,
-		function T.GSourceFunc, data T.Gpointer) uint
+		function O.SourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutSecondsFull func(
-		priority int, interval uint, function T.GSourceFunc,
+		priority int, interval uint, function O.SourceFunc,
 		data T.Gpointer, notify T.GDestroyNotify) uint
 
 	ThreadsAddTimeoutSeconds func(interval uint,
-		function T.GSourceFunc, data T.Gpointer) uint
+		function O.SourceFunc, data T.Gpointer) uint
 
 	SynthesizeWindowState func(window *Window,
 		unsetFlags WindowState, setFlags WindowState)

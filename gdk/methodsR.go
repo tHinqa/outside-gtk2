@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -16,7 +17,7 @@ type Rectangle struct {
 }
 
 var (
-	RectangleGetType func() T.GType
+	RectangleGetType func() O.Type
 
 	rectangleIntersect func(src1, src2, dest *Rectangle) T.Gboolean
 	rectangleUnion     func(src1, src2, dest *Rectangle)

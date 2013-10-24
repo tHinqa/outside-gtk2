@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -15,7 +16,7 @@ type IconFactory struct {
 }
 
 var (
-	IconFactoryGetType func() T.GType
+	IconFactoryGetType func() O.Type
 	IconFactoryNew     func() *IconFactory
 
 	IconFactoryLookupDefault func(stockId string) *IconSet
@@ -34,7 +35,7 @@ func (i *IconFactory) RemoveDefault()                       { iconFactoryRemoveD
 type IconInfo struct{}
 
 var (
-	IconInfoGetType      func() T.GType
+	IconInfoGetType      func() O.Type
 	IconInfoNewForPixbuf func(iconTheme *IconTheme, pixbuf *D.Pixbuf) *IconInfo
 
 	iconInfoCopy              func(i *IconInfo) *IconInfo
@@ -76,12 +77,12 @@ const (
 	ICON_LOOKUP_FORCE_SIZE
 )
 
-var IconLookupFlagsGetType func() T.GType
+var IconLookupFlagsGetType func() O.Type
 
 type IconSet struct{}
 
 var (
-	IconSetGetType       func() T.GType
+	IconSetGetType       func() O.Type
 	IconSetNew           func() *IconSet
 	IconSetNewFromPixbuf func(pixbuf *D.Pixbuf) *IconSet
 
@@ -115,7 +116,7 @@ const (
 )
 
 var (
-	IconSizeGetType func() T.GType
+	IconSizeGetType func() O.Type
 
 	IconSizeFromName      func(name string) IconSize
 	IconSizeRegister      func(name string, width int, height int) IconSize
@@ -131,7 +132,7 @@ func (i IconSize) Lookup(width *int, height *int) T.Gboolean { return iconSizeLo
 type IconSource struct{}
 
 var (
-	IconSourceGetType func() T.GType
+	IconSourceGetType func() O.Type
 	IconSourceNew     func() *IconSource
 
 	iconSourceCopy                   func(i *IconSource) *IconSource
@@ -185,10 +186,10 @@ type IconTheme struct {
 }
 
 var (
-	IconThemeGetType func() T.GType
+	IconThemeGetType func() O.Type
 	IconThemeNew     func() *IconTheme
 
-	IconThemeErrorGetType func() T.GType
+	IconThemeErrorGetType func() O.Type
 	IconThemeErrorQuark   func() T.GQuark
 	IconThemeGetDefault   func() *IconTheme
 
@@ -264,11 +265,11 @@ const (
 )
 
 var (
-	IconViewGetType      func() T.GType
+	IconViewGetType      func() O.Type
 	IconViewNew          func() *Widget
 	IconViewNewWithModel func(model *TreeModel) *Widget
 
-	IconViewDropPositionGetType func() T.GType
+	IconViewDropPositionGetType func() O.Type
 
 	iconViewConvertWidgetToBinWindowCoords func(i *IconView, wx int, wy int, bx *int, by *int)
 	iconViewCreateDragIcon                 func(i *IconView, path *TreePath) *D.Pixmap
@@ -431,7 +432,7 @@ func (i *IconView) UnselectPath(path *TreePath) { iconViewUnselectPath(i, path) 
 func (i *IconView) UnsetModelDragDest()         { iconViewUnsetModelDragDest(i) }
 func (i *IconView) UnsetModelDragSource()       { iconViewUnsetModelDragSource(i) }
 
-var IdentifierGetType func() T.GType
+var IdentifierGetType func() O.Type
 
 //TODO(t):Fix
 type Image struct {
@@ -479,7 +480,7 @@ type (
 )
 
 var (
-	ImageGetType          func() T.GType
+	ImageGetType          func() O.Type
 	ImageNew              func() *Widget
 	ImageNewFromPixmap    func(pixmap *D.Pixmap, mask *T.GdkBitmap) *Widget
 	ImageNewFromImage     func(image *D.Image, mask *T.GdkBitmap) *Widget
@@ -552,7 +553,7 @@ type ImageMenuItem struct {
 }
 
 var (
-	ImageMenuItemGetType         func() T.GType
+	ImageMenuItemGetType         func() O.Type
 	ImageMenuItemNew             func() *Widget
 	ImageMenuItemNewWithLabel    func(label string) *Widget
 	ImageMenuItemNewWithMnemonic func(label string) *Widget
@@ -593,12 +594,12 @@ const (
 	IMAGE_GICON
 )
 
-var ImageTypeGetType func() T.GType
+var ImageTypeGetType func() O.Type
 
 type IMContext simpleObject
 
 var (
-	ImContextGetType func() T.GType
+	ImContextGetType func() O.Type
 
 	imContextDeleteSurrounding func(i *IMContext, offset int, nChars int) T.Gboolean
 	imContextFilterKeypress    func(i *IMContext, event *D.EventKey) T.Gboolean
@@ -647,7 +648,7 @@ type IMContextSimple struct {
 }
 
 var (
-	ImContextSimpleGetType func() T.GType
+	ImContextSimpleGetType func() O.Type
 	ImContextSimpleNew     func() *IMContext
 
 	imContextSimpleAddTable func(i *IMContextSimple, data *uint16, maxSeqLen, nSeqs int)
@@ -665,7 +666,7 @@ type IMMulticontext struct {
 }
 
 var (
-	ImMulticontextGetType func() T.GType
+	ImMulticontextGetType func() O.Type
 	ImMulticontextNew     func() *IMContext
 
 	imMulticontextAppendMenuitems func(i *IMMulticontext, menushell *MenuShell)
@@ -679,9 +680,9 @@ func (i *IMMulticontext) AppendMenuitems(menushell *MenuShell) {
 func (i *IMMulticontext) GetContextId() string          { return imMulticontextGetContextId(i) }
 func (i *IMMulticontext) SetContextId(contextId string) { imMulticontextSetContextId(i, contextId) }
 
-var ImPreeditStyleGetType func() T.GType
+var ImPreeditStyleGetType func() O.Type
 
-var ImStatusStyleGetType func() T.GType
+var ImStatusStyleGetType func() O.Type
 
 type InfoBar struct {
 	Parent HBox
@@ -689,7 +690,7 @@ type InfoBar struct {
 }
 
 var (
-	InfoBarGetType        func() T.GType
+	InfoBarGetType        func() O.Type
 	InfoBarNew            func() *Widget
 	InfoBarNewWithButtons func(firstButtonText string, v ...VArg) *Widget
 
@@ -725,7 +726,7 @@ func (i *InfoBar) SetResponseSensitive(responseId int, setting T.Gboolean) {
 }
 
 var (
-	InputDialogGetType func() T.GType
+	InputDialogGetType func() O.Type
 	InputDialogNew     func() *Widget
 )
 
@@ -736,7 +737,7 @@ type Invisible struct {
 }
 
 var (
-	InvisibleGetType      func() T.GType
+	InvisibleGetType      func() O.Type
 	InvisibleNew          func() *Widget
 	InvisibleNewForScreen func(screen *D.Screen) *Widget
 
@@ -752,7 +753,7 @@ type Item struct {
 }
 
 var (
-	ItemGetType func() T.GType
+	ItemGetType func() O.Type
 
 	itemDeselect func(i *Item)
 	itemSelect   func(i *Item)
@@ -788,8 +789,8 @@ type (
 )
 
 var (
-	ItemFactoryGetType func() T.GType
-	ItemFactoryNew     func(containerType T.GType, path string, accelGroup *AccelGroup) *ItemFactory
+	ItemFactoryGetType func() O.Type
+	ItemFactoryNew     func(containerType O.Type, path string, accelGroup *AccelGroup) *ItemFactory
 
 	ItemFactoriesPathDelete        func(ifactoryPath string, path string)
 	ItemFactoryAddForeign          func(accelWidget *Widget, fullPath string, accelGroup *AccelGroup, keyval uint, modifiers T.GdkModifierType)
@@ -799,7 +800,7 @@ var (
 	ItemFactoryPathFromWidget      func(widget *Widget) string
 	ItemFactoryPopupDataFromWidget func(widget *Widget) T.Gpointer
 
-	itemFactoryConstruct         func(i *ItemFactory, containerType T.GType, path string, accelGroup *AccelGroup)
+	itemFactoryConstruct         func(i *ItemFactory, containerType O.Type, path string, accelGroup *AccelGroup)
 	itemFactoryCreateItem        func(i *ItemFactory, entry *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
 	itemFactoryCreateItems       func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry, callbackData T.Gpointer)
 	itemFactoryCreateItemsAc     func(i *ItemFactory, nEntries uint, entries *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint)
@@ -816,7 +817,7 @@ var (
 	itemFactorySetTranslateFunc  func(i *ItemFactory, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 )
 
-func (i *ItemFactory) Construct(containerType T.GType, path string, accelGroup *AccelGroup) {
+func (i *ItemFactory) Construct(containerType O.Type, path string, accelGroup *AccelGroup) {
 	itemFactoryConstruct(i, containerType, path, accelGroup)
 }
 func (i *ItemFactory) CreateItem(entry *ItemFactoryEntry, callbackData T.Gpointer, callbackType uint) {

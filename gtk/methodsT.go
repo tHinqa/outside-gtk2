@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -37,7 +38,7 @@ type (
 )
 
 var (
-	TableGetType func() T.GType
+	TableGetType func() O.Type
 	TableNew     func(rows, columns uint, homogeneous T.Gboolean) *Widget
 
 	tableAttach               func(t *Table, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint, xoptions, yoptions AttachOptions, xpadding, ypadding uint)
@@ -90,7 +91,7 @@ const (
 	TARGET_OTHER_WIDGET
 )
 
-var TargetFlagsGetType func() T.GType
+var TargetFlagsGetType func() O.Type
 
 type TargetList struct {
 	List     *T.GList
@@ -98,7 +99,7 @@ type TargetList struct {
 }
 
 var (
-	TargetListGetType func() T.GType
+	TargetListGetType func() O.Type
 	TargetListNew     func(targets *TargetEntry, ntargets uint) *TargetList
 
 	TargetTableFree        func(targets *TargetEntry, nTargets int)
@@ -143,7 +144,7 @@ var (
 )
 
 var (
-	TearoffMenuItemGetType func() T.GType //TODO(t):Use?
+	TearoffMenuItemGetType func() O.Type  //TODO(t):Use?
 	TearoffMenuItemNew     func() *Widget //TODO(t):Use?
 )
 
@@ -195,7 +196,7 @@ type TextAttributes struct {
 }
 
 var (
-	TextAttributesGetType func() T.GType
+	TextAttributesGetType func() O.Type
 	TextAttributesNew     func() *TextAttributes
 
 	textAttributesCopy       func(t *TextAttributes) *TextAttributes
@@ -238,9 +239,9 @@ type (
 )
 
 var (
-	TextBufferGetType           func() T.GType
+	TextBufferGetType           func() O.Type
 	TextBufferNew               func(table *TextTagTable) *TextBuffer
-	TextBufferTargetInfoGetType func() T.GType
+	TextBufferTargetInfoGetType func() O.Type
 
 	textBufferAddMark                     func(t *TextBuffer, mark *TextMark, where *TextIter)
 	textBufferAddSelectionClipboard       func(t *TextBuffer, clipboard *Clipboard)
@@ -492,7 +493,7 @@ type TextChildAnchor struct {
 }
 
 var (
-	TextChildAnchorGetType func() T.GType
+	TextChildAnchorGetType func() O.Type
 	TextChildAnchorNew     func() *TextChildAnchor
 
 	textChildAnchorGetDeleted func(t *TextChildAnchor) T.Gboolean
@@ -502,7 +503,7 @@ var (
 func (t *TextChildAnchor) GetDeleted() T.Gboolean { return textChildAnchorGetDeleted(t) }
 func (t *TextChildAnchor) GetWidgets() *T.GList   { return textChildAnchorGetWidgets(t) }
 
-var TextDirectionGetType func() T.GType
+var TextDirectionGetType func() O.Type
 
 type TextDirection Enum
 
@@ -530,7 +531,7 @@ type TextIter struct { //TODO(t): ALL _?
 }
 
 var (
-	TextIterGetType func() T.GType
+	TextIterGetType func() O.Type
 
 	textIterBackwardChar                   func(t *TextIter) T.Gboolean
 	textIterBackwardChars                  func(t *TextIter, count int) T.Gboolean
@@ -772,7 +773,7 @@ type TextMark struct {
 }
 
 var (
-	TextMarkGetType func() T.GType
+	TextMarkGetType func() O.Type
 	TextMarkNew     func(name string, leftGravity T.Gboolean) *TextMark
 
 	TextMarkSetVisible     func(t *TextMark, setting T.Gboolean)
@@ -785,7 +786,7 @@ var (
 
 type TextPendingScroll struct{}
 
-var TextSearchFlagsGetType func() T.GType
+var TextSearchFlagsGetType func() O.Type
 
 type TextSearchFlags Enum
 
@@ -828,7 +829,7 @@ type TextTag struct {
 }
 
 var (
-	TextTagGetType func() T.GType
+	TextTagGetType func() O.Type
 	TextTagNew     func(name string) *TextTag
 
 	textTagEvent       func(t *TextTag, eventObject *T.GObject, event *D.Event, iter *TextIter) T.Gboolean
@@ -855,7 +856,7 @@ type (
 )
 
 var (
-	TextTagTableGetType func() T.GType
+	TextTagTableGetType func() O.Type
 	TextTagTableNew     func() *TextTagTable
 
 	textTagTableAdd     func(t *TextTagTable, tag *TextTag)
@@ -926,7 +927,7 @@ type TextView struct {
 }
 
 var (
-	TextViewGetType       func() T.GType
+	TextViewGetType       func() O.Type
 	TextViewNew           func() *Widget
 	TextViewNewWithBuffer func(buffer *TextBuffer) *Widget
 
@@ -993,7 +994,7 @@ var (
 
 type TextWindow struct{}
 
-var TextWindowTypeGetType func() T.GType
+var TextWindowTypeGetType func() O.Type
 
 type TextWindowType Enum
 
@@ -1026,7 +1027,7 @@ type TipsQuery struct {
 }
 
 var (
-	TipsQueryGetType func() T.GType
+	TipsQueryGetType func() O.Type
 	TipsQueryNew     func() *Widget
 
 	tipsQuerySetCaller  func(t *TipsQuery, caller *Widget)
@@ -1048,7 +1049,7 @@ type ToggleAction struct {
 }
 
 var (
-	ToggleActionGetType func() T.GType
+	ToggleActionGetType func() O.Type
 	ToggleActionNew     func(name, label, tooltip, stockId string) *ToggleAction
 
 	toggleActionGetActive      func(t *ToggleAction) T.Gboolean
@@ -1085,7 +1086,7 @@ type ToggleButton struct {
 }
 
 var (
-	ToggleButtonGetType         func() T.GType
+	ToggleButtonGetType         func() O.Type
 	ToggleButtonNew             func() *Widget
 	ToggleButtonNewWithLabel    func(label string) *Widget
 	ToggleButtonNewWithMnemonic func(label string) *Widget
@@ -1113,7 +1114,7 @@ type ToggleToolButton struct {
 }
 
 var (
-	ToggleToolButtonGetType      func() T.GType
+	ToggleToolButtonGetType      func() O.Type
 	ToggleToolButtonNew          func() *ToolItem
 	ToggleToolButtonNewFromStock func(stockId string) *ToolItem
 
@@ -1162,11 +1163,11 @@ const (
 )
 
 var (
-	ToolbarGetType           func() T.GType
+	ToolbarGetType           func() O.Type
 	ToolbarNew               func() *Widget
-	ToolbarChildTypeGetType  func() T.GType
-	ToolbarSpaceStyleGetType func() T.GType
-	ToolbarStyleGetType      func() T.GType
+	ToolbarChildTypeGetType  func() O.Type
+	ToolbarSpaceStyleGetType func() O.Type
+	ToolbarStyleGetType      func() O.Type
 
 	toolbarAppendElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
 	toolbarAppendItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
@@ -1265,7 +1266,7 @@ type ToolButton struct {
 }
 
 var (
-	ToolButtonGetType      func() T.GType
+	ToolButtonGetType      func() O.Type
 	ToolButtonNew          func(iconWidget *Widget, label string) *ToolItem
 	ToolButtonNewFromStock func(stockId string) *ToolItem
 
@@ -1304,7 +1305,7 @@ type ToolItem struct {
 }
 
 var (
-	ToolItemGetType func() T.GType
+	ToolItemGetType func() O.Type
 	ToolItemNew     func() *ToolItem
 
 	toolItemGetEllipsizeMode      func(t *ToolItem) T.PangoEllipsizeMode
@@ -1384,7 +1385,7 @@ type ToolItemGroup struct {
 }
 
 var (
-	ToolItemGroupGetType func() T.GType
+	ToolItemGroupGetType func() O.Type
 	ToolItemGroupNew     func(label string) *Widget
 
 	toolItemGroupGetCollapsed    func(t *ToolItemGroup) T.Gboolean
@@ -1445,10 +1446,10 @@ const (
 )
 
 var (
-	ToolPaletteGetType func() T.GType
+	ToolPaletteGetType func() O.Type
 	ToolPaletteNew     func() *Widget
 
-	ToolPaletteDragTargetsGetType func() T.GType
+	ToolPaletteDragTargetsGetType func() O.Type
 	ToolPaletteGetDragTargetGroup func() *TargetEntry
 	ToolPaletteGetDragTargetItem  func() *TargetEntry
 
@@ -1514,7 +1515,7 @@ func (t *ToolPalette) UnsetStyle()                   { toolPaletteUnsetStyle(t) 
 type ToolShell struct{}
 
 var (
-	ToolShellGetType func() T.GType
+	ToolShellGetType func() O.Type
 
 	toolShellGetEllipsizeMode   func(t *ToolShell) T.PangoEllipsizeMode
 	toolShellGetIconSize        func(t *ToolShell) IconSize
@@ -1540,7 +1541,7 @@ func (t *ToolShell) RebuildMenu()                           { toolShellRebuildMe
 type Tooltip struct{}
 
 var (
-	TooltipGetType func() T.GType
+	TooltipGetType func() O.Type
 
 	TooltipTriggerTooltipQuery func(display *D.Display)
 
@@ -1594,7 +1595,7 @@ type (
 )
 
 var (
-	TooltipsGetType func() T.GType
+	TooltipsGetType func() O.Type
 	TooltipsNew     func() *Tooltips
 
 	TooltipsDataGet              func(widget *Widget) *TooltipsData
@@ -1636,7 +1637,7 @@ type (
 
 var (
 	TreeNew     func() *Widget
-	TreeGetType func() T.GType
+	TreeGetType func() O.Type
 
 	treeAppend           func(t *Tree, treeItem *Widget)
 	treeChildPosition    func(t *Tree, child *Widget) int
@@ -1672,7 +1673,7 @@ func (t *Tree) UnselectItem(item int)                 { treeUnselectItem(t, item
 type TreeDragSource struct{}
 
 var (
-	TreeDragSourceGetType func() T.GType
+	TreeDragSourceGetType func() O.Type
 
 	treeDragSourceDragDataDelete func(t *TreeDragSource, path *TreePath) T.Gboolean
 	treeDragSourceDragDataGet    func(t *TreeDragSource, path *TreePath, selectionData *SelectionData) T.Gboolean
@@ -1692,7 +1693,7 @@ func (t *TreeDragSource) RowDraggable(path *TreePath) T.Gboolean {
 type TreeDragDest struct{}
 
 var (
-	TreeDragDestGetType func() T.GType
+	TreeDragDestGetType func() O.Type
 
 	treeDragDestDragDataReceived func(t *TreeDragDest, dest *TreePath, selectionData *SelectionData) T.Gboolean
 	treeDragDestRowDropPossible  func(t *TreeDragDest, destPath *TreePath, selectionData *SelectionData) T.Gboolean
@@ -1716,7 +1717,7 @@ type TreeItem struct {
 }
 
 var (
-	TreeItemGetType      func() T.GType
+	TreeItemGetType      func() O.Type
 	TreeItemNew          func() *Widget
 	TreeItemNewWithLabel func(label string) *Widget
 
@@ -1743,7 +1744,7 @@ type TreeIter struct {
 }
 
 var (
-	TreeIterGetType func() T.GType
+	TreeIterGetType func() O.Type
 
 	treeIterCopy func(t *TreeIter) *TreeIter
 	treeIterFree func(t *TreeIter)
@@ -1763,14 +1764,14 @@ type (
 )
 
 var (
-	TreeModelGetType func() T.GType
+	TreeModelGetType func() O.Type
 
 	TreeGetRowDragData func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
 	TreeSetRowDragData func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
 
 	treeModelForeach            func(t *TreeModel, f TreeModelForeachFunc, userData T.Gpointer)
 	treeModelGet                func(t *TreeModel, iter *TreeIter, v ...VArg)
-	treeModelGetColumnType      func(t *TreeModel, index int) T.GType
+	treeModelGetColumnType      func(t *TreeModel, index int) O.Type
 	treeModelGetFlags           func(t *TreeModel) TreeModelFlags
 	treeModelGetIter            func(t *TreeModel, iter *TreeIter, path *TreePath) T.Gboolean
 	treeModelGetIterFirst       func(t *TreeModel, iter *TreeIter) T.Gboolean
@@ -1798,9 +1799,9 @@ var (
 func (t *TreeModel) Foreach(f TreeModelForeachFunc, userData T.Gpointer) {
 	treeModelForeach(t, f, userData)
 }
-func (t *TreeModel) Get(iter *TreeIter, v ...VArg)   { treeModelGet(t, iter, v) }
-func (t *TreeModel) GetColumnType(index int) T.GType { return treeModelGetColumnType(t, index) }
-func (t *TreeModel) GetFlags() TreeModelFlags        { return treeModelGetFlags(t) }
+func (t *TreeModel) Get(iter *TreeIter, v ...VArg)  { treeModelGet(t, iter, v) }
+func (t *TreeModel) GetColumnType(index int) O.Type { return treeModelGetColumnType(t, index) }
+func (t *TreeModel) GetFlags() TreeModelFlags       { return treeModelGetFlags(t) }
 func (t *TreeModel) GetIter(iter *TreeIter, path *TreePath) T.Gboolean {
 	return treeModelGetIter(t, iter, path)
 }
@@ -1865,7 +1866,7 @@ type (
 )
 
 var (
-	TreeModelFilterGetType func() T.GType
+	TreeModelFilterGetType func() O.Type
 	TreeModelFilterNew     func(childModel *TreeModel, root *TreePath) *TreeModel
 
 	treeModelFilterClearCache             func(t *TreeModelFilter)
@@ -1875,7 +1876,7 @@ var (
 	treeModelFilterConvertPathToChildPath func(t *TreeModelFilter, filterPath *TreePath) *TreePath
 	treeModelFilterGetModel               func(t *TreeModelFilter) *TreeModel
 	treeModelFilterRefilter               func(t *TreeModelFilter)
-	treeModelFilterSetModifyFunc          func(t *TreeModelFilter, nColumns int, types *T.GType, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	treeModelFilterSetModifyFunc          func(t *TreeModelFilter, nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	treeModelFilterSetVisibleColumn       func(t *TreeModelFilter, column int)
 	treeModelFilterSetVisibleFunc         func(t *TreeModelFilter, f TreeModelFilterVisibleFunc, data T.Gpointer, destroy T.GDestroyNotify)
 )
@@ -1895,7 +1896,7 @@ func (t *TreeModelFilter) ConvertPathToChildPath(filterPath *TreePath) *TreePath
 }
 func (t *TreeModelFilter) GetModel() *TreeModel { return treeModelFilterGetModel(t) }
 func (t *TreeModelFilter) Refilter()            { treeModelFilterRefilter(t) }
-func (t *TreeModelFilter) SetModifyFunc(nColumns int, types *T.GType, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeModelFilter) SetModifyFunc(nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	treeModelFilterSetModifyFunc(t, nColumns, types, f, data, destroy)
 }
 func (t *TreeModelFilter) SetVisibleColumn(column int) { treeModelFilterSetVisibleColumn(t, column) }
@@ -1910,7 +1911,7 @@ const (
 	TREE_MODEL_LIST_ONLY
 )
 
-var TreeModelFlagsGetType func() T.GType
+var TreeModelFlagsGetType func() O.Type
 
 type TreeModelSort struct {
 	Parent             T.GObject
@@ -1933,7 +1934,7 @@ type TreeModelSort struct {
 }
 
 var (
-	TreeModelSortGetType      func() T.GType
+	TreeModelSortGetType      func() O.Type
 	TreeModelSortNewWithModel func(childModel *TreeModel) *TreeModel
 
 	treeModelSortClearCache             func(t *TreeModelSort)
@@ -1968,7 +1969,7 @@ func (t *TreeModelSort) ResetDefaultSortFunc() { treeModelSortResetDefaultSortFu
 type TreePath struct{}
 
 var (
-	TreePathGetType        func() T.GType
+	TreePathGetType        func() O.Type
 	TreePathNew            func() *TreePath
 	TreePathNewFirst       func() *TreePath
 	TreePathNewFromString  func(path string) *TreePath
@@ -2014,7 +2015,7 @@ func (t *TreePath) Up() T.Gboolean         { return treePathUp(t) }
 type TreeRowReference struct{}
 
 var (
-	TreeRowReferenceGetType func() T.GType
+	TreeRowReferenceGetType func() O.Type
 	TreeRowReferenceNew     func(model *TreeModel, path *TreePath) *TreeRowReference
 
 	TreeRowReferenceDeleted   func(proxy *T.GObject, path *TreePath)
@@ -2050,7 +2051,7 @@ type (
 )
 
 var (
-	TreeSelectionGetType func() T.GType
+	TreeSelectionGetType func() O.Type
 
 	treeSelectionCountSelectedRows func(t *TreeSelection) int
 	treeSelectionGetMode           func(t *TreeSelection) SelectionMode
@@ -2116,7 +2117,7 @@ func (t *TreeSelection) UnselectRange(startPath, endPath *TreePath) {
 type TreeSortable struct{}
 
 var (
-	TreeSortableGetType func() T.GType
+	TreeSortableGetType func() O.Type
 
 	treeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *SortType) T.Gboolean
 	treeSortableHasDefaultSortFunc func(t *TreeSortable) T.Gboolean
@@ -2150,7 +2151,7 @@ type TreeStore struct {
 	SortColumnId       int
 	SortList           *T.GList
 	Order              SortType
-	ColumnHeaders      *T.GType
+	ColumnHeaders      *O.Type
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
 	DefaultSortDestroy T.GDestroyNotify
@@ -2158,9 +2159,9 @@ type TreeStore struct {
 }
 
 var (
-	TreeStoreGetType func() T.GType
+	TreeStoreGetType func() O.Type
 	TreeStoreNew     func(nColumns int, v ...VArg) *TreeStore
-	TreeStoreNewv    func(nColumns int, types *T.GType) *TreeStore
+	TreeStoreNewv    func(nColumns int, types *O.Type) *TreeStore
 
 	treeStoreAppend            func(t *TreeStore, iter *TreeIter, parent *TreeIter)
 	treeStoreClear             func(t *TreeStore)
@@ -2178,7 +2179,7 @@ var (
 	treeStoreRemove            func(t *TreeStore, iter *TreeIter) T.Gboolean
 	treeStoreReorder           func(t *TreeStore, parent *TreeIter, newOrder *int)
 	treeStoreSet               func(t *TreeStore, iter *TreeIter, v ...VArg)
-	treeStoreSetColumnTypes    func(t *TreeStore, nColumns int, types *T.GType)
+	treeStoreSetColumnTypes    func(t *TreeStore, nColumns int, types *O.Type)
 	treeStoreSetValist         func(t *TreeStore, iter *TreeIter, varArgs T.VaList)
 	treeStoreSetValue          func(t *TreeStore, iter *TreeIter, column int, value *T.GValue)
 	treeStoreSetValuesv        func(t *TreeStore, iter *TreeIter, columns *int, values *T.GValue, nValues int)
@@ -2213,7 +2214,7 @@ func (t *TreeStore) Prepend(iter, parent *TreeIter)          { treeStorePrepend(
 func (t *TreeStore) Remove(iter *TreeIter) T.Gboolean        { return treeStoreRemove(t, iter) }
 func (t *TreeStore) Reorder(parent *TreeIter, newOrder *int) { treeStoreReorder(t, parent, newOrder) }
 func (t *TreeStore) Set(iter *TreeIter, v ...VArg)           { treeStoreSet(t, iter, v) }
-func (t *TreeStore) SetColumnTypes(nColumns int, types *T.GType) {
+func (t *TreeStore) SetColumnTypes(nColumns int, types *O.Type) {
 	treeStoreSetColumnTypes(t, nColumns, types)
 }
 func (t *TreeStore) SetValist(iter *TreeIter, varArgs T.VaList) { treeStoreSetValist(t, iter, varArgs) }
@@ -2315,13 +2316,13 @@ const (
 )
 
 var (
-	TreeViewGetType      func() T.GType
+	TreeViewGetType      func() O.Type
 	TreeViewNew          func() *Widget
 	TreeViewNewWithModel func(model *TreeModel) *Widget
 
-	TreeViewDropPositionGetType func() T.GType
-	TreeViewGridLinesGetType    func() T.GType
-	TreeViewModeGetType         func() T.GType
+	TreeViewDropPositionGetType func() O.Type
+	TreeViewGridLinesGetType    func() O.Type
+	TreeViewModeGetType         func() O.Type
 
 	treeViewAppendColumn                   func(t *TreeView, column *TreeViewColumn) int
 	treeViewCollapseAll                    func(t *TreeView)
@@ -2645,11 +2646,11 @@ type TreeViewColumn struct {
 }
 
 var (
-	TreeViewColumnGetType           func() T.GType
+	TreeViewColumnGetType           func() O.Type
 	TreeViewColumnNew               func() *TreeViewColumn
 	TreeViewColumnNewWithAttributes func(title string, cell *CellRenderer, v ...VArg) *TreeViewColumn
 
-	TreeViewColumnSizingGetType func() T.GType
+	TreeViewColumnSizingGetType func() O.Type
 
 	treeViewColumnAddAttribute     func(t *TreeViewColumn, cellRenderer *CellRenderer, attribute string, column int)
 	treeViewColumnCellGetPosition  func(t *TreeViewColumn, cellRenderer *CellRenderer, startPos, width *int) T.Gboolean
@@ -2774,7 +2775,7 @@ func (t *TreeViewColumn) SetVisible(visible T.Gboolean) { treeViewColumnSetVisib
 func (t *TreeViewColumn) SetWidget(widget *Widget)      { treeViewColumnSetWidget(t, widget) }
 
 type (
-	Type T.GType
+	Type O.Type
 
 	TypeInfo struct {
 		TypeName          *T.Gchar
@@ -2788,7 +2789,7 @@ type (
 )
 
 var (
-	TypeInit func(debugFlags T.GTypeDebugFlags)
+	TypeInit func(debugFlags O.TypeDebugFlags)
 
 	typeClass  func(t Type) T.Gpointer
 	typeNew    func(t Type) T.Gpointer

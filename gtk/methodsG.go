@@ -4,11 +4,11 @@
 package gtk
 
 import (
-	T "github.com/tHinqa/outside-gtk2/types"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	// . "github.com/tHinqa/outside/types"
 )
 
 var (
-	GammaCurveGetType func() T.GType
+	GammaCurveGetType func() O.Type
 	GammaCurveNew     func() *Widget
 )

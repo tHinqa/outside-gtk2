@@ -8,6 +8,7 @@ package gtksourceview
 import (
 	"github.com/tHinqa/outside"
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	G "github.com/tHinqa/outside-gtk2/gtk"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -99,7 +100,7 @@ type (
 		user_data T.Gpointer) string
 
 	GtkSourceLanguage struct {
-		Parent_instance T.GObject
+		Parent_instance O.Object
 		Priv            *GtkSourceLanguagePrivate
 	}
 
@@ -109,7 +110,7 @@ type (
 	}
 
 	GtkSourceStyleScheme struct {
-		Base T.GObject
+		Base O.Object
 		Priv *GtkSourceStyleSchemePrivate
 	}
 
@@ -134,7 +135,7 @@ type (
 	}
 
 	GtkSourceGutter struct {
-		Parent T.GObject
+		Parent O.Object
 		Priv   *GtkSourceGutterPrivate
 	}
 
@@ -144,33 +145,33 @@ type (
 	}
 
 	GtkSourceCompletionItem struct {
-		Parent T.GObject
+		Parent O.Object
 		Priv   *GtkSourceCompletionItemPrivate
 	}
 
 	GtkSourceCompletionWords struct {
-		Parent T.GObject
+		Parent O.Object
 		Priv   *GtkSourceCompletionWordsPrivate
 	}
 
 	GtkSourceLanguageManager struct {
-		Parent_instance T.GObject
+		Parent_instance O.Object
 		Priv            *GtkSourceLanguageManagerPrivate
 	}
 
 	GtkSourcePrintCompositor struct {
-		Parent_instance T.GObject
+		Parent_instance O.Object
 		Priv            *GtkSourcePrintCompositorPrivate
 	}
 
 	GtkSourceStyleSchemeManager struct {
-		Parent T.GObject
+		Parent O.Object
 		Priv   *GtkSourceStyleSchemeManagerPrivate
 	}
 )
 
 var (
-	Gtk_source_language_get_type func() T.GType
+	Gtk_source_language_get_type func() O.Type
 
 	Gtk_source_language_get_id func(
 		language *GtkSourceLanguage) string
@@ -201,7 +202,7 @@ var (
 		language *GtkSourceLanguage,
 		style_id string) string
 
-	Gtk_source_mark_get_type func() T.GType
+	Gtk_source_mark_get_type func() O.Type
 
 	Gtk_source_mark_new func(
 		name string,
@@ -218,12 +219,12 @@ var (
 		mark *GtkSourceMark,
 		category string) *GtkSourceMark
 
-	Gtk_source_style_get_type func() T.GType
+	Gtk_source_style_get_type func() O.Type
 
 	Gtk_source_style_copy func(
 		style *GtkSourceStyle) *GtkSourceStyle
 
-	Gtk_source_style_scheme_get_type func() T.GType
+	Gtk_source_style_scheme_get_type func() O.Type
 
 	Gtk_source_style_scheme_get_id func(
 		scheme *GtkSourceStyleScheme) string
@@ -244,7 +245,7 @@ var (
 		scheme *GtkSourceStyleScheme,
 		style_id string) *GtkSourceStyle
 
-	Gtk_source_undo_manager_get_type func() T.GType
+	Gtk_source_undo_manager_get_type func() O.Type
 
 	Gtk_source_undo_manager_can_undo func(
 		manager *GtkSourceUndoManager) T.Gboolean
@@ -270,7 +271,7 @@ var (
 	Gtk_source_undo_manager_can_redo_changed func(
 		manager *GtkSourceUndoManager)
 
-	Gtk_source_buffer_get_type func() T.GType
+	Gtk_source_buffer_get_type func() O.Type
 
 	Gtk_source_buffer_new func(
 		table *G.TextTagTable) *GtkSourceBuffer
@@ -392,7 +393,7 @@ var (
 		buffer *GtkSourceBuffer,
 		manager *GtkSourceUndoManager)
 
-	Gtk_source_completion_info_get_type func() T.GType
+	Gtk_source_completion_info_get_type func() O.Type
 
 	Gtk_source_completion_info_new func() *GtkSourceCompletionInfo
 
@@ -418,7 +419,7 @@ var (
 	Gtk_source_completion_info_process_resize func(
 		info *GtkSourceCompletionInfo)
 
-	Gtk_source_completion_proposal_get_type func() T.GType
+	Gtk_source_completion_proposal_get_type func() O.Type
 
 	Gtk_source_completion_proposal_get_label func(
 		proposal *GtkSourceCompletionProposal) string
@@ -445,7 +446,7 @@ var (
 		proposal *GtkSourceCompletionProposal,
 		other *GtkSourceCompletionProposal) T.Gboolean
 
-	Gtk_source_completion_context_get_type func() T.GType
+	Gtk_source_completion_context_get_type func() O.Type
 
 	Gtk_source_completion_context_add_proposals func(
 		context *GtkSourceCompletionContext,
@@ -460,7 +461,7 @@ var (
 	Gtk_source_completion_context_get_activation func(
 		context *GtkSourceCompletionContext) GtkSourceCompletionActivation
 
-	Gtk_source_completion_provider_get_type func() T.GType
+	Gtk_source_completion_provider_get_type func() O.Type
 
 	Gtk_source_completion_provider_get_name func(
 		provider *GtkSourceCompletionProvider) string
@@ -505,7 +506,7 @@ var (
 	Gtk_source_completion_provider_get_priority func(
 		provider *GtkSourceCompletionProvider) int
 
-	Gtk_source_completion_get_type func() T.GType
+	Gtk_source_completion_get_type func() O.Type
 
 	Gtk_source_completion_error_quark func() T.GQuark
 
@@ -550,7 +551,7 @@ var (
 	Gtk_source_completion_unblock_interactive func(
 		completion *GtkSourceCompletion)
 
-	Gtk_source_gutter_get_type func() T.GType
+	Gtk_source_gutter_get_type func() O.Type
 
 	Gtk_source_gutter_get_window func(
 		gutter *GtkSourceGutter) *D.Window
@@ -586,7 +587,7 @@ var (
 	Gtk_source_gutter_queue_draw func(
 		gutter *GtkSourceGutter)
 
-	Gtk_source_view_get_type func() T.GType
+	Gtk_source_view_get_type func() O.Type
 
 	Gtk_source_view_new func() *G.Widget
 
@@ -741,7 +742,7 @@ var (
 		view *GtkSourceView,
 		window_type G.TextWindowType) *GtkSourceGutter
 
-	Gtk_source_completion_item_get_type func() T.GType
+	Gtk_source_completion_item_get_type func() O.Type
 
 	Gtk_source_completion_item_new func(
 		label string,
@@ -761,19 +762,19 @@ var (
 		stock string,
 		info string) *GtkSourceCompletionItem
 
-	Gtk_source_search_flags_get_type func() T.GType
+	Gtk_source_search_flags_get_type func() O.Type
 
-	Gtk_source_view_gutter_position_get_type func() T.GType
+	Gtk_source_view_gutter_position_get_type func() O.Type
 
-	Gtk_source_smart_home_end_type_get_type func() T.GType
+	Gtk_source_smart_home_end_type_get_type func() O.Type
 
-	Gtk_source_draw_spaces_flags_get_type func() T.GType
+	Gtk_source_draw_spaces_flags_get_type func() O.Type
 
-	Gtk_source_completion_error_get_type func() T.GType
+	Gtk_source_completion_error_get_type func() O.Type
 
-	Gtk_source_completion_activation_get_type func() T.GType
+	Gtk_source_completion_activation_get_type func() O.Type
 
-	Gtk_source_completion_words_get_type func() T.GType
+	Gtk_source_completion_words_get_type func() O.Type
 
 	Gtk_source_completion_words_new func(
 		name string,
@@ -803,7 +804,7 @@ var (
 		match_end *G.TextIter,
 		limit *G.TextIter) T.Gboolean
 
-	Gtk_source_language_manager_get_type func() T.GType
+	Gtk_source_language_manager_get_type func() O.Type
 
 	Gtk_source_language_manager_new func() *GtkSourceLanguageManager
 
@@ -828,7 +829,7 @@ var (
 		filename string,
 		content_type string) *GtkSourceLanguage
 
-	Gtk_source_print_compositor_get_type func() T.GType
+	Gtk_source_print_compositor_get_type func() O.Type
 
 	Gtk_source_print_compositor_new func(
 		buffer *GtkSourceBuffer) *GtkSourcePrintCompositor
@@ -974,7 +975,7 @@ var (
 		context *G.PrintContext,
 		page_nr int)
 
-	Gtk_source_style_scheme_manager_get_type func() T.GType
+	Gtk_source_style_scheme_manager_get_type func() O.Type
 
 	Gtk_source_style_scheme_manager_new func() *GtkSourceStyleSchemeManager
 

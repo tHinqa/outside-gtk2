@@ -7,6 +7,7 @@ package glib
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -1659,14 +1660,14 @@ var (
 	MainContextPending func(context *T.GMainContext) T.Gboolean
 
 	MainContextFindSourceById func(context *T.GMainContext,
-		sourceId uint) *T.GSource
+		sourceId uint) *O.Source
 
 	MainContextFindSourceByUserData func(context *T.GMainContext,
-		userData T.Gpointer) *T.GSource
+		userData T.Gpointer) *O.Source
 
 	MainContextFindSourceByFuncsUserData func(context *T.GMainContext,
-		funcs *T.GSourceFuncs,
-		userData T.Gpointer) *T.GSource
+		funcs *O.SourceFuncs,
+		userData T.Gpointer) *O.Source
 
 	MainContextWakeup func(context *T.GMainContext)
 
@@ -1706,7 +1707,7 @@ var (
 
 	MainDepth func() int
 
-	MainCurrentSource func() *T.GSource
+	MainCurrentSource func() *O.Source
 
 	MainContextPushThreadDefault func(context *T.GMainContext)
 
@@ -1729,79 +1730,79 @@ var (
 
 	MainLoopGetContext func(loop *T.GMainLoop) *T.GMainContext
 
-	SourceNew func(sourceFuncs *T.GSourceFuncs,
+	SourceNew func(sourceFuncs *O.SourceFuncs,
 
-		structSize uint) *T.GSource
+		structSize uint) *O.Source
 
-	SourceRef func(source *T.GSource) *T.GSource
+	SourceRef func(source *O.Source) *O.Source
 
-	SourceUnref func(source *T.GSource)
+	SourceUnref func(source *O.Source)
 
-	SourceAttach func(source *T.GSource,
+	SourceAttach func(source *O.Source,
 		context *T.GMainContext) uint
 
-	SourceDestroy func(source *T.GSource)
+	SourceDestroy func(source *O.Source)
 
-	SourceSetPriority func(source *T.GSource,
+	SourceSetPriority func(source *O.Source,
 		priority int)
 
-	SourceGetPriority func(source *T.GSource) int
+	SourceGetPriority func(source *O.Source) int
 
-	SourceSetCanRecurse func(source *T.GSource,
+	SourceSetCanRecurse func(source *O.Source,
 		canRecurse T.Gboolean)
 
-	SourceGetCanRecurse func(source *T.GSource) T.Gboolean
+	SourceGetCanRecurse func(source *O.Source) T.Gboolean
 
-	SourceGetId func(source *T.GSource) uint
+	SourceGetId func(source *O.Source) uint
 
-	SourceGetContext func(source *T.GSource) *T.GMainContext
+	SourceGetContext func(source *O.Source) *T.GMainContext
 
-	SourceSetCallback func(source *T.GSource,
-		f T.GSourceFunc,
+	SourceSetCallback func(source *O.Source,
+		f O.SourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify)
 
-	SourceSetFuncs func(source *T.GSource,
-		funcs *T.GSourceFuncs)
+	SourceSetFuncs func(source *O.Source,
+		funcs *O.SourceFuncs)
 
-	SourceIsDestroyed func(source *T.GSource) T.Gboolean
+	SourceIsDestroyed func(source *O.Source) T.Gboolean
 
-	SourceSetName func(source *T.GSource,
+	SourceSetName func(source *O.Source,
 		name string)
 
-	SourceGetName func(source *T.GSource) string
+	SourceGetName func(source *O.Source) string
 
 	SourceSetNameById func(tag uint,
 		name string)
 
-	SourceSetCallbackIndirect func(source *T.GSource,
+	SourceSetCallbackIndirect func(source *O.Source,
 		callbackData T.Gpointer,
-		callbackFuncs *T.GSourceCallbackFuncs)
+		callbackFuncs *O.SourceCallbackFuncs)
 
-	SourceAddPoll func(source *T.GSource,
+	SourceAddPoll func(source *O.Source,
 		fd *T.GPollFD)
 
-	SourceRemovePoll func(source *T.GSource,
+	SourceRemovePoll func(source *O.Source,
 		fd *T.GPollFD)
 
-	SourceAddChildSource func(source *T.GSource,
-		childSource *T.GSource)
+	SourceAddChildSource func(source *O.Source,
+		childSource *O.Source)
 
-	SourceRemoveChildSource func(source *T.GSource,
-		childSource *T.GSource)
+	SourceRemoveChildSource func(source *O.Source,
+		childSource *O.Source)
 
-	SourceGetCurrentTime func(source *T.GSource,
+	SourceGetCurrentTime func(source *O.Source,
 		timeval *T.GTimeVal)
 
-	SourceGetTime func(source *T.GSource) int64
+	SourceGetTime func(source *O.Source) int64
 
-	IdleSourceNew func() *T.GSource
+	IdleSourceNew func() *O.Source
 
-	ChildWatchSourceNew func(pid T.GPid) *T.GSource
+	ChildWatchSourceNew func(pid T.GPid) *O.Source
 
-	TimeoutSourceNew func(interval uint) *T.GSource
+	TimeoutSourceNew func(interval uint) *O.Source
 
-	TimeoutSourceNewSeconds func(interval uint) *T.GSource
+	TimeoutSourceNewSeconds func(interval uint) *O.Source
 
 	GetCurrentTime func(result *T.GTimeVal)
 
@@ -1813,27 +1814,27 @@ var (
 
 	SourceRemoveByUserData func(userData T.Gpointer) T.Gboolean
 
-	SourceRemoveByFuncsUserData func(funcs *T.GSourceFuncs,
+	SourceRemoveByFuncsUserData func(funcs *O.SourceFuncs,
 		userData T.Gpointer) T.Gboolean
 
 	TimeoutAddFull func(priority int,
 		interval uint,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
 	TimeoutAdd func(interval uint,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer) uint
 
 	TimeoutAddSecondsFull func(priority int,
 		interval uint,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
 	TimeoutAddSeconds func(interval uint,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer) uint
 
 	ChildWatchAddFull func(priority int,
@@ -1846,11 +1847,11 @@ var (
 		function T.GChildWatchFunc,
 		data T.Gpointer) uint
 
-	IdleAdd func(function T.GSourceFunc,
+	IdleAdd func(function O.SourceFunc,
 		data T.Gpointer) uint
 
 	IdleAddFull func(priority int,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
@@ -1858,12 +1859,12 @@ var (
 
 	MainContextInvokeFull func(context *T.GMainContext,
 		priority int,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer,
 		notify T.GDestroyNotify)
 
 	MainContextInvoke func(context *T.GMainContext,
-		function T.GSourceFunc,
+		function O.SourceFunc,
 		data T.Gpointer)
 
 	GetCharset func(charset **T.Char) T.Gboolean
@@ -2181,7 +2182,7 @@ var (
 		notify T.GDestroyNotify) uint
 
 	IoCreateWatch func(channel *T.GIOChannel,
-		condition T.GIOCondition) *T.GSource
+		condition T.GIOCondition) *O.Source
 
 	IoAddWatch func(channel *T.GIOChannel,
 		condition T.GIOCondition,
@@ -5684,16 +5685,16 @@ var apiListThread = outside.Apis{
 
 var dataList = outside.Data{
 	{"g_ascii_table", (*uint16)(nil)},
-	{"g_child_watch_funcs", (*T.GSourceFuncs)(nil)},
-	{"g_idle_funcs", (*T.GSourceFuncs)(nil)},
-	{"g_io_watch_funcs", (*T.GSourceFuncs)(nil)},
+	{"g_child_watch_funcs", (*O.SourceFuncs)(nil)},
+	{"g_idle_funcs", (*O.SourceFuncs)(nil)},
+	{"g_io_watch_funcs", (*O.SourceFuncs)(nil)},
 	{"g_mem_gc_friendly", (*T.Gboolean)(nil)},
 	{"g_test_config_vars", (*T.GTestConfig)(nil)},
 	{"g_thread_functions_for_glib_use", (*T.GThreadFunctions)(nil)},
 	{"g_thread_gettime", (*T.G_thread_gettime)(nil)},
 	{"g_thread_use_default_impl", (*T.Gboolean)(nil)},
 	{"g_threads_got_initialized", (*T.Gboolean)(nil)},
-	{"g_timeout_funcs", (*T.GSourceFuncs)(nil)},
+	{"g_timeout_funcs", (*O.SourceFuncs)(nil)},
 	{"g_utf8_skip", (*T.Gchar)(nil)},
 	{"glib_binary_age", (*uint)(nil)},
 	{"glib_interface_age", (*uint)(nil)},

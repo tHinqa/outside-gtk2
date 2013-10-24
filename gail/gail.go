@@ -7,6 +7,7 @@ package gail
 
 import (
 	"github.com/tHinqa/outside"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	G "github.com/tHinqa/outside-gtk2/gtk"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -72,7 +73,7 @@ var (
 		start_offset *int,
 		end_offset *int) *T.AtkAttributeSet
 
-	Gail_text_util_get_type func() T.GType
+	Gail_text_util_get_type func() O.Type
 
 	Gail_text_util_new func() *T.GailTextUtil
 

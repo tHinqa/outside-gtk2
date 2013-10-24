@@ -179,18 +179,6 @@ type (
 		Children *GNode
 	}
 
-	GSourceCallbackFuncs struct {
-		Ref func(
-			cb_data Gpointer)
-		Unref func(
-			cb_data Gpointer)
-		Get func(
-			cb_data Gpointer,
-			source *GSource,
-			fnc *GSourceFunc,
-			data *Gpointer)
-	}
-
 	GOnce struct {
 		Status GOnceStatus
 		Retval Gpointer
@@ -283,21 +271,7 @@ type (
 		Next *GSList
 	}
 
-	GSource struct {
-		Callback_data  Gpointer
-		Callback_funcs *GSourceCallbackFuncs
-		Source_funcs   *GSourceFuncs
-		Ref_count      uint
-		Context        *GMainContext
-		Priority       int
-		Flags          uint
-		Source_id      uint
-		Poll_fds       *GSList
-		Prev           *GSource
-		Next           *GSource
-		Name           *Char
-		Priv           *GSourcePrivate
-	}
+	GSource struct{} //REMOVE
 
 	GStaticPrivate struct {
 		Index uint
@@ -433,35 +407,11 @@ type (
 
 	GtkWidget struct{} //REMOVE
 
-	GTypeClass struct {
-		G_type GType
-	}
+	GTypeClass struct{} //REMOVE
 
-	GTypeInstance struct {
-		G_class *GTypeClass
-	}
+	GTypeInstance struct{} //REMOVE
 
-	GObject struct {
-		G_type_instance GTypeInstance
-		Ref_count       uint
-		Qdata           *GData
-	}
-
-	GSourceFuncs struct {
-		Prepare func(
-			source *GSource,
-			timeout_ *int) Gboolean
-		Check func(
-			source *GSource) Gboolean
-		Dispatch func(
-			source *GSource,
-			callback GSourceFunc,
-			user_data Gpointer) Gboolean
-		Finalize func(
-			source *GSource)
-		Closure_callback GSourceFunc
-		Closure_marshal  GSourceDummyMarshal
-	}
+	GObject struct{} //REMOVE
 
 	GdkColor struct{} //REMOVE
 
@@ -473,48 +423,9 @@ type (
 
 	GdkScreen struct{} //REMOVE
 
-	GClosure struct {
-		Bits uint
-		// ref_count : 15
-		// meta_marshal : 1
-		// n_guards : 1
-		// n_fnotifiers : 2
-		// n_inotifiers : 8
-		// in_inotify : 1
-		// floating : 1
-		// derivative_flag : 1
-		// in_marshal : 1
-		// is_invalid : 1
-		Marshal func(
-			closure *GClosure,
-			return_value *GValue,
-			n_param_values uint,
-			param_values *GValue,
-			invocation_hint Gpointer,
-			marshal_data Gpointer)
-		Data      Gpointer
-		Notifiers *GClosureNotifyData
-	}
+	GClosure struct{} //REMOVE
 
-	GValue struct {
-		G_type GType
-		//  UNION
-		Data [2]uint64 // was union{v_int...}data[2]
-		// v_int     int
-		// v_uint    uint
-		// v_long    glong
-		// v_ulong   Gulong
-		// v_int64   int64
-		// v_uint64  uint64
-		// v_float   float32
-		// v_double  float64
-		// v_pointer Gpointer
-	}
-
-	GClosureNotifyData struct {
-		Data   Gpointer
-		Notify GClosureNotify
-	}
+	GValue struct{} //REMOVE
 
 	GdkCursor struct{} //REMOVE
 
@@ -611,52 +522,7 @@ type (
 		Name       *Char
 	}
 
-	GObjectClass struct {
-		G_type_class         GTypeClass
-		Construct_properties *GSList
-		Constructor          func(
-			Type GType,
-			n_construct_properties uint,
-			construct_properties *GObjectConstructParam) *GObject
-		Set_property func(
-			object *GObject,
-			property_id uint,
-			GValue,
-			pspec *GParamSpec)
-		Get_property func(
-			object *GObject,
-			property_id uint,
-			value *GValue,
-			pspec *GParamSpec)
-		Dispose func(
-			object *GObject)
-		Finalize func(
-			object *GObject)
-		Dispatch_properties_changed func(
-			object *GObject,
-			n_pspecs uint,
-			pspecs **GParamSpec)
-		Notify func(
-			object *GObject,
-			pspec *GParamSpec)
-		Constructed func(
-			object *GObject)
-		Flags  Gsize
-		Pdummy [6]Gpointer
-	}
-
-	GParamSpec struct {
-		G_type_instance GTypeInstance
-		Name            *Gchar
-		Flags           GParamFlags
-		Value_type      GType
-		Owner_type      GType
-		_nick           *Gchar
-		_blurb          *Gchar
-		Qdata           *GData
-		Ref_count       uint
-		Param_id        uint
-	}
+	GParamSpec struct{} //REMOVE
 
 	GObjectConstructParam struct {
 		Pspec *GParamSpec
@@ -1816,46 +1682,6 @@ type (
 		Priv            *GWin32OutputStreamPrivate
 	}
 
-	GEnumClass struct {
-		G_type_class GTypeClass
-		Minimum      int
-		Maximum      int
-		N_values     uint
-		Values       *GEnumValue
-	}
-
-	GEnumValue struct {
-		Value      int
-		Value_name *Gchar
-		Value_nick *Gchar
-	}
-
-	GFlagsClass struct {
-		G_type_class GTypeClass
-		Mask         uint
-		N_values     uint
-		Values       *GFlagsValue
-	}
-
-	GFlagsValue struct {
-		Value      uint
-		Value_name *Gchar
-		Value_nick *Gchar
-	}
-
-	GTypeInfo struct {
-		Class_size     uint16
-		Base_init      GBaseInitFunc
-		Base_finalize  GBaseFinalizeFunc
-		Class_init     GClassInitFunc
-		Class_finalize GClassFinalizeFunc
-		Class_data     Gconstpointer
-		Instance_size  uint16
-		N_preallocs    uint16
-		Instance_init  GInstanceInitFunc
-		Value_table    *GTypeValueTable
-	}
-
 	GTypeValueTable struct {
 		Value_init func(value *GValue)
 		Value_free func(value *GValue)
@@ -1876,12 +1702,6 @@ type (
 			collect_flags uint) *Gchar
 	}
 
-	GValueArray struct {
-		N_values     uint
-		Values       *GValue
-		N_prealloced uint
-	}
-
 	GTypeFundamentalInfo struct {
 		Type_flags GTypeFundamentalFlags
 	}
@@ -1892,27 +1712,7 @@ type (
 		Interface_data     Gpointer
 	}
 
-	GTypeModule struct {
-		Parent_instance GObject
-		Use_count       uint
-		Type_infos      *GSList
-		Interface_infos *GSList
-		Name            *Gchar
-	}
-
-	GParamSpecTypeInfo struct {
-		Instance_size     uint16
-		N_preallocs       uint16
-		Instance_init     func(pspec *GParamSpec)
-		Value_type        GType
-		Finalize          func(pspec *GParamSpec)
-		Value_set_default func(
-			pspec *GParamSpec, value *GValue)
-		Value_validate func(
-			pspec *GParamSpec, value *GValue) Gboolean
-		Values_cmp func(pspec *GParamSpec,
-			value1 *GValue, value2 *GValue) int
-	}
+	GTypeModule struct{} //REMOVE
 
 	PangoIncludedModule struct {
 		List   func(engines **PangoEngineInfo, n_engines *int)

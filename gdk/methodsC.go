@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -43,7 +44,7 @@ const (
 	CAP_PROJECTING
 )
 
-var CapStyleGetType func() T.GType
+var CapStyleGetType func() O.Type
 
 type Color struct {
 	Pixel T.GUint32
@@ -53,7 +54,7 @@ type Color struct {
 }
 
 var (
-	ColorGetType func() T.GType
+	ColorGetType func() O.Type
 
 	ColorParse func(spec string, color *Color) T.Gboolean
 
@@ -78,7 +79,7 @@ func (c *Color) Hash() uint                     { return colorHash(c) }
 func (c *Color) ToString() string               { return colorToString(c) }
 
 type Colormap struct {
-	Parent        T.GObject
+	Parent        O.Object
 	Size          int
 	Colors        *Color
 	Visual        *Visual
@@ -86,7 +87,7 @@ type Colormap struct {
 }
 
 var (
-	ColormapGetType func() T.GType
+	ColormapGetType func() O.Type
 	ColormapNew     func(visual *Visual, allocate T.Gboolean) *Colormap
 
 	ColormapGetSystem     func() *Colormap
@@ -123,7 +124,7 @@ type Colorspace Enum
 
 const COLORSPACE_RGB Colorspace = 0
 
-var ColorspaceGetType func() T.GType
+var ColorspaceGetType func() O.Type
 
 type CrossingMode Enum
 
@@ -136,7 +137,7 @@ const (
 	CROSSING_STATE_CHANGED
 )
 
-var CrossingModeGetType func() T.GType
+var CrossingModeGetType func() O.Type
 
 type Cursor struct {
 	Type     CursorType
@@ -144,7 +145,7 @@ type Cursor struct {
 }
 
 var (
-	CursorGetType       func() T.GType
+	CursorGetType       func() O.Type
 	CursorNew           func(cursorType CursorType) *Cursor
 	CursorNewForDisplay func(display *Display, cursorType CursorType) *Cursor
 	CursorNewFromName   func(display *Display, name string) *Cursor
@@ -249,4 +250,4 @@ const (
 	CURSOR_IS_PIXMAP CursorType = -1
 )
 
-var CursorTypeGetType func() T.GType
+var CursorTypeGetType func() O.Type

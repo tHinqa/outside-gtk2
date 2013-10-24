@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -17,10 +18,10 @@ const (
 	UNIT_MM
 )
 
-var UnitGetType func() T.GType
+var UnitGetType func() O.Type
 
 type UIManager struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
@@ -41,10 +42,10 @@ const (
 )
 
 var (
-	UiManagerGetType func() T.GType
+	UiManagerGetType func() O.Type
 	UiManagerNew     func() *UIManager
 
-	UiManagerItemTypeGetType func() T.GType
+	UiManagerItemTypeGetType func() O.Type
 
 	uiManagerSetAddTearoffs    func(u *UIManager, addTearoffs T.Gboolean)
 	uiManagerGetAddTearoffs    func(u *UIManager) T.Gboolean
@@ -101,4 +102,4 @@ const (
 	UPDATE_DELAYED
 )
 
-var UpdateTypeGetType func() T.GType
+var UpdateTypeGetType func() O.Type

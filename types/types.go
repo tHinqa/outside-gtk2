@@ -94,6 +94,7 @@ type (
 	GdkWChar               GUint32
 	GdkWindow              GdkDrawable // REMOVE
 	GInitiallyUnowned      GObject
+	GObjectClass           struct{} //REMOVE
 	GInitiallyUnownedClass GObjectClass
 	Goffset                int64
 	GPid                   *struct{}
@@ -104,7 +105,7 @@ type (
 	GTime                  GInt32
 	GTimeSpan              int64
 	GtkType                GType // REMOVE
-	GType                  Gsize
+	GType                  Gsize // REMOVE
 	Gulong                 UnsignedLong
 	Gunichar               GUint32
 	Gunichar2              uint16
@@ -179,7 +180,6 @@ type (
 	GAsyncInitable                 struct{}
 	GAsyncQueue                    struct{}
 	GAsyncResult                   struct{}
-	GBinding                       struct{}
 	GBookmarkFile                  struct{}
 	GBufferedInputStreamPrivate    struct{}
 	GBufferedOutputStreamPrivate   struct{}
@@ -248,7 +248,6 @@ type (
 	GOptionContext                 struct{}
 	GOptionGroup                   struct{}
 	GOutputStreamPrivate           struct{}
-	GParamSpecPool                 struct{}
 	GPatternSpec                   struct{}
 	GPermissionPrivate             struct{}
 	GPollableInputStream           struct{}
@@ -276,7 +275,6 @@ type (
 	GSocketListenerPrivate         struct{}
 	GSocketPrivate                 struct{}
 	GSocketServicePrivate          struct{}
-	GSourcePrivate                 struct{}
 	GSrvTarget                     struct{}
 	GStringChunk                   struct{}
 	GTcpConnectionPrivate          struct{}
@@ -325,7 +323,6 @@ type (
 	GTlsConnectionPrivate          struct{}
 	GTree                          struct{}
 	GTypeCValue                    struct{}
-	GTypePlugin                    struct{}
 	GUnixFDList                    struct{}
 	GVariant                       struct{}
 	GVariantType                   struct{}
@@ -1216,15 +1213,6 @@ const (
 	G_VARIANT_PARSE_ERROR_VALUE_EXPECTED
 )
 
-type GTypeDebugFlags Enum
-
-const (
-	G_TYPE_DEBUG_OBJECTS GTypeDebugFlags = 1 << iota
-	G_TYPE_DEBUG_SIGNALS
-	G_TYPE_DEBUG_NONE GTypeDebugFlags = 0
-	G_TYPE_DEBUG_MASK GTypeDebugFlags = 0x03
-)
-
 type GTypeFundamentalFlags Enum
 
 const (
@@ -1232,28 +1220,6 @@ const (
 	G_TYPE_FLAG_INSTANTIATABLE
 	G_TYPE_FLAG_DERIVABLE
 	G_TYPE_FLAG_DEEP_DERIVABLE
-)
-
-type GTypeFlags Enum
-
-const (
-	G_TYPE_FLAG_ABSTRACT GTypeFlags = 1 << (4 + iota)
-	G_TYPE_FLAG_VALUE_ABSTRACT
-)
-
-type GParamFlags Enum
-
-const (
-	G_PARAM_READABLE GParamFlags = 1 << iota
-	G_PARAM_WRITABLE
-	G_PARAM_CONSTRUCT
-	G_PARAM_CONSTRUCT_ONLY
-	G_PARAM_LAX_VALIDATION
-	G_PARAM_STATIC_NAME
-	G_PARAM_STATIC_NICK
-	G_PARAM_STATIC_BLURB
-	G_PARAM_DEPRECATED GParamFlags = -(1 << 31)
-	G_PARAM_PRIVATE                = G_PARAM_STATIC_NAME
 )
 
 type GSignalFlags Enum
@@ -1284,15 +1250,6 @@ const (
 	G_SIGNAL_MATCH_FUNC
 	G_SIGNAL_MATCH_DATA
 	G_SIGNAL_MATCH_UNBLOCKED
-)
-
-type GBindingFlags Enum
-
-const (
-	G_BINDING_BIDIRECTIONAL GBindingFlags = 1 << iota
-	G_BINDING_SYNC_CREATE
-	G_BINDING_INVERT_BOOLEAN
-	G_BINDING_DEFAULT GBindingFlags = 0
 )
 
 type GAppInfoCreateFlags Enum
@@ -3317,8 +3274,6 @@ const (
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
-	GClosureNotify func(data Gpointer, closure *GClosure)
-
 	GCallback func()
 
 	GdkInputFunction func(data Gpointer,
@@ -3400,10 +3355,6 @@ type (
 	GSequenceIterCompareFunc func(
 		a, b *GSequenceIter, data Gpointer) int
 
-	GSourceFunc func(data Gpointer) Gboolean
-
-	GSourceDummyMarshal func()
-
 	GSpawnChildSetupFunc func(user_data Gpointer)
 
 	GTestDataFunc func(user_data Gconstpointer)
@@ -3423,12 +3374,7 @@ type (
 
 	GTraverseFunc func(key, value, data Gpointer) Gboolean
 
-	GClosureMarshal func(
-		closure *GClosure,
-		return_value *GValue,
-		n_param_values uint,
-		param_values *GValue,
-		invocation_hint, marshal_data Gpointer)
+	GClosureMarshal func() //REMOVE
 
 	GBaseInitFunc func(
 		g_class Gpointer)
@@ -3633,11 +3579,6 @@ type (
 	GToggleNotify func(
 		data Gpointer, object *GObject, is_last_ref Gboolean)
 
-	GBindingTransformFunc func(
-		binding *GBinding,
-		source_value, target_value *GValue,
-		user_data Gpointer) Gboolean
-
 	GSignalAccumulator func(
 		ihint *GSignalInvocationHint,
 		return_accu *GValue,
@@ -3789,8 +3730,6 @@ type (
 		cache_data Gpointer, g_class *GTypeClass) Gboolean
 
 	GTypeInterfaceCheckFunc func(check_data, g_iface Gpointer)
-
-	GValueTransform func(src_value, dest_value *GValue)
 
 	G_thread_gettime func() uint64
 )

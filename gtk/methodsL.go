@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -37,7 +38,7 @@ type Label struct {
 type LabelSelectionInfo struct{}
 
 var (
-	LabelGetType         func() T.GType
+	LabelGetType         func() O.Type
 	LabelNew             func(str string) *Widget
 	LabelNewWithMnemonic func(str string) *Widget
 
@@ -160,7 +161,7 @@ type Layout struct {
 }
 
 var (
-	LayoutGetType func() T.GType
+	LayoutGetType func() O.Type
 	LayoutNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
 	layoutFreeze         func(l *Layout)
@@ -197,7 +198,7 @@ type ListStore struct {
 	NColumns           int
 	SortColumnId       int
 	Order              SortType
-	ColumnHeaders      *T.GType
+	ColumnHeaders      *O.Type
 	Length             int
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
@@ -216,9 +217,9 @@ type (
 )
 
 var (
-	ListStoreGetType func() T.GType
+	ListStoreGetType func() O.Type
 	ListStoreNew     func(nColumns int, v ...VArg) *ListStore
-	ListStoreNewv    func(nColumns int, types *T.GType) *ListStore
+	ListStoreNewv    func(nColumns int, types *O.Type) *ListStore
 
 	listStoreAppend            func(l *ListStore, iter *TreeIter)
 	listStoreClear             func(l *ListStore)
@@ -234,7 +235,7 @@ var (
 	listStoreRemove            func(l *ListStore, iter *TreeIter) T.Gboolean
 	listStoreReorder           func(l *ListStore, newOrder *int)
 	listStoreSet               func(l *ListStore, iter *TreeIter, v ...VArg)
-	listStoreSetColumnTypes    func(l *ListStore, nColumns int, types *T.GType)
+	listStoreSetColumnTypes    func(l *ListStore, nColumns int, types *O.Type)
 	listStoreSetValist         func(l *ListStore, iter *TreeIter, varArgs T.VaList)
 	listStoreSetValue          func(l *ListStore, iter *TreeIter, column int, value *T.GValue)
 	listStoreSetValuesv        func(l *ListStore, iter *TreeIter, columns *int, values *T.GValue, nValues int)
@@ -267,7 +268,7 @@ func (l *ListStore) Prepend(iter *TreeIter)           { listStorePrepend(l, iter
 func (l *ListStore) Remove(iter *TreeIter) T.Gboolean { return listStoreRemove(l, iter) }
 func (l *ListStore) Reorder(newOrder *int)            { listStoreReorder(l, newOrder) }
 func (l *ListStore) Set(iter *TreeIter, v ...VArg)    { listStoreSet(l, iter, v) }
-func (l *ListStore) SetColumnTypes(nColumns int, types *T.GType) {
+func (l *ListStore) SetColumnTypes(nColumns int, types *O.Type) {
 	listStoreSetColumnTypes(l, nColumns, types)
 }
 func (l *ListStore) SetValist(iter *TreeIter, varArgs T.VaList) {
@@ -282,7 +283,7 @@ func (l *ListStore) SetValuesv(iter *TreeIter, columns *int, values *T.GValue, n
 func (l *ListStore) Swap(a, b *TreeIter) { listStoreSwap(l, a, b) }
 
 var (
-	LinkButtonGetType      func() T.GType
+	LinkButtonGetType      func() O.Type
 	LinkButtonNew          func(uri string) *Widget
 	LinkButtonNewWithLabel func(uri string, label string) *Widget
 
@@ -319,7 +320,7 @@ type List struct {
 }
 
 var (
-	ListGetType          func() T.GType
+	ListGetType          func() O.Type
 	ListNew              func() *Widget
 	ListItemNewWithLabel func(label string) *Widget
 
@@ -383,7 +384,7 @@ func (l *List) UnselectItem(item int)               { listUnselectItem(l, item) 
 type ListItem struct{ Item Item }
 
 var (
-	ListItemGetType func() T.GType
+	ListItemGetType func() O.Type
 	ListItemNew     func() *Widget
 
 	listItemSelect   func(l *ListItem)

@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 
@@ -17,10 +18,10 @@ const (
 	VISIBILITY_FULLY_OBSCURED
 )
 
-var VisibilityStateGetType func() T.GType
+var VisibilityStateGetType func() O.Type
 
 type Visual struct {
-	Parent       T.GObject
+	Parent       O.Object
 	Type         VisualType
 	Depth        int
 	ByteOrder    T.GdkByteOrder
@@ -38,7 +39,7 @@ type Visual struct {
 }
 
 var (
-	VisualGetType func() T.GType
+	VisualGetType func() O.Type
 
 	VisualGetBestDepth     func() int
 	VisualGetBestType      func() VisualType
@@ -85,7 +86,7 @@ const (
 )
 
 var (
-	VisualTypeGetType func() T.GType
+	VisualTypeGetType func() O.Type
 
 	VisualGetBestWithBoth func(depth int, visualType VisualType) *Visual
 	VisualGetBestWithType func(visualType VisualType) *Visual

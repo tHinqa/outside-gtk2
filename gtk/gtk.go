@@ -7,6 +7,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -18,8 +19,7 @@ type (
 )
 
 var (
-	True func() T.Gboolean
-
+	True  func() T.Gboolean
 	False func() T.Gboolean
 )
 
@@ -419,17 +419,17 @@ var (
 	SignalNewv func(
 		name string,
 		signalFlags SignalRunType,
-		objectType T.GType,
+		objectType O.Type,
 		functionOffset uint,
 		marshaller T.GSignalCMarshaller,
-		returnVal T.GType,
+		returnVal O.Type,
 		nArgs uint,
-		args *T.GType) uint
+		args *O.Type) uint
 
 	SignalNew func(name string,
 		signalFlags SignalRunType,
-		objectType T.GType, functionOffset uint,
-		marshaller T.GSignalCMarshaller, returnVal T.GType,
+		objectType O.Type, functionOffset uint,
+		marshaller T.GSignalCMarshaller, returnVal O.Type,
 		nArgs uint, v ...VArg) uint
 
 	SignalEmitStopByName func(object *Object, name string)
@@ -608,13 +608,13 @@ var (
 
 	TestRegisterAllTypes func()
 
-	TestListAllTypes func(nTypes *uint) *T.GType
+	TestListAllTypes func(nTypes *uint) *O.Type
 
 	TestFindWidget func(widget *Widget,
 		labelPattern string,
-		widgetType T.GType) *Widget
+		widgetType O.Type) *Widget
 
-	TestCreateWidget func(widgetType T.GType,
+	TestCreateWidget func(widgetType O.Type,
 		firstPropertyName string, v ...VArg) *Widget
 
 	TestCreateSimpleWindow func(windowTitle string,
@@ -646,7 +646,7 @@ var (
 	TestTextGet func(widget *Widget) string
 
 	TestFindSibling func(baseWidget *Widget,
-		widgetType T.GType) *Widget
+		widgetType O.Type) *Widget
 
 	TestFindLabel func(widget *Widget,
 		labelPattern string) *Widget

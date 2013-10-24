@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -18,7 +19,7 @@ const (
 	WRAP_WORD_CHAR
 )
 
-var WrapModeGetType func() T.GType
+var WrapModeGetType func() O.Type
 
 type Widget struct {
 	Object       Object
@@ -34,10 +35,10 @@ type Widget struct {
 }
 
 var (
-	WidgetGetType func() T.GType
-	WidgetNew     func(t T.GType, firstPropertyName string, v ...VArg) *Widget
+	WidgetGetType func() O.Type
+	WidgetNew     func(t O.Type, firstPropertyName string, v ...VArg) *Widget
 
-	WidgetFlagsGetType func() T.GType
+	WidgetFlagsGetType func() O.Type
 
 	WidgetGetDefaultColormap  func() *D.Colormap
 	WidgetGetDefaultDirection func() TextDirection
@@ -73,7 +74,7 @@ var (
 	widgetFreezeChildNotify     func(w *Widget)
 	widgetGetAccessible         func(w *Widget) *T.AtkObject
 	widgetGetAllocation         func(w *Widget, allocation *Allocation)
-	widgetGetAncestor           func(w *Widget, widgetType T.GType) *Widget
+	widgetGetAncestor           func(w *Widget, widgetType O.Type) *Widget
 	widgetGetAppPaintable       func(w *Widget) T.Gboolean
 	widgetGetCanDefault         func(w *Widget) T.Gboolean
 	widgetGetCanFocus           func(w *Widget) T.Gboolean
@@ -243,7 +244,7 @@ func (w *Widget) Event(event *D.Event) T.Gboolean        { return widgetEvent(w,
 func (w *Widget) FreezeChildNotify()                     { widgetFreezeChildNotify(w) }
 func (w *Widget) GetAccessible() *T.AtkObject            { return widgetGetAccessible(w) }
 func (w *Widget) GetAllocation(allocation *Allocation)   { widgetGetAllocation(w, allocation) }
-func (w *Widget) GetAncestor(widgetType T.GType) *Widget { return widgetGetAncestor(w, widgetType) }
+func (w *Widget) GetAncestor(widgetType O.Type) *Widget { return widgetGetAncestor(w, widgetType) }
 func (w *Widget) GetAppPaintable() T.Gboolean            { return widgetGetAppPaintable(w) }
 func (w *Widget) GetCanDefault() T.Gboolean              { return widgetGetCanDefault(w) }
 func (w *Widget) GetCanFocus() T.Gboolean                { return widgetGetCanFocus(w) }
@@ -594,7 +595,7 @@ const (
 	WIDGET_HELP_WHATS_THIS
 )
 
-var WidgetHelpTypeGetType func() T.GType
+var WidgetHelpTypeGetType func() O.Type
 
 type Window struct {
 	Bin                   Bin
@@ -640,7 +641,7 @@ type Window struct {
 }
 
 var (
-	WindowGetType func() T.GType
+	WindowGetType func() O.Type
 	WindowNew     func(t WindowType) *Widget
 
 	WindowSetDefaultIconList         func(list *T.GList)
@@ -876,12 +877,12 @@ func (w *Window) Unstick()      { windowUnstick(w) }
 type WindowGeometryInfo struct{}
 
 type WindowGroup struct {
-	Parent T.GObject
+	Parent O.Object
 	Grabs  *T.GSList
 }
 
 var (
-	WindowGroupGetType func() T.GType
+	WindowGroupGetType func() O.Type
 	WindowGroupNew     func() *WindowGroup
 
 	windowGroupAddWindow      func(w *WindowGroup, window *Window)
@@ -905,7 +906,7 @@ const (
 	WIN_POS_CENTER_ON_PARENT
 )
 
-var WindowPositionGetType func() T.GType
+var WindowPositionGetType func() O.Type
 
 type WindowType Enum
 
@@ -914,4 +915,4 @@ const (
 	WINDOW_POPUP
 )
 
-var WindowTypeGetType func() T.GType
+var WindowTypeGetType func() O.Type

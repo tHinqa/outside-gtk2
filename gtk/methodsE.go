@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -12,7 +13,7 @@ import (
 type Editable struct{}
 
 var (
-	EditableGetType func() T.GType
+	EditableGetType func() O.Type
 
 	editableCopyClipboard      func(e *Editable)
 	editableCutClipboard       func(e *Editable)
@@ -112,12 +113,12 @@ const (
 )
 
 var (
-	EntryGetType          func() T.GType
+	EntryGetType          func() O.Type
 	EntryNew              func() *Widget
 	EntryNewWithMaxLength func(max int) *Widget
 	EntryNewWithBuffer    func(buffer *EntryBuffer) *Widget
 
-	EntryIconPositionGetType func() T.GType
+	EntryIconPositionGetType func() O.Type
 
 	entryAppendText               func(e *Entry, text string)
 	entryGetActivatesDefault      func(e *Entry) T.Gboolean
@@ -293,7 +294,7 @@ func (e *Entry) TextIndexToLayoutIndex(textIndex int) int {
 func (e *Entry) UnsetInvisibleChar() { entryUnsetInvisibleChar(e) }
 
 var (
-	EntryBufferGetType func() T.GType
+	EntryBufferGetType func() O.Type
 	EntryBufferNew     func(
 		initialChars string, nInitialChars int) *EntryBuffer
 
@@ -342,7 +343,7 @@ type (
 )
 
 var (
-	EntryCompletionGetType func() T.GType
+	EntryCompletionGetType func() O.Type
 	EntryCompletionNew     func() *EntryCompletion
 
 	entryCompletionComplete            func(completion *EntryCompletion)
@@ -418,12 +419,12 @@ func (e *EntryCompletion) SetPopupSingleMatch(popupSingleMatch T.Gboolean) {
 }
 func (e *EntryCompletion) SetTextColumn(column int) { entryCompletionSetTextColumn(e, column) }
 
-type EnumValue T.GEnumValue
+type EnumValue O.EnumValue
 
 type EventBox struct{ Bin Bin }
 
 var (
-	EventBoxGetType func() T.GType
+	EventBoxGetType func() O.Type
 	EventBoxNew     func() *Widget
 
 	eventBoxGetAboveChild    func(e *EventBox) T.Gboolean
@@ -454,11 +455,11 @@ const (
 )
 
 var (
-	ExpanderGetType         func() T.GType
+	ExpanderGetType         func() O.Type
 	ExpanderNew             func(label string) *Widget
 	ExpanderNewWithMnemonic func(label string) *Widget
 
-	ExpanderStyleGetType func() T.GType
+	ExpanderStyleGetType func() O.Type
 
 	expanderSetExpanded     func(e *Expander, expanded T.Gboolean)
 	expanderGetExpanded     func(e *Expander) T.Gboolean

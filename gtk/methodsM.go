@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -20,7 +21,7 @@ const (
 	MATCH_LAST
 )
 
-var MatchTypeGetType func() T.GType
+var MatchTypeGetType func() O.Type
 
 type (
 	Menu struct {
@@ -82,10 +83,10 @@ const (
 )
 
 var (
-	MenuGetType func() T.GType
+	MenuGetType func() O.Type
 	MenuNew     func() *Widget
 
-	MenuDirectionTypeGetType func() T.GType
+	MenuDirectionTypeGetType func() O.Type
 	MenuGetForAttachWidget   func(widget *Widget) *T.GList
 
 	menuAttach               func(m *Menu, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint)
@@ -150,7 +151,7 @@ type MenuBar struct {
 }
 
 var (
-	MenuBarGetType func() T.GType
+	MenuBarGetType func() O.Type
 	MenuBarNew     func() *Widget
 
 	menuBarGetChildPackDirection func(m *MenuBar) PackDirection
@@ -186,7 +187,7 @@ type (
 )
 
 var (
-	MenuItemGetType         func() T.GType
+	MenuItemGetType         func() O.Type
 	MenuItemNew             func() *Widget
 	MenuItemNewWithLabel    func(label string) *Widget
 	MenuItemNewWithMnemonic func(label string) *Widget
@@ -246,7 +247,7 @@ type MenuShell struct {
 }
 
 var (
-	MenuShellGetType func() T.GType
+	MenuShellGetType func() O.Type
 
 	menuShellActivateItem func(m *MenuShell, menuItem *Widget, forceDeactivate T.Gboolean)
 	menuShellAppend       func(m *MenuShell, child *Widget)
@@ -281,7 +282,7 @@ type MenuToolButton struct {
 }
 
 var (
-	MenuToolButtonGetType      func() T.GType
+	MenuToolButtonGetType      func() O.Type
 	MenuToolButtonNew          func(iconWidget *Widget, label string) *ToolItem
 	MenuToolButtonNewFromStock func(stockId string) *ToolItem
 
@@ -312,7 +313,7 @@ const (
 	MESSAGE_OTHER
 )
 
-var MessageTypeGetType func() T.GType
+var MessageTypeGetType func() O.Type
 
 type Misc struct {
 	Widget Widget
@@ -323,7 +324,7 @@ type Misc struct {
 }
 
 var (
-	MiscGetType func() T.GType
+	MiscGetType func() O.Type
 
 	miscGetAlignment func(m *Misc, xalign, yalign *float32)
 	miscGetPadding   func(m *Misc, xpad, ypad *int)
@@ -347,7 +348,7 @@ type MessageDialog struct {
 }
 
 var (
-	MessageDialogGetType       func() T.GType
+	MessageDialogGetType       func() O.Type
 	MessageDialogNew           func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
 	MessageDialogNewWithMarkup func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
 
@@ -378,7 +379,7 @@ const (
 	CENTIMETERS
 )
 
-var MetricTypeGetType func() T.GType
+var MetricTypeGetType func() O.Type
 
 type MountOperation struct {
 	Parent T.GMountOperation
@@ -386,7 +387,7 @@ type MountOperation struct {
 }
 
 var (
-	MountOperationGetType func() T.GType
+	MountOperationGetType func() O.Type
 	MountOperationNew     func(parent *Window) *MountOperation
 
 	mountOperationGetParent func(m *MountOperation) *Window
@@ -417,4 +418,4 @@ const (
 	MOVEMENT_HORIZONTAL_PAGES
 )
 
-var MovementStepGetType func() T.GType
+var MovementStepGetType func() O.Type

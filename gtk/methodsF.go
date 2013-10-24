@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -38,14 +39,14 @@ const (
 )
 
 var (
-	FileChooserGetType    func() T.GType
+	FileChooserGetType    func() O.Type
 	FileChooserErrorQuark func() T.GQuark
 
-	FileChooserActionGetType       func() T.GType
-	FileChooserConfirmationGetType func() T.GType
-	FileChooserDialogGetType       func() T.GType
-	FileChooserErrorGetType        func() T.GType
-	FileChooserWidgetGetType       func() T.GType
+	FileChooserActionGetType       func() O.Type
+	FileChooserConfirmationGetType func() O.Type
+	FileChooserDialogGetType       func() O.Type
+	FileChooserErrorGetType        func() O.Type
+	FileChooserWidgetGetType       func() O.Type
 
 	FileChooserDialogNew            func(title string, parent *Window, action FileChooserAction, firstButtonText string, v ...VArg) *Widget
 	FileChooserDialogNewWithBackend func(title string, parent *Window, action FileChooserAction, backend string, firstButtonText string, v ...VArg) *Widget
@@ -213,7 +214,7 @@ type FileChooserButton struct {
 }
 
 var (
-	FileChooserButtonGetType        func() T.GType
+	FileChooserButtonGetType        func() O.Type
 	FileChooserButtonNew            func(title string, action FileChooserAction) *Widget
 	FileChooserButtonNewWithBackend func(title string, action FileChooserAction, backend string) *Widget
 	FileChooserButtonNewWithDialog  func(dialog *Widget) *Widget
@@ -261,8 +262,8 @@ const (
 )
 
 var (
-	FileFilterGetType      func() T.GType
-	FileFilterFlagsGetType func() T.GType
+	FileFilterGetType      func() O.Type
+	FileFilterFlagsGetType func() O.Type
 	FileFilterNew          func() *FileFilter
 
 	fileFilterAddCustom        func(filter *FileFilter, needed FileFilterFlags, f FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify)
@@ -315,7 +316,7 @@ type FileSelection struct {
 }
 
 var (
-	FileSelectionGetType func() T.GType
+	FileSelectionGetType func() O.Type
 	FileSelectionNew     func(title string) *Widget
 
 	fileSelectionComplete          func(f *FileSelection, pattern string)
@@ -345,7 +346,7 @@ type Fixed struct {
 }
 
 var (
-	FixedGetType func() T.GType
+	FixedGetType func() O.Type
 	FixedNew     func() *Widget
 
 	fixedGetHasWindow func(f *Fixed) T.Gboolean
@@ -359,7 +360,7 @@ func (f *Fixed) Move(widget *Widget, x, y int)     { fixedMove(f, widget, x, y) 
 func (f *Fixed) Put(widget *Widget, x, y int)      { fixedPut(f, widget, x, y) }
 func (f *Fixed) SetHasWindow(hasWindow T.Gboolean) { fixedSetHasWindow(f, hasWindow) }
 
-type FlagValue T.GFlagsValue
+type FlagValue O.FlagsValue
 
 type FontButton struct {
 	Button Button
@@ -367,7 +368,7 @@ type FontButton struct {
 }
 
 var (
-	FontButtonGetType     func() T.GType
+	FontButtonGetType     func() O.Type
 	FontButtonNew         func() *Widget
 	FontButtonNewWithFont func(fontname string) *Widget
 
@@ -419,7 +420,7 @@ type FontSelection struct {
 }
 
 var (
-	FontSelectionGetType func() T.GType
+	FontSelectionGetType func() O.Type
 	FontSelectionNew     func() *Widget
 
 	fontSelectionGetFace         func(f *FontSelection) *T.PangoFontFace
@@ -466,7 +467,7 @@ type FontSelectionDialog struct {
 }
 
 var (
-	FontSelectionDialogGetType func() T.GType
+	FontSelectionDialogGetType func() O.Type
 	FontSelectionDialogNew     func(title string) *Widget
 
 	fontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *Widget
@@ -504,7 +505,7 @@ type Frame struct {
 }
 
 var (
-	FrameGetType func() T.GType
+	FrameGetType func() O.Type
 	FrameNew     func(label string) *Widget
 
 	frameGetLabel       func(f *Frame) string

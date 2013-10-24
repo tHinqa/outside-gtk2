@@ -4,12 +4,13 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type Image struct {
-	Parent        T.GObject
+	Parent        O.Object
 	Type          ImageType
 	Visual        *Visual
 	ByteOrder     T.GdkByteOrder
@@ -25,7 +26,7 @@ type Image struct {
 }
 
 var (
-	ImageGetType func() T.GType
+	ImageGetType func() O.Type
 	ImageNew     func(typ ImageType, visual *Visual, width, height int) *Image
 
 	ImageGet func(drawable *Drawable, x, y, width, height int) *Image
@@ -73,4 +74,4 @@ const (
 	IMAGE_FASTEST
 )
 
-var ImageTypeGetType func() T.GType
+var ImageTypeGetType func() O.Type

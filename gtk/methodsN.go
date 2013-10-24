@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -47,9 +48,9 @@ type (
 )
 
 var (
-	NotebookGetType    func() T.GType
+	NotebookGetType    func() O.Type
 	NotebookNew        func() *Widget
-	NotebookTabGetType func() T.GType
+	NotebookTabGetType func() O.Type
 
 	NotebookSetWindowCreationHook func(f NotebookWindowCreationFunc, data T.Gpointer, destroy T.GDestroyNotify)
 
@@ -211,4 +212,4 @@ const (
 	NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT
 )
 
-var NumberUpLayoutGetType func() T.GType
+var NumberUpLayoutGetType func() O.Type

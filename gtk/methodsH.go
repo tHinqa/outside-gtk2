@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -28,7 +29,7 @@ type HandleBox struct {
 }
 
 var (
-	HandleBoxGetType func() T.GType
+	HandleBoxGetType func() O.Type
 	HandleBoxNew     func() *Widget
 
 	handleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
@@ -55,12 +56,12 @@ type HBox struct {
 }
 
 var (
-	HboxGetType func() T.GType
+	HboxGetType func() O.Type
 
 	HboxNew func(homogeneous T.Gboolean, spacing int) *Widget
 )
 var (
-	HbuttonBoxGetType func() T.GType
+	HbuttonBoxGetType func() O.Type
 	HbuttonBoxNew     func() *Widget
 
 	HbuttonBoxGetSpacingDefault func() int
@@ -69,24 +70,24 @@ var (
 	HbuttonBoxSetLayoutDefault  func(layout ButtonBoxStyle)
 )
 var (
-	HpanedGetType func() T.GType
+	HpanedGetType func() O.Type
 	HpanedNew     func() *Widget
 )
 var (
-	HrulerGetType func() T.GType
+	HrulerGetType func() O.Type
 	HrulerNew     func() *Widget
 )
 var (
-	HscaleGetType      func() T.GType
+	HscaleGetType      func() O.Type
 	HscaleNew          func(adjustment *Adjustment) *Widget
 	HscaleNewWithRange func(min, max, step float64) *Widget
 )
 var (
-	HscrollbarGetType func() T.GType
+	HscrollbarGetType func() O.Type
 	HscrollbarNew     func(adjustment *Adjustment) *Widget
 )
 var (
-	HseparatorGetType func() T.GType
+	HseparatorGetType func() O.Type
 	HseparatorNew     func() *Widget
 )
 
@@ -96,7 +97,7 @@ type HSV struct {
 }
 
 var (
-	HsvGetType func() T.GType
+	HsvGetType func() O.Type
 	HsvNew     func() *Widget
 
 	hsvGetColor    func(hsv *HSV, h, s, v *float64)

@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -26,7 +27,7 @@ type PangoRenderer struct {
 }
 
 var (
-	PangoRendererGetType func() T.GType
+	PangoRendererGetType func() O.Type
 	PangoRendererNew     func(screen *Screen) *T.PangoRenderer
 
 	PangoRendererGetDefault func(screen *Screen) *T.PangoRenderer
@@ -51,7 +52,7 @@ var PangoAttrStippleNew func(stipple *T.GdkBitmap) *T.PangoAttribute
 type Pixbuf struct{}
 
 var (
-	PixbufGetType                   func() T.GType
+	PixbufGetType                   func() O.Type
 	PixbufNew                       func(colorspace Colorspace, hasAlpha T.Gboolean, bitsPerSample, width, height int) *Pixbuf
 	PixbufNewFromData               func(data *T.Guchar, colorspace Colorspace, hasAlpha T.Gboolean, bitsPerSample, width, height, rowstride int, destroyFn PixbufDestroyNotify, destroyFnData T.Gpointer) *Pixbuf
 	PixbufNewFromFile               func(filename string, e **T.GError) *Pixbuf
@@ -179,7 +180,7 @@ func (p *Pixbuf) SetOption(key, value string) T.Gboolean { return pixbufSetOptio
 func (p *Pixbuf) Unref()                                 { pixbufUnref(p) }
 
 var (
-	PixbufErrorGetType func() T.GType
+	PixbufErrorGetType func() O.Type
 )
 
 type PixbufAlphaMode Enum
@@ -189,12 +190,12 @@ const (
 	PIXBUF_ALPHA_FULL
 )
 
-var PixbufAlphaModeGetType func() T.GType
+var PixbufAlphaModeGetType func() O.Type
 
 type PixbufAnimation struct{}
 
 var (
-	PixbufAnimationGetType         func() T.GType
+	PixbufAnimationGetType         func() O.Type
 	PixbufAnimationNewFromFileUtf8 func(filename string, e **T.GError) *PixbufAnimation
 
 	pixbufAnimationGetHeight      func(animation *PixbufAnimation) int
@@ -219,7 +220,7 @@ func (p *PixbufAnimation) Unref()                    { pixbufAnimationUnref(p) }
 type PixbufAnimationIter struct{}
 
 var (
-	PixbufAnimationIterGetType func() T.GType
+	PixbufAnimationIterGetType func() O.Type
 	PixbufAnimationNewFromFile func(filename string, e **T.GError) *PixbufAnimation
 
 	PixbufAnimationIterAdvance                 func(iter *PixbufAnimationIter, currentTime *T.GTimeVal) T.Gboolean
@@ -235,7 +236,7 @@ type PixbufDestroyNotify func(
 type PixbufFormat struct{}
 
 var (
-	PixbufFormatGetType func() T.GType
+	PixbufFormatGetType func() O.Type
 
 	PixbufFormatCopy           func(format *PixbufFormat) *PixbufFormat
 	PixbufFormatFree           func(format *PixbufFormat)
@@ -251,12 +252,12 @@ var (
 )
 
 type PixbufLoader struct {
-	Parent T.GObject
+	Parent O.Object
 	_      T.Gpointer
 }
 
 var (
-	PixbufLoaderGetType         func() T.GType
+	PixbufLoaderGetType         func() O.Type
 	PixbufLoaderNew             func() *PixbufLoader
 	PixbufLoaderNewWithMimeType func(mimeType string, e **T.GError) *PixbufLoader
 	PixbufLoaderNewWithType     func(imageType string, e **T.GError) *PixbufLoader
@@ -270,7 +271,7 @@ var (
 )
 
 var (
-	PixbufNonAnimGetType func() T.GType
+	PixbufNonAnimGetType func() O.Type
 	PixbufNonAnimNew     func(pixbuf *Pixbuf) *PixbufAnimation
 )
 
@@ -291,7 +292,7 @@ const (
 	PIXBUF_ROTATE_CLOCKWISE        PixbufRotation = 270
 )
 
-var PixbufRotationGetType func() T.GType
+var PixbufRotationGetType func() O.Type
 
 type PixbufSaveFunc func(
 	buf string,
@@ -302,7 +303,7 @@ type PixbufSaveFunc func(
 type PixbufSimpleAnim struct{}
 
 var (
-	PixbufSimpleAnimGetType func() T.GType
+	PixbufSimpleAnimGetType func() O.Type
 	PixbufSimpleAnimNew     func(width, height int, rate float32) *PixbufSimpleAnim
 
 	pixbufSimpleAnimAddFrame func(animation *PixbufSimpleAnim, pixbuf *Pixbuf)
@@ -314,7 +315,7 @@ func (p *PixbufSimpleAnim) AddFrame(pixbuf *Pixbuf) { pixbufSimpleAnimAddFrame(p
 func (p *PixbufSimpleAnim) SetLoop(loop T.Gboolean) { pixbufSimpleAnimSetLoop(p, loop) }
 func (p *PixbufSimpleAnim) GetLoop() T.Gboolean     { return pixbufSimpleAnimGetLoop(p) }
 
-var PixbufSimpleAnimIterGetType func() T.GType
+var PixbufSimpleAnimIterGetType func() O.Type
 
 type Pixdata struct {
 	Magic       T.GUint32
@@ -390,7 +391,7 @@ const (
 type Pixmap Drawable
 
 var (
-	PixmapGetType func() T.GType
+	PixmapGetType func() O.Type
 	PixmapNew     func(drawable *Drawable, width, height, depth int) *Pixmap
 
 	PixmapColormapCreateFromXpm  func(drawable *Drawable, colormap *Colormap, mask **T.GdkBitmap, transparentColor *Color, filename string) *Pixmap
@@ -422,7 +423,7 @@ const (
 	PROP_MODE_APPEND
 )
 
-var PropModeGetType func() T.GType
+var PropModeGetType func() O.Type
 
 type PropertyState Enum
 
@@ -431,4 +432,4 @@ const (
 	PROPERTY_DELETE
 )
 
-var PropertyStateGetType func() T.GType
+var PropertyStateGetType func() O.Type

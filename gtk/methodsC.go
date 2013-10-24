@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -50,8 +51,8 @@ const (
 )
 
 var (
-	CalendarDisplayOptionsGetType func() T.GType
-	CalendarGetType               func() T.GType
+	CalendarDisplayOptionsGetType func() O.Type
+	CalendarGetType               func() O.Type
 	CalendarNew                   func() *Widget
 )
 
@@ -125,7 +126,7 @@ type Cell struct { // TODO(t):fix union
 
 type CellEditable struct{}
 
-var CellEditableGetType func() T.GType
+var CellEditableGetType func() O.Type
 
 var (
 	cellEditableEditingDone  func(c *CellEditable)
@@ -147,7 +148,7 @@ type CellLayoutDataFunc func(
 	data T.Gpointer)
 
 var (
-	CellLayoutGetType func() T.GType
+	CellLayoutGetType func() O.Type
 
 	cellLayoutAddAttribute    func(c *CellLayout, cell *CellRenderer, attribute string, column int)
 	cellLayoutClear           func(c *CellLayout)
@@ -207,23 +208,23 @@ const (
 )
 
 var (
-	CellRendererGetType          func() T.GType
-	CellRendererAccelGetType     func() T.GType
+	CellRendererGetType          func() O.Type
+	CellRendererAccelGetType     func() O.Type
 	CellRendererAccelNew         func() *CellRenderer
-	CellRendererAccelModeGetType func() T.GType
-	CellRendererComboGetType     func() T.GType
+	CellRendererAccelModeGetType func() O.Type
+	CellRendererComboGetType     func() O.Type
 	CellRendererComboNew         func() *CellRenderer
-	CellRendererModeGetType      func() T.GType
-	CellRendererPixbufGetType    func() T.GType
+	CellRendererModeGetType      func() O.Type
+	CellRendererPixbufGetType    func() O.Type
 	CellRendererPixbufNew        func() *CellRenderer
-	CellRendererProgressGetType  func() T.GType
+	CellRendererProgressGetType  func() O.Type
 	CellRendererProgressNew      func() *CellRenderer
-	CellRendererSpinGetType      func() T.GType
+	CellRendererSpinGetType      func() O.Type
 	CellRendererSpinNew          func() *CellRenderer
-	CellRendererSpinnerGetType   func() T.GType
+	CellRendererSpinnerGetType   func() O.Type
 	CellRendererSpinnerNew       func() *CellRenderer
-	CellRendererStateGetType     func() T.GType
-	CellRendererToggleGetType    func() T.GType
+	CellRendererStateGetType     func() O.Type
+	CellRendererToggleGetType    func() O.Type
 	CellRendererToggleNew        func() *CellRenderer
 )
 
@@ -300,7 +301,7 @@ type CellRendererText struct {
 }
 
 var (
-	CellRendererTextGetType func() T.GType
+	CellRendererTextGetType func() O.Type
 	CellRendererTextNew     func() *CellRenderer
 
 	cellRendererTextSetFixedHeightFromFont func(renderer *CellRendererText, numberOfRows int)
@@ -351,10 +352,10 @@ const (
 	CELL_WIDGET
 )
 
-var CellTypeGetType func() T.GType
+var CellTypeGetType func() O.Type
 
 var (
-	CellViewGetType       func() T.GType
+	CellViewGetType       func() O.Type
 	CellViewNew           func() *Widget
 	CellViewNewWithText   func(text string) *Widget
 	CellViewNewWithMarkup func(markup string) *Widget
@@ -391,7 +392,7 @@ type CheckButton struct {
 	ToggleButton ToggleButton
 }
 
-var CheckButtonGetType func() T.GType
+var CheckButtonGetType func() O.Type
 
 type CheckMenuItem struct {
 	MenuItem MenuItem
@@ -403,7 +404,7 @@ type CheckMenuItem struct {
 }
 
 var (
-	CheckMenuItemGetType         func() T.GType
+	CheckMenuItemGetType         func() O.Type
 	CheckMenuItemNew             func() *Widget
 	CheckMenuItemNewWithLabel    func(label string) *Widget
 	CheckMenuItemNewWithMnemonic func(label string) *Widget
@@ -450,7 +451,7 @@ type (
 )
 
 var (
-	ClipboardGetType       func() T.GType
+	ClipboardGetType       func() O.Type
 	ClipboardGet           func(selection D.Atom) *Clipboard
 	ClipboardGetForDisplay func(display *D.Display, selection D.Atom) *Clipboard
 	WidgetGetClipboard     func(widget *Widget, selection D.Atom) *Clipboard
@@ -642,10 +643,10 @@ const (
 )
 
 var (
-	ClistGetType        func() T.GType
+	ClistGetType        func() O.Type
 	ClistNew            func(columns int) *Widget
 	ClistNewWithTitles  func(columns int, titles **T.Gchar) *Widget
-	ClistDragPosGetType func() T.GType
+	ClistDragPosGetType func() O.Type
 )
 
 var (
@@ -830,7 +831,7 @@ type ColorButton struct {
 }
 
 var (
-	ColorButtonGetType      func() T.GType
+	ColorButtonGetType      func() O.Type
 	ColorButtonNew          func() *Widget
 	ColorButtonNewWithColor func(color *D.Color) *Widget
 )
@@ -869,7 +870,7 @@ type (
 )
 
 var (
-	ColorSelectionGetType func() T.GType
+	ColorSelectionGetType func() O.Type
 	ColorSelectionNew     func() *Widget
 
 	ColorSelectionPaletteFromString func(str string, colors **D.Color, nColors *int) T.Gboolean
@@ -932,7 +933,7 @@ type ColorSelectionDialog struct {
 }
 
 var (
-	ColorSelectionDialogGetType func() T.GType
+	ColorSelectionDialogGetType func() O.Type
 	ColorSelectionDialogNew     func(title string) *Widget
 
 	ColorSelectionDialogGetColorSelection func(c *ColorSelectionDialog) *Widget
@@ -958,7 +959,7 @@ type Combo struct {
 }
 
 var (
-	ComboGetType func() T.GType
+	ComboGetType func() O.Type
 	ComboNew     func() *Widget
 )
 
@@ -998,19 +999,19 @@ type ComboBoxEntry struct {
 }
 
 var (
-	ComboBoxGetType              func() T.GType
+	ComboBoxGetType              func() O.Type
 	ComboBoxNew                  func() *Widget
 	ComboBoxNewWithEntry         func() *Widget
 	ComboBoxNewWithModel         func(model *TreeModel) *Widget
 	ComboBoxNewWithModelAndEntry func(model *TreeModel) *Widget
 
-	ComboBoxTextGetType      func() T.GType
+	ComboBoxTextGetType      func() O.Type
 	ComboBoxTextNew          func() *Widget
 	ComboBoxTextNewWithEntry func() *Widget
 
 	ComboBoxNewText func() *Widget
 
-	ComboBoxEntryGetType      func() T.GType
+	ComboBoxEntryGetType      func() O.Type
 	ComboBoxEntryNew          func() *Widget
 	ComboBoxEntryNewWithModel func(model *TreeModel, textColumn int) *Widget
 	ComboBoxEntryNewText      func() *Widget
@@ -1130,7 +1131,7 @@ type Container struct {
 }
 
 var (
-	ContainerGetType func() T.GType
+	ContainerGetType func() O.Type
 
 	containerAdd                  func(c *Container, widget *Widget)
 	containerAddWithProperties    func(c *Container, widget *Widget, firstPropName string, v ...VArg)
@@ -1141,7 +1142,7 @@ var (
 	containerChildSet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
 	containerChildSetProperty     func(c *Container, child *Widget, propertyName string, value *T.GValue)
 	containerChildSetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
-	containerChildType            func(c *Container) T.GType
+	containerChildType            func(c *Container) O.Type
 	containerForall               func(c *Container, callback Callback, callbackData T.Gpointer)
 	containerForeach              func(c *Container, callback Callback, callbackData T.Gpointer)
 	containerForeachFull          func(c *Container, callback Callback, marshal CallbackMarshal, callbackData T.Gpointer, notify T.GDestroyNotify)
@@ -1188,7 +1189,7 @@ func (c *Container) ChildSetProperty(child *Widget, propertyName string, value *
 func (c *Container) ChildSetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
 	containerChildSetValist(c, child, firstPropertyName, varArgs)
 }
-func (c *Container) ChildType() T.GType { return containerChildType(c) }
+func (c *Container) ChildType() O.Type { return containerChildType(c) }
 func (c *Container) Forall(callback Callback, callbackData T.Gpointer) {
 	containerForall(c, callback, callbackData)
 }
@@ -1236,7 +1237,7 @@ type ContainerClass struct {
 	CheckResize      func(c *Container)
 	Forall           func(c *Container, includeInternals T.Gboolean, callback Callback, callbackData T.Gpointer)
 	SetFocusChild    func(c *Container, w *Widget)
-	ChildType        func(c *Container) T.GType
+	ChildType        func(c *Container) O.Type
 	CompositeName    func(c *Container, child *Widget) *T.Gchar
 	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
 	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
@@ -1263,7 +1264,7 @@ const (
 	CORNER_BOTTOM_RIGHT
 )
 
-var CornerTypeGetType func() T.GType
+var CornerTypeGetType func() O.Type
 
 type (
 	CTree struct {
@@ -1327,16 +1328,16 @@ const (
 )
 
 var (
-	CtreeGetType       func() T.GType
+	CtreeGetType       func() O.Type
 	CtreeNew           func(columns int, treeColumn int) *Widget
 	CtreeNewWithTitles func(columns int, treeColumn int, titles **T.Gchar) *Widget
 
-	CtreeNodeGetType func() T.GType
-	CtreePosGetType  func() T.GType
+	CtreeNodeGetType func() O.Type
+	CtreePosGetType  func() O.Type
 
-	CtreeExpanderStyleGetType func() T.GType
-	CtreeExpansionTypeGetType func() T.GType
-	CtreeLineStyleGetType     func() T.GType
+	CtreeExpanderStyleGetType func() O.Type
+	CtreeExpansionTypeGetType func() O.Type
+	CtreeLineStyleGetType     func() O.Type
 )
 
 var (
@@ -1554,7 +1555,7 @@ type Curve struct {
 }
 
 var (
-	CurveGetType func() T.GType
+	CurveGetType func() O.Type
 	CurveNew     func() *Widget
 
 	curveGetVector    func(c *Curve, veclen int, vector *float32)
@@ -1580,4 +1581,4 @@ const (
 	CURVE_TYPE_FREE
 )
 
-var CurveTypeGetType func() T.GType
+var CurveTypeGetType func() O.Type

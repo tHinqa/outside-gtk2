@@ -4,9 +4,9 @@
 package gdk
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-
-// . "github.com/tHinqa/outside/types"
+	// . "github.com/tHinqa/outside/types"
 )
 
 type Event struct {
@@ -35,7 +35,7 @@ type Event struct {
 }
 
 var (
-	EventGetType func() T.GType
+	EventGetType func() O.Type
 	EventNew     func(t EventType) *Event
 
 	EventGet                         func() *Event
@@ -203,7 +203,7 @@ const (
 	ALL_EVENTS_MASK EventMask = 0x3FFFFE
 )
 
-var EventMaskGetType func() T.GType
+var EventMaskGetType func() O.Type
 
 type EventMotion struct {
 	Type         EventType
@@ -306,7 +306,7 @@ const (
 	EVENT_LAST
 )
 
-var EventTypeGetType func() T.GType
+var EventTypeGetType func() O.Type
 
 type EventVisibility struct {
 	Type      EventType
@@ -331,4 +331,4 @@ const (
 	EXTENSION_EVENTS_CURSOR
 )
 
-var ExtensionModeGetType func() T.GType
+var ExtensionModeGetType func() O.Type
