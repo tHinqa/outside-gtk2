@@ -16,7 +16,9 @@ func init() {
 	outside.AddDllApis(dll, false, apiList)
 }
 
-type GtkSourceCompletionActivation T.Enum
+type Enum int
+
+type GtkSourceCompletionActivation Enum
 
 const (
 	GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE GtkSourceCompletionActivation = 1 << iota
@@ -24,7 +26,7 @@ const (
 	GTK_SOURCE_COMPLETION_ACTIVATION_NONE GtkSourceCompletionActivation = 0
 )
 
-type GtkSourceSmartHomeEndType T.Enum
+type GtkSourceSmartHomeEndType Enum
 
 const (
 	GTK_SOURCE_SMART_HOME_END_DISABLED GtkSourceSmartHomeEndType = iota
@@ -33,7 +35,7 @@ const (
 	GTK_SOURCE_SMART_HOME_END_ALWAYS
 )
 
-type GtkSourceDrawSpacesFlags T.Enum
+type GtkSourceDrawSpacesFlags Enum
 
 const (
 	GTK_SOURCE_DRAW_SPACES_SPACE GtkSourceDrawSpacesFlags = 1 << iota
@@ -52,7 +54,7 @@ const (
 		GTK_SOURCE_DRAW_SPACES_TRAILING
 )
 
-type GtkSourceSearchFlags T.Enum
+type GtkSourceSearchFlags Enum
 
 const (
 	GTK_SOURCE_SEARCH_VISIBLE_ONLY GtkSourceSearchFlags = 1 << iota

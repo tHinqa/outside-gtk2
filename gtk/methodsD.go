@@ -9,7 +9,7 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type DebugFlag T.Enum
+type DebugFlag Enum
 
 const (
 	DEBUG_MISC DebugFlag = 1 << iota
@@ -28,7 +28,7 @@ const (
 
 var DebugFlagGetType func() T.GType
 
-type DeleteType T.Enum
+type DeleteType Enum
 
 const (
 	DELETE_CHARS DeleteType = iota
@@ -43,7 +43,7 @@ const (
 
 var DeleteTypeGetType func() T.GType
 
-type DestDefaults T.Enum
+type DestDefaults Enum
 
 const (
 	DEST_DEFAULT_MOTION DestDefaults = 1 << iota
@@ -61,7 +61,7 @@ type Dialog struct {
 	Separator   *Widget
 }
 
-type DialogFlags T.Enum
+type DialogFlags Enum
 
 const (
 	DIALOG_MODAL DialogFlags = 1 << iota
@@ -126,7 +126,7 @@ func (d *Dialog) SetResponseSensitive(responseId int, setting T.Gboolean) {
 	dialogSetResponseSensitive(d, responseId, setting)
 }
 
-type DirectionType T.Enum
+type DirectionType Enum
 
 const (
 	DIR_TAB_FORWARD DirectionType = iota
@@ -142,35 +142,35 @@ var DirectionTypeGetType func() T.GType
 var DisableSetlocale func()
 
 var (
-	DragBegin                 func(widget *Widget, targets *TargetList, actions T.GdkDragAction, button int, event *T.GdkEvent) *T.GdkDragContext
+	DragBegin                 func(widget *Widget, targets *TargetList, actions D.DragAction, button int, event *D.Event) *D.DragContext
 	DragCheckThreshold        func(widget *Widget, startX, startY, currentX, currentY int) T.Gboolean
 	DragDestAddImageTargets   func(widget *Widget)
 	DragDestAddTextTargets    func(widget *Widget)
 	DragDestAddUriTargets     func(widget *Widget)
-	DragDestFindTarget        func(widget *Widget, context *T.GdkDragContext, targetList *TargetList) T.GdkAtom
+	DragDestFindTarget        func(widget *Widget, context *D.DragContext, targetList *TargetList) D.Atom
 	DragDestGetTargetList     func(widget *Widget) *TargetList
 	DragDestGetTrackMotion    func(widget *Widget) T.Gboolean
-	DragDestSet               func(widget *Widget, flags DestDefaults, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
-	DragDestSetProxy          func(widget *Widget, proxyWindow *D.Window, protocol T.GdkDragProtocol, useCoordinates T.Gboolean)
+	DragDestSet               func(widget *Widget, flags DestDefaults, targets *TargetEntry, nTargets int, actions D.DragAction)
+	DragDestSetProxy          func(widget *Widget, proxyWindow *D.Window, protocol D.DragProtocol, useCoordinates T.Gboolean)
 	DragDestSetTargetList     func(widget *Widget, targetList *TargetList)
 	DragDestSetTrackMotion    func(widget *Widget, trackMotion T.Gboolean)
 	DragDestUnset             func(widget *Widget)
-	DragFinish                func(context *T.GdkDragContext, success, del T.Gboolean, time T.GUint32)
-	DragGetData               func(widget *Widget, context *T.GdkDragContext, target T.GdkAtom, time T.GUint32)
-	DragGetSourceWidget       func(context *T.GdkDragContext) *Widget
+	DragFinish                func(context *D.DragContext, success, del T.Gboolean, time T.GUint32)
+	DragGetData               func(widget *Widget, context *D.DragContext, target D.Atom, time T.GUint32)
+	DragGetSourceWidget       func(context *D.DragContext) *Widget
 	DragHighlight             func(widget *Widget)
 	DragSetDefaultIcon        func(colormap *D.Colormap, pixmap *D.Pixmap, mask *T.GdkBitmap, hotX, hotY int)
-	DragSetIconDefault        func(context *T.GdkDragContext)
-	DragSetIconName           func(context *T.GdkDragContext, iconName string, hotX, hotY int)
-	DragSetIconPixbuf         func(context *T.GdkDragContext, pixbuf *D.Pixbuf, hotX, hotY int)
-	DragSetIconPixmap         func(context *T.GdkDragContext, colormap *D.Colormap, pixmap *D.Pixmap, mask *T.GdkBitmap, hotX, hotY int)
-	DragSetIconStock          func(context *T.GdkDragContext, stockId string, hotX, hotY int)
-	DragSetIconWidget         func(context *T.GdkDragContext, widget *Widget, hotX, hotY int)
+	DragSetIconDefault        func(context *D.DragContext)
+	DragSetIconName           func(context *D.DragContext, iconName string, hotX, hotY int)
+	DragSetIconPixbuf         func(context *D.DragContext, pixbuf *D.Pixbuf, hotX, hotY int)
+	DragSetIconPixmap         func(context *D.DragContext, colormap *D.Colormap, pixmap *D.Pixmap, mask *T.GdkBitmap, hotX, hotY int)
+	DragSetIconStock          func(context *D.DragContext, stockId string, hotX, hotY int)
+	DragSetIconWidget         func(context *D.DragContext, widget *Widget, hotX, hotY int)
 	DragSourceAddImageTargets func(widget *Widget)
 	DragSourceAddTextTargets  func(widget *Widget)
 	DragSourceAddUriTargets   func(widget *Widget)
 	DragSourceGetTargetList   func(widget *Widget) *TargetList
-	DragSourceSet             func(widget *Widget, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	DragSourceSet             func(widget *Widget, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions D.DragAction)
 	DragSourceSetIcon         func(widget *Widget, colormap *D.Colormap, pixmap *D.Pixmap, mask *T.GdkBitmap)
 	DragSourceSetIconName     func(widget *Widget, iconName string)
 	DragSourceSetIconPixbuf   func(widget *Widget, pixbuf *D.Pixbuf)
@@ -180,7 +180,7 @@ var (
 	DragUnhighlight           func(widget *Widget)
 )
 
-type DragResult T.Enum
+type DragResult Enum
 
 const (
 	DRAG_RESULT_SUCCESS DragResult = iota

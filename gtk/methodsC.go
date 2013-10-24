@@ -38,7 +38,7 @@ type (
 		year, month, day uint, userData T.Gpointer) string
 )
 
-type CalendarDisplayOptions T.Enum
+type CalendarDisplayOptions Enum
 
 const (
 	CALENDAR_SHOW_HEADING CalendarDisplayOptions = 1 << iota
@@ -130,12 +130,12 @@ var CellEditableGetType func() T.GType
 var (
 	cellEditableEditingDone  func(c *CellEditable)
 	cellEditableRemoveWidget func(c *CellEditable)
-	cellEditableStartEditing func(c *CellEditable, event *T.GdkEvent)
+	cellEditableStartEditing func(c *CellEditable, event *D.Event)
 )
 
-func (c *CellEditable) EditingDone()                   { cellEditableEditingDone(c) }
-func (c *CellEditable) RemoveWidget()                  { cellEditableRemoveWidget(c) }
-func (c *CellEditable) StartEditing(event *T.GdkEvent) { cellEditableStartEditing(c, event) }
+func (c *CellEditable) EditingDone()                { cellEditableEditingDone(c) }
+func (c *CellEditable) RemoveWidget()               { cellEditableRemoveWidget(c) }
+func (c *CellEditable) StartEditing(event *D.Event) { cellEditableStartEditing(c, event) }
 
 type CellLayout struct{}
 
@@ -196,7 +196,7 @@ type CellRenderer struct {
 	// Editing : 1
 }
 
-type CellRendererState T.Enum
+type CellRendererState Enum
 
 const (
 	CELL_RENDERER_SELECTED CellRendererState = 1 << iota
@@ -228,7 +228,7 @@ var (
 )
 
 var (
-	cellRendererActivate        func(c *CellRenderer, event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean
+	cellRendererActivate        func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean
 	cellRendererEditingCanceled func(c *CellRenderer)
 	cellRendererGetAlignment    func(c *CellRenderer, xalign, yalign *float32)
 	cellRendererGetFixedSize    func(c *CellRenderer, width, height *int)
@@ -242,11 +242,11 @@ var (
 	cellRendererSetPadding      func(c *CellRenderer, xpad, ypad int)
 	cellRendererSetSensitive    func(c *CellRenderer, sensitive T.Gboolean)
 	cellRendererSetVisible      func(c *CellRenderer, visible T.Gboolean)
-	cellRendererStartEditing    func(c *CellRenderer, event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable
+	cellRendererStartEditing    func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable
 	cellRendererStopEditing     func(c *CellRenderer, canceled T.Gboolean)
 )
 
-func (c *CellRenderer) Activate(event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean {
+func (c *CellRenderer) Activate(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean {
 	return cellRendererActivate(c, event, widget, path, backgroundArea, cellArea, flags)
 }
 func (c *CellRenderer) EditingCanceled() { cellRendererEditingCanceled(c) }
@@ -270,7 +270,7 @@ func (c *CellRenderer) SetFixedSize(width, height int)    { cellRendererSetFixed
 func (c *CellRenderer) SetPadding(xpad, ypad int)         { cellRendererSetPadding(c, xpad, ypad) }
 func (c *CellRenderer) SetSensitive(sensitive T.Gboolean) { cellRendererSetSensitive(c, sensitive) }
 func (c *CellRenderer) SetVisible(visible T.Gboolean)     { cellRendererSetVisible(c, visible) }
-func (c *CellRenderer) StartEditing(event *T.GdkEvent, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable {
+func (c *CellRenderer) StartEditing(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable {
 	return cellRendererStartEditing(c, event, widget, path, backgroundArea, cellArea, flags)
 }
 func (c *CellRenderer) StopEditing(canceled T.Gboolean) { cellRendererStopEditing(c, canceled) }
@@ -341,7 +341,7 @@ type CellView struct {
 	_      struct{}
 }
 
-type CellType T.Enum
+type CellType Enum
 
 const (
 	CELL_EMPTY CellType = iota
@@ -443,24 +443,24 @@ type (
 	ClipboardGetFunc              func(clipboard *Clipboard, selectionData *SelectionData, info uint, userDataOrOwner T.Gpointer)
 	ClipboardImageReceivedFunc    func(clipboard *Clipboard, pixbuf *D.Pixbuf, data T.Gpointer)
 	ClipboardReceivedFunc         func(clipboard *Clipboard, selectionData *SelectionData, data T.Gpointer)
-	ClipboardRichTextReceivedFunc func(clipboard *Clipboard, format T.GdkAtom, text *uint8, length T.Gsize, data T.Gpointer)
-	ClipboardTargetsReceivedFunc  func(clipboard *Clipboard, atoms *T.GdkAtom, nAtoms int, data T.Gpointer)
+	ClipboardRichTextReceivedFunc func(clipboard *Clipboard, format D.Atom, text *uint8, length T.Gsize, data T.Gpointer)
+	ClipboardTargetsReceivedFunc  func(clipboard *Clipboard, atoms *D.Atom, nAtoms int, data T.Gpointer)
 	ClipboardTextReceivedFunc     func(clipboard *Clipboard, text string, data T.Gpointer)
 	ClipboardURIReceivedFunc      func(clipboard *Clipboard, uris *string, data T.Gpointer)
 )
 
 var (
 	ClipboardGetType       func() T.GType
-	ClipboardGet           func(selection T.GdkAtom) *Clipboard
-	ClipboardGetForDisplay func(display *D.Display, selection T.GdkAtom) *Clipboard
-	WidgetGetClipboard     func(widget *Widget, selection T.GdkAtom) *Clipboard
+	ClipboardGet           func(selection D.Atom) *Clipboard
+	ClipboardGetForDisplay func(display *D.Display, selection D.Atom) *Clipboard
+	WidgetGetClipboard     func(widget *Widget, selection D.Atom) *Clipboard
 )
 
 var (
 	clipboardClear                   func(c *Clipboard)
 	clipboardGetDisplay              func(c *Clipboard) *D.Display
 	clipboardGetOwner                func(c *Clipboard) *T.GObject
-	clipboardRequestContents         func(c *Clipboard, target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer)
+	clipboardRequestContents         func(c *Clipboard, target D.Atom, callback ClipboardReceivedFunc, userData T.Gpointer)
 	clipboardRequestImage            func(c *Clipboard, callback ClipboardImageReceivedFunc, userData T.Gpointer)
 	clipboardRequestRichText         func(c *Clipboard, buffer *TextBuffer, callback ClipboardRichTextReceivedFunc, userData T.Gpointer)
 	clipboardRequestTargets          func(c *Clipboard, callback ClipboardTargetsReceivedFunc, userData T.Gpointer)
@@ -472,15 +472,15 @@ var (
 	clipboardSetWithData             func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) T.Gboolean
 	clipboardSetWithOwner            func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) T.Gboolean
 	clipboardStore                   func(c *Clipboard)
-	clipboardWaitForContents         func(c *Clipboard, target T.GdkAtom) *SelectionData
+	clipboardWaitForContents         func(c *Clipboard, target D.Atom) *SelectionData
 	clipboardWaitForImage            func(c *Clipboard) *D.Pixbuf
-	clipboardWaitForRichText         func(c *Clipboard, buffer *TextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8
-	clipboardWaitForTargets          func(c *Clipboard, targets **T.GdkAtom, nTargets *int) T.Gboolean
+	clipboardWaitForRichText         func(c *Clipboard, buffer *TextBuffer, format *D.Atom, length *T.Gsize) *uint8
+	clipboardWaitForTargets          func(c *Clipboard, targets **D.Atom, nTargets *int) T.Gboolean
 	clipboardWaitForText             func(c *Clipboard) string
 	clipboardWaitForUris             func(c *Clipboard) **T.Gchar
 	clipboardWaitIsImageAvailable    func(c *Clipboard) T.Gboolean
 	clipboardWaitIsRichTextAvailable func(c *Clipboard, buffer *TextBuffer) T.Gboolean
-	clipboardWaitIsTargetAvailable   func(c *Clipboard, target T.GdkAtom) T.Gboolean
+	clipboardWaitIsTargetAvailable   func(c *Clipboard, target D.Atom) T.Gboolean
 	clipboardWaitIsTextAvailable     func(c *Clipboard) T.Gboolean
 	clipboardWaitIsUrisAvailable     func(c *Clipboard) T.Gboolean
 )
@@ -488,7 +488,7 @@ var (
 func (c *Clipboard) Clear()                 { clipboardClear(c) }
 func (c *Clipboard) GetDisplay() *D.Display { return clipboardGetDisplay(c) }
 func (c *Clipboard) GetOwner() *T.GObject   { return clipboardGetOwner(c) }
-func (c *Clipboard) RequestContents(target T.GdkAtom, callback ClipboardReceivedFunc, userData T.Gpointer) {
+func (c *Clipboard) RequestContents(target D.Atom, callback ClipboardReceivedFunc, userData T.Gpointer) {
 	clipboardRequestContents(c, target, callback, userData)
 }
 func (c *Clipboard) RequestImage(callback ClipboardImageReceivedFunc, userData T.Gpointer) {
@@ -518,14 +518,14 @@ func (c *Clipboard) SetWithOwner(targets *TargetEntry, nTargets uint, getFunc Cl
 	return clipboardSetWithOwner(c, targets, nTargets, getFunc, clearFunc, owner)
 }
 func (c *Clipboard) Store() { clipboardStore(c) }
-func (c *Clipboard) WaitForContents(target T.GdkAtom) *SelectionData {
+func (c *Clipboard) WaitForContents(target D.Atom) *SelectionData {
 	return clipboardWaitForContents(c, target)
 }
 func (c *Clipboard) WaitForImage() *D.Pixbuf { return clipboardWaitForImage(c) }
-func (c *Clipboard) WaitForRichText(buffer *TextBuffer, format *T.GdkAtom, length *T.Gsize) *uint8 {
+func (c *Clipboard) WaitForRichText(buffer *TextBuffer, format *D.Atom, length *T.Gsize) *uint8 {
 	return clipboardWaitForRichText(c, buffer, format, length)
 }
-func (c *Clipboard) WaitForTargets(targets **T.GdkAtom, nTargets *int) T.Gboolean {
+func (c *Clipboard) WaitForTargets(targets **D.Atom, nTargets *int) T.Gboolean {
 	return clipboardWaitForTargets(c, targets, nTargets)
 }
 func (c *Clipboard) WaitForText() string              { return clipboardWaitForText(c) }
@@ -534,7 +534,7 @@ func (c *Clipboard) WaitIsImageAvailable() T.Gboolean { return clipboardWaitIsIm
 func (c *Clipboard) WaitIsRichTextAvailable(buffer *TextBuffer) T.Gboolean {
 	return clipboardWaitIsRichTextAvailable(c, buffer)
 }
-func (c *Clipboard) WaitIsTargetAvailable(target T.GdkAtom) T.Gboolean {
+func (c *Clipboard) WaitIsTargetAvailable(target D.Atom) T.Gboolean {
 	return clipboardWaitIsTargetAvailable(c, target)
 }
 func (c *Clipboard) WaitIsTextAvailable() T.Gboolean { return clipboardWaitIsTextAvailable(c) }
@@ -632,7 +632,7 @@ type (
 		ptr1, ptr2 T.Gconstpointer) int
 )
 
-type CListDragPos T.Enum
+type CListDragPos Enum
 
 const (
 	CLIST_DRAG_NONE CListDragPos = iota
@@ -1152,7 +1152,7 @@ var (
 	containerGetFocusHadjustment  func(c *Container) *Adjustment
 	containerGetFocusVadjustment  func(c *Container) *Adjustment
 	containerGetResizeMode        func(c *Container) ResizeMode
-	containerPropagateExpose      func(c *Container, child *Widget, event *T.GdkEventExpose)
+	containerPropagateExpose      func(c *Container, child *Widget, event *D.EventExpose)
 	containerRemove               func(c *Container, widget *Widget)
 	containerResizeChildren       func(c *Container)
 	containerSetBorderWidth       func(c *Container, borderWidth uint)
@@ -1207,7 +1207,7 @@ func (c *Container) GetFocusChild() *Widget           { return containerGetFocus
 func (c *Container) GetFocusHadjustment() *Adjustment { return containerGetFocusHadjustment(c) }
 func (c *Container) GetFocusVadjustment() *Adjustment { return containerGetFocusVadjustment(c) }
 func (c *Container) GetResizeMode() ResizeMode        { return containerGetResizeMode(c) }
-func (c *Container) PropagateExpose(child *Widget, event *T.GdkEventExpose) {
+func (c *Container) PropagateExpose(child *Widget, event *D.EventExpose) {
 	containerPropagateExpose(c, child, event)
 }
 func (c *Container) Remove(widget *Widget)           { containerRemove(c, widget) }
@@ -1254,7 +1254,7 @@ func (c *ContainerClass) InstallChildProperty(propertyId uint, pspec *T.GParamSp
 	containerClassInstallChildProperty(c, propertyId, pspec)
 }
 
-type CornerType T.Enum
+type CornerType Enum
 
 const (
 	CORNER_TOP_LEFT CornerType = iota
@@ -1308,7 +1308,7 @@ type (
 		data T.Gpointer) T.Gboolean
 )
 
-type CTreeExpanderStyle T.Enum
+type CTreeExpanderStyle Enum
 
 const (
 	CTREE_EXPANDER_NONE CTreeExpanderStyle = iota
@@ -1317,7 +1317,7 @@ const (
 	CTREE_EXPANDER_CIRCULAR
 )
 
-type CTreeLineStyle T.Enum
+type CTreeLineStyle Enum
 
 const (
 	CTREE_LINES_NONE CTreeLineStyle = iota
@@ -1572,7 +1572,7 @@ func (c *Curve) SetGamma(gamma float32)                  { curveSetGamma(c, gamm
 func (c *Curve) SetRange(minX, maxX, minY, maxY float32) { curveSetRange(c, minX, maxX, minY, maxY) }
 func (c *Curve) SetVector(veclen int, vector *float32)   { curveSetVector(c, veclen, vector) }
 
-type CurveType T.Enum
+type CurveType Enum
 
 const (
 	CURVE_TYPE_LINEAR CurveType = iota

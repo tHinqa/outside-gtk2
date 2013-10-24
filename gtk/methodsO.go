@@ -76,7 +76,7 @@ type ObjectClass struct {
 	Destroy     func(object *Object)
 }
 
-type ObjectFlags T.Enum
+type ObjectFlags Enum
 
 const (
 	IN_DESTRUCTION ObjectFlags = 1 << iota
@@ -155,7 +155,7 @@ func (o *OptionMenu) SetMenu(menu *Widget)  { optionMenuSetMenu(o, menu) }
 
 type Orientable struct{}
 
-type Orientation T.Enum
+type Orientation Enum
 
 const (
 	ORIENTATION_HORIZONTAL Orientation = iota

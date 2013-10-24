@@ -269,7 +269,7 @@ type RcStyle struct {
 	EngineSpecified uint //: 1
 }
 
-type RcFlags T.Enum
+type RcFlags Enum
 
 const (
 	RC_FG RcFlags = 1 << iota
@@ -316,7 +316,7 @@ func (r *RecentAction) SetShowNumbers(showNumbers T.Gboolean) {
 
 type RecentChooser struct{}
 
-type RecentSortType T.Enum
+type RecentSortType Enum
 
 const (
 	RECENT_SORT_NONE RecentSortType = iota
@@ -524,7 +524,7 @@ type (
 	}
 )
 
-type RecentFilterFlags T.Enum
+type RecentFilterFlags Enum
 
 const (
 	RECENT_FILTER_URI RecentFilterFlags = 1 << iota
@@ -630,7 +630,7 @@ func (r *RecentManager) SetScreen(screen *D.Screen) { recentManagerSetScreen(r, 
 
 var RecentSortTypeGetType func() T.GType
 
-type ReliefStyle T.Enum
+type ReliefStyle Enum
 
 const (
 	RELIEF_NORMAL ReliefStyle = iota
@@ -655,7 +655,7 @@ var (
 func (r *Requisition) Copy() *Requisition { return requisitionCopy(r) }
 func (r *Requisition) Free()              { requisitionFree(r) }
 
-type ResizeMode T.Enum
+type ResizeMode Enum
 
 const (
 	RESIZE_PARENT ResizeMode = iota
@@ -665,7 +665,7 @@ const (
 
 var ResizeModeGetType func() T.GType
 
-type ResponseType T.Enum
+type ResponseType Enum
 
 const (
 	RESPONSE_NONE ResponseType = -(iota + 1)

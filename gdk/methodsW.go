@@ -8,7 +8,7 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
-type Window T.GdkDrawable
+type Window Drawable
 
 var (
 	WindowNew func(parent *Window, attributes *WindowAttr, attributesMask int) *Window
@@ -52,13 +52,13 @@ var (
 	windowGetDisplay                      func(w *Window) *Display
 	windowGetEffectiveParent              func(w *Window) *Window
 	windowGetEffectiveToplevel            func(w *Window) *Window
-	windowGetEvents                       func(w *Window) T.GdkEventMask
+	windowGetEvents                       func(w *Window) EventMask
 	windowGetFocusOnMap                   func(w *Window) T.Gboolean
 	windowGetFrameExtents                 func(w *Window, rect *T.GdkRectangle)
 	windowGetGeometry                     func(w *Window, x, y, width, height, depth *int)
 	windowGetGroup                        func(w *Window) *Window
 	windowGetHeight                       func(w *Window) int
-	windowGetInternalPaintInfo            func(w *Window, realDrawable **T.GdkDrawable, xOffset, yOffset *int)
+	windowGetInternalPaintInfo            func(w *Window, realDrawable **Drawable, xOffset, yOffset *int)
 	windowGetModalHint                    func(w *Window) T.Gboolean
 	windowGetOrigin                       func(w *Window, x, y *int) int
 	windowGetParent                       func(w *Window) *Window
@@ -98,7 +98,7 @@ var (
 	windowPeekChildren                    func(w *Window) *T.GList
 	windowProcessUpdates                  func(w *Window, updateChildren T.Gboolean)
 	windowRaise                           func(w *Window)
-	windowRedirectToDrawable              func(w *Window, drawable *T.GdkDrawable, srcX, srcY, destX, destY, width, height int)
+	windowRedirectToDrawable              func(w *Window, drawable *Drawable, srcX, srcY, destX, destY, width, height int)
 	windowRegisterDnd                     func(w *Window)
 	windowRemoveFilter                    func(w *Window, function T.GdkFilterFunc, data T.Gpointer)
 	windowRemoveRedirection               func(w *Window)
@@ -114,7 +114,7 @@ var (
 	windowSetComposited                   func(w *Window, composited T.Gboolean)
 	windowSetCursor                       func(w *Window, cursor *Cursor)
 	windowSetDecorations                  func(w *Window, decorations T.GdkWMDecoration)
-	windowSetEvents                       func(w *Window, eventMask T.GdkEventMask)
+	windowSetEvents                       func(w *Window, eventMask EventMask)
 	windowSetFocusOnMap                   func(w *Window, focusOnMap T.Gboolean)
 	windowSetFunctions                    func(w *Window, functions T.GdkWMFunction)
 	windowSetGeometryHints                func(w *Window, geometry *T.GdkGeometry, geomMask WindowHints)
@@ -202,7 +202,7 @@ func (w *Window) GetDeskrelativeOrigin(x, y *int) T.Gboolean {
 func (w *Window) GetDisplay() *Display                 { return windowGetDisplay(w) }
 func (w *Window) GetEffectiveParent() *Window          { return windowGetEffectiveParent(w) }
 func (w *Window) GetEffectiveToplevel() *Window        { return windowGetEffectiveToplevel(w) }
-func (w *Window) GetEvents() T.GdkEventMask            { return windowGetEvents(w) }
+func (w *Window) GetEvents() EventMask                 { return windowGetEvents(w) }
 func (w *Window) GetFocusOnMap() T.Gboolean            { return windowGetFocusOnMap(w) }
 func (w *Window) GetFrameExtents(rect *T.GdkRectangle) { windowGetFrameExtents(w, rect) }
 func (w *Window) GetGeometry(x, y, width, height, depth *int) {
@@ -210,7 +210,7 @@ func (w *Window) GetGeometry(x, y, width, height, depth *int) {
 }
 func (w *Window) GetGroup() *Window { return windowGetGroup(w) }
 func (w *Window) GetHeight() int    { return windowGetHeight(w) }
-func (w *Window) GetInternalPaintInfo(realDrawable **T.GdkDrawable, xOffset, yOffset *int) {
+func (w *Window) GetInternalPaintInfo(realDrawable **Drawable, xOffset, yOffset *int) {
 	windowGetInternalPaintInfo(w, realDrawable, xOffset, yOffset)
 }
 func (w *Window) GetModalHint() T.Gboolean { return windowGetModalHint(w) }
@@ -266,7 +266,7 @@ func (w *Window) MoveResize(x, y, width, height int)         { windowMoveResize(
 func (w *Window) PeekChildren() *T.GList                     { return windowPeekChildren(w) }
 func (w *Window) ProcessUpdates(updateChildren T.Gboolean)   { windowProcessUpdates(w, updateChildren) }
 func (w *Window) Raise()                                     { windowRaise(w) }
-func (w *Window) RedirectToDrawable(drawable *T.GdkDrawable, srcX, srcY, destX, destY, width, height int) {
+func (w *Window) RedirectToDrawable(drawable *Drawable, srcX, srcY, destX, destY, width, height int) {
 	windowRedirectToDrawable(w, drawable, srcX, srcY, destX, destY, width, height)
 }
 func (w *Window) RegisterDnd() { windowRegisterDnd(w) }
@@ -288,7 +288,7 @@ func (w *Window) SetChildShapes()                              { windowSetChildS
 func (w *Window) SetComposited(composited T.Gboolean)          { windowSetComposited(w, composited) }
 func (w *Window) SetCursor(cursor *Cursor)                     { windowSetCursor(w, cursor) }
 func (w *Window) SetDecorations(decorations T.GdkWMDecoration) { windowSetDecorations(w, decorations) }
-func (w *Window) SetEvents(eventMask T.GdkEventMask)           { windowSetEvents(w, eventMask) }
+func (w *Window) SetEvents(eventMask EventMask)                { windowSetEvents(w, eventMask) }
 func (w *Window) SetFocusOnMap(focusOnMap T.Gboolean)          { windowSetFocusOnMap(w, focusOnMap) }
 func (w *Window) SetFunctions(functions T.GdkWMFunction)       { windowSetFunctions(w, functions) }
 func (w *Window) SetGeometryHints(geometry *T.GdkGeometry, geomMask WindowHints) {

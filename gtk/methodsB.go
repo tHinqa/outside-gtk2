@@ -66,7 +66,7 @@ var (
 
 	BindingParseBinding   func(scanner *T.GScanner) uint
 	BindingsActivate      func(object *Object, keyval uint, modifiers T.GdkModifierType) T.Gboolean
-	BindingsActivateEvent func(object *Object, event *T.GdkEventKey) T.Gboolean
+	BindingsActivateEvent func(object *Object, event *D.EventKey) T.Gboolean
 
 	BindingSetByClass func(objectClass T.Gpointer) *BindingSet
 	BindingSetFind    func(setName string) *BindingSet
@@ -358,7 +358,7 @@ type ButtonBox struct {
 	LayoutStyle    ButtonBoxStyle
 }
 
-type ButtonBoxStyle T.Enum
+type ButtonBoxStyle Enum
 
 const (
 	BUTTONBOX_DEFAULT_STYLE ButtonBoxStyle = iota
@@ -397,7 +397,7 @@ func (b *ButtonBox) SetChildSize(minWidth, minHeight int) {
 }
 func (b *ButtonBox) SetLayout(layoutStyle ButtonBoxStyle) { buttonBoxSetLayout(b, layoutStyle) }
 
-type ButtonsType T.Enum
+type ButtonsType Enum
 
 const (
 	BUTTONS_NONE ButtonsType = iota

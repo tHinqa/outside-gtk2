@@ -410,7 +410,7 @@ var (
 
 	DrawInsertionCursor func(
 		widget *Widget,
-		drawable *T.GdkDrawable,
+		drawable *D.Drawable,
 		area, location *T.GdkRectangle,
 		isPrimary T.Gboolean,
 		direction TextDirection,
@@ -520,7 +520,7 @@ var (
 
 	EventsPending func() T.Gboolean
 
-	MainDoEvent func(event *T.GdkEvent)
+	MainDoEvent func(event *D.Event)
 
 	Main func()
 
@@ -588,15 +588,15 @@ var (
 
 	KeySnooperRemove func(snooperHandlerId uint)
 
-	GetCurrentEvent func() *T.GdkEvent
+	GetCurrentEvent func() *D.Event
 
 	GetCurrentEventTime func() T.GUint32
 
 	GetCurrentEventState func(state *T.GdkModifierType) T.Gboolean
 
-	GetEventWidget func(event *T.GdkEvent) *Widget
+	GetEventWidget func(event *D.Event) *Widget
 
-	PropagateEvent func(widget *Widget, event *T.GdkEvent)
+	PropagateEvent func(widget *Widget, event *D.Event)
 
 	ShowUri func(
 		screen *D.Screen,

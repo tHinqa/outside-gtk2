@@ -8,6 +8,46 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
+var (
+	PangoAttrEmbossColorNew func(color *Color) *T.PangoAttribute
+	PangoAttrEmbossedNew    func(embossed T.Gboolean) *T.PangoAttribute
+
+	PangoContextGet          func() *T.PangoContext
+	PangoContextGetForScreen func(screen *Screen) *T.PangoContext
+	PangoContextSetColormap  func(context *T.PangoContext, colormap *Colormap)
+
+	PangoLayoutGetClipRegion     func(layout *T.PangoLayout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *T.GdkRegion
+	PangoLayoutLineGetClipRegion func(line *T.PangoLayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *T.GdkRegion
+)
+
+type PangoRenderer struct {
+	Parent T.PangoRenderer
+	_      *struct{}
+}
+
+var (
+	PangoRendererGetType func() T.GType
+	PangoRendererNew     func(screen *Screen) *T.PangoRenderer
+
+	PangoRendererGetDefault func(screen *Screen) *T.PangoRenderer
+
+	pangoRendererSetDrawable      func(p *PangoRenderer, drawable *Drawable)
+	pangoRendererSetGc            func(p *PangoRenderer, gc *T.GdkGC)
+	pangoRendererSetStipple       func(p *PangoRenderer, part T.PangoRenderPart, stipple *T.GdkBitmap)
+	pangoRendererSetOverrideColor func(p *PangoRenderer, part T.PangoRenderPart, color *Color)
+)
+
+func (p *PangoRenderer) SetDrawable(drawable *Drawable) { pangoRendererSetDrawable(p, drawable) }
+func (p *PangoRenderer) SetGc(gc *T.GdkGC)              { pangoRendererSetGc(p, gc) }
+func (p *PangoRenderer) SetStipple(part T.PangoRenderPart, stipple *T.GdkBitmap) {
+	pangoRendererSetStipple(p, part, stipple)
+}
+func (p *PangoRenderer) SetOverrideColor(part T.PangoRenderPart, color *Color) {
+	pangoRendererSetOverrideColor(p, part, color)
+}
+
+var PangoAttrStippleNew func(stipple *T.GdkBitmap) *T.PangoAttribute
+
 type Pixbuf struct{}
 
 var (
@@ -30,8 +70,8 @@ var (
 	PixbufGetFormats         func() *T.GSList
 	PixbufSaveToStreamFinish func(asyncResult *T.GAsyncResult, e **T.GError) T.Gboolean
 
-	PixbufGetFromDrawable func(dest *Pixbuf, src *T.GdkDrawable, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
-	PixbufGetFromImage    func(dest *Pixbuf, src *T.GdkImage, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
+	PixbufGetFromDrawable func(dest *Pixbuf, src *Drawable, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
+	PixbufGetFromImage    func(dest *Pixbuf, src *Image, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
 
 	pixbufAddAlpha                 func(pixbuf *Pixbuf, substituteColor T.Gboolean, r, g, b T.Guchar) *Pixbuf
 	pixbufApplyEmbeddedOrientation func(src *Pixbuf) *Pixbuf
@@ -230,8 +270,8 @@ var (
 	PixbufRenderPixmapAndMask            func(pixbuf *Pixbuf, pixmapReturn **Pixmap, maskReturn **T.GdkBitmap, alphaThreshold int)
 	PixbufRenderPixmapAndMaskForColormap func(pixbuf *Pixbuf, colormap *Colormap, pixmapReturn **Pixmap, maskReturn **T.GdkBitmap, alphaThreshold int)
 	PixbufRenderThresholdAlpha           func(pixbuf *Pixbuf, bitmap *T.GdkBitmap, srcX, srcY, destX, destY, width, height, alphaThreshold int)
-	PixbufRenderToDrawable               func(pixbuf *Pixbuf, drawable *T.GdkDrawable, gc *T.GdkGC, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
-	PixbufRenderToDrawableAlpha          func(pixbuf *Pixbuf, drawable *T.GdkDrawable, srcX, srcY, destX, destY, width, height int, alphaMode PixbufAlphaMode, alphaThreshold int, dither T.GdkRgbDither, xDither, yDither int)
+	PixbufRenderToDrawable               func(pixbuf *Pixbuf, drawable *Drawable, gc *T.GdkGC, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
+	PixbufRenderToDrawableAlpha          func(pixbuf *Pixbuf, drawable *Drawable, srcX, srcY, destX, destY, width, height int, alphaMode PixbufAlphaMode, alphaThreshold int, dither T.GdkRgbDither, xDither, yDither int)
 )
 
 type PixbufRotation Enum
@@ -268,4 +308,43 @@ func (p *PixbufSimpleAnim) GetLoop() T.Gboolean     { return pixbufSimpleAnimGet
 
 var PixbufSimpleAnimIterGetType func() T.GType
 
-type Pixmap T.GdkDrawable
+type Pixmap Drawable
+
+var (
+	PixmapGetType func() T.GType
+	PixmapNew     func(drawable *Drawable, width, height, depth int) *Pixmap
+
+	PixmapColormapCreateFromXpm  func(drawable *Drawable, colormap *Colormap, mask **T.GdkBitmap, transparentColor *Color, filename string) *Pixmap
+	PixmapColormapCreateFromXpmD func(drawable *Drawable, colormap *Colormap, mask **T.GdkBitmap, transparentColor *Color, data **T.Gchar) *Pixmap
+	PixmapCreateFromData         func(drawable *Drawable, data string, width, height, depth int, fg, bg *Color) *Pixmap
+	PixmapCreateFromXpm          func(drawable *Drawable, mask **T.GdkBitmap, transparentColor *Color, filename string) *Pixmap
+	PixmapCreateFromXpmD         func(drawable *Drawable, mask **T.GdkBitmap, transparentColor *Color, data **T.Gchar) *Pixmap
+	PixmapForeignNew             func(anid T.GdkNativeWindow) *Pixmap
+	PixmapForeignNewForDisplay   func(display *Display, anid T.GdkNativeWindow) *Pixmap
+	PixmapForeignNewForScreen    func(screen *Screen, anid T.GdkNativeWindow, width, height, depth int) *Pixmap
+	PixmapLookup                 func(anid T.GdkNativeWindow) *Pixmap
+	PixmapLookupForDisplay       func(display *Display, anid T.GdkNativeWindow) *Pixmap
+
+	pixmapGetSize func(p *Pixmap, width, height *int)
+)
+
+func (p *Pixmap) GetSize(width, height *int) { pixmapGetSize(p, width, height) }
+
+type PropMode Enum
+
+const (
+	PROP_MODE_REPLACE PropMode = iota
+	PROP_MODE_PREPEND
+	PROP_MODE_APPEND
+)
+
+var PropModeGetType func() T.GType
+
+type PropertyState Enum
+
+const (
+	PROPERTY_NEW_VALUE PropertyState = iota
+	PROPERTY_DELETE
+)
+
+var PropertyStateGetType func() T.GType

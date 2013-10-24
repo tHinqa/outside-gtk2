@@ -22,23 +22,25 @@ type (
 	HDC      uint32
 	HFONT    uint32
 	LOGFONTW struct{}
+
+	Enum int
 )
 
-type PdfVersion T.Enum
+type PdfVersion Enum
 
 const (
 	PDF_VERSION_1_4 PdfVersion = iota
 	PDF_VERSION_1_5
 )
 
-type PsLevel T.Enum
+type PsLevel Enum
 
 const (
 	PS_LEVEL_2 PsLevel = iota
 	PS_LEVEL_3
 )
 
-type SvgVersion T.Enum
+type SvgVersion Enum
 
 const (
 	SVG_VERSION_1_1 SvgVersion = iota

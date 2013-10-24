@@ -551,20 +551,6 @@ type (
 
 	GtkTextBuffer struct{} //REMOVE
 
-	GdkEventKey struct {
-		Type             GdkEventType
-		Window           *GdkWindow
-		Send_event       int8
-		Time             GUint32
-		State            uint
-		Keyval           uint
-		Length           int
-		String           *Gchar
-		Hardware_keycode uint16
-		Group            uint8
-		Is_modifier      uint // : 1
-	}
-
 	GdkDisplay struct{} //REMOVE
 
 	GdkKeyboardGrabInfo struct {
@@ -584,28 +570,7 @@ type (
 		Motion_hint_serial     Gulong
 	}
 
-	GdkDevice struct {
-		Parent_instance GObject
-		Name            *Gchar
-		Source          GdkInputSource
-		Mode            GdkInputMode
-		Has_cursor      Gboolean
-		Num_axes        int
-		Axes            *GdkDeviceAxis
-		Num_keys        int
-		Keys            *GdkDeviceKey
-	}
-
-	GdkDeviceKey struct {
-		Keyval    uint
-		Modifiers GdkModifierType
-	}
-
-	GdkDeviceAxis struct {
-		Use GdkAxisUse
-		Min float64
-		Max float64
-	}
+	GdkDevice struct{} //REMOVE
 
 	GdkEvent struct{} //REMOTE
 
@@ -654,29 +619,6 @@ type (
 		Relations *GPtrArray
 	}
 
-	GdkDragContext struct {
-		Parent_instance  GObject
-		Protocol         GdkDragProtocol
-		Is_source        Gboolean
-		Source_window    *GdkWindow
-		Dest_window      *GdkWindow
-		Targets          *GList
-		Actions          GdkDragAction
-		Suggested_action GdkDragAction
-		Action           GdkDragAction
-		Start_time       GUint32
-		Windowing_data   Gpointer
-	}
-
-	GdkEventExpose struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Area       GdkRectangle
-		Region     *GdkRegion
-		Count      int
-	}
-
 	GdkEventOwnerChange struct {
 		Type           GdkEventType
 		Window         *GdkWindow
@@ -686,26 +628,6 @@ type (
 		Selection      GdkAtom
 		Time           GUint32
 		Selection_time GUint32
-	}
-
-	GdkEventProperty struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Atom       GdkAtom
-		Time       GUint32
-		State      uint
-	}
-
-	GdkEventSelection struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Selection  GdkAtom
-		Target     GdkAtom
-		Property   GdkAtom
-		Time       GUint32
-		Requestor  GdkNativeWindow
 	}
 
 	GdkEventSetting struct {
@@ -750,22 +672,6 @@ type (
 		Min_aspect  float64
 		Max_aspect  float64
 		Win_gravity GdkGravity
-	}
-
-	GdkImage struct {
-		Parent_instance GObject
-		Type            GdkImageType
-		Visual          *GdkVisual
-		Byte_order      GdkByteOrder
-		Width           int
-		Height          int
-		Depth           uint16
-		Bpp             uint16
-		Bpl             uint16
-		Bits_per_pixel  uint16
-		Mem             Gpointer
-		Colormap        *GdkColormap
-		Windowing_data  Gpointer
 	}
 
 	GObjectClass struct {
@@ -820,132 +726,6 @@ type (
 		Value *GValue
 	}
 
-	GdkEventButton struct {
-		Type           GdkEventType
-		Window         *GdkWindow
-		Send_event     int8
-		Time           GUint32
-		X              float64
-		Y              float64
-		Axes           *float64
-		State          uint
-		Button         uint
-		Device         *GdkDevice
-		X_root, Y_root float64
-	}
-
-	GdkEventScroll struct {
-		Type           GdkEventType
-		Window         *GdkWindow
-		Send_event     int8
-		Time           GUint32
-		X              float64
-		Y              float64
-		State          uint
-		Direction      GdkScrollDirection
-		Device         *GdkDevice
-		X_root, Y_root float64
-	}
-
-	GdkEventMotion struct {
-		Type           GdkEventType
-		Window         *GdkWindow
-		Send_event     int8
-		Time           GUint32
-		X              float64
-		Y              float64
-		Axes           *float64
-		State          uint
-		Is_hint        int16
-		Device         *GdkDevice
-		X_root, Y_root float64
-	}
-
-	GdkEventAny struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-	}
-
-	GdkEventCrossing struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Subwindow  *GdkWindow
-		Time       GUint32
-		X          float64
-		Y          float64
-		X_root     float64
-		Y_root     float64
-		Mode       GdkCrossingMode
-		Detail     GdkNotifyType
-		Focus      Gboolean
-		State      uint
-	}
-	GdkCrossingMode Enum //REMOVE
-
-	GdkEventConfigure struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		X, Y       int
-		Width      int
-		Height     int
-	}
-
-	GdkEventFocus struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		In         int16
-	}
-
-	GdkEventProximity struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Time       GUint32
-		Device     *GdkDevice
-	}
-
-	GdkEventVisibility struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		State      GdkVisibilityState
-	}
-	GdkVisibilityState Enum //REMOVE
-
-	GdkEventClient struct {
-		Type         GdkEventType
-		Window       *GdkWindow
-		Send_event   int8
-		Message_type GdkAtom
-		Data_format  uint16
-		// Union
-		B [20]Char
-		// s [10]Short
-		// l [5]Long
-	}
-
-	GdkEventWindowState struct {
-		Type             GdkEventType
-		Window           *GdkWindow
-		Send_event       int8
-		Changed_mask     GdkWindowState
-		New_window_state GdkWindowState
-	}
-	GdkWindowState Enum //REMOVE
-
-	GdkEventGrabBroken struct {
-		Yype        GdkEventType
-		Window      *GdkWindow
-		Send_event  int8
-		Keyboard    Gboolean
-		Implicit    Gboolean
-		Grab_window *GdkWindow
-	}
-
 	GtkRcProperty struct {
 		Type_name     GQuark
 		Property_name GQuark
@@ -974,27 +754,6 @@ type (
 	GCancellable struct {
 		Parent_instance GObject
 		Priv            *GCancellablePrivate
-	}
-
-	GdkAppLaunchContext struct {
-		Parent_instance GAppLaunchContext
-		Priv            *GdkAppLaunchContextPrivate
-	}
-
-	GdkKeymap struct {
-		Parent_instance GObject
-		Display         *GdkDisplay
-	}
-
-	GdkKeymapKey struct {
-		Keycode uint
-		Group   int
-		Level   int
-	}
-
-	GdkPangoRenderer struct {
-		Parent_instance PangoRenderer
-		Priv            *GdkPangoRendererPrivate
 	}
 
 	GAppLaunchContext struct {

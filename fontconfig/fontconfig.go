@@ -21,6 +21,8 @@ const (
 )
 
 type (
+	Enum int
+
 	FcChar32 uint // ANOMALLY
 	FcBool   int
 
@@ -76,7 +78,7 @@ type (
 	}
 )
 
-type FcType T.Enum
+type FcType Enum
 
 const (
 	FcTypeVoid FcType = iota
@@ -90,14 +92,14 @@ const (
 	FcTypeLangSet
 )
 
-type FcSetName T.Enum
+type FcSetName Enum
 
 const (
 	FcSetSystem FcSetName = iota
 	FcSetApplication
 )
 
-type FcMatchKind T.Enum
+type FcMatchKind Enum
 
 const (
 	FcMatchPattern FcMatchKind = iota
@@ -105,7 +107,7 @@ const (
 	FcMatchScan
 )
 
-type FcResult T.Enum
+type FcResult Enum
 
 const (
 	FcResultMatch FcResult = iota
@@ -115,7 +117,7 @@ const (
 	FcResultOutOfMemory
 )
 
-type FcLangResult T.Enum
+type FcLangResult Enum
 
 const (
 	FcLangEqual FcLangResult = 0
@@ -124,7 +126,7 @@ const (
 	FcLangDifferentTerritory = FcLangDifferentCountry
 )
 
-type FcEndian T.Enum
+type FcEndian Enum
 
 const (
 	FcEndianBig FcEndian = iota

@@ -104,7 +104,7 @@ type EntryCompletion struct {
 	_      *struct{}
 }
 
-type EntryIconPosition T.Enum
+type EntryIconPosition Enum
 
 const (
 	ENTRY_ICON_PRIMARY EntryIconPosition = iota
@@ -151,7 +151,7 @@ var (
 	entryGetTextWindow            func(e *Entry) *D.Window
 	entryGetVisibility            func(e *Entry) T.Gboolean
 	entryGetWidthChars            func(e *Entry) int
-	entryImContextFilterKeypress  func(e *Entry, event *T.GdkEventKey) T.Gboolean
+	entryImContextFilterKeypress  func(e *Entry, event *D.EventKey) T.Gboolean
 	entryLayoutIndexToTextIndex   func(e *Entry, layoutIndex int) int
 	entryPrependText              func(e *Entry, text string)
 	entryProgressPulse            func(e *Entry)
@@ -165,7 +165,7 @@ var (
 	entrySetEditable              func(e *Entry, editable T.Gboolean)
 	entrySetHasFrame              func(e *Entry, setting T.Gboolean)
 	entrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable T.Gboolean)
-	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions T.GdkDragAction)
+	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction)
 	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *T.GIcon)
 	entrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
 	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *D.Pixbuf)
@@ -233,7 +233,7 @@ func (e *Entry) GetTextLength() uint16         { return entryGetTextLength(e) }
 func (e *Entry) GetTextWindow() *D.Window      { return entryGetTextWindow(e) }
 func (e *Entry) GetVisibility() T.Gboolean     { return entryGetVisibility(e) }
 func (e *Entry) GetWidthChars() int            { return entryGetWidthChars(e) }
-func (e *Entry) ImContextFilterKeypress(event *T.GdkEventKey) T.Gboolean {
+func (e *Entry) ImContextFilterKeypress(event *D.EventKey) T.Gboolean {
 	return entryImContextFilterKeypress(e, event)
 }
 func (e *Entry) LayoutIndexToTextIndex(layoutIndex int) int {
@@ -253,7 +253,7 @@ func (e *Entry) SetHasFrame(setting T.Gboolean)              { entrySetHasFrame(
 func (e *Entry) SetIconActivatable(iconPos EntryIconPosition, activatable T.Gboolean) {
 	entrySetIconActivatable(e, iconPos, activatable)
 }
-func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *TargetList, actions T.GdkDragAction) {
+func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction) {
 	entrySetIconDragSource(e, iconPos, targetList, actions)
 }
 func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *T.GIcon) {
@@ -444,7 +444,7 @@ type Expander struct {
 	_   *struct{}
 }
 
-type ExpanderStyle T.Enum
+type ExpanderStyle Enum
 
 const (
 	EXPANDER_COLLAPSED ExpanderStyle = iota

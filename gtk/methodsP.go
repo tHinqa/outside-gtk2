@@ -9,7 +9,7 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
-type PackDirection T.Enum
+type PackDirection Enum
 
 const (
 	PACK_DIRECTION_LTR PackDirection = iota
@@ -20,7 +20,7 @@ const (
 
 var PackDirectionGetType func() T.GType
 
-type PackType T.Enum
+type PackType Enum
 
 const (
 	PACK_START PackType = iota
@@ -29,7 +29,7 @@ const (
 
 var PackTypeGetType func() T.GType
 
-type PageOrientation T.Enum
+type PageOrientation Enum
 
 const (
 	PAGE_ORIENTATION_PORTRAIT PageOrientation = iota
@@ -45,7 +45,7 @@ type PageRange struct {
 	End   int
 }
 
-type PageSet T.Enum
+type PageSet Enum
 
 const (
 	PAGE_SET_ALL PageSet = iota
@@ -250,7 +250,7 @@ func (s *PaperSize) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
 	paperSizeToKeyFile(s, keyFile, groupName)
 }
 
-type PathPriorityType T.Enum
+type PathPriorityType Enum
 
 const (
 	PATH_PRIO_LOWEST PathPriorityType = iota * 2
@@ -264,7 +264,7 @@ const (
 
 var PathPriorityTypeGetType func() T.GType
 
-type PathType T.Enum
+type PathType Enum
 
 const (
 	PATH_WIDGET PathType = iota
@@ -324,7 +324,7 @@ func (p *Plug) GetEmbedded() T.Gboolean    { return plugGetEmbedded(p) }
 func (p *Plug) GetId() T.GdkNativeWindow   { return plugGetId(p) }
 func (p *Plug) GetSocketWindow() *D.Window { return plugGetSocketWindow(p) }
 
-type PolicyType T.Enum
+type PolicyType Enum
 
 const (
 	POLICY_ALWAYS PolicyType = iota
@@ -334,7 +334,7 @@ const (
 
 var PolicyTypeGetType func() T.GType
 
-type PositionType T.Enum
+type PositionType Enum
 
 const (
 	POS_LEFT PositionType = iota
@@ -392,7 +392,7 @@ type PreviewInfo struct {
 	Gamma  float64
 }
 
-type PreviewType T.Enum
+type PreviewType Enum
 
 const (
 	PREVIEW_COLOR PreviewType = iota
@@ -435,7 +435,7 @@ func (p *PrintContext) SetCairoContext(cr *T.Cairo, dpiX, dpiY float64) {
 	printContextSetCairoContext(p, cr, dpiX, dpiY)
 }
 
-type PrintDuplex T.Enum
+type PrintDuplex Enum
 
 const (
 	PRINT_DUPLEX_SIMPLEX PrintDuplex = iota
@@ -445,7 +445,7 @@ const (
 
 var PrintDuplexGetType func() T.GType
 
-type PrintError T.Enum
+type PrintError Enum
 
 const (
 	PRINT_ERROR_GENERAL PrintError = iota
@@ -558,7 +558,7 @@ func (p *PrintOperation) SetUseFullPage(fullPage T.Gboolean) {
 	printOperationSetUseFullPage(p, fullPage)
 }
 
-type PrintOperationAction T.Enum
+type PrintOperationAction Enum
 
 const (
 	PRINT_OPERATION_ACTION_PRINT_DIALOG PrintOperationAction = iota
@@ -583,7 +583,7 @@ func (p *PrintOperationPreview) IsSelected(pageNr int) T.Gboolean {
 }
 func (p *PrintOperationPreview) RenderPage(pageNr int) { printOperationPreviewRenderPage(p, pageNr) }
 
-type PrintOperationResult T.Enum
+type PrintOperationResult Enum
 
 const (
 	PRINT_OPERATION_RESULT_ERROR PrintOperationResult = iota
@@ -592,7 +592,7 @@ const (
 	PRINT_OPERATION_RESULT_IN_PROGRESS
 )
 
-type PrintPages T.Enum
+type PrintPages Enum
 
 const (
 	PRINT_PAGES_ALL PrintPages = iota
@@ -609,7 +609,7 @@ type (
 	PrintSettingsFunc func(key, value string, userData T.Gpointer)
 )
 
-type PrintQuality T.Enum
+type PrintQuality Enum
 
 const (
 	PRINT_QUALITY_LOW PrintQuality = iota
@@ -823,7 +823,7 @@ func (p *PrintSettings) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
 }
 func (p *PrintSettings) Unset(key string) { printSettingsUnset(p, key) }
 
-type PrintStatus T.Enum
+type PrintStatus Enum
 
 const (
 	PRINT_STATUS_INITIAL PrintStatus = iota
@@ -905,14 +905,14 @@ type ProgressBar struct {
 	// Ellipsize : 3
 	// Dirty : 1
 }
-type ProgressBarStyle T.Enum
+type ProgressBarStyle Enum
 
 const (
 	PROGRESS_CONTINUOUS ProgressBarStyle = iota
 	PROGRESS_DISCRETE
 )
 
-type ProgressBarOrientation T.Enum
+type ProgressBarOrientation Enum
 
 const (
 	PROGRESS_LEFT_TO_RIGHT ProgressBarOrientation = iota

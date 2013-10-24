@@ -198,7 +198,7 @@ func (n *Notebook) SetTabReorderable(child *Widget, reorderable T.Gboolean) {
 }
 func (n *Notebook) SetTabVborder(tabVborder uint) { notebookSetTabVborder(n, tabVborder) }
 
-type NumberUpLayout T.Enum
+type NumberUpLayout Enum
 
 const (
 	NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM NumberUpLayout = iota

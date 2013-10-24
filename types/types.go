@@ -87,7 +87,7 @@ type (
 	GDateDay               uint8
 	GDateTime              GInt32
 	GDateYear              uint16
-	GdkAtom                *struct{}
+	GdkAtom                *struct{} // REMOVE
 	GdkBitmap              GdkDrawable
 	GdkNativeWindow        Gpointer
 	GdkPixmap              GdkDrawable
@@ -122,7 +122,7 @@ type (
 	AtkMisc          simpleObject
 	AtkObjectFactory simpleObject
 	AtkStateSet      simpleObject
-	GdkDrawable      simpleObject
+	GdkDrawable      simpleObject //REMOVE
 	PangoEngine      simpleObject
 	PangoFcDecoder   simpleObject
 
@@ -202,7 +202,6 @@ type (
 	GDBusProxyPrivate              struct{}
 	GDBusServer                    struct{}
 	GDir                           struct{}
-	GdkAppLaunchContextPrivate     struct{}
 	GdkPangoRendererPrivate        struct{}
 	GdkRegion                      struct{}
 	GdkXEvent                      struct{}
@@ -2500,37 +2499,6 @@ const (
 	GDK_GRAB_FROZEN
 )
 
-type GdkDragAction Enum
-
-const (
-	GDK_ACTION_DEFAULT GdkDragAction = 1 << iota
-	GDK_ACTION_COPY
-	GDK_ACTION_MOVE
-	GDK_ACTION_LINK
-	GDK_ACTION_PRIVATE
-	GDK_ACTION_ASK
-)
-
-type GdkDragProtocol Enum
-
-const (
-	GDK_DRAG_PROTO_MOTIF GdkDragProtocol = iota
-	GDK_DRAG_PROTO_XDND
-	GDK_DRAG_PROTO_ROOTWIN
-	GDK_DRAG_PROTO_NONE
-	GDK_DRAG_PROTO_WIN32_DROPFILES
-	GDK_DRAG_PROTO_OLE2
-	GDK_DRAG_PROTO_LOCAL
-)
-
-type GdkExtensionMode Enum
-
-const (
-	GDK_EXTENSION_EVENTS_NONE GdkExtensionMode = iota
-	GDK_EXTENSION_EVENTS_ALL
-	GDK_EXTENSION_EVENTS_CURSOR
-)
-
 type GdkInputSource Enum
 
 const (
@@ -2571,33 +2539,6 @@ const (
 
 type GdkEventType Enum // REMOVE
 
-type GdkEventMask Enum
-
-const (
-	GDK_EXPOSURE_MASK GdkEventMask = 1 << (iota + 1)
-	GDK_POINTER_MOTION_MASK
-	GDK_POINTER_MOTION_HINT_MASK
-	GDK_BUTTON_MOTION_MASK
-	GDK_BUTTON1_MOTION_MASK
-	GDK_BUTTON2_MOTION_MASK
-	GDK_BUTTON3_MOTION_MASK
-	GDK_BUTTON_PRESS_MASK
-	GDK_BUTTON_RELEASE_MASK
-	GDK_KEY_PRESS_MASK
-	GDK_KEY_RELEASE_MASK
-	GDK_ENTER_NOTIFY_MASK
-	GDK_LEAVE_NOTIFY_MASK
-	GDK_FOCUS_CHANGE_MASK
-	GDK_STRUCTURE_MASK
-	GDK_PROPERTY_CHANGE_MASK
-	GDK_VISIBILITY_NOTIFY_MASK
-	GDK_PROXIMITY_IN_MASK
-	GDK_PROXIMITY_OUT_MASK
-	GDK_SUBSTRUCTURE_MASK
-	GDK_SCROLL_MASK
-	GDK_ALL_EVENTS_MASK GdkEventMask = 0x3FFFFE
-)
-
 type GdkScrollDirection Enum
 
 const (
@@ -2616,13 +2557,6 @@ const (
 	GDK_NOTIFY_NONLINEAR
 	GDK_NOTIFY_NONLINEAR_VIRTUAL
 	GDK_NOTIFY_UNKNOWN
-)
-
-type GdkPropertyState Enum
-
-const (
-	GDK_PROPERTY_NEW_VALUE GdkPropertyState = iota
-	GDK_PROPERTY_DELETE
 )
 
 type GdkSettingAction Enum
@@ -2750,22 +2684,6 @@ type GdkFontType Enum
 const (
 	GDK_FONT_FONT GdkFontType = iota
 	GDK_FONT_FONTSET
-)
-
-type GdkImageType Enum
-
-const (
-	GDK_IMAGE_NORMAL GdkImageType = iota
-	GDK_IMAGE_SHARED
-	GDK_IMAGE_FASTEST
-)
-
-type GdkPropMode Enum
-
-const (
-	GDK_PROP_MODE_REPLACE GdkPropMode = iota
-	GDK_PROP_MODE_PREPEND
-	GDK_PROP_MODE_APPEND
 )
 
 type GdkFillRule Enum
@@ -3627,10 +3545,6 @@ type (
 		source_object *GObject,
 		res *GAsyncResult,
 		user_data Gpointer)
-
-	GdkEventFunc func(
-		event *GdkEvent,
-		data Gpointer)
 
 	GdkFilterFunc func(
 		xevent *GdkXEvent,

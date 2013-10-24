@@ -81,7 +81,7 @@ type TargetEntry struct {
 	Info   uint
 }
 
-type TargetFlags T.Enum
+type TargetFlags Enum
 
 const (
 	TARGET_SAME_APP TargetFlags = 1 << iota
@@ -106,20 +106,20 @@ var (
 
 	targetListRef                func(t *TargetList) *TargetList
 	targetListUnref              func(t *TargetList)
-	targetListAdd                func(t *TargetList, target T.GdkAtom, flags, info uint)
+	targetListAdd                func(t *TargetList, target D.Atom, flags, info uint)
 	targetListAddTextTargets     func(t *TargetList, info uint)
 	targetListAddRichTextTargets func(t *TargetList, info uint, deserializable T.Gboolean, buffer *TextBuffer)
 	targetListAddImageTargets    func(t *TargetList, info uint, writable T.Gboolean)
 	targetListAddUriTargets      func(t *TargetList, info uint)
 	targetListAddTable           func(t *TargetList, targets *TargetEntry, ntargets uint)
-	targetListRemove             func(t *TargetList, target T.GdkAtom)
-	targetListFind               func(t *TargetList, target T.GdkAtom, info *uint) T.Gboolean
+	targetListRemove             func(t *TargetList, target D.Atom)
+	targetListFind               func(t *TargetList, target D.Atom, info *uint) T.Gboolean
 )
 
-func (t *TargetList) Ref() *TargetList                       { return targetListRef(t) }
-func (t *TargetList) Unref()                                 { targetListUnref(t) }
-func (t *TargetList) Add(target T.GdkAtom, flags, info uint) { targetListAdd(t, target, flags, info) }
-func (t *TargetList) AddTextTargets(info uint)               { targetListAddTextTargets(t, info) }
+func (t *TargetList) Ref() *TargetList                    { return targetListRef(t) }
+func (t *TargetList) Unref()                              { targetListUnref(t) }
+func (t *TargetList) Add(target D.Atom, flags, info uint) { targetListAdd(t, target, flags, info) }
+func (t *TargetList) AddTextTargets(info uint)            { targetListAddTextTargets(t, info) }
 func (t *TargetList) AddRichTextTargets(info uint, deserializable T.Gboolean, buffer *TextBuffer) {
 	targetListAddRichTextTargets(t, info, deserializable, buffer)
 }
@@ -130,16 +130,16 @@ func (t *TargetList) AddUriTargets(info uint) { targetListAddUriTargets(t, info)
 func (t *TargetList) AddTable(targets *TargetEntry, ntargets uint) {
 	targetListAddTable(t, targets, ntargets)
 }
-func (t *TargetList) Remove(target T.GdkAtom) { targetListRemove(t, target) }
-func (t *TargetList) Find(target T.GdkAtom, info *uint) T.Gboolean {
+func (t *TargetList) Remove(target D.Atom) { targetListRemove(t, target) }
+func (t *TargetList) Find(target D.Atom, info *uint) T.Gboolean {
 	return targetListFind(t, target, info)
 }
 
 var (
-	TargetsIncludeText     func(targets *T.GdkAtom, nTargets int) T.Gboolean
-	TargetsIncludeRichText func(targets *T.GdkAtom, nTargets int, buffer *TextBuffer) T.Gboolean
-	TargetsIncludeImage    func(targets *T.GdkAtom, nTargets int, writable T.Gboolean) T.Gboolean
-	TargetsIncludeUri      func(targets *T.GdkAtom, nTargets int) T.Gboolean
+	TargetsIncludeText     func(targets *D.Atom, nTargets int) T.Gboolean
+	TargetsIncludeRichText func(targets *D.Atom, nTargets int, buffer *TextBuffer) T.Gboolean
+	TargetsIncludeImage    func(targets *D.Atom, nTargets int, writable T.Gboolean) T.Gboolean
+	TargetsIncludeUri      func(targets *D.Atom, nTargets int) T.Gboolean
 )
 
 var (
@@ -258,14 +258,14 @@ var (
 	textBufferDeleteMark                  func(t *TextBuffer, mark *TextMark)
 	textBufferDeleteMarkByName            func(t *TextBuffer, name string)
 	textBufferDeleteSelection             func(t *TextBuffer, interactive, defaultEditable T.Gboolean) T.Gboolean
-	textBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format T.GdkAtom, iter *TextIter, data *uint8, length T.Gsize, error **T.GError) T.Gboolean
-	textBufferDeserializeGetCanCreateTags func(t *TextBuffer, format T.GdkAtom) T.Gboolean
-	textBufferDeserializeSetCanCreateTags func(t *TextBuffer, format T.GdkAtom, canCreateTags T.Gboolean)
+	textBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, error **T.GError) T.Gboolean
+	textBufferDeserializeGetCanCreateTags func(t *TextBuffer, format D.Atom) T.Gboolean
+	textBufferDeserializeSetCanCreateTags func(t *TextBuffer, format D.Atom, canCreateTags T.Gboolean)
 	textBufferEndUserAction               func(t *TextBuffer)
 	textBufferGetBounds                   func(t *TextBuffer, start, end *TextIter)
 	textBufferGetCharCount                func(t *TextBuffer) int
 	textBufferGetCopyTargetList           func(t *TextBuffer) *TargetList
-	textBufferGetDeserializeFormats       func(t *TextBuffer, nFormats *int) *T.GdkAtom
+	textBufferGetDeserializeFormats       func(t *TextBuffer, nFormats *int) *D.Atom
 	textBufferGetEndIter                  func(t *TextBuffer, iter *TextIter)
 	textBufferGetHasSelection             func(t *TextBuffer) T.Gboolean
 	textBufferGetInsert                   func(t *TextBuffer) *TextMark
@@ -281,7 +281,7 @@ var (
 	textBufferGetPasteTargetList          func(t *TextBuffer) *TargetList
 	textBufferGetSelectionBound           func(t *TextBuffer) *TextMark
 	textBufferGetSelectionBounds          func(t *TextBuffer, start, end *TextIter) T.Gboolean
-	textBufferGetSerializeFormats         func(t *TextBuffer, nFormats *int) *T.GdkAtom
+	textBufferGetSerializeFormats         func(t *TextBuffer, nFormats *int) *D.Atom
 	textBufferGetSlice                    func(t *TextBuffer, start, end *TextIter, includeHiddenChars T.Gboolean) string
 	textBufferGetStartIter                func(t *TextBuffer, iter *TextIter)
 	textBufferGetTagTable                 func(t *TextBuffer) *TextTagTable
@@ -300,20 +300,20 @@ var (
 	textBufferMoveMarkByName              func(t *TextBuffer, name string, where *TextIter)
 	textBufferPasteClipboard              func(t *TextBuffer, clipboard *Clipboard, overrideLocation *TextIter, defaultEditable T.Gboolean)
 	textBufferPlaceCursor                 func(t *TextBuffer, where *TextIter)
-	textBufferRegisterDeserializeFormat   func(t *TextBuffer, mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) T.GdkAtom
-	textBufferRegisterDeserializeTagset   func(t *TextBuffer, tagsetName string) T.GdkAtom
-	textBufferRegisterSerializeFormat     func(t *TextBuffer, mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) T.GdkAtom
-	textBufferRegisterSerializeTagset     func(t *TextBuffer, tagsetName string) T.GdkAtom
+	textBufferRegisterDeserializeFormat   func(t *TextBuffer, mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom
+	textBufferRegisterDeserializeTagset   func(t *TextBuffer, tagsetName string) D.Atom
+	textBufferRegisterSerializeFormat     func(t *TextBuffer, mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom
+	textBufferRegisterSerializeTagset     func(t *TextBuffer, tagsetName string) D.Atom
 	textBufferRemoveAllTags               func(t *TextBuffer, start, end *TextIter)
 	textBufferRemoveSelectionClipboard    func(t *TextBuffer, clipboard *Clipboard)
 	textBufferRemoveTag                   func(t *TextBuffer, tag *TextTag, start, end *TextIter)
 	textBufferRemoveTagByName             func(t *TextBuffer, name string, start, end *TextIter)
 	textBufferSelectRange                 func(t *TextBuffer, ins, bound *TextIter)
-	textBufferSerialize                   func(t *TextBuffer, contentBuffer *TextBuffer, format T.GdkAtom, start, end *TextIter, length *T.Gsize) *uint8
+	textBufferSerialize                   func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, start, end *TextIter, length *T.Gsize) *uint8
 	textBufferSetModified                 func(t *TextBuffer, setting T.Gboolean)
 	textBufferSetText                     func(t *TextBuffer, text string, leng int)
-	textBufferUnregisterDeserializeFormat func(t *TextBuffer, format T.GdkAtom)
-	textBufferUnregisterSerializeFormat   func(t *TextBuffer, format T.GdkAtom)
+	textBufferUnregisterDeserializeFormat func(t *TextBuffer, format D.Atom)
+	textBufferUnregisterSerializeFormat   func(t *TextBuffer, format D.Atom)
 )
 
 func (t *TextBuffer) AddMark(mark *TextMark, where *TextIter) {
@@ -354,20 +354,20 @@ func (t *TextBuffer) DeleteMarkByName(name string) { textBufferDeleteMarkByName(
 func (t *TextBuffer) DeleteSelection(interactive, defaultEditable T.Gboolean) T.Gboolean {
 	return textBufferDeleteSelection(t, interactive, defaultEditable)
 }
-func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format T.GdkAtom, iter *TextIter, data *uint8, length T.Gsize, err **T.GError) T.Gboolean {
+func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, err **T.GError) T.Gboolean {
 	return textBufferDeserialize(t, contentBuffer, format, iter, data, length, err)
 }
-func (t *TextBuffer) DeserializeGetCanCreateTags(format T.GdkAtom) T.Gboolean {
+func (t *TextBuffer) DeserializeGetCanCreateTags(format D.Atom) T.Gboolean {
 	return textBufferDeserializeGetCanCreateTags(t, format)
 }
-func (t *TextBuffer) DeserializeSetCanCreateTags(format T.GdkAtom, canCreateTags T.Gboolean) {
+func (t *TextBuffer) DeserializeSetCanCreateTags(format D.Atom, canCreateTags T.Gboolean) {
 	textBufferDeserializeSetCanCreateTags(t, format, canCreateTags)
 }
 func (t *TextBuffer) EndUserAction()                 { textBufferEndUserAction(t) }
 func (t *TextBuffer) GetBounds(start, end *TextIter) { textBufferGetBounds(t, start, end) }
 func (t *TextBuffer) GetCharCount() int              { return textBufferGetCharCount(t) }
 func (t *TextBuffer) GetCopyTargetList() *TargetList { return textBufferGetCopyTargetList(t) }
-func (t *TextBuffer) GetDeserializeFormats(nFormats *int) *T.GdkAtom {
+func (t *TextBuffer) GetDeserializeFormats(nFormats *int) *D.Atom {
 	return textBufferGetDeserializeFormats(t, nFormats)
 }
 func (t *TextBuffer) GetEndIter(iter *TextIter)   { textBufferGetEndIter(t, iter) }
@@ -399,7 +399,7 @@ func (t *TextBuffer) GetSelectionBound() *TextMark    { return textBufferGetSele
 func (t *TextBuffer) GetSelectionBounds(start, end *TextIter) T.Gboolean {
 	return textBufferGetSelectionBounds(t, start, end)
 }
-func (t *TextBuffer) GetSerializeFormats(nFormats *int) *T.GdkAtom {
+func (t *TextBuffer) GetSerializeFormats(nFormats *int) *D.Atom {
 	return textBufferGetSerializeFormats(t, nFormats)
 }
 func (t *TextBuffer) GetSlice(start, end *TextIter, includeHiddenChars T.Gboolean) string {
@@ -448,16 +448,16 @@ func (t *TextBuffer) PasteClipboard(clipboard *Clipboard, overrideLocation *Text
 	textBufferPasteClipboard(t, clipboard, overrideLocation, defaultEditable)
 }
 func (t *TextBuffer) PlaceCursor(where *TextIter) { textBufferPlaceCursor(t, where) }
-func (t *TextBuffer) RegisterDeserializeFormat(mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) T.GdkAtom {
+func (t *TextBuffer) RegisterDeserializeFormat(mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom {
 	return textBufferRegisterDeserializeFormat(t, mimeType, function, userData, userDataDestroy)
 }
-func (t *TextBuffer) RegisterDeserializeTagset(tagsetName string) T.GdkAtom {
+func (t *TextBuffer) RegisterDeserializeTagset(tagsetName string) D.Atom {
 	return textBufferRegisterDeserializeTagset(t, tagsetName)
 }
-func (t *TextBuffer) RegisterSerializeFormat(mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) T.GdkAtom {
+func (t *TextBuffer) RegisterSerializeFormat(mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom {
 	return textBufferRegisterSerializeFormat(t, mimeType, function, userData, userDataDestroy)
 }
-func (t *TextBuffer) RegisterSerializeTagset(tagsetName string) T.GdkAtom {
+func (t *TextBuffer) RegisterSerializeTagset(tagsetName string) D.Atom {
 	return textBufferRegisterSerializeTagset(t, tagsetName)
 }
 func (t *TextBuffer) RemoveAllTags(start, end *TextIter) { textBufferRemoveAllTags(t, start, end) }
@@ -471,15 +471,15 @@ func (t *TextBuffer) RemoveTagByName(name string, start, end *TextIter) {
 	textBufferRemoveTagByName(t, name, start, end)
 }
 func (t *TextBuffer) SelectRange(ins, bound *TextIter) { textBufferSelectRange(t, ins, bound) }
-func (t *TextBuffer) Serialize(contentBuffer *TextBuffer, format T.GdkAtom, start, end *TextIter, length *T.Gsize) *uint8 {
+func (t *TextBuffer) Serialize(contentBuffer *TextBuffer, format D.Atom, start, end *TextIter, length *T.Gsize) *uint8 {
 	return textBufferSerialize(t, contentBuffer, format, start, end, length)
 }
 func (t *TextBuffer) SetModified(setting T.Gboolean) { textBufferSetModified(t, setting) }
 func (t *TextBuffer) SetText(text string, leng int)  { textBufferSetText(t, text, leng) }
-func (t *TextBuffer) UnregisterDeserializeFormat(format T.GdkAtom) {
+func (t *TextBuffer) UnregisterDeserializeFormat(format D.Atom) {
 	textBufferUnregisterDeserializeFormat(t, format)
 }
-func (t *TextBuffer) UnregisterSerializeFormat(format T.GdkAtom) {
+func (t *TextBuffer) UnregisterSerializeFormat(format D.Atom) {
 	textBufferUnregisterSerializeFormat(t, format)
 }
 
@@ -504,7 +504,7 @@ func (t *TextChildAnchor) GetWidgets() *T.GList   { return textChildAnchorGetWid
 
 var TextDirectionGetType func() T.GType
 
-type TextDirection T.Enum
+type TextDirection Enum
 
 const (
 	TEXT_DIR_NONE TextDirection = iota
@@ -787,7 +787,7 @@ type TextPendingScroll struct{}
 
 var TextSearchFlagsGetType func() T.GType
 
-type TextSearchFlags T.Enum
+type TextSearchFlags Enum
 
 const (
 	TEXT_SEARCH_VISIBLE_ONLY TextSearchFlags = 1 << iota
@@ -831,12 +831,12 @@ var (
 	TextTagGetType func() T.GType
 	TextTagNew     func(name string) *TextTag
 
-	textTagEvent       func(t *TextTag, eventObject *T.GObject, event *T.GdkEvent, iter *TextIter) T.Gboolean
+	textTagEvent       func(t *TextTag, eventObject *T.GObject, event *D.Event, iter *TextIter) T.Gboolean
 	textTagGetPriority func(t *TextTag) int
 	textTagSetPriority func(t *TextTag, priority int)
 )
 
-func (t *TextTag) Event(eventObject *T.GObject, event *T.GdkEvent, iter *TextIter) T.Gboolean {
+func (t *TextTag) Event(eventObject *T.GObject, event *D.Event, iter *TextIter) T.Gboolean {
 	return textTagEvent(t, eventObject, event, iter)
 }
 func (t *TextTag) GetPriority() int         { return textTagGetPriority(t) }
@@ -959,7 +959,7 @@ var (
 	TextViewBackwardDisplayLineStart func(t *TextView, iter *TextIter) T.Gboolean
 	TextViewStartsDisplayLine        func(t *TextView, iter *TextIter) T.Gboolean
 	TextViewMoveVisually             func(t *TextView, iter *TextIter, count int) T.Gboolean
-	TextViewImContextFilterKeypress  func(t *TextView, event *T.GdkEventKey) T.Gboolean
+	TextViewImContextFilterKeypress  func(t *TextView, event *D.EventKey) T.Gboolean
 	TextViewResetImContext           func(t *TextView)
 	TextViewAddChildAtAnchor         func(t *TextView, child *Widget, anchor *TextChildAnchor)
 	TextViewAddChildInWindow         func(t *TextView, child *Widget, whichWindow TextWindowType, xpos, ypos int)
@@ -995,7 +995,7 @@ type TextWindow struct{}
 
 var TextWindowTypeGetType func() T.GType
 
-type TextWindowType T.Enum
+type TextWindowType Enum
 
 const (
 	TEXT_WINDOW_PRIVATE TextWindowType = iota
@@ -1142,7 +1142,7 @@ type (
 	}
 )
 
-type ToolbarStyle T.Enum
+type ToolbarStyle Enum
 
 const (
 	TOOLBAR_ICONS ToolbarStyle = iota
@@ -1151,7 +1151,7 @@ const (
 	TOOLBAR_BOTH_HORIZ
 )
 
-type ToolbarChildType T.Enum
+type ToolbarChildType Enum
 
 const (
 	TOOLBAR_CHILD_SPACE ToolbarChildType = iota
@@ -1437,7 +1437,7 @@ type ToolPalette struct {
 	_      *struct{}
 }
 
-type ToolPaletteDragTargets T.Enum
+type ToolPaletteDragTargets Enum
 
 const (
 	TOOL_PALETTE_DRAG_ITEMS ToolPaletteDragTargets = 1 << iota
@@ -1452,7 +1452,7 @@ var (
 	ToolPaletteGetDragTargetGroup func() *TargetEntry
 	ToolPaletteGetDragTargetItem  func() *TargetEntry
 
-	toolPaletteAddDragDest      func(t *ToolPalette, widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction)
+	toolPaletteAddDragDest      func(t *ToolPalette, widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions D.DragAction)
 	toolPaletteGetDragItem      func(t *ToolPalette, selection *SelectionData) *Widget
 	toolPaletteGetDropGroup     func(t *ToolPalette, x, y int) *ToolItemGroup
 	toolPaletteGetDropItem      func(t *ToolPalette, x, y int) *ToolItem
@@ -1473,7 +1473,7 @@ var (
 	toolPaletteUnsetStyle       func(t *ToolPalette)
 )
 
-func (t *ToolPalette) AddDragDest(widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions T.GdkDragAction) {
+func (t *ToolPalette) AddDragDest(widget *Widget, flags DestDefaults, targets ToolPaletteDragTargets, actions D.DragAction) {
 	toolPaletteAddDragDest(t, widget, flags, targets, actions)
 }
 func (t *ToolPalette) GetDragItem(selection *SelectionData) *Widget {
@@ -1903,7 +1903,7 @@ func (t *TreeModelFilter) SetVisibleFunc(f TreeModelFilterVisibleFunc, data T.Gp
 	treeModelFilterSetVisibleFunc(t, f, data, destroy)
 }
 
-type TreeModelFlags T.Enum
+type TreeModelFlags Enum
 
 const (
 	TREE_MODEL_ITERS_PERSIST TreeModelFlags = 1 << iota
@@ -2281,7 +2281,7 @@ type (
 		a, b *TreeIter, userData T.Gpointer) int
 )
 
-type TreeViewDropPosition T.Enum
+type TreeViewDropPosition Enum
 
 const (
 	TREE_VIEW_DROP_BEFORE TreeViewDropPosition = iota
@@ -2290,7 +2290,7 @@ const (
 	TREE_VIEW_DROP_INTO_OR_AFTER
 )
 
-type TreeViewGridLines T.Enum
+type TreeViewGridLines Enum
 
 const (
 	TREE_VIEW_GRID_LINES_NONE TreeViewGridLines = iota
@@ -2299,7 +2299,7 @@ const (
 	TREE_VIEW_GRID_LINES_BOTH
 )
 
-type TreeViewColumnSizing T.Enum
+type TreeViewColumnSizing Enum
 
 const (
 	TREE_VIEW_COLUMN_GROW_ONLY TreeViewColumnSizing = iota
@@ -2307,7 +2307,7 @@ const (
 	TREE_VIEW_COLUMN_FIXED
 )
 
-type TreeViewMode T.Enum
+type TreeViewMode Enum
 
 const (
 	TREE_VIEW_LINE TreeViewMode = iota
@@ -2334,8 +2334,8 @@ var (
 	treeViewConvertWidgetToBinWindowCoords func(t *TreeView, wx, wy int, bx, by *int)
 	treeViewConvertWidgetToTreeCoords      func(t *TreeView, wx, wy int, tx, ty *int)
 	treeViewCreateRowDragIcon              func(t *TreeView, path *TreePath) *D.Pixmap
-	treeViewEnableModelDragDest            func(t *TreeView, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
-	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction)
+	treeViewEnableModelDragDest            func(t *TreeView, targets *TargetEntry, nTargets int, actions D.DragAction)
+	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions D.DragAction)
 	treeViewExpandAll                      func(t *TreeView)
 	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll T.Gboolean) T.Gboolean
 	treeViewExpandToPath                   func(t *TreeView, path *TreePath)
@@ -2447,10 +2447,10 @@ func (t *TreeView) ConvertWidgetToTreeCoords(wx, wy int, tx, ty *int) {
 func (t *TreeView) CreateRowDragIcon(path *TreePath) *D.Pixmap {
 	return treeViewCreateRowDragIcon(t, path)
 }
-func (t *TreeView) EnableModelDragDest(targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
+func (t *TreeView) EnableModelDragDest(targets *TargetEntry, nTargets int, actions D.DragAction) {
 	treeViewEnableModelDragDest(t, targets, nTargets, actions)
 }
-func (t *TreeView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions T.GdkDragAction) {
+func (t *TreeView) EnableModelDragSource(startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions D.DragAction) {
 	treeViewEnableModelDragSource(t, startButtonMask, targets, nTargets, actions)
 }
 func (t *TreeView) ExpandAll() { treeViewExpandAll(t) }

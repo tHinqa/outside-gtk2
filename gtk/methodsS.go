@@ -145,7 +145,7 @@ func (s *ScrolledWindow) UnsetPlacement() { scrolledWindowUnsetPlacement(s) }
 
 var ScrollStepGetType func() T.GType //TODO(t):Use?
 
-type ScrollType T.Enum
+type ScrollType Enum
 
 const (
 	SCROLL_NONE ScrollType = iota
@@ -169,9 +169,9 @@ const (
 var ScrollTypeGetType func() T.GType
 
 type SelectionData struct {
-	Selection T.GdkAtom
-	Target    T.GdkAtom
-	Type      T.GdkAtom
+	Selection D.Atom
+	Target    D.Atom
+	Type      D.Atom
 	Format    int
 	Data      *T.Guchar
 	Length    int
@@ -181,29 +181,29 @@ type SelectionData struct {
 var (
 	SelectionDataGetType func() T.GType
 
-	SelectionAddTarget          func(widget *Widget, selection, target T.GdkAtom, info uint)
-	SelectionAddTargets         func(widget *Widget, selection T.GdkAtom, targets *TargetEntry, ntargets uint)
-	SelectionClear              func(widget *Widget, event *T.GdkEventSelection) T.Gboolean
-	SelectionClearTargets       func(widget *Widget, selection T.GdkAtom)
-	SelectionConvert            func(widget *Widget, selection, target T.GdkAtom, time T.GUint32) T.Gboolean
+	SelectionAddTarget          func(widget *Widget, selection, target D.Atom, info uint)
+	SelectionAddTargets         func(widget *Widget, selection D.Atom, targets *TargetEntry, ntargets uint)
+	SelectionClear              func(widget *Widget, event *D.EventSelection) T.Gboolean
+	SelectionClearTargets       func(widget *Widget, selection D.Atom)
+	SelectionConvert            func(widget *Widget, selection, target D.Atom, time T.GUint32) T.Gboolean
 	selectionDataCopy           func(s *SelectionData) *SelectionData
-	SelectionOwnerSet           func(widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
-	SelectionOwnerSetForDisplay func(display *D.Display, widget *Widget, selection T.GdkAtom, time T.GUint32) T.Gboolean
+	SelectionOwnerSet           func(widget *Widget, selection D.Atom, time T.GUint32) T.Gboolean
+	SelectionOwnerSetForDisplay func(display *D.Display, widget *Widget, selection D.Atom, time T.GUint32) T.Gboolean
 	SelectionRemoveAll          func(widget *Widget)
 
 	selectionDataFree                   func(s *SelectionData)
 	selectionDataGetData                func(s *SelectionData) *T.Guchar
-	selectionDataGetDataType            func(s *SelectionData) T.GdkAtom
+	selectionDataGetDataType            func(s *SelectionData) D.Atom
 	selectionDataGetDisplay             func(s *SelectionData) *D.Display
 	selectionDataGetFormat              func(s *SelectionData) int
 	selectionDataGetLength              func(s *SelectionData) int
 	selectionDataGetPixbuf              func(s *SelectionData) *D.Pixbuf
-	selectionDataGetSelection           func(s *SelectionData) T.GdkAtom
-	selectionDataGetTarget              func(s *SelectionData) T.GdkAtom
-	selectionDataGetTargets             func(s *SelectionData, targets **T.GdkAtom, nAtoms *int) T.Gboolean
+	selectionDataGetSelection           func(s *SelectionData) D.Atom
+	selectionDataGetTarget              func(s *SelectionData) D.Atom
+	selectionDataGetTargets             func(s *SelectionData, targets **D.Atom, nAtoms *int) T.Gboolean
 	selectionDataGetText                func(s *SelectionData) *T.Guchar
 	selectionDataGetUris                func(s *SelectionData) **T.Gchar
-	selectionDataSet                    func(s *SelectionData, typ T.GdkAtom, format int, data *T.Guchar, length int)
+	selectionDataSet                    func(s *SelectionData, typ D.Atom, format int, data *T.Guchar, length int)
 	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *D.Pixbuf) T.Gboolean
 	selectionDataSetText                func(s *SelectionData, str string, len int) T.Gboolean
 	selectionDataSetUris                func(s *SelectionData, uris **T.Gchar) T.Gboolean
@@ -213,22 +213,22 @@ var (
 	selectionDataTargetsIncludeUri      func(s *SelectionData) T.Gboolean
 )
 
-func (s *SelectionData) Copy() *SelectionData    { return selectionDataCopy(s) }
-func (s *SelectionData) Free()                   { selectionDataFree(s) }
-func (s *SelectionData) GetData() *T.Guchar      { return selectionDataGetData(s) }
-func (s *SelectionData) GetDataType() T.GdkAtom  { return selectionDataGetDataType(s) }
-func (s *SelectionData) GetDisplay() *D.Display  { return selectionDataGetDisplay(s) }
-func (s *SelectionData) GetFormat() int          { return selectionDataGetFormat(s) }
-func (s *SelectionData) GetLength() int          { return selectionDataGetLength(s) }
-func (s *SelectionData) GetPixbuf() *D.Pixbuf    { return selectionDataGetPixbuf(s) }
-func (s *SelectionData) GetSelection() T.GdkAtom { return selectionDataGetSelection(s) }
-func (s *SelectionData) GetTarget() T.GdkAtom    { return selectionDataGetTarget(s) }
-func (s *SelectionData) GetTargets(targets **T.GdkAtom, nAtoms *int) T.Gboolean {
+func (s *SelectionData) Copy() *SelectionData   { return selectionDataCopy(s) }
+func (s *SelectionData) Free()                  { selectionDataFree(s) }
+func (s *SelectionData) GetData() *T.Guchar     { return selectionDataGetData(s) }
+func (s *SelectionData) GetDataType() D.Atom    { return selectionDataGetDataType(s) }
+func (s *SelectionData) GetDisplay() *D.Display { return selectionDataGetDisplay(s) }
+func (s *SelectionData) GetFormat() int         { return selectionDataGetFormat(s) }
+func (s *SelectionData) GetLength() int         { return selectionDataGetLength(s) }
+func (s *SelectionData) GetPixbuf() *D.Pixbuf   { return selectionDataGetPixbuf(s) }
+func (s *SelectionData) GetSelection() D.Atom   { return selectionDataGetSelection(s) }
+func (s *SelectionData) GetTarget() D.Atom      { return selectionDataGetTarget(s) }
+func (s *SelectionData) GetTargets(targets **D.Atom, nAtoms *int) T.Gboolean {
 	return selectionDataGetTargets(s, targets, nAtoms)
 }
 func (s *SelectionData) GetText() *T.Guchar { return selectionDataGetText(s) }
 func (s *SelectionData) GetUris() **T.Gchar { return selectionDataGetUris(s) }
-func (s *SelectionData) Set(typ T.GdkAtom, format int, data *T.Guchar, length int) {
+func (s *SelectionData) Set(typ D.Atom, format int, data *T.Guchar, length int) {
 	selectionDataSet(s, typ, format, data, length)
 }
 func (s *SelectionData) SetPixbuf(pixbuf *D.Pixbuf) T.Gboolean {
@@ -247,7 +247,7 @@ func (s *SelectionData) TargetsIncludeRichText(buffer *TextBuffer) T.Gboolean {
 func (s *SelectionData) TargetsIncludeText() T.Gboolean { return selectionDataTargetsIncludeText(s) }
 func (s *SelectionData) TargetsIncludeUri() T.Gboolean  { return selectionDataTargetsIncludeUri(s) }
 
-type SelectionMode T.Enum
+type SelectionMode Enum
 
 const (
 	SELECTION_NONE SelectionMode = iota
@@ -259,7 +259,7 @@ const (
 
 var SelectionModeGetType func() T.GType
 
-type SensitivityType T.Enum
+type SensitivityType Enum
 
 const (
 	SENSITIVITY_AUTO SensitivityType = iota
@@ -334,7 +334,7 @@ type SettingsValue struct {
 	Value  T.GValue
 }
 
-type ShadowType T.Enum
+type ShadowType Enum
 
 const (
 	SHADOW_NONE ShadowType = iota
@@ -346,7 +346,7 @@ const (
 
 var ShadowTypeGetType func() T.GType
 
-type SideType T.Enum
+type SideType Enum
 
 const (
 	SIDE_TOP SideType = iota
@@ -357,7 +357,7 @@ const (
 
 var SideTypeGetType func() T.GType
 
-type SignalRunType T.Enum
+type SignalRunType Enum
 
 const (
 	RUN_FIRST      SignalRunType = SignalRunType(T.G_SIGNAL_RUN_FIRST)
@@ -381,7 +381,7 @@ type SizeGroup struct {
 	Requisition Requisition
 }
 
-type SizeGroupMode T.Enum
+type SizeGroupMode Enum
 
 const (
 	SIZE_GROUP_NONE SizeGroupMode = iota
@@ -450,7 +450,7 @@ func (s *Socket) GetId() T.GdkNativeWindow         { return socketGetId(s) }
 func (s *Socket) GetPlugWindow() *D.Window         { return socketGetPlugWindow(s) }
 func (s *Socket) Steal(wid T.GdkNativeWindow)      { socketSteal(s, wid) }
 
-type SortType T.Enum
+type SortType Enum
 
 const (
 	SORT_ASCENDING SortType = iota
@@ -479,7 +479,7 @@ type SpinButton struct {
 	// SnapToTicks : 1
 }
 
-type SpinButtonUpdatePolicy T.Enum
+type SpinButtonUpdatePolicy Enum
 
 const (
 	UPDATE_ALWAYS SpinButtonUpdatePolicy = iota
@@ -562,7 +562,7 @@ var (
 func (s *Spinner) Start() { spinnerStart(s) }
 func (s *Spinner) Stop()  { spinnerStop(s) }
 
-type SpinType T.Enum
+type SpinType Enum
 
 const (
 	SPIN_STEP_FORWARD SpinType = iota
@@ -576,7 +576,7 @@ const (
 
 var SpinTypeGetType func() T.GType
 
-type StateType T.Enum
+type StateType Enum
 
 const (
 	STATE_NORMAL StateType = iota
@@ -813,7 +813,7 @@ func (s *Style) SetBackground(window *D.Window, stateType StateType) {
 func (s *Style) SetFont(font *T.GdkFont) { styleSetFont(s, font) }
 func (s *Style) Unref()                  { styleUnref(s) }
 
-type SubmenuDirection T.Enum
+type SubmenuDirection Enum
 
 const (
 	DIRECTION_LEFT SubmenuDirection = iota
@@ -822,7 +822,7 @@ const (
 
 var SubmenuDirectionGetType func() T.GType
 
-type SubmenuPlacement T.Enum
+type SubmenuPlacement Enum
 
 const (
 	TOP_BOTTOM SubmenuPlacement = iota

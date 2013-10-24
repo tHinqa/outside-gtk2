@@ -81,7 +81,7 @@ func (v *Viewport) SetHadjustment(a *Adjustment) { viewportSetHadjustment(v, a) 
 func (v *Viewport) SetShadowType(t ShadowType)   { viewportSetShadowType(v, t) }
 func (v *Viewport) SetVadjustment(a *Adjustment) { viewportSetVadjustment(v, a) }
 
-type Visibility T.Enum
+type Visibility Enum
 
 const (
 	VISIBILITY_NONE Visibility = iota

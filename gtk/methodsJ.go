@@ -8,7 +8,7 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
-type Justification T.Enum
+type Justification Enum
 
 const (
 	JUSTIFY_LEFT Justification = iota

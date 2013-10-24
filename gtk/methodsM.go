@@ -9,7 +9,7 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type MatchType T.Enum
+type MatchType Enum
 
 const (
 	MATCH_ALL MatchType = iota
@@ -72,7 +72,7 @@ type (
 	MenuDetachFunc func(ttachWidget *Widget, menu *Menu)
 )
 
-type MenuDirectionType T.Enum
+type MenuDirectionType Enum
 
 const (
 	MENU_DIR_PARENT MenuDirectionType = iota
@@ -302,7 +302,7 @@ func (t *MenuToolButton) SetArrowTooltipMarkup(markup string) {
 func (t *MenuToolButton) SetArrowTooltipText(text string) { menuToolButtonSetArrowTooltipText(t, text) }
 func (t *MenuToolButton) SetMenu(menu *Widget)            { menuToolButtonSetMenu(t, menu) }
 
-type MessageType T.Enum
+type MessageType Enum
 
 const (
 	MESSAGE_INFO MessageType = iota
@@ -370,7 +370,7 @@ func (m *MessageDialog) GetMessageArea() *Widget { return messageDialogGetMessag
 func (m *MessageDialog) SetImage(image *Widget)  { messageDialogSetImage(m, image) }
 func (m *MessageDialog) SetMarkup(str string)    { messageDialogSetMarkup(m, str) }
 
-type MetricType T.Enum
+type MetricType Enum
 
 const (
 	PIXELS MetricType = iota
@@ -402,7 +402,7 @@ func (m *MountOperation) IsShowing() T.Gboolean      { return mountOperationIsSh
 func (m *MountOperation) SetParent(parent *Window)   { mountOperationSetParent(m, parent) }
 func (m *MountOperation) SetScreen(screen *D.Screen) { mountOperationSetScreen(m, screen) }
 
-type MovementStep T.Enum
+type MovementStep Enum
 
 const (
 	MOVEMENT_LOGICAL_POSITIONS MovementStep = iota

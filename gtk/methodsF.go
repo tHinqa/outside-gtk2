@@ -10,7 +10,7 @@ import (
 
 type FileChooser struct{}
 
-type FileChooserAction T.Enum
+type FileChooserAction Enum
 
 const (
 	FILE_CHOOSER_ACTION_OPEN FileChooserAction = iota
@@ -19,7 +19,7 @@ const (
 	FILE_CHOOSER_ACTION_CREATE_FOLDER
 )
 
-type FileChooserConfirmation T.Enum
+type FileChooserConfirmation Enum
 
 const (
 	FILE_CHOOSER_CONFIRMATION_CONFIRM FileChooserConfirmation = iota
@@ -27,7 +27,7 @@ const (
 	FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
 )
 
-type FileChooserError T.Enum
+type FileChooserError Enum
 
 const (
 	FILE_CHOOSER_ERROR_NONEXISTENT FileChooserError = iota
@@ -237,7 +237,7 @@ func (f *FileChooserButton) SetWidthChars(nChars int) { fileChooserButtonSetWidt
 type (
 	FileFilter struct{}
 
-	FileFilterFlags T.Enum
+	FileFilterFlags Enum
 
 	FileFilterInfo struct {
 		Contains    FileFilterFlags

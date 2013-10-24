@@ -73,7 +73,7 @@ func (v *Visual) GetRedPixelDetails(mask *T.GUint32, shift *int, precision *int)
 func (v *Visual) GetScreen() *Screen        { return visualGetScreen(v) }
 func (v *Visual) GetVisualType() VisualType { return visualGetVisualType(v) }
 
-type VisualType T.Enum
+type VisualType Enum
 
 const (
 	VISUAL_STATIC_GRAY VisualType = iota

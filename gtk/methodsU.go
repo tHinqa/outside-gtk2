@@ -8,7 +8,7 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
-type Unit T.Enum
+type Unit Enum
 
 const (
 	UNIT_PIXEL Unit = iota
@@ -24,7 +24,7 @@ type UIManager struct {
 	_      *struct{}
 }
 
-type UIManagerItemType T.Enum
+type UIManagerItemType Enum
 
 const (
 	UI_MANAGER_MENUBAR UIManagerItemType = 1 << iota
@@ -93,7 +93,7 @@ func (u *UIManager) GetUi() string         { return uiManagerGetUi(u) }
 func (u *UIManager) EnsureUpdate()         { uiManagerEnsureUpdate(u) }
 func (u *UIManager) NewMergeId() uint      { return uiManagerNewMergeId(u) }
 
-type UpdateType T.Enum
+type UpdateType Enum
 
 const (
 	UPDATE_CONTINUOUS UpdateType = iota

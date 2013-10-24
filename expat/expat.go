@@ -16,6 +16,8 @@ func init() {
 }
 
 type (
+	Enum int
+
 	//XML_Parser *struct{}
 	XML_Parser struct{}
 	XML_Char   T.Char
@@ -131,7 +133,7 @@ type (
 	}
 )
 
-type XML_Status T.Enum
+type XML_Status Enum
 
 const (
 	XML_STATUS_ERROR XML_Status = iota
@@ -139,7 +141,7 @@ const (
 	XML_STATUS_SUSPENDED
 )
 
-type XML_Content_Type T.Enum
+type XML_Content_Type Enum
 
 const (
 	XML_CTYPE_EMPTY XML_Content_Type = iota + 1
@@ -150,7 +152,7 @@ const (
 	XML_CTYPE_SEQ
 )
 
-type XML_Content_Quant T.Enum
+type XML_Content_Quant Enum
 
 const (
 	XML_CQUANT_NONE XML_Content_Quant = iota
@@ -159,7 +161,7 @@ const (
 	XML_CQUANT_PLUS
 )
 
-type XML_Parsing T.Enum
+type XML_Parsing Enum
 
 const (
 	XML_INITIALIZED XML_Parsing = iota
@@ -168,7 +170,7 @@ const (
 	XML_SUSPENDED
 )
 
-type XML_Error T.Enum
+type XML_Error Enum
 
 const (
 	XML_ERROR_NONE XML_Error = iota
@@ -214,7 +216,7 @@ const (
 	XML_ERROR_RESERVED_NAMESPACE_URI
 )
 
-type XML_ParamEntityParsing T.Enum
+type XML_ParamEntityParsing Enum
 
 const (
 	XML_PARAM_ENTITY_PARSING_NEVER XML_ParamEntityParsing = iota
@@ -222,7 +224,7 @@ const (
 	XML_PARAM_ENTITY_PARSING_ALWAYS
 )
 
-type XML_FeatureEnum T.Enum
+type XML_FeatureEnum Enum
 
 const (
 	XML_FEATURE_END XML_FeatureEnum = iota
