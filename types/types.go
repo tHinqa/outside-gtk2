@@ -203,7 +203,6 @@ type (
 	GDBusServer                    struct{}
 	GDir                           struct{}
 	GdkPangoRendererPrivate        struct{}
-	GdkRegion                      struct{}
 	GdkXEvent                      struct{}
 	GDrive                         struct{}
 	GEmblem                        struct{}
@@ -2489,16 +2488,6 @@ const (
 	GDK_ERROR_MEM
 )
 
-type GdkGrabStatus Enum
-
-const (
-	GDK_GRAB_SUCCESS GdkGrabStatus = iota
-	GDK_GRAB_ALREADY_GRABBED
-	GDK_GRAB_INVALID_TIME
-	GDK_GRAB_NOT_VIEWABLE
-	GDK_GRAB_FROZEN
-)
-
 type GdkInputSource Enum
 
 const (
@@ -2656,36 +2645,6 @@ const (
 	GDK_INCLUDE_INFERIORS
 )
 
-type GdkGCValuesMask Enum
-
-const (
-	GDK_GC_FOREGROUND GdkGCValuesMask = 1 << iota
-	GDK_GC_BACKGROUND
-	GDK_GC_FONT
-	GDK_GC_FUNCTION
-	GDK_GC_FILL
-	GDK_GC_TILE
-	GDK_GC_STIPPLE
-	GDK_GC_CLIP_MASK
-	GDK_GC_SUBWINDOW
-	GDK_GC_TS_X_ORIGIN
-	GDK_GC_TS_Y_ORIGIN
-	GDK_GC_CLIP_X_ORIGIN
-	GDK_GC_CLIP_Y_ORIGIN
-	GDK_GC_EXPOSURES
-	GDK_GC_LINE_WIDTH
-	GDK_GC_LINE_STYLE
-	GDK_GC_CAP_STYLE
-	GDK_GC_JOIN_STYLE
-)
-
-type GdkFontType Enum
-
-const (
-	GDK_FONT_FONT GdkFontType = iota
-	GDK_FONT_FONTSET
-)
-
 type GdkFillRule Enum
 
 const (
@@ -2736,21 +2695,6 @@ const (
 	GDK_FUNC_MINIMIZE
 	GDK_FUNC_MAXIMIZE
 	GDK_FUNC_CLOSE
-)
-
-type GdkGravity Enum
-
-const (
-	GDK_GRAVITY_NORTH_WEST GdkGravity = iota + 1
-	GDK_GRAVITY_NORTH
-	GDK_GRAVITY_NORTH_EAST
-	GDK_GRAVITY_WEST
-	GDK_GRAVITY_CENTER
-	GDK_GRAVITY_EAST
-	GDK_GRAVITY_SOUTH_WEST
-	GDK_GRAVITY_SOUTH
-	GDK_GRAVITY_SOUTH_EAST
-	GDK_GRAVITY_STATIC
 )
 
 type GtkScrollStep Enum
@@ -3222,47 +3166,6 @@ const (
 const (
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID  = -1
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
-)
-
-type GdkPixdataType Enum
-
-const (
-	GDK_PIXDATA_COLOR_TYPE_RGB GdkPixdataType = 0x01 << iota
-	GDK_PIXDATA_COLOR_TYPE_RGBA
-	GDK_PIXDATA_COLOR_TYPE_MASK GdkPixdataType = 0xff
-)
-const (
-	GDK_PIXDATA_SAMPLE_WIDTH_8    GdkPixdataType = 0x01 << 16
-	GDK_PIXDATA_SAMPLE_WIDTH_MASK GdkPixdataType = 0x0f << 16
-)
-const (
-	GDK_PIXDATA_ENCODING_RAW GdkPixdataType = 0x01 << (24 + iota)
-	GDK_PIXDATA_ENCODING_RLE
-	GDK_PIXDATA_ENCODING_MASK GdkPixdataType = 0x0f << 24
-)
-
-type GdkPixdataDumpType Enum
-
-const (
-	GDK_PIXDATA_DUMP_PIXDATA_STRUCT GdkPixdataDumpType = 1 << iota
-	GDK_PIXDATA_DUMP_MACROS                            = 2
-	_
-	_
-	_
-	_
-	_
-	_
-	GDK_PIXDATA_DUMP_CTYPES
-	GDK_PIXDATA_DUMP_STATIC
-	GDK_PIXDATA_DUMP_CONST
-	_
-	_
-	_
-	_
-	_
-	GDK_PIXDATA_DUMP_RLE_DECODER
-	GDK_PIXDATA_DUMP_PIXDATA_STREAM GdkPixdataDumpType = 0
-	GDK_PIXDATA_DUMP_GTYPES         GdkPixdataDumpType = 0
 )
 
 type GailOffsetType Enum

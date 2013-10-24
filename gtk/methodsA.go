@@ -589,7 +589,7 @@ func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRi
 	alignmentGetPadding(a, paddingTop, paddingBottom, paddingLeft, paddingRight)
 }
 
-type Allocation T.GdkRectangle
+type Allocation D.Rectangle
 
 var AlternativeDialogButtonOrder func(
 	screen *D.Screen) T.Gboolean

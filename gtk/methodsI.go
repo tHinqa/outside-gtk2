@@ -39,11 +39,11 @@ var (
 
 	iconInfoCopy              func(i *IconInfo) *IconInfo
 	iconInfoFree              func(i *IconInfo)
-	iconInfoGetAttachPoints   func(i *IconInfo, points **T.GdkPoint, nPoints *int) T.Gboolean
+	iconInfoGetAttachPoints   func(i *IconInfo, points **D.Point, nPoints *int) T.Gboolean
 	iconInfoGetBaseSize       func(i *IconInfo) int
 	iconInfoGetBuiltinPixbuf  func(i *IconInfo) *D.Pixbuf
 	iconInfoGetDisplayName    func(i *IconInfo) string
-	iconInfoGetEmbeddedRect   func(i *IconInfo, rectangle *T.GdkRectangle) T.Gboolean
+	iconInfoGetEmbeddedRect   func(i *IconInfo, rectangle *D.Rectangle) T.Gboolean
 	iconInfoGetFilename       func(i *IconInfo) string
 	iconInfoLoadIcon          func(i *IconInfo, error **T.GError) *D.Pixbuf
 	iconInfoSetRawCoordinates func(i *IconInfo, rawCoordinates T.Gboolean)
@@ -51,13 +51,13 @@ var (
 
 func (i *IconInfo) Copy() *IconInfo { return iconInfoCopy(i) }
 func (i *IconInfo) Free()           { iconInfoFree(i) }
-func (i *IconInfo) GetAttachPoints(points **T.GdkPoint, nPoints *int) T.Gboolean {
+func (i *IconInfo) GetAttachPoints(points **D.Point, nPoints *int) T.Gboolean {
 	return iconInfoGetAttachPoints(i, points, nPoints)
 }
 func (i *IconInfo) GetBaseSize() int            { return iconInfoGetBaseSize(i) }
 func (i *IconInfo) GetBuiltinPixbuf() *D.Pixbuf { return iconInfoGetBuiltinPixbuf(i) }
 func (i *IconInfo) GetDisplayName() string      { return iconInfoGetDisplayName(i) }
-func (i *IconInfo) GetEmbeddedRect(rectangle *T.GdkRectangle) T.Gboolean {
+func (i *IconInfo) GetEmbeddedRect(rectangle *D.Rectangle) T.Gboolean {
 	return iconInfoGetEmbeddedRect(i, rectangle)
 }
 func (i *IconInfo) GetFilename() string               { return iconInfoGetFilename(i) }
@@ -608,7 +608,7 @@ var (
 	imContextGetSurrounding    func(i *IMContext, text **T.Gchar, cursorIndex *int) T.Gboolean
 	imContextReset             func(i *IMContext)
 	imContextSetClientWindow   func(i *IMContext, window *D.Window)
-	imContextSetCursorLocation func(i *IMContext, area *T.GdkRectangle)
+	imContextSetCursorLocation func(i *IMContext, area *D.Rectangle)
 	imContextSetSurrounding    func(i *IMContext, text string, len int, cursorIndex int)
 	imContextSetUsePreedit     func(i *IMContext, usePreedit T.Gboolean)
 )
@@ -627,9 +627,9 @@ func (i *IMContext) GetPreeditString(str **T.Gchar, attrs **T.PangoAttrList, cur
 func (i *IMContext) GetSurrounding(text **T.Gchar, cursorIndex *int) T.Gboolean {
 	return imContextGetSurrounding(i, text, cursorIndex)
 }
-func (i *IMContext) Reset()                                 { imContextReset(i) }
-func (i *IMContext) SetClientWindow(window *D.Window)       { imContextSetClientWindow(i, window) }
-func (i *IMContext) SetCursorLocation(area *T.GdkRectangle) { imContextSetCursorLocation(i, area) }
+func (i *IMContext) Reset()                              { imContextReset(i) }
+func (i *IMContext) SetClientWindow(window *D.Window)    { imContextSetClientWindow(i, window) }
+func (i *IMContext) SetCursorLocation(area *D.Rectangle) { imContextSetCursorLocation(i, area) }
 func (i *IMContext) SetSurrounding(text string, leng int, cursorIndex int) {
 	imContextSetSurrounding(i, text, leng, cursorIndex)
 }

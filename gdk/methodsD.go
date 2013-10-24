@@ -318,36 +318,36 @@ type Drawable simpleObject
 var (
 	DrawableGetType func() T.GType
 
-	DrawArc                  func(drawable *Drawable, gc *T.GdkGC, filled T.Gboolean, x, y, width, height, angle1, angle2 int)
-	DrawDrawable             func(drawable *Drawable, gc *T.GdkGC, src *Drawable, xsrc, ysrc, xdest, ydest, width, height int)
-	DrawGlyphs               func(drawable *Drawable, gc *T.GdkGC, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
-	DrawGlyphsTransformed    func(drawable *Drawable, gc *T.GdkGC, matrix *T.PangoMatrix, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
-	DrawGrayImage            func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
-	DrawImage                func(drawable *Drawable, gc *T.GdkGC, image *Image, xsrc, ysrc, xdest, ydest, width, height int)
-	DrawIndexedImage         func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int, cmap *T.GdkRgbCmap)
-	DrawLayout               func(drawable *Drawable, gc *T.GdkGC, x, y int, layout *T.PangoLayout)
-	DrawLayoutLine           func(drawable *Drawable, gc *T.GdkGC, x, y int, line *T.PangoLayoutLine)
-	DrawLayoutLineWithColors func(drawable *Drawable, gc *T.GdkGC, x, y int, line *T.PangoLayoutLine, foreground, background *Color)
-	DrawLayoutWithColors     func(drawable *Drawable, gc *T.GdkGC, x, y int, layout *T.PangoLayout, foreground, background *Color)
-	DrawLine                 func(drawable *Drawable, gc *T.GdkGC, x1, y1, x2, y2 int)
-	DrawLines                func(drawable *Drawable, gc *T.GdkGC, points *T.GdkPoint, nPoints int)
-	DrawPixbuf               func(drawable *Drawable, gc *T.GdkGC, pixbuf *Pixbuf, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
-	DrawPoint                func(drawable *Drawable, gc *T.GdkGC, x, y int)
-	DrawPoints               func(drawable *Drawable, gc *T.GdkGC, points *T.GdkPoint, nPoints int)
-	DrawPolygon              func(drawable *Drawable, gc *T.GdkGC, filled T.Gboolean, points *T.GdkPoint, nPoints int)
-	DrawRectangle            func(drawable *Drawable, gc *T.GdkGC, filled T.Gboolean, x, y, width, height int)
-	DrawRgb32Image           func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
-	DrawRgb32ImageDithalign  func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride, xdith, ydith int)
-	DrawRgbImage             func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, rgbBuf *T.Guchar, rowstride int)
-	DrawRgbImageDithalign    func(drawable *Drawable, gc *T.GdkGC, x, y, width, height int, dith T.GdkRgbDither, rgbBuf *T.Guchar, rowstride, xdith, ydith int)
-	DrawSegments             func(drawable *Drawable, gc *T.GdkGC, segs *T.GdkSegment, nSegs int)
-	DrawString               func(drawable *Drawable, font *T.GdkFont, gc *T.GdkGC, x, y int, s string)
-	DrawText                 func(drawable *Drawable, font *T.GdkFont, gc *T.GdkGC, x, y int, text string, textLength int)
-	DrawTextWc               func(drawable *Drawable, font *T.GdkFont, gc *T.GdkGC, x, y int, text *T.GdkWChar, textLength int)
-	DrawTrapezoids           func(drawable *Drawable, gc *T.GdkGC, trapezoids *T.GdkTrapezoid, nTrapezoids int)
+	DrawArc                  func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height, angle1, angle2 int)
+	DrawDrawable             func(drawable *Drawable, gc *GC, src *Drawable, xsrc, ysrc, xdest, ydest, width, height int)
+	DrawGlyphs               func(drawable *Drawable, gc *GC, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
+	DrawGlyphsTransformed    func(drawable *Drawable, gc *GC, matrix *T.PangoMatrix, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
+	DrawGrayImage            func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
+	DrawImage                func(drawable *Drawable, gc *GC, image *Image, xsrc, ysrc, xdest, ydest, width, height int)
+	DrawIndexedImage         func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int, cmap *T.GdkRgbCmap)
+	DrawLayout               func(drawable *Drawable, gc *GC, x, y int, layout *T.PangoLayout)
+	DrawLayoutLine           func(drawable *Drawable, gc *GC, x, y int, line *T.PangoLayoutLine)
+	DrawLayoutLineWithColors func(drawable *Drawable, gc *GC, x, y int, line *T.PangoLayoutLine, foreground, background *Color)
+	DrawLayoutWithColors     func(drawable *Drawable, gc *GC, x, y int, layout *T.PangoLayout, foreground, background *Color)
+	DrawLine                 func(drawable *Drawable, gc *GC, x1, y1, x2, y2 int)
+	DrawLines                func(drawable *Drawable, gc *GC, points *Point, nPoints int)
+	DrawPixbuf               func(drawable *Drawable, gc *GC, pixbuf *Pixbuf, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
+	DrawPoint                func(drawable *Drawable, gc *GC, x, y int)
+	DrawPoints               func(drawable *Drawable, gc *GC, points *Point, nPoints int)
+	DrawPolygon              func(drawable *Drawable, gc *GC, filled T.Gboolean, points *Point, nPoints int)
+	DrawRectangle            func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height int)
+	DrawRgb32Image           func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
+	DrawRgb32ImageDithalign  func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride, xdith, ydith int)
+	DrawRgbImage             func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, rgbBuf *T.Guchar, rowstride int)
+	DrawRgbImageDithalign    func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, rgbBuf *T.Guchar, rowstride, xdith, ydith int)
+	DrawSegments             func(drawable *Drawable, gc *GC, segs *T.GdkSegment, nSegs int)
+	DrawString               func(drawable *Drawable, font *Font, gc *GC, x, y int, s string)
+	DrawText                 func(drawable *Drawable, font *Font, gc *GC, x, y int, text string, textLength int)
+	DrawTextWc               func(drawable *Drawable, font *Font, gc *GC, x, y int, text *T.GdkWChar, textLength int)
+	DrawTrapezoids           func(drawable *Drawable, gc *GC, trapezoids *T.GdkTrapezoid, nTrapezoids int)
 
 	drawableCopyToImage      func(d *Drawable, image *Image, srcX, srcY, destX, destY, width, height int) *Image
-	drawableGetClipRegion    func(d *Drawable) *T.GdkRegion
+	drawableGetClipRegion    func(d *Drawable) *Region
 	drawableGetColormap      func(d *Drawable) *Colormap
 	drawableGetData          func(d *Drawable, key string) T.Gpointer
 	drawableGetDepth         func(d *Drawable) int
@@ -355,7 +355,7 @@ var (
 	drawableGetImage         func(d *Drawable, x, y, width, height int) *Image
 	drawableGetScreen        func(d *Drawable) *Screen
 	drawableGetSize          func(d *Drawable, width, height *int)
-	drawableGetVisibleRegion func(d *Drawable) *T.GdkRegion
+	drawableGetVisibleRegion func(d *Drawable) *Region
 	drawableGetVisual        func(d *Drawable) *Visual
 	drawableRef              func(d *Drawable) *Drawable
 	drawableSetColormap      func(d *Drawable, colormap *Colormap)
@@ -366,7 +366,7 @@ var (
 func (d *Drawable) CopyToImage(image *Image, srcX, srcY, destX, destY, width, height int) *Image {
 	return drawableCopyToImage(d, image, srcX, srcY, destX, destY, width, height)
 }
-func (d *Drawable) GetClipRegion() *T.GdkRegion   { return drawableGetClipRegion(d) }
+func (d *Drawable) GetClipRegion() *Region        { return drawableGetClipRegion(d) }
 func (d *Drawable) GetColormap() *Colormap        { return drawableGetColormap(d) }
 func (d *Drawable) GetData(key string) T.Gpointer { return drawableGetData(d, key) }
 func (d *Drawable) GetDepth() int                 { return drawableGetDepth(d) }
@@ -376,7 +376,7 @@ func (d *Drawable) GetImage(x, y, width, height int) *Image {
 }
 func (d *Drawable) GetScreen() *Screen             { return drawableGetScreen(d) }
 func (d *Drawable) GetSize(width, height *int)     { drawableGetSize(d, width, height) }
-func (d *Drawable) GetVisibleRegion() *T.GdkRegion { return drawableGetVisibleRegion(d) }
+func (d *Drawable) GetVisibleRegion() *Region      { return drawableGetVisibleRegion(d) }
 func (d *Drawable) GetVisual() *Visual             { return drawableGetVisual(d) }
 func (d *Drawable) Ref() *Drawable                 { return drawableRef(d) }
 func (d *Drawable) SetColormap(colormap *Colormap) { drawableSetColormap(d, colormap) }

@@ -465,36 +465,9 @@ type (
 
 	GdkColor struct{} //REMOVE
 
-	GdkFont struct {
-		Type    GdkFontType
-		Ascent  int
-		Descent int
-	}
-
-	GdkGC struct {
-		Parent_instance GObject
-		Clip_x_origin   int
-		Clip_y_origin   int
-		Ts_x_origin     int
-		Ts_y_origin     int
-		Colormap        *GdkColormap
-	}
-
 	GdkColormap struct{} //REMOVE
 
 	GdkVisual struct{} //REMOVE
-
-	GdkRectangle struct {
-		X      int
-		Y      int
-		Width  int
-		Height int
-	}
-
-	GdkPoint struct {
-		X int
-		Y int
-	}
 
 	GtkWindow struct{} //REMOVE
 
@@ -636,42 +609,6 @@ type (
 		Send_event int8
 		Action     GdkSettingAction
 		Name       *Char
-	}
-
-	GdkGCValues struct {
-		Foreground         GdkColor
-		Background         GdkColor
-		Font               *GdkFont
-		Function           GdkFunction
-		Fill               GdkFill
-		Tile               *GdkPixmap
-		Stipple            *GdkPixmap
-		Clip_mask          *GdkPixmap
-		Subwindow_mode     GdkSubwindowMode
-		Ts_x_origin        int
-		Ts_y_origin        int
-		Clip_x_origin      int
-		Clip_y_origin      int
-		Graphics_exposures int
-		Line_width         int
-		Line_style         GdkLineStyle
-		Cap_style          GdkCapStyle
-		Join_style         GdkJoinStyle
-	}
-	GdkCapStyle Enum //REMOVE
-
-	GdkGeometry struct {
-		Min_width   int
-		Min_height  int
-		Max_width   int
-		Max_height  int
-		Base_width  int
-		Base_height int
-		Width_inc   int
-		Height_inc  int
-		Min_aspect  float64
-		Max_aspect  float64
-		Win_gravity GdkGravity
 	}
 
 	GObjectClass struct {
@@ -910,16 +847,6 @@ type (
 
 	PangoGlyphVisAttr struct {
 		Is_cluster_start uint // : 1
-	}
-
-	GdkPixdata struct {
-		Magic        GUint32
-		Length       GInt32
-		Pixdata_type GdkPixdataType
-		Rowstride    GUint32
-		Width        GUint32
-		Height       GUint32
-		Pixel_data   *uint8
 	}
 
 	PangoGlyphItemIter struct {

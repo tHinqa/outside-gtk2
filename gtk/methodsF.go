@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -414,7 +415,7 @@ type FontSelection struct {
 	Family           *T.PangoFontFamily
 	Face             *T.PangoFontFace
 	Size             int
-	Font             *T.GdkFont
+	Font             *D.Font
 }
 
 var (
@@ -425,7 +426,7 @@ var (
 	fontSelectionGetFaceList     func(f *FontSelection) *Widget
 	fontSelectionGetFamily       func(f *FontSelection) *T.PangoFontFamily
 	fontSelectionGetFamilyList   func(f *FontSelection) *Widget
-	fontSelectionGetFont         func(f *FontSelection) *T.GdkFont
+	fontSelectionGetFont         func(f *FontSelection) *D.Font
 	fontSelectionGetFontName     func(f *FontSelection) string
 	fontSelectionGetPreviewEntry func(f *FontSelection) *Widget
 	fontSelectionGetPreviewText  func(f *FontSelection) string
@@ -440,7 +441,7 @@ func (f *FontSelection) GetFace() *T.PangoFontFace     { return fontSelectionGet
 func (f *FontSelection) GetFaceList() *Widget          { return fontSelectionGetFaceList(f) }
 func (f *FontSelection) GetFamily() *T.PangoFontFamily { return fontSelectionGetFamily(f) }
 func (f *FontSelection) GetFamilyList() *Widget        { return fontSelectionGetFamilyList(f) }
-func (f *FontSelection) GetFont() *T.GdkFont           { return fontSelectionGetFont(f) }
+func (f *FontSelection) GetFont() *D.Font              { return fontSelectionGetFont(f) }
 func (f *FontSelection) GetFontName() string           { return fontSelectionGetFontName(f) }
 func (f *FontSelection) GetPreviewEntry() *Widget      { return fontSelectionGetPreviewEntry(f) }
 func (f *FontSelection) GetPreviewText() string        { return fontSelectionGetPreviewText(f) }
@@ -470,7 +471,7 @@ var (
 
 	fontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *Widget
 	fontSelectionDialogGetCancelButton  func(f *FontSelectionDialog) *Widget
-	fontSelectionDialogGetFont          func(f *FontSelectionDialog) *T.GdkFont
+	fontSelectionDialogGetFont          func(f *FontSelectionDialog) *D.Font
 	fontSelectionDialogGetFontName      func(f *FontSelectionDialog) string
 	fontSelectionDialogGetFontSelection func(f *FontSelectionDialog) *Widget
 	fontSelectionDialogGetOkButton      func(f *FontSelectionDialog) *Widget
@@ -481,7 +482,7 @@ var (
 
 func (f *FontSelectionDialog) GetApplyButton() *Widget  { return fontSelectionDialogGetApplyButton(f) }
 func (f *FontSelectionDialog) GetCancelButton() *Widget { return fontSelectionDialogGetCancelButton(f) }
-func (f *FontSelectionDialog) GetFont() *T.GdkFont      { return fontSelectionDialogGetFont(f) }
+func (f *FontSelectionDialog) GetFont() *D.Font         { return fontSelectionDialogGetFont(f) }
 func (f *FontSelectionDialog) GetFontName() string      { return fontSelectionDialogGetFontName(f) }
 func (f *FontSelectionDialog) GetFontSelection() *Widget {
 	return fontSelectionDialogGetFontSelection(f)

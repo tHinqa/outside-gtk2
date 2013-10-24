@@ -32,53 +32,36 @@ var (
 	InterpTypeGetType func() T.GType
 
 	InputSetExtensionEvents func(
-		window *Window,
-		mask int,
-		mode ExtensionMode)
+		window *Window, mask int, mode ExtensionMode)
 
 	SetShowEvents func(showEvents T.Gboolean)
 
 	GetShowEvents func() T.Gboolean
 
 	AddClientMessageFilter func(
-		messageType Atom,
-		f T.GdkFilterFunc,
-		data T.Gpointer)
+		messageType Atom, f T.GdkFilterFunc, data T.Gpointer)
 
 	SettingGet func(name string, value *T.GValue) T.Gboolean
 
 	RgbInit func()
 
-	RgbXpixelFromRgb func(
-		rgb T.GUint32) T.Gulong
+	RgbXpixelFromRgb func(rgb T.GUint32) T.Gulong
 
-	RgbGcSetForeground func(
-		gc *T.GdkGC,
-		rgb T.GUint32)
+	RgbGcSetForeground func(gc *GC, rgb T.GUint32)
 
-	RgbGcSetBackground func(
-		gc *T.GdkGC,
-		rgb T.GUint32)
+	RgbGcSetBackground func(gc *GC, rgb T.GUint32)
 
-	RgbFindColor func(
-		colormap *Colormap,
-		color *Color)
+	RgbFindColor func(colormap *Colormap, color *Color)
 
-	RgbCmapNew func(
-		colors *T.GUint32,
-		nColors int) *T.GdkRgbCmap
+	RgbCmapNew func(colors *T.GUint32, nColors int) *T.GdkRgbCmap
 
-	RgbCmapFree func(
-		cmap *T.GdkRgbCmap)
+	RgbCmapFree func(cmap *T.GdkRgbCmap)
 
-	RgbSetVerbose func(
-		verbose T.Gboolean)
+	RgbSetVerbose func(verbose T.Gboolean)
 
-	RgbSetInstall func(
-		install T.Gboolean)
+	RgbSetInstall func(install T.Gboolean)
 
-	RgbSetMinColors func(
-		minColors int)
+	RgbSetMinColors func(minColors int)
 
 	RgbGetColormap func() *Colormap
 
@@ -86,168 +69,7 @@ var (
 
 	RgbDitherable func() T.Gboolean
 
-	RgbColormapDitherable func(
-		cmap *Colormap) T.Gboolean
-
-	CairoCreate func(
-		drawable *Drawable) *T.Cairo
-
-	CairoResetClip func(
-		cr *T.Cairo,
-		drawable *Drawable)
-
-	CairoSetSourceColor func(
-		cr *T.Cairo,
-		color *Color)
-
-	CairoSetSourcePixbuf func(
-		cr *T.Cairo,
-		pixbuf *Pixbuf,
-		pixbufX float64,
-		pixbufY float64)
-
-	CairoSetSourcePixmap func(
-		cr *T.Cairo,
-		pixmap *Pixmap,
-		pixmapX float64,
-		pixmapY float64)
-
-	CairoSetSourceWindow func(
-		cr *T.Cairo,
-		window *Window,
-		x float64,
-		y float64)
-
-	CairoRectangle func(
-		cr *T.Cairo,
-		rectangle *T.GdkRectangle)
-
-	CairoRegion func(
-		cr *T.Cairo,
-		region *T.GdkRegion)
-
-	GcGetType func() T.GType
-
-	GcNew func(
-		drawable *Drawable) *T.GdkGC
-
-	GcNewWithValues func(
-		drawable *Drawable,
-		values *T.GdkGCValues,
-		valuesMask T.GdkGCValuesMask) *T.GdkGC
-
-	GcRef func(
-		gc *T.GdkGC) *T.GdkGC
-
-	GcUnref func(
-		gc *T.GdkGC)
-
-	GcGetValues func(
-		gc *T.GdkGC,
-		values *T.GdkGCValues)
-
-	GcSetValues func(
-		gc *T.GdkGC,
-		values *T.GdkGCValues,
-		valuesMask T.GdkGCValuesMask)
-
-	GcSetForeground func(
-		gc *T.GdkGC,
-		color *Color)
-
-	GcSetBackground func(
-		gc *T.GdkGC,
-		color *Color)
-
-	GcSetFont func(
-		gc *T.GdkGC,
-		font *T.GdkFont)
-
-	GcSetFunction func(
-		gc *T.GdkGC,
-		function T.GdkFunction)
-
-	GcSetFill func(
-		gc *T.GdkGC,
-		fill T.GdkFill)
-
-	GcSetTile func(
-		gc *T.GdkGC,
-		tile *Pixmap)
-
-	GcSetStipple func(
-		gc *T.GdkGC,
-		stipple *Pixmap)
-
-	GcSetTsOrigin func(
-		gc *T.GdkGC,
-		x int,
-		y int)
-
-	GcSetClipOrigin func(
-		gc *T.GdkGC,
-		x int,
-		y int)
-
-	GcSetClipMask func(
-		gc *T.GdkGC,
-		mask *T.GdkBitmap)
-
-	GcSetClipRectangle func(
-		gc *T.GdkGC,
-		rectangle *T.GdkRectangle)
-
-	GcSetClipRegion func(
-		gc *T.GdkGC,
-		region *T.GdkRegion)
-
-	GcSetSubwindow func(
-		gc *T.GdkGC,
-		mode T.GdkSubwindowMode)
-
-	GcSetExposures func(
-		gc *T.GdkGC,
-		exposures T.Gboolean)
-
-	GcSetLineAttributes func(
-		gc *T.GdkGC,
-		lineWidth int,
-		lineStyle T.GdkLineStyle,
-		capStyle CapStyle,
-		joinStyle T.GdkJoinStyle)
-
-	GcSetDashes func(
-		gc *T.GdkGC,
-		dashOffset int,
-		dashList *int8,
-		n int)
-
-	GcOffset func(
-		gc *T.GdkGC,
-		xOffset int,
-		yOffset int)
-
-	GcCopy func(
-		dstGc *T.GdkGC,
-		srcGc *T.GdkGC)
-
-	GcSetColormap func(
-		gc *T.GdkGC,
-		colormap *Colormap)
-
-	GcGetColormap func(
-		gc *T.GdkGC) *Colormap
-
-	GcSetRgbFgColor func(
-		gc *T.GdkGC,
-		color *Color)
-
-	GcSetRgbBgColor func(
-		gc *T.GdkGC,
-		color *Color)
-
-	GcGetScreen func(
-		gc *T.GdkGC) *Screen
+	RgbColormapDitherable func(cmap *Colormap) T.Gboolean
 
 	FilterReturnGetType func() T.GType
 
@@ -271,8 +93,6 @@ var (
 
 	SubwindowModeGetType func() T.GType
 
-	GcValuesMaskGetType func() T.GType
-
 	InputSourceGetType func() T.GType
 
 	InputModeGetType func() T.GType
@@ -293,532 +113,225 @@ var (
 
 	StatusGetType func() T.GType
 
-	GrabStatusGetType func() T.GType
-
 	WindowAttributesTypeGetType func() T.GType
 
 	WmDecorationGetType func() T.GType
 
 	WmFunctionGetType func() T.GType
 
-	GravityGetType func() T.GType
+	StringWidth func(font *Font, s string) int
 
-	FontGetType func() T.GType
-
-	FontRef func(
-		font *T.GdkFont) *T.GdkFont
-
-	FontUnref func(
-		font *T.GdkFont)
-
-	FontId func(
-		font *T.GdkFont) int
-
-	FontEqual func(
-		fonta *T.GdkFont,
-		fontb *T.GdkFont) T.Gboolean
-
-	FontLoadForDisplay func(
-		display *Display,
-		fontName string) *T.GdkFont
-
-	FontsetLoadForDisplay func(
-		display *Display,
-		fontsetName string) *T.GdkFont
-
-	FontFromDescriptionForDisplay func(
-		display *Display,
-		fontDesc *T.PangoFontDescription) *T.GdkFont
-
-	FontLoad func(
-		fontName string) *T.GdkFont
-
-	FontsetLoad func(
-		fontsetName string) *T.GdkFont
-
-	FontFromDescription func(
-		fontDesc *T.PangoFontDescription) *T.GdkFont
-
-	StringWidth func(
-		font *T.GdkFont,
-		s string) int
-
-	TextWidth func(
-		font *T.GdkFont,
-		text string,
-		textLength int) int
+	TextWidth func(font *Font, text string, textLength int) int
 
 	TextWidthWc func(
-		font *T.GdkFont,
-		text *T.GdkWChar,
-		textLength int) int
+		font *Font, text *T.GdkWChar, textLength int) int
 
-	CharWidth func(
-		font *T.GdkFont,
-		character T.Gchar) int
+	CharWidth func(font *Font, character T.Gchar) int
 
-	CharWidthWc func(
-		font *T.GdkFont,
-		character T.GdkWChar) int
+	CharWidthWc func(font *Font, character T.GdkWChar) int
 
-	StringMeasure func(
-		font *T.GdkFont,
-		s string) int
+	StringMeasure func(font *Font, s string) int
 
-	TextMeasure func(
-		font *T.GdkFont,
-		text string,
-		textLength int) int
+	TextMeasure func(font *Font, text string, textLength int) int
 
-	CharMeasure func(
-		font *T.GdkFont,
-		character T.Gchar) int
+	CharMeasure func(font *Font, character T.Gchar) int
 
-	StringHeight func(
-		font *T.GdkFont,
-		s string) int
+	StringHeight func(font *Font, s string) int
 
-	TextHeight func(
-		font *T.GdkFont,
-		text string,
-		textLength int) int
+	TextHeight func(font *Font, text string, textLength int) int
 
-	CharHeight func(
-		font *T.GdkFont,
-		character T.Gchar) int
+	CharHeight func(font *Font, character T.Gchar) int
 
-	TextExtents func(
-		font *T.GdkFont,
-		text string,
-		textLength int,
-		lbearing *int,
-		rbearing *int,
-		width *int,
-		ascent *int,
-		descent *int)
+	TextExtents func(font *Font, text string, textLength int,
+		lbearing, rbearing, width, ascent, descent *int)
 
-	TextExtentsWc func(
-		font *T.GdkFont,
-		text *T.GdkWChar,
-		textLength int,
-		lbearing *int,
-		rbearing *int,
-		width *int,
-		ascent *int,
-		descent *int)
+	TextExtentsWc func(font *Font, text *T.GdkWChar,
+		txtLeng, lbearing, rbearing, width, ascent, descent *int)
 
-	StringExtents func(
-		font *T.GdkFont,
-		s string,
-		lbearing *int,
-		rbearing *int,
-		width *int,
-		ascent *int,
-		descent *int)
+	StringExtents func(font *Font, s string,
+		lbearing, rbearing, width, ascent, descent *int)
 
-	FontGetDisplay func(
-		font *T.GdkFont) *Display
+	FontGetDisplay func(font *Font) *Display
 
-	KeyvalName func(
-		keyval uint) string
+	KeyvalName func(keyval uint) string
 
-	KeyvalFromName func(
-		keyvalName string) uint
+	KeyvalFromName func(keyvalName string) uint
 
-	KeyvalConvertCase func(
-		symbol uint,
-		lower *uint,
-		upper *uint)
+	KeyvalConvertCase func(symbol uint, lower, upper *uint)
 
-	KeyvalToUpper func(
-		keyval uint) uint
+	KeyvalToUpper func(keyval uint) uint
 
-	KeyvalToLower func(
-		keyval uint) uint
+	KeyvalToLower func(keyval uint) uint
 
-	KeyvalIsUpper func(
-		keyval uint) T.Gboolean
+	KeyvalIsUpper func(keyval uint) T.Gboolean
 
-	KeyvalIsLower func(
-		keyval uint) T.Gboolean
+	KeyvalIsLower func(keyval uint) T.Gboolean
 
-	KeyvalToUnicode func(
-		keyval uint) T.GUint32
+	KeyvalToUnicode func(keyval uint) T.GUint32
 
-	UnicodeToKeyval func(
-		wc T.GUint32) uint
+	UnicodeToKeyval func(wc T.GUint32) uint
 
 	AtomIntern func(
-		atomName string,
-		onlyIfExists T.Gboolean) Atom
+		atomName string, onlyIfExists T.Gboolean) Atom
 
-	AtomInternStaticString func(
-		atomName string) Atom
+	AtomInternStaticString func(atomName string) Atom
 
-	AtomName func(
-		atom Atom) string
+	AtomName func(atom Atom) string
 
-	PropertyGet func(
-		window *Window,
-		property Atom,
-		typ Atom,
-		offset T.Gulong,
-		length T.Gulong,
-		pdelete int,
-		actualPropertyType *Atom,
-		actualFormat *int,
-		actualLength *int,
+	PropertyGet func(window *Window, property, typ Atom,
+		offset, length T.Gulong, pdelete int,
+		actualPropertyType *Atom, actualFormat, actualLength *int,
 		data **T.Guchar) T.Gboolean
 
-	PropertyChange func(
-		window *Window,
-		property Atom,
-		typ Atom,
-		format int,
-		mode PropMode,
-		data *T.Guchar,
+	PropertyChange func(window *Window, property, typ Atom,
+		format int, mode PropMode, data *T.Guchar,
 		nelements int)
 
-	PropertyDelete func(
-		window *Window,
-		property Atom)
+	PropertyDelete func(window *Window, property Atom)
 
-	TextPropertyToTextList func(
-		encoding Atom,
-		format int,
-		text *T.Guchar,
-		length int,
-		list ***T.Gchar) int
+	TextPropertyToTextList func(encoding Atom, format int,
+		text *T.Guchar, length int, list ***T.Gchar) int
 
-	Utf8ToCompoundText func(
-		str string,
-		encoding *Atom,
-		format *int,
-		ctext **T.Guchar,
-		length *int) T.Gboolean
+	Utf8ToCompoundText func(str string, encoding *Atom,
+		format *int, ctext **T.Guchar, length *int) T.Gboolean
 
-	StringToCompoundText func(
-		str string,
-		encoding *Atom,
-		format *int,
-		ctext **T.Guchar,
-		length *int) int
+	StringToCompoundText func(str string, encoding *Atom,
+		format *int, ctext **T.Guchar, length *int) int
 
-	TextPropertyToUtf8List func(
-		encoding Atom,
-		format int,
-		text *T.Guchar,
-		length int,
-		list ***T.Gchar) int
+	TextPropertyToUtf8List func(encoding Atom, format int,
+		text *T.Guchar, length int, list ***T.Gchar) int
 
 	TextPropertyToUtf8ListForDisplay func(
-		display *Display,
-		encoding Atom,
-		format int,
-		text *T.Guchar,
-		length int,
-		list ***T.Gchar) int
+		display *Display, encoding Atom, format int,
+		text *T.Guchar, length int, list ***T.Gchar) int
 
-	Utf8ToStringTarget func(
-		str string) string
+	Utf8ToStringTarget func(str string) string
 
 	TextPropertyToTextListForDisplay func(
-		display *Display,
-		encoding Atom,
-		format int,
-		text *T.Guchar,
-		length int,
-		list ***T.Gchar) int
+		display *Display, encoding Atom, format int,
+		text *T.Guchar, length int, list ***T.Gchar) int
 
 	StringToCompoundTextForDisplay func(
-		display *Display,
-		str string,
-		encoding *Atom,
-		format *int,
-		ctext **T.Guchar,
-		length *int) int
+		display *Display, str string, encoding *Atom,
+		format *int, ctext **T.Guchar, length *int) int
 
 	Utf8ToCompoundTextForDisplay func(
-		display *Display,
-		str string,
-		encoding *Atom,
-		format *int,
-		ctext **T.Guchar,
-		length *int) T.Gboolean
+		display *Display, str string, encoding *Atom,
+		format *int, ctext **T.Guchar, length *int) T.Gboolean
 
-	FreeTextList func(
-		list **T.Gchar)
+	FreeTextList func(list **T.Gchar)
 
-	FreeCompoundText func(
-		ctext *T.Guchar)
+	FreeCompoundText func(ctext *T.Guchar)
 
-	RegionNew func() *T.GdkRegion
+	SelectionOwnerSet func(owner *Window, selection Atom,
+		time T.GUint32, sendEvent T.Gboolean) T.Gboolean
 
-	RegionPolygon func(
-		points *T.GdkPoint,
-		nPoints int,
-		fillRule T.GdkFillRule) *T.GdkRegion
+	SelectionOwnerGet func(selection Atom) *Window
 
-	RegionCopy func(
-		region *T.GdkRegion) *T.GdkRegion
-
-	RegionRectangle func(
-		rectangle *T.GdkRectangle) *T.GdkRegion
-
-	RegionDestroy func(
-		region *T.GdkRegion)
-
-	RegionGetClipbox func(
-		region *T.GdkRegion,
-		rectangle *T.GdkRectangle)
-
-	RegionGetRectangles func(
-		region *T.GdkRegion,
-		rectangles **T.GdkRectangle,
-		nRectangles *int)
-
-	RegionEmpty func(
-		region *T.GdkRegion) T.Gboolean
-
-	RegionEqual func(
-		region1 *T.GdkRegion,
-		region2 *T.GdkRegion) T.Gboolean
-
-	RegionRectEqual func(
-		region *T.GdkRegion,
-		rectangle *T.GdkRectangle) T.Gboolean
-
-	RegionPointIn func(
-		region *T.GdkRegion,
-		x int,
-		y int) T.Gboolean
-
-	RegionRectIn func(
-		region *T.GdkRegion,
-		rectangle *T.GdkRectangle) T.GdkOverlapType
-
-	RegionOffset func(
-		region *T.GdkRegion,
-		dx int,
-		dy int)
-
-	RegionShrink func(
-		region *T.GdkRegion,
-		dx int,
-		dy int)
-
-	RegionUnionWithRect func(
-		region *T.GdkRegion,
-		rect *T.GdkRectangle)
-
-	RegionIntersect func(
-		source1 *T.GdkRegion,
-		source2 *T.GdkRegion)
-
-	RegionUnion func(
-		source1 *T.GdkRegion,
-		source2 *T.GdkRegion)
-
-	RegionSubtract func(
-		source1 *T.GdkRegion,
-		source2 *T.GdkRegion)
-
-	RegionXor func(
-		source1 *T.GdkRegion,
-		source2 *T.GdkRegion)
-
-	RegionSpansIntersectForeach func(
-		region *T.GdkRegion,
-		spans *T.GdkSpan,
-		nSpans int,
-		sorted T.Gboolean,
-		function T.GdkSpanFunc,
-		data T.Gpointer)
-
-	SelectionOwnerSet func(
-		owner *Window,
-		selection Atom,
-		time T.GUint32,
-		sendEvent T.Gboolean) T.Gboolean
-
-	SelectionOwnerGet func(
-		selection Atom) *Window
-
-	SelectionOwnerSetForDisplay func(
-		display *Display,
-		owner *Window,
-		selection Atom,
-		time T.GUint32,
+	SelectionOwnerSetForDisplay func(display *Display,
+		owner *Window, selection Atom, time T.GUint32,
 		sendEvent T.Gboolean) T.Gboolean
 
 	SelectionOwnerGetForDisplay func(
-		display *Display,
-		selection Atom) *Window
+		display *Display, selection Atom) *Window
 
-	SelectionConvert func(
-		requestor *Window,
-		selection Atom,
-		target Atom,
-		time T.GUint32)
+	SelectionConvert func(requestor *Window,
+		selection Atom, target Atom, time T.GUint32)
 
-	SelectionPropertyGet func(
-		requestor *Window,
-		data **T.Guchar,
-		propType *Atom,
-		propFormat *int) int
+	SelectionPropertyGet func(requestor *Window,
+		data **T.Guchar, propType *Atom, propFormat *int) int
 
-	SelectionSendNotify func(
-		requestor T.GdkNativeWindow,
-		selection Atom,
-		target Atom,
-		property Atom,
-		time T.GUint32)
+	SelectionSendNotify func(requestor T.GdkNativeWindow,
+		selection, target, property Atom, time T.GUint32)
 
 	SelectionSendNotifyForDisplay func(
-		display *Display,
-		requestor T.GdkNativeWindow,
-		selection Atom,
-		target Atom,
-		property Atom,
-		time T.GUint32)
+		display *Display, requestor T.GdkNativeWindow,
+		selection, target, property Atom, time T.GUint32)
 
-	SpawnOnScreen func(
-		screen *Screen,
-		workingDirectory string,
-		argv **T.Gchar,
-		envp **T.Gchar,
-		flags T.GSpawnFlags,
-		childSetup T.GSpawnChildSetupFunc,
-		userData T.Gpointer,
-		childPid *int,
-		e **T.GError) T.Gboolean
+	SpawnOnScreen func(screen *Screen, workingDirectory string,
+		argv, envp **T.Gchar, flags T.GSpawnFlags,
+		childSetup T.GSpawnChildSetupFunc, userData T.Gpointer,
+		childPid *int, e **T.GError) T.Gboolean
 
-	SpawnOnScreenWithPipes func(
-		screen *Screen,
-		workingDirectory string,
-		argv **T.Gchar,
-		envp **T.Gchar,
-		flags T.GSpawnFlags,
-		childSetup T.GSpawnChildSetupFunc,
-		userData T.Gpointer,
-		childPid *int,
-		standardInput *int,
-		standardOutput *int,
-		standardError *int,
+	SpawnOnScreenWithPipes func(screen *Screen,
+		workingDirectory string, argv, envp **T.Gchar,
+		flags T.GSpawnFlags, childSetup T.GSpawnChildSetupFunc,
+		userData T.Gpointer, childPid, standardInput,
+		standardOutput, standardError *int,
 		e **T.GError) T.Gboolean
 
 	SpawnCommandLineOnScreen func(
-		screen *Screen,
-		commandLine string,
-		e **T.GError) T.Gboolean
+		screen *Screen, commandLine string, e **T.GError) T.Gboolean
 
-	WindowForeignNew func(
-		anid T.GdkNativeWindow) *Window
+	WindowForeignNew func(anid T.GdkNativeWindow) *Window
 
-	WindowLookup func(
-		anid T.GdkNativeWindow) *Window
+	WindowLookup func(anid T.GdkNativeWindow) *Window
 
 	WindowForeignNewForDisplay func(
-		display *Display,
-		anid T.GdkNativeWindow) *Window
+		display *Display, anid T.GdkNativeWindow) *Window
 
 	WindowLookupForDisplay func(
-		display *Display,
-		anid T.GdkNativeWindow) *Window
+		display *Display, anid T.GdkNativeWindow) *Window
 
 	WindowObjectGetType func() T.GType
 
-	SetSmClientId func(
-		smClientId string)
+	SetSmClientId func(smClientId string)
 
-	WindowSetDebugUpdates func(
-		setting T.Gboolean)
+	WindowSetDebugUpdates func(setting T.Gboolean)
 
-	WindowConstrainSize func(
-		geometry *T.GdkGeometry,
-		flags uint,
-		width int,
-		height int,
-		newWidth *int,
-		newHeight *int)
+	WindowConstrainSize func(geometry *Geometry, flags uint,
+		width, height int, newWidth, newHeight *int)
 
 	GetDefaultRootWindow func() *Window
 
-	OffscreenWindowGetPixmap func(
-		window *Window) *Pixmap
+	OffscreenWindowGetPixmap func(window *Window) *Pixmap
 
-	OffscreenWindowSetEmbedder func(
-		window *Window,
-		embedder *Window)
+	OffscreenWindowSetEmbedder func(window, embedder *Window)
 
-	OffscreenWindowGetEmbedder func(
-		window *Window) *Window
+	OffscreenWindowGetEmbedder func(window *Window) *Window
 
 	SetPointerHooks func(
 		newHooks *T.GdkPointerHooks) *T.GdkPointerHooks
 
-	TestRenderSync func(
-		window *Window)
+	TestRenderSync func(window *Window)
 
-	TestSimulateKey func(
-		window *Window,
-		x int,
-		y int,
-		keyval uint,
-		modifiers T.GdkModifierType,
+	TestSimulateKey func(window *Window, x, y int,
+		keyval uint, modifiers T.GdkModifierType,
 		keyPressrelease EventType) T.Gboolean
 
-	TestSimulateButton func(
-		window *Window,
-		x int,
-		y int,
-		button uint,
-		modifiers T.GdkModifierType,
+	TestSimulateButton func(window *Window, x, y int,
+		button uint, modifiers T.GdkModifierType,
 		buttonPressrelease EventType) T.Gboolean
 
-	QueryDepths func(
-		depths **int,
-		count *int)
+	QueryDepths func(depths **int, count *int)
 
-	QueryVisualTypes func(
-		visualTypes **VisualType,
-		count *int)
+	QueryVisualTypes func(visualTypes **VisualType, count *int)
 
 	ListVisuals func() *T.GList
 
-	ParseArgs func(
-		argc *int,
-		argv ***T.Gchar)
+	ParseArgs func(argc *int, argv ***T.Gchar)
 
-	Init func(
-		argc *int,
-		argv ***T.Gchar)
+	Init func(argc *int, argv ***T.Gchar)
 
-	InitCheck func(
-		argc *int,
-		argv ***T.Gchar) T.Gboolean
+	InitCheck func(argc *int, argv ***T.Gchar) T.Gboolean
 
-	AddOptionEntriesLibgtkOnly func(
-		group *T.GOptionGroup)
+	AddOptionEntriesLibgtkOnly func(group *T.GOptionGroup)
 
 	PreParseLibgtkOnly func()
 
-	Exit func(
-		errorCode int)
+	Exit func(errorCode int)
 
 	SetLocale func() string
 
 	GetProgramClass func() string
 
-	SetProgramClass func(
-		programClass string)
+	SetProgramClass func(programClass string)
 
 	ErrorTrapPush func()
 
 	ErrorTrapPop func() int
 
-	SetUseXshm func(
-		useXshm T.Gboolean)
+	SetUseXshm func(useXshm T.Gboolean)
 
 	GetUseXshm func() T.Gboolean
 
@@ -826,50 +339,31 @@ var (
 
 	GetDisplayArgName func() string
 
-	InputAddFull func(
-		source int,
-		condition T.GdkInputCondition,
-		function T.GdkInputFunction,
-		data T.Gpointer,
+	InputAddFull func(source int, condition T.GdkInputCondition,
+		function T.GdkInputFunction, data T.Gpointer,
 		destroy T.GDestroyNotify) int
 
-	InputAdd func(
-		source int,
-		condition T.GdkInputCondition,
-		function T.GdkInputFunction,
-		data T.Gpointer) int
+	InputAdd func(source int, condition T.GdkInputCondition,
+		function T.GdkInputFunction, data T.Gpointer) int
 
-	InputRemove func(
-		tag int)
+	InputRemove func(tag int)
 
-	PointerGrab func(
-		window *Window,
-		ownerEvents T.Gboolean,
-		eventMask EventMask,
-		confineTo *Window,
-		cursor *Cursor,
-		time T.GUint32) T.GdkGrabStatus
+	PointerGrab func(window *Window, ownerEvents T.Gboolean,
+		eventMask EventMask, confineTo *Window,
+		cursor *Cursor, time T.GUint32) GrabStatus
 
-	KeyboardGrab func(
-		window *Window,
-		ownerEvents T.Gboolean,
-		time T.GUint32) T.GdkGrabStatus
+	KeyboardGrab func(window *Window, ownerEvents T.Gboolean,
+		time T.GUint32) GrabStatus
 
-	PointerGrabInfoLibgtkOnly func(
-		display *Display,
-		grabWindow **Window,
-		ownerEvents *T.Gboolean) T.Gboolean
+	PointerGrabInfoLibgtkOnly func(display *Display,
+		grabWindow **Window, ownerEvents *T.Gboolean) T.Gboolean
 
-	KeyboardGrabInfoLibgtkOnly func(
-		display *Display,
-		grabWindow **Window,
-		ownerEvents *T.Gboolean) T.Gboolean
+	KeyboardGrabInfoLibgtkOnly func(display *Display,
+		grabWindow **Window, ownerEvents *T.Gboolean) T.Gboolean
 
-	PointerUngrab func(
-		time T.GUint32)
+	PointerUngrab func(time T.GUint32)
 
-	KeyboardUngrab func(
-		time T.GUint32)
+	KeyboardUngrab func(time T.GUint32)
 
 	PointerIsGrabbed func() T.Gboolean
 
@@ -885,33 +379,15 @@ var (
 
 	Flush func()
 
-	SetDoubleClickTime func(
-		msec uint)
+	SetDoubleClickTime func(msec uint)
 
-	RectangleIntersect func(
-		src1 *T.GdkRectangle,
-		src2 *T.GdkRectangle,
-		dest *T.GdkRectangle) T.Gboolean
+	Wcstombs func(src *T.GdkWChar) string
 
-	RectangleUnion func(
-		src1 *T.GdkRectangle,
-		src2 *T.GdkRectangle,
-		dest *T.GdkRectangle)
-
-	RectangleGetType func() T.GType
-
-	Wcstombs func(
-		src *T.GdkWChar) string
-
-	Mbstowcs func(
-		dest *T.GdkWChar,
-		src string,
-		destMax int) int
+	Mbstowcs func(dest *T.GdkWChar, src string, destMax int) int
 
 	NotifyStartupComplete func()
 
-	NotifyStartupCompleteWithId func(
-		startupId string)
+	NotifyStartupCompleteWithId func(startupId string)
 
 	ThreadsEnter func()
 
@@ -919,87 +395,30 @@ var (
 
 	ThreadsInit func()
 
-	ThreadsSetLockFunctions func(
-		enterFn T.GCallback,
-		leaveFn T.GCallback)
+	ThreadsSetLockFunctions func(enterFn, leaveFn T.GCallback)
 
-	ThreadsAddIdleFull func(
-		priority int,
-		function T.GSourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+	ThreadsAddIdleFull func(priority int, function T.GSourceFunc,
+		data T.Gpointer, notify T.GDestroyNotify) uint
 
 	ThreadsAddIdle func(
-		function T.GSourceFunc,
-		data T.Gpointer) uint
+		function T.GSourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutFull func(
-		priority int,
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		priority int, interval uint, function T.GSourceFunc,
+		data T.Gpointer, notify T.GDestroyNotify) uint
 
-	ThreadsAddTimeout func(
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer) uint
+	ThreadsAddTimeout func(interval uint,
+		function T.GSourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutSecondsFull func(
-		priority int,
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		priority int, interval uint, function T.GSourceFunc,
+		data T.Gpointer, notify T.GDestroyNotify) uint
 
-	ThreadsAddTimeoutSeconds func(
-		interval uint,
-		function T.GSourceFunc,
-		data T.Gpointer) uint
+	ThreadsAddTimeoutSeconds func(interval uint,
+		function T.GSourceFunc, data T.Gpointer) uint
 
-	PixbufNonAnimGetType func() T.GType
-
-	PixbufNonAnimNew func(
-		pixbuf *Pixbuf) *PixbufAnimation
-
-	PixbufAnimationNewFromFile func(
-		filename string,
-		e **T.GError) *PixbufAnimation
-
-	PixdataSerialize func(
-		pixdata *T.GdkPixdata,
-		streamLengthP *uint) *uint8
-
-	PixdataDeserialize func(
-		pixdata *T.GdkPixdata,
-		streamLength uint,
-		stream *uint8,
-		e **T.GError) T.Gboolean
-
-	PixdataFromPixbuf func(
-		pixdata *T.GdkPixdata,
-		pixbuf *Pixbuf,
-		useRle T.Gboolean) T.Gpointer
-
-	PixbufFromPixdata func(
-		pixdata *T.GdkPixdata,
-		copyPixels T.Gboolean,
-		e **T.GError) *Pixbuf
-
-	PixdataToCsource func(
-		pixdata *T.GdkPixdata,
-		name string,
-		dumpType T.GdkPixdataDumpType) *T.GString
-
-	PixbufSetOption func(
-		pixbuf *Pixbuf,
-		key string,
-		value string) T.Gboolean
-
-	SynthesizeWindowState func(
-		window *Window,
-		unsetFlags WindowState,
-		setFlags WindowState)
+	SynthesizeWindowState func(window *Window,
+		unsetFlags WindowState, setFlags WindowState)
 
 	Win32WindowIsWin32 func(window *Window) T.Gboolean
 
@@ -1009,9 +428,9 @@ var (
 
 	Win32DrawableGetHandle func(drawable *Drawable) HGDIOBJ
 
-	Win32HdcGet func(drawable *Drawable, gc *T.GdkGC, usage T.GdkGCValuesMask) HDC
+	Win32HdcGet func(drawable *Drawable, gc *GC, usage GCValuesMask) HDC
 
-	Win32HdcRelease func(drawable *Drawable, gc *T.GdkGC, usage T.GdkGCValuesMask)
+	Win32HdcRelease func(drawable *Drawable, gc *GC, usage GCValuesMask)
 
 	Win32SelectionAddTargets func(owner *Window, selection Atom, nTargets int, targets *Atom)
 
@@ -1021,7 +440,7 @@ var (
 
 	Win32SetModalDialogLibgtkOnly func(window HWND)
 
-	Win32BeginDirectDrawLibgtkOnly func(drawable *Drawable, gc *T.GdkGC, privData *T.Gpointer, xOffsetOut *int, yOffsetOut *int) *Drawable
+	Win32BeginDirectDrawLibgtkOnly func(drawable *Drawable, gc *GC, privData *T.Gpointer, xOffsetOut *int, yOffsetOut *int) *Drawable
 
 	Win32EndDirectDrawLibgtkOnly func(privData T.Gpointer)
 
@@ -1055,13 +474,13 @@ var apiList = outside.Apis{
 	{"gdk_bitmap_create_from_data", &BitmapCreateFromData},
 	{"gdk_byte_order_get_type", &ByteOrderGetType},
 	{"gdk_cairo_create", &CairoCreate},
-	{"gdk_cairo_rectangle", &CairoRectangle},
-	{"gdk_cairo_region", &CairoRegion},
-	{"gdk_cairo_reset_clip", &CairoResetClip},
-	{"gdk_cairo_set_source_color", &CairoSetSourceColor},
-	{"gdk_cairo_set_source_pixbuf", &CairoSetSourcePixbuf},
-	{"gdk_cairo_set_source_pixmap", &CairoSetSourcePixmap},
-	{"gdk_cairo_set_source_window", &CairoSetSourceWindow},
+	{"gdk_cairo_rectangle", &cairoRectangle},
+	{"gdk_cairo_region", &cairoRegion},
+	{"gdk_cairo_reset_clip", &cairoResetClip},
+	{"gdk_cairo_set_source_color", &cairoSetSourceColor},
+	{"gdk_cairo_set_source_pixbuf", &cairoSetSourcePixbuf},
+	{"gdk_cairo_set_source_pixmap", &cairoSetSourcePixmap},
+	{"gdk_cairo_set_source_window", &cairoSetSourceWindow},
 	{"gdk_cap_style_get_type", &CapStyleGetType},
 	{"gdk_char_height", &CharHeight},
 	{"gdk_char_measure", &CharMeasure},
@@ -1271,52 +690,52 @@ var apiList = outside.Apis{
 	{"gdk_fill_rule_get_type", &FillRuleGetType},
 	{"gdk_filter_return_get_type", &FilterReturnGetType},
 	{"gdk_flush", &Flush},
-	{"gdk_font_equal", &FontEqual},
+	{"gdk_font_equal", &fontEqual},
 	{"gdk_font_from_description", &FontFromDescription},
 	{"gdk_font_from_description_for_display", &FontFromDescriptionForDisplay},
 	{"gdk_font_get_display", &FontGetDisplay},
 	{"gdk_font_get_type", &FontGetType},
-	{"gdk_font_id", &FontId},
+	{"gdk_font_id", &fontId},
 	{"gdk_font_load", &FontLoad},
 	{"gdk_font_load_for_display", &FontLoadForDisplay},
-	{"gdk_font_ref", &FontRef},
+	{"gdk_font_ref", &fontRef},
 	{"gdk_font_type_get_type", &FontTypeGetType},
-	{"gdk_font_unref", &FontUnref},
+	{"gdk_font_unref", &fontUnref},
 	{"gdk_fontset_load", &FontsetLoad},
 	{"gdk_fontset_load_for_display", &FontsetLoadForDisplay},
 	{"gdk_free_compound_text", &FreeCompoundText},
 	{"gdk_free_text_list", &FreeTextList},
 	{"gdk_function_get_type", &FunctionGetType},
-	{"gdk_gc_copy", &GcCopy},
-	{"gdk_gc_get_colormap", &GcGetColormap},
-	{"gdk_gc_get_screen", &GcGetScreen},
+	{"gdk_gc_copy", &gcCopy},
+	{"gdk_gc_get_colormap", &gcGetColormap},
+	{"gdk_gc_get_screen", &gcGetScreen},
 	{"gdk_gc_get_type", &GcGetType},
-	{"gdk_gc_get_values", &GcGetValues},
+	{"gdk_gc_get_values", &gcGetValues},
 	{"gdk_gc_new", &GcNew},
 	{"gdk_gc_new_with_values", &GcNewWithValues},
-	{"gdk_gc_offset", &GcOffset},
-	{"gdk_gc_ref", &GcRef},
-	{"gdk_gc_set_background", &GcSetBackground},
-	{"gdk_gc_set_clip_mask", &GcSetClipMask},
-	{"gdk_gc_set_clip_origin", &GcSetClipOrigin},
-	{"gdk_gc_set_clip_rectangle", &GcSetClipRectangle},
-	{"gdk_gc_set_clip_region", &GcSetClipRegion},
-	{"gdk_gc_set_colormap", &GcSetColormap},
-	{"gdk_gc_set_dashes", &GcSetDashes},
-	{"gdk_gc_set_exposures", &GcSetExposures},
-	{"gdk_gc_set_fill", &GcSetFill},
-	{"gdk_gc_set_font", &GcSetFont},
-	{"gdk_gc_set_foreground", &GcSetForeground},
-	{"gdk_gc_set_function", &GcSetFunction},
-	{"gdk_gc_set_line_attributes", &GcSetLineAttributes},
-	{"gdk_gc_set_rgb_bg_color", &GcSetRgbBgColor},
-	{"gdk_gc_set_rgb_fg_color", &GcSetRgbFgColor},
-	{"gdk_gc_set_stipple", &GcSetStipple},
-	{"gdk_gc_set_subwindow", &GcSetSubwindow},
-	{"gdk_gc_set_tile", &GcSetTile},
-	{"gdk_gc_set_ts_origin", &GcSetTsOrigin},
-	{"gdk_gc_set_values", &GcSetValues},
-	{"gdk_gc_unref", &GcUnref},
+	{"gdk_gc_offset", &gcOffset},
+	{"gdk_gc_ref", &gcRef},
+	{"gdk_gc_set_background", &gcSetBackground},
+	{"gdk_gc_set_clip_mask", &gcSetClipMask},
+	{"gdk_gc_set_clip_origin", &gcSetClipOrigin},
+	{"gdk_gc_set_clip_rectangle", &gcSetClipRectangle},
+	{"gdk_gc_set_clip_region", &gcSetClipRegion},
+	{"gdk_gc_set_colormap", &gcSetColormap},
+	{"gdk_gc_set_dashes", &gcSetDashes},
+	{"gdk_gc_set_exposures", &gcSetExposures},
+	{"gdk_gc_set_fill", &gcSetFill},
+	{"gdk_gc_set_font", &gcSetFont},
+	{"gdk_gc_set_foreground", &gcSetForeground},
+	{"gdk_gc_set_function", &gcSetFunction},
+	{"gdk_gc_set_line_attributes", &gcSetLineAttributes},
+	{"gdk_gc_set_rgb_bg_color", &gcSetRgbBgColor},
+	{"gdk_gc_set_rgb_fg_color", &gcSetRgbFgColor},
+	{"gdk_gc_set_stipple", &gcSetStipple},
+	{"gdk_gc_set_subwindow", &gcSetSubwindow},
+	{"gdk_gc_set_tile", &gcSetTile},
+	{"gdk_gc_set_ts_origin", &gcSetTsOrigin},
+	{"gdk_gc_set_values", &gcSetValues},
+	{"gdk_gc_unref", &gcUnref},
 	{"gdk_gc_values_mask_get_type", &GcValuesMaskGetType},
 	{"gdk_get_default_root_window", &GetDefaultRootWindow},
 	{"gdk_get_display", &GetDisplay},
@@ -1442,28 +861,28 @@ var apiList = outside.Apis{
 	{"gdk_query_depths", &QueryDepths},
 	{"gdk_query_visual_types", &QueryVisualTypes},
 	{"gdk_rectangle_get_type", &RectangleGetType},
-	{"gdk_rectangle_intersect", &RectangleIntersect},
-	{"gdk_rectangle_union", &RectangleUnion},
-	{"gdk_region_copy", &RegionCopy},
-	{"gdk_region_destroy", &RegionDestroy},
-	{"gdk_region_empty", &RegionEmpty},
-	{"gdk_region_equal", &RegionEqual},
-	{"gdk_region_get_clipbox", &RegionGetClipbox},
-	{"gdk_region_get_rectangles", &RegionGetRectangles},
-	{"gdk_region_intersect", &RegionIntersect},
+	{"gdk_rectangle_intersect", &rectangleIntersect},
+	{"gdk_rectangle_union", &rectangleUnion},
+	{"gdk_region_copy", &regionCopy},
+	{"gdk_region_destroy", &regionDestroy},
+	{"gdk_region_empty", &regionEmpty},
+	{"gdk_region_equal", &regionEqual},
+	{"gdk_region_get_clipbox", &regionGetClipbox},
+	{"gdk_region_get_rectangles", &regionGetRectangles},
+	{"gdk_region_intersect", &regionIntersect},
 	{"gdk_region_new", &RegionNew},
-	{"gdk_region_offset", &RegionOffset},
-	{"gdk_region_point_in", &RegionPointIn},
+	{"gdk_region_offset", &regionOffset},
+	{"gdk_region_point_in", &regionPointIn},
 	{"gdk_region_polygon", &RegionPolygon},
-	{"gdk_region_rect_equal", &RegionRectEqual},
-	{"gdk_region_rect_in", &RegionRectIn},
+	{"gdk_region_rect_equal", &regionRectEqual},
+	{"gdk_region_rect_in", &regionRectIn},
 	{"gdk_region_rectangle", &RegionRectangle},
-	{"gdk_region_shrink", &RegionShrink},
-	{"gdk_region_spans_intersect_foreach", &RegionSpansIntersectForeach},
-	{"gdk_region_subtract", &RegionSubtract},
-	{"gdk_region_union", &RegionUnion},
-	{"gdk_region_union_with_rect", &RegionUnionWithRect},
-	{"gdk_region_xor", &RegionXor},
+	{"gdk_region_shrink", &regionShrink},
+	{"gdk_region_spans_intersect_foreach", &regionSpansIntersectForeach},
+	{"gdk_region_subtract", &regionSubtract},
+	{"gdk_region_union", &regionUnion},
+	{"gdk_region_union_with_rect", &regionUnionWithRect},
+	{"gdk_region_xor", &regionXor},
 	{"gdk_rgb_cmap_free", &RgbCmapFree},
 	{"gdk_rgb_cmap_new", &RgbCmapNew},
 	{"gdk_rgb_colormap_ditherable", &RgbColormapDitherable},
@@ -1869,7 +1288,7 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_scale_simple", &pixbufScaleSimple},
 	// Undocumented {"gdk_pixbuf_scaled_anim_get_type", &PixbufScaledAnimGetType},
 	// Undocumented {"gdk_pixbuf_scaled_anim_iter_get_type", &PixbufScaledAnimIterGetType},
-	{"gdk_pixbuf_set_option", &PixbufSetOption},
+	{"gdk_pixbuf_set_option", &pixbufSetOption},
 	{"gdk_pixbuf_simple_anim_add_frame", &pixbufSimpleAnimAddFrame},
 	{"gdk_pixbuf_simple_anim_get_loop", &pixbufSimpleAnimGetLoop},
 	{"gdk_pixbuf_simple_anim_get_type", &PixbufSimpleAnimGetType},
@@ -1877,10 +1296,10 @@ var apiListPixbuf = outside.Apis{
 	{"gdk_pixbuf_simple_anim_new", &PixbufSimpleAnimNew},
 	{"gdk_pixbuf_simple_anim_set_loop", &pixbufSimpleAnimSetLoop},
 	{"gdk_pixbuf_unref", &pixbufUnref},
-	{"gdk_pixdata_deserialize", &PixdataDeserialize},
-	{"gdk_pixdata_from_pixbuf", &PixdataFromPixbuf},
-	{"gdk_pixdata_serialize", &PixdataSerialize},
-	{"gdk_pixdata_to_csource", &PixdataToCsource},
+	{"gdk_pixdata_deserialize", &pixdataDeserialize},
+	{"gdk_pixdata_from_pixbuf", &pixdataFromPixbuf},
+	{"gdk_pixdata_serialize", &pixdataSerialize},
+	{"gdk_pixdata_to_csource", &pixdataToCsource},
 }
 
 var dataList = outside.Data{

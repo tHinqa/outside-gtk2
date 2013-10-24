@@ -66,7 +66,7 @@ var (
 	widgetCreatePangoLayout     func(w *Widget, text string) *T.PangoLayout
 	widgetDestroy               func(w *Widget)
 	widgetDestroyed             func(w *Widget, widgetPointer **Widget)
-	widgetDraw                  func(w *Widget, area *T.GdkRectangle)
+	widgetDraw                  func(w *Widget, area *D.Rectangle)
 	widgetEnsureStyle           func(w *Widget)
 	widgetErrorBell             func(w *Widget)
 	widgetEvent                 func(w *Widget, event *D.Event) T.Gboolean
@@ -104,7 +104,7 @@ var (
 	widgetGetSensitive          func(w *Widget) T.Gboolean
 	widgetGetSettings           func(w *Widget) *Settings
 	widgetGetSizeRequest        func(w *Widget, width *int, height *int)
-	widgetGetSnapshot           func(w *Widget, clipRect *T.GdkRectangle) *D.Pixmap
+	widgetGetSnapshot           func(w *Widget, clipRect *D.Rectangle) *D.Pixmap
 	widgetGetState              func(w *Widget) StateType
 	widgetGetStyle              func(w *Widget) *Style
 	widgetGetTooltipMarkup      func(w *Widget) string
@@ -125,7 +125,7 @@ var (
 	widgetHideAll               func(w *Widget)
 	widgetHideOnDelete          func(w *Widget) T.Gboolean
 	widgetInputShapeCombineMask func(w *Widget, shapeMask *T.GdkBitmap, offsetX, offsetY int)
-	widgetIntersect             func(w *Widget, area, intersection *T.GdkRectangle) T.Gboolean
+	widgetIntersect             func(w *Widget, area, intersection *D.Rectangle) T.Gboolean
 	widgetIsAncestor            func(w *Widget, ancestor *Widget) T.Gboolean
 	widgetIsComposited          func(w *Widget) T.Gboolean
 	widgetIsDrawable            func(w *Widget) T.Gboolean
@@ -153,7 +153,7 @@ var (
 	widgetQueueResizeNoRedraw   func(w *Widget)
 	widgetRealize               func(w *Widget)
 	widgetRef                   func(w *Widget) *Widget
-	widgetRegionIntersect       func(w *Widget, region *T.GdkRegion) *T.GdkRegion
+	widgetRegionIntersect       func(w *Widget, region *D.Region) *D.Region
 	widgetRemoveAccelerator     func(w *Widget, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
 	widgetRemoveMnemonicLabel   func(w *Widget, label *Widget)
 	widgetRenderIcon            func(w *Widget, stockId string, size IconSize, detail string) *D.Pixbuf
@@ -236,7 +236,7 @@ func (w *Widget) CreatePangoLayout(text string) *T.PangoLayout {
 }
 func (w *Widget) Destroy()                               { widgetDestroy(w) }
 func (w *Widget) Destroyed(widgetPointer **Widget)       { widgetDestroyed(w, widgetPointer) }
-func (w *Widget) Draw(area *T.GdkRectangle)              { widgetDraw(w, area) }
+func (w *Widget) Draw(area *D.Rectangle)                 { widgetDraw(w, area) }
 func (w *Widget) EnsureStyle()                           { widgetEnsureStyle(w) }
 func (w *Widget) ErrorBell()                             { widgetErrorBell(w) }
 func (w *Widget) Event(event *D.Event) T.Gboolean        { return widgetEvent(w, event) }
@@ -276,7 +276,7 @@ func (w *Widget) GetScreen() *D.Screen                    { return widgetGetScre
 func (w *Widget) GetSensitive() T.Gboolean                { return widgetGetSensitive(w) }
 func (w *Widget) GetSettings() *Settings                  { return widgetGetSettings(w) }
 func (w *Widget) GetSizeRequest(width, height *int)       { widgetGetSizeRequest(w, width, height) }
-func (w *Widget) GetSnapshot(clipRect *T.GdkRectangle) *D.Pixmap {
+func (w *Widget) GetSnapshot(clipRect *D.Rectangle) *D.Pixmap {
 	return widgetGetSnapshot(w, clipRect)
 }
 func (w *Widget) GetState() StateType       { return widgetGetState(w) }
@@ -301,7 +301,7 @@ func (w *Widget) HideOnDelete() T.Gboolean  { return widgetHideOnDelete(w) }
 func (w *Widget) InputShapeCombineMask(shapeMask *T.GdkBitmap, offsetX, offsetY int) {
 	widgetInputShapeCombineMask(w, shapeMask, offsetX, offsetY)
 }
-func (w *Widget) Intersect(area, intersection *T.GdkRectangle) T.Gboolean {
+func (w *Widget) Intersect(area, intersection *D.Rectangle) T.Gboolean {
 	return widgetIntersect(w, area, intersection)
 }
 func (w *Widget) IsAncestor(ancestor *Widget) T.Gboolean { return widgetIsAncestor(w, ancestor) }
@@ -343,7 +343,7 @@ func (w *Widget) QueueResize()                           { widgetQueueResize(w) 
 func (w *Widget) QueueResizeNoRedraw()                   { widgetQueueResizeNoRedraw(w) }
 func (w *Widget) Realize()                               { widgetRealize(w) }
 func (w *Widget) Ref() *Widget                           { return widgetRef(w) }
-func (w *Widget) RegionIntersect(region *T.GdkRegion) *T.GdkRegion {
+func (w *Widget) RegionIntersect(region *D.Region) *D.Region {
 	return widgetRegionIntersect(w, region)
 }
 func (w *Widget) RemoveAccelerator(accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
@@ -671,7 +671,7 @@ var (
 	windowGetFocus              func(w *Window) *Widget
 	windowGetFocusOnMap         func(w *Window) T.Gboolean
 	windowGetFrameDimensions    func(w *Window, left, top, right, bottom *int)
-	windowGetGravity            func(w *Window) T.GdkGravity
+	windowGetGravity            func(w *Window) D.Gravity
 	windowGetGroup              func(w *Window) *WindowGroup
 	windowGetHasFrame           func(w *Window) T.Gboolean
 	windowGetIcon               func(w *Window) *D.Pixbuf
@@ -718,8 +718,8 @@ var (
 	windowSetFocus              func(w *Window, focus *Widget)
 	windowSetFocusOnMap         func(w *Window, setting T.Gboolean)
 	windowSetFrameDimensions    func(w *Window, left, top, right, bottom int)
-	windowSetGeometryHints      func(w *Window, geometryWidget *Widget, geometry *T.GdkGeometry, geomMask D.WindowHints)
-	windowSetGravity            func(w *Window, gravity T.GdkGravity)
+	windowSetGeometryHints      func(w *Window, geometryWidget *Widget, geometry *D.Geometry, geomMask D.WindowHints)
+	windowSetGravity            func(w *Window, gravity D.Gravity)
 	windowSetHasFrame           func(w *Window, setting T.Gboolean)
 	windowSetIcon               func(w *Window, icon *D.Pixbuf)
 	windowSetIconFromFile       func(w *Window, filename string, err **T.GError) T.Gboolean
@@ -779,7 +779,7 @@ func (w *Window) GetFocusOnMap() T.Gboolean        { return windowGetFocusOnMap(
 func (w *Window) GetFrameDimensions(left, top, right, bottom *int) {
 	windowGetFrameDimensions(w, left, top, right, bottom)
 }
-func (w *Window) GetGravity() T.GdkGravity               { return windowGetGravity(w) }
+func (w *Window) GetGravity() D.Gravity                  { return windowGetGravity(w) }
 func (w *Window) GetGroup() *WindowGroup                 { return windowGetGroup(w) }
 func (w *Window) GetHasFrame() T.Gboolean                { return windowGetHasFrame(w) }
 func (w *Window) GetIcon() *D.Pixbuf                     { return windowGetIcon(w) }
@@ -832,12 +832,12 @@ func (w *Window) SetFocusOnMap(setting T.Gboolean)           { windowSetFocusOnM
 func (w *Window) SetFrameDimensions(left, top, right, bottom int) {
 	windowSetFrameDimensions(w, left, top, right, bottom)
 }
-func (w *Window) SetGeometryHints(geometryWidget *Widget, geometry *T.GdkGeometry, geomMask D.WindowHints) {
+func (w *Window) SetGeometryHints(geometryWidget *Widget, geometry *D.Geometry, geomMask D.WindowHints) {
 	windowSetGeometryHints(w, geometryWidget, geometry, geomMask)
 }
-func (w *Window) SetGravity(gravity T.GdkGravity) { windowSetGravity(w, gravity) }
-func (w *Window) SetHasFrame(setting T.Gboolean)  { windowSetHasFrame(w, setting) }
-func (w *Window) SetIcon(icon *D.Pixbuf)          { windowSetIcon(w, icon) }
+func (w *Window) SetGravity(gravity D.Gravity)   { windowSetGravity(w, gravity) }
+func (w *Window) SetHasFrame(setting T.Gboolean) { windowSetHasFrame(w, setting) }
+func (w *Window) SetIcon(icon *D.Pixbuf)         { windowSetIcon(w, icon) }
 func (w *Window) SetIconFromFile(filename string, err **T.GError) T.Gboolean {
 	return windowSetIconFromFile(w, filename, err)
 }

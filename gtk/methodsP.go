@@ -137,9 +137,9 @@ type Paned struct {
 	Child1         *Widget
 	Child2         *Widget
 	Handle         *D.Window
-	XorGc          *T.GdkGC
+	XorGc          *D.GC
 	CursorType     D.CursorType
-	HandlePos      T.GdkRectangle
+	HandlePos      D.Rectangle
 	Child1Size     int
 	LastAllocation int
 	MinPosition    int
@@ -373,14 +373,14 @@ var (
 	PreviewUninit         func()
 
 	previewDrawRow   func(p *Preview, data *T.Guchar, x, y, w int)
-	previewPut       func(p *Preview, window *D.Window, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int)
+	previewPut       func(p *Preview, window *D.Window, gc *D.GC, srcx, srcy, destx, desty, width, height int)
 	previewSetDither func(p *Preview, dither T.GdkRgbDither)
 	previewSetExpand func(p *Preview, expand T.Gboolean)
 	previewSize      func(p *Preview, width, height int)
 )
 
 func (p *Preview) DrawRow(data *T.Guchar, x, y, w int) { previewDrawRow(p, data, x, y, w) }
-func (p *Preview) Put(window *D.Window, gc *T.GdkGC, srcx, srcy, destx, desty, width, height int) {
+func (p *Preview) Put(window *D.Window, gc *D.GC, srcx, srcy, destx, desty, width, height int) {
 	previewPut(p, window, gc, srcx, srcy, destx, desty, width, height)
 }
 func (p *Preview) SetDither(dither T.GdkRgbDither) { previewSetDither(p, dither) }

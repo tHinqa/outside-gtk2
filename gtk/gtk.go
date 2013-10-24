@@ -48,7 +48,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		points *T.GdkPoint,
+		points *D.Point,
 		npoints int,
 		fill T.Gboolean)
 
@@ -176,7 +176,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x1, x2, y int)
@@ -185,7 +185,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		y1, y2, x int)
@@ -195,7 +195,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -205,10 +205,10 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
-		points *T.GdkPoint,
+		points *D.Point,
 		nPoints int,
 		fill T.Gboolean)
 
@@ -217,7 +217,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		arrowType ArrowType,
@@ -229,7 +229,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -239,7 +239,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -249,7 +249,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -259,7 +259,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -269,7 +269,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -279,7 +279,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -289,7 +289,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int,
@@ -301,7 +301,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int,
@@ -313,7 +313,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int,
@@ -323,7 +323,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int)
@@ -333,7 +333,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int,
@@ -344,7 +344,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		shadowType ShadowType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y, width, height int,
@@ -354,7 +354,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y int,
@@ -365,7 +365,7 @@ var (
 		window *D.Window,
 		stateType StateType,
 		useText T.Gboolean,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y int,
@@ -375,7 +375,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		edge D.WindowEdge,
@@ -385,7 +385,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		step uint,
@@ -402,7 +402,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		area *T.GdkRectangle,
+		area *D.Rectangle,
 		widget *Widget,
 		detail string,
 		x, y int,
@@ -411,7 +411,7 @@ var (
 	DrawInsertionCursor func(
 		widget *Widget,
 		drawable *D.Drawable,
-		area, location *T.GdkRectangle,
+		area, location *D.Rectangle,
 		isPrimary T.Gboolean,
 		direction TextDirection,
 		drawArrow T.Gboolean)
@@ -474,10 +474,10 @@ var (
 	GcGet func(
 		depth int,
 		colormap *D.Colormap,
-		values *T.GdkGCValues,
-		valuesMask T.GdkGCValuesMask) *T.GdkGC
+		values *D.GCValues,
+		valuesMask D.GCValuesMask) *D.GC
 
-	GcRelease func(gc *T.GdkGC)
+	GcRelease func(gc *D.GC)
 
 	RgbToHsv func(r, g, b float64, h, s, v *float64)
 

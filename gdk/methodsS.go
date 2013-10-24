@@ -10,10 +10,10 @@ import (
 
 type Screen struct {
 	Parent       T.GObject
-	Closed       uint         // : 1
-	NormalGcs    *[32]T.GdkGC //TODO(t): CHECK
-	ExposureGcs  *[32]T.GdkGC //TODO(t): CHECK
-	SubwindowGcs *[32]T.GdkGC //TODO(t): CHECK
+	Closed       uint    // : 1
+	NormalGcs    *[32]GC //TODO(t): CHECK
+	ExposureGcs  *[32]GC //TODO(t): CHECK
+	SubwindowGcs *[32]GC //TODO(t): CHECK
 	FontOptions  *T.CairoFontOptions
 	Resolution   float64
 }
@@ -32,7 +32,7 @@ var (
 	ScreenGetHeightMm            func(s *Screen) int
 	ScreenGetMonitorAtPoint      func(s *Screen, x int, y int) int
 	ScreenGetMonitorAtWindow     func(s *Screen, window *Window) int
-	ScreenGetMonitorGeometry     func(s *Screen, monitorNum int, dest *T.GdkRectangle)
+	ScreenGetMonitorGeometry     func(s *Screen, monitorNum int, dest *Rectangle)
 	ScreenGetMonitorHeightMm     func(s *Screen, monitorNum int) int
 	ScreenGetMonitorPlugName     func(s *Screen, monitorNum int) string
 	ScreenGetMonitorWidthMm      func(s *Screen, monitorNum int) int
@@ -71,7 +71,7 @@ func (s *Screen) GetMonitorAtPoint(x, y int) int      { return ScreenGetMonitorA
 func (s *Screen) GetMonitorAtWindow(window *Window) int {
 	return ScreenGetMonitorAtWindow(s, window)
 }
-func (s *Screen) GetMonitorGeometry(monitorNum int, dest *T.GdkRectangle) {
+func (s *Screen) GetMonitorGeometry(monitorNum int, dest *Rectangle) {
 	ScreenGetMonitorGeometry(s, monitorNum, dest)
 }
 func (s *Screen) GetMonitorHeightMm(monitorNum int) int {

@@ -937,10 +937,10 @@ var (
 	TextViewScrollMarkOnscreen       func(t *TextView, mark *TextMark)
 	TextViewMoveMarkOnscreen         func(t *TextView, mark *TextMark) T.Gboolean
 	TextViewPlaceCursorOnscreen      func(t *TextView) T.Gboolean
-	TextViewGetVisibleRect           func(t *TextView, visibleRect *T.GdkRectangle)
+	TextViewGetVisibleRect           func(t *TextView, visibleRect *D.Rectangle)
 	TextViewSetCursorVisible         func(t *TextView, setting T.Gboolean)
 	TextViewGetCursorVisible         func(t *TextView) T.Gboolean
-	TextViewGetIterLocation          func(t *TextView, iter *TextIter, location *T.GdkRectangle)
+	TextViewGetIterLocation          func(t *TextView, iter *TextIter, location *D.Rectangle)
 	TextViewGetIterAtLocation        func(t *TextView, iter *TextIter, x, y int)
 	TextViewGetIterAtPosition        func(t *TextView, iter *TextIter, trailing *int, x, y int)
 	TextViewGetLineYrange            func(t *TextView, iter *TextIter, y, height *int)
@@ -1551,7 +1551,7 @@ var (
 	tooltipSetIconFromStock    func(t *Tooltip, stockId string, size IconSize)
 	tooltipSetMarkup           func(t *Tooltip, markup string)
 	tooltipSetText             func(t *Tooltip, text string)
-	tooltipSetTipArea          func(t *Tooltip, rect *T.GdkRectangle)
+	tooltipSetTipArea          func(t *Tooltip, rect *D.Rectangle)
 )
 
 func (t *Tooltip) SetCustom(customWidget *Widget) { tooltipSetCustom(t, customWidget) }
@@ -1565,9 +1565,9 @@ func (t *Tooltip) SetIconFromIconName(iconName string, size IconSize) {
 func (t *Tooltip) SetIconFromStock(stockId string, size IconSize) {
 	tooltipSetIconFromStock(t, stockId, size)
 }
-func (t *Tooltip) SetMarkup(markup string)         { tooltipSetMarkup(t, markup) }
-func (t *Tooltip) SetText(text string)             { tooltipSetText(t, text) }
-func (t *Tooltip) SetTipArea(rect *T.GdkRectangle) { tooltipSetTipArea(t, rect) }
+func (t *Tooltip) SetMarkup(markup string)      { tooltipSetMarkup(t, markup) }
+func (t *Tooltip) SetText(text string)          { tooltipSetText(t, text) }
+func (t *Tooltip) SetTipArea(rect *D.Rectangle) { tooltipSetTipArea(t, rect) }
 
 type (
 	Tooltips struct {
@@ -2339,9 +2339,9 @@ var (
 	treeViewExpandAll                      func(t *TreeView)
 	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll T.Gboolean) T.Gboolean
 	treeViewExpandToPath                   func(t *TreeView, path *TreePath)
-	treeViewGetBackgroundArea              func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle)
+	treeViewGetBackgroundArea              func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *D.Rectangle)
 	treeViewGetBinWindow                   func(t *TreeView) *D.Window
-	treeViewGetCellArea                    func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle)
+	treeViewGetCellArea                    func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *D.Rectangle)
 	treeViewGetColumn                      func(t *TreeView, n int) *TreeViewColumn
 	treeViewGetColumns                     func(t *TreeView) *T.GList
 	treeViewGetCursor                      func(t *TreeView, path **TreePath, focusColumn **TreeViewColumn)
@@ -2374,7 +2374,7 @@ var (
 	treeViewGetTooltipContext              func(t *TreeView, x, y *int, keyboardTip T.Gboolean, model **TreeModel, path **TreePath, iter *TreeIter) T.Gboolean
 	treeViewGetVadjustment                 func(t *TreeView) *Adjustment
 	treeViewGetVisibleRange                func(t *TreeView, startPath **TreePath, endPath **TreePath) T.Gboolean
-	treeViewGetVisibleRect                 func(t *TreeView, visibleRect *T.GdkRectangle)
+	treeViewGetVisibleRect                 func(t *TreeView, visibleRect *D.Rectangle)
 	treeViewInsertColumn                   func(t *TreeView, column *TreeViewColumn, position int) int
 	treeViewInsertColumnWithAttributes     func(t *TreeView, position int, title string, cell *CellRenderer, v ...VArg) int
 	treeViewInsertColumnWithDataFunc       func(t *TreeView, position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify T.GDestroyNotify) int
@@ -2458,11 +2458,11 @@ func (t *TreeView) ExpandRow(path *TreePath, openAll T.Gboolean) T.Gboolean {
 	return treeViewExpandRow(t, path, openAll)
 }
 func (t *TreeView) ExpandToPath(path *TreePath) { treeViewExpandToPath(t, path) }
-func (t *TreeView) GetBackgroundArea(path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle) {
+func (t *TreeView) GetBackgroundArea(path *TreePath, column *TreeViewColumn, rect *D.Rectangle) {
 	treeViewGetBackgroundArea(t, path, column, rect)
 }
 func (t *TreeView) GetBinWindow() *D.Window { return treeViewGetBinWindow(t) }
-func (t *TreeView) GetCellArea(path *TreePath, column *TreeViewColumn, rect *T.GdkRectangle) {
+func (t *TreeView) GetCellArea(path *TreePath, column *TreeViewColumn, rect *D.Rectangle) {
 	treeViewGetCellArea(t, path, column, rect)
 }
 func (t *TreeView) GetColumn(n int) *TreeViewColumn { return treeViewGetColumn(t, n) }
@@ -2515,7 +2515,7 @@ func (t *TreeView) GetVadjustment() *Adjustment { return treeViewGetVadjustment(
 func (t *TreeView) GetVisibleRange(startPath **TreePath, endPath **TreePath) T.Gboolean {
 	return treeViewGetVisibleRange(t, startPath, endPath)
 }
-func (t *TreeView) GetVisibleRect(visibleRect *T.GdkRectangle) {
+func (t *TreeView) GetVisibleRect(visibleRect *D.Rectangle) {
 	treeViewGetVisibleRect(t, visibleRect)
 }
 func (t *TreeView) InsertColumn(column *TreeViewColumn, position int) int {
@@ -2653,7 +2653,7 @@ var (
 
 	treeViewColumnAddAttribute     func(t *TreeViewColumn, cellRenderer *CellRenderer, attribute string, column int)
 	treeViewColumnCellGetPosition  func(t *TreeViewColumn, cellRenderer *CellRenderer, startPos, width *int) T.Gboolean
-	treeViewColumnCellGetSize      func(t *TreeViewColumn, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int)
+	treeViewColumnCellGetSize      func(t *TreeViewColumn, cellArea *D.Rectangle, xOffset, yOffset, width, height *int)
 	treeViewColumnCellIsVisible    func(t *TreeViewColumn) T.Gboolean
 	treeViewColumnCellSetCellData  func(t *TreeViewColumn, treeModel *TreeModel, iter *TreeIter, isExpander, isExpanded T.Gboolean)
 	treeViewColumnClear            func(t *TreeViewColumn)
@@ -2708,7 +2708,7 @@ func (t *TreeViewColumn) AddAttribute(cellRenderer *CellRenderer, attribute stri
 func (t *TreeViewColumn) CellGetPosition(cellRenderer *CellRenderer, startPos *int, width *int) T.Gboolean {
 	return treeViewColumnCellGetPosition(t, cellRenderer, startPos, width)
 }
-func (t *TreeViewColumn) CellGetSize(cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int) {
+func (t *TreeViewColumn) CellGetSize(cellArea *D.Rectangle, xOffset, yOffset, width, height *int) {
 	treeViewColumnCellGetSize(t, cellArea, xOffset, yOffset, width, height)
 }
 func (t *TreeViewColumn) CellIsVisible() T.Gboolean { return treeViewColumnCellIsVisible(t) }

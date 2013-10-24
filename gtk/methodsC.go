@@ -23,8 +23,8 @@ type (
 		Marked_date       [31]int
 		Display_flags     CalendarDisplayOptions
 		Marked_date_color [31]D.Color
-		Gc                *T.GdkGC
-		Xor_gc            *T.GdkGC
+		Gc                *D.GC
+		Xor_gc            *D.GC
 		Focus_row         int
 		Focus_col         int
 		Highlight_row     int
@@ -228,25 +228,25 @@ var (
 )
 
 var (
-	cellRendererActivate        func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean
+	cellRendererActivate        func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *D.Rectangle, flags CellRendererState) T.Gboolean
 	cellRendererEditingCanceled func(c *CellRenderer)
 	cellRendererGetAlignment    func(c *CellRenderer, xalign, yalign *float32)
 	cellRendererGetFixedSize    func(c *CellRenderer, width, height *int)
 	cellRendererGetPadding      func(c *CellRenderer, xpad, ypad *int)
 	cellRendererGetSensitive    func(c *CellRenderer) T.Gboolean
-	cellRendererGetSize         func(c *CellRenderer, widget *Widget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int)
+	cellRendererGetSize         func(c *CellRenderer, widget *Widget, cellArea *D.Rectangle, xOffset, yOffset, width, height *int)
 	cellRendererGetVisible      func(c *CellRenderer) T.Gboolean
-	cellRendererRender          func(c *CellRenderer, window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState)
+	cellRendererRender          func(c *CellRenderer, window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *D.Rectangle, flags CellRendererState)
 	cellRendererSetAlignment    func(c *CellRenderer, xalign, yalign float32)
 	cellRendererSetFixedSize    func(c *CellRenderer, width, height int)
 	cellRendererSetPadding      func(c *CellRenderer, xpad, ypad int)
 	cellRendererSetSensitive    func(c *CellRenderer, sensitive T.Gboolean)
 	cellRendererSetVisible      func(c *CellRenderer, visible T.Gboolean)
-	cellRendererStartEditing    func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable
+	cellRendererStartEditing    func(c *CellRenderer, event *D.Event, widget *Widget, path string, backgroundArea, cellArea *D.Rectangle, flags CellRendererState) *CellEditable
 	cellRendererStopEditing     func(c *CellRenderer, canceled T.Gboolean)
 )
 
-func (c *CellRenderer) Activate(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) T.Gboolean {
+func (c *CellRenderer) Activate(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *D.Rectangle, flags CellRendererState) T.Gboolean {
 	return cellRendererActivate(c, event, widget, path, backgroundArea, cellArea, flags)
 }
 func (c *CellRenderer) EditingCanceled() { cellRendererEditingCanceled(c) }
@@ -256,11 +256,11 @@ func (c *CellRenderer) GetAlignment(xalign, yalign *float32) {
 func (c *CellRenderer) GetFixedSize(width, height *int) { cellRendererGetFixedSize(c, width, height) }
 func (c *CellRenderer) GetPadding(xpad, ypad *int)      { cellRendererGetPadding(c, xpad, ypad) }
 func (c *CellRenderer) GetSensitive() T.Gboolean        { return cellRendererGetSensitive(c) }
-func (c *CellRenderer) GetSize(widget *Widget, cellArea *T.GdkRectangle, xOffset, yOffset, width, height *int) {
+func (c *CellRenderer) GetSize(widget *Widget, cellArea *D.Rectangle, xOffset, yOffset, width, height *int) {
 	cellRendererGetSize(c, widget, cellArea, xOffset, yOffset, width, height)
 }
 func (c *CellRenderer) GetVisible() T.Gboolean { return cellRendererGetVisible(c) }
-func (c *CellRenderer) Render(window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *T.GdkRectangle, flags CellRendererState) {
+func (c *CellRenderer) Render(window *D.Window, widget *Widget, backgroundArea, cellArea, exposeArea *D.Rectangle, flags CellRendererState) {
 	cellRendererRender(c, window, widget, backgroundArea, cellArea, exposeArea, flags)
 }
 func (c *CellRenderer) SetAlignment(xalign, yalign float32) {
@@ -270,7 +270,7 @@ func (c *CellRenderer) SetFixedSize(width, height int)    { cellRendererSetFixed
 func (c *CellRenderer) SetPadding(xpad, ypad int)         { cellRendererSetPadding(c, xpad, ypad) }
 func (c *CellRenderer) SetSensitive(sensitive T.Gboolean) { cellRendererSetSensitive(c, sensitive) }
 func (c *CellRenderer) SetVisible(visible T.Gboolean)     { cellRendererSetVisible(c, visible) }
-func (c *CellRenderer) StartEditing(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *T.GdkRectangle, flags CellRendererState) *CellEditable {
+func (c *CellRenderer) StartEditing(event *D.Event, widget *Widget, path string, backgroundArea, cellArea *D.Rectangle, flags CellRendererState) *CellEditable {
 	return cellRendererStartEditing(c, event, widget, path, backgroundArea, cellArea, flags)
 }
 func (c *CellRenderer) StopEditing(canceled T.Gboolean) { cellRendererStopEditing(c, canceled) }
@@ -547,13 +547,13 @@ type (
 		_                  T.Gpointer
 		_                  T.Gpointer
 		Freeze_count       uint
-		InternalAllocation T.GdkRectangle
+		InternalAllocation D.Rectangle
 		Rows               int
 		RowHeight          int
 		RowList            *T.GList
 		RowListEnd         *T.GList
 		Columns            int
-		ColumnTitleArea    T.GdkRectangle
+		ColumnTitleArea    D.Rectangle
 		TitleWindow        *D.Window
 		Column             *CListColumn
 		ClistWindow        *D.Window
@@ -573,9 +573,9 @@ type (
 		ClickCell          CListCellInfo
 		Hadjustment        *Adjustment
 		Vadjustment        *Adjustment
-		XorGc              *T.GdkGC
-		FgGc               *T.GdkGC
-		BgGc               *T.GdkGC
+		XorGc              *D.GC
+		FgGc               *D.GC
+		BgGc               *D.GC
 		CursorDrag         *D.Cursor
 		XDrag              int
 		FocusRow           int
@@ -594,7 +594,7 @@ type (
 
 	CListColumn struct {
 		Title         *T.Gchar
-		Area          T.GdkRectangle
+		Area          D.Rectangle
 		Button        *Widget
 		Window        *D.Window
 		Width         int
@@ -1268,7 +1268,7 @@ var CornerTypeGetType func() T.GType
 type (
 	CTree struct {
 		Clist       CList
-		LinesGc     *T.GdkGC
+		LinesGc     *D.GC
 		TreeIndent  int
 		TreeSpacing int
 		TreeColumn  int
@@ -1548,7 +1548,7 @@ type Curve struct {
 	GrabPoint    int
 	Last         int
 	NumPoints    int
-	Point        *T.GdkPoint
+	Point        *D.Point
 	NumCtlpoints int
 	Ctlpoint     [2]*float32 //TODO(t): float32 (*ctlpoint)[2]; ???
 }

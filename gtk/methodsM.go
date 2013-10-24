@@ -43,7 +43,7 @@ type (
 		SavedScrollOffset int
 		ScrollStep        int
 		TimeoutId         uint
-		NavigationRegion  *T.GdkRegion
+		NavigationRegion  *D.Region
 		NavigationTimeout uint
 		Bits              uint
 		// NeedsDestructionRefCount : 1

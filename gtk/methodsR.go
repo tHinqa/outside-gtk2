@@ -114,7 +114,7 @@ type (
 		// SliderSizeFixed : 1
 		MinSliderSize int
 		Orientation   Orientation
-		RangeRect     T.GdkRectangle
+		RangeRect     D.Rectangle
 		SliderStart   int
 		SliderEnd     int
 		RoundDigits   int
@@ -143,7 +143,7 @@ var (
 	rangeGetInverted                func(r *Range) T.Gboolean
 	rangeGetLowerStepperSensitivity func(r *Range) SensitivityType
 	rangeGetMinSliderSize           func(r *Range) int
-	rangeGetRangeRect               func(r *Range, rangeRect *T.GdkRectangle)
+	rangeGetRangeRect               func(r *Range, rangeRect *D.Rectangle)
 	rangeGetRestrictToFillLevel     func(r *Range) T.Gboolean
 	rangeGetRoundDigits             func(r *Range) int
 	rangeGetShowFillLevel           func(r *Range) T.Gboolean
@@ -176,11 +176,11 @@ func (r *Range) GetInverted() T.Gboolean    { return rangeGetInverted(r) }
 func (r *Range) GetLowerStepperSensitivity() SensitivityType {
 	return rangeGetLowerStepperSensitivity(r)
 }
-func (r *Range) GetMinSliderSize() int                  { return rangeGetMinSliderSize(r) }
-func (r *Range) GetRangeRect(rangeRect *T.GdkRectangle) { rangeGetRangeRect(r, rangeRect) }
-func (r *Range) GetRestrictToFillLevel() T.Gboolean     { return rangeGetRestrictToFillLevel(r) }
-func (r *Range) GetRoundDigits() int                    { return rangeGetRoundDigits(r) }
-func (r *Range) GetShowFillLevel() T.Gboolean           { return rangeGetShowFillLevel(r) }
+func (r *Range) GetMinSliderSize() int               { return rangeGetMinSliderSize(r) }
+func (r *Range) GetRangeRect(rangeRect *D.Rectangle) { rangeGetRangeRect(r, rangeRect) }
+func (r *Range) GetRestrictToFillLevel() T.Gboolean  { return rangeGetRestrictToFillLevel(r) }
+func (r *Range) GetRoundDigits() int                 { return rangeGetRoundDigits(r) }
+func (r *Range) GetShowFillLevel() T.Gboolean        { return rangeGetShowFillLevel(r) }
 func (r *Range) GetSliderRange(sliderStart, sliderEnd *int) {
 	rangeGetSliderRange(r, sliderStart, sliderEnd)
 }
@@ -687,7 +687,7 @@ type (
 	Ruler struct {
 		Widget       Widget
 		BackingStore *D.Pixmap
-		NonGrExpGc   *T.GdkGC
+		NonGrExpGc   *D.GC
 		Metric       *RulerMetric
 		Xsrc         int
 		Ysrc         int

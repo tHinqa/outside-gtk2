@@ -20,8 +20,8 @@ var (
 	windowAddFilter                       func(w *Window, function T.GdkFilterFunc, data T.Gpointer)
 	windowBeep                            func(w *Window)
 	windowBeginMoveDrag                   func(w *Window, button, rootX, rootY int, timestamp T.GUint32)
-	windowBeginPaintRect                  func(w *Window, rectangle *T.GdkRectangle)
-	windowBeginPaintRegion                func(w *Window, region *T.GdkRegion)
+	windowBeginPaintRect                  func(w *Window, rectangle *Rectangle)
+	windowBeginPaintRegion                func(w *Window, region *Region)
 	windowBeginResizeDrag                 func(w *Window, edge WindowEdge, button, rootX, rootY int, timestamp T.GUint32)
 	windowClear                           func(w *Window)
 	windowClearArea                       func(w *Window, x, y, width, height int)
@@ -54,7 +54,7 @@ var (
 	windowGetEffectiveToplevel            func(w *Window) *Window
 	windowGetEvents                       func(w *Window) EventMask
 	windowGetFocusOnMap                   func(w *Window) T.Gboolean
-	windowGetFrameExtents                 func(w *Window, rect *T.GdkRectangle)
+	windowGetFrameExtents                 func(w *Window, rect *Rectangle)
 	windowGetGeometry                     func(w *Window, x, y, width, height, depth *int)
 	windowGetGroup                        func(w *Window) *Window
 	windowGetHeight                       func(w *Window) int
@@ -70,7 +70,7 @@ var (
 	windowGetState                        func(w *Window) WindowState
 	windowGetToplevel                     func(w *Window) *Window
 	windowGetTypeHint                     func(w *Window) WindowTypeHint
-	windowGetUpdateArea                   func(w *Window) *T.GdkRegion
+	windowGetUpdateArea                   func(w *Window) *Region
 	windowGetUserData                     func(w *Window, data *T.Gpointer)
 	windowGetVisual                       func(w *Window) *Visual
 	windowGetWidth                        func(w *Window) int
@@ -79,10 +79,10 @@ var (
 	windowHide                            func(w *Window)
 	windowIconify                         func(w *Window)
 	windowInputShapeCombineMask           func(w *Window, mask *T.GdkBitmap, x, y int)
-	windowInputShapeCombineRegion         func(w *Window, shapeRegion *T.GdkRegion, offsetX, offsetY int)
-	windowInvalidateMaybeRecurse          func(w *Window, region *T.GdkRegion, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer)
-	windowInvalidateRect                  func(w *Window, rect *T.GdkRectangle, invalidateChildren T.Gboolean)
-	windowInvalidateRegion                func(w *Window, region *T.GdkRegion, invalidateChildren T.Gboolean)
+	windowInputShapeCombineRegion         func(w *Window, shapeRegion *Region, offsetX, offsetY int)
+	windowInvalidateMaybeRecurse          func(w *Window, region *Region, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer)
+	windowInvalidateRect                  func(w *Window, rect *Rectangle, invalidateChildren T.Gboolean)
+	windowInvalidateRegion                func(w *Window, region *Region, invalidateChildren T.Gboolean)
 	windowIsDestroyed                     func(w *Window) T.Gboolean
 	windowIsInputOnly                     func(w *Window) T.Gboolean
 	windowIsShaped                        func(w *Window) T.Gboolean
@@ -93,7 +93,7 @@ var (
 	windowMergeChildInputShapes           func(w *Window)
 	windowMergeChildShapes                func(w *Window)
 	windowMove                            func(w *Window, x, y int)
-	windowMoveRegion                      func(w *Window, region *T.GdkRegion, dx, dy int)
+	windowMoveRegion                      func(w *Window, region *Region, dx, dy int)
 	windowMoveResize                      func(w *Window, x, y, width, height int)
 	windowPeekChildren                    func(w *Window) *T.GList
 	windowProcessUpdates                  func(w *Window, updateChildren T.Gboolean)
@@ -117,7 +117,7 @@ var (
 	windowSetEvents                       func(w *Window, eventMask EventMask)
 	windowSetFocusOnMap                   func(w *Window, focusOnMap T.Gboolean)
 	windowSetFunctions                    func(w *Window, functions T.GdkWMFunction)
-	windowSetGeometryHints                func(w *Window, geometry *T.GdkGeometry, geomMask WindowHints)
+	windowSetGeometryHints                func(w *Window, geometry *Geometry, geomMask WindowHints)
 	windowSetGroup                        func(w *Window, leader *Window)
 	windowSetHints                        func(w *Window, x, y, minWidth, minHeight, maxWidth, maxHeight, flags int)
 	windowSetIcon                         func(w, iconWindow *Window, pixmap *Pixmap, mask *T.GdkBitmap)
@@ -139,7 +139,7 @@ var (
 	windowSetUrgencyHint                  func(w *Window, urgent T.Gboolean)
 	windowSetUserData                     func(w *Window, userData T.Gpointer)
 	windowShapeCombineMask                func(w *Window, mask *T.GdkBitmap, x, y int)
-	windowShapeCombineRegion              func(w *Window, shapeRegion *T.GdkRegion, offsetX, offsetY int)
+	windowShapeCombineRegion              func(w *Window, shapeRegion *Region, offsetX, offsetY int)
 	windowShow                            func(w *Window)
 	windowShowUnraised                    func(w *Window)
 	windowStick                           func(w *Window)
@@ -158,8 +158,8 @@ func (w *Window) Beep() { windowBeep(w) }
 func (w *Window) BeginMoveDrag(button, rootX, rootY int, timestamp T.GUint32) {
 	windowBeginMoveDrag(w, button, rootX, rootY, timestamp)
 }
-func (w *Window) BeginPaintRect(rectangle *T.GdkRectangle) { windowBeginPaintRect(w, rectangle) }
-func (w *Window) BeginPaintRegion(region *T.GdkRegion)     { windowBeginPaintRegion(w, region) }
+func (w *Window) BeginPaintRect(rectangle *Rectangle) { windowBeginPaintRect(w, rectangle) }
+func (w *Window) BeginPaintRegion(region *Region)     { windowBeginPaintRegion(w, region) }
 func (w *Window) BeginResizeDrag(edge WindowEdge, button, rootX, rootY int, timestamp T.GUint32) {
 	windowBeginResizeDrag(w, edge, button, rootX, rootY, timestamp)
 }
@@ -199,12 +199,12 @@ func (w *Window) GetDecorations(decorations *T.GdkWMDecoration) T.Gboolean {
 func (w *Window) GetDeskrelativeOrigin(x, y *int) T.Gboolean {
 	return windowGetDeskrelativeOrigin(w, x, y)
 }
-func (w *Window) GetDisplay() *Display                 { return windowGetDisplay(w) }
-func (w *Window) GetEffectiveParent() *Window          { return windowGetEffectiveParent(w) }
-func (w *Window) GetEffectiveToplevel() *Window        { return windowGetEffectiveToplevel(w) }
-func (w *Window) GetEvents() EventMask                 { return windowGetEvents(w) }
-func (w *Window) GetFocusOnMap() T.Gboolean            { return windowGetFocusOnMap(w) }
-func (w *Window) GetFrameExtents(rect *T.GdkRectangle) { windowGetFrameExtents(w, rect) }
+func (w *Window) GetDisplay() *Display            { return windowGetDisplay(w) }
+func (w *Window) GetEffectiveParent() *Window     { return windowGetEffectiveParent(w) }
+func (w *Window) GetEffectiveToplevel() *Window   { return windowGetEffectiveToplevel(w) }
+func (w *Window) GetEvents() EventMask            { return windowGetEvents(w) }
+func (w *Window) GetFocusOnMap() T.Gboolean       { return windowGetFocusOnMap(w) }
+func (w *Window) GetFrameExtents(rect *Rectangle) { windowGetFrameExtents(w, rect) }
 func (w *Window) GetGeometry(x, y, width, height, depth *int) {
 	windowGetGeometry(w, x, y, width, height, depth)
 }
@@ -228,7 +228,7 @@ func (w *Window) GetScreen() *Screen           { return windowGetScreen(w) }
 func (w *Window) GetState() WindowState        { return windowGetState(w) }
 func (w *Window) GetToplevel() *Window         { return windowGetToplevel(w) }
 func (w *Window) GetTypeHint() WindowTypeHint  { return windowGetTypeHint(w) }
-func (w *Window) GetUpdateArea() *T.GdkRegion  { return windowGetUpdateArea(w) }
+func (w *Window) GetUpdateArea() *Region       { return windowGetUpdateArea(w) }
 func (w *Window) GetUserData(data *T.Gpointer) { windowGetUserData(w, data) }
 func (w *Window) GetVisual() *Visual           { return windowGetVisual(w) }
 func (w *Window) GetWidth() int                { return windowGetWidth(w) }
@@ -239,33 +239,33 @@ func (w *Window) Iconify()                     { windowIconify(w) }
 func (w *Window) InputShapeCombineMask(mask *T.GdkBitmap, x, y int) {
 	windowInputShapeCombineMask(w, mask, x, y)
 }
-func (w *Window) InputShapeCombineRegion(shapeRegion *T.GdkRegion, offsetX, offsetY int) {
+func (w *Window) InputShapeCombineRegion(shapeRegion *Region, offsetX, offsetY int) {
 	windowInputShapeCombineRegion(w, shapeRegion, offsetX, offsetY)
 }
-func (w *Window) InvalidateMaybeRecurse(region *T.GdkRegion, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer) {
+func (w *Window) InvalidateMaybeRecurse(region *Region, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer) {
 	windowInvalidateMaybeRecurse(w, region, childFunc, userData)
 }
-func (w *Window) InvalidateRect(rect *T.GdkRectangle, invalidateChildren T.Gboolean) {
+func (w *Window) InvalidateRect(rect *Rectangle, invalidateChildren T.Gboolean) {
 	windowInvalidateRect(w, rect, invalidateChildren)
 }
-func (w *Window) InvalidateRegion(region *T.GdkRegion, invalidateChildren T.Gboolean) {
+func (w *Window) InvalidateRegion(region *Region, invalidateChildren T.Gboolean) {
 	windowInvalidateRegion(w, region, invalidateChildren)
 }
-func (w *Window) IsDestroyed() T.Gboolean                    { return windowIsDestroyed(w) }
-func (w *Window) IsInputOnly() T.Gboolean                    { return windowIsInputOnly(w) }
-func (w *Window) IsShaped() T.Gboolean                       { return windowIsShaped(w) }
-func (w *Window) IsViewable() T.Gboolean                     { return windowIsViewable(w) }
-func (w *Window) IsVisible() T.Gboolean                      { return windowIsVisible(w) }
-func (w *Window) Lower()                                     { windowLower(w) }
-func (w *Window) Maximize()                                  { windowMaximize(w) }
-func (w *Window) MergeChildInputShapes()                     { windowMergeChildInputShapes(w) }
-func (w *Window) MergeChildShapes()                          { windowMergeChildShapes(w) }
-func (w *Window) Move(x, y int)                              { windowMove(w, x, y) }
-func (w *Window) MoveRegion(region *T.GdkRegion, dx, dy int) { windowMoveRegion(w, region, dx, dy) }
-func (w *Window) MoveResize(x, y, width, height int)         { windowMoveResize(w, x, y, width, height) }
-func (w *Window) PeekChildren() *T.GList                     { return windowPeekChildren(w) }
-func (w *Window) ProcessUpdates(updateChildren T.Gboolean)   { windowProcessUpdates(w, updateChildren) }
-func (w *Window) Raise()                                     { windowRaise(w) }
+func (w *Window) IsDestroyed() T.Gboolean                  { return windowIsDestroyed(w) }
+func (w *Window) IsInputOnly() T.Gboolean                  { return windowIsInputOnly(w) }
+func (w *Window) IsShaped() T.Gboolean                     { return windowIsShaped(w) }
+func (w *Window) IsViewable() T.Gboolean                   { return windowIsViewable(w) }
+func (w *Window) IsVisible() T.Gboolean                    { return windowIsVisible(w) }
+func (w *Window) Lower()                                   { windowLower(w) }
+func (w *Window) Maximize()                                { windowMaximize(w) }
+func (w *Window) MergeChildInputShapes()                   { windowMergeChildInputShapes(w) }
+func (w *Window) MergeChildShapes()                        { windowMergeChildShapes(w) }
+func (w *Window) Move(x, y int)                            { windowMove(w, x, y) }
+func (w *Window) MoveRegion(region *Region, dx, dy int)    { windowMoveRegion(w, region, dx, dy) }
+func (w *Window) MoveResize(x, y, width, height int)       { windowMoveResize(w, x, y, width, height) }
+func (w *Window) PeekChildren() *T.GList                   { return windowPeekChildren(w) }
+func (w *Window) ProcessUpdates(updateChildren T.Gboolean) { windowProcessUpdates(w, updateChildren) }
+func (w *Window) Raise()                                   { windowRaise(w) }
 func (w *Window) RedirectToDrawable(drawable *Drawable, srcX, srcY, destX, destY, width, height int) {
 	windowRedirectToDrawable(w, drawable, srcX, srcY, destX, destY, width, height)
 }
@@ -291,7 +291,7 @@ func (w *Window) SetDecorations(decorations T.GdkWMDecoration) { windowSetDecora
 func (w *Window) SetEvents(eventMask EventMask)                { windowSetEvents(w, eventMask) }
 func (w *Window) SetFocusOnMap(focusOnMap T.Gboolean)          { windowSetFocusOnMap(w, focusOnMap) }
 func (w *Window) SetFunctions(functions T.GdkWMFunction)       { windowSetFunctions(w, functions) }
-func (w *Window) SetGeometryHints(geometry *T.GdkGeometry, geomMask WindowHints) {
+func (w *Window) SetGeometryHints(geometry *Geometry, geomMask WindowHints) {
 	windowSetGeometryHints(w, geometry, geomMask)
 }
 func (w *Window) SetGroup(leader *Window) { windowSetGroup(w, leader) }
@@ -325,7 +325,7 @@ func (w *Window) SetTypeHint(hint WindowTypeHint)              { windowSetTypeHi
 func (w *Window) SetUrgencyHint(urgent T.Gboolean)             { windowSetUrgencyHint(w, urgent) }
 func (w *Window) SetUserData(userData T.Gpointer)              { windowSetUserData(w, userData) }
 func (w *Window) ShapeCombineMask(mask *T.GdkBitmap, x, y int) { windowShapeCombineMask(w, mask, x, y) }
-func (w *Window) ShapeCombineRegion(shapeRegion *T.GdkRegion, offsetX, offsetY int) {
+func (w *Window) ShapeCombineRegion(shapeRegion *Region, offsetX, offsetY int) {
 	windowShapeCombineRegion(w, shapeRegion, offsetX, offsetY)
 }
 func (w *Window) Show()                          { windowShow(w) }

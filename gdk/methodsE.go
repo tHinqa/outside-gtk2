@@ -141,8 +141,8 @@ type EventExpose struct {
 	Type      EventType
 	Window    *Window
 	SendEvent int8
-	Area      T.GdkRectangle
-	Region    *T.GdkRegion
+	Area      Rectangle
+	Region    *Region
 	Count     int
 }
 

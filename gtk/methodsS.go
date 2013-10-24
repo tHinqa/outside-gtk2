@@ -642,7 +642,7 @@ var (
 	StatusIconPositionMenu func(menu *Menu, x, y *int, pushIn *T.Gboolean, userData T.Gpointer)
 
 	statusIconGetBlinking      func(s *StatusIcon) T.Gboolean
-	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean
+	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean
 	statusIconGetGicon         func(s *StatusIcon) *T.GIcon
 	statusIconGetHasTooltip    func(s *StatusIcon) T.Gboolean
 	statusIconGetIconName      func(s *StatusIcon) string
@@ -674,7 +674,7 @@ var (
 )
 
 func (s *StatusIcon) GetBlinking() T.Gboolean { return statusIconGetBlinking(s) }
-func (s *StatusIcon) GetGeometry(screen **D.Screen, area *T.GdkRectangle, orientation *Orientation) T.Gboolean {
+func (s *StatusIcon) GetGeometry(screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean {
 	return statusIconGetGeometry(s, screen, area, orientation)
 }
 func (s *StatusIcon) GetGicon() *T.GIcon                  { return statusIconGetGicon(s) }
@@ -740,21 +740,21 @@ type Style struct {
 	FontDesc        *T.PangoFontDescription
 	Xthickness      int
 	Ythickness      int
-	FgGc            *[5]T.GdkGC //TODO(t): CHECK
-	BgGc            *[5]T.GdkGC //TODO(t): CHECK
-	LightGc         *[5]T.GdkGC //TODO(t): CHECK
-	DarkGc          *[5]T.GdkGC //TODO(t): CHECK
-	MidGc           *[5]T.GdkGC //TODO(t): CHECK
-	TextGc          *[5]T.GdkGC //TODO(t): CHECK
-	BaseGc          *[5]T.GdkGC //TODO(t): CHECK
-	TextAaGc        *[5]T.GdkGC //TODO(t): CHECK
-	BlackGc         *T.GdkGC
-	WhiteGc         *T.GdkGC
+	FgGc            *[5]D.GC //TODO(t): CHECK
+	BgGc            *[5]D.GC //TODO(t): CHECK
+	LightGc         *[5]D.GC //TODO(t): CHECK
+	DarkGc          *[5]D.GC //TODO(t): CHECK
+	MidGc           *[5]D.GC //TODO(t): CHECK
+	TextGc          *[5]D.GC //TODO(t): CHECK
+	BaseGc          *[5]D.GC //TODO(t): CHECK
+	TextAaGc        *[5]D.GC //TODO(t): CHECK
+	BlackGc         *D.GC
+	WhiteGc         *D.GC
 	BgPixmap        *[5]D.Pixmap //TODO(t): CHECK
 	AttachCount     int
 	Depth           int
 	Colormap        *D.Colormap
-	PrivateFont     *T.GdkFont
+	PrivateFont     *D.Font
 	PrivateFontDesc *T.PangoFontDescription
 	RcStyle         *RcStyle
 	Styles          *T.GSList
@@ -766,12 +766,12 @@ var (
 	StyleGetType func() T.GType
 	StyleNew     func() *Style
 
-	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int)
+	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg T.Gboolean, stateType StateType, area *D.Rectangle, x, y, width, height int)
 	styleAttach                 func(s *Style, window *D.Window) *Style
 	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
 	styleGet                    func(s *Style, widgetType T.GType, firstPropertyName string, v ...VArg)
-	styleGetFont                func(s *Style) *T.GdkFont
+	styleGetFont                func(s *Style) *D.Font
 	styleGetStyleProperty       func(s *Style, widgetType T.GType, propertyName string, value *T.GValue)
 	styleGetValist              func(s *Style, widgetType T.GType, firstPropertyName string, varArgs T.VaList)
 	styleLookupColor            func(s *Style, colorName string, color *D.Color) T.Gboolean
@@ -779,11 +779,11 @@ var (
 	styleRef                    func(s *Style) *Style
 	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *D.Pixbuf
 	styleSetBackground          func(s *Style, window *D.Window, stateType StateType)
-	styleSetFont                func(s *Style, font *T.GdkFont)
+	styleSetFont                func(s *Style, font *D.Font)
 	styleUnref                  func(s *Style)
 )
 
-func (s *Style) ApplyDefaultBackground(window *D.Window, setBg T.Gboolean, stateType StateType, area *T.GdkRectangle, x, y, width, height int) {
+func (s *Style) ApplyDefaultBackground(window *D.Window, setBg T.Gboolean, stateType StateType, area *D.Rectangle, x, y, width, height int) {
 	styleApplyDefaultBackground(s, window, setBg, stateType, area, x, y, width, height)
 }
 func (s *Style) Attach(window *D.Window) *Style { return styleAttach(s, window) }
@@ -792,7 +792,7 @@ func (s *Style) Detach()                        { styleDetach(s) }
 func (s *Style) Get(widgetType T.GType, firstPropertyName string, v ...VArg) {
 	styleGet(s, widgetType, firstPropertyName, v)
 }
-func (s *Style) GetFont() *T.GdkFont { return styleGetFont(s) }
+func (s *Style) GetFont() *D.Font { return styleGetFont(s) }
 func (s *Style) GetStyleProperty(widgetType T.GType, propertyName string, value *T.GValue) {
 	styleGetStyleProperty(s, widgetType, propertyName, value)
 }
@@ -810,8 +810,8 @@ func (s *Style) RenderIcon(source *IconSource, direction TextDirection, state St
 func (s *Style) SetBackground(window *D.Window, stateType StateType) {
 	styleSetBackground(s, window, stateType)
 }
-func (s *Style) SetFont(font *T.GdkFont) { styleSetFont(s, font) }
-func (s *Style) Unref()                  { styleUnref(s) }
+func (s *Style) SetFont(font *D.Font) { styleSetFont(s, font) }
+func (s *Style) Unref()               { styleUnref(s) }
 
 type SubmenuDirection Enum
 

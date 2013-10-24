@@ -8,6 +8,32 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+type Cairo struct{} //TODO(t):Def and push methods to /cairo? pragmatic pros/cons
+
+var (
+	CairoCreate func(drawable *Drawable) *Cairo
+
+	cairoResetClip       func(c *Cairo, drawable *Drawable)
+	cairoSetSourceColor  func(c *Cairo, color *Color)
+	cairoSetSourcePixbuf func(c *Cairo, pixbuf *Pixbuf, pixbufX, pixbufY float64)
+	cairoSetSourcePixmap func(c *Cairo, pixmap *Pixmap, pixmapX, pixmapY float64)
+	cairoSetSourceWindow func(c *Cairo, window *Window, x, y float64)
+	cairoRectangle       func(c *Cairo, rectangle *Rectangle)
+	cairoRegion          func(c *Cairo, region *Region)
+)
+
+func (c *Cairo) ResetClip(drawable *Drawable) { cairoResetClip(c, drawable) }
+func (c *Cairo) SetSourceColor(color *Color)  { cairoSetSourceColor(c, color) }
+func (c *Cairo) SetSourcePixbuf(pixbuf *Pixbuf, pixbufX, pixbufY float64) {
+	cairoSetSourcePixbuf(c, pixbuf, pixbufX, pixbufY)
+}
+func (c *Cairo) SetSourcePixmap(pixmap *Pixmap, pixmapX, pixmapY float64) {
+	cairoSetSourcePixmap(c, pixmap, pixmapX, pixmapY)
+}
+func (c *Cairo) SetSourceWindow(window *Window, x, y float64) { cairoSetSourceWindow(c, window, x, y) }
+func (c *Cairo) Rectangle(rectangle *Rectangle)               { cairoRectangle(c, rectangle) }
+func (c *Cairo) Region(region *Region)                        { cairoRegion(c, region) }
+
 type CapStyle Enum
 
 const (
@@ -134,7 +160,7 @@ var (
 
 func (c *Cursor) GetCursorType() CursorType { return cursorGetCursorType(c) }
 func (c *Cursor) GetDisplay() *Display      { return cursorGetDisplay(c) }
-func (c *Cursor) GetImage() *Pixbuf    { return cursorGetImage(c) }
+func (c *Cursor) GetImage() *Pixbuf         { return cursorGetImage(c) }
 func (c *Cursor) Ref() *Cursor              { return cursorRef(c) }
 func (c *Cursor) Unref()                    { cursorUnref(c) }
 

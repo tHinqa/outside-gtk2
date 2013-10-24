@@ -16,8 +16,8 @@ var (
 	PangoContextGetForScreen func(screen *Screen) *T.PangoContext
 	PangoContextSetColormap  func(context *T.PangoContext, colormap *Colormap)
 
-	PangoLayoutGetClipRegion     func(layout *T.PangoLayout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *T.GdkRegion
-	PangoLayoutLineGetClipRegion func(line *T.PangoLayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *T.GdkRegion
+	PangoLayoutGetClipRegion     func(layout *T.PangoLayout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
+	PangoLayoutLineGetClipRegion func(line *T.PangoLayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
 )
 
 type PangoRenderer struct {
@@ -32,13 +32,13 @@ var (
 	PangoRendererGetDefault func(screen *Screen) *T.PangoRenderer
 
 	pangoRendererSetDrawable      func(p *PangoRenderer, drawable *Drawable)
-	pangoRendererSetGc            func(p *PangoRenderer, gc *T.GdkGC)
+	pangoRendererSetGc            func(p *PangoRenderer, gc *GC)
 	pangoRendererSetStipple       func(p *PangoRenderer, part T.PangoRenderPart, stipple *T.GdkBitmap)
 	pangoRendererSetOverrideColor func(p *PangoRenderer, part T.PangoRenderPart, color *Color)
 )
 
 func (p *PangoRenderer) SetDrawable(drawable *Drawable) { pangoRendererSetDrawable(p, drawable) }
-func (p *PangoRenderer) SetGc(gc *T.GdkGC)              { pangoRendererSetGc(p, gc) }
+func (p *PangoRenderer) SetGc(gc *GC)                   { pangoRendererSetGc(p, gc) }
 func (p *PangoRenderer) SetStipple(part T.PangoRenderPart, stipple *T.GdkBitmap) {
 	pangoRendererSetStipple(p, part, stipple)
 }
@@ -105,6 +105,7 @@ var (
 	pixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) T.Gboolean
 	pixbufScale                    func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType)
 	pixbufScaleSimple              func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf
+	pixbufSetOption                func(pixbuf *Pixbuf, key, value string) T.Gboolean
 	pixbufUnref                    func(pixbuf *Pixbuf)
 )
 
@@ -174,7 +175,8 @@ func (p *Pixbuf) Scale(dest *Pixbuf, destX, destY, destWidth, destHeight int, of
 func (p *Pixbuf) ScaleSimple(destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf {
 	return pixbufScaleSimple(p, destWidth, destHeight, interpType)
 }
-func (p *Pixbuf) Unref() { pixbufUnref(p) }
+func (p *Pixbuf) SetOption(key, value string) T.Gboolean { return pixbufSetOption(p, key, value) }
+func (p *Pixbuf) Unref()                                 { pixbufUnref(p) }
 
 var (
 	PixbufErrorGetType func() T.GType
@@ -218,6 +220,7 @@ type PixbufAnimationIter struct{}
 
 var (
 	PixbufAnimationIterGetType func() T.GType
+	PixbufAnimationNewFromFile func(filename string, e **T.GError) *PixbufAnimation
 
 	PixbufAnimationIterAdvance                 func(iter *PixbufAnimationIter, currentTime *T.GTimeVal) T.Gboolean
 	PixbufAnimationIterGetDelayTime            func(iter *PixbufAnimationIter) int
@@ -267,10 +270,15 @@ var (
 )
 
 var (
+	PixbufNonAnimGetType func() T.GType
+	PixbufNonAnimNew     func(pixbuf *Pixbuf) *PixbufAnimation
+)
+
+var (
 	PixbufRenderPixmapAndMask            func(pixbuf *Pixbuf, pixmapReturn **Pixmap, maskReturn **T.GdkBitmap, alphaThreshold int)
 	PixbufRenderPixmapAndMaskForColormap func(pixbuf *Pixbuf, colormap *Colormap, pixmapReturn **Pixmap, maskReturn **T.GdkBitmap, alphaThreshold int)
 	PixbufRenderThresholdAlpha           func(pixbuf *Pixbuf, bitmap *T.GdkBitmap, srcX, srcY, destX, destY, width, height, alphaThreshold int)
-	PixbufRenderToDrawable               func(pixbuf *Pixbuf, drawable *Drawable, gc *T.GdkGC, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
+	PixbufRenderToDrawable               func(pixbuf *Pixbuf, drawable *Drawable, gc *GC, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
 	PixbufRenderToDrawableAlpha          func(pixbuf *Pixbuf, drawable *Drawable, srcX, srcY, destX, destY, width, height int, alphaMode PixbufAlphaMode, alphaThreshold int, dither T.GdkRgbDither, xDither, yDither int)
 )
 
@@ -308,6 +316,77 @@ func (p *PixbufSimpleAnim) GetLoop() T.Gboolean     { return pixbufSimpleAnimGet
 
 var PixbufSimpleAnimIterGetType func() T.GType
 
+type Pixdata struct {
+	Magic       T.GUint32
+	Length      T.GInt32
+	PixdataType PixdataType
+	Rowstride   T.GUint32
+	Width       T.GUint32
+	Height      T.GUint32
+	PixelData   *uint8
+}
+
+var (
+	PixbufFromPixdata func(p *Pixdata, copyPixels T.Gboolean, e **T.GError) *Pixbuf
+
+	pixdataDeserialize func(p *Pixdata, streamLength uint, stream *uint8, e **T.GError) T.Gboolean
+	pixdataFromPixbuf  func(p *Pixdata, pixbuf *Pixbuf, useRle T.Gboolean) T.Gpointer
+	pixdataSerialize   func(p *Pixdata, streamLengthP *uint) *uint8
+	pixdataToCsource   func(p *Pixdata, name string, dumpType PixdataDumpType) *T.GString
+)
+
+func (p *Pixdata) Deserialize(streamLength uint, stream *uint8, e **T.GError) T.Gboolean {
+	return pixdataDeserialize(p, streamLength, stream, e)
+}
+func (p *Pixdata) FromPixbuf(pixbuf *Pixbuf, useRle T.Gboolean) T.Gpointer {
+	return pixdataFromPixbuf(p, pixbuf, useRle)
+}
+func (p *Pixdata) Serialize(streamLengthP *uint) *uint8 { return pixdataSerialize(p, streamLengthP) }
+func (p *Pixdata) ToCsource(name string, dumpType PixdataDumpType) *T.GString {
+	return pixdataToCsource(p, name, dumpType)
+}
+
+type PixdataType Enum
+
+const (
+	PIXDATA_COLOR_TYPE_RGB PixdataType = 0x01 << iota
+	PIXDATA_COLOR_TYPE_RGBA
+	PIXDATA_COLOR_TYPE_MASK PixdataType = 0xff
+)
+const (
+	PIXDATA_SAMPLE_WIDTH_8    PixdataType = 0x01 << 16
+	PIXDATA_SAMPLE_WIDTH_MASK PixdataType = 0x0f << 16
+)
+const (
+	PIXDATA_ENCODING_RAW PixdataType = 0x01 << (24 + iota)
+	PIXDATA_ENCODING_RLE
+	PIXDATA_ENCODING_MASK PixdataType = 0x0f << 24
+)
+
+type PixdataDumpType Enum
+
+const (
+	PIXDATA_DUMP_PIXDATA_STRUCT PixdataDumpType = 1 << iota
+	PIXDATA_DUMP_MACROS
+	_
+	_
+	_
+	_
+	_
+	_
+	PIXDATA_DUMP_CTYPES
+	PIXDATA_DUMP_STATIC
+	PIXDATA_DUMP_CONST
+	_
+	_
+	_
+	_
+	_
+	PIXDATA_DUMP_RLE_DECODER
+	PIXDATA_DUMP_PIXDATA_STREAM PixdataDumpType = 0
+	PIXDATA_DUMP_GTYPES         PixdataDumpType = 0
+)
+
 type Pixmap Drawable
 
 var (
@@ -329,6 +408,11 @@ var (
 )
 
 func (p *Pixmap) GetSize(width, height *int) { pixmapGetSize(p, width, height) }
+
+type Point struct {
+	X int
+	Y int
+}
 
 type PropMode Enum
 
