@@ -78,23 +78,23 @@ func (b *BufferedOutputStream) SetBufferSize(size T.Gsize) {
 }
 
 type BusAcquiredCallback func(
-	connection *T.GDBusConnection,
+	connection *DBusConnection,
 	name string,
 	userData T.Gpointer)
 
 type BusNameAcquiredCallback func(
-	connection *T.GDBusConnection,
+	connection *DBusConnection,
 	name string,
 	userData T.Gpointer)
 
 type BusNameAppearedCallback func(
-	connection *T.GDBusConnection,
+	connection *DBusConnection,
 	name string,
 	nameOwner string,
 	userData T.Gpointer)
 
 type BusNameLostCallback func(
-	connection *T.GDBusConnection,
+	connection *DBusConnection,
 	name string,
 	userData T.Gpointer)
 
@@ -109,7 +109,7 @@ const (
 var BusNameOwnerFlagsGetType func() O.Type
 
 type BusNameVanishedCallback func(
-	connection *T.GDBusConnection,
+	connection *DBusConnection,
 	name string,
 	userData T.Gpointer)
 
@@ -123,10 +123,10 @@ const (
 var BusNameWatcherFlagsGetType func() O.Type
 
 var (
-	BusOwnNameOnConnection               func(b *T.GDBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	BusOwnNameOnConnectionWithClosures   func(b *T.GDBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredClosure *T.GClosure, nameLostClosure *T.GClosure) uint
-	BusWatchNameOnConnection             func(b *T.GDBusConnection, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	BusWatchNameOnConnectionWithClosures func(b *T.GDBusConnection, name string, flags BusNameWatcherFlags, nameAppearedClosure *T.GClosure, nameVanishedClosure *T.GClosure) uint
+	BusOwnNameOnConnection               func(b *DBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusOwnNameOnConnectionWithClosures   func(b *DBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredClosure, nameLostClosure *O.Closure) uint
+	BusWatchNameOnConnection             func(b *DBusConnection, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusWatchNameOnConnectionWithClosures func(b *DBusConnection, name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint
 )
 
 type BusType Enum
@@ -140,33 +140,33 @@ const (
 
 var (
 	BusTypeGetType func() O.Type
-	BusGetFinish   func(res *AsyncResult, err **T.GError) *T.GDBusConnection
+	BusGetFinish   func(res *AsyncResult, err **T.GError) *DBusConnection
 	BusUnownName   func(ownerId uint)
 	BusUnwatchName func(watcherId uint)
 
 	busGet                   func(b BusType, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	busGetSync               func(b BusType, cancellable *Cancellable, err **T.GError) *T.GDBusConnection
+	busGetSync               func(b BusType, cancellable *Cancellable, err **T.GError) *DBusConnection
 	busOwnName               func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	busOwnNameWithClosures   func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredClosure *T.GClosure, nameAcquiredClosure *T.GClosure, nameLostClosure *T.GClosure) uint
+	busOwnNameWithClosures   func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure *O.Closure) uint
 	busWatchName             func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	busWatchNameWithClosures func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedClosure *T.GClosure, nameVanishedClosure *T.GClosure) uint
+	busWatchNameWithClosures func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint
 )
 
 func (b BusType) Get(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	busGet(b, cancellable, callback, userData)
 }
-func (b BusType) GetSync(cancellable *Cancellable, err **T.GError) *T.GDBusConnection {
+func (b BusType) GetSync(cancellable *Cancellable, err **T.GError) *DBusConnection {
 	return busGetSync(b, cancellable, err)
 }
 func (b BusType) OwnName(name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
 	return busOwnName(b, name, flags, busAcquiredHandler, nameAcquiredHandler, nameLostHandler, userData, userDataFreeFunc)
 }
-func (b BusType) OwnNameWithClosures(name string, flags BusNameOwnerFlags, busAcquiredClosure *T.GClosure, nameAcquiredClosure *T.GClosure, nameLostClosure *T.GClosure) uint {
+func (b BusType) OwnNameWithClosures(name string, flags BusNameOwnerFlags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure *O.Closure) uint {
 	return busOwnNameWithClosures(b, name, flags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure)
 }
 func (b BusType) WatchName(name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
 	return busWatchName(b, name, flags, nameAppearedHandler, nameVanishedHandler, userData, userDataFreeFunc)
 }
-func (b BusType) WatchNameWithClosures(name string, flags BusNameWatcherFlags, nameAppearedClosure *T.GClosure, nameVanishedClosure *T.GClosure) uint {
+func (b BusType) WatchNameWithClosures(name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint {
 	return busWatchNameWithClosures(b, name, flags, nameAppearedClosure, nameVanishedClosure)
 }

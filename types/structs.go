@@ -405,37 +405,19 @@ type (
 		X [16]Gsize
 	}
 
-	GtkWidget struct{} //REMOVE
-
 	GTypeClass struct{} //REMOVE
 
 	GTypeInstance struct{} //REMOVE
 
 	GObject struct{} //REMOVE
 
-	GdkColor struct{} //REMOVE
-
-	GdkColormap struct{} //REMOVE
-
-	GdkVisual struct{} //REMOVE
-
 	GtkWindow struct{} //REMOVE
 
 	GdkScreen struct{} //REMOVE
 
-	GClosure struct{} //REMOVE
-
 	GValue struct{} //REMOVE
 
-	GdkCursor struct{} //REMOVE
-
-	GtkLabel struct{} // REMOVE
-
-	GtkBox struct{} // REMOVE
-
 	GtkTextBuffer struct{} //REMOVE
-
-	GdkDisplay struct{} //REMOVE
 
 	GdkKeyboardGrabInfo struct {
 		Window        *GdkWindow
@@ -454,8 +436,6 @@ type (
 		Motion_hint_serial     Gulong
 	}
 
-	GdkDevice struct{} //REMOVE
-
 	GdkEvent struct{} //REMOTE
 
 	GSignalInvocationHint struct {
@@ -463,13 +443,6 @@ type (
 		Detail    GQuark
 		Run_type  GSignalFlags
 	}
-
-	GMountOperation struct {
-		Parent_instance GObject
-		Priv            *GMountOperationPrivate
-	}
-
-	GtkMenu struct{} //REMOVE
 
 	PangoLogAttr struct {
 		Bits uint
@@ -626,8 +599,6 @@ type (
 	GdkTrapezoid struct {
 		Y1, X11, X21, Y2, X12, X22 float64
 	}
-
-	GInputStream struct{} //REMOVE
 
 	PangoAttribute struct {
 		Klass       *PangoAttrClass
@@ -1343,102 +1314,9 @@ type (
 		Instance_size uint
 	}
 
-	GOutputStream struct{} //REMOVE
-
-	GIOStream struct{} //REMOVE
-
-	GDBusInterfaceInfo struct{} //REMOVE
-
-	GDBusInterfaceVTable struct{} //REMOVE
-
-	GEmblemedIcon struct {
-		Parent_instance GObject
-		Priv            *GEmblemedIconPrivate
-	}
-
-	GInetSocketAddress struct{} //REMOVE
-
-	GSocketAddress struct{} //REMOVE
-
-	GMemoryOutputStream struct {
-		Parent_instance GOutputStream
-		Priv            *GMemoryOutputStreamPrivate
-	}
-
-	GNetworkAddress struct {
-		Parent_instance GObject
-		Priv            *GNetworkAddressPrivate
-	}
-
-	GNetworkService struct {
-		Parent_instance GObject
-		Priv            *GNetworkServicePrivate
-	}
-
-	GMemoryInputStream struct {
-		Parent_instance GInputStream
-		Priv            *GMemoryInputStreamPrivate
-	}
-
-	GPermission struct {
-		Parent_instance GObject
-		Priv            *GPermissionPrivate
-	}
-
-	GProxyAddress struct {
-		Parent_instance GInetSocketAddress
-		Priv            *GProxyAddressPrivate
-	}
-
-	GResolver struct {
-		Parent_instance GObject
-		Priv            *GResolverPrivate
-	}
-
-	GSocketConnection struct{} //REMOVE
-
-	GTlsCertificate struct {
-		Parent_instance GObject
-		Priv            *GTlsCertificatePrivate
-	}
-
-	GTcpConnection struct {
-		Parent_instance GSocketConnection
-		Priv            *GTcpConnectionPrivate
-	}
-
-	GTlsConnection struct {
-		Parent_instance GIOStream
-		Priv            *GTlsConnectionPrivate
-	}
-
-	GVfs struct {
-		Parent_instance GObject
-	}
-
-	GVolumeMonitor struct {
-		Parent_instance GObject
-		Priv            Gpointer
-	}
-
 	GOutputVector struct {
 		Buffer Gconstpointer
 		Size   Gsize
-	}
-
-	GTcpWrapperConnection struct {
-		Parent_instance GTcpConnection
-		Priv            *GTcpWrapperConnectionPrivate
-	}
-
-	GWin32InputStream struct {
-		Parent_instance GInputStream
-		Priv            *GWin32InputStreamPrivate
-	}
-
-	GWin32OutputStream struct {
-		Parent_instance GOutputStream
-		Priv            *GWin32OutputStreamPrivate
 	}
 
 	GTypeValueTable struct {

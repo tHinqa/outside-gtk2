@@ -33,7 +33,7 @@ type Closure struct {
 
 var (
 	ClosureGetType   func() Type
-	ClosureNewObject func(sizeofClosure uint, object *Object) *T.GClosure
+	ClosureNewObject func(sizeofClosure uint, object *Object) *Closure
 	ClosureNewSimple func(sizeofClosure uint, data T.Gpointer) *Closure
 
 	closureAddFinalizeNotifier      func(c Closure, notifyData T.Gpointer, notifyFunc ClosureNotify)

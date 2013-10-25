@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -382,7 +383,7 @@ const (
 var MetricTypeGetType func() O.Type
 
 type MountOperation struct {
-	Parent T.GMountOperation
+	Parent I.MountOperation
 	_      *struct{}
 }
 

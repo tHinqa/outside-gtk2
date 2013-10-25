@@ -104,7 +104,6 @@ type (
 	GStaticMutex           *GMutex
 	GTime                  GInt32
 	GTimeSpan              int64
-	GtkType                GType // REMOVE
 	GType                  Gsize // REMOVE
 	Gulong                 UnsignedLong
 	Gunichar               GUint32
@@ -144,173 +143,143 @@ type (
 	FTC_NodeRec         struct{}
 	FTC_SBitCacheRec    struct{}
 
-	AtkAction                    struct{}
-	AtkComponent                 struct{}
-	AtkDocument                  struct{}
-	AtkEditableText              struct{}
-	AtkHyperlinkImpl             struct{}
-	AtkHypertext                 struct{}
-	AtkImage                     struct{}
-	AtkImplementor               struct{}
-	AtkSelection                 struct{}
-	AtkSocket                    struct{}
-	AtkState                     struct{}
-	AtkStreamableContent         struct{}
-	AtkTable                     struct{}
-	AtkText                      struct{}
-	AtkValue                     struct{}
-	CairoDevice                  struct{}
-	CairoFontFace                struct{}
-	CairoFontOptions             struct{}
-	CairoPattern                 struct{}
-	CairoRegion                  struct{}
-	CairoScaledFont              struct{}
-	CairoScriptInterpreter       struct{}
-	CairoSurface                 struct{}
-	Cairo                        struct{}
-	FcCharSet                    struct{}
-	FcPattern                    struct{}
-	GAllocator                   struct{}
-	GAsyncQueue                  struct{}
-	GBookmarkFile                struct{}
-	GCache                       struct{}
-	GCancellablePrivate          struct{}
-	GChecksum                    struct{}
-	GCond                        struct{}
-	GData                        struct{}
-	GDBusConnection              struct{} //REMOVE
-	GDir                         struct{}
-	GdkPangoRendererPrivate      struct{}
-	GdkXEvent                    struct{}
-	GEmblem                      struct{}
-	GEmblemedIconPrivate         struct{}
-	GFileInputStreamPrivate      struct{}
-	GHashTable                   struct{}
-	GIConv                       struct{}
-	GInputStreamPrivate          struct{}
-	GKeyFile                     struct{}
-	GLoadableIcon                struct{}
-	GMainContext                 struct{}
-	GMainLoop                    struct{}
-	GMappedFile                  struct{}
-	GMarkupParseContext          struct{}
-	GMatchInfo                   struct{}
-	GMemChunk                    struct{}
-	GMemoryInputStreamPrivate    struct{}
-	GMemoryOutputStreamPrivate   struct{}
-	GModule                      struct{}
-	GMount                       struct{}
-	GMountOperationPrivate       struct{}
-	GMutex                       struct{}
-	GNetworkAddressPrivate       struct{}
-	GNetworkServicePrivate       struct{}
-	GOptionContext               struct{}
-	GOptionGroup                 struct{}
-	GOutputStreamPrivate         struct{}
-	GPatternSpec                 struct{}
-	GPermissionPrivate           struct{}
-	GPollableInputStream         struct{}
-	GPollableOutputStream        struct{}
-	GPrivate                     struct{}
-	GProxy                       struct{}
-	GProxyAddressPrivate         struct{}
-	GProxyResolver               struct{}
-	GRand                        struct{}
-	GRegex                       struct{}
-	GRelation                    struct{}
-	GResolverPrivate             struct{}
-	GSequence                    struct{}
-	GSequenceNode                struct{}
-	GSocketConnectionPrivate     struct{}
-	GSocketServicePrivate        struct{}
-	GStringChunk                 struct{}
-	GTcpConnectionPrivate        struct{}
-	GTcpWrapperConnectionPrivate struct{}
-	GTestCase                    struct{}
-	GTestSuite                   struct{}
-	GThemedIcon                  struct{}
-	GTimer                       struct{}
-	GTimeZone                    struct{}
-	GtkActionGroupPrivate        struct{}
-	GtkActionPrivate             struct{}
-	GtkAssistantPrivate          struct{}
-	GtkBuilderPrivate            struct{}
-	GtkCalendarPrivate           struct{}
-	GtkCellViewPrivate           struct{}
-	GtkClipboard                 struct{}
-	GtkColorButtonPrivate        struct{}
-	GtkComboBoxEntryPrivate      struct{}
-	GtkComboBoxPrivate           struct{}
-	GtkComboBoxTextPrivate       struct{}
-	GtkExpanderPrivate           struct{}
-	GtkFontButtonPrivate         struct{}
-	GtkIconThemePrivate          struct{}
-	GtkIconViewPrivate           struct{}
-	GtkIMMulticontextPrivate     struct{}
-	GtkInfoBarPrivate            struct{}
-	GtkLabelSelectionInfo        struct{}
-	GtkPageSetup                 struct{} //REMOVE
-	GtkRecentActionPrivate       struct{}
-	GtkRecentChooserMenuPrivate  struct{}
-	GtkRecentManagerPrivate      struct{}
-	GtkScaleButtonPrivate        struct{}
-	GtkSeparatorToolItemPrivate  struct{}
-	GtkSpinnerPrivate            struct{}
-	GtkStatusIconPrivate         struct{}
-	GtkToggleActionPrivate       struct{}
-	GtkToggleToolButtonPrivate   struct{}
-	GtkToolButtonPrivate         struct{}
-	GtkToolItemGroupPrivate      struct{}
-	GtkToolItemPrivate           struct{}
-	GtkToolPalettePrivate        struct{}
-	GtkUIManagerPrivate          struct{}
-	GTlsBackend                  struct{}
-	GTlsCertificatePrivate       struct{}
-	GTlsClientConnection         struct{}
-	GTlsConnectionPrivate        struct{}
-	GTree                        struct{}
-	GTypeCValue                  struct{}
-	GUnixFDList                  struct{}
-	GVariant                     struct{}
-	GVariantType                 struct{}
-	GVolume                      struct{}
-	GWin32InputStreamPrivate     struct{}
-	GWin32OutputStreamPrivate    struct{}
-	GZlibCompressor              struct{}
-	GZlibDecompressor            struct{}
-	PangoAttrIterator            struct{}
-	PangoAttrList                struct{}
-	PangoCairoFont               struct{}
-	PangoCairoFontMap            struct{}
-	PangoContext                 struct{}
-	PangoCoverage                struct{}
-	PangoEngineLang              struct{}
-	PangoEngineShape             struct{}
-	PangoFcFontKey               struct{}
-	PangoFcFontMapPrivate        struct{}
-	PangoFcFontsetKey            struct{}
-	PangoFont                    struct{}
-	PangoFontDescription         struct{}
-	PangoFontFace                struct{}
-	PangoFontFamily              struct{}
-	PangoFontMap                 struct{}
-	PangoFontMetrics             struct{}
-	PangoFontset                 struct{}
-	PangoFontsetSimple           struct{}
-	PangoFT2FontMap              struct{}
-	PangoLanguage                struct{}
-	PangoLayout                  struct{}
-	PangoLayoutIter              struct{}
-	PangoMap                     struct{}
-	PangoOTBuffer                struct{}
-	PangoOTInfo                  struct{}
-	PangoOTRuleset               struct{}
-	PangoRendererPrivate         struct{}
-	PangoScriptIter              struct{}
-	PangoTabArray                struct{}
-	PangoWin32FontCache          struct{}
-	Utimbuf                      struct{}
-	Void                         struct{}
+	AtkAction                   struct{}
+	AtkComponent                struct{}
+	AtkDocument                 struct{}
+	AtkEditableText             struct{}
+	AtkHyperlinkImpl            struct{}
+	AtkHypertext                struct{}
+	AtkImage                    struct{}
+	AtkImplementor              struct{}
+	AtkSelection                struct{}
+	AtkSocket                   struct{}
+	AtkState                    struct{}
+	AtkStreamableContent        struct{}
+	AtkTable                    struct{}
+	AtkText                     struct{}
+	AtkValue                    struct{}
+	CairoDevice                 struct{}
+	CairoFontFace               struct{}
+	CairoFontOptions            struct{}
+	CairoPattern                struct{}
+	CairoRegion                 struct{}
+	CairoScaledFont             struct{}
+	CairoScriptInterpreter      struct{}
+	CairoSurface                struct{}
+	Cairo                       struct{}
+	FcCharSet                   struct{}
+	FcPattern                   struct{}
+	GAllocator                  struct{}
+	GAsyncQueue                 struct{}
+	GBookmarkFile               struct{}
+	GCache                      struct{}
+	GCancellablePrivate         struct{}
+	GChecksum                   struct{}
+	GCond                       struct{}
+	GData                       struct{}
+	GDir                        struct{}
+	GdkPangoRendererPrivate     struct{}
+	GdkXEvent                   struct{}
+	GFileInputStreamPrivate     struct{}
+	GHashTable                  struct{}
+	GIConv                      struct{}
+	GInputStreamPrivate         struct{}
+	GKeyFile                    struct{}
+	GMainContext                struct{}
+	GMainLoop                   struct{}
+	GMappedFile                 struct{}
+	GMarkupParseContext         struct{}
+	GMatchInfo                  struct{}
+	GMemChunk                   struct{}
+	GModule                     struct{}
+	GMutex                      struct{}
+	GOptionContext              struct{}
+	GOptionGroup                struct{}
+	GPatternSpec                struct{}
+	GPrivate                    struct{}
+	GRand                       struct{}
+	GRegex                      struct{}
+	GRelation                   struct{}
+	GResolverPrivate            struct{}
+	GSequence                   struct{}
+	GSequenceNode               struct{}
+	GSocketConnectionPrivate    struct{}
+	GSocketServicePrivate       struct{}
+	GStringChunk                struct{}
+	GTestCase                   struct{}
+	GTestSuite                  struct{}
+	GTimer                      struct{}
+	GTimeZone                   struct{}
+	GtkActionGroupPrivate       struct{}
+	GtkActionPrivate            struct{}
+	GtkAssistantPrivate         struct{}
+	GtkBuilderPrivate           struct{}
+	GtkCalendarPrivate          struct{}
+	GtkCellViewPrivate          struct{}
+	GtkClipboard                struct{}
+	GtkColorButtonPrivate       struct{}
+	GtkComboBoxEntryPrivate     struct{}
+	GtkComboBoxPrivate          struct{}
+	GtkComboBoxTextPrivate      struct{}
+	GtkExpanderPrivate          struct{}
+	GtkFontButtonPrivate        struct{}
+	GtkIconThemePrivate         struct{}
+	GtkIconViewPrivate          struct{}
+	GtkIMMulticontextPrivate    struct{}
+	GtkInfoBarPrivate           struct{}
+	GtkLabelSelectionInfo       struct{}
+	GtkRecentActionPrivate      struct{}
+	GtkRecentChooserMenuPrivate struct{}
+	GtkRecentManagerPrivate     struct{}
+	GtkScaleButtonPrivate       struct{}
+	GtkSeparatorToolItemPrivate struct{}
+	GtkSpinnerPrivate           struct{}
+	GtkStatusIconPrivate        struct{}
+	GtkToggleActionPrivate      struct{}
+	GtkToggleToolButtonPrivate  struct{}
+	GtkToolButtonPrivate        struct{}
+	GtkToolItemGroupPrivate     struct{}
+	GtkToolItemPrivate          struct{}
+	GtkToolPalettePrivate       struct{}
+	GtkUIManagerPrivate         struct{}
+	GTree                       struct{}
+	GTypeCValue                 struct{}
+	GUnixFDList                 struct{}
+	GVariant                    struct{}
+	GVariantType                struct{}
+	PangoAttrIterator           struct{}
+	PangoAttrList               struct{}
+	PangoCairoFont              struct{}
+	PangoCairoFontMap           struct{}
+	PangoContext                struct{}
+	PangoCoverage               struct{}
+	PangoEngineLang             struct{}
+	PangoEngineShape            struct{}
+	PangoFcFontKey              struct{}
+	PangoFcFontMapPrivate       struct{}
+	PangoFcFontsetKey           struct{}
+	PangoFont                   struct{}
+	PangoFontDescription        struct{}
+	PangoFontFace               struct{}
+	PangoFontFamily             struct{}
+	PangoFontMap                struct{}
+	PangoFontMetrics            struct{}
+	PangoFontset                struct{}
+	PangoFontsetSimple          struct{}
+	PangoFT2FontMap             struct{}
+	PangoLanguage               struct{}
+	PangoLayout                 struct{}
+	PangoLayoutIter             struct{}
+	PangoMap                    struct{}
+	PangoOTBuffer               struct{}
+	PangoOTInfo                 struct{}
+	PangoOTRuleset              struct{}
+	PangoRendererPrivate        struct{}
+	PangoScriptIter             struct{}
+	PangoTabArray               struct{}
+	PangoWin32FontCache         struct{}
+	Utimbuf                     struct{}
+	Void                        struct{}
 )
 
 type GBookmarkFileError Enum
@@ -1193,19 +1162,6 @@ const (
 	G_SIGNAL_MATCH_UNBLOCKED
 )
 
-type GFileAttributeType Enum //REMOVE
-
-type GMountMountFlags Enum
-
-const G_MOUNT_MOUNT_NONE GMountMountFlags = 0
-
-type GMountUnmountFlags Enum
-
-const (
-	G_MOUNT_UNMOUNT_FORCE GMountUnmountFlags = 1 << iota
-	G_MOUNT_UNMOUNT_NONE  GMountUnmountFlags = 0
-)
-
 type GFilesystemPreviewType Enum
 
 const (
@@ -1232,23 +1188,6 @@ const (
 	G_PASSWORD_SAVE_PERMANENTLY
 )
 
-type GMountOperationResult Enum
-
-const (
-	G_MOUNT_OPERATION_HANDLED GMountOperationResult = iota
-	G_MOUNT_OPERATION_ABORTED
-	G_MOUNT_OPERATION_UNHANDLED
-)
-
-type GEmblemOrigin Enum
-
-const (
-	G_EMBLEM_ORIGIN_UNKNOWN GEmblemOrigin = iota
-	G_EMBLEM_ORIGIN_DEVICE
-	G_EMBLEM_ORIGIN_LIVEMETADATA
-	G_EMBLEM_ORIGIN_TAG
-)
-
 type GResolverError Enum
 
 const (
@@ -1264,14 +1203,6 @@ const (
 	G_SOCKET_MSG_PEEK
 	G_SOCKET_MSG_DONTROUTE
 	G_SOCKET_MSG_NONE GSocketMsgFlags = 0
-)
-
-type GZlibCompressorFormat Enum
-
-const (
-	G_ZLIB_COMPRESSOR_FORMAT_ZLIB GZlibCompressorFormat = iota
-	G_ZLIB_COMPRESSOR_FORMAT_GZIP
-	G_ZLIB_COMPRESSOR_FORMAT_RAW
 )
 
 type GUnixSocketAddressType Enum
@@ -1342,33 +1273,12 @@ const (
 	G_TLS_ERROR_EOF
 )
 
-type GTlsCertificateFlags Enum
-
-const (
-	G_TLS_CERTIFICATE_UNKNOWN_CA GTlsCertificateFlags = 1 << iota
-	G_TLS_CERTIFICATE_BAD_IDENTITY
-	G_TLS_CERTIFICATE_NOT_ACTIVATED
-	G_TLS_CERTIFICATE_EXPIRED
-	G_TLS_CERTIFICATE_REVOKED
-	G_TLS_CERTIFICATE_INSECURE
-	G_TLS_CERTIFICATE_GENERIC_ERROR
-	G_TLS_CERTIFICATE_VALIDATE_ALL GTlsCertificateFlags = 0x007f
-)
-
 type GTlsAuthenticationMode Enum
 
 const (
 	G_TLS_AUTHENTICATION_NONE GTlsAuthenticationMode = iota
 	G_TLS_AUTHENTICATION_REQUESTED
 	G_TLS_AUTHENTICATION_REQUIRED
-)
-
-type GTlsRehandshakeMode Enum
-
-const (
-	G_TLS_REHANDSHAKE_NEVER GTlsRehandshakeMode = iota
-	G_TLS_REHANDSHAKE_SAFELY
-	G_TLS_REHANDSHAKE_UNSAFELY
 )
 
 type GModuleFlags Enum

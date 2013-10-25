@@ -42,7 +42,7 @@ var (
 		signalName string,
 		itype Type,
 		signalFlags T.GSignalFlags,
-		classClosure *T.GClosure,
+		classClosure *Closure,
 		accumulator T.GSignalAccumulator,
 		accuData T.Gpointer,
 		cMarshaller T.GSignalCMarshaller,
@@ -54,7 +54,7 @@ var (
 		signalName string,
 		itype Type,
 		signalFlags T.GSignalFlags,
-		classClosure *T.GClosure,
+		classClosure *Closure,
 		accumulator T.GSignalAccumulator,
 		accuData T.Gpointer,
 		cMarshaller T.GSignalCMarshaller,
@@ -135,13 +135,13 @@ var (
 		instance T.Gpointer,
 		signalId uint,
 		detail T.GQuark,
-		closure *T.GClosure,
+		closure *Closure,
 		after T.Gboolean) T.Gulong
 
 	SignalConnectClosure func(
 		instance T.Gpointer,
 		detailedSignal string,
-		closure *T.GClosure,
+		closure *Closure,
 		after T.Gboolean) T.Gulong
 
 	SignalConnectData func(
@@ -167,7 +167,7 @@ var (
 		mask T.GSignalMatchType,
 		signalId uint,
 		detail T.GQuark,
-		closure *T.GClosure,
+		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) T.Gulong
 
@@ -176,7 +176,7 @@ var (
 		mask T.GSignalMatchType,
 		signalId uint,
 		detail T.GQuark,
-		closure *T.GClosure,
+		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint
 
@@ -185,7 +185,7 @@ var (
 		mask T.GSignalMatchType,
 		signalId uint,
 		detail T.GQuark,
-		closure *T.GClosure,
+		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint
 
@@ -194,12 +194,12 @@ var (
 		mask T.GSignalMatchType,
 		signalId uint,
 		detail T.GQuark,
-		closure *T.GClosure,
+		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint
 
 	SignalOverrideClassClosure func(
-		signalId uint, instanceType Type, classClosure *T.GClosure)
+		signalId uint, instanceType Type, classClosure *Closure)
 
 	SignalOverrideClassHandler func(
 		signalName string, instanceType Type, classHandler T.GCallback)
@@ -228,10 +228,10 @@ var (
 		gIface T.Gpointer, nPropertiesP *uint) **T.GParamSpec
 
 	CclosureNewObject func(
-		callbackFunc T.GCallback, object *Object) *T.GClosure
+		callbackFunc T.GCallback, object *Object) *Closure
 
 	CclosureNewObjectSwap func(
-		callbackFunc T.GCallback, object *Object) *T.GClosure
+		callbackFunc T.GCallback, object *Object) *Closure
 
 	SignalConnectObject func(instance T.Gpointer,
 		detailedSignal string, cHandler T.GCallback,
@@ -249,16 +249,16 @@ var (
 		boxedCopy T.GBoxedCopyFunc, boxedFree T.GBoxedFreeFunc) Type
 
 	CclosureNew func(callbackFunc T.GCallback,
-		userData T.Gpointer, destroyData ClosureNotify) *T.GClosure
+		userData T.Gpointer, destroyData ClosureNotify) *Closure
 
 	CclosureNewSwap func(callbackFunc T.GCallback,
-		userData T.Gpointer, destroyData ClosureNotify) *T.GClosure
+		userData T.Gpointer, destroyData ClosureNotify) *Closure
 
 	SignalTypeCclosureNew func(
-		itype Type, structOffset uint) *T.GClosure
+		itype Type, structOffset uint) *Closure
 
 	CclosureMarshal_VOID__VOID func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -266,7 +266,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__BOOLEAN func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -274,7 +274,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__CHAR func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -282,7 +282,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__UCHAR func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -290,7 +290,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__INT func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -298,7 +298,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__UINT func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -306,7 +306,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__LONG func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -314,7 +314,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__ULONG func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -322,7 +322,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__ENUM func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -330,7 +330,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__FLAGS func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -338,7 +338,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__FLOAT func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -346,7 +346,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__DOUBLE func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -354,7 +354,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__STRING func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -362,7 +362,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__PARAM func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -370,7 +370,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__BOXED func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -378,7 +378,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__POINTER func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -386,7 +386,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__OBJECT func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -394,7 +394,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__VARIANT func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -402,7 +402,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_VOID__UINT_POINTER func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -410,7 +410,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_BOOLEAN__FLAGS func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -418,7 +418,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_STRING__OBJECT_POINTER func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,
@@ -426,7 +426,7 @@ var (
 		marshalData T.Gpointer)
 
 	CclosureMarshal_BOOLEAN__BOXED_BOXED func(
-		closure *T.GClosure,
+		closure *Closure,
 		returnValue *Value,
 		nParamValues uint,
 		paramValues *Value,

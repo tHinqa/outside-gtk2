@@ -159,7 +159,7 @@ type (
 
 	AccelGroupEntry struct {
 		Key            AccelKey
-		Closure        *T.GClosure
+		Closure        *O.Closure
 		AccelPathQuark T.GQuark
 	}
 
@@ -170,7 +170,7 @@ type (
 	}
 
 	AccelGroupFindFunc func(key *AccelKey,
-		closure *T.GClosure, data T.Gpointer) T.Gboolean
+		closure *O.Closure, data T.Gpointer) T.Gboolean
 
 	AccelMapForeachFunc func(
 		data T.Gpointer,
@@ -193,7 +193,7 @@ type AccelLabel struct {
 	_           uint
 	Padding     uint //TODO(t):_?
 	Widget      *Widget
-	Closure     *T.GClosure
+	Closure     *O.Closure
 	Group       *AccelGroup
 	String      *T.Gchar
 	StringWidth uint16
@@ -203,7 +203,7 @@ var (
 	AccelGroupGetType func() O.Type
 	AccelGroupNew     func() *AccelGroup
 
-	AccelGroupFromAccelClosure func(closure *T.GClosure) *AccelGroup
+	AccelGroupFromAccelClosure func(closure *O.Closure) *AccelGroup
 
 	AccelLabelGetType func() O.Type
 	AccelLabelNew     func(str string) *Widget
@@ -230,9 +230,9 @@ var (
 
 var (
 	accelGroupActivate        func(a *AccelGroup, accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
-	accelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *T.GClosure)
-	accelGroupConnectByPath   func(a *AccelGroup, accelPath string, closure *T.GClosure)
-	accelGroupDisconnect      func(a *AccelGroup, closure *T.GClosure) T.Gboolean
+	accelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure)
+	accelGroupConnectByPath   func(a *AccelGroup, accelPath string, closure *O.Closure)
+	accelGroupDisconnect      func(a *AccelGroup, closure *O.Closure) T.Gboolean
 	accelGroupDisconnectKey   func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
 	accelGroupFind            func(a *AccelGroup, findFunc AccelGroupFindFunc, data T.Gpointer) *AccelKey
 	accelGroupGetIsLocked     func(a *AccelGroup) T.Gboolean
@@ -244,21 +244,21 @@ var (
 	accelLabelGetAccelWidget  func(a *AccelLabel) *Widget
 	accelLabelGetAccelWidth   func(a *AccelLabel) uint
 	accelLabelRefetch         func(a *AccelLabel) T.Gboolean
-	accelLabelSetAccelClosure func(a *AccelLabel, accelClosure *T.GClosure)
+	accelLabelSetAccelClosure func(a *AccelLabel, accelClosure *O.Closure)
 	accelLabelSetAccelWidget  func(a *AccelLabel, accelWidget *Widget)
 )
 
 func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
 	return accelGroupActivate(a, accelQuark, acceleratable, accelKey, accelMods)
 }
-func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *T.GClosure) {
+func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure) {
 	accelGroupConnect(a, accelKey, accelMods, accelFlags, closure)
 }
 func (a *AccelGroup) ConnectByPath(
-	accelPath string, closure *T.GClosure) {
+	accelPath string, closure *O.Closure) {
 	accelGroupConnectByPath(a, accelPath, closure)
 }
-func (a *AccelGroup) Disconnect(closure *T.GClosure) T.Gboolean {
+func (a *AccelGroup) Disconnect(closure *O.Closure) T.Gboolean {
 	return accelGroupDisconnect(a, closure)
 }
 func (a *AccelGroup) DisconnectKey(accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
@@ -278,7 +278,7 @@ func (a *AccelGroup) Unlock() { accelGroupUnlock(a) }
 func (a *AccelLabel) GetAccelWidget() *Widget { return accelLabelGetAccelWidget(a) }
 func (a *AccelLabel) GetAccelWidth() uint     { return accelLabelGetAccelWidth(a) }
 func (a *AccelLabel) Refetch() T.Gboolean     { return accelLabelRefetch(a) }
-func (a *AccelLabel) SetAccelClosure(accelClosure *T.GClosure) {
+func (a *AccelLabel) SetAccelClosure(accelClosure *O.Closure) {
 	accelLabelSetAccelClosure(a, accelClosure)
 }
 func (a *AccelLabel) SetAccelWidget(accelWidget *Widget) { accelLabelSetAccelWidget(a, accelWidget) }
@@ -341,7 +341,7 @@ var (
 	actionCreateToolItem        func(a *Action) *Widget
 	actionDisconnectAccelerator func(a *Action)
 	actionDisconnectProxy       func(a *Action, proxy *Widget)
-	actionGetAccelClosure       func(a *Action) *T.GClosure
+	actionGetAccelClosure       func(a *Action) *O.Closure
 	actionGetAccelPath          func(a *Action) string
 	actionGetAlwaysShowImage    func(a *Action) T.Gboolean
 	actionGetGicon              func(a *Action) *I.Icon
@@ -388,7 +388,7 @@ func (a *Action) CreateMenuItem() *Widget                  { return actionCreate
 func (a *Action) CreateToolItem() *Widget                  { return actionCreateToolItem(a) }
 func (a *Action) DisconnectAccelerator()                   { actionDisconnectAccelerator(a) }
 func (a *Action) DisconnectProxy(proxy *Widget)            { actionDisconnectProxy(a, proxy) }
-func (a *Action) GetAccelClosure() *T.GClosure             { return actionGetAccelClosure(a) }
+func (a *Action) GetAccelClosure() *O.Closure             { return actionGetAccelClosure(a) }
 func (a *Action) GetAccelPath() string                     { return actionGetAccelPath(a) }
 func (a *Action) GetAlwaysShowImage() T.Gboolean           { return actionGetAlwaysShowImage(a) }
 func (a *Action) GetGicon() *I.Icon                        { return actionGetGicon(a) }

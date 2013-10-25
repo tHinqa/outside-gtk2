@@ -24,7 +24,7 @@ var (
 
 	ObjectBindProperty             func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags) *Binding
 	ObjectBindPropertyFull         func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo BindingTransformFunc, transformFrom BindingTransformFunc, userData T.Gpointer, notify T.GDestroyNotify) *Binding
-	ObjectBindPropertyWithClosures func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo *T.GClosure, transformFrom *T.GClosure) *Binding
+	ObjectBindPropertyWithClosures func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo *Closure, transformFrom *Closure) *Binding
 	ObjectConnect                  func(object T.Gpointer, signalSpec string, v ...VArg) T.Gpointer
 	ObjectDisconnect               func(object T.Gpointer, signalSpec string, v ...VArg)
 	ObjectGet                      func(object T.Gpointer, firstPropertyName string, v ...VArg)

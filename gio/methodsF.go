@@ -35,17 +35,17 @@ var (
 	fileCreateReadwriteFinish               func(f *File, res *AsyncResult, err **T.GError) *FileIOStream
 	fileDelete                              func(f *File, cancellable *Cancellable, err **T.GError) T.Gboolean
 	fileDup                                 func(f *File) *File
-	fileEjectMountable                      func(f *File, flags T.GMountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileEjectMountable                      func(f *File, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileEjectMountableFinish                func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
-	fileEjectMountableWithOperation         func(f *File, flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileEjectMountableWithOperation         func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileEjectMountableWithOperationFinish   func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
 	fileEnumerateChildren                   func(f *File, attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) *FileEnumerator
 	fileEnumerateChildrenAsync              func(f *File, attributes string, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileEnumerateChildrenFinish             func(f *File, res *AsyncResult, err **T.GError) *FileEnumerator
 	fileEqual                               func(f, file2 *File) T.Gboolean
-	fileFindEnclosingMount                  func(f *File, cancellable *Cancellable, err **T.GError) *T.GMount
+	fileFindEnclosingMount                  func(f *File, cancellable *Cancellable, err **T.GError) *Mount
 	fileFindEnclosingMountAsync             func(f *File, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	fileFindEnclosingMountFinish            func(f *File, res *AsyncResult, err **T.GError) *T.GMount
+	fileFindEnclosingMountFinish            func(f *File, res *AsyncResult, err **T.GError) *Mount
 	fileGetBasename                         func(f *File) string
 	fileGetChild                            func(f *File, name string) *File
 	fileGetChildForDisplayName              func(f *File, displayName string, err **T.GError) *File
@@ -70,9 +70,9 @@ var (
 	fileMonitor                             func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor // AMBIGUITY FILE/TYPE
 	fileMonitorDirectory                    func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor
 	fileMonitorFile                         func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor
-	fileMountEnclosingVolume                func(f *File, flags T.GMountMountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileMountEnclosingVolume                func(f *File, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileMountEnclosingVolumeFinish          func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
-	fileMountMountable                      func(f *File, flags T.GMountMountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileMountMountable                      func(f *File, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileMountMountableFinish                func(f *File, result *AsyncResult, err **T.GError) *File
 	fileMove                                func(f *File, destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **T.GError) T.Gboolean
 	fileOpenReadwrite                       func(f *File, cancellable *Cancellable, err **T.GError) *FileIOStream
@@ -117,15 +117,15 @@ var (
 	fileSetDisplayName                      func(f *File, displayName string, cancellable *Cancellable, err **T.GError) *File
 	fileSetDisplayNameAsync                 func(f *File, displayName string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileSetDisplayNameFinish                func(f *File, res *AsyncResult, err **T.GError) *File
-	fileStartMountable                      func(f *File, flags DriveStartFlags, startOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileStartMountable                      func(f *File, flags DriveStartFlags, startOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileStartMountableFinish                func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
-	fileStopMountable                       func(f *File, flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileStopMountable                       func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileStopMountableFinish                 func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
 	fileSupportsThreadContexts              func(f *File) T.Gboolean
 	fileTrash                               func(f *File, cancellable *Cancellable, err **T.GError) T.Gboolean
-	fileUnmountMountable                    func(f *File, flags T.GMountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileUnmountMountable                    func(f *File, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileUnmountMountableFinish              func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
-	fileUnmountMountableWithOperation       func(f *File, flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	fileUnmountMountableWithOperation       func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	fileUnmountMountableWithOperationFinish func(f *File, result *AsyncResult, err **T.GError) T.Gboolean
 )
 
@@ -172,13 +172,13 @@ func (f *File) Delete(cancellable *Cancellable, err **T.GError) T.Gboolean {
 	return fileDelete(f, cancellable, err)
 }
 func (f *File) Dup() *File { return fileDup(f) }
-func (f *File) EjectMountable(flags T.GMountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) EjectMountable(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileEjectMountable(f, flags, cancellable, callback, userData)
 }
 func (f *File) EjectMountableFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return fileEjectMountableFinish(f, result, err)
 }
-func (f *File) EjectMountableWithOperation(flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) EjectMountableWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileEjectMountableWithOperation(f, flags, mountOperation, cancellable, callback, userData)
 }
 func (f *File) EjectMountableWithOperationFinish(result *AsyncResult, err **T.GError) T.Gboolean {
@@ -194,13 +194,13 @@ func (f *File) EnumerateChildrenFinish(res *AsyncResult, err **T.GError) *FileEn
 	return fileEnumerateChildrenFinish(f, res, err)
 }
 func (f *File) Equal(file2 *File) T.Gboolean { return fileEqual(f, file2) }
-func (f *File) FindEnclosingMount(cancellable *Cancellable, err **T.GError) *T.GMount {
+func (f *File) FindEnclosingMount(cancellable *Cancellable, err **T.GError) *Mount {
 	return fileFindEnclosingMount(f, cancellable, err)
 }
 func (f *File) FindEnclosingMountAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileFindEnclosingMountAsync(f, ioPriority, cancellable, callback, userData)
 }
-func (f *File) FindEnclosingMountFinish(res *AsyncResult, err **T.GError) *T.GMount {
+func (f *File) FindEnclosingMountFinish(res *AsyncResult, err **T.GError) *Mount {
 	return fileFindEnclosingMountFinish(f, res, err)
 }
 func (f *File) GetBasename() string        { return fileGetBasename(f) }
@@ -251,13 +251,13 @@ func (f *File) MonitorDirectory(flags FileMonitorFlags, cancellable *Cancellable
 func (f *File) MonitorFile(flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor {
 	return fileMonitorFile(f, flags, cancellable, err)
 }
-func (f *File) MountEnclosingVolume(flags T.GMountMountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) MountEnclosingVolume(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileMountEnclosingVolume(f, flags, mountOperation, cancellable, callback, userData)
 }
 func (f *File) MountEnclosingVolumeFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return fileMountEnclosingVolumeFinish(f, result, err)
 }
-func (f *File) MountMountable(flags T.GMountMountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) MountMountable(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileMountMountable(f, flags, mountOperation, cancellable, callback, userData)
 }
 func (f *File) MountMountableFinish(result *AsyncResult, err **T.GError) *File {
@@ -392,13 +392,13 @@ func (f *File) SetDisplayNameAsync(displayName string, ioPriority int, cancellab
 func (f *File) SetDisplayNameFinish(res *AsyncResult, err **T.GError) *File {
 	return fileSetDisplayNameFinish(f, res, err)
 }
-func (f *File) StartMountable(flags DriveStartFlags, startOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) StartMountable(flags DriveStartFlags, startOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileStartMountable(f, flags, startOperation, cancellable, callback, userData)
 }
 func (f *File) StartMountableFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return fileStartMountableFinish(f, result, err)
 }
-func (f *File) StopMountable(flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) StopMountable(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileStopMountable(f, flags, mountOperation, cancellable, callback, userData)
 }
 func (f *File) StopMountableFinish(result *AsyncResult, err **T.GError) T.Gboolean {
@@ -408,13 +408,13 @@ func (f *File) SupportsThreadContexts() T.Gboolean { return fileSupportsThreadCo
 func (f *File) Trash(cancellable *Cancellable, err **T.GError) T.Gboolean {
 	return fileTrash(f, cancellable, err)
 }
-func (f *File) UnmountMountable(flags T.GMountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) UnmountMountable(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileUnmountMountable(f, flags, cancellable, callback, userData)
 }
 func (f *File) UnmountMountableFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return fileUnmountMountableFinish(f, result, err)
 }
-func (f *File) UnmountMountableWithOperation(flags T.GMountUnmountFlags, mountOperation *T.GMountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (f *File) UnmountMountableWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	fileUnmountMountableWithOperation(f, flags, mountOperation, cancellable, callback, userData)
 }
 func (f *File) UnmountMountableWithOperationFinish(result *AsyncResult, err **T.GError) T.Gboolean {

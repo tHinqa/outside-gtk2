@@ -314,7 +314,7 @@ type SimpleAsyncThreadFunc func(
 
 var (
 	SimplePermissionGetType func() O.Type
-	SimplePermissionNew     func(allowed T.Gboolean) *T.GPermission
+	SimplePermissionNew     func(allowed T.Gboolean) *Permission
 )
 
 type Socket struct {
@@ -427,7 +427,7 @@ func (s *Socket) IsClosed() T.Gboolean { return socketIsClosed(s) }
 func (s *Socket) CreateSource(condition T.GIOCondition, cancellable *Cancellable) *O.Source {
 	return socketCreateSource(s, condition, cancellable)
 }
-func (s *Socket) SpeaksIpv4() T.Gboolean                        { return socketSpeaksIpv4(s) }
+func (s *Socket) SpeaksIpv4() T.Gboolean                     { return socketSpeaksIpv4(s) }
 func (s *Socket) GetCredentials(err **T.GError) *Credentials { return socketGetCredentials(s, err) }
 func (s *Socket) ReceiveWithBlocking(buffer string, size T.Gsize, blocking T.Gboolean, cancellable *Cancellable, err **T.GError) T.Gssize {
 	return socketReceiveWithBlocking(s, buffer, size, blocking, cancellable, err)
@@ -506,7 +506,7 @@ var (
 	socketClientGetSocketType          func(s *SocketClient) SocketType
 	socketClientGetTimeout             func(s *SocketClient) uint
 	socketClientGetTls                 func(s *SocketClient) T.Gboolean
-	socketClientGetTlsValidationFlags  func(s *SocketClient) T.GTlsCertificateFlags
+	socketClientGetTlsValidationFlags  func(s *SocketClient) TlsCertificateFlags
 	socketClientSetEnableProxy         func(s *SocketClient, enable T.Gboolean)
 	socketClientSetFamily              func(s *SocketClient, family SocketFamily)
 	socketClientSetLocalAddress        func(s *SocketClient, address *SocketAddress)
@@ -514,7 +514,7 @@ var (
 	socketClientSetSocketType          func(s *SocketClient, t SocketType)
 	socketClientSetTimeout             func(s *SocketClient, timeout uint)
 	socketClientSetTls                 func(s *SocketClient, tls T.Gboolean)
-	socketClientSetTlsValidationFlags  func(s *SocketClient, flags T.GTlsCertificateFlags)
+	socketClientSetTlsValidationFlags  func(s *SocketClient, flags TlsCertificateFlags)
 )
 
 func (s *SocketClient) AddApplicationProxy(protocol string) {
@@ -563,7 +563,7 @@ func (s *SocketClient) GetProtocol() SocketProtocol     { return socketClientGet
 func (s *SocketClient) GetSocketType() SocketType       { return socketClientGetSocketType(s) }
 func (s *SocketClient) GetTimeout() uint                { return socketClientGetTimeout(s) }
 func (s *SocketClient) GetTls() T.Gboolean              { return socketClientGetTls(s) }
-func (s *SocketClient) GetTlsValidationFlags() T.GTlsCertificateFlags {
+func (s *SocketClient) GetTlsValidationFlags() TlsCertificateFlags {
 	return socketClientGetTlsValidationFlags(s)
 }
 func (s *SocketClient) SetEnableProxy(enable T.Gboolean) { socketClientSetEnableProxy(s, enable) }
@@ -575,7 +575,7 @@ func (s *SocketClient) SetProtocol(protocol SocketProtocol) { socketClientSetPro
 func (s *SocketClient) SetSocketType(t SocketType)          { socketClientSetSocketType(s, t) }
 func (s *SocketClient) SetTimeout(timeout uint)             { socketClientSetTimeout(s, timeout) }
 func (s *SocketClient) SetTls(tls T.Gboolean)               { socketClientSetTls(s, tls) }
-func (s *SocketClient) SetTlsValidationFlags(flags T.GTlsCertificateFlags) {
+func (s *SocketClient) SetTlsValidationFlags(flags TlsCertificateFlags) {
 	socketClientSetTlsValidationFlags(s, flags)
 }
 
@@ -594,7 +594,7 @@ func (s *SocketConnectable) ProxyEnumerate() *SocketAddressEnumerator {
 }
 
 type SocketConnection struct {
-	Parent T.GIOStream
+	Parent IOStream
 	_      *struct{}
 }
 

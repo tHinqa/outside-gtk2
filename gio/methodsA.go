@@ -307,6 +307,8 @@ const (
 
 var ApplicationFlagsGetType func() O.Type
 
+var AskPasswordFlagsGetType func() O.Type
+
 type AsyncInitable struct{}
 
 var (
