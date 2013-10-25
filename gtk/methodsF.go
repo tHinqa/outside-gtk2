@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -59,17 +60,17 @@ var (
 	fileChooserGetAction                  func(f *FileChooser) FileChooserAction
 	fileChooserGetCreateFolders           func(f *FileChooser) T.Gboolean
 	fileChooserGetCurrentFolder           func(f *FileChooser) string
-	fileChooserGetCurrentFolderFile       func(f *FileChooser) *T.GFile
+	fileChooserGetCurrentFolderFile       func(f *FileChooser) *I.File
 	fileChooserGetCurrentFolderUri        func(f *FileChooser) string
 	fileChooserGetDoOverwriteConfirmation func(f *FileChooser) T.Gboolean
 	fileChooserGetExtraWidget             func(f *FileChooser) *Widget
-	fileChooserGetFile                    func(f *FileChooser) *T.GFile
+	fileChooserGetFile                    func(f *FileChooser) *I.File
 	fileChooserGetFilename                func(f *FileChooser) string
 	fileChooserGetFilenames               func(f *FileChooser) *T.GSList
 	fileChooserGetFiles                   func(f *FileChooser) *T.GSList
 	fileChooserGetFilter                  func(f *FileChooser) *FileFilter
 	fileChooserGetLocalOnly               func(f *FileChooser) T.Gboolean
-	fileChooserGetPreviewFile             func(f *FileChooser) *T.GFile
+	fileChooserGetPreviewFile             func(f *FileChooser) *I.File
 	fileChooserGetPreviewFilename         func(f *FileChooser) string
 	fileChooserGetPreviewUri              func(f *FileChooser) string
 	fileChooserGetPreviewWidget           func(f *FileChooser) *Widget
@@ -86,18 +87,18 @@ var (
 	fileChooserRemoveShortcutFolder       func(f *FileChooser, folder string, error **T.GError) T.Gboolean
 	fileChooserRemoveShortcutFolderUri    func(f *FileChooser, uri string, error **T.GError) T.Gboolean
 	fileChooserSelectAll                  func(f *FileChooser)
-	fileChooserSelectFile                 func(f *FileChooser, file *T.GFile, error **T.GError) T.Gboolean
+	fileChooserSelectFile                 func(f *FileChooser, file *I.File, error **T.GError) T.Gboolean
 	fileChooserSelectFilename             func(f *FileChooser, filename string) T.Gboolean
 	fileChooserSelectUri                  func(f *FileChooser, uri string) T.Gboolean
 	fileChooserSetAction                  func(f *FileChooser, action FileChooserAction)
 	fileChooserSetCreateFolders           func(f *FileChooser, createFolders T.Gboolean)
 	fileChooserSetCurrentFolder           func(f *FileChooser, filename string) T.Gboolean
-	fileChooserSetCurrentFolderFile       func(f *FileChooser, file *T.GFile, error **T.GError) T.Gboolean
+	fileChooserSetCurrentFolderFile       func(f *FileChooser, file *I.File, error **T.GError) T.Gboolean
 	fileChooserSetCurrentFolderUri        func(f *FileChooser, uri string) T.Gboolean
 	fileChooserSetCurrentName             func(f *FileChooser, name string)
 	fileChooserSetDoOverwriteConfirmation func(f *FileChooser, doOverwriteConfirmation T.Gboolean)
 	fileChooserSetExtraWidget             func(f *FileChooser, extraWidget *Widget)
-	fileChooserSetFile                    func(f *FileChooser, file *T.GFile, error **T.GError) T.Gboolean
+	fileChooserSetFile                    func(f *FileChooser, file *I.File, error **T.GError) T.Gboolean
 	fileChooserSetFilename                func(f *FileChooser, filename string) T.Gboolean
 	fileChooserSetFilter                  func(f *FileChooser, filter *FileFilter)
 	fileChooserSetLocalOnly               func(f *FileChooser, localOnly T.Gboolean)
@@ -108,7 +109,7 @@ var (
 	fileChooserSetUri                     func(f *FileChooser, uri string) T.Gboolean
 	fileChooserSetUsePreviewLabel         func(f *FileChooser, useLabel T.Gboolean)
 	fileChooserUnselectAll                func(f *FileChooser)
-	fileChooserUnselectFile               func(f *FileChooser, file *T.GFile)
+	fileChooserUnselectFile               func(f *FileChooser, file *I.File)
 	fileChooserUnselectFilename           func(f *FileChooser, filename string)
 	fileChooserUnselectUri                func(f *FileChooser, uri string)
 )
@@ -123,19 +124,19 @@ func (f *FileChooser) AddShortcutFolderUri(uri string, err **T.GError) T.Gboolea
 func (f *FileChooser) GetAction() FileChooserAction   { return fileChooserGetAction(f) }
 func (f *FileChooser) GetCreateFolders() T.Gboolean   { return fileChooserGetCreateFolders(f) }
 func (f *FileChooser) GetCurrentFolder() string       { return fileChooserGetCurrentFolder(f) }
-func (f *FileChooser) GetCurrentFolderFile() *T.GFile { return fileChooserGetCurrentFolderFile(f) }
+func (f *FileChooser) GetCurrentFolderFile() *I.File { return fileChooserGetCurrentFolderFile(f) }
 func (f *FileChooser) GetCurrentFolderUri() string    { return fileChooserGetCurrentFolderUri(f) }
 func (f *FileChooser) GetDoOverwriteConfirmation() T.Gboolean {
 	return fileChooserGetDoOverwriteConfirmation(f)
 }
 func (f *FileChooser) GetExtraWidget() *Widget            { return fileChooserGetExtraWidget(f) }
-func (f *FileChooser) GetFile() *T.GFile                  { return fileChooserGetFile(f) }
+func (f *FileChooser) GetFile() *I.File                  { return fileChooserGetFile(f) }
 func (f *FileChooser) GetFilename() string                { return fileChooserGetFilename(f) }
 func (f *FileChooser) GetFilenames() *T.GSList            { return fileChooserGetFilenames(f) }
 func (f *FileChooser) GetFiles() *T.GSList                { return fileChooserGetFiles(f) }
 func (f *FileChooser) GetFilter() *FileFilter             { return fileChooserGetFilter(f) }
 func (f *FileChooser) GetLocalOnly() T.Gboolean           { return fileChooserGetLocalOnly(f) }
-func (f *FileChooser) GetPreviewFile() *T.GFile           { return fileChooserGetPreviewFile(f) }
+func (f *FileChooser) GetPreviewFile() *I.File           { return fileChooserGetPreviewFile(f) }
 func (f *FileChooser) GetPreviewFilename() string         { return fileChooserGetPreviewFilename(f) }
 func (f *FileChooser) GetPreviewUri() string              { return fileChooserGetPreviewUri(f) }
 func (f *FileChooser) GetPreviewWidget() *Widget          { return fileChooserGetPreviewWidget(f) }
@@ -156,7 +157,7 @@ func (f *FileChooser) RemoveShortcutFolderUri(uri string, err **T.GError) T.Gboo
 	return fileChooserRemoveShortcutFolderUri(f, uri, err)
 }
 func (f *FileChooser) SelectAll() { fileChooserSelectAll(f) }
-func (f *FileChooser) SelectFile(file *T.GFile, err **T.GError) T.Gboolean {
+func (f *FileChooser) SelectFile(file *I.File, err **T.GError) T.Gboolean {
 	return fileChooserSelectFile(f, file, err)
 }
 func (f *FileChooser) SelectFilename(filename string) T.Gboolean {
@@ -170,7 +171,7 @@ func (f *FileChooser) SetCreateFolders(createFolders T.Gboolean) {
 func (f *FileChooser) SetCurrentFolder(filename string) T.Gboolean {
 	return fileChooserSetCurrentFolder(f, filename)
 }
-func (f *FileChooser) SetCurrentFolderFile(file *T.GFile, err **T.GError) T.Gboolean {
+func (f *FileChooser) SetCurrentFolderFile(file *I.File, err **T.GError) T.Gboolean {
 	return fileChooserSetCurrentFolderFile(f, file, err)
 }
 func (f *FileChooser) SetCurrentFolderUri(uri string) T.Gboolean {
@@ -181,7 +182,7 @@ func (f *FileChooser) SetDoOverwriteConfirmation(doOverwriteConfirmation T.Gbool
 	fileChooserSetDoOverwriteConfirmation(f, doOverwriteConfirmation)
 }
 func (f *FileChooser) SetExtraWidget(extraWidget *Widget) { fileChooserSetExtraWidget(f, extraWidget) }
-func (f *FileChooser) SetFile(file *T.GFile, err **T.GError) T.Gboolean {
+func (f *FileChooser) SetFile(file *I.File, err **T.GError) T.Gboolean {
 	return fileChooserSetFile(f, file, err)
 }
 func (f *FileChooser) SetFilename(filename string) T.Gboolean {
@@ -204,7 +205,7 @@ func (f *FileChooser) SetUsePreviewLabel(useLabel T.Gboolean) {
 	fileChooserSetUsePreviewLabel(f, useLabel)
 }
 func (f *FileChooser) UnselectAll()                     { fileChooserUnselectAll(f) }
-func (f *FileChooser) UnselectFile(file *T.GFile)       { fileChooserUnselectFile(f, file) }
+func (f *FileChooser) UnselectFile(file *I.File)       { fileChooserUnselectFile(f, file) }
 func (f *FileChooser) UnselectFilename(filename string) { fileChooserUnselectFilename(f, filename) }
 func (f *FileChooser) UnselectUri(uri string)           { fileChooserUnselectUri(f, uri) }
 

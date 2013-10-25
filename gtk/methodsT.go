@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -1547,7 +1548,7 @@ var (
 
 	tooltipSetCustom           func(t *Tooltip, customWidget *Widget)
 	tooltipSetIcon             func(t *Tooltip, pixbuf *D.Pixbuf)
-	tooltipSetIconFromGicon    func(t *Tooltip, gicon *T.GIcon, size IconSize)
+	tooltipSetIconFromGicon    func(t *Tooltip, gicon *I.Icon, size IconSize)
 	tooltipSetIconFromIconName func(t *Tooltip, iconName string, size IconSize)
 	tooltipSetIconFromStock    func(t *Tooltip, stockId string, size IconSize)
 	tooltipSetMarkup           func(t *Tooltip, markup string)
@@ -1557,7 +1558,7 @@ var (
 
 func (t *Tooltip) SetCustom(customWidget *Widget) { tooltipSetCustom(t, customWidget) }
 func (t *Tooltip) SetIcon(pixbuf *D.Pixbuf)       { tooltipSetIcon(t, pixbuf) }
-func (t *Tooltip) SetIconFromGicon(gicon *T.GIcon, size IconSize) {
+func (t *Tooltip) SetIconFromGicon(gicon *I.Icon, size IconSize) {
 	tooltipSetIconFromGicon(t, gicon, size)
 }
 func (t *Tooltip) SetIconFromIconName(iconName string, size IconSize) {

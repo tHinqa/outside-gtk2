@@ -112,7 +112,7 @@ var (
 	appInfoGetDescription           func(a *AppInfo) string
 	appInfoGetDisplayName           func(a *AppInfo) string
 	appInfoGetExecutable            func(a *AppInfo) string
-	appInfoGetIcon                  func(a *AppInfo) *T.GIcon
+	appInfoGetIcon                  func(a *AppInfo) *Icon
 	appInfoGetId                    func(a *AppInfo) string
 	appInfoGetName                  func(a *AppInfo) string
 	appInfoLaunch                   func(a *AppInfo, files *T.GList, launchContext *AppLaunchContext, err **T.GError) T.Gboolean
@@ -138,7 +138,7 @@ func (a *AppInfo) GetCommandline() string             { return appInfoGetCommand
 func (a *AppInfo) GetDescription() string             { return appInfoGetDescription(a) }
 func (a *AppInfo) GetDisplayName() string             { return appInfoGetDisplayName(a) }
 func (a *AppInfo) GetExecutable() string              { return appInfoGetExecutable(a) }
-func (a *AppInfo) GetIcon() *T.GIcon                  { return appInfoGetIcon(a) }
+func (a *AppInfo) GetIcon() *Icon                     { return appInfoGetIcon(a) }
 func (a *AppInfo) GetId() string                      { return appInfoGetId(a) }
 func (a *AppInfo) GetName() string                    { return appInfoGetName(a) }
 func (a *AppInfo) Launch(files *T.GList, launchContext *AppLaunchContext, err **T.GError) T.Gboolean {
@@ -217,7 +217,7 @@ var (
 	applicationGetIsRegistered      func(a *Application) T.Gboolean
 	applicationGetIsRemote          func(a *Application) T.Gboolean
 	applicationHold                 func(a *Application)
-	applicationOpen                 func(a *Application, files **T.GFile, nFiles int, hint string)
+	applicationOpen                 func(a *Application, files **File, nFiles int, hint string)
 	applicationRegister             func(a *Application, cancellable *T.GCancellable, err **T.GError) T.Gboolean
 	applicationRelease              func(a *Application)
 	applicationRun                  func(a *Application, argc int, argv **T.Char) int
@@ -234,7 +234,7 @@ func (a *Application) GetInactivityTimeout() uint  { return applicationGetInacti
 func (a *Application) GetIsRegistered() T.Gboolean { return applicationGetIsRegistered(a) }
 func (a *Application) GetIsRemote() T.Gboolean     { return applicationGetIsRemote(a) }
 func (a *Application) Hold()                       { applicationHold(a) }
-func (a *Application) Open(files **T.GFile, nFiles int, hint string) {
+func (a *Application) Open(files **File, nFiles int, hint string) {
 	applicationOpen(a, files, nFiles, hint)
 }
 func (a *Application) Register(cancellable *T.GCancellable, err **T.GError) T.Gboolean {

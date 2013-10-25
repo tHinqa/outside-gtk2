@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -343,7 +344,7 @@ var (
 	actionGetAccelClosure       func(a *Action) *T.GClosure
 	actionGetAccelPath          func(a *Action) string
 	actionGetAlwaysShowImage    func(a *Action) T.Gboolean
-	actionGetGicon              func(a *Action) *T.GIcon
+	actionGetGicon              func(a *Action) *I.Icon
 	actionGetIconName           func(a *Action) string
 	actionGetIsImportant        func(a *Action) T.Gboolean
 	actionGetLabel              func(a *Action) string
@@ -361,7 +362,7 @@ var (
 	actionSetAccelGroup         func(a *Action, accelGroup *AccelGroup)
 	actionSetAccelPath          func(a *Action, accelPath string)
 	actionSetAlwaysShowImage    func(a *Action, alwaysShow T.Gboolean)
-	actionSetGicon              func(a *Action, icon *T.GIcon)
+	actionSetGicon              func(a *Action, icon *I.Icon)
 	actionSetIconName           func(a *Action, iconName string)
 	actionSetIsImportant        func(a *Action, isImportant T.Gboolean)
 	actionSetLabel              func(a *Action, label string)
@@ -390,7 +391,7 @@ func (a *Action) DisconnectProxy(proxy *Widget)            { actionDisconnectPro
 func (a *Action) GetAccelClosure() *T.GClosure             { return actionGetAccelClosure(a) }
 func (a *Action) GetAccelPath() string                     { return actionGetAccelPath(a) }
 func (a *Action) GetAlwaysShowImage() T.Gboolean           { return actionGetAlwaysShowImage(a) }
-func (a *Action) GetGicon() *T.GIcon                       { return actionGetGicon(a) }
+func (a *Action) GetGicon() *I.Icon                        { return actionGetGicon(a) }
 func (a *Action) GetIconName() string                      { return actionGetIconName(a) }
 func (a *Action) GetIsImportant() T.Gboolean               { return actionGetIsImportant(a) }
 func (a *Action) GetLabel() string                         { return actionGetLabel(a) }
@@ -408,7 +409,7 @@ func (a *Action) IsVisible() T.Gboolean                    { return actionIsVisi
 func (a *Action) SetAccelGroup(accelGroup *AccelGroup)     { actionSetAccelGroup(a, accelGroup) }
 func (a *Action) SetAccelPath(accelPath string)            { actionSetAccelPath(a, accelPath) }
 func (a *Action) SetAlwaysShowImage(alwaysShow T.Gboolean) { actionSetAlwaysShowImage(a, alwaysShow) }
-func (a *Action) SetGicon(icon *T.GIcon)                   { actionSetGicon(a, icon) }
+func (a *Action) SetGicon(icon *I.Icon)                    { actionSetGicon(a, icon) }
 func (a *Action) SetIconName(iconName string)              { actionSetIconName(a, iconName) }
 func (a *Action) SetIsImportant(isImportant T.Gboolean)    { actionSetIsImportant(a, isImportant) }
 func (a *Action) SetLabel(label string)                    { actionSetLabel(a, label) }

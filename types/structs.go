@@ -632,10 +632,7 @@ type (
 		Y1, X11, X21, Y2, X12, X22 float64
 	}
 
-	GInputStream struct {
-		Parent_instance GObject
-		Priv            *GInputStreamPrivate
-	}
+	GInputStream struct{} //REMOVE
 
 	PangoAttribute struct {
 		Klass       *PangoAttrClass
@@ -1356,10 +1353,7 @@ type (
 		Priv            *GBufferedInputStreamPrivate
 	}
 
-	GFilterInputStream struct {
-		Parent_instance GInputStream
-		Base_stream     *GInputStream
-	}
+	GFilterInputStream struct{} //REMOVE
 
 	GOutputStream struct {
 		Parent_instance GObject
@@ -1371,10 +1365,7 @@ type (
 		Priv            *GBufferedOutputStreamPrivate
 	}
 
-	GFilterOutputStream struct {
-		Parent_instance GOutputStream
-		Base_stream     *GOutputStream
-	}
+	GFilterOutputStream struct{} //REMOVE
 
 	GConverterInputStream struct {
 		Parent_instance GFilterInputStream
@@ -1396,10 +1387,7 @@ type (
 		Priv            *GDataOutputStreamPrivate
 	}
 
-	GIOStream struct {
-		Parent_instance GObject
-		Priv            *GIOStreamPrivate
-	}
+	GIOStream struct{} //REMOVE
 
 	GDBusInterfaceInfo struct {
 		Ref_count   int
@@ -1484,51 +1472,7 @@ type (
 		Priv            *GEmblemedIconPrivate
 	}
 
-	GFileAttributeInfoList struct {
-		Infos   *GFileAttributeInfo
-		N_infos int
-	}
-
-	GFileAttributeInfo struct {
-		Name  *Char
-		Type  GFileAttributeType
-		Flags GFileAttributeInfoFlags
-	}
-
-	GFileOutputStream struct {
-		Parent_instance GOutputStream
-		Priv            *GFileOutputStreamPrivate
-	}
-
-	GFileIOStream struct {
-		Parent_instance GIOStream
-		Priv            *GFileIOStreamPrivate
-	}
-
-	GFileEnumerator struct {
-		Parent_instance GObject
-		Priv            *GFileEnumeratorPrivate
-	}
-
-	GFileInputStream struct {
-		Parent_instance GInputStream
-		Priv            *GFileInputStreamPrivate
-	}
-
-	GFileMonitor struct {
-		Parent_instance GObject
-		Priv            *GFileMonitorPrivate
-	}
-
-	GInetAddress struct {
-		Parent_instance GObject
-		Priv            *GInetAddressPrivate
-	}
-
-	GInetSocketAddress struct {
-		Parent_instance GSocketAddress
-		Priv            *struct{}
-	}
+	GInetSocketAddress struct{} //REMOVE
 
 	GSocketAddress struct{} //REMOVE
 

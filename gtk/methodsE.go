@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -130,7 +131,7 @@ var (
 	entryGetHasFrame              func(e *Entry) T.Gboolean
 	entryGetIconActivatable       func(e *Entry, iconPos EntryIconPosition) T.Gboolean
 	entryGetIconAtPos             func(e *Entry, x, y int) int
-	entryGetIconGicon             func(e *Entry, iconPos EntryIconPosition) *T.GIcon
+	entryGetIconGicon             func(e *Entry, iconPos EntryIconPosition) *I.Icon
 	entryGetIconName              func(e *Entry, iconPos EntryIconPosition) string
 	entryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *D.Pixbuf
 	entryGetIconSensitive         func(e *Entry, iconPos EntryIconPosition) T.Gboolean
@@ -167,7 +168,7 @@ var (
 	entrySetHasFrame              func(e *Entry, setting T.Gboolean)
 	entrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable T.Gboolean)
 	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction)
-	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *T.GIcon)
+	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *I.Icon)
 	entrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
 	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *D.Pixbuf)
 	entrySetIconFromStock         func(e *Entry, iconPos EntryIconPosition, stockId string)
@@ -200,7 +201,7 @@ func (e *Entry) GetIconActivatable(iconPos EntryIconPosition) T.Gboolean {
 	return entryGetIconActivatable(e, iconPos)
 }
 func (e *Entry) GetIconAtPos(x, y int) int                       { return entryGetIconAtPos(e, x, y) }
-func (e *Entry) GetIconGicon(iconPos EntryIconPosition) *T.GIcon { return entryGetIconGicon(e, iconPos) }
+func (e *Entry) GetIconGicon(iconPos EntryIconPosition) *I.Icon { return entryGetIconGicon(e, iconPos) }
 func (e *Entry) GetIconName(iconPos EntryIconPosition) string    { return entryGetIconName(e, iconPos) }
 func (e *Entry) GetIconPixbuf(iconPos EntryIconPosition) *D.Pixbuf {
 	return entryGetIconPixbuf(e, iconPos)
@@ -257,7 +258,7 @@ func (e *Entry) SetIconActivatable(iconPos EntryIconPosition, activatable T.Gboo
 func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction) {
 	entrySetIconDragSource(e, iconPos, targetList, actions)
 }
-func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *T.GIcon) {
+func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *I.Icon) {
 	entrySetIconFromGicon(e, iconPos, icon)
 }
 func (e *Entry) SetIconFromIconName(iconPos EntryIconPosition, iconName string) {

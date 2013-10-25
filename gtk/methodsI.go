@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -205,7 +206,7 @@ var (
 	iconThemeListContexts       func(i *IconTheme) *T.GList
 	iconThemeListIcons          func(i *IconTheme, context string) *T.GList
 	iconThemeLoadIcon           func(i *IconTheme, iconName string, size int, flags IconLookupFlags, error **T.GError) *D.Pixbuf
-	iconThemeLookupByGicon      func(i *IconTheme, icon *T.GIcon, size int, flags IconLookupFlags) *IconInfo
+	iconThemeLookupByGicon      func(i *IconTheme, icon *I.Icon, size int, flags IconLookupFlags) *IconInfo
 	iconThemeLookupIcon         func(i *IconTheme, iconName string, size int, flags IconLookupFlags) *IconInfo
 	iconThemePrependSearchPath  func(i *IconTheme, path string)
 	iconThemeRescanIfNeeded     func(i *IconTheme) T.Gboolean
@@ -229,7 +230,7 @@ func (i *IconTheme) ListIcons(context string) *T.GList  { return iconThemeListIc
 func (i *IconTheme) LoadIcon(iconName string, size int, flags IconLookupFlags, err **T.GError) *D.Pixbuf {
 	return iconThemeLoadIcon(i, iconName, size, flags, err)
 }
-func (i *IconTheme) LookupByGicon(icon *T.GIcon, size int, flags IconLookupFlags) *IconInfo {
+func (i *IconTheme) LookupByGicon(icon *I.Icon, size int, flags IconLookupFlags) *IconInfo {
 	return iconThemeLookupByGicon(i, icon, size, flags)
 }
 func (i *IconTheme) LookupIcon(iconName string, size int, flags IconLookupFlags) *IconInfo {
@@ -469,7 +470,7 @@ type (
 		ThemeChangeId uint
 	}
 	ImageGIconData struct {
-		icon          *T.GIcon
+		icon          *I.Icon
 		Pixbuf        *D.Pixbuf
 		ThemeChangeId uint
 	}
@@ -490,12 +491,12 @@ var (
 	ImageNewFromIconSet   func(iconSet *IconSet, size IconSize) *Widget
 	ImageNewFromAnimation func(animation *D.PixbufAnimation) *Widget
 	ImageNewFromIconName  func(iconName string, size IconSize) *Widget
-	ImageNewFromGicon     func(icon *T.GIcon, size IconSize) *Widget
+	ImageNewFromGicon     func(icon *I.Icon, size IconSize) *Widget
 
 	imageClear            func(i *Image)
 	imageGet              func(i *Image, val **D.Image, mask **T.GdkBitmap)
 	imageGetAnimation     func(i *Image) *D.PixbufAnimation
-	imageGetGicon         func(i *Image, gicon **T.GIcon, size *IconSize)
+	imageGetGicon         func(i *Image, gicon **I.Icon, size *IconSize)
 	imageGetIconName      func(i *Image, iconName **T.Gchar, size *IconSize)
 	imageGetIconSet       func(i *Image, iconSet **IconSet, size *IconSize)
 	imageGetImage         func(i *Image, gdkImage **D.Image, mask **T.GdkBitmap)
@@ -507,7 +508,7 @@ var (
 	imageSet              func(i *Image, val *D.Image, mask *T.GdkBitmap)
 	imageSetFromAnimation func(i *Image, animation *D.PixbufAnimation)
 	imageSetFromFile      func(i *Image, filename string)
-	imageSetFromGicon     func(i *Image, icon *T.GIcon, size IconSize)
+	imageSetFromGicon     func(i *Image, icon *I.Icon, size IconSize)
 	imageSetFromIconName  func(i *Image, iconName string, size IconSize)
 	imageSetFromIconSet   func(i *Image, iconSet *IconSet, size IconSize)
 	imageSetFromImage     func(i *Image, gdkImage *D.Image, mask *T.GdkBitmap)
@@ -520,7 +521,7 @@ var (
 func (i *Image) Clear()                                          { imageClear(i) }
 func (i *Image) Get(val **D.Image, mask **T.GdkBitmap)           { imageGet(i, val, mask) }
 func (i *Image) GetAnimation() *D.PixbufAnimation                { return imageGetAnimation(i) }
-func (i *Image) GetGicon(gicon **T.GIcon, size *IconSize)        { imageGetGicon(i, gicon, size) }
+func (i *Image) GetGicon(gicon **I.Icon, size *IconSize)        { imageGetGicon(i, gicon, size) }
 func (i *Image) GetIconName(iconName **T.Gchar, size *IconSize)  { imageGetIconName(i, iconName, size) }
 func (i *Image) GetIconSet(iconSet **IconSet, size *IconSize)    { imageGetIconSet(i, iconSet, size) }
 func (i *Image) GetImage(gdkImage **D.Image, mask **T.GdkBitmap) { imageGetImage(i, gdkImage, mask) }
@@ -532,7 +533,7 @@ func (i *Image) GetStorageType() ImageType                       { return imageG
 func (i *Image) Set(val *D.Image, mask *T.GdkBitmap)             { imageSet(i, val, mask) }
 func (i *Image) SetFromAnimation(animation *D.PixbufAnimation)   { imageSetFromAnimation(i, animation) }
 func (i *Image) SetFromFile(filename string)                     { imageSetFromFile(i, filename) }
-func (i *Image) SetFromGicon(icon *T.GIcon, size IconSize)       { imageSetFromGicon(i, icon, size) }
+func (i *Image) SetFromGicon(icon *I.Icon, size IconSize)       { imageSetFromGicon(i, icon, size) }
 func (i *Image) SetFromIconName(iconName string, size IconSize) {
 	imageSetFromIconName(i, iconName, size)
 }

@@ -19,123 +19,6 @@ func init() {
 type Enum int
 
 var (
-	InitableGetType func() O.Type
-
-	InitableInit func(
-		initable *T.GInitable,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	InitableNew func(objectType O.Type,
-		cancellable *T.GCancellable, e **T.GError,
-		firstPropertyName string, v ...VArg) T.Gpointer
-
-	InitableNewv func(
-		objectType O.Type,
-		nParameters uint,
-		parameters *T.GParameter,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gpointer
-
-	InitableNewValist func(
-		objectType O.Type,
-		firstPropertyName string,
-		varArgs T.VaList,
-		cancellable *T.GCancellable,
-		err **T.GError) *O.Object
-
-	InputStreamGetType func() O.Type
-
-	InputStreamRead func(
-		stream *T.GInputStream,
-		buffer *T.Void,
-		count T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	InputStreamReadAll func(
-		stream *T.GInputStream,
-		buffer *T.Void,
-		count T.Gsize,
-		bytesRead *T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	InputStreamSkip func(
-		stream *T.GInputStream,
-		count T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	InputStreamClose func(
-		stream *T.GInputStream,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	InputStreamReadAsync func(
-		stream *T.GInputStream,
-		buffer *T.Void,
-		count T.Gsize,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	InputStreamReadFinish func(
-		stream *T.GInputStream,
-		result *AsyncResult,
-		err **T.GError) T.Gssize
-
-	InputStreamSkipAsync func(
-		stream *T.GInputStream,
-		count T.Gsize,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	InputStreamSkipFinish func(
-		stream *T.GInputStream,
-		result *AsyncResult,
-		err **T.GError) T.Gssize
-
-	InputStreamCloseAsync func(
-		stream *T.GInputStream,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	InputStreamCloseFinish func(
-		stream *T.GInputStream,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	InputStreamIsClosed func(
-		stream *T.GInputStream) T.Gboolean
-
-	InputStreamHasPending func(
-		stream *T.GInputStream) T.Gboolean
-
-	InputStreamSetPending func(
-		stream *T.GInputStream,
-		err **T.GError) T.Gboolean
-
-	InputStreamClearPending func(
-		stream *T.GInputStream)
-
-	FilterInputStreamGetType func() O.Type
-
-	FilterInputStreamGetBaseStream func(
-		stream *T.GFilterInputStream) *T.GInputStream
-
-	FilterInputStreamGetCloseBaseStream func(
-		stream *T.GFilterInputStream) T.Gboolean
-
-	FilterInputStreamSetCloseBaseStream func(
-		stream *T.GFilterInputStream,
-		closeBase T.Gboolean)
-
 	BufferedInputStreamGetType func() O.Type
 
 	BufferedInputStreamNew func(
@@ -291,18 +174,6 @@ var (
 	OutputStreamClearPending func(
 		stream *T.GOutputStream)
 
-	FilterOutputStreamGetType func() O.Type
-
-	FilterOutputStreamGetBaseStream func(
-		stream *T.GFilterOutputStream) *T.GOutputStream
-
-	FilterOutputStreamGetCloseBaseStream func(
-		stream *T.GFilterOutputStream) T.Gboolean
-
-	FilterOutputStreamSetCloseBaseStream func(
-		stream *T.GFilterOutputStream,
-		closeBase T.Gboolean)
-
 	BufferedOutputStreamGetType func() O.Type
 
 	BufferedOutputStreamNew func(
@@ -424,8 +295,7 @@ var (
 	ContentTypeGetMimeType func(
 		typ string) string
 
-	ContentTypeGetIcon func(
-		typ string) *T.GIcon
+	ContentTypeGetIcon func(typ string) *Icon
 
 	ContentTypeCanBeExecutable func(
 		typ string) T.Gboolean
@@ -439,8 +309,7 @@ var (
 		dataSize T.Gsize,
 		resultUncertain *T.Gboolean) string
 
-	ContentTypeGuessForTree func(
-		root *T.GFile) **T.Gchar
+	ContentTypeGuessForTree func(root *File) **T.Gchar
 
 	ContentTypesGetRegistered func() *T.GList
 
@@ -1565,7 +1434,7 @@ var (
 
 	DriveGetName func(drive *T.GDrive) string
 
-	DriveGetIcon func(drive *T.GDrive) *T.GIcon
+	DriveGetIcon func(drive *T.GDrive) *Icon
 
 	DriveHasVolumes func(drive *T.GDrive) T.Gboolean
 
@@ -1657,32 +1526,22 @@ var (
 		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
-	IconGetType func() O.Type
-
-	IconHash func(icon T.Gconstpointer) uint
-
-	IconEqual func(icon1 *T.GIcon, icon2 *T.GIcon) T.Gboolean
-
-	IconToString func(icon *T.GIcon) string
-
-	IconNewForString func(str string, err **T.GError) *T.GIcon
-
 	EmblemGetType func() O.Type
 
-	EmblemNew func(icon *T.GIcon) *T.GEmblem
+	EmblemNew func(icon *Icon) *T.GEmblem
 
 	EmblemNewWithOrigin func(
-		icon *T.GIcon, origin T.GEmblemOrigin) *T.GEmblem
+		icon *Icon, origin T.GEmblemOrigin) *T.GEmblem
 
-	EmblemGetIcon func(emblem *T.GEmblem) *T.GIcon
+	EmblemGetIcon func(emblem *T.GEmblem) *Icon
 
 	EmblemGetOrigin func(emblem *T.GEmblem) T.GEmblemOrigin
 
 	EmblemedIconGetType func() O.Type
 
-	EmblemedIconNew func(icon *T.GIcon, emblem *T.GEmblem) *T.GIcon
+	EmblemedIconNew func(icon *Icon, emblem *T.GEmblem) *Icon
 
-	EmblemedIconGetIcon func(emblemed *T.GEmblemedIcon) *T.GIcon
+	EmblemedIconGetIcon func(emblemed *T.GEmblemedIcon) *Icon
 
 	EmblemedIconGetEmblems func(
 		emblemed *T.GEmblemedIcon) *T.GList
@@ -1692,1225 +1551,6 @@ var (
 
 	EmblemedIconClearEmblems func(emblemed *T.GEmblemedIcon)
 
-	FileAttributeInfoListGetType func() O.Type
-
-	FileAttributeInfoListNew func() *T.GFileAttributeInfoList
-
-	FileAttributeInfoListRef func(
-		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
-
-	FileAttributeInfoListUnref func(
-		list *T.GFileAttributeInfoList)
-
-	FileAttributeInfoListDup func(
-		list *T.GFileAttributeInfoList) *T.GFileAttributeInfoList
-
-	FileAttributeInfoListLookup func(
-		list *T.GFileAttributeInfoList,
-		name string) *T.GFileAttributeInfo
-
-	FileAttributeInfoListAdd func(
-		list *T.GFileAttributeInfoList,
-		name string,
-		typ T.GFileAttributeType,
-		flags T.GFileAttributeInfoFlags)
-
-	FileEnumeratorGetType func() O.Type
-
-	FileEnumeratorNextFile func(
-		enumerator *T.GFileEnumerator,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileEnumeratorClose func(
-		enumerator *T.GFileEnumerator,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileEnumeratorNextFilesAsync func(
-		enumerator *T.GFileEnumerator,
-		numFiles int,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileEnumeratorNextFilesFinish func(
-		enumerator *T.GFileEnumerator,
-		result *AsyncResult,
-		err **T.GError) *T.GList
-
-	FileEnumeratorCloseAsync func(
-		enumerator *T.GFileEnumerator,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileEnumeratorCloseFinish func(
-		enumerator *T.GFileEnumerator,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileEnumeratorIsClosed func(
-		enumerator *T.GFileEnumerator) T.Gboolean
-
-	FileEnumeratorHasPending func(
-		enumerator *T.GFileEnumerator) T.Gboolean
-
-	FileEnumeratorSetPending func(
-		enumerator *T.GFileEnumerator,
-		pending T.Gboolean)
-
-	FileEnumeratorGetContainer func(
-		enumerator *T.GFileEnumerator) *T.GFile
-
-	FileGetType func() O.Type
-
-	FileNewForPath func(path string) *T.GFile
-
-	FileNewForUri func(uri string) *T.GFile
-
-	FileNewForCommandlineArg func(arg string) *T.GFile
-
-	FileParseName func(parseName string) *T.GFile
-
-	FileDup func(file *T.GFile) *T.GFile
-
-	FileHash func(file T.Gconstpointer) uint
-
-	FileEqual func(file1 *T.GFile, file2 *T.GFile) T.Gboolean
-
-	FileGetBasename func(file *T.GFile) string
-
-	FileGetPath func(file *T.GFile) string
-
-	FileGetUri func(file *T.GFile) string
-
-	FileGetParseName func(file *T.GFile) string
-
-	FileGetParent func(file *T.GFile) *T.GFile
-
-	FileHasParent func(file *T.GFile, parent *T.GFile) T.Gboolean
-
-	FileGetChild func(file *T.GFile, name string) *T.GFile
-
-	FileGetChildForDisplayName func(
-		file *T.GFile, displayName string, err **T.GError) *T.GFile
-
-	FileHasPrefix func(file *T.GFile, prefix *T.GFile) T.Gboolean
-
-	FileGetRelativePath func(
-		parent *T.GFile, descendant *T.GFile) string
-
-	FileResolveRelativePath func(
-		file *T.GFile, relativePath string) *T.GFile
-
-	FileIsNative func(file *T.GFile) T.Gboolean
-
-	FileHasUriScheme func(
-		file *T.GFile, uriScheme string) T.Gboolean
-
-	FileGetUriScheme func(file *T.GFile) string
-
-	FileRead func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInputStream
-
-	FileReadAsync func(
-		file *T.GFile,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileReadFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileInputStream
-
-	FileAppendTo func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileOutputStream
-
-	FileCreate func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileOutputStream
-
-	FileReplace func(
-		file *T.GFile,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileOutputStream
-
-	FileAppendToAsync func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileAppendToFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileOutputStream
-
-	FileCreateAsync func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileCreateFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileOutputStream
-
-	FileReplaceAsync func(
-		file *T.GFile,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileReplaceFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileOutputStream
-
-	FileOpenReadwrite func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileIOStream
-
-	FileOpenReadwriteAsync func(
-		file *T.GFile,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileOpenReadwriteFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileIOStream
-
-	FileCreateReadwrite func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileIOStream
-
-	FileCreateReadwriteAsync func(
-		file *T.GFile,
-		flags T.GFileCreateFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileCreateReadwriteFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileIOStream
-
-	FileReplaceReadwrite func(
-		file *T.GFile,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileIOStream
-
-	FileReplaceReadwriteAsync func(
-		file *T.GFile,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileReplaceReadwriteFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileIOStream
-
-	FileQueryExists func(
-		file *T.GFile,
-		cancellable *T.GCancellable) T.Gboolean
-
-	FileQueryFileType func(
-		file *T.GFile,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable) T.GFileType
-
-	FileQueryInfo func(
-		file *T.GFile,
-		attributes string,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileQueryInfoAsync func(
-		file *T.GFile,
-		attributes string,
-		flags T.GFileQueryInfoFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileQueryInfoFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileInfo
-
-	FileQueryFilesystemInfo func(
-		file *T.GFile,
-		attributes string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileQueryFilesystemInfoAsync func(
-		file *T.GFile,
-		attributes string,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileQueryFilesystemInfoFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileInfo
-
-	FileFindEnclosingMount func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GMount
-
-	FileFindEnclosingMountAsync func(
-		file *T.GFile,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileFindEnclosingMountFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GMount
-
-	FileEnumerateChildren func(
-		file *T.GFile,
-		attributes string,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileEnumerator
-
-	FileEnumerateChildrenAsync func(
-		file *T.GFile,
-		attributes string,
-		flags T.GFileQueryInfoFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileEnumerateChildrenFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFileEnumerator
-
-	FileSetDisplayName func(
-		file *T.GFile,
-		displayName string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFile
-
-	FileSetDisplayNameAsync func(
-		file *T.GFile,
-		displayName string,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileSetDisplayNameFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) *T.GFile
-
-	FileDelete func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileTrash func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileCopy func(
-		source *T.GFile,
-		destination *T.GFile,
-		flags T.GFileCopyFlags,
-		cancellable *T.GCancellable,
-		progressCallback T.GFileProgressCallback,
-		progressCallbackData T.Gpointer,
-		err **T.GError) T.Gboolean
-
-	FileCopyAsync func(
-		source *T.GFile,
-		destination *T.GFile,
-		flags T.GFileCopyFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		progressCallback T.GFileProgressCallback,
-		progressCallbackData T.Gpointer,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileCopyFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileMove func(
-		source *T.GFile,
-		destination *T.GFile,
-		flags T.GFileCopyFlags,
-		cancellable *T.GCancellable,
-		progressCallback T.GFileProgressCallback,
-		progressCallbackData T.Gpointer,
-		err **T.GError) T.Gboolean
-
-	FileMakeDirectory func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileMakeDirectoryWithParents func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileMakeSymbolicLink func(
-		file *T.GFile,
-		symlinkValue string,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileQuerySettableAttributes func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileAttributeInfoList
-
-	FileQueryWritableNamespaces func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileAttributeInfoList
-
-	FileSetAttribute func(
-		file *T.GFile,
-		attribute string,
-		typ T.GFileAttributeType,
-		valueP T.Gpointer,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributesFromInfo func(
-		file *T.GFile,
-		info *T.GFileInfo,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributesAsync func(
-		file *T.GFile,
-		info *T.GFileInfo,
-		flags T.GFileQueryInfoFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileSetAttributesFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		info **T.GFileInfo,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeString func(
-		file *T.GFile,
-		attribute string,
-		value string,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeByteString func(
-		file *T.GFile,
-		attribute string,
-		value string,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeUint32 func(
-		file *T.GFile,
-		attribute string,
-		value T.GUint32,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeInt32 func(
-		file *T.GFile,
-		attribute string,
-		value T.GInt32,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeUint64 func(
-		file *T.GFile,
-		attribute string,
-		value uint64,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileSetAttributeInt64 func(
-		file *T.GFile,
-		attribute string,
-		value int64,
-		flags T.GFileQueryInfoFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileMountEnclosingVolume func(
-		location *T.GFile,
-		flags T.GMountMountFlags,
-		mountOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileMountEnclosingVolumeFinish func(
-		location *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileMountMountable func(
-		file *T.GFile,
-		flags T.GMountMountFlags,
-		mountOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileMountMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) *T.GFile
-
-	FileUnmountMountable func(
-		file *T.GFile,
-		flags T.GMountUnmountFlags,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileUnmountMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileUnmountMountableWithOperation func(
-		file *T.GFile,
-		flags T.GMountUnmountFlags,
-		mountOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileUnmountMountableWithOperationFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileEjectMountable func(
-		file *T.GFile,
-		flags T.GMountUnmountFlags,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileEjectMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileEjectMountableWithOperation func(
-		file *T.GFile,
-		flags T.GMountUnmountFlags,
-		mountOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileEjectMountableWithOperationFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileCopyAttributes func(
-		source *T.GFile,
-		destination *T.GFile,
-		flags T.GFileCopyFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileMonitorDirectory func(
-		file *T.GFile,
-		flags T.GFileMonitorFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileMonitor
-
-	FileMonitorFile func(
-		file *T.GFile,
-		flags T.GFileMonitorFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileMonitor
-
-	FileMonitor func(
-		file *T.GFile,
-		flags T.GFileMonitorFlags,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileMonitor
-
-	FileStartMountable func(
-		file *T.GFile,
-		flags T.GDriveStartFlags,
-		startOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileStartMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileStopMountable func(
-		file *T.GFile,
-		flags T.GMountUnmountFlags,
-		mountOperation *T.GMountOperation,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileStopMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FilePollMountable func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FilePollMountableFinish func(
-		file *T.GFile,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	FileQueryDefaultHandler func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		err **T.GError) *AppInfo
-
-	FileLoadContents func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		contents **T.Char,
-		length *T.Gsize,
-		etagOut **T.Char,
-		err **T.GError) T.Gboolean
-
-	FileLoadContentsAsync func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileLoadContentsFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		contents **T.Char,
-		length *T.Gsize,
-		etagOut **T.Char,
-		err **T.GError) T.Gboolean
-
-	FileLoadPartialContentsAsync func(
-		file *T.GFile,
-		cancellable *T.GCancellable,
-		readMoreCallback T.GFileReadMoreCallback,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileLoadPartialContentsFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		contents **T.Char,
-		length *T.Gsize,
-		etagOut **T.Char,
-		err **T.GError) T.Gboolean
-
-	FileReplaceContents func(
-		file *T.GFile,
-		contents string,
-		length T.Gsize,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		newEtag **T.Char,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	FileReplaceContentsAsync func(
-		file *T.GFile,
-		contents string,
-		length T.Gsize,
-		etag string,
-		makeBackup T.Gboolean,
-		flags T.GFileCreateFlags,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileReplaceContentsFinish func(
-		file *T.GFile,
-		res *AsyncResult,
-		newEtag **T.Char,
-		err **T.GError) T.Gboolean
-
-	FileSupportsThreadContexts func(file *T.GFile) T.Gboolean
-
-	FileIconGetType func() O.Type
-
-	FileIconNew func(file *T.GFile) *T.GIcon
-
-	FileIconGetFile func(icon *T.GFileIcon) *T.GFile
-
-	FileInfoGetType func() O.Type
-
-	FileInfoNew func() *T.GFileInfo
-
-	FileInfoDup func(other *T.GFileInfo) *T.GFileInfo
-
-	FileInfoCopyInto func(srcInfo, destInfo *T.GFileInfo)
-
-	FileInfoHasAttribute func(
-		info *T.GFileInfo, attribute string) T.Gboolean
-
-	FileInfoHasNamespace func(
-		info *T.GFileInfo, nameSpace string) T.Gboolean
-
-	FileInfoListAttributes func(
-		info *T.GFileInfo, nameSpace string) **T.Char
-
-	FileInfoGetAttributeData func(
-		info *T.GFileInfo,
-		attribute string,
-		typ *T.GFileAttributeType,
-		valuePp *T.Gpointer,
-		status *T.GFileAttributeStatus) T.Gboolean
-
-	FileInfoGetAttributeType func(
-		info *T.GFileInfo,
-		attribute string) T.GFileAttributeType
-
-	FileInfoRemoveAttribute func(
-		info *T.GFileInfo,
-		attribute string)
-
-	FileInfoGetAttributeStatus func(
-		info *T.GFileInfo,
-		attribute string) T.GFileAttributeStatus
-
-	FileInfoSetAttributeStatus func(
-		info *T.GFileInfo,
-		attribute string,
-		status T.GFileAttributeStatus) T.Gboolean
-
-	FileInfoGetAttributeAsString func(
-		info *T.GFileInfo,
-		attribute string) string
-
-	FileInfoGetAttributeString func(
-		info *T.GFileInfo,
-		attribute string) string
-
-	FileInfoGetAttributeByteString func(
-		info *T.GFileInfo,
-		attribute string) string
-
-	FileInfoGetAttributeBoolean func(
-		info *T.GFileInfo,
-		attribute string) T.Gboolean
-
-	FileInfoGetAttributeUint32 func(
-		info *T.GFileInfo,
-		attribute string) T.GUint32
-
-	FileInfoGetAttributeInt32 func(
-		info *T.GFileInfo,
-		attribute string) T.GInt32
-
-	FileInfoGetAttributeUint64 func(
-		info *T.GFileInfo,
-		attribute string) uint64
-
-	FileInfoGetAttributeInt64 func(
-		info *T.GFileInfo,
-		attribute string) int64
-
-	FileInfoGetAttributeObject func(
-		info *T.GFileInfo,
-		attribute string) *O.Object
-
-	FileInfoGetAttributeStringv func(
-		info *T.GFileInfo,
-		attribute string) **T.Char
-
-	FileInfoSetAttribute func(
-		info *T.GFileInfo,
-		attribute string,
-		typ T.GFileAttributeType,
-		valueP T.Gpointer)
-
-	FileInfoSetAttributeString func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue string)
-
-	FileInfoSetAttributeByteString func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue string)
-
-	FileInfoSetAttributeBoolean func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue T.Gboolean)
-
-	FileInfoSetAttributeUint32 func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue T.GUint32)
-
-	FileInfoSetAttributeInt32 func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue T.GInt32)
-
-	FileInfoSetAttributeUint64 func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue uint64)
-
-	FileInfoSetAttributeInt64 func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue int64)
-
-	FileInfoSetAttributeObject func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue *O.Object)
-
-	FileInfoSetAttributeStringv func(
-		info *T.GFileInfo,
-		attribute string,
-		attrValue **T.Char)
-
-	FileInfoClearStatus func(
-		info *T.GFileInfo)
-
-	FileInfoGetFileType func(
-		info *T.GFileInfo) T.GFileType
-
-	FileInfoGetIsHidden func(
-		info *T.GFileInfo) T.Gboolean
-
-	FileInfoGetIsBackup func(
-		info *T.GFileInfo) T.Gboolean
-
-	FileInfoGetIsSymlink func(
-		info *T.GFileInfo) T.Gboolean
-
-	FileInfoGetName func(
-		info *T.GFileInfo) string
-
-	FileInfoGetDisplayName func(
-		info *T.GFileInfo) string
-
-	FileInfoGetEditName func(
-		info *T.GFileInfo) string
-
-	FileInfoGetIcon func(
-		info *T.GFileInfo) *T.GIcon
-
-	FileInfoGetContentType func(
-		info *T.GFileInfo) string
-
-	FileInfoGetSize func(
-		info *T.GFileInfo) T.Goffset
-
-	FileInfoGetModificationTime func(
-		info *T.GFileInfo,
-		result *T.GTimeVal)
-
-	FileInfoGetSymlinkTarget func(
-		info *T.GFileInfo) string
-
-	FileInfoGetEtag func(
-		info *T.GFileInfo) string
-
-	FileInfoGetSortOrder func(
-		info *T.GFileInfo) T.GInt32
-
-	FileInfoSetAttributeMask func(
-		info *T.GFileInfo,
-		mask *T.GFileAttributeMatcher)
-
-	FileInfoUnsetAttributeMask func(
-		info *T.GFileInfo)
-
-	FileInfoSetFileType func(
-		info *T.GFileInfo,
-		typ T.GFileType)
-
-	FileInfoSetIsHidden func(
-		info *T.GFileInfo,
-		isHidden T.Gboolean)
-
-	FileInfoSetIsSymlink func(
-		info *T.GFileInfo,
-		isSymlink T.Gboolean)
-
-	FileInfoSetName func(
-		info *T.GFileInfo,
-		name string)
-
-	FileInfoSetDisplayName func(
-		info *T.GFileInfo,
-		displayName string)
-
-	FileInfoSetEditName func(
-		info *T.GFileInfo,
-		editName string)
-
-	FileInfoSetIcon func(
-		info *T.GFileInfo,
-		icon *T.GIcon)
-
-	FileInfoSetContentType func(
-		info *T.GFileInfo,
-		contentType string)
-
-	FileInfoSetSize func(
-		info *T.GFileInfo,
-		size T.Goffset)
-
-	FileInfoSetModificationTime func(
-		info *T.GFileInfo,
-		mtime *T.GTimeVal)
-
-	FileInfoSetSymlinkTarget func(
-		info *T.GFileInfo,
-		symlinkTarget string)
-
-	FileInfoSetSortOrder func(
-		info *T.GFileInfo,
-		sortOrder T.GInt32)
-
-	FileAttributeMatcherGetType func() O.Type
-
-	FileAttributeMatcherNew func(
-		attributes string) *T.GFileAttributeMatcher
-
-	FileAttributeMatcherRef func(
-		matcher *T.GFileAttributeMatcher) *T.GFileAttributeMatcher
-
-	FileAttributeMatcherUnref func(
-		matcher *T.GFileAttributeMatcher)
-
-	FileAttributeMatcherMatches func(
-		matcher *T.GFileAttributeMatcher,
-		attribute string) T.Gboolean
-
-	FileAttributeMatcherMatchesOnly func(
-		matcher *T.GFileAttributeMatcher,
-		attribute string) T.Gboolean
-
-	FileAttributeMatcherEnumerateNamespace func(
-		matcher *T.GFileAttributeMatcher,
-		ns string) T.Gboolean
-
-	FileAttributeMatcherEnumerateNext func(
-		matcher *T.GFileAttributeMatcher) string
-
-	FileInputStreamGetType func() O.Type
-
-	FileInputStreamQueryInfo func(
-		stream *T.GFileInputStream,
-		attributes string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileInputStreamQueryInfoAsync func(
-		stream *T.GFileInputStream,
-		attributes string,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileInputStreamQueryInfoFinish func(
-		stream *T.GFileInputStream,
-		result *AsyncResult,
-		err **T.GError) *T.GFileInfo
-
-	IoErrorQuark func() T.GQuark
-
-	IoErrorFromErrno func(
-		errNo int) T.GIOErrorEnum
-
-	IoErrorFromWin32Error func(
-		errorCode int) T.GIOErrorEnum
-
-	IoStreamGetType func() O.Type
-
-	IoStreamGetInputStream func(
-		stream *T.GIOStream) *T.GInputStream
-
-	IoStreamGetOutputStream func(
-		stream *T.GIOStream) *T.GOutputStream
-
-	IoStreamSpliceAsync func(
-		stream1 *T.GIOStream,
-		stream2 *T.GIOStream,
-		flags T.GIOStreamSpliceFlags,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	IoStreamSpliceFinish func(
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	IoStreamClose func(
-		stream *T.GIOStream,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	IoStreamCloseAsync func(
-		stream *T.GIOStream,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	IoStreamCloseFinish func(
-		stream *T.GIOStream,
-		result *AsyncResult,
-		err **T.GError) T.Gboolean
-
-	IoStreamIsClosed func(
-		stream *T.GIOStream) T.Gboolean
-
-	IoStreamHasPending func(
-		stream *T.GIOStream) T.Gboolean
-
-	IoStreamSetPending func(
-		stream *T.GIOStream,
-		err **T.GError) T.Gboolean
-
-	IoStreamClearPending func(
-		stream *T.GIOStream)
-
-	FileIoStreamGetType func() O.Type
-
-	FileIoStreamQueryInfo func(
-		stream *T.GFileIOStream,
-		attributes string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileIoStreamQueryInfoAsync func(
-		stream *T.GFileIOStream,
-		attributes string,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileIoStreamQueryInfoFinish func(
-		stream *T.GFileIOStream,
-		result *AsyncResult,
-		err **T.GError) *T.GFileInfo
-
-	FileIoStreamGetEtag func(
-		stream *T.GFileIOStream) string
-
-	FileMonitorGetType func() O.Type
-
-	FileMonitorCancel func(
-		monitor *T.GFileMonitor) T.Gboolean
-
-	FileMonitorIsCancelled func(
-		monitor *T.GFileMonitor) T.Gboolean
-
-	FileMonitorSetRateLimit func(
-		monitor *T.GFileMonitor,
-		limitMsecs int)
-
-	FileMonitorEmitEvent func(
-		monitor *T.GFileMonitor,
-		child *T.GFile,
-		otherFile *T.GFile,
-		eventType T.GFileMonitorEvent)
-
-	FilenameCompleterGetType func() O.Type
-
-	FilenameCompleterNew func() *T.GFilenameCompleter
-
-	FilenameCompleterGetCompletionSuffix func(
-		completer *T.GFilenameCompleter,
-		initialText string) string
-
-	FilenameCompleterGetCompletions func(
-		completer *T.GFilenameCompleter,
-		initialText string) **T.Char
-
-	FilenameCompleterSetDirsOnly func(
-		completer *T.GFilenameCompleter,
-		dirsOnly T.Gboolean)
-
-	FileOutputStreamGetType func() O.Type
-
-	FileOutputStreamQueryInfo func(
-		stream *T.GFileOutputStream,
-		attributes string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GFileInfo
-
-	FileOutputStreamQueryInfoAsync func(
-		stream *T.GFileOutputStream,
-		attributes string,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback AsyncReadyCallback,
-		userData T.Gpointer)
-
-	FileOutputStreamQueryInfoFinish func(
-		stream *T.GFileOutputStream,
-		result *AsyncResult,
-		err **T.GError) *T.GFileInfo
-
-	FileOutputStreamGetEtag func(
-		stream *T.GFileOutputStream) string
-
-	InetAddressGetType func() O.Type
-
-	InetAddressNewFromString func(
-		string string) *T.GInetAddress
-
-	InetAddressNewFromBytes func(
-		bytes *uint8,
-		family SocketFamily) *T.GInetAddress
-
-	InetAddressNewLoopback func(
-		family SocketFamily) *T.GInetAddress
-
-	InetAddressNewAny func(
-		family SocketFamily) *T.GInetAddress
-
-	InetAddressToString func(
-		address *T.GInetAddress) string
-
-	InetAddressToBytes func(
-		address *T.GInetAddress) *uint8
-
-	InetAddressGetNativeSize func(
-		address *T.GInetAddress) T.Gsize
-
-	InetAddressGetFamily func(
-		address *T.GInetAddress) SocketFamily
-
-	InetAddressGetIsAny func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsLoopback func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsLinkLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsSiteLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMulticast func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMcGlobal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMcLinkLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMcNodeLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMcOrgLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetAddressGetIsMcSiteLocal func(
-		address *T.GInetAddress) T.Gboolean
-
-	InetSocketAddressGetType func() O.Type
-
-	InetSocketAddressNew func(
-		address *T.GInetAddress,
-		port uint16) *T.GSocketAddress
-
-	InetSocketAddressGetAddress func(
-		address *T.GInetSocketAddress) *T.GInetAddress
-
-	InetSocketAddressGetPort func(
-		address *T.GInetSocketAddress) uint16
-
 	ConverterFlagsGetType func() O.Type
 
 	ConverterResultGetType func() O.Type
@@ -2918,16 +1558,6 @@ var (
 	DataStreamByteOrderGetType func() O.Type
 
 	DataStreamNewlineTypeGetType func() O.Type
-
-	FileAttributeTypeGetType func() O.Type
-
-	FileAttributeInfoFlagsGetType func() O.Type
-
-	FileAttributeStatusGetType func() O.Type
-
-	FileQueryInfoFlagsGetType func() O.Type
-
-	FileCreateFlagsGetType func() O.Type
 
 	MountMountFlagsGetType func() O.Type
 
@@ -2937,18 +1567,6 @@ var (
 
 	DriveStartStopTypeGetType func() O.Type
 
-	FileCopyFlagsGetType func() O.Type
-
-	FileMonitorFlagsGetType func() O.Type
-
-	FileTypeGetType func() O.Type
-
-	FilesystemPreviewTypeGetType func() O.Type
-
-	FileMonitorEventGetType func() O.Type
-
-	IoErrorEnumGetType func() O.Type
-
 	AskPasswordFlagsGetType func() O.Type
 
 	PasswordSaveGetType func() O.Type
@@ -2956,8 +1574,6 @@ var (
 	MountOperationResultGetType func() O.Type
 
 	OutputStreamSpliceFlagsGetType func() O.Type
-
-	IoStreamSpliceFlagsGetType func() O.Type
 
 	EmblemOriginGetType func() O.Type
 
@@ -3010,84 +1626,6 @@ var (
 	TlsAuthenticationModeGetType func() O.Type
 
 	TlsRehandshakeModeGetType func() O.Type
-
-	IoModuleGetType func() O.Type
-
-	IoModuleNew func(
-		filename string) *T.GIOModule
-
-	IoModulesScanAllInDirectory func(
-		dirname string)
-
-	IoModulesLoadAllInDirectory func(
-		dirname string) *T.GList
-
-	IoExtensionPointRegister func(
-		name string) *T.GIOExtensionPoint
-
-	IoExtensionPointLookup func(
-		name string) *T.GIOExtensionPoint
-
-	IoExtensionPointSetRequiredType func(
-		extensionPoint *T.GIOExtensionPoint,
-		typ O.Type)
-
-	IoExtensionPointGetRequiredType func(
-		extensionPoint *T.GIOExtensionPoint) O.Type
-
-	IoExtensionPointGetExtensions func(
-		extensionPoint *T.GIOExtensionPoint) *T.GList
-
-	IoExtensionPointGetExtensionByName func(
-		extensionPoint *T.GIOExtensionPoint,
-		name string) *T.GIOExtension
-
-	IoExtensionPointImplement func(
-		extensionPointName string,
-		typ O.Type,
-		extensionName string,
-		priority int) *T.GIOExtension
-
-	IoExtensionGetType func(
-		extension *T.GIOExtension) O.Type
-
-	IoExtensionGetName func(
-		extension *T.GIOExtension) string
-
-	IoExtensionGetPriority func(
-		extension *T.GIOExtension) int
-
-	IoExtensionRefClass func(
-		extension *T.GIOExtension) *O.TypeClass
-
-	IoModuleLoad func(
-		module *T.GIOModule)
-
-	IoModuleUnload func(
-		module *T.GIOModule)
-
-	IoModuleQuery func() **T.Char
-
-	IoSchedulerPushJob func(
-		jobFunc T.GIOSchedulerJobFunc,
-		userData T.Gpointer,
-		notify T.GDestroyNotify,
-		ioPriority int,
-		cancellable *T.GCancellable)
-
-	IoSchedulerCancelAllJobs func()
-
-	IoSchedulerJobSendToMainloop func(
-		job *T.GIOSchedulerJob,
-		f O.SourceFunc,
-		userData T.Gpointer,
-		notify T.GDestroyNotify) T.Gboolean
-
-	IoSchedulerJobSendToMainloopAsync func(
-		job *T.GIOSchedulerJob,
-		f O.SourceFunc,
-		userData T.Gpointer,
-		notify T.GDestroyNotify)
 
 	LoadableIconGetType func() O.Type
 
@@ -3149,16 +1687,16 @@ var (
 	MountGetType func() O.Type
 
 	MountGetRoot func(
-		mount *T.GMount) *T.GFile
+		mount *T.GMount) *File
 
 	MountGetDefaultLocation func(
-		mount *T.GMount) *T.GFile
+		mount *T.GMount) *File
 
 	MountGetName func(
 		mount *T.GMount) string
 
 	MountGetIcon func(
-		mount *T.GMount) *T.GIcon
+		mount *T.GMount) *Icon
 
 	MountGetUuid func(
 		mount *T.GMount) string
@@ -3510,12 +2048,12 @@ var (
 	ProxyAddressGetType func() O.Type
 
 	ProxyAddressNew func(
-		inetaddr *T.GInetAddress,
+		inetaddr *InetAddress,
 		port uint16,
-		protocol string,
+		protocol,
 		destHostname string,
 		destPort uint16,
-		username string,
+		username,
 		password string) *T.GSocketAddress
 
 	ProxyAddressGetProtocol func(
@@ -3590,13 +2128,13 @@ var (
 
 	ResolverLookupByAddress func(
 		resolver *T.GResolver,
-		address *T.GInetAddress,
+		address *InetAddress,
 		cancellable *T.GCancellable,
 		err **T.GError) string
 
 	ResolverLookupByAddressAsync func(
 		resolver *T.GResolver,
-		address *T.GInetAddress,
+		address *InetAddress,
 		cancellable *T.GCancellable,
 		callback AsyncReadyCallback,
 		userData T.Gpointer)
@@ -3654,14 +2192,14 @@ var (
 	ThemedIconGetType func() O.Type
 
 	ThemedIconNew func(
-		iconname string) *T.GIcon
+		iconname string) *Icon
 
 	ThemedIconNewWithDefaultFallbacks func(
-		iconname string) *T.GIcon
+		iconname string) *Icon
 
 	ThemedIconNewFromNames func(
 		iconnames **T.Char,
-		len int) *T.GIcon
+		len int) *Icon
 
 	ThemedIconPrependName func(
 		icon *T.GThemedIcon,
@@ -3828,18 +2366,18 @@ var (
 
 	VfsGetFileForPath func(
 		vfs *T.GVfs,
-		path string) *T.GFile
+		path string) *File
 
 	VfsGetFileForUri func(
 		vfs *T.GVfs,
-		uri string) *T.GFile
+		uri string) *File
 
 	VfsGetSupportedUriSchemes func(
 		vfs *T.GVfs) **T.Gchar
 
 	VfsParseName func(
 		vfs *T.GVfs,
-		parseName string) *T.GFile
+		parseName string) *File
 
 	VfsGetDefault func() *T.GVfs
 
@@ -3851,7 +2389,7 @@ var (
 		volume *T.GVolume) string
 
 	VolumeGetIcon func(
-		volume *T.GVolume) *T.GIcon
+		volume *T.GVolume) *Icon
 
 	VolumeGetUuid func(
 		volume *T.GVolume) string
@@ -3904,7 +2442,7 @@ var (
 		volume *T.GVolume) **T.Char
 
 	VolumeGetActivationRoot func(
-		volume *T.GVolume) *T.GFile
+		volume *T.GVolume) *File
 
 	VolumeEjectWithOperation func(
 		volume *T.GVolume,
@@ -3926,11 +2464,11 @@ var (
 		level int) *T.GZlibCompressor
 
 	ZlibCompressorGetFileInfo func(
-		compressor *T.GZlibCompressor) *T.GFileInfo
+		compressor *T.GZlibCompressor) *FileInfo
 
 	ZlibCompressorSetFileInfo func(
 		compressor *T.GZlibCompressor,
-		fileInfo *T.GFileInfo)
+		fileInfo *FileInfo)
 
 	ZlibDecompressorGetType func() O.Type
 
@@ -3938,7 +2476,7 @@ var (
 		format T.GZlibCompressorFormat) *T.GZlibDecompressor
 
 	ZlibDecompressorGetFileInfo func(
-		decompressor *T.GZlibDecompressor) *T.GFileInfo
+		decompressor *T.GZlibDecompressor) *FileInfo
 
 	Win32InputStreamGetType func() O.Type
 
@@ -4448,333 +2986,333 @@ var apiList = outside.Apis{
 	{"g_emblemed_icon_get_icon", &EmblemedIconGetIcon},
 	{"g_emblemed_icon_get_type", &EmblemedIconGetType},
 	{"g_emblemed_icon_new", &EmblemedIconNew},
-	{"g_file_append_to", &FileAppendTo},
-	{"g_file_append_to_async", &FileAppendToAsync},
-	{"g_file_append_to_finish", &FileAppendToFinish},
+	{"g_file_append_to", &fileAppendTo},
+	{"g_file_append_to_async", &fileAppendToAsync},
+	{"g_file_append_to_finish", &fileAppendToFinish},
 	{"g_file_attribute_info_flags_get_type", &FileAttributeInfoFlagsGetType},
-	{"g_file_attribute_info_list_add", &FileAttributeInfoListAdd},
-	{"g_file_attribute_info_list_dup", &FileAttributeInfoListDup},
+	{"g_file_attribute_info_list_add", &fileAttributeInfoListAdd},
+	{"g_file_attribute_info_list_dup", &fileAttributeInfoListDup},
 	{"g_file_attribute_info_list_get_type", &FileAttributeInfoListGetType},
-	{"g_file_attribute_info_list_lookup", &FileAttributeInfoListLookup},
+	{"g_file_attribute_info_list_lookup", &fileAttributeInfoListLookup},
 	{"g_file_attribute_info_list_new", &FileAttributeInfoListNew},
-	{"g_file_attribute_info_list_ref", &FileAttributeInfoListRef},
-	{"g_file_attribute_info_list_unref", &FileAttributeInfoListUnref},
-	{"g_file_attribute_matcher_enumerate_namespace", &FileAttributeMatcherEnumerateNamespace},
-	{"g_file_attribute_matcher_enumerate_next", &FileAttributeMatcherEnumerateNext},
+	{"g_file_attribute_info_list_ref", &fileAttributeInfoListRef},
+	{"g_file_attribute_info_list_unref", &fileAttributeInfoListUnref},
+	{"g_file_attribute_matcher_enumerate_namespace", &fileAttributeMatcherEnumerateNamespace},
+	{"g_file_attribute_matcher_enumerate_next", &fileAttributeMatcherEnumerateNext},
 	{"g_file_attribute_matcher_get_type", &FileAttributeMatcherGetType},
-	{"g_file_attribute_matcher_matches", &FileAttributeMatcherMatches},
-	{"g_file_attribute_matcher_matches_only", &FileAttributeMatcherMatchesOnly},
+	{"g_file_attribute_matcher_matches", &fileAttributeMatcherMatches},
+	{"g_file_attribute_matcher_matches_only", &fileAttributeMatcherMatchesOnly},
 	{"g_file_attribute_matcher_new", &FileAttributeMatcherNew},
-	{"g_file_attribute_matcher_ref", &FileAttributeMatcherRef},
-	{"g_file_attribute_matcher_unref", &FileAttributeMatcherUnref},
+	{"g_file_attribute_matcher_ref", &fileAttributeMatcherRef},
+	{"g_file_attribute_matcher_unref", &fileAttributeMatcherUnref},
 	{"g_file_attribute_status_get_type", &FileAttributeStatusGetType},
 	{"g_file_attribute_type_get_type", &FileAttributeTypeGetType},
-	{"g_file_copy", &FileCopy},
-	{"g_file_copy_async", &FileCopyAsync},
-	{"g_file_copy_attributes", &FileCopyAttributes},
-	{"g_file_copy_finish", &FileCopyFinish},
+	{"g_file_copy", &fileCopy},
+	{"g_file_copy_async", &fileCopyAsync},
+	{"g_file_copy_attributes", &fileCopyAttributes},
+	{"g_file_copy_finish", &fileCopyFinish},
 	{"g_file_copy_flags_get_type", &FileCopyFlagsGetType},
-	{"g_file_create", &FileCreate},
-	{"g_file_create_async", &FileCreateAsync},
-	{"g_file_create_finish", &FileCreateFinish},
+	{"g_file_create", &fileCreate},
+	{"g_file_create_async", &fileCreateAsync},
+	{"g_file_create_finish", &fileCreateFinish},
 	{"g_file_create_flags_get_type", &FileCreateFlagsGetType},
-	{"g_file_create_readwrite", &FileCreateReadwrite},
-	{"g_file_create_readwrite_async", &FileCreateReadwriteAsync},
-	{"g_file_create_readwrite_finish", &FileCreateReadwriteFinish},
-	{"g_file_delete", &FileDelete},
-	{"g_file_dup", &FileDup},
-	{"g_file_eject_mountable", &FileEjectMountable},
-	{"g_file_eject_mountable_finish", &FileEjectMountableFinish},
-	{"g_file_eject_mountable_with_operation", &FileEjectMountableWithOperation},
-	{"g_file_eject_mountable_with_operation_finish", &FileEjectMountableWithOperationFinish},
-	{"g_file_enumerate_children", &FileEnumerateChildren},
-	{"g_file_enumerate_children_async", &FileEnumerateChildrenAsync},
-	{"g_file_enumerate_children_finish", &FileEnumerateChildrenFinish},
-	{"g_file_enumerator_close", &FileEnumeratorClose},
-	{"g_file_enumerator_close_async", &FileEnumeratorCloseAsync},
-	{"g_file_enumerator_close_finish", &FileEnumeratorCloseFinish},
-	{"g_file_enumerator_get_container", &FileEnumeratorGetContainer},
+	{"g_file_create_readwrite", &fileCreateReadwrite},
+	{"g_file_create_readwrite_async", &fileCreateReadwriteAsync},
+	{"g_file_create_readwrite_finish", &fileCreateReadwriteFinish},
+	{"g_file_delete", &fileDelete},
+	{"g_file_dup", &fileDup},
+	{"g_file_eject_mountable", &fileEjectMountable},
+	{"g_file_eject_mountable_finish", &fileEjectMountableFinish},
+	{"g_file_eject_mountable_with_operation", &fileEjectMountableWithOperation},
+	{"g_file_eject_mountable_with_operation_finish", &fileEjectMountableWithOperationFinish},
+	{"g_file_enumerate_children", &fileEnumerateChildren},
+	{"g_file_enumerate_children_async", &fileEnumerateChildrenAsync},
+	{"g_file_enumerate_children_finish", &fileEnumerateChildrenFinish},
+	{"g_file_enumerator_close", &fileEnumeratorClose},
+	{"g_file_enumerator_close_async", &fileEnumeratorCloseAsync},
+	{"g_file_enumerator_close_finish", &fileEnumeratorCloseFinish},
+	{"g_file_enumerator_get_container", &fileEnumeratorGetContainer},
 	{"g_file_enumerator_get_type", &FileEnumeratorGetType},
-	{"g_file_enumerator_has_pending", &FileEnumeratorHasPending},
-	{"g_file_enumerator_is_closed", &FileEnumeratorIsClosed},
-	{"g_file_enumerator_next_file", &FileEnumeratorNextFile},
-	{"g_file_enumerator_next_files_async", &FileEnumeratorNextFilesAsync},
-	{"g_file_enumerator_next_files_finish", &FileEnumeratorNextFilesFinish},
-	{"g_file_enumerator_set_pending", &FileEnumeratorSetPending},
-	{"g_file_equal", &FileEqual},
-	{"g_file_find_enclosing_mount", &FileFindEnclosingMount},
-	{"g_file_find_enclosing_mount_async", &FileFindEnclosingMountAsync},
-	{"g_file_find_enclosing_mount_finish", &FileFindEnclosingMountFinish},
-	{"g_file_get_basename", &FileGetBasename},
-	{"g_file_get_child", &FileGetChild},
-	{"g_file_get_child_for_display_name", &FileGetChildForDisplayName},
-	{"g_file_get_parent", &FileGetParent},
-	{"g_file_get_parse_name", &FileGetParseName},
-	{"g_file_get_path", &FileGetPath},
-	{"g_file_get_relative_path", &FileGetRelativePath},
+	{"g_file_enumerator_has_pending", &fileEnumeratorHasPending},
+	{"g_file_enumerator_is_closed", &fileEnumeratorIsClosed},
+	{"g_file_enumerator_next_file", &fileEnumeratorNextFile},
+	{"g_file_enumerator_next_files_async", &fileEnumeratorNextFilesAsync},
+	{"g_file_enumerator_next_files_finish", &fileEnumeratorNextFilesFinish},
+	{"g_file_enumerator_set_pending", &fileEnumeratorSetPending},
+	{"g_file_equal", &fileEqual},
+	{"g_file_find_enclosing_mount", &fileFindEnclosingMount},
+	{"g_file_find_enclosing_mount_async", &fileFindEnclosingMountAsync},
+	{"g_file_find_enclosing_mount_finish", &fileFindEnclosingMountFinish},
+	{"g_file_get_basename", &fileGetBasename},
+	{"g_file_get_child", &fileGetChild},
+	{"g_file_get_child_for_display_name", &fileGetChildForDisplayName},
+	{"g_file_get_parent", &fileGetParent},
+	{"g_file_get_parse_name", &fileGetParseName},
+	{"g_file_get_path", &fileGetPath},
+	{"g_file_get_relative_path", &fileGetRelativePath},
 	{"g_file_get_type", &FileGetType},
-	{"g_file_get_uri", &FileGetUri},
-	{"g_file_get_uri_scheme", &FileGetUriScheme},
-	{"g_file_has_parent", &FileHasParent},
-	{"g_file_has_prefix", &FileHasPrefix},
-	{"g_file_has_uri_scheme", &FileHasUriScheme},
+	{"g_file_get_uri", &fileGetUri},
+	{"g_file_get_uri_scheme", &fileGetUriScheme},
+	{"g_file_has_parent", &fileHasParent},
+	{"g_file_has_prefix", &fileHasPrefix},
+	{"g_file_has_uri_scheme", &fileHasUriScheme},
 	{"g_file_hash", &FileHash},
-	{"g_file_icon_get_file", &FileIconGetFile},
+	{"g_file_icon_get_file", &fileIconGetFile},
 	{"g_file_icon_get_type", &FileIconGetType},
 	{"g_file_icon_new", &FileIconNew},
-	{"g_file_info_clear_status", &FileInfoClearStatus},
+	{"g_file_info_clear_status", &fileInfoClearStatus},
 	{"g_file_info_copy_into", &FileInfoCopyInto},
 	{"g_file_info_dup", &FileInfoDup},
-	{"g_file_info_get_attribute_as_string", &FileInfoGetAttributeAsString},
-	{"g_file_info_get_attribute_boolean", &FileInfoGetAttributeBoolean},
-	{"g_file_info_get_attribute_byte_string", &FileInfoGetAttributeByteString},
-	{"g_file_info_get_attribute_data", &FileInfoGetAttributeData},
-	{"g_file_info_get_attribute_int32", &FileInfoGetAttributeInt32},
-	{"g_file_info_get_attribute_int64", &FileInfoGetAttributeInt64},
-	{"g_file_info_get_attribute_object", &FileInfoGetAttributeObject},
-	{"g_file_info_get_attribute_status", &FileInfoGetAttributeStatus},
-	{"g_file_info_get_attribute_string", &FileInfoGetAttributeString},
-	{"g_file_info_get_attribute_stringv", &FileInfoGetAttributeStringv},
-	{"g_file_info_get_attribute_type", &FileInfoGetAttributeType},
-	{"g_file_info_get_attribute_uint32", &FileInfoGetAttributeUint32},
-	{"g_file_info_get_attribute_uint64", &FileInfoGetAttributeUint64},
-	{"g_file_info_get_content_type", &FileInfoGetContentType},
-	{"g_file_info_get_display_name", &FileInfoGetDisplayName},
-	{"g_file_info_get_edit_name", &FileInfoGetEditName},
-	{"g_file_info_get_etag", &FileInfoGetEtag},
-	{"g_file_info_get_file_type", &FileInfoGetFileType},
-	{"g_file_info_get_icon", &FileInfoGetIcon},
-	{"g_file_info_get_is_backup", &FileInfoGetIsBackup},
-	{"g_file_info_get_is_hidden", &FileInfoGetIsHidden},
-	{"g_file_info_get_is_symlink", &FileInfoGetIsSymlink},
-	{"g_file_info_get_modification_time", &FileInfoGetModificationTime},
-	{"g_file_info_get_name", &FileInfoGetName},
-	{"g_file_info_get_size", &FileInfoGetSize},
-	{"g_file_info_get_sort_order", &FileInfoGetSortOrder},
-	{"g_file_info_get_symlink_target", &FileInfoGetSymlinkTarget},
+	{"g_file_info_get_attribute_as_string", &fileInfoGetAttributeAsString},
+	{"g_file_info_get_attribute_boolean", &fileInfoGetAttributeBoolean},
+	{"g_file_info_get_attribute_byte_string", &fileInfoGetAttributeByteString},
+	{"g_file_info_get_attribute_data", &fileInfoGetAttributeData},
+	{"g_file_info_get_attribute_int32", &fileInfoGetAttributeInt32},
+	{"g_file_info_get_attribute_int64", &fileInfoGetAttributeInt64},
+	{"g_file_info_get_attribute_object", &fileInfoGetAttributeObject},
+	{"g_file_info_get_attribute_status", &fileInfoGetAttributeStatus},
+	{"g_file_info_get_attribute_string", &fileInfoGetAttributeString},
+	{"g_file_info_get_attribute_stringv", &fileInfoGetAttributeStringv},
+	{"g_file_info_get_attribute_type", &fileInfoGetAttributeType},
+	{"g_file_info_get_attribute_uint32", &fileInfoGetAttributeUint32},
+	{"g_file_info_get_attribute_uint64", &fileInfoGetAttributeUint64},
+	{"g_file_info_get_content_type", &fileInfoGetContentType},
+	{"g_file_info_get_display_name", &fileInfoGetDisplayName},
+	{"g_file_info_get_edit_name", &fileInfoGetEditName},
+	{"g_file_info_get_etag", &fileInfoGetEtag},
+	{"g_file_info_get_file_type", &fileInfoGetFileType},
+	{"g_file_info_get_icon", &fileInfoGetIcon},
+	{"g_file_info_get_is_backup", &fileInfoGetIsBackup},
+	{"g_file_info_get_is_hidden", &fileInfoGetIsHidden},
+	{"g_file_info_get_is_symlink", &fileInfoGetIsSymlink},
+	{"g_file_info_get_modification_time", &fileInfoGetModificationTime},
+	{"g_file_info_get_name", &fileInfoGetName},
+	{"g_file_info_get_size", &fileInfoGetSize},
+	{"g_file_info_get_sort_order", &fileInfoGetSortOrder},
+	{"g_file_info_get_symlink_target", &fileInfoGetSymlinkTarget},
 	{"g_file_info_get_type", &FileInfoGetType},
-	{"g_file_info_has_attribute", &FileInfoHasAttribute},
-	{"g_file_info_has_namespace", &FileInfoHasNamespace},
-	{"g_file_info_list_attributes", &FileInfoListAttributes},
+	{"g_file_info_has_attribute", &fileInfoHasAttribute},
+	{"g_file_info_has_namespace", &fileInfoHasNamespace},
+	{"g_file_info_list_attributes", &fileInfoListAttributes},
 	{"g_file_info_new", &FileInfoNew},
-	{"g_file_info_remove_attribute", &FileInfoRemoveAttribute},
-	{"g_file_info_set_attribute", &FileInfoSetAttribute},
-	{"g_file_info_set_attribute_boolean", &FileInfoSetAttributeBoolean},
-	{"g_file_info_set_attribute_byte_string", &FileInfoSetAttributeByteString},
-	{"g_file_info_set_attribute_int32", &FileInfoSetAttributeInt32},
-	{"g_file_info_set_attribute_int64", &FileInfoSetAttributeInt64},
-	{"g_file_info_set_attribute_mask", &FileInfoSetAttributeMask},
-	{"g_file_info_set_attribute_object", &FileInfoSetAttributeObject},
-	{"g_file_info_set_attribute_status", &FileInfoSetAttributeStatus},
-	{"g_file_info_set_attribute_string", &FileInfoSetAttributeString},
-	{"g_file_info_set_attribute_stringv", &FileInfoSetAttributeStringv},
-	{"g_file_info_set_attribute_uint32", &FileInfoSetAttributeUint32},
-	{"g_file_info_set_attribute_uint64", &FileInfoSetAttributeUint64},
-	{"g_file_info_set_content_type", &FileInfoSetContentType},
-	{"g_file_info_set_display_name", &FileInfoSetDisplayName},
-	{"g_file_info_set_edit_name", &FileInfoSetEditName},
-	{"g_file_info_set_file_type", &FileInfoSetFileType},
-	{"g_file_info_set_icon", &FileInfoSetIcon},
-	{"g_file_info_set_is_hidden", &FileInfoSetIsHidden},
-	{"g_file_info_set_is_symlink", &FileInfoSetIsSymlink},
-	{"g_file_info_set_modification_time", &FileInfoSetModificationTime},
-	{"g_file_info_set_name", &FileInfoSetName},
-	{"g_file_info_set_size", &FileInfoSetSize},
-	{"g_file_info_set_sort_order", &FileInfoSetSortOrder},
-	{"g_file_info_set_symlink_target", &FileInfoSetSymlinkTarget},
-	{"g_file_info_unset_attribute_mask", &FileInfoUnsetAttributeMask},
+	{"g_file_info_remove_attribute", &fileInfoRemoveAttribute},
+	{"g_file_info_set_attribute", &fileInfoSetAttribute},
+	{"g_file_info_set_attribute_boolean", &fileInfoSetAttributeBoolean},
+	{"g_file_info_set_attribute_byte_string", &fileInfoSetAttributeByteString},
+	{"g_file_info_set_attribute_int32", &fileInfoSetAttributeInt32},
+	{"g_file_info_set_attribute_int64", &fileInfoSetAttributeInt64},
+	{"g_file_info_set_attribute_mask", &fileInfoSetAttributeMask},
+	{"g_file_info_set_attribute_object", &fileInfoSetAttributeObject},
+	{"g_file_info_set_attribute_status", &fileInfoSetAttributeStatus},
+	{"g_file_info_set_attribute_string", &fileInfoSetAttributeString},
+	{"g_file_info_set_attribute_stringv", &fileInfoSetAttributeStringv},
+	{"g_file_info_set_attribute_uint32", &fileInfoSetAttributeUint32},
+	{"g_file_info_set_attribute_uint64", &fileInfoSetAttributeUint64},
+	{"g_file_info_set_content_type", &fileInfoSetContentType},
+	{"g_file_info_set_display_name", &fileInfoSetDisplayName},
+	{"g_file_info_set_edit_name", &fileInfoSetEditName},
+	{"g_file_info_set_file_type", &fileInfoSetFileType},
+	{"g_file_info_set_icon", &fileInfoSetIcon},
+	{"g_file_info_set_is_hidden", &fileInfoSetIsHidden},
+	{"g_file_info_set_is_symlink", &fileInfoSetIsSymlink},
+	{"g_file_info_set_modification_time", &fileInfoSetModificationTime},
+	{"g_file_info_set_name", &fileInfoSetName},
+	{"g_file_info_set_size", &fileInfoSetSize},
+	{"g_file_info_set_sort_order", &fileInfoSetSortOrder},
+	{"g_file_info_set_symlink_target", &fileInfoSetSymlinkTarget},
+	{"g_file_info_unset_attribute_mask", &fileInfoUnsetAttributeMask},
 	{"g_file_input_stream_get_type", &FileInputStreamGetType},
-	{"g_file_input_stream_query_info", &FileInputStreamQueryInfo},
-	{"g_file_input_stream_query_info_async", &FileInputStreamQueryInfoAsync},
-	{"g_file_input_stream_query_info_finish", &FileInputStreamQueryInfoFinish},
-	{"g_file_io_stream_get_etag", &FileIoStreamGetEtag},
+	{"g_file_input_stream_query_info", &fileInputStreamQueryInfo},
+	{"g_file_input_stream_query_info_async", &fileInputStreamQueryInfoAsync},
+	{"g_file_input_stream_query_info_finish", &fileInputStreamQueryInfoFinish},
+	{"g_file_io_stream_get_etag", &fileIoStreamGetEtag},
 	{"g_file_io_stream_get_type", &FileIoStreamGetType},
-	{"g_file_io_stream_query_info", &FileIoStreamQueryInfo},
-	{"g_file_io_stream_query_info_async", &FileIoStreamQueryInfoAsync},
-	{"g_file_io_stream_query_info_finish", &FileIoStreamQueryInfoFinish},
-	{"g_file_is_native", &FileIsNative},
-	{"g_file_load_contents", &FileLoadContents},
-	{"g_file_load_contents_async", &FileLoadContentsAsync},
-	{"g_file_load_contents_finish", &FileLoadContentsFinish},
-	{"g_file_load_partial_contents_async", &FileLoadPartialContentsAsync},
-	{"g_file_load_partial_contents_finish", &FileLoadPartialContentsFinish},
-	{"g_file_make_directory", &FileMakeDirectory},
-	{"g_file_make_directory_with_parents", &FileMakeDirectoryWithParents},
-	{"g_file_make_symbolic_link", &FileMakeSymbolicLink},
-	{"g_file_monitor", &FileMonitor},
-	{"g_file_monitor_cancel", &FileMonitorCancel},
-	{"g_file_monitor_directory", &FileMonitorDirectory},
-	{"g_file_monitor_emit_event", &FileMonitorEmitEvent},
+	{"g_file_io_stream_query_info", &fileIoStreamQueryInfo},
+	{"g_file_io_stream_query_info_async", &fileIoStreamQueryInfoAsync},
+	{"g_file_io_stream_query_info_finish", &fileIoStreamQueryInfoFinish},
+	{"g_file_is_native", &fileIsNative},
+	{"g_file_load_contents", &fileLoadContents},
+	{"g_file_load_contents_async", &fileLoadContentsAsync},
+	{"g_file_load_contents_finish", &fileLoadContentsFinish},
+	{"g_file_load_partial_contents_async", &fileLoadPartialContentsAsync},
+	{"g_file_load_partial_contents_finish", &fileLoadPartialContentsFinish},
+	{"g_file_make_directory", &fileMakeDirectory},
+	{"g_file_make_directory_with_parents", &fileMakeDirectoryWithParents},
+	{"g_file_make_symbolic_link", &fileMakeSymbolicLink},
+	{"g_file_monitor", &fileMonitor},
+	{"g_file_monitor_cancel", &fileMonitorCancel},
+	{"g_file_monitor_directory", &fileMonitorDirectory},
+	{"g_file_monitor_emit_event", &fileMonitorEmitEvent},
 	{"g_file_monitor_event_get_type", &FileMonitorEventGetType},
-	{"g_file_monitor_file", &FileMonitorFile},
+	{"g_file_monitor_file", &fileMonitorFile},
 	{"g_file_monitor_flags_get_type", &FileMonitorFlagsGetType},
 	{"g_file_monitor_get_type", &FileMonitorGetType},
-	{"g_file_monitor_is_cancelled", &FileMonitorIsCancelled},
-	{"g_file_monitor_set_rate_limit", &FileMonitorSetRateLimit},
-	{"g_file_mount_enclosing_volume", &FileMountEnclosingVolume},
-	{"g_file_mount_enclosing_volume_finish", &FileMountEnclosingVolumeFinish},
-	{"g_file_mount_mountable", &FileMountMountable},
-	{"g_file_mount_mountable_finish", &FileMountMountableFinish},
-	{"g_file_move", &FileMove},
+	{"g_file_monitor_is_cancelled", &fileMonitorIsCancelled},
+	{"g_file_monitor_set_rate_limit", &fileMonitorSetRateLimit},
+	{"g_file_mount_enclosing_volume", &fileMountEnclosingVolume},
+	{"g_file_mount_enclosing_volume_finish", &fileMountEnclosingVolumeFinish},
+	{"g_file_mount_mountable", &fileMountMountable},
+	{"g_file_mount_mountable_finish", &fileMountMountableFinish},
+	{"g_file_move", &fileMove},
 	{"g_file_new_for_commandline_arg", &FileNewForCommandlineArg},
 	{"g_file_new_for_path", &FileNewForPath},
 	{"g_file_new_for_uri", &FileNewForUri},
-	{"g_file_open_readwrite", &FileOpenReadwrite},
-	{"g_file_open_readwrite_async", &FileOpenReadwriteAsync},
-	{"g_file_open_readwrite_finish", &FileOpenReadwriteFinish},
-	{"g_file_output_stream_get_etag", &FileOutputStreamGetEtag},
+	{"g_file_open_readwrite", &fileOpenReadwrite},
+	{"g_file_open_readwrite_async", &fileOpenReadwriteAsync},
+	{"g_file_open_readwrite_finish", &fileOpenReadwriteFinish},
+	{"g_file_output_stream_get_etag", &fileOutputStreamGetEtag},
 	{"g_file_output_stream_get_type", &FileOutputStreamGetType},
-	{"g_file_output_stream_query_info", &FileOutputStreamQueryInfo},
-	{"g_file_output_stream_query_info_async", &FileOutputStreamQueryInfoAsync},
-	{"g_file_output_stream_query_info_finish", &FileOutputStreamQueryInfoFinish},
+	{"g_file_output_stream_query_info", &fileOutputStreamQueryInfo},
+	{"g_file_output_stream_query_info_async", &fileOutputStreamQueryInfoAsync},
+	{"g_file_output_stream_query_info_finish", &fileOutputStreamQueryInfoFinish},
 	{"g_file_parse_name", &FileParseName},
-	{"g_file_poll_mountable", &FilePollMountable},
-	{"g_file_poll_mountable_finish", &FilePollMountableFinish},
-	{"g_file_query_default_handler", &FileQueryDefaultHandler},
-	{"g_file_query_exists", &FileQueryExists},
-	{"g_file_query_file_type", &FileQueryFileType},
-	{"g_file_query_filesystem_info", &FileQueryFilesystemInfo},
-	{"g_file_query_filesystem_info_async", &FileQueryFilesystemInfoAsync},
-	{"g_file_query_filesystem_info_finish", &FileQueryFilesystemInfoFinish},
-	{"g_file_query_info", &FileQueryInfo},
-	{"g_file_query_info_async", &FileQueryInfoAsync},
-	{"g_file_query_info_finish", &FileQueryInfoFinish},
+	{"g_file_poll_mountable", &filePollMountable},
+	{"g_file_poll_mountable_finish", &filePollMountableFinish},
+	{"g_file_query_default_handler", &fileQueryDefaultHandler},
+	{"g_file_query_exists", &fileQueryExists},
+	{"g_file_query_file_type", &fileQueryFileType},
+	{"g_file_query_filesystem_info", &fileQueryFilesystemInfo},
+	{"g_file_query_filesystem_info_async", &fileQueryFilesystemInfoAsync},
+	{"g_file_query_filesystem_info_finish", &fileQueryFilesystemInfoFinish},
+	{"g_file_query_info", &fileQueryInfo},
+	{"g_file_query_info_async", &fileQueryInfoAsync},
+	{"g_file_query_info_finish", &fileQueryInfoFinish},
 	{"g_file_query_info_flags_get_type", &FileQueryInfoFlagsGetType},
-	{"g_file_query_settable_attributes", &FileQuerySettableAttributes},
-	{"g_file_query_writable_namespaces", &FileQueryWritableNamespaces},
-	{"g_file_read", &FileRead},
-	{"g_file_read_async", &FileReadAsync},
-	{"g_file_read_finish", &FileReadFinish},
-	{"g_file_replace", &FileReplace},
-	{"g_file_replace_async", &FileReplaceAsync},
-	{"g_file_replace_contents", &FileReplaceContents},
-	{"g_file_replace_contents_async", &FileReplaceContentsAsync},
-	{"g_file_replace_contents_finish", &FileReplaceContentsFinish},
-	{"g_file_replace_finish", &FileReplaceFinish},
-	{"g_file_replace_readwrite", &FileReplaceReadwrite},
-	{"g_file_replace_readwrite_async", &FileReplaceReadwriteAsync},
-	{"g_file_replace_readwrite_finish", &FileReplaceReadwriteFinish},
-	{"g_file_resolve_relative_path", &FileResolveRelativePath},
-	{"g_file_set_attribute", &FileSetAttribute},
-	{"g_file_set_attribute_byte_string", &FileSetAttributeByteString},
-	{"g_file_set_attribute_int32", &FileSetAttributeInt32},
-	{"g_file_set_attribute_int64", &FileSetAttributeInt64},
-	{"g_file_set_attribute_string", &FileSetAttributeString},
-	{"g_file_set_attribute_uint32", &FileSetAttributeUint32},
-	{"g_file_set_attribute_uint64", &FileSetAttributeUint64},
-	{"g_file_set_attributes_async", &FileSetAttributesAsync},
-	{"g_file_set_attributes_finish", &FileSetAttributesFinish},
-	{"g_file_set_attributes_from_info", &FileSetAttributesFromInfo},
-	{"g_file_set_display_name", &FileSetDisplayName},
-	{"g_file_set_display_name_async", &FileSetDisplayNameAsync},
-	{"g_file_set_display_name_finish", &FileSetDisplayNameFinish},
-	{"g_file_start_mountable", &FileStartMountable},
-	{"g_file_start_mountable_finish", &FileStartMountableFinish},
-	{"g_file_stop_mountable", &FileStopMountable},
-	{"g_file_stop_mountable_finish", &FileStopMountableFinish},
-	{"g_file_supports_thread_contexts", &FileSupportsThreadContexts},
-	{"g_file_trash", &FileTrash},
+	{"g_file_query_settable_attributes", &fileQuerySettableAttributes},
+	{"g_file_query_writable_namespaces", &fileQueryWritableNamespaces},
+	{"g_file_read", &fileRead},
+	{"g_file_read_async", &fileReadAsync},
+	{"g_file_read_finish", &fileReadFinish},
+	{"g_file_replace", &fileReplace},
+	{"g_file_replace_async", &fileReplaceAsync},
+	{"g_file_replace_contents", &fileReplaceContents},
+	{"g_file_replace_contents_async", &fileReplaceContentsAsync},
+	{"g_file_replace_contents_finish", &fileReplaceContentsFinish},
+	{"g_file_replace_finish", &fileReplaceFinish},
+	{"g_file_replace_readwrite", &fileReplaceReadwrite},
+	{"g_file_replace_readwrite_async", &fileReplaceReadwriteAsync},
+	{"g_file_replace_readwrite_finish", &fileReplaceReadwriteFinish},
+	{"g_file_resolve_relative_path", &fileResolveRelativePath},
+	{"g_file_set_attribute", &fileSetAttribute},
+	{"g_file_set_attribute_byte_string", &fileSetAttributeByteString},
+	{"g_file_set_attribute_int32", &fileSetAttributeInt32},
+	{"g_file_set_attribute_int64", &fileSetAttributeInt64},
+	{"g_file_set_attribute_string", &fileSetAttributeString},
+	{"g_file_set_attribute_uint32", &fileSetAttributeUint32},
+	{"g_file_set_attribute_uint64", &fileSetAttributeUint64},
+	{"g_file_set_attributes_async", &fileSetAttributesAsync},
+	{"g_file_set_attributes_finish", &fileSetAttributesFinish},
+	{"g_file_set_attributes_from_info", &fileSetAttributesFromInfo},
+	{"g_file_set_display_name", &fileSetDisplayName},
+	{"g_file_set_display_name_async", &fileSetDisplayNameAsync},
+	{"g_file_set_display_name_finish", &fileSetDisplayNameFinish},
+	{"g_file_start_mountable", &fileStartMountable},
+	{"g_file_start_mountable_finish", &fileStartMountableFinish},
+	{"g_file_stop_mountable", &fileStopMountable},
+	{"g_file_stop_mountable_finish", &fileStopMountableFinish},
+	{"g_file_supports_thread_contexts", &fileSupportsThreadContexts},
+	{"g_file_trash", &fileTrash},
 	{"g_file_type_get_type", &FileTypeGetType},
-	{"g_file_unmount_mountable", &FileUnmountMountable},
-	{"g_file_unmount_mountable_finish", &FileUnmountMountableFinish},
-	{"g_file_unmount_mountable_with_operation", &FileUnmountMountableWithOperation},
-	{"g_file_unmount_mountable_with_operation_finish", &FileUnmountMountableWithOperationFinish},
-	{"g_filename_completer_get_completion_suffix", &FilenameCompleterGetCompletionSuffix},
-	{"g_filename_completer_get_completions", &FilenameCompleterGetCompletions},
+	{"g_file_unmount_mountable", &fileUnmountMountable},
+	{"g_file_unmount_mountable_finish", &fileUnmountMountableFinish},
+	{"g_file_unmount_mountable_with_operation", &fileUnmountMountableWithOperation},
+	{"g_file_unmount_mountable_with_operation_finish", &fileUnmountMountableWithOperationFinish},
+	{"g_filename_completer_get_completion_suffix", &filenameCompleterGetCompletionSuffix},
+	{"g_filename_completer_get_completions", &filenameCompleterGetCompletions},
 	{"g_filename_completer_get_type", &FilenameCompleterGetType},
 	{"g_filename_completer_new", &FilenameCompleterNew},
-	{"g_filename_completer_set_dirs_only", &FilenameCompleterSetDirsOnly},
+	{"g_filename_completer_set_dirs_only", &filenameCompleterSetDirsOnly},
 	{"g_filesystem_preview_type_get_type", &FilesystemPreviewTypeGetType},
-	{"g_filter_input_stream_get_base_stream", &FilterInputStreamGetBaseStream},
-	{"g_filter_input_stream_get_close_base_stream", &FilterInputStreamGetCloseBaseStream},
+	{"g_filter_input_stream_get_base_stream", &filterInputStreamGetBaseStream},
+	{"g_filter_input_stream_get_close_base_stream", &filterInputStreamGetCloseBaseStream},
 	{"g_filter_input_stream_get_type", &FilterInputStreamGetType},
-	{"g_filter_input_stream_set_close_base_stream", &FilterInputStreamSetCloseBaseStream},
-	{"g_filter_output_stream_get_base_stream", &FilterOutputStreamGetBaseStream},
-	{"g_filter_output_stream_get_close_base_stream", &FilterOutputStreamGetCloseBaseStream},
+	{"g_filter_input_stream_set_close_base_stream", &filterInputStreamSetCloseBaseStream},
+	{"g_filter_output_stream_get_base_stream", &filterOutputStreamGetBaseStream},
+	{"g_filter_output_stream_get_close_base_stream", &filterOutputStreamGetCloseBaseStream},
 	{"g_filter_output_stream_get_type", &FilterOutputStreamGetType},
-	{"g_filter_output_stream_set_close_base_stream", &FilterOutputStreamSetCloseBaseStream},
+	{"g_filter_output_stream_set_close_base_stream", &filterOutputStreamSetCloseBaseStream},
 	{"g_icon_equal", &IconEqual},
 	{"g_icon_get_type", &IconGetType},
 	{"g_icon_hash", &IconHash},
 	{"g_icon_new_for_string", &IconNewForString},
 	{"g_icon_to_string", &IconToString},
-	{"g_inet_address_get_family", &InetAddressGetFamily},
-	{"g_inet_address_get_is_any", &InetAddressGetIsAny},
-	{"g_inet_address_get_is_link_local", &InetAddressGetIsLinkLocal},
-	{"g_inet_address_get_is_loopback", &InetAddressGetIsLoopback},
-	{"g_inet_address_get_is_mc_global", &InetAddressGetIsMcGlobal},
-	{"g_inet_address_get_is_mc_link_local", &InetAddressGetIsMcLinkLocal},
-	{"g_inet_address_get_is_mc_node_local", &InetAddressGetIsMcNodeLocal},
-	{"g_inet_address_get_is_mc_org_local", &InetAddressGetIsMcOrgLocal},
-	{"g_inet_address_get_is_mc_site_local", &InetAddressGetIsMcSiteLocal},
-	{"g_inet_address_get_is_multicast", &InetAddressGetIsMulticast},
-	{"g_inet_address_get_is_site_local", &InetAddressGetIsSiteLocal},
-	{"g_inet_address_get_native_size", &InetAddressGetNativeSize},
+	{"g_inet_address_get_family", &inetAddressGetFamily},
+	{"g_inet_address_get_is_any", &inetAddressGetIsAny},
+	{"g_inet_address_get_is_link_local", &inetAddressGetIsLinkLocal},
+	{"g_inet_address_get_is_loopback", &inetAddressGetIsLoopback},
+	{"g_inet_address_get_is_mc_global", &inetAddressGetIsMcGlobal},
+	{"g_inet_address_get_is_mc_link_local", &inetAddressGetIsMcLinkLocal},
+	{"g_inet_address_get_is_mc_node_local", &inetAddressGetIsMcNodeLocal},
+	{"g_inet_address_get_is_mc_org_local", &inetAddressGetIsMcOrgLocal},
+	{"g_inet_address_get_is_mc_site_local", &inetAddressGetIsMcSiteLocal},
+	{"g_inet_address_get_is_multicast", &inetAddressGetIsMulticast},
+	{"g_inet_address_get_is_site_local", &inetAddressGetIsSiteLocal},
+	{"g_inet_address_get_native_size", &inetAddressGetNativeSize},
 	{"g_inet_address_get_type", &InetAddressGetType},
 	{"g_inet_address_new_any", &InetAddressNewAny},
 	{"g_inet_address_new_from_bytes", &InetAddressNewFromBytes},
 	{"g_inet_address_new_from_string", &InetAddressNewFromString},
 	{"g_inet_address_new_loopback", &InetAddressNewLoopback},
-	{"g_inet_address_to_bytes", &InetAddressToBytes},
-	{"g_inet_address_to_string", &InetAddressToString},
-	{"g_inet_socket_address_get_address", &InetSocketAddressGetAddress},
-	{"g_inet_socket_address_get_port", &InetSocketAddressGetPort},
+	{"g_inet_address_to_bytes", &inetAddressToBytes},
+	{"g_inet_address_to_string", &inetAddressToString},
+	{"g_inet_socket_address_get_address", &inetSocketAddressGetAddress},
+	{"g_inet_socket_address_get_port", &inetSocketAddressGetPort},
 	{"g_inet_socket_address_get_type", &InetSocketAddressGetType},
 	{"g_inet_socket_address_new", &InetSocketAddressNew},
 	{"g_initable_get_type", &InitableGetType},
-	{"g_initable_init", &InitableInit},
+	{"g_initable_init", &initableInit},
 	{"g_initable_new", &InitableNew},
 	{"g_initable_new_valist", &InitableNewValist},
 	{"g_initable_newv", &InitableNewv},
-	{"g_input_stream_clear_pending", &InputStreamClearPending},
-	{"g_input_stream_close", &InputStreamClose},
-	{"g_input_stream_close_async", &InputStreamCloseAsync},
-	{"g_input_stream_close_finish", &InputStreamCloseFinish},
+	{"g_input_stream_clear_pending", &inputStreamClearPending},
+	{"g_input_stream_close", &inputStreamClose},
+	{"g_input_stream_close_async", &inputStreamCloseAsync},
+	{"g_input_stream_close_finish", &inputStreamCloseFinish},
 	{"g_input_stream_get_type", &InputStreamGetType},
-	{"g_input_stream_has_pending", &InputStreamHasPending},
-	{"g_input_stream_is_closed", &InputStreamIsClosed},
-	{"g_input_stream_read", &InputStreamRead},
-	{"g_input_stream_read_all", &InputStreamReadAll},
-	{"g_input_stream_read_async", &InputStreamReadAsync},
-	{"g_input_stream_read_finish", &InputStreamReadFinish},
-	{"g_input_stream_set_pending", &InputStreamSetPending},
-	{"g_input_stream_skip", &InputStreamSkip},
-	{"g_input_stream_skip_async", &InputStreamSkipAsync},
-	{"g_input_stream_skip_finish", &InputStreamSkipFinish},
+	{"g_input_stream_has_pending", &inputStreamHasPending},
+	{"g_input_stream_is_closed", &inputStreamIsClosed},
+	{"g_input_stream_read", &inputStreamRead},
+	{"g_input_stream_read_all", &inputStreamReadAll},
+	{"g_input_stream_read_async", &inputStreamReadAsync},
+	{"g_input_stream_read_finish", &inputStreamReadFinish},
+	{"g_input_stream_set_pending", &inputStreamSetPending},
+	{"g_input_stream_skip", &inputStreamSkip},
+	{"g_input_stream_skip_async", &inputStreamSkipAsync},
+	{"g_input_stream_skip_finish", &inputStreamSkipFinish},
 	{"g_io_error_enum_get_type", &IoErrorEnumGetType},
 	{"g_io_error_from_errno", &IoErrorFromErrno},
 	{"g_io_error_from_win32_error", &IoErrorFromWin32Error},
 	{"g_io_error_quark", &IoErrorQuark},
-	{"g_io_extension_get_name", &IoExtensionGetName},
-	{"g_io_extension_get_priority", &IoExtensionGetPriority},
-	{"g_io_extension_get_type", &IoExtensionGetType},
-	{"g_io_extension_point_get_extension_by_name", &IoExtensionPointGetExtensionByName},
-	{"g_io_extension_point_get_extensions", &IoExtensionPointGetExtensions},
-	{"g_io_extension_point_get_required_type", &IoExtensionPointGetRequiredType},
+	{"g_io_extension_get_name", &ioExtensionGetName},
+	{"g_io_extension_get_priority", &ioExtensionGetPriority},
+	{"g_io_extension_get_type", &ioExtensionGetType},
+	{"g_io_extension_point_get_extension_by_name", &ioExtensionPointGetExtensionByName},
+	{"g_io_extension_point_get_extensions", &ioExtensionPointGetExtensions},
+	{"g_io_extension_point_get_required_type", &ioExtensionPointGetRequiredType},
 	{"g_io_extension_point_implement", &IoExtensionPointImplement},
 	{"g_io_extension_point_lookup", &IoExtensionPointLookup},
 	{"g_io_extension_point_register", &IoExtensionPointRegister},
-	{"g_io_extension_point_set_required_type", &IoExtensionPointSetRequiredType},
-	{"g_io_extension_ref_class", &IoExtensionRefClass},
+	{"g_io_extension_point_set_required_type", &ioExtensionPointSetRequiredType},
+	{"g_io_extension_ref_class", &ioExtensionRefClass},
 	{"g_io_module_get_type", &IoModuleGetType},
 	{"g_io_module_new", &IoModuleNew},
 	{"g_io_modules_load_all_in_directory", &IoModulesLoadAllInDirectory},
 	{"g_io_modules_scan_all_in_directory", &IoModulesScanAllInDirectory},
 	{"g_io_scheduler_cancel_all_jobs", &IoSchedulerCancelAllJobs},
-	{"g_io_scheduler_job_send_to_mainloop", &IoSchedulerJobSendToMainloop},
-	{"g_io_scheduler_job_send_to_mainloop_async", &IoSchedulerJobSendToMainloopAsync},
+	{"g_io_scheduler_job_send_to_mainloop", &ioSchedulerJobSendToMainloop},
+	{"g_io_scheduler_job_send_to_mainloop_async", &ioSchedulerJobSendToMainloopAsync},
 	{"g_io_scheduler_push_job", &IoSchedulerPushJob},
-	{"g_io_stream_clear_pending", &IoStreamClearPending},
-	{"g_io_stream_close", &IoStreamClose},
-	{"g_io_stream_close_async", &IoStreamCloseAsync},
-	{"g_io_stream_close_finish", &IoStreamCloseFinish},
-	{"g_io_stream_get_input_stream", &IoStreamGetInputStream},
-	{"g_io_stream_get_output_stream", &IoStreamGetOutputStream},
+	{"g_io_stream_clear_pending", &ioStreamClearPending},
+	{"g_io_stream_close", &ioStreamClose},
+	{"g_io_stream_close_async", &ioStreamCloseAsync},
+	{"g_io_stream_close_finish", &ioStreamCloseFinish},
+	{"g_io_stream_get_input_stream", &ioStreamGetInputStream},
+	{"g_io_stream_get_output_stream", &ioStreamGetOutputStream},
 	{"g_io_stream_get_type", &IoStreamGetType},
-	{"g_io_stream_has_pending", &IoStreamHasPending},
-	{"g_io_stream_is_closed", &IoStreamIsClosed},
-	{"g_io_stream_set_pending", &IoStreamSetPending},
-	{"g_io_stream_splice_async", &IoStreamSpliceAsync},
+	{"g_io_stream_has_pending", &ioStreamHasPending},
+	{"g_io_stream_is_closed", &ioStreamIsClosed},
+	{"g_io_stream_set_pending", &ioStreamSetPending},
+	{"g_io_stream_splice_async", &ioStreamSpliceAsync},
 	{"g_io_stream_splice_finish", &IoStreamSpliceFinish},
 	{"g_io_stream_splice_flags_get_type", &IoStreamSpliceFlagsGetType},
 	{"g_keyfile_settings_backend_new", &KeyfileSettingsBackendNew},

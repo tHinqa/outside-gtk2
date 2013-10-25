@@ -199,27 +199,10 @@ type (
 	GDrive                        struct{}
 	GEmblem                       struct{}
 	GEmblemedIconPrivate          struct{}
-	GFile                         struct{}
-	GFileAttributeMatcher         struct{}
-	GFileEnumeratorPrivate        struct{}
-	GFileIcon                     struct{}
-	GFileInfo                     struct{}
 	GFileInputStreamPrivate       struct{}
-	GFileIOStreamPrivate          struct{}
-	GFileMonitorPrivate           struct{}
-	GFilenameCompleter            struct{}
-	GFileOutputStreamPrivate      struct{}
 	GHashTable                    struct{}
-	GIcon                         struct{}
 	GIConv                        struct{}
-	GInetAddressPrivate           struct{}
-	GInitable                     struct{}
 	GInputStreamPrivate           struct{}
-	GIOExtension                  struct{}
-	GIOExtensionPoint             struct{}
-	GIOModule                     struct{}
-	GIOSchedulerJob               struct{}
-	GIOStreamPrivate              struct{}
 	GKeyFile                      struct{}
 	GLoadableIcon                 struct{}
 	GMainContext                  struct{}
@@ -1259,51 +1242,7 @@ const (
 	G_DATA_STREAM_NEWLINE_TYPE_ANY
 )
 
-type GFileAttributeType Enum
-
-const (
-	G_FILE_ATTRIBUTE_TYPE_INVALID GFileAttributeType = iota
-	G_FILE_ATTRIBUTE_TYPE_STRING
-	G_FILE_ATTRIBUTE_TYPE_BYTE_STRING
-	G_FILE_ATTRIBUTE_TYPE_BOOLEAN
-	G_FILE_ATTRIBUTE_TYPE_UINT32
-	G_FILE_ATTRIBUTE_TYPE_INT32
-	G_FILE_ATTRIBUTE_TYPE_UINT64
-	G_FILE_ATTRIBUTE_TYPE_INT64
-	G_FILE_ATTRIBUTE_TYPE_OBJECT
-	G_FILE_ATTRIBUTE_TYPE_STRINGV
-)
-
-type GFileAttributeInfoFlags Enum
-
-const (
-	G_FILE_ATTRIBUTE_INFO_COPY_WITH_FILE GFileAttributeInfoFlags = 1 << iota
-	G_FILE_ATTRIBUTE_INFO_COPY_WHEN_MOVED
-	G_FILE_ATTRIBUTE_INFO_NONE GFileAttributeInfoFlags = 0
-)
-
-type GFileAttributeStatus Enum
-
-const (
-	G_FILE_ATTRIBUTE_STATUS_UNSET GFileAttributeStatus = iota
-	G_FILE_ATTRIBUTE_STATUS_SET
-	G_FILE_ATTRIBUTE_STATUS_ERROR_SETTING
-)
-
-type GFileQueryInfoFlags Enum
-
-const (
-	G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS GFileQueryInfoFlags = 1 << iota
-	G_FILE_QUERY_INFO_NONE              GFileQueryInfoFlags = 0
-)
-
-type GFileCreateFlags Enum
-
-const (
-	G_FILE_CREATE_PRIVATE GFileCreateFlags = 1 << iota
-	G_FILE_CREATE_REPLACE_DESTINATION
-	G_FILE_CREATE_NONE GFileCreateFlags = 0
-)
+type GFileAttributeType Enum //REMOVE
 
 type GMountMountFlags Enum
 
@@ -1330,106 +1269,12 @@ const (
 	G_DRIVE_START_STOP_TYPE_PASSWORD
 )
 
-type GFileCopyFlags Enum
-
-const (
-	G_FILE_COPY_OVERWRITE GFileCopyFlags = 1 << iota
-	G_FILE_COPY_BACKUP
-	G_FILE_COPY_NOFOLLOW_SYMLINKS
-	G_FILE_COPY_ALL_METADATA
-	G_FILE_COPY_NO_FALLBACK_FOR_MOVE
-	G_FILE_COPY_TARGET_DEFAULT_PERMS
-	G_FILE_COPY_NONE GFileCopyFlags = 0
-)
-
-type GFileMonitorFlags Enum
-
-const (
-	G_FILE_MONITOR_WATCH_MOUNTS GFileMonitorFlags = 1 << iota
-	G_FILE_MONITOR_SEND_MOVED
-	G_FILE_MONITOR_NONE GFileMonitorFlags = 0
-)
-
-type GFileType Enum
-
-const (
-	G_FILE_TYPE_UNKNOWN GFileType = iota
-	G_FILE_TYPE_REGULAR
-	G_FILE_TYPE_DIRECTORY
-	G_FILE_TYPE_SYMBOLIC_LINK
-	G_FILE_TYPE_SPECIAL
-	G_FILE_TYPE_SHORTCUT
-	G_FILE_TYPE_MOUNTABLE
-)
-
 type GFilesystemPreviewType Enum
 
 const (
 	G_FILESYSTEM_PREVIEW_TYPE_IF_ALWAYS GFilesystemPreviewType = iota
 	G_FILESYSTEM_PREVIEW_TYPE_IF_LOCAL
 	G_FILESYSTEM_PREVIEW_TYPE_NEVER
-)
-
-type GFileMonitorEvent Enum
-
-const (
-	G_FILE_MONITOR_EVENT_CHANGED GFileMonitorEvent = iota
-	G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
-	G_FILE_MONITOR_EVENT_DELETED
-	G_FILE_MONITOR_EVENT_CREATED
-	G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED
-	G_FILE_MONITOR_EVENT_PRE_UNMOUNT
-	G_FILE_MONITOR_EVENT_UNMOUNTED
-	G_FILE_MONITOR_EVENT_MOVED
-)
-
-type GIOErrorEnum Enum
-
-const (
-	G_IO_ERROR_FAILED GIOErrorEnum = iota
-	G_IO_ERROR_NOT_FOUND
-	G_IO_ERROR_EXISTS
-	G_IO_ERROR_IS_DIRECTORY
-	G_IO_ERROR_NOT_DIRECTORY
-	G_IO_ERROR_NOT_EMPTY
-	G_IO_ERROR_NOT_REGULAR_FILE
-	G_IO_ERROR_NOT_SYMBOLIC_LINK
-	G_IO_ERROR_NOT_MOUNTABLE_FILE
-	G_IO_ERROR_FILENAME_TOO_LONG
-	G_IO_ERROR_INVALID_FILENAME
-	G_IO_ERROR_TOO_MANY_LINKS
-	G_IO_ERROR_NO_SPACE
-	G_IO_ERROR_INVALID_ARGUMENT
-	G_IO_ERROR_PERMISSION_DENIED
-	G_IO_ERROR_NOT_SUPPORTED
-	G_IO_ERROR_NOT_MOUNTED
-	G_IO_ERROR_ALREADY_MOUNTED
-	G_IO_ERROR_CLOSED
-	G_IO_ERROR_CANCELLED
-	G_IO_ERROR_PENDING
-	G_IO_ERROR_READ_ONLY
-	G_IO_ERROR_CANT_CREATE_BACKUP
-	G_IO_ERROR_WRONG_ETAG
-	G_IO_ERROR_TIMED_OUT
-	G_IO_ERROR_WOULD_RECURSE
-	G_IO_ERROR_BUSY
-	G_IO_ERROR_WOULD_BLOCK
-	G_IO_ERROR_HOST_NOT_FOUND
-	G_IO_ERROR_WOULD_MERGE
-	G_IO_ERROR_FAILED_HANDLED
-	G_IO_ERROR_TOO_MANY_OPEN_FILES
-	G_IO_ERROR_NOT_INITIALIZED
-	G_IO_ERROR_ADDRESS_IN_USE
-	G_IO_ERROR_PARTIAL_INPUT
-	G_IO_ERROR_INVALID_DATA
-	G_IO_ERROR_DBUS_ERROR
-	G_IO_ERROR_HOST_UNREACHABLE
-	G_IO_ERROR_NETWORK_UNREACHABLE
-	G_IO_ERROR_CONNECTION_REFUSED
-	G_IO_ERROR_PROXY_FAILED
-	G_IO_ERROR_PROXY_AUTH_FAILED
-	G_IO_ERROR_PROXY_NEED_AUTH
-	G_IO_ERROR_PROXY_NOT_ALLOWED
 )
 
 type GAskPasswordFlags Enum
@@ -1464,15 +1309,6 @@ const (
 	G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE GOutputStreamSpliceFlags = 1 << iota
 	G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET
 	G_OUTPUT_STREAM_SPLICE_NONE GOutputStreamSpliceFlags = 0
-)
-
-type GIOStreamSpliceFlags Enum
-
-const (
-	G_IO_STREAM_SPLICE_CLOSE_STREAM1 GIOStreamSpliceFlags = 1 << iota
-	G_IO_STREAM_SPLICE_CLOSE_STREAM2
-	G_IO_STREAM_SPLICE_WAIT_FOR_BOTH
-	G_IO_STREAM_SPLICE_NONE GIOStreamSpliceFlags = 0
 )
 
 type GEmblemOrigin Enum
@@ -3585,21 +3421,6 @@ type (
 		message *GDBusMessage,
 		incoming Gboolean,
 		user_data Gpointer) *GDBusMessage
-
-	GFileProgressCallback func(
-		current_num_bytes Goffset,
-		total_num_bytes Goffset,
-		user_data Gpointer)
-
-	GIOSchedulerJobFunc func(
-		job *GIOSchedulerJob,
-		cancellable *GCancellable,
-		user_data Gpointer) Gboolean
-
-	GFileReadMoreCallback func(
-		file_contents string,
-		file_size Goffset,
-		callback_data Gpointer) Gboolean
 
 	GReallocFunc func(
 		data Gpointer,

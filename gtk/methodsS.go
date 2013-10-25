@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -635,7 +636,7 @@ var (
 	StatusIconGetType         func() O.Type
 	StatusIconNew             func() *StatusIcon
 	StatusIconNewFromFile     func(filename string) *StatusIcon
-	StatusIconNewFromGicon    func(icon *T.GIcon) *StatusIcon
+	StatusIconNewFromGicon    func(icon *I.Icon) *StatusIcon
 	StatusIconNewFromIconName func(iconName string) *StatusIcon
 	StatusIconNewFromPixbuf   func(pixbuf *D.Pixbuf) *StatusIcon
 	StatusIconNewFromStock    func(stockId string) *StatusIcon
@@ -644,7 +645,7 @@ var (
 
 	statusIconGetBlinking      func(s *StatusIcon) T.Gboolean
 	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean
-	statusIconGetGicon         func(s *StatusIcon) *T.GIcon
+	statusIconGetGicon         func(s *StatusIcon) *I.Icon
 	statusIconGetHasTooltip    func(s *StatusIcon) T.Gboolean
 	statusIconGetIconName      func(s *StatusIcon) string
 	statusIconGetPixbuf        func(s *StatusIcon) *D.Pixbuf
@@ -660,7 +661,7 @@ var (
 	statusIconIsEmbedded       func(s *StatusIcon) T.Gboolean
 	statusIconSetBlinking      func(s *StatusIcon, blinking T.Gboolean)
 	statusIconSetFromFile      func(s *StatusIcon, filename string)
-	statusIconSetFromGicon     func(s *StatusIcon, icon *T.GIcon)
+	statusIconSetFromGicon     func(s *StatusIcon, icon *I.Icon)
 	statusIconSetFromIconName  func(s *StatusIcon, iconName string)
 	statusIconSetFromPixbuf    func(s *StatusIcon, pixbuf *D.Pixbuf)
 	statusIconSetFromStock     func(s *StatusIcon, stockId string)
@@ -678,7 +679,7 @@ func (s *StatusIcon) GetBlinking() T.Gboolean { return statusIconGetBlinking(s) 
 func (s *StatusIcon) GetGeometry(screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean {
 	return statusIconGetGeometry(s, screen, area, orientation)
 }
-func (s *StatusIcon) GetGicon() *T.GIcon                  { return statusIconGetGicon(s) }
+func (s *StatusIcon) GetGicon() *I.Icon                   { return statusIconGetGicon(s) }
 func (s *StatusIcon) GetHasTooltip() T.Gboolean           { return statusIconGetHasTooltip(s) }
 func (s *StatusIcon) GetIconName() string                 { return statusIconGetIconName(s) }
 func (s *StatusIcon) GetPixbuf() *D.Pixbuf                { return statusIconGetPixbuf(s) }
@@ -694,7 +695,7 @@ func (s *StatusIcon) GetX11WindowId() T.GUint32           { return statusIconGet
 func (s *StatusIcon) IsEmbedded() T.Gboolean              { return statusIconIsEmbedded(s) }
 func (s *StatusIcon) SetBlinking(blinking T.Gboolean)     { statusIconSetBlinking(s, blinking) }
 func (s *StatusIcon) SetFromFile(filename string)         { statusIconSetFromFile(s, filename) }
-func (s *StatusIcon) SetFromGicon(icon *T.GIcon)          { statusIconSetFromGicon(s, icon) }
+func (s *StatusIcon) SetFromGicon(icon *I.Icon)           { statusIconSetFromGicon(s, icon) }
 func (s *StatusIcon) SetFromIconName(iconName string)     { statusIconSetFromIconName(s, iconName) }
 func (s *StatusIcon) SetFromPixbuf(pixbuf *D.Pixbuf)      { statusIconSetFromPixbuf(s, pixbuf) }
 func (s *StatusIcon) SetFromStock(stockId string)         { statusIconSetFromStock(s, stockId) }

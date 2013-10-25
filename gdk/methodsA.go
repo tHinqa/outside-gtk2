@@ -4,13 +4,14 @@
 package gdk
 
 import (
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
 type AppLaunchContext struct {
-	Parent T.GAppLaunchContext
+	Parent I.AppLaunchContext
 	_      *struct{}
 }
 
@@ -20,7 +21,7 @@ var (
 
 	appLaunchContextSetDesktop   func(a *AppLaunchContext, desktop int)
 	appLaunchContextSetDisplay   func(a *AppLaunchContext, display *Display)
-	appLaunchContextSetIcon      func(a *AppLaunchContext, icon *T.GIcon)
+	appLaunchContextSetIcon      func(a *AppLaunchContext, icon *I.Icon)
 	appLaunchContextSetIconName  func(a *AppLaunchContext, iconName string)
 	appLaunchContextSetScreen    func(a *AppLaunchContext, screen *Screen)
 	appLaunchContextSetTimestamp func(a *AppLaunchContext, timestamp T.GUint32)
@@ -28,7 +29,7 @@ var (
 
 func (a *AppLaunchContext) SetDesktop(desktop int)      { appLaunchContextSetDesktop(a, desktop) }
 func (a *AppLaunchContext) SetDisplay(display *Display) { appLaunchContextSetDisplay(a, display) }
-func (a *AppLaunchContext) SetIcon(icon *T.GIcon)       { appLaunchContextSetIcon(a, icon) }
+func (a *AppLaunchContext) SetIcon(icon *I.Icon)       { appLaunchContextSetIcon(a, icon) }
 func (a *AppLaunchContext) SetIconName(iconName string) { appLaunchContextSetIconName(a, iconName) }
 func (a *AppLaunchContext) SetScreen(screen *Screen)    { appLaunchContextSetScreen(a, screen) }
 func (a *AppLaunchContext) SetTimestamp(timestamp T.GUint32) {

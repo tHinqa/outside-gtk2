@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -60,16 +61,16 @@ var (
 	PixbufNewFromFileAtSize         func(filename string, width, height int, e **T.GError) *Pixbuf
 	PixbufNewFromInline             func(dataLength int, data *uint8, copyPixels T.Gboolean, e **T.GError) *Pixbuf
 	PixbufNewFromStream             func(stream *T.GInputStream, cancellable *T.GCancellable, e **T.GError) *Pixbuf
-	PixbufNewFromStreamAsync        func(stream *T.GInputStream, cancellable *T.GCancellable, callback T.GAsyncReadyCallback, userData T.Gpointer)
+	PixbufNewFromStreamAsync        func(stream *T.GInputStream, cancellable *T.GCancellable, callback I.AsyncReadyCallback, userData T.Gpointer)
 	PixbufNewFromStreamAtScale      func(stream *T.GInputStream, width, height int, preserveAspectRatio T.Gboolean, cancellable *T.GCancellable, e **T.GError) *Pixbuf
-	PixbufNewFromStreamAtScaleAsync func(stream *T.GInputStream, width, height int, preserveAspectRatio T.Gboolean, cancellable *T.GCancellable, callback T.GAsyncReadyCallback, userData T.Gpointer)
-	PixbufNewFromStreamFinish       func(asyncResult *T.GAsyncResult, e **T.GError) *Pixbuf
+	PixbufNewFromStreamAtScaleAsync func(stream *T.GInputStream, width, height int, preserveAspectRatio T.Gboolean, cancellable *T.GCancellable, callback I.AsyncReadyCallback, userData T.Gpointer)
+	PixbufNewFromStreamFinish       func(asyncResult *I.AsyncResult, e **T.GError) *Pixbuf
 	PixbufNewFromXpmData            func(data **T.Char) *Pixbuf
 
 	PixbufErrorQuark         func() T.GQuark
 	PixbufGetFileInfo        func(filename string, width, height *int) *PixbufFormat
 	PixbufGetFormats         func() *T.GSList
-	PixbufSaveToStreamFinish func(asyncResult *T.GAsyncResult, e **T.GError) T.Gboolean
+	PixbufSaveToStreamFinish func(asyncResult *I.AsyncResult, e **T.GError) T.Gboolean
 
 	PixbufGetFromDrawable func(dest *Pixbuf, src *Drawable, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
 	PixbufGetFromImage    func(dest *Pixbuf, src *Image, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
@@ -101,7 +102,7 @@ var (
 	pixbufSaveToCallback           func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) T.Gboolean
 	pixbufSaveToCallbackv          func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) T.Gboolean
 	pixbufSaveToStream             func(pixbuf *Pixbuf, stream *T.GOutputStream, typ string, cancellable *T.GCancellable, e **T.GError, v ...VArg) T.Gboolean
-	pixbufSaveToStreamAsync        func(pixbuf *Pixbuf, stream *T.GOutputStream, typ string, cancellable *T.GCancellable, callback T.GAsyncReadyCallback, userData T.Gpointer, v ...VArg)
+	pixbufSaveToStreamAsync        func(pixbuf *Pixbuf, stream *T.GOutputStream, typ string, cancellable *T.GCancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg)
 	pixbufSaveUtf8                 func(pixbuf *Pixbuf, filename, typ string, e **T.GError, v ...VArg) T.Gboolean
 	pixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) T.Gboolean
 	pixbufScale                    func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType)
@@ -161,7 +162,7 @@ func (p *Pixbuf) SaveToCallbackv(saveFunc PixbufSaveFunc, userData T.Gpointer, t
 func (p *Pixbuf) SaveToStream(stream *T.GOutputStream, typ string, cancellable *T.GCancellable, e **T.GError, v ...VArg) T.Gboolean {
 	return pixbufSaveToStream(p, stream, typ, cancellable, e, v)
 }
-func (p *Pixbuf) SaveToStreamAsync(stream *T.GOutputStream, typ string, cancellable *T.GCancellable, callback T.GAsyncReadyCallback, userData T.Gpointer, v ...VArg) {
+func (p *Pixbuf) SaveToStreamAsync(stream *T.GOutputStream, typ string, cancellable *T.GCancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg) {
 	pixbufSaveToStreamAsync(p, stream, typ, cancellable, callback, userData, v)
 }
 func (p *Pixbuf) SaveUtf8(filename, typ string, e **T.GError, v ...VArg) T.Gboolean {
