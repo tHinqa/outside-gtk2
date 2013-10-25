@@ -218,7 +218,7 @@ var (
 	applicationGetIsRemote          func(a *Application) T.Gboolean
 	applicationHold                 func(a *Application)
 	applicationOpen                 func(a *Application, files **File, nFiles int, hint string)
-	applicationRegister             func(a *Application, cancellable *T.GCancellable, err **T.GError) T.Gboolean
+	applicationRegister             func(a *Application, cancellable *Cancellable, err **T.GError) T.Gboolean
 	applicationRelease              func(a *Application)
 	applicationRun                  func(a *Application, argc int, argv **T.Char) int
 	applicationSetActionGroup       func(a *Application, ag *ActionGroup)
@@ -237,7 +237,7 @@ func (a *Application) Hold()                       { applicationHold(a) }
 func (a *Application) Open(files **File, nFiles int, hint string) {
 	applicationOpen(a, files, nFiles, hint)
 }
-func (a *Application) Register(cancellable *T.GCancellable, err **T.GError) T.Gboolean {
+func (a *Application) Register(cancellable *Cancellable, err **T.GError) T.Gboolean {
 	return applicationRegister(a, cancellable, err)
 }
 func (a *Application) Release()                        { applicationRelease(a) }
@@ -312,16 +312,16 @@ type AsyncInitable struct{}
 var (
 	AsyncInitableGetType func() O.Type
 
-	AsyncInitableNewAsync       func(objectType O.Type, ioPriority int, cancellable *T.GCancellable, callback AsyncReadyCallback, userData T.Gpointer, firstPropertyName string, v ...VArg)
-	AsyncInitableNewvAsync      func(objectType O.Type, nParameters uint, parameters *T.GParameter, ioPriority int, cancellable *T.GCancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	AsyncInitableNewValistAsync func(objectType O.Type, firstPropertyName string, varArgs T.VaList, ioPriority int, cancellable *T.GCancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	AsyncInitableNewAsync       func(objectType O.Type, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer, firstPropertyName string, v ...VArg)
+	AsyncInitableNewvAsync      func(objectType O.Type, nParameters uint, parameters *T.GParameter, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	AsyncInitableNewValistAsync func(objectType O.Type, firstPropertyName string, varArgs T.VaList, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 
-	asyncInitableInitAsync  func(a *AsyncInitable, ioPriority int, cancellable *T.GCancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	asyncInitableInitAsync  func(a *AsyncInitable, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	asyncInitableInitFinish func(a *AsyncInitable, res *AsyncResult, err **T.GError) T.Gboolean
 	asyncInitableNewFinish  func(a *AsyncInitable, res *AsyncResult, err **T.GError) *O.Object
 )
 
-func (a *AsyncInitable) InitAsync(ioPriority int, cancellable *T.GCancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (a *AsyncInitable) InitAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	asyncInitableInitAsync(a, ioPriority, cancellable, callback, userData)
 }
 func (a *AsyncInitable) InitFinish(res *AsyncResult, err **T.GError) T.Gboolean {

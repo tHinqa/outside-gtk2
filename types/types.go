@@ -144,188 +144,173 @@ type (
 	FTC_NodeRec         struct{}
 	FTC_SBitCacheRec    struct{}
 
-	AtkAction                     struct{}
-	AtkComponent                  struct{}
-	AtkDocument                   struct{}
-	AtkEditableText               struct{}
-	AtkHyperlinkImpl              struct{}
-	AtkHypertext                  struct{}
-	AtkImage                      struct{}
-	AtkImplementor                struct{}
-	AtkSelection                  struct{}
-	AtkSocket                     struct{}
-	AtkState                      struct{}
-	AtkStreamableContent          struct{}
-	AtkTable                      struct{}
-	AtkText                       struct{}
-	AtkValue                      struct{}
-	CairoDevice                   struct{}
-	CairoFontFace                 struct{}
-	CairoFontOptions              struct{}
-	CairoPattern                  struct{}
-	CairoRegion                   struct{}
-	CairoScaledFont               struct{}
-	CairoScriptInterpreter        struct{}
-	CairoSurface                  struct{}
-	Cairo                         struct{}
-	FcCharSet                     struct{}
-	FcPattern                     struct{}
-	GAllocator                    struct{}
-	GAsyncQueue                   struct{}
-	GBookmarkFile                 struct{}
-	GBufferedInputStreamPrivate   struct{}
-	GBufferedOutputStreamPrivate  struct{}
-	GCache                        struct{}
-	GCancellablePrivate           struct{}
-	GcharsetConverter             struct{}
-	GChecksum                     struct{}
-	GCond                         struct{}
-	GConverter                    struct{}
-	GConverterInputStreamPrivate  struct{}
-	GConverterOutputStreamPrivate struct{}
-	GCredentials                  struct{}
-	GData                         struct{}
-	GDataInputStreamPrivate       struct{}
-	GDataOutputStreamPrivate      struct{}
-	GDBusAuthObserver             struct{}
-	GDBusConnection               struct{}
-	GDBusMessage                  struct{}
-	GDBusMethodInvocation         struct{}
-	GDBusProxyPrivate             struct{}
-	GDBusServer                   struct{}
-	GDir                          struct{}
-	GdkPangoRendererPrivate       struct{}
-	GdkXEvent                     struct{}
-	GDrive                        struct{}
-	GEmblem                       struct{}
-	GEmblemedIconPrivate          struct{}
-	GFileInputStreamPrivate       struct{}
-	GHashTable                    struct{}
-	GIConv                        struct{}
-	GInputStreamPrivate           struct{}
-	GKeyFile                      struct{}
-	GLoadableIcon                 struct{}
-	GMainContext                  struct{}
-	GMainLoop                     struct{}
-	GMappedFile                   struct{}
-	GMarkupParseContext           struct{}
-	GMatchInfo                    struct{}
-	GMemChunk                     struct{}
-	GMemoryInputStreamPrivate     struct{}
-	GMemoryOutputStreamPrivate    struct{}
-	GModule                       struct{}
-	GMount                        struct{}
-	GMountOperationPrivate        struct{}
-	GMutex                        struct{}
-	GNetworkAddressPrivate        struct{}
-	GNetworkServicePrivate        struct{}
-	GOptionContext                struct{}
-	GOptionGroup                  struct{}
-	GOutputStreamPrivate          struct{}
-	GPatternSpec                  struct{}
-	GPermissionPrivate            struct{}
-	GPollableInputStream          struct{}
-	GPollableOutputStream         struct{}
-	GPrivate                      struct{}
-	GProxy                        struct{}
-	GProxyAddressPrivate          struct{}
-	GProxyResolver                struct{}
-	GRand                         struct{}
-	GRegex                        struct{}
-	GRelation                     struct{}
-	GResolverPrivate              struct{}
-	GSequence                     struct{}
-	GSequenceNode                 struct{}
-	GSocketConnectionPrivate      struct{}
-	GSocketServicePrivate         struct{}
-	GStringChunk                  struct{}
-	GTcpConnectionPrivate         struct{}
-	GTcpWrapperConnectionPrivate  struct{}
-	GTestCase                     struct{}
-	GTestSuite                    struct{}
-	GThemedIcon                   struct{}
-	GTimer                        struct{}
-	GTimeZone                     struct{}
-	GtkActionGroupPrivate         struct{}
-	GtkActionPrivate              struct{}
-	GtkAssistantPrivate           struct{}
-	GtkBuilderPrivate             struct{}
-	GtkCalendarPrivate            struct{}
-	GtkCellViewPrivate            struct{}
-	GtkClipboard                  struct{}
-	GtkColorButtonPrivate         struct{}
-	GtkComboBoxEntryPrivate       struct{}
-	GtkComboBoxPrivate            struct{}
-	GtkComboBoxTextPrivate        struct{}
-	GtkExpanderPrivate            struct{}
-	GtkFontButtonPrivate          struct{}
-	GtkIconThemePrivate           struct{}
-	GtkIconViewPrivate            struct{}
-	GtkIMMulticontextPrivate      struct{}
-	GtkInfoBarPrivate             struct{}
-	GtkLabelSelectionInfo         struct{}
-	GtkPageSetup                  struct{} //REMOVE
-	GtkRecentActionPrivate        struct{}
-	GtkRecentChooserMenuPrivate   struct{}
-	GtkRecentManagerPrivate       struct{}
-	GtkScaleButtonPrivate         struct{}
-	GtkSeparatorToolItemPrivate   struct{}
-	GtkSpinnerPrivate             struct{}
-	GtkStatusIconPrivate          struct{}
-	GtkToggleActionPrivate        struct{}
-	GtkToggleToolButtonPrivate    struct{}
-	GtkToolButtonPrivate          struct{}
-	GtkToolItemGroupPrivate       struct{}
-	GtkToolItemPrivate            struct{}
-	GtkToolPalettePrivate         struct{}
-	GtkUIManagerPrivate           struct{}
-	GTlsBackend                   struct{}
-	GTlsCertificatePrivate        struct{}
-	GTlsClientConnection          struct{}
-	GTlsConnectionPrivate         struct{}
-	GTree                         struct{}
-	GTypeCValue                   struct{}
-	GUnixFDList                   struct{}
-	GVariant                      struct{}
-	GVariantType                  struct{}
-	GVolume                       struct{}
-	GWin32InputStreamPrivate      struct{}
-	GWin32OutputStreamPrivate     struct{}
-	GZlibCompressor               struct{}
-	GZlibDecompressor             struct{}
-	PangoAttrIterator             struct{}
-	PangoAttrList                 struct{}
-	PangoCairoFont                struct{}
-	PangoCairoFontMap             struct{}
-	PangoContext                  struct{}
-	PangoCoverage                 struct{}
-	PangoEngineLang               struct{}
-	PangoEngineShape              struct{}
-	PangoFcFontKey                struct{}
-	PangoFcFontMapPrivate         struct{}
-	PangoFcFontsetKey             struct{}
-	PangoFont                     struct{}
-	PangoFontDescription          struct{}
-	PangoFontFace                 struct{}
-	PangoFontFamily               struct{}
-	PangoFontMap                  struct{}
-	PangoFontMetrics              struct{}
-	PangoFontset                  struct{}
-	PangoFontsetSimple            struct{}
-	PangoFT2FontMap               struct{}
-	PangoLanguage                 struct{}
-	PangoLayout                   struct{}
-	PangoLayoutIter               struct{}
-	PangoMap                      struct{}
-	PangoOTBuffer                 struct{}
-	PangoOTInfo                   struct{}
-	PangoOTRuleset                struct{}
-	PangoRendererPrivate          struct{}
-	PangoScriptIter               struct{}
-	PangoTabArray                 struct{}
-	PangoWin32FontCache           struct{}
-	Utimbuf                       struct{}
-	Void                          struct{}
+	AtkAction                    struct{}
+	AtkComponent                 struct{}
+	AtkDocument                  struct{}
+	AtkEditableText              struct{}
+	AtkHyperlinkImpl             struct{}
+	AtkHypertext                 struct{}
+	AtkImage                     struct{}
+	AtkImplementor               struct{}
+	AtkSelection                 struct{}
+	AtkSocket                    struct{}
+	AtkState                     struct{}
+	AtkStreamableContent         struct{}
+	AtkTable                     struct{}
+	AtkText                      struct{}
+	AtkValue                     struct{}
+	CairoDevice                  struct{}
+	CairoFontFace                struct{}
+	CairoFontOptions             struct{}
+	CairoPattern                 struct{}
+	CairoRegion                  struct{}
+	CairoScaledFont              struct{}
+	CairoScriptInterpreter       struct{}
+	CairoSurface                 struct{}
+	Cairo                        struct{}
+	FcCharSet                    struct{}
+	FcPattern                    struct{}
+	GAllocator                   struct{}
+	GAsyncQueue                  struct{}
+	GBookmarkFile                struct{}
+	GCache                       struct{}
+	GCancellablePrivate          struct{}
+	GChecksum                    struct{}
+	GCond                        struct{}
+	GData                        struct{}
+	GDBusConnection              struct{} //REMOVE
+	GDir                         struct{}
+	GdkPangoRendererPrivate      struct{}
+	GdkXEvent                    struct{}
+	GEmblem                      struct{}
+	GEmblemedIconPrivate         struct{}
+	GFileInputStreamPrivate      struct{}
+	GHashTable                   struct{}
+	GIConv                       struct{}
+	GInputStreamPrivate          struct{}
+	GKeyFile                     struct{}
+	GLoadableIcon                struct{}
+	GMainContext                 struct{}
+	GMainLoop                    struct{}
+	GMappedFile                  struct{}
+	GMarkupParseContext          struct{}
+	GMatchInfo                   struct{}
+	GMemChunk                    struct{}
+	GMemoryInputStreamPrivate    struct{}
+	GMemoryOutputStreamPrivate   struct{}
+	GModule                      struct{}
+	GMount                       struct{}
+	GMountOperationPrivate       struct{}
+	GMutex                       struct{}
+	GNetworkAddressPrivate       struct{}
+	GNetworkServicePrivate       struct{}
+	GOptionContext               struct{}
+	GOptionGroup                 struct{}
+	GOutputStreamPrivate         struct{}
+	GPatternSpec                 struct{}
+	GPermissionPrivate           struct{}
+	GPollableInputStream         struct{}
+	GPollableOutputStream        struct{}
+	GPrivate                     struct{}
+	GProxy                       struct{}
+	GProxyAddressPrivate         struct{}
+	GProxyResolver               struct{}
+	GRand                        struct{}
+	GRegex                       struct{}
+	GRelation                    struct{}
+	GResolverPrivate             struct{}
+	GSequence                    struct{}
+	GSequenceNode                struct{}
+	GSocketConnectionPrivate     struct{}
+	GSocketServicePrivate        struct{}
+	GStringChunk                 struct{}
+	GTcpConnectionPrivate        struct{}
+	GTcpWrapperConnectionPrivate struct{}
+	GTestCase                    struct{}
+	GTestSuite                   struct{}
+	GThemedIcon                  struct{}
+	GTimer                       struct{}
+	GTimeZone                    struct{}
+	GtkActionGroupPrivate        struct{}
+	GtkActionPrivate             struct{}
+	GtkAssistantPrivate          struct{}
+	GtkBuilderPrivate            struct{}
+	GtkCalendarPrivate           struct{}
+	GtkCellViewPrivate           struct{}
+	GtkClipboard                 struct{}
+	GtkColorButtonPrivate        struct{}
+	GtkComboBoxEntryPrivate      struct{}
+	GtkComboBoxPrivate           struct{}
+	GtkComboBoxTextPrivate       struct{}
+	GtkExpanderPrivate           struct{}
+	GtkFontButtonPrivate         struct{}
+	GtkIconThemePrivate          struct{}
+	GtkIconViewPrivate           struct{}
+	GtkIMMulticontextPrivate     struct{}
+	GtkInfoBarPrivate            struct{}
+	GtkLabelSelectionInfo        struct{}
+	GtkPageSetup                 struct{} //REMOVE
+	GtkRecentActionPrivate       struct{}
+	GtkRecentChooserMenuPrivate  struct{}
+	GtkRecentManagerPrivate      struct{}
+	GtkScaleButtonPrivate        struct{}
+	GtkSeparatorToolItemPrivate  struct{}
+	GtkSpinnerPrivate            struct{}
+	GtkStatusIconPrivate         struct{}
+	GtkToggleActionPrivate       struct{}
+	GtkToggleToolButtonPrivate   struct{}
+	GtkToolButtonPrivate         struct{}
+	GtkToolItemGroupPrivate      struct{}
+	GtkToolItemPrivate           struct{}
+	GtkToolPalettePrivate        struct{}
+	GtkUIManagerPrivate          struct{}
+	GTlsBackend                  struct{}
+	GTlsCertificatePrivate       struct{}
+	GTlsClientConnection         struct{}
+	GTlsConnectionPrivate        struct{}
+	GTree                        struct{}
+	GTypeCValue                  struct{}
+	GUnixFDList                  struct{}
+	GVariant                     struct{}
+	GVariantType                 struct{}
+	GVolume                      struct{}
+	GWin32InputStreamPrivate     struct{}
+	GWin32OutputStreamPrivate    struct{}
+	GZlibCompressor              struct{}
+	GZlibDecompressor            struct{}
+	PangoAttrIterator            struct{}
+	PangoAttrList                struct{}
+	PangoCairoFont               struct{}
+	PangoCairoFontMap            struct{}
+	PangoContext                 struct{}
+	PangoCoverage                struct{}
+	PangoEngineLang              struct{}
+	PangoEngineShape             struct{}
+	PangoFcFontKey               struct{}
+	PangoFcFontMapPrivate        struct{}
+	PangoFcFontsetKey            struct{}
+	PangoFont                    struct{}
+	PangoFontDescription         struct{}
+	PangoFontFace                struct{}
+	PangoFontFamily              struct{}
+	PangoFontMap                 struct{}
+	PangoFontMetrics             struct{}
+	PangoFontset                 struct{}
+	PangoFontsetSimple           struct{}
+	PangoFT2FontMap              struct{}
+	PangoLanguage                struct{}
+	PangoLayout                  struct{}
+	PangoLayoutIter              struct{}
+	PangoMap                     struct{}
+	PangoOTBuffer                struct{}
+	PangoOTInfo                  struct{}
+	PangoOTRuleset               struct{}
+	PangoRendererPrivate         struct{}
+	PangoScriptIter              struct{}
+	PangoTabArray                struct{}
+	PangoWin32FontCache          struct{}
+	Utimbuf                      struct{}
+	Void                         struct{}
 )
 
 type GBookmarkFileError Enum
@@ -1208,40 +1193,6 @@ const (
 	G_SIGNAL_MATCH_UNBLOCKED
 )
 
-type GConverterFlags Enum
-
-const (
-	G_CONVERTER_INPUT_AT_END GConverterFlags = 1 << iota
-	G_CONVERTER_FLUSH
-	G_CONVERTER_NO_FLAGS GConverterFlags = 0
-)
-
-type GConverterResult Enum
-
-const (
-	G_CONVERTER_ERROR GConverterResult = iota
-	G_CONVERTER_CONVERTED
-	G_CONVERTER_FINISHED
-	G_CONVERTER_FLUSHED
-)
-
-type GDataStreamByteOrder Enum
-
-const (
-	G_DATA_STREAM_BYTE_ORDER_BIG_ENDIAN GDataStreamByteOrder = iota
-	G_DATA_STREAM_BYTE_ORDER_LITTLE_ENDIAN
-	G_DATA_STREAM_BYTE_ORDER_HOST_ENDIAN
-)
-
-type GDataStreamNewlineType Enum
-
-const (
-	G_DATA_STREAM_NEWLINE_TYPE_LF GDataStreamNewlineType = iota
-	G_DATA_STREAM_NEWLINE_TYPE_CR
-	G_DATA_STREAM_NEWLINE_TYPE_CR_LF
-	G_DATA_STREAM_NEWLINE_TYPE_ANY
-)
-
 type GFileAttributeType Enum //REMOVE
 
 type GMountMountFlags Enum
@@ -1253,20 +1204,6 @@ type GMountUnmountFlags Enum
 const (
 	G_MOUNT_UNMOUNT_FORCE GMountUnmountFlags = 1 << iota
 	G_MOUNT_UNMOUNT_NONE  GMountUnmountFlags = 0
-)
-
-type GDriveStartFlags Enum
-
-const G_DRIVE_START_NONE GDriveStartFlags = 0
-
-type GDriveStartStopType Enum
-
-const (
-	G_DRIVE_START_STOP_TYPE_UNKNOWN GDriveStartStopType = iota
-	G_DRIVE_START_STOP_TYPE_SHUTDOWN
-	G_DRIVE_START_STOP_TYPE_NETWORK
-	G_DRIVE_START_STOP_TYPE_MULTIDISK
-	G_DRIVE_START_STOP_TYPE_PASSWORD
 )
 
 type GFilesystemPreviewType Enum
@@ -1301,14 +1238,6 @@ const (
 	G_MOUNT_OPERATION_HANDLED GMountOperationResult = iota
 	G_MOUNT_OPERATION_ABORTED
 	G_MOUNT_OPERATION_UNHANDLED
-)
-
-type GOutputStreamSpliceFlags Enum
-
-const (
-	G_OUTPUT_STREAM_SPLICE_CLOSE_SOURCE GOutputStreamSpliceFlags = 1 << iota
-	G_OUTPUT_STREAM_SPLICE_CLOSE_TARGET
-	G_OUTPUT_STREAM_SPLICE_NONE GOutputStreamSpliceFlags = 0
 )
 
 type GEmblemOrigin Enum
@@ -1355,39 +1284,6 @@ const (
 	G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED
 )
 
-type GBusType Enum
-
-const (
-	G_BUS_TYPE_STARTER GBusType = iota - 1
-	G_BUS_TYPE_NONE
-	G_BUS_TYPE_SYSTEM
-	G_BUS_TYPE_SESSION
-)
-
-type GBusNameOwnerFlags Enum
-
-const (
-	G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT GBusNameOwnerFlags = 1 << iota
-	G_BUS_NAME_OWNER_FLAGS_REPLACE
-	G_BUS_NAME_OWNER_FLAGS_NONE GBusNameOwnerFlags = 0
-)
-
-type GBusNameWatcherFlags Enum
-
-const (
-	G_BUS_NAME_WATCHER_FLAGS_AUTO_START GBusNameWatcherFlags = 1 << iota
-	G_BUS_NAME_WATCHER_FLAGS_NONE       GBusNameWatcherFlags = 0
-)
-
-type GDBusProxyFlags Enum
-
-const (
-	G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES GDBusProxyFlags = 1 << iota
-	G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS
-	G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START
-	G_DBUS_PROXY_FLAGS_NONE GDBusProxyFlags = 0
-)
-
 type GDBusError Enum
 
 const (
@@ -1432,116 +1328,6 @@ const (
 	G_DBUS_ERROR_SELINUX_SECURITY_CONTEXT_UNKNOWN
 	G_DBUS_ERROR_ADT_AUDIT_DATA_UNKNOWN
 	G_DBUS_ERROR_OBJECT_PATH_IN_USE
-)
-
-type GDBusConnectionFlags Enum
-
-const (
-	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_CLIENT GDBusConnectionFlags = 1 << iota
-	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_SERVER
-	G_DBUS_CONNECTION_FLAGS_AUTHENTICATION_ALLOW_ANONYMOUS
-	G_DBUS_CONNECTION_FLAGS_MESSAGE_BUS_CONNECTION
-	G_DBUS_CONNECTION_FLAGS_DELAY_MESSAGE_PROCESSING
-	G_DBUS_CONNECTION_FLAGS_NONE GDBusConnectionFlags = 0
-)
-
-type GDBusCapabilityFlags Enum
-
-const (
-	G_DBUS_CAPABILITY_FLAGS_UNIX_FD_PASSING GDBusCapabilityFlags = 1 << iota
-	G_DBUS_CAPABILITY_FLAGS_NONE                                 = 0
-)
-
-type GDBusCallFlags Enum
-
-const (
-	G_DBUS_CALL_FLAGS_NO_AUTO_START GDBusCallFlags = 1 << iota
-	G_DBUS_CALL_FLAGS_NONE          GDBusCallFlags = 0
-)
-
-type GDBusMessageType Enum
-
-const (
-	G_DBUS_MESSAGE_TYPE_INVALID GDBusMessageType = iota
-	G_DBUS_MESSAGE_TYPE_METHOD_CALL
-	G_DBUS_MESSAGE_TYPE_METHOD_RETURN
-	G_DBUS_MESSAGE_TYPE_ERROR
-	G_DBUS_MESSAGE_TYPE_SIGNAL
-)
-
-type GDBusMessageFlags Enum
-
-const (
-	G_DBUS_MESSAGE_FLAGS_NO_REPLY_EXPECTED GDBusMessageFlags = 1 << iota
-	G_DBUS_MESSAGE_FLAGS_NO_AUTO_START
-	G_DBUS_MESSAGE_FLAGS_NONE GDBusMessageFlags = 0
-)
-
-type GDBusMessageHeaderField Enum
-
-const (
-	G_DBUS_MESSAGE_HEADER_FIELD_INVALID GDBusMessageHeaderField = iota
-	G_DBUS_MESSAGE_HEADER_FIELD_PATH
-	G_DBUS_MESSAGE_HEADER_FIELD_INTERFACE
-	G_DBUS_MESSAGE_HEADER_FIELD_MEMBER
-	G_DBUS_MESSAGE_HEADER_FIELD_ERROR_NAME
-	G_DBUS_MESSAGE_HEADER_FIELD_REPLY_SERIAL
-	G_DBUS_MESSAGE_HEADER_FIELD_DESTINATION
-	G_DBUS_MESSAGE_HEADER_FIELD_SENDER
-	G_DBUS_MESSAGE_HEADER_FIELD_SIGNATURE
-	G_DBUS_MESSAGE_HEADER_FIELD_NUM_UNIX_FDS
-)
-
-type GDBusPropertyInfoFlags Enum
-
-const (
-	G_DBUS_PROPERTY_INFO_FLAGS_READABLE GDBusPropertyInfoFlags = 1 << iota
-	G_DBUS_PROPERTY_INFO_FLAGS_WRITABLE
-	G_DBUS_PROPERTY_INFO_FLAGS_NONE GDBusPropertyInfoFlags = 0
-)
-
-type GDBusSubtreeFlags Enum
-
-const (
-	G_DBUS_SUBTREE_FLAGS_DISPATCH_TO_UNENUMERATED_NODES GDBusSubtreeFlags = 1 << iota
-	G_DBUS_SUBTREE_FLAGS_NONE                           GDBusSubtreeFlags = 0
-)
-
-type GDBusServerFlags Enum
-
-const (
-	G_DBUS_SERVER_FLAGS_RUN_IN_THREAD GDBusServerFlags = 1 << iota
-	G_DBUS_SERVER_FLAGS_AUTHENTICATION_ALLOW_ANONYMOUS
-	G_DBUS_SERVER_FLAGS_NONE GDBusServerFlags = 0
-)
-
-type GDBusSignalFlags Enum
-
-const (
-	G_DBUS_SIGNAL_FLAGS_NO_MATCH_RULE GDBusSignalFlags = 1 << iota
-	G_DBUS_SIGNAL_FLAGS_NONE          GDBusSignalFlags = 0
-)
-
-type GDBusSendMessageFlags Enum
-
-const (
-	G_DBUS_SEND_MESSAGE_FLAGS_PRESERVE_SERIAL GDBusSendMessageFlags = 1 << iota
-	G_DBUS_SEND_MESSAGE_FLAGS_NONE            GDBusSendMessageFlags = 0
-)
-
-type GCredentialsType Enum
-
-const (
-	G_CREDENTIALS_TYPE_INVALID GCredentialsType = iota
-	G_CREDENTIALS_TYPE_LINUX_UCRED
-	G_CREDENTIALS_TYPE_FREEBSD_CMSGCRED
-)
-
-type GDBusMessageByteOrder Enum
-
-const (
-	G_DBUS_MESSAGE_BYTE_ORDER_BIG_ENDIAN    GDBusMessageByteOrder = 'B'
-	G_DBUS_MESSAGE_BYTE_ORDER_LITTLE_ENDIAN GDBusMessageByteOrder = 'l'
 )
 
 type GTlsError Enum
@@ -3329,98 +3115,6 @@ type (
 		return_accu *GValue,
 		handler_return *GValue,
 		data Gpointer) Gboolean
-
-	GBusAcquiredCallback func(
-		connection *GDBusConnection,
-		name string,
-		user_data Gpointer)
-
-	GBusNameAcquiredCallback func(
-		connection *GDBusConnection,
-		name string,
-		user_data Gpointer)
-
-	GBusNameLostCallback func(
-		connection *GDBusConnection,
-		name string,
-		user_data Gpointer)
-
-	GBusNameAppearedCallback func(
-		connection *GDBusConnection,
-		name string,
-		name_owner string,
-		user_data Gpointer)
-
-	GBusNameVanishedCallback func(
-		connection *GDBusConnection,
-		name string,
-		user_data Gpointer)
-
-	GDBusInterfaceMethodCallFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		interface_name string,
-		method_name string,
-		parameters *GVariant,
-		invocation *GDBusMethodInvocation,
-		user_data Gpointer)
-
-	GDBusInterfaceGetPropertyFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		interface_name string,
-		property_name string,
-		err **GError,
-		user_data Gpointer)
-
-	GDBusInterfaceSetPropertyFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		interface_name string,
-		property_name string,
-		value *GVariant,
-		err **GError,
-		user_data Gpointer)
-
-	GDBusSubtreeEnumerateFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		user_data Gpointer) **Gchar
-
-	GDBusSubtreeIntrospectFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		node string,
-		user_data Gpointer) **GDBusInterfaceInfo
-
-	GDBusSubtreeDispatchFunc func(
-		connection *GDBusConnection,
-		sender string,
-		object_path string,
-		interface_name string,
-		node string,
-		out_user_data *Gpointer,
-		user_data Gpointer) *GDBusInterfaceVTable
-
-	GDBusSignalCallback func(
-		connection *GDBusConnection,
-		sender_name string,
-		object_path string,
-		interface_name string,
-		signal_name string,
-		parameters *GVariant,
-		user_data Gpointer)
-
-	GDBusMessageFilterFunction func(
-		connection *GDBusConnection,
-		message *GDBusMessage,
-		incoming Gboolean,
-		user_data Gpointer) *GDBusMessage
 
 	GReallocFunc func(
 		data Gpointer,

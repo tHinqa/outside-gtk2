@@ -554,11 +554,6 @@ type (
 		Blue  uint16
 	}
 
-	GCancellable struct {
-		Parent_instance GObject
-		Priv            *GCancellablePrivate
-	}
-
 	PangoRenderer struct {
 		Parent_instance GObject
 		Underline       PangoUnderline
@@ -1348,124 +1343,13 @@ type (
 		Instance_size uint
 	}
 
-	GBufferedInputStream struct {
-		Parent_instance GFilterInputStream
-		Priv            *GBufferedInputStreamPrivate
-	}
-
-	GFilterInputStream struct{} //REMOVE
-
-	GOutputStream struct {
-		Parent_instance GObject
-		Priv            *GOutputStreamPrivate
-	}
-
-	GBufferedOutputStream struct {
-		Parent_instance GFilterOutputStream
-		Priv            *GBufferedOutputStreamPrivate
-	}
-
-	GFilterOutputStream struct{} //REMOVE
-
-	GConverterInputStream struct {
-		Parent_instance GFilterInputStream
-		Priv            *GConverterInputStreamPrivate
-	}
-
-	GConverterOutputStream struct {
-		Parent_instance GFilterOutputStream
-		Priv            *GConverterOutputStreamPrivate
-	}
-
-	GDataInputStream struct {
-		Parent_instance GBufferedInputStream
-		Priv            *GDataInputStreamPrivate
-	}
-
-	GDataOutputStream struct {
-		Parent_instance GFilterOutputStream
-		Priv            *GDataOutputStreamPrivate
-	}
+	GOutputStream struct{} //REMOVE
 
 	GIOStream struct{} //REMOVE
 
-	GDBusInterfaceInfo struct {
-		Ref_count   int
-		Name        *Gchar
-		Methods     **GDBusMethodInfo
-		Signals     **GDBusSignalInfo
-		Properties  **GDBusPropertyInfo
-		Annotations **GDBusAnnotationInfo
-	}
+	GDBusInterfaceInfo struct{} //REMOVE
 
-	GDBusMethodInfo struct {
-		Ref_count   int
-		Name        *Gchar
-		In_args     **GDBusArgInfo
-		Out_args    **GDBusArgInfo
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusSignalInfo struct {
-		Ref_count   int
-		Name        *Gchar
-		Args        **GDBusArgInfo
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusPropertyInfo struct {
-		Ref_count   int
-		Name        *Gchar
-		Signature   *Gchar
-		Flags       GDBusPropertyInfoFlags
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusArgInfo struct {
-		Ref_count   int
-		Name        *Gchar
-		Signature   *Gchar
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusAnnotationInfo struct {
-		Ref_count   int
-		Key         *Gchar
-		Value       *Gchar
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusInterfaceVTable struct {
-		Method_call  GDBusInterfaceMethodCallFunc
-		Get_property GDBusInterfaceGetPropertyFunc
-		Set_property GDBusInterfaceSetPropertyFunc
-		Padding      [8]Gpointer
-	}
-
-	GDBusNodeInfo struct {
-		Ref_count   int
-		Path        *Gchar
-		Interfaces  **GDBusInterfaceInfo
-		Nodes       **GDBusNodeInfo
-		Annotations **GDBusAnnotationInfo
-	}
-
-	GDBusProxy struct {
-		Parent_instance GObject
-		Priv            *GDBusProxyPrivate
-	}
-
-	GDBusSubtreeVTable struct {
-		Enumerate  GDBusSubtreeEnumerateFunc
-		Introspect GDBusSubtreeIntrospectFunc
-		Dispatch   GDBusSubtreeDispatchFunc
-		Padding    [8]Gpointer
-	}
-
-	GDBusErrorEntry struct {
-		Error_code      int
-		Dbus_error_name *Gchar
-	}
+	GDBusInterfaceVTable struct{} //REMOVE
 
 	GEmblemedIcon struct {
 		Parent_instance GObject
@@ -1535,11 +1419,6 @@ type (
 	GVolumeMonitor struct {
 		Parent_instance GObject
 		Priv            Gpointer
-	}
-
-	GInputVector struct {
-		Buffer Gpointer
-		Size   Gsize
 	}
 
 	GOutputVector struct {
