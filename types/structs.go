@@ -559,11 +559,6 @@ type (
 		Priv            *GCancellablePrivate
 	}
 
-	GAppLaunchContext struct {
-		Parent_instance GObject
-		Priv            *GAppLaunchContextPrivate
-	}
-
 	PangoRenderer struct {
 		Parent_instance GObject
 		Underline       PangoUnderline
@@ -1356,16 +1351,6 @@ type (
 		Instance_size uint
 	}
 
-	GApplication struct {
-		Parent_instance GObject
-		Priv            *GApplicationPrivate
-	}
-
-	GApplicationCommandLine struct {
-		Parent_instance GObject
-		Priv            *GApplicationCommandLinePrivate
-	}
-
 	GBufferedInputStream struct {
 		Parent_instance GFilterInputStream
 		Priv            *GBufferedInputStreamPrivate
@@ -1542,12 +1527,10 @@ type (
 
 	GInetSocketAddress struct {
 		Parent_instance GSocketAddress
-		Priv            *GInetSocketAddressPrivate
+		Priv            *struct{}
 	}
 
-	GSocketAddress struct {
-		Parent_instance GObject
-	}
+	GSocketAddress struct{} //REMOVE
 
 	GMemoryOutputStream struct {
 		Parent_instance GOutputStream
@@ -1584,54 +1567,7 @@ type (
 		Priv            *GResolverPrivate
 	}
 
-	GSettings struct {
-		Parent_instance GObject
-		Priv            *GSettingsPrivate
-	}
-
-	GSimpleActionGroup struct {
-		Parent_instance GObject
-		Priv            *GSimpleActionGroupPrivate
-	}
-
-	GSimpleAction struct {
-		Parent_instance GObject
-		Priv            *GSimpleActionPrivate
-	}
-
-	GSocketAddressEnumerator struct {
-		Parent_instance GObject
-	}
-
-	GSocket struct {
-		Parent_instance GObject
-		Priv            *GSocketPrivate
-	}
-
-	GSocketClient struct {
-		Parent_instance GObject
-		Priv            *GSocketClientPrivate
-	}
-
-	GSocketConnection struct {
-		Parent_instance GIOStream
-		Priv            *GSocketConnectionPrivate
-	}
-
-	GSocketControlMessage struct {
-		Parent_instance GObject
-		Priv            *GSocketControlMessagePrivate
-	}
-
-	GSocketListener struct {
-		Parent_instance GObject
-		Priv            *GSocketListenerPrivate
-	}
-
-	GSocketService struct {
-		Parent_instance GSocketListener
-		Priv            *GSocketServicePrivate
-	}
+	GSocketConnection struct{} //REMOVE
 
 	GTlsCertificate struct {
 		Parent_instance GObject

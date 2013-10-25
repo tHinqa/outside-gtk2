@@ -16,330 +16,9 @@ func init() {
 	outside.AddDllApis(dll, false, apiList)
 }
 
+type Enum int
+
 var (
-	AppInfoGetType func() O.Type
-
-	AppInfoCreateFromCommandline func(
-		commandline string,
-		applicationName string,
-		flags T.GAppInfoCreateFlags,
-		err **T.GError) *T.GAppInfo
-
-	AppInfoDup func(appinfo *T.GAppInfo) *T.GAppInfo
-
-	AppInfoEqual func(
-		appinfo1 *T.GAppInfo, appinfo2 *T.GAppInfo) T.Gboolean
-
-	AppInfoGetId func(appinfo *T.GAppInfo) string
-
-	AppInfoGetName func(appinfo *T.GAppInfo) string
-
-	AppInfoGetDisplayName func(appinfo *T.GAppInfo) string
-
-	AppInfoGetDescription func(appinfo *T.GAppInfo) string
-
-	AppInfoGetExecutable func(appinfo *T.GAppInfo) string
-
-	AppInfoGetCommandline func(appinfo *T.GAppInfo) string
-
-	AppInfoGetIcon func(appinfo *T.GAppInfo) *T.GIcon
-
-	AppInfoLaunch func(
-		appinfo *T.GAppInfo,
-		files *T.GList,
-		launchContext *T.GAppLaunchContext,
-		err **T.GError) T.Gboolean
-
-	AppInfoSupportsUris func(appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoSupportsFiles func(appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoLaunchUris func(
-		appinfo *T.GAppInfo,
-		uris *T.GList,
-		launchContext *T.GAppLaunchContext,
-		err **T.GError) T.Gboolean
-
-	AppInfoShouldShow func(appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoSetAsDefaultForType func(
-		appinfo *T.GAppInfo,
-		contentType string,
-		err **T.GError) T.Gboolean
-
-	AppInfoSetAsDefaultForExtension func(
-		appinfo *T.GAppInfo,
-		extension string,
-		err **T.GError) T.Gboolean
-
-	AppInfoAddSupportsType func(
-		appinfo *T.GAppInfo,
-		contentType string,
-		err **T.GError) T.Gboolean
-
-	AppInfoCanRemoveSupportsType func(
-		appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoRemoveSupportsType func(
-		appinfo *T.GAppInfo,
-		contentType string,
-		err **T.GError) T.Gboolean
-
-	AppInfoCanDelete func(appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoDelete func(appinfo *T.GAppInfo) T.Gboolean
-
-	AppInfoSetAsLastUsedForType func(
-		appinfo *T.GAppInfo,
-		contentType string,
-		err **T.GError) T.Gboolean
-
-	AppInfoGetAll func() *T.GList
-
-	AppInfoGetAllForType func(contentType string) *T.GList
-
-	AppInfoGetRecommendedForType func(
-		contentType string) *T.GList
-
-	AppInfoGetFallbackForType func(
-		contentType string) *T.GList
-
-	AppInfoResetTypeAssociations func(contentType string)
-
-	AppInfoGetDefaultForType func(
-		contentType string,
-		mustSupportUris T.Gboolean) *T.GAppInfo
-
-	AppInfoGetDefaultForUriScheme func(
-		uriScheme string) *T.GAppInfo
-
-	AppInfoLaunchDefaultForUri func(
-		uri string,
-		launchContext *T.GAppLaunchContext,
-		err **T.GError) T.Gboolean
-
-	AppLaunchContextGetType func() O.Type
-
-	AppLaunchContextNew func() *T.GAppLaunchContext
-
-	AppLaunchContextGetDisplay func(
-		context *T.GAppLaunchContext,
-		info *T.GAppInfo,
-		files *T.GList) string
-
-	AppLaunchContextGetStartupNotifyId func(
-		context *T.GAppLaunchContext,
-		info *T.GAppInfo,
-		files *T.GList) string
-
-	AppLaunchContextLaunchFailed func(
-		context *T.GAppLaunchContext,
-		startupNotifyId string)
-
-	ActionGetType func() O.Type
-
-	ActionGetName func(action *T.GAction) string
-
-	ActionGetParameterType func(action *T.GAction) *T.GVariantType
-
-	ActionGetStateType func(action *T.GAction) *T.GVariantType
-
-	ActionGetStateHint func(action *T.GAction) *T.GVariant
-
-	ActionGetEnabled func(action *T.GAction) T.Gboolean
-
-	ActionGetState func(action *T.GAction) *T.GVariant
-
-	ActionSetState func(action *T.GAction, value *T.GVariant)
-
-	ActionActivate func(action *T.GAction, parameter *T.GVariant)
-
-	SimpleActionGetType func() O.Type
-
-	SimpleActionNew func(
-		name string, parameterType *T.GVariantType) *T.GSimpleAction
-
-	SimpleActionNewStateful func(
-		name string,
-		parameterType *T.GVariantType,
-		state *T.GVariant) *T.GSimpleAction
-
-	SimpleActionSetEnabled func(
-		simple *T.GSimpleAction,
-		enabled T.Gboolean)
-
-	ActionGroupGetType func() O.Type
-
-	ActionGroupHasAction func(
-		actionGroup *T.GActionGroup,
-		actionName string) T.Gboolean
-
-	ActionGroupListActions func(
-		actionGroup *T.GActionGroup) **T.Gchar
-
-	ActionGroupGetActionParameterType func(
-		actionGroup *T.GActionGroup,
-		actionName string) *T.GVariantType
-
-	ActionGroupGetActionStateType func(
-		actionGroup *T.GActionGroup,
-		actionName string) *T.GVariantType
-
-	ActionGroupGetActionStateHint func(
-		actionGroup *T.GActionGroup,
-		actionName string) *T.GVariant
-
-	ActionGroupGetActionEnabled func(
-		actionGroup *T.GActionGroup,
-		actionName string) T.Gboolean
-
-	ActionGroupGetActionState func(
-		actionGroup *T.GActionGroup,
-		actionName string) *T.GVariant
-
-	ActionGroupChangeActionState func(
-		actionGroup *T.GActionGroup,
-		actionName string,
-		value *T.GVariant)
-
-	ActionGroupActivateAction func(
-		actionGroup *T.GActionGroup,
-		actionName string,
-		parameter *T.GVariant)
-
-	ActionGroupActionAdded func(
-		actionGroup *T.GActionGroup,
-		actionName string)
-
-	ActionGroupActionRemoved func(
-		actionGroup *T.GActionGroup,
-		actionName string)
-
-	ActionGroupActionEnabledChanged func(
-		actionGroup *T.GActionGroup,
-		actionName string,
-		enabled T.Gboolean)
-
-	ActionGroupActionStateChanged func(
-		actionGroup *T.GActionGroup,
-		actionName string,
-		state *T.GVariant)
-
-	SimpleActionGroupGetType func() O.Type
-
-	SimpleActionGroupNew func() *T.GSimpleActionGroup
-
-	SimpleActionGroupLookup func(
-		simple *T.GSimpleActionGroup,
-		actionName string) *T.GAction
-
-	SimpleActionGroupInsert func(
-		simple *T.GSimpleActionGroup,
-		action *T.GAction)
-
-	SimpleActionGroupRemove func(
-		simple *T.GSimpleActionGroup,
-		actionName string)
-
-	ApplicationGetType func() O.Type
-
-	ApplicationIdIsValid func(
-		applicationId string) T.Gboolean
-
-	ApplicationNew func(
-		applicationId string,
-		flags T.GApplicationFlags) *T.GApplication
-
-	ApplicationGetApplicationId func(
-		application *T.GApplication) string
-
-	ApplicationSetApplicationId func(
-		application *T.GApplication,
-		applicationId string)
-
-	ApplicationGetInactivityTimeout func(
-		application *T.GApplication) uint
-
-	ApplicationSetInactivityTimeout func(
-		application *T.GApplication,
-		inactivityTimeout uint)
-
-	ApplicationGetFlags func(
-		application *T.GApplication) T.GApplicationFlags
-
-	ApplicationSetFlags func(
-		application *T.GApplication,
-		flags T.GApplicationFlags)
-
-	ApplicationSetActionGroup func(
-		application *T.GApplication,
-		actionGroup *T.GActionGroup)
-
-	ApplicationGetIsRegistered func(
-		application *T.GApplication) T.Gboolean
-
-	ApplicationGetIsRemote func(
-		application *T.GApplication) T.Gboolean
-
-	ApplicationRegister func(
-		application *T.GApplication,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	ApplicationHold func(
-		application *T.GApplication)
-
-	ApplicationRelease func(
-		application *T.GApplication)
-
-	ApplicationActivate func(
-		application *T.GApplication)
-
-	ApplicationOpen func(
-		application *T.GApplication,
-		files **T.GFile,
-		nFiles int,
-		hint string)
-
-	ApplicationRun func(
-		application *T.GApplication,
-		argc int,
-		argv **T.Char) int
-
-	ApplicationCommandLineGetType func() O.Type
-
-	ApplicationCommandLineGetArguments func(
-		cmdline *T.GApplicationCommandLine,
-		argc *int) **T.Gchar
-
-	ApplicationCommandLineGetEnviron func(
-		cmdline *T.GApplicationCommandLine) **T.Gchar
-
-	ApplicationCommandLineGetenv func(
-		cmdline *T.GApplicationCommandLine,
-		name string) string
-
-	ApplicationCommandLineGetCwd func(
-		cmdline *T.GApplicationCommandLine) string
-
-	ApplicationCommandLineGetIsRemote func(
-		cmdline *T.GApplicationCommandLine) T.Gboolean
-
-	ApplicationCommandLinePrint func(
-		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
-	ApplicationCommandLinePrinterr func(
-		cmdline *T.GApplicationCommandLine, format string, v ...VArg)
-
-	ApplicationCommandLineGetExitStatus func(
-		cmdline *T.GApplicationCommandLine) int
-
-	ApplicationCommandLineSetExitStatus func(
-		cmdline *T.GApplicationCommandLine,
-		exitStatus int)
-
-	ApplicationCommandLineGetPlatformData func(
-		cmdline *T.GApplicationCommandLine) *T.GVariant
-
 	InitableGetType func() O.Type
 
 	InitableInit func(
@@ -364,56 +43,6 @@ var (
 		varArgs T.VaList,
 		cancellable *T.GCancellable,
 		err **T.GError) *O.Object
-
-	AsyncInitableGetType func() O.Type
-
-	AsyncInitableInitAsync func(
-		initable *T.GAsyncInitable,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	AsyncInitableInitFinish func(
-		initable *T.GAsyncInitable,
-		res *T.GAsyncResult,
-		err **T.GError) T.Gboolean
-
-	AsyncInitableNewAsync func(objectType O.Type,
-		ioPriority int, cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback, userData T.Gpointer,
-		firstPropertyName string, v ...VArg)
-
-	AsyncInitableNewvAsync func(
-		objectType O.Type,
-		nParameters uint,
-		parameters *T.GParameter,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	AsyncInitableNewValistAsync func(
-		objectType O.Type,
-		firstPropertyName string,
-		varArgs T.VaList,
-		ioPriority int,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	AsyncInitableNewFinish func(
-		initable *T.GAsyncInitable,
-		res *T.GAsyncResult,
-		err **T.GError) *O.Object
-
-	AsyncResultGetType func() O.Type
-
-	AsyncResultGetUserData func(
-		res *T.GAsyncResult) T.Gpointer
-
-	AsyncResultGetSourceObject func(
-		res *T.GAsyncResult) *O.Object
 
 	InputStreamGetType func() O.Type
 
@@ -449,12 +78,12 @@ var (
 		count T.Gsize,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	InputStreamReadFinish func(
 		stream *T.GInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gssize
 
 	InputStreamSkipAsync func(
@@ -462,24 +91,24 @@ var (
 		count T.Gsize,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	InputStreamSkipFinish func(
 		stream *T.GInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gssize
 
 	InputStreamCloseAsync func(
 		stream *T.GInputStream,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	InputStreamCloseFinish func(
 		stream *T.GInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	InputStreamIsClosed func(
@@ -547,12 +176,12 @@ var (
 		count T.Gssize,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	BufferedInputStreamFillFinish func(
 		stream *T.GBufferedInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gssize
 
 	BufferedInputStreamReadByte func(
@@ -600,12 +229,12 @@ var (
 		count T.Gsize,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	OutputStreamWriteFinish func(
 		stream *T.GOutputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gssize
 
 	OutputStreamSpliceAsync func(
@@ -614,36 +243,36 @@ var (
 		flags T.GOutputStreamSpliceFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	OutputStreamSpliceFinish func(
 		stream *T.GOutputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gssize
 
 	OutputStreamFlushAsync func(
 		stream *T.GOutputStream,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	OutputStreamFlushFinish func(
 		stream *T.GOutputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	OutputStreamCloseAsync func(
 		stream *T.GOutputStream,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	OutputStreamCloseFinish func(
 		stream *T.GOutputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	OutputStreamIsClosed func(
@@ -918,12 +547,12 @@ var (
 		stream *T.GDataInputStream,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DataInputStreamReadLineFinish func(
 		stream *T.GDataInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
@@ -939,12 +568,12 @@ var (
 		stopChars string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DataInputStreamReadUntilFinish func(
 		stream *T.GDataInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
@@ -962,12 +591,12 @@ var (
 		stopCharsLen T.Gssize,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DataInputStreamReadUptoFinish func(
 		stream *T.GDataInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		length *T.Gsize,
 		err **T.GError) string
 
@@ -1041,11 +670,11 @@ var (
 	DbusAddressGetStream func(
 		address string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusAddressGetStreamFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		outGuid **T.Gchar,
 		err **T.GError) *T.GIOStream
 
@@ -1074,11 +703,11 @@ var (
 	BusGet func(
 		busType T.GBusType,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	BusGetFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusConnection
 
 	BusGetSync func(
@@ -1092,11 +721,11 @@ var (
 		flags T.GDBusConnectionFlags,
 		observer *T.GDBusAuthObserver,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionNewFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusConnection
 
 	DbusConnectionNewSync func(
@@ -1112,11 +741,11 @@ var (
 		flags T.GDBusConnectionFlags,
 		observer *T.GDBusAuthObserver,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionNewForAddressFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusConnection
 
 	DbusConnectionNewForAddressSync func(
@@ -1157,12 +786,12 @@ var (
 	DbusConnectionClose func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionCloseFinish func(
 		connection *T.GDBusConnection,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DbusConnectionCloseSync func(
@@ -1173,12 +802,12 @@ var (
 	DbusConnectionFlush func(
 		connection *T.GDBusConnection,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionFlushFinish func(
 		connection *T.GDBusConnection,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DbusConnectionFlushSync func(
@@ -1200,12 +829,12 @@ var (
 		timeoutMsec int,
 		outSerial *T.GUint32,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionSendMessageWithReplyFinish func(
 		connection *T.GDBusConnection,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusMessage
 
 	DbusConnectionSendMessageWithReplySync func(
@@ -1237,12 +866,12 @@ var (
 		flags T.GDBusCallFlags,
 		timeoutMsec int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusConnectionCallFinish func(
 		connection *T.GDBusConnection,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GVariant
 
 	DbusConnectionCallSync func(
@@ -1777,11 +1406,11 @@ var (
 		objectPath string,
 		interfaceName string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusProxyNewFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusProxy
 
 	DbusProxyNewSync func(
@@ -1802,11 +1431,11 @@ var (
 		objectPath string,
 		interfaceName string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusProxyNewForBusFinish func(
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GDBusProxy
 
 	DbusProxyNewForBusSync func(
@@ -1870,12 +1499,12 @@ var (
 		flags T.GDBusCallFlags,
 		timeoutMsec int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DbusProxyCallFinish func(
 		proxy *T.GDBusProxy,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GVariant
 
 	DbusProxyCallSync func(
@@ -1956,23 +1585,23 @@ var (
 		drive *T.GDrive,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DriveEjectFinish func(
 		drive *T.GDrive,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DrivePollForMedia func(
 		drive *T.GDrive,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DrivePollForMediaFinish func(
 		drive *T.GDrive,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DriveGetIdentifier func(drive *T.GDrive, kind string) string
@@ -1992,12 +1621,12 @@ var (
 		flags T.GDriveStartFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DriveStartFinish func(
 		drive *T.GDrive,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DriveCanStop func(drive *T.GDrive) T.Gboolean
@@ -2007,12 +1636,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DriveStopFinish func(
 		drive *T.GDrive,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	DriveEjectWithOperation func(
@@ -2020,12 +1649,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	DriveEjectWithOperationFinish func(
 		drive *T.GDrive,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	IconGetType func() O.Type
@@ -2103,24 +1732,24 @@ var (
 		numFiles int,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileEnumeratorNextFilesFinish func(
 		enumerator *T.GFileEnumerator,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GList
 
 	FileEnumeratorCloseAsync func(
 		enumerator *T.GFileEnumerator,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileEnumeratorCloseFinish func(
 		enumerator *T.GFileEnumerator,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileEnumeratorIsClosed func(
@@ -2193,12 +1822,12 @@ var (
 		file *T.GFile,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileReadFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileInputStream
 
 	FileAppendTo func(
@@ -2226,12 +1855,12 @@ var (
 		flags T.GFileCreateFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileAppendToFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
 	FileCreateAsync func(
@@ -2239,12 +1868,12 @@ var (
 		flags T.GFileCreateFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileCreateFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
 	FileReplaceAsync func(
@@ -2254,12 +1883,12 @@ var (
 		flags T.GFileCreateFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileReplaceFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileOutputStream
 
 	FileOpenReadwrite func(
@@ -2271,12 +1900,12 @@ var (
 		file *T.GFile,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileOpenReadwriteFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileIOStream
 
 	FileCreateReadwrite func(
@@ -2290,12 +1919,12 @@ var (
 		flags T.GFileCreateFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileCreateReadwriteFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileIOStream
 
 	FileReplaceReadwrite func(
@@ -2313,12 +1942,12 @@ var (
 		flags T.GFileCreateFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileReplaceReadwriteFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileIOStream
 
 	FileQueryExists func(
@@ -2343,12 +1972,12 @@ var (
 		flags T.GFileQueryInfoFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileQueryInfoFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileInfo
 
 	FileQueryFilesystemInfo func(
@@ -2362,12 +1991,12 @@ var (
 		attributes string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileQueryFilesystemInfoFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileInfo
 
 	FileFindEnclosingMount func(
@@ -2379,12 +2008,12 @@ var (
 		file *T.GFile,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileFindEnclosingMountFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GMount
 
 	FileEnumerateChildren func(
@@ -2400,12 +2029,12 @@ var (
 		flags T.GFileQueryInfoFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileEnumerateChildrenFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFileEnumerator
 
 	FileSetDisplayName func(
@@ -2419,12 +2048,12 @@ var (
 		displayName string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileSetDisplayNameFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) *T.GFile
 
 	FileDelete func(
@@ -2454,12 +2083,12 @@ var (
 		cancellable *T.GCancellable,
 		progressCallback T.GFileProgressCallback,
 		progressCallbackData T.Gpointer,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileCopyFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileMove func(
@@ -2519,12 +2148,12 @@ var (
 		flags T.GFileQueryInfoFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileSetAttributesFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		info **T.GFileInfo,
 		err **T.GError) T.Gboolean
 
@@ -2581,12 +2210,12 @@ var (
 		flags T.GMountMountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileMountEnclosingVolumeFinish func(
 		location *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileMountMountable func(
@@ -2594,24 +2223,24 @@ var (
 		flags T.GMountMountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileMountMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GFile
 
 	FileUnmountMountable func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileUnmountMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileUnmountMountableWithOperation func(
@@ -2619,24 +2248,24 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileUnmountMountableWithOperationFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileEjectMountable func(
 		file *T.GFile,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileEjectMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileEjectMountableWithOperation func(
@@ -2644,12 +2273,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileEjectMountableWithOperationFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileCopyAttributes func(
@@ -2682,12 +2311,12 @@ var (
 		flags T.GDriveStartFlags,
 		startOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileStartMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileStopMountable func(
@@ -2695,29 +2324,29 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileStopMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FilePollMountable func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FilePollMountableFinish func(
 		file *T.GFile,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	FileQueryDefaultHandler func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
-		err **T.GError) *T.GAppInfo
+		err **T.GError) *AppInfo
 
 	FileLoadContents func(
 		file *T.GFile,
@@ -2730,12 +2359,12 @@ var (
 	FileLoadContentsAsync func(
 		file *T.GFile,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileLoadContentsFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		contents **T.Char,
 		length *T.Gsize,
 		etagOut **T.Char,
@@ -2745,12 +2374,12 @@ var (
 		file *T.GFile,
 		cancellable *T.GCancellable,
 		readMoreCallback T.GFileReadMoreCallback,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileLoadPartialContentsFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		contents **T.Char,
 		length *T.Gsize,
 		etagOut **T.Char,
@@ -2775,12 +2404,12 @@ var (
 		makeBackup T.Gboolean,
 		flags T.GFileCreateFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileReplaceContentsFinish func(
 		file *T.GFile,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		newEtag **T.Char,
 		err **T.GError) T.Gboolean
 
@@ -3064,12 +2693,12 @@ var (
 		attributes string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileInputStreamQueryInfoFinish func(
 		stream *T.GFileInputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GFileInfo
 
 	IoErrorQuark func() T.GQuark
@@ -3094,11 +2723,11 @@ var (
 		flags T.GIOStreamSpliceFlags,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	IoStreamSpliceFinish func(
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	IoStreamClose func(
@@ -3110,12 +2739,12 @@ var (
 		stream *T.GIOStream,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	IoStreamCloseFinish func(
 		stream *T.GIOStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	IoStreamIsClosed func(
@@ -3144,12 +2773,12 @@ var (
 		attributes string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileIoStreamQueryInfoFinish func(
 		stream *T.GFileIOStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GFileInfo
 
 	FileIoStreamGetEtag func(
@@ -3202,12 +2831,12 @@ var (
 		attributes string,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	FileOutputStreamQueryInfoFinish func(
 		stream *T.GFileOutputStream,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GFileInfo
 
 	FileOutputStreamGetEtag func(
@@ -3220,13 +2849,13 @@ var (
 
 	InetAddressNewFromBytes func(
 		bytes *uint8,
-		family T.GSocketFamily) *T.GInetAddress
+		family SocketFamily) *T.GInetAddress
 
 	InetAddressNewLoopback func(
-		family T.GSocketFamily) *T.GInetAddress
+		family SocketFamily) *T.GInetAddress
 
 	InetAddressNewAny func(
-		family T.GSocketFamily) *T.GInetAddress
+		family SocketFamily) *T.GInetAddress
 
 	InetAddressToString func(
 		address *T.GInetAddress) string
@@ -3238,7 +2867,7 @@ var (
 		address *T.GInetAddress) T.Gsize
 
 	InetAddressGetFamily func(
-		address *T.GInetAddress) T.GSocketFamily
+		address *T.GInetAddress) SocketFamily
 
 	InetAddressGetIsAny func(
 		address *T.GInetAddress) T.Gboolean
@@ -3270,24 +2899,6 @@ var (
 	InetAddressGetIsMcSiteLocal func(
 		address *T.GInetAddress) T.Gboolean
 
-	SocketAddressGetType func() O.Type
-
-	SocketAddressGetFamily func(
-		address *T.GSocketAddress) T.GSocketFamily
-
-	SocketAddressNewFromNative func(
-		native T.Gpointer,
-		len T.Gsize) *T.GSocketAddress
-
-	SocketAddressToNative func(
-		address *T.GSocketAddress,
-		dest T.Gpointer,
-		destlen T.Gsize,
-		err **T.GError) T.Gboolean
-
-	SocketAddressGetNativeSize func(
-		address *T.GSocketAddress) T.Gssize
-
 	InetSocketAddressGetType func() O.Type
 
 	InetSocketAddressNew func(
@@ -3299,8 +2910,6 @@ var (
 
 	InetSocketAddressGetPort func(
 		address *T.GInetSocketAddress) uint16
-
-	AppInfoCreateFlagsGetType func() O.Type
 
 	ConverterFlagsGetType func() O.Type
 
@@ -3354,14 +2963,6 @@ var (
 
 	ResolverErrorGetType func() O.Type
 
-	SocketFamilyGetType func() O.Type
-
-	SocketTypeGetType func() O.Type
-
-	SocketMsgFlagsGetType func() O.Type
-
-	SocketProtocolGetType func() O.Type
-
 	ZlibCompressorFormatGetType func() O.Type
 
 	UnixSocketAddressTypeGetType func() O.Type
@@ -3402,8 +3003,6 @@ var (
 
 	DbusMessageByteOrderGetType func() O.Type
 
-	ApplicationFlagsGetType func() O.Type
-
 	TlsErrorGetType func() O.Type
 
 	TlsCertificateFlagsGetType func() O.Type
@@ -3411,8 +3010,6 @@ var (
 	TlsAuthenticationModeGetType func() O.Type
 
 	TlsRehandshakeModeGetType func() O.Type
-
-	SettingsBindFlagsGetType func() O.Type
 
 	IoModuleGetType func() O.Type
 
@@ -3505,12 +3102,12 @@ var (
 		icon *T.GLoadableIcon,
 		size int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	LoadableIconLoadFinish func(
 		icon *T.GLoadableIcon,
-		res *T.GAsyncResult,
+		res *AsyncResult,
 		typ **T.Char,
 		err **T.GError) *T.GInputStream
 
@@ -3582,24 +3179,24 @@ var (
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountUnmountFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	MountEject func(
 		mount *T.GMount,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountEjectFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	MountRemount func(
@@ -3607,24 +3204,24 @@ var (
 		flags T.GMountMountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountRemountFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	MountGuessContentType func(
 		mount *T.GMount,
 		forceRescan T.Gboolean,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountGuessContentTypeFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) **T.Gchar
 
 	MountGuessContentTypeSync func(
@@ -3647,12 +3244,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountUnmountWithOperationFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	MountEjectWithOperation func(
@@ -3660,12 +3257,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	MountEjectWithOperationFinish func(
 		mount *T.GMount,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	MountOperationGetType func() O.Type
@@ -3748,17 +3345,17 @@ var (
 
 	NetworkAddressNew func(
 		hostname string,
-		port uint16) *T.GSocketConnectable
+		port uint16) *SocketConnectable
 
 	NetworkAddressParse func(
 		hostAndPort string,
 		defaultPort uint16,
-		err **T.GError) *T.GSocketConnectable
+		err **T.GError) *SocketConnectable
 
 	NetworkAddressParseUri func(
 		uri string,
 		defaultPort uint16,
-		err **T.GError) *T.GSocketConnectable
+		err **T.GError) *SocketConnectable
 
 	NetworkAddressGetHostname func(
 		addr *T.GNetworkAddress) string
@@ -3774,7 +3371,7 @@ var (
 	NetworkServiceNew func(
 		service string,
 		protocol string,
-		domain string) *T.GSocketConnectable
+		domain string) *SocketConnectable
 
 	NetworkServiceGetService func(
 		srv *T.GNetworkService) string
@@ -3802,12 +3399,12 @@ var (
 	PermissionAcquireAsync func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	PermissionAcquireFinish func(
 		permission *T.GPermission,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	PermissionRelease func(
@@ -3818,12 +3415,12 @@ var (
 	PermissionReleaseAsync func(
 		permission *T.GPermission,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	PermissionReleaseFinish func(
 		permission *T.GPermission,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	PermissionGetAllowed func(
@@ -3899,12 +3496,12 @@ var (
 		connection *T.GIOStream,
 		proxyAddress *T.GProxyAddress,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	ProxyConnectFinish func(
 		proxy *T.GProxy,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GIOStream
 
 	ProxySupportsHostname func(
@@ -3936,24 +3533,6 @@ var (
 	ProxyAddressGetPassword func(
 		proxy *T.GProxyAddress) string
 
-	SocketAddressEnumeratorGetType func() O.Type
-
-	SocketAddressEnumeratorNext func(
-		enumerator *T.GSocketAddressEnumerator,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketAddress
-
-	SocketAddressEnumeratorNextAsync func(
-		enumerator *T.GSocketAddressEnumerator,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketAddressEnumeratorNextFinish func(
-		enumerator *T.GSocketAddressEnumerator,
-		result *T.GAsyncResult,
-		err **T.GError) *T.GSocketAddress
-
 	ProxyAddressEnumeratorGetType func() O.Type
 
 	ProxyResolverGetType func() O.Type
@@ -3973,12 +3552,12 @@ var (
 		resolver *T.GProxyResolver,
 		uri string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	ProxyResolverLookupFinish func(
 		resolver *T.GProxyResolver,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) **T.Gchar
 
 	ResolverGetType func() O.Type
@@ -3998,12 +3577,12 @@ var (
 		resolver *T.GResolver,
 		hostname string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	ResolverLookupByNameFinish func(
 		resolver *T.GResolver,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GList
 
 	ResolverFreeAddresses func(
@@ -4019,12 +3598,12 @@ var (
 		resolver *T.GResolver,
 		address *T.GInetAddress,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	ResolverLookupByAddressFinish func(
 		resolver *T.GResolver,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) string
 
 	ResolverLookupService func(
@@ -4041,808 +3620,18 @@ var (
 		protocol string,
 		domain string,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	ResolverLookupServiceFinish func(
 		resolver *T.GResolver,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) *T.GList
 
 	ResolverFreeTargets func(
 		targets *T.GList)
 
 	ResolverErrorQuark func() T.GQuark
-
-	SeekableGetType func() O.Type
-
-	SeekableTell func(
-		seekable *T.GSeekable) T.Goffset
-
-	SeekableCanSeek func(
-		seekable *T.GSeekable) T.Gboolean
-
-	SeekableSeek func(
-		seekable *T.GSeekable,
-		offset T.Goffset,
-		typ T.GSeekType,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	SeekableCanTruncate func(
-		seekable *T.GSeekable) T.Gboolean
-
-	SeekableTruncate func(
-		seekable *T.GSeekable,
-		offset T.Goffset,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	SettingsGetType func() O.Type
-
-	SettingsListSchemas func() **T.Gchar
-
-	SettingsListRelocatableSchemas func() **T.Gchar
-
-	SettingsNew func(
-		schema string) *T.GSettings
-
-	SettingsNewWithPath func(
-		schema string,
-		path string) *T.GSettings
-
-	SettingsNewWithBackend func(
-		schema string,
-		backend *T.GSettingsBackend) *T.GSettings
-
-	SettingsNewWithBackendAndPath func(
-		schema string,
-		backend *T.GSettingsBackend,
-		path string) *T.GSettings
-
-	SettingsListChildren func(
-		settings *T.GSettings) **T.Gchar
-
-	SettingsList_keys func(
-		settings *T.GSettings) **T.Gchar
-
-	SettingsGetRange func(
-		settings *T.GSettings,
-		key string) *T.GVariant
-
-	SettingsRangeCheck func(
-		settings *T.GSettings,
-		key string,
-		value *T.GVariant) T.Gboolean
-
-	SettingsSetValue func(
-		settings *T.GSettings,
-		key string,
-		value *T.GVariant) T.Gboolean
-
-	SettingsGetValue func(
-		settings *T.GSettings,
-		key string) *T.GVariant
-
-	SettingsSet func(settings *T.GSettings, key, format string,
-		v ...VArg) T.Gboolean
-
-	SettingsGet func(settings *T.GSettings, key, format string,
-		v ...VArg)
-
-	SettingsReset func(settings *T.GSettings, key string)
-
-	SettingsGetInt func(settings *T.GSettings, key string) int
-
-	SettingsSetInt func(
-		settings *T.GSettings, key string, value int) T.Gboolean
-
-	SettingsGetString func(
-		settings *T.GSettings, key string) string
-
-	SettingsSetString func(
-		settings *T.GSettings, key, value string) T.Gboolean
-
-	SettingsGetBoolean func(
-		settings *T.GSettings, key string) T.Gboolean
-
-	SettingsSetBoolean func(
-		settings *T.GSettings, key string, value T.Gboolean) T.Gboolean
-
-	SettingsGetDouble func(
-		settings *T.GSettings, key string) float64
-
-	SettingsSetDouble func(settings *T.GSettings,
-		key string, value float64) T.Gboolean
-
-	SettingsGetStrv func(
-		settings *T.GSettings, key string) **T.Gchar
-
-	SettingsSetStrv func(settings *T.GSettings,
-		key string, value **T.Gchar) T.Gboolean
-
-	SettingsGetEnum func(
-		settings *T.GSettings, key string) int
-
-	SettingsSetEnum func(settings *T.GSettings,
-		key string, value int) T.Gboolean
-
-	SettingsGetFlags func(
-		settings *T.GSettings, key string) uint
-
-	SettingsSetFlags func(settings *T.GSettings,
-		key string, value uint) T.Gboolean
-
-	SettingsGetChild func(
-		settings *T.GSettings,
-		name string) *T.GSettings
-
-	SettingsIsWritable func(
-		settings *T.GSettings, name string) T.Gboolean
-
-	SettingsDelay func(settings *T.GSettings)
-
-	SettingsApply func(settings *T.GSettings)
-
-	SettingsRevert func(settings *T.GSettings)
-
-	SettingsGetHasUnapplied func(
-		settings *T.GSettings) T.Gboolean
-
-	SettingsSync func()
-
-	SettingsBind func(
-		settings *T.GSettings,
-		key string,
-		object T.Gpointer,
-		property string,
-		flags T.GSettingsBindFlags)
-
-	SettingsBindWithMapping func(
-		settings *T.GSettings,
-		key string,
-		object T.Gpointer,
-		property string,
-		flags T.GSettingsBindFlags,
-		getMapping T.GSettingsBindGetMapping,
-		setMapping T.GSettingsBindSetMapping,
-		userData T.Gpointer,
-		destroy T.GDestroyNotify)
-
-	SettingsBindWritable func(
-		settings *T.GSettings,
-		key string,
-		object T.Gpointer,
-		property string,
-		inverted T.Gboolean)
-
-	SettingsUnbind func(object T.Gpointer, property string)
-
-	SettingsGetMapped func(
-		settings *T.GSettings,
-		key string,
-		mapping T.GSettingsGetMapping,
-		userData T.Gpointer) T.Gpointer
-
-	SimpleAsyncResultGetType func() O.Type
-
-	SimpleAsyncResultNew func(
-		sourceObject *O.Object,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer,
-		sourceTag T.Gpointer) *T.GSimpleAsyncResult
-
-	SimpleAsyncResultNewError func(
-		sourceObject *O.Object, callback T.GAsyncReadyCallback,
-		userData T.Gpointer, domain T.GQuark, code int,
-		format string, v ...VArg) *T.GSimpleAsyncResult
-
-	SimpleAsyncResultNewFromError func(
-		sourceObject *O.Object,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer,
-		err *T.GError) *T.GSimpleAsyncResult
-
-	SimpleAsyncResultNewTakeError func(
-		sourceObject *O.Object,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer,
-		err *T.GError) *T.GSimpleAsyncResult
-
-	SimpleAsyncResultSetOpResGpointer func(
-		simple *T.GSimpleAsyncResult,
-		opRes T.Gpointer,
-		destroyOpRes T.GDestroyNotify)
-
-	SimpleAsyncResultGetOpResGpointer func(
-		simple *T.GSimpleAsyncResult) T.Gpointer
-
-	SimpleAsyncResultSetOpResGssize func(
-		simple *T.GSimpleAsyncResult,
-		opRes T.Gssize)
-
-	SimpleAsyncResultGetOpResGssize func(
-		simple *T.GSimpleAsyncResult) T.Gssize
-
-	SimpleAsyncResultSetOpResGboolean func(
-		simple *T.GSimpleAsyncResult,
-		opRes T.Gboolean)
-
-	SimpleAsyncResultGetOpResGboolean func(
-		simple *T.GSimpleAsyncResult) T.Gboolean
-
-	SimpleAsyncResultGetSourceTag func(
-		simple *T.GSimpleAsyncResult) T.Gpointer
-
-	SimpleAsyncResultSetHandleCancellation func(
-		simple *T.GSimpleAsyncResult,
-		handleCancellation T.Gboolean)
-
-	SimpleAsyncResultComplete func(
-		simple *T.GSimpleAsyncResult)
-
-	SimpleAsyncResultCompleteInIdle func(
-		simple *T.GSimpleAsyncResult)
-
-	SimpleAsyncResultRunInThread func(
-		simple *T.GSimpleAsyncResult,
-		f T.GSimpleAsyncThreadFunc,
-		ioPriority int,
-		cancellable *T.GCancellable)
-
-	SimpleAsyncResultSetFromError func(
-		simple *T.GSimpleAsyncResult,
-		err *T.GError)
-
-	SimpleAsyncResultTakeError func(
-		simple *T.GSimpleAsyncResult,
-		err *T.GError)
-
-	SimpleAsyncResultPropagateError func(
-		simple *T.GSimpleAsyncResult,
-		dest **T.GError) T.Gboolean
-
-	SimpleAsyncResultSetError func(
-		simple *T.GSimpleAsyncResult, domain T.GQuark,
-		code int, format string, v ...VArg)
-
-	SimpleAsyncResultSetErrorVa func(
-		simple *T.GSimpleAsyncResult,
-		domain T.GQuark,
-		code int,
-		format string,
-		args T.VaList)
-
-	SimpleAsyncResultIsValid func(
-		result *T.GAsyncResult,
-		source *O.Object,
-		sourceTag T.Gpointer) T.Gboolean
-
-	SimpleAsyncReportErrorInIdle func(object *O.Object,
-		callback T.GAsyncReadyCallback, userData T.Gpointer,
-		domain T.GQuark, code int, format string, v ...VArg)
-
-	SimpleAsyncReportGerrorInIdle func(
-		object *O.Object,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer,
-		err *T.GError)
-
-	SimpleAsyncReportTakeGerrorInIdle func(
-		object *O.Object,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer,
-		err *T.GError)
-
-	SimplePermissionGetType func() O.Type
-
-	SimplePermissionNew func(
-		allowed T.Gboolean) *T.GPermission
-
-	SocketClientGetType func() O.Type
-
-	SocketClientNew func() *T.GSocketClient
-
-	SocketClientGetFamily func(
-		client *T.GSocketClient) T.GSocketFamily
-
-	SocketClientSetFamily func(
-		client *T.GSocketClient,
-		family T.GSocketFamily)
-
-	SocketClientGetSocketType func(
-		client *T.GSocketClient) T.GSocketType
-
-	SocketClientSetSocketType func(
-		client *T.GSocketClient,
-		t T.GSocketType)
-
-	SocketClientGetProtocol func(
-		client *T.GSocketClient) T.GSocketProtocol
-
-	SocketClientSetProtocol func(
-		client *T.GSocketClient,
-		protocol T.GSocketProtocol)
-
-	SocketClientGetLocalAddress func(
-		client *T.GSocketClient) *T.GSocketAddress
-
-	SocketClientSetLocalAddress func(
-		client *T.GSocketClient,
-		address *T.GSocketAddress)
-
-	SocketClientGetTimeout func(
-		client *T.GSocketClient) uint
-
-	SocketClientSetTimeout func(
-		client *T.GSocketClient,
-		timeout uint)
-
-	SocketClientGetEnableProxy func(
-		client *T.GSocketClient) T.Gboolean
-
-	SocketClientSetEnableProxy func(
-		client *T.GSocketClient,
-		enable T.Gboolean)
-
-	SocketClientGetTls func(
-		client *T.GSocketClient) T.Gboolean
-
-	SocketClientSetTls func(
-		client *T.GSocketClient,
-		tls T.Gboolean)
-
-	SocketClientGetTlsValidationFlags func(
-		client *T.GSocketClient) T.GTlsCertificateFlags
-
-	SocketClientSetTlsValidationFlags func(
-		client *T.GSocketClient,
-		flags T.GTlsCertificateFlags)
-
-	SocketClientConnect func(
-		client *T.GSocketClient,
-		connectable *T.GSocketConnectable,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToHost func(
-		client *T.GSocketClient,
-		hostAndPort string,
-		defaultPort uint16,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToService func(
-		client *T.GSocketClient,
-		domain string,
-		service string,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToUri func(
-		client *T.GSocketClient,
-		uri string,
-		defaultPort uint16,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectAsync func(
-		client *T.GSocketClient,
-		connectable *T.GSocketConnectable,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketClientConnectFinish func(
-		client *T.GSocketClient,
-		result *T.GAsyncResult,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToHostAsync func(
-		client *T.GSocketClient,
-		hostAndPort string,
-		defaultPort uint16,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketClientConnectToHostFinish func(
-		client *T.GSocketClient,
-		result *T.GAsyncResult,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToServiceAsync func(
-		client *T.GSocketClient,
-		domain string,
-		service string,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketClientConnectToServiceFinish func(
-		client *T.GSocketClient,
-		result *T.GAsyncResult,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientConnectToUriAsync func(
-		client *T.GSocketClient,
-		uri string,
-		defaultPort uint16,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketClientConnectToUriFinish func(
-		client *T.GSocketClient,
-		result *T.GAsyncResult,
-		err **T.GError) *T.GSocketConnection
-
-	SocketClientAddApplicationProxy func(
-		client *T.GSocketClient,
-		protocol string)
-
-	SocketConnectableGetType func() O.Type
-
-	SocketConnectableEnumerate func(
-		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
-
-	SocketConnectableProxyEnumerate func(
-		connectable *T.GSocketConnectable) *T.GSocketAddressEnumerator
-
-	SocketGetType func() O.Type
-
-	SocketNew func(
-		family T.GSocketFamily,
-		t T.GSocketType,
-		protocol T.GSocketProtocol,
-		err **T.GError) *T.GSocket
-
-	SocketNewFromFd func(
-		fd int,
-		err **T.GError) *T.GSocket
-
-	SocketGetFd func(
-		socket *T.GSocket) int
-
-	SocketGetFamily func(
-		socket *T.GSocket) T.GSocketFamily
-
-	SocketGetSocketType func(
-		socket *T.GSocket) T.GSocketType
-
-	SocketGetProtocol func(
-		socket *T.GSocket) T.GSocketProtocol
-
-	SocketGetLocalAddress func(
-		socket *T.GSocket,
-		err **T.GError) *T.GSocketAddress
-
-	SocketGetRemoteAddress func(
-		socket *T.GSocket,
-		err **T.GError) *T.GSocketAddress
-
-	SocketSetBlocking func(
-		socket *T.GSocket,
-		blocking T.Gboolean)
-
-	SocketGetBlocking func(
-		socket *T.GSocket) T.Gboolean
-
-	SocketSet_keepalive func(
-		socket *T.GSocket,
-		keepalive T.Gboolean)
-
-	SocketGet_keepalive func(
-		socket *T.GSocket) T.Gboolean
-
-	SocketGetListenBacklog func(
-		socket *T.GSocket) int
-
-	SocketSetListenBacklog func(
-		socket *T.GSocket,
-		backlog int)
-
-	SocketGetTimeout func(
-		socket *T.GSocket) uint
-
-	SocketSetTimeout func(
-		socket *T.GSocket,
-		timeout uint)
-
-	SocketIsConnected func(
-		socket *T.GSocket) T.Gboolean
-
-	SocketBind func(
-		socket *T.GSocket,
-		address *T.GSocketAddress,
-		allowReuse T.Gboolean,
-		err **T.GError) T.Gboolean
-
-	SocketConnect func(
-		socket *T.GSocket,
-		address *T.GSocketAddress,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	SocketCheckConnectResult func(
-		socket *T.GSocket,
-		err **T.GError) T.Gboolean
-
-	SocketConditionCheck func(
-		socket *T.GSocket,
-		condition T.GIOCondition) T.GIOCondition
-
-	SocketConditionWait func(
-		socket *T.GSocket,
-		condition T.GIOCondition,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gboolean
-
-	SocketAccept func(
-		socket *T.GSocket,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocket
-
-	SocketListen func(
-		socket *T.GSocket,
-		err **T.GError) T.Gboolean
-
-	SocketReceive func(
-		socket *T.GSocket,
-		buffer string,
-		size T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketReceiveFrom func(
-		socket *T.GSocket,
-		address **T.GSocketAddress,
-		buffer string,
-		size T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketSend func(
-		socket *T.GSocket,
-		buffer string,
-		size T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketSendTo func(
-		socket *T.GSocket,
-		address *T.GSocketAddress,
-		buffer string,
-		size T.Gsize,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketReceiveMessage func(
-		socket *T.GSocket,
-		address **T.GSocketAddress,
-		vectors *T.GInputVector,
-		numVectors int,
-		messages ***T.GSocketControlMessage,
-		numMessages *int,
-		flags *int,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketSendMessage func(
-		socket *T.GSocket,
-		address *T.GSocketAddress,
-		vectors *T.GOutputVector,
-		numVectors int,
-		messages **T.GSocketControlMessage,
-		numMessages int,
-		flags int,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketClose func(
-		socket *T.GSocket,
-		err **T.GError) T.Gboolean
-
-	SocketShutdown func(
-		socket *T.GSocket,
-		shutdownRead T.Gboolean,
-		shutdownWrite T.Gboolean,
-		err **T.GError) T.Gboolean
-
-	SocketIsClosed func(
-		socket *T.GSocket) T.Gboolean
-
-	SocketCreateSource func(
-		socket *T.GSocket,
-		condition T.GIOCondition,
-		cancellable *T.GCancellable) *T.GSource
-
-	SocketSpeaksIpv4 func(
-		socket *T.GSocket) T.Gboolean
-
-	SocketGetCredentials func(
-		socket *T.GSocket,
-		err **T.GError) *T.GCredentials
-
-	SocketReceiveWithBlocking func(
-		socket *T.GSocket,
-		buffer string,
-		size T.Gsize,
-		blocking T.Gboolean,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketSendWithBlocking func(
-		socket *T.GSocket,
-		buffer string,
-		size T.Gsize,
-		blocking T.Gboolean,
-		cancellable *T.GCancellable,
-		err **T.GError) T.Gssize
-
-	SocketConnectionGetType func() O.Type
-
-	SocketConnectionGetSocket func(
-		connection *T.GSocketConnection) *T.GSocket
-
-	SocketConnectionGetLocalAddress func(
-		connection *T.GSocketConnection,
-		err **T.GError) *T.GSocketAddress
-
-	SocketConnectionGetRemoteAddress func(
-		connection *T.GSocketConnection,
-		err **T.GError) *T.GSocketAddress
-
-	SocketConnectionFactoryRegisterType func(
-
-		GType O.Type,
-		family T.GSocketFamily,
-		t T.GSocketType,
-		protocol int)
-
-	SocketConnectionFactoryLookupType func(
-		family T.GSocketFamily,
-		t T.GSocketType,
-		protocolId int) O.Type
-
-	SocketConnectionFactoryCreateConnection func(
-		socket *T.GSocket) *T.GSocketConnection
-
-	SocketControlMessageGetType func() O.Type
-
-	SocketControlMessageGetSize func(
-		message *T.GSocketControlMessage) T.Gsize
-
-	SocketControlMessageGetLevel func(
-		message *T.GSocketControlMessage) int
-
-	SocketControlMessageGetMsgType func(
-		message *T.GSocketControlMessage) int
-
-	SocketControlMessageSerialize func(
-		message *T.GSocketControlMessage,
-		data T.Gpointer)
-
-	SocketControlMessageDeserialize func(
-		level int,
-		typ int,
-		size T.Gsize,
-		data T.Gpointer) *T.GSocketControlMessage
-
-	SocketListenerGetType func() O.Type
-
-	SocketListenerNew func() *T.GSocketListener
-
-	SocketListenerSetBacklog func(
-		listener *T.GSocketListener,
-		listenBacklog int)
-
-	SocketListenerAddSocket func(
-		listener *T.GSocketListener,
-		socket *T.GSocket,
-		sourceObject *O.Object,
-		err **T.GError) T.Gboolean
-
-	SocketListenerAddAddress func(
-		listener *T.GSocketListener,
-		address *T.GSocketAddress,
-		t T.GSocketType,
-		protocol T.GSocketProtocol,
-		sourceObject *O.Object,
-		effectiveAddress **T.GSocketAddress,
-		err **T.GError) T.Gboolean
-
-	SocketListenerAddInetPort func(
-		listener *T.GSocketListener,
-		port uint16,
-		sourceObject *O.Object,
-		err **T.GError) T.Gboolean
-
-	SocketListenerAddAnyInetPort func(
-		listener *T.GSocketListener,
-		sourceObject *O.Object,
-		err **T.GError) uint16
-
-	SocketListenerAcceptSocket func(
-		listener *T.GSocketListener,
-		sourceObject **O.Object,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocket
-
-	SocketListenerAcceptSocketAsync func(
-		listener *T.GSocketListener,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketListenerAcceptSocketFinish func(
-		listener *T.GSocketListener,
-		result *T.GAsyncResult,
-		sourceObject **O.Object,
-		err **T.GError) *T.GSocket
-
-	SocketListenerAccept func(
-		listener *T.GSocketListener,
-		sourceObject **O.Object,
-		cancellable *T.GCancellable,
-		err **T.GError) *T.GSocketConnection
-
-	SocketListenerAcceptAsync func(
-		listener *T.GSocketListener,
-		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
-		userData T.Gpointer)
-
-	SocketListenerAcceptFinish func(
-		listener *T.GSocketListener,
-		result *T.GAsyncResult,
-		sourceObject **O.Object,
-		err **T.GError) *T.GSocketConnection
-
-	SocketListenerClose func(
-		listener *T.GSocketListener)
-
-	SocketServiceGetType func() O.Type
-
-	SocketServiceNew func() *T.GSocketService
-
-	SocketServiceStart func(
-		service *T.GSocketService)
-
-	SocketServiceStop func(
-		service *T.GSocketService)
-
-	SocketServiceIsActive func(
-		service *T.GSocketService) T.Gboolean
-
-	SrvTargetGetType func() O.Type
-
-	SrvTargetNew func(
-		hostname string,
-		port uint16,
-		priority uint16,
-		weight uint16) *T.GSrvTarget
-
-	SrvTargetCopy func(
-		target *T.GSrvTarget) *T.GSrvTarget
-
-	SrvTargetFree func(
-		target *T.GSrvTarget)
-
-	SrvTargetGetHostname func(
-		target *T.GSrvTarget) string
-
-	SrvTargetGetPort func(
-		target *T.GSrvTarget) uint16
-
-	SrvTargetGetPriority func(
-		target *T.GSrvTarget) uint16
-
-	SrvTargetGetWeight func(
-		target *T.GSrvTarget) uint16
-
-	SrvTargetListSort func(
-		targets *T.GList) *T.GList
 
 	TcpConnectionGetType func() O.Type
 
@@ -4857,7 +3646,7 @@ var (
 
 	TcpWrapperConnectionNew func(
 		baseIoStream *T.GIOStream,
-		socket *T.GSocket) *T.GSocketConnection
+		socket *Socket) *SocketConnection
 
 	TcpWrapperConnectionGetBaseIoStream func(
 		conn *T.GTcpWrapperConnection) *T.GIOStream
@@ -4888,7 +3677,7 @@ var (
 	ThreadedSocketServiceGetType func() O.Type
 
 	ThreadedSocketServiceNew func(
-		maxThreads int) *T.GSocketService
+		maxThreads int) *SocketService
 
 	TlsBackendGetType func() O.Type
 
@@ -4931,7 +3720,7 @@ var (
 
 	TlsCertificateVerify func(
 		cert *T.GTlsCertificate,
-		identity *T.GSocketConnectable,
+		identity *SocketConnectable,
 		trustedCa *T.GTlsCertificate) T.GTlsCertificateFlags
 
 	TlsConnectionGetType func() O.Type
@@ -4979,12 +3768,12 @@ var (
 		conn *T.GTlsConnection,
 		ioPriority int,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	TlsConnectionHandshakeFinish func(
 		conn *T.GTlsConnection,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	TlsErrorQuark func() T.GQuark
@@ -4998,7 +3787,7 @@ var (
 
 	TlsClientConnectionNew func(
 		baseIoStream *T.GIOStream,
-		serverIdentity *T.GSocketConnectable,
+		serverIdentity *SocketConnectable,
 		err **T.GError) *T.GIOStream
 
 	TlsClientConnectionGetValidationFlags func(
@@ -5009,11 +3798,11 @@ var (
 		flags T.GTlsCertificateFlags)
 
 	TlsClientConnectionGetServerIdentity func(
-		conn *T.GTlsClientConnection) *T.GSocketConnectable
+		conn *T.GTlsClientConnection) *SocketConnectable
 
 	TlsClientConnectionSetServerIdentity func(
 		conn *T.GTlsClientConnection,
-		identity *T.GSocketConnectable)
+		identity *SocketConnectable)
 
 	TlsClientConnectionGetUseSsl3 func(
 		conn *T.GTlsClientConnection) T.Gboolean
@@ -5087,24 +3876,24 @@ var (
 		flags T.GMountMountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	VolumeMountFinish func(
 		volume *T.GVolume,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	VolumeEject func(
 		volume *T.GVolume,
 		flags T.GMountUnmountFlags,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	VolumeEjectFinish func(
 		volume *T.GVolume,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	VolumeGetIdentifier func(
@@ -5122,12 +3911,12 @@ var (
 		flags T.GMountUnmountFlags,
 		mountOperation *T.GMountOperation,
 		cancellable *T.GCancellable,
-		callback T.GAsyncReadyCallback,
+		callback AsyncReadyCallback,
 		userData T.Gpointer)
 
 	VolumeEjectWithOperationFinish func(
 		volume *T.GVolume,
-		result *T.GAsyncResult,
+		result *AsyncResult,
 		err **T.GError) T.Gboolean
 
 	ZlibCompressorGetType func() O.Type
@@ -5183,159 +3972,120 @@ var (
 	Win32OutputStreamGetHandle func(
 		stream *T.GWin32OutputStream) *T.Void
 
-	SettingsBackendGetType func() O.Type
-
-	SettingsBackendChanged func(
-		backend *T.GSettingsBackend,
-		key string,
-		originTag T.Gpointer)
-
-	SettingsBackendPathChanged func(
-		backend *T.GSettingsBackend,
-		path string,
-		originTag T.Gpointer)
-
-	SettingsBackendFlattenTree func(
-		tree *T.GTree,
-		path **T.Gchar,
-		keys ***T.Gchar,
-		values ***T.GVariant)
-
-	SettingsBackend_keysChanged func(
-		backend *T.GSettingsBackend,
-		path string,
-		items **T.Gchar,
-		originTag T.Gpointer)
-
-	SettingsBackendPathWritableChanged func(
-		backend *T.GSettingsBackend,
-		path string)
-
-	SettingsBackendWritableChanged func(
-		backend *T.GSettingsBackend,
-		key string)
-
-	SettingsBackendChangedTree func(
-		backend *T.GSettingsBackend,
-		tree *T.GTree,
-		originTag T.Gpointer)
-
-	SettingsBackendGetDefault func() *T.GSettingsBackend
-
 	KeyfileSettingsBackendNew func(
 		filename string,
 		rootPath string,
-		rootGroup string) *T.GSettingsBackend
+		rootGroup string) *SettingsBackend
 
-	NullSettingsBackendNew func() *T.GSettingsBackend
+	NullSettingsBackendNew func() *SettingsBackend
 
-	MemorySettingsBackendNew func() *T.GSettingsBackend
+	MemorySettingsBackendNew func() *SettingsBackend
 )
 var dll = "libgio-2.0-0.dll"
 
 var apiList = outside.Apis{
-	{"g_action_activate", &ActionActivate},
-	{"g_action_get_enabled", &ActionGetEnabled},
+	{"g_action_activate", &actionActivate},
+	{"g_action_get_enabled", &actionGetEnabled},
 	{"g_action_get_name", &ActionGetName},
-	{"g_action_get_parameter_type", &ActionGetParameterType},
-	{"g_action_get_state", &ActionGetState},
-	{"g_action_get_state_hint", &ActionGetStateHint},
-	{"g_action_get_state_type", &ActionGetStateType},
+	{"g_action_get_parameter_type", &actionGetParameterType},
+	{"g_action_get_state", &actionGetState},
+	{"g_action_get_state_hint", &actionGetStateHint},
+	{"g_action_get_state_type", &actionGetStateType},
 	{"g_action_get_type", &ActionGetType},
-	{"g_action_group_action_added", &ActionGroupActionAdded},
-	{"g_action_group_action_enabled_changed", &ActionGroupActionEnabledChanged},
-	{"g_action_group_action_removed", &ActionGroupActionRemoved},
-	{"g_action_group_action_state_changed", &ActionGroupActionStateChanged},
-	{"g_action_group_activate_action", &ActionGroupActivateAction},
-	{"g_action_group_change_action_state", &ActionGroupChangeActionState},
-	{"g_action_group_get_action_enabled", &ActionGroupGetActionEnabled},
-	{"g_action_group_get_action_parameter_type", &ActionGroupGetActionParameterType},
-	{"g_action_group_get_action_state", &ActionGroupGetActionState},
-	{"g_action_group_get_action_state_hint", &ActionGroupGetActionStateHint},
-	{"g_action_group_get_action_state_type", &ActionGroupGetActionStateType},
+	{"g_action_group_action_added", &actionGroupActionAdded},
+	{"g_action_group_action_enabled_changed", &actionGroupActionEnabledChanged},
+	{"g_action_group_action_removed", &actionGroupActionRemoved},
+	{"g_action_group_action_state_changed", &actionGroupActionStateChanged},
+	{"g_action_group_activate_action", &actionGroupActivateAction},
+	{"g_action_group_change_action_state", &actionGroupChangeActionState},
+	{"g_action_group_get_action_enabled", &actionGroupGetActionEnabled},
+	{"g_action_group_get_action_parameter_type", &actionGroupGetActionParameterType},
+	{"g_action_group_get_action_state", &actionGroupGetActionState},
+	{"g_action_group_get_action_state_hint", &actionGroupGetActionStateHint},
+	{"g_action_group_get_action_state_type", &actionGroupGetActionStateType},
 	{"g_action_group_get_type", &ActionGroupGetType},
-	{"g_action_group_has_action", &ActionGroupHasAction},
-	{"g_action_group_list_actions", &ActionGroupListActions},
-	{"g_action_set_state", &ActionSetState},
-	{"g_app_info_add_supports_type", &AppInfoAddSupportsType},
-	{"g_app_info_can_delete", &AppInfoCanDelete},
-	{"g_app_info_can_remove_supports_type", &AppInfoCanRemoveSupportsType},
+	{"g_action_group_has_action", &actionGroupHasAction},
+	{"g_action_group_list_actions", &actionGroupListActions},
+	{"g_action_set_state", &actionSetState},
+	{"g_app_info_add_supports_type", &appInfoAddSupportsType},
+	{"g_app_info_can_delete", &appInfoCanDelete},
+	{"g_app_info_can_remove_supports_type", &appInfoCanRemoveSupportsType},
 	{"g_app_info_create_flags_get_type", &AppInfoCreateFlagsGetType},
 	{"g_app_info_create_from_commandline", &AppInfoCreateFromCommandline},
-	{"g_app_info_delete", &AppInfoDelete},
-	{"g_app_info_dup", &AppInfoDup},
-	{"g_app_info_equal", &AppInfoEqual},
+	{"g_app_info_delete", &appInfoDelete},
+	{"g_app_info_dup", &appInfoDup},
+	{"g_app_info_equal", &appInfoEqual},
 	{"g_app_info_get_all", &AppInfoGetAll},
 	{"g_app_info_get_all_for_type", &AppInfoGetAllForType},
-	{"g_app_info_get_commandline", &AppInfoGetCommandline},
+	{"g_app_info_get_commandline", &appInfoGetCommandline},
 	{"g_app_info_get_default_for_type", &AppInfoGetDefaultForType},
 	{"g_app_info_get_default_for_uri_scheme", &AppInfoGetDefaultForUriScheme},
-	{"g_app_info_get_description", &AppInfoGetDescription},
-	{"g_app_info_get_display_name", &AppInfoGetDisplayName},
-	{"g_app_info_get_executable", &AppInfoGetExecutable},
+	{"g_app_info_get_description", &appInfoGetDescription},
+	{"g_app_info_get_display_name", &appInfoGetDisplayName},
+	{"g_app_info_get_executable", &appInfoGetExecutable},
 	{"g_app_info_get_fallback_for_type", &AppInfoGetFallbackForType},
-	{"g_app_info_get_icon", &AppInfoGetIcon},
-	{"g_app_info_get_id", &AppInfoGetId},
-	{"g_app_info_get_name", &AppInfoGetName},
+	{"g_app_info_get_icon", &appInfoGetIcon},
+	{"g_app_info_get_id", &appInfoGetId},
+	{"g_app_info_get_name", &appInfoGetName},
 	{"g_app_info_get_recommended_for_type", &AppInfoGetRecommendedForType},
 	{"g_app_info_get_type", &AppInfoGetType},
-	{"g_app_info_launch", &AppInfoLaunch},
+	{"g_app_info_launch", &appInfoLaunch},
 	{"g_app_info_launch_default_for_uri", &AppInfoLaunchDefaultForUri},
-	{"g_app_info_launch_uris", &AppInfoLaunchUris},
-	{"g_app_info_remove_supports_type", &AppInfoRemoveSupportsType},
+	{"g_app_info_launch_uris", &appInfoLaunchUris},
+	{"g_app_info_remove_supports_type", &appInfoRemoveSupportsType},
 	{"g_app_info_reset_type_associations", &AppInfoResetTypeAssociations},
-	{"g_app_info_set_as_default_for_extension", &AppInfoSetAsDefaultForExtension},
-	{"g_app_info_set_as_default_for_type", &AppInfoSetAsDefaultForType},
-	{"g_app_info_set_as_last_used_for_type", &AppInfoSetAsLastUsedForType},
-	{"g_app_info_should_show", &AppInfoShouldShow},
-	{"g_app_info_supports_files", &AppInfoSupportsFiles},
-	{"g_app_info_supports_uris", &AppInfoSupportsUris},
-	{"g_app_launch_context_get_display", &AppLaunchContextGetDisplay},
-	{"g_app_launch_context_get_startup_notify_id", &AppLaunchContextGetStartupNotifyId},
+	{"g_app_info_set_as_default_for_extension", &appInfoSetAsDefaultForExtension},
+	{"g_app_info_set_as_default_for_type", &appInfoSetAsDefaultForType},
+	{"g_app_info_set_as_last_used_for_type", &appInfoSetAsLastUsedForType},
+	{"g_app_info_should_show", &appInfoShouldShow},
+	{"g_app_info_supports_files", &appInfoSupportsFiles},
+	{"g_app_info_supports_uris", &appInfoSupportsUris},
+	{"g_app_launch_context_get_display", &appLaunchContextGetDisplay},
+	{"g_app_launch_context_get_startup_notify_id", &appLaunchContextGetStartupNotifyId},
 	{"g_app_launch_context_get_type", &AppLaunchContextGetType},
-	{"g_app_launch_context_launch_failed", &AppLaunchContextLaunchFailed},
+	{"g_app_launch_context_launch_failed", &appLaunchContextLaunchFailed},
 	{"g_app_launch_context_new", &AppLaunchContextNew},
-	{"g_application_activate", &ApplicationActivate},
-	{"g_application_command_line_get_arguments", &ApplicationCommandLineGetArguments},
-	{"g_application_command_line_get_cwd", &ApplicationCommandLineGetCwd},
-	{"g_application_command_line_get_environ", &ApplicationCommandLineGetEnviron},
-	{"g_application_command_line_get_exit_status", &ApplicationCommandLineGetExitStatus},
-	{"g_application_command_line_get_is_remote", &ApplicationCommandLineGetIsRemote},
-	{"g_application_command_line_get_platform_data", &ApplicationCommandLineGetPlatformData},
+	{"g_application_activate", &applicationActivate},
+	{"g_application_command_line_get_arguments", &applicationCommandLineGetArguments},
+	{"g_application_command_line_get_cwd", &applicationCommandLineGetCwd},
+	{"g_application_command_line_get_environ", &applicationCommandLineGetEnviron},
+	{"g_application_command_line_get_exit_status", &applicationCommandLineGetExitStatus},
+	{"g_application_command_line_get_is_remote", &applicationCommandLineGetIsRemote},
+	{"g_application_command_line_get_platform_data", &applicationCommandLineGetPlatformData},
 	{"g_application_command_line_get_type", &ApplicationCommandLineGetType},
-	{"g_application_command_line_getenv", &ApplicationCommandLineGetenv},
-	{"g_application_command_line_print", &ApplicationCommandLinePrint},
-	{"g_application_command_line_printerr", &ApplicationCommandLinePrinterr},
-	{"g_application_command_line_set_exit_status", &ApplicationCommandLineSetExitStatus},
+	{"g_application_command_line_getenv", &applicationCommandLineGetenv},
+	{"g_application_command_line_print", &applicationCommandLinePrint},
+	{"g_application_command_line_printerr", &applicationCommandLinePrinterr},
+	{"g_application_command_line_set_exit_status", &applicationCommandLineSetExitStatus},
 	{"g_application_flags_get_type", &ApplicationFlagsGetType},
-	{"g_application_get_application_id", &ApplicationGetApplicationId},
-	{"g_application_get_flags", &ApplicationGetFlags},
-	{"g_application_get_inactivity_timeout", &ApplicationGetInactivityTimeout},
-	{"g_application_get_is_registered", &ApplicationGetIsRegistered},
-	{"g_application_get_is_remote", &ApplicationGetIsRemote},
+	{"g_application_get_application_id", &applicationGetApplicationId},
+	{"g_application_get_flags", &applicationGetFlags},
+	{"g_application_get_inactivity_timeout", &applicationGetInactivityTimeout},
+	{"g_application_get_is_registered", &applicationGetIsRegistered},
+	{"g_application_get_is_remote", &applicationGetIsRemote},
 	{"g_application_get_type", &ApplicationGetType},
-	{"g_application_hold", &ApplicationHold},
+	{"g_application_hold", &applicationHold},
 	{"g_application_id_is_valid", &ApplicationIdIsValid},
 	{"g_application_new", &ApplicationNew},
-	{"g_application_open", &ApplicationOpen},
-	{"g_application_register", &ApplicationRegister},
-	{"g_application_release", &ApplicationRelease},
-	{"g_application_run", &ApplicationRun},
-	{"g_application_set_action_group", &ApplicationSetActionGroup},
-	{"g_application_set_application_id", &ApplicationSetApplicationId},
-	{"g_application_set_flags", &ApplicationSetFlags},
-	{"g_application_set_inactivity_timeout", &ApplicationSetInactivityTimeout},
+	{"g_application_open", &applicationOpen},
+	{"g_application_register", &applicationRegister},
+	{"g_application_release", &applicationRelease},
+	{"g_application_run", &applicationRun},
+	{"g_application_set_action_group", &applicationSetActionGroup},
+	{"g_application_set_application_id", &applicationSetApplicationId},
+	{"g_application_set_flags", &applicationSetFlags},
+	{"g_application_set_inactivity_timeout", &applicationSetInactivityTimeout},
 	{"g_ask_password_flags_get_type", &AskPasswordFlagsGetType},
 	{"g_async_initable_get_type", &AsyncInitableGetType},
-	{"g_async_initable_init_async", &AsyncInitableInitAsync},
-	{"g_async_initable_init_finish", &AsyncInitableInitFinish},
+	{"g_async_initable_init_async", &asyncInitableInitAsync},
+	{"g_async_initable_init_finish", &asyncInitableInitFinish},
 	{"g_async_initable_new_async", &AsyncInitableNewAsync},
-	{"g_async_initable_new_finish", &AsyncInitableNewFinish},
+	{"g_async_initable_new_finish", &asyncInitableNewFinish},
 	{"g_async_initable_new_valist_async", &AsyncInitableNewValistAsync},
 	{"g_async_initable_newv_async", &AsyncInitableNewvAsync},
-	{"g_async_result_get_source_object", &AsyncResultGetSourceObject},
+	{"g_async_result_get_source_object", &asyncResultGetSourceObject},
 	{"g_async_result_get_type", &AsyncResultGetType},
-	{"g_async_result_get_user_data", &AsyncResultGetUserData},
+	{"g_async_result_get_user_data", &asyncResultGetUserData},
 	{"g_buffered_input_stream_fill", &BufferedInputStreamFill},
 	{"g_buffered_input_stream_fill_async", &BufferedInputStreamFillAsync},
 	{"g_buffered_input_stream_fill_finish", &BufferedInputStreamFillFinish},
@@ -6182,226 +4932,226 @@ var apiList = outside.Apis{
 	{"g_resolver_lookup_service_async", &ResolverLookupServiceAsync},
 	{"g_resolver_lookup_service_finish", &ResolverLookupServiceFinish},
 	{"g_resolver_set_default", &ResolverSetDefault},
-	{"g_seekable_can_seek", &SeekableCanSeek},
-	{"g_seekable_can_truncate", &SeekableCanTruncate},
+	{"g_seekable_can_seek", &seekableCanSeek},
+	{"g_seekable_can_truncate", &seekableCanTruncate},
 	{"g_seekable_get_type", &SeekableGetType},
-	{"g_seekable_seek", &SeekableSeek},
-	{"g_seekable_tell", &SeekableTell},
-	{"g_seekable_truncate", &SeekableTruncate},
-	{"g_settings_apply", &SettingsApply},
-	{"g_settings_backend_changed", &SettingsBackendChanged},
-	{"g_settings_backend_changed_tree", &SettingsBackendChangedTree},
+	{"g_seekable_seek", &seekableSeek},
+	{"g_seekable_tell", &seekableTell},
+	{"g_seekable_truncate", &seekableTruncate},
+	{"g_settings_apply", &settingsApply},
+	{"g_settings_backend_changed", &settingsBackendChanged},
+	{"g_settings_backend_changed_tree", &settingsBackendChangedTree},
 	{"g_settings_backend_flatten_tree", &SettingsBackendFlattenTree},
 	{"g_settings_backend_get_default", &SettingsBackendGetDefault},
 	{"g_settings_backend_get_type", &SettingsBackendGetType},
-	{"g_settings_backend_keys_changed", &SettingsBackend_keysChanged},
-	{"g_settings_backend_path_changed", &SettingsBackendPathChanged},
-	{"g_settings_backend_path_writable_changed", &SettingsBackendPathWritableChanged},
-	{"g_settings_backend_writable_changed", &SettingsBackendWritableChanged},
-	{"g_settings_bind", &SettingsBind},
+	{"g_settings_backend_keys_changed", &settingsBackendKeysChanged},
+	{"g_settings_backend_path_changed", &settingsBackendPathChanged},
+	{"g_settings_backend_path_writable_changed", &settingsBackendPathWritableChanged},
+	{"g_settings_backend_writable_changed", &settingsBackendWritableChanged},
+	{"g_settings_bind", &settingsBind},
 	{"g_settings_bind_flags_get_type", &SettingsBindFlagsGetType},
-	{"g_settings_bind_with_mapping", &SettingsBindWithMapping},
-	{"g_settings_bind_writable", &SettingsBindWritable},
-	{"g_settings_delay", &SettingsDelay},
-	{"g_settings_get", &SettingsGet},
-	{"g_settings_get_boolean", &SettingsGetBoolean},
-	{"g_settings_get_child", &SettingsGetChild},
-	{"g_settings_get_double", &SettingsGetDouble},
-	{"g_settings_get_enum", &SettingsGetEnum},
-	{"g_settings_get_flags", &SettingsGetFlags},
-	{"g_settings_get_has_unapplied", &SettingsGetHasUnapplied},
-	{"g_settings_get_int", &SettingsGetInt},
-	{"g_settings_get_mapped", &SettingsGetMapped},
-	{"g_settings_get_range", &SettingsGetRange},
-	{"g_settings_get_string", &SettingsGetString},
-	{"g_settings_get_strv", &SettingsGetStrv},
+	{"g_settings_bind_with_mapping", &settingsBindWithMapping},
+	{"g_settings_bind_writable", &settingsBindWritable},
+	{"g_settings_delay", &settingsDelay},
+	{"g_settings_get", &settingsGet},
+	{"g_settings_get_boolean", &settingsGetBoolean},
+	{"g_settings_get_child", &settingsGetChild},
+	{"g_settings_get_double", &settingsGetDouble},
+	{"g_settings_get_enum", &settingsGetEnum},
+	{"g_settings_get_flags", &settingsGetFlags},
+	{"g_settings_get_has_unapplied", &settingsGetHasUnapplied},
+	{"g_settings_get_int", &settingsGetInt},
+	{"g_settings_get_mapped", &settingsGetMapped},
+	{"g_settings_get_range", &settingsGetRange},
+	{"g_settings_get_string", &settingsGetString},
+	{"g_settings_get_strv", &settingsGetStrv},
 	{"g_settings_get_type", &SettingsGetType},
-	{"g_settings_get_value", &SettingsGetValue},
-	{"g_settings_is_writable", &SettingsIsWritable},
-	{"g_settings_list_children", &SettingsListChildren},
-	{"g_settings_list_keys", &SettingsList_keys},
+	{"g_settings_get_value", &settingsGetValue},
+	{"g_settings_is_writable", &settingsIsWritable},
+	{"g_settings_list_children", &settingsListChildren},
+	{"g_settings_list_keys", &settingsListKeys},
 	{"g_settings_list_relocatable_schemas", &SettingsListRelocatableSchemas},
 	{"g_settings_list_schemas", &SettingsListSchemas},
 	{"g_settings_new", &SettingsNew},
 	{"g_settings_new_with_backend", &SettingsNewWithBackend},
 	{"g_settings_new_with_backend_and_path", &SettingsNewWithBackendAndPath},
 	{"g_settings_new_with_path", &SettingsNewWithPath},
-	{"g_settings_range_check", &SettingsRangeCheck},
-	{"g_settings_reset", &SettingsReset},
-	{"g_settings_revert", &SettingsRevert},
-	{"g_settings_set", &SettingsSet},
-	{"g_settings_set_boolean", &SettingsSetBoolean},
-	{"g_settings_set_double", &SettingsSetDouble},
-	{"g_settings_set_enum", &SettingsSetEnum},
-	{"g_settings_set_flags", &SettingsSetFlags},
-	{"g_settings_set_int", &SettingsSetInt},
-	{"g_settings_set_string", &SettingsSetString},
-	{"g_settings_set_strv", &SettingsSetStrv},
-	{"g_settings_set_value", &SettingsSetValue},
+	{"g_settings_range_check", &settingsRangeCheck},
+	{"g_settings_reset", &settingsReset},
+	{"g_settings_revert", &settingsRevert},
+	{"g_settings_set", &settingsSet},
+	{"g_settings_set_boolean", &settingsSetBoolean},
+	{"g_settings_set_double", &settingsSetDouble},
+	{"g_settings_set_enum", &settingsSetEnum},
+	{"g_settings_set_flags", &settingsSetFlags},
+	{"g_settings_set_int", &settingsSetInt},
+	{"g_settings_set_string", &settingsSetString},
+	{"g_settings_set_strv", &settingsSetStrv},
+	{"g_settings_set_value", &settingsSetValue},
 	{"g_settings_sync", &SettingsSync},
 	{"g_settings_unbind", &SettingsUnbind},
 	// Undocumented {"g_simple_action_get_parameter_type", &SimpleActionGetParameterType},
 	{"g_simple_action_get_type", &SimpleActionGetType},
 	{"g_simple_action_group_get_type", &SimpleActionGroupGetType},
-	{"g_simple_action_group_insert", &SimpleActionGroupInsert},
-	{"g_simple_action_group_lookup", &SimpleActionGroupLookup},
+	{"g_simple_action_group_insert", &simpleActionGroupInsert},
+	{"g_simple_action_group_lookup", &simpleActionGroupLookup},
 	{"g_simple_action_group_new", &SimpleActionGroupNew},
-	{"g_simple_action_group_remove", &SimpleActionGroupRemove},
+	{"g_simple_action_group_remove", &simpleActionGroupRemove},
 	{"g_simple_action_new", &SimpleActionNew},
 	{"g_simple_action_new_stateful", &SimpleActionNewStateful},
-	{"g_simple_action_set_enabled", &SimpleActionSetEnabled},
+	{"g_simple_action_set_enabled", &simpleActionSetEnabled},
 	{"g_simple_async_report_error_in_idle", &SimpleAsyncReportErrorInIdle},
 	{"g_simple_async_report_gerror_in_idle", &SimpleAsyncReportGerrorInIdle},
 	{"g_simple_async_report_take_gerror_in_idle", &SimpleAsyncReportTakeGerrorInIdle},
-	{"g_simple_async_result_complete", &SimpleAsyncResultComplete},
-	{"g_simple_async_result_complete_in_idle", &SimpleAsyncResultCompleteInIdle},
-	{"g_simple_async_result_get_op_res_gboolean", &SimpleAsyncResultGetOpResGboolean},
-	{"g_simple_async_result_get_op_res_gpointer", &SimpleAsyncResultGetOpResGpointer},
-	{"g_simple_async_result_get_op_res_gssize", &SimpleAsyncResultGetOpResGssize},
-	{"g_simple_async_result_get_source_tag", &SimpleAsyncResultGetSourceTag},
+	{"g_simple_async_result_complete", &simpleAsyncResultComplete},
+	{"g_simple_async_result_complete_in_idle", &simpleAsyncResultCompleteInIdle},
+	{"g_simple_async_result_get_op_res_gboolean", &simpleAsyncResultGetOpResGboolean},
+	{"g_simple_async_result_get_op_res_gpointer", &simpleAsyncResultGetOpResGpointer},
+	{"g_simple_async_result_get_op_res_gssize", &simpleAsyncResultGetOpResGssize},
+	{"g_simple_async_result_get_source_tag", &simpleAsyncResultGetSourceTag},
 	{"g_simple_async_result_get_type", &SimpleAsyncResultGetType},
 	{"g_simple_async_result_is_valid", &SimpleAsyncResultIsValid},
 	{"g_simple_async_result_new", &SimpleAsyncResultNew},
 	{"g_simple_async_result_new_error", &SimpleAsyncResultNewError},
 	{"g_simple_async_result_new_from_error", &SimpleAsyncResultNewFromError},
 	{"g_simple_async_result_new_take_error", &SimpleAsyncResultNewTakeError},
-	{"g_simple_async_result_propagate_error", &SimpleAsyncResultPropagateError},
-	{"g_simple_async_result_run_in_thread", &SimpleAsyncResultRunInThread},
-	{"g_simple_async_result_set_error", &SimpleAsyncResultSetError},
-	{"g_simple_async_result_set_error_va", &SimpleAsyncResultSetErrorVa},
-	{"g_simple_async_result_set_from_error", &SimpleAsyncResultSetFromError},
-	{"g_simple_async_result_set_handle_cancellation", &SimpleAsyncResultSetHandleCancellation},
-	{"g_simple_async_result_set_op_res_gboolean", &SimpleAsyncResultSetOpResGboolean},
-	{"g_simple_async_result_set_op_res_gpointer", &SimpleAsyncResultSetOpResGpointer},
-	{"g_simple_async_result_set_op_res_gssize", &SimpleAsyncResultSetOpResGssize},
-	{"g_simple_async_result_take_error", &SimpleAsyncResultTakeError},
+	{"g_simple_async_result_propagate_error", &simpleAsyncResultPropagateError},
+	{"g_simple_async_result_run_in_thread", &simpleAsyncResultRunInThread},
+	{"g_simple_async_result_set_error", &simpleAsyncResultSetError},
+	{"g_simple_async_result_set_error_va", &simpleAsyncResultSetErrorVa},
+	{"g_simple_async_result_set_from_error", &simpleAsyncResultSetFromError},
+	{"g_simple_async_result_set_handle_cancellation", &simpleAsyncResultSetHandleCancellation},
+	{"g_simple_async_result_set_op_res_gboolean", &simpleAsyncResultSetOpResGboolean},
+	{"g_simple_async_result_set_op_res_gpointer", &simpleAsyncResultSetOpResGpointer},
+	{"g_simple_async_result_set_op_res_gssize", &simpleAsyncResultSetOpResGssize},
+	{"g_simple_async_result_take_error", &simpleAsyncResultTakeError},
 	{"g_simple_permission_get_type", &SimplePermissionGetType},
 	{"g_simple_permission_new", &SimplePermissionNew},
-	{"g_socket_accept", &SocketAccept},
+	{"g_socket_accept", &socketAccept},
 	{"g_socket_address_enumerator_get_type", &SocketAddressEnumeratorGetType},
-	{"g_socket_address_enumerator_next", &SocketAddressEnumeratorNext},
-	{"g_socket_address_enumerator_next_async", &SocketAddressEnumeratorNextAsync},
-	{"g_socket_address_enumerator_next_finish", &SocketAddressEnumeratorNextFinish},
-	{"g_socket_address_get_family", &SocketAddressGetFamily},
-	{"g_socket_address_get_native_size", &SocketAddressGetNativeSize},
+	{"g_socket_address_enumerator_next", &socketAddressEnumeratorNext},
+	{"g_socket_address_enumerator_next_async", &socketAddressEnumeratorNextAsync},
+	{"g_socket_address_enumerator_next_finish", &socketAddressEnumeratorNextFinish},
+	{"g_socket_address_get_family", &socketAddressGetFamily},
+	{"g_socket_address_get_native_size", &socketAddressGetNativeSize},
 	{"g_socket_address_get_type", &SocketAddressGetType},
 	{"g_socket_address_new_from_native", &SocketAddressNewFromNative},
-	{"g_socket_address_to_native", &SocketAddressToNative},
-	{"g_socket_bind", &SocketBind},
-	{"g_socket_check_connect_result", &SocketCheckConnectResult},
-	{"g_socket_client_add_application_proxy", &SocketClientAddApplicationProxy},
-	{"g_socket_client_connect", &SocketClientConnect},
-	{"g_socket_client_connect_async", &SocketClientConnectAsync},
-	{"g_socket_client_connect_finish", &SocketClientConnectFinish},
-	{"g_socket_client_connect_to_host", &SocketClientConnectToHost},
-	{"g_socket_client_connect_to_host_async", &SocketClientConnectToHostAsync},
-	{"g_socket_client_connect_to_host_finish", &SocketClientConnectToHostFinish},
-	{"g_socket_client_connect_to_service", &SocketClientConnectToService},
-	{"g_socket_client_connect_to_service_async", &SocketClientConnectToServiceAsync},
-	{"g_socket_client_connect_to_service_finish", &SocketClientConnectToServiceFinish},
-	{"g_socket_client_connect_to_uri", &SocketClientConnectToUri},
-	{"g_socket_client_connect_to_uri_async", &SocketClientConnectToUriAsync},
-	{"g_socket_client_connect_to_uri_finish", &SocketClientConnectToUriFinish},
-	{"g_socket_client_get_enable_proxy", &SocketClientGetEnableProxy},
-	{"g_socket_client_get_family", &SocketClientGetFamily},
-	{"g_socket_client_get_local_address", &SocketClientGetLocalAddress},
-	{"g_socket_client_get_protocol", &SocketClientGetProtocol},
-	{"g_socket_client_get_socket_type", &SocketClientGetSocketType},
-	{"g_socket_client_get_timeout", &SocketClientGetTimeout},
-	{"g_socket_client_get_tls", &SocketClientGetTls},
-	{"g_socket_client_get_tls_validation_flags", &SocketClientGetTlsValidationFlags},
+	{"g_socket_address_to_native", &socketAddressToNative},
+	{"g_socket_bind", &socketBind},
+	{"g_socket_check_connect_result", &socketCheckConnectResult},
+	{"g_socket_client_add_application_proxy", &socketClientAddApplicationProxy},
+	{"g_socket_client_connect", &socketClientConnect},
+	{"g_socket_client_connect_async", &socketClientConnectAsync},
+	{"g_socket_client_connect_finish", &socketClientConnectFinish},
+	{"g_socket_client_connect_to_host", &socketClientConnectToHost},
+	{"g_socket_client_connect_to_host_async", &socketClientConnectToHostAsync},
+	{"g_socket_client_connect_to_host_finish", &socketClientConnectToHostFinish},
+	{"g_socket_client_connect_to_service", &socketClientConnectToService},
+	{"g_socket_client_connect_to_service_async", &socketClientConnectToServiceAsync},
+	{"g_socket_client_connect_to_service_finish", &socketClientConnectToServiceFinish},
+	{"g_socket_client_connect_to_uri", &socketClientConnectToUri},
+	{"g_socket_client_connect_to_uri_async", &socketClientConnectToUriAsync},
+	{"g_socket_client_connect_to_uri_finish", &socketClientConnectToUriFinish},
+	{"g_socket_client_get_enable_proxy", &socketClientGetEnableProxy},
+	{"g_socket_client_get_family", &socketClientGetFamily},
+	{"g_socket_client_get_local_address", &socketClientGetLocalAddress},
+	{"g_socket_client_get_protocol", &socketClientGetProtocol},
+	{"g_socket_client_get_socket_type", &socketClientGetSocketType},
+	{"g_socket_client_get_timeout", &socketClientGetTimeout},
+	{"g_socket_client_get_tls", &socketClientGetTls},
+	{"g_socket_client_get_tls_validation_flags", &socketClientGetTlsValidationFlags},
 	{"g_socket_client_get_type", &SocketClientGetType},
 	{"g_socket_client_new", &SocketClientNew},
-	{"g_socket_client_set_enable_proxy", &SocketClientSetEnableProxy},
-	{"g_socket_client_set_family", &SocketClientSetFamily},
-	{"g_socket_client_set_local_address", &SocketClientSetLocalAddress},
-	{"g_socket_client_set_protocol", &SocketClientSetProtocol},
-	{"g_socket_client_set_socket_type", &SocketClientSetSocketType},
-	{"g_socket_client_set_timeout", &SocketClientSetTimeout},
-	{"g_socket_client_set_tls", &SocketClientSetTls},
-	{"g_socket_client_set_tls_validation_flags", &SocketClientSetTlsValidationFlags},
-	{"g_socket_close", &SocketClose},
-	{"g_socket_condition_check", &SocketConditionCheck},
-	{"g_socket_condition_wait", &SocketConditionWait},
-	{"g_socket_connect", &SocketConnect},
-	{"g_socket_connectable_enumerate", &SocketConnectableEnumerate},
+	{"g_socket_client_set_enable_proxy", &socketClientSetEnableProxy},
+	{"g_socket_client_set_family", &socketClientSetFamily},
+	{"g_socket_client_set_local_address", &socketClientSetLocalAddress},
+	{"g_socket_client_set_protocol", &socketClientSetProtocol},
+	{"g_socket_client_set_socket_type", &socketClientSetSocketType},
+	{"g_socket_client_set_timeout", &socketClientSetTimeout},
+	{"g_socket_client_set_tls", &socketClientSetTls},
+	{"g_socket_client_set_tls_validation_flags", &socketClientSetTlsValidationFlags},
+	{"g_socket_close", &socketClose},
+	{"g_socket_condition_check", &socketConditionCheck},
+	{"g_socket_condition_wait", &socketConditionWait},
+	{"g_socket_connect", &socketConnect},
+	{"g_socket_connectable_enumerate", &socketConnectableEnumerate},
 	{"g_socket_connectable_get_type", &SocketConnectableGetType},
-	{"g_socket_connectable_proxy_enumerate", &SocketConnectableProxyEnumerate},
+	{"g_socket_connectable_proxy_enumerate", &socketConnectableProxyEnumerate},
 	{"g_socket_connection_factory_create_connection", &SocketConnectionFactoryCreateConnection},
 	{"g_socket_connection_factory_lookup_type", &SocketConnectionFactoryLookupType},
 	{"g_socket_connection_factory_register_type", &SocketConnectionFactoryRegisterType},
-	{"g_socket_connection_get_local_address", &SocketConnectionGetLocalAddress},
-	{"g_socket_connection_get_remote_address", &SocketConnectionGetRemoteAddress},
-	{"g_socket_connection_get_socket", &SocketConnectionGetSocket},
+	{"g_socket_connection_get_local_address", &socketConnectionGetLocalAddress},
+	{"g_socket_connection_get_remote_address", &socketConnectionGetRemoteAddress},
+	{"g_socket_connection_get_socket", &socketConnectionGetSocket},
 	{"g_socket_connection_get_type", &SocketConnectionGetType},
 	{"g_socket_control_message_deserialize", &SocketControlMessageDeserialize},
-	{"g_socket_control_message_get_level", &SocketControlMessageGetLevel},
-	{"g_socket_control_message_get_msg_type", &SocketControlMessageGetMsgType},
-	{"g_socket_control_message_get_size", &SocketControlMessageGetSize},
+	{"g_socket_control_message_get_level", &socketControlMessageGetLevel},
+	{"g_socket_control_message_get_msg_type", &socketControlMessageGetMsgType},
+	{"g_socket_control_message_get_size", &socketControlMessageGetSize},
 	{"g_socket_control_message_get_type", &SocketControlMessageGetType},
-	{"g_socket_control_message_serialize", &SocketControlMessageSerialize},
-	{"g_socket_create_source", &SocketCreateSource},
+	{"g_socket_control_message_serialize", &socketControlMessageSerialize},
+	{"g_socket_create_source", &socketCreateSource},
 	{"g_socket_family_get_type", &SocketFamilyGetType},
-	{"g_socket_get_blocking", &SocketGetBlocking},
-	{"g_socket_get_credentials", &SocketGetCredentials},
-	{"g_socket_get_family", &SocketGetFamily},
-	{"g_socket_get_fd", &SocketGetFd},
-	{"g_socket_get_keepalive", &SocketGet_keepalive},
-	{"g_socket_get_listen_backlog", &SocketGetListenBacklog},
-	{"g_socket_get_local_address", &SocketGetLocalAddress},
-	{"g_socket_get_protocol", &SocketGetProtocol},
-	{"g_socket_get_remote_address", &SocketGetRemoteAddress},
-	{"g_socket_get_socket_type", &SocketGetSocketType},
-	{"g_socket_get_timeout", &SocketGetTimeout},
+	{"g_socket_get_blocking", &socketGetBlocking},
+	{"g_socket_get_credentials", &socketGetCredentials},
+	{"g_socket_get_family", &socketGetFamily},
+	{"g_socket_get_fd", &socketGetFd},
+	{"g_socket_get_keepalive", &socketGetKeepalive},
+	{"g_socket_get_listen_backlog", &socketGetListenBacklog},
+	{"g_socket_get_local_address", &socketGetLocalAddress},
+	{"g_socket_get_protocol", &socketGetProtocol},
+	{"g_socket_get_remote_address", &socketGetRemoteAddress},
+	{"g_socket_get_socket_type", &socketGetSocketType},
+	{"g_socket_get_timeout", &socketGetTimeout},
 	{"g_socket_get_type", &SocketGetType},
-	{"g_socket_is_closed", &SocketIsClosed},
-	{"g_socket_is_connected", &SocketIsConnected},
-	{"g_socket_listen", &SocketListen},
-	{"g_socket_listener_accept", &SocketListenerAccept},
-	{"g_socket_listener_accept_async", &SocketListenerAcceptAsync},
-	{"g_socket_listener_accept_finish", &SocketListenerAcceptFinish},
-	{"g_socket_listener_accept_socket", &SocketListenerAcceptSocket},
-	{"g_socket_listener_accept_socket_async", &SocketListenerAcceptSocketAsync},
-	{"g_socket_listener_accept_socket_finish", &SocketListenerAcceptSocketFinish},
-	{"g_socket_listener_add_address", &SocketListenerAddAddress},
-	{"g_socket_listener_add_any_inet_port", &SocketListenerAddAnyInetPort},
-	{"g_socket_listener_add_inet_port", &SocketListenerAddInetPort},
-	{"g_socket_listener_add_socket", &SocketListenerAddSocket},
-	{"g_socket_listener_close", &SocketListenerClose},
+	{"g_socket_is_closed", &socketIsClosed},
+	{"g_socket_is_connected", &socketIsConnected},
+	{"g_socket_listen", &socketListen},
+	{"g_socket_listener_accept", &socketListenerAccept},
+	{"g_socket_listener_accept_async", &socketListenerAcceptAsync},
+	{"g_socket_listener_accept_finish", &socketListenerAcceptFinish},
+	{"g_socket_listener_accept_socket", &socketListenerAcceptSocket},
+	{"g_socket_listener_accept_socket_async", &socketListenerAcceptSocketAsync},
+	{"g_socket_listener_accept_socket_finish", &socketListenerAcceptSocketFinish},
+	{"g_socket_listener_add_address", &socketListenerAddAddress},
+	{"g_socket_listener_add_any_inet_port", &socketListenerAddAnyInetPort},
+	{"g_socket_listener_add_inet_port", &socketListenerAddInetPort},
+	{"g_socket_listener_add_socket", &socketListenerAddSocket},
+	{"g_socket_listener_close", &socketListenerClose},
 	{"g_socket_listener_get_type", &SocketListenerGetType},
 	{"g_socket_listener_new", &SocketListenerNew},
-	{"g_socket_listener_set_backlog", &SocketListenerSetBacklog},
+	{"g_socket_listener_set_backlog", &socketListenerSetBacklog},
 	{"g_socket_msg_flags_get_type", &SocketMsgFlagsGetType},
 	{"g_socket_new", &SocketNew},
 	{"g_socket_new_from_fd", &SocketNewFromFd},
 	{"g_socket_protocol_get_type", &SocketProtocolGetType},
-	{"g_socket_receive", &SocketReceive},
-	{"g_socket_receive_from", &SocketReceiveFrom},
-	{"g_socket_receive_message", &SocketReceiveMessage},
-	{"g_socket_receive_with_blocking", &SocketReceiveWithBlocking},
-	{"g_socket_send", &SocketSend},
-	{"g_socket_send_message", &SocketSendMessage},
-	{"g_socket_send_to", &SocketSendTo},
-	{"g_socket_send_with_blocking", &SocketSendWithBlocking},
+	{"g_socket_receive", &socketReceive},
+	{"g_socket_receive_from", &socketReceiveFrom},
+	{"g_socket_receive_message", &socketReceiveMessage},
+	{"g_socket_receive_with_blocking", &socketReceiveWithBlocking},
+	{"g_socket_send", &socketSend},
+	{"g_socket_send_message", &socketSendMessage},
+	{"g_socket_send_to", &socketSendTo},
+	{"g_socket_send_with_blocking", &socketSendWithBlocking},
 	{"g_socket_service_get_type", &SocketServiceGetType},
-	{"g_socket_service_is_active", &SocketServiceIsActive},
+	{"g_socket_service_is_active", &socketServiceIsActive},
 	{"g_socket_service_new", &SocketServiceNew},
-	{"g_socket_service_start", &SocketServiceStart},
-	{"g_socket_service_stop", &SocketServiceStop},
-	{"g_socket_set_blocking", &SocketSetBlocking},
-	{"g_socket_set_keepalive", &SocketSet_keepalive},
-	{"g_socket_set_listen_backlog", &SocketSetListenBacklog},
-	{"g_socket_set_timeout", &SocketSetTimeout},
-	{"g_socket_shutdown", &SocketShutdown},
-	{"g_socket_speaks_ipv4", &SocketSpeaksIpv4},
+	{"g_socket_service_start", &socketServiceStart},
+	{"g_socket_service_stop", &socketServiceStop},
+	{"g_socket_set_blocking", &socketSetBlocking},
+	{"g_socket_set_keepalive", &socketSetKeepalive},
+	{"g_socket_set_listen_backlog", &socketSetListenBacklog},
+	{"g_socket_set_timeout", &socketSetTimeout},
+	{"g_socket_shutdown", &socketShutdown},
+	{"g_socket_speaks_ipv4", &socketSpeaksIpv4},
 	{"g_socket_type_get_type", &SocketTypeGetType},
-	{"g_srv_target_copy", &SrvTargetCopy},
-	{"g_srv_target_free", &SrvTargetFree},
-	{"g_srv_target_get_hostname", &SrvTargetGetHostname},
-	{"g_srv_target_get_port", &SrvTargetGetPort},
-	{"g_srv_target_get_priority", &SrvTargetGetPriority},
+	{"g_srv_target_copy", &srvTargetCopy},
+	{"g_srv_target_free", &srvTargetFree},
+	{"g_srv_target_get_hostname", &srvTargetGetHostname},
+	{"g_srv_target_get_port", &srvTargetGetPort},
+	{"g_srv_target_get_priority", &srvTargetGetPriority},
 	{"g_srv_target_get_type", &SrvTargetGetType},
-	{"g_srv_target_get_weight", &SrvTargetGetWeight},
+	{"g_srv_target_get_weight", &srvTargetGetWeight},
 	{"g_srv_target_list_sort", &SrvTargetListSort},
 	{"g_srv_target_new", &SrvTargetNew},
 	{"g_tcp_connection_get_graceful_disconnect", &TcpConnectionGetGracefulDisconnect},

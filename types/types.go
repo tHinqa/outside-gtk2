@@ -144,226 +144,205 @@ type (
 	FTC_NodeRec         struct{}
 	FTC_SBitCacheRec    struct{}
 
-	AtkAction                      struct{}
-	AtkComponent                   struct{}
-	AtkDocument                    struct{}
-	AtkEditableText                struct{}
-	AtkHyperlinkImpl               struct{}
-	AtkHypertext                   struct{}
-	AtkImage                       struct{}
-	AtkImplementor                 struct{}
-	AtkSelection                   struct{}
-	AtkSocket                      struct{}
-	AtkState                       struct{}
-	AtkStreamableContent           struct{}
-	AtkTable                       struct{}
-	AtkText                        struct{}
-	AtkValue                       struct{}
-	CairoDevice                    struct{}
-	CairoFontFace                  struct{}
-	CairoFontOptions               struct{}
-	CairoPattern                   struct{}
-	CairoRegion                    struct{}
-	CairoScaledFont                struct{}
-	CairoScriptInterpreter         struct{}
-	CairoSurface                   struct{}
-	Cairo                          struct{}
-	FcCharSet                      struct{}
-	FcPattern                      struct{}
-	GAction                        struct{}
-	GActionGroup                   struct{}
-	GAllocator                     struct{}
-	GAppInfo                       struct{}
-	GAppLaunchContextPrivate       struct{}
-	GApplicationCommandLinePrivate struct{}
-	GApplicationPrivate            struct{}
-	GAsyncInitable                 struct{}
-	GAsyncQueue                    struct{}
-	GAsyncResult                   struct{}
-	GBookmarkFile                  struct{}
-	GBufferedInputStreamPrivate    struct{}
-	GBufferedOutputStreamPrivate   struct{}
-	GCache                         struct{}
-	GCancellablePrivate            struct{}
-	GcharsetConverter              struct{}
-	GChecksum                      struct{}
-	GCond                          struct{}
-	GConverter                     struct{}
-	GConverterInputStreamPrivate   struct{}
-	GConverterOutputStreamPrivate  struct{}
-	GCredentials                   struct{}
-	GData                          struct{}
-	GDataInputStreamPrivate        struct{}
-	GDataOutputStreamPrivate       struct{}
-	GDBusAuthObserver              struct{}
-	GDBusConnection                struct{}
-	GDBusMessage                   struct{}
-	GDBusMethodInvocation          struct{}
-	GDBusProxyPrivate              struct{}
-	GDBusServer                    struct{}
-	GDir                           struct{}
-	GdkPangoRendererPrivate        struct{}
-	GdkXEvent                      struct{}
-	GDrive                         struct{}
-	GEmblem                        struct{}
-	GEmblemedIconPrivate           struct{}
-	GFile                          struct{}
-	GFileAttributeMatcher          struct{}
-	GFileEnumeratorPrivate         struct{}
-	GFileIcon                      struct{}
-	GFileInfo                      struct{}
-	GFileInputStreamPrivate        struct{}
-	GFileIOStreamPrivate           struct{}
-	GFileMonitorPrivate            struct{}
-	GFilenameCompleter             struct{}
-	GFileOutputStreamPrivate       struct{}
-	GHashTable                     struct{}
-	GIcon                          struct{}
-	GIConv                         struct{}
-	GInetAddressPrivate            struct{}
-	GInetSocketAddressPrivate      struct{}
-	GInitable                      struct{}
-	GInputStreamPrivate            struct{}
-	GIOExtension                   struct{}
-	GIOExtensionPoint              struct{}
-	GIOModule                      struct{}
-	GIOSchedulerJob                struct{}
-	GIOStreamPrivate               struct{}
-	GKeyFile                       struct{}
-	GLoadableIcon                  struct{}
-	GMainContext                   struct{}
-	GMainLoop                      struct{}
-	GMappedFile                    struct{}
-	GMarkupParseContext            struct{}
-	GMatchInfo                     struct{}
-	GMemChunk                      struct{}
-	GMemoryInputStreamPrivate      struct{}
-	GMemoryOutputStreamPrivate     struct{}
-	GModule                        struct{}
-	GMount                         struct{}
-	GMountOperationPrivate         struct{}
-	GMutex                         struct{}
-	GNetworkAddressPrivate         struct{}
-	GNetworkServicePrivate         struct{}
-	GOptionContext                 struct{}
-	GOptionGroup                   struct{}
-	GOutputStreamPrivate           struct{}
-	GPatternSpec                   struct{}
-	GPermissionPrivate             struct{}
-	GPollableInputStream           struct{}
-	GPollableOutputStream          struct{}
-	GPrivate                       struct{}
-	GProxy                         struct{}
-	GProxyAddressPrivate           struct{}
-	GProxyResolver                 struct{}
-	GRand                          struct{}
-	GRegex                         struct{}
-	GRelation                      struct{}
-	GResolverPrivate               struct{}
-	GSeekable                      struct{}
-	GSequence                      struct{}
-	GSequenceNode                  struct{}
-	GSettingsBackend               struct{}
-	GSettingsPrivate               struct{}
-	GSimpleActionGroupPrivate      struct{}
-	GSimpleActionPrivate           struct{}
-	GSimpleAsyncResult             struct{}
-	GSocketClientPrivate           struct{}
-	GSocketConnectable             struct{}
-	GSocketConnectionPrivate       struct{}
-	GSocketControlMessagePrivate   struct{}
-	GSocketListenerPrivate         struct{}
-	GSocketPrivate                 struct{}
-	GSocketServicePrivate          struct{}
-	GSrvTarget                     struct{}
-	GStringChunk                   struct{}
-	GTcpConnectionPrivate          struct{}
-	GTcpWrapperConnectionPrivate   struct{}
-	GTestCase                      struct{}
-	GTestSuite                     struct{}
-	GThemedIcon                    struct{}
-	GTimer                         struct{}
-	GTimeZone                      struct{}
-	GtkActionGroupPrivate          struct{}
-	GtkActionPrivate               struct{}
-	GtkAssistantPrivate            struct{}
-	GtkBuilderPrivate              struct{}
-	GtkCalendarPrivate             struct{}
-	GtkCellViewPrivate             struct{}
-	GtkClipboard                   struct{}
-	GtkColorButtonPrivate          struct{}
-	GtkComboBoxEntryPrivate        struct{}
-	GtkComboBoxPrivate             struct{}
-	GtkComboBoxTextPrivate         struct{}
-	GtkExpanderPrivate             struct{}
-	GtkFontButtonPrivate           struct{}
-	GtkIconThemePrivate            struct{}
-	GtkIconViewPrivate             struct{}
-	GtkIMMulticontextPrivate       struct{}
-	GtkInfoBarPrivate              struct{}
-	GtkLabelSelectionInfo          struct{}
-	GtkPageSetup                   struct{} //REMOVE
-	GtkRecentActionPrivate         struct{}
-	GtkRecentChooserMenuPrivate    struct{}
-	GtkRecentManagerPrivate        struct{}
-	GtkScaleButtonPrivate          struct{}
-	GtkSeparatorToolItemPrivate    struct{}
-	GtkSpinnerPrivate              struct{}
-	GtkStatusIconPrivate           struct{}
-	GtkToggleActionPrivate         struct{}
-	GtkToggleToolButtonPrivate     struct{}
-	GtkToolButtonPrivate           struct{}
-	GtkToolItemGroupPrivate        struct{}
-	GtkToolItemPrivate             struct{}
-	GtkToolPalettePrivate          struct{}
-	GtkUIManagerPrivate            struct{}
-	GTlsBackend                    struct{}
-	GTlsCertificatePrivate         struct{}
-	GTlsClientConnection           struct{}
-	GTlsConnectionPrivate          struct{}
-	GTree                          struct{}
-	GTypeCValue                    struct{}
-	GUnixFDList                    struct{}
-	GVariant                       struct{}
-	GVariantType                   struct{}
-	GVolume                        struct{}
-	GWin32InputStreamPrivate       struct{}
-	GWin32OutputStreamPrivate      struct{}
-	GZlibCompressor                struct{}
-	GZlibDecompressor              struct{}
-	PangoAttrIterator              struct{}
-	PangoAttrList                  struct{}
-	PangoCairoFont                 struct{}
-	PangoCairoFontMap              struct{}
-	PangoContext                   struct{}
-	PangoCoverage                  struct{}
-	PangoEngineLang                struct{}
-	PangoEngineShape               struct{}
-	PangoFcFontKey                 struct{}
-	PangoFcFontMapPrivate          struct{}
-	PangoFcFontsetKey              struct{}
-	PangoFont                      struct{}
-	PangoFontDescription           struct{}
-	PangoFontFace                  struct{}
-	PangoFontFamily                struct{}
-	PangoFontMap                   struct{}
-	PangoFontMetrics               struct{}
-	PangoFontset                   struct{}
-	PangoFontsetSimple             struct{}
-	PangoFT2FontMap                struct{}
-	PangoLanguage                  struct{}
-	PangoLayout                    struct{}
-	PangoLayoutIter                struct{}
-	PangoMap                       struct{}
-	PangoOTBuffer                  struct{}
-	PangoOTInfo                    struct{}
-	PangoOTRuleset                 struct{}
-	PangoRendererPrivate           struct{}
-	PangoScriptIter                struct{}
-	PangoTabArray                  struct{}
-	PangoWin32FontCache            struct{}
-	Utimbuf                        struct{}
-	Void                           struct{}
+	AtkAction                     struct{}
+	AtkComponent                  struct{}
+	AtkDocument                   struct{}
+	AtkEditableText               struct{}
+	AtkHyperlinkImpl              struct{}
+	AtkHypertext                  struct{}
+	AtkImage                      struct{}
+	AtkImplementor                struct{}
+	AtkSelection                  struct{}
+	AtkSocket                     struct{}
+	AtkState                      struct{}
+	AtkStreamableContent          struct{}
+	AtkTable                      struct{}
+	AtkText                       struct{}
+	AtkValue                      struct{}
+	CairoDevice                   struct{}
+	CairoFontFace                 struct{}
+	CairoFontOptions              struct{}
+	CairoPattern                  struct{}
+	CairoRegion                   struct{}
+	CairoScaledFont               struct{}
+	CairoScriptInterpreter        struct{}
+	CairoSurface                  struct{}
+	Cairo                         struct{}
+	FcCharSet                     struct{}
+	FcPattern                     struct{}
+	GAllocator                    struct{}
+	GAsyncQueue                   struct{}
+	GBookmarkFile                 struct{}
+	GBufferedInputStreamPrivate   struct{}
+	GBufferedOutputStreamPrivate  struct{}
+	GCache                        struct{}
+	GCancellablePrivate           struct{}
+	GcharsetConverter             struct{}
+	GChecksum                     struct{}
+	GCond                         struct{}
+	GConverter                    struct{}
+	GConverterInputStreamPrivate  struct{}
+	GConverterOutputStreamPrivate struct{}
+	GCredentials                  struct{}
+	GData                         struct{}
+	GDataInputStreamPrivate       struct{}
+	GDataOutputStreamPrivate      struct{}
+	GDBusAuthObserver             struct{}
+	GDBusConnection               struct{}
+	GDBusMessage                  struct{}
+	GDBusMethodInvocation         struct{}
+	GDBusProxyPrivate             struct{}
+	GDBusServer                   struct{}
+	GDir                          struct{}
+	GdkPangoRendererPrivate       struct{}
+	GdkXEvent                     struct{}
+	GDrive                        struct{}
+	GEmblem                       struct{}
+	GEmblemedIconPrivate          struct{}
+	GFile                         struct{}
+	GFileAttributeMatcher         struct{}
+	GFileEnumeratorPrivate        struct{}
+	GFileIcon                     struct{}
+	GFileInfo                     struct{}
+	GFileInputStreamPrivate       struct{}
+	GFileIOStreamPrivate          struct{}
+	GFileMonitorPrivate           struct{}
+	GFilenameCompleter            struct{}
+	GFileOutputStreamPrivate      struct{}
+	GHashTable                    struct{}
+	GIcon                         struct{}
+	GIConv                        struct{}
+	GInetAddressPrivate           struct{}
+	GInitable                     struct{}
+	GInputStreamPrivate           struct{}
+	GIOExtension                  struct{}
+	GIOExtensionPoint             struct{}
+	GIOModule                     struct{}
+	GIOSchedulerJob               struct{}
+	GIOStreamPrivate              struct{}
+	GKeyFile                      struct{}
+	GLoadableIcon                 struct{}
+	GMainContext                  struct{}
+	GMainLoop                     struct{}
+	GMappedFile                   struct{}
+	GMarkupParseContext           struct{}
+	GMatchInfo                    struct{}
+	GMemChunk                     struct{}
+	GMemoryInputStreamPrivate     struct{}
+	GMemoryOutputStreamPrivate    struct{}
+	GModule                       struct{}
+	GMount                        struct{}
+	GMountOperationPrivate        struct{}
+	GMutex                        struct{}
+	GNetworkAddressPrivate        struct{}
+	GNetworkServicePrivate        struct{}
+	GOptionContext                struct{}
+	GOptionGroup                  struct{}
+	GOutputStreamPrivate          struct{}
+	GPatternSpec                  struct{}
+	GPermissionPrivate            struct{}
+	GPollableInputStream          struct{}
+	GPollableOutputStream         struct{}
+	GPrivate                      struct{}
+	GProxy                        struct{}
+	GProxyAddressPrivate          struct{}
+	GProxyResolver                struct{}
+	GRand                         struct{}
+	GRegex                        struct{}
+	GRelation                     struct{}
+	GResolverPrivate              struct{}
+	GSequence                     struct{}
+	GSequenceNode                 struct{}
+	GSocketConnectionPrivate      struct{}
+	GSocketServicePrivate         struct{}
+	GStringChunk                  struct{}
+	GTcpConnectionPrivate         struct{}
+	GTcpWrapperConnectionPrivate  struct{}
+	GTestCase                     struct{}
+	GTestSuite                    struct{}
+	GThemedIcon                   struct{}
+	GTimer                        struct{}
+	GTimeZone                     struct{}
+	GtkActionGroupPrivate         struct{}
+	GtkActionPrivate              struct{}
+	GtkAssistantPrivate           struct{}
+	GtkBuilderPrivate             struct{}
+	GtkCalendarPrivate            struct{}
+	GtkCellViewPrivate            struct{}
+	GtkClipboard                  struct{}
+	GtkColorButtonPrivate         struct{}
+	GtkComboBoxEntryPrivate       struct{}
+	GtkComboBoxPrivate            struct{}
+	GtkComboBoxTextPrivate        struct{}
+	GtkExpanderPrivate            struct{}
+	GtkFontButtonPrivate          struct{}
+	GtkIconThemePrivate           struct{}
+	GtkIconViewPrivate            struct{}
+	GtkIMMulticontextPrivate      struct{}
+	GtkInfoBarPrivate             struct{}
+	GtkLabelSelectionInfo         struct{}
+	GtkPageSetup                  struct{} //REMOVE
+	GtkRecentActionPrivate        struct{}
+	GtkRecentChooserMenuPrivate   struct{}
+	GtkRecentManagerPrivate       struct{}
+	GtkScaleButtonPrivate         struct{}
+	GtkSeparatorToolItemPrivate   struct{}
+	GtkSpinnerPrivate             struct{}
+	GtkStatusIconPrivate          struct{}
+	GtkToggleActionPrivate        struct{}
+	GtkToggleToolButtonPrivate    struct{}
+	GtkToolButtonPrivate          struct{}
+	GtkToolItemGroupPrivate       struct{}
+	GtkToolItemPrivate            struct{}
+	GtkToolPalettePrivate         struct{}
+	GtkUIManagerPrivate           struct{}
+	GTlsBackend                   struct{}
+	GTlsCertificatePrivate        struct{}
+	GTlsClientConnection          struct{}
+	GTlsConnectionPrivate         struct{}
+	GTree                         struct{}
+	GTypeCValue                   struct{}
+	GUnixFDList                   struct{}
+	GVariant                      struct{}
+	GVariantType                  struct{}
+	GVolume                       struct{}
+	GWin32InputStreamPrivate      struct{}
+	GWin32OutputStreamPrivate     struct{}
+	GZlibCompressor               struct{}
+	GZlibDecompressor             struct{}
+	PangoAttrIterator             struct{}
+	PangoAttrList                 struct{}
+	PangoCairoFont                struct{}
+	PangoCairoFontMap             struct{}
+	PangoContext                  struct{}
+	PangoCoverage                 struct{}
+	PangoEngineLang               struct{}
+	PangoEngineShape              struct{}
+	PangoFcFontKey                struct{}
+	PangoFcFontMapPrivate         struct{}
+	PangoFcFontsetKey             struct{}
+	PangoFont                     struct{}
+	PangoFontDescription          struct{}
+	PangoFontFace                 struct{}
+	PangoFontFamily               struct{}
+	PangoFontMap                  struct{}
+	PangoFontMetrics              struct{}
+	PangoFontset                  struct{}
+	PangoFontsetSimple            struct{}
+	PangoFT2FontMap               struct{}
+	PangoLanguage                 struct{}
+	PangoLayout                   struct{}
+	PangoLayoutIter               struct{}
+	PangoMap                      struct{}
+	PangoOTBuffer                 struct{}
+	PangoOTInfo                   struct{}
+	PangoOTRuleset                struct{}
+	PangoRendererPrivate          struct{}
+	PangoScriptIter               struct{}
+	PangoTabArray                 struct{}
+	PangoWin32FontCache           struct{}
+	Utimbuf                       struct{}
+	Void                          struct{}
 )
 
 type GBookmarkFileError Enum
@@ -765,13 +744,7 @@ const (
 	G_IO_STATUS_AGAIN
 )
 
-type GSeekType Enum
-
-const (
-	G_SEEK_CUR GSeekType = iota
-	G_SEEK_SET
-	G_SEEK_END
-)
+type GSeekType Enum // REMOVE
 
 type GIOCondition Enum
 
@@ -1252,15 +1225,6 @@ const (
 	G_SIGNAL_MATCH_UNBLOCKED
 )
 
-type GAppInfoCreateFlags Enum
-
-const (
-	G_APP_INFO_CREATE_NEEDS_TERMINAL GAppInfoCreateFlags = 1 << iota
-	G_APP_INFO_CREATE_SUPPORTS_URIS
-	G_APP_INFO_CREATE_SUPPORTS_STARTUP_NOTIFICATION
-	G_APP_INFO_CREATE_NONE GAppInfoCreateFlags = 0
-)
-
 type GConverterFlags Enum
 
 const (
@@ -1528,24 +1492,6 @@ const (
 	G_RESOLVER_ERROR_INTERNAL
 )
 
-type GSocketFamily Enum
-
-const (
-	G_SOCKET_FAMILY_INVALID GSocketFamily = 0
-	G_SOCKET_FAMILY_UNIX    GSocketFamily = 1
-	G_SOCKET_FAMILY_IPV4    GSocketFamily = 2
-	G_SOCKET_FAMILY_IPV6    GSocketFamily = 23
-)
-
-type GSocketType Enum
-
-const (
-	G_SOCKET_TYPE_INVALID GSocketType = iota
-	G_SOCKET_TYPE_STREAM
-	G_SOCKET_TYPE_DATAGRAM
-	G_SOCKET_TYPE_SEQPACKET
-)
-
 type GSocketMsgFlags Enum
 
 const (
@@ -1553,16 +1499,6 @@ const (
 	G_SOCKET_MSG_PEEK
 	G_SOCKET_MSG_DONTROUTE
 	G_SOCKET_MSG_NONE GSocketMsgFlags = 0
-)
-
-type GSocketProtocol Enum
-
-const (
-	G_SOCKET_PROTOCOL_UNKNOWN GSocketProtocol = -1
-	G_SOCKET_PROTOCOL_DEFAULT GSocketProtocol = 0
-	G_SOCKET_PROTOCOL_TCP     GSocketProtocol = 6
-	G_SOCKET_PROTOCOL_UDP     GSocketProtocol = 17
-	G_SOCKET_PROTOCOL_SCTP    GSocketProtocol = 132
 )
 
 type GZlibCompressorFormat Enum
@@ -1772,17 +1708,6 @@ const (
 	G_DBUS_MESSAGE_BYTE_ORDER_LITTLE_ENDIAN GDBusMessageByteOrder = 'l'
 )
 
-type GApplicationFlags Enum
-
-const (
-	G_APPLICATION_IS_SERVICE GApplicationFlags = 1 << iota
-	G_APPLICATION_IS_LAUNCHER
-	G_APPLICATION_HANDLES_OPEN
-	G_APPLICATION_HANDLES_COMMAND_LINE
-	G_APPLICATION_SEND_ENVIRONMENT
-	G_APPLICATION_FLAGS_NONE GApplicationFlags = 0
-)
-
 type GTlsError Enum
 
 const (
@@ -1830,17 +1755,6 @@ const (
 	G_MODULE_BIND_LAZY GModuleFlags = 1 << iota
 	G_MODULE_BIND_LOCAL
 	G_MODULE_BIND_MASK GModuleFlags = 0x03
-)
-
-type GSettingsBindFlags Enum
-
-const (
-	G_SETTINGS_BIND_GET GSettingsBindFlags = 1 << iota
-	G_SETTINGS_BIND_SET
-	G_SETTINGS_BIND_NO_SENSITIVITY
-	G_SETTINGS_BIND_GET_NO_CHANGES
-	G_SETTINGS_BIND_INVERT_BOOLEAN
-	G_SETTINGS_BIND_DEFAULT GSettingsBindFlags = 0
 )
 
 type CairoStatus Enum
@@ -3390,11 +3304,6 @@ type (
 		is_mnemonic Gboolean,
 		data Gpointer)
 
-	GAsyncReadyCallback func(
-		source_object *GObject,
-		res *GAsyncResult,
-		user_data Gpointer)
-
 	GdkFilterFunc func(
 		xevent *GdkXEvent,
 		event *GdkEvent,
@@ -3695,26 +3604,6 @@ type (
 	GReallocFunc func(
 		data Gpointer,
 		size Gsize) Gpointer
-
-	GSettingsBindSetMapping func(
-		value *GValue,
-		expected_type *GVariantType,
-		user_data Gpointer) *GVariant
-
-	GSettingsBindGetMapping func(
-		value *GValue,
-		variant *GVariant,
-		user_data Gpointer) Gboolean
-
-	GSettingsGetMapping func(
-		value *GVariant,
-		result *Gpointer,
-		user_data Gpointer) Gboolean
-
-	GSimpleAsyncThreadFunc func(
-		res *GSimpleAsyncResult,
-		object *GObject,
-		cancellable *GCancellable)
 
 	GBaseFinalizeFunc func(g_class Gpointer)
 
