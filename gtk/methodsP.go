@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	C "github.com/tHinqa/outside-gtk2/cairo"
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
@@ -410,7 +411,7 @@ var (
 
 	printContextCreatePangoContext func(p *PrintContext) *T.PangoContext
 	printContextCreatePangoLayout  func(p *PrintContext) *P.Layout
-	printContextGetCairoContext    func(p *PrintContext) *T.Cairo
+	printContextGetCairoContext    func(p *PrintContext) *C.Cairo
 	printContextGetDpiX            func(p *PrintContext) float64
 	printContextGetDpiY            func(p *PrintContext) float64
 	printContextGetHardMargins     func(p *PrintContext, top, bottom, left, right *float64) T.Gboolean
@@ -418,12 +419,12 @@ var (
 	printContextGetPageSetup       func(p *PrintContext) *PageSetup
 	printContextGetPangoFontmap    func(p *PrintContext) *T.PangoFontMap
 	printContextGetWidth           func(p *PrintContext) float64
-	printContextSetCairoContext    func(p *PrintContext, cr *T.Cairo, dpiX, dpiY float64)
+	printContextSetCairoContext    func(p *PrintContext, cr *C.Cairo, dpiX, dpiY float64)
 )
 
 func (p *PrintContext) CreatePangoContext() *T.PangoContext { return printContextCreatePangoContext(p) }
 func (p *PrintContext) CreatePangoLayout() *P.Layout        { return printContextCreatePangoLayout(p) }
-func (p *PrintContext) GetCairoContext() *T.Cairo           { return printContextGetCairoContext(p) }
+func (p *PrintContext) GetCairoContext() *C.Cairo           { return printContextGetCairoContext(p) }
 func (p *PrintContext) GetDpiX() float64                    { return printContextGetDpiX(p) }
 func (p *PrintContext) GetDpiY() float64                    { return printContextGetDpiY(p) }
 func (p *PrintContext) GetHardMargins(top, bottom, left, right *float64) T.Gboolean {
@@ -433,7 +434,7 @@ func (p *PrintContext) GetHeight() float64               { return printContextGe
 func (p *PrintContext) GetPageSetup() *PageSetup         { return printContextGetPageSetup(p) }
 func (p *PrintContext) GetPangoFontmap() *T.PangoFontMap { return printContextGetPangoFontmap(p) }
 func (p *PrintContext) GetWidth() float64                { return printContextGetWidth(p) }
-func (p *PrintContext) SetCairoContext(cr *T.Cairo, dpiX, dpiY float64) {
+func (p *PrintContext) SetCairoContext(cr *C.Cairo, dpiX, dpiY float64) {
 	printContextSetCairoContext(p, cr, dpiX, dpiY)
 }
 

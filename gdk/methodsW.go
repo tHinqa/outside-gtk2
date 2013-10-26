@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	C "github.com/tHinqa/outside-gtk2/cairo"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -30,7 +31,7 @@ var (
 	windowConfigureFinished               func(w *Window)
 	windowCoordsFromParent                func(w *Window, parentX, parentY float64, x, y *float64)
 	windowCoordsToParent                  func(w *Window, x, y float64, parentX, parentY *float64)
-	windowCreateSimilarSurface            func(w *Window, content T.CairoContent, width, height int) *T.CairoSurface
+	windowCreateSimilarSurface            func(w *Window, content C.Content, width, height int) *C.Surface
 	windowDeiconify                       func(w *Window)
 	windowDestroy                         func(w *Window)
 	windowDestroyNotify                   func(w *Window)
@@ -44,7 +45,7 @@ var (
 	windowFullscreen                      func(w *Window)
 	windowGeometryChanged                 func(w *Window)
 	windowGetAcceptFocus                  func(w *Window) T.Gboolean
-	windowGetBackgroundPattern            func(w *Window) *T.CairoPattern
+	windowGetBackgroundPattern            func(w *Window) *C.Pattern
 	windowGetChildren                     func(w *Window) *T.GList
 	windowGetComposited                   func(w *Window) T.Gboolean
 	windowGetCursor                       func(w *Window) *Cursor
@@ -174,26 +175,26 @@ func (w *Window) CoordsFromParent(parentX, parentY float64, x, y *float64) {
 func (w *Window) CoordsToParent(x, y float64, parentX, parentY *float64) {
 	windowCoordsToParent(w, x, y, parentX, parentY)
 }
-func (w *Window) CreateSimilarSurface(content T.CairoContent, width, height int) *T.CairoSurface {
+func (w *Window) CreateSimilarSurface(content C.Content, width, height int) *C.Surface {
 	return windowCreateSimilarSurface(w, content, width, height)
 }
-func (w *Window) Deiconify()                            { windowDeiconify(w) }
-func (w *Window) Destroy()                              { windowDestroy(w) }
-func (w *Window) DestroyNotify()                        { windowDestroyNotify(w) }
-func (w *Window) EnableSynchronizedConfigure()          { windowEnableSynchronizedConfigure(w) }
-func (w *Window) EndPaint()                             { windowEndPaint(w) }
-func (w *Window) EnsureNative() T.Gboolean              { return windowEnsureNative(w) }
-func (w *Window) Flush()                                { windowFlush(w) }
-func (w *Window) Focus(timestamp T.GUint32)             { windowFocus(w, timestamp) }
-func (w *Window) FreezeToplevelUpdatesLibgtkOnly()      { windowFreezeToplevelUpdatesLibgtkOnly(w) }
-func (w *Window) FreezeUpdates()                        { windowFreezeUpdates(w) }
-func (w *Window) Fullscreen()                           { windowFullscreen(w) }
-func (w *Window) GeometryChanged()                      { windowGeometryChanged(w) }
-func (w *Window) GetAcceptFocus() T.Gboolean            { return windowGetAcceptFocus(w) }
-func (w *Window) GetBackgroundPattern() *T.CairoPattern { return windowGetBackgroundPattern(w) }
-func (w *Window) GetChildren() *T.GList                 { return windowGetChildren(w) }
-func (w *Window) GetComposited() T.Gboolean             { return windowGetComposited(w) }
-func (w *Window) GetCursor() *Cursor                    { return windowGetCursor(w) }
+func (w *Window) Deiconify()                       { windowDeiconify(w) }
+func (w *Window) Destroy()                         { windowDestroy(w) }
+func (w *Window) DestroyNotify()                   { windowDestroyNotify(w) }
+func (w *Window) EnableSynchronizedConfigure()     { windowEnableSynchronizedConfigure(w) }
+func (w *Window) EndPaint()                        { windowEndPaint(w) }
+func (w *Window) EnsureNative() T.Gboolean         { return windowEnsureNative(w) }
+func (w *Window) Flush()                           { windowFlush(w) }
+func (w *Window) Focus(timestamp T.GUint32)        { windowFocus(w, timestamp) }
+func (w *Window) FreezeToplevelUpdatesLibgtkOnly() { windowFreezeToplevelUpdatesLibgtkOnly(w) }
+func (w *Window) FreezeUpdates()                   { windowFreezeUpdates(w) }
+func (w *Window) Fullscreen()                      { windowFullscreen(w) }
+func (w *Window) GeometryChanged()                 { windowGeometryChanged(w) }
+func (w *Window) GetAcceptFocus() T.Gboolean       { return windowGetAcceptFocus(w) }
+func (w *Window) GetBackgroundPattern() *C.Pattern { return windowGetBackgroundPattern(w) }
+func (w *Window) GetChildren() *T.GList            { return windowGetChildren(w) }
+func (w *Window) GetComposited() T.Gboolean        { return windowGetComposited(w) }
+func (w *Window) GetCursor() *Cursor               { return windowGetCursor(w) }
 func (w *Window) GetDecorations(decorations *T.GdkWMDecoration) T.Gboolean {
 	return windowGetDecorations(w, decorations)
 }

@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	C "github.com/tHinqa/outside-gtk2/cairo"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -15,7 +16,7 @@ type Screen struct {
 	NormalGcs    *[32]GC //TODO(t): CHECK
 	ExposureGcs  *[32]GC //TODO(t): CHECK
 	SubwindowGcs *[32]GC //TODO(t): CHECK
-	FontOptions  *T.CairoFontOptions
+	FontOptions  *C.FontOptions
 	Resolution   float64
 }
 
@@ -28,7 +29,7 @@ var (
 	ScreenGetActiveWindow        func(s *Screen) *Window
 	ScreenGetDefaultColormap     func(s *Screen) *Colormap
 	ScreenGetDisplay             func(s *Screen) *Display
-	ScreenGetFontOptions         func(s *Screen) *T.CairoFontOptions
+	ScreenGetFontOptions         func(s *Screen) *C.FontOptions
 	ScreenGetHeight              func(s *Screen) int
 	ScreenGetHeightMm            func(s *Screen) int
 	ScreenGetMonitorAtPoint      func(s *Screen, x int, y int) int
@@ -57,7 +58,7 @@ var (
 	ScreenListVisuals            func(s *Screen) *T.GList
 	ScreenMakeDisplayName        func(s *Screen) string
 	ScreenSetDefaultColormap     func(s *Screen, colormap *Colormap)
-	ScreenSetFontOptions         func(s *Screen, options *T.CairoFontOptions)
+	ScreenSetFontOptions         func(s *Screen, options *C.FontOptions)
 	ScreenSetResolution          func(s *Screen, dpi float64)
 )
 
@@ -65,7 +66,7 @@ func (s *Screen) BroadcastClientMessage(event *Event) { ScreenBroadcastClientMes
 func (s *Screen) GetActiveWindow() *Window            { return ScreenGetActiveWindow(s) }
 func (s *Screen) GetDefaultColormap() *Colormap       { return ScreenGetDefaultColormap(s) }
 func (s *Screen) GetDisplay() *Display                { return ScreenGetDisplay(s) }
-func (s *Screen) GetFontOptions() *T.CairoFontOptions { return ScreenGetFontOptions(s) }
+func (s *Screen) GetFontOptions() *C.FontOptions { return ScreenGetFontOptions(s) }
 func (s *Screen) GetHeight() int                      { return ScreenGetHeight(s) }
 func (s *Screen) GetHeightMm() int                    { return ScreenGetHeightMm(s) }
 func (s *Screen) GetMonitorAtPoint(x, y int) int      { return ScreenGetMonitorAtPoint(s, x, y) }
@@ -104,5 +105,5 @@ func (s *Screen) IsComposited() T.Gboolean                   { return ScreenIsCo
 func (s *Screen) ListVisuals() *T.GList                      { return ScreenListVisuals(s) }
 func (s *Screen) MakeDisplayName() string                    { return ScreenMakeDisplayName(s) }
 func (s *Screen) SetDefaultColormap(colormap *Colormap)      { ScreenSetDefaultColormap(s, colormap) }
-func (s *Screen) SetFontOptions(options *T.CairoFontOptions) { ScreenSetFontOptions(s, options) }
+func (s *Screen) SetFontOptions(options *C.FontOptions) { ScreenSetFontOptions(s, options) }
 func (s *Screen) SetResolution(dpi float64)                  { ScreenSetResolution(s, dpi) }
