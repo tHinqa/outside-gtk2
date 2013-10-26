@@ -5,6 +5,7 @@ package gdk
 
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -314,7 +315,7 @@ const (
 
 var DragProtocolGetType func() O.Type
 
-type Drawable simpleObject
+type Drawable struct{ parent O.Object }
 
 var (
 	DrawableGetType func() O.Type
@@ -326,10 +327,10 @@ var (
 	DrawGrayImage            func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
 	DrawImage                func(drawable *Drawable, gc *GC, image *Image, xsrc, ysrc, xdest, ydest, width, height int)
 	DrawIndexedImage         func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int, cmap *T.GdkRgbCmap)
-	DrawLayout               func(drawable *Drawable, gc *GC, x, y int, layout *T.PangoLayout)
-	DrawLayoutLine           func(drawable *Drawable, gc *GC, x, y int, line *T.PangoLayoutLine)
-	DrawLayoutLineWithColors func(drawable *Drawable, gc *GC, x, y int, line *T.PangoLayoutLine, foreground, background *Color)
-	DrawLayoutWithColors     func(drawable *Drawable, gc *GC, x, y int, layout *T.PangoLayout, foreground, background *Color)
+	DrawLayout               func(drawable *Drawable, gc *GC, x, y int, layout *P.Layout)
+	DrawLayoutLine           func(drawable *Drawable, gc *GC, x, y int, line *P.LayoutLine)
+	DrawLayoutLineWithColors func(drawable *Drawable, gc *GC, x, y int, line *P.LayoutLine, foreground, background *Color)
+	DrawLayoutWithColors     func(drawable *Drawable, gc *GC, x, y int, layout *P.Layout, foreground, background *Color)
 	DrawLine                 func(drawable *Drawable, gc *GC, x1, y1, x2, y2 int)
 	DrawLines                func(drawable *Drawable, gc *GC, points *Point, nPoints int)
 	DrawPixbuf               func(drawable *Drawable, gc *GC, pixbuf *Pixbuf, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)

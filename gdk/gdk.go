@@ -26,7 +26,6 @@ type (
 	HDC     uint32
 
 	Enum         int
-	simpleObject struct{ parent O.Object }
 )
 
 var (

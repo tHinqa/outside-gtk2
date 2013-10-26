@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	A "github.com/tHinqa/outside-gtk2/atk"
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
@@ -284,7 +285,7 @@ func (a *AccelLabel) SetAccelClosure(accelClosure *O.Closure) {
 func (a *AccelLabel) SetAccelWidget(accelWidget *Widget) { accelLabelSetAccelWidget(a, accelWidget) }
 
 type Accessible struct {
-	Parent T.AtkObject
+	Parent A.Object
 	Widget *Widget
 }
 

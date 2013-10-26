@@ -7,6 +7,7 @@ import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -64,7 +65,7 @@ type Entry struct {
 	PopupMenu      *Widget
 	CurrentPos     int
 	SelectionBound int
-	CachedLayout   *T.PangoLayout
+	CachedLayout   *P.Layout
 	Bits2          uint
 	// CacheIncludesPreedit : 1
 	// NeedImReset : 1
@@ -142,7 +143,7 @@ var (
 	entryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *D.Window
 	entryGetInnerBorder           func(e *Entry) *Border
 	entryGetInvisibleChar         func(e *Entry) T.Gunichar
-	entryGetLayout                func(e *Entry) *T.PangoLayout
+	entryGetLayout                func(e *Entry) *P.Layout
 	entryGetLayoutOffsets         func(e *Entry, x, y *int)
 	entryGetMaxLength             func(e *Entry) int
 	entryGetOverwriteMode         func(e *Entry) T.Gboolean
@@ -224,7 +225,7 @@ func (e *Entry) GetIconWindow(iconPos EntryIconPosition) *D.Window {
 }
 func (e *Entry) GetInnerBorder() *Border       { return entryGetInnerBorder(e) }
 func (e *Entry) GetInvisibleChar() T.Gunichar  { return entryGetInvisibleChar(e) }
-func (e *Entry) GetLayout() *T.PangoLayout     { return entryGetLayout(e) }
+func (e *Entry) GetLayout() *P.Layout     { return entryGetLayout(e) }
 func (e *Entry) GetLayoutOffsets(x, y *int)    { entryGetLayoutOffsets(e, x, y) }
 func (e *Entry) GetMaxLength() int             { return entryGetMaxLength(e) }
 func (e *Entry) GetOverwriteMode() T.Gboolean  { return entryGetOverwriteMode(e) }

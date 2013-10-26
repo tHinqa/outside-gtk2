@@ -8,15 +8,12 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
 
-type (
-	simpleObject struct{ parent T.GObject }
-
-	Enum int
-)
+type Enum int
 
 var (
 	True  func() T.Gboolean
@@ -163,7 +160,7 @@ var (
 		stateType StateType,
 		useText T.Gboolean,
 		x, y int,
-		layout *T.PangoLayout)
+		layout *P.Layout)
 
 	DrawResizeGrip func(
 		style *Style,
@@ -369,7 +366,7 @@ var (
 		widget *Widget,
 		detail string,
 		x, y int,
-		layout *T.PangoLayout)
+		layout *P.Layout)
 
 	PaintResizeGrip func(
 		style *Style,
@@ -516,7 +513,7 @@ var (
 
 	SetLocale func() string
 
-	GetDefaultLanguage func() *T.PangoLanguage
+	GetDefaultLanguage func() *P.Language
 
 	EventsPending func() T.Gboolean
 

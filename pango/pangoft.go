@@ -113,25 +113,25 @@ var (
 
 	Pango_ft2_render_layout_line func(
 		bitmap *T.FT_Bitmap,
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout_line_subpixel func(
 		bitmap *T.FT_Bitmap,
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout func(
 		bitmap *T.FT_Bitmap,
-		layout *T.PangoLayout,
+		layout *Layout,
 		x int,
 		y int)
 
 	Pango_ft2_render_layout_subpixel func(
 		bitmap *T.FT_Bitmap,
-		layout *T.PangoLayout,
+		layout *Layout,
 		x int,
 		y int)
 

@@ -7,6 +7,7 @@ package pangowin
 
 import (
 	"github.com/tHinqa/outside"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	w "github.com/tHinqa/outside-windows/types"
 )
@@ -24,10 +25,10 @@ var (
 		font *T.PangoFont, glyphs *T.PangoGlyphString, x, y int)
 
 	Pango_win32_render_layout_line func(
-		hdc w.HDC, line *T.PangoLayoutLine, x, y int)
+		hdc w.HDC, line *P.LayoutLine, x, y int)
 
 	Pango_win32_render_layout func(
-		hdc w.HDC, layout *T.PangoLayout, x, y int)
+		hdc w.HDC, layout *P.Layout, x, y int)
 
 	Pango_win32_render_transformed func(
 		hdc w.HDC,

@@ -6,6 +6,7 @@ package gdk
 import (
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -18,8 +19,8 @@ var (
 	PangoContextGetForScreen func(screen *Screen) *T.PangoContext
 	PangoContextSetColormap  func(context *T.PangoContext, colormap *Colormap)
 
-	PangoLayoutGetClipRegion     func(layout *T.PangoLayout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
-	PangoLayoutLineGetClipRegion func(line *T.PangoLayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
+	PangoLayoutGetClipRegion     func(layout *P.Layout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
+	PangoLayoutLineGetClipRegion func(line *P.LayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
 )
 
 type PangoRenderer struct {

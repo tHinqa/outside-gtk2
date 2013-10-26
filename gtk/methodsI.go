@@ -521,7 +521,7 @@ var (
 func (i *Image) Clear()                                          { imageClear(i) }
 func (i *Image) Get(val **D.Image, mask **T.GdkBitmap)           { imageGet(i, val, mask) }
 func (i *Image) GetAnimation() *D.PixbufAnimation                { return imageGetAnimation(i) }
-func (i *Image) GetGicon(gicon **I.Icon, size *IconSize)        { imageGetGicon(i, gicon, size) }
+func (i *Image) GetGicon(gicon **I.Icon, size *IconSize)         { imageGetGicon(i, gicon, size) }
 func (i *Image) GetIconName(iconName **T.Gchar, size *IconSize)  { imageGetIconName(i, iconName, size) }
 func (i *Image) GetIconSet(iconSet **IconSet, size *IconSize)    { imageGetIconSet(i, iconSet, size) }
 func (i *Image) GetImage(gdkImage **D.Image, mask **T.GdkBitmap) { imageGetImage(i, gdkImage, mask) }
@@ -533,7 +533,7 @@ func (i *Image) GetStorageType() ImageType                       { return imageG
 func (i *Image) Set(val *D.Image, mask *T.GdkBitmap)             { imageSet(i, val, mask) }
 func (i *Image) SetFromAnimation(animation *D.PixbufAnimation)   { imageSetFromAnimation(i, animation) }
 func (i *Image) SetFromFile(filename string)                     { imageSetFromFile(i, filename) }
-func (i *Image) SetFromGicon(icon *I.Icon, size IconSize)       { imageSetFromGicon(i, icon, size) }
+func (i *Image) SetFromGicon(icon *I.Icon, size IconSize)        { imageSetFromGicon(i, icon, size) }
 func (i *Image) SetFromIconName(iconName string, size IconSize) {
 	imageSetFromIconName(i, iconName, size)
 }
@@ -597,7 +597,7 @@ const (
 
 var ImageTypeGetType func() O.Type
 
-type IMContext simpleObject
+type IMContext struct{ parent O.Object }
 
 var (
 	ImContextGetType func() O.Type

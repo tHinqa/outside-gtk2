@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -408,7 +409,7 @@ var (
 	PrintContextGetType func() O.Type
 
 	printContextCreatePangoContext func(p *PrintContext) *T.PangoContext
-	printContextCreatePangoLayout  func(p *PrintContext) *T.PangoLayout
+	printContextCreatePangoLayout  func(p *PrintContext) *P.Layout
 	printContextGetCairoContext    func(p *PrintContext) *T.Cairo
 	printContextGetDpiX            func(p *PrintContext) float64
 	printContextGetDpiY            func(p *PrintContext) float64
@@ -421,7 +422,7 @@ var (
 )
 
 func (p *PrintContext) CreatePangoContext() *T.PangoContext { return printContextCreatePangoContext(p) }
-func (p *PrintContext) CreatePangoLayout() *T.PangoLayout   { return printContextCreatePangoLayout(p) }
+func (p *PrintContext) CreatePangoLayout() *P.Layout        { return printContextCreatePangoLayout(p) }
 func (p *PrintContext) GetCairoContext() *T.Cairo           { return printContextGetCairoContext(p) }
 func (p *PrintContext) GetDpiX() float64                    { return printContextGetDpiX(p) }
 func (p *PrintContext) GetDpiY() float64                    { return printContextGetDpiY(p) }

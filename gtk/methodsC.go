@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	A "github.com/tHinqa/outside-gtk2/atk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -1029,7 +1030,7 @@ var (
 	comboBoxGetFocusOnClick      func(c *ComboBox) T.Gboolean
 	comboBoxGetHasEntry          func(c *ComboBox) T.Gboolean
 	comboBoxGetModel             func(c *ComboBox) *TreeModel
-	comboBoxGetPopupAccessible   func(c *ComboBox) *T.AtkObject
+	comboBoxGetPopupAccessible   func(c *ComboBox) *A.Object
 	comboBoxGetRowSeparatorFunc  func(c *ComboBox) TreeViewRowSeparatorFunc
 	comboBoxGetRowSpanColumn     func(c *ComboBox) int
 	comboBoxGetTitle             func(c *ComboBox) string
@@ -1066,7 +1067,7 @@ func (c *ComboBox) GetEntryTextColumn() int               { return comboBoxGetEn
 func (c *ComboBox) GetFocusOnClick() T.Gboolean           { return comboBoxGetFocusOnClick(c) }
 func (c *ComboBox) GetHasEntry() T.Gboolean               { return comboBoxGetHasEntry(c) }
 func (c *ComboBox) GetModel() *TreeModel                  { return comboBoxGetModel(c) }
-func (c *ComboBox) GetPopupAccessible() *T.AtkObject      { return comboBoxGetPopupAccessible(c) }
+func (c *ComboBox) GetPopupAccessible() *A.Object      { return comboBoxGetPopupAccessible(c) }
 func (c *ComboBox) GetRowSeparatorFunc() TreeViewRowSeparatorFunc {
 	return comboBoxGetRowSeparatorFunc(c)
 }

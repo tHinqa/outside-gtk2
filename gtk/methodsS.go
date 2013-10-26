@@ -7,6 +7,7 @@ import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -27,7 +28,7 @@ var (
 	scaleClearMarks       func(s *Scale)
 	scaleGetDigits        func(s *Scale) int
 	scaleGetDrawValue     func(s *Scale) T.Gboolean
-	scaleGetLayout        func(s *Scale) *T.PangoLayout
+	scaleGetLayout        func(s *Scale) *P.Layout
 	scaleGetLayoutOffsets func(s *Scale, x, y *int)
 	scaleGetValuePos      func(s *Scale) PositionType
 	scaleSetDrawValue     func(s *Scale, drawValue T.Gboolean)
@@ -40,7 +41,7 @@ func (s *Scale) AddMark(value float64, position PositionType, markup string) {
 func (s *Scale) ClearMarks()                       { scaleClearMarks(s) }
 func (s *Scale) GetDigits() int                    { return scaleGetDigits(s) }
 func (s *Scale) GetDrawValue() T.Gboolean          { return scaleGetDrawValue(s) }
-func (s *Scale) GetLayout() *T.PangoLayout         { return scaleGetLayout(s) }
+func (s *Scale) GetLayout() *P.Layout         { return scaleGetLayout(s) }
 func (s *Scale) GetLayoutOffsets(x, y *int)        { scaleGetLayoutOffsets(s, x, y) }
 func (s *Scale) GetValuePos() PositionType         { return scaleGetValuePos(s) }
 func (s *Scale) SetDrawValue(drawValue T.Gboolean) { scaleSetDrawValue(s, drawValue) }

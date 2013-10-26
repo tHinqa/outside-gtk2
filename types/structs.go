@@ -461,21 +461,6 @@ type (
 		// is_word_boundary : 1
 	}
 
-	AtkObject struct {
-		Parent            GObject
-		Description       *Gchar
-		Name              *Gchar
-		Accessible_parent *AtkObject
-		Role              AtkRole
-		Relation_set      *AtkRelationSet
-		Layer             AtkLayer
-	}
-
-	AtkRelationSet struct {
-		Parent    GObject
-		Relations *GPtrArray
-	}
-
 	GdkEventOwnerChange struct {
 		Type           GdkEventType
 		Window         *GdkWindow
@@ -554,12 +539,7 @@ type (
 		Destroy_func GDestroyNotify
 	}
 
-	PangoRectangle struct {
-		X      int
-		Y      int
-		Width  int
-		Height int
-	}
+	PangoRectangle struct{} //REMOVE
 
 	GdkPointerHooks struct {
 		Get_pointer func(
@@ -645,16 +625,6 @@ type (
 		Glyphs       *PangoGlyphInfo
 		Log_clusters *int
 		Space        int
-	}
-
-	PangoLayoutLine struct {
-		Layout      *PangoLayout
-		Start_index int
-		Length      int
-		Runs        *GSList
-		Bits        uint
-		// is_paragraph_start : 1
-		// resolved_dir : 3
 	}
 
 	PangoGlyphInfo struct {
@@ -776,61 +746,6 @@ type (
 
 	GTrashStack struct {
 		Next *GTrashStack
-	}
-
-	GailTextUtil struct {
-		Parent GObject
-		Buffer *GtkTextBuffer
-	}
-
-	AtkKeyEventStruct struct {
-		Type      int
-		State     uint
-		Keyval    uint
-		Length    int
-		String    *Gchar
-		Keycode   uint16
-		Timestamp GUint32
-	}
-
-	AtkRegistry struct {
-		Parent                  GObject
-		Factory_type_registry   *GHashTable
-		Factory_singleton_cache *GHashTable
-	}
-
-	AtkRelation struct {
-		Parent       GObject
-		Target       *GPtrArray
-		Relationship AtkRelationType
-	}
-
-	AtkPropertyValues struct {
-		Property_name *Gchar
-		Old_value     GValue
-		New_value     GValue
-	}
-
-	AtkGObjectAccessible struct {
-		Parent AtkObject
-	}
-
-	AtkTextRectangle struct {
-		X      int
-		Y      int
-		Width  int
-		Height int
-	}
-
-	AtkTextRange struct {
-		Bounds       AtkTextRectangle
-		Start_offset int
-		End_offset   int
-		Content      *Gchar
-	}
-
-	AtkPlug struct {
-		Parent AtkObject
 	}
 
 	PangoFcFont struct {

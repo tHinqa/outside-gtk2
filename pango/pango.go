@@ -17,6 +17,29 @@ func init() {
 	outside.AddDllApis(dllCairo, false, apiListCairo)
 }
 
+type (
+	Language struct{}
+
+	Layout struct{}
+
+	LayoutLine struct {
+		Layout     *Layout
+		StartIndex int
+		Length     int
+		Runs       *T.GSList
+		Bits       uint
+		// IsParagraphStart : 1
+		// ResolvedDir : 3
+	}
+
+	Rectangle struct {
+		X      int
+		Y      int
+		Width  int
+		Height int
+	}
+)
+
 var (
 	Pango_coverage_new func() *T.PangoCoverage
 
@@ -947,169 +970,169 @@ var (
 	Pango_layout_get_type func() O.Type
 
 	Pango_layout_new func(
-		context *T.PangoContext) *T.PangoLayout
+		context *T.PangoContext) *Layout
 
 	Pango_layout_copy func(
-		src *T.PangoLayout) *T.PangoLayout
+		src *Layout) *Layout
 
 	Pango_layout_get_context func(
-		layout *T.PangoLayout) *T.PangoContext
+		layout *Layout) *T.PangoContext
 
 	Pango_layout_set_attributes func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		attrs *T.PangoAttrList)
 
 	Pango_layout_get_attributes func(
-		layout *T.PangoLayout) *T.PangoAttrList
+		layout *Layout) *T.PangoAttrList
 
 	Pango_layout_set_text func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		text string,
 		length int)
 
 	Pango_layout_get_text func(
-		layout *T.PangoLayout) string
+		layout *Layout) string
 
 	Pango_layout_get_character_count func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_set_markup func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		markup string,
 		length int)
 
 	Pango_layout_set_markup_with_accel func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		markup string,
 		length int,
 		accel_marker T.Gunichar,
 		accel_char *T.Gunichar)
 
 	Pango_layout_set_font_description func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		desc *T.PangoFontDescription)
 
 	Pango_layout_get_font_description func(
-		layout *T.PangoLayout) *T.PangoFontDescription
+		layout *Layout) *T.PangoFontDescription
 
 	Pango_layout_set_width func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		width int)
 
 	Pango_layout_get_width func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_set_height func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		height int)
 
 	Pango_layout_get_height func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_set_wrap func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		wrap T.PangoWrapMode)
 
 	Pango_layout_get_wrap func(
-		layout *T.PangoLayout) T.PangoWrapMode
+		layout *Layout) T.PangoWrapMode
 
 	Pango_layout_is_wrapped func(
-		layout *T.PangoLayout) T.Gboolean
+		layout *Layout) T.Gboolean
 
 	Pango_layout_set_indent func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		indent int)
 
 	Pango_layout_get_indent func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_set_spacing func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		spacing int)
 
 	Pango_layout_get_spacing func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_set_justify func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		justify T.Gboolean)
 
 	Pango_layout_get_justify func(
-		layout *T.PangoLayout) T.Gboolean
+		layout *Layout) T.Gboolean
 
 	Pango_layout_set_auto_dir func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		auto_dir T.Gboolean)
 
 	Pango_layout_get_auto_dir func(
-		layout *T.PangoLayout) T.Gboolean
+		layout *Layout) T.Gboolean
 
 	Pango_layout_set_alignment func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		alignment T.PangoAlignment)
 
 	Pango_layout_get_alignment func(
-		layout *T.PangoLayout) T.PangoAlignment
+		layout *Layout) T.PangoAlignment
 
 	Pango_layout_set_tabs func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		tabs *T.PangoTabArray)
 
 	Pango_layout_get_tabs func(
-		layout *T.PangoLayout) *T.PangoTabArray
+		layout *Layout) *T.PangoTabArray
 
 	Pango_layout_set_single_paragraph_mode func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		setting T.Gboolean)
 
 	Pango_layout_get_single_paragraph_mode func(
-		layout *T.PangoLayout) T.Gboolean
+		layout *Layout) T.Gboolean
 
 	Pango_layout_set_ellipsize func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		ellipsize T.PangoEllipsizeMode)
 
 	Pango_layout_get_ellipsize func(
-		layout *T.PangoLayout) T.PangoEllipsizeMode
+		layout *Layout) T.PangoEllipsizeMode
 
 	Pango_layout_is_ellipsized func(
-		layout *T.PangoLayout) T.Gboolean
+		layout *Layout) T.Gboolean
 
 	Pango_layout_get_unknown_glyphs_count func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_context_changed func(
-		layout *T.PangoLayout)
+		layout *Layout)
 
 	Pango_layout_get_log_attrs func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		attrs **T.PangoLogAttr,
 		n_attrs *int)
 
 	Pango_layout_get_log_attrs_readonly func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		n_attrs *int) *T.PangoLogAttr
 
 	Pango_layout_index_to_pos func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		index int,
 		pos *T.PangoRectangle)
 
 	Pango_layout_index_to_line_x func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		index int,
 		trailing T.Gboolean,
 		line *int,
 		x_pos *int)
 
 	Pango_layout_get_cursor_pos func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		index int,
 		strong_pos *T.PangoRectangle,
 		weak_pos *T.PangoRectangle)
 
 	Pango_layout_move_cursor_visually func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		strong T.Gboolean,
 		old_index int,
 		old_trailing int,
@@ -1118,93 +1141,93 @@ var (
 		new_trailing *int)
 
 	Pango_layout_xy_to_index func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		x int,
 		y int,
 		index *int,
 		trailing *int) T.Gboolean
 
 	Pango_layout_get_extents func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		ink_rect *T.PangoRectangle,
 		logical_rect *T.PangoRectangle)
 
 	Pango_layout_get_pixel_extents func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		ink_rect *T.PangoRectangle,
 		logical_rect *T.PangoRectangle)
 
 	Pango_layout_get_size func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		width *int,
 		height *int)
 
 	Pango_layout_get_pixel_size func(
-		layout *T.PangoLayout,
+		layout *Layout,
 		width *int,
 		height *int)
 
 	Pango_layout_get_baseline func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_get_line_count func(
-		layout *T.PangoLayout) int
+		layout *Layout) int
 
 	Pango_layout_get_line func(
-		layout *T.PangoLayout,
-		line int) *T.PangoLayoutLine
+		layout *Layout,
+		line int) *LayoutLine
 
 	Pango_layout_get_line_readonly func(
-		layout *T.PangoLayout,
-		line int) *T.PangoLayoutLine
+		layout *Layout,
+		line int) *LayoutLine
 
 	Pango_layout_get_lines func(
-		layout *T.PangoLayout) *T.GSList
+		layout *Layout) *T.GSList
 
 	Pango_layout_get_lines_readonly func(
-		layout *T.PangoLayout) *T.GSList
+		layout *Layout) *T.GSList
 
 	Pango_layout_line_get_type func() O.Type
 
 	Pango_layout_line_ref func(
-		line *T.PangoLayoutLine) *T.PangoLayoutLine
+		line *LayoutLine) *LayoutLine
 
 	Pango_layout_line_unref func(
-		line *T.PangoLayoutLine)
+		line *LayoutLine)
 
 	Pango_layout_line_x_to_index func(
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		x_pos int,
 		index *int,
 		trailing *int) T.Gboolean
 
 	Pango_layout_line_index_to_x func(
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		index int,
 		trailing T.Gboolean,
 		x_pos *int)
 
 	Pango_layout_line_get_x_ranges func(
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		start_index int,
 		end_index int,
 		ranges **int,
 		n_ranges *int)
 
 	Pango_layout_line_get_extents func(
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		ink_rect *T.PangoRectangle,
 		logical_rect *T.PangoRectangle)
 
 	Pango_layout_line_get_pixel_extents func(
-		layout_line *T.PangoLayoutLine,
+		layout_line *LayoutLine,
 		ink_rect *T.PangoRectangle,
 		logical_rect *T.PangoRectangle)
 
 	Pango_layout_iter_get_type func() O.Type
 
 	Pango_layout_get_iter func(
-		layout *T.PangoLayout) *T.PangoLayoutIter
+		layout *Layout) *T.PangoLayoutIter
 
 	Pango_layout_iter_copy func(
 		iter *T.PangoLayoutIter) *T.PangoLayoutIter
@@ -1222,16 +1245,16 @@ var (
 		iter *T.PangoLayoutIter) *T.PangoLayoutRun
 
 	Pango_layout_iter_get_line func(
-		iter *T.PangoLayoutIter) *T.PangoLayoutLine
+		iter *T.PangoLayoutIter) *LayoutLine
 
 	Pango_layout_iter_get_line_readonly func(
-		iter *T.PangoLayoutIter) *T.PangoLayoutLine
+		iter *T.PangoLayoutIter) *LayoutLine
 
 	Pango_layout_iter_at_last_line func(
 		iter *T.PangoLayoutIter) T.Gboolean
 
 	Pango_layout_iter_get_layout func(
-		iter *T.PangoLayoutIter) *T.PangoLayout
+		iter *T.PangoLayoutIter) *Layout
 
 	Pango_layout_iter_next_char func(
 		iter *T.PangoLayoutIter) T.Gboolean
@@ -1281,13 +1304,13 @@ var (
 
 	Pango_renderer_draw_layout func(
 		renderer *T.PangoRenderer,
-		layout *T.PangoLayout,
+		layout *Layout,
 		x int,
 		y int)
 
 	Pango_renderer_draw_layout_line func(
 		renderer *T.PangoRenderer,
-		line *T.PangoLayoutLine,
+		line *LayoutLine,
 		x int,
 		y int)
 
@@ -1364,10 +1387,10 @@ var (
 		renderer *T.PangoRenderer) *T.PangoMatrix
 
 	Pango_renderer_get_layout func(
-		renderer *T.PangoRenderer) *T.PangoLayout
+		renderer *T.PangoRenderer) *Layout
 
 	Pango_renderer_get_layout_line func(
-		renderer *T.PangoRenderer) *T.PangoLayoutLine
+		renderer *T.PangoRenderer) *LayoutLine
 
 	Pango_split_file_list func(
 		str string) **T.Char
@@ -1481,11 +1504,11 @@ var (
 		cr *T.Cairo) *T.PangoContext
 
 	Pango_cairo_create_layout func(
-		cr *T.Cairo) *T.PangoLayout
+		cr *T.Cairo) *Layout
 
 	Pango_cairo_update_layout func(
 		cr *T.Cairo,
-		layout *T.PangoLayout)
+		layout *Layout)
 
 	Pango_cairo_show_glyph_string func(
 		cr *T.Cairo,
@@ -1499,11 +1522,11 @@ var (
 
 	Pango_cairo_show_layout_line func(
 		cr *T.Cairo,
-		line *T.PangoLayoutLine)
+		line *LayoutLine)
 
 	Pango_cairo_show_layout func(
 		cr *T.Cairo,
-		layout *T.PangoLayout)
+		layout *Layout)
 
 	Pango_cairo_show_error_underline func(
 		cr *T.Cairo,
@@ -1519,11 +1542,11 @@ var (
 
 	Pango_cairo_layout_line_path func(
 		cr *T.Cairo,
-		line *T.PangoLayoutLine)
+		line *LayoutLine)
 
 	Pango_cairo_layout_path func(
 		cr *T.Cairo,
-		layout *T.PangoLayout)
+		layout *Layout)
 
 	Pango_cairo_error_underline_path func(
 		cr *T.Cairo,

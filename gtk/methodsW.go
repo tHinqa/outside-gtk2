@@ -4,8 +4,10 @@
 package gtk
 
 import (
+	A "github.com/tHinqa/outside-gtk2/atk"
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -64,7 +66,7 @@ var (
 	widgetChildNotify           func(w *Widget, childProperty string)
 	widgetClassPath             func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
 	widgetCreatePangoContext    func(w *Widget) *T.PangoContext
-	widgetCreatePangoLayout     func(w *Widget, text string) *T.PangoLayout
+	widgetCreatePangoLayout     func(w *Widget, text string) *P.Layout
 	widgetDestroy               func(w *Widget)
 	widgetDestroyed             func(w *Widget, widgetPointer **Widget)
 	widgetDraw                  func(w *Widget, area *D.Rectangle)
@@ -72,7 +74,7 @@ var (
 	widgetErrorBell             func(w *Widget)
 	widgetEvent                 func(w *Widget, event *D.Event) T.Gboolean
 	widgetFreezeChildNotify     func(w *Widget)
-	widgetGetAccessible         func(w *Widget) *T.AtkObject
+	widgetGetAccessible         func(w *Widget) *A.Object
 	widgetGetAllocation         func(w *Widget, allocation *Allocation)
 	widgetGetAncestor           func(w *Widget, widgetType O.Type) *Widget
 	widgetGetAppPaintable       func(w *Widget) T.Gboolean
@@ -232,22 +234,22 @@ func (w *Widget) ClassPath(pathLength *uint, path, pathReversed **T.Gchar) {
 	widgetClassPath(w, pathLength, path, pathReversed)
 }
 func (w *Widget) CreatePangoContext() *T.PangoContext { return widgetCreatePangoContext(w) }
-func (w *Widget) CreatePangoLayout(text string) *T.PangoLayout {
+func (w *Widget) CreatePangoLayout(text string) *P.Layout {
 	return widgetCreatePangoLayout(w, text)
 }
-func (w *Widget) Destroy()                               { widgetDestroy(w) }
-func (w *Widget) Destroyed(widgetPointer **Widget)       { widgetDestroyed(w, widgetPointer) }
-func (w *Widget) Draw(area *D.Rectangle)                 { widgetDraw(w, area) }
-func (w *Widget) EnsureStyle()                           { widgetEnsureStyle(w) }
-func (w *Widget) ErrorBell()                             { widgetErrorBell(w) }
-func (w *Widget) Event(event *D.Event) T.Gboolean        { return widgetEvent(w, event) }
-func (w *Widget) FreezeChildNotify()                     { widgetFreezeChildNotify(w) }
-func (w *Widget) GetAccessible() *T.AtkObject            { return widgetGetAccessible(w) }
-func (w *Widget) GetAllocation(allocation *Allocation)   { widgetGetAllocation(w, allocation) }
+func (w *Widget) Destroy()                              { widgetDestroy(w) }
+func (w *Widget) Destroyed(widgetPointer **Widget)      { widgetDestroyed(w, widgetPointer) }
+func (w *Widget) Draw(area *D.Rectangle)                { widgetDraw(w, area) }
+func (w *Widget) EnsureStyle()                          { widgetEnsureStyle(w) }
+func (w *Widget) ErrorBell()                            { widgetErrorBell(w) }
+func (w *Widget) Event(event *D.Event) T.Gboolean       { return widgetEvent(w, event) }
+func (w *Widget) FreezeChildNotify()                    { widgetFreezeChildNotify(w) }
+func (w *Widget) GetAccessible() *A.Object           { return widgetGetAccessible(w) }
+func (w *Widget) GetAllocation(allocation *Allocation)  { widgetGetAllocation(w, allocation) }
 func (w *Widget) GetAncestor(widgetType O.Type) *Widget { return widgetGetAncestor(w, widgetType) }
-func (w *Widget) GetAppPaintable() T.Gboolean            { return widgetGetAppPaintable(w) }
-func (w *Widget) GetCanDefault() T.Gboolean              { return widgetGetCanDefault(w) }
-func (w *Widget) GetCanFocus() T.Gboolean                { return widgetGetCanFocus(w) }
+func (w *Widget) GetAppPaintable() T.Gboolean           { return widgetGetAppPaintable(w) }
+func (w *Widget) GetCanDefault() T.Gboolean             { return widgetGetCanDefault(w) }
+func (w *Widget) GetCanFocus() T.Gboolean               { return widgetGetCanFocus(w) }
 func (w *Widget) GetChildRequisition(requisition *Requisition) {
 	widgetGetChildRequisition(w, requisition)
 }
@@ -554,7 +556,7 @@ type WidgetClass struct {
 	PopupMenu func(widget *Widget) T.Gboolean
 	ShowHelp  func(widget *Widget,
 		helpType WidgetHelpType) T.Gboolean
-	GetAccessible func(widget *Widget) *T.AtkObject
+	GetAccessible func(widget *Widget) *A.Object
 	ScreenChanged func(widget *Widget,
 		previousScreen *D.Screen) T.Gboolean
 	CanActivateAccel func(widget *Widget,

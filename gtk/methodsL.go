@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -29,7 +30,7 @@ type Label struct {
 	Text           *T.Gchar
 	Attrs          *T.PangoAttrList
 	EffectiveAttrs *T.PangoAttrList
-	Layout         *T.PangoLayout
+	Layout         *P.Layout
 	MnemonicWidget *Widget
 	MnemonicWindow *Window
 	SelectInfo     *LabelSelectionInfo
@@ -49,7 +50,7 @@ var (
 	labelGetEllipsize          func(l *Label) T.PangoEllipsizeMode
 	labelGetJustify            func(l *Label) Justification
 	labelGetLabel              func(l *Label) string
-	labelGetLayout             func(l *Label) *T.PangoLayout
+	labelGetLayout             func(l *Label) *P.Layout
 	labelGetLayoutOffsets      func(l *Label, x, y *int)
 	labelGetLineWrap           func(l *Label) T.Gboolean
 	labelGetLineWrapMode       func(l *Label) T.PangoWrapMode
@@ -95,7 +96,7 @@ func (l *Label) GetCurrentUri() string              { return labelGetCurrentUri(
 func (l *Label) GetEllipsize() T.PangoEllipsizeMode { return labelGetEllipsize(l) }
 func (l *Label) GetJustify() Justification          { return labelGetJustify(l) }
 func (l *Label) GetLabel() string                   { return labelGetLabel(l) }
-func (l *Label) GetLayout() *T.PangoLayout          { return labelGetLayout(l) }
+func (l *Label) GetLayout() *P.Layout               { return labelGetLayout(l) }
 func (l *Label) GetLayoutOffsets(x, y *int)         { labelGetLayoutOffsets(l, x, y) }
 func (l *Label) GetLineWrap() T.Gboolean            { return labelGetLineWrap(l) }
 func (l *Label) GetLineWrapMode() T.PangoWrapMode   { return labelGetLineWrapMode(l) }

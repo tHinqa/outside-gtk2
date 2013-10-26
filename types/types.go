@@ -43,7 +43,6 @@ type (
 	UnsignedChar  uint8
 	UnsignedLong  uint32 //TODO(t): check  size
 
-	AtkAttributeSet        GSList
 	FT_Angle               FT_Fixed
 	FT_Bytes               *FT_Byte
 	FT_CharMap             *FT_CharMapRec
@@ -116,15 +115,9 @@ type (
 	PS_FontInfo            *PS_FontInfoRec
 	PS_Private             *PS_PrivateRec
 
-	simpleObject struct{ parent GObject }
-
-	AtkHyperlink     simpleObject
-	AtkMisc          simpleObject
-	AtkObjectFactory simpleObject
-	AtkStateSet      simpleObject
-	GdkDrawable      simpleObject //REMOVE
-	PangoEngine      simpleObject
-	PangoFcDecoder   simpleObject
+	GdkDrawable    struct{ parent GObject } //REMOVE
+	PangoEngine    struct{ parent GObject }
+	PangoFcDecoder struct{ parent GObject }
 
 	//TODO(t): Check and Fix
 	FT_DriverRec        struct{}
@@ -143,21 +136,6 @@ type (
 	FTC_NodeRec         struct{}
 	FTC_SBitCacheRec    struct{}
 
-	AtkAction                   struct{}
-	AtkComponent                struct{}
-	AtkDocument                 struct{}
-	AtkEditableText             struct{}
-	AtkHyperlinkImpl            struct{}
-	AtkHypertext                struct{}
-	AtkImage                    struct{}
-	AtkImplementor              struct{}
-	AtkSelection                struct{}
-	AtkSocket                   struct{}
-	AtkState                    struct{}
-	AtkStreamableContent        struct{}
-	AtkTable                    struct{}
-	AtkText                     struct{}
-	AtkValue                    struct{}
 	CairoDevice                 struct{}
 	CairoFontFace               struct{}
 	CairoFontOptions            struct{}
@@ -267,8 +245,7 @@ type (
 	PangoFontset                struct{}
 	PangoFontsetSimple          struct{}
 	PangoFT2FontMap             struct{}
-	PangoLanguage               struct{}
-	PangoLayout                 struct{}
+	PangoLanguage               struct{} //REMOVE
 	PangoLayoutIter             struct{}
 	PangoMap                    struct{}
 	PangoOTBuffer               struct{}
@@ -2172,255 +2149,6 @@ const (
 	GTK_RC_TOKEN_LAST
 )
 
-type AtkStateType Enum
-
-const (
-	ATK_STATE_INVALID AtkStateType = iota
-	ATK_STATE_ACTIVE
-	ATK_STATE_ARMED
-	ATK_STATE_BUSY
-	ATK_STATE_CHECKED
-	ATK_STATE_DEFUNCT
-	ATK_STATE_EDITABLE
-	ATK_STATE_ENABLED
-	ATK_STATE_EXPANDABLE
-	ATK_STATE_EXPANDED
-	ATK_STATE_FOCUSABLE
-	ATK_STATE_FOCUSED
-	ATK_STATE_HORIZONTAL
-	ATK_STATE_ICONIFIED
-	ATK_STATE_MODAL
-	ATK_STATE_MULTI_LINE
-	ATK_STATE_MULTISELECTABLE
-	ATK_STATE_OPAQUE
-	ATK_STATE_PRESSED
-	ATK_STATE_RESIZABLE
-	ATK_STATE_SELECTABLE
-	ATK_STATE_SELECTED
-	ATK_STATE_SENSITIVE
-	ATK_STATE_SHOWING
-	ATK_STATE_SINGLE_LINE
-	ATK_STATE_STALE
-	ATK_STATE_TRANSIENT
-	ATK_STATE_VERTICAL
-	ATK_STATE_VISIBLE
-	ATK_STATE_MANAGES_DESCENDANTS
-	ATK_STATE_INDETERMINATE
-	ATK_STATE_TRUNCATED
-	ATK_STATE_REQUIRED
-	ATK_STATE_INVALID_ENTRY
-	ATK_STATE_SUPPORTS_AUTOCOMPLETION
-	ATK_STATE_SELECTABLE_TEXT
-	ATK_STATE_DEFAULT
-	ATK_STATE_ANIMATED
-	ATK_STATE_VISITED
-	ATK_STATE_LAST_DEFINED
-)
-
-type AtkRelationType Enum
-
-const (
-	ATK_RELATION_NULL AtkRelationType = iota
-	ATK_RELATION_CONTROLLED_BY
-	ATK_RELATION_CONTROLLER_FOR
-	ATK_RELATION_LABEL_FOR
-	ATK_RELATION_LABELLED_BY
-	ATK_RELATION_MEMBER_OF
-	ATK_RELATION_NODE_CHILD_OF
-	ATK_RELATION_FLOWS_TO
-	ATK_RELATION_FLOWS_FROM
-	ATK_RELATION_SUBWINDOW_OF
-	ATK_RELATION_EMBEDS
-	ATK_RELATION_EMBEDDED_BY
-	ATK_RELATION_POPUP_FOR
-	ATK_RELATION_PARENT_WINDOW_OF
-	ATK_RELATION_DESCRIBED_BY
-	ATK_RELATION_DESCRIPTION_FOR
-	ATK_RELATION_NODE_PARENT_OF
-	ATK_RELATION_LAST_DEFINED
-)
-
-type AtkRole Enum
-
-const (
-	ATK_ROLE_INVALID AtkRole = iota
-	ATK_ROLE_ACCEL_LABEL
-	ATK_ROLE_ALERT
-	ATK_ROLE_ANIMATION
-	ATK_ROLE_ARROW
-	ATK_ROLE_CALENDAR
-	ATK_ROLE_CANVAS
-	ATK_ROLE_CHECK_BOX
-	ATK_ROLE_CHECK_MENU_ITEM
-	ATK_ROLE_COLOR_CHOOSER
-	ATK_ROLE_COLUMN_HEADER
-	ATK_ROLE_COMBO_BOX
-	ATK_ROLE_DATE_EDITOR
-	ATK_ROLE_DESKTOP_ICON
-	ATK_ROLE_DESKTOP_FRAME
-	ATK_ROLE_DIAL
-	ATK_ROLE_DIALOG
-	ATK_ROLE_DIRECTORY_PANE
-	ATK_ROLE_DRAWING_AREA
-	ATK_ROLE_FILE_CHOOSER
-	ATK_ROLE_FILLER
-	ATK_ROLE_FONT_CHOOSER
-	ATK_ROLE_FRAME
-	ATK_ROLE_GLASS_PANE
-	ATK_ROLE_HTML_CONTAINER
-	ATK_ROLE_ICON
-	ATK_ROLE_IMAGE
-	ATK_ROLE_INTERNAL_FRAME
-	ATK_ROLE_LABEL
-	ATK_ROLE_LAYERED_PANE
-	ATK_ROLE_LIST
-	ATK_ROLE_LIST_ITEM
-	ATK_ROLE_MENU
-	ATK_ROLE_MENU_BAR
-	ATK_ROLE_MENU_ITEM
-	ATK_ROLE_OPTION_PANE
-	ATK_ROLE_PAGE_TAB
-	ATK_ROLE_PAGE_TAB_LIST
-	ATK_ROLE_PANEL
-	ATK_ROLE_PASSWORD_TEXT
-	ATK_ROLE_POPUP_MENU
-	ATK_ROLE_PROGRESS_BAR
-	ATK_ROLE_PUSH_BUTTON
-	ATK_ROLE_RADIO_BUTTON
-	ATK_ROLE_RADIO_MENU_ITEM
-	ATK_ROLE_ROOT_PANE
-	ATK_ROLE_ROW_HEADER
-	ATK_ROLE_SCROLL_BAR
-	ATK_ROLE_SCROLL_PANE
-	ATK_ROLE_SEPARATOR
-	ATK_ROLE_SLIDER
-	ATK_ROLE_SPLIT_PANE
-	ATK_ROLE_SPIN_BUTTON
-	ATK_ROLE_STATUSBAR
-	ATK_ROLE_TABLE
-	ATK_ROLE_TABLE_CELL
-	ATK_ROLE_TABLE_COLUMN_HEADER
-	ATK_ROLE_TABLE_ROW_HEADER
-	ATK_ROLE_TEAR_OFF_MENU_ITEM
-	ATK_ROLE_TERMINAL
-	ATK_ROLE_TEXT
-	ATK_ROLE_TOGGLE_BUTTON
-	ATK_ROLE_TOOL_BAR
-	ATK_ROLE_TOOL_TIP
-	ATK_ROLE_TREE
-	ATK_ROLE_TREE_TABLE
-	ATK_ROLE_UNKNOWN
-	ATK_ROLE_VIEWPORT
-	ATK_ROLE_WINDOW
-	ATK_ROLE_HEADER
-	ATK_ROLE_FOOTER
-	ATK_ROLE_PARAGRAPH
-	ATK_ROLE_RULER
-	ATK_ROLE_APPLICATION
-	ATK_ROLE_AUTOCOMPLETE
-	ATK_ROLE_EDITBAR
-	ATK_ROLE_EMBEDDED
-	ATK_ROLE_ENTRY
-	ATK_ROLE_CHART
-	ATK_ROLE_CAPTION
-	ATK_ROLE_DOCUMENT_FRAME
-	ATK_ROLE_HEADING
-	ATK_ROLE_PAGE
-	ATK_ROLE_SECTION
-	ATK_ROLE_REDUNDANT_OBJECT
-	ATK_ROLE_FORM
-	ATK_ROLE_LINK
-	ATK_ROLE_INPUT_METHOD_WINDOW
-	ATK_ROLE_LAST_DEFINED
-)
-
-type AtkLayer Enum
-
-const (
-	ATK_LAYER_INVALID AtkLayer = iota
-	ATK_LAYER_BACKGROUND
-	ATK_LAYER_CANVAS
-	ATK_LAYER_WIDGET
-	ATK_LAYER_MDI
-	ATK_LAYER_POPUP
-	ATK_LAYER_OVERLAY
-	ATK_LAYER_WINDOW
-)
-
-type AtkKeyEventType Enum
-
-const (
-	ATK_KEY_EVENT_PRESS AtkKeyEventType = iota
-	ATK_KEY_EVENT_RELEASE
-	ATK_KEY_EVENT_LAST_DEFINED
-)
-
-type AtkCoordType Enum
-
-const (
-	ATK_XY_SCREEN AtkCoordType = iota
-	ATK_XY_WINDOW
-)
-
-type AtkTextAttribute Enum
-
-const (
-	ATK_TEXT_ATTR_INVALID AtkTextAttribute = iota
-	ATK_TEXT_ATTR_LEFT_MARGIN
-	ATK_TEXT_ATTR_RIGHT_MARGIN
-	ATK_TEXT_ATTR_INDENT
-	ATK_TEXT_ATTR_INVISIBLE
-	ATK_TEXT_ATTR_EDITABLE
-	ATK_TEXT_ATTR_PIXELS_ABOVE_LINES
-	ATK_TEXT_ATTR_PIXELS_BELOW_LINES
-	ATK_TEXT_ATTR_PIXELS_INSIDE_WRAP
-	ATK_TEXT_ATTR_BG_FULL_HEIGHT
-	ATK_TEXT_ATTR_RISE
-	ATK_TEXT_ATTR_UNDERLINE
-	ATK_TEXT_ATTR_STRIKETHROUGH
-	ATK_TEXT_ATTR_SIZE
-	ATK_TEXT_ATTR_SCALE
-	ATK_TEXT_ATTR_WEIGHT
-	ATK_TEXT_ATTR_LANGUAGE
-	ATK_TEXT_ATTR_FAMILY_NAME
-	ATK_TEXT_ATTR_BG_COLOR
-	ATK_TEXT_ATTR_FG_COLOR
-	ATK_TEXT_ATTR_BG_STIPPLE
-	ATK_TEXT_ATTR_FG_STIPPLE
-	ATK_TEXT_ATTR_WRAP_MODE
-	ATK_TEXT_ATTR_DIRECTION
-	ATK_TEXT_ATTR_JUSTIFICATION
-	ATK_TEXT_ATTR_STRETCH
-	ATK_TEXT_ATTR_VARIANT
-	ATK_TEXT_ATTR_STYLE
-	ATK_TEXT_ATTR_LAST_DEFINED
-)
-
-type AtkTextBoundary Enum
-
-const (
-	ATK_TEXT_BOUNDARY_CHAR AtkTextBoundary = iota
-	ATK_TEXT_BOUNDARY_WORD_START
-	ATK_TEXT_BOUNDARY_WORD_END
-	ATK_TEXT_BOUNDARY_SENTENCE_START
-	ATK_TEXT_BOUNDARY_SENTENCE_END
-	ATK_TEXT_BOUNDARY_LINE_START
-	ATK_TEXT_BOUNDARY_LINE_END
-)
-
-type AtkTextClipType Enum
-
-const (
-	ATK_TEXT_CLIP_NONE AtkTextClipType = iota
-	ATK_TEXT_CLIP_MIN
-	ATK_TEXT_CLIP_MAX
-	ATK_TEXT_CLIP_BOTH
-)
-
-type AtkHyperlinkStateFlags Enum
-
-const ATK_HYPERLINK_IS_INLINE AtkHyperlinkStateFlags = 1 << 0
-
 type GtkWidgetFlags Enum
 
 const (
@@ -2569,14 +2297,6 @@ const (
 const (
 	GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID  = -1
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
-)
-
-type GailOffsetType Enum
-
-const (
-	GAIL_BEFORE_OFFSET GailOffsetType = iota
-	GAIL_AT_OFFSET
-	GAIL_AFTER_OFFSET
 )
 
 type PangoOTTableType Enum
@@ -2916,22 +2636,11 @@ type (
 
 	Csi_copy_page_func_t func(closure *Void, cr *Cairo)
 
-	AtkEventListener func(obj *AtkObject)
-
 	GSignalEmissionHook func(
 		ihint *GSignalInvocationHint,
 		n_param_values uint,
 		param_values *GValue,
 		data Gpointer) Gboolean
-
-	AtkKeySnoopFunc func(
-		event *AtkKeyEventStruct, func_data Gpointer) int
-
-	AtkPropertyChangeHandler func(*AtkObject, *AtkPropertyValues)
-
-	AtkEventListenerInit func()
-
-	AtkFocusHandler func(*AtkObject, Gboolean)
 
 	PangoFcDecoderFindFunc func(
 		pattern *FcPattern,
