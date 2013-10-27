@@ -18,21 +18,21 @@ type (
 	}
 
 	GCompletion struct {
-		Items        *GList
-		Fnc          GCompletionFunc
-		Prefix       *Gchar
-		Cache        *GList
-		Strncmp_func GCompletionStrncmpFunc
+		Items       *GList
+		Fnc         GCompletionFunc
+		Prefix      *Gchar
+		Cache       *GList
+		StrncmpFunc GCompletionStrncmpFunc
 	}
 
 	GDate struct {
 		Bits1, Bits2 uint
-		// julian_days : 32
-		// julian : 1
-		// dmy : 1
-		// day : 6
-		// month : 4
-		// year : 16
+		// JulianDays : 32
+		// Julian : 1
+		// Dmy : 1
+		// Day : 6
+		// Month : 4
+		// Year : 16
 	}
 
 	GDebugKey struct {
@@ -56,47 +56,47 @@ type (
 	}
 
 	GHook struct {
-		Data      Gpointer
-		Next      *GHook
-		Prev      *GHook
-		Ref_count uint
-		Hook_id   Gulong
-		Flags     uint
-		Fnc       Gpointer
-		Destroy   GDestroyNotify
+		Data     Gpointer
+		Next     *GHook
+		Prev     *GHook
+		RefCount uint
+		HookId   Gulong
+		Flags    uint
+		Fnc      Gpointer
+		Destroy  GDestroyNotify
 	}
 
 	GHookList struct {
-		Seq_id Gulong
-		Bits   uint
-		// hook_size : 16
-		// is_setup : 1
-		Hooks         *GHook
-		Dummy3        Gpointer
-		Finalize_hook GHookFinalizeFunc
-		Dummy         [2]Gpointer
+		SeqId Gulong
+		Bits  uint
+		// HookSize : 16
+		// IsSetup : 1
+		Hooks        *GHook
+		Dummy3       Gpointer
+		FinalizeHook GHookFinalizeFunc
+		Dummy        [2]Gpointer
 	}
 
 	GIOChannel struct {
-		Ref_count         int
-		Funcs             *GIOFuncs
-		Encoding          *Gchar
-		Read_cd           GIConv
-		Write_cd          GIConv
-		Line_term         *Gchar
-		Line_term_len     uint
-		Buf_size          Gsize
-		Read_buf          *GString
-		Encoded_read_buf  *GString
-		Write_buf         *GString
-		Partial_write_buf [6]Gchar
-		Bits              uint
-		// use_buffer : 1
-		// do_encode : 1
-		// close_on_unref : 1
-		// is_readable : 1
-		// is_writeable : 1
-		// is_seekable : 1
+		RefCount        int
+		Funcs           *GIOFuncs
+		Encoding        *Gchar
+		ReadCd          GIConv
+		WriteCd         GIConv
+		LineTerm        *Gchar
+		LineTermLen     uint
+		BufSize         Gsize
+		ReadBuf         *GString
+		EncodedReadBuf  *GString
+		WriteBuf        *GString
+		PartialWriteBuf [6]Gchar
+		Bits            uint
+		// UseBuffer : 1
+		// DoEncode : 1
+		// CloseOnUnref : 1
+		// IsReadable : 1
+		// IsWriteable : 1
+		// IsSeekable : 1
 		_, _ Gpointer
 	}
 
@@ -107,68 +107,68 @@ type (
 	}
 
 	GIOFuncs struct {
-		Io_read func(
+		IoRead func(
 			channel *GIOChannel,
 			buf *Gchar,
 			count Gsize,
-			bytes_read *Gsize,
+			bytesRead *Gsize,
 			err **GError) GIOStatus
-		Io_write func(
+		IoWrite func(
 			channel *GIOChannel,
 			buf *Gchar,
 			count Gsize,
-			bytes_written *Gsize,
+			bytesWritten *Gsize,
 			err **GError) GIOStatus
-		Io_seek func(
+		IoSeek func(
 			channel *GIOChannel,
 			offset int64,
 			type_ GSeekType,
 			err **GError) GIOStatus
-		Io_close func(
+		IoClose func(
 			channel *GIOChannel,
 			err **GError) GIOStatus
-		Io_create_watch func(
+		IoCreateWatch func(
 			channel *GIOChannel,
 			condition GIOCondition) *GSource
-		Io_free func(
+		IoFree func(
 			channel *GIOChannel)
-		Io_set_flags func(
+		IoSetFlags func(
 			channel *GIOChannel,
 			flags GIOFlags,
 			err **GError) GIOStatus
-		Io_get_flags func(
+		IoGetFlags func(
 			channel *GIOChannel) GIOFlags
 	}
 
 	GMarkupParser struct {
-		Start_element func(
+		StartElement func(
 			context *GMarkupParseContext,
-			element_name *Gchar,
-			attribute_names **Gchar,
-			attribute_values **Gchar,
-			user_data Gpointer,
+			elementName *Gchar,
+			attributeNames **Gchar,
+			attributeValues **Gchar,
+			userData Gpointer,
 			error **GError)
-		End_element func(
+		EndElement func(
 			context *GMarkupParseContext,
-			element_name *Gchar,
-			user_data Gpointer,
+			elementName *Gchar,
+			userData Gpointer,
 			error **GError)
 		Text func(
 			context *GMarkupParseContext,
 			text *Gchar,
-			text_len Gsize,
-			user_data Gpointer,
+			textLen Gsize,
+			userData Gpointer,
 			error **GError)
 		Passthrough func(
 			context *GMarkupParseContext,
-			passthrough_text *Gchar,
-			text_len Gsize,
-			user_data Gpointer,
+			passthroughText *Gchar,
+			textLen Gsize,
+			userData Gpointer,
 			error **GError)
 		Error func(
 			context *GMarkupParseContext,
 			error *GError,
-			user_data Gpointer)
+			userData Gpointer)
 	}
 
 	GNode struct {
@@ -185,13 +185,13 @@ type (
 	}
 
 	GOptionEntry struct {
-		Long_name       *Gchar
-		Short_name      Gchar
-		Flags           int
-		Arg             GOptionArg
-		Arg_data        Gpointer
-		Description     *Gchar
-		Arg_description *Gchar
+		LongName       *Gchar
+		ShortName      Gchar
+		Flags          int
+		Arg            GOptionArg
+		ArgData        Gpointer
+		Description    *Gchar
+		ArgDescription *Gchar
 	}
 
 	GPollFD struct {
@@ -212,58 +212,58 @@ type (
 	}
 
 	GScanner struct {
-		User_data        Gpointer
-		Max_parse_errors uint
-		Parse_errors     uint
-		Input_name       *Gchar
-		Qdata            *GData
-		Config           *GScannerConfig
-		Token            GTokenType
-		Value            GTokenValue
-		Line             uint
-		Position         uint
-		Next_token       GTokenType
-		Next_value       GTokenValue
-		Next_line        uint
-		Next_position    uint
-		Symbol_table     *GHashTable
-		Input_fd         int
-		Text             *Gchar
-		Text_end         *Gchar
-		Buffer           *Gchar
-		Scope_id         uint
-		Msg_handler      GScannerMsgFunc
+		UserData       Gpointer
+		MaxParseErrors uint
+		ParseErrors    uint
+		InputName      *Gchar
+		Qdata          *GData
+		Config         *GScannerConfig
+		Token          GTokenType
+		Value          GTokenValue
+		Line           uint
+		Position       uint
+		NextToken      GTokenType
+		NextValue      GTokenValue
+		NextLine       uint
+		NextPosition   uint
+		SymbolTable    *GHashTable
+		InputFd        int
+		Text           *Gchar
+		TextEnd        *Gchar
+		Buffer         *Gchar
+		ScopeId        uint
+		MsgHandler     GScannerMsgFunc
 	}
 
 	GScannerConfig struct {
-		Cset_skip_characters  *Gchar
-		Cset_identifier_first *Gchar
-		Cset_identifier_nth   *Gchar
-		Cpair_comment_single  *Gchar
-		Bits                  uint
-		// case_sensitive : 1
-		// skip_comment_multi : 1
-		// skip_comment_single : 1
-		// scan_comment_multi : 1
-		// scan_identifier : 1
-		// scan_identifier_1char : 1
-		// scan_identifier_NULL : 1
-		// scan_symbols : 1
-		// scan_binary : 1
-		// scan_octal : 1
-		// scan_float : 1
-		// scan_hex : 1
-		// scan_hex_dollar : 1
-		// scan_string_sq : 1
-		// scan_string_dq : 1
-		// numbers_2_int : 1
-		// int_2_float : 1
-		// identifier_2_string : 1
-		// char_2_token : 1
-		// symbol_2_token : 1
-		// scope_0_fallback : 1
-		// store_int64 : 1
-		Padding_dummy uint
+		CsetSkipCharacters  *Gchar
+		CsetIdentifierFirst *Gchar
+		CsetIdentifierNth   *Gchar
+		CpairCommentSingle  *Gchar
+		Bits                uint
+		// CaseSensitive : 1
+		// SkipCommentMulti : 1
+		// SkipCommentSingle : 1
+		// ScanCommentMulti : 1
+		// ScanIdentifier : 1
+		// ScanIdentifier1char : 1
+		// ScanIdentifier_NULL : 1
+		// ScanSymbols : 1
+		// ScanBinary : 1
+		// ScanOctal : 1
+		// ScanFloat : 1
+		// ScanHex : 1
+		// ScanHexDollar : 1
+		// ScanStringSq : 1
+		// ScanStringDq : 1
+		// Numbers2Int : 1
+		// Int2Float : 1
+		// Identifier2String : 1
+		// Char2Token : 1
+		// Symbol2Token : 1
+		// Scope0Fallback : 1
+		// StoreInt64 : 1
+		PaddingDummy uint
 	}
 
 	GSList struct {
@@ -284,27 +284,27 @@ type (
 	}
 
 	GSystemThread struct {
-		// union
-		// data[4] Char
-		Dummy_double float64
-		// dummy_pointer *Void
-		// dummy_long Long
+		// Union
+		// Data[4] Char
+		DummyDouble float64
+		// DummyPointer *Void
+		// DummyLong Long
 	}
 
 	GStaticRWLock struct {
-		Mutex         GStaticMutex
-		Read_cond     *GCond
-		Write_cond    *GCond
-		Read_counter  uint
-		Have_writer   Gboolean
-		Want_to_read  uint
-		Want_to_write uint
+		Mutex       GStaticMutex
+		ReadCond    *GCond
+		WriteCond   *GCond
+		ReadCounter uint
+		HaveWriter  Gboolean
+		WantToRead  uint
+		WantToWrite uint
 	}
 
 	GString struct {
-		Str           *Gchar
-		Len           Gsize
-		Allocated_len Gsize
+		Str          *Gchar
+		Len          Gsize
+		AllocatedLen Gsize
 	}
 
 	GTestLogBuffer struct {
@@ -313,11 +313,11 @@ type (
 	}
 
 	GTestLogMsg struct {
-		Log_type  GTestLogType
-		N_strings uint
-		Strings   **Gchar
-		N_nums    uint
-		Nums      *Long_double
+		LogType  GTestLogType
+		NStrings uint
+		Strings  **Gchar
+		NNums    uint
+		Nums     *LongDouble
 	}
 
 	GThread struct {
@@ -328,69 +328,69 @@ type (
 	}
 
 	GThreadFunctions struct {
-		Mutex_new       func()
-		Mutex_lock      func(mutex *GMutex) *GMutex
-		Mutex_trylock   func(mutex *GMutex) Gboolean
-		Mutex_unlock    func(mutex *GMutex)
-		Mutex_free      func(mutex *GMutex)
-		Cond_new        func() *GCond
-		Cond_signal     func(cond *GCond)
-		Cond_broadcast  func(cond *GCond)
-		Cond_wait       func(cond *GCond, mutex *GMutex)
-		Cond_timed_wait func(
+		MutexNew      func()
+		MutexLock     func(mutex *GMutex) *GMutex
+		MutexTrylock  func(mutex *GMutex) Gboolean
+		MutexUnlock   func(mutex *GMutex)
+		MutexFree     func(mutex *GMutex)
+		CondNew       func() *GCond
+		CondSignal    func(cond *GCond)
+		CondBroadcast func(cond *GCond)
+		CondWait      func(cond *GCond, mutex *GMutex)
+		CondTimedWait func(
 			cond *GCond,
 			mutex *GMutex,
-			end_time *GTimeVal) Gboolean
-		Cond_free     func(cond *GCond)
-		Private_new   func(destructor GDestroyNotify) *GPrivate
-		Private_get   func(private_key *GPrivate) Gpointer
-		Private_set   func(private_key *GPrivate, data Gpointer)
-		Thread_create func(
+			endTime *GTimeVal) Gboolean
+		CondFree     func(cond *GCond)
+		PrivateNew   func(destructor GDestroyNotify) *GPrivate
+		PrivateGet   func(privateKey *GPrivate) Gpointer
+		PrivateSet   func(privateKey *GPrivate, data Gpointer)
+		ThreadCreate func(
 			fnc GThreadFunc,
 			data Gpointer,
-			stack_size Gulong,
+			stackSize Gulong,
 			joinable Gboolean,
 			bound Gboolean,
 			priority GThreadPriority,
 			thread Gpointer,
 			error **GError)
-		Thread_yield        func()
-		Thread_join         func(thread Gpointer)
-		Thread_exit         func()
-		Thread_set_priority func(
+		Threadield        func()
+		ThreadJoin        func(thread Gpointer)
+		ThreadExit        func()
+		ThreadSetPriority func(
 			thread Gpointer,
 			priority GThreadPriority)
-		Thread_self  func(thread Gpointer)
-		Thread_equal func(
+		ThreadSelf  func(thread Gpointer)
+		ThreadEqual func(
 			thread1 Gpointer,
 			thread2 Gpointer) Gboolean
 	}
 
 	GThreadPool struct {
 		Func      GFunc
-		User_data Gpointer
+		UserData  Gpointer
 		Exclusive Gboolean
 	}
 
 	GTimeVal struct {
-		Tv_sec  Glong
-		Tv_usec Glong
+		TvSec  Glong
+		TvUsec Glong
 	}
 
 	GTokenValue struct {
-		// union
-		// v_symbol  Gpointer;
-		// v_identifier  *Gchar;
-		// v_binary  Gulong;
-		// v_octal  Gulong;
-		// v_int  Gulong;
-		V_int64 uint64
-		// v_float  float64;
-		// v_hex  Gulong;
-		// v_string  *Gchar;
-		// v_comment  *Gchar;
-		// v_char  Guchar;
-		// v_error  uint;
+		// Union
+		// VSymbol  Gpointer;
+		// VIdentifier  *Gchar;
+		// VBinary  Gulong;
+		// VOctal  Gulong;
+		// VInt  Gulong;
+		VInt64 uint64
+		// VFloat  float64;
+		// VHex  Gulong;
+		// VString  *Gchar;
+		// VComment  *Gchar;
+		// VChar  Guchar;
+		// VError  uint;
 	}
 
 	GTuples struct {
@@ -420,64 +420,47 @@ type (
 	GtkTextBuffer struct{} //REMOVE
 
 	GdkKeyboardGrabInfo struct {
-		Window        *GdkWindow
-		Native_window *GdkWindow
-		Serial        Gulong
-		Owner_events  Gboolean
-		Time          GUint32
+		Window       *GdkWindow
+		NativeWindow *GdkWindow
+		Serial       Gulong
+		OwnerEvents  Gboolean
+		Time         GUint32
 	}
 
 	GdkPointerWindowInfo struct {
-		Toplevel_under_pointer *GdkWindow
-		Window_under_pointer   *GdkWindow
-		Toplevel_x, Toplevel_y float64
-		State                  GUint32
-		Button                 GUint32
-		Motion_hint_serial     Gulong
+		ToplevelUnderPointer *GdkWindow
+		WindowUnderPointer   *GdkWindow
+		ToplevelX, Toplevel  float64
+		State                GUint32
+		Button               GUint32
+		MotionHintSerial     Gulong
 	}
 
 	GdkEvent struct{} //REMOTE
 
 	GSignalInvocationHint struct {
-		Signal_id uint
-		Detail    GQuark
-		Run_type  GSignalFlags
-	}
-
-	PangoLogAttr struct {
-		Bits uint
-		// is_line_break : 1
-		// is_mandatory_break : 1
-		// is_char_break : 1
-		// is_white : 1
-		// is_cursor_position : 1
-		// is_word_start : 1
-		// is_word_end : 1
-		// is_sentence_boundary : 1
-		// is_sentence_start : 1
-		// is_sentence_end : 1
-		// backspace_deletes_character : 1
-		// is_expandable_space : 1
-		// is_word_boundary : 1
+		SignalId uint
+		Detail   GQuark
+		RunType  GSignalFlags
 	}
 
 	GdkEventOwnerChange struct {
-		Type           GdkEventType
-		Window         *GdkWindow
-		Send_event     int8
-		Owner          GdkNativeWindow
-		Reason         GdkOwnerChange
-		Selection      GdkAtom
-		Time           GUint32
-		Selection_time GUint32
+		Type          GdkEventType
+		Window        *GdkWindow
+		SendEvent     int8
+		Owner         GdkNativeWindow
+		Reason        GdkOwnerChange
+		Selection     GdkAtom
+		Time          GUint32
+		SelectionTime GUint32
 	}
 
 	GdkEventSetting struct {
-		Type       GdkEventType
-		Window     *GdkWindow
-		Send_event int8
-		Action     GdkSettingAction
-		Name       *Char
+		Type      GdkEventType
+		Window    *GdkWindow
+		SendEvent int8
+		Action    GdkSettingAction
+		Name      *Char
 	}
 
 	GParamSpec struct{} //REMOVE
@@ -488,74 +471,37 @@ type (
 	}
 
 	GtkRcProperty struct {
-		Type_name     GQuark
-		Property_name GQuark
-		Origin        *Gchar
-		Value         GValue
+		TypeName     GQuark
+		PropertyName GQuark
+		Origin       *Gchar
+		Value        GValue
 	}
 
-	/*
-	   GtkWidgetAuxInfo  struct
-	   {
-	   x  int;
-	   y  int;
-	   width  int;
-	   height  int;
-	    uint x_set : 1;
-	    uint y_set : 1;
-	   };
-	*/
-
-	PangoColor struct {
-		Red   uint16
-		Green uint16
-		Blue  uint16
+	GtkWidgetAuxInfo struct {
+		X      int
+		Y      int
+		Width  int
+		Height int
+		Bits   uint
+		// XSet : 1
+		// YSet : 1
 	}
-
-	PangoRenderer struct {
-		Parent_instance GObject
-		Underline       PangoUnderline
-		Strikethrough   Gboolean
-		Active_count    int
-		Matrix          *PangoMatrix
-		Priv            *PangoRendererPrivate
-	}
-
-	PangoMatrix struct {
-		Xx float64
-		Xy float64
-		Yx float64
-		Yy float64
-		X0 float64
-		Y0 float64
-	}
-
-	PangoAttrShape struct {
-		Attr         PangoAttribute
-		Ink_rect     PangoRectangle
-		Logical_rect PangoRectangle
-		Data         Gpointer
-		Copy_func    PangoAttrDataCopyFunc
-		Destroy_func GDestroyNotify
-	}
-
-	PangoRectangle struct{} //REMOVE
 
 	GdkPointerHooks struct {
-		Get_pointer func(
+		GetPointer func(
 			window *GdkWindow,
 			x *int,
 			y *int,
 			mask *GdkModifierType) *GdkWindow
-		Window_at_pointer func(screen *GdkScreen,
-			win_x *int,
-			win_y *int) *GdkWindow
+		WindowAtPointer func(screen *GdkScreen,
+			winX *int,
+			win *int) *GdkWindow
 	}
 
 	GdkRgbCmap struct {
-		Colors    [256]GUint32
-		N_colors  int
-		Info_list *GSList
+		Colors   [256]GUint32
+		NColors  int
+		InfoList *GSList
 	}
 
 	GdkSegment struct {
@@ -580,193 +526,73 @@ type (
 		Y1, X11, X21, Y2, X12, X22 float64
 	}
 
-	PangoAttribute struct {
-		Klass       *PangoAttrClass
-		Start_index uint
-		End_index   uint
-	}
-
-	PangoAttrClass struct {
-		Type PangoAttrType
-		Copy func(
-			attr *PangoAttribute) *PangoAttribute
-		Destroy func(
-			attr *PangoAttribute)
-		Equal func(
-			attr1, attr2 *PangoAttribute) Gboolean
-	}
-
-	PangoGlyphItem struct {
-		Item   *PangoItem
-		Glyphs *PangoGlyphString
-	}
-
-	PangoItem struct {
-		Offset    int
-		Length    int
-		Num_chars int
-		Analysis  PangoAnalysis
-	}
-
-	PangoAnalysis struct {
-		Shape_engine *PangoEngineShape
-		Lang_engine  *PangoEngineLang
-		Font         *PangoFont
-		Level        uint8
-		Gravity      uint8
-		Flags        uint8
-		Script       uint8
-		Language     *PangoLanguage
-		Extra_attrs  *GSList
-	}
-
-	PangoGlyphString struct {
-		Num_glyphs   int
-		Glyphs       *PangoGlyphInfo
-		Log_clusters *int
-		Space        int
-	}
-
-	PangoGlyphInfo struct {
-		Glyph    PangoGlyph
-		Geometry PangoGlyphGeometry
-		Attr     PangoGlyphVisAttr
-	}
-
-	PangoGlyphGeometry struct {
-		Width    PangoGlyphUnit
-		X_offset PangoGlyphUnit
-		Y_offset PangoGlyphUnit
-	}
-
-	PangoGlyphVisAttr struct {
-		Is_cluster_start uint // : 1
-	}
-
-	PangoGlyphItemIter struct {
-		Glyph_item  *PangoGlyphItem
-		Text        *Gchar
-		Start_glyph int
-		Start_index int
-		Start_char  int
-		End_glyph   int
-		End_index   int
-		End_char    int
-	}
-
 	GMemVTable struct {
-		Malloc  func(n_bytes Gsize) Gpointer
-		Realloc func(mem Gpointer,
-			n_bytes Gsize) Gpointer
-		Free   func(mem Gpointer)
-		Calloc func(n_blocks Gsize,
-			n_block_bytes Gsize) Gpointer
-		Try_malloc  func(n_bytes Gsize) Gpointer
-		Try_realloc func(mem Gpointer,
-			n_bytes Gsize) Gpointer
+		Malloc     func(nBytes Gsize) Gpointer
+		Realloc    func(mem Gpointer, nBytes Gsize) Gpointer
+		Free       func(mem Gpointer)
+		Calloc     func(nBlocks Gsize, nBlockBytes Gsize) Gpointer
+		TryMalloc  func(nBytes Gsize) Gpointer
+		TryRealloc func(mem Gpointer, nBytes Gsize) Gpointer
 	}
 
 	GTrashStack struct {
 		Next *GTrashStack
 	}
 
-	PangoFcFont struct {
-		Parent_instance PangoFont
-		Font_pattern    *FcPattern
-		Fontmap         *PangoFontMap
-		Priv            Gpointer
-		Matrix          PangoMatrix
-		Description     *PangoFontDescription
-		Metrics_by_lang *GSList
-		Bits            uint
-		// is_hinted : 1
-		// is_transformed : 1
-	}
-
-	PangoFcFontMap struct {
-		Parent_instance PangoFontMap
-		Priv            *PangoFcFontMapPrivate
-	}
-
-	PangoOTRulesetDescription struct {
-		Script                 PangoScript
-		Language               *PangoLanguage
-		Static_gsub_features   *PangoOTFeatureMap
-		N_static_gsub_features uint
-		Static_gpos_features   *PangoOTFeatureMap
-		N_static_gpos_features uint
-		Other_features         *PangoOTFeatureMap
-		N_other_features       uint
-	}
-
-	PangoOTFeatureMap struct {
-		Feature_name [5]Char
-		Property_bit Gulong
-	}
-
-	PangoOTGlyph struct {
-		Glyph      GUint32
-		Properties uint
-		Cluster    uint
-		Component  uint16
-		LigID      uint16
-		Internal   uint
-	}
-
 	FT_FaceRec struct {
-		Num_faces           FT_Long
-		Face_index          FT_Long
-		Face_flags          FT_Long
-		Style_flags         FT_Long
-		Num_glyphs          FT_Long
-		Family_name         *FT_String
-		Style_name          *FT_String
-		Num_fixed_sizes     int
-		Available_sizes     *FT_Bitmap_Size
-		Num_charmaps        int
-		Charmaps            *FT_CharMap
-		Generic             FT_Generic
-		Bbox                FT_BBox
-		Units_per_EM        uint16
-		Ascender            int16
-		Descender           int16
-		Height              int16
-		Max_advance_width   int16
-		Max_advance_height  int16
-		Underline_position  int16
-		Underline_thickness int16
-		Glyph               FT_GlyphSlot
-		Size                FT_Size
-		Charmap             FT_CharMap
-		Driver              FT_Driver
-		Memory              FT_Memory
-		Stream              FT_Stream
-		Sizes_list          FT_ListRec
-		Autohint            FT_Generic
-		Extensions          *Void
-		Internal            FT_Face_Internal
+		NumFaces           FT_Long
+		FaceIndex          FT_Long
+		FaceFlags          FT_Long
+		StyleFlags         FT_Long
+		NumGlyphs          FT_Long
+		FamilyName         *FT_String
+		StyleName          *FT_String
+		NumFixedSizes      int
+		AvailableSizes     *FT_Bitmap_Size
+		NumCharmaps        int
+		Charmaps           *FT_CharMap
+		Generic            FT_Generic
+		Bbox               FT_BBox
+		UnitsPer_EM        uint16
+		Ascender           int16
+		Descender          int16
+		Height             int16
+		MaxAdvanceWidth    int16
+		MaxAdvanceHeight   int16
+		UnderlinePosition  int16
+		UnderlineThickness int16
+		Glyph              FT_GlyphSlot
+		Size               FT_Size
+		Charmap            FT_CharMap
+		Driver             FT_Driver
+		Memory             FT_Memory
+		Stream             FT_Stream
+		SizesList          FT_ListRec
+		Autohint           FT_Generic
+		Extensions         *Void
+		Internal           FT_Face_Internal
 	}
 
 	FT_Bitmap_Size struct {
 		Height int16
 		Width  int16
 		Size   FT_Pos
-		X_ppem FT_Pos
-		Y_ppem FT_Pos
+		XPpem  FT_Pos
+		YPpem  FT_Pos
 	}
 
 	FT_Generic_Finalizer func(
 		Object *Void)
 
 	FT_Open_Args struct {
-		Flags       uint
-		Memory_base *FT_Byte
-		Memory_size FT_Long
-		Pathname    *FT_String
-		Stream      FT_Stream
-		Driver      FT_Module
-		Num_params  int
-		Params      *FT_Parameter
+		Flags      uint
+		MemoryBase *FT_Byte
+		MemorySize FT_Long
+		Pathname   *FT_String
+		Stream     FT_Stream
+		Driver     FT_Module
+		NumParams  int
+		Params     *FT_Parameter
 	}
 
 	FT_StreamDesc struct {
@@ -799,10 +625,10 @@ type (
 	}
 
 	FT_CharMapRec struct {
-		Face        FTFace
-		Encoding    FT_Encoding
-		Platform_id uint16
-		Encoding_id uint16
+		Face       FTFace
+		Encoding   FT_Encoding
+		PlatformId uint16
+		EncodingId uint16
 	}
 
 	FT_GlyphSlotRec struct {
@@ -817,15 +643,15 @@ type (
 		Advance           FT_Vector
 		Format            FT_Glyph_Format
 		Bitmap            FT_Bitmap
-		Bitmap_left       int
-		Bitmap_top        int
+		BitmapLeft        int
+		BitmapTop         int
 		Outline           FT_Outline
-		Num_subglyphs     uint
+		NumSubglyphs      uint
 		Subglyphs         FT_SubGlyph
-		Control_data      *Void
-		Control_len       Long
-		Lsb_delta         FT_Pos
-		Rsb_delta         FT_Pos
+		ControlData       *Void
+		ControlLen        Long
+		LsbDelta          FT_Pos
+		RsbDelta          FT_Pos
 		Other             *Void
 		Internal          FT_Slot_Internal
 	}
@@ -847,12 +673,12 @@ type (
 	}
 
 	FT_Outline struct {
-		N_contours int16
-		N_points   int16
-		Points     *FT_Vector
-		Tags       *Char
-		Contours   *int16
-		Flags      int
+		NContours int16
+		NPoints   int16
+		Points    *FT_Vector
+		Tags      *Char
+		Contours  *int16
+		Flags     int
 	}
 
 	FT_BBox struct {
@@ -875,14 +701,14 @@ type (
 	}
 
 	FT_Size_Metrics struct {
-		X_ppem      uint16
-		Y_ppem      uint16
-		X_scale     FT_Fixed
-		Y_scale     FT_Fixed
-		Ascender    FT_Pos
-		Descender   FT_Pos
-		Height      FT_Pos
-		Max_advance FT_Pos
+		XPpem      uint16
+		YPpem      uint16
+		XScale     FT_Fixed
+		YScale     FT_Fixed
+		Ascender   FT_Pos
+		Descender  FT_Pos
+		Height     FT_Pos
+		MaxAdvance FT_Pos
 	}
 
 	FT_ListRec struct {
@@ -904,72 +730,72 @@ type (
 	}
 
 	FT_Glyph_Class struct {
-		Glyph_size      FT_Long
-		Glyph_format    FT_Glyph_Format
-		Glyph_init      FT_Glyph_InitFunc
-		Glyph_done      FT_Glyph_DoneFunc
-		Glyph_copy      FT_Glyph_CopyFunc
-		Glyph_transform FT_Glyph_TransformFunc
-		Glyph_bbox      FT_Glyph_GetBBoxFunc
-		Glyph_prepare   FT_Glyph_PrepareFunc
+		GlyphSize      FT_Long
+		GlyphFormat    FT_Glyph_Format
+		GlyphInit      FT_Glyph_InitFunc
+		GlyphDone      FT_Glyph_DoneFunc
+		GlyphCopy      FT_Glyph_CopyFunc
+		GlyphTransform FT_Glyph_TransformFunc
+		GlyphBbox      FT_Glyph_GetBBoxFunc
+		GlyphPrepare   FT_Glyph_PrepareFunc
 	}
 
 	PS_FontInfoRec struct {
-		Version             *FT_String
-		Notice              *FT_String
-		Full_name           *FT_String
-		Family_name         *FT_String
-		Weight              *FT_String
-		Italic_angle        FT_Long
-		Is_fixed_pitch      FT_Bool
-		Underline_position  int16
-		Underline_thickness uint16
+		Version            *FT_String
+		Notice             *FT_String
+		FullName           *FT_String
+		FamilyName         *FT_String
+		Weight             *FT_String
+		ItalicAngle        FT_Long
+		IsFixedPitch       FT_Bool
+		UnderlinePosition  int16
+		UnderlineThickness uint16
 	}
 
 	PS_PrivateRec struct {
-		Unique_id              int
-		LenIV                  int
-		Num_blue_values        FT_Byte
-		Num_other_blues        FT_Byte
-		Num_family_blues       FT_Byte
-		Num_family_other_blues FT_Byte
-		Blue_values            [14]int16
-		Other_blues            [10]int16
-		Family_blues           [14]int16
-		Family_other_blues     [10]int16
-		Blue_scale             FT_Fixed
-		Blue_shift             int
-		Blue_fuzz              int
-		Standard_width         [1]uint16
-		Standard_height        [1]uint16
-		Num_snap_widths        FT_Byte
-		Num_snap_heights       FT_Byte
-		Force_bold             FT_Bool
-		Round_stem_up          FT_Bool
-		Snap_widths            [13]int16
-		Snap_heights           [13]int16
-		Expansion_factor       FT_Fixed
-		Language_group         FT_Long
-		Password               FT_Long
-		Min_feature            [2]int16
+		UniqueId            int
+		LenIV               int
+		NumBlueValues       FT_Byte
+		NumOtherBlues       FT_Byte
+		NumFamilyBlues      FT_Byte
+		NumFamilyOtherBlues FT_Byte
+		BlueValues          [14]int16
+		OtherBlues          [10]int16
+		FamilyBlues         [14]int16
+		FamilyOtherBlues    [10]int16
+		BlueScale           FT_Fixed
+		BlueShift           int
+		BlueFuzz            int
+		StandardWidth       [1]uint16
+		StandardHeight      [1]uint16
+		NumSnapWidths       FT_Byte
+		NumSnapHeights      FT_Byte
+		ForceBold           FT_Bool
+		RoundStemUp         FT_Bool
+		SnapWidths          [13]int16
+		SnapHeights         [13]int16
+		ExpansionFactor     FT_Fixed
+		LanguageGroup       FT_Long
+		Password            FT_Long
+		MinFeature          [2]int16
 	}
 
 	FT_Module_Class struct {
-		Module_flags     FT_ULong
-		Module_size      FT_Long
-		Module_name      *FT_String
-		Module_version   FT_Fixed
-		Module_requires  FT_Fixed
-		Module_interface *Void
-		Module_init      FT_Module_Constructor
-		Module_done      FT_Module_Destructor
-		Get_interface    FT_Module_Requester
+		ModuleFlags     FT_ULong
+		ModuleSize      FT_Long
+		ModuleName      *FT_String
+		ModuleVersion   FT_Fixed
+		ModuleRequires  FT_Fixed
+		ModuleInterface *Void
+		ModuleInit      FT_Module_Constructor
+		ModuleDone      FT_Module_Destructor
+		GetInterface    FT_Module_Requester
 	}
 
 	FT_Multi_Master struct {
-		Num_axis    uint
-		Num_designs uint
-		Axis        [4]FT_MM_Axis
+		NumAxis    uint
+		NumDesigns uint
+		Axis       [4]FT_MM_Axis
 	}
 
 	FT_MM_Axis struct {
@@ -979,11 +805,11 @@ type (
 	}
 
 	FT_MM_Var struct {
-		Num_axis        uint
-		Num_designs     uint
-		Num_namedstyles uint
-		Axis            *FT_Var_Axis
-		Namedstyle      *FT_Var_Named_Style
+		NumAxis        uint
+		NumDesigns     uint
+		NumNamedstyles uint
+		Axis           *FT_Var_Axis
+		Namedstyle     *FT_Var_Named_Style
 	}
 
 	FT_Var_Axis struct {
@@ -1001,24 +827,24 @@ type (
 	}
 
 	FT_Outline_Funcs struct {
-		Move_to  FT_Outline_MoveToFunc
-		Line_to  FT_Outline_LineToFunc
-		Conic_to FT_Outline_ConicToFunc
-		Cubic_to FT_Outline_CubicToFunc
-		Shift    int
-		Delta    FT_Pos
+		MoveTo  FT_Outline_MoveToFunc
+		LineTo  FT_Outline_LineToFunc
+		ConicTo FT_Outline_ConicToFunc
+		CubicTo FT_Outline_CubicToFunc
+		Shift   int
+		Delta   FT_Pos
 	}
 
 	FT_Raster_Params struct {
-		Target      *FT_Bitmap
-		Source      *Void
-		Flags       int
-		Gray_spans  FT_SpanFunc
-		Black_spans FT_SpanFunc
-		Bit_test    FT_Raster_BitTest_Func
-		Bit_set     FT_Raster_BitSet_Func
-		User        *Void
-		Clip_box    FT_BBox
+		Target     *FT_Bitmap
+		Source     *Void
+		Flags      int
+		GraySpans  FT_SpanFunc
+		BlackSpans FT_SpanFunc
+		BitTest    FT_Raster_BitTest_Func
+		BitSet     FT_Raster_BitSet_Func
+		User       *Void
+		ClipBox    FT_BBox
 	}
 
 	FT_Span struct {
@@ -1031,102 +857,102 @@ type (
 		Type BDF_PropertyType
 		// Union
 		Atom *Char
-		// integer  FT_Int32
-		// cardinal FT_UInt32
+		// Integer  FT_Int32
+		// Cardinal FT_UInt32
 	}
 
 	FT_WinFNT_HeaderRec struct {
-		Version               uint16
-		File_size             FT_ULong
-		Copyright             [60]FT_Byte
-		File_type             uint16
-		Nominal_point_size    uint16
-		Vertical_resolution   uint16
-		Horizontal_resolution uint16
-		Ascent                uint16
-		Internal_leading      uint16
-		External_leading      uint16
-		Italic                FT_Byte
-		Underline             FT_Byte
-		Strike_out            FT_Byte
-		Weight                uint16
-		Charset               FT_Byte
-		Pixel_width           uint16
-		Pixel_height          uint16
-		Pitch_and_family      FT_Byte
-		Avg_width             uint16
-		Max_width             uint16
-		First_char            FT_Byte
-		Last_char             FT_Byte
-		Default_char          FT_Byte
-		Break_char            FT_Byte
-		Bytes_per_row         uint16
-		Device_offset         FT_ULong
-		Face_name_offset      FT_ULong
-		Bits_pointer          FT_ULong
-		Bits_offset           FT_ULong
-		Reserved              FT_Byte
-		Flags                 FT_ULong
-		A_space               uint16
-		B_space               uint16
-		C_space               uint16
-		Color_table_offset    uint16
-		Reserved1             [4]FT_ULong
+		Version              uint16
+		FileSize             FT_ULong
+		Copyright            [60]FT_Byte
+		FileType             uint16
+		NominalPointSize     uint16
+		VerticalResolution   uint16
+		HorizontalResolution uint16
+		Ascent               uint16
+		InternalLeading      uint16
+		ExternalLeading      uint16
+		Italic               FT_Byte
+		Underline            FT_Byte
+		StrikeOut            FT_Byte
+		Weight               uint16
+		Charset              FT_Byte
+		PixelWidth           uint16
+		PixelHeight          uint16
+		PitchAndFamily       FT_Byte
+		AvgWidth             uint16
+		MaxWidth             uint16
+		FirstChar            FT_Byte
+		LastChar             FT_Byte
+		DefaultChar          FT_Byte
+		BreakChar            FT_Byte
+		BytesPerRow          uint16
+		DeviceOffset         FT_ULong
+		FaceNameOffset       FT_ULong
+		BitsPointer          FT_ULong
+		BitsOffset           FT_ULong
+		Reserved             FT_Byte
+		Flags                FT_ULong
+		ASpace               uint16
+		BSpace               uint16
+		CSpace               uint16
+		ColorTableOffset     uint16
+		Reserved1            [4]FT_ULong
 	}
 
 	FT_SfntName struct {
-		Platform_id uint16
-		Encoding_id uint16
-		Language_id uint16
-		Name_id     uint16
-		String      *FT_Byte
-		String_len  uint
+		PlatformId uint16
+		EncodingId uint16
+		LanguageId uint16
+		NameId     uint16
+		String     *FT_Byte
+		StringLen  uint
 	}
 
 	FTC_ScalerRec struct {
-		Face_id FTC_FaceID
-		Width   uint
-		Height  uint
-		Pixel   int
-		X_res   uint
-		Y_res   uint
+		FaceId FTC_FaceID
+		Width  uint
+		Height uint
+		Pixel  int
+		XRes   uint
+		YRes   uint
 	}
 
 	FTC_ImageTypeRec struct {
-		Face_id FTC_FaceID
-		Width   int
-		Height  int
-		Flags   FT_Int32
+		FaceId FTC_FaceID
+		Width  int
+		Height int
+		Flags  FT_Int32
 	}
 
 	FTC_SBitRec struct {
-		Width     FT_Byte
-		Height    FT_Byte
-		Left      FT_Char
-		Top       FT_Char
-		Format    FT_Byte
-		Max_grays FT_Byte
-		Pitch     int16
-		Xadvance  FT_Char
-		Yadvance  FT_Char
-		Buffer    *FT_Byte
+		Width    FT_Byte
+		Height   FT_Byte
+		Left     FT_Char
+		Top      FT_Char
+		Format   FT_Byte
+		MaxGrays FT_Byte
+		Pitch    int16
+		Xadvance FT_Char
+		Yadvance FT_Char
+		Buffer   *FT_Byte
 	}
 
 	FTC_FontRec struct {
-		Face_id    FTC_FaceID
-		Pix_width  uint16
-		Pix_height uint16
+		FaceId    FTC_FaceID
+		PixWidth  uint16
+		PixHeight uint16
 	}
 
 	FT_Bitmap struct {
-		Rows         int
-		Width        int
-		Pitch        int
-		Buffer       *UnsignedChar
-		Num_grays    int16
-		Pixel_mode   Char
-		Palette_mode Char
-		Palette      *Void
+		Rows        int
+		Width       int
+		Pitch       int
+		Buffer      *UnsignedChar
+		NumGrays    int16
+		PixelMode   Char
+		PaletteMode Char
+		Palette     *Void
 	}
 
 	GParameter struct {
@@ -1135,20 +961,20 @@ type (
 	}
 
 	GSignalQuery struct {
-		Signal_id    uint
-		Signal_name  string
-		Itype        GType
-		Signal_flags GSignalFlags
-		Return_type  GType
-		N_params     uint
-		Param_types  *GType
+		SignalId    uint
+		SignalName  string
+		Itype       GType
+		SignalFlags GSignalFlags
+		ReturnType  GType
+		NParams     uint
+		ParamTypes  *GType
 	}
 
 	GTypeQuery struct {
-		Type          GType
-		Type_name     string
-		Class_size    uint
-		Instance_size uint
+		Type         GType
+		TypeName     string
+		ClassSize    uint
+		InstanceSize uint
 	}
 
 	GOutputVector struct {
@@ -1157,62 +983,42 @@ type (
 	}
 
 	GTypeValueTable struct {
-		Value_init func(value *GValue)
-		Value_free func(value *GValue)
-		Value_copy func(
-			src_value *GValue, dest_value *GValue)
-		Value_peek_pointer func(value *GValue) Gpointer
-		Collect_format     *Gchar
-		Collect_value      func(
+		ValueInit func(value *GValue)
+		ValueFree func(value *GValue)
+		ValueCopy func(
+			srcValue *GValue, destValue *GValue)
+		ValuePeekPointer func(value *GValue) Gpointer
+		CollectFormat    *Gchar
+		CollectValue     func(
 			value *GValue,
-			n_collect_values uint,
-			collect_values *GTypeCValue,
-			collect_flags uint) *Gchar
-		Lcopy_format *Gchar
-		Lcopy_value  func(
+			nCollectValues uint,
+			collectValues *GTypeCValue,
+			collectFlags uint) *Gchar
+		LcopyFormat *Gchar
+		LcopyValue  func(
 			value *GValue,
-			n_collect_values uint,
-			collect_values *GTypeCValue,
-			collect_flags uint) *Gchar
+			nCollectValues uint,
+			collectValues *GTypeCValue,
+			collectFlags uint) *Gchar
 	}
 
 	GTypeFundamentalInfo struct {
-		Type_flags GTypeFundamentalFlags
+		TypeFlags GTypeFundamentalFlags
 	}
 
 	GInterfaceInfo struct {
-		Interface_init     GInterfaceInitFunc
-		Interface_finalize GInterfaceFinalizeFunc
-		Interface_data     Gpointer
+		InterfaceInit     GInterfaceInitFunc
+		InterfaceFinalize GInterfaceFinalizeFunc
+		InterfaceData     Gpointer
 	}
 
 	GTypeModule struct{} //REMOVE
 
-	PangoIncludedModule struct {
-		List   func(engines **PangoEngineInfo, n_engines *int)
-		Init   func(module *GTypeModule)
-		Exit   func()
-		Create func(id *Char) *PangoEngine
-	}
-
-	PangoEngineScriptInfo struct {
-		Script PangoScript
-		Langs  *Gchar
-	}
-
-	PangoEngineInfo struct {
-		Id          *Gchar
-		Engine_type *Gchar
-		Render_type *Gchar
-		Scripts     *PangoEngineScriptInfo
-		N_scripts   int
-	}
-
 	GTestConfig struct {
-		Test_initialized Gboolean
-		Test_quick       Gboolean
-		Test_perf        Gboolean
-		Test_verbose     Gboolean
-		Test_quiet       Gboolean
+		TestInitialized Gboolean
+		TestQuick       Gboolean
+		TestPerf        Gboolean
+		TestVerbose     Gboolean
+		TestQuiet       Gboolean
 	}
 )

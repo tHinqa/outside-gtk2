@@ -119,10 +119,10 @@ type TypeClass struct {
 }
 
 var (
-	typeCheckClassCast  func(gClass *TypeClass, isAType Type) *TypeClass
-	typeCheckClassIsA   func(gClass *TypeClass, isAType Type) T.Gboolean
-	typeClassGetPrivate func(klass *TypeClass, privateType Type) T.Gpointer
-	typeNameFromClass   func(gClass *TypeClass) string
+	typeCheckClassCast  func(class *TypeClass, isAType Type) *TypeClass
+	typeCheckClassIsA   func(class *TypeClass, isAType Type) T.Gboolean
+	typeClassGetPrivate func(class *TypeClass, privateType Type) T.Gpointer
+	typeNameFromClass   func(class *TypeClass) string
 )
 
 func (t *TypeClass) CheckCast(isAType Type) *TypeClass { return typeCheckClassCast(t, isAType) }

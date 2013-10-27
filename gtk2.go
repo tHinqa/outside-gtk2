@@ -22,7 +22,6 @@ import (
 	_ "github.com/tHinqa/outside-gtk2/gtksourceview"
 	_ "github.com/tHinqa/outside-gtk2/intl"
 	_ "github.com/tHinqa/outside-gtk2/pango"
-	_ "github.com/tHinqa/outside-gtk2/pangowin32"
 	_ "github.com/tHinqa/outside-gtk2/png"
 	_ "github.com/tHinqa/outside-gtk2/types"
 	_ "github.com/tHinqa/outside-gtk2/zlib"

@@ -2,7 +2,7 @@ package gtk
 
 import (
 	"github.com/tHinqa/outside"
-	T "github.com/tHinqa/outside-gtk2/types"
+	P "github.com/tHinqa/outside-gtk2/pango"
 )
 
 func init() {
@@ -3878,5 +3878,5 @@ var dataList = outside.Data{
 	{"gtk_major_version", (*uint)(nil)},
 	{"gtk_micro_version", (*uint)(nil)},
 	{"gtk_minor_version", (*uint)(nil)},
-	{"gtk_text_attr_appearance_type", (*T.PangoAttrType)(nil)},
+	{"gtk_text_attr_appearance_type", (*P.AttrType)(nil)},
 }

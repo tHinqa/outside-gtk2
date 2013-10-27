@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -256,7 +257,7 @@ type RcStyle struct {
 	Parent          T.GObject
 	Name            *T.Gchar
 	BgPixmapName    *[5]T.Gchar //TODO(t): CHECK
-	FontDesc        *T.PangoFontDescription
+	FontDesc        *P.FontDescription
 	ColorFlags      [5]RcFlags
 	Fg              [5]D.Color
 	Bg              [5]D.Color

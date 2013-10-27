@@ -43,19 +43,19 @@ var (
 
 	Libintl_fprintf func(*T.FILE, string, ...VArg) int
 
-	Libintl_vfprintf func(*T.FILE, string, T.Va_list) int
+	Libintl_vfprintf func(*T.FILE, string, T.VaList) int
 
 	Libintl_printf func(string, ...VArg) int
 
-	Libintl_vprintf func(string, T.Va_list) int
+	Libintl_vprintf func(string, T.VaList) int
 
 	Libintl_sprintf func(string, string, ...VArg) int
 
-	Libintl_vsprintf func(string, string, T.Va_list) int
+	Libintl_vsprintf func(string, string, T.VaList) int
 
 	Libintl_snprintf func(string, T.Size_t, string, ...VArg) int
 
-	Libintl_vsnprintf func(string, T.Size_t, string, T.Va_list) int
+	Libintl_vsnprintf func(string, T.Size_t, string, T.VaList) int
 
 	Libintl_setlocale func(int, string) string
 

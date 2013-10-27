@@ -7,6 +7,7 @@ import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -121,22 +122,22 @@ func (f *FileChooser) AddShortcutFolder(folder string, err **T.GError) T.Gboolea
 func (f *FileChooser) AddShortcutFolderUri(uri string, err **T.GError) T.Gboolean {
 	return fileChooserAddShortcutFolderUri(f, uri, err)
 }
-func (f *FileChooser) GetAction() FileChooserAction   { return fileChooserGetAction(f) }
-func (f *FileChooser) GetCreateFolders() T.Gboolean   { return fileChooserGetCreateFolders(f) }
-func (f *FileChooser) GetCurrentFolder() string       { return fileChooserGetCurrentFolder(f) }
+func (f *FileChooser) GetAction() FileChooserAction  { return fileChooserGetAction(f) }
+func (f *FileChooser) GetCreateFolders() T.Gboolean  { return fileChooserGetCreateFolders(f) }
+func (f *FileChooser) GetCurrentFolder() string      { return fileChooserGetCurrentFolder(f) }
 func (f *FileChooser) GetCurrentFolderFile() *I.File { return fileChooserGetCurrentFolderFile(f) }
-func (f *FileChooser) GetCurrentFolderUri() string    { return fileChooserGetCurrentFolderUri(f) }
+func (f *FileChooser) GetCurrentFolderUri() string   { return fileChooserGetCurrentFolderUri(f) }
 func (f *FileChooser) GetDoOverwriteConfirmation() T.Gboolean {
 	return fileChooserGetDoOverwriteConfirmation(f)
 }
 func (f *FileChooser) GetExtraWidget() *Widget            { return fileChooserGetExtraWidget(f) }
-func (f *FileChooser) GetFile() *I.File                  { return fileChooserGetFile(f) }
+func (f *FileChooser) GetFile() *I.File                   { return fileChooserGetFile(f) }
 func (f *FileChooser) GetFilename() string                { return fileChooserGetFilename(f) }
 func (f *FileChooser) GetFilenames() *T.GSList            { return fileChooserGetFilenames(f) }
 func (f *FileChooser) GetFiles() *T.GSList                { return fileChooserGetFiles(f) }
 func (f *FileChooser) GetFilter() *FileFilter             { return fileChooserGetFilter(f) }
 func (f *FileChooser) GetLocalOnly() T.Gboolean           { return fileChooserGetLocalOnly(f) }
-func (f *FileChooser) GetPreviewFile() *I.File           { return fileChooserGetPreviewFile(f) }
+func (f *FileChooser) GetPreviewFile() *I.File            { return fileChooserGetPreviewFile(f) }
 func (f *FileChooser) GetPreviewFilename() string         { return fileChooserGetPreviewFilename(f) }
 func (f *FileChooser) GetPreviewUri() string              { return fileChooserGetPreviewUri(f) }
 func (f *FileChooser) GetPreviewWidget() *Widget          { return fileChooserGetPreviewWidget(f) }
@@ -205,7 +206,7 @@ func (f *FileChooser) SetUsePreviewLabel(useLabel T.Gboolean) {
 	fileChooserSetUsePreviewLabel(f, useLabel)
 }
 func (f *FileChooser) UnselectAll()                     { fileChooserUnselectAll(f) }
-func (f *FileChooser) UnselectFile(file *I.File)       { fileChooserUnselectFile(f, file) }
+func (f *FileChooser) UnselectFile(file *I.File)        { fileChooserUnselectFile(f, file) }
 func (f *FileChooser) UnselectFilename(filename string) { fileChooserUnselectFilename(f, filename) }
 func (f *FileChooser) UnselectUri(uri string)           { fileChooserUnselectUri(f, uri) }
 
@@ -414,8 +415,8 @@ type FontSelection struct {
 	Points_button    *Widget
 	Filter_button    *Widget
 	Preview_entry    *Widget
-	Family           *T.PangoFontFamily
-	Face             *T.PangoFontFace
+	Family           *P.FontFamily
+	Face             *P.FontFace
 	Size             int
 	Font             *D.Font
 }
@@ -424,9 +425,9 @@ var (
 	FontSelectionGetType func() O.Type
 	FontSelectionNew     func() *Widget
 
-	fontSelectionGetFace         func(f *FontSelection) *T.PangoFontFace
+	fontSelectionGetFace         func(f *FontSelection) *P.FontFace
 	fontSelectionGetFaceList     func(f *FontSelection) *Widget
-	fontSelectionGetFamily       func(f *FontSelection) *T.PangoFontFamily
+	fontSelectionGetFamily       func(f *FontSelection) *P.FontFamily
 	fontSelectionGetFamilyList   func(f *FontSelection) *Widget
 	fontSelectionGetFont         func(f *FontSelection) *D.Font
 	fontSelectionGetFontName     func(f *FontSelection) string
@@ -439,17 +440,17 @@ var (
 	fontSelectionSetPreviewText  func(f *FontSelection, text string)
 )
 
-func (f *FontSelection) GetFace() *T.PangoFontFace     { return fontSelectionGetFace(f) }
-func (f *FontSelection) GetFaceList() *Widget          { return fontSelectionGetFaceList(f) }
-func (f *FontSelection) GetFamily() *T.PangoFontFamily { return fontSelectionGetFamily(f) }
-func (f *FontSelection) GetFamilyList() *Widget        { return fontSelectionGetFamilyList(f) }
-func (f *FontSelection) GetFont() *D.Font              { return fontSelectionGetFont(f) }
-func (f *FontSelection) GetFontName() string           { return fontSelectionGetFontName(f) }
-func (f *FontSelection) GetPreviewEntry() *Widget      { return fontSelectionGetPreviewEntry(f) }
-func (f *FontSelection) GetPreviewText() string        { return fontSelectionGetPreviewText(f) }
-func (f *FontSelection) GetSize() int                  { return fontSelectionGetSize(f) }
-func (f *FontSelection) GetSizeEntry() *Widget         { return fontSelectionGetSizeEntry(f) }
-func (f *FontSelection) GetSizeList() *Widget          { return fontSelectionGetSizeList(f) }
+func (f *FontSelection) GetFace() *P.FontFace     { return fontSelectionGetFace(f) }
+func (f *FontSelection) GetFaceList() *Widget     { return fontSelectionGetFaceList(f) }
+func (f *FontSelection) GetFamily() *P.FontFamily { return fontSelectionGetFamily(f) }
+func (f *FontSelection) GetFamilyList() *Widget   { return fontSelectionGetFamilyList(f) }
+func (f *FontSelection) GetFont() *D.Font         { return fontSelectionGetFont(f) }
+func (f *FontSelection) GetFontName() string      { return fontSelectionGetFontName(f) }
+func (f *FontSelection) GetPreviewEntry() *Widget { return fontSelectionGetPreviewEntry(f) }
+func (f *FontSelection) GetPreviewText() string   { return fontSelectionGetPreviewText(f) }
+func (f *FontSelection) GetSize() int             { return fontSelectionGetSize(f) }
+func (f *FontSelection) GetSizeEntry() *Widget    { return fontSelectionGetSizeEntry(f) }
+func (f *FontSelection) GetSizeList() *Widget     { return fontSelectionGetSizeList(f) }
 func (f *FontSelection) SetFontName(fontname string) T.Gboolean {
 	return fontSelectionSetFontName(f, fontname)
 }

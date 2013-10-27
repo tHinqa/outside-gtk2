@@ -336,7 +336,7 @@ var (
 
 	FcObjectSetDestroy func(os *FcObjectSet)
 
-	FcObjectSetVaBuild func(first string, va T.Va_list) *FcObjectSet
+	FcObjectSetVaBuild func(first string, va T.VaList) *FcObjectSet
 
 	FcObjectSetBuild func(first string, v ...VArg) *FcObjectSet
 
@@ -493,7 +493,7 @@ var (
 	FcPatternGetLangSet func(p *T.FcPattern,
 		object string, n int, ls **FcLangSet) FcResult
 
-	FcPatternVaBuild func(p *T.FcPattern, va T.Va_list) *T.FcPattern
+	FcPatternVaBuild func(p *T.FcPattern, va T.VaList) *T.FcPattern
 
 	FcPatternBuild func(p *T.FcPattern, v ...VArg) *T.FcPattern
 

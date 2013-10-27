@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	P "github.com/tHinqa/outside-gtk2/pango"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -22,7 +23,7 @@ var (
 
 	keymapAddVirtualModifiers    func(k *Keymap, state *T.GdkModifierType)
 	keymapGetCapsLockState       func(k *Keymap) T.Gboolean
-	keymapGetDirection           func(k *Keymap) T.PangoDirection
+	keymapGetDirection           func(k *Keymap) P.Direction
 	keymapGetEntriesForKeycode   func(k *Keymap, hardwareKeycode uint, keys **KeymapKey, keyvals **uint, nEntries *int) T.Gboolean
 	keymapGetEntriesForKeyval    func(k *Keymap, keyval uint, keys **KeymapKey, nKeys *int) T.Gboolean
 	keymapHaveBidiLayouts        func(k *Keymap) T.Gboolean
@@ -33,7 +34,7 @@ var (
 
 func (k *Keymap) AddVirtualModifiers(state *T.GdkModifierType) { keymapAddVirtualModifiers(k, state) }
 func (k *Keymap) GetCapsLockState() T.Gboolean                 { return keymapGetCapsLockState(k) }
-func (k *Keymap) GetDirection() T.PangoDirection               { return keymapGetDirection(k) }
+func (k *Keymap) GetDirection() P.Direction               { return keymapGetDirection(k) }
 func (k *Keymap) GetEntriesForKeycode(hardwareKeycode uint, keys **KeymapKey, keyvals **uint, nEntries *int) T.Gboolean {
 	return keymapGetEntriesForKeycode(k, hardwareKeycode, keys, keyvals, nEntries)
 }

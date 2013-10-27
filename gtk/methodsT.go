@@ -7,6 +7,7 @@ import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -173,7 +174,7 @@ type TextAttributes struct {
 	Appearance       TextAppearance
 	Justification    Justification
 	Direction        TextDirection
-	Font             *T.PangoFontDescription
+	Font             *P.FontDescription
 	FontScale        float64
 	LeftMargin       int
 	Indent           int
@@ -181,9 +182,9 @@ type TextAttributes struct {
 	PixelsAboveLines int
 	PixelsBelowLines int
 	PixelsInsideWrap int
-	Tabs             *T.PangoTabArray
+	Tabs             *P.TabArray
 	WrapMode         WrapMode
-	Language         *T.PangoLanguage
+	Language         *P.Language
 	PgBgColor        *D.Color
 	Bits             uint
 	// Invisible : 1
@@ -591,7 +592,7 @@ var (
 	textIterGetChar                        func(t *TextIter) T.Gunichar
 	textIterGetCharsInLine                 func(t *TextIter) int
 	textIterGetChildAnchor                 func(t *TextIter) *TextChildAnchor
-	textIterGetLanguage                    func(t *TextIter) *T.PangoLanguage
+	textIterGetLanguage                    func(t *TextIter) *P.Language
 	textIterGetLine                        func(t *TextIter) int
 	textIterGetLineIndex                   func(t *TextIter) int
 	textIterGetLineOffset                  func(t *TextIter) int
@@ -727,7 +728,7 @@ func (t *TextIter) GetBytesInLine() int              { return textIterGetBytesIn
 func (t *TextIter) GetChar() T.Gunichar              { return textIterGetChar(t) }
 func (t *TextIter) GetCharsInLine() int              { return textIterGetCharsInLine(t) }
 func (t *TextIter) GetChildAnchor() *TextChildAnchor { return textIterGetChildAnchor(t) }
-func (t *TextIter) GetLanguage() *T.PangoLanguage    { return textIterGetLanguage(t) }
+func (t *TextIter) GetLanguage() *P.Language         { return textIterGetLanguage(t) }
 func (t *TextIter) GetLine() int                     { return textIterGetLine(t) }
 func (t *TextIter) GetLineIndex() int                { return textIterGetLineIndex(t) }
 func (t *TextIter) GetLineOffset() int               { return textIterGetLineOffset(t) }
@@ -889,7 +890,7 @@ type TextView struct {
 	LeftMargin           int
 	RightMargin          int
 	Indent               int
-	Tabs                 *T.PangoTabArray
+	Tabs                 *P.TabArray
 	Bits                 uint
 	// Editable : 1
 	// OverwriteMode : 1
@@ -988,8 +989,8 @@ var (
 	TextViewGetRightMargin           func(t *TextView) int
 	TextViewSetIndent                func(t *TextView, indent int)
 	TextViewGetIndent                func(t *TextView) int
-	TextViewSetTabs                  func(t *TextView, tabs *T.PangoTabArray)
-	TextViewGetTabs                  func(t *TextView) *T.PangoTabArray
+	TextViewSetTabs                  func(t *TextView, tabs *P.TabArray)
+	TextViewGetTabs                  func(t *TextView) *P.TabArray
 	TextViewGetDefaultAttributes     func(t *TextView) *TextAttributes
 )
 
@@ -1309,7 +1310,7 @@ var (
 	ToolItemGetType func() O.Type
 	ToolItemNew     func() *ToolItem
 
-	toolItemGetEllipsizeMode      func(t *ToolItem) T.PangoEllipsizeMode
+	toolItemGetEllipsizeMode      func(t *ToolItem) P.EllipsizeMode
 	toolItemGetExpand             func(t *ToolItem) T.Gboolean
 	toolItemGetHomogeneous        func(t *ToolItem) T.Gboolean
 	toolItemGetIconSize           func(t *ToolItem) IconSize
@@ -1339,12 +1340,12 @@ var (
 	toolItemToolbarReconfigured   func(t *ToolItem)
 )
 
-func (t *ToolItem) GetEllipsizeMode() T.PangoEllipsizeMode { return toolItemGetEllipsizeMode(t) }
-func (t *ToolItem) GetExpand() T.Gboolean                  { return toolItemGetExpand(t) }
-func (t *ToolItem) GetHomogeneous() T.Gboolean             { return toolItemGetHomogeneous(t) }
-func (t *ToolItem) GetIconSize() IconSize                  { return toolItemGetIconSize(t) }
-func (t *ToolItem) GetIsImportant() T.Gboolean             { return toolItemGetIsImportant(t) }
-func (t *ToolItem) GetOrientation() Orientation            { return toolItemGetOrientation(t) }
+func (t *ToolItem) GetEllipsizeMode() P.EllipsizeMode { return toolItemGetEllipsizeMode(t) }
+func (t *ToolItem) GetExpand() T.Gboolean             { return toolItemGetExpand(t) }
+func (t *ToolItem) GetHomogeneous() T.Gboolean        { return toolItemGetHomogeneous(t) }
+func (t *ToolItem) GetIconSize() IconSize             { return toolItemGetIconSize(t) }
+func (t *ToolItem) GetIsImportant() T.Gboolean        { return toolItemGetIsImportant(t) }
+func (t *ToolItem) GetOrientation() Orientation       { return toolItemGetOrientation(t) }
 func (t *ToolItem) GetProxyMenuItem(menuItemId string) *Widget {
 	return toolItemGetProxyMenuItem(t, menuItemId)
 }
@@ -1391,7 +1392,7 @@ var (
 
 	toolItemGroupGetCollapsed    func(t *ToolItemGroup) T.Gboolean
 	toolItemGroupGetDropItem     func(t *ToolItemGroup, x, y int) *ToolItem
-	toolItemGroupGetEllipsize    func(t *ToolItemGroup) T.PangoEllipsizeMode
+	toolItemGroupGetEllipsize    func(t *ToolItemGroup) P.EllipsizeMode
 	toolItemGroupGetHeaderRelief func(t *ToolItemGroup) ReliefStyle
 	toolItemGroupGetItemPosition func(t *ToolItemGroup, item *ToolItem) int
 	toolItemGroupGetLabel        func(t *ToolItemGroup) string
@@ -1400,17 +1401,17 @@ var (
 	toolItemGroupGetNthItem      func(t *ToolItemGroup, index uint) *ToolItem
 	toolItemGroupInsert          func(t *ToolItemGroup, item *ToolItem, position int)
 	toolItemGroupSetCollapsed    func(t *ToolItemGroup, collapsed T.Gboolean)
-	toolItemGroupSetEllipsize    func(t *ToolItemGroup, ellipsize T.PangoEllipsizeMode)
+	toolItemGroupSetEllipsize    func(t *ToolItemGroup, ellipsize P.EllipsizeMode)
 	toolItemGroupSetHeaderRelief func(t *ToolItemGroup, style ReliefStyle)
 	toolItemGroupSetItemPosition func(t *ToolItemGroup, item *ToolItem, position int)
 	toolItemGroupSetLabel        func(t *ToolItemGroup, label string)
 	toolItemGroupSetLabelWidget  func(t *ToolItemGroup, labelWidget *Widget)
 )
 
-func (t *ToolItemGroup) GetCollapsed() T.Gboolean           { return toolItemGroupGetCollapsed(t) }
-func (t *ToolItemGroup) GetDropItem(x, y int) *ToolItem     { return toolItemGroupGetDropItem(t, x, y) }
-func (t *ToolItemGroup) GetEllipsize() T.PangoEllipsizeMode { return toolItemGroupGetEllipsize(t) }
-func (t *ToolItemGroup) GetHeaderRelief() ReliefStyle       { return toolItemGroupGetHeaderRelief(t) }
+func (t *ToolItemGroup) GetCollapsed() T.Gboolean       { return toolItemGroupGetCollapsed(t) }
+func (t *ToolItemGroup) GetDropItem(x, y int) *ToolItem { return toolItemGroupGetDropItem(t, x, y) }
+func (t *ToolItemGroup) GetEllipsize() P.EllipsizeMode  { return toolItemGroupGetEllipsize(t) }
+func (t *ToolItemGroup) GetHeaderRelief() ReliefStyle   { return toolItemGroupGetHeaderRelief(t) }
 func (t *ToolItemGroup) GetItemPosition(item *ToolItem) int {
 	return toolItemGroupGetItemPosition(t, item)
 }
@@ -1420,7 +1421,7 @@ func (t *ToolItemGroup) GetNItems() uint                     { return toolItemGr
 func (t *ToolItemGroup) GetNthItem(index uint) *ToolItem     { return toolItemGroupGetNthItem(t, index) }
 func (t *ToolItemGroup) Insert(item *ToolItem, position int) { toolItemGroupInsert(t, item, position) }
 func (t *ToolItemGroup) SetCollapsed(collapsed T.Gboolean)   { toolItemGroupSetCollapsed(t, collapsed) }
-func (t *ToolItemGroup) SetEllipsize(ellipsize T.PangoEllipsizeMode) {
+func (t *ToolItemGroup) SetEllipsize(ellipsize P.EllipsizeMode) {
 	toolItemGroupSetEllipsize(t, ellipsize)
 }
 func (t *ToolItemGroup) SetHeaderRelief(style ReliefStyle) {
@@ -1518,7 +1519,7 @@ type ToolShell struct{}
 var (
 	ToolShellGetType func() O.Type
 
-	toolShellGetEllipsizeMode   func(t *ToolShell) T.PangoEllipsizeMode
+	toolShellGetEllipsizeMode   func(t *ToolShell) P.EllipsizeMode
 	toolShellGetIconSize        func(t *ToolShell) IconSize
 	toolShellGetOrientation     func(t *ToolShell) Orientation
 	toolShellGetReliefStyle     func(t *ToolShell) ReliefStyle
@@ -1529,15 +1530,15 @@ var (
 	toolShellRebuildMenu        func(t *ToolShell)
 )
 
-func (t *ToolShell) GetEllipsizeMode() T.PangoEllipsizeMode { return toolShellGetEllipsizeMode(t) }
-func (t *ToolShell) GetIconSize() IconSize                  { return toolShellGetIconSize(t) }
-func (t *ToolShell) GetOrientation() Orientation            { return toolShellGetOrientation(t) }
-func (t *ToolShell) GetReliefStyle() ReliefStyle            { return toolShellGetReliefStyle(t) }
-func (t *ToolShell) GetStyle() ToolbarStyle                 { return toolShellGetStyle(t) }
-func (t *ToolShell) GetTextAlignment() float32              { return toolShellGetTextAlignment(t) }
-func (t *ToolShell) GetTextOrientation() Orientation        { return toolShellGetTextOrientation(t) }
-func (t *ToolShell) GetTextSizeGroup() *SizeGroup           { return toolShellGetTextSizeGroup(t) }
-func (t *ToolShell) RebuildMenu()                           { toolShellRebuildMenu(t) }
+func (t *ToolShell) GetEllipsizeMode() P.EllipsizeMode { return toolShellGetEllipsizeMode(t) }
+func (t *ToolShell) GetIconSize() IconSize             { return toolShellGetIconSize(t) }
+func (t *ToolShell) GetOrientation() Orientation       { return toolShellGetOrientation(t) }
+func (t *ToolShell) GetReliefStyle() ReliefStyle       { return toolShellGetReliefStyle(t) }
+func (t *ToolShell) GetStyle() ToolbarStyle            { return toolShellGetStyle(t) }
+func (t *ToolShell) GetTextAlignment() float32         { return toolShellGetTextAlignment(t) }
+func (t *ToolShell) GetTextOrientation() Orientation   { return toolShellGetTextOrientation(t) }
+func (t *ToolShell) GetTextSizeGroup() *SizeGroup      { return toolShellGetTextSizeGroup(t) }
+func (t *ToolShell) RebuildMenu()                      { toolShellRebuildMenu(t) }
 
 type Tooltip struct{}
 

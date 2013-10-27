@@ -5,8 +5,9 @@ package gtk
 
 import (
 	A "github.com/tHinqa/outside-gtk2/atk"
-	O "github.com/tHinqa/outside-gtk2/gobject"
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -280,12 +281,12 @@ func (c *CellRenderer) StopEditing(canceled T.Gboolean) { cellRendererStopEditin
 type CellRendererText struct {
 	Parent          CellRenderer
 	Text            *T.Gchar
-	Font            *T.PangoFontDescription
+	Font            *P.FontDescription
 	FontScale       float64
-	Foreground      T.PangoColor
-	Background      T.PangoColor
-	ExtraAttrs      *T.PangoAttrList
-	UnderlineStyle  T.PangoUnderline
+	Foreground      P.Color
+	Background      P.Color
+	ExtraAttrs      *P.AttrList
+	UnderlineStyle  P.Underline
 	Rise            int
 	FixedHeightRows int
 	Bits            uint
@@ -1067,7 +1068,7 @@ func (c *ComboBox) GetEntryTextColumn() int               { return comboBoxGetEn
 func (c *ComboBox) GetFocusOnClick() T.Gboolean           { return comboBoxGetFocusOnClick(c) }
 func (c *ComboBox) GetHasEntry() T.Gboolean               { return comboBoxGetHasEntry(c) }
 func (c *ComboBox) GetModel() *TreeModel                  { return comboBoxGetModel(c) }
-func (c *ComboBox) GetPopupAccessible() *A.Object      { return comboBoxGetPopupAccessible(c) }
+func (c *ComboBox) GetPopupAccessible() *A.Object         { return comboBoxGetPopupAccessible(c) }
 func (c *ComboBox) GetRowSeparatorFunc() TreeViewRowSeparatorFunc {
 	return comboBoxGetRowSeparatorFunc(c)
 }

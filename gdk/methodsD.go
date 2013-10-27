@@ -322,8 +322,8 @@ var (
 
 	DrawArc                  func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height, angle1, angle2 int)
 	DrawDrawable             func(drawable *Drawable, gc *GC, src *Drawable, xsrc, ysrc, xdest, ydest, width, height int)
-	DrawGlyphs               func(drawable *Drawable, gc *GC, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
-	DrawGlyphsTransformed    func(drawable *Drawable, gc *GC, matrix *T.PangoMatrix, font *T.PangoFont, x, y int, glyphs *T.PangoGlyphString)
+	DrawGlyphs               func(drawable *Drawable, gc *GC, font *P.Font, x, y int, glyphs *P.GlyphString)
+	DrawGlyphsTransformed    func(drawable *Drawable, gc *GC, matrix *P.Matrix, font *P.Font, x, y int, glyphs *P.GlyphString)
 	DrawGrayImage            func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
 	DrawImage                func(drawable *Drawable, gc *GC, image *Image, xsrc, ysrc, xdest, ydest, width, height int)
 	DrawIndexedImage         func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int, cmap *T.GdkRgbCmap)

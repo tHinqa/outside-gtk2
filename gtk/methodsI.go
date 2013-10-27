@@ -7,6 +7,7 @@ import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -606,7 +607,7 @@ var (
 	imContextFilterKeypress    func(i *IMContext, event *D.EventKey) T.Gboolean
 	imContextFocusIn           func(i *IMContext)
 	imContextFocusOut          func(i *IMContext)
-	imContextGetPreeditString  func(i *IMContext, str **T.Gchar, attrs **T.PangoAttrList, cursorPos *int)
+	imContextGetPreeditString  func(i *IMContext, str **T.Gchar, attrs **P.AttrList, cursorPos *int)
 	imContextGetSurrounding    func(i *IMContext, text **T.Gchar, cursorIndex *int) T.Gboolean
 	imContextReset             func(i *IMContext)
 	imContextSetClientWindow   func(i *IMContext, window *D.Window)
@@ -623,7 +624,7 @@ func (i *IMContext) FilterKeypress(event *D.EventKey) T.Gboolean {
 }
 func (i *IMContext) FocusIn()  { imContextFocusIn(i) }
 func (i *IMContext) FocusOut() { imContextFocusOut(i) }
-func (i *IMContext) GetPreeditString(str **T.Gchar, attrs **T.PangoAttrList, cursorPos *int) {
+func (i *IMContext) GetPreeditString(str **T.Gchar, attrs **P.AttrList, cursorPos *int) {
 	imContextGetPreeditString(i, str, attrs, cursorPos)
 }
 func (i *IMContext) GetSurrounding(text **T.Gchar, cursorIndex *int) T.Gboolean {

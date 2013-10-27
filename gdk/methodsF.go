@@ -5,6 +5,7 @@ package gdk
 
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
+	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
@@ -18,8 +19,8 @@ type Font struct {
 var (
 	FontGetType func() O.Type
 
-	FontFromDescription           func(fontDesc *T.PangoFontDescription) *Font
-	FontFromDescriptionForDisplay func(display *Display, fontDesc *T.PangoFontDescription) *Font
+	FontFromDescription           func(fontDesc *P.FontDescription) *Font
+	FontFromDescriptionForDisplay func(display *Display, fontDesc *P.FontDescription) *Font
 	FontLoad                      func(fontName string) *Font
 	FontLoadForDisplay            func(display *Display, fontName string) *Font
 

@@ -41,7 +41,7 @@ func (s *Scale) AddMark(value float64, position PositionType, markup string) {
 func (s *Scale) ClearMarks()                       { scaleClearMarks(s) }
 func (s *Scale) GetDigits() int                    { return scaleGetDigits(s) }
 func (s *Scale) GetDrawValue() T.Gboolean          { return scaleGetDrawValue(s) }
-func (s *Scale) GetLayout() *P.Layout         { return scaleGetLayout(s) }
+func (s *Scale) GetLayout() *P.Layout              { return scaleGetLayout(s) }
 func (s *Scale) GetLayoutOffsets(x, y *int)        { scaleGetLayoutOffsets(s, x, y) }
 func (s *Scale) GetValuePos() PositionType         { return scaleGetValuePos(s) }
 func (s *Scale) SetDrawValue(drawValue T.Gboolean) { scaleSetDrawValue(s, drawValue) }
@@ -740,7 +740,7 @@ type Style struct {
 	TextAa          [5]D.Color
 	Black           D.Color
 	White           D.Color
-	FontDesc        *T.PangoFontDescription
+	FontDesc        *P.FontDescription
 	Xthickness      int
 	Ythickness      int
 	FgGc            *[5]D.GC //TODO(t): CHECK
@@ -758,7 +758,7 @@ type Style struct {
 	Depth           int
 	Colormap        *D.Colormap
 	PrivateFont     *D.Font
-	PrivateFontDesc *T.PangoFontDescription
+	PrivateFontDesc *P.FontDescription
 	RcStyle         *RcStyle
 	Styles          *T.GSList
 	PropertyCache   *T.GArray

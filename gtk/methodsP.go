@@ -409,7 +409,7 @@ type PrintContext struct{}
 var (
 	PrintContextGetType func() O.Type
 
-	printContextCreatePangoContext func(p *PrintContext) *T.PangoContext
+	printContextCreatePangoContext func(p *PrintContext) *P.Context
 	printContextCreatePangoLayout  func(p *PrintContext) *P.Layout
 	printContextGetCairoContext    func(p *PrintContext) *C.Cairo
 	printContextGetDpiX            func(p *PrintContext) float64
@@ -417,23 +417,23 @@ var (
 	printContextGetHardMargins     func(p *PrintContext, top, bottom, left, right *float64) T.Gboolean
 	printContextGetHeight          func(p *PrintContext) float64
 	printContextGetPageSetup       func(p *PrintContext) *PageSetup
-	printContextGetPangoFontmap    func(p *PrintContext) *T.PangoFontMap
+	printContextGetPangoFontmap    func(p *PrintContext) *P.FontMap
 	printContextGetWidth           func(p *PrintContext) float64
 	printContextSetCairoContext    func(p *PrintContext, cr *C.Cairo, dpiX, dpiY float64)
 )
 
-func (p *PrintContext) CreatePangoContext() *T.PangoContext { return printContextCreatePangoContext(p) }
-func (p *PrintContext) CreatePangoLayout() *P.Layout        { return printContextCreatePangoLayout(p) }
-func (p *PrintContext) GetCairoContext() *C.Cairo           { return printContextGetCairoContext(p) }
-func (p *PrintContext) GetDpiX() float64                    { return printContextGetDpiX(p) }
-func (p *PrintContext) GetDpiY() float64                    { return printContextGetDpiY(p) }
+func (p *PrintContext) CreatePangoContext() *P.Context { return printContextCreatePangoContext(p) }
+func (p *PrintContext) CreatePangoLayout() *P.Layout   { return printContextCreatePangoLayout(p) }
+func (p *PrintContext) GetCairoContext() *C.Cairo      { return printContextGetCairoContext(p) }
+func (p *PrintContext) GetDpiX() float64               { return printContextGetDpiX(p) }
+func (p *PrintContext) GetDpiY() float64               { return printContextGetDpiY(p) }
 func (p *PrintContext) GetHardMargins(top, bottom, left, right *float64) T.Gboolean {
 	return printContextGetHardMargins(p, top, bottom, left, right)
 }
-func (p *PrintContext) GetHeight() float64               { return printContextGetHeight(p) }
-func (p *PrintContext) GetPageSetup() *PageSetup         { return printContextGetPageSetup(p) }
-func (p *PrintContext) GetPangoFontmap() *T.PangoFontMap { return printContextGetPangoFontmap(p) }
-func (p *PrintContext) GetWidth() float64                { return printContextGetWidth(p) }
+func (p *PrintContext) GetHeight() float64          { return printContextGetHeight(p) }
+func (p *PrintContext) GetPageSetup() *PageSetup    { return printContextGetPageSetup(p) }
+func (p *PrintContext) GetPangoFontmap() *P.FontMap { return printContextGetPangoFontmap(p) }
+func (p *PrintContext) GetWidth() float64           { return printContextGetWidth(p) }
 func (p *PrintContext) SetCairoContext(cr *C.Cairo, dpiX, dpiY float64) {
 	printContextSetCairoContext(p, cr, dpiX, dpiY)
 }
@@ -932,7 +932,7 @@ var (
 	ProgressBarOrientationGetType func() O.Type
 	ProgressBarStyleGetType       func() O.Type
 
-	progressBarGetEllipsize      func(p *ProgressBar) T.PangoEllipsizeMode
+	progressBarGetEllipsize      func(p *ProgressBar) P.EllipsizeMode
 	progressBarGetFraction       func(p *ProgressBar) float64
 	progressBarGetOrientation    func(p *ProgressBar) ProgressBarOrientation
 	progressBarGetPulseStep      func(p *ProgressBar) float64
@@ -942,7 +942,7 @@ var (
 	progressBarSetActivityStep   func(p *ProgressBar, step uint)
 	progressBarSetBarStyle       func(p *ProgressBar, style ProgressBarStyle)
 	progressBarSetDiscreteBlocks func(p *ProgressBar, blocks uint)
-	progressBarSetEllipsize      func(p *ProgressBar, mode T.PangoEllipsizeMode)
+	progressBarSetEllipsize      func(p *ProgressBar, mode P.EllipsizeMode)
 	progressBarSetFraction       func(p *ProgressBar, fraction float64)
 	progressBarSetOrientation    func(p *ProgressBar, orientation ProgressBarOrientation)
 	progressBarSetPulseStep      func(p *ProgressBar, fraction float64)
@@ -950,7 +950,7 @@ var (
 	progressBarUpdate            func(p *ProgressBar, percentage float64)
 )
 
-func (p *ProgressBar) GetEllipsize() T.PangoEllipsizeMode     { return progressBarGetEllipsize(p) }
+func (p *ProgressBar) GetEllipsize() P.EllipsizeMode          { return progressBarGetEllipsize(p) }
 func (p *ProgressBar) GetFraction() float64                   { return progressBarGetFraction(p) }
 func (p *ProgressBar) GetOrientation() ProgressBarOrientation { return progressBarGetOrientation(p) }
 func (p *ProgressBar) GetPulseStep() float64                  { return progressBarGetPulseStep(p) }
@@ -960,7 +960,7 @@ func (p *ProgressBar) SetActivityBlocks(blocks uint)          { progressBarSetAc
 func (p *ProgressBar) SetActivityStep(step uint)              { progressBarSetActivityStep(p, step) }
 func (p *ProgressBar) SetBarStyle(style ProgressBarStyle)     { progressBarSetBarStyle(p, style) }
 func (p *ProgressBar) SetDiscreteBlocks(blocks uint)          { progressBarSetDiscreteBlocks(p, blocks) }
-func (p *ProgressBar) SetEllipsize(mode T.PangoEllipsizeMode) { progressBarSetEllipsize(p, mode) }
+func (p *ProgressBar) SetEllipsize(mode P.EllipsizeMode)      { progressBarSetEllipsize(p, mode) }
 func (p *ProgressBar) SetFraction(fraction float64)           { progressBarSetFraction(p, fraction) }
 func (p *ProgressBar) SetOrientation(orientation ProgressBarOrientation) {
 	progressBarSetOrientation(p, orientation)

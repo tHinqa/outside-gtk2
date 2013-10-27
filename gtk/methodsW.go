@@ -65,7 +65,7 @@ var (
 	widgetChildFocus            func(w *Widget, direction DirectionType) T.Gboolean
 	widgetChildNotify           func(w *Widget, childProperty string)
 	widgetClassPath             func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
-	widgetCreatePangoContext    func(w *Widget) *T.PangoContext
+	widgetCreatePangoContext    func(w *Widget) *P.Context
 	widgetCreatePangoLayout     func(w *Widget, text string) *P.Layout
 	widgetDestroy               func(w *Widget)
 	widgetDestroyed             func(w *Widget, widgetPointer **Widget)
@@ -95,7 +95,7 @@ var (
 	widgetGetModifierStyle      func(w *Widget) *RcStyle
 	widgetGetName               func(w *Widget) string
 	widgetGetNoShowAll          func(w *Widget) T.Gboolean
-	widgetGetPangoContext       func(w *Widget) *T.PangoContext
+	widgetGetPangoContext       func(w *Widget) *P.Context
 	widgetGetParent             func(w *Widget) *Widget
 	widgetGetParentWindow       func(w *Widget) *D.Window
 	widgetGetPointer            func(w *Widget, x *int, y *int)
@@ -144,7 +144,7 @@ var (
 	widgetModifyBg              func(w *Widget, state StateType, color *D.Color)
 	widgetModifyCursor          func(w *Widget, primary *D.Color, secondary *D.Color)
 	widgetModifyFg              func(w *Widget, state StateType, color *D.Color)
-	widgetModifyFont            func(w *Widget, fontDesc *T.PangoFontDescription)
+	widgetModifyFont            func(w *Widget, fontDesc *P.FontDescription)
 	widgetModifyStyle           func(w *Widget, style *RcStyle)
 	widgetModifyText            func(w *Widget, state StateType, color *D.Color)
 	widgetPath                  func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
@@ -233,7 +233,7 @@ func (w *Widget) ChildNotify(childProperty string) { widgetChildNotify(w, childP
 func (w *Widget) ClassPath(pathLength *uint, path, pathReversed **T.Gchar) {
 	widgetClassPath(w, pathLength, path, pathReversed)
 }
-func (w *Widget) CreatePangoContext() *T.PangoContext { return widgetCreatePangoContext(w) }
+func (w *Widget) CreatePangoContext() *P.Context { return widgetCreatePangoContext(w) }
 func (w *Widget) CreatePangoLayout(text string) *P.Layout {
 	return widgetCreatePangoLayout(w, text)
 }
@@ -244,7 +244,7 @@ func (w *Widget) EnsureStyle()                          { widgetEnsureStyle(w) }
 func (w *Widget) ErrorBell()                            { widgetErrorBell(w) }
 func (w *Widget) Event(event *D.Event) T.Gboolean       { return widgetEvent(w, event) }
 func (w *Widget) FreezeChildNotify()                    { widgetFreezeChildNotify(w) }
-func (w *Widget) GetAccessible() *A.Object           { return widgetGetAccessible(w) }
+func (w *Widget) GetAccessible() *A.Object              { return widgetGetAccessible(w) }
 func (w *Widget) GetAllocation(allocation *Allocation)  { widgetGetAllocation(w, allocation) }
 func (w *Widget) GetAncestor(widgetType O.Type) *Widget { return widgetGetAncestor(w, widgetType) }
 func (w *Widget) GetAppPaintable() T.Gboolean           { return widgetGetAppPaintable(w) }
@@ -267,7 +267,7 @@ func (w *Widget) GetMapped() T.Gboolean                   { return widgetGetMapp
 func (w *Widget) GetModifierStyle() *RcStyle              { return widgetGetModifierStyle(w) }
 func (w *Widget) GetName() string                         { return widgetGetName(w) }
 func (w *Widget) GetNoShowAll() T.Gboolean                { return widgetGetNoShowAll(w) }
-func (w *Widget) GetPangoContext() *T.PangoContext        { return widgetGetPangoContext(w) }
+func (w *Widget) GetPangoContext() *P.Context             { return widgetGetPangoContext(w) }
 func (w *Widget) GetParent() *Widget                      { return widgetGetParent(w) }
 func (w *Widget) GetParentWindow() *D.Window              { return widgetGetParentWindow(w) }
 func (w *Widget) GetPointer(x *int, y *int)               { widgetGetPointer(w, x, y) }
@@ -329,9 +329,9 @@ func (w *Widget) ModifyBg(state StateType, color *D.Color) { widgetModifyBg(w, s
 func (w *Widget) ModifyCursor(primary *D.Color, secondary *D.Color) {
 	widgetModifyCursor(w, primary, secondary)
 }
-func (w *Widget) ModifyFg(state StateType, color *D.Color)    { widgetModifyFg(w, state, color) }
-func (w *Widget) ModifyFont(fontDesc *T.PangoFontDescription) { widgetModifyFont(w, fontDesc) }
-func (w *Widget) ModifyStyle(style *RcStyle)                  { widgetModifyStyle(w, style) }
+func (w *Widget) ModifyFg(state StateType, color *D.Color) { widgetModifyFg(w, state, color) }
+func (w *Widget) ModifyFont(fontDesc *P.FontDescription)   { widgetModifyFont(w, fontDesc) }
+func (w *Widget) ModifyStyle(style *RcStyle)               { widgetModifyStyle(w, style) }
 func (w *Widget) ModifyText(state StateType, color *D.Color) {
 	widgetModifyText(w, state, color)
 }

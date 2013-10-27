@@ -28,8 +28,8 @@ type Label struct {
 	// TrackLinks : 1
 	MnemonicKeyval uint
 	Text           *T.Gchar
-	Attrs          *T.PangoAttrList
-	EffectiveAttrs *T.PangoAttrList
+	Attrs          *P.AttrList
+	EffectiveAttrs *P.AttrList
 	Layout         *P.Layout
 	MnemonicWidget *Widget
 	MnemonicWindow *Window
@@ -45,15 +45,15 @@ var (
 
 	labelGet                   func(l *Label, str **T.Gchar)
 	labelGetAngle              func(l *Label) float64
-	labelGetAttributes         func(l *Label) *T.PangoAttrList
+	labelGetAttributes         func(l *Label) *P.AttrList
 	labelGetCurrentUri         func(l *Label) string
-	labelGetEllipsize          func(l *Label) T.PangoEllipsizeMode
+	labelGetEllipsize          func(l *Label) P.EllipsizeMode
 	labelGetJustify            func(l *Label) Justification
 	labelGetLabel              func(l *Label) string
 	labelGetLayout             func(l *Label) *P.Layout
 	labelGetLayoutOffsets      func(l *Label, x, y *int)
 	labelGetLineWrap           func(l *Label) T.Gboolean
-	labelGetLineWrapMode       func(l *Label) T.PangoWrapMode
+	labelGetLineWrapMode       func(l *Label) P.WrapMode
 	labelGetMaxWidthChars      func(l *Label) int
 	labelGetMnemonicKeyval     func(l *Label) uint
 	labelGetMnemonicWidget     func(l *Label) *Widget
@@ -68,12 +68,12 @@ var (
 	labelParseUline            func(l *Label, string string) uint
 	labelSelectRegion          func(l *Label, startOffset, endOffset int)
 	labelSetAngle              func(l *Label, angle float64)
-	labelSetAttributes         func(l *Label, attrs *T.PangoAttrList)
-	labelSetEllipsize          func(l *Label, mode T.PangoEllipsizeMode)
+	labelSetAttributes         func(l *Label, attrs *P.AttrList)
+	labelSetEllipsize          func(l *Label, mode P.EllipsizeMode)
 	labelSetJustify            func(l *Label, jtype Justification)
 	labelSetLabel              func(l *Label, str string)
 	labelSetLineWrap           func(l *Label, wrap T.Gboolean)
-	labelSetLineWrapMode       func(l *Label, wrapMode T.PangoWrapMode)
+	labelSetLineWrapMode       func(l *Label, wrapMode P.WrapMode)
 	labelSetMarkup             func(l *Label, str string)
 	labelSetMarkupWithMnemonic func(l *Label, str string)
 	labelSetMaxWidthChars      func(l *Label, nChars int)
@@ -89,45 +89,45 @@ var (
 	labelSetWidthChars         func(l *Label, nChars int)
 )
 
-func (l *Label) Get(str **T.Gchar)                  { labelGet(l, str) }
-func (l *Label) GetAngle() float64                  { return labelGetAngle(l) }
-func (l *Label) GetAttributes() *T.PangoAttrList    { return labelGetAttributes(l) }
-func (l *Label) GetCurrentUri() string              { return labelGetCurrentUri(l) }
-func (l *Label) GetEllipsize() T.PangoEllipsizeMode { return labelGetEllipsize(l) }
-func (l *Label) GetJustify() Justification          { return labelGetJustify(l) }
-func (l *Label) GetLabel() string                   { return labelGetLabel(l) }
-func (l *Label) GetLayout() *P.Layout               { return labelGetLayout(l) }
-func (l *Label) GetLayoutOffsets(x, y *int)         { labelGetLayoutOffsets(l, x, y) }
-func (l *Label) GetLineWrap() T.Gboolean            { return labelGetLineWrap(l) }
-func (l *Label) GetLineWrapMode() T.PangoWrapMode   { return labelGetLineWrapMode(l) }
-func (l *Label) GetMaxWidthChars() int              { return labelGetMaxWidthChars(l) }
-func (l *Label) GetMnemonicKeyval() uint            { return labelGetMnemonicKeyval(l) }
-func (l *Label) GetMnemonicWidget() *Widget         { return labelGetMnemonicWidget(l) }
-func (l *Label) GetSelectable() T.Gboolean          { return labelGetSelectable(l) }
+func (l *Label) Get(str **T.Gchar)             { labelGet(l, str) }
+func (l *Label) GetAngle() float64             { return labelGetAngle(l) }
+func (l *Label) GetAttributes() *P.AttrList    { return labelGetAttributes(l) }
+func (l *Label) GetCurrentUri() string         { return labelGetCurrentUri(l) }
+func (l *Label) GetEllipsize() P.EllipsizeMode { return labelGetEllipsize(l) }
+func (l *Label) GetJustify() Justification     { return labelGetJustify(l) }
+func (l *Label) GetLabel() string              { return labelGetLabel(l) }
+func (l *Label) GetLayout() *P.Layout          { return labelGetLayout(l) }
+func (l *Label) GetLayoutOffsets(x, y *int)    { labelGetLayoutOffsets(l, x, y) }
+func (l *Label) GetLineWrap() T.Gboolean       { return labelGetLineWrap(l) }
+func (l *Label) GetLineWrapMode() P.WrapMode   { return labelGetLineWrapMode(l) }
+func (l *Label) GetMaxWidthChars() int         { return labelGetMaxWidthChars(l) }
+func (l *Label) GetMnemonicKeyval() uint       { return labelGetMnemonicKeyval(l) }
+func (l *Label) GetMnemonicWidget() *Widget    { return labelGetMnemonicWidget(l) }
+func (l *Label) GetSelectable() T.Gboolean     { return labelGetSelectable(l) }
 func (l *Label) GetSelectionBounds(start, end *int) T.Gboolean {
 	return labelGetSelectionBounds(l, start, end)
 }
-func (l *Label) GetSingleLineMode() T.Gboolean            { return labelGetSingleLineMode(l) }
-func (l *Label) GetText() string                          { return labelGetText(l) }
-func (l *Label) GetTrackVisitedLinks() T.Gboolean         { return labelGetTrackVisitedLinks(l) }
-func (l *Label) GetUseMarkup() T.Gboolean                 { return labelGetUseMarkup(l) }
-func (l *Label) GetUseUnderline() T.Gboolean              { return labelGetUseUnderline(l) }
-func (l *Label) GetWidthChars() int                       { return labelGetWidthChars(l) }
-func (l *Label) ParseUline(str string) uint               { return labelParseUline(l, str) }
-func (l *Label) SelectRegion(startOffset, endOffset int)  { labelSelectRegion(l, startOffset, endOffset) }
-func (l *Label) SetAngle(angle float64)                   { labelSetAngle(l, angle) }
-func (l *Label) SetAttributes(attrs *T.PangoAttrList)     { labelSetAttributes(l, attrs) }
-func (l *Label) SetEllipsize(mode T.PangoEllipsizeMode)   { labelSetEllipsize(l, mode) }
-func (l *Label) SetJustify(jtype Justification)           { labelSetJustify(l, jtype) }
-func (l *Label) SetLabel(str string)                      { labelSetLabel(l, str) }
-func (l *Label) SetLineWrap(wrap T.Gboolean)              { labelSetLineWrap(l, wrap) }
-func (l *Label) SetLineWrapMode(wrapMode T.PangoWrapMode) { labelSetLineWrapMode(l, wrapMode) }
-func (l *Label) SetMarkup(str string)                     { labelSetMarkup(l, str) }
-func (l *Label) SetMarkupWithMnemonic(str string)         { labelSetMarkupWithMnemonic(l, str) }
-func (l *Label) SetMaxWidthChars(nChars int)              { labelSetMaxWidthChars(l, nChars) }
-func (l *Label) SetMnemonicWidget(widget *Widget)         { labelSetMnemonicWidget(l, widget) }
-func (l *Label) SetPattern(pattern string)                { labelSetPattern(l, pattern) }
-func (l *Label) SetSelectable(setting T.Gboolean)         { labelSetSelectable(l, setting) }
+func (l *Label) GetSingleLineMode() T.Gboolean           { return labelGetSingleLineMode(l) }
+func (l *Label) GetText() string                         { return labelGetText(l) }
+func (l *Label) GetTrackVisitedLinks() T.Gboolean        { return labelGetTrackVisitedLinks(l) }
+func (l *Label) GetUseMarkup() T.Gboolean                { return labelGetUseMarkup(l) }
+func (l *Label) GetUseUnderline() T.Gboolean             { return labelGetUseUnderline(l) }
+func (l *Label) GetWidthChars() int                      { return labelGetWidthChars(l) }
+func (l *Label) ParseUline(str string) uint              { return labelParseUline(l, str) }
+func (l *Label) SelectRegion(startOffset, endOffset int) { labelSelectRegion(l, startOffset, endOffset) }
+func (l *Label) SetAngle(angle float64)                  { labelSetAngle(l, angle) }
+func (l *Label) SetAttributes(attrs *P.AttrList)         { labelSetAttributes(l, attrs) }
+func (l *Label) SetEllipsize(mode P.EllipsizeMode)       { labelSetEllipsize(l, mode) }
+func (l *Label) SetJustify(jtype Justification)          { labelSetJustify(l, jtype) }
+func (l *Label) SetLabel(str string)                     { labelSetLabel(l, str) }
+func (l *Label) SetLineWrap(wrap T.Gboolean)             { labelSetLineWrap(l, wrap) }
+func (l *Label) SetLineWrapMode(wrapMode P.WrapMode)     { labelSetLineWrapMode(l, wrapMode) }
+func (l *Label) SetMarkup(str string)                    { labelSetMarkup(l, str) }
+func (l *Label) SetMarkupWithMnemonic(str string)        { labelSetMarkupWithMnemonic(l, str) }
+func (l *Label) SetMaxWidthChars(nChars int)             { labelSetMaxWidthChars(l, nChars) }
+func (l *Label) SetMnemonicWidget(widget *Widget)        { labelSetMnemonicWidget(l, widget) }
+func (l *Label) SetPattern(pattern string)               { labelSetPattern(l, pattern) }
+func (l *Label) SetSelectable(setting T.Gboolean)        { labelSetSelectable(l, setting) }
 func (l *Label) SetSingleLineMode(singleLineMode T.Gboolean) {
 	labelSetSingleLineMode(l, singleLineMode)
 }

@@ -12,44 +12,44 @@ import (
 )
 
 var (
-	PangoAttrEmbossColorNew func(color *Color) *T.PangoAttribute
-	PangoAttrEmbossedNew    func(embossed T.Gboolean) *T.PangoAttribute
+	PangoAttrEmbossColorNew func(color *Color) *P.Attribute
+	PangoAttrEmbossedNew    func(embossed T.Gboolean) *P.Attribute
 
-	PangoContextGet          func() *T.PangoContext
-	PangoContextGetForScreen func(screen *Screen) *T.PangoContext
-	PangoContextSetColormap  func(context *T.PangoContext, colormap *Colormap)
+	PangoContextGet          func() *P.Context
+	PangoContextGetForScreen func(screen *Screen) *P.Context
+	PangoContextSetColormap  func(context *P.Context, colormap *Colormap)
 
 	PangoLayoutGetClipRegion     func(layout *P.Layout, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
 	PangoLayoutLineGetClipRegion func(line *P.LayoutLine, xOrigin, yOrigin int, indexRanges *int, nRanges int) *Region
 )
 
 type PangoRenderer struct {
-	Parent T.PangoRenderer
+	Parent P.Renderer
 	_      *struct{}
 }
 
 var (
 	PangoRendererGetType func() O.Type
-	PangoRendererNew     func(screen *Screen) *T.PangoRenderer
+	PangoRendererNew     func(screen *Screen) *P.Renderer
 
-	PangoRendererGetDefault func(screen *Screen) *T.PangoRenderer
+	PangoRendererGetDefault func(screen *Screen) *P.Renderer
 
 	pangoRendererSetDrawable      func(p *PangoRenderer, drawable *Drawable)
 	pangoRendererSetGc            func(p *PangoRenderer, gc *GC)
-	pangoRendererSetStipple       func(p *PangoRenderer, part T.PangoRenderPart, stipple *T.GdkBitmap)
-	pangoRendererSetOverrideColor func(p *PangoRenderer, part T.PangoRenderPart, color *Color)
+	pangoRendererSetStipple       func(p *PangoRenderer, part P.RenderPart, stipple *T.GdkBitmap)
+	pangoRendererSetOverrideColor func(p *PangoRenderer, part P.RenderPart, color *Color)
 )
 
 func (p *PangoRenderer) SetDrawable(drawable *Drawable) { pangoRendererSetDrawable(p, drawable) }
 func (p *PangoRenderer) SetGc(gc *GC)                   { pangoRendererSetGc(p, gc) }
-func (p *PangoRenderer) SetStipple(part T.PangoRenderPart, stipple *T.GdkBitmap) {
+func (p *PangoRenderer) SetStipple(part P.RenderPart, stipple *T.GdkBitmap) {
 	pangoRendererSetStipple(p, part, stipple)
 }
-func (p *PangoRenderer) SetOverrideColor(part T.PangoRenderPart, color *Color) {
+func (p *PangoRenderer) SetOverrideColor(part P.RenderPart, color *Color) {
 	pangoRendererSetOverrideColor(p, part, color)
 }
 
-var PangoAttrStippleNew func(stipple *T.GdkBitmap) *T.PangoAttribute
+var PangoAttrStippleNew func(stipple *T.GdkBitmap) *P.Attribute
 
 type Pixbuf struct{}
 
