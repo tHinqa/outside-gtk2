@@ -114,7 +114,7 @@ var (
 
 type IncludedModule struct {
 	List   func(engines **EngineInfo, nEngines *int)
-	Init   func(module *T.GTypeModule)
+	Init   func(module *O.TypeModule)
 	Exit   func()
 	Create func(id *T.Char) *Engine
 }

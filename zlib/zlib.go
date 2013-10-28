@@ -16,7 +16,8 @@ func init() {
 }
 
 type (
-	GzFile        *T.Void
+	GzFile struct{}
+
 	InternalState struct{}
 
 	AllocFunc func(
@@ -36,23 +37,6 @@ type (
 		*T.Void,
 		*T.UnsignedChar,
 		uint) int
-
-	ZStream struct {
-		NextIn   *byte
-		AvailIn  uint
-		TotalIn  T.UnsignedLong
-		NextOut  *byte
-		AvailOut uint
-		TotalOut T.UnsignedLong
-		Msg      *T.Char
-		State    *InternalState
-		Zalloc   AllocFunc
-		Zfree    FreeFunc
-		Opaque   *T.Void
-		DataType int
-		Adler    T.UnsignedLong
-		_        T.UnsignedLong
-	}
 
 	GzHeader struct {
 		Text     int
@@ -76,6 +60,8 @@ var (
 
 	ZlibCompileFlags func() T.UnsignedLong
 
+	ZError func(int) string
+
 	Compress func(
 		dst *byte, destLen *T.UnsignedLong,
 		src *byte, sourceLen T.UnsignedLong) int
@@ -91,68 +77,68 @@ var (
 		dst *byte, dstLen *T.UnsignedLong,
 		src *byte, srcLen T.UnsignedLong) int
 
-	Gzdopen func(fd int, mode string) GzFile
-
-	Gzbuffer func(file GzFile, size uint) int
-
-	Gzsetparams func(file GzFile, level, strategy int) int
-
-	Gzread func(file GzFile, buf *T.Void, len uint) int
-
-	Gzwrite func(file GzFile, buf *T.Void, len uint) int
-
-	Gzprintf func(file GzFile, format string, v ...VArg) int
-
-	Gzputs func(file GzFile, s string) int
-
-	Gzgets func(file GzFile, buf string, len int) string
-
-	Gzputc func(file GzFile, c int) int
-
-	Gzgetc func(file GzFile) int
-
-	Gzungetc func(c int, file GzFile) int
-
-	Gzflush func(file GzFile, flush int) int
-
-	Gzrewind func(file GzFile) int
-
-	Gzeof func(file GzFile) int
-
-	Gzdirect func(file GzFile) int
-
-	Gzclose func(file GzFile) int
-
-	GzcloseR func(file GzFile) int
-
-	GzcloseW func(file GzFile) int
-
-	Gzerror func(file GzFile, errnum *int) string
-
-	Gzclearerr func(file GzFile)
-
 	Adler32 func(
 		adler T.UnsignedLong, buf *byte, len uint) T.UnsignedLong
 
 	Crc32 func(
 		crc T.UnsignedLong, buf *byte, len uint) T.UnsignedLong
 
-	Gzopen func(string, string) GzFile
-
-	Gzseek func(GzFile, T.Long, int) T.Long
-
-	Gztell func(GzFile) T.Long
-
-	Gzoffset func(GzFile) T.Long
-
 	Adler32Combine func(T.UnsignedLong, T.UnsignedLong, T.Long) T.UnsignedLong
 
 	Crc32Combine func(T.UnsignedLong, T.UnsignedLong, T.Long) T.UnsignedLong
 
-	ZError func(int) string
-
 	GetCrcTable func() *T.UnsignedLong
 )
+var (
+	Gzdopen func(fd int, mode string) *GzFile
+	Gzopen  func(string, string) *GzFile
+
+	gzbuffer    func(g *GzFile, size uint) int
+	gzclearerr  func(g *GzFile)
+	gzclose     func(g *GzFile) int
+	gzcloseR    func(g *GzFile) int
+	gzcloseW    func(g *GzFile) int
+	gzdirect    func(g *GzFile) int
+	gzeof       func(g *GzFile) int
+	gzerror     func(g *GzFile, errnum *int) string
+	gzflush     func(g *GzFile, flush int) int
+	gzgetc      func(g *GzFile) int
+	gzgets      func(g *GzFile, buf string, leng int) string
+	gzoffset    func(g *GzFile) T.Long
+	gzprintf    func(g *GzFile, format string, v ...VArg) int
+	gzputc      func(g *GzFile, c int) int
+	gzputs      func(g *GzFile, s string) int
+	gzread      func(g *GzFile, buf *T.Void, leng uint) int
+	gzrewind    func(g *GzFile) int
+	gzseek      func(*GzFile, T.Long, int) T.Long
+	gzsetparams func(g *GzFile, level, strategy int) int
+	gztell      func(g *GzFile) T.Long
+	gzungetc    func(c int, file *GzFile) int
+	gzwrite     func(g *GzFile, buf *T.Void, leng uint) int
+)
+
+func (g *GzFile) Buffer(size uint) int                { return gzbuffer(g, size) }
+func (g *GzFile) Clearerr()                           { gzclearerr(g) }
+func (g *GzFile) Close() int                          { return gzclose(g) }
+func (g *GzFile) CloseR() int                         { return gzcloseR(g) }
+func (g *GzFile) CloseW() int                         { return gzcloseW(g) }
+func (g *GzFile) Direct() int                         { return gzdirect(g) }
+func (g *GzFile) Eof() int                            { return gzeof(g) }
+func (g *GzFile) Error(errnum *int) string            { return gzerror(g, errnum) }
+func (g *GzFile) Flush(flush int) int                 { return gzflush(g, flush) }
+func (g *GzFile) Getc() int                           { return gzgetc(g) }
+func (g *GzFile) Gets(buf string, leng int) string    { return gzgets(g, buf, leng) }
+func (g *GzFile) Offset() T.Long                      { return gzoffset(g) }
+func (g *GzFile) Printf(format string, v ...VArg) int { return gzprintf(g, format, v) }
+func (g *GzFile) Putc(c int) int                      { return gzputc(g, c) }
+func (g *GzFile) Puts(s string) int                   { return gzputs(g, s) }
+func (g *GzFile) Read(buf *T.Void, leng uint) int     { return gzread(g, buf, leng) }
+func (g *GzFile) Rewind() int                         { return gzrewind(g) }
+func (g *GzFile) Seek(a1 T.Long, a2 int) T.Long       { return gzseek(g, a1, a2) }
+func (g *GzFile) Setparams(level, strategy int) int   { return gzsetparams(g, level, strategy) }
+func (g *GzFile) Tell() T.Long                        { return gztell(g) }
+func (g *GzFile) Ungetc(c int) int                    { return gzungetc(c, g) }
+func (g *GzFile) Write(buf *T.Void, leng uint) int    { return gzwrite(g, buf, leng) }
 
 var (
 	deflate              func(z *ZStream, flush int) int
@@ -185,6 +171,23 @@ var (
 	inflateSyncPoint     func(z *ZStream) int
 	inflateUndermine     func(z *ZStream, i int) int
 )
+
+type ZStream struct {
+	NextIn   *byte
+	AvailIn  uint
+	TotalIn  T.UnsignedLong
+	NextOut  *byte
+	AvailOut uint
+	TotalOut T.UnsignedLong
+	Msg      *T.Char
+	State    *InternalState
+	Zalloc   AllocFunc
+	Zfree    FreeFunc
+	Opaque   *T.Void
+	DataType int
+	Adler    T.UnsignedLong
+	_        T.UnsignedLong
+}
 
 func (z *ZStream) Deflate(flush int) int { return deflate(z, flush) }
 func (z *ZStream) DeflateBound(sourceLen T.UnsignedLong) T.UnsignedLong {
@@ -261,30 +264,30 @@ var apiList = outside.Apis{
 	{"deflateSetHeader", &deflateSetHeader},
 	{"deflateTune", &deflateTune},
 	{"get_crc_table", &GetCrcTable},
-	{"gzbuffer", &Gzbuffer},
-	{"gzclearerr", &Gzclearerr},
-	{"gzclose", &Gzclose},
-	{"gzclose_r", &GzcloseR},
-	{"gzclose_w", &GzcloseW},
-	{"gzdirect", &Gzdirect},
+	{"gzbuffer", &gzbuffer},
+	{"gzclearerr", &gzclearerr},
+	{"gzclose", &gzclose},
+	{"gzclose_r", &gzcloseR},
+	{"gzclose_w", &gzcloseW},
+	{"gzdirect", &gzdirect},
 	{"gzdopen", &Gzdopen},
-	{"gzeof", &Gzeof},
-	{"gzerror", &Gzerror},
-	{"gzflush", &Gzflush},
-	{"gzgetc", &Gzgetc},
-	{"gzgets", &Gzgets},
-	{"gzoffset", &Gzoffset},
+	{"gzeof", &gzeof},
+	{"gzerror", &gzerror},
+	{"gzflush", &gzflush},
+	{"gzgetc", &gzgetc},
+	{"gzgets", &gzgets},
+	{"gzoffset", &gzoffset},
 	{"gzopen", &Gzopen},
-	{"gzprintf", &Gzprintf},
-	{"gzputc", &Gzputc},
-	{"gzputs", &Gzputs},
-	{"gzread", &Gzread},
-	{"gzrewind", &Gzrewind},
-	{"gzseek", &Gzseek},
-	{"gzsetparams", &Gzsetparams},
-	{"gztell", &Gztell},
-	{"gzungetc", &Gzungetc},
-	{"gzwrite", &Gzwrite},
+	{"gzprintf", &gzprintf},
+	{"gzputc", &gzputc},
+	{"gzputs", &gzputs},
+	{"gzread", &gzread},
+	{"gzrewind", &gzrewind},
+	{"gzseek", &gzseek},
+	{"gzsetparams", &gzsetparams},
+	{"gztell", &gztell},
+	{"gzungetc", &gzungetc},
+	{"gzwrite", &gzwrite},
 	{"inflate", &inflate},
 	{"inflateBack", &inflateBack},
 	{"inflateBackEnd", &inflateBackEnd},

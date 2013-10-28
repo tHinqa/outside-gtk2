@@ -4,6 +4,7 @@
 package cairo
 
 import (
+	F "github.com/tHinqa/outside-gtk2/fontconfig"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -206,8 +207,8 @@ var FormatStrideForWidth func(format Format, width int) int
 
 var (
 	FtFontFaceCreateForFtFace  func(face T.FTFace, loadFlags int) *FontFace
-	FtFontFaceCreateForPattern func(pattern *T.FcPattern) *FontFace
-	FtFontOptionsSubstitute    func(options *FontOptions, pattern *T.FcPattern)
+	FtFontFaceCreateForPattern func(pattern *F.Pattern) *FontFace
+	FtFontOptionsSubstitute    func(options *FontOptions, pattern *F.Pattern)
 )
 
 type ScaledFont struct{}

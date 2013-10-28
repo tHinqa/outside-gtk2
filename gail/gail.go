@@ -31,8 +31,7 @@ var (
 		layout *P.Layout,
 		text string,
 		offset int,
-		startOffset *int,
-		endOffset *int) *A.AttributeSet
+		startOffset, endOffset *int) *A.AttributeSet
 
 	MiscGetDefaultAttributes func(
 		attribSet *A.AttributeSet,
@@ -42,29 +41,19 @@ var (
 	MiscGetExtentsFromPangoRectangle func(
 		widget *G.Widget,
 		charRect *P.Rectangle,
-		xLayout int,
-		yLayout int,
-		x *int,
-		y *int,
-		width *int,
-		height *int,
+		xLayout, yLayout int,
+		x, y, width, height *int,
 		coords A.CoordType)
 
 	MiscGetIndexAtPointInLayout func(
 		widget *G.Widget,
 		layout *P.Layout,
-		xLayout int,
-		yLayout int,
-		x int,
-		y int,
+		xLayout, yLayout, x, y int,
 		coords A.CoordType) int
 
 	MiscGetOrigins func(
 		widget *G.Widget,
-		xWindow *int,
-		yWindow *int,
-		xToplevel *int,
-		yToplevel *int)
+		xWindow, yWindow, xToplevel, yToplevel *int)
 
 	MiscAddToAttrSet func(
 		attribSet *A.AttributeSet,
@@ -74,8 +63,7 @@ var (
 	MiscBufferGetRunAttributes func(
 		buffer *G.TextBuffer,
 		offset int,
-		startOffset *int,
-		endOffset *int) *A.AttributeSet
+		startOffset, endOffset *int) *A.AttributeSet
 )
 
 type TextUtil struct {

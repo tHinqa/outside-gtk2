@@ -17,50 +17,50 @@ func init() {
 
 var (
 	// TODO(t): check documentation for *char usage as msgid, in ngettext etc.
-	Libintl_gettext func(msgid string) string
+	Gettext func(msgid string) string
 
-	Libintl_dgettext func(domainname string, msgid string) string
+	Dgettext func(domainname string, msgid string) string
 
-	Libintl_dcgettext func(
+	Dcgettext func(
 		domainname string, msgid string, category int) string
 
-	Libintl_ngettext func(
+	Ngettext func(
 		msgid1 string, msgid2 string, n T.UnsignedLong) string
 
-	Libintl_dngettext func(domainname string,
+	Dngettext func(domainname string,
 		msgid1 string, msgid2 string, n T.UnsignedLong) string
 
-	Libintl_dcngettext func(domainname string, msgid1 string,
+	Dcngettext func(domainname string, msgid1 string,
 		msgid2 string, n T.UnsignedLong, category int) string
 
-	Libintl_textdomain func(domainname string) string
+	Textdomain func(domainname string) string
 
-	Libintl_bindtextdomain func(
+	Bindtextdomain func(
 		domainname string, dirname string) string
 
-	Libintl_bind_textdomain_codeset func(
+	BindTextdomainCodeset func(
 		domainname string, codeset string) string
 
-	Libintl_fprintf func(*T.FILE, string, ...VArg) int
+	Fprintf func(*T.FILE, string, ...VArg) int
 
-	Libintl_vfprintf func(*T.FILE, string, T.VaList) int
+	Vfprintf func(*T.FILE, string, T.VaList) int
 
-	Libintl_printf func(string, ...VArg) int
+	Printf func(string, ...VArg) int
 
-	Libintl_vprintf func(string, T.VaList) int
+	Vprintf func(string, T.VaList) int
 
-	Libintl_sprintf func(string, string, ...VArg) int
+	Sprintf func(string, string, ...VArg) int
 
-	Libintl_vsprintf func(string, string, T.VaList) int
+	Vsprintf func(string, string, T.VaList) int
 
-	Libintl_snprintf func(string, T.Size_t, string, ...VArg) int
+	Snprintf func(string, T.Size_t, string, ...VArg) int
 
-	Libintl_vsnprintf func(string, T.Size_t, string, T.VaList) int
+	Vsnprintf func(string, T.Size_t, string, T.VaList) int
 
-	Libintl_setlocale func(int, string) string
+	Setlocale func(int, string) string
 
-	Libintl_set_relocation_prefix func(
-		orig_prefix string, curr_prefix string)
+	SetRelocationPrefix func(
+		origPrefix string, currPrefix string)
 )
 
 var dll = "intl.dll"
@@ -75,25 +75,25 @@ var apiList = outside.Apis{
 	// Libibtl_ {"dgettext", &dgettext},
 	// Libibtl_ {"dngettext", &dngettext},
 	// Libibtl_ {"gettext", &gettext},
-	{"libintl_bind_textdomain_codeset", &Libintl_bind_textdomain_codeset},
-	{"libintl_bindtextdomain", &Libintl_bindtextdomain},
-	{"libintl_dcgettext", &Libintl_dcgettext},
-	{"libintl_dcngettext", &Libintl_dcngettext},
-	{"libintl_dgettext", &Libintl_dgettext},
-	{"libintl_dngettext", &Libintl_dngettext},
-	{"libintl_fprintf", &Libintl_fprintf},
-	{"libintl_gettext", &Libintl_gettext},
-	{"libintl_ngettext", &Libintl_ngettext},
-	{"libintl_printf", &Libintl_printf},
-	{"libintl_set_relocation_prefix", &Libintl_set_relocation_prefix},
-	{"libintl_setlocale", &Libintl_setlocale},
-	{"libintl_snprintf", &Libintl_snprintf},
-	{"libintl_sprintf", &Libintl_sprintf},
-	{"libintl_textdomain", &Libintl_textdomain},
-	{"libintl_vfprintf", &Libintl_vfprintf},
-	{"libintl_vprintf", &Libintl_vprintf},
-	{"libintl_vsnprintf", &Libintl_vsnprintf},
-	{"libintl_vsprintf", &Libintl_vsprintf},
+	{"libintl_bind_textdomain_codeset", &BindTextdomainCodeset},
+	{"libintl_bindtextdomain", &Bindtextdomain},
+	{"libintl_dcgettext", &Dcgettext},
+	{"libintl_dcngettext", &Dcngettext},
+	{"libintl_dgettext", &Dgettext},
+	{"libintl_dngettext", &Dngettext},
+	{"libintl_fprintf", &Fprintf},
+	{"libintl_gettext", &Gettext},
+	{"libintl_ngettext", &Ngettext},
+	{"libintl_printf", &Printf},
+	{"libintl_set_relocation_prefix", &SetRelocationPrefix},
+	{"libintl_setlocale", &Setlocale},
+	{"libintl_snprintf", &Snprintf},
+	{"libintl_sprintf", &Sprintf},
+	{"libintl_textdomain", &Textdomain},
+	{"libintl_vfprintf", &Vfprintf},
+	{"libintl_vprintf", &Vprintf},
+	{"libintl_vsnprintf", &Vsnprintf},
+	{"libintl_vsprintf", &Vsprintf},
 	// Libibtl_ {"ngettext", &ngettext},
 	// Libibtl_ {"textdomain", &textdomain},
 }

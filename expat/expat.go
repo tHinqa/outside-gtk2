@@ -18,505 +18,467 @@ func init() {
 type (
 	Enum int
 
-	//XML_Parser *struct{}
-	XML_Parser struct{}
-	XML_Char   T.Char
-	XML_LChar  T.Char
-	XML_Bool   T.UnsignedChar
-	XML_Size   T.UnsignedLong
-	XML_Index  T.Long
+	//Parser *struct{}
+	Parser struct{}
+	Char   T.Char
+	LChar  T.Char
+	Bool   T.UnsignedChar
+	Size   T.UnsignedLong
+	Index  T.Long
 
-	XML_ElementDeclHandler func(
-		userData *T.Void, name string, model *XML_Content)
+	ElementDeclHandler func(
+		userData *T.Void, name string, model *Content)
 
-	XML_AttlistDeclHandler func(userData *T.Void,
-		elname, attname, att_type, dflt string, isrequired int)
+	AttlistDeclHandler func(userData *T.Void,
+		elName, attName, attType, dflt string, isRequired int)
 
-	XML_XmlDeclHandler func(userData *T.Void,
+	XmlDeclHandler func(userData *T.Void,
 		version, encoding string, standalone int)
 
-	XML_StartCdataSectionHandler func(userData *T.Void)
+	StartCdataSectionHandler func(userData *T.Void)
 
-	XML_EndCdataSectionHandler func(userData *T.Void)
+	EndCdataSectionHandler func(userData *T.Void)
 
-	XML_DefaultHandler func(
-		userData *T.Void, s *XML_Char, leng int)
+	DefaultHandler func(
+		userData *T.Void, s *Char, leng int)
 
-	XML_CharacterDataHandler func(
-		userData *T.Void, s *XML_Char, leng int)
+	CharacterDataHandler func(
+		userData *T.Void, s *Char, leng int)
 
-	XML_ProcessingInstructionHandler func(
+	ProcessingInstructionHandler func(
 		userData *T.Void, target, data string)
 
-	XML_CommentHandler func(
+	CommentHandler func(
 		userData *T.Void, data string)
 
-	XML_StartDoctypeDeclHandler func(
+	StartDoctypeDeclHandler func(
 		userData *T.Void,
 		doctypeName, sysid, pubid string,
-		has_internal_subset int)
+		hasInternalSubset int)
 
-	XML_StartElementHandler func(
-		userData *T.Void, name string, atts **XML_Char)
+	StartElementHandler func(
+		userData *T.Void, name string, atts **Char)
 
-	XML_EndElementHandler func(
+	EndElementHandler func(
 		userData *T.Void, name string)
 
-	XML_EndDoctypeDeclHandler func(userData *T.Void)
+	EndDoctypeDeclHandler func(userData *T.Void)
 
-	XML_EntityDeclHandler func(
+	EntityDeclHandler func(
 		userData *T.Void,
 		entityName string,
-		is_parameter_entity int,
+		isParameterEntity int,
 		value string,
-		value_length int,
+		valueLength int,
 		base, systemId, publicId, notationName string)
 
-	XML_EndNamespaceDeclHandler func(
+	EndNamespaceDeclHandler func(
 		userData *T.Void, prefix string)
 
-	XML_StartNamespaceDeclHandler func(
+	StartNamespaceDeclHandler func(
 		userData *T.Void, prefix, uri string)
 
-	XML_NotStandaloneHandler func(userData *T.Void) int
+	NotStandaloneHandler func(userData *T.Void) int
 
-	XML_NotationDeclHandler func(
+	NotationDeclHandler func(
 		userData *T.Void,
 		notationName, base, systemId, publicId string)
 
-	XML_ExternalEntityRefHandler func(parser XML_Parser,
+	ExternalEntityRefHandler func(parser Parser,
 		context, base, systemId, publicId string) int
 
-	XML_SkippedEntityHandler func(
-		userData *T.Void, entityName string, is_parameter_entity int)
+	SkippedEntityHandler func(
+		userData *T.Void, entityName string, isParameterEntity int)
 
-	XML_UnparsedEntityDeclHandler func(userData *T.Void,
+	UnparsedEntityDeclHandler func(userData *T.Void,
 		entityName, base, systemId, publicId, notationName string)
 
-	XML_UnknownEncodingHandler func(encodingHandlerData *T.Void,
-		name string, info *XML_Encoding) int
+	UnknownEncodingHandler func(encodingHandlerData *T.Void,
+		name string, info *Encoding) int
 
-	XML_Memory_Handling_Suite struct {
-		malloc_fcn  func(size T.Size_t) *T.Void
-		realloc_fcn func(ptr *T.Void, size T.Size_t) *T.Void
-		free_fcn    func(ptr *T.Void)
+	MemoryHandlingSuite struct {
+		mallocFunc  func(size T.Size_t) *T.Void
+		reallocFunc func(ptr *T.Void, size T.Size_t) *T.Void
+		freeFunc    func(ptr *T.Void)
 	}
 
-	XML_Content struct {
-		Type        XML_Content_Type
-		Quant       XML_Content_Quant
-		Name        *XML_Char
+	Content struct {
+		Type        ContentType
+		Quant       ContentQuant
+		Name        *Char
 		Numchildren uint
-		Children    *XML_Content
+		Children    *Content
 	}
 
-	XML_ParsingStatus struct {
-		Parsing     XML_Parsing
-		FinalBuffer XML_Bool
+	ParsingStatus struct {
+		Parsing     Parsing
+		FinalBuffer Bool
 	}
 
-	XML_Encoding struct {
+	Encoding struct {
 		Map     [256]int
 		Data    *T.Void
 		Convert func(data *T.Void, s *T.Char) int
 		Release func(data *T.Void)
 	}
 
-	XML_Expat_Version struct {
+	ExpatVersionS struct { // NOTE(t): Name conflict
 		Major, Minor, Micro int
 	}
 
-	XML_Feature struct {
-		Feature XML_FeatureEnum
+	Feature struct {
+		Feature FeatureEnum
 		Name    POVString
 		Value   T.Long
 	}
 )
 
-type XML_Status Enum
+type Status Enum
 
 const (
-	XML_STATUS_ERROR XML_Status = iota
-	XML_STATUS_OK
-	XML_STATUS_SUSPENDED
+	STATUS_ERROR Status = iota
+	STATUS_OK
+	STATUS_SUSPENDED
 )
 
-type XML_Content_Type Enum
+type ContentType Enum
 
 const (
-	XML_CTYPE_EMPTY XML_Content_Type = iota + 1
-	XML_CTYPE_ANY
-	XML_CTYPE_MIXED
-	XML_CTYPE_NAME
-	XML_CTYPE_CHOICE
-	XML_CTYPE_SEQ
+	CTYPE_EMPTY ContentType = iota + 1
+	CTYPE_ANY
+	CTYPE_MIXED
+	CTYPE_NAME
+	CTYPE_CHOICE
+	CTYPE_SEQ
 )
 
-type XML_Content_Quant Enum
+type ContentQuant Enum
 
 const (
-	XML_CQUANT_NONE XML_Content_Quant = iota
-	XML_CQUANT_OPT
-	XML_CQUANT_REP
-	XML_CQUANT_PLUS
+	CQUANT_NONE ContentQuant = iota
+	CQUANT_OPT
+	CQUANT_REP
+	CQUANT_PLUS
 )
 
-type XML_Parsing Enum
+type Parsing Enum
 
 const (
-	XML_INITIALIZED XML_Parsing = iota
-	XML_PARSING
-	XML_FINISHED
-	XML_SUSPENDED
+	INITIALIZED Parsing = iota
+	PARSING
+	FINISHED
+	SUSPENDED
 )
 
-type XML_Error Enum
+type Error Enum
 
 const (
-	XML_ERROR_NONE XML_Error = iota
-	XML_ERROR_NO_MEMORY
-	XML_ERROR_SYNTAX
-	XML_ERROR_NO_ELEMENTS
-	XML_ERROR_INVALID_TOKEN
-	XML_ERROR_UNCLOSED_TOKEN
-	XML_ERROR_PARTIAL_CHAR
-	XML_ERROR_TAG_MISMATCH
-	XML_ERROR_DUPLICATE_ATTRIBUTE
-	XML_ERROR_JUNK_AFTER_DOC_ELEMENT
-	XML_ERROR_PARAM_ENTITY_REF
-	XML_ERROR_UNDEFINED_ENTITY
-	XML_ERROR_RECURSIVE_ENTITY_REF
-	XML_ERROR_ASYNC_ENTITY
-	XML_ERROR_BAD_CHAR_REF
-	XML_ERROR_BINARY_ENTITY_REF
-	XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF
-	XML_ERROR_MISPLACED_XML_PI
-	XML_ERROR_UNKNOWN_ENCODING
-	XML_ERROR_INCORRECT_ENCODING
-	XML_ERROR_UNCLOSED_CDATA_SECTION
-	XML_ERROR_EXTERNAL_ENTITY_HANDLING
-	XML_ERROR_NOT_STANDALONE
-	XML_ERROR_UNEXPECTED_STATE
-	XML_ERROR_ENTITY_DECLARED_IN_PE
-	XML_ERROR_FEATURE_REQUIRES_XML_DTD
-	XML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING
-	XML_ERROR_UNBOUND_PREFIX
-	XML_ERROR_UNDECLARING_PREFIX
-	XML_ERROR_INCOMPLETE_PE
-	XML_ERROR_XML_DECL
-	XML_ERROR_TEXT_DECL
-	XML_ERROR_PUBLICID
-	XML_ERROR_SUSPENDED
-	XML_ERROR_NOT_SUSPENDED
-	XML_ERROR_ABORTED
-	XML_ERROR_FINISHED
-	XML_ERROR_SUSPEND_PE
-	XML_ERROR_RESERVED_PREFIX_XML
-	XML_ERROR_RESERVED_PREFIX_XMLNS
-	XML_ERROR_RESERVED_NAMESPACE_URI
+	ERROR_NONE Error = iota
+	ERROR_NO_MEMORY
+	ERROR_SYNTAX
+	ERROR_NO_ELEMENTS
+	ERROR_INVALID_TOKEN
+	ERROR_UNCLOSED_TOKEN
+	ERROR_PARTIAL_CHAR
+	ERROR_TAG_MISMATCH
+	ERROR_DUPLICATE_ATTRIBUTE
+	ERROR_JUNK_AFTER_DOC_ELEMENT
+	ERROR_PARAM_ENTITY_REF
+	ERROR_UNDEFINED_ENTITY
+	ERROR_RECURSIVE_ENTITY_REF
+	ERROR_ASYNC_ENTITY
+	ERROR_BAD_CHAR_REF
+	ERROR_BINARY_ENTITY_REF
+	ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF
+	ERROR_MISPLACED_PI
+	ERROR_UNKNOWN_ENCODING
+	ERROR_INCORRECT_ENCODING
+	ERROR_UNCLOSED_CDATA_SECTION
+	ERROR_EXTERNAL_ENTITY_HANDLING
+	ERROR_NOT_STANDALONE
+	ERROR_UNEXPECTED_STATE
+	ERROR_ENTITY_DECLARED_IN_PE
+	ERROR_FEATURE_REQUIRES_DTD
+	ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING
+	ERROR_UNBOUND_PREFIX
+	ERROR_UNDECLARING_PREFIX
+	ERROR_INCOMPLETE_PE
+	ERROR_DECL
+	ERROR_TEXT_DECL
+	ERROR_PUBLICID
+	ERROR_SUSPENDED
+	ERROR_NOT_SUSPENDED
+	ERROR_ABORTED
+	ERROR_FINISHED
+	ERROR_SUSPEND_PE
+	ERROR_RESERVED_PREFIX_XML
+	ERROR_RESERVED_PREFIX_XMLNS
+	ERROR_RESERVED_NAMESPACE_URI
 )
 
-type XML_ParamEntityParsing Enum
+type ParamEntityParsing Enum
 
 const (
-	XML_PARAM_ENTITY_PARSING_NEVER XML_ParamEntityParsing = iota
-	XML_PARAM_ENTITY_PARSING_UNLESS_STANDALONE
-	XML_PARAM_ENTITY_PARSING_ALWAYS
+	PARAM_ENTITY_PARSING_NEVER ParamEntityParsing = iota
+	PARAM_ENTITY_PARSING_UNLESS_STANDALONE
+	PARAM_ENTITY_PARSING_ALWAYS
 )
 
-type XML_FeatureEnum Enum
+type FeatureEnum Enum
 
 const (
-	XML_FEATURE_END XML_FeatureEnum = iota
-	XML_FEATURE_UNICODE
-	XML_FEATURE_UNICODE_WCHAR_T
-	XML_FEATURE_DTD
-	XML_FEATURE_CONTEXT_BYTES
-	XML_FEATURE_MIN_SIZE
-	XML_FEATURE_SIZEOF_XML_CHAR
-	XML_FEATURE_SIZEOF_XML_LCHAR
-	XML_FEATURE_NS
-	XML_FEATURE_LARGE_SIZE
+	FEATURE_END FeatureEnum = iota
+	FEATURE_UNICODE
+	FEATURE_UNICODE_WCHAR_T
+	FEATURE_DTD
+	FEATURE_CONTEXT_BYTES
+	FEATURE_MIN_SIZE
+	FEATURE_SIZEOF_CHAR
+	FEATURE_SIZEOF_LCHAR
+	FEATURE_NS
+	FEATURE_LARGE_SIZE
 )
 
 var (
-	XML_SetElementDeclHandler func(
-		parser XML_Parser, eldecl XML_ElementDeclHandler)
+	ErrorString func(code Error) string
 
-	XML_SetAttlistDeclHandler func(
-		parser XML_Parser, attdecl XML_AttlistDeclHandler)
+	ExpatVersion func() string
 
-	XML_SetXmlDeclHandler func(
-		parser XML_Parser, xmldecl XML_XmlDeclHandler)
+	// NOTE: Crashes
+	ExpatVersionInfo func() ExpatVersionS
 
-	XML_ParserCreate func(encoding string) *XML_Parser
-
-	XML_ParserCreateNS func(
-		encoding *XML_Char,
-		namespaceSeparator XML_Char) XML_Parser
-
-	XML_ParserCreate_MM func(
-		encoding *XML_Char,
-		memsuite *XML_Memory_Handling_Suite,
-		namespaceSeparator *XML_Char) XML_Parser
-
-	XML_ParserReset func(
-		parser XML_Parser, encoding *XML_Char) XML_Bool
-
-	XML_SetEntityDeclHandler func(
-		parser XML_Parser,
-		handler XML_EntityDeclHandler)
-
-	XML_SetElementHandler func(
-		parser XML_Parser,
-		start XML_StartElementHandler,
-		end XML_EndElementHandler)
-
-	XML_SetStartElementHandler func(
-		parser XML_Parser,
-		handler XML_StartElementHandler)
-
-	XML_SetEndElementHandler func(
-		parser XML_Parser,
-		handler XML_EndElementHandler)
-
-	XML_SetCharacterDataHandler func(
-		parser XML_Parser,
-		handler XML_CharacterDataHandler)
-
-	XML_SetProcessingInstructionHandler func(
-		parser XML_Parser,
-		handler XML_ProcessingInstructionHandler)
-
-	XML_SetCommentHandler func(
-		parser XML_Parser,
-		handler XML_CommentHandler)
-
-	XML_SetCdataSectionHandler func(
-		parser XML_Parser,
-		start XML_StartCdataSectionHandler,
-		end XML_EndCdataSectionHandler)
-
-	XML_SetStartCdataSectionHandler func(
-		parser XML_Parser,
-		start XML_StartCdataSectionHandler)
-
-	XML_SetEndCdataSectionHandler func(
-		parser XML_Parser,
-		end XML_EndCdataSectionHandler)
-
-	XML_SetDefaultHandler func(
-		parser XML_Parser,
-		handler XML_DefaultHandler)
-
-	XML_SetDefaultHandlerExpand func(
-		parser XML_Parser,
-		handler XML_DefaultHandler)
-
-	XML_SetDoctypeDeclHandler func(
-		parser XML_Parser,
-		start XML_StartDoctypeDeclHandler,
-		end XML_EndDoctypeDeclHandler)
-
-	XML_SetStartDoctypeDeclHandler func(
-		parser XML_Parser,
-		start XML_StartDoctypeDeclHandler)
-
-	XML_SetEndDoctypeDeclHandler func(
-		parser XML_Parser,
-		end XML_EndDoctypeDeclHandler)
-
-	XML_SetUnparsedEntityDeclHandler func(
-		parser XML_Parser,
-		handler XML_UnparsedEntityDeclHandler)
-
-	XML_SetNotationDeclHandler func(
-		parser XML_Parser,
-		handler XML_NotationDeclHandler)
-
-	XML_SetNamespaceDeclHandler func(
-		parser XML_Parser,
-		start XML_StartNamespaceDeclHandler,
-		end XML_EndNamespaceDeclHandler)
-
-	XML_SetStartNamespaceDeclHandler func(
-		parser XML_Parser,
-		start XML_StartNamespaceDeclHandler)
-
-	XML_SetEndNamespaceDeclHandler func(
-		parser XML_Parser,
-		end XML_EndNamespaceDeclHandler)
-
-	XML_SetNotStandaloneHandler func(
-		parser XML_Parser,
-		handler XML_NotStandaloneHandler)
-
-	XML_SetExternalEntityRefHandler func(
-		parser XML_Parser,
-		handler XML_ExternalEntityRefHandler)
-
-	XML_SetExternalEntityRefHandlerArg func(
-		parser XML_Parser, arg *T.Void)
-
-	XML_SetSkippedEntityHandler func(
-		parser XML_Parser,
-		handler XML_SkippedEntityHandler)
-
-	XML_SetUnknownEncodingHandler func(
-		parser XML_Parser,
-		handler XML_UnknownEncodingHandler,
-		encodingHandlerData *T.Void)
-
-	XML_DefaultCurrent func(
-		parser XML_Parser)
-
-	XML_SetReturnNSTriplet func(parser XML_Parser, do_nst int)
-
-	XML_SetUserData func(parser XML_Parser, userData *T.Void)
-
-	XML_SetEncoding func(
-		parser XML_Parser, encoding string) XML_Status
-
-	XML_UseParserAsHandlerArg func(
-		parser XML_Parser)
-
-	XML_UseForeignDTD func(
-		parser XML_Parser, useDTD XML_Bool) XML_Error
-
-	XML_SetBase func(
-		parser XML_Parser, base string) XML_Status
-
-	XML_GetBase func(parser XML_Parser) string
-
-	XML_GetSpecifiedAttributeCount func(
-		parser XML_Parser) int
-
-	XML_GetIdAttributeIndex func(
-		parser XML_Parser) int
-
-	XML_Parse func(parser XML_Parser,
-		s *T.Char, leng, isFinal int) XML_Status
-
-	XML_GetBuffer func(parser XML_Parser, leng int) *T.Void
-
-	XML_ParseBuffer func(
-		parser XML_Parser, leng, isFinal int) XML_Status
-
-	XML_StopParser func(parser XML_Parser,
-		resumable XML_Bool) XML_Status
-
-	XML_ResumeParser func(parser XML_Parser) XML_Status
-
-	XML_GetParsingStatus func(
-		parser XML_Parser, status *XML_ParsingStatus)
-
-	XML_ExternalEntityParserCreate func(
-		parser XML_Parser,
-		context, encoding *XML_Char) XML_Parser
-
-	XML_SetParamEntityParsing func(
-		parser XML_Parser, parsing XML_ParamEntityParsing) int
-
-	XML_GetErrorCode func(parser XML_Parser) XML_Error
-
-	XML_GetCurrentLineNumber func(parser XML_Parser) XML_Size
-
-	XML_GetCurrentColumnNumber func(parser XML_Parser) XML_Size
-
-	XML_GetCurrentByteIndex func(parser XML_Parser) XML_Index
-
-	XML_GetCurrentByteCount func(parser XML_Parser) int
-
-	XML_GetInputContext func(
-		parser XML_Parser, offset, size *int) string
-
-	XML_FreeContentModel func(
-		parser XML_Parser, model *XML_Content)
-
-	XML_MemMalloc func(parser XML_Parser, size T.Size_t) *T.Void
-
-	XML_MemRealloc func(
-		parser XML_Parser, ptr *T.Void, size T.Size_t) *T.Void
-
-	XML_MemFree func(parser XML_Parser, ptr *T.Void)
-
-	XML_ParserFree func(parser XML_Parser)
-
-	XML_ErrorString func(code XML_Error) string
-
-	XML_ExpatVersion func() string
-
-	XML_ExpatVersionInfo func() XML_Expat_Version // NOTE: CRASHES
-
-	XML_GetFeatureList func() *XML_Feature
+	GetFeatureList func() *[99]Feature //TODO(t):Fix
 )
+var (
+	ParserCreate   func(encoding string) *Parser
+	ParserCreateNS func(encoding *Char, namespaceSeparator Char) Parser
+	ParserCreateMM func(encoding *Char, memsuite *MemoryHandlingSuite, namespaceSeparator *Char) Parser
+
+	defaultCurrent                  func(p Parser)
+	externalEntityParserCreate      func(p Parser, context, encoding *Char) Parser
+	freeContentModel                func(p Parser, model *Content)
+	getBase                         func(p Parser) string
+	getBuffer                       func(p Parser, leng int) *T.Void
+	getCurrentByteCount             func(p Parser) int
+	getCurrentByteIndex             func(p Parser) Index
+	getCurrentColumnNumber          func(p Parser) Size
+	getCurrentLineNumber            func(p Parser) Size
+	getErrorCode                    func(p Parser) Error
+	getIdAttributeIndex             func(p Parser) int
+	getInputContext                 func(p Parser, offset, size *int) string
+	getParsingStatus                func(p Parser, status *ParsingStatus)
+	getSpecifiedAttributeCount      func(p Parser) int
+	memFree                         func(p Parser, ptr *T.Void)
+	memMalloc                       func(p Parser, size T.Size_t) *T.Void
+	memRealloc                      func(p Parser, ptr *T.Void, size T.Size_t) *T.Void
+	parse                           func(p Parser, s *T.Char, leng, isFinal int) Status
+	parseBuffer                     func(p Parser, leng, isFinal int) Status
+	parserFree                      func(p Parser)
+	parserReset                     func(p Parser, encoding *Char) Bool
+	resumeParser                    func(p Parser) Status
+	setAttlistDeclHandler           func(p Parser, attdecl AttlistDeclHandler)
+	setBase                         func(p Parser, base string) Status
+	setCdataSectionHandler          func(p Parser, start StartCdataSectionHandler, end EndCdataSectionHandler)
+	setCharacterDataHandler         func(p Parser, handler CharacterDataHandler)
+	setCommentHandler               func(p Parser, handler CommentHandler)
+	setDefaultHandler               func(p Parser, handler DefaultHandler)
+	setDefaultHandlerExpand         func(p Parser, handler DefaultHandler)
+	setDoctypeDeclHandler           func(p Parser, start StartDoctypeDeclHandler, end EndDoctypeDeclHandler)
+	setElementDeclHandler           func(p Parser, eldecl ElementDeclHandler)
+	setElementHandler               func(p Parser, start StartElementHandler, end EndElementHandler)
+	setEncoding                     func(p Parser, encoding string) Status
+	setEndCdataSectionHandler       func(p Parser, end EndCdataSectionHandler)
+	setEndDoctypeDeclHandler        func(p Parser, end EndDoctypeDeclHandler)
+	setEndElementHandler            func(p Parser, handler EndElementHandler)
+	setEndNamespaceDeclHandler      func(p Parser, end EndNamespaceDeclHandler)
+	setEntityDeclHandler            func(p Parser, handler EntityDeclHandler)
+	setExternalEntityRefHandler     func(p Parser, handler ExternalEntityRefHandler)
+	setExternalEntityRefHandlerArg  func(p Parser, arg *T.Void)
+	setNamespaceDeclHandler         func(p Parser, start StartNamespaceDeclHandler, end EndNamespaceDeclHandler)
+	setNotationDeclHandler          func(p Parser, handler NotationDeclHandler)
+	setNotStandaloneHandler         func(p Parser, handler NotStandaloneHandler)
+	setParamEntityParsing           func(p Parser, parsing ParamEntityParsing) int
+	setProcessingInstructionHandler func(p Parser, handler ProcessingInstructionHandler)
+	setReturnNSTriplet              func(p Parser, do_nst int)
+	setSkippedEntityHandler         func(p Parser, handler SkippedEntityHandler)
+	setStartCdataSectionHandler     func(p Parser, start StartCdataSectionHandler)
+	setStartDoctypeDeclHandler      func(p Parser, start StartDoctypeDeclHandler)
+	setStartElementHandler          func(p Parser, handler StartElementHandler)
+	setStartNamespaceDeclHandler    func(p Parser, start StartNamespaceDeclHandler)
+	setUnknownEncodingHandler       func(p Parser, handler UnknownEncodingHandler, encodingHandlerData *T.Void)
+	setUnparsedEntityDeclHandler    func(p Parser, handler UnparsedEntityDeclHandler)
+	setUserData                     func(p Parser, userData *T.Void)
+	setXmlDeclHandler               func(p Parser, xmldecl XmlDeclHandler)
+	stopParser                      func(p Parser, resumable Bool) Status
+	useForeignDTD                   func(p Parser, useDTD Bool) Error
+	useParserAsHandlerArg           func(p Parser)
+)
+
+func (p Parser) DefaultCurrent() { defaultCurrent(p) }
+func (p Parser) ExternalEntityParserCreate(context, encoding *Char) Parser {
+	return externalEntityParserCreate(p, context, encoding)
+}
+func (p Parser) FreeContentModel(model *Content)                  { freeContentModel(p, model) }
+func (p Parser) Base() string                                     { return getBase(p) }
+func (p Parser) Buffer(leng int) *T.Void                          { return getBuffer(p, leng) }
+func (p Parser) CurrentByteCount() int                            { return getCurrentByteCount(p) }
+func (p Parser) CurrentByteIndex() Index                          { return getCurrentByteIndex(p) }
+func (p Parser) CurrentColumnNumber() Size                        { return getCurrentColumnNumber(p) }
+func (p Parser) CurrentLineNumber() Size                          { return getCurrentLineNumber(p) }
+func (p Parser) ErrorCode() Error                                 { return getErrorCode(p) }
+func (p Parser) IdAttributeIndex() int                            { return getIdAttributeIndex(p) }
+func (p Parser) InputContext(offset, size *int) string            { return getInputContext(p, offset, size) }
+func (p Parser) MemFree(ptr *T.Void)                              { memFree(p, ptr) }
+func (p Parser) MemMalloc(size T.Size_t) *T.Void                  { return memMalloc(p, size) }
+func (p Parser) MemRealloc(ptr *T.Void, size T.Size_t) *T.Void    { return memRealloc(p, ptr, size) }
+func (p Parser) Parse(s *T.Char, leng, isFinal int) Status        { return parse(p, s, leng, isFinal) }
+func (p Parser) ParseBuffer(leng, isFinal int) Status             { return parseBuffer(p, leng, isFinal) }
+func (p Parser) ParserFree()                                      { parserFree(p) }
+func (p Parser) ParserReset(encoding *Char) Bool                  { return parserReset(p, encoding) }
+func (p Parser) ParsingStatus(status *ParsingStatus)              { getParsingStatus(p, status) }
+func (p Parser) ResumeParser() Status                             { return resumeParser(p) }
+func (p Parser) SetAttlistDeclHandler(attdecl AttlistDeclHandler) { setAttlistDeclHandler(p, attdecl) }
+func (p Parser) SetBase(base string) Status                       { return setBase(p, base) }
+func (p Parser) SetCdataSectionHandler(start StartCdataSectionHandler, end EndCdataSectionHandler) {
+	setCdataSectionHandler(p, start, end)
+}
+func (p Parser) SetCharacterDataHandler(handler CharacterDataHandler) {
+	setCharacterDataHandler(p, handler)
+}
+func (p Parser) SetCommentHandler(handler CommentHandler)       { setCommentHandler(p, handler) }
+func (p Parser) SetDefaultHandler(handler DefaultHandler)       { setDefaultHandler(p, handler) }
+func (p Parser) SetDefaultHandlerExpand(handler DefaultHandler) { setDefaultHandlerExpand(p, handler) }
+func (p Parser) SetDoctypeDeclHandler(start StartDoctypeDeclHandler, end EndDoctypeDeclHandler) {
+	setDoctypeDeclHandler(p, start, end)
+}
+func (p Parser) SetElementDeclHandler(eldecl ElementDeclHandler) { setElementDeclHandler(p, eldecl) }
+func (p Parser) SetElementHandler(start StartElementHandler, end EndElementHandler) {
+	setElementHandler(p, start, end)
+}
+func (p Parser) SetEncoding(encoding string) Status { return setEncoding(p, encoding) }
+func (p Parser) SetEndCdataSectionHandler(end EndCdataSectionHandler) {
+	setEndCdataSectionHandler(p, end)
+}
+func (p Parser) SetEndDoctypeDeclHandler(end EndDoctypeDeclHandler) { setEndDoctypeDeclHandler(p, end) }
+func (p Parser) SetEndElementHandler(handler EndElementHandler)     { setEndElementHandler(p, handler) }
+func (p Parser) SetEndNamespaceDeclHandler(end EndNamespaceDeclHandler) {
+	setEndNamespaceDeclHandler(p, end)
+}
+func (p Parser) SetEntityDeclHandler(handler EntityDeclHandler) { setEntityDeclHandler(p, handler) }
+func (p Parser) SetExternalEntityRefHandler(handler ExternalEntityRefHandler) {
+	setExternalEntityRefHandler(p, handler)
+}
+func (p Parser) SetExternalEntityRefHandlerArg(arg *T.Void) { setExternalEntityRefHandlerArg(p, arg) }
+func (p Parser) SetNamespaceDeclHandler(start StartNamespaceDeclHandler, end EndNamespaceDeclHandler) {
+	setNamespaceDeclHandler(p, start, end)
+}
+func (p Parser) SetNotationDeclHandler(handler NotationDeclHandler) {
+	setNotationDeclHandler(p, handler)
+}
+func (p Parser) SetNotStandaloneHandler(handler NotStandaloneHandler) {
+	setNotStandaloneHandler(p, handler)
+}
+func (p Parser) SetParamEntityParsing(parsing ParamEntityParsing) int {
+	return setParamEntityParsing(p, parsing)
+}
+func (p Parser) SetProcessingInstructionHandler(handler ProcessingInstructionHandler) {
+	setProcessingInstructionHandler(p, handler)
+}
+func (p Parser) SetReturnNSTriplet(do_nst int) { setReturnNSTriplet(p, do_nst) }
+func (p Parser) SetSkippedEntityHandler(handler SkippedEntityHandler) {
+	setSkippedEntityHandler(p, handler)
+}
+func (p Parser) SetStartCdataSectionHandler(start StartCdataSectionHandler) {
+	setStartCdataSectionHandler(p, start)
+}
+func (p Parser) SetStartDoctypeDeclHandler(start StartDoctypeDeclHandler) {
+	setStartDoctypeDeclHandler(p, start)
+}
+func (p Parser) SetStartElementHandler(handler StartElementHandler) {
+	setStartElementHandler(p, handler)
+}
+func (p Parser) SetStartNamespaceDeclHandler(start StartNamespaceDeclHandler) {
+	setStartNamespaceDeclHandler(p, start)
+}
+func (p Parser) SetUnknownEncodingHandler(handler UnknownEncodingHandler, encodingHandlerData *T.Void) {
+	setUnknownEncodingHandler(p, handler, encodingHandlerData)
+}
+func (p Parser) SetUnparsedEntityDeclHandler(handler UnparsedEntityDeclHandler) {
+	setUnparsedEntityDeclHandler(p, handler)
+}
+func (p Parser) SetUserData(userData *T.Void)             { setUserData(p, userData) }
+func (p Parser) SetXmlDeclHandler(xmldecl XmlDeclHandler) { setXmlDeclHandler(p, xmldecl) }
+func (p Parser) SpecifiedAttributeCount() int             { return getSpecifiedAttributeCount(p) }
+func (p Parser) StopParser(resumable Bool) Status         { return stopParser(p, resumable) }
+func (p Parser) UseForeignDTD(useDTD Bool) Error          { return useForeignDTD(p, useDTD) }
+func (p Parser) UseParserAsHandlerArg()                   { useParserAsHandlerArg(p) }
 
 var dll = "libexpat-1.dll"
 
 var apiList = outside.Apis{
-	{"XML_DefaultCurrent", &XML_DefaultCurrent},
-	{"XML_ErrorString", &XML_ErrorString},
-	{"XML_ExpatVersion", &XML_ExpatVersion},
-	{"XML_ExpatVersionInfo", &XML_ExpatVersionInfo},
-	{"XML_ExternalEntityParserCreate", &XML_ExternalEntityParserCreate},
-	{"XML_FreeContentModel", &XML_FreeContentModel},
-	{"XML_GetBase", &XML_GetBase},
-	{"XML_GetBuffer", &XML_GetBuffer},
-	{"XML_GetCurrentByteCount", &XML_GetCurrentByteCount},
-	{"XML_GetCurrentByteIndex", &XML_GetCurrentByteIndex},
-	{"XML_GetCurrentColumnNumber", &XML_GetCurrentColumnNumber},
-	{"XML_GetCurrentLineNumber", &XML_GetCurrentLineNumber},
-	{"XML_GetErrorCode", &XML_GetErrorCode},
-	{"XML_GetFeatureList", &XML_GetFeatureList},
-	{"XML_GetIdAttributeIndex", &XML_GetIdAttributeIndex},
-	{"XML_GetInputContext", &XML_GetInputContext},
-	{"XML_GetParsingStatus", &XML_GetParsingStatus},
-	{"XML_GetSpecifiedAttributeCount", &XML_GetSpecifiedAttributeCount},
-	{"XML_MemFree", &XML_MemFree},
-	{"XML_MemMalloc", &XML_MemMalloc},
-	{"XML_MemRealloc", &XML_MemRealloc},
-	{"XML_Parse", &XML_Parse},
-	{"XML_ParseBuffer", &XML_ParseBuffer},
-	{"XML_ParserCreate", &XML_ParserCreate},
-	{"XML_ParserCreateNS", &XML_ParserCreateNS},
-	{"XML_ParserCreate_MM", &XML_ParserCreate_MM},
-	{"XML_ParserFree", &XML_ParserFree},
-	{"XML_ParserReset", &XML_ParserReset},
-	{"XML_ResumeParser", &XML_ResumeParser},
-	{"XML_SetAttlistDeclHandler", &XML_SetAttlistDeclHandler},
-	{"XML_SetBase", &XML_SetBase},
-	{"XML_SetCdataSectionHandler", &XML_SetCdataSectionHandler},
-	{"XML_SetCharacterDataHandler", &XML_SetCharacterDataHandler},
-	{"XML_SetCommentHandler", &XML_SetCommentHandler},
-	{"XML_SetDefaultHandler", &XML_SetDefaultHandler},
-	{"XML_SetDefaultHandlerExpand", &XML_SetDefaultHandlerExpand},
-	{"XML_SetDoctypeDeclHandler", &XML_SetDoctypeDeclHandler},
-	{"XML_SetElementDeclHandler", &XML_SetElementDeclHandler},
-	{"XML_SetElementHandler", &XML_SetElementHandler},
-	{"XML_SetEncoding", &XML_SetEncoding},
-	{"XML_SetEndCdataSectionHandler", &XML_SetEndCdataSectionHandler},
-	{"XML_SetEndDoctypeDeclHandler", &XML_SetEndDoctypeDeclHandler},
-	{"XML_SetEndElementHandler", &XML_SetEndElementHandler},
-	{"XML_SetEndNamespaceDeclHandler", &XML_SetEndNamespaceDeclHandler},
-	{"XML_SetEntityDeclHandler", &XML_SetEntityDeclHandler},
-	{"XML_SetExternalEntityRefHandler", &XML_SetExternalEntityRefHandler},
-	{"XML_SetExternalEntityRefHandlerArg", &XML_SetExternalEntityRefHandlerArg},
-	{"XML_SetNamespaceDeclHandler", &XML_SetNamespaceDeclHandler},
-	{"XML_SetNotStandaloneHandler", &XML_SetNotStandaloneHandler},
-	{"XML_SetNotationDeclHandler", &XML_SetNotationDeclHandler},
-	{"XML_SetParamEntityParsing", &XML_SetParamEntityParsing},
-	{"XML_SetProcessingInstructionHandler", &XML_SetProcessingInstructionHandler},
-	{"XML_SetReturnNSTriplet", &XML_SetReturnNSTriplet},
-	{"XML_SetSkippedEntityHandler", &XML_SetSkippedEntityHandler},
-	{"XML_SetStartCdataSectionHandler", &XML_SetStartCdataSectionHandler},
-	{"XML_SetStartDoctypeDeclHandler", &XML_SetStartDoctypeDeclHandler},
-	{"XML_SetStartElementHandler", &XML_SetStartElementHandler},
-	{"XML_SetStartNamespaceDeclHandler", &XML_SetStartNamespaceDeclHandler},
-	{"XML_SetUnknownEncodingHandler", &XML_SetUnknownEncodingHandler},
-	{"XML_SetUnparsedEntityDeclHandler", &XML_SetUnparsedEntityDeclHandler},
-	{"XML_SetUserData", &XML_SetUserData},
-	{"XML_SetXmlDeclHandler", &XML_SetXmlDeclHandler},
-	{"XML_StopParser", &XML_StopParser},
-	{"XML_UseForeignDTD", &XML_UseForeignDTD},
-	{"XML_UseParserAsHandlerArg", &XML_UseParserAsHandlerArg},
+	{"XML_DefaultCurrent", &defaultCurrent},
+	{"XML_ErrorString", &ErrorString},
+	{"XML_ExpatVersion", &ExpatVersion},
+	{"XML_ExpatVersionInfo", &ExpatVersionInfo},
+	{"XML_ExternalEntityParserCreate", &externalEntityParserCreate},
+	{"XML_FreeContentModel", &freeContentModel},
+	{"XML_GetBase", &getBase},
+	{"XML_GetBuffer", &getBuffer},
+	{"XML_GetCurrentByteCount", &getCurrentByteCount},
+	{"XML_GetCurrentByteIndex", &getCurrentByteIndex},
+	{"XML_GetCurrentColumnNumber", &getCurrentColumnNumber},
+	{"XML_GetCurrentLineNumber", &getCurrentLineNumber},
+	{"XML_GetErrorCode", &getErrorCode},
+	{"XML_GetFeatureList", &GetFeatureList},
+	{"XML_GetIdAttributeIndex", &getIdAttributeIndex},
+	{"XML_GetInputContext", &getInputContext},
+	{"XML_GetParsingStatus", &getParsingStatus},
+	{"XML_GetSpecifiedAttributeCount", &getSpecifiedAttributeCount},
+	{"XML_MemFree", &memFree},
+	{"XML_MemMalloc", &memMalloc},
+	{"XML_MemRealloc", &memRealloc},
+	{"XML_Parse", &parse},
+	{"XML_ParseBuffer", &parseBuffer},
+	{"XML_ParserCreate", &ParserCreate},
+	{"XML_ParserCreateNS", &ParserCreateNS},
+	{"XML_ParserCreate_MM", &ParserCreateMM},
+	{"XML_ParserFree", &parserFree},
+	{"XML_ParserReset", &parserReset},
+	{"XML_ResumeParser", &resumeParser},
+	{"XML_SetAttlistDeclHandler", &setAttlistDeclHandler},
+	{"XML_SetBase", &setBase},
+	{"XML_SetCdataSectionHandler", &setCdataSectionHandler},
+	{"XML_SetCharacterDataHandler", &setCharacterDataHandler},
+	{"XML_SetCommentHandler", &setCommentHandler},
+	{"XML_SetDefaultHandler", &setDefaultHandler},
+	{"XML_SetDefaultHandlerExpand", &setDefaultHandlerExpand},
+	{"XML_SetDoctypeDeclHandler", &setDoctypeDeclHandler},
+	{"XML_SetElementDeclHandler", &setElementDeclHandler},
+	{"XML_SetElementHandler", &setElementHandler},
+	{"XML_SetEncoding", &setEncoding},
+	{"XML_SetEndCdataSectionHandler", &setEndCdataSectionHandler},
+	{"XML_SetEndDoctypeDeclHandler", &setEndDoctypeDeclHandler},
+	{"XML_SetEndElementHandler", &setEndElementHandler},
+	{"XML_SetEndNamespaceDeclHandler", &setEndNamespaceDeclHandler},
+	{"XML_SetEntityDeclHandler", &setEntityDeclHandler},
+	{"XML_SetExternalEntityRefHandler", &setExternalEntityRefHandler},
+	{"XML_SetExternalEntityRefHandlerArg", &setExternalEntityRefHandlerArg},
+	{"XML_SetNamespaceDeclHandler", &setNamespaceDeclHandler},
+	{"XML_SetNotStandaloneHandler", &setNotStandaloneHandler},
+	{"XML_SetNotationDeclHandler", &setNotationDeclHandler},
+	{"XML_SetParamEntityParsing", &setParamEntityParsing},
+	{"XML_SetProcessingInstructionHandler", &setProcessingInstructionHandler},
+	{"XML_SetReturnNSTriplet", &setReturnNSTriplet},
+	{"XML_SetSkippedEntityHandler", &setSkippedEntityHandler},
+	{"XML_SetStartCdataSectionHandler", &setStartCdataSectionHandler},
+	{"XML_SetStartDoctypeDeclHandler", &setStartDoctypeDeclHandler},
+	{"XML_SetStartElementHandler", &setStartElementHandler},
+	{"XML_SetStartNamespaceDeclHandler", &setStartNamespaceDeclHandler},
+	{"XML_SetUnknownEncodingHandler", &setUnknownEncodingHandler},
+	{"XML_SetUnparsedEntityDeclHandler", &setUnparsedEntityDeclHandler},
+	{"XML_SetUserData", &setUserData},
+	{"XML_SetXmlDeclHandler", &setXmlDeclHandler},
+	{"XML_StopParser", &stopParser},
+	{"XML_UseForeignDTD", &useForeignDTD},
+	{"XML_UseParserAsHandlerArg", &useParserAsHandlerArg},
 }

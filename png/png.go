@@ -23,10 +23,10 @@ type (
 	Doublep    *float64
 	FixedPoint Int32
 	Int32      int // Anomally: Size?
-	SizeT  T.SizeT
-	Struct StructDef
-	Textp  *Text
-	Uint32 uint // Anomally: Size?
+	SizeT      T.SizeT
+	Struct     StructDef
+	Textp      *Text
+	Uint32     uint // Anomally: Size?
 
 	LongjmpPtr func(JmpBuf, int)
 

@@ -417,8 +417,6 @@ type (
 
 	GValue struct{} //REMOVE
 
-	GtkTextBuffer struct{} //REMOVE
-
 	GdkKeyboardGrabInfo struct {
 		Window       *GdkWindow
 		NativeWindow *GdkWindow
@@ -1011,8 +1009,6 @@ type (
 		InterfaceFinalize GInterfaceFinalizeFunc
 		InterfaceData     Gpointer
 	}
-
-	GTypeModule struct{} //REMOVE
 
 	GTestConfig struct {
 		TestInitialized Gboolean

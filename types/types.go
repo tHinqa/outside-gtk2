@@ -128,9 +128,6 @@ type (
 	FTC_NodeRec         struct{}
 	FTC_SBitCacheRec    struct{}
 
-	Cairo                    struct{} //REMOVE
-	FcCharSet                struct{}
-	FcPattern                struct{}
 	GAllocator               struct{}
 	GAsyncQueue              struct{}
 	GBookmarkFile            struct{}
@@ -152,7 +149,6 @@ type (
 	GMarkupParseContext      struct{}
 	GMatchInfo               struct{}
 	GMemChunk                struct{}
-	GModule                  struct{}
 	GMutex                   struct{}
 	GOptionContext           struct{}
 	GOptionGroup             struct{}
@@ -1179,14 +1175,6 @@ const (
 	G_TLS_AUTHENTICATION_NONE GTlsAuthenticationMode = iota
 	G_TLS_AUTHENTICATION_REQUESTED
 	G_TLS_AUTHENTICATION_REQUIRED
-)
-
-type GModuleFlags Enum
-
-const (
-	G_MODULE_BIND_LAZY GModuleFlags = 1 << iota
-	G_MODULE_BIND_LOCAL
-	G_MODULE_BIND_MASK GModuleFlags = 0x03
 )
 
 type GdkByteOrder Enum

@@ -15,931 +15,920 @@ func init() {
 }
 
 const (
-	FT_VALIDATE_lcar_INDEX    = 9
-	FT_VALIDATE_GX_LAST_INDEX = FT_VALIDATE_lcar_INDEX
-	FT_VALIDATE_GX_LENGTH     = FT_VALIDATE_GX_LAST_INDEX + 1
+	VALIDATE_lcar_INDEX    = 9
+	VALIDATE_GX_LAST_INDEX = VALIDATE_lcar_INDEX
+	VALIDATE_GX_LENGTH     = VALIDATE_GX_LAST_INDEX + 1
 )
 
 var (
-	FT_New_Face func(
+	NewFace func(
 		library T.FT_Library,
 		filepathname string,
-		face_index T.FT_Long,
+		faceIndex T.FT_Long,
 		aface *T.FTFace) T.FT_Error
 
-	FT_New_Memory_Face func(
+	NewMemoryFace func(
 		library T.FT_Library,
-		file_base *T.FT_Byte,
-		file_size T.FT_Long,
-		face_index T.FT_Long,
+		fileBase *T.FT_Byte,
+		fileSize T.FT_Long,
+		faceIndex T.FT_Long,
 		aface *T.FTFace) T.FT_Error
 
-	FT_Open_Face func(
+	OpenFace func(
 		library T.FT_Library,
 		args *T.FT_Open_Args,
-		face_index T.FT_Long,
+		faceIndex T.FT_Long,
 		aface *T.FTFace) T.FT_Error
 
-	FT_Attach_File func(
+	AttachFile func(
 		face T.FTFace,
 		filepathname string) T.FT_Error
 
-	FT_Attach_Stream func(
+	AttachStream func(
 		face T.FTFace,
 		parameters *T.FT_Open_Args) T.FT_Error
 
-	FT_Reference_Face func(
+	ReferenceFace func(
 		face T.FTFace) T.FT_Error
 
-	FT_Done_Face func(
+	DoneFace func(
 		face T.FTFace) T.FT_Error
 
-	FT_Select_Size func(
+	SelectSize func(
 		face T.FTFace,
-		strike_index int) T.FT_Error
+		strikeIndex int) T.FT_Error
 
-	FT_Request_Size func(
+	RequestSize func(
 		face T.FTFace,
 		req T.FT_Size_Request) T.FT_Error
 
-	FT_Set_Char_Size func(
+	SetCharSize func(
 		face T.FTFace,
-		char_width T.FT_F26Dot6,
-		char_height T.FT_F26Dot6,
-		horz_resolution uint,
-		vert_resolution uint) T.FT_Error
+		charWidth T.FT_F26Dot6,
+		charHeight T.FT_F26Dot6,
+		horzResolution uint,
+		vertResolution uint) T.FT_Error
 
-	FT_Set_Pixel_Sizes func(
+	SetPixelSizes func(
 		face T.FTFace,
-		pixel_width uint,
-		pixel_height uint) T.FT_Error
+		pixelWidth uint,
+		pixelHeight uint) T.FT_Error
 
-	FT_Load_Glyph func(
+	LoadGlyph func(
 		face T.FTFace,
-		glyph_index uint,
-		load_flags T.FT_Int32) T.FT_Error
+		glyphIndex uint,
+		loadFlags T.FT_Int32) T.FT_Error
 
-	FT_Load_Char func(
+	LoadChar func(
 		face T.FTFace,
-		char_code T.FT_ULong,
-		load_flags T.FT_Int32) T.FT_Error
+		charCode T.FT_ULong,
+		loadFlags T.FT_Int32) T.FT_Error
 
-	FT_Set_Transform func(
+	SetTransform func(
 		face T.FTFace,
 		matrix *T.FT_Matrix,
 		delta *T.FT_Vector)
 
-	FT_Get_Kerning func(
+	GetKerning func(
 		face T.FTFace,
-		left_glyph uint,
-		right_glyph uint,
-		kern_mode uint,
+		leftGlyph uint,
+		rightGlyph uint,
+		kernMode uint,
 		akerning *T.FT_Vector) T.FT_Error
 
-	FT_Get_Track_Kerning func(
+	GetTrackKerning func(
 		face T.FTFace,
-		point_size T.FT_Fixed,
+		pointSize T.FT_Fixed,
 		degree int,
 		akerning *T.FT_Fixed) T.FT_Error
 
-	FT_Get_Glyph_Name func(
+	GetGlyphName func(
 		face T.FTFace,
-		glyph_index uint,
+		glyphIndex uint,
 		buffer T.FT_Pointer,
-		buffer_max uint) T.FT_Error
+		bufferMax uint) T.FT_Error
 
-	FT_Get_Postscript_Name func(
+	GetPostscriptName func(
 		face T.FTFace) string
 
-	FT_Select_Charmap func(
+	SelectCharmap func(
 		face T.FTFace,
 		encoding T.FT_Encoding) T.FT_Error
 
-	FT_Set_Charmap func(
+	SetCharmap func(
 		face T.FTFace,
 		charmap T.FT_CharMap) T.FT_Error
 
-	FT_Get_Charmap_Index func(
+	GetCharmapIndex func(
 		charmap T.FT_CharMap) int
 
-	FT_Get_Char_Index func(
+	GetCharIndex func(
 		face T.FTFace,
 		charcode T.FT_ULong) uint
 
-	FT_Get_First_Char func(
+	GetFirstChar func(
 		face T.FTFace,
 		agindex *uint) T.FT_ULong
 
-	FT_Get_Next_Char func(
+	GetNextChar func(
 		face T.FTFace,
-		char_code T.FT_ULong,
+		charCode T.FT_ULong,
 		agindex *uint) T.FT_ULong
 
-	FT_Get_Name_Index func(
+	GetNameIndex func(
 		face T.FTFace,
-		glyph_name *T.FT_String) uint
+		glyphName *T.FT_String) uint
 
-	FT_Get_SubGlyph_Info func(
+	GetSubGlyphInfo func(
 		glyph T.FT_GlyphSlot,
-		sub_index uint,
-		p_index *int,
-		p_flags *uint,
-		p_arg1 *int,
-		p_arg2 *int,
-		p_transform *T.FT_Matrix) T.FT_Error
+		subIndex uint,
+		index *int,
+		flags *uint,
+		arg1 *int,
+		arg2 *int,
+		transform *T.FT_Matrix) T.FT_Error
 
-	FT_Get_FSType_Flags func(face T.FTFace) uint16
+	GetFSTypeFlags func(face T.FTFace) uint16
 
-	FT_Face_GetCharVariantIndex func(
+	FaceGetCharVariantIndex func(
 		face T.FTFace,
 		charcode T.FT_ULong,
 		variantSelector T.FT_ULong) uint
 
-	FT_Face_GetCharVariantIsDefault func(
+	FaceGetCharVariantIsDefault func(
 		face T.FTFace,
 		charcode T.FT_ULong,
 		variantSelector T.FT_ULong) int
 
-	FT_Face_GetVariantSelectors func(
+	FaceGetVariantSelectors func(
 		face T.FTFace) *T.FT_UInt32
 
-	FT_Face_GetVariantsOfChar func(
+	FaceGetVariantsOfChar func(
 		face T.FTFace,
 		charcode T.FT_ULong) *T.FT_UInt32
 
-	FT_Face_GetCharsOfVariant func(
+	FaceGetCharsOfVariant func(
 		face T.FTFace,
 		variantSelector T.FT_ULong) *T.FT_UInt32
 
-	FT_MulDiv func(
+	MulDiv func(
 		a T.FT_Long,
 		b T.FT_Long,
 		c T.FT_Long) T.FT_Long
 
-	FT_DivFix func(
+	DivFix func(
 		a T.FT_Long,
 		b T.FT_Long) T.FT_Long
 
-	FT_RoundFix func(
+	RoundFix func(
 		a T.FT_Fixed) T.FT_Fixed
 
-	FT_CeilFix func(
+	CeilFix func(
 		a T.FT_Fixed) T.FT_Fixed
 
-	FT_FloorFix func(
+	FloorFix func(
 		a T.FT_Fixed) T.FT_Fixed
 
-	FT_Vector_Transform func(
+	VectorTransform func(
 		vec *T.FT_Vector,
 		matrix *T.FT_Matrix)
 
-	FT_Library_Version func(
+	LibraryVersion func(
 		library T.FT_Library,
 		amajor *int,
 		aminor *int,
 		apatch *int)
 
-	FT_Face_CheckTrueTypePatents func(
+	FaceCheckTrueTypePatents func(
 		face T.FTFace) T.FT_Bool
 
-	FT_Face_SetUnpatentedHinting func(
+	FaceSetUnpatentedHinting func(
 		face T.FTFace,
 		value T.FT_Bool) T.FT_Bool
 
-	FT_Has_PS_Glyph_Names func(
+	HasPSGlyphNames func(
 		face T.FTFace) int
 
-	FT_Get_PS_Font_Info func(
+	GetPSFontInfo func(
 		face T.FTFace,
-		afont_info T.PS_FontInfo) T.FT_Error
+		afontInfo T.PS_FontInfo) T.FT_Error
 
-	FT_Get_PS_Font_Private func(
+	GetPSFontPrivate func(
 		face T.FTFace,
-		afont_private T.PS_Private) T.FT_Error
+		afontPrivate T.PS_Private) T.FT_Error
 
-	FT_Get_Multi_Master func(
+	GetMultiMaster func(
 		face T.FTFace,
 		amaster *T.FT_Multi_Master) T.FT_Error
 
-	FT_Get_MM_Var func(
+	GetMMVar func(
 		face T.FTFace,
 		amaster **T.FT_MM_Var) T.FT_Error
 
-	FT_Set_MM_Design_Coordinates func(
+	SetMMDesignCoordinates func(
 		face T.FTFace,
-		num_coords uint,
+		numCoords uint,
 		coords *T.FT_Long) T.FT_Error
 
-	FT_Set_Var_Design_Coordinates func(
+	SetVarDesignCoordinates func(
 		face T.FTFace,
-		num_coords uint,
+		numCoords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
-	FT_Set_MM_Blend_Coordinates func(
+	SetMMBlendCoordinates func(
 		face T.FTFace,
-		num_coords uint,
+		numCoords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
-	FT_Set_Var_Blend_Coordinates func(
+	SetVarBlendCoordinates func(
 		face T.FTFace,
-		num_coords uint,
+		numCoords uint,
 		coords *T.FT_Fixed) T.FT_Error
 
-	FT_Get_Glyph func(
+	GetGlyph func(
 		slot T.FT_GlyphSlot,
 		aglyph *T.FT_Glyph) T.FT_Error
 
-	FT_Glyph_Copy func(
+	GlyphCopy func(
 		source T.FT_Glyph,
 		target *T.FT_Glyph) T.FT_Error
 
-	FT_Glyph_Transform func(
+	GlyphTransform func(
 		glyph T.FT_Glyph,
 		matrix *T.FT_Matrix,
 		delta *T.FT_Vector) T.FT_Error
 
-	FT_Glyph_Get_CBox func(
+	GlyphGetCBox func(
 		glyph T.FT_Glyph,
-		bbox_mode uint,
+		bboxMode uint,
 		acbox *T.FT_BBox)
 
-	FT_Glyph_To_Bitmap func(
-		the_glyph *T.FT_Glyph,
-		render_mode T.FT_Render_Mode,
+	GlyphToBitmap func(
+		theGlyph *T.FT_Glyph,
+		renderMode T.FT_Render_Mode,
 		origin *T.FT_Vector,
 		destroy T.FT_Bool) T.FT_Error
 
-	FT_Done_Glyph func(
+	DoneGlyph func(
 		glyph T.FT_Glyph)
 
-	FT_Matrix_Multiply func(
+	MatrixMultiply func(
 		a *T.FT_Matrix,
 		b *T.FT_Matrix)
 
-	FT_Matrix_Invert func(
+	MatrixInvert func(
 		matrix *T.FT_Matrix) T.FT_Error
 
-	FTC_Manager_New func(
+	ManagerNew func(
 		library T.FT_Library,
-		max_faces uint,
-		max_sizes uint,
-		max_bytes T.FT_ULong,
+		maxFaces uint,
+		maxSizes uint,
+		maxBytes T.FT_ULong,
 		requester T.FTC_Face_Requester,
-		req_data T.FT_Pointer,
+		reqData T.FT_Pointer,
 		amanager *T.FTC_Manager) T.FT_Error
 
-	FTC_Manager_Reset func(
+	ManagerReset func(
 		manager T.FTC_Manager)
 
-	FTC_Manager_Done func(
+	ManagerDone func(
 		manager T.FTC_Manager)
 
-	FTC_Manager_LookupFace func(
+	ManagerLookupFace func(
 		manager T.FTC_Manager,
-		face_id T.FTC_FaceID,
+		faceId T.FTC_FaceID,
 		aface *T.FTFace) T.FT_Error
 
-	FTC_Manager_LookupSize func(
+	ManagerLookupSize func(
 		manager T.FTC_Manager,
 		scaler T.FTC_Scaler,
 		asize *T.FT_Size) T.FT_Error
 
-	FTC_Node_Unref func(
+	NodeUnref func(
 		node T.FTC_Node,
 		manager T.FTC_Manager)
 
-	FTC_Manager_RemoveFaceID func(
+	ManagerRemoveFaceID func(
 		manager T.FTC_Manager,
-		face_id T.FTC_FaceID)
+		faceId T.FTC_FaceID)
 
-	FTC_CMapCache_New func(
+	CMapCacheNew func(
 		manager T.FTC_Manager,
 		acache *T.FTC_CMapCache) T.FT_Error
 
-	FTC_CMapCache_Lookup func(
+	CMapCacheLookup func(
 		cache T.FTC_CMapCache,
 		face_id T.FTC_FaceID,
 		cmap_index int,
 		char_code T.FT_UInt32) uint
 
-	FTC_ImageCache_New func(
+	ImageCacheNew func(
 		manager T.FTC_Manager,
 		acache *T.FTC_ImageCache) T.FT_Error
 
-	FTC_ImageCache_Lookup func(
+	ImageCacheLookup func(
 		cache T.FTC_ImageCache,
 		t T.FTC_ImageType,
 		gindex uint,
 		aglyph *T.FT_Glyph,
 		anode *T.FTC_Node) T.FT_Error
 
-	FTC_ImageCache_LookupScaler func(
+	ImageCacheLookupScaler func(
 		cache T.FTC_ImageCache,
 		scaler T.FTC_Scaler,
-		load_flags T.FT_ULong,
+		loadFlags T.FT_ULong,
 		gindex uint,
 		aglyph *T.FT_Glyph,
 		anode *T.FTC_Node) T.FT_Error
 
-	FTC_SBitCache_New func(
+	SBitCacheNew func(
 		manager T.FTC_Manager,
 		acache *T.FTC_SBitCache) T.FT_Error
 
-	FTC_SBitCache_Lookup func(
+	SBitCacheLookup func(
 		cache T.FTC_SBitCache,
 		t T.FTC_ImageType,
 		gindex uint,
 		sbit *T.FTC_SBit,
 		anode *T.FTC_Node) T.FT_Error
 
-	FTC_SBitCache_LookupScaler func(
+	SBitCacheLookupScaler func(
 		cache T.FTC_SBitCache,
 		scaler T.FTC_Scaler,
-		load_flags T.FT_ULong,
+		loadFlags T.FT_ULong,
 		gindex uint,
 		sbit *T.FTC_SBit,
 		anode *T.FTC_Node) T.FT_Error
 
-	FTC_Manager_Lookup_Face func(
-		manager T.FTC_Manager,
-		face_id T.FTC_FaceID,
-		aface *T.FTFace) T.FT_Error
-
-	FTC_Manager_Lookup_Size func(
-		manager T.FTC_Manager,
-		font T.FTC_Font,
-		aface *T.FTFace,
-		asize *T.FT_Size) T.FT_Error
-
-	FT_New_Size func(
+	NewSize func(
 		face T.FTFace,
 		size *T.FT_Size) T.FT_Error
 
-	FT_Done_Size func(
+	DoneSize func(
 		size T.FT_Size) T.FT_Error
 
-	FT_Activate_Size func(
+	ActivateSize func(
 		size T.FT_Size) T.FT_Error
 
-	FT_List_Find func(
+	ListFind func(
 		list T.FT_List,
 		data *T.Void) T.FT_ListNode
 
-	FT_List_Add func(
+	ListAdd func(
 		list T.FT_List,
 		node T.FT_ListNode)
 
-	FT_List_Insert func(
+	ListInsert func(
 		list T.FT_List,
 		node T.FT_ListNode)
 
-	FT_List_Remove func(
+	ListRemove func(
 		list T.FT_List,
 		node T.FT_ListNode)
 
-	FT_List_Up func(
+	ListUp func(
 		list T.FT_List,
 		node T.FT_ListNode)
 
-	FT_List_Iterate func(
+	ListIterate func(
 		list T.FT_List,
 		iterator T.FT_List_Iterator,
 		user *T.Void) T.FT_Error
 
-	FT_List_Finalize func(
+	ListFinalize func(
 		list T.FT_List,
 		destroy T.FT_List_Destructor,
 		memory T.FT_Memory,
 		user *T.Void)
 
-	FT_Outline_Decompose func(
+	OutlineDecompose func(
 		outline *T.FT_Outline,
-		func_interface *T.FT_Outline_Funcs,
+		funcInterface *T.FT_Outline_Funcs,
 		user *T.Void) T.FT_Error
 
-	FT_Outline_New func(
+	OutlineNew func(
 		library T.FT_Library,
 		numPoints uint,
 		numContours int,
 		anoutline *T.FT_Outline) T.FT_Error
 
-	FT_Outline_New_Internal func(
+	OutlineNewInternal func(
 		memory T.FT_Memory,
 		numPoints uint,
 		numContours int,
 		anoutline *T.FT_Outline) T.FT_Error
 
-	FT_Outline_Done func(
+	OutlineDone func(
 		library T.FT_Library,
 		outline *T.FT_Outline) T.FT_Error
 
-	FT_Outline_Done_Internal func(
+	OutlineDoneInternal func(
 		memory T.FT_Memory,
 		outline *T.FT_Outline) T.FT_Error
 
-	FT_Outline_Check func(
+	OutlineCheck func(
 		outline *T.FT_Outline) T.FT_Error
 
-	FT_Outline_Get_CBox func(
+	OutlineGetCBox func(
 		outline *T.FT_Outline,
 		acbox *T.FT_BBox)
 
-	FT_Outline_Translate func(
+	OutlineTranslate func(
 		outline *T.FT_Outline,
 		xOffset T.FT_Pos,
 		yOffset T.FT_Pos)
 
-	FT_Outline_Copy func(
+	OutlineCopy func(
 		source *T.FT_Outline,
 		target *T.FT_Outline) T.FT_Error
 
-	FT_Outline_Transform func(
+	OutlineTransform func(
 		outline *T.FT_Outline,
 		matrix *T.FT_Matrix)
 
-	FT_Outline_Embolden func(
+	OutlineEmbolden func(
 		outline *T.FT_Outline,
 		strength T.FT_Pos) T.FT_Error
 
-	FT_Outline_Reverse func(
+	OutlineReverse func(
 		outline *T.FT_Outline)
 
-	FT_Outline_Get_Bitmap func(
+	OutlineGetBitmap func(
 		library T.FT_Library,
 		outline *T.FT_Outline,
 		abitmap *T.FT_Bitmap) T.FT_Error
 
-	FT_Outline_Render func(
+	OutlineRender func(
 		library T.FT_Library,
 		outline *T.FT_Outline,
 		params *T.FT_Raster_Params) T.FT_Error
 
-	FT_Outline_Get_Orientation func(
+	OutlineGetOrientation func(
 		outline *T.FT_Outline) T.FT_Orientation
 
-	FT_Add_Module func(
+	AddModule func(
 		library T.FT_Library,
 		clazz *T.FT_Module_Class) T.FT_Error
 
-	FT_Get_Module func(
+	GetModule func(
 		library T.FT_Library,
-		module_name string) T.FT_Module
+		moduleName string) T.FT_Module
 
-	FT_Remove_Module func(
+	RemoveModule func(
 		library T.FT_Library,
 		module T.FT_Module) T.FT_Error
 
-	FT_Reference_Library func(library T.FT_Library) T.FT_Error
+	ReferenceLibrary func(library T.FT_Library) T.FT_Error
 
-	FT_New_Library func(
+	NewLibrary func(
 		memory T.FT_Memory,
 		alibrary *T.FT_Library) T.FT_Error
 
-	FT_Done_Library func(library T.FT_Library) T.FT_Error
+	DoneLibrary func(library T.FT_Library) T.FT_Error
 
-	FT_Set_Debug_Hook func(
+	SetDebugHook func(
 		library T.FT_Library,
-		hook_index uint,
-		debug_hook T.FT_DebugHook_Func)
+		hookIndex uint,
+		debugHook T.FT_DebugHook_Func)
 
-	FT_Add_Default_Modules func(library T.FT_Library)
+	AddDefaultModules func(library T.FT_Library)
 
-	FT_Get_TrueType_Engine_Type func(
+	GetTrueTypeEngineType func(
 		library T.FT_Library) T.FT_TrueTypeEngineType
 
-	FT_Get_Renderer func(library T.FT_Library,
+	GetRenderer func(library T.FT_Library,
 		format T.FT_Glyph_Format) T.FT_Renderer
 
-	FT_Set_Renderer func(
+	SetRenderer func(
 		library T.FT_Library,
 		renderer T.FT_Renderer,
-		num_params uint,
+		numParams uint,
 		parameters *T.FT_Parameter) T.FT_Error
 
-	FT_Get_Sfnt_Table func(
+	GetSfntTable func(
 		face T.FTFace, tag T.FT_Sfnt_Tag) *T.Void
 
-	FT_Load_Sfnt_Table func(
+	LoadSfntTable func(
 		face T.FTFace,
 		tag T.FT_ULong,
 		offset T.FT_Long,
 		buffer *T.FT_Byte,
 		length *T.FT_ULong) T.FT_Error
 
-	FT_Sfnt_Table_Info func(
+	SfntTableInfo func(
 		face T.FTFace,
-		table_index uint,
+		tableIndex uint,
 		tag, length *T.FT_ULong) T.FT_Error
 
-	FT_Get_CMap_Language_ID func(charmap T.FT_CharMap) T.FT_ULong
+	GetCMapLanguageID func(charmap T.FT_CharMap) T.FT_ULong
 
-	FT_Get_CMap_Format func(charmap T.FT_CharMap) T.FT_Long
+	GetCMapFormat func(charmap T.FT_CharMap) T.FT_Long
 
-	FT_Get_BDF_Charset_ID func(face T.FTFace,
-		acharset_encoding, acharset_registry **T.Char) T.FT_Error
+	GetBDFCharsetID func(face T.FTFace,
+		acharsetEncoding, acharset_registry **T.Char) T.FT_Error
 
-	FT_Get_BDF_Property func(
+	GetBDFProperty func(
 		face T.FTFace,
-		prop_name string,
+		propName string,
 		aproperty *T.BDF_PropertyRec) T.FT_Error
 
-	FT_Get_CID_Registry_Ordering_Supplement func(
+	GetCIDRegistryOrderingSupplement func(
 		face T.FTFace,
 		registry, ordering **T.Char,
 		supplement *int) T.FT_Error
 
-	FT_Get_CID_Is_Internally_CID_Keyed func(
+	GetCIDIsInternallyCIDKeyed func(
 		face T.FTFace,
-		is_cid *T.FT_Bool) T.FT_Error
+		isCid *T.FT_Bool) T.FT_Error
 
-	FT_Get_CID_From_Glyph_Index func(
+	GetCIDFromGlyphIndex func(
 		face T.FTFace,
-		glyph_index uint,
+		glyphIndex uint,
 		cid *uint) T.FT_Error
 
-	FT_Stream_OpenGzip func(
+	StreamOpenGzip func(
 		stream, source T.FT_Stream) T.FT_Error
 
-	FT_Stream_OpenLZW func(
+	StreamOpenLZW func(
 		stream, source T.FT_Stream) T.FT_Error
 
-	FT_Get_WinFNT_Header func(
+	GetWinFNTHeader func(
 		face T.FTFace,
 		aheader *T.FT_WinFNT_HeaderRec) T.FT_Error
 
-	FT_Bitmap_New func(abitmap *T.FT_Bitmap)
+	BitmapNew func(abitmap *T.FT_Bitmap)
 
-	FT_Bitmap_Copy func(
+	BitmapCopy func(
 		library T.FT_Library,
 		source, target *T.FT_Bitmap) T.FT_Error
 
-	FT_Bitmap_Embolden func(
+	BitmapEmbolden func(
 		library T.FT_Library,
 		bitmap *T.FT_Bitmap,
 		xStrength, yStrength T.FT_Pos) T.FT_Error
 
-	FT_Bitmap_Convert func(
+	BitmapConvert func(
 		library T.FT_Library,
 		source, target *T.FT_Bitmap,
 		alignment int) T.FT_Error
 
-	FT_GlyphSlot_Own_Bitmap func(slot T.FT_GlyphSlot) T.FT_Error
+	GlyphSlotOwnBitmap func(slot T.FT_GlyphSlot) T.FT_Error
 
-	FT_Bitmap_Done func(
+	BitmapDone func(
 		library T.FT_Library, bitmap *T.FT_Bitmap) T.FT_Error
 
-	FT_Outline_Get_BBox func(
+	OutlineGetBBox func(
 		outline *T.FT_Outline, abbox *T.FT_BBox) T.FT_Error
 
-	FT_Get_Sfnt_Name_Count func(face T.FTFace) uint
+	GetSfntNameCount func(face T.FTFace) uint
 
-	FT_Get_Sfnt_Name func(
+	GetSfntName func(
 		face T.FTFace,
 		idx uint,
 		aname *T.FT_SfntName) T.FT_Error
 
-	FT_OpenType_Validate func(
+	OpenTypeValidate func(
 		face T.FTFace, validation_flags uint,
-		BASE_table, GDEF_table, GPOS_table,
-		GSUB_table, JSTF_table *T.FT_Bytes) T.FT_Error
+		BASETable, GDEF_table, GPOS_table,
+		GSUBTable, JSTF_table *T.FT_Bytes) T.FT_Error
 
-	FT_OpenType_Free func(face T.FTFace, table T.FT_Bytes)
+	OpenTypeFree func(face T.FTFace, table T.FT_Bytes)
 
-	FT_TrueTypeGX_Validate func(
+	TrueTypeGXValidate func(
+		face T.FTFace,
+		validationFlags uint,
+		tables [VALIDATE_GX_LENGTH]T.FT_Bytes,
+		tableLength uint) T.FT_Error
+
+	TrueTypeGXFree func(face T.FTFace, table T.FT_Bytes)
+
+	ClassicKernValidate func(
 		face T.FTFace,
 		validation_flags uint,
-		tables [FT_VALIDATE_GX_LENGTH]T.FT_Bytes,
-		table_length uint) T.FT_Error
+		ckernTable *T.FT_Bytes) T.FT_Error
 
-	FT_TrueTypeGX_Free func(face T.FTFace, table T.FT_Bytes)
-
-	FT_ClassicKern_Validate func(
-		face T.FTFace,
-		validation_flags uint,
-		ckern_table *T.FT_Bytes) T.FT_Error
-
-	FT_ClassicKern_Free func(
+	ClassicKernFree func(
 		face T.FTFace, table T.FT_Bytes)
 
-	FT_Get_PFR_Metrics func(face T.FTFace,
+	GetPFRMetrics func(face T.FTFace,
 		aoutline_resolution, ametrics_resolution *uint,
 		ametrics_x_scale, ametrics_y_scale *T.FT_Fixed) T.FT_Error
 
-	FT_Get_PFR_Kerning func(
+	GetPFRKerning func(
 		face T.FTFace,
 		left, right uint,
 		avector *T.FT_Vector) T.FT_Error
 
-	FT_Get_PFR_Advance func(
+	GetPFRAdvance func(
 		face T.FTFace,
 		gindex uint,
 		aadvance *T.FT_Pos) T.FT_Error
 
-	FT_Outline_GetInsideBorder func(
+	OutlineGetInsideBorder func(
 		outline *T.FT_Outline) T.FT_StrokerBorder
 
-	FT_Outline_GetOutsideBorder func(
+	OutlineGetOutsideBorder func(
 		outline *T.FT_Outline) T.FT_StrokerBorder
 
-	FT_Stroker_New func(
+	StrokerNew func(
 		library T.FT_Library,
 		astroker *T.FT_Stroker) T.FT_Error
 
-	FT_Stroker_Set func(
+	StrokerSet func(
 		stroker T.FT_Stroker,
 		radius T.FT_Fixed,
-		line_cap T.FT_Stroker_LineCap,
-		line_join T.FT_Stroker_LineJoin,
-		miter_limit T.FT_Fixed)
+		lineCap T.FT_Stroker_LineCap,
+		lineJoin T.FT_Stroker_LineJoin,
+		miterLimit T.FT_Fixed)
 
-	FT_Stroker_Rewind func(stroker T.FT_Stroker)
+	StrokerRewind func(stroker T.FT_Stroker)
 
-	FT_Stroker_ParseOutline func(stroker T.FT_Stroker,
+	StrokerParseOutline func(stroker T.FT_Stroker,
 		outline *T.FT_Outline, opened T.FT_Bool) T.FT_Error
 
-	FT_Stroker_BeginSubPath func(stroker T.FT_Stroker,
+	StrokerBeginSubPath func(stroker T.FT_Stroker,
 		to *T.FT_Vector, open T.FT_Bool) T.FT_Error
 
-	FT_Stroker_EndSubPath func(stroker T.FT_Stroker) T.FT_Error
+	StrokerEndSubPath func(stroker T.FT_Stroker) T.FT_Error
 
-	FT_Stroker_LineTo func(
+	StrokerLineTo func(
 		stroker T.FT_Stroker, to *T.FT_Vector) T.FT_Error
 
-	FT_Stroker_ConicTo func(stroker T.FT_Stroker,
+	StrokerConicTo func(stroker T.FT_Stroker,
 		control, to *T.FT_Vector) T.FT_Error
 
-	FT_Stroker_CubicTo func(stroker T.FT_Stroker,
+	StrokerCubicTo func(stroker T.FT_Stroker,
 		control1, control2, to *T.FT_Vector) T.FT_Error
 
-	FT_Stroker_GetBorderCounts func(
+	StrokerGetBorderCounts func(
 		stroker T.FT_Stroker, border T.FT_StrokerBorder,
-		anum_points, anum_contours *uint) T.FT_Error
+		anumPoints, anum_contours *uint) T.FT_Error
 
-	FT_Stroker_ExportBorder func(stroker T.FT_Stroker,
+	StrokerExportBorder func(stroker T.FT_Stroker,
 		border T.FT_StrokerBorder, outline *T.FT_Outline)
 
-	FT_Stroker_GetCounts func(stroker T.FT_Stroker,
-		anum_points, anum_contours *uint) T.FT_Error
+	StrokerGetCounts func(stroker T.FT_Stroker,
+		anumPoints, anum_contours *uint) T.FT_Error
 
-	FT_Stroker_Export func(
+	StrokerExport func(
 		stroker T.FT_Stroker, outline *T.FT_Outline)
 
-	FT_Stroker_Done func(stroker T.FT_Stroker)
+	StrokerDone func(stroker T.FT_Stroker)
 
-	FT_Glyph_Stroke func(pglyph *T.FT_Glyph,
+	GlyphStroke func(pglyph *T.FT_Glyph,
 		stroker T.FT_Stroker, destroy T.FT_Bool) T.FT_Error
 
-	FT_Glyph_StrokeBorder func(
+	GlyphStrokeBorder func(
 		pglyph *T.FT_Glyph, stroker T.FT_Stroker,
 		inside, destroy T.FT_Bool) T.FT_Error
 
-	FT_GlyphSlot_Embolden func(slot T.FT_GlyphSlot)
+	GlyphSlotEmbolden func(slot T.FT_GlyphSlot)
 
-	FT_GlyphSlot_Oblique func(slot T.FT_GlyphSlot)
+	GlyphSlotOblique func(slot T.FT_GlyphSlot)
 
-	FT_Get_X11_Font_Format func(face T.FTFace) string
+	GetX11FontFormat func(face T.FTFace) string
 
-	FT_Sin func(angle T.FT_Angle) T.FT_Fixed
+	Sin func(angle T.FT_Angle) T.FT_Fixed
 
-	FT_Cos func(angle T.FT_Angle) T.FT_Fixed
+	Cos func(angle T.FT_Angle) T.FT_Fixed
 
-	FT_Tan func(angle T.FT_Angle) T.FT_Fixed
+	Tan func(angle T.FT_Angle) T.FT_Fixed
 
-	FT_Atan2 func(x, y T.FT_Fixed) T.FT_Angle
+	Atan2 func(x, y T.FT_Fixed) T.FT_Angle
 
-	FT_Angle_Diff func(angle1, angle2 T.FT_Angle) T.FT_Angle
+	AngleDiff func(angle1, angle2 T.FT_Angle) T.FT_Angle
 
-	FT_Vector_Unit func(vec *T.FT_Vector, angle T.FT_Angle)
+	VectorUnit func(vec *T.FT_Vector, angle T.FT_Angle)
 
-	FT_Vector_Rotate func(vec *T.FT_Vector, angle T.FT_Angle)
+	VectorRotate func(vec *T.FT_Vector, angle T.FT_Angle)
 
-	FT_Vector_Length func(vec *T.FT_Vector) T.FT_Fixed
+	VectorLength func(vec *T.FT_Vector) T.FT_Fixed
 
-	FT_Vector_Polarize func(
+	VectorPolarize func(
 		vec *T.FT_Vector, length *T.FT_Fixed, angle *T.FT_Angle)
 
-	FT_Vector_From_Polar func(
+	VectorFromPolar func(
 		vec *T.FT_Vector, length T.FT_Fixed, angle T.FT_Angle)
 
-	FT_Library_SetLcdFilter func(
+	LibrarySetLcdFilter func(
 		library T.FT_Library,
 		filter T.FT_LcdFilter) T.FT_Error
 
-	FT_Library_SetLcdFilterWeights func(
+	LibrarySetLcdFilterWeights func(
 		library T.FT_Library,
 		weights *T.UnsignedChar) T.FT_Error
 
-	FT_Get_Gasp func(
+	GetGasp func(
 		face T.FTFace, ppem uint) int
 
-	FT_Get_Advance func(
+	GetAdvance func(
 		face T.FTFace,
 		gindex uint,
-		load_flags T.FT_Int32,
+		loadFlags T.FT_Int32,
 		padvance *T.FT_Fixed) T.FT_Error
 
-	FT_Get_Advances func(
+	GetAdvances func(
 		face T.FTFace,
 		start, count uint,
-		load_flags T.FT_Int32,
+		loadFlags T.FT_Int32,
 		padvances *T.FT_Fixed) T.FT_Error
 
-	FT_Done_FreeType func(library T.FT_Library) T.FT_Error
+	DoneFreeType func(library T.FT_Library) T.FT_Error
 
-	FT_Init_FreeType func(alibrary *T.FT_Library) T.FT_Error
+	InitFreeType func(alibrary *T.FT_Library) T.FT_Error
 
-	FT_MulFix func(a, b T.FT_Long) T.FT_Long
+	MulFix func(a, b T.FT_Long) T.FT_Long
 
-	FT_Render_Glyph func(
+	RenderGlyph func(
 		slot T.FT_GlyphSlot,
-		render_mode T.FT_Render_Mode) T.FT_Error
+		renderMode T.FT_Render_Mode) T.FT_Error
 )
 
 var dll = "freetype6.dll"
 
 var apiList = outside.Apis{
-	{"FTC_CMapCache_Lookup", &FTC_CMapCache_Lookup},
-	{"FTC_CMapCache_New", &FTC_CMapCache_New},
-	{"FTC_ImageCache_Lookup", &FTC_ImageCache_Lookup},
-	{"FTC_ImageCache_LookupScaler", &FTC_ImageCache_LookupScaler},
-	{"FTC_ImageCache_New", &FTC_ImageCache_New},
-	{"FTC_Manager_Done", &FTC_Manager_Done},
-	{"FTC_Manager_LookupFace", &FTC_Manager_LookupFace},
-	{"FTC_Manager_LookupSize", &FTC_Manager_LookupSize},
-	{"FTC_Manager_Lookup_Face", &FTC_Manager_Lookup_Face},
-	{"FTC_Manager_Lookup_Size", &FTC_Manager_Lookup_Size},
-	{"FTC_Manager_New", &FTC_Manager_New},
-	{"FTC_Manager_RemoveFaceID", &FTC_Manager_RemoveFaceID},
-	{"FTC_Manager_Reset", &FTC_Manager_Reset},
-	{"FTC_Node_Unref", &FTC_Node_Unref},
-	{"FTC_SBitCache_Lookup", &FTC_SBitCache_Lookup},
-	{"FTC_SBitCache_LookupScaler", &FTC_SBitCache_LookupScaler},
-	{"FTC_SBitCache_New", &FTC_SBitCache_New},
-	{"FT_Activate_Size", &FT_Activate_Size},
-	{"FT_Add_Default_Modules", &FT_Add_Default_Modules},
-	{"FT_Add_Module", &FT_Add_Module},
-	{"FT_Angle_Diff", &FT_Angle_Diff},
-	{"FT_Atan2", &FT_Atan2},
-	{"FT_Attach_File", &FT_Attach_File},
-	{"FT_Attach_Stream", &FT_Attach_Stream},
-	{"FT_Bitmap_Convert", &FT_Bitmap_Convert},
-	{"FT_Bitmap_Copy", &FT_Bitmap_Copy},
-	{"FT_Bitmap_Done", &FT_Bitmap_Done},
-	{"FT_Bitmap_Embolden", &FT_Bitmap_Embolden},
-	{"FT_Bitmap_New", &FT_Bitmap_New},
-	{"FT_CeilFix", &FT_CeilFix},
-	{"FT_ClassicKern_Free", &FT_ClassicKern_Free},
-	{"FT_ClassicKern_Validate", &FT_ClassicKern_Validate},
-	{"FT_Cos", &FT_Cos},
-	{"FT_DivFix", &FT_DivFix},
-	{"FT_Done_Face", &FT_Done_Face},
-	{"FT_Done_FreeType", &FT_Done_FreeType},
-	{"FT_Done_Glyph", &FT_Done_Glyph},
-	{"FT_Done_Library", &FT_Done_Library},
-	{"FT_Done_Size", &FT_Done_Size},
-	{"FT_Face_CheckTrueTypePatents", &FT_Face_CheckTrueTypePatents},
-	{"FT_Face_GetCharVariantIndex", &FT_Face_GetCharVariantIndex},
-	{"FT_Face_GetCharVariantIsDefault", &FT_Face_GetCharVariantIsDefault},
-	{"FT_Face_GetCharsOfVariant", &FT_Face_GetCharsOfVariant},
-	{"FT_Face_GetVariantSelectors", &FT_Face_GetVariantSelectors},
-	{"FT_Face_GetVariantsOfChar", &FT_Face_GetVariantsOfChar},
-	{"FT_Face_SetUnpatentedHinting", &FT_Face_SetUnpatentedHinting},
-	{"FT_FloorFix", &FT_FloorFix},
-	{"FT_Get_Advance", &FT_Get_Advance},
-	{"FT_Get_Advances", &FT_Get_Advances},
-	{"FT_Get_BDF_Charset_ID", &FT_Get_BDF_Charset_ID},
-	{"FT_Get_BDF_Property", &FT_Get_BDF_Property},
-	{"FT_Get_CID_From_Glyph_Index", &FT_Get_CID_From_Glyph_Index},
-	{"FT_Get_CID_Is_Internally_CID_Keyed", &FT_Get_CID_Is_Internally_CID_Keyed},
-	{"FT_Get_CID_Registry_Ordering_Supplement", &FT_Get_CID_Registry_Ordering_Supplement},
-	{"FT_Get_CMap_Format", &FT_Get_CMap_Format},
-	{"FT_Get_CMap_Language_ID", &FT_Get_CMap_Language_ID},
-	{"FT_Get_Char_Index", &FT_Get_Char_Index},
-	{"FT_Get_Charmap_Index", &FT_Get_Charmap_Index},
-	{"FT_Get_FSType_Flags", &FT_Get_FSType_Flags},
-	{"FT_Get_First_Char", &FT_Get_First_Char},
-	{"FT_Get_Gasp", &FT_Get_Gasp},
-	{"FT_Get_Glyph", &FT_Get_Glyph},
-	{"FT_Get_Glyph_Name", &FT_Get_Glyph_Name},
-	{"FT_Get_Kerning", &FT_Get_Kerning},
-	{"FT_Get_MM_Var", &FT_Get_MM_Var},
-	{"FT_Get_Module", &FT_Get_Module},
-	{"FT_Get_Multi_Master", &FT_Get_Multi_Master},
-	{"FT_Get_Name_Index", &FT_Get_Name_Index},
-	{"FT_Get_Next_Char", &FT_Get_Next_Char},
-	{"FT_Get_PFR_Advance", &FT_Get_PFR_Advance},
-	{"FT_Get_PFR_Kerning", &FT_Get_PFR_Kerning},
-	{"FT_Get_PFR_Metrics", &FT_Get_PFR_Metrics},
-	{"FT_Get_PS_Font_Info", &FT_Get_PS_Font_Info},
-	{"FT_Get_PS_Font_Private", &FT_Get_PS_Font_Private},
-	{"FT_Get_Postscript_Name", &FT_Get_Postscript_Name},
-	{"FT_Get_Renderer", &FT_Get_Renderer},
-	{"FT_Get_Sfnt_Name", &FT_Get_Sfnt_Name},
-	{"FT_Get_Sfnt_Name_Count", &FT_Get_Sfnt_Name_Count},
-	{"FT_Get_Sfnt_Table", &FT_Get_Sfnt_Table},
-	{"FT_Get_SubGlyph_Info", &FT_Get_SubGlyph_Info},
-	{"FT_Get_Track_Kerning", &FT_Get_Track_Kerning},
-	{"FT_Get_TrueType_Engine_Type", &FT_Get_TrueType_Engine_Type},
-	{"FT_Get_WinFNT_Header", &FT_Get_WinFNT_Header},
-	{"FT_Get_X11_Font_Format", &FT_Get_X11_Font_Format},
-	{"FT_GlyphSlot_Embolden", &FT_GlyphSlot_Embolden},
-	{"FT_GlyphSlot_Oblique", &FT_GlyphSlot_Oblique},
-	{"FT_GlyphSlot_Own_Bitmap", &FT_GlyphSlot_Own_Bitmap},
-	{"FT_Glyph_Copy", &FT_Glyph_Copy},
-	{"FT_Glyph_Get_CBox", &FT_Glyph_Get_CBox},
-	{"FT_Glyph_Stroke", &FT_Glyph_Stroke},
-	{"FT_Glyph_StrokeBorder", &FT_Glyph_StrokeBorder},
-	{"FT_Glyph_To_Bitmap", &FT_Glyph_To_Bitmap},
-	{"FT_Glyph_Transform", &FT_Glyph_Transform},
-	{"FT_Has_PS_Glyph_Names", &FT_Has_PS_Glyph_Names},
-	{"FT_Init_FreeType", &FT_Init_FreeType},
-	{"FT_Library_SetLcdFilter", &FT_Library_SetLcdFilter},
-	{"FT_Library_SetLcdFilterWeights", &FT_Library_SetLcdFilterWeights},
-	{"FT_Library_Version", &FT_Library_Version},
-	{"FT_List_Add", &FT_List_Add},
-	{"FT_List_Finalize", &FT_List_Finalize},
-	{"FT_List_Find", &FT_List_Find},
-	{"FT_List_Insert", &FT_List_Insert},
-	{"FT_List_Iterate", &FT_List_Iterate},
-	{"FT_List_Remove", &FT_List_Remove},
-	{"FT_List_Up", &FT_List_Up},
-	{"FT_Load_Char", &FT_Load_Char},
-	{"FT_Load_Glyph", &FT_Load_Glyph},
-	{"FT_Load_Sfnt_Table", &FT_Load_Sfnt_Table},
-	{"FT_Matrix_Invert", &FT_Matrix_Invert},
-	{"FT_Matrix_Multiply", &FT_Matrix_Multiply},
-	{"FT_MulDiv", &FT_MulDiv},
-	{"FT_MulFix", &FT_MulFix},
-	{"FT_New_Face", &FT_New_Face},
-	{"FT_New_Library", &FT_New_Library},
-	{"FT_New_Memory_Face", &FT_New_Memory_Face},
-	{"FT_New_Size", &FT_New_Size},
-	{"FT_OpenType_Free", &FT_OpenType_Free},
-	{"FT_OpenType_Validate", &FT_OpenType_Validate},
-	{"FT_Open_Face", &FT_Open_Face},
-	{"FT_Outline_Check", &FT_Outline_Check},
-	{"FT_Outline_Copy", &FT_Outline_Copy},
-	{"FT_Outline_Decompose", &FT_Outline_Decompose},
-	{"FT_Outline_Done", &FT_Outline_Done},
-	{"FT_Outline_Done_Internal", &FT_Outline_Done_Internal},
-	{"FT_Outline_Embolden", &FT_Outline_Embolden},
-	{"FT_Outline_GetInsideBorder", &FT_Outline_GetInsideBorder},
-	{"FT_Outline_GetOutsideBorder", &FT_Outline_GetOutsideBorder},
-	{"FT_Outline_Get_BBox", &FT_Outline_Get_BBox},
-	{"FT_Outline_Get_Bitmap", &FT_Outline_Get_Bitmap},
-	{"FT_Outline_Get_CBox", &FT_Outline_Get_CBox},
-	{"FT_Outline_Get_Orientation", &FT_Outline_Get_Orientation},
-	{"FT_Outline_New", &FT_Outline_New},
-	{"FT_Outline_New_Internal", &FT_Outline_New_Internal},
-	{"FT_Outline_Render", &FT_Outline_Render},
-	{"FT_Outline_Reverse", &FT_Outline_Reverse},
-	{"FT_Outline_Transform", &FT_Outline_Transform},
-	{"FT_Outline_Translate", &FT_Outline_Translate},
-	{"FT_Reference_Face", &FT_Reference_Face},
-	{"FT_Reference_Library", &FT_Reference_Library},
-	{"FT_Remove_Module", &FT_Remove_Module},
-	{"FT_Render_Glyph", &FT_Render_Glyph},
-	{"FT_Request_Size", &FT_Request_Size},
-	{"FT_RoundFix", &FT_RoundFix},
-	{"FT_Select_Charmap", &FT_Select_Charmap},
-	{"FT_Select_Size", &FT_Select_Size},
-	{"FT_Set_Char_Size", &FT_Set_Char_Size},
-	{"FT_Set_Charmap", &FT_Set_Charmap},
-	{"FT_Set_Debug_Hook", &FT_Set_Debug_Hook},
-	{"FT_Set_MM_Blend_Coordinates", &FT_Set_MM_Blend_Coordinates},
-	{"FT_Set_MM_Design_Coordinates", &FT_Set_MM_Design_Coordinates},
-	{"FT_Set_Pixel_Sizes", &FT_Set_Pixel_Sizes},
-	{"FT_Set_Renderer", &FT_Set_Renderer},
-	{"FT_Set_Transform", &FT_Set_Transform},
-	{"FT_Set_Var_Blend_Coordinates", &FT_Set_Var_Blend_Coordinates},
-	{"FT_Set_Var_Design_Coordinates", &FT_Set_Var_Design_Coordinates},
-	{"FT_Sfnt_Table_Info", &FT_Sfnt_Table_Info},
-	{"FT_Sin", &FT_Sin},
-	{"FT_Stream_OpenGzip", &FT_Stream_OpenGzip},
-	{"FT_Stream_OpenLZW", &FT_Stream_OpenLZW},
-	{"FT_Stroker_BeginSubPath", &FT_Stroker_BeginSubPath},
-	{"FT_Stroker_ConicTo", &FT_Stroker_ConicTo},
-	{"FT_Stroker_CubicTo", &FT_Stroker_CubicTo},
-	{"FT_Stroker_Done", &FT_Stroker_Done},
-	{"FT_Stroker_EndSubPath", &FT_Stroker_EndSubPath},
-	{"FT_Stroker_Export", &FT_Stroker_Export},
-	{"FT_Stroker_ExportBorder", &FT_Stroker_ExportBorder},
-	{"FT_Stroker_GetBorderCounts", &FT_Stroker_GetBorderCounts},
-	{"FT_Stroker_GetCounts", &FT_Stroker_GetCounts},
-	{"FT_Stroker_LineTo", &FT_Stroker_LineTo},
-	{"FT_Stroker_New", &FT_Stroker_New},
-	{"FT_Stroker_ParseOutline", &FT_Stroker_ParseOutline},
-	{"FT_Stroker_Rewind", &FT_Stroker_Rewind},
-	{"FT_Stroker_Set", &FT_Stroker_Set},
-	{"FT_Tan", &FT_Tan},
-	{"FT_TrueTypeGX_Free", &FT_TrueTypeGX_Free},
-	{"FT_TrueTypeGX_Validate", &FT_TrueTypeGX_Validate},
-	{"FT_Vector_From_Polar", &FT_Vector_From_Polar},
-	{"FT_Vector_Length", &FT_Vector_Length},
-	{"FT_Vector_Polarize", &FT_Vector_Polarize},
-	{"FT_Vector_Rotate", &FT_Vector_Rotate},
-	{"FT_Vector_Transform", &FT_Vector_Transform},
-	{"FT_Vector_Unit", &FT_Vector_Unit},
-	// Undocumented {"TT_New_Context", &TT_New_Context},
-	// Undocumented {"TT_RunIns", &TT_RunIns},
+	{"FTC_CMapCache_Lookup", &CMapCacheLookup},
+	{"FTC_CMapCache_New", &CMapCacheNew},
+	{"FTC_ImageCache_Lookup", &ImageCacheLookup},
+	{"FTC_ImageCache_LookupScaler", &ImageCacheLookupScaler},
+	{"FTC_ImageCache_New", &ImageCacheNew},
+	{"FTC_Manager_Done", &ManagerDone},
+	{"FTC_Manager_LookupFace", &ManagerLookupFace},
+	{"FTC_Manager_LookupSize", &ManagerLookupSize},
+	{"FTC_Manager_Lookup_Face", &ManagerLookupFace},
+	{"FTC_Manager_Lookup_Size", &ManagerLookupSize},
+	{"FTC_Manager_New", &ManagerNew},
+	{"FTC_Manager_RemoveFaceID", &ManagerRemoveFaceID},
+	{"FTC_Manager_Reset", &ManagerReset},
+	{"FTC_Node_Unref", &NodeUnref},
+	{"FTC_SBitCache_Lookup", &SBitCacheLookup},
+	{"FTC_SBitCache_LookupScaler", &SBitCacheLookupScaler},
+	{"FTC_SBitCache_New", &SBitCacheNew},
+	{"FT_Activate_Size", &ActivateSize},
+	{"FT_Add_Default_Modules", &AddDefaultModules},
+	{"FT_Add_Module", &AddModule},
+	{"FT_Angle_Diff", &AngleDiff},
+	{"FT_Atan2", &Atan2},
+	{"FT_Attach_File", &AttachFile},
+	{"FT_Attach_Stream", &AttachStream},
+	{"FT_Bitmap_Convert", &BitmapConvert},
+	{"FT_Bitmap_Copy", &BitmapCopy},
+	{"FT_Bitmap_Done", &BitmapDone},
+	{"FT_Bitmap_Embolden", &BitmapEmbolden},
+	{"FT_Bitmap_New", &BitmapNew},
+	{"FT_CeilFix", &CeilFix},
+	{"FT_ClassicKern_Free", &ClassicKernFree},
+	{"FT_ClassicKern_Validate", &ClassicKernValidate},
+	{"FT_Cos", &Cos},
+	{"FT_DivFix", &DivFix},
+	{"FT_Done_Face", &DoneFace},
+	{"FT_Done_FreeType", &DoneFreeType},
+	{"FT_Done_Glyph", &DoneGlyph},
+	{"FT_Done_Library", &DoneLibrary},
+	{"FT_Done_Size", &DoneSize},
+	{"FT_Face_CheckTrueTypePatents", &FaceCheckTrueTypePatents},
+	{"FT_Face_GetCharVariantIndex", &FaceGetCharVariantIndex},
+	{"FT_Face_GetCharVariantIsDefault", &FaceGetCharVariantIsDefault},
+	{"FT_Face_GetCharsOfVariant", &FaceGetCharsOfVariant},
+	{"FT_Face_GetVariantSelectors", &FaceGetVariantSelectors},
+	{"FT_Face_GetVariantsOfChar", &FaceGetVariantsOfChar},
+	{"FT_Face_SetUnpatentedHinting", &FaceSetUnpatentedHinting},
+	{"FT_FloorFix", &FloorFix},
+	{"FT_Get_Advance", &GetAdvance},
+	{"FT_Get_Advances", &GetAdvances},
+	{"FT_Get_BDF_Charset_ID", &GetBDFCharsetID},
+	{"FT_Get_BDF_Property", &GetBDFProperty},
+	{"FT_Get_CID_From_Glyph_Index", &GetCIDFromGlyphIndex},
+	{"FT_Get_CID_Is_Internally_CID_Keyed", &GetCIDIsInternallyCIDKeyed},
+	{"FT_Get_CID_Registry_Ordering_Supplement", &GetCIDRegistryOrderingSupplement},
+	{"FT_Get_CMap_Format", &GetCMapFormat},
+	{"FT_Get_CMap_Language_ID", &GetCMapLanguageID},
+	{"FT_Get_Char_Index", &GetCharIndex},
+	{"FT_Get_Charmap_Index", &GetCharmapIndex},
+	{"FT_Get_FSType_Flags", &GetFSTypeFlags},
+	{"FT_Get_First_Char", &GetFirstChar},
+	{"FT_Get_Gasp", &GetGasp},
+	{"FT_Get_Glyph", &GetGlyph},
+	{"FT_Get_Glyph_Name", &GetGlyphName},
+	{"FT_Get_Kerning", &GetKerning},
+	{"FT_Get_MM_Var", &GetMMVar},
+	{"FT_Get_Module", &GetModule},
+	{"FT_Get_Multi_Master", &GetMultiMaster},
+	{"FT_Get_Name_Index", &GetNameIndex},
+	{"FT_Get_Next_Char", &GetNextChar},
+	{"FT_Get_PFR_Advance", &GetPFRAdvance},
+	{"FT_Get_PFR_Kerning", &GetPFRKerning},
+	{"FT_Get_PFR_Metrics", &GetPFRMetrics},
+	{"FT_Get_PS_Font_Info", &GetPSFontInfo},
+	{"FT_Get_PS_Font_Private", &GetPSFontPrivate},
+	{"FT_Get_Postscript_Name", &GetPostscriptName},
+	{"FT_Get_Renderer", &GetRenderer},
+	{"FT_Get_Sfnt_Name", &GetSfntName},
+	{"FT_Get_Sfnt_Name_Count", &GetSfntNameCount},
+	{"FT_Get_Sfnt_Table", &GetSfntTable},
+	{"FT_Get_SubGlyph_Info", &GetSubGlyphInfo},
+	{"FT_Get_Track_Kerning", &GetTrackKerning},
+	{"FT_Get_TrueType_Engine_Type", &GetTrueTypeEngineType},
+	{"FT_Get_WinFNT_Header", &GetWinFNTHeader},
+	{"FT_Get_X11_Font_Format", &GetX11FontFormat},
+	{"FT_GlyphSlot_Embolden", &GlyphSlotEmbolden},
+	{"FT_GlyphSlot_Oblique", &GlyphSlotOblique},
+	{"FT_GlyphSlot_Own_Bitmap", &GlyphSlotOwnBitmap},
+	{"FT_Glyph_Copy", &GlyphCopy},
+	{"FT_Glyph_Get_CBox", &GlyphGetCBox},
+	{"FT_Glyph_Stroke", &GlyphStroke},
+	{"FT_Glyph_StrokeBorder", &GlyphStrokeBorder},
+	{"FT_Glyph_To_Bitmap", &GlyphToBitmap},
+	{"FT_Glyph_Transform", &GlyphTransform},
+	{"FT_Has_PS_Glyph_Names", &HasPSGlyphNames},
+	{"FT_Init_FreeType", &InitFreeType},
+	{"FT_Library_SetLcdFilter", &LibrarySetLcdFilter},
+	{"FT_Library_SetLcdFilterWeights", &LibrarySetLcdFilterWeights},
+	{"FT_Library_Version", &LibraryVersion},
+	{"FT_List_Add", &ListAdd},
+	{"FT_List_Finalize", &ListFinalize},
+	{"FT_List_Find", &ListFind},
+	{"FT_List_Insert", &ListInsert},
+	{"FT_List_Iterate", &ListIterate},
+	{"FT_List_Remove", &ListRemove},
+	{"FT_List_Up", &ListUp},
+	{"FT_Load_Char", &LoadChar},
+	{"FT_Load_Glyph", &LoadGlyph},
+	{"FT_Load_Sfnt_Table", &LoadSfntTable},
+	{"FT_Matrix_Invert", &MatrixInvert},
+	{"FT_Matrix_Multiply", &MatrixMultiply},
+	{"FT_MulDiv", &MulDiv},
+	{"FT_MulFix", &MulFix},
+	{"FT_New_Face", &NewFace},
+	{"FT_New_Library", &NewLibrary},
+	{"FT_New_Memory_Face", &NewMemoryFace},
+	{"FT_New_Size", &NewSize},
+	{"FT_OpenType_Free", &OpenTypeFree},
+	{"FT_OpenType_Validate", &OpenTypeValidate},
+	{"FT_Open_Face", &OpenFace},
+	{"FT_Outline_Check", &OutlineCheck},
+	{"FT_Outline_Copy", &OutlineCopy},
+	{"FT_Outline_Decompose", &OutlineDecompose},
+	{"FT_Outline_Done", &OutlineDone},
+	{"FT_Outline_Done_Internal", &OutlineDoneInternal},
+	{"FT_Outline_Embolden", &OutlineEmbolden},
+	{"FT_Outline_GetInsideBorder", &OutlineGetInsideBorder},
+	{"FT_Outline_GetOutsideBorder", &OutlineGetOutsideBorder},
+	{"FT_Outline_Get_BBox", &OutlineGetBBox},
+	{"FT_Outline_Get_Bitmap", &OutlineGetBitmap},
+	{"FT_Outline_Get_CBox", &OutlineGetCBox},
+	{"FT_Outline_Get_Orientation", &OutlineGetOrientation},
+	{"FT_Outline_New", &OutlineNew},
+	{"FT_Outline_New_Internal", &OutlineNewInternal},
+	{"FT_Outline_Render", &OutlineRender},
+	{"FT_Outline_Reverse", &OutlineReverse},
+	{"FT_Outline_Transform", &OutlineTransform},
+	{"FT_Outline_Translate", &OutlineTranslate},
+	{"FT_Reference_Face", &ReferenceFace},
+	{"FT_Reference_Library", &ReferenceLibrary},
+	{"FT_Remove_Module", &RemoveModule},
+	{"FT_Render_Glyph", &RenderGlyph},
+	{"FT_Request_Size", &RequestSize},
+	{"FT_RoundFix", &RoundFix},
+	{"FT_Select_Charmap", &SelectCharmap},
+	{"FT_Select_Size", &SelectSize},
+	{"FT_Set_Char_Size", &SetCharSize},
+	{"FT_Set_Charmap", &SetCharmap},
+	{"FT_Set_Debug_Hook", &SetDebugHook},
+	{"FT_Set_MM_Blend_Coordinates", &SetMMBlendCoordinates},
+	{"FT_Set_MM_Design_Coordinates", &SetMMDesignCoordinates},
+	{"FT_Set_Pixel_Sizes", &SetPixelSizes},
+	{"FT_Set_Renderer", &SetRenderer},
+	{"FT_Set_Transform", &SetTransform},
+	{"FT_Set_Var_Blend_Coordinates", &SetVarBlendCoordinates},
+	{"FT_Set_Var_Design_Coordinates", &SetVarDesignCoordinates},
+	{"FT_Sfnt_Table_Info", &SfntTableInfo},
+	{"FT_Sin", &Sin},
+	{"FT_Stream_OpenGzip", &StreamOpenGzip},
+	{"FT_Stream_OpenLZW", &StreamOpenLZW},
+	{"FT_Stroker_BeginSubPath", &StrokerBeginSubPath},
+	{"FT_Stroker_ConicTo", &StrokerConicTo},
+	{"FT_Stroker_CubicTo", &StrokerCubicTo},
+	{"FT_Stroker_Done", &StrokerDone},
+	{"FT_Stroker_EndSubPath", &StrokerEndSubPath},
+	{"FT_Stroker_Export", &StrokerExport},
+	{"FT_Stroker_ExportBorder", &StrokerExportBorder},
+	{"FT_Stroker_GetBorderCounts", &StrokerGetBorderCounts},
+	{"FT_Stroker_GetCounts", &StrokerGetCounts},
+	{"FT_Stroker_LineTo", &StrokerLineTo},
+	{"FT_Stroker_New", &StrokerNew},
+	{"FT_Stroker_ParseOutline", &StrokerParseOutline},
+	{"FT_Stroker_Rewind", &StrokerRewind},
+	{"FT_Stroker_Set", &StrokerSet},
+	{"FT_Tan", &Tan},
+	{"FT_TrueTypeGX_Free", &TrueTypeGXFree},
+	{"FT_TrueTypeGX_Validate", &TrueTypeGXValidate},
+	{"FT_Vector_From_Polar", &VectorFromPolar},
+	{"FT_Vector_Length", &VectorLength},
+	{"FT_Vector_Polarize", &VectorPolarize},
+	{"FT_Vector_Rotate", &VectorRotate},
+	{"FT_Vector_Transform", &VectorTransform},
+	{"FT_Vector_Unit", &VectorUnit},
+	// Undocumented {"TT_New_Context", &TTNewContext},
+	// Undocumented {"TT_RunIns", &TTRunIns},
 }

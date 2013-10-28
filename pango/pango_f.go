@@ -4,6 +4,7 @@
 package pango
 
 import (
+	F "github.com/tHinqa/outside-gtk2/fontconfig"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -13,21 +14,21 @@ type FcDecoder struct{ parent O.Object }
 var (
 	FcDecoderGetType func() O.Type
 
-	fcDecoderGetCharset func(f *FcDecoder, fcfont *FcFont) *T.FcCharSet
+	fcDecoderGetCharset func(f *FcDecoder, fcfont *FcFont) *F.CharSet
 	fcDecoderGetGlyph   func(f *FcDecoder, fcfont *FcFont, wc T.GUint32) Glyph
 )
 
-func (f *FcDecoder) GetCharset(fcfont *FcFont) *T.FcCharSet { return fcDecoderGetCharset(f, fcfont) }
+func (f *FcDecoder) GetCharset(fcfont *FcFont) *F.CharSet { return fcDecoderGetCharset(f, fcfont) }
 func (f *FcDecoder) GetGlyph(fcfont *FcFont, wc T.GUint32) Glyph {
 	return fcDecoderGetGlyph(f, fcfont, wc)
 }
 
 type FcDecoderFindFunc func(
-	pattern *T.FcPattern, userData T.Gpointer) *FcDecoder
+	pattern *F.Pattern, userData T.Gpointer) *FcDecoder
 
 type FcFont struct {
 	Parent        Font
-	FontPattern   *T.FcPattern
+	FontPattern   *F.Pattern
 	Fontmap       *FontMap
 	Priv          T.Gpointer
 	Matrix        Matrix
@@ -40,7 +41,7 @@ type FcFont struct {
 
 var (
 	FcFontGetType                func() O.Type
-	FcFontDescriptionFromPattern func(pattern *T.FcPattern, includeSize T.Gboolean) *FontDescription
+	FcFontDescriptionFromPattern func(pattern *F.Pattern, includeSize T.Gboolean) *FontDescription
 
 	fcFontGetGlyph        func(f *FcFont, wc T.Gunichar) uint
 	fcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
@@ -62,12 +63,12 @@ type FcFontKey struct{}
 var (
 	fcFontKeyGetContextKey func(f *FcFontKey) T.Gpointer
 	fcFontKeyGetMatrix     func(f *FcFontKey) *Matrix
-	fcFontKeyGetPattern    func(f *FcFontKey) *T.FcPattern
+	fcFontKeyGetPattern    func(f *FcFontKey) *F.Pattern
 )
 
 func (f *FcFontKey) GetContextKey() T.Gpointer { return fcFontKeyGetContextKey(f) }
 func (f *FcFontKey) GetMatrix() *Matrix        { return fcFontKeyGetMatrix(f) }
-func (f *FcFontKey) GetPattern() *T.FcPattern  { return fcFontKeyGetPattern(f) }
+func (f *FcFontKey) GetPattern() *F.Pattern    { return fcFontKeyGetPattern(f) }
 
 type FcFontMap struct {
 	Parent FontMap
@@ -80,7 +81,7 @@ var (
 	fcFontMapAddDecoderFindFunc func(f *FcFontMap, findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify)
 	fcFontMapCacheClear         func(f *FcFontMap)
 	fcFontMapCreateContext      func(f *FcFontMap) *Context
-	fcFontMapFindDecoder        func(f *FcFontMap, pattern *T.FcPattern) *FcDecoder
+	fcFontMapFindDecoder        func(f *FcFontMap, pattern *F.Pattern) *FcDecoder
 	fcFontMapShutdown           func(f *FcFontMap)
 )
 
@@ -89,7 +90,7 @@ func (f *FcFontMap) AddDecoderFindFunc(findfunc FcDecoderFindFunc, userData T.Gp
 }
 func (f *FcFontMap) CacheClear()             { fcFontMapCacheClear(f) }
 func (f *FcFontMap) CreateContext() *Context { return fcFontMapCreateContext(f) }
-func (f *FcFontMap) FindDecoder(pattern *T.FcPattern) *FcDecoder {
+func (f *FcFontMap) FindDecoder(pattern *F.Pattern) *FcDecoder {
 	return fcFontMapFindDecoder(f, pattern)
 }
 func (f *FcFontMap) Shutdown() { fcFontMapShutdown(f) }
@@ -389,4 +390,4 @@ var (
 	Ft2RenderTransformed        func(bitmap *T.FT_Bitmap, matrix *Matrix, font *Font, glyphs *GlyphString, x, y int)
 )
 
-type FT2SubstituteFunc func(pattern *T.FcPattern, data T.Gpointer)
+type FT2SubstituteFunc func(pattern *F.Pattern, data T.Gpointer)
