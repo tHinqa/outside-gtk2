@@ -59,12 +59,12 @@ var (
 	ThemedIconNewFromNames            func(iconnames **T.Char, len int) *Icon
 
 	themedIconAppendName  func(t *ThemedIcon, iconname string)
-	themedIconGetNames    func(t *ThemedIcon) **T.Gchar
+	themedIconGetNames    func(t *ThemedIcon) []string
 	themedIconPrependName func(t *ThemedIcon, iconname string)
 )
 
 func (t *ThemedIcon) AppendName(iconname string)  { themedIconAppendName(t, iconname) }
-func (t *ThemedIcon) GetNames() **T.Gchar         { return themedIconGetNames(t) }
+func (t *ThemedIcon) GetNames() []string          { return themedIconGetNames(t) }
 func (t *ThemedIcon) PrependName(iconname string) { themedIconPrependName(t, iconname) }
 
 var (

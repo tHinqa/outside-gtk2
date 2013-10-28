@@ -235,10 +235,9 @@ var (
 
 	GetUserCacheDir func() string
 
-	GetSystemDataDirs func() **T.Gchar
+	GetSystemDataDirs func() []string
 
-	Win32GetSystemDataDirsForModule func(
-		f func()) **T.Gchar
+	Win32GetSystemDataDirsForModule func(f func()) []string
 
 	ParseDebugString func(
 		str string, keys *T.GDebugKey, nkeys uint) uint
@@ -273,9 +272,9 @@ var (
 
 	Unsetenv func(variable string)
 
-	Listenv func() **T.Gchar
+	Listenv func() []string //TODO(t):must release
 
-	GetEnviron func() **T.Gchar
+	GetEnviron func() []string //TODO(t):Documented?
 
 	ThreadInit func(vtable *T.GThreadFunctions)
 
@@ -464,13 +463,13 @@ var (
 		address *int,
 		lockBit int)
 
-	GetSystemConfigDirs func() **T.Gchar
+	GetSystemConfigDirs func() []string
 
 	GetUserRuntimeDir func() string
 
-	GetLanguageNames func() **T.Gchar
+	GetLanguageNames func() []string
 
-	GetLocaleVariants func(locale string) **T.Gchar
+	GetLocaleVariants func(locale string) []string
 
 	Atexit func(f T.GVoidFunc)
 
@@ -511,96 +510,65 @@ var (
 	BookmarkFileFree func(bookmark *T.GBookmarkFile)
 
 	BookmarkFileLoadFromFile func(bookmark *T.GBookmarkFile,
-		filename string,
-		e **T.GError) T.Gboolean
+		filename string, e **T.GError) T.Gboolean
 
 	BookmarkFileLoadFromData func(bookmark *T.GBookmarkFile,
-		data string,
-		length T.Gsize,
-		e **T.GError) T.Gboolean
+		data string, length T.Gsize, e **T.GError) T.Gboolean
 
 	BookmarkFileLoadFromDataDirs func(bookmark *T.GBookmarkFile,
-		file string,
-		fullPath **T.Gchar,
-		e **T.GError) T.Gboolean
+		file string, fullPath **T.Gchar, e **T.GError) T.Gboolean
 
 	BookmarkFileToData func(bookmark *T.GBookmarkFile,
-		length *T.Gsize,
-		e **T.GError) string
+		length *T.Gsize, e **T.GError) string
 
 	BookmarkFileToFile func(bookmark *T.GBookmarkFile,
-		filename string,
-		e **T.GError) T.Gboolean
+		filename string, e **T.GError) T.Gboolean
 
 	BookmarkFileSetTitle func(bookmark *T.GBookmarkFile,
-		uri string,
-		title string)
+		uri, title string)
 
 	BookmarkFileGetTitle func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) string
+		uri, e **T.GError) string
 
 	BookmarkFileSetDescription func(bookmark *T.GBookmarkFile,
-		uri string,
-		description string)
+		uri string, description string)
 
 	BookmarkFileGetDescription func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) string
+		uri string, e **T.GError) string
 
 	BookmarkFileSetMimeType func(bookmark *T.GBookmarkFile,
-		uri string,
-		mimeType string)
+		uri, mimeType string)
 
 	BookmarkFileGetMimeType func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) string
+		uri string, e **T.GError) string
 
 	BookmarkFileSetGroups func(bookmark *T.GBookmarkFile,
-		uri string,
-		groups **T.Gchar,
-		length T.Gsize)
+		uri string, groups **T.Gchar, length T.Gsize)
 
 	BookmarkFileAddGroup func(bookmark *T.GBookmarkFile,
-		uri string,
-		group string)
+		uri, group string)
 
 	BookmarkFileHasGroup func(bookmark *T.GBookmarkFile,
-		uri string,
-		group string,
-		e **T.GError) T.Gboolean
+		uri, group string, e **T.GError) T.Gboolean
 
 	BookmarkFileGetGroups func(bookmark *T.GBookmarkFile,
-		uri string,
-		length *T.Gsize,
-		e **T.GError) **T.Gchar
+		uri string, length *T.Gsize, e **T.GError) []string
 
 	BookmarkFileAddApplication func(bookmark *T.GBookmarkFile,
-		uri string,
-		name string,
-		exec string)
+		uri, name, exec string)
 
 	BookmarkFileHasApplication func(bookmark *T.GBookmarkFile,
-		uri string,
-		name string,
-		e **T.GError) T.Gboolean
+		uri, name string, e **T.GError) T.Gboolean
 
 	BookmarkFileGetApplications func(bookmark *T.GBookmarkFile,
-		uri string,
-		length *T.Gsize,
-		e **T.GError) **T.Gchar
+		uri string, length *T.Gsize, e **T.GError) []string
 
 	BookmarkFileSetAppInfo func(bookmark *T.GBookmarkFile,
-		uri string,
-		name string,
-		exec string,
-		count int,
-		stamp T.TimeT,
-		e **T.GError) T.Gboolean
+		uri, name, exec string,
+		count int, stamp T.TimeT, e **T.GError) T.Gboolean
 
 	BookmarkFileGetAppInfo func(bookmark *T.GBookmarkFile,
-		uri string,
-		name string,
+		uri, name string,
 		exec **T.Gchar,
 		count *uint,
 		stamp *T.TimeT,
@@ -615,9 +583,7 @@ var (
 		e **T.GError) T.Gboolean
 
 	BookmarkFileSetIcon func(bookmark *T.GBookmarkFile,
-		uri string,
-		href string,
-		mimeType string)
+		uri, href, mimeType string)
 
 	BookmarkFileGetIcon func(bookmark *T.GBookmarkFile,
 		uri string,
@@ -642,12 +608,10 @@ var (
 		e **T.GError) T.TimeT
 
 	BookmarkFileSetVisited func(bookmark *T.GBookmarkFile,
-		uri string,
-		visited T.TimeT)
+		uri string, visited T.TimeT)
 
 	BookmarkFileGetVisited func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) T.TimeT
+		uri string, e **T.GError) T.TimeT
 
 	BookmarkFileHasItem func(bookmark *T.GBookmarkFile,
 		uri string) T.Gboolean
@@ -655,26 +619,19 @@ var (
 	BookmarkFileGetSize func(bookmark *T.GBookmarkFile) int
 
 	BookmarkFileGetUris func(bookmark *T.GBookmarkFile,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	BookmarkFileRemoveGroup func(bookmark *T.GBookmarkFile,
-		uri string,
-		group string,
-		e **T.GError) T.Gboolean
+		uri, group string, e **T.GError) T.Gboolean
 
 	BookmarkFileRemoveApplication func(bookmark *T.GBookmarkFile,
-		uri string,
-		name string,
-		e **T.GError) T.Gboolean
+		uri, name string, e **T.GError) T.Gboolean
 
 	BookmarkFileRemoveItem func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) T.Gboolean
+		uri string, e **T.GError) T.Gboolean
 
 	BookmarkFileMoveItem func(bookmark *T.GBookmarkFile,
-		oldUri string,
-		newUri string,
-		e **T.GError) T.Gboolean
+		oldUri, newUri string, e **T.GError) T.Gboolean
 
 	SliceAlloc func(blockSize T.Gsize) T.Gpointer
 
@@ -1000,7 +957,7 @@ var (
 
 	FilenameDisplayBasename func(filename string) string
 
-	UriListExtractUris func(uriList string) **T.Gchar
+	UriListExtractUris func(uriList string) []string
 
 	DatalistInit func(datalist **T.GData)
 
@@ -2335,12 +2292,12 @@ var (
 	KeyFileGetStartGroup func(keyFile *T.GKeyFile) string
 
 	KeyFileGetGroups func(keyFile *T.GKeyFile,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	KeyFileGetKeys func(keyFile *T.GKeyFile,
 		groupName string,
 		length *T.Gsize,
-		e **T.GError) **T.Gchar
+		e **T.GError) []string
 
 	KeyFileHasGroup func(keyFile *T.GKeyFile,
 		groupName string) T.Gboolean
@@ -2436,7 +2393,7 @@ var (
 		groupName string,
 		key string,
 		length *T.Gsize,
-		e **T.GError) **T.Gchar
+		e **T.GError) []string
 
 	KeyFileSetStringList func(keyFile *T.GKeyFile,
 		groupName string,
@@ -2449,7 +2406,7 @@ var (
 		key string,
 		locale string,
 		length *T.Gsize,
-		e **T.GError) **T.Gchar
+		e **T.GError) []string
 
 	KeyFileSetLocaleStringList func(keyFile *T.GKeyFile,
 		groupName string,
@@ -3050,11 +3007,11 @@ var (
 	RegexSplitSimple func(pattern string,
 		str string,
 		compileOptions T.GRegexCompileFlags,
-		matchOptions T.GRegexMatchFlags) **T.Gchar
+		matchOptions T.GRegexMatchFlags) []string
 
 	RegexSplit func(regex *T.GRegex,
 		str string,
-		matchOptions T.GRegexMatchFlags) **T.Gchar
+		matchOptions T.GRegexMatchFlags) []string
 
 	RegexSplitFull func(regex *T.GRegex,
 		str string,
@@ -3062,7 +3019,7 @@ var (
 		startPosition int,
 		matchOptions T.GRegexMatchFlags,
 		maxTokens int,
-		e **T.GError) **T.Gchar
+		e **T.GError) []string
 
 	RegexReplace func(regex *T.GRegex,
 		str string,
@@ -3127,7 +3084,7 @@ var (
 		name string, startPos *int, endPos *int) T.Gboolean
 
 	MatchInfoFetchAll func(
-		matchInfo *T.GMatchInfo) **T.Gchar
+		matchInfo *T.GMatchInfo) []string
 
 	ScannerNew func(
 		configTempl *T.GScannerConfig) *T.GScanner
@@ -3480,18 +3437,18 @@ var (
 
 	Strsplit func(str string,
 		delimiter string,
-		maxTokens int) **T.Gchar
+		maxTokens int) []string
 
 	StrsplitSet func(str string,
 		delimiters string,
-		maxTokens int) **T.Gchar
+		maxTokens int) []string
 
 	Strjoinv func(separator string,
 		str_Array **T.Gchar) string
 
 	Strfreev func(strArray **T.Gchar)
 
-	Strdupv func(strArray **T.Gchar) **T.Gchar
+	Strdupv func(strArray **T.Gchar) []string
 
 	StrvLength func(strArray **T.Gchar) uint
 
@@ -3941,10 +3898,10 @@ var (
 		length *T.Gsize) string
 
 	VariantGetStrv func(value *T.GVariant,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	VariantDupStrv func(value *T.GVariant,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	VariantGetBytestring func(value *T.GVariant) string
 
@@ -3952,10 +3909,10 @@ var (
 		length *T.Gsize) string
 
 	VariantGetBytestringArray func(value *T.GVariant,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	VariantDupBytestringArray func(value *T.GVariant,
-		length *T.Gsize) **T.Gchar
+		length *T.Gsize) []string
 
 	VariantNewMaybe func(childType *T.GVariantType,
 		child *T.GVariant) *T.GVariant

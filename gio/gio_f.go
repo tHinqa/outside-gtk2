@@ -614,7 +614,7 @@ var (
 	fileInfoGetAttributeObject     func(f *FileInfo, attribute string) *O.Object
 	fileInfoGetAttributeStatus     func(f *FileInfo, attribute string) FileAttributeStatus
 	fileInfoGetAttributeString     func(f *FileInfo, attribute string) string
-	fileInfoGetAttributeStringv    func(f *FileInfo, attribute string) **T.Char
+	fileInfoGetAttributeStringv    func(f *FileInfo, attribute string) []string
 	fileInfoGetAttributeType       func(f *FileInfo, attribute string) FileAttributeType
 	fileInfoGetAttributeUint32     func(f *FileInfo, attribute string) T.GUint32
 	fileInfoGetAttributeUint64     func(f *FileInfo, attribute string) uint64
@@ -634,7 +634,7 @@ var (
 	fileInfoGetSymlinkTarget       func(f *FileInfo) string
 	fileInfoHasAttribute           func(f *FileInfo, attribute string) T.Gboolean
 	fileInfoHasNamespace           func(f *FileInfo, nameSpace string) T.Gboolean
-	fileInfoListAttributes         func(f *FileInfo, nameSpace string) **T.Char
+	fileInfoListAttributes         func(f *FileInfo, nameSpace string) []string
 	fileInfoRemoveAttribute        func(f *FileInfo, attribute string)
 	fileInfoSetAttribute           func(f *FileInfo, attribute string, typ FileAttributeType, valueP T.Gpointer)
 	fileInfoSetAttributeBoolean    func(f *FileInfo, attribute string, attrValue T.Gboolean)
@@ -691,7 +691,7 @@ func (f *FileInfo) GetAttributeStatus(attribute string) FileAttributeStatus {
 func (f *FileInfo) GetAttributeString(attribute string) string {
 	return fileInfoGetAttributeString(f, attribute)
 }
-func (f *FileInfo) GetAttributeStringv(attribute string) **T.Char {
+func (f *FileInfo) GetAttributeStringv(attribute string) []string {
 	return fileInfoGetAttributeStringv(f, attribute)
 }
 func (f *FileInfo) GetAttributeType(attribute string) FileAttributeType {
@@ -723,7 +723,7 @@ func (f *FileInfo) HasAttribute(attribute string) T.Gboolean {
 func (f *FileInfo) HasNamespace(nameSpace string) T.Gboolean {
 	return fileInfoHasNamespace(f, nameSpace)
 }
-func (f *FileInfo) ListAttributes(nameSpace string) **T.Char {
+func (f *FileInfo) ListAttributes(nameSpace string) []string {
 	return fileInfoListAttributes(f, nameSpace)
 }
 func (f *FileInfo) RemoveAttribute(attribute string) { fileInfoRemoveAttribute(f, attribute) }
@@ -875,12 +875,12 @@ var (
 	FilenameCompleterGetType func() O.Type
 	FilenameCompleterNew     func() *FilenameCompleter
 
-	filenameCompleterGetCompletions      func(f *FilenameCompleter, initialText string) **T.Char
+	filenameCompleterGetCompletions      func(f *FilenameCompleter, initialText string) []string
 	filenameCompleterGetCompletionSuffix func(f *FilenameCompleter, initialText string) string
 	filenameCompleterSetDirsOnly         func(f *FilenameCompleter, dirsOnly T.Gboolean)
 )
 
-func (f *FilenameCompleter) GetCompletions(initialText string) **T.Char {
+func (f *FilenameCompleter) GetCompletions(initialText string) []string {
 	return filenameCompleterGetCompletions(f, initialText)
 }
 func (f *FilenameCompleter) GetCompletionSuffix(initialText string) string {

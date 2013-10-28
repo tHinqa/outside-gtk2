@@ -47,8 +47,8 @@ type Settings struct {
 var (
 	SettingsGetType func() O.Type
 
-	SettingsListRelocatableSchemas func() **T.Gchar
-	SettingsListSchemas            func() **T.Gchar
+	SettingsListRelocatableSchemas func() []string
+	SettingsListSchemas            func() []string
 	SettingsNew                    func(schema string) *Settings
 	SettingsNewWithBackend         func(schema string, backend *SettingsBackend) *Settings
 	SettingsNewWithBackendAndPath  func(schema string, backend *SettingsBackend, path string) *Settings
@@ -72,11 +72,11 @@ var (
 	settingsGetMapped       func(s *Settings, key string, mapping SettingsGetMapping, userData T.Gpointer) T.Gpointer
 	settingsGetRange        func(s *Settings, key string) *T.GVariant
 	settingsGetString       func(s *Settings, key string) string
-	settingsGetStrv         func(s *Settings, key string) **T.Gchar
+	settingsGetStrv         func(s *Settings, key string) []string
 	settingsGetValue        func(s *Settings, key string) *T.GVariant
 	settingsIsWritable      func(s *Settings, name string) T.Gboolean
-	settingsListKeys        func(s *Settings) **T.Gchar
-	settingsListChildren    func(s *Settings) **T.Gchar
+	settingsListKeys        func(s *Settings) []string
+	settingsListChildren    func(s *Settings) []string
 	settingsRangeCheck      func(s *Settings, key string, value *T.GVariant) T.Gboolean
 	settingsReset           func(s *Settings, key string)
 	settingsRevert          func(s *Settings)
@@ -115,11 +115,11 @@ func (s *Settings) GetMapped(key string, mapping SettingsGetMapping, userData T.
 }
 func (s *Settings) GetRange(key string) *T.GVariant   { return settingsGetRange(s, key) }
 func (s *Settings) GetString(key string) string       { return settingsGetString(s, key) }
-func (s *Settings) GetStrv(key string) **T.Gchar      { return settingsGetStrv(s, key) }
+func (s *Settings) GetStrv(key string) []string       { return settingsGetStrv(s, key) }
 func (s *Settings) GetValue(key string) *T.GVariant   { return settingsGetValue(s, key) }
 func (s *Settings) IsWritable(name string) T.Gboolean { return settingsIsWritable(s, name) }
-func (s *Settings) ListKeys() **T.Gchar               { return settingsListKeys(s) }
-func (s *Settings) ListChildren() **T.Gchar           { return settingsListChildren(s) }
+func (s *Settings) ListKeys() []string                { return settingsListKeys(s) }
+func (s *Settings) ListChildren() []string            { return settingsListChildren(s) }
 func (s *Settings) RangeCheck(key string, value *T.GVariant) T.Gboolean {
 	return settingsRangeCheck(s, key, value)
 }

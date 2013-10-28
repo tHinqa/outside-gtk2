@@ -204,8 +204,8 @@ var (
 	selectionDataGetSelection           func(s *SelectionData) D.Atom
 	selectionDataGetTarget              func(s *SelectionData) D.Atom
 	selectionDataGetTargets             func(s *SelectionData, targets **D.Atom, nAtoms *int) T.Gboolean
-	selectionDataGetText                func(s *SelectionData) *T.Guchar
-	selectionDataGetUris                func(s *SelectionData) **T.Gchar
+	selectionDataGetText                func(s *SelectionData) []string //TODO(t): *T.Guchar?
+	selectionDataGetUris                func(s *SelectionData) []string
 	selectionDataSet                    func(s *SelectionData, typ D.Atom, format int, data *T.Guchar, length int)
 	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *D.Pixbuf) T.Gboolean
 	selectionDataSetText                func(s *SelectionData, str string, len int) T.Gboolean
@@ -229,8 +229,8 @@ func (s *SelectionData) GetTarget() D.Atom      { return selectionDataGetTarget(
 func (s *SelectionData) GetTargets(targets **D.Atom, nAtoms *int) T.Gboolean {
 	return selectionDataGetTargets(s, targets, nAtoms)
 }
-func (s *SelectionData) GetText() *T.Guchar { return selectionDataGetText(s) }
-func (s *SelectionData) GetUris() **T.Gchar { return selectionDataGetUris(s) }
+func (s *SelectionData) GetText() []string { return selectionDataGetText(s) } //TODO(t): was*T.Guchar?
+func (s *SelectionData) GetUris() []string { return selectionDataGetUris(s) }
 func (s *SelectionData) Set(typ D.Atom, format int, data *T.Guchar, length int) {
 	selectionDataSet(s, typ, format, data, length)
 }

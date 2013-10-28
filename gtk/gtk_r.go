@@ -223,7 +223,7 @@ var (
 	RcAddDefaultFile           func(filename string)
 	RcFindModuleInPath         func(moduleFile string) string
 	RcFindPixmapInPath         func(settings *Settings, scanner *T.GScanner, pixmapFile string) string
-	RcGetDefaultFiles          func() **T.Gchar
+	RcGetDefaultFiles          func() []string
 	RcGetImModuleFile          func() string
 	RcGetImModulePath          func() string
 	RcGetModuleDir             func() string
@@ -356,7 +356,7 @@ var (
 	recentChooserGetShowPrivate    func(r *RecentChooser) T.Gboolean
 	recentChooserGetShowTips       func(r *RecentChooser) T.Gboolean
 	recentChooserGetSortType       func(r *RecentChooser) RecentSortType
-	recentChooserGetUris           func(r *RecentChooser, length *T.Gsize) **T.Gchar
+	recentChooserGetUris           func(r *RecentChooser, length *T.Gsize) []string
 	recentChooserListFilters       func(r *RecentChooser) *T.GSList
 	recentChooserRemoveFilter      func(r *RecentChooser, filter *RecentFilter)
 	recentChooserSelectAll         func(r *RecentChooser)
@@ -391,7 +391,7 @@ func (r *RecentChooser) GetShowNumbers() T.Gboolean        { return recentChoose
 func (r *RecentChooser) GetShowPrivate() T.Gboolean        { return recentChooserGetShowPrivate(r) }
 func (r *RecentChooser) GetShowTips() T.Gboolean           { return recentChooserGetShowTips(r) }
 func (r *RecentChooser) GetSortType() RecentSortType       { return recentChooserGetSortType(r) }
-func (r *RecentChooser) GetUris(length *T.Gsize) **T.Gchar { return recentChooserGetUris(r, length) }
+func (r *RecentChooser) GetUris(length *T.Gsize) []string { return recentChooserGetUris(r, length) }
 func (r *RecentChooser) ListFilters() *T.GSList            { return recentChooserListFilters(r) }
 func (r *RecentChooser) RemoveFilter(filter *RecentFilter) { recentChooserRemoveFilter(r, filter) }
 func (r *RecentChooser) SelectAll()                        { recentChooserSelectAll(r) }
@@ -457,10 +457,10 @@ var (
 	recentInfoGetAdded           func(r *RecentInfo) T.TimeT
 	recentInfoGetAge             func(r *RecentInfo) int
 	recentInfoGetApplicationInfo func(r *RecentInfo, appName string, appExec **T.Gchar, count *uint, time *T.TimeT) T.Gboolean
-	recentInfoGetApplications    func(r *RecentInfo, length *T.Gsize) **T.Gchar
+	recentInfoGetApplications    func(r *RecentInfo, length *T.Gsize) []string
 	recentInfoGetDescription     func(r *RecentInfo) string
 	recentInfoGetDisplayName     func(r *RecentInfo) string
-	recentInfoGetGroups          func(r *RecentInfo, length *T.Gsize) **T.Gchar
+	recentInfoGetGroups          func(r *RecentInfo, length *T.Gsize) []string
 	recentInfoGetIcon            func(r *RecentInfo, size int) *D.Pixbuf
 	recentInfoGetMimeType        func(r *RecentInfo) string
 	recentInfoGetModified        func(r *RecentInfo) T.TimeT
@@ -484,12 +484,12 @@ func (r *RecentInfo) GetAge() int        { return recentInfoGetAge(r) }
 func (r *RecentInfo) GetApplicationInfo(appName string, appExec **T.Gchar, count *uint, time *T.TimeT) T.Gboolean {
 	return recentInfoGetApplicationInfo(r, appName, appExec, count, time)
 }
-func (r *RecentInfo) GetApplications(length *T.Gsize) **T.Gchar {
+func (r *RecentInfo) GetApplications(length *T.Gsize) []string {
 	return recentInfoGetApplications(r, length)
 }
 func (r *RecentInfo) GetDescription() string              { return recentInfoGetDescription(r) }
 func (r *RecentInfo) GetDisplayName() string              { return recentInfoGetDisplayName(r) }
-func (r *RecentInfo) GetGroups(length *T.Gsize) **T.Gchar { return recentInfoGetGroups(r, length) }
+func (r *RecentInfo) GetGroups(length *T.Gsize) []string { return recentInfoGetGroups(r, length) }
 func (r *RecentInfo) GetIcon(size int) *D.Pixbuf          { return recentInfoGetIcon(r, size) }
 func (r *RecentInfo) GetMimeType() string                 { return recentInfoGetMimeType(r) }
 func (r *RecentInfo) GetModified() T.TimeT                { return recentInfoGetModified(r) }

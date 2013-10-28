@@ -127,7 +127,7 @@ func (s *ScriptIter) Next() T.Gboolean { return scriptIterNext(s) }
 var (
 	Shape         func(text string, length int, Analysis *Analysis, glyphs *GlyphString)
 	SkipSpace     func(pos **T.Char) T.Gboolean
-	SplitFileList func(str string) **T.Char
+	SplitFileList func(str string) []string
 )
 
 type Stretch Enum

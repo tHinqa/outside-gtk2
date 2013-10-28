@@ -65,8 +65,8 @@ var (
 	mountGetUuid                    func(m *Mount) string
 	mountGetVolume                  func(m *Mount) *Volume
 	mountGuessContentType           func(m *Mount, forceRescan T.Gboolean, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountGuessContentTypeFinish     func(m *Mount, result *AsyncResult, err **T.GError) **T.Gchar
-	mountGuessContentTypeSync       func(m *Mount, forceRescan T.Gboolean, cancellable *Cancellable, err **T.GError) **T.Gchar
+	mountGuessContentTypeFinish     func(m *Mount, result *AsyncResult, err **T.GError) []string
+	mountGuessContentTypeSync       func(m *Mount, forceRescan T.Gboolean, cancellable *Cancellable, err **T.GError) []string
 	mountIsShadowed                 func(m *Mount) T.Gboolean
 	mountRemount                    func(m *Mount, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	mountRemountFinish              func(m *Mount, result *AsyncResult, err **T.GError) T.Gboolean
@@ -104,10 +104,10 @@ func (m *Mount) GetVolume() *Volume        { return mountGetVolume(m) }
 func (m *Mount) GuessContentType(forceRescan T.Gboolean, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	mountGuessContentType(m, forceRescan, cancellable, callback, userData)
 }
-func (m *Mount) GuessContentTypeFinish(result *AsyncResult, err **T.GError) **T.Gchar {
+func (m *Mount) GuessContentTypeFinish(result *AsyncResult, err **T.GError) []string {
 	return mountGuessContentTypeFinish(m, result, err)
 }
-func (m *Mount) GuessContentTypeSync(forceRescan T.Gboolean, cancellable *Cancellable, err **T.GError) **T.Gchar {
+func (m *Mount) GuessContentTypeSync(forceRescan T.Gboolean, cancellable *Cancellable, err **T.GError) []string {
 	return mountGuessContentTypeSync(m, forceRescan, cancellable, err)
 }
 func (m *Mount) IsShadowed() T.Gboolean { return mountIsShadowed(m) }

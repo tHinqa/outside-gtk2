@@ -33,11 +33,11 @@ var (
 )
 
 var (
-	aboutDialogGetArtists           func(a *AboutDialog) **T.Gchar
-	aboutDialogGetAuthors           func(a *AboutDialog) **T.Gchar
+	aboutDialogGetArtists           func(a *AboutDialog) []string
+	aboutDialogGetAuthors           func(a *AboutDialog) []string
 	aboutDialogGetComments          func(a *AboutDialog) string
 	aboutDialogGetCopyright         func(a *AboutDialog) string
-	aboutDialogGetDocumenters       func(a *AboutDialog) **T.Gchar
+	aboutDialogGetDocumenters       func(a *AboutDialog) []string
 	aboutDialogGetLicense           func(a *AboutDialog) string
 	aboutDialogGetLogo              func(a *AboutDialog) *D.Pixbuf
 	aboutDialogGetLogoIconName      func(a *AboutDialog) string
@@ -65,11 +65,11 @@ var (
 	aboutDialogSetWrapLicense       func(a *AboutDialog, wrapLicense T.Gboolean)
 )
 
-func (a *AboutDialog) GetArtists() **T.Gchar                { return aboutDialogGetArtists(a) }
-func (a *AboutDialog) GetAuthors() **T.Gchar                { return aboutDialogGetAuthors(a) }
+func (a *AboutDialog) GetArtists() []string                 { return aboutDialogGetArtists(a) }
+func (a *AboutDialog) GetAuthors() []string                 { return aboutDialogGetAuthors(a) }
 func (a *AboutDialog) GetComments() string                  { return aboutDialogGetComments(a) }
 func (a *AboutDialog) GetCopyright() string                 { return aboutDialogGetCopyright(a) }
-func (a *AboutDialog) GetDocumenters() **T.Gchar            { return aboutDialogGetDocumenters(a) }
+func (a *AboutDialog) GetDocumenters() []string             { return aboutDialogGetDocumenters(a) }
 func (a *AboutDialog) GetLicense() string                   { return aboutDialogGetLicense(a) }
 func (a *AboutDialog) GetLogo() *D.Pixbuf                   { return aboutDialogGetLogo(a) }
 func (a *AboutDialog) GetLogoIconName() string              { return aboutDialogGetLogoIconName(a) }
@@ -389,7 +389,7 @@ func (a *Action) CreateMenuItem() *Widget                  { return actionCreate
 func (a *Action) CreateToolItem() *Widget                  { return actionCreateToolItem(a) }
 func (a *Action) DisconnectAccelerator()                   { actionDisconnectAccelerator(a) }
 func (a *Action) DisconnectProxy(proxy *Widget)            { actionDisconnectProxy(a, proxy) }
-func (a *Action) GetAccelClosure() *O.Closure             { return actionGetAccelClosure(a) }
+func (a *Action) GetAccelClosure() *O.Closure              { return actionGetAccelClosure(a) }
 func (a *Action) GetAccelPath() string                     { return actionGetAccelPath(a) }
 func (a *Action) GetAlwaysShowImage() T.Gboolean           { return actionGetAlwaysShowImage(a) }
 func (a *Action) GetGicon() *I.Icon                        { return actionGetGicon(a) }

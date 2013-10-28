@@ -50,7 +50,7 @@ var (
 	actionGroupGetActionStateHint     func(a *ActionGroup, actionName string) *T.GVariant
 	actionGroupGetActionStateType     func(a *ActionGroup, actionName string) *T.GVariantType
 	actionGroupHasAction              func(a *ActionGroup, actionName string) T.Gboolean
-	actionGroupListActions            func(a *ActionGroup) **T.Gchar
+	actionGroupListActions            func(a *ActionGroup) []string
 )
 
 func (a *ActionGroup) ActionAdded(actionName string) { actionGroupActionAdded(a, actionName) }
@@ -85,7 +85,7 @@ func (a *ActionGroup) GetActionStateType(actionName string) *T.GVariantType {
 func (a *ActionGroup) HasAction(actionName string) T.Gboolean {
 	return actionGroupHasAction(a, actionName)
 }
-func (a *ActionGroup) ListActions() **T.Gchar { return actionGroupListActions(a) }
+func (a *ActionGroup) ListActions() []string { return actionGroupListActions(a) }
 
 type AppInfo struct{}
 
@@ -259,10 +259,10 @@ type ApplicationCommandLine struct {
 var (
 	ApplicationCommandLineGetType func() O.Type
 
-	applicationCommandLineGetArguments    func(a *ApplicationCommandLine, argc *int) **T.Gchar
+	applicationCommandLineGetArguments    func(a *ApplicationCommandLine, argc *int) []string
 	applicationCommandLineGetCwd          func(a *ApplicationCommandLine) string
 	applicationCommandLineGetenv          func(a *ApplicationCommandLine, name string) string
-	applicationCommandLineGetEnviron      func(a *ApplicationCommandLine) **T.Gchar
+	applicationCommandLineGetEnviron      func(a *ApplicationCommandLine) []string
 	applicationCommandLineGetExitStatus   func(a *ApplicationCommandLine) int
 	applicationCommandLineGetIsRemote     func(a *ApplicationCommandLine) T.Gboolean
 	applicationCommandLineGetPlatformData func(a *ApplicationCommandLine) *T.GVariant
@@ -271,14 +271,14 @@ var (
 	applicationCommandLineSetExitStatus   func(a *ApplicationCommandLine, exitStatus int)
 )
 
-func (a *ApplicationCommandLine) GetArguments(argc *int) **T.Gchar {
+func (a *ApplicationCommandLine) GetArguments(argc *int) []string {
 	return applicationCommandLineGetArguments(a, argc)
 }
 func (a *ApplicationCommandLine) GetCwd() string { return applicationCommandLineGetCwd(a) }
 func (a *ApplicationCommandLine) Getenv(name string) string {
 	return applicationCommandLineGetenv(a, name)
 }
-func (a *ApplicationCommandLine) GetEnviron() **T.Gchar   { return applicationCommandLineGetEnviron(a) }
+func (a *ApplicationCommandLine) GetEnviron() []string    { return applicationCommandLineGetEnviron(a) }
 func (a *ApplicationCommandLine) GetExitStatus() int      { return applicationCommandLineGetExitStatus(a) }
 func (a *ApplicationCommandLine) GetIsRemote() T.Gboolean { return applicationCommandLineGetIsRemote(a) }
 func (a *ApplicationCommandLine) GetPlatformData() *T.GVariant {

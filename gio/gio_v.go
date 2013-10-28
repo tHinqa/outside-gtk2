@@ -21,16 +21,16 @@ var (
 
 	vfsGetFileForPath         func(v *Vfs, path string) *File
 	vfsGetFileForUri          func(v *Vfs, uri string) *File
-	vfsGetSupportedUriSchemes func(v *Vfs) **T.Gchar
+	vfsGetSupportedUriSchemes func(v *Vfs) []string
 	vfsIsActive               func(v *Vfs) T.Gboolean
 	vfsParseName              func(v *Vfs, parseName string) *File
 )
 
-func (v *Vfs) GetFileForPath(path string) *File  { return vfsGetFileForPath(v, path) }
-func (v *Vfs) GetFileForUri(uri string) *File    { return vfsGetFileForUri(v, uri) }
-func (v *Vfs) GetSupportedUriSchemes() **T.Gchar { return vfsGetSupportedUriSchemes(v) }
-func (v *Vfs) IsActive() T.Gboolean              { return vfsIsActive(v) }
-func (v *Vfs) ParseName(parseName string) *File  { return vfsParseName(v, parseName) }
+func (v *Vfs) GetFileForPath(path string) *File { return vfsGetFileForPath(v, path) }
+func (v *Vfs) GetFileForUri(uri string) *File   { return vfsGetFileForUri(v, uri) }
+func (v *Vfs) GetSupportedUriSchemes() []string { return vfsGetSupportedUriSchemes(v) }
+func (v *Vfs) IsActive() T.Gboolean             { return vfsIsActive(v) }
+func (v *Vfs) ParseName(parseName string) *File { return vfsParseName(v, parseName) }
 
 type Volume struct{}
 
@@ -43,7 +43,7 @@ var (
 	volumeEjectFinish              func(v *Volume, result *AsyncResult, err **T.GError) T.Gboolean
 	volumeEjectWithOperation       func(v *Volume, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	volumeEjectWithOperationFinish func(v *Volume, result *AsyncResult, err **T.GError) T.Gboolean
-	volumeEnumerateIdentifiers     func(v *Volume) **T.Char
+	volumeEnumerateIdentifiers     func(v *Volume) []string
 	volumeGetActivationRoot        func(v *Volume) *File
 	volumeGetDrive                 func(v *Volume) *Drive
 	volumeGetIcon                  func(v *Volume) *Icon
@@ -70,7 +70,7 @@ func (v *Volume) EjectWithOperation(flags MountUnmountFlags, mountOperation *Mou
 func (v *Volume) EjectWithOperationFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return volumeEjectWithOperationFinish(v, result, err)
 }
-func (v *Volume) EnumerateIdentifiers() **T.Char   { return volumeEnumerateIdentifiers(v) }
+func (v *Volume) EnumerateIdentifiers() []string   { return volumeEnumerateIdentifiers(v) }
 func (v *Volume) GetActivationRoot() *File         { return volumeGetActivationRoot(v) }
 func (v *Volume) GetDrive() *Drive                 { return volumeGetDrive(v) }
 func (v *Volume) GetIcon() *Icon                   { return volumeGetIcon(v) }

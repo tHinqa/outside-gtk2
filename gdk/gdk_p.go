@@ -243,9 +243,9 @@ var (
 	PixbufFormatCopy           func(format *PixbufFormat) *PixbufFormat
 	PixbufFormatFree           func(format *PixbufFormat)
 	PixbufFormatGetDescription func(format *PixbufFormat) string
-	PixbufFormatGetExtensions  func(format *PixbufFormat) **T.Gchar
+	PixbufFormatGetExtensions  func(format *PixbufFormat) []string
 	PixbufFormatGetLicense     func(format *PixbufFormat) string
-	PixbufFormatGetMimeTypes   func(format *PixbufFormat) **T.Gchar
+	PixbufFormatGetMimeTypes   func(format *PixbufFormat) []string
 	PixbufFormatGetName        func(format *PixbufFormat) string
 	PixbufFormatIsDisabled     func(format *PixbufFormat) T.Gboolean
 	PixbufFormatIsScalable     func(format *PixbufFormat) T.Gboolean

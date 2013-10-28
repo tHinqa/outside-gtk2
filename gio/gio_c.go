@@ -78,7 +78,7 @@ var (
 	ContentTypeGetIcon         func(typ string) *Icon
 	ContentTypeGetMimeType     func(typ string) string
 	ContentTypeGuess           func(filename string, data *T.Guchar, dataSize T.Gsize, resultUncertain *T.Gboolean) string
-	ContentTypeGuessForTree    func(root *File) **T.Gchar
+	ContentTypeGuessForTree    func(root *File) []string
 	ContentTypeIsA             func(typ string, supertype string) T.Gboolean
 	ContentTypeIsUnknown       func(typ string) T.Gboolean
 	ContentTypesGetRegistered  func() *T.GList

@@ -327,7 +327,7 @@ func (d *DBusConnection) GetCapabilities() DBusCapabilityFlags {
 func (d *DBusConnection) GetExitOnClose() T.Gboolean       { return dBusConnectionGetExitOnClose(d) }
 func (d *DBusConnection) GetGuid() string                  { return dBusConnectionGetGuid(d) }
 func (d *DBusConnection) GetPeerCredentials() *Credentials { return dBusConnectionGetPeerCredentials(d) }
-func (d *DBusConnection) GetStream() *IOStream          { return dBusConnectionGetStream(d) }
+func (d *DBusConnection) GetStream() *IOStream             { return dBusConnectionGetStream(d) }
 func (d *DBusConnection) GetUniqueName() string            { return dBusConnectionGetUniqueName(d) }
 func (d *DBusConnection) IsClosed() T.Gboolean             { return dBusConnectionIsClosed(d) }
 func (d *DBusConnection) RegisterObject(objectPath string, interfaceInfo *DBusInterfaceInfo, vtable *DBusInterfaceVTable, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint {
@@ -784,7 +784,7 @@ var (
 	dBusProxyCallFinish             func(d *DBusProxy, res *AsyncResult, err **T.GError) *T.GVariant
 	dBusProxyCallSync               func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
 	dBusProxyGetCachedProperty      func(d *DBusProxy, propertyName string) *T.GVariant
-	dBusProxyGetCachedPropertyNames func(d *DBusProxy) **T.Gchar
+	dBusProxyGetCachedPropertyNames func(d *DBusProxy) []string
 	dBusProxyGetConnection          func(d *DBusProxy) *DBusConnection
 	dBusProxyGetDefaultTimeout      func(d *DBusProxy) int
 	dBusProxyGetFlags               func(d *DBusProxy) DBusProxyFlags
@@ -810,7 +810,7 @@ func (d *DBusProxy) CallSync(methodName string, parameters *T.GVariant, flags DB
 func (d *DBusProxy) GetCachedProperty(propertyName string) *T.GVariant {
 	return dBusProxyGetCachedProperty(d, propertyName)
 }
-func (d *DBusProxy) GetCachedPropertyNames() **T.Gchar    { return dBusProxyGetCachedPropertyNames(d) }
+func (d *DBusProxy) GetCachedPropertyNames() []string     { return dBusProxyGetCachedPropertyNames(d) }
 func (d *DBusProxy) GetConnection() *DBusConnection       { return dBusProxyGetConnection(d) }
 func (d *DBusProxy) GetDefaultTimeout() int               { return dBusProxyGetDefaultTimeout(d) }
 func (d *DBusProxy) GetFlags() DBusProxyFlags             { return dBusProxyGetFlags(d) }
@@ -912,7 +912,7 @@ type DBusSubtreeDispatchFunc func(connection *DBusConnection,
 	userData T.Gpointer) *DBusInterfaceVTable
 
 type DBusSubtreeEnumerateFunc func(connection *DBusConnection,
-	sender, objectPath string, userData T.Gpointer) **T.Gchar
+	sender, objectPath string, userData T.Gpointer) []string
 
 type DBusSubtreeFlags Enum
 
@@ -948,7 +948,7 @@ var (
 	driveEjectFinish              func(d *Drive, result *AsyncResult, err **T.GError) T.Gboolean
 	driveEjectWithOperation       func(d *Drive, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	driveEjectWithOperationFinish func(d *Drive, result *AsyncResult, err **T.GError) T.Gboolean
-	driveEnumerateIdentifiers     func(d *Drive) **T.Char
+	driveEnumerateIdentifiers     func(d *Drive) []string
 	driveGetIcon                  func(d *Drive) *Icon
 	driveGetIdentifier            func(d *Drive, kind string) string
 	driveGetName                  func(d *Drive) string
@@ -983,7 +983,7 @@ func (d *Drive) EjectWithOperation(flags MountUnmountFlags, mountOperation *Moun
 func (d *Drive) EjectWithOperationFinish(result *AsyncResult, err **T.GError) T.Gboolean {
 	return driveEjectWithOperationFinish(d, result, err)
 }
-func (d *Drive) EnumerateIdentifiers() **T.Char       { return driveEnumerateIdentifiers(d) }
+func (d *Drive) EnumerateIdentifiers() []string       { return driveEnumerateIdentifiers(d) }
 func (d *Drive) GetIcon() *Icon                       { return driveGetIcon(d) }
 func (d *Drive) GetIdentifier(kind string) string     { return driveGetIdentifier(d, kind) }
 func (d *Drive) GetName() string                      { return driveGetName(d) }

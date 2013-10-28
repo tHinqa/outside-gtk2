@@ -480,7 +480,7 @@ var (
 	clipboardWaitForRichText         func(c *Clipboard, buffer *TextBuffer, format *D.Atom, length *T.Gsize) *uint8
 	clipboardWaitForTargets          func(c *Clipboard, targets **D.Atom, nTargets *int) T.Gboolean
 	clipboardWaitForText             func(c *Clipboard) string
-	clipboardWaitForUris             func(c *Clipboard) **T.Gchar
+	clipboardWaitForUris             func(c *Clipboard) []string
 	clipboardWaitIsImageAvailable    func(c *Clipboard) T.Gboolean
 	clipboardWaitIsRichTextAvailable func(c *Clipboard, buffer *TextBuffer) T.Gboolean
 	clipboardWaitIsTargetAvailable   func(c *Clipboard, target D.Atom) T.Gboolean
@@ -532,7 +532,7 @@ func (c *Clipboard) WaitForTargets(targets **D.Atom, nTargets *int) T.Gboolean {
 	return clipboardWaitForTargets(c, targets, nTargets)
 }
 func (c *Clipboard) WaitForText() string              { return clipboardWaitForText(c) }
-func (c *Clipboard) WaitForUris() **T.Gchar           { return clipboardWaitForUris(c) }
+func (c *Clipboard) WaitForUris() []string           { return clipboardWaitForUris(c) }
 func (c *Clipboard) WaitIsImageAvailable() T.Gboolean { return clipboardWaitIsImageAvailable(c) }
 func (c *Clipboard) WaitIsRichTextAvailable(buffer *TextBuffer) T.Gboolean {
 	return clipboardWaitIsRichTextAvailable(c, buffer)

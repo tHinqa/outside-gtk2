@@ -154,18 +154,18 @@ var (
 	ProxyResolverGetDefault func() *ProxyResolver
 
 	proxyResolverIsSupported  func(p *ProxyResolver) T.Gboolean
-	proxyResolverLookup       func(p *ProxyResolver, uri string, cancellable *Cancellable, err **T.GError) **T.Gchar
+	proxyResolverLookup       func(p *ProxyResolver, uri string, cancellable *Cancellable, err **T.GError) []string
 	proxyResolverLookupAsync  func(p *ProxyResolver, uri string, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	proxyResolverLookupFinish func(p *ProxyResolver, result *AsyncResult, err **T.GError) **T.Gchar
+	proxyResolverLookupFinish func(p *ProxyResolver, result *AsyncResult, err **T.GError) []string
 )
 
 func (p *ProxyResolver) IsSupported() T.Gboolean { return proxyResolverIsSupported(p) }
-func (p *ProxyResolver) Lookup(uri string, cancellable *Cancellable, err **T.GError) **T.Gchar {
+func (p *ProxyResolver) Lookup(uri string, cancellable *Cancellable, err **T.GError) []string {
 	return proxyResolverLookup(p, uri, cancellable, err)
 }
 func (p *ProxyResolver) LookupAsync(uri string, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	proxyResolverLookupAsync(p, uri, cancellable, callback, userData)
 }
-func (p *ProxyResolver) LookupFinish(result *AsyncResult, err **T.GError) **T.Gchar {
+func (p *ProxyResolver) LookupFinish(result *AsyncResult, err **T.GError) []string {
 	return proxyResolverLookupFinish(p, result, err)
 }

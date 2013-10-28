@@ -323,7 +323,7 @@ var (
 
 	fileSelectionComplete          func(f *FileSelection, pattern string)
 	fileSelectionGetFilename       func(f *FileSelection) string
-	fileSelectionGetSelections     func(f *FileSelection) **T.Gchar
+	fileSelectionGetSelections     func(f *FileSelection) []string
 	fileSelectionGetSelectMultiple func(f *FileSelection) T.Gboolean
 	fileSelectionHideFileopButtons func(f *FileSelection)
 	fileSelectionSetFilename       func(f *FileSelection, filename string)
@@ -333,7 +333,7 @@ var (
 
 func (f *FileSelection) Complete(pattern string)       { fileSelectionComplete(f, pattern) }
 func (f *FileSelection) GetFilename() string           { return fileSelectionGetFilename(f) }
-func (f *FileSelection) GetSelections() **T.Gchar      { return fileSelectionGetSelections(f) }
+func (f *FileSelection) GetSelections() []string       { return fileSelectionGetSelections(f) }
 func (f *FileSelection) GetSelectMultiple() T.Gboolean { return fileSelectionGetSelectMultiple(f) }
 func (f *FileSelection) HideFileopButtons()            { fileSelectionHideFileopButtons(f) }
 func (f *FileSelection) SetFilename(filename string)   { fileSelectionSetFilename(f, filename) }

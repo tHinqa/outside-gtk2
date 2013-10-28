@@ -257,7 +257,7 @@ var (
 	IoModuleGetType func() O.Type
 	IoModuleNew     func(filename string) *IOModule
 
-	IoModuleQuery               func() **T.Char
+	IoModuleQuery               func() []string
 	IoModulesLoadAllInDirectory func(dirname string) *T.GList
 	IoModulesScanAllInDirectory func(dirname string)
 
