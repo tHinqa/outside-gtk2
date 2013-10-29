@@ -5,6 +5,7 @@ package pango
 
 import (
 	F "github.com/tHinqa/outside-gtk2/fontconfig"
+	FT "github.com/tHinqa/outside-gtk2/freetype2"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -47,7 +48,7 @@ var (
 	fcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
 	fcFontHasChar         func(f *FcFont, wc T.Gunichar) T.Gboolean
 	fcFontKernGlyphs      func(f *FcFont, glyphs *GlyphString)
-	fcFontLockFace        func(f *FcFont) T.FTFace
+	fcFontLockFace        func(f *FcFont) FT.Face
 	fcFontUnlockFace      func(f *FcFont)
 )
 
@@ -55,7 +56,7 @@ func (f *FcFont) GetGlyph(wc T.Gunichar) uint         { return fcFontGetGlyph(f,
 func (f *FcFont) GetUnknownGlyph(wc T.Gunichar) Glyph { return fcFontGetUnknownGlyph(f, wc) }
 func (f *FcFont) HasChar(wc T.Gunichar) T.Gboolean    { return fcFontHasChar(f, wc) }
 func (f *FcFont) KernGlyphs(glyphs *GlyphString)      { fcFontKernGlyphs(f, glyphs) }
-func (f *FcFont) LockFace() T.FTFace                  { return fcFontLockFace(f) }
+func (f *FcFont) LockFace() FT.Face                   { return fcFontLockFace(f) }
 func (f *FcFont) UnlockFace()                         { fcFontUnlockFace(f) }
 
 type FcFontKey struct{}
@@ -349,7 +350,7 @@ func (f *FontsetSimple) Size() int         { return fontsetSimpleSize(f) }
 
 var (
 	Ft2FontGetCoverage func(font *Font, language *Language) *Coverage
-	Ft2FontGetFace     func(font *Font) T.FTFace
+	Ft2FontGetFace     func(font *Font) FT.Face
 	Ft2FontGetKerning  func(font *Font, left Glyph, right Glyph) int
 )
 
@@ -382,12 +383,12 @@ var (
 	Ft2ShutdownDisplay func()
 )
 var (
-	Ft2Render                   func(bitmap *T.FT_Bitmap, font *Font, glyphs *GlyphString, x, y int)
-	Ft2RenderLayout             func(bitmap *T.FT_Bitmap, layout *Layout, x int, y int)
-	Ft2RenderLayoutLine         func(bitmap *T.FT_Bitmap, line *LayoutLine, x int, y int)
-	Ft2RenderLayoutLineSubpixel func(bitmap *T.FT_Bitmap, line *LayoutLine, x int, y int)
-	Ft2RenderLayoutSubpixel     func(bitmap *T.FT_Bitmap, layout *Layout, x int, y int)
-	Ft2RenderTransformed        func(bitmap *T.FT_Bitmap, matrix *Matrix, font *Font, glyphs *GlyphString, x, y int)
+	Ft2Render                   func(bitmap *FT.Bitmap, font *Font, glyphs *GlyphString, x, y int)
+	Ft2RenderLayout             func(bitmap *FT.Bitmap, layout *Layout, x int, y int)
+	Ft2RenderLayoutLine         func(bitmap *FT.Bitmap, line *LayoutLine, x int, y int)
+	Ft2RenderLayoutLineSubpixel func(bitmap *FT.Bitmap, line *LayoutLine, x int, y int)
+	Ft2RenderLayoutSubpixel     func(bitmap *FT.Bitmap, layout *Layout, x int, y int)
+	Ft2RenderTransformed        func(bitmap *FT.Bitmap, matrix *Matrix, font *Font, glyphs *GlyphString, x, y int)
 )
 
 type FT2SubstituteFunc func(pattern *F.Pattern, data T.Gpointer)

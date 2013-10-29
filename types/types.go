@@ -15,15 +15,6 @@ type (
 
 	Char          int8
 	Enum          int
-	FT_Bool       uint8
-	FT_Byte       uint8
-	FT_Char       int8
-	FT_Error      int
-	FT_Int32      int   // ANOMALLY int != int32
-	FT_Long       int32 //TODO(t): signed long SIZE ?
-	FT_String     int8
-	FT_UInt32     uint   // ANOMALLY unsigned int != uint32
-	FT_ULong      uint32 //unsigned long SIZE ?
 	Gchar         int8
 	Gconstpointer *struct{}
 	GInt32        int   // ANOMALLY size?
@@ -41,42 +32,6 @@ type (
 	UnsignedChar  uint8
 	UnsignedLong  uint32 //TODO(t): check  size
 
-	FT_Angle               FT_Fixed
-	FT_Bytes               *FT_Byte
-	FT_CharMap             *FT_CharMapRec
-	FT_Driver              *FT_DriverRec
-	FT_F26Dot6             FT_Long
-	FTFace                 *FT_FaceRec
-	FT_Face_Internal       *FT_Face_InternalRec
-	FT_Fixed               FT_Long
-	FT_Glyph               *FT_GlyphRec
-	FT_GlyphSlot           *FT_GlyphSlotRec
-	FT_Library             *FT_LibraryRec
-	FT_List                *FT_ListRec
-	FT_ListNode            *FT_ListNodeRec
-	FT_Memory              *FT_MemoryRec
-	FT_Module              *FT_ModuleRec
-	FT_Module_Interface    FT_Pointer
-	FT_Pointer             *Void
-	FT_Pos                 FT_Long
-	FT_Renderer            *FT_RendererRec
-	FT_Size                *FT_SizeRec
-	FT_Size_Internal       *FT_Size_InternalRec
-	FT_Size_Request        *FT_Size_RequestRec
-	FT_Slot_Internal       *FT_Slot_InternalRec
-	FT_Stream              *FT_StreamRec
-	FT_Stroker             *FT_StrokerRec
-	FT_SubGlyph            *FT_SubGlyphRec
-	FTC_CMapCache          *FTC_CMapCacheRec
-	FTC_FaceID             FT_Pointer
-	FTC_Font               *FTC_FontRec
-	FTC_ImageCache         *FTC_ImageCacheRec
-	FTC_ImageType          *FTC_ImageTypeRec
-	FTC_Manager            *FTC_ManagerRec
-	FTC_Node               *FTC_NodeRec
-	FTC_SBit               *FTC_SBitRec
-	FTC_SBitCache          *FTC_SBitCacheRec
-	FTC_Scaler             *FTC_ScalerRec
 	Gboolean               int
 	GCacheDestroyFunc      func(value Gpointer)
 	GCacheDupFunc          func(value Gpointer) Gpointer
@@ -106,27 +61,8 @@ type (
 	Gunichar               GUint32
 	Gunichar2              uint16
 	GVoidFunc              func()
-	PS_FontInfo            *PS_FontInfoRec
-	PS_Private             *PS_PrivateRec
 
 	GdkDrawable struct{ parent GObject } //REMOVE
-
-	//TODO(t): Check and Fix
-	FT_DriverRec        struct{}
-	FT_Face_InternalRec struct{}
-	FT_LibraryRec       struct{}
-	FT_ModuleRec        struct{}
-	FT_RendererRec      struct{}
-	FT_Size_InternalRec struct{}
-	FT_Slot_InternalRec struct{}
-	FT_StreamRec        struct{}
-	FT_StrokerRec       struct{}
-	FT_SubGlyphRec      struct{}
-	FTC_CMapCacheRec    struct{}
-	FTC_ImageCacheRec   struct{}
-	FTC_ManagerRec      struct{}
-	FTC_NodeRec         struct{}
-	FTC_SBitCacheRec    struct{}
 
 	GAllocator               struct{}
 	GAsyncQueue              struct{}
@@ -1658,137 +1594,6 @@ const (
 	GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID = -2
 )
 
-type FT_Size_Request_Type Enum
-
-const (
-	FT_SIZE_REQUEST_TYPE_NOMINAL FT_Size_Request_Type = iota
-	FT_SIZE_REQUEST_TYPE_REAL_DIM
-	FT_SIZE_REQUEST_TYPE_BBOX
-	FT_SIZE_REQUEST_TYPE_CELL
-	FT_SIZE_REQUEST_TYPE_SCALES
-	FT_SIZE_REQUEST_TYPE_MAX
-)
-
-type FT_Encoding uint32 // TODO(t): enum/Size?
-
-const (
-	FT_ENCODING_NONE           FT_Encoding = 0
-	FT_ENCODING_MS_SYMBOL      FT_Encoding = (('s' << 24) | ('y' << 16) | ('m' << 8) | 'b')
-	FT_ENCODING_UNICODE        FT_Encoding = (('u' << 24) | ('n' << 16) | ('i' << 8) | 'c')
-	FT_ENCODING_SJIS           FT_Encoding = (('s' << 24) | ('j' << 16) | ('i' << 8) | 's')
-	FT_ENCODING_GB2312         FT_Encoding = (('g' << 24) | ('b' << 16) | (' ' << 8) | ' ')
-	FT_ENCODING_BIG5           FT_Encoding = (('b' << 24) | ('i' << 16) | ('g' << 8) | '5')
-	FT_ENCODING_WANSUNG        FT_Encoding = (('w' << 24) | ('a' << 16) | ('n' << 8) | 's')
-	FT_ENCODING_JOHAB          FT_Encoding = (('j' << 24) | ('o' << 16) | ('h' << 8) | 'a')
-	FT_ENCODING_MS_SJIS                    = FT_ENCODING_SJIS
-	FT_ENCODING_MS_GB2312                  = FT_ENCODING_GB2312
-	FT_ENCODING_MS_BIG5                    = FT_ENCODING_BIG5
-	FT_ENCODING_MS_WANSUNG                 = FT_ENCODING_WANSUNG
-	FT_ENCODING_MS_JOHAB                   = FT_ENCODING_JOHAB
-	FT_ENCODING_ADOBE_STANDARD FT_Encoding = (('A' << 24) | ('D' << 16) | ('O' << 8) | 'B')
-	FT_ENCODING_ADOBE_EXPERT   FT_Encoding = (('A' << 24) | ('D' << 16) | ('B' << 8) | 'E')
-	FT_ENCODING_ADOBE_CUSTOM   FT_Encoding = (('A' << 24) | ('D' << 16) | ('B' << 8) | 'C')
-	FT_ENCODING_ADOBE_LATIN_1  FT_Encoding = (('l' << 24) | ('a' << 16) | ('t' << 8) | '1')
-	FT_ENCODING_OLD_LATIN_2    FT_Encoding = (('l' << 24) | ('a' << 16) | ('t' << 8) | '2')
-	FT_ENCODING_APPLE_ROMAN    FT_Encoding = (('a' << 24) | ('r' << 16) | ('m' << 8) | 'n')
-)
-
-type FT_Glyph_Format uint32 // TODO(t): enum/Size?
-
-const (
-	FT_GLYPH_FORMAT_NONE      FT_Glyph_Format = ((0 << 24) | (0 << 16) | (0 << 8) | 0)
-	FT_GLYPH_FORMAT_COMPOSITE FT_Glyph_Format = (('c' << 24) | ('o' << 16) | ('m' << 8) | 'p')
-	FT_GLYPH_FORMAT_BITMAP    FT_Glyph_Format = (('b' << 24) | ('i' << 16) | ('t' << 8) | 's')
-	FT_GLYPH_FORMAT_OUTLINE   FT_Glyph_Format = (('o' << 24) | ('u' << 16) | ('t' << 8) | 'l')
-	FT_GLYPH_FORMAT_PLOTTER   FT_Glyph_Format = (('p' << 24) | ('l' << 16) | ('o' << 8) | 't')
-)
-
-type FT_Render_Mode Enum
-
-const (
-	FT_RENDER_MODE_NORMAL FT_Render_Mode = iota
-	FT_RENDER_MODE_LIGHT
-	FT_RENDER_MODE_MONO
-	FT_RENDER_MODE_LCD
-	FT_RENDER_MODE_LCD_V
-	FT_RENDER_MODE_MAX
-)
-
-type FT_LcdFilter Enum
-
-const (
-	FT_LCD_FILTER_DEFAULT FT_LcdFilter = 1 << iota
-	FT_LCD_FILTER_LIGHT
-	_
-	_
-	FT_LCD_FILTER_LEGACY
-	FT_LCD_FILTER_MAX               = FT_LCD_FILTER_LEGACY + 1
-	FT_LCD_FILTER_NONE FT_LcdFilter = 0
-)
-
-type FT_TrueTypeEngineType Enum
-
-const (
-	FT_TRUETYPE_ENGINE_TYPE_NONE FT_TrueTypeEngineType = iota
-	FT_TRUETYPE_ENGINE_TYPE_UNPATENTED
-	FT_TRUETYPE_ENGINE_TYPE_PATENTED
-)
-
-type FT_Orientation Enum
-
-const (
-	FT_ORIENTATION_TRUETYPE FT_Orientation = iota
-	FT_ORIENTATION_POSTSCRIPT
-	FT_ORIENTATION_NONE
-	FT_ORIENTATION_FILL_RIGHT = FT_ORIENTATION_TRUETYPE
-	FT_ORIENTATION_FILL_LEFT  = FT_ORIENTATION_POSTSCRIPT
-)
-
-type FT_Sfnt_Tag Enum
-
-const (
-	Ft_sfnt_head FT_Sfnt_Tag = iota
-	Ft_sfnt_maxp
-	Ft_sfnt_os2
-	Ft_sfnt_hhea
-	Ft_sfnt_vhea
-	Ft_sfnt_post
-	Ft_sfnt_pclt
-	Sfnt_max
-)
-
-type BDF_PropertyType Enum
-
-const (
-	BDF_PROPERTY_TYPE_NONE BDF_PropertyType = iota
-	BDF_PROPERTY_TYPE_ATOM
-	BDF_PROPERTY_TYPE_INTEGER
-	BDF_PROPERTY_TYPE_CARDINAL
-)
-
-type FT_StrokerBorder Enum
-
-const (
-	FT_STROKER_BORDER_LEFT FT_StrokerBorder = iota
-	FT_STROKER_BORDER_RIGHT
-)
-
-type FT_Stroker_LineCap Enum
-
-const (
-	FT_STROKER_LINECAP_BUTT FT_Stroker_LineCap = iota
-	FT_STROKER_LINECAP_ROUND
-	FT_STROKER_LINECAP_SQUARE
-)
-
-type FT_Stroker_LineJoin Enum
-
-const (
-	FT_STROKER_LINEJOIN_ROUND FT_Stroker_LineJoin = iota
-	FT_STROKER_LINEJOIN_BEVEL
-	FT_STROKER_LINEJOIN_MITER
-)
-
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
@@ -1922,75 +1727,6 @@ type (
 		n_param_values uint,
 		param_values *GValue,
 		data Gpointer) Gboolean
-
-	FT_Alloc_Func func(
-		memory FT_Memory,
-		size Long) *Void
-
-	FT_Free_Func func(
-		memory FT_Memory,
-		block *Void)
-
-	FT_Realloc_Func func(
-		memory FT_Memory,
-		cur_size, new_size Long,
-		block *Void) *Void
-
-	FT_Glyph_InitFunc func(
-		glyph FT_Glyph,
-		slot FT_GlyphSlot) FT_Error
-
-	FT_Glyph_DoneFunc func(
-		glyph FT_Glyph)
-
-	FT_Glyph_TransformFunc func(
-		glyph FT_Glyph,
-		matrix *FT_Matrix,
-		delta *FT_Vector)
-
-	FT_Glyph_GetBBoxFunc func(glyph FT_Glyph, abbox *FT_BBox)
-
-	FT_Glyph_CopyFunc func(source, target FT_Glyph) FT_Error
-
-	FT_Glyph_PrepareFunc func(
-		glyph FT_Glyph, slot FT_GlyphSlot) FT_Error
-
-	FT_Module_Constructor func(module FT_Module) FT_Error
-
-	FT_Module_Destructor func(module FT_Module)
-
-	FT_Module_Requester func(
-		module FT_Module, name string) FT_Module_Interface
-
-	FT_List_Iterator func(node FT_ListNode, user *Void) FT_Error
-
-	FT_List_Destructor func(memory FT_Memory, data, user *Void)
-
-	FT_Outline_MoveToFunc func(to *FT_Vector, user *Void) int
-
-	FT_Outline_LineToFunc func(to *FT_Vector, user *Void) int
-
-	FT_Outline_ConicToFunc func(
-		control, to *FT_Vector, user *Void) int
-
-	FT_Outline_CubicToFunc func(
-		control1, control2 *FT_Vector,
-		to *FT_Vector, user *Void) int
-
-	FT_SpanFunc func(
-		y, count int, spans *FT_Span, user *Void)
-
-	FT_Raster_BitTest_Func func(y, x int, user *Void) int
-
-	FT_Raster_BitSet_Func func(y, x int, user *Void)
-
-	FT_DebugHook_Func func(arg *Void)
-
-	FTC_Face_Requester func(
-		face_id FTC_FaceID,
-		library FT_Library,
-		request_data FT_Pointer,
-		aface *FTFace) FT_Error
 
 	GBoxedCopyFunc func(boxed Gpointer) Gpointer
 

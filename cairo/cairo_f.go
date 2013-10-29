@@ -5,6 +5,7 @@ package cairo
 
 import (
 	F "github.com/tHinqa/outside-gtk2/fontconfig"
+	FT "github.com/tHinqa/outside-gtk2/freetype2"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -206,7 +207,7 @@ const (
 var FormatStrideForWidth func(format Format, width int) int
 
 var (
-	FtFontFaceCreateForFtFace  func(face T.FTFace, loadFlags int) *FontFace
+	FtFontFaceCreateForFtFace  func(face FT.Face, loadFlags int) *FontFace
 	FtFontFaceCreateForPattern func(pattern *F.Pattern) *FontFace
 	FtFontOptionsSubstitute    func(options *FontOptions, pattern *F.Pattern)
 )
@@ -214,9 +215,9 @@ var (
 type ScaledFont struct{}
 
 var (
-	ftScaledFontLockFace   func(s *ScaledFont) T.FTFace
+	ftScaledFontLockFace   func(s *ScaledFont) FT.Face
 	ftScaledFontUnlockFace func(s *ScaledFont)
 )
 
-func (s *ScaledFont) LockFace() T.FTFace { return ftScaledFontLockFace(s) }
-func (s *ScaledFont) UnlockFace()        { ftScaledFontUnlockFace(s) }
+func (s *ScaledFont) LockFace() FT.Face { return ftScaledFontLockFace(s) }
+func (s *ScaledFont) UnlockFace()       { ftScaledFontUnlockFace(s) }

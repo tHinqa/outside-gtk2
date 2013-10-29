@@ -2,6 +2,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
+	FT "github.com/tHinqa/outside-gtk2/freetype2"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -12,46 +13,46 @@ func init() {
 
 var (
 	OtInfoGet func(
-		face T.FTFace) *OTInfo
+		face FT.Face) *OTInfo
 
 	OtInfoFindScript func(
 		info *OTInfo,
-		table_type OTTableType,
-		script_tag OTTag,
-		script_index *uint) T.Gboolean
+		tableType OTTableType,
+		scriptTag OTTag,
+		scriptIndex *uint) T.Gboolean
 
 	OtInfoFindLanguage func(
 		info *OTInfo,
-		table_type OTTableType,
-		script_index uint,
-		language_tag OTTag,
-		language_index *uint,
-		required_feature_index *uint) T.Gboolean
+		tableType OTTableType,
+		scriptIndex uint,
+		languageTag OTTag,
+		languageIndex *uint,
+		requiredFeatureIndex *uint) T.Gboolean
 
 	OtInfoFindFeature func(
 		info *OTInfo,
-		table_type OTTableType,
-		feature_tag OTTag,
-		script_index uint,
-		language_index uint,
-		feature_index *uint) T.Gboolean
+		tableType OTTableType,
+		featureTag OTTag,
+		scriptIndex uint,
+		languageIndex uint,
+		featureIndex *uint) T.Gboolean
 
 	OtInfoListScripts func(
 		info *OTInfo,
-		table_type OTTableType) *OTTag
+		tableType OTTableType) *OTTag
 
 	OtInfoListLanguages func(
 		info *OTInfo,
-		table_type OTTableType,
-		script_index uint,
-		language_tag OTTag) *OTTag
+		tableType OTTableType,
+		scriptIndex uint,
+		languageTag OTTag) *OTTag
 
 	OtInfoListFeatures func(
 		info *OTInfo,
-		table_type OTTableType,
+		tableType OTTableType,
 		tag OTTag,
-		script_index uint,
-		language_index uint) *OTTag
+		scriptIndex uint,
+		languageIndex uint) *OTTag
 
 	OtBufferNew func(
 		font *FcFont) *OTBuffer
@@ -103,26 +104,26 @@ var (
 
 	OtRulesetAddFeature func(
 		ruleset *OTRuleset,
-		table_type OTTableType,
-		feature_index uint,
-		property_bit T.Gulong)
+		tableType OTTableType,
+		featureIndex uint,
+		propertyBit T.Gulong)
 
 	OtRulesetMaybeAddFeature func(
 		ruleset *OTRuleset,
-		table_type OTTableType,
-		feature_tag OTTag,
-		property_bit T.Gulong) T.Gboolean
+		tableType OTTableType,
+		featureTag OTTag,
+		propertyBit T.Gulong) T.Gboolean
 
 	OtRulesetMaybeAddFeatures func(
 		ruleset *OTRuleset,
-		table_type OTTableType,
+		tableType OTTableType,
 		features *OTFeatureMap,
-		n_features uint) uint
+		nFeatures uint) uint
 
 	OtRulesetGetFeatureCount func(
 		ruleset *OTRuleset,
-		n_gsub_features *uint,
-		n_gpos_features *uint) uint
+		nGsubFeatures *uint,
+		nGposFeatures *uint) uint
 
 	OtRulesetSubstitute func(
 		ruleset *OTRuleset,
@@ -133,13 +134,13 @@ var (
 		buffer *OTBuffer)
 
 	OtTagToScript func(
-		script_tag OTTag) Script
+		scriptTag OTTag) Script
 
 	OtTagFromScript func(
 		script Script) OTTag
 
 	OtTagToLanguage func(
-		language_tag OTTag) *Language
+		languageTag OTTag) *Language
 
 	OtTagFromLanguage func(
 		language *Language) OTTag

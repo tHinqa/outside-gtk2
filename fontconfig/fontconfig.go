@@ -7,6 +7,7 @@ package fontconfig
 
 import (
 	"github.com/tHinqa/outside"
+	FT "github.com/tHinqa/outside-gtk2/freetype2"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -140,15 +141,15 @@ var (
 
 	StrBasename func(file string) string
 
-	FreeTypeCharIndex func(face T.FTFace, ucs4 Char32) uint
+	FreeTypeCharIndex func(face FT.Face, ucs4 Char32) uint
 
 	FreeTypeCharSetAndSpacing func(
-		face T.FTFace, blanks *Blanks, spacing *int) *CharSet
+		face FT.Face, blanks *Blanks, spacing *int) *CharSet
 
 	FreeTypeCharSet func(
-		face T.FTFace, blanks *Blanks) *CharSet
+		face FT.Face, blanks *Blanks) *CharSet
 
-	FreeTypeQueryFace func(face T.FTFace,
+	FreeTypeQueryFace func(face FT.Face,
 		file string, id int, blanks *Blanks) *Pattern
 )
 
@@ -453,7 +454,7 @@ var (
 	patternAddBool     func(p *Pattern, object string, b bool) bool
 	patternAddCharSet  func(p *Pattern, object string, c *CharSet) bool
 	patternAddDouble   func(p *Pattern, object string, d float64) bool
-	patternAddFTFace   func(p *Pattern, object string, f T.FTFace) bool
+	patternAddFTFace   func(p *Pattern, object string, f FT.Face) bool
 	patternAddInteger  func(p *Pattern, object string, i int) bool
 	patternAddLangSet  func(p *Pattern, object string, ls *LangSet) bool
 	patternAddMatrix   func(p *Pattern, object string, s *Matrix) bool
@@ -471,7 +472,7 @@ var (
 	patternGetBool     func(p *Pattern, object string, n int, b *bool) Result
 	patternGetCharSet  func(p *Pattern, object string, n int, c **CharSet) Result
 	patternGetDouble   func(p *Pattern, object string, n int, d *float64) Result
-	patternGetFTFace   func(p *Pattern, object string, n int, f *T.FTFace) Result
+	patternGetFTFace   func(p *Pattern, object string, n int, f *FT.Face) Result
 	patternGetInteger  func(p *Pattern, object string, n int, i *int) Result
 	patternGetLangSet  func(p *Pattern, object string, n int, ls **LangSet) Result
 	patternGetMatrix   func(p *Pattern, object string, n int, s **Matrix) Result
@@ -489,7 +490,7 @@ func (p *Pattern) Add(object string, value Value, append bool) bool {
 func (p *Pattern) Addbool(object string, b bool) bool         { return patternAddBool(p, object, b) }
 func (p *Pattern) AddCharSet(object string, c *CharSet) bool  { return patternAddCharSet(p, object, c) }
 func (p *Pattern) AddDouble(object string, d float64) bool    { return patternAddDouble(p, object, d) }
-func (p *Pattern) AddFTFace(object string, f T.FTFace) bool   { return patternAddFTFace(p, object, f) }
+func (p *Pattern) AddFTFace(object string, f FT.Face) bool    { return patternAddFTFace(p, object, f) }
 func (p *Pattern) AddInteger(object string, i int) bool       { return patternAddInteger(p, object, i) }
 func (p *Pattern) AddLangSet(object string, ls *LangSet) bool { return patternAddLangSet(p, object, ls) }
 func (p *Pattern) AddMatrix(object string, s *Matrix) bool    { return patternAddMatrix(p, object, s) }
@@ -515,7 +516,7 @@ func (p *Pattern) GetCharSet(object string, n int, c **CharSet) Result {
 func (p *Pattern) GetDouble(object string, n int, d *float64) Result {
 	return patternGetDouble(p, object, n, d)
 }
-func (p *Pattern) GetFTFace(object string, n int, f *T.FTFace) Result {
+func (p *Pattern) GetFTFace(object string, n int, f *FT.Face) Result {
 	return patternGetFTFace(p, object, n, f)
 }
 func (p *Pattern) GetInteger(object string, n int, i *int) Result {
