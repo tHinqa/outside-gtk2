@@ -10,6 +10,7 @@ import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
+	"unsafe"
 )
 
 type (
@@ -24,72 +25,76 @@ type (
 
 var (
 	AboutDialogGetType func() O.Type
-	AboutDialogNew     func() *Widget
+	aboutDialogNew     func() *Widget
 
 	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
 
 	ShowAboutDialog func(parent *Window, firstPropertyName string, v ...VArg)
-)
 
-var (
-	aboutDialogGetArtists           func(a *AboutDialog) []string
-	aboutDialogGetAuthors           func(a *AboutDialog) []string
-	aboutDialogGetComments          func(a *AboutDialog) string
-	aboutDialogGetCopyright         func(a *AboutDialog) string
-	aboutDialogGetDocumenters       func(a *AboutDialog) []string
-	aboutDialogGetLicense           func(a *AboutDialog) string
-	aboutDialogGetLogo              func(a *AboutDialog) *D.Pixbuf
-	aboutDialogGetLogoIconName      func(a *AboutDialog) string
-	aboutDialogGetName              func(a *AboutDialog) string
+	aboutDialogGetArtists      func(a *AboutDialog) []string
+	aboutDialogGetAuthors      func(a *AboutDialog) []string
+	aboutDialogGetComments     func(a *AboutDialog) string
+	aboutDialogGetCopyright    func(a *AboutDialog) string
+	aboutDialogGetDocumenters  func(a *AboutDialog) []string
+	aboutDialogGetLicense      func(a *AboutDialog) string
+	aboutDialogGetLogo         func(a *AboutDialog) *D.Pixbuf
+	aboutDialogGetLogoIconName func(a *AboutDialog) string
+	// Deprecated 2.12 aboutDialogGetName func(a *AboutDialog) string
 	aboutDialogGetProgramName       func(a *AboutDialog) string
 	aboutDialogGetTranslatorCredits func(a *AboutDialog) string
 	aboutDialogGetVersion           func(a *AboutDialog) string
 	aboutDialogGetWebsite           func(a *AboutDialog) string
 	aboutDialogGetWebsiteLabel      func(a *AboutDialog) string
-	aboutDialogGetWrapLicense       func(a *AboutDialog) T.Gboolean
-	aboutDialogSetArtists           func(a *AboutDialog, artists **T.Gchar)
-	aboutDialogSetAuthors           func(a *AboutDialog, authors **T.Gchar)
+	aboutDialogGetWrapLicense       func(a *AboutDialog) bool
+	aboutDialogSetArtists           func(a *AboutDialog, artists []string)
+	aboutDialogSetAuthors           func(a *AboutDialog, authors []string)
 	aboutDialogSetComments          func(a *AboutDialog, comments string)
 	aboutDialogSetCopyright         func(a *AboutDialog, copyright string)
-	aboutDialogSetDocumenters       func(a *AboutDialog, documenters **T.Gchar)
+	aboutDialogSetDocumenters       func(a *AboutDialog, documenters []string)
 	aboutDialogSetLicense           func(a *AboutDialog, license string)
 	aboutDialogSetLogo              func(a *AboutDialog, logo *D.Pixbuf)
 	aboutDialogSetLogoIconName      func(a *AboutDialog, iconName string)
-	aboutDialogSetName              func(a *AboutDialog, name string)
+	// Deprecated 2.12 aboutDialogSetName func(a *AboutDialog, name string)
 	aboutDialogSetProgramName       func(a *AboutDialog, name string)
 	aboutDialogSetTranslatorCredits func(a *AboutDialog, translatorCredits string)
 	aboutDialogSetVersion           func(a *AboutDialog, version string)
 	aboutDialogSetWebsite           func(a *AboutDialog, website string)
 	aboutDialogSetWebsiteLabel      func(a *AboutDialog, websiteLabel string)
-	aboutDialogSetWrapLicense       func(a *AboutDialog, wrapLicense T.Gboolean)
+	aboutDialogSetWrapLicense       func(a *AboutDialog, wrapLicense bool)
 )
 
-func (a *AboutDialog) GetArtists() []string                 { return aboutDialogGetArtists(a) }
-func (a *AboutDialog) GetAuthors() []string                 { return aboutDialogGetAuthors(a) }
-func (a *AboutDialog) GetComments() string                  { return aboutDialogGetComments(a) }
-func (a *AboutDialog) GetCopyright() string                 { return aboutDialogGetCopyright(a) }
-func (a *AboutDialog) GetDocumenters() []string             { return aboutDialogGetDocumenters(a) }
-func (a *AboutDialog) GetLicense() string                   { return aboutDialogGetLicense(a) }
-func (a *AboutDialog) GetLogo() *D.Pixbuf                   { return aboutDialogGetLogo(a) }
-func (a *AboutDialog) GetLogoIconName() string              { return aboutDialogGetLogoIconName(a) }
-func (a *AboutDialog) GetName() string                      { return aboutDialogGetName(a) }
-func (a *AboutDialog) GetProgramName() string               { return aboutDialogGetProgramName(a) }
-func (a *AboutDialog) GetTranslatorCredits() string         { return aboutDialogGetTranslatorCredits(a) }
-func (a *AboutDialog) GetVersion() string                   { return aboutDialogGetVersion(a) }
-func (a *AboutDialog) GetWebsite() string                   { return aboutDialogGetWebsite(a) }
-func (a *AboutDialog) GetWebsiteLabel() string              { return aboutDialogGetWebsiteLabel(a) }
-func (a *AboutDialog) GetWrapLicense() T.Gboolean           { return aboutDialogGetWrapLicense(a) }
-func (a *AboutDialog) SetArtists(artists **T.Gchar)         { aboutDialogSetArtists(a, artists) }
-func (a *AboutDialog) SetAuthors(authors **T.Gchar)         { aboutDialogSetAuthors(a, authors) }
-func (a *AboutDialog) SetComments(comments string)          { aboutDialogSetComments(a, comments) }
-func (a *AboutDialog) SetCopyright(copyright string)        { aboutDialogSetCopyright(a, copyright) }
-func (a *AboutDialog) SetDocumenters(documenters **T.Gchar) { aboutDialogSetDocumenters(a, documenters) }
-func (a *AboutDialog) SetLicense(license string)            { aboutDialogSetLicense(a, license) }
-func (a *AboutDialog) SetLogo(logo *D.Pixbuf)               { aboutDialogSetLogo(a, logo) }
-func (a *AboutDialog) SetLogoIconName(iconName string)      { aboutDialogSetLogoIconName(a, iconName) }
-func (a *AboutDialog) SetName(name string)                  { aboutDialogSetName(a, name) }
-func (a *AboutDialog) SetProgramName(name string)           { aboutDialogSetProgramName(a, name) }
+func AboutDialogNew() (a *AboutDialog, w *Widget) {
+	w = aboutDialogNew()
+	a = (*AboutDialog)(unsafe.Pointer(w))
+	return
+}
+
+func (a *AboutDialog) Artists() []string                   { return aboutDialogGetArtists(a) }
+func (a *AboutDialog) Authors() []string                   { return aboutDialogGetAuthors(a) }
+func (a *AboutDialog) Comments() string                    { return aboutDialogGetComments(a) }
+func (a *AboutDialog) Copyright() string                   { return aboutDialogGetCopyright(a) }
+func (a *AboutDialog) Documenters() []string               { return aboutDialogGetDocumenters(a) }
+func (a *AboutDialog) License() string                     { return aboutDialogGetLicense(a) }
+func (a *AboutDialog) Logo() *D.Pixbuf                     { return aboutDialogGetLogo(a) }
+func (a *AboutDialog) LogoIconName() string                { return aboutDialogGetLogoIconName(a) }
+func (a *AboutDialog) ProgramName() string                 { return aboutDialogGetProgramName(a) }
+func (a *AboutDialog) TranslatorCredits() string           { return aboutDialogGetTranslatorCredits(a) }
+func (a *AboutDialog) Version() string                     { return aboutDialogGetVersion(a) }
+func (a *AboutDialog) Website() string                     { return aboutDialogGetWebsite(a) }
+func (a *AboutDialog) WebsiteLabel() string                { return aboutDialogGetWebsiteLabel(a) }
+func (a *AboutDialog) WrapLicense() bool                   { return aboutDialogGetWrapLicense(a) }
+func (a *AboutDialog) SetArtists(artists []string)         { aboutDialogSetArtists(a, artists) }
+func (a *AboutDialog) SetAuthors(authors []string)         { aboutDialogSetAuthors(a, authors) }
+func (a *AboutDialog) SetComments(comments string)         { aboutDialogSetComments(a, comments) }
+func (a *AboutDialog) SetCopyright(copyright string)       { aboutDialogSetCopyright(a, copyright) }
+func (a *AboutDialog) SetDocumenters(documenters []string) { aboutDialogSetDocumenters(a, documenters) }
+func (a *AboutDialog) SetLicense(license string)           { aboutDialogSetLicense(a, license) }
+func (a *AboutDialog) SetLogo(logo *D.Pixbuf)              { aboutDialogSetLogo(a, logo) }
+func (a *AboutDialog) SetLogoIconName(iconName string)     { aboutDialogSetLogoIconName(a, iconName) }
+
+// Deprecated 2.12 func (a *AboutDialog) SetName(name string)                  { aboutDialogSetName(a, name) }
+func (a *AboutDialog) SetProgramName(name string) { aboutDialogSetProgramName(a, name) }
 func (a *AboutDialog) SetTranslatorCredits(translatorCredits string) {
 	aboutDialogSetTranslatorCredits(a, translatorCredits)
 }
@@ -98,9 +103,11 @@ func (a *AboutDialog) SetWebsite(website string) { aboutDialogSetWebsite(a, webs
 func (a *AboutDialog) SetWebsiteLabel(websiteLabel string) {
 	aboutDialogSetWebsiteLabel(a, websiteLabel)
 }
-func (a *AboutDialog) SetWrapLicense(wrapLicense T.Gboolean) {
+func (a *AboutDialog) SetWrapLicense(wrapLicense bool) {
 	aboutDialogSetWrapLicense(a, wrapLicense)
 }
+
+// Deprecated 2.12 func (a *AboutDialog) GetName() string { return aboutDialogGetName(a) }
 
 var (
 	AcceleratorGetDefaultModMask func() uint

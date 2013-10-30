@@ -5,7 +5,11 @@ import (
 	"testing"
 )
 
-func TestIni(t *testing.T) { // TestInit name conflict
+func init() {
+	Init(nil, nil) // Gtk Init prereq for About
+}
+
+func TestIni(t *testing.T) {
 	minor := uint(10)
 	v := CheckVersion(2, minor, 0)
 	if v != "" {
@@ -15,4 +19,18 @@ func TestIni(t *testing.T) { // TestInit name conflict
 	b := o.GetData("gtk_minor_version")
 	c := o.GetData("gtk_micro_version")
 	t.Logf("outside.GetData(\"gtk_..._version\") says major: %v minor: %v micro: %v", *(a).(*uint), *(b).(*uint), *(c).(*uint))
+}
+
+func TestAbout(t *testing.T) {
+	a, _ := AboutDialogNew()
+	t.Logf("%+v", a)
+	a.SetProgramName("Hello.World.exe")
+	t.Log(a.ProgramName())
+	a.SetWrapLicense(true)
+	t.Log(a.WrapLicense())
+	a.SetDocumenters([]string{
+		"Tony Wilson",
+		"Foo, Bar, and Associates",
+		"Rhubarb, Roux Bob and Roo Baab"})
+	t.Log(a.Documenters())
 }

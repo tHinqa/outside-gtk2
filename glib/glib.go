@@ -3363,8 +3363,7 @@ var (
 
 	Strtod func(nptr string, endptr **T.Gchar) float64
 
-	AsciiStrtod func(nptr string,
-		endptr **T.Gchar) float64
+	AsciiStrtod func(nptr string, endptr **T.Gchar) float64
 
 	AsciiStrtoull func(
 		nptr string, endptr **T.Gchar, base uint) uint64
@@ -3424,14 +3423,13 @@ var (
 	StrsplitSet func(
 		str, delimiters string, maxTokens int) StrSlice
 
-	Strjoinv func( //TOSO(t): []string input
-		separator string, strArray **T.Gchar) String
+	Strjoinv func(separator string, strArray []string) String
 
 	Strfreev func(strArray **T.Gchar) // left as is for Dispose
 
-	Strdupv func(strArray **T.Gchar) StrSlice
+	Strdupv func(strArray []string) StrSlice
 
-	StrvLength func(strArray **T.Gchar) uint
+	StrvLength func(strArray **T.Gchar) uint // []string input not appropriate
 
 	Stpcpy func(dest *T.Gchar, src string) *T.Gchar
 
@@ -3841,12 +3839,12 @@ var (
 
 	VariantNewVariant func(value *T.GVariant) *T.GVariant
 
-	VariantNewStrv func(strv **T.Gchar,
+	VariantNewStrv func(strv []string,
 		length T.Gssize) *T.GVariant
 
 	VariantNewBytestring func(str string) *T.GVariant
 
-	VariantNewBytestringArray func(strv **T.Gchar,
+	VariantNewBytestringArray func(strv []string,
 		length T.Gssize) *T.GVariant
 
 	VariantGetBoolean func(value *T.GVariant) T.Gboolean
@@ -4015,13 +4013,13 @@ var (
 		value *T.GVariant, formatString string, v ...VArg)
 
 	VariantNewVa func(formatString string,
-		endptr **T.Gchar, app *T.VaList) *T.GVariant
+		endptr []string, app *T.VaList) *T.GVariant
 
 	VariantGetVa func(value *T.GVariant, formatString string,
-		endptr **T.Gchar, app *T.VaList)
+		endptr []string, app *T.VaList)
 
 	VariantParse func(typ *T.GVariantType, text, limit string,
-		endptr **T.Gchar, err **T.GError) *T.GVariant
+		endptr []string, err **T.GError) *T.GVariant
 
 	VariantNewParsed func(
 		format string, v ...VArg) *T.GVariant
@@ -4108,7 +4106,7 @@ var (
 	KeyFileErrorQuark func() T.GQuark
 
 	MarkupCollectAttributes func(elementName string,
-		attributeNames **T.Gchar, attributeValues **T.Gchar,
+		attributeNames []string, attributeValues []string,
 		err **T.GError, firstType T.GMarkupCollectType,
 		firstAttr string, v ...VArg) T.Gboolean
 
