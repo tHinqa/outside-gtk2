@@ -23,6 +23,20 @@ type (
 	GStatBuf struct{}
 )
 
+const (
+	G_ASCII_DTOSTR_BUF_SIZE = 29 + 10
+	G_STR_DELIMITERS        = "_-|> <."
+)
+
+type (
+	StrSlice []string
+	String   string
+)
+
+func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
+
+func (_ String) Dispose(a T.Gpointer) { Free(a) }
+
 var (
 	ArrayNew func(zeroTerminated T.Gboolean,
 		clear T.Gboolean,
@@ -242,13 +256,11 @@ var (
 	ParseDebugString func(
 		str string, keys *T.GDebugKey, nkeys uint) uint
 
-	Snprintf func(str string, n T.Gulong, format string,
-		v ...VArg) int
+	Snprintf func(
+		str T.Gchar, n T.Gulong, format string, v ...VArg) int
 
-	Vsnprintf func(str string,
-		n T.Gulong,
-		format string,
-		args T.VaList) int
+	Vsnprintf func(str T.Gchar,
+		n T.Gulong, format string, args T.VaList) int
 
 	PathIsAbsolute func(fileName string) T.Gboolean
 
@@ -266,13 +278,12 @@ var (
 
 	Getenv func(variable string) string
 
-	Setenv func(variable string,
-		value string,
-		overwrite T.Gboolean) T.Gboolean
+	Setenv func(
+		variable, value string, overwrite T.Gboolean) T.Gboolean
 
 	Unsetenv func(variable string)
 
-	Listenv func() []string //TODO(t):must release
+	Listenv func() StrSlice
 
 	GetEnviron func() []string //TODO(t):Documented?
 
@@ -1826,37 +1837,37 @@ var (
 
 	GetCharset func(charset **T.Char) T.Gboolean
 
-	UnicharIsalnum func(c T.Gunichar) T.Gboolean
+	UnicharIsalnum func(c T.Gunichar) bool
 
-	UnicharIsalpha func(c T.Gunichar) T.Gboolean
+	UnicharIsalpha func(c T.Gunichar) bool
 
-	UnicharIscntrl func(c T.Gunichar) T.Gboolean
+	UnicharIscntrl func(c T.Gunichar) bool
 
-	UnicharIsdigit func(c T.Gunichar) T.Gboolean
+	UnicharIsdigit func(c T.Gunichar) bool
 
-	UnicharIsgraph func(c T.Gunichar) T.Gboolean
+	UnicharIsgraph func(c T.Gunichar) bool
 
-	UnicharIslower func(c T.Gunichar) T.Gboolean
+	UnicharIslower func(c T.Gunichar) bool
 
-	UnicharIsprint func(c T.Gunichar) T.Gboolean
+	UnicharIsprint func(c T.Gunichar) bool
 
-	UnicharIspunct func(c T.Gunichar) T.Gboolean
+	UnicharIspunct func(c T.Gunichar) bool
 
-	UnicharIsspace func(c T.Gunichar) T.Gboolean
+	UnicharIsspace func(c T.Gunichar) bool
 
-	UnicharIsupper func(c T.Gunichar) T.Gboolean
+	UnicharIsupper func(c T.Gunichar) bool
 
-	UnicharIsxdigit func(c T.Gunichar) T.Gboolean
+	UnicharIsxdigit func(c T.Gunichar) bool
 
-	UnicharIstitle func(c T.Gunichar) T.Gboolean
+	UnicharIstitle func(c T.Gunichar) bool
 
-	UnicharIsdefined func(c T.Gunichar) T.Gboolean
+	UnicharIsdefined func(c T.Gunichar) bool
 
-	UnicharIswide func(c T.Gunichar) T.Gboolean
+	UnicharIswide func(c T.Gunichar) bool
 
-	UnicharIswideCjk func(c T.Gunichar) T.Gboolean
+	UnicharIswideCjk func(c T.Gunichar) bool
 
-	UnicharIszerowidth func(c T.Gunichar) T.Gboolean
+	UnicharIszerowidth func(c T.Gunichar) bool
 
 	UnicharIsmark func(c T.Gunichar) T.Gboolean
 
@@ -1967,8 +1978,8 @@ var (
 		end **T.Gchar) T.Gboolean
 
 	UnicharValidate func(ch T.Gunichar) T.Gboolean
-	Utf8Strup       func(str string,
-		leng T.Gssize) string
+
+	Utf8Strup func(str string, leng T.Gssize) string
 
 	Utf8Strdown func(str string,
 		leng T.Gssize) string
@@ -3311,7 +3322,7 @@ var (
 		e **T.GError) T.Gboolean
 
 	SpawnClosePid func(pid T.GPid)
-
+	//
 	AsciiTolower func(c T.Gchar) T.Gchar
 
 	AsciiToupper func(c T.Gchar) T.Gchar
@@ -3320,155 +3331,124 @@ var (
 
 	AsciiXdigitValue func(c T.Gchar) int
 
-	Strdelimit func(str string,
-		delimiters string,
-		newDelimiter T.Gchar) string
+	Strdelimit func( // in place
+		str, delimiters string, newDelimiter T.Gchar) string
 
-	Strcanon func(str string,
-		validChars string,
-		substitutor T.Gchar) string
+	Strcanon func( // in place
+		str, validChars string, substitutor T.Gchar) string
 
 	Strerror func(errnum int) string
 
 	Strsignal func(signum int) string
 
-	Strreverse func(str string) string
+	Strreverse func(str string) string // in place
 
-	Strlcpy func(dest string,
-		src string,
-		destSize T.Gsize) T.Gsize
+	Strlcpy func(
+		dest *T.Gchar, src string, destSize T.Gsize) T.Gsize
 
-	Strlcat func(dest string,
-		src string,
-		destSize T.Gsize) T.Gsize
+	Strlcat func(
+		dest T.Gchar, src string, destSize T.Gsize) T.Gsize
 
 	StrstrLen func(haystack string,
-		haystackLen T.Gssize,
-		needle string) string
+		haystackLen T.Gssize, needle string) *T.Gchar
 
-	Strrstr func(haystack string,
-		needle string) string
+	Strrstr func(haystack string, needle string) *T.Gchar
 
 	StrrstrLen func(haystack string,
-		haystackLen T.Gssize,
-		needle string) string
+		haystackLen T.Gssize, needle string) *T.Gchar
 
-	StrHasSuffix func(str string,
-		suffix string) T.Gboolean
+	StrHasSuffix func(str string, suffix string) bool
 
-	StrHasPrefix func(str string,
-		prefix string) T.Gboolean
+	StrHasPrefix func(str string, prefix string) bool
 
-	Strtod func(nptr string,
-		endptr **T.Gchar) float64
+	Strtod func(nptr string, endptr **T.Gchar) float64
 
 	AsciiStrtod func(nptr string,
 		endptr **T.Gchar) float64
 
-	AsciiStrtoull func(nptr string,
-		endptr **T.Gchar,
-		base uint) uint64
+	AsciiStrtoull func(
+		nptr string, endptr **T.Gchar, base uint) uint64
 
-	AsciiStrtoll func(nptr string,
-		endptr **T.Gchar,
-		base uint) int64
+	AsciiStrtoll func(
+		nptr string, endptr **T.Gchar, base uint) int64
 
-	AsciiDtostr func(buffer string,
-		bufLen int,
-		d float64) string
+	// suggested bufLen G_ASCII_DTOSTR_BUF_SIZE
+	AsciiDtostr func(
+		buffer *T.Gchar, bufLen int, d float64) string
 
-	AsciiFormatd func(buffer string,
-		bufLen int,
-		format string,
-		d float64) string
+	AsciiFormatd func(buffer *T.Gchar,
+		bufLen int, format string, d float64) string
 
-	Strchug func(str string) string
+	Strchug func(str string) string // in place
 
-	Strchomp func(str string) string
+	Strchomp func(str string) string // in place
 
-	AsciiStrcasecmp func(s1 string,
-		s2 string) int
+	// Strstrip(s) == Strchomp(Strchug(s))
 
-	AsciiStrncasecmp func(s1 string,
-		s2 string,
-		n T.Gsize) int
+	AsciiStrcasecmp func(s1 string, s2 string) int
 
-	AsciiStrdown func(str string,
-		leng T.Gssize) string
+	AsciiStrncasecmp func(s1 string, s2 string, n T.Gsize) int
 
-	AsciiStrup func(str string,
-		leng T.Gssize) string
+	AsciiStrdown func(str string, leng T.Gssize) String
 
-	Strcasecmp func(s1 string,
-		s2 string) int
+	AsciiStrup func(str string, leng T.Gssize) String
 
-	Strncasecmp func(s1 string,
-		s2 string,
-		n uint) int
+	//Deprecated 2.2
+	// Strcasecmp func(s1 string, s2 string) int
+	// Strncasecmp func(s1 string, s2 string, n uint) int
+	// Strdown func(str string) String
+	// Strup func(str string) String
 
-	Strdown func(str string) string
+	Strdup func(str string) String
 
-	Strup func(str string) string
+	StrdupPrintf func(format string, v ...VArg) String
 
-	Strdup func(str string) string
+	StrdupVprintf func(format string, args T.VaList) String
 
-	StrdupPrintf func(format string, v ...VArg) string
+	Strndup func(str string, n T.Gsize) String
 
-	StrdupVprintf func(format string,
-		args T.VaList) string
+	Strnfill func(length T.Gsize, fillChar T.Gchar) String
 
-	Strndup func(str string,
-		n T.Gsize) string
+	Strconcat func(string1 string, v ...VArg) String
 
-	Strnfill func(length T.Gsize,
-		fillChar T.Gchar) string
+	Strjoin func(separator string, v ...VArg) String
 
-	Strconcat func(string1 string, v ...VArg) string
+	Strcompress func(source string) String
 
-	Strjoin func(separator string, v ...VArg) string
+	Strescape func(source, exceptions string) String
 
-	Strcompress func(source string) string
+	Memdup func(mem T.Gconstpointer, byteSize uint) T.Gpointer
 
-	Strescape func(source string,
-		exceptions string) string
+	Strsplit func(str, delimiter string, maxTokens int) StrSlice
 
-	Memdup func(mem T.Gconstpointer,
-		byteSize uint) T.Gpointer
+	StrsplitSet func(
+		str, delimiters string, maxTokens int) StrSlice
 
-	Strsplit func(str string,
-		delimiter string,
-		maxTokens int) []string
+	Strjoinv func( //TOSO(t): []string input
+		separator string, strArray **T.Gchar) String
 
-	StrsplitSet func(str string,
-		delimiters string,
-		maxTokens int) []string
+	Strfreev func(strArray **T.Gchar) // left as is for Dispose
 
-	Strjoinv func(separator string,
-		str_Array **T.Gchar) string
-
-	Strfreev func(strArray **T.Gchar)
-
-	Strdupv func(strArray **T.Gchar) []string
+	Strdupv func(strArray **T.Gchar) StrSlice
 
 	StrvLength func(strArray **T.Gchar) uint
 
-	Stpcpy func(dest, src string) string
+	Stpcpy func(dest *T.Gchar, src string) *T.Gchar
 
 	StripContext func(msgid, msgval string) string
 
 	Dgettext func(domain, msgid string) string
 
-	Dcgettext func(domain, msgid string,
-		category int) string
+	Dcgettext func(domain, msgid string, category int) string
 
-	Dngettext func(domain, msgid, msgidPlural string,
-		n T.Gulong) string
+	Dngettext func(
+		domain, msgid, msgidPlural string, n T.Gulong) string
 
-	Dpgettext func(domain, msgctxtid string,
-		msgidoffset T.Gsize) string
+	Dpgettext func(
+		domain, msgctxtid string, msgidoffset T.Gsize) string
 
 	Dpgettext2 func(domain, context, msgid string) string
-
+	//
 	Strcmp0 func(str1, str2 string) int
 
 	TestMinimizedResult func(minimizedQuantity float64,
@@ -4110,7 +4090,7 @@ var (
 
 	Fprintf func(file *T.FILE, format string, v ...VArg) int
 
-	Sprintf func(str string, format string, v ...VArg) int
+	Sprintf func(str *T.Gchar, format string, v ...VArg) int
 
 	Vprintf func(format string, args T.VaList) int
 
@@ -4118,10 +4098,10 @@ var (
 		file *T.FILE, format string, args T.VaList) int
 
 	Vsprintf func(
-		str string, format string, args T.VaList) int
+		str T.Gchar, format string, args T.VaList) int
 
 	Vasprintf func(
-		string **T.Gchar, format string, args T.VaList) int
+		str **T.Gchar, format string, args T.VaList) int
 
 	GetUserSpecialDir func(directory T.GUserDirectory) string
 
@@ -4129,7 +4109,7 @@ var (
 
 	MarkupCollectAttributes func(elementName string,
 		attributeNames **T.Gchar, attributeValues **T.Gchar,
-		error **T.GError, firstType T.GMarkupCollectType,
+		err **T.GError, firstType T.GMarkupCollectType,
 		firstAttr string, v ...VArg) T.Gboolean
 
 	MarkupErrorQuark func() T.GQuark
@@ -5208,14 +5188,14 @@ var apiList = outside.Apis{
 	{"g_str_has_suffix", &StrHasSuffix},
 	{"g_str_hash", &StrHash},
 	{"g_strcanon", &Strcanon},
-	{"g_strcasecmp", &Strcasecmp},
+	// Deprecated 2.2 {"g_strcasecmp", &Strcasecmp},
 	{"g_strchomp", &Strchomp},
 	{"g_strchug", &Strchug},
 	{"g_strcmp0", &Strcmp0},
 	{"g_strcompress", &Strcompress},
 	{"g_strconcat", &Strconcat},
 	{"g_strdelimit", &Strdelimit},
-	{"g_strdown", &Strdown},
+	// Deprecated 2.2 {"g_strdown", &Strdown},
 	{"g_strdup", &Strdup},
 	{"g_strdup_printf", &StrdupPrintf},
 	{"g_strdup_vprintf", &StrdupVprintf},
@@ -5267,7 +5247,7 @@ var apiList = outside.Apis{
 	{"g_strjoinv", &Strjoinv},
 	{"g_strlcat", &Strlcat},
 	{"g_strlcpy", &Strlcpy},
-	{"g_strncasecmp", &Strncasecmp},
+	// Deprecated 2.2 {"g_strncasecmp", &Strncasecmp},
 	{"g_strndup", &Strndup},
 	{"g_strnfill", &Strnfill},
 	{"g_strreverse", &Strreverse},
@@ -5278,7 +5258,7 @@ var apiList = outside.Apis{
 	{"g_strsplit_set", &StrsplitSet},
 	{"g_strstr_len", &StrstrLen},
 	{"g_strtod", &Strtod},
-	{"g_strup", &Strup},
+	// Deprecated 2.2 {"g_strup", &Strup},
 	{"g_strv_length", &StrvLength},
 	{"g_test_add_data_func", &TestAddDataFunc},
 	{"g_test_add_func", &TestAddFunc},
