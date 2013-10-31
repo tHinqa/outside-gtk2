@@ -4,6 +4,7 @@
 package atk
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -32,7 +33,7 @@ func (r *Registry) GetFactoryType(t O.Type) O.Type { return registryGetFactoryTy
 
 type Relation struct {
 	Parent       O.Object
-	Target       *T.GPtrArray
+	Target       *L.PtrArray
 	Relationship RelationType
 }
 
@@ -42,18 +43,18 @@ var (
 
 	relationAddTarget       func(r *Relation, target *Object)
 	relationGetRelationType func(r *Relation) RelationType
-	relationGetTarget       func(r *Relation) *T.GPtrArray
+	relationGetTarget       func(r *Relation) *L.PtrArray
 	relationRemoveTarget    func(r *Relation, target *Object) bool
 )
 
 func (r *Relation) AddTarget(target *Object)         { relationAddTarget(r, target) }
 func (r *Relation) GetRelationType() RelationType    { return relationGetRelationType(r) }
-func (r *Relation) GetTarget() *T.GPtrArray          { return relationGetTarget(r) }
+func (r *Relation) GetTarget() *L.PtrArray           { return relationGetTarget(r) }
 func (r *Relation) RemoveTarget(target *Object) bool { return relationRemoveTarget(r, target) }
 
 type RelationSet struct {
 	Parent    O.Object
-	Relations *T.GPtrArray
+	Relations *L.PtrArray
 }
 
 var (

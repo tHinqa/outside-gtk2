@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -313,7 +314,7 @@ type FileSelection struct {
 	Fileop_ren_file  *Widget
 	Button_area      *Widget
 	Action_area      *Widget
-	Selected_names   *T.GPtrArray
+	Selected_names   *L.PtrArray
 	Last_selected    *T.Gchar
 }
 

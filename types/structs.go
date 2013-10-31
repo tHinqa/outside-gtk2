@@ -7,16 +7,6 @@ type (
 		Sec, Min, Hour, Mday, Mon, Year, Wday, Yday, Isdst int
 	}
 
-	GArray struct {
-		Data *Gchar
-		Leng uint
-	}
-
-	GByteArray struct {
-		Data *uint8
-		Leng uint
-	}
-
 	GCompletion struct {
 		Items       *GList
 		Fnc         GCompletionFunc
@@ -200,11 +190,6 @@ type (
 		Revents uint16
 	}
 
-	GPtrArray struct {
-		Pdata *Gpointer
-		Len   uint
-	}
-
 	GQueue struct {
 		Head   *GList
 		Tail   *GList
@@ -266,39 +251,12 @@ type (
 		PaddingDummy uint
 	}
 
-	GSList struct {
-		Data Gpointer
-		Next *GSList
-	}
+	GSList struct{} //REMOVE
 
 	GSource struct{} //REMOVE
 
 	GStaticPrivate struct {
 		Index uint
-	}
-
-	GStaticRecMutex struct {
-		Mutex GStaticMutex
-		Depth uint
-		Owner GSystemThread
-	}
-
-	GSystemThread struct {
-		// Union
-		// Data[4] Char
-		DummyDouble float64
-		// DummyPointer *Void
-		// DummyLong Long
-	}
-
-	GStaticRWLock struct {
-		Mutex       GStaticMutex
-		ReadCond    *GCond
-		WriteCond   *GCond
-		ReadCounter uint
-		HaveWriter  Gboolean
-		WantToRead  uint
-		WantToWrite uint
 	}
 
 	GString struct {

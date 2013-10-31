@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -761,7 +762,7 @@ type Style struct {
 	PrivateFontDesc *P.FontDescription
 	RcStyle         *RcStyle
 	Styles          *T.GSList
-	PropertyCache   *T.GArray
+	PropertyCache   *L.Array
 	IconFactories   *T.GSList
 }
 

@@ -53,7 +53,6 @@ type (
 	GQuark                 GUint32
 	GSequenceIter          GSequenceNode
 	GSignalCMarshaller     GClosureMarshal
-	GStaticMutex           *GMutex
 	GTime                  GInt32
 	GTimeSpan              int64
 	GType                  Gsize // REMOVE
@@ -64,9 +63,6 @@ type (
 
 	GdkDrawable struct{ parent GObject } //REMOVE
 
-	GAllocator               struct{}
-	GAsyncQueue              struct{}
-	GBookmarkFile            struct{}
 	GCache                   struct{}
 	GCancellablePrivate      struct{}
 	GChecksum                struct{}
@@ -88,7 +84,6 @@ type (
 	GMutex                   struct{}
 	GOptionContext           struct{}
 	GOptionGroup             struct{}
-	GPatternSpec             struct{}
 	GPrivate                 struct{}
 	GRand                    struct{}
 	GRegex                   struct{}
@@ -126,17 +121,6 @@ const (
 	G_BOOKMARK_FILE_ERROR_UNKNOWN_ENCODING
 	G_BOOKMARK_FILE_ERROR_WRITE
 	G_BOOKMARK_FILE_ERROR_FILE_NOT_FOUND
-)
-
-type GSliceConfig Enum
-
-const (
-	G_SLICE_CONFIG_ALWAYS_MALLOC GSliceConfig = iota + 1
-	G_SLICE_CONFIG_BYPASS_MAGAZINES
-	G_SLICE_CONFIG_WORKING_SET_MSECS
-	G_SLICE_CONFIG_COLOR_INCREMENT
-	G_SLICE_CONFIG_CHUNK_SIZES
-	G_SLICE_CONFIG_CONTENTION_COUNTER
 )
 
 type GUserDirectory Enum

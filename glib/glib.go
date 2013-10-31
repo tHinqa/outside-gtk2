@@ -19,6 +19,8 @@ func init() {
 }
 
 type (
+	Enum int
+
 	//TODO(t):Fix (stat/stat32)
 	GStatBuf struct{}
 )
@@ -38,141 +40,6 @@ func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
 func (_ String) Dispose(a T.Gpointer) { Free(a) }
 
 var (
-	ArrayNew func(zeroTerminated bool,
-		clear bool,
-		elementSize uint) *T.GArray
-
-	ArraySizedNew func(zeroTerminated bool,
-		clear bool,
-		elementSize uint,
-		reservedSize uint) *T.GArray
-
-	ArrayFree func(array *T.GArray,
-		freeSegment bool) string
-
-	ArrayRef func(array *T.GArray) *T.GArray
-
-	ArrayUnref func(array *T.GArray)
-
-	ArrayGetElementSize func(array *T.GArray) uint
-
-	ArrayAppendVals func(array *T.GArray,
-		data T.Gconstpointer,
-		leng uint) *T.GArray
-
-	ArrayPrependVals func(array *T.GArray,
-		data T.Gconstpointer,
-		leng uint) *T.GArray
-
-	ArrayInsertVals func(array *T.GArray,
-		index uint,
-		data T.Gconstpointer,
-		leng uint) *T.GArray
-
-	ArraySetSize func(array *T.GArray,
-		length uint) *T.GArray
-
-	ArrayRemoveIndex func(array *T.GArray,
-		index uint) *T.GArray
-
-	ArrayRemoveIndexFast func(array *T.GArray,
-		index uint) *T.GArray
-
-	ArrayRemoveRange func(array *T.GArray,
-		index uint,
-		length uint) *T.GArray
-
-	ArraySort func(array *T.GArray,
-		compareFunc T.GCompareFunc)
-
-	ArraySortWithData func(array *T.GArray,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	PtrArrayNew func() *T.GPtrArray
-
-	PtrArrayNewWithFreeFunc func(elementFreeFunc T.GDestroyNotify) *T.GPtrArray
-
-	PtrArraySizedNew func(reservedSize uint) *T.GPtrArray
-
-	PtrArrayFree func(array *T.GPtrArray,
-		freeSeg bool) *T.Gpointer
-
-	PtrArrayRef func(array *T.GPtrArray) *T.GPtrArray
-
-	PtrArrayUnref func(array *T.GPtrArray)
-
-	PtrArraySetFreeFunc func(array *T.GPtrArray,
-		elementFreeFunc T.GDestroyNotify)
-
-	PtrArraySetSize func(array *T.GPtrArray,
-		length int)
-
-	PtrArrayRemoveIndex func(array *T.GPtrArray,
-		index uint) T.Gpointer
-
-	PtrArrayRemoveIndexFast func(array *T.GPtrArray,
-		index uint) T.Gpointer
-
-	PtrArrayRemove func(array *T.GPtrArray,
-		data T.Gpointer) bool
-
-	PtrArrayRemoveFast func(array *T.GPtrArray,
-		data T.Gpointer) bool
-
-	PtrArrayRemoveRange func(array *T.GPtrArray,
-		index uint,
-		length uint)
-
-	PtrArrayAdd func(array *T.GPtrArray, data T.Gpointer)
-
-	PtrArraySort func(array *T.GPtrArray,
-		compareFunc T.GCompareFunc)
-
-	PtrArraySortWithData func(array *T.GPtrArray,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	PtrArrayForeach func(array *T.GPtrArray,
-		f T.GFunc, userData T.Gpointer)
-
-	ByteArrayNew func() *T.GByteArray
-
-	ByteArraySizedNew func(reservedSize uint) *T.GByteArray
-
-	ByteArrayFree func(array *T.GByteArray,
-		freeSegment bool) *uint8
-
-	ByteArrayRef func(array *T.GByteArray) *T.GByteArray
-
-	ByteArrayUnref func(array *T.GByteArray)
-
-	ByteArrayAppend func(array *T.GByteArray,
-		data *uint8, leng uint) *T.GByteArray
-
-	ByteArrayPrepend func(array *T.GByteArray,
-		data *uint8, leng uint) *T.GByteArray
-
-	ByteArraySetSize func(array *T.GByteArray,
-		length uint) *T.GByteArray
-
-	ByteArrayRemoveIndex func(array *T.GByteArray,
-		index uint) *T.GByteArray
-
-	ByteArrayRemoveIndexFast func(array *T.GByteArray,
-		index uint) *T.GByteArray
-
-	ByteArrayRemoveRange func(array *T.GByteArray,
-		index uint,
-		length uint) *T.GByteArray
-
-	ByteArraySort func(array *T.GByteArray,
-		compareFunc T.GCompareFunc)
-
-	ByteArraySortWithData func(array *T.GByteArray,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer)
-
 	QuarkTryString func(str string) T.GQuark
 
 	QuarkFromStaticString func(str string) T.GQuark
@@ -312,49 +179,6 @@ var (
 	ThreadSetPriority func(thread *T.GThread,
 		priority T.GThreadPriority)
 
-	StaticMutexInit func(mutex *T.GStaticMutex)
-
-	StaticMutexFree func(mutex *T.GStaticMutex)
-
-	StaticRecMutexInit func(mutex *T.GStaticRecMutex)
-
-	StaticRecMutexLock func(mutex *T.GStaticRecMutex)
-
-	StaticRecMutexTrylock func(mutex *T.GStaticRecMutex) bool
-
-	StaticRecMutexUnlock func(mutex *T.GStaticRecMutex)
-
-	StaticRecMutexLockFull func(mutex *T.GStaticRecMutex,
-		depth uint)
-
-	StaticRecMutexUnlockFull func(mutex *T.GStaticRecMutex) uint
-
-	StaticRecMutexFree func(mutex *T.GStaticRecMutex)
-
-	StaticRwLockInit func(
-		lock *T.GStaticRWLock)
-
-	StaticRwLockReaderLock func(
-		lock *T.GStaticRWLock)
-
-	StaticRwLockReaderTrylock func(
-		lock *T.GStaticRWLock) bool
-
-	StaticRwLockReaderUnlock func(
-		lock *T.GStaticRWLock)
-
-	StaticRwLockWriterLock func(
-		lock *T.GStaticRWLock)
-
-	StaticRwLockWriterTrylock func(
-		lock *T.GStaticRWLock) bool
-
-	StaticRwLockWriterUnlock func(
-		lock *T.GStaticRWLock)
-
-	StaticRwLockFree func(
-		lock *T.GStaticRWLock)
-
 	ThreadForeach func(threadFunc T.GFunc,
 		userData T.Gpointer)
 
@@ -372,64 +196,6 @@ var (
 	OnceInitLeave func(
 		valueLocation *T.Gsize,
 		initializationValue T.Gsize)
-
-	AsyncQueueNew func() *T.GAsyncQueue
-
-	AsyncQueueNewFull func(itemFreeFunc T.GDestroyNotify) *T.GAsyncQueue
-
-	AsyncQueueLock func(queue *T.GAsyncQueue)
-
-	AsyncQueueUnlock func(queue *T.GAsyncQueue)
-
-	AsyncQueueRef func(queue *T.GAsyncQueue) *T.GAsyncQueue
-
-	AsyncQueueUnref func(queue *T.GAsyncQueue)
-
-	AsyncQueueRefUnlocked func(queue *T.GAsyncQueue)
-
-	AsyncQueueUnrefAndUnlock func(queue *T.GAsyncQueue)
-
-	AsyncQueuePush func(queue *T.GAsyncQueue,
-		data T.Gpointer)
-
-	AsyncQueuePushUnlocked func(queue *T.GAsyncQueue,
-		data T.Gpointer)
-
-	AsyncQueuePushSorted func(queue *T.GAsyncQueue,
-		data T.Gpointer,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	AsyncQueuePushSortedUnlocked func(queue *T.GAsyncQueue,
-		data T.Gpointer,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	AsyncQueuePop func(queue *T.GAsyncQueue) T.Gpointer
-
-	AsyncQueuePopUnlocked func(queue *T.GAsyncQueue) T.Gpointer
-
-	AsyncQueueTryPop func(queue *T.GAsyncQueue) T.Gpointer
-
-	AsyncQueueTryPopUnlocked func(queue *T.GAsyncQueue) T.Gpointer
-
-	AsyncQueueTimedPop func(queue *T.GAsyncQueue,
-		endTime *T.GTimeVal) T.Gpointer
-
-	AsyncQueueTimedPopUnlocked func(queue *T.GAsyncQueue,
-		endTime *T.GTimeVal) T.Gpointer
-
-	AsyncQueueLength func(queue *T.GAsyncQueue) int
-
-	AsyncQueueLengthUnlocked func(queue *T.GAsyncQueue) int
-
-	AsyncQueueSort func(queue *T.GAsyncQueue,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	AsyncQueueSortUnlocked func(queue *T.GAsyncQueue,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
 
 	OnErrorQuery func(prgName string)
 
@@ -488,181 +254,7 @@ var (
 		requiredMinor uint,
 		requiredMicro uint) string
 
-	AtomicIntExchangeAndAdd func(atomic *int,
-		val int) int
-
-	AtomicIntAdd func(atomic *int,
-		val int)
-
-	AtomicIntCompareAndExchange func(atomic *int,
-		oldval int,
-		newval int) bool
-
-	AtomicPointerCompareAndExchange func(atomic *T.Gpointer,
-		oldval T.Gpointer,
-		newval T.Gpointer) bool
-
-	AtomicIntGet func(atomic *int) int
-
-	AtomicIntSet func(atomic *int,
-		newval int)
-
-	AtomicPointerGet func(atomic *T.Gpointer) T.Gpointer
-
-	AtomicPointerSet func(atomic *T.Gpointer,
-		newval T.Gpointer)
-
 	ThreadErrorQuark func() T.GQuark
-
-	BookmarkFileErrorQuark func() T.GQuark
-
-	BookmarkFileNew func() *T.GBookmarkFile
-
-	BookmarkFileFree func(bookmark *T.GBookmarkFile)
-
-	BookmarkFileLoadFromFile func(bookmark *T.GBookmarkFile,
-		filename string, e **T.GError) bool
-
-	BookmarkFileLoadFromData func(bookmark *T.GBookmarkFile,
-		data string, length T.Gsize, e **T.GError) bool
-
-	BookmarkFileLoadFromDataDirs func(bookmark *T.GBookmarkFile,
-		file string, fullPath **T.Gchar, e **T.GError) bool
-
-	BookmarkFileToData func(bookmark *T.GBookmarkFile,
-		length *T.Gsize, e **T.GError) string
-
-	BookmarkFileToFile func(bookmark *T.GBookmarkFile,
-		filename string, e **T.GError) bool
-
-	BookmarkFileSetTitle func(bookmark *T.GBookmarkFile,
-		uri, title string)
-
-	BookmarkFileGetTitle func(bookmark *T.GBookmarkFile,
-		uri, e **T.GError) string
-
-	BookmarkFileSetDescription func(bookmark *T.GBookmarkFile,
-		uri string, description string)
-
-	BookmarkFileGetDescription func(bookmark *T.GBookmarkFile,
-		uri string, e **T.GError) string
-
-	BookmarkFileSetMimeType func(bookmark *T.GBookmarkFile,
-		uri, mimeType string)
-
-	BookmarkFileGetMimeType func(bookmark *T.GBookmarkFile,
-		uri string, e **T.GError) string
-
-	BookmarkFileSetGroups func(bookmark *T.GBookmarkFile,
-		uri string, groups **T.Gchar, length T.Gsize)
-
-	BookmarkFileAddGroup func(bookmark *T.GBookmarkFile,
-		uri, group string)
-
-	BookmarkFileHasGroup func(bookmark *T.GBookmarkFile,
-		uri, group string, e **T.GError) bool
-
-	BookmarkFileGetGroups func(bookmark *T.GBookmarkFile,
-		uri string, length *T.Gsize, e **T.GError) []string
-
-	BookmarkFileAddApplication func(bookmark *T.GBookmarkFile,
-		uri, name, exec string)
-
-	BookmarkFileHasApplication func(bookmark *T.GBookmarkFile,
-		uri, name string, e **T.GError) bool
-
-	BookmarkFileGetApplications func(bookmark *T.GBookmarkFile,
-		uri string, length *T.Gsize, e **T.GError) []string
-
-	BookmarkFileSetAppInfo func(bookmark *T.GBookmarkFile,
-		uri, name, exec string,
-		count int, stamp T.TimeT, e **T.GError) bool
-
-	BookmarkFileGetAppInfo func(bookmark *T.GBookmarkFile,
-		uri, name string,
-		exec **T.Gchar,
-		count *uint,
-		stamp *T.TimeT,
-		e **T.GError) bool
-
-	BookmarkFileSetIsPrivate func(bookmark *T.GBookmarkFile,
-		uri string,
-		isPrivate bool)
-
-	BookmarkFileGetIsPrivate func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) bool
-
-	BookmarkFileSetIcon func(bookmark *T.GBookmarkFile,
-		uri, href, mimeType string)
-
-	BookmarkFileGetIcon func(bookmark *T.GBookmarkFile,
-		uri string,
-		href **T.Gchar,
-		mimeType **T.Gchar,
-		e **T.GError) bool
-
-	BookmarkFileSetAdded func(bookmark *T.GBookmarkFile,
-		uri string,
-		added T.TimeT)
-
-	BookmarkFileGetAdded func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) T.TimeT
-
-	BookmarkFileSetModified func(bookmark *T.GBookmarkFile,
-		uri string,
-		modified T.TimeT)
-
-	BookmarkFileGetModified func(bookmark *T.GBookmarkFile,
-		uri string,
-		e **T.GError) T.TimeT
-
-	BookmarkFileSetVisited func(bookmark *T.GBookmarkFile,
-		uri string, visited T.TimeT)
-
-	BookmarkFileGetVisited func(bookmark *T.GBookmarkFile,
-		uri string, e **T.GError) T.TimeT
-
-	BookmarkFileHasItem func(bookmark *T.GBookmarkFile,
-		uri string) bool
-
-	BookmarkFileGetSize func(bookmark *T.GBookmarkFile) int
-
-	BookmarkFileGetUris func(bookmark *T.GBookmarkFile,
-		length *T.Gsize) []string
-
-	BookmarkFileRemoveGroup func(bookmark *T.GBookmarkFile,
-		uri, group string, e **T.GError) bool
-
-	BookmarkFileRemoveApplication func(bookmark *T.GBookmarkFile,
-		uri, name string, e **T.GError) bool
-
-	BookmarkFileRemoveItem func(bookmark *T.GBookmarkFile,
-		uri string, e **T.GError) bool
-
-	BookmarkFileMoveItem func(bookmark *T.GBookmarkFile,
-		oldUri, newUri string, e **T.GError) bool
-
-	SliceAlloc func(blockSize T.Gsize) T.Gpointer
-
-	SliceAlloc0 func(blockSize T.Gsize) T.Gpointer
-
-	SliceCopy func(blockSize T.Gsize,
-		memBlock T.Gconstpointer) T.Gpointer
-
-	SliceFree1 func(blockSize T.Gsize,
-		memBlock T.Gpointer)
-
-	SliceFreeChainWithOffset func(blockSize T.Gsize,
-		memChain T.Gpointer,
-		nextOffset T.Gsize)
-
-	SliceSetConfig func(ckey T.GSliceConfig, value int64)
-
-	SliceGetConfig func(ckey T.GSliceConfig) int64
-
-	SliceGetConfigState func(ckey T.GSliceConfig, address int64, nValues *uint) *int64
 
 	Free func(mem T.Gpointer)
 
@@ -725,11 +317,6 @@ var (
 	MemChunkInfo func()
 
 	BlowChunks func()
-
-	AllocatorNew func(name string,
-		nPreallocs uint) *T.GAllocator
-
-	AllocatorFree func(allocator *T.GAllocator)
 
 	ListAlloc func() *T.GList
 
@@ -1523,95 +1110,6 @@ var (
 		nfds uint,
 		timeout int) int
 
-	SlistAlloc func() *T.GSList
-
-	SlistFree func(list *T.GSList)
-
-	SlistFree1 func(list *T.GSList)
-
-	SlistFreeFull func(list *T.GSList,
-		freeFunc T.GDestroyNotify)
-
-	SlistAppend func(list *T.GSList,
-		data T.Gpointer) *T.GSList
-
-	SlistPrepend func(list *T.GSList,
-		data T.Gpointer) *T.GSList
-
-	SlistInsert func(list *T.GSList,
-		data T.Gpointer,
-		position int) *T.GSList
-
-	SlistInsertSorted func(list *T.GSList,
-		data T.Gpointer,
-		f T.GCompareFunc) *T.GSList
-
-	SlistInsertSortedWithData func(list *T.GSList,
-		data T.Gpointer,
-		f T.GCompareDataFunc,
-		userData T.Gpointer) *T.GSList
-
-	SlistInsertBefore func(slist *T.GSList,
-		sibling *T.GSList,
-		data T.Gpointer) *T.GSList
-
-	SlistConcat func(list1 *T.GSList,
-		list2 *T.GSList) *T.GSList
-
-	SlistRemove func(list *T.GSList,
-		data T.Gconstpointer) *T.GSList
-
-	SlistRemoveAll func(list *T.GSList,
-		data T.Gconstpointer) *T.GSList
-
-	SlistRemoveLink func(list *T.GSList,
-		link *T.GSList) *T.GSList
-
-	SlistDeleteLink func(list *T.GSList,
-		link *T.GSList) *T.GSList
-
-	SlistReverse func(list *T.GSList) *T.GSList
-
-	SlistCopy func(list *T.GSList) *T.GSList
-
-	SlistNth func(list *T.GSList,
-		n uint) *T.GSList
-
-	SlistFind func(list *T.GSList,
-		data T.Gconstpointer) *T.GSList
-
-	SlistFindCustom func(list *T.GSList,
-		data T.Gconstpointer,
-		f T.GCompareFunc) *T.GSList
-
-	SlistPosition func(list *T.GSList,
-		llink *T.GSList) int
-
-	SlistIndex func(list *T.GSList,
-		data T.Gconstpointer) int
-
-	SlistLast func(list *T.GSList) *T.GSList
-
-	SlistLength func(list *T.GSList) uint
-
-	SlistForeach func(list *T.GSList,
-		f T.GFunc,
-		userData T.Gpointer)
-
-	SlistSort func(list *T.GSList,
-		compareFunc T.GCompareFunc) *T.GSList
-
-	SlistSortWithData func(list *T.GSList,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer) *T.GSList
-
-	SlistNthData func(list *T.GSList,
-		n uint) T.Gpointer
-
-	SlistPushAllocator func(dummy T.Gpointer)
-
-	SlistPopAllocator func()
-
 	MainContextNew func() *T.GMainContext
 
 	MainContextRef func(context *T.GMainContext) *T.GMainContext
@@ -1696,72 +1194,6 @@ var (
 
 	MainLoopGetContext func(loop *T.GMainLoop) *T.GMainContext
 
-	SourceNew func(sourceFuncs *O.SourceFuncs,
-
-		structSize uint) *O.Source
-
-	SourceRef func(source *O.Source) *O.Source
-
-	SourceUnref func(source *O.Source)
-
-	SourceAttach func(source *O.Source,
-		context *T.GMainContext) uint
-
-	SourceDestroy func(source *O.Source)
-
-	SourceSetPriority func(source *O.Source,
-		priority int)
-
-	SourceGetPriority func(source *O.Source) int
-
-	SourceSetCanRecurse func(source *O.Source,
-		canRecurse bool)
-
-	SourceGetCanRecurse func(source *O.Source) bool
-
-	SourceGetId func(source *O.Source) uint
-
-	SourceGetContext func(source *O.Source) *T.GMainContext
-
-	SourceSetCallback func(source *O.Source,
-		f O.SourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify)
-
-	SourceSetFuncs func(source *O.Source,
-		funcs *O.SourceFuncs)
-
-	SourceIsDestroyed func(source *O.Source) bool
-
-	SourceSetName func(source *O.Source,
-		name string)
-
-	SourceGetName func(source *O.Source) string
-
-	SourceSetNameById func(tag uint,
-		name string)
-
-	SourceSetCallbackIndirect func(source *O.Source,
-		callbackData T.Gpointer,
-		callbackFuncs *O.SourceCallbackFuncs)
-
-	SourceAddPoll func(source *O.Source,
-		fd *T.GPollFD)
-
-	SourceRemovePoll func(source *O.Source,
-		fd *T.GPollFD)
-
-	SourceAddChildSource func(source *O.Source,
-		childSource *O.Source)
-
-	SourceRemoveChildSource func(source *O.Source,
-		childSource *O.Source)
-
-	SourceGetCurrentTime func(source *O.Source,
-		timeval *T.GTimeVal)
-
-	SourceGetTime func(source *O.Source) int64
-
 	IdleSourceNew func() *O.Source
 
 	ChildWatchSourceNew func(pid T.GPid) *O.Source
@@ -1775,13 +1207,6 @@ var (
 	GetMonotonicTime func() int64
 
 	GetRealTime func() int64
-
-	SourceRemove func(tag uint) bool
-
-	SourceRemoveByUserData func(userData T.Gpointer) bool
-
-	SourceRemoveByFuncsUserData func(funcs *O.SourceFuncs,
-		userData T.Gpointer) bool
 
 	TimeoutAddFull func(priority int,
 		interval uint,
@@ -2002,121 +1427,6 @@ var (
 		mirroredCh *T.Gunichar) bool
 
 	UnicharGetScript func(ch T.Gunichar) T.GUnicodeScript
-
-	StringChunkNew func(size T.Gsize) *T.GStringChunk
-
-	StringChunkFree func(chunk *T.GStringChunk)
-
-	StringChunkClear func(chunk *T.GStringChunk)
-
-	StringChunkInsert func(chunk *T.GStringChunk,
-		str string) string
-
-	StringChunkInsertLen func(chunk *T.GStringChunk,
-		str string,
-		leng T.Gssize) string
-
-	StringNew func(init string) *T.GString
-
-	StringNewLen func(init string,
-		leng T.Gssize) *T.GString
-
-	StringSizedNew func(dflSize T.Gsize) *T.GString
-
-	StringFree func(str *T.GString,
-		freeSegment bool) string
-
-	StringEqual func(v *T.GString,
-		v2 *T.GString) bool
-
-	StringHash func(str *T.GString) uint
-
-	StringAssign func(str *T.GString,
-		rval string) *T.GString
-
-	StringTruncate func(str *T.GString,
-		leng T.Gsize) *T.GString
-
-	StringSetSize func(str *T.GString,
-		leng T.Gsize) *T.GString
-
-	StringInsertLen func(str *T.GString,
-		pos T.Gssize,
-		val string,
-		leng T.Gssize) *T.GString
-
-	StringAppend func(str *T.GString,
-		val string) *T.GString
-
-	StringAppendLen func(str *T.GString,
-		val string,
-		leng T.Gssize) *T.GString
-
-	StringAppendC func(str *T.GString,
-		c T.Gchar) *T.GString
-
-	StringAppendUnichar func(str *T.GString,
-		wc T.Gunichar) *T.GString
-
-	StringPrepend func(str *T.GString,
-		val string) *T.GString
-
-	StringPrependC func(str *T.GString,
-		c T.Gchar) *T.GString
-
-	StringPrependUnichar func(str *T.GString,
-		wc T.Gunichar) *T.GString
-
-	StringPrependLen func(str *T.GString,
-		val string,
-		leng T.Gssize) *T.GString
-
-	StringInsert func(str *T.GString,
-		pos T.Gssize,
-		val string) *T.GString
-
-	StringInsertC func(str *T.GString,
-		pos T.Gssize,
-		c T.Gchar) *T.GString
-
-	StringInsertUnichar func(str *T.GString,
-		pos T.Gssize,
-		wc T.Gunichar) *T.GString
-
-	StringOverwrite func(str *T.GString,
-		pos T.Gsize,
-		val string) *T.GString
-
-	StringOverwriteLen func(str *T.GString,
-		pos T.Gsize,
-		val string,
-		leng T.Gssize) *T.GString
-
-	StringErase func(str *T.GString,
-		pos T.Gssize,
-		leng T.Gssize) *T.GString
-
-	StringAsciiDown func(str *T.GString) *T.GString
-
-	StringAsciiUp func(str *T.GString) *T.GString
-
-	StringVprintf func(str *T.GString,
-		format string,
-		args T.VaList)
-
-	StringPrintf func(str *T.GString, format string, v ...VArg)
-
-	StringAppendVprintf func(str *T.GString,
-		format string,
-		args T.VaList)
-
-	StringAppendPrintf func(str *T.GString,
-		format string, v ...VArg)
-
-	StringAppendUriEscaped func(str *T.GString,
-		unescaped string,
-		reservedChars_Allowed string,
-		allowUtf8 bool) *T.GString
 
 	IoChannelInit func(channel *T.GIOChannel)
 
@@ -2747,24 +2057,6 @@ var (
 	OptionGroupSetTranslationDomain func(group *T.GOptionGroup,
 		domain string)
 
-	PatternSpecNew func(pattern string) *T.GPatternSpec
-
-	PatternSpecFree func(pspec *T.GPatternSpec)
-
-	PatternSpecEqual func(pspec1 *T.GPatternSpec,
-		pspec2 *T.GPatternSpec) bool
-
-	PatternMatch func(pspec *T.GPatternSpec,
-		stringLength uint,
-		str string,
-		stringReversed string) bool
-
-	PatternMatchString func(pspec *T.GPatternSpec,
-		str string) bool
-
-	PatternMatchSimple func(pattern string,
-		str string) bool
-
 	SpacedPrimesClosest func(num uint) uint
 
 	QsortWithData func(pbase T.Gconstpointer,
@@ -3094,232 +2386,6 @@ var (
 
 	MatchInfoFetchAll func(
 		matchInfo *T.GMatchInfo) []string
-
-	ScannerNew func(
-		configTempl *T.GScannerConfig) *T.GScanner
-
-	ScannerDestroy func(scanner *T.GScanner)
-
-	ScannerInputFile func(scanner *T.GScanner,
-		inputFd int)
-
-	ScannerSyncFileOffset func(scanner *T.GScanner)
-
-	ScannerInputText func(scanner *T.GScanner,
-		text string, textLen uint)
-
-	ScannerGetNextToken func(scanner *T.GScanner) T.GTokenType
-
-	ScannerPeekNextToken func(scanner *T.GScanner) T.GTokenType
-
-	ScannerCurToken func(scanner *T.GScanner) T.GTokenType
-
-	ScannerCurValue func(scanner *T.GScanner) T.GTokenValue
-
-	ScannerCurLine func(scanner *T.GScanner) uint
-
-	ScannerCurPosition func(scanner *T.GScanner) uint
-
-	ScannerEof func(scanner *T.GScanner) bool
-
-	ScannerSetScope func(scanner *T.GScanner,
-		scopeId uint) uint
-
-	ScannerScopeAddSymbol func(scanner *T.GScanner,
-		scopeId uint, symbol string, value T.Gpointer)
-
-	ScannerScopeRemoveSymbol func(scanner *T.GScanner,
-		scopeId uint, symbol string)
-
-	ScannerScopeLookupSymbol func(scanner *T.GScanner,
-		scopeId uint, symbol string) T.Gpointer
-
-	ScannerScopeForeachSymbol func(scanner *T.GScanner,
-		scopeId uint, f T.GHFunc, userData T.Gpointer)
-
-	ScannerLookupSymbol func(scanner *T.GScanner,
-		symbol string) T.Gpointer
-
-	ScannerUnexpToken func(scanner *T.GScanner,
-		expectedToken T.GTokenType,
-		identifierSpec, symbolSpec, symbolName, message string,
-		isError int)
-
-	ScannerError func(scanner *T.GScanner,
-		format string, v ...VArg)
-
-	ScannerWarn func(scanner *T.GScanner,
-		format string, v ...VArg)
-
-	SequenceNew func(dataDestroy T.GDestroyNotify) *T.GSequence
-
-	SequenceFree func(seq *T.GSequence)
-
-	SequenceGetLength func(seq *T.GSequence) int
-
-	SequenceForeach func(seq *T.GSequence,
-		f T.GFunc, userData T.Gpointer)
-
-	SequenceForeachRange func(begin *T.GSequenceIter,
-		end *T.GSequenceIter, f T.GFunc, userData T.Gpointer)
-
-	SequenceSort func(seq *T.GSequence,
-		cmpFunc T.GCompareDataFunc, cmpData T.Gpointer)
-
-	SequenceSortIter func(seq *T.GSequence,
-		cmpFunc T.GSequenceIterCompareFunc, cmpData T.Gpointer)
-
-	SequenceGetBeginIter func(seq *T.GSequence) *T.GSequenceIter
-
-	SequenceGetEndIter func(seq *T.GSequence) *T.GSequenceIter
-
-	SequenceGetIterAtPos func(seq *T.GSequence,
-		pos int) *T.GSequenceIter
-
-	SequenceAppend func(seq *T.GSequence,
-		data T.Gpointer) *T.GSequenceIter
-
-	SequencePrepend func(seq *T.GSequence,
-		data T.Gpointer) *T.GSequenceIter
-
-	SequenceInsertBefore func(iter *T.GSequenceIter,
-		data T.Gpointer) *T.GSequenceIter
-
-	SequenceMove func(src *T.GSequenceIter,
-		dest *T.GSequenceIter)
-
-	SequenceSwap func(a *T.GSequenceIter,
-		b *T.GSequenceIter)
-
-	SequenceInsertSorted func(seq *T.GSequence,
-		data T.Gpointer,
-		cmpFunc T.GCompareDataFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceInsertSortedIter func(seq *T.GSequence,
-		data T.Gpointer,
-		iterCmp T.GSequenceIterCompareFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceSortChanged func(iter *T.GSequenceIter,
-		cmpFunc T.GCompareDataFunc,
-		cmpData T.Gpointer)
-
-	SequenceSortChangedIter func(iter *T.GSequenceIter,
-		iterCmp T.GSequenceIterCompareFunc,
-		cmpData T.Gpointer)
-
-	SequenceRemove func(iter *T.GSequenceIter)
-
-	SequenceRemoveRange func(begin *T.GSequenceIter,
-		end *T.GSequenceIter)
-
-	SequenceMoveRange func(dest *T.GSequenceIter,
-		begin *T.GSequenceIter,
-		end *T.GSequenceIter)
-
-	SequenceSearch func(seq *T.GSequence,
-		data T.Gpointer,
-		cmpFunc T.GCompareDataFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceSearchIter func(seq *T.GSequence,
-		data T.Gpointer,
-		iterCmp T.GSequenceIterCompareFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceLookup func(seq *T.GSequence,
-		data T.Gpointer,
-		cmpFunc T.GCompareDataFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceLookupIter func(seq *T.GSequence,
-		data T.Gpointer,
-		iterCmp T.GSequenceIterCompareFunc,
-		cmpData T.Gpointer) *T.GSequenceIter
-
-	SequenceGet func(iter *T.GSequenceIter) T.Gpointer
-
-	SequenceSet func(iter *T.GSequenceIter,
-		data T.Gpointer)
-
-	SequenceIterIsBegin func(iter *T.GSequenceIter) bool
-
-	SequenceIterIsEnd func(iter *T.GSequenceIter) bool
-
-	SequenceIterNext func(iter *T.GSequenceIter) *T.GSequenceIter
-
-	SequenceIterPrev func(iter *T.GSequenceIter) *T.GSequenceIter
-
-	SequenceIterGetPosition func(iter *T.GSequenceIter) int
-
-	SequenceIterMove func(iter *T.GSequenceIter,
-		delta int) *T.GSequenceIter
-
-	SequenceIterGetSequence func(iter *T.GSequenceIter) *T.GSequence
-
-	SequenceIterCompare func(a *T.GSequenceIter,
-		b *T.GSequenceIter) int
-
-	SequenceRangeGetMidpoint func(begin *T.GSequenceIter,
-		end *T.GSequenceIter) *T.GSequenceIter
-
-	ShellErrorQuark func() T.GQuark
-
-	ShellQuote func(unquotedString string) string
-
-	ShellUnquote func(quotedString string,
-		e **T.GError) string
-
-	ShellParseArgv func(commandLine string,
-		argcp *int,
-		argvp ***T.Gchar,
-		e **T.GError) bool
-
-	SpawnErrorQuark func() T.GQuark
-
-	SpawnAsync func(workingDirectory string,
-		argv []string,
-		envp []string,
-		flags T.GSpawnFlags,
-		childSetup T.GSpawnChildSetupFunc,
-		userData T.Gpointer,
-		childPid *T.GPid,
-		e **T.GError) bool
-
-	SpawnAsyncWithPipes func(workingDirectory string,
-		argv []string,
-		envp []string,
-		flags T.GSpawnFlags,
-		childSetup T.GSpawnChildSetupFunc,
-		userData T.Gpointer,
-		childPid *T.GPid,
-		standardInput *int,
-		standardOutput *int,
-		standardError *int,
-		e **T.GError) bool
-
-	SpawnSync func(workingDirectory string,
-		argv []string,
-		envp []string,
-		flags T.GSpawnFlags,
-		childSetup T.GSpawnChildSetupFunc,
-		userData T.Gpointer,
-		standardOutput **T.Gchar,
-		standardError **T.Gchar,
-		exitStatus *int,
-		e **T.GError) bool
-
-	SpawnCommandLineSync func(commandLine string,
-		standardOutput **T.Gchar,
-		standardError **T.Gchar,
-		exitStatus *int,
-		e **T.GError) bool
-
-	SpawnCommandLineAsync func(commandLine string,
-		e **T.GError) bool
-
-	SpawnClosePid func(pid T.GPid)
 	//
 	AsciiTolower func(c T.Gchar) T.Gchar
 
@@ -3523,46 +2589,6 @@ var (
 		f string,
 		assertionFlags uint64,
 		pattern string)
-
-	AssertionMessage func(domain string,
-		file string,
-		line int,
-		f string,
-		message string)
-
-	AssertionMessageExpr func(domain string,
-		file string,
-		line int,
-		f string,
-		expr string)
-
-	AssertionMessageCmpstr func(domain string,
-		file string,
-		line int,
-		f string,
-		expr string,
-		arg1 string,
-		cmp string,
-		arg2 string)
-
-	AssertionMessageCmpnum func(domain string,
-		file string,
-		line int,
-		f string,
-		expr string,
-		arg1 T.LongDouble,
-		cmp string,
-		arg2 T.LongDouble,
-		numtype T.Char)
-
-	AssertionMessageError func(domain string,
-		file string,
-		line int,
-		f string,
-		expr string,
-		e *T.GError,
-		errorDomain T.GQuark,
-		errorCode int)
 
 	TestAddVtable func(testpath string,
 		dataSize T.Gsize,
@@ -4119,24 +3145,6 @@ var (
 
 	RegexErrorQuark func() T.GQuark
 
-	StaticPrivateFree func(
-		privateKey *T.GStaticPrivate)
-
-	StaticPrivateGet func(
-		privateKey *T.GStaticPrivate) T.Gpointer
-
-	StaticPrivateInit func(privateKey *T.GStaticPrivate)
-
-	StaticPrivateSet func(privateKey *T.GStaticPrivate,
-		data T.Gpointer, notify T.GDestroyNotify)
-
-	StringChunkInsertConst func(
-		chunk *T.GStringChunk, str string) string
-
-	StringDown func(str *T.GString) *T.GString
-
-	StringUp func(str *T.GString) *T.GString
-
 	TrashStackPush func(
 		stackP **T.GTrashStack, dataP T.Gpointer)
 
@@ -4153,23 +3161,23 @@ var apiList = outside.Apis{
 	// Undocumented {"_g_debug_flags", &_gDebugFlags},
 	// Undocumented {"_g_debug_initialized", &_gDebugInitialized},
 	{"g_access", &Access},
-	{"g_allocator_free", &AllocatorFree},
+	{"g_allocator_free", &allocatorFree},
 	{"g_allocator_new", &AllocatorNew},
-	{"g_array_append_vals", &ArrayAppendVals},
-	{"g_array_free", &ArrayFree},
-	{"g_array_get_element_size", &ArrayGetElementSize},
-	{"g_array_insert_vals", &ArrayInsertVals},
+	{"g_array_append_vals", &arrayAppendVals},
+	{"g_array_free", &arrayFree},
+	{"g_array_get_element_size", &arrayGetElementSize},
+	{"g_array_insert_vals", &arrayInsertVals},
 	{"g_array_new", &ArrayNew},
-	{"g_array_prepend_vals", &ArrayPrependVals},
-	{"g_array_ref", &ArrayRef},
-	{"g_array_remove_index", &ArrayRemoveIndex},
-	{"g_array_remove_index_fast", &ArrayRemoveIndexFast},
-	{"g_array_remove_range", &ArrayRemoveRange},
-	{"g_array_set_size", &ArraySetSize},
+	{"g_array_prepend_vals", &arrayPrependVals},
+	{"g_array_ref", &arrayRef},
+	{"g_array_remove_index", &arrayRemoveIndex},
+	{"g_array_remove_index_fast", &arrayRemoveIndexFast},
+	{"g_array_remove_range", &arrayRemoveRange},
+	{"g_array_set_size", &arraySetSize},
 	{"g_array_sized_new", &ArraySizedNew},
-	{"g_array_sort", &ArraySort},
-	{"g_array_sort_with_data", &ArraySortWithData},
-	{"g_array_unref", &ArrayUnref},
+	{"g_array_sort", &arraySort},
+	{"g_array_sort_with_data", &arraySortWithData},
+	{"g_array_unref", &arrayUnref},
 	{"g_ascii_digit_value", &AsciiDigitValue},
 	{"g_ascii_dtostr", &AsciiDtostr},
 	{"g_ascii_formatd", &AsciiFormatd},
@@ -4189,28 +3197,28 @@ var apiList = outside.Apis{
 	{"g_assertion_message_cmpstr", &AssertionMessageCmpstr},
 	{"g_assertion_message_error", &AssertionMessageError},
 	{"g_assertion_message_expr", &AssertionMessageExpr},
-	{"g_async_queue_length", &AsyncQueueLength},
-	{"g_async_queue_length_unlocked", &AsyncQueueLengthUnlocked},
-	{"g_async_queue_lock", &AsyncQueueLock},
+	{"g_async_queue_length", &asyncQueueLength},
+	{"g_async_queue_length_unlocked", &asyncQueueLengthUnlocked},
+	{"g_async_queue_lock", &asyncQueueLock},
 	{"g_async_queue_new", &AsyncQueueNew},
 	{"g_async_queue_new_full", &AsyncQueueNewFull},
-	{"g_async_queue_pop", &AsyncQueuePop},
-	{"g_async_queue_pop_unlocked", &AsyncQueuePopUnlocked},
-	{"g_async_queue_push", &AsyncQueuePush},
-	{"g_async_queue_push_sorted", &AsyncQueuePushSorted},
-	{"g_async_queue_push_sorted_unlocked", &AsyncQueuePushSortedUnlocked},
-	{"g_async_queue_push_unlocked", &AsyncQueuePushUnlocked},
-	{"g_async_queue_ref", &AsyncQueueRef},
-	{"g_async_queue_ref_unlocked", &AsyncQueueRefUnlocked},
-	{"g_async_queue_sort", &AsyncQueueSort},
-	{"g_async_queue_sort_unlocked", &AsyncQueueSortUnlocked},
-	{"g_async_queue_timed_pop", &AsyncQueueTimedPop},
-	{"g_async_queue_timed_pop_unlocked", &AsyncQueueTimedPopUnlocked},
-	{"g_async_queue_try_pop", &AsyncQueueTryPop},
-	{"g_async_queue_try_pop_unlocked", &AsyncQueueTryPopUnlocked},
-	{"g_async_queue_unlock", &AsyncQueueUnlock},
-	{"g_async_queue_unref", &AsyncQueueUnref},
-	{"g_async_queue_unref_and_unlock", &AsyncQueueUnrefAndUnlock},
+	{"g_async_queue_pop", &asyncQueuePop},
+	{"g_async_queue_pop_unlocked", &asyncQueuePopUnlocked},
+	{"g_async_queue_push", &asyncQueuePush},
+	{"g_async_queue_push_sorted", &asyncQueuePushSorted},
+	{"g_async_queue_push_sorted_unlocked", &asyncQueuePushSortedUnlocked},
+	{"g_async_queue_push_unlocked", &asyncQueuePushUnlocked},
+	{"g_async_queue_ref", &asyncQueueRef},
+	{"g_async_queue_ref_unlocked", &asyncQueueRefUnlocked},
+	{"g_async_queue_sort", &asyncQueueSort},
+	{"g_async_queue_sort_unlocked", &asyncQueueSortUnlocked},
+	{"g_async_queue_timed_pop", &asyncQueueTimedPop},
+	{"g_async_queue_timed_pop_unlocked", &asyncQueueTimedPopUnlocked},
+	{"g_async_queue_try_pop", &asyncQueueTryPop},
+	{"g_async_queue_try_pop_unlocked", &asyncQueueTryPopUnlocked},
+	{"g_async_queue_unlock", &asyncQueueUnlock},
+	{"g_async_queue_unref", &asyncQueueUnref},
+	{"g_async_queue_unref_and_unlock", &asyncQueueUnrefAndUnlock},
 	{"g_atexit", &Atexit},
 	{"g_atomic_int_add", &AtomicIntAdd},
 	{"g_atomic_int_compare_and_exchange", &AtomicIntCompareAndExchange},
@@ -4234,63 +3242,63 @@ var apiList = outside.Apis{
 	{"g_bit_trylock", &BitTrylock},
 	{"g_bit_unlock", &BitUnlock},
 	{"g_blow_chunks", &BlowChunks},
-	{"g_bookmark_file_add_application", &BookmarkFileAddApplication},
-	{"g_bookmark_file_add_group", &BookmarkFileAddGroup},
+	{"g_bookmark_file_add_application", &bookmarkFileAddApplication},
+	{"g_bookmark_file_add_group", &bookmarkFileAddGroup},
 	{"g_bookmark_file_error_quark", &BookmarkFileErrorQuark},
-	{"g_bookmark_file_free", &BookmarkFileFree},
-	{"g_bookmark_file_get_added", &BookmarkFileGetAdded},
-	{"g_bookmark_file_get_app_info", &BookmarkFileGetAppInfo},
-	{"g_bookmark_file_get_applications", &BookmarkFileGetApplications},
-	{"g_bookmark_file_get_description", &BookmarkFileGetDescription},
-	{"g_bookmark_file_get_groups", &BookmarkFileGetGroups},
-	{"g_bookmark_file_get_icon", &BookmarkFileGetIcon},
-	{"g_bookmark_file_get_is_private", &BookmarkFileGetIsPrivate},
-	{"g_bookmark_file_get_mime_type", &BookmarkFileGetMimeType},
-	{"g_bookmark_file_get_modified", &BookmarkFileGetModified},
-	{"g_bookmark_file_get_size", &BookmarkFileGetSize},
-	{"g_bookmark_file_get_title", &BookmarkFileGetTitle},
-	{"g_bookmark_file_get_uris", &BookmarkFileGetUris},
-	{"g_bookmark_file_get_visited", &BookmarkFileGetVisited},
-	{"g_bookmark_file_has_application", &BookmarkFileHasApplication},
-	{"g_bookmark_file_has_group", &BookmarkFileHasGroup},
-	{"g_bookmark_file_has_item", &BookmarkFileHasItem},
-	{"g_bookmark_file_load_from_data", &BookmarkFileLoadFromData},
-	{"g_bookmark_file_load_from_data_dirs", &BookmarkFileLoadFromDataDirs},
-	{"g_bookmark_file_load_from_file", &BookmarkFileLoadFromFile},
-	{"g_bookmark_file_move_item", &BookmarkFileMoveItem},
+	{"g_bookmark_file_free", &bookmarkFileFree},
+	{"g_bookmark_file_get_added", &bookmarkFileGetAdded},
+	{"g_bookmark_file_get_app_info", &bookmarkFileGetAppInfo},
+	{"g_bookmark_file_get_applications", &bookmarkFileGetApplications},
+	{"g_bookmark_file_get_description", &bookmarkFileGetDescription},
+	{"g_bookmark_file_get_groups", &bookmarkFileGetGroups},
+	{"g_bookmark_file_get_icon", &bookmarkFileGetIcon},
+	{"g_bookmark_file_get_is_private", &bookmarkFileGetIsPrivate},
+	{"g_bookmark_file_get_mime_type", &bookmarkFileGetMimeType},
+	{"g_bookmark_file_get_modified", &bookmarkFileGetModified},
+	{"g_bookmark_file_get_size", &bookmarkFileGetSize},
+	{"g_bookmark_file_get_title", &bookmarkFileGetTitle},
+	{"g_bookmark_file_get_uris", &bookmarkFileGetUris},
+	{"g_bookmark_file_get_visited", &bookmarkFileGetVisited},
+	{"g_bookmark_file_has_application", &bookmarkFileHasApplication},
+	{"g_bookmark_file_has_group", &bookmarkFileHasGroup},
+	{"g_bookmark_file_has_item", &bookmarkFileHasItem},
+	{"g_bookmark_file_load_from_data", &bookmarkFileLoadFromData},
+	{"g_bookmark_file_load_from_data_dirs", &bookmarkFileLoadFromDataDirs},
+	{"g_bookmark_file_load_from_file", &bookmarkFileLoadFromFile},
+	{"g_bookmark_file_move_item", &bookmarkFileMoveItem},
 	{"g_bookmark_file_new", &BookmarkFileNew},
-	{"g_bookmark_file_remove_application", &BookmarkFileRemoveApplication},
-	{"g_bookmark_file_remove_group", &BookmarkFileRemoveGroup},
-	{"g_bookmark_file_remove_item", &BookmarkFileRemoveItem},
-	{"g_bookmark_file_set_added", &BookmarkFileSetAdded},
-	{"g_bookmark_file_set_app_info", &BookmarkFileSetAppInfo},
-	{"g_bookmark_file_set_description", &BookmarkFileSetDescription},
-	{"g_bookmark_file_set_groups", &BookmarkFileSetGroups},
-	{"g_bookmark_file_set_icon", &BookmarkFileSetIcon},
-	{"g_bookmark_file_set_is_private", &BookmarkFileSetIsPrivate},
-	{"g_bookmark_file_set_mime_type", &BookmarkFileSetMimeType},
-	{"g_bookmark_file_set_modified", &BookmarkFileSetModified},
-	{"g_bookmark_file_set_title", &BookmarkFileSetTitle},
-	{"g_bookmark_file_set_visited", &BookmarkFileSetVisited},
-	{"g_bookmark_file_to_data", &BookmarkFileToData},
-	{"g_bookmark_file_to_file", &BookmarkFileToFile},
+	{"g_bookmark_file_remove_application", &bookmarkFileRemoveApplication},
+	{"g_bookmark_file_remove_group", &bookmarkFileRemoveGroup},
+	{"g_bookmark_file_remove_item", &bookmarkFileRemoveItem},
+	{"g_bookmark_file_set_added", &bookmarkFileSetAdded},
+	{"g_bookmark_file_set_app_info", &bookmarkFileSetAppInfo},
+	{"g_bookmark_file_set_description", &bookmarkFileSetDescription},
+	{"g_bookmark_file_set_groups", &bookmarkFileSetGroups},
+	{"g_bookmark_file_set_icon", &bookmarkFileSetIcon},
+	{"g_bookmark_file_set_is_private", &bookmarkFileSetIsPrivate},
+	{"g_bookmark_file_set_mime_type", &bookmarkFileSetMimeType},
+	{"g_bookmark_file_set_modified", &bookmarkFileSetModified},
+	{"g_bookmark_file_set_title", &bookmarkFileSetTitle},
+	{"g_bookmark_file_set_visited", &bookmarkFileSetVisited},
+	{"g_bookmark_file_to_data", &bookmarkFileToData},
+	{"g_bookmark_file_to_file", &bookmarkFileToFile},
 	{"g_build_filename", &BuildFilename},
 	{"g_build_filenamev", &BuildFilenamev},
 	{"g_build_path", &BuildPath},
 	{"g_build_pathv", &BuildPathv},
-	{"g_byte_array_append", &ByteArrayAppend},
-	{"g_byte_array_free", &ByteArrayFree},
+	{"g_byte_array_append", &byteArrayAppend},
+	{"g_byte_array_free", &byteArrayFree},
 	{"g_byte_array_new", &ByteArrayNew},
-	{"g_byte_array_prepend", &ByteArrayPrepend},
-	{"g_byte_array_ref", &ByteArrayRef},
-	{"g_byte_array_remove_index", &ByteArrayRemoveIndex},
-	{"g_byte_array_remove_index_fast", &ByteArrayRemoveIndexFast},
-	{"g_byte_array_remove_range", &ByteArrayRemoveRange},
-	{"g_byte_array_set_size", &ByteArraySetSize},
+	{"g_byte_array_prepend", &byteArrayPrepend},
+	{"g_byte_array_ref", &byteArrayRef},
+	{"g_byte_array_remove_index", &byteArrayRemoveIndex},
+	{"g_byte_array_remove_index_fast", &byteArrayRemoveIndexFast},
+	{"g_byte_array_remove_range", &byteArrayRemoveRange},
+	{"g_byte_array_set_size", &byteArraySetSize},
 	{"g_byte_array_sized_new", &ByteArraySizedNew},
-	{"g_byte_array_sort", &ByteArraySort},
-	{"g_byte_array_sort_with_data", &ByteArraySortWithData},
-	{"g_byte_array_unref", &ByteArrayUnref},
+	{"g_byte_array_sort", &byteArraySort},
+	{"g_byte_array_sort_with_data", &byteArraySortWithData},
+	{"g_byte_array_unref", &byteArrayUnref},
 	{"g_cache_destroy", &CacheDestroy},
 	{"g_cache_insert", &CacheInsert},
 	{"g_cache_key_foreach", &CacheKeyForeach},
@@ -4875,11 +3883,11 @@ var apiList = outside.Apis{
 	{"g_path_get_dirname", &PathGetDirname},
 	{"g_path_is_absolute", &PathIsAbsolute},
 	{"g_path_skip_root", &PathSkipRoot},
-	{"g_pattern_match", &PatternMatch},
+	{"g_pattern_match", &patternMatch},
 	{"g_pattern_match_simple", &PatternMatchSimple},
-	{"g_pattern_match_string", &PatternMatchString},
-	{"g_pattern_spec_equal", &PatternSpecEqual},
-	{"g_pattern_spec_free", &PatternSpecFree},
+	{"g_pattern_match_string", &patternMatchString},
+	{"g_pattern_spec_equal", &patternSpecEqual},
+	{"g_pattern_spec_free", &patternSpecFree},
 	{"g_pattern_spec_new", &PatternSpecNew},
 	{"g_poll", &Poll},
 	{"g_prefix_error", &PrefixError},
@@ -4889,23 +3897,23 @@ var apiList = outside.Apis{
 	{"g_printf_string_upper_bound", &PrintfStringUpperBound},
 	{"g_propagate_error", &PropagateError},
 	{"g_propagate_prefixed_error", &PropagatePrefixedError},
-	{"g_ptr_array_add", &PtrArrayAdd},
-	{"g_ptr_array_foreach", &PtrArrayForeach},
-	{"g_ptr_array_free", &PtrArrayFree},
+	{"g_ptr_array_add", &ptrArrayAdd},
+	{"g_ptr_array_foreach", &ptrArrayForeach},
+	{"g_ptr_array_free", &ptrArrayFree},
 	{"g_ptr_array_new", &PtrArrayNew},
 	{"g_ptr_array_new_with_free_func", &PtrArrayNewWithFreeFunc},
-	{"g_ptr_array_ref", &PtrArrayRef},
-	{"g_ptr_array_remove", &PtrArrayRemove},
-	{"g_ptr_array_remove_fast", &PtrArrayRemoveFast},
-	{"g_ptr_array_remove_index", &PtrArrayRemoveIndex},
-	{"g_ptr_array_remove_index_fast", &PtrArrayRemoveIndexFast},
-	{"g_ptr_array_remove_range", &PtrArrayRemoveRange},
-	{"g_ptr_array_set_free_func", &PtrArraySetFreeFunc},
-	{"g_ptr_array_set_size", &PtrArraySetSize},
+	{"g_ptr_array_ref", &ptrArrayRef},
+	{"g_ptr_array_remove", &ptrArrayRemove},
+	{"g_ptr_array_remove_fast", &ptrArrayRemoveFast},
+	{"g_ptr_array_remove_index", &ptrArrayRemoveIndex},
+	{"g_ptr_array_remove_index_fast", &ptrArrayRemoveIndexFast},
+	{"g_ptr_array_remove_range", &ptrArrayRemoveRange},
+	{"g_ptr_array_set_free_func", &ptrArraySetFreeFunc},
+	{"g_ptr_array_set_size", &ptrArraySetSize},
 	{"g_ptr_array_sized_new", &PtrArraySizedNew},
-	{"g_ptr_array_sort", &PtrArraySort},
-	{"g_ptr_array_sort_with_data", &PtrArraySortWithData},
-	{"g_ptr_array_unref", &PtrArrayUnref},
+	{"g_ptr_array_sort", &ptrArraySort},
+	{"g_ptr_array_sort_with_data", &ptrArraySortWithData},
+	{"g_ptr_array_unref", &ptrArrayUnref},
 	{"g_qsort_with_data", &QsortWithData},
 	{"g_quark_from_static_string", &QuarkFromStaticString},
 	{"g_quark_from_string", &QuarkFromString},
@@ -5084,35 +4092,35 @@ var apiList = outside.Apis{
 	{"g_slice_get_config_state", &SliceGetConfigState},
 	{"g_slice_set_config", &SliceSetConfig},
 	{"g_slist_alloc", &SlistAlloc},
-	{"g_slist_append", &SlistAppend},
-	{"g_slist_concat", &SlistConcat},
-	{"g_slist_copy", &SlistCopy},
-	{"g_slist_delete_link", &SlistDeleteLink},
-	{"g_slist_find", &SlistFind},
-	{"g_slist_find_custom", &SlistFindCustom},
-	{"g_slist_foreach", &SlistForeach},
-	{"g_slist_free", &SlistFree},
-	{"g_slist_free_1", &SlistFree1},
-	{"g_slist_free_full", &SlistFreeFull},
-	{"g_slist_index", &SlistIndex},
-	{"g_slist_insert", &SlistInsert},
-	{"g_slist_insert_before", &SlistInsertBefore},
-	{"g_slist_insert_sorted", &SlistInsertSorted},
-	{"g_slist_insert_sorted_with_data", &SlistInsertSortedWithData},
-	{"g_slist_last", &SlistLast},
-	{"g_slist_length", &SlistLength},
-	{"g_slist_nth", &SlistNth},
-	{"g_slist_nth_data", &SlistNthData},
+	{"g_slist_append", &slistAppend},
+	{"g_slist_concat", &slistConcat},
+	{"g_slist_copy", &slistCopy},
+	{"g_slist_delete_link", &slistDeleteLink},
+	{"g_slist_find", &slistFind},
+	{"g_slist_find_custom", &slistFindCustom},
+	{"g_slist_foreach", &slistForeach},
+	{"g_slist_free", &slistFree},
+	{"g_slist_free_1", &slistFree1},
+	{"g_slist_free_full", &slistFreeFull},
+	{"g_slist_index", &slistIndex},
+	{"g_slist_insert", &slistInsert},
+	{"g_slist_insert_before", &slistInsertBefore},
+	{"g_slist_insert_sorted", &slistInsertSorted},
+	{"g_slist_insert_sorted_with_data", &slistInsertSortedWithData},
+	{"g_slist_last", &slistLast},
+	{"g_slist_length", &slistLength},
+	{"g_slist_nth", &slistNth},
+	{"g_slist_nth_data", &slistNthData},
 	{"g_slist_pop_allocator", &SlistPopAllocator},
-	{"g_slist_position", &SlistPosition},
-	{"g_slist_prepend", &SlistPrepend},
+	{"g_slist_position", &slistPosition},
+	{"g_slist_prepend", &slistPrepend},
 	{"g_slist_push_allocator", &SlistPushAllocator},
-	{"g_slist_remove", &SlistRemove},
-	{"g_slist_remove_all", &SlistRemoveAll},
-	{"g_slist_remove_link", &SlistRemoveLink},
-	{"g_slist_reverse", &SlistReverse},
-	{"g_slist_sort", &SlistSort},
-	{"g_slist_sort_with_data", &SlistSortWithData},
+	{"g_slist_remove", &slistRemove},
+	{"g_slist_remove_all", &slistRemoveAll},
+	{"g_slist_remove_link", &slistRemoveLink},
+	{"g_slist_reverse", &slistReverse},
+	{"g_slist_sort", &slistSort},
+	{"g_slist_sort_with_data", &slistSortWithData},
 	{"g_snprintf", &Snprintf},
 	{"g_source_add_child_source", &SourceAddChildSource},
 	{"g_source_add_poll", &SourceAddPoll},
@@ -5163,21 +4171,21 @@ var apiList = outside.Apis{
 	{"g_static_private_get", &StaticPrivateGet},
 	{"g_static_private_init", &StaticPrivateInit},
 	{"g_static_private_set", &StaticPrivateSet},
-	{"g_static_rec_mutex_free", &StaticRecMutexFree},
-	{"g_static_rec_mutex_init", &StaticRecMutexInit},
-	{"g_static_rec_mutex_lock", &StaticRecMutexLock},
-	{"g_static_rec_mutex_lock_full", &StaticRecMutexLockFull},
-	{"g_static_rec_mutex_trylock", &StaticRecMutexTrylock},
-	{"g_static_rec_mutex_unlock", &StaticRecMutexUnlock},
-	{"g_static_rec_mutex_unlock_full", &StaticRecMutexUnlockFull},
-	{"g_static_rw_lock_free", &StaticRwLockFree},
-	{"g_static_rw_lock_init", &StaticRwLockInit},
-	{"g_static_rw_lock_reader_lock", &StaticRwLockReaderLock},
-	{"g_static_rw_lock_reader_trylock", &StaticRwLockReaderTrylock},
-	{"g_static_rw_lock_reader_unlock", &StaticRwLockReaderUnlock},
-	{"g_static_rw_lock_writer_lock", &StaticRwLockWriterLock},
-	{"g_static_rw_lock_writer_trylock", &StaticRwLockWriterTrylock},
-	{"g_static_rw_lock_writer_unlock", &StaticRwLockWriterUnlock},
+	{"g_static_rec_mutex_free", &staticRecMutexFree},
+	{"g_static_rec_mutex_init", &staticRecMutexInit},
+	{"g_static_rec_mutex_lock", &staticRecMutexLock},
+	{"g_static_rec_mutex_lock_full", &staticRecMutexLockFull},
+	{"g_static_rec_mutex_trylock", &staticRecMutexTrylock},
+	{"g_static_rec_mutex_unlock", &staticRecMutexUnlock},
+	{"g_static_rec_mutex_unlock_full", &staticRecMutexUnlockFull},
+	{"g_static_rw_lock_free", &staticRwLockFree},
+	{"g_static_rw_lock_init", &staticRwLockInit},
+	{"g_static_rw_lock_reader_lock", &staticRwLockReaderLock},
+	{"g_static_rw_lock_reader_trylock", &staticRwLockReaderTrylock},
+	{"g_static_rw_lock_reader_unlock", &staticRwLockReaderUnlock},
+	{"g_static_rw_lock_writer_lock", &staticRwLockWriterLock},
+	{"g_static_rw_lock_writer_trylock", &staticRwLockWriterTrylock},
+	{"g_static_rw_lock_writer_unlock", &staticRwLockWriterUnlock},
 	{"g_stpcpy", &Stpcpy},
 	{"g_str_equal", &StrEqual},
 	{"g_str_has_prefix", &StrHasPrefix},

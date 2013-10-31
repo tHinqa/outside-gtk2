@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -265,7 +266,7 @@ type RcStyle struct {
 	Base            [5]D.Color
 	Xthickness      int
 	Ythickness      int
-	RcProperties    *T.GArray
+	RcProperties    *L.Array
 	RcStyleLists    *T.GSList
 	IconFactories   *T.GSList
 	EngineSpecified uint //: 1
