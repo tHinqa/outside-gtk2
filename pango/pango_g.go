@@ -11,7 +11,7 @@ import (
 var (
 	GetLibSubdirectory     func() string
 	GetLogAttrs            func(text string, length, level int, language *Language, logAttrs *LogAttr, attrsLen int)
-	GetMirrorChar          func(ch T.Gunichar, mirroredCh *T.Gunichar) T.Gboolean
+	GetMirrorChar          func(ch T.Gunichar, mirroredCh *T.Gunichar) bool
 	GetSysconfSubdirectory func() string
 )
 
@@ -84,22 +84,22 @@ var (
 
 	glyphItemIterCopy        func(orig *GlyphItemIter) *GlyphItemIter
 	glyphItemIterFree        func(iter *GlyphItemIter)
-	glyphItemIterInitEnd     func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) T.Gboolean
-	glyphItemIterInitStart   func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) T.Gboolean
-	glyphItemIterNextCluster func(iter *GlyphItemIter) T.Gboolean
-	glyphItemIterPrevCluster func(iter *GlyphItemIter) T.Gboolean
+	glyphItemIterInitEnd     func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
+	glyphItemIterInitStart   func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
+	glyphItemIterNextCluster func(iter *GlyphItemIter) bool
+	glyphItemIterPrevCluster func(iter *GlyphItemIter) bool
 )
 
 func (g *GlyphItemIter) Copy() *GlyphItemIter { return glyphItemIterCopy(g) }
 func (g *GlyphItemIter) Free()                { glyphItemIterFree(g) }
-func (g *GlyphItemIter) InitEnd(glyphItem *GlyphItem, text string) T.Gboolean {
+func (g *GlyphItemIter) InitEnd(glyphItem *GlyphItem, text string) bool {
 	return glyphItemIterInitEnd(g, glyphItem, text)
 }
-func (g *GlyphItemIter) InitStart(glyphItem *GlyphItem, text string) T.Gboolean {
+func (g *GlyphItemIter) InitStart(glyphItem *GlyphItem, text string) bool {
 	return glyphItemIterInitStart(g, glyphItem, text)
 }
-func (g *GlyphItemIter) NextCluster() T.Gboolean { return glyphItemIterNextCluster(g) }
-func (g *GlyphItemIter) PrevCluster() T.Gboolean { return glyphItemIterPrevCluster(g) }
+func (g *GlyphItemIter) NextCluster() bool { return glyphItemIterNextCluster(g) }
+func (g *GlyphItemIter) PrevCluster() bool { return glyphItemIterPrevCluster(g) }
 
 type GlyphString struct {
 	NumGlyphs   int
@@ -118,7 +118,7 @@ var (
 	glyphStringFree             func(g *GlyphString)
 	glyphStringGetLogicalWidths func(g *GlyphString, text string, length, embeddingLevel int, logicalWidths *int)
 	glyphStringGetWidth         func(g *GlyphString) int
-	glyphStringIndexToX         func(g *GlyphString, text string, length int, Analysis *Analysis, index int, trailing T.Gboolean, xPos *int)
+	glyphStringIndexToX         func(g *GlyphString, text string, length int, Analysis *Analysis, index int, trailing bool, xPos *int)
 	glyphStringSetSize          func(g *GlyphString, newLen int)
 	glyphStringXToIndex         func(g *GlyphString, text string, length int, Analysis *Analysis, xPos int, index, trailing *int)
 )
@@ -135,7 +135,7 @@ func (g *GlyphString) GetLogicalWidths(text string, length, embeddingLevel int, 
 	glyphStringGetLogicalWidths(g, text, length, embeddingLevel, logicalWidths)
 }
 func (g *GlyphString) GetWidth() int { return glyphStringGetWidth(g) }
-func (g *GlyphString) IndexToX(text string, length int, Analysis *Analysis, index int, trailing T.Gboolean, xPos *int) {
+func (g *GlyphString) IndexToX(text string, length int, Analysis *Analysis, index int, trailing bool, xPos *int) {
 	glyphStringIndexToX(g, text, length, Analysis, index, trailing, xPos)
 }
 func (g *GlyphString) SetSize(newLen int) { glyphStringSetSize(g, newLen) }
@@ -158,7 +158,7 @@ var (
 
 	GravityGetForMatrix         func(matrix *Matrix) Gravity
 	GravityGetForScript         func(script Script, baseGravity Gravity, hint GravityHint) Gravity
-	GravityGetForScriptAndWidth func(script Script, wide T.Gboolean, baseGravity Gravity, hint GravityHint) Gravity
+	GravityGetForScriptAndWidth func(script Script, wide bool, baseGravity Gravity, hint GravityHint) Gravity
 
 	gravityToRotation func(g Gravity) float64
 )

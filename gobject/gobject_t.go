@@ -14,8 +14,8 @@ var (
 
 	TypeAddClassCacheFunc     func(cacheData T.Gpointer, cacheFunc T.GTypeClassCacheFunc)
 	TypeAddInterfaceCheck     func(checkData T.Gpointer, checkFunc T.GTypeInterfaceCheckFunc)
-	TypeCheckValue            func(value *Value) T.Gboolean
-	TypeCheckValueHolds       func(value *Value, t Type) T.Gboolean
+	TypeCheckValue            func(value *Value) bool
+	TypeCheckValueHolds       func(value *Value, t Type) bool
 	TypeClassAddPrivate       func(gClass T.Gpointer, privateSize T.Gsize)
 	TypeClassPeekParent       func(gClass T.Gpointer) T.Gpointer
 	TypeClassUnref            func(gClass T.Gpointer)
@@ -31,9 +31,9 @@ var (
 	typeAddClassPrivate          func(classType Type, privateSize T.Gsize)
 	typeAddInterfaceDynamic      func(instanceType Type, interfaceType Type, plugin *TypePlugin)
 	typeAddInterfaceStatic       func(instanceType Type, interfaceType Type, info *T.GInterfaceInfo)
-	typeCheckIsValueType         func(t Type) T.Gboolean
-	typeCheckValue               func(value *Value) T.Gboolean
-	typeCheckValueHolds          func(value *Value, t Type) T.Gboolean
+	typeCheckIsValueType         func(t Type) bool
+	typeCheckValue               func(value *Value) bool
+	typeCheckValueHolds          func(value *Value, t Type) bool
 	typeChildren                 func(t Type, nChildren *uint) *Type
 	typeClassPeek                func(t Type) T.Gpointer
 	typeClassPeekStatic          func(t Type) T.Gpointer
@@ -49,7 +49,7 @@ var (
 	typeInterfaceGetPlugin       func(instanceType Type, interfaceType Type) *TypePlugin
 	typeInterfacePrerequisites   func(interfaceType Type, nPrerequisites *uint) *Type
 	typeInterfaces               func(t Type, nInterfaces *uint) *Type
-	typeIsA                      func(t, isAType Type) T.Gboolean
+	typeIsA                      func(t, isAType Type) bool
 	typeName                     func(t Type) string
 	typeNextBase                 func(leafType, rootType Type) Type
 	typeParent                   func(t Type) Type
@@ -60,7 +60,7 @@ var (
 	typeRegisterStatic           func(parentType Type, typeName string, info *TypeInfo, flags TypeFlags) Type
 	typeRegisterStaticSimple     func(parentType Type, typeName string, classSize uint, classInit T.GClassInitFunc, instanceSize uint, instanceInit T.GInstanceInitFunc, flags TypeFlags) Type
 	typeSetQdata                 func(t Type, quark T.GQuark, data T.Gpointer)
-	typeTestFlags                func(t Type, flags uint) T.Gboolean
+	typeTestFlags                func(t Type, flags uint) bool
 	typeValueTablePeek           func(t Type) *T.GTypeValueTable
 )
 
@@ -71,7 +71,7 @@ func (t Type) AddInterfaceDynamic(interfaceType Type, plugin *TypePlugin) {
 func (t Type) AddInterfaceStatic(interfaceType Type, info *T.GInterfaceInfo) {
 	typeAddInterfaceStatic(t, interfaceType, info)
 }
-func (t Type) CheckIsValueType() T.Gboolean       { return typeCheckIsValueType(t) }
+func (t Type) CheckIsValueType() bool             { return typeCheckIsValueType(t) }
 func (t Type) Children(nChildren *uint) *Type     { return typeChildren(t, nChildren) }
 func (t Type) ClassPeek() T.Gpointer              { return typeClassPeek(t) }
 func (t Type) ClassPeekStatic() T.Gpointer        { return typeClassPeekStatic(t) }
@@ -92,7 +92,7 @@ func (t Type) InterfacePrerequisites(nPrerequisites *uint) *Type {
 	return typeInterfacePrerequisites(t, nPrerequisites)
 }
 func (t Type) Interfaces(nInterfaces *uint) *Type { return typeInterfaces(t, nInterfaces) }
-func (t Type) IsA(isAType Type) T.Gboolean        { return typeIsA(t, isAType) }
+func (t Type) IsA(isAType Type) bool              { return typeIsA(t, isAType) }
 func (t Type) Name() string                       { return typeName(t) }
 func (t Type) NextBase(rootType Type) Type        { return typeNextBase(t, rootType) }
 func (t Type) Parent() Type                       { return typeParent(t) }
@@ -111,7 +111,7 @@ func (t Type) RegisterStaticSimple(typeName string, classSize uint, classInit T.
 	return typeRegisterStaticSimple(t, typeName, classSize, classInit, instanceSize, instanceInit, flags)
 }
 func (t Type) SetQdata(quark T.GQuark, data T.Gpointer) { typeSetQdata(t, quark, data) }
-func (t Type) TestFlags(flags uint) T.Gboolean          { return typeTestFlags(t, flags) }
+func (t Type) TestFlags(flags uint) bool                { return typeTestFlags(t, flags) }
 func (t Type) ValueTablePeek() *T.GTypeValueTable       { return typeValueTablePeek(t) }
 
 type TypeClass struct {
@@ -120,7 +120,7 @@ type TypeClass struct {
 
 var (
 	typeCheckClassCast  func(class *TypeClass, isAType Type) *TypeClass
-	typeCheckClassIsA   func(class *TypeClass, isAType Type) T.Gboolean
+	typeCheckClassIsA   func(class *TypeClass, isAType Type) bool
 	typeClassGetPrivate func(class *TypeClass, privateType Type) T.Gpointer
 	typeNameFromClass   func(class *TypeClass) string
 )
@@ -129,8 +129,8 @@ func (t *TypeClass) CheckCast(isAType Type) *TypeClass { return typeCheckClassCa
 func (t *TypeClass) GetPrivate(privateType Type) T.Gpointer {
 	return typeClassGetPrivate(t, privateType)
 }
-func (t *TypeClass) IsA(isAType Type) T.Gboolean { return typeCheckClassIsA(t, isAType) }
-func (t *TypeClass) Name() string                { return typeNameFromClass(t) }
+func (t *TypeClass) IsA(isAType Type) bool { return typeCheckClassIsA(t, isAType) }
+func (t *TypeClass) Name() string          { return typeNameFromClass(t) }
 
 type TypeDebugFlags Enum
 
@@ -168,19 +168,19 @@ type TypeInstance struct {
 var (
 	TypeCreateInstance func(t Type) *TypeInstance
 
-	typeCheckInstance      func(i *TypeInstance) T.Gboolean
+	typeCheckInstance      func(i *TypeInstance) bool
 	typeCheckInstanceCast  func(i *TypeInstance, ifaceType Type) *TypeInstance
-	typeCheckInstanceIsA   func(i *TypeInstance, ifaceType Type) T.Gboolean
+	typeCheckInstanceIsA   func(i *TypeInstance, ifaceType Type) bool
 	typeFreeInstance       func(i *TypeInstance)
 	typeInstanceGetPrivate func(i *TypeInstance, privateType Type) T.Gpointer
 	typeNameFromInstance   func(i *TypeInstance) string
 )
 
-func (i *TypeInstance) CheckInstance() T.Gboolean { return typeCheckInstance(i) }
+func (i *TypeInstance) CheckInstance() bool { return typeCheckInstance(i) }
 func (i *TypeInstance) CheckCast(ifaceType Type) *TypeInstance {
 	return typeCheckInstanceCast(i, ifaceType)
 }
-func (i *TypeInstance) IsA(ifaceType Type) T.Gboolean {
+func (i *TypeInstance) IsA(ifaceType Type) bool {
 	return typeCheckInstanceIsA(i, ifaceType)
 }
 func (i *TypeInstance) Free() { typeFreeInstance(i) }
@@ -206,7 +206,7 @@ var (
 	typeModuleRegisterType  func(m *TypeModule, parentType Type, typeName string, typeInfo *TypeInfo, flags TypeFlags) Type
 	typeModuleSetName       func(m *TypeModule, name string)
 	typeModuleUnuse         func(m *TypeModule)
-	typeModuleUse           func(m *TypeModule) T.Gboolean
+	typeModuleUse           func(m *TypeModule) bool
 )
 
 func (m *TypeModule) AddInterface(instanceType, interfaceType Type, interfaceInfo *T.GInterfaceInfo) {
@@ -223,7 +223,7 @@ func (m *TypeModule) RegisterType(parentType Type, typeName string, typeInfo *Ty
 }
 func (m *TypeModule) SetName(name string) { typeModuleSetName(m, name) }
 func (m *TypeModule) Unuse()              { typeModuleUnuse(m) }
-func (m *TypeModule) Use() T.Gboolean     { return typeModuleUse(m) }
+func (m *TypeModule) Use() bool           { return typeModuleUse(m) }
 
 type TypePlugin struct{}
 

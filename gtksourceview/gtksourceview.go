@@ -29,30 +29,30 @@ var (
 	BufferNew             func(table *G.TextTagTable) *Buffer
 	BufferNewWithLanguage func(language *Language) *Buffer
 
-	bufferBackwardIterToSourceMark         func(b *Buffer, iter *G.TextIter, category string) T.Gboolean
+	bufferBackwardIterToSourceMark         func(b *Buffer, iter *G.TextIter, category string) bool
 	bufferBeginNotUndoableAction           func(b *Buffer)
-	bufferCanRedo                          func(b *Buffer) T.Gboolean
-	bufferCanUndo                          func(b *Buffer) T.Gboolean
+	bufferCanRedo                          func(b *Buffer) bool
+	bufferCanUndo                          func(b *Buffer) bool
 	bufferCreateSourceMark                 func(b *Buffer, name, category string, where *G.TextIter) *Mark
 	bufferEndNotUndoableAction             func(b *Buffer)
 	bufferEnsureHighlight                  func(b *Buffer, start, end *G.TextIter)
-	bufferForwardIterToSourceMark          func(b *Buffer, iter *G.TextIter, category string) T.Gboolean
+	bufferForwardIterToSourceMark          func(b *Buffer, iter *G.TextIter, category string) bool
 	bufferGetContextClassesAtIter          func(b *Buffer, iter *G.TextIter) []string
-	bufferGetHighlightMatchingBrackets     func(b *Buffer) T.Gboolean
-	bufferGetHighlightSyntax               func(b *Buffer) T.Gboolean
+	bufferGetHighlightMatchingBrackets     func(b *Buffer) bool
+	bufferGetHighlightSyntax               func(b *Buffer) bool
 	bufferGetLanguage                      func(b *Buffer) *Language
 	bufferGetMaxUndoLevels                 func(b *Buffer) int
 	bufferGetSourceMarksAtIter             func(b *Buffer, iter *G.TextIter, category string) *T.GSList
 	bufferGetSourceMarksAtLine             func(b *Buffer, line int, category string) *T.GSList
 	bufferGetStyleScheme                   func(b *Buffer) *StyleScheme
 	bufferGetUndoManager                   func(b *Buffer) *UndoManager
-	bufferIterBackwardToContextClassToggle func(b *Buffer, iter *G.TextIter, contextClass string) T.Gboolean
-	bufferIterForwardToContextClassToggle  func(b *Buffer, iter *G.TextIter, contextClass string) T.Gboolean
-	bufferIterHasContextClass              func(b *Buffer, iter *G.TextIter, contextClass string) T.Gboolean
+	bufferIterBackwardToContextClassToggle func(b *Buffer, iter *G.TextIter, contextClass string) bool
+	bufferIterForwardToContextClassToggle  func(b *Buffer, iter *G.TextIter, contextClass string) bool
+	bufferIterHasContextClass              func(b *Buffer, iter *G.TextIter, contextClass string) bool
 	bufferRedo                             func(b *Buffer)
 	bufferRemoveSourceMarks                func(b *Buffer, start *G.TextIter, end *G.TextIter, category string)
-	bufferSetHighlightMatchingBrackets     func(b *Buffer, highlight T.Gboolean)
-	bufferSetHighlightSyntax               func(b *Buffer, highlight T.Gboolean)
+	bufferSetHighlightMatchingBrackets     func(b *Buffer, highlight bool)
+	bufferSetHighlightSyntax               func(b *Buffer, highlight bool)
 	bufferSetLanguage                      func(b *Buffer, language *Language)
 	bufferSetMaxUndoLevels                 func(b *Buffer, maxUndoLevels int)
 	bufferSetStyleScheme                   func(b *Buffer, scheme *StyleScheme)
@@ -60,12 +60,12 @@ var (
 	bufferUndo                             func(b *Buffer)
 )
 
-func (b *Buffer) BackwardIterToSourceMark(iter *G.TextIter, category string) T.Gboolean {
+func (b *Buffer) BackwardIterToSourceMark(iter *G.TextIter, category string) bool {
 	return bufferBackwardIterToSourceMark(b, iter, category)
 }
 func (b *Buffer) BeginNotUndoableAction() { bufferBeginNotUndoableAction(b) }
-func (b *Buffer) CanRedo() T.Gboolean     { return bufferCanRedo(b) }
-func (b *Buffer) CanUndo() T.Gboolean     { return bufferCanUndo(b) }
+func (b *Buffer) CanRedo() bool           { return bufferCanRedo(b) }
+func (b *Buffer) CanUndo() bool           { return bufferCanUndo(b) }
 func (b *Buffer) ContextClassesAtIter(iter *G.TextIter) []string {
 	return bufferGetContextClassesAtIter(b, iter)
 }
@@ -74,20 +74,20 @@ func (b *Buffer) CreateSourceMark(name, category string, where *G.TextIter) *Mar
 }
 func (b *Buffer) EndNotUndoableAction()                  { bufferEndNotUndoableAction(b) }
 func (b *Buffer) EnsureHighlight(start, end *G.TextIter) { bufferEnsureHighlight(b, start, end) }
-func (b *Buffer) ForwardIterToSourceMark(iter *G.TextIter, category string) T.Gboolean {
+func (b *Buffer) ForwardIterToSourceMark(iter *G.TextIter, category string) bool {
 	return bufferForwardIterToSourceMark(b, iter, category)
 }
-func (b *Buffer) HighlightMatchingBrackets() T.Gboolean {
+func (b *Buffer) HighlightMatchingBrackets() bool {
 	return bufferGetHighlightMatchingBrackets(b)
 }
-func (b *Buffer) HighlightSyntax() T.Gboolean { return bufferGetHighlightSyntax(b) }
-func (b *Buffer) IterBackwardToContextClassToggle(iter *G.TextIter, contextClass string) T.Gboolean {
+func (b *Buffer) HighlightSyntax() bool { return bufferGetHighlightSyntax(b) }
+func (b *Buffer) IterBackwardToContextClassToggle(iter *G.TextIter, contextClass string) bool {
 	return bufferIterBackwardToContextClassToggle(b, iter, contextClass)
 }
-func (b *Buffer) IterForwardToContextClassToggle(iter *G.TextIter, contextClass string) T.Gboolean {
+func (b *Buffer) IterForwardToContextClassToggle(iter *G.TextIter, contextClass string) bool {
 	return bufferIterForwardToContextClassToggle(b, iter, contextClass)
 }
-func (b *Buffer) IterHasContextClass(iter *G.TextIter, contextClass string) T.Gboolean {
+func (b *Buffer) IterHasContextClass(iter *G.TextIter, contextClass string) bool {
 	return bufferIterHasContextClass(b, iter, contextClass)
 }
 func (b *Buffer) Language() *Language { return bufferGetLanguage(b) }
@@ -96,14 +96,14 @@ func (b *Buffer) Redo()               { bufferRedo(b) }
 func (b *Buffer) RemoveSourceMarks(start *G.TextIter, end *G.TextIter, category string) {
 	bufferRemoveSourceMarks(b, start, end, category)
 }
-func (b *Buffer) SetHighlightMatchingBrackets(highlight T.Gboolean) {
+func (b *Buffer) SetHighlightMatchingBrackets(highlight bool) {
 	bufferSetHighlightMatchingBrackets(b, highlight)
 }
-func (b *Buffer) SetHighlightSyntax(highlight T.Gboolean) { bufferSetHighlightSyntax(b, highlight) }
-func (b *Buffer) SetLanguage(language *Language)          { bufferSetLanguage(b, language) }
-func (b *Buffer) SetMaxUndoLevels(maxUndoLevels int)      { bufferSetMaxUndoLevels(b, maxUndoLevels) }
-func (b *Buffer) SetStyleScheme(scheme *StyleScheme)      { bufferSetStyleScheme(b, scheme) }
-func (b *Buffer) SetUndoManager(manager *UndoManager)     { bufferSetUndoManager(b, manager) }
+func (b *Buffer) SetHighlightSyntax(highlight bool)   { bufferSetHighlightSyntax(b, highlight) }
+func (b *Buffer) SetLanguage(language *Language)      { bufferSetLanguage(b, language) }
+func (b *Buffer) SetMaxUndoLevels(maxUndoLevels int)  { bufferSetMaxUndoLevels(b, maxUndoLevels) }
+func (b *Buffer) SetStyleScheme(scheme *StyleScheme)  { bufferSetStyleScheme(b, scheme) }
+func (b *Buffer) SetUndoManager(manager *UndoManager) { bufferSetUndoManager(b, manager) }
 func (b *Buffer) SourceMarksAtIter(iter *G.TextIter, category string) *T.GSList {
 	return bufferGetSourceMarksAtIter(b, iter, category)
 }
@@ -123,7 +123,7 @@ var (
 	CompletionGetType    func() O.Type
 	CompletionErrorQuark func() T.GQuark
 
-	completionAddProvider        func(c *Completion, provider *CompletionProvider, err **T.GError) T.Gboolean
+	completionAddProvider        func(c *Completion, provider *CompletionProvider, err **T.GError) bool
 	completionBlockInteractive   func(c *Completion)
 	completionCreateContext      func(c *Completion, position *G.TextIter) *CompletionContext
 	completionGetInfoWindow      func(c *Completion) *CompletionInfo
@@ -131,12 +131,12 @@ var (
 	completionGetView            func(c *Completion) *View
 	completionHide               func(c *Completion)
 	completionMoveWindow         func(c *Completion, iter *G.TextIter)
-	completionRemoveProvider     func(c *Completion, provider *CompletionProvider, err **T.GError) T.Gboolean
-	completionShow               func(c *Completion, providers *T.GList, context *CompletionContext) T.Gboolean
+	completionRemoveProvider     func(c *Completion, provider *CompletionProvider, err **T.GError) bool
+	completionShow               func(c *Completion, providers *T.GList, context *CompletionContext) bool
 	completionUnblockInteractive func(c *Completion)
 )
 
-func (c *Completion) AddProvider(provider *CompletionProvider, err **T.GError) T.Gboolean {
+func (c *Completion) AddProvider(provider *CompletionProvider, err **T.GError) bool {
 	return completionAddProvider(c, provider, err)
 }
 func (c *Completion) BlockInteractive() { completionBlockInteractive(c) }
@@ -147,10 +147,10 @@ func (c *Completion) Hide()                       { completionHide(c) }
 func (c *Completion) InfoWindow() *CompletionInfo { return completionGetInfoWindow(c) }
 func (c *Completion) MoveWindow(iter *G.TextIter) { completionMoveWindow(c, iter) }
 func (c *Completion) Providers() *T.GList         { return completionGetProviders(c) }
-func (c *Completion) RemoveProvider(provider *CompletionProvider, err **T.GError) T.Gboolean {
+func (c *Completion) RemoveProvider(provider *CompletionProvider, err **T.GError) bool {
 	return completionRemoveProvider(c, provider, err)
 }
-func (c *Completion) Show(providers *T.GList, context *CompletionContext) T.Gboolean {
+func (c *Completion) Show(providers *T.GList, context *CompletionContext) bool {
 	return completionShow(c, providers, context)
 }
 func (c *Completion) UnblockInteractive() { completionUnblockInteractive(c) }
@@ -174,7 +174,7 @@ type CompletionContext struct {
 var (
 	CompletionContextGetType func() O.Type
 
-	completionContextAddProposals  func(c *CompletionContext, provider *CompletionProvider, proposals *T.GList, finished T.Gboolean)
+	completionContextAddProposals  func(c *CompletionContext, provider *CompletionProvider, proposals *T.GList, finished bool)
 	completionContextGetActivation func(c *CompletionContext) CompletionActivation
 	completionContextGetIter       func(c *CompletionContext, iter *G.TextIter)
 )
@@ -182,7 +182,7 @@ var (
 func (c *CompletionContext) Activation() CompletionActivation {
 	return completionContextGetActivation(c)
 }
-func (c *CompletionContext) AddProposals(provider *CompletionProvider, proposals *T.GList, finished T.Gboolean) {
+func (c *CompletionContext) AddProposals(provider *CompletionProvider, proposals *T.GList, finished bool) {
 	completionContextAddProposals(c, provider, proposals, finished)
 }
 func (c *CompletionContext) Iter(iter *G.TextIter) { completionContextGetIter(c, iter) }
@@ -201,7 +201,7 @@ var (
 	completionInfoGetWidget     func(c *CompletionInfo) *G.Widget
 	completionInfoMoveToIter    func(c *CompletionInfo, view *G.TextView, iter *G.TextIter)
 	completionInfoProcessResize func(c *CompletionInfo)
-	completionInfoSetSizing     func(c *CompletionInfo, width, height int, shrinkWidth T.Gboolean, shrinkHeight T.Gboolean)
+	completionInfoSetSizing     func(c *CompletionInfo, width, height int, shrinkWidth bool, shrinkHeight bool)
 	completionInfoSetWidget     func(c *CompletionInfo, widget *G.Widget)
 )
 
@@ -209,7 +209,7 @@ func (c *CompletionInfo) MoveToIter(view *G.TextView, iter *G.TextIter) {
 	completionInfoMoveToIter(c, view, iter)
 }
 func (c *CompletionInfo) ProcessResize() { completionInfoProcessResize(c) }
-func (c *CompletionInfo) SetSizing(width, height int, shrinkWidth T.Gboolean, shrinkHeight T.Gboolean) {
+func (c *CompletionInfo) SetSizing(width, height int, shrinkWidth bool, shrinkHeight bool) {
 	completionInfoSetSizing(c, width, height, shrinkWidth, shrinkHeight)
 }
 func (c *CompletionInfo) SetWidget(widget *G.Widget) { completionInfoSetWidget(c, widget) }
@@ -233,7 +233,7 @@ var (
 	CompletionProposalGetType func() O.Type
 
 	completionProposalChanged   func(c *CompletionProposal)
-	completionProposalEqual     func(c *CompletionProposal, other *CompletionProposal) T.Gboolean
+	completionProposalEqual     func(c *CompletionProposal, other *CompletionProposal) bool
 	completionProposalGetIcon   func(c *CompletionProposal) *D.Pixbuf
 	completionProposalGetInfo   func(c *CompletionProposal) string
 	completionProposalGetLabel  func(c *CompletionProposal) string
@@ -243,7 +243,7 @@ var (
 )
 
 func (c *CompletionProposal) Changed() { completionProposalChanged(c) }
-func (c *CompletionProposal) Equal(other *CompletionProposal) T.Gboolean {
+func (c *CompletionProposal) Equal(other *CompletionProposal) bool {
 	return completionProposalEqual(c, other)
 }
 func (c *CompletionProposal) Hash() uint      { return completionProposalHash(c) }
@@ -258,15 +258,15 @@ type CompletionProvider struct{}
 var (
 	CompletionProviderGetType func() O.Type
 
-	completionProviderActivateProposal    func(c *CompletionProvider, proposal *CompletionProposal, iter *G.TextIter) T.Gboolean
+	completionProviderActivateProposal    func(c *CompletionProvider, proposal *CompletionProposal, iter *G.TextIter) bool
 	completionProviderGetActivation       func(c *CompletionProvider) CompletionActivation
 	completionProviderGetIcon             func(c *CompletionProvider) *D.Pixbuf
 	completionProviderGetInfoWidget       func(c *CompletionProvider, proposal *CompletionProposal) *G.Widget
 	completionProviderGetInteractiveDelay func(c *CompletionProvider) int
 	completionProviderGetName             func(c *CompletionProvider) string
 	completionProviderGetPriority         func(c *CompletionProvider) int
-	completionProviderGetStartIter        func(c *CompletionProvider, context *CompletionContext, proposal *CompletionProposal, iter *G.TextIter) T.Gboolean
-	completionProviderMatch               func(c *CompletionProvider, context *CompletionContext) T.Gboolean
+	completionProviderGetStartIter        func(c *CompletionProvider, context *CompletionContext, proposal *CompletionProposal, iter *G.TextIter) bool
+	completionProviderMatch               func(c *CompletionProvider, context *CompletionContext) bool
 	completionProviderPopulate            func(c *CompletionProvider, context *CompletionContext)
 	completionProviderUpdateInfo          func(c *CompletionProvider, proposal *CompletionProposal, info *CompletionInfo)
 )
@@ -274,7 +274,7 @@ var (
 func (c *CompletionProvider) Activation() CompletionActivation {
 	return completionProviderGetActivation(c)
 }
-func (c *CompletionProvider) ActivateProposal(proposal *CompletionProposal, iter *G.TextIter) T.Gboolean {
+func (c *CompletionProvider) ActivateProposal(proposal *CompletionProposal, iter *G.TextIter) bool {
 	return completionProviderActivateProposal(c, proposal, iter)
 }
 func (c *CompletionProvider) Icon() *D.Pixbuf { return completionProviderGetIcon(c) }
@@ -284,7 +284,7 @@ func (c *CompletionProvider) InfoWidget(proposal *CompletionProposal) *G.Widget 
 func (c *CompletionProvider) InteractiveDelay() int {
 	return completionProviderGetInteractiveDelay(c)
 }
-func (c *CompletionProvider) Match(context *CompletionContext) T.Gboolean {
+func (c *CompletionProvider) Match(context *CompletionContext) bool {
 	return completionProviderMatch(c, context)
 }
 func (c *CompletionProvider) Name() string { return completionProviderGetName(c) }
@@ -292,7 +292,7 @@ func (c *CompletionProvider) Populate(context *CompletionContext) {
 	completionProviderPopulate(c, context)
 }
 func (c *CompletionProvider) Priority() int { return completionProviderGetPriority(c) }
-func (c *CompletionProvider) StartIter(context *CompletionContext, proposal *CompletionProposal, iter *G.TextIter) T.Gboolean {
+func (c *CompletionProvider) StartIter(context *CompletionContext, proposal *CompletionProposal, iter *G.TextIter) bool {
 	return completionProviderGetStartIter(c, context, proposal, iter)
 }
 func (c *CompletionProvider) UpdateInfo(proposal *CompletionProposal, info *CompletionInfo) {
@@ -368,14 +368,14 @@ func (g *Gutter) SetCellSizeFunc(renderer *G.CellRenderer, f GutterSizeFunc, fun
 func (g *Gutter) Window() *D.Window { return gutterGetWindow(g) }
 
 type GutterDataFunc func(gutter *Gutter, cell *G.CellRenderer,
-	lineNumber int, currentLine T.Gboolean, data T.Gpointer)
+	lineNumber int, currentLine bool, data T.Gpointer)
 
 type GutterSizeFunc func(
 	gutter *Gutter, cell *G.CellRenderer, data T.Gpointer)
 
 var (
-	IterForwardSearch  func(iter *G.TextIter, str string, flags SearchFlags, matchStart *G.TextIter, matchEnd *G.TextIter, limit *G.TextIter) T.Gboolean
-	IterBackwardSearch func(iter *G.TextIter, str string, flags SearchFlags, matchStart *G.TextIter, matchEnd *G.TextIter, limit *G.TextIter) T.Gboolean
+	IterForwardSearch  func(iter *G.TextIter, str string, flags SearchFlags, matchStart *G.TextIter, matchEnd *G.TextIter, limit *G.TextIter) bool
+	IterBackwardSearch func(iter *G.TextIter, str string, flags SearchFlags, matchStart *G.TextIter, matchEnd *G.TextIter, limit *G.TextIter) bool
 )
 
 type Language struct {
@@ -387,7 +387,7 @@ var (
 	LanguageGetType func() O.Type
 
 	languageGetGlobs     func(language *Language) []string
-	languageGetHidden    func(language *Language) T.Gboolean
+	languageGetHidden    func(language *Language) bool
 	languageGetId        func(language *Language) string
 	languageGetMetadata  func(language *Language, name string) string
 	languageGetMimeTypes func(language *Language) []string
@@ -398,7 +398,7 @@ var (
 )
 
 func (l *Language) Globs() []string                 { return languageGetGlobs(l) }
-func (l *Language) Hidden() T.Gboolean              { return languageGetHidden(l) }
+func (l *Language) Hidden() bool                    { return languageGetHidden(l) }
 func (l *Language) Id() string                      { return languageGetId(l) }
 func (l *Language) Metadata(name string) string     { return languageGetMetadata(l, name) }
 func (l *Language) MimeTypes() []string             { return languageGetMimeTypes(l) }
@@ -422,7 +422,7 @@ var (
 	languageManagerGetLanguageIds func(l *LanguageManager) []string
 	languageManagerGetSearchPath  func(l *LanguageManager) []string
 	languageManagerGuessLanguage  func(l *LanguageManager, filename string, contentType string) *Language
-	languageManagerSetSearchPath  func(l *LanguageManager, dirs **T.Gchar)
+	languageManagerSetSearchPath  func(l *LanguageManager, dirs []string)
 )
 
 func (l *LanguageManager) GuessLanguage(filename string, contentType string) *Language {
@@ -431,7 +431,7 @@ func (l *LanguageManager) GuessLanguage(filename string, contentType string) *La
 func (l *LanguageManager) Language(id string) *Language { return languageManagerGetLanguage(l, id) }
 func (l *LanguageManager) LanguageIds() []string        { return languageManagerGetLanguageIds(l) }
 func (l *LanguageManager) SearchPath() []string         { return languageManagerGetSearchPath(l) }
-func (l *LanguageManager) SetSearchPath(dirs **T.Gchar) { languageManagerSetSearchPath(l, dirs) }
+func (l *LanguageManager) SetSearchPath(dirs []string)  { languageManagerSetSearchPath(l, dirs) }
 
 type Mark struct {
 	Parent G.TextMark
@@ -467,30 +467,30 @@ var (
 	printCompositorGetBuffer              func(p *PrintCompositor) *Buffer
 	printCompositorGetFooterFontName      func(p *PrintCompositor) string
 	printCompositorGetHeaderFontName      func(p *PrintCompositor) string
-	printCompositorGetHighlightSyntax     func(p *PrintCompositor) T.Gboolean
+	printCompositorGetHighlightSyntax     func(p *PrintCompositor) bool
 	printCompositorGetLeftMargin          func(p *PrintCompositor, unit G.Unit) float64
 	printCompositorGetLineNumbersFontName func(p *PrintCompositor) string
 	printCompositorGetNPages              func(p *PrintCompositor) int
 	printCompositorGetPaginationProgress  func(p *PrintCompositor) float64
-	printCompositorGetPrintFooter         func(p *PrintCompositor) T.Gboolean
-	printCompositorGetPrintHeader         func(p *PrintCompositor) T.Gboolean
+	printCompositorGetPrintFooter         func(p *PrintCompositor) bool
+	printCompositorGetPrintHeader         func(p *PrintCompositor) bool
 	printCompositorGetPrintLineNumbers    func(p *PrintCompositor) uint
 	printCompositorGetRightMargin         func(p *PrintCompositor, unit G.Unit) float64
 	printCompositorGetTabWidth            func(p *PrintCompositor) uint
 	printCompositorGetTopMargin           func(p *PrintCompositor, unit G.Unit) float64
 	printCompositorGetWrapMode            func(p *PrintCompositor) G.WrapMode
-	printCompositorPaginate               func(p *PrintCompositor, context *G.PrintContext) T.Gboolean
+	printCompositorPaginate               func(p *PrintCompositor, context *G.PrintContext) bool
 	printCompositorSetBodyFontName        func(p *PrintCompositor, fontName string)
 	printCompositorSetBottomMargin        func(p *PrintCompositor, margin float64, unit G.Unit)
 	printCompositorSetFooterFontName      func(p *PrintCompositor, fontName string)
-	printCompositorSetFooterFormat        func(p *PrintCompositor, separator T.Gboolean, left, center, right string)
+	printCompositorSetFooterFormat        func(p *PrintCompositor, separator bool, left, center, right string)
 	printCompositorSetHeaderFontName      func(p *PrintCompositor, fontName string)
-	printCompositorSetHeaderFormat        func(p *PrintCompositor, separator T.Gboolean, left, center, right string)
-	printCompositorSetHighlightSyntax     func(p *PrintCompositor, highlight T.Gboolean)
+	printCompositorSetHeaderFormat        func(p *PrintCompositor, separator bool, left, center, right string)
+	printCompositorSetHighlightSyntax     func(p *PrintCompositor, highlight bool)
 	printCompositorSetLeftMargin          func(p *PrintCompositor, margin float64, unit G.Unit)
 	printCompositorSetLineNumbersFontName func(p *PrintCompositor, fontName string)
-	printCompositorSetPrintFooter         func(p *PrintCompositor, prt T.Gboolean)
-	printCompositorSetPrintHeader         func(p *PrintCompositor, prt T.Gboolean)
+	printCompositorSetPrintFooter         func(p *PrintCompositor, prt bool)
+	printCompositorSetPrintHeader         func(p *PrintCompositor, prt bool)
 	printCompositorSetPrintLineNumbers    func(p *PrintCompositor, interval uint)
 	printCompositorSetRightMargin         func(p *PrintCompositor, margin float64, unit G.Unit)
 	printCompositorSetTabWidth            func(p *PrintCompositor, width uint)
@@ -506,9 +506,9 @@ func (p *PrintCompositor) Buffer() *Buffer { return printCompositorGetBuffer(p) 
 func (p *PrintCompositor) DrawPage(context *G.PrintContext, pageNr int) {
 	printCompositorDrawPage(p, context, pageNr)
 }
-func (p *PrintCompositor) FooterFontName() string      { return printCompositorGetFooterFontName(p) }
-func (p *PrintCompositor) HeaderFontName() string      { return printCompositorGetHeaderFontName(p) }
-func (p *PrintCompositor) HighlightSyntax() T.Gboolean { return printCompositorGetHighlightSyntax(p) }
+func (p *PrintCompositor) FooterFontName() string { return printCompositorGetFooterFontName(p) }
+func (p *PrintCompositor) HeaderFontName() string { return printCompositorGetHeaderFontName(p) }
+func (p *PrintCompositor) HighlightSyntax() bool  { return printCompositorGetHighlightSyntax(p) }
 func (p *PrintCompositor) LeftMargin(unit G.Unit) float64 {
 	return printCompositorGetLeftMargin(p, unit)
 }
@@ -516,15 +516,15 @@ func (p *PrintCompositor) LineNumbersFontName() string {
 	return printCompositorGetLineNumbersFontName(p)
 }
 func (p *PrintCompositor) NPages() int { return printCompositorGetNPages(p) }
-func (p *PrintCompositor) Paginate(context *G.PrintContext) T.Gboolean {
+func (p *PrintCompositor) Paginate(context *G.PrintContext) bool {
 	return printCompositorPaginate(p, context)
 }
 func (p *PrintCompositor) PaginationProgress() float64 {
 	return printCompositorGetPaginationProgress(p)
 }
-func (p *PrintCompositor) PrintFooter() T.Gboolean { return printCompositorGetPrintFooter(p) }
-func (p *PrintCompositor) PrintHeader() T.Gboolean { return printCompositorGetPrintHeader(p) }
-func (p *PrintCompositor) PrintLineNumbers() uint  { return printCompositorGetPrintLineNumbers(p) }
+func (p *PrintCompositor) PrintFooter() bool      { return printCompositorGetPrintFooter(p) }
+func (p *PrintCompositor) PrintHeader() bool      { return printCompositorGetPrintHeader(p) }
+func (p *PrintCompositor) PrintLineNumbers() uint { return printCompositorGetPrintLineNumbers(p) }
 func (p *PrintCompositor) RightMargin(unit G.Unit) float64 {
 	return printCompositorGetRightMargin(p, unit)
 }
@@ -537,16 +537,16 @@ func (p *PrintCompositor) SetBottomMargin(margin float64, unit G.Unit) {
 func (p *PrintCompositor) SetFooterFontName(fontName string) {
 	printCompositorSetFooterFontName(p, fontName)
 }
-func (p *PrintCompositor) SetFooterFormat(separator T.Gboolean, left, center, right string) {
+func (p *PrintCompositor) SetFooterFormat(separator bool, left, center, right string) {
 	printCompositorSetFooterFormat(p, separator, left, center, right)
 }
 func (p *PrintCompositor) SetHeaderFontName(fontName string) {
 	printCompositorSetHeaderFontName(p, fontName)
 }
-func (p *PrintCompositor) SetHeaderFormat(separator T.Gboolean, left, center, right string) {
+func (p *PrintCompositor) SetHeaderFormat(separator bool, left, center, right string) {
 	printCompositorSetHeaderFormat(p, separator, left, center, right)
 }
-func (p *PrintCompositor) SetHighlightSyntax(highlight T.Gboolean) {
+func (p *PrintCompositor) SetHighlightSyntax(highlight bool) {
 	printCompositorSetHighlightSyntax(p, highlight)
 }
 func (p *PrintCompositor) SetLeftMargin(margin float64, unit G.Unit) {
@@ -555,8 +555,8 @@ func (p *PrintCompositor) SetLeftMargin(margin float64, unit G.Unit) {
 func (p *PrintCompositor) SetLineNumbersFontName(fontName string) {
 	printCompositorSetLineNumbersFontName(p, fontName)
 }
-func (p *PrintCompositor) SetPrintFooter(prt T.Gboolean) { printCompositorSetPrintFooter(p, prt) }
-func (p *PrintCompositor) SetPrintHeader(prt T.Gboolean) { printCompositorSetPrintHeader(p, prt) }
+func (p *PrintCompositor) SetPrintFooter(prt bool) { printCompositorSetPrintFooter(p, prt) }
+func (p *PrintCompositor) SetPrintHeader(prt bool) { printCompositorSetPrintHeader(p, prt) }
 func (p *PrintCompositor) SetPrintLineNumbers(interval uint) {
 	printCompositorSetPrintLineNumbers(p, interval)
 }
@@ -668,9 +668,9 @@ var (
 	UndoManagerGetType func() O.Type
 
 	undoManagerBeginNotUndoableAction func(u *UndoManager)
-	undoManagerCanRedo                func(u *UndoManager) T.Gboolean
+	undoManagerCanRedo                func(u *UndoManager) bool
 	undoManagerCanRedoChanged         func(u *UndoManager)
-	undoManagerCanUndo                func(u *UndoManager) T.Gboolean
+	undoManagerCanUndo                func(u *UndoManager) bool
 	undoManagerCanUndoChanged         func(u *UndoManager)
 	undoManagerEndNotUndoableAction   func(u *UndoManager)
 	undoManagerRedo                   func(u *UndoManager)
@@ -678,9 +678,9 @@ var (
 )
 
 func (u *UndoManager) BeginNotUndoableAction() { undoManagerBeginNotUndoableAction(u) }
-func (u *UndoManager) CanRedo() T.Gboolean     { return undoManagerCanRedo(u) }
+func (u *UndoManager) CanRedo() bool           { return undoManagerCanRedo(u) }
 func (u *UndoManager) CanRedoChanged()         { undoManagerCanRedoChanged(u) }
-func (u *UndoManager) CanUndo() T.Gboolean     { return undoManagerCanUndo(u) }
+func (u *UndoManager) CanUndo() bool           { return undoManagerCanUndo(u) }
 func (u *UndoManager) CanUndoChanged()         { undoManagerCanUndoChanged(u) }
 func (u *UndoManager) EndNotUndoableAction()   { undoManagerEndNotUndoableAction(u) }
 func (u *UndoManager) Redo()                   { undoManagerRedo(u) }
@@ -696,29 +696,29 @@ var (
 	ViewNew           func() *G.Widget
 	ViewNewWithBuffer func(buffer *Buffer) *G.Widget
 
-	viewGetAutoIndent                    func(v *View) T.Gboolean
+	viewGetAutoIndent                    func(v *View) bool
 	viewGetCompletion                    func(v *View) *Completion
 	viewGetDrawSpaces                    func(v *View) DrawSpacesFlags
 	viewGetGutter                        func(v *View, windowType G.TextWindowType) *Gutter
-	viewGetHighlightCurrentLine          func(v *View) T.Gboolean
-	viewGetIndentOnTab                   func(v *View) T.Gboolean
+	viewGetHighlightCurrentLine          func(v *View) bool
+	viewGetIndentOnTab                   func(v *View) bool
 	viewGetIndentWidth                   func(v *View) int
-	viewGetInsertSpacesInsteadOfTabs     func(v *View) T.Gboolean
-	viewGetMarkCategoryBackground        func(v *View, category string, dest *D.Color) T.Gboolean
+	viewGetInsertSpacesInsteadOfTabs     func(v *View) bool
+	viewGetMarkCategoryBackground        func(v *View, category string, dest *D.Color) bool
 	viewGetMarkCategoryPixbuf            func(v *View, category string) *D.Pixbuf
 	viewGetMarkCategoryPriority          func(v *View, category string) int
 	viewGetRightMarginPosition           func(v *View) uint
-	viewGetShowLineMarks                 func(v *View) T.Gboolean
-	viewGetShowLineNumbers               func(v *View) T.Gboolean
-	viewGetShowRightMargin               func(v *View) T.Gboolean
+	viewGetShowLineMarks                 func(v *View) bool
+	viewGetShowLineNumbers               func(v *View) bool
+	viewGetShowRightMargin               func(v *View) bool
 	viewGetSmartHomeEnd                  func(v *View) SmartHomeEndType
 	viewGetTabWidth                      func(v *View) uint
-	viewSetAutoIndent                    func(v *View, enable T.Gboolean)
+	viewSetAutoIndent                    func(v *View, enable bool)
 	viewSetDrawSpaces                    func(v *View, flags DrawSpacesFlags)
-	viewSetHighlightCurrentLine          func(v *View, show T.Gboolean)
-	viewSetIndentOnTab                   func(v *View, enable T.Gboolean)
+	viewSetHighlightCurrentLine          func(v *View, show bool)
+	viewSetIndentOnTab                   func(v *View, enable bool)
 	viewSetIndentWidth                   func(v *View, width int)
-	viewSetInsertSpacesInsteadOfTabs     func(v *View, enable T.Gboolean)
+	viewSetInsertSpacesInsteadOfTabs     func(v *View, enable bool)
 	viewSetMarkCategoryBackground        func(v *View, category string, color *D.Color)
 	viewSetMarkCategoryIconFromIconName  func(v *View, category, name string)
 	viewSetMarkCategoryIconFromPixbuf    func(v *View, category string, pixbuf *D.Pixbuf)
@@ -728,22 +728,22 @@ var (
 	viewSetMarkCategoryTooltipFunc       func(v *View, category string, f ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify)
 	viewSetMarkCategoryTooltipMarkupFunc func(v *View, category string, markupFunc ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify)
 	viewSetRightMarginPosition           func(v *View, pos uint)
-	viewSetShowLineMarks                 func(v *View, show T.Gboolean)
-	viewSetShowLineNumbers               func(v *View, show T.Gboolean)
-	viewSetShowRightMargin               func(v *View, show T.Gboolean)
+	viewSetShowLineMarks                 func(v *View, show bool)
+	viewSetShowLineNumbers               func(v *View, show bool)
+	viewSetShowRightMargin               func(v *View, show bool)
 	viewSetSmartHomeEnd                  func(v *View, smartHe SmartHomeEndType)
 	viewSetTabWidth                      func(v *View, width uint)
 )
 
-func (v *View) AutoIndent() T.Gboolean                     { return viewGetAutoIndent(v) }
+func (v *View) AutoIndent() bool                           { return viewGetAutoIndent(v) }
 func (v *View) Completion() *Completion                    { return viewGetCompletion(v) }
 func (v *View) DrawSpaces() DrawSpacesFlags                { return viewGetDrawSpaces(v) }
 func (v *View) Gutter(windowType G.TextWindowType) *Gutter { return viewGetGutter(v, windowType) }
-func (v *View) HighlightCurrentLine() T.Gboolean           { return viewGetHighlightCurrentLine(v) }
-func (v *View) IndentOnTab() T.Gboolean                    { return viewGetIndentOnTab(v) }
+func (v *View) HighlightCurrentLine() bool                 { return viewGetHighlightCurrentLine(v) }
+func (v *View) IndentOnTab() bool                          { return viewGetIndentOnTab(v) }
 func (v *View) IndentWidth() int                           { return viewGetIndentWidth(v) }
-func (v *View) InsertSpacesInsteadOfTabs() T.Gboolean      { return viewGetInsertSpacesInsteadOfTabs(v) }
-func (v *View) MarkCategoryBackground(category string, dest *D.Color) T.Gboolean {
+func (v *View) InsertSpacesInsteadOfTabs() bool            { return viewGetInsertSpacesInsteadOfTabs(v) }
+func (v *View) MarkCategoryBackground(category string, dest *D.Color) bool {
 	return viewGetMarkCategoryBackground(v, category, dest)
 }
 func (v *View) MarkCategoryPixbuf(category string) *D.Pixbuf {
@@ -752,13 +752,13 @@ func (v *View) MarkCategoryPixbuf(category string) *D.Pixbuf {
 func (v *View) MarkCategoryPriority(category string) int {
 	return viewGetMarkCategoryPriority(v, category)
 }
-func (v *View) RightMarginPosition() uint               { return viewGetRightMarginPosition(v) }
-func (v *View) SetAutoIndent(enable T.Gboolean)         { viewSetAutoIndent(v, enable) }
-func (v *View) SetDrawSpaces(flags DrawSpacesFlags)     { viewSetDrawSpaces(v, flags) }
-func (v *View) SetHighlightCurrentLine(show T.Gboolean) { viewSetHighlightCurrentLine(v, show) }
-func (v *View) SetIndentOnTab(enable T.Gboolean)        { viewSetIndentOnTab(v, enable) }
-func (v *View) SetIndentWidth(width int)                { viewSetIndentWidth(v, width) }
-func (v *View) SetInsertSpacesInsteadOfTabs(enable T.Gboolean) {
+func (v *View) RightMarginPosition() uint           { return viewGetRightMarginPosition(v) }
+func (v *View) SetAutoIndent(enable bool)           { viewSetAutoIndent(v, enable) }
+func (v *View) SetDrawSpaces(flags DrawSpacesFlags) { viewSetDrawSpaces(v, flags) }
+func (v *View) SetHighlightCurrentLine(show bool)   { viewSetHighlightCurrentLine(v, show) }
+func (v *View) SetIndentOnTab(enable bool)          { viewSetIndentOnTab(v, enable) }
+func (v *View) SetIndentWidth(width int)            { viewSetIndentWidth(v, width) }
+func (v *View) SetInsertSpacesInsteadOfTabs(enable bool) {
 	viewSetInsertSpacesInsteadOfTabs(v, enable)
 }
 func (v *View) SetMarkCategoryBackground(category string, color *D.Color) {
@@ -786,14 +786,14 @@ func (v *View) SetMarkCategoryTooltipMarkupFunc(category string, markupFunc View
 	viewSetMarkCategoryTooltipMarkupFunc(v, category, markupFunc, userData, userDataNotify)
 }
 func (v *View) SetRightMarginPosition(pos uint)          { viewSetRightMarginPosition(v, pos) }
-func (v *View) SetShowLineMarks(show T.Gboolean)         { viewSetShowLineMarks(v, show) }
-func (v *View) SetShowLineNumbers(show T.Gboolean)       { viewSetShowLineNumbers(v, show) }
-func (v *View) SetShowRightMargin(show T.Gboolean)       { viewSetShowRightMargin(v, show) }
+func (v *View) SetShowLineMarks(show bool)               { viewSetShowLineMarks(v, show) }
+func (v *View) SetShowLineNumbers(show bool)             { viewSetShowLineNumbers(v, show) }
+func (v *View) SetShowRightMargin(show bool)             { viewSetShowRightMargin(v, show) }
 func (v *View) SetSmartHomeEnd(smartHe SmartHomeEndType) { viewSetSmartHomeEnd(v, smartHe) }
 func (v *View) SetTabWidth(width uint)                   { viewSetTabWidth(v, width) }
-func (v *View) ShowLineMarks() T.Gboolean                { return viewGetShowLineMarks(v) }
-func (v *View) ShowLineNumbers() T.Gboolean              { return viewGetShowLineNumbers(v) }
-func (v *View) ShowRightMargin() T.Gboolean              { return viewGetShowRightMargin(v) }
+func (v *View) ShowLineMarks() bool                      { return viewGetShowLineMarks(v) }
+func (v *View) ShowLineNumbers() bool                    { return viewGetShowLineNumbers(v) }
+func (v *View) ShowRightMargin() bool                    { return viewGetShowRightMargin(v) }
 func (v *View) SmartHomeEnd() SmartHomeEndType           { return viewGetSmartHomeEnd(v) }
 func (v *View) TabWidth() uint                           { return viewGetTabWidth(v) }
 

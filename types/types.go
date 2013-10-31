@@ -112,6 +112,7 @@ type (
 	GVariantType             struct{}
 	Utimbuf                  struct{}
 	Void                     struct{}
+	Dummy                    *struct{}
 )
 
 type GBookmarkFileError Enum
@@ -1597,7 +1598,7 @@ const (
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
-	GCallback func()
+	GCallback func() Dummy
 
 	GdkInputFunction func(data Gpointer,
 		source int, condition GdkInputCondition)

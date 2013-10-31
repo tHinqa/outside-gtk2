@@ -5,7 +5,7 @@ package atk
 
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 )
 
 type Image struct{}
@@ -17,7 +17,7 @@ var (
 	imageGetImageLocale      func(i *Image) string
 	imageGetImagePosition    func(i *Image, x, y *int, coordType CoordType)
 	imageGetImageSize        func(i *Image, width, height *int)
-	imageSetImageDescription func(i *Image, description string) T.Gboolean
+	imageSetImageDescription func(i *Image, description string) bool
 )
 
 func (i *Image) GetImageDescription() string { return imageGetImageDescription(i) }
@@ -26,7 +26,7 @@ func (i *Image) GetImagePosition(x, y *int, coordType CoordType) {
 	imageGetImagePosition(i, x, y, coordType)
 }
 func (i *Image) GetImageSize(width, height *int) { imageGetImageSize(i, width, height) }
-func (i *Image) SetImageDescription(description string) T.Gboolean {
+func (i *Image) SetImageDescription(description string) bool {
 	return imageSetImageDescription(i, description)
 }
 

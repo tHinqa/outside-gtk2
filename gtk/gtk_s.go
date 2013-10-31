@@ -27,25 +27,25 @@ var (
 	scaleAddMark          func(s *Scale, value float64, position PositionType, markup string)
 	scaleClearMarks       func(s *Scale)
 	scaleGetDigits        func(s *Scale) int
-	scaleGetDrawValue     func(s *Scale) T.Gboolean
+	scaleGetDrawValue     func(s *Scale) bool
 	scaleGetLayout        func(s *Scale) *P.Layout
 	scaleGetLayoutOffsets func(s *Scale, x, y *int)
 	scaleGetValuePos      func(s *Scale) PositionType
-	scaleSetDrawValue     func(s *Scale, drawValue T.Gboolean)
+	scaleSetDrawValue     func(s *Scale, drawValue bool)
 	scaleSetValuePos      func(s *Scale, pos PositionType)
 )
 
 func (s *Scale) AddMark(value float64, position PositionType, markup string) {
 	scaleAddMark(s, value, position, markup)
 }
-func (s *Scale) ClearMarks()                       { scaleClearMarks(s) }
-func (s *Scale) GetDigits() int                    { return scaleGetDigits(s) }
-func (s *Scale) GetDrawValue() T.Gboolean          { return scaleGetDrawValue(s) }
-func (s *Scale) GetLayout() *P.Layout              { return scaleGetLayout(s) }
-func (s *Scale) GetLayoutOffsets(x, y *int)        { scaleGetLayoutOffsets(s, x, y) }
-func (s *Scale) GetValuePos() PositionType         { return scaleGetValuePos(s) }
-func (s *Scale) SetDrawValue(drawValue T.Gboolean) { scaleSetDrawValue(s, drawValue) }
-func (s *Scale) SetValuePos(pos PositionType)      { scaleSetValuePos(s, pos) }
+func (s *Scale) ClearMarks()                  { scaleClearMarks(s) }
+func (s *Scale) GetDigits() int               { return scaleGetDigits(s) }
+func (s *Scale) GetDrawValue() bool           { return scaleGetDrawValue(s) }
+func (s *Scale) GetLayout() *P.Layout         { return scaleGetLayout(s) }
+func (s *Scale) GetLayoutOffsets(x, y *int)   { scaleGetLayoutOffsets(s, x, y) }
+func (s *Scale) GetValuePos() PositionType    { return scaleGetValuePos(s) }
+func (s *Scale) SetDrawValue(drawValue bool)  { scaleSetDrawValue(s, drawValue) }
+func (s *Scale) SetValuePos(pos PositionType) { scaleSetValuePos(s, pos) }
 
 type ScaleButton struct {
 	Parent      Button
@@ -56,7 +56,7 @@ type ScaleButton struct {
 
 var (
 	ScaleButtonGetType func() O.Type
-	ScaleButtonNew     func(size IconSize, min, max, step float64, icons **T.Gchar) *Widget
+	ScaleButtonNew     func(size IconSize, min, max, step float64, icons []string) *Widget
 
 	scaleButtonGetAdjustment  func(s *ScaleButton) *Adjustment
 	scaleButtonGetMinusButton func(s *ScaleButton) *Widget
@@ -65,7 +65,7 @@ var (
 	scaleButtonGetPopup       func(s *ScaleButton) *Widget
 	scaleButtonGetValue       func(s *ScaleButton) float64
 	scaleButtonSetAdjustment  func(s *ScaleButton, adjustment *Adjustment)
-	scaleButtonSetIcons       func(s *ScaleButton, icons **T.Gchar)
+	scaleButtonSetIcons       func(s *ScaleButton, icons []string)
 	scaleButtonSetOrientation func(s *ScaleButton, orientation Orientation)
 	scaleButtonSetValue       func(s *ScaleButton, value float64)
 )
@@ -77,7 +77,7 @@ func (s *ScaleButton) GetPlusButton() *Widget               { return scaleButton
 func (s *ScaleButton) GetPopup() *Widget                    { return scaleButtonGetPopup(s) }
 func (s *ScaleButton) GetValue() float64                    { return scaleButtonGetValue(s) }
 func (s *ScaleButton) SetAdjustment(adjustment *Adjustment) { scaleButtonSetAdjustment(s, adjustment) }
-func (s *ScaleButton) SetIcons(icons **T.Gchar)             { scaleButtonSetIcons(s, icons) }
+func (s *ScaleButton) SetIcons(icons []string)              { scaleButtonSetIcons(s, icons) }
 func (s *ScaleButton) SetOrientation(orientation Orientation) {
 	scaleButtonSetOrientation(s, orientation)
 }
@@ -186,12 +186,12 @@ var (
 
 	SelectionAddTarget          func(widget *Widget, selection, target D.Atom, info uint)
 	SelectionAddTargets         func(widget *Widget, selection D.Atom, targets *TargetEntry, ntargets uint)
-	SelectionClear              func(widget *Widget, event *D.EventSelection) T.Gboolean
+	SelectionClear              func(widget *Widget, event *D.EventSelection) bool
 	SelectionClearTargets       func(widget *Widget, selection D.Atom)
-	SelectionConvert            func(widget *Widget, selection, target D.Atom, time T.GUint32) T.Gboolean
+	SelectionConvert            func(widget *Widget, selection, target D.Atom, time T.GUint32) bool
 	selectionDataCopy           func(s *SelectionData) *SelectionData
-	SelectionOwnerSet           func(widget *Widget, selection D.Atom, time T.GUint32) T.Gboolean
-	SelectionOwnerSetForDisplay func(display *D.Display, widget *Widget, selection D.Atom, time T.GUint32) T.Gboolean
+	SelectionOwnerSet           func(widget *Widget, selection D.Atom, time T.GUint32) bool
+	SelectionOwnerSetForDisplay func(display *D.Display, widget *Widget, selection D.Atom, time T.GUint32) bool
 	SelectionRemoveAll          func(widget *Widget)
 
 	selectionDataFree                   func(s *SelectionData)
@@ -203,17 +203,17 @@ var (
 	selectionDataGetPixbuf              func(s *SelectionData) *D.Pixbuf
 	selectionDataGetSelection           func(s *SelectionData) D.Atom
 	selectionDataGetTarget              func(s *SelectionData) D.Atom
-	selectionDataGetTargets             func(s *SelectionData, targets **D.Atom, nAtoms *int) T.Gboolean
+	selectionDataGetTargets             func(s *SelectionData, targets **D.Atom, nAtoms *int) bool
 	selectionDataGetText                func(s *SelectionData) []string //TODO(t): *T.Guchar?
 	selectionDataGetUris                func(s *SelectionData) []string
 	selectionDataSet                    func(s *SelectionData, typ D.Atom, format int, data *T.Guchar, length int)
-	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *D.Pixbuf) T.Gboolean
-	selectionDataSetText                func(s *SelectionData, str string, len int) T.Gboolean
-	selectionDataSetUris                func(s *SelectionData, uris **T.Gchar) T.Gboolean
-	selectionDataTargetsIncludeImage    func(s *SelectionData, writable T.Gboolean) T.Gboolean
-	selectionDataTargetsIncludeRichText func(s *SelectionData, buffer *TextBuffer) T.Gboolean
-	selectionDataTargetsIncludeText     func(s *SelectionData) T.Gboolean
-	selectionDataTargetsIncludeUri      func(s *SelectionData) T.Gboolean
+	selectionDataSetPixbuf              func(s *SelectionData, pixbuf *D.Pixbuf) bool
+	selectionDataSetText                func(s *SelectionData, str string, len int) bool
+	selectionDataSetUris                func(s *SelectionData, uris []string) bool
+	selectionDataTargetsIncludeImage    func(s *SelectionData, writable bool) bool
+	selectionDataTargetsIncludeRichText func(s *SelectionData, buffer *TextBuffer) bool
+	selectionDataTargetsIncludeText     func(s *SelectionData) bool
+	selectionDataTargetsIncludeUri      func(s *SelectionData) bool
 )
 
 func (s *SelectionData) Copy() *SelectionData   { return selectionDataCopy(s) }
@@ -226,7 +226,7 @@ func (s *SelectionData) GetLength() int         { return selectionDataGetLength(
 func (s *SelectionData) GetPixbuf() *D.Pixbuf   { return selectionDataGetPixbuf(s) }
 func (s *SelectionData) GetSelection() D.Atom   { return selectionDataGetSelection(s) }
 func (s *SelectionData) GetTarget() D.Atom      { return selectionDataGetTarget(s) }
-func (s *SelectionData) GetTargets(targets **D.Atom, nAtoms *int) T.Gboolean {
+func (s *SelectionData) GetTargets(targets **D.Atom, nAtoms *int) bool {
 	return selectionDataGetTargets(s, targets, nAtoms)
 }
 func (s *SelectionData) GetText() []string { return selectionDataGetText(s) } //TODO(t): was*T.Guchar?
@@ -234,21 +234,21 @@ func (s *SelectionData) GetUris() []string { return selectionDataGetUris(s) }
 func (s *SelectionData) Set(typ D.Atom, format int, data *T.Guchar, length int) {
 	selectionDataSet(s, typ, format, data, length)
 }
-func (s *SelectionData) SetPixbuf(pixbuf *D.Pixbuf) T.Gboolean {
+func (s *SelectionData) SetPixbuf(pixbuf *D.Pixbuf) bool {
 	return selectionDataSetPixbuf(s, pixbuf)
 }
-func (s *SelectionData) SetText(str string, leng int) T.Gboolean {
+func (s *SelectionData) SetText(str string, leng int) bool {
 	return selectionDataSetText(s, str, leng)
 }
-func (s *SelectionData) SetUris(uris **T.Gchar) T.Gboolean { return selectionDataSetUris(s, uris) }
-func (s *SelectionData) TargetsIncludeImage(writable T.Gboolean) T.Gboolean {
+func (s *SelectionData) SetUris(uris []string) bool { return selectionDataSetUris(s, uris) }
+func (s *SelectionData) TargetsIncludeImage(writable bool) bool {
 	return selectionDataTargetsIncludeImage(s, writable)
 }
-func (s *SelectionData) TargetsIncludeRichText(buffer *TextBuffer) T.Gboolean {
+func (s *SelectionData) TargetsIncludeRichText(buffer *TextBuffer) bool {
 	return selectionDataTargetsIncludeRichText(s, buffer)
 }
-func (s *SelectionData) TargetsIncludeText() T.Gboolean { return selectionDataTargetsIncludeText(s) }
-func (s *SelectionData) TargetsIncludeUri() T.Gboolean  { return selectionDataTargetsIncludeUri(s) }
+func (s *SelectionData) TargetsIncludeText() bool { return selectionDataTargetsIncludeText(s) }
+func (s *SelectionData) TargetsIncludeUri() bool  { return selectionDataTargetsIncludeUri(s) }
 
 type SelectionMode Enum
 
@@ -288,12 +288,12 @@ var (
 	SeparatorToolItemGetType func() O.Type
 	SeparatorToolItemNew     func() *ToolItem
 
-	separatorToolItemGetDraw func(s *SeparatorToolItem) T.Gboolean
-	separatorToolItemSetDraw func(s *SeparatorToolItem, draw T.Gboolean)
+	separatorToolItemGetDraw func(s *SeparatorToolItem) bool
+	separatorToolItemSetDraw func(s *SeparatorToolItem, draw bool)
 )
 
-func (s *SeparatorToolItem) GetDraw() T.Gboolean     { return separatorToolItemGetDraw(s) }
-func (s *SeparatorToolItem) SetDraw(draw T.Gboolean) { separatorToolItemSetDraw(s, draw) }
+func (s *SeparatorToolItem) GetDraw() bool     { return separatorToolItemGetDraw(s) }
+func (s *SeparatorToolItem) SetDraw(draw bool) { separatorToolItemSetDraw(s, draw) }
 
 type Settings struct {
 	Parent          T.GObject
@@ -400,20 +400,20 @@ var (
 	SizeGroupModeGetType func() O.Type
 
 	sizeGroupAddWidget       func(s *SizeGroup, widget *Widget)
-	sizeGroupGetIgnoreHidden func(s *SizeGroup) T.Gboolean
+	sizeGroupGetIgnoreHidden func(s *SizeGroup) bool
 	sizeGroupGetMode         func(s *SizeGroup) SizeGroupMode
 	sizeGroupGetWidgets      func(s *SizeGroup) *T.GSList
 	sizeGroupRemoveWidget    func(s *SizeGroup, widget *Widget)
-	sizeGroupSetIgnoreHidden func(s *SizeGroup, ignoreHidden T.Gboolean)
+	sizeGroupSetIgnoreHidden func(s *SizeGroup, ignoreHidden bool)
 	sizeGroupSetMode         func(s *SizeGroup, mode SizeGroupMode)
 )
 
 func (s *SizeGroup) AddWidget(widget *Widget)    { sizeGroupAddWidget(s, widget) }
-func (s *SizeGroup) GetIgnoreHidden() T.Gboolean { return sizeGroupGetIgnoreHidden(s) }
+func (s *SizeGroup) GetIgnoreHidden() bool       { return sizeGroupGetIgnoreHidden(s) }
 func (s *SizeGroup) GetMode() SizeGroupMode      { return sizeGroupGetMode(s) }
 func (s *SizeGroup) GetWidgets() *T.GSList       { return sizeGroupGetWidgets(s) }
 func (s *SizeGroup) RemoveWidget(widget *Widget) { sizeGroupRemoveWidget(s, widget) }
-func (s *SizeGroup) SetIgnoreHidden(ignoreHidden T.Gboolean) {
+func (s *SizeGroup) SetIgnoreHidden(ignoreHidden bool) {
 	sizeGroupSetIgnoreHidden(s, ignoreHidden)
 }
 func (s *SizeGroup) SetMode(mode SizeGroupMode) { sizeGroupSetMode(s, mode) }
@@ -500,22 +500,22 @@ var (
 	spinButtonGetAdjustment   func(s *SpinButton) *Adjustment
 	spinButtonGetDigits       func(s *SpinButton) uint
 	spinButtonGetIncrements   func(s *SpinButton, step, page *float64)
-	spinButtonGetNumeric      func(s *SpinButton) T.Gboolean
+	spinButtonGetNumeric      func(s *SpinButton) bool
 	spinButtonGetRange        func(s *SpinButton, min, max *float64)
-	spinButtonGetSnapToTicks  func(s *SpinButton) T.Gboolean
+	spinButtonGetSnapToTicks  func(s *SpinButton) bool
 	spinButtonGetUpdatePolicy func(s *SpinButton) SpinButtonUpdatePolicy
 	spinButtonGetValue        func(s *SpinButton) float64
 	spinButtonGetValueAsInt   func(s *SpinButton) int
-	spinButtonGetWrap         func(s *SpinButton) T.Gboolean
+	spinButtonGetWrap         func(s *SpinButton) bool
 	spinButtonSetAdjustment   func(s *SpinButton, adjustment *Adjustment)
 	spinButtonSetDigits       func(s *SpinButton, digits uint)
 	spinButtonSetIncrements   func(s *SpinButton, step, page float64)
-	spinButtonSetNumeric      func(s *SpinButton, numeric T.Gboolean)
+	spinButtonSetNumeric      func(s *SpinButton, numeric bool)
 	spinButtonSetRange        func(s *SpinButton, min, max float64)
-	spinButtonSetSnapToTicks  func(s *SpinButton, snapToTicks T.Gboolean)
+	spinButtonSetSnapToTicks  func(s *SpinButton, snapToTicks bool)
 	spinButtonSetUpdatePolicy func(s *SpinButton, policy SpinButtonUpdatePolicy)
 	spinButtonSetValue        func(s *SpinButton, value float64)
-	spinButtonSetWrap         func(s *SpinButton, wrap T.Gboolean)
+	spinButtonSetWrap         func(s *SpinButton, wrap bool)
 	spinButtonSpin            func(s *SpinButton, direction SpinType, increment float64)
 	spinButtonUpdate          func(s *SpinButton)
 )
@@ -526,24 +526,24 @@ func (s *SpinButton) Configure(adjustment *Adjustment, climbRate float64, digits
 func (s *SpinButton) GetAdjustment() *Adjustment              { return spinButtonGetAdjustment(s) }
 func (s *SpinButton) GetDigits() uint                         { return spinButtonGetDigits(s) }
 func (s *SpinButton) GetIncrements(step, page *float64)       { spinButtonGetIncrements(s, step, page) }
-func (s *SpinButton) GetNumeric() T.Gboolean                  { return spinButtonGetNumeric(s) }
+func (s *SpinButton) GetNumeric() bool                        { return spinButtonGetNumeric(s) }
 func (s *SpinButton) GetRange(min, max *float64)              { spinButtonGetRange(s, min, max) }
-func (s *SpinButton) GetSnapToTicks() T.Gboolean              { return spinButtonGetSnapToTicks(s) }
+func (s *SpinButton) GetSnapToTicks() bool                    { return spinButtonGetSnapToTicks(s) }
 func (s *SpinButton) GetUpdatePolicy() SpinButtonUpdatePolicy { return spinButtonGetUpdatePolicy(s) }
 func (s *SpinButton) GetValue() float64                       { return spinButtonGetValue(s) }
 func (s *SpinButton) GetValueAsInt() int                      { return spinButtonGetValueAsInt(s) }
-func (s *SpinButton) GetWrap() T.Gboolean                     { return spinButtonGetWrap(s) }
+func (s *SpinButton) GetWrap() bool                           { return spinButtonGetWrap(s) }
 func (s *SpinButton) SetAdjustment(adjustment *Adjustment)    { spinButtonSetAdjustment(s, adjustment) }
 func (s *SpinButton) SetDigits(digits uint)                   { spinButtonSetDigits(s, digits) }
 func (s *SpinButton) SetIncrements(step, page float64)        { spinButtonSetIncrements(s, step, page) }
-func (s *SpinButton) SetNumeric(numeric T.Gboolean)           { spinButtonSetNumeric(s, numeric) }
+func (s *SpinButton) SetNumeric(numeric bool)                 { spinButtonSetNumeric(s, numeric) }
 func (s *SpinButton) SetRange(min, max float64)               { spinButtonSetRange(s, min, max) }
-func (s *SpinButton) SetSnapToTicks(snapToTicks T.Gboolean)   { spinButtonSetSnapToTicks(s, snapToTicks) }
+func (s *SpinButton) SetSnapToTicks(snapToTicks bool)         { spinButtonSetSnapToTicks(s, snapToTicks) }
 func (s *SpinButton) SetUpdatePolicy(policy SpinButtonUpdatePolicy) {
 	spinButtonSetUpdatePolicy(s, policy)
 }
-func (s *SpinButton) SetValue(value float64)  { spinButtonSetValue(s, value) }
-func (s *SpinButton) SetWrap(wrap T.Gboolean) { spinButtonSetWrap(s, wrap) }
+func (s *SpinButton) SetValue(value float64) { spinButtonSetValue(s, value) }
+func (s *SpinButton) SetWrap(wrap bool)      { spinButtonSetWrap(s, wrap) }
 func (s *SpinButton) Spin(direction SpinType, increment float64) {
 	spinButtonSpin(s, direction, increment)
 }
@@ -608,25 +608,25 @@ var (
 	StatusbarNew     func() *Widget
 
 	statusbarGetContextId     func(s *Statusbar, contextDescription string) uint
-	statusbarGetHasResizeGrip func(s *Statusbar) T.Gboolean
+	statusbarGetHasResizeGrip func(s *Statusbar) bool
 	statusbarGetMessageArea   func(s *Statusbar) *Widget
 	statusbarPop              func(s *Statusbar, contextId uint)
 	statusbarPush             func(s *Statusbar, contextId uint, text string) uint
 	statusbarRemove           func(s *Statusbar, contextId uint, messageId uint)
 	statusbarRemoveAll        func(s *Statusbar, contextId uint)
-	statusbarSetHasResizeGrip func(s *Statusbar, setting T.Gboolean)
+	statusbarSetHasResizeGrip func(s *Statusbar, setting bool)
 )
 
 func (s *Statusbar) GetContextId(contextDescription string) uint {
 	return statusbarGetContextId(s, contextDescription)
 }
-func (s *Statusbar) GetHasResizeGrip() T.Gboolean          { return statusbarGetHasResizeGrip(s) }
+func (s *Statusbar) GetHasResizeGrip() bool                { return statusbarGetHasResizeGrip(s) }
 func (s *Statusbar) GetMessageArea() *Widget               { return statusbarGetMessageArea(s) }
 func (s *Statusbar) Pop(contextId uint)                    { statusbarPop(s, contextId) }
 func (s *Statusbar) Push(contextId uint, text string) uint { return statusbarPush(s, contextId, text) }
 func (s *Statusbar) Remove(contextId uint, messageId uint) { statusbarRemove(s, contextId, messageId) }
 func (s *Statusbar) RemoveAll(contextId uint)              { statusbarRemoveAll(s, contextId) }
-func (s *Statusbar) SetHasResizeGrip(setting T.Gboolean)   { statusbarSetHasResizeGrip(s, setting) }
+func (s *Statusbar) SetHasResizeGrip(setting bool)         { statusbarSetHasResizeGrip(s, setting) }
 
 type StatusIcon struct {
 	Parent T.GObject
@@ -642,12 +642,12 @@ var (
 	StatusIconNewFromPixbuf   func(pixbuf *D.Pixbuf) *StatusIcon
 	StatusIconNewFromStock    func(stockId string) *StatusIcon
 
-	StatusIconPositionMenu func(menu *Menu, x, y *int, pushIn *T.Gboolean, userData T.Gpointer)
+	StatusIconPositionMenu func(menu *Menu, x, y *int, pushIn *bool, userData T.Gpointer)
 
-	statusIconGetBlinking      func(s *StatusIcon) T.Gboolean
-	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean
+	statusIconGetBlinking      func(s *StatusIcon) bool
+	statusIconGetGeometry      func(s *StatusIcon, screen **D.Screen, area *D.Rectangle, orientation *Orientation) bool
 	statusIconGetGicon         func(s *StatusIcon) *I.Icon
-	statusIconGetHasTooltip    func(s *StatusIcon) T.Gboolean
+	statusIconGetHasTooltip    func(s *StatusIcon) bool
 	statusIconGetIconName      func(s *StatusIcon) string
 	statusIconGetPixbuf        func(s *StatusIcon) *D.Pixbuf
 	statusIconGetScreen        func(s *StatusIcon) *D.Screen
@@ -657,57 +657,57 @@ var (
 	statusIconGetTitle         func(s *StatusIcon) string
 	statusIconGetTooltipMarkup func(s *StatusIcon) string
 	statusIconGetTooltipText   func(s *StatusIcon) string
-	statusIconGetVisible       func(s *StatusIcon) T.Gboolean
+	statusIconGetVisible       func(s *StatusIcon) bool
 	statusIconGetX11WindowId   func(s *StatusIcon) T.GUint32
-	statusIconIsEmbedded       func(s *StatusIcon) T.Gboolean
-	statusIconSetBlinking      func(s *StatusIcon, blinking T.Gboolean)
+	statusIconIsEmbedded       func(s *StatusIcon) bool
+	statusIconSetBlinking      func(s *StatusIcon, blinking bool)
 	statusIconSetFromFile      func(s *StatusIcon, filename string)
 	statusIconSetFromGicon     func(s *StatusIcon, icon *I.Icon)
 	statusIconSetFromIconName  func(s *StatusIcon, iconName string)
 	statusIconSetFromPixbuf    func(s *StatusIcon, pixbuf *D.Pixbuf)
 	statusIconSetFromStock     func(s *StatusIcon, stockId string)
-	statusIconSetHasTooltip    func(s *StatusIcon, hasTooltip T.Gboolean)
+	statusIconSetHasTooltip    func(s *StatusIcon, hasTooltip bool)
 	statusIconSetName          func(s *StatusIcon, name string)
 	statusIconSetScreen        func(s *StatusIcon, screen *D.Screen)
 	statusIconSetTitle         func(s *StatusIcon, title string)
 	statusIconSetTooltip       func(s *StatusIcon, tooltipText string)
 	statusIconSetTooltipMarkup func(s *StatusIcon, markup string)
 	statusIconSetTooltipText   func(s *StatusIcon, text string)
-	statusIconSetVisible       func(s *StatusIcon, visible T.Gboolean)
+	statusIconSetVisible       func(s *StatusIcon, visible bool)
 )
 
-func (s *StatusIcon) GetBlinking() T.Gboolean { return statusIconGetBlinking(s) }
-func (s *StatusIcon) GetGeometry(screen **D.Screen, area *D.Rectangle, orientation *Orientation) T.Gboolean {
+func (s *StatusIcon) GetBlinking() bool { return statusIconGetBlinking(s) }
+func (s *StatusIcon) GetGeometry(screen **D.Screen, area *D.Rectangle, orientation *Orientation) bool {
 	return statusIconGetGeometry(s, screen, area, orientation)
 }
-func (s *StatusIcon) GetGicon() *I.Icon                   { return statusIconGetGicon(s) }
-func (s *StatusIcon) GetHasTooltip() T.Gboolean           { return statusIconGetHasTooltip(s) }
-func (s *StatusIcon) GetIconName() string                 { return statusIconGetIconName(s) }
-func (s *StatusIcon) GetPixbuf() *D.Pixbuf                { return statusIconGetPixbuf(s) }
-func (s *StatusIcon) GetScreen() *D.Screen                { return statusIconGetScreen(s) }
-func (s *StatusIcon) GetSize() int                        { return statusIconGetSize(s) }
-func (s *StatusIcon) GetStock() string                    { return statusIconGetStock(s) }
-func (s *StatusIcon) GetStorageType() ImageType           { return statusIconGetStorageType(s) }
-func (s *StatusIcon) GetTitle() string                    { return statusIconGetTitle(s) }
-func (s *StatusIcon) GetTooltipMarkup() string            { return statusIconGetTooltipMarkup(s) }
-func (s *StatusIcon) GetTooltipText() string              { return statusIconGetTooltipText(s) }
-func (s *StatusIcon) GetVisible() T.Gboolean              { return statusIconGetVisible(s) }
-func (s *StatusIcon) GetX11WindowId() T.GUint32           { return statusIconGetX11WindowId(s) }
-func (s *StatusIcon) IsEmbedded() T.Gboolean              { return statusIconIsEmbedded(s) }
-func (s *StatusIcon) SetBlinking(blinking T.Gboolean)     { statusIconSetBlinking(s, blinking) }
-func (s *StatusIcon) SetFromFile(filename string)         { statusIconSetFromFile(s, filename) }
-func (s *StatusIcon) SetFromGicon(icon *I.Icon)           { statusIconSetFromGicon(s, icon) }
-func (s *StatusIcon) SetFromIconName(iconName string)     { statusIconSetFromIconName(s, iconName) }
-func (s *StatusIcon) SetFromPixbuf(pixbuf *D.Pixbuf)      { statusIconSetFromPixbuf(s, pixbuf) }
-func (s *StatusIcon) SetFromStock(stockId string)         { statusIconSetFromStock(s, stockId) }
-func (s *StatusIcon) SetHasTooltip(hasTooltip T.Gboolean) { statusIconSetHasTooltip(s, hasTooltip) }
-func (s *StatusIcon) SetName(name string)                 { statusIconSetName(s, name) }
-func (s *StatusIcon) SetScreen(screen *D.Screen)          { statusIconSetScreen(s, screen) }
-func (s *StatusIcon) SetTitle(title string)               { statusIconSetTitle(s, title) }
-func (s *StatusIcon) SetTooltip(tooltipText string)       { statusIconSetTooltip(s, tooltipText) }
-func (s *StatusIcon) SetTooltipMarkup(markup string)      { statusIconSetTooltipMarkup(s, markup) }
-func (s *StatusIcon) SetTooltipText(text string)          { statusIconSetTooltipText(s, text) }
-func (s *StatusIcon) SetVisible(visible T.Gboolean)       { statusIconSetVisible(s, visible) }
+func (s *StatusIcon) GetGicon() *I.Icon               { return statusIconGetGicon(s) }
+func (s *StatusIcon) GetHasTooltip() bool             { return statusIconGetHasTooltip(s) }
+func (s *StatusIcon) GetIconName() string             { return statusIconGetIconName(s) }
+func (s *StatusIcon) GetPixbuf() *D.Pixbuf            { return statusIconGetPixbuf(s) }
+func (s *StatusIcon) GetScreen() *D.Screen            { return statusIconGetScreen(s) }
+func (s *StatusIcon) GetSize() int                    { return statusIconGetSize(s) }
+func (s *StatusIcon) GetStock() string                { return statusIconGetStock(s) }
+func (s *StatusIcon) GetStorageType() ImageType       { return statusIconGetStorageType(s) }
+func (s *StatusIcon) GetTitle() string                { return statusIconGetTitle(s) }
+func (s *StatusIcon) GetTooltipMarkup() string        { return statusIconGetTooltipMarkup(s) }
+func (s *StatusIcon) GetTooltipText() string          { return statusIconGetTooltipText(s) }
+func (s *StatusIcon) GetVisible() bool                { return statusIconGetVisible(s) }
+func (s *StatusIcon) GetX11WindowId() T.GUint32       { return statusIconGetX11WindowId(s) }
+func (s *StatusIcon) IsEmbedded() bool                { return statusIconIsEmbedded(s) }
+func (s *StatusIcon) SetBlinking(blinking bool)       { statusIconSetBlinking(s, blinking) }
+func (s *StatusIcon) SetFromFile(filename string)     { statusIconSetFromFile(s, filename) }
+func (s *StatusIcon) SetFromGicon(icon *I.Icon)       { statusIconSetFromGicon(s, icon) }
+func (s *StatusIcon) SetFromIconName(iconName string) { statusIconSetFromIconName(s, iconName) }
+func (s *StatusIcon) SetFromPixbuf(pixbuf *D.Pixbuf)  { statusIconSetFromPixbuf(s, pixbuf) }
+func (s *StatusIcon) SetFromStock(stockId string)     { statusIconSetFromStock(s, stockId) }
+func (s *StatusIcon) SetHasTooltip(hasTooltip bool)   { statusIconSetHasTooltip(s, hasTooltip) }
+func (s *StatusIcon) SetName(name string)             { statusIconSetName(s, name) }
+func (s *StatusIcon) SetScreen(screen *D.Screen)      { statusIconSetScreen(s, screen) }
+func (s *StatusIcon) SetTitle(title string)           { statusIconSetTitle(s, title) }
+func (s *StatusIcon) SetTooltip(tooltipText string)   { statusIconSetTooltip(s, tooltipText) }
+func (s *StatusIcon) SetTooltipMarkup(markup string)  { statusIconSetTooltipMarkup(s, markup) }
+func (s *StatusIcon) SetTooltipText(text string)      { statusIconSetTooltipText(s, text) }
+func (s *StatusIcon) SetVisible(visible bool)         { statusIconSetVisible(s, visible) }
 
 type StockItem struct {
 	StockId           *T.Gchar
@@ -719,7 +719,7 @@ type StockItem struct {
 
 var (
 	StockListIds          func() *T.GSList
-	StockLookup           func(stockId string, item *StockItem) T.Gboolean
+	StockLookup           func(stockId string, item *StockItem) bool
 	StockSetTranslateFunc func(domain string, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 
 	StockAdd       func(s *StockItem, nItems uint)
@@ -769,7 +769,7 @@ var (
 	StyleGetType func() O.Type
 	StyleNew     func() *Style
 
-	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg T.Gboolean, stateType StateType, area *D.Rectangle, x, y, width, height int)
+	styleApplyDefaultBackground func(s *Style, window *D.Window, setBg bool, stateType StateType, area *D.Rectangle, x, y, width, height int)
 	styleAttach                 func(s *Style, window *D.Window) *Style
 	styleCopy                   func(s *Style) *Style
 	styleDetach                 func(s *Style)
@@ -777,7 +777,7 @@ var (
 	styleGetFont                func(s *Style) *D.Font
 	styleGetStyleProperty       func(s *Style, widgetType O.Type, propertyName string, value *T.GValue)
 	styleGetValist              func(s *Style, widgetType O.Type, firstPropertyName string, varArgs T.VaList)
-	styleLookupColor            func(s *Style, colorName string, color *D.Color) T.Gboolean
+	styleLookupColor            func(s *Style, colorName string, color *D.Color) bool
 	styleLookupIconSet          func(s *Style, stockId string) *IconSet
 	styleRef                    func(s *Style) *Style
 	styleRenderIcon             func(s *Style, source *IconSource, direction TextDirection, state StateType, size IconSize, widget *Widget, detail string) *D.Pixbuf
@@ -786,7 +786,7 @@ var (
 	styleUnref                  func(s *Style)
 )
 
-func (s *Style) ApplyDefaultBackground(window *D.Window, setBg T.Gboolean, stateType StateType, area *D.Rectangle, x, y, width, height int) {
+func (s *Style) ApplyDefaultBackground(window *D.Window, setBg bool, stateType StateType, area *D.Rectangle, x, y, width, height int) {
 	styleApplyDefaultBackground(s, window, setBg, stateType, area, x, y, width, height)
 }
 func (s *Style) Attach(window *D.Window) *Style { return styleAttach(s, window) }
@@ -802,7 +802,7 @@ func (s *Style) GetStyleProperty(widgetType O.Type, propertyName string, value *
 func (s *Style) GetValist(widgetType O.Type, firstPropertyName string, varArgs T.VaList) {
 	styleGetValist(s, widgetType, firstPropertyName, varArgs)
 }
-func (s *Style) LookupColor(colorName string, color *D.Color) T.Gboolean {
+func (s *Style) LookupColor(colorName string, color *D.Color) bool {
 	return styleLookupColor(s, colorName, color)
 }
 func (s *Style) LookupIconSet(stockId string) *IconSet { return styleLookupIconSet(s, stockId) }

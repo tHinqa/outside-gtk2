@@ -16,8 +16,8 @@ import (
 type Enum int
 
 var (
-	True  func() T.Gboolean
-	False func() T.Gboolean
+	True  func() bool
+	False func() bool
 )
 
 var (
@@ -47,7 +47,7 @@ var (
 		shadowType ShadowType,
 		points *D.Point,
 		npoints int,
-		fill T.Gboolean)
+		fill bool)
 
 	DrawArrow func(
 		style *Style,
@@ -55,7 +55,7 @@ var (
 		stateType StateType,
 		shadowType ShadowType,
 		arrowType ArrowType,
-		fill T.Gboolean,
+		fill bool,
 		x, y, width, height int)
 
 	DrawDiamond func(
@@ -158,7 +158,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		useText T.Gboolean,
+		useText bool,
 		x, y int,
 		layout *P.Layout)
 
@@ -207,7 +207,7 @@ var (
 		detail string,
 		points *D.Point,
 		nPoints int,
-		fill T.Gboolean)
+		fill bool)
 
 	PaintArrow func(
 		style *Style,
@@ -218,7 +218,7 @@ var (
 		widget *Widget,
 		detail string,
 		arrowType ArrowType,
-		fill T.Gboolean,
+		fill bool,
 		x, y, width, height int)
 
 	PaintDiamond func(
@@ -361,7 +361,7 @@ var (
 		style *Style,
 		window *D.Window,
 		stateType StateType,
-		useText T.Gboolean,
+		useText bool,
 		area *D.Rectangle,
 		widget *Widget,
 		detail string,
@@ -409,9 +409,9 @@ var (
 		widget *Widget,
 		drawable *D.Drawable,
 		area, location *D.Rectangle,
-		isPrimary T.Gboolean,
+		isPrimary bool,
 		direction TextDirection,
-		drawArrow T.Gboolean)
+		drawArrow bool)
 
 	SignalNewv func(
 		name string,
@@ -478,13 +478,13 @@ var (
 
 	RgbToHsv func(r, g, b float64, h, s, v *float64)
 
-	IconSizeLookupForSettings func(settings *Settings, size IconSize, width *int, height *int) T.Gboolean
+	IconSizeLookupForSettings func(settings *Settings, size IconSize, width *int, height *int) bool
 
-	ParseArgs func(argc *int, argv ***T.Char) T.Gboolean
+	ParseArgs func(argc *int, argv ***T.Char) bool
 
 	Init func(argc *int, argv ***T.Char)
 
-	InitCheck func(argc *int, argv ***T.Char) T.Gboolean
+	InitCheck func(argc *int, argv ***T.Char) bool
 
 	InitWithArgs func(
 		argc *int,
@@ -492,10 +492,10 @@ var (
 		parameterString string,
 		entries *T.GOptionEntry,
 		translationDomain string,
-		error **T.GError) T.Gboolean
+		error **T.GError) bool
 
 	GetOptionGroup func(
-		openDefaultDisplay T.Gboolean) *T.GOptionGroup
+		openDefaultDisplay bool) *T.GOptionGroup
 
 	InitAbiCheck func(
 		argc *int,
@@ -507,7 +507,7 @@ var (
 		argc *int,
 		argv ***T.Char,
 		numChecks int,
-		sizeof_GtkWindow, sizeof_GtkBox T.SizeT) T.Gboolean
+		sizeof_GtkWindow, sizeof_GtkBox T.SizeT) bool
 
 	Exit func(errorCode int)
 
@@ -515,7 +515,7 @@ var (
 
 	GetDefaultLanguage func() *P.Language
 
-	EventsPending func() T.Gboolean
+	EventsPending func() bool
 
 	MainDoEvent func(event *D.Event)
 
@@ -525,10 +525,10 @@ var (
 
 	MainQuit func()
 
-	MainIteration func() T.Gboolean
+	MainIteration func() bool
 
 	MainIterationDo func(
-		blocking T.Gboolean) T.Gboolean
+		blocking bool) bool
 
 	GrabAdd func(widget *Widget)
 
@@ -589,7 +589,7 @@ var (
 
 	GetCurrentEventTime func() T.GUint32
 
-	GetCurrentEventState func(state *T.GdkModifierType) T.Gboolean
+	GetCurrentEventState func(state *T.GdkModifierType) bool
 
 	GetEventWidget func(event *D.Event) *Widget
 
@@ -599,7 +599,7 @@ var (
 		screen *D.Screen,
 		uri string,
 		timestamp T.GUint32,
-		error **T.GError) T.Gboolean
+		error **T.GError) bool
 
 	TestInit func(argcp *int, argvp ***T.Char, v ...VArg)
 
@@ -627,15 +627,15 @@ var (
 
 	TestSpinButtonClick func(spinner *SpinButton,
 		button uint,
-		upwards T.Gboolean) T.Gboolean
+		upwards bool) bool
 
 	TestWidgetClick func(widget *Widget,
 		button uint,
-		modifiers T.GdkModifierType) T.Gboolean
+		modifiers T.GdkModifierType) bool
 
 	TestWidgetSendKey func(widget *Widget,
 		keyval uint,
-		modifiers T.GdkModifierType) T.Gboolean
+		modifiers T.GdkModifierType) bool
 
 	TestTextSet func(widget *Widget,
 		str string)

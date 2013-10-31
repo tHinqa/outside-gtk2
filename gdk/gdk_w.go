@@ -37,31 +37,31 @@ var (
 	windowDestroyNotify                   func(w *Window)
 	windowEnableSynchronizedConfigure     func(w *Window)
 	windowEndPaint                        func(w *Window)
-	windowEnsureNative                    func(w *Window) T.Gboolean
+	windowEnsureNative                    func(w *Window) bool
 	windowFlush                           func(w *Window)
 	windowFocus                           func(w *Window, timestamp T.GUint32)
 	windowFreezeToplevelUpdatesLibgtkOnly func(w *Window)
 	windowFreezeUpdates                   func(w *Window)
 	windowFullscreen                      func(w *Window)
 	windowGeometryChanged                 func(w *Window)
-	windowGetAcceptFocus                  func(w *Window) T.Gboolean
+	windowGetAcceptFocus                  func(w *Window) bool
 	windowGetBackgroundPattern            func(w *Window) *C.Pattern
 	windowGetChildren                     func(w *Window) *T.GList
-	windowGetComposited                   func(w *Window) T.Gboolean
+	windowGetComposited                   func(w *Window) bool
 	windowGetCursor                       func(w *Window) *Cursor
-	windowGetDecorations                  func(w *Window, decorations *T.GdkWMDecoration) T.Gboolean
-	windowGetDeskrelativeOrigin           func(w *Window, x, y *int) T.Gboolean
+	windowGetDecorations                  func(w *Window, decorations *T.GdkWMDecoration) bool
+	windowGetDeskrelativeOrigin           func(w *Window, x, y *int) bool
 	windowGetDisplay                      func(w *Window) *Display
 	windowGetEffectiveParent              func(w *Window) *Window
 	windowGetEffectiveToplevel            func(w *Window) *Window
 	windowGetEvents                       func(w *Window) EventMask
-	windowGetFocusOnMap                   func(w *Window) T.Gboolean
+	windowGetFocusOnMap                   func(w *Window) bool
 	windowGetFrameExtents                 func(w *Window, rect *Rectangle)
 	windowGetGeometry                     func(w *Window, x, y, width, height, depth *int)
 	windowGetGroup                        func(w *Window) *Window
 	windowGetHeight                       func(w *Window) int
 	windowGetInternalPaintInfo            func(w *Window, realDrawable **Drawable, xOffset, yOffset *int)
-	windowGetModalHint                    func(w *Window) T.Gboolean
+	windowGetModalHint                    func(w *Window) bool
 	windowGetOrigin                       func(w *Window, x, y *int) int
 	windowGetParent                       func(w *Window) *Window
 	windowGetPointer                      func(w *Window, x, y *int, mask *T.GdkModifierType) *Window
@@ -77,19 +77,19 @@ var (
 	windowGetVisual                       func(w *Window) *Visual
 	windowGetWidth                        func(w *Window) int
 	windowGetWindowType                   func(w *Window) WindowType
-	windowHasNative                       func(w *Window) T.Gboolean
+	windowHasNative                       func(w *Window) bool
 	windowHide                            func(w *Window)
 	windowIconify                         func(w *Window)
 	windowInputShapeCombineMask           func(w *Window, mask *T.GdkBitmap, x, y int)
 	windowInputShapeCombineRegion         func(w *Window, shapeRegion *Region, offsetX, offsetY int)
-	windowInvalidateMaybeRecurse          func(w *Window, region *Region, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer)
-	windowInvalidateRect                  func(w *Window, rect *Rectangle, invalidateChildren T.Gboolean)
-	windowInvalidateRegion                func(w *Window, region *Region, invalidateChildren T.Gboolean)
-	windowIsDestroyed                     func(w *Window) T.Gboolean
-	windowIsInputOnly                     func(w *Window) T.Gboolean
-	windowIsShaped                        func(w *Window) T.Gboolean
-	windowIsViewable                      func(w *Window) T.Gboolean
-	windowIsVisible                       func(w *Window) T.Gboolean
+	windowInvalidateMaybeRecurse          func(w *Window, region *Region, childFunc func(*Window, T.Gpointer) bool, userData T.Gpointer)
+	windowInvalidateRect                  func(w *Window, rect *Rectangle, invalidateChildren bool)
+	windowInvalidateRegion                func(w *Window, region *Region, invalidateChildren bool)
+	windowIsDestroyed                     func(w *Window) bool
+	windowIsInputOnly                     func(w *Window) bool
+	windowIsShaped                        func(w *Window) bool
+	windowIsViewable                      func(w *Window) bool
+	windowIsVisible                       func(w *Window) bool
 	windowLower                           func(w *Window)
 	windowMaximize                        func(w *Window)
 	windowMergeChildInputShapes           func(w *Window)
@@ -98,7 +98,7 @@ var (
 	windowMoveRegion                      func(w *Window, region *Region, dx, dy int)
 	windowMoveResize                      func(w *Window, x, y, width, height int)
 	windowPeekChildren                    func(w *Window) *T.GList
-	windowProcessUpdates                  func(w *Window, updateChildren T.Gboolean)
+	windowProcessUpdates                  func(w *Window, updateChildren bool)
 	windowRaise                           func(w *Window)
 	windowRedirectToDrawable              func(w *Window, drawable *Drawable, srcX, srcY, destX, destY, width, height int)
 	windowRegisterDnd                     func(w *Window)
@@ -106,18 +106,18 @@ var (
 	windowRemoveRedirection               func(w *Window)
 	windowReparent                        func(w *Window, newParent *Window, x, y int)
 	windowResize                          func(w *Window, width, height int)
-	windowRestack                         func(w, sibling *Window, above T.Gboolean)
+	windowRestack                         func(w, sibling *Window, above bool)
 	windowScroll                          func(w *Window, dx, dy int)
-	windowSetAcceptFocus                  func(w *Window, acceptFocus T.Gboolean)
+	windowSetAcceptFocus                  func(w *Window, acceptFocus bool)
 	windowSetBackground                   func(w *Window, color *Color)
-	windowSetBackPixmap                   func(w *Window, pixmap *Pixmap, parentRelative T.Gboolean)
+	windowSetBackPixmap                   func(w *Window, pixmap *Pixmap, parentRelative bool)
 	windowSetChildInputShapes             func(w *Window)
 	windowSetChildShapes                  func(w *Window)
-	windowSetComposited                   func(w *Window, composited T.Gboolean)
+	windowSetComposited                   func(w *Window, composited bool)
 	windowSetCursor                       func(w *Window, cursor *Cursor)
 	windowSetDecorations                  func(w *Window, decorations T.GdkWMDecoration)
 	windowSetEvents                       func(w *Window, eventMask EventMask)
-	windowSetFocusOnMap                   func(w *Window, focusOnMap T.Gboolean)
+	windowSetFocusOnMap                   func(w *Window, focusOnMap bool)
 	windowSetFunctions                    func(w *Window, functions T.GdkWMFunction)
 	windowSetGeometryHints                func(w *Window, geometry *Geometry, geomMask WindowHints)
 	windowSetGroup                        func(w *Window, leader *Window)
@@ -125,20 +125,20 @@ var (
 	windowSetIcon                         func(w, iconWindow *Window, pixmap *Pixmap, mask *T.GdkBitmap)
 	windowSetIconList                     func(w *Window, pixbufs *T.GList)
 	windowSetIconName                     func(w *Window, name string)
-	windowSetKeepAbove                    func(w *Window, setting T.Gboolean)
-	windowSetKeepBelow                    func(w *Window, setting T.Gboolean)
-	windowSetModalHint                    func(w *Window, modal T.Gboolean)
+	windowSetKeepAbove                    func(w *Window, setting bool)
+	windowSetKeepBelow                    func(w *Window, setting bool)
+	windowSetModalHint                    func(w *Window, modal bool)
 	windowSetOpacity                      func(w *Window, opacity float64)
-	windowSetOverrideRedirect             func(w *Window, overrideRedirect T.Gboolean)
+	windowSetOverrideRedirect             func(w *Window, overrideRedirect bool)
 	windowSetRole                         func(w *Window, role string)
-	windowSetSkipPagerHint                func(w *Window, skipsPager T.Gboolean)
-	windowSetSkipTaskbarHint              func(w *Window, skipsTaskbar T.Gboolean)
+	windowSetSkipPagerHint                func(w *Window, skipsPager bool)
+	windowSetSkipTaskbarHint              func(w *Window, skipsTaskbar bool)
 	windowSetStartupId                    func(w *Window, startupId string)
-	windowSetStaticGravities              func(w *Window, useStatic T.Gboolean) T.Gboolean
+	windowSetStaticGravities              func(w *Window, useStatic bool) bool
 	windowSetTitle                        func(w *Window, title string)
 	windowSetTransientFor                 func(w *Window, parent *Window)
 	windowSetTypeHint                     func(w *Window, hint WindowTypeHint)
-	windowSetUrgencyHint                  func(w *Window, urgent T.Gboolean)
+	windowSetUrgencyHint                  func(w *Window, urgent bool)
 	windowSetUserData                     func(w *Window, userData T.Gpointer)
 	windowShapeCombineMask                func(w *Window, mask *T.GdkBitmap, x, y int)
 	windowShapeCombineRegion              func(w *Window, shapeRegion *Region, offsetX, offsetY int)
@@ -183,29 +183,29 @@ func (w *Window) Destroy()                         { windowDestroy(w) }
 func (w *Window) DestroyNotify()                   { windowDestroyNotify(w) }
 func (w *Window) EnableSynchronizedConfigure()     { windowEnableSynchronizedConfigure(w) }
 func (w *Window) EndPaint()                        { windowEndPaint(w) }
-func (w *Window) EnsureNative() T.Gboolean         { return windowEnsureNative(w) }
+func (w *Window) EnsureNative() bool               { return windowEnsureNative(w) }
 func (w *Window) Flush()                           { windowFlush(w) }
 func (w *Window) Focus(timestamp T.GUint32)        { windowFocus(w, timestamp) }
 func (w *Window) FreezeToplevelUpdatesLibgtkOnly() { windowFreezeToplevelUpdatesLibgtkOnly(w) }
 func (w *Window) FreezeUpdates()                   { windowFreezeUpdates(w) }
 func (w *Window) Fullscreen()                      { windowFullscreen(w) }
 func (w *Window) GeometryChanged()                 { windowGeometryChanged(w) }
-func (w *Window) GetAcceptFocus() T.Gboolean       { return windowGetAcceptFocus(w) }
+func (w *Window) GetAcceptFocus() bool             { return windowGetAcceptFocus(w) }
 func (w *Window) GetBackgroundPattern() *C.Pattern { return windowGetBackgroundPattern(w) }
 func (w *Window) GetChildren() *T.GList            { return windowGetChildren(w) }
-func (w *Window) GetComposited() T.Gboolean        { return windowGetComposited(w) }
+func (w *Window) GetComposited() bool              { return windowGetComposited(w) }
 func (w *Window) GetCursor() *Cursor               { return windowGetCursor(w) }
-func (w *Window) GetDecorations(decorations *T.GdkWMDecoration) T.Gboolean {
+func (w *Window) GetDecorations(decorations *T.GdkWMDecoration) bool {
 	return windowGetDecorations(w, decorations)
 }
-func (w *Window) GetDeskrelativeOrigin(x, y *int) T.Gboolean {
+func (w *Window) GetDeskrelativeOrigin(x, y *int) bool {
 	return windowGetDeskrelativeOrigin(w, x, y)
 }
 func (w *Window) GetDisplay() *Display            { return windowGetDisplay(w) }
 func (w *Window) GetEffectiveParent() *Window     { return windowGetEffectiveParent(w) }
 func (w *Window) GetEffectiveToplevel() *Window   { return windowGetEffectiveToplevel(w) }
 func (w *Window) GetEvents() EventMask            { return windowGetEvents(w) }
-func (w *Window) GetFocusOnMap() T.Gboolean       { return windowGetFocusOnMap(w) }
+func (w *Window) GetFocusOnMap() bool             { return windowGetFocusOnMap(w) }
 func (w *Window) GetFrameExtents(rect *Rectangle) { windowGetFrameExtents(w, rect) }
 func (w *Window) GetGeometry(x, y, width, height, depth *int) {
 	windowGetGeometry(w, x, y, width, height, depth)
@@ -215,9 +215,9 @@ func (w *Window) GetHeight() int    { return windowGetHeight(w) }
 func (w *Window) GetInternalPaintInfo(realDrawable **Drawable, xOffset, yOffset *int) {
 	windowGetInternalPaintInfo(w, realDrawable, xOffset, yOffset)
 }
-func (w *Window) GetModalHint() T.Gboolean { return windowGetModalHint(w) }
-func (w *Window) GetOrigin(x, y *int) int  { return windowGetOrigin(w, x, y) }
-func (w *Window) GetParent() *Window       { return windowGetParent(w) }
+func (w *Window) GetModalHint() bool      { return windowGetModalHint(w) }
+func (w *Window) GetOrigin(x, y *int) int { return windowGetOrigin(w, x, y) }
+func (w *Window) GetParent() *Window      { return windowGetParent(w) }
 func (w *Window) GetPointer(x, y *int, mask *T.GdkModifierType) *Window {
 	return windowGetPointer(w, x, y, mask)
 }
@@ -235,7 +235,7 @@ func (w *Window) GetUserData(data *T.Gpointer) { windowGetUserData(w, data) }
 func (w *Window) GetVisual() *Visual           { return windowGetVisual(w) }
 func (w *Window) GetWidth() int                { return windowGetWidth(w) }
 func (w *Window) GetWindowType() WindowType    { return windowGetWindowType(w) }
-func (w *Window) HasNative() T.Gboolean        { return windowHasNative(w) }
+func (w *Window) HasNative() bool              { return windowHasNative(w) }
 func (w *Window) Hide()                        { windowHide(w) }
 func (w *Window) Iconify()                     { windowIconify(w) }
 func (w *Window) InputShapeCombineMask(mask *T.GdkBitmap, x, y int) {
@@ -244,30 +244,30 @@ func (w *Window) InputShapeCombineMask(mask *T.GdkBitmap, x, y int) {
 func (w *Window) InputShapeCombineRegion(shapeRegion *Region, offsetX, offsetY int) {
 	windowInputShapeCombineRegion(w, shapeRegion, offsetX, offsetY)
 }
-func (w *Window) InvalidateMaybeRecurse(region *Region, childFunc func(*Window, T.Gpointer) T.Gboolean, userData T.Gpointer) {
+func (w *Window) InvalidateMaybeRecurse(region *Region, childFunc func(*Window, T.Gpointer) bool, userData T.Gpointer) {
 	windowInvalidateMaybeRecurse(w, region, childFunc, userData)
 }
-func (w *Window) InvalidateRect(rect *Rectangle, invalidateChildren T.Gboolean) {
+func (w *Window) InvalidateRect(rect *Rectangle, invalidateChildren bool) {
 	windowInvalidateRect(w, rect, invalidateChildren)
 }
-func (w *Window) InvalidateRegion(region *Region, invalidateChildren T.Gboolean) {
+func (w *Window) InvalidateRegion(region *Region, invalidateChildren bool) {
 	windowInvalidateRegion(w, region, invalidateChildren)
 }
-func (w *Window) IsDestroyed() T.Gboolean                  { return windowIsDestroyed(w) }
-func (w *Window) IsInputOnly() T.Gboolean                  { return windowIsInputOnly(w) }
-func (w *Window) IsShaped() T.Gboolean                     { return windowIsShaped(w) }
-func (w *Window) IsViewable() T.Gboolean                   { return windowIsViewable(w) }
-func (w *Window) IsVisible() T.Gboolean                    { return windowIsVisible(w) }
-func (w *Window) Lower()                                   { windowLower(w) }
-func (w *Window) Maximize()                                { windowMaximize(w) }
-func (w *Window) MergeChildInputShapes()                   { windowMergeChildInputShapes(w) }
-func (w *Window) MergeChildShapes()                        { windowMergeChildShapes(w) }
-func (w *Window) Move(x, y int)                            { windowMove(w, x, y) }
-func (w *Window) MoveRegion(region *Region, dx, dy int)    { windowMoveRegion(w, region, dx, dy) }
-func (w *Window) MoveResize(x, y, width, height int)       { windowMoveResize(w, x, y, width, height) }
-func (w *Window) PeekChildren() *T.GList                   { return windowPeekChildren(w) }
-func (w *Window) ProcessUpdates(updateChildren T.Gboolean) { windowProcessUpdates(w, updateChildren) }
-func (w *Window) Raise()                                   { windowRaise(w) }
+func (w *Window) IsDestroyed() bool                     { return windowIsDestroyed(w) }
+func (w *Window) IsInputOnly() bool                     { return windowIsInputOnly(w) }
+func (w *Window) IsShaped() bool                        { return windowIsShaped(w) }
+func (w *Window) IsViewable() bool                      { return windowIsViewable(w) }
+func (w *Window) IsVisible() bool                       { return windowIsVisible(w) }
+func (w *Window) Lower()                                { windowLower(w) }
+func (w *Window) Maximize()                             { windowMaximize(w) }
+func (w *Window) MergeChildInputShapes()                { windowMergeChildInputShapes(w) }
+func (w *Window) MergeChildShapes()                     { windowMergeChildShapes(w) }
+func (w *Window) Move(x, y int)                         { windowMove(w, x, y) }
+func (w *Window) MoveRegion(region *Region, dx, dy int) { windowMoveRegion(w, region, dx, dy) }
+func (w *Window) MoveResize(x, y, width, height int)    { windowMoveResize(w, x, y, width, height) }
+func (w *Window) PeekChildren() *T.GList                { return windowPeekChildren(w) }
+func (w *Window) ProcessUpdates(updateChildren bool)    { windowProcessUpdates(w, updateChildren) }
+func (w *Window) Raise()                                { windowRaise(w) }
 func (w *Window) RedirectToDrawable(drawable *Drawable, srcX, srcY, destX, destY, width, height int) {
 	windowRedirectToDrawable(w, drawable, srcX, srcY, destX, destY, width, height)
 }
@@ -275,23 +275,23 @@ func (w *Window) RegisterDnd() { windowRegisterDnd(w) }
 func (w *Window) RemoveFilter(function T.GdkFilterFunc, data T.Gpointer) {
 	windowRemoveFilter(w, function, data)
 }
-func (w *Window) RemoveRedirection()                        { windowRemoveRedirection(w) }
-func (w *Window) Reparent(newParent *Window, x, y int)      { windowReparent(w, newParent, x, y) }
-func (w *Window) Resize(width, height int)                  { windowResize(w, width, height) }
-func (w *Window) Restack(sibling *Window, above T.Gboolean) { windowRestack(w, sibling, above) }
-func (w *Window) Scroll(dx, dy int)                         { windowScroll(w, dx, dy) }
-func (w *Window) SetAcceptFocus(acceptFocus T.Gboolean)     { windowSetAcceptFocus(w, acceptFocus) }
-func (w *Window) SetBackground(color *Color)                { windowSetBackground(w, color) }
-func (w *Window) SetBackPixmap(pixmap *Pixmap, parentRelative T.Gboolean) {
+func (w *Window) RemoveRedirection()                   { windowRemoveRedirection(w) }
+func (w *Window) Reparent(newParent *Window, x, y int) { windowReparent(w, newParent, x, y) }
+func (w *Window) Resize(width, height int)             { windowResize(w, width, height) }
+func (w *Window) Restack(sibling *Window, above bool)  { windowRestack(w, sibling, above) }
+func (w *Window) Scroll(dx, dy int)                    { windowScroll(w, dx, dy) }
+func (w *Window) SetAcceptFocus(acceptFocus bool)      { windowSetAcceptFocus(w, acceptFocus) }
+func (w *Window) SetBackground(color *Color)           { windowSetBackground(w, color) }
+func (w *Window) SetBackPixmap(pixmap *Pixmap, parentRelative bool) {
 	windowSetBackPixmap(w, pixmap, parentRelative)
 }
 func (w *Window) SetChildInputShapes()                         { windowSetChildInputShapes(w) }
 func (w *Window) SetChildShapes()                              { windowSetChildShapes(w) }
-func (w *Window) SetComposited(composited T.Gboolean)          { windowSetComposited(w, composited) }
+func (w *Window) SetComposited(composited bool)                { windowSetComposited(w, composited) }
 func (w *Window) SetCursor(cursor *Cursor)                     { windowSetCursor(w, cursor) }
 func (w *Window) SetDecorations(decorations T.GdkWMDecoration) { windowSetDecorations(w, decorations) }
 func (w *Window) SetEvents(eventMask EventMask)                { windowSetEvents(w, eventMask) }
-func (w *Window) SetFocusOnMap(focusOnMap T.Gboolean)          { windowSetFocusOnMap(w, focusOnMap) }
+func (w *Window) SetFocusOnMap(focusOnMap bool)                { windowSetFocusOnMap(w, focusOnMap) }
 func (w *Window) SetFunctions(functions T.GdkWMFunction)       { windowSetFunctions(w, functions) }
 func (w *Window) SetGeometryHints(geometry *Geometry, geomMask WindowHints) {
 	windowSetGeometryHints(w, geometry, geomMask)
@@ -303,28 +303,28 @@ func (w *Window) SetHints(x, y, minWidth, minHeight, maxWidth, maxHeight, flags 
 func (w *Window) SetIcon(iconWindow *Window, pixmap *Pixmap, mask *T.GdkBitmap) {
 	windowSetIcon(w, iconWindow, pixmap, mask)
 }
-func (w *Window) SetIconList(pixbufs *T.GList)    { windowSetIconList(w, pixbufs) }
-func (w *Window) SetIconName(name string)         { windowSetIconName(w, name) }
-func (w *Window) SetKeepAbove(setting T.Gboolean) { windowSetKeepAbove(w, setting) }
-func (w *Window) SetKeepBelow(setting T.Gboolean) { windowSetKeepBelow(w, setting) }
-func (w *Window) SetModalHint(modal T.Gboolean)   { windowSetModalHint(w, modal) }
-func (w *Window) SetOpacity(opacity float64)      { windowSetOpacity(w, opacity) }
-func (w *Window) SetOverrideRedirect(overrideRedirect T.Gboolean) {
+func (w *Window) SetIconList(pixbufs *T.GList) { windowSetIconList(w, pixbufs) }
+func (w *Window) SetIconName(name string)      { windowSetIconName(w, name) }
+func (w *Window) SetKeepAbove(setting bool)    { windowSetKeepAbove(w, setting) }
+func (w *Window) SetKeepBelow(setting bool)    { windowSetKeepBelow(w, setting) }
+func (w *Window) SetModalHint(modal bool)      { windowSetModalHint(w, modal) }
+func (w *Window) SetOpacity(opacity float64)   { windowSetOpacity(w, opacity) }
+func (w *Window) SetOverrideRedirect(overrideRedirect bool) {
 	windowSetOverrideRedirect(w, overrideRedirect)
 }
-func (w *Window) SetRole(role string)                    { windowSetRole(w, role) }
-func (w *Window) SetSkipPagerHint(skipsPager T.Gboolean) { windowSetSkipPagerHint(w, skipsPager) }
-func (w *Window) SetSkipTaskbarHint(skipsTaskbar T.Gboolean) {
+func (w *Window) SetRole(role string)              { windowSetRole(w, role) }
+func (w *Window) SetSkipPagerHint(skipsPager bool) { windowSetSkipPagerHint(w, skipsPager) }
+func (w *Window) SetSkipTaskbarHint(skipsTaskbar bool) {
 	windowSetSkipTaskbarHint(w, skipsTaskbar)
 }
 func (w *Window) SetStartupId(startupId string) { windowSetStartupId(w, startupId) }
-func (w *Window) SetStaticGravities(useStatic T.Gboolean) T.Gboolean {
+func (w *Window) SetStaticGravities(useStatic bool) bool {
 	return windowSetStaticGravities(w, useStatic)
 }
 func (w *Window) SetTitle(title string)                        { windowSetTitle(w, title) }
 func (w *Window) SetTransientFor(parent *Window)               { windowSetTransientFor(w, parent) }
 func (w *Window) SetTypeHint(hint WindowTypeHint)              { windowSetTypeHint(w, hint) }
-func (w *Window) SetUrgencyHint(urgent T.Gboolean)             { windowSetUrgencyHint(w, urgent) }
+func (w *Window) SetUrgencyHint(urgent bool)                   { windowSetUrgencyHint(w, urgent) }
 func (w *Window) SetUserData(userData T.Gpointer)              { windowSetUserData(w, userData) }
 func (w *Window) ShapeCombineMask(mask *T.GdkBitmap, x, y int) { windowShapeCombineMask(w, mask, x, y) }
 func (w *Window) ShapeCombineRegion(shapeRegion *Region, offsetX, offsetY int) {

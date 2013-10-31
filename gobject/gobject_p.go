@@ -37,7 +37,7 @@ type ParamSpec struct {
 }
 
 var (
-	ParamSpecBoolean    func(name, nick, blurb string, defaultValue T.Gboolean, flags ParamFlags) *ParamSpec
+	ParamSpecBoolean    func(name, nick, blurb string, defaultValue bool, flags ParamFlags) *ParamSpec
 	ParamSpecBoxed      func(name, nick, blurb string, boxedType Type, flags ParamFlags) *ParamSpec
 	ParamSpecChar       func(name, nick, blurb string, minimum, maximum, defaultValue int8, flags ParamFlags) *ParamSpec
 	ParamSpecDouble     func(name, nick, blurb string, minimum, maximum, defaultValue float64, flags ParamFlags) *ParamSpec
@@ -75,16 +75,16 @@ var (
 	paramSpecStealQdata        func(p *ParamSpec, quark T.GQuark) T.Gpointer
 	paramSpecUnref             func(p *ParamSpec)
 	paramValueSetDefault       func(p *ParamSpec, value *Value)
-	paramValueDefaults         func(p *ParamSpec, value *Value) T.Gboolean
-	paramValueValidate         func(p *ParamSpec, value *Value) T.Gboolean
-	paramValueConvert          func(p *ParamSpec, srcValue, destValue *Value, strictValidation T.Gboolean) T.Gboolean
+	paramValueDefaults         func(p *ParamSpec, value *Value) bool
+	paramValueValidate         func(p *ParamSpec, value *Value) bool
+	paramValueConvert          func(p *ParamSpec, srcValue, destValue *Value, strictValidation bool) bool
 	paramValuesCmp             func(p *ParamSpec, value1, value2 *Value) int
 )
 
-func (p *ParamSpec) Convert(srcValue, destValue *Value, strictValidation T.Gboolean) T.Gboolean {
+func (p *ParamSpec) Convert(srcValue, destValue *Value, strictValidation bool) bool {
 	return paramValueConvert(p, srcValue, destValue, strictValidation)
 }
-func (p *ParamSpec) Defaults(value *Value) T.Gboolean         { return paramValueDefaults(p, value) }
+func (p *ParamSpec) Defaults(value *Value) bool               { return paramValueDefaults(p, value) }
 func (p *ParamSpec) GetBlurb() string                         { return paramSpecGetBlurb(p) }
 func (p *ParamSpec) GetName() string                          { return paramSpecGetName(p) }
 func (p *ParamSpec) GetNick() string                          { return paramSpecGetNick(p) }
@@ -100,18 +100,18 @@ func (p *ParamSpec) SetQdataFull(quark T.GQuark, data T.Gpointer, destroy T.GDes
 func (p *ParamSpec) Sink()                                { paramSpecSink(p) }
 func (p *ParamSpec) StealQdata(quark T.GQuark) T.Gpointer { return paramSpecStealQdata(p, quark) }
 func (p *ParamSpec) Unref()                               { paramSpecUnref(p) }
-func (p *ParamSpec) Validate(value *Value) T.Gboolean     { return paramValueValidate(p, value) }
+func (p *ParamSpec) Validate(value *Value) bool           { return paramValueValidate(p, value) }
 func (p *ParamSpec) ValuesCmp(value1, value2 *Value) int  { return paramValuesCmp(p, value1, value2) }
 
 type ParamSpecPool struct{}
 
 var (
-	ParamSpecPoolNew func(typePrefixing T.Gboolean) *ParamSpecPool
+	ParamSpecPoolNew func(typePrefixing bool) *ParamSpecPool
 
 	paramSpecPoolInsert    func(p *ParamSpecPool, pspec *ParamSpec, ownerType Type)
 	paramSpecPoolList      func(p *ParamSpecPool, ownerType Type, nPspecsP *uint) **ParamSpec
 	paramSpecPoolListOwned func(p *ParamSpecPool, ownerType Type) *T.GList
-	paramSpecPoolLookup    func(p *ParamSpecPool, paramName string, ownerType Type, walkAncestors T.Gboolean) *ParamSpec
+	paramSpecPoolLookup    func(p *ParamSpecPool, paramName string, ownerType Type, walkAncestors bool) *ParamSpec
 	paramSpecPoolRemove    func(p *ParamSpecPool, pspec *ParamSpec)
 )
 
@@ -124,7 +124,7 @@ func (p *ParamSpecPool) List(ownerType Type, nPspecsP *uint) **ParamSpec {
 func (p *ParamSpecPool) ListOwned(ownerType Type) *T.GList {
 	return paramSpecPoolListOwned(p, ownerType)
 }
-func (p *ParamSpecPool) Lookup(paramName string, ownerType Type, walkAncestors T.Gboolean) *ParamSpec {
+func (p *ParamSpecPool) Lookup(paramName string, ownerType Type, walkAncestors bool) *ParamSpec {
 	return paramSpecPoolLookup(p, paramName, ownerType, walkAncestors)
 }
 func (p *ParamSpecPool) Remove(pspec *ParamSpec) { paramSpecPoolRemove(p, pspec) }
@@ -138,7 +138,7 @@ type ParamSpecTypeInfo struct {
 	Value_set_default func(
 		pspec *ParamSpec, value *T.GValue)
 	Value_validate func(
-		pspec *ParamSpec, value *T.GValue) T.Gboolean
+		pspec *ParamSpec, value *T.GValue) bool
 	Values_cmp func(pspec *ParamSpec,
 		value1 *T.GValue, value2 *T.GValue) int
 }

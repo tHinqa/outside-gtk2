@@ -67,22 +67,22 @@ type Selection struct{}
 var (
 	SelectionGetType func() O.Type
 
-	selectionAddSelection       func(s *Selection, i int) T.Gboolean
-	selectionClearSelection     func(s *Selection) T.Gboolean
+	selectionAddSelection       func(s *Selection, i int) bool
+	selectionClearSelection     func(s *Selection) bool
 	selectionGetSelectionCount  func(s *Selection) int
-	selectionIsChildSelected    func(s *Selection, i int) T.Gboolean
+	selectionIsChildSelected    func(s *Selection, i int) bool
 	selectionRefSelection       func(s *Selection, i int) *Object
-	selectionRemoveSelection    func(s *Selection, i int) T.Gboolean
-	selectionSelectAllSelection func(s *Selection) T.Gboolean
+	selectionRemoveSelection    func(s *Selection, i int) bool
+	selectionSelectAllSelection func(s *Selection) bool
 )
 
-func (s *Selection) AddSelection(i int) T.Gboolean    { return selectionAddSelection(s, i) }
-func (s *Selection) ClearSelection() T.Gboolean       { return selectionClearSelection(s) }
-func (s *Selection) GetSelectionCount() int           { return selectionGetSelectionCount(s) }
-func (s *Selection) IsChildSelected(i int) T.Gboolean { return selectionIsChildSelected(s, i) }
-func (s *Selection) RefSelection(i int) *Object       { return selectionRefSelection(s, i) }
-func (s *Selection) RemoveSelection(i int) T.Gboolean { return selectionRemoveSelection(s, i) }
-func (s *Selection) SelectAllSelection() T.Gboolean   { return selectionSelectAllSelection(s) }
+func (s *Selection) AddSelection(i int) bool    { return selectionAddSelection(s, i) }
+func (s *Selection) ClearSelection() bool       { return selectionClearSelection(s) }
+func (s *Selection) GetSelectionCount() int     { return selectionGetSelectionCount(s) }
+func (s *Selection) IsChildSelected(i int) bool { return selectionIsChildSelected(s, i) }
+func (s *Selection) RefSelection(i int) *Object { return selectionRefSelection(s, i) }
+func (s *Selection) RemoveSelection(i int) bool { return selectionRemoveSelection(s, i) }
+func (s *Selection) SelectAllSelection() bool   { return selectionSelectAllSelection(s) }
 
 type Socket struct{}
 
@@ -90,11 +90,11 @@ var (
 	SocketNew func() *Object
 
 	socketEmbed      func(obj *Socket, plugId string)
-	socketIsOccupied func(obj *Socket) T.Gboolean
+	socketIsOccupied func(obj *Socket) bool
 )
 
-func (s *Socket) Embed(plugId string)    { socketEmbed(s, plugId) }
-func (s *Socket) IsOccupied() T.Gboolean { return socketIsOccupied(s) }
+func (s *Socket) Embed(plugId string) { socketEmbed(s, plugId) }
+func (s *Socket) IsOccupied() bool    { return socketIsOccupied(s) }
 
 type State struct{}
 
@@ -104,29 +104,29 @@ var (
 	StateSetGetType func() O.Type
 	StateSetNew     func() *StateSet
 
-	stateSetAddState       func(s *StateSet, t StateType) T.Gboolean
+	stateSetAddState       func(s *StateSet, t StateType) bool
 	stateSetAddStates      func(s *StateSet, types *StateType, nTypes int)
 	stateSetAndSets        func(s *StateSet, compareSet *StateSet) *StateSet
 	stateSetClearStates    func(s *StateSet)
-	stateSetContainsState  func(s *StateSet, t StateType) T.Gboolean
-	stateSetContainsStates func(s *StateSet, types *StateType, nTypes int) T.Gboolean
-	stateSetIsEmpty        func(s *StateSet) T.Gboolean
+	stateSetContainsState  func(s *StateSet, t StateType) bool
+	stateSetContainsStates func(s *StateSet, types *StateType, nTypes int) bool
+	stateSetIsEmpty        func(s *StateSet) bool
 	stateSetOrSets         func(s *StateSet, compareSet *StateSet) *StateSet
-	stateSetRemoveState    func(s *StateSet, t StateType) T.Gboolean
+	stateSetRemoveState    func(s *StateSet, t StateType) bool
 	stateSetXorSets        func(s *StateSet, compareSet *StateSet) *StateSet
 )
 
-func (s *StateSet) AddState(t StateType) T.Gboolean        { return stateSetAddState(s, t) }
+func (s *StateSet) AddState(t StateType) bool              { return stateSetAddState(s, t) }
 func (s *StateSet) AddStates(types *StateType, nTypes int) { stateSetAddStates(s, types, nTypes) }
 func (s *StateSet) AndSets(compareSet *StateSet) *StateSet { return stateSetAndSets(s, compareSet) }
 func (s *StateSet) ClearStates()                           { stateSetClearStates(s) }
-func (s *StateSet) ContainsState(t StateType) T.Gboolean   { return stateSetContainsState(s, t) }
-func (s *StateSet) ContainsStates(types *StateType, nTypes int) T.Gboolean {
+func (s *StateSet) ContainsState(t StateType) bool         { return stateSetContainsState(s, t) }
+func (s *StateSet) ContainsStates(types *StateType, nTypes int) bool {
 	return stateSetContainsStates(s, types, nTypes)
 }
-func (s *StateSet) IsEmpty() T.Gboolean                    { return stateSetIsEmpty(s) }
+func (s *StateSet) IsEmpty() bool                          { return stateSetIsEmpty(s) }
 func (s *StateSet) OrSets(compareSet *StateSet) *StateSet  { return stateSetOrSets(s, compareSet) }
-func (s *StateSet) RemoveState(t StateType) T.Gboolean     { return stateSetRemoveState(s, t) }
+func (s *StateSet) RemoveState(t StateType) bool           { return stateSetRemoveState(s, t) }
 func (s *StateSet) XorSets(compareSet *StateSet) *StateSet { return stateSetXorSets(s, compareSet) }
 
 type StreamableContent struct{}

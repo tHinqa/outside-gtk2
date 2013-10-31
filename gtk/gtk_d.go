@@ -83,7 +83,7 @@ var (
 	dialogAddButtons                         func(d *Dialog, firstButtonText string, v ...VArg)
 	dialogGetActionArea                      func(d *Dialog) *Widget
 	dialogGetContentArea                     func(d *Dialog) *Widget
-	dialogGetHasSeparator                    func(d *Dialog) T.Gboolean
+	dialogGetHasSeparator                    func(d *Dialog) bool
 	dialogGetResponseForWidget               func(d *Dialog, widget *Widget) int
 	dialogGetWidgetForResponse               func(d *Dialog, responseId int) *Widget
 	dialogResponse                           func(d *Dialog, responseId int)
@@ -91,8 +91,8 @@ var (
 	dialogSetAlternativeButtonOrder          func(d *Dialog, firstResponseId int, v ...VArg)
 	dialogSetAlternativeButtonOrderFromArray func(d *Dialog, nParams int, newOrder *int)
 	dialogSetDefaultResponse                 func(d *Dialog, responseId int)
-	dialogSetHasSeparator                    func(d *Dialog, setting T.Gboolean)
-	dialogSetResponseSensitive               func(d *Dialog, responseId int, setting T.Gboolean)
+	dialogSetHasSeparator                    func(d *Dialog, setting bool)
+	dialogSetResponseSensitive               func(d *Dialog, responseId int, setting bool)
 )
 
 func (d *Dialog) AddActionWidget(child *Widget, responseId int) {
@@ -104,9 +104,9 @@ func (d *Dialog) AddButton(buttonText string, responseId int) *Widget {
 func (d *Dialog) AddButtons(firstButtonText string, v ...VArg) {
 	dialogAddButtons(d, firstButtonText, v)
 }
-func (d *Dialog) GetActionArea() *Widget      { return dialogGetActionArea(d) }
-func (d *Dialog) GetContentArea() *Widget     { return dialogGetContentArea(d) }
-func (d *Dialog) GetHasSeparator() T.Gboolean { return dialogGetHasSeparator(d) }
+func (d *Dialog) GetActionArea() *Widget  { return dialogGetActionArea(d) }
+func (d *Dialog) GetContentArea() *Widget { return dialogGetContentArea(d) }
+func (d *Dialog) GetHasSeparator() bool   { return dialogGetHasSeparator(d) }
 func (d *Dialog) GetResponseForWidget(widget *Widget) int {
 	return dialogGetResponseForWidget(d, widget)
 }
@@ -121,9 +121,9 @@ func (d *Dialog) SetAlternativeButtonOrder(firstResponseId int, v ...VArg) {
 func (d *Dialog) SetAlternativeButtonOrderFromArray(nParams int, newOrder *int) {
 	dialogSetAlternativeButtonOrderFromArray(d, nParams, newOrder)
 }
-func (d *Dialog) SetDefaultResponse(responseId int)  { dialogSetDefaultResponse(d, responseId) }
-func (d *Dialog) SetHasSeparator(setting T.Gboolean) { dialogSetHasSeparator(d, setting) }
-func (d *Dialog) SetResponseSensitive(responseId int, setting T.Gboolean) {
+func (d *Dialog) SetDefaultResponse(responseId int) { dialogSetDefaultResponse(d, responseId) }
+func (d *Dialog) SetHasSeparator(setting bool)      { dialogSetHasSeparator(d, setting) }
+func (d *Dialog) SetResponseSensitive(responseId int, setting bool) {
 	dialogSetResponseSensitive(d, responseId, setting)
 }
 
@@ -144,19 +144,19 @@ var DisableSetlocale func()
 
 var (
 	DragBegin                 func(widget *Widget, targets *TargetList, actions D.DragAction, button int, event *D.Event) *D.DragContext
-	DragCheckThreshold        func(widget *Widget, startX, startY, currentX, currentY int) T.Gboolean
+	DragCheckThreshold        func(widget *Widget, startX, startY, currentX, currentY int) bool
 	DragDestAddImageTargets   func(widget *Widget)
 	DragDestAddTextTargets    func(widget *Widget)
 	DragDestAddUriTargets     func(widget *Widget)
 	DragDestFindTarget        func(widget *Widget, context *D.DragContext, targetList *TargetList) D.Atom
 	DragDestGetTargetList     func(widget *Widget) *TargetList
-	DragDestGetTrackMotion    func(widget *Widget) T.Gboolean
+	DragDestGetTrackMotion    func(widget *Widget) bool
 	DragDestSet               func(widget *Widget, flags DestDefaults, targets *TargetEntry, nTargets int, actions D.DragAction)
-	DragDestSetProxy          func(widget *Widget, proxyWindow *D.Window, protocol D.DragProtocol, useCoordinates T.Gboolean)
+	DragDestSetProxy          func(widget *Widget, proxyWindow *D.Window, protocol D.DragProtocol, useCoordinates bool)
 	DragDestSetTargetList     func(widget *Widget, targetList *TargetList)
-	DragDestSetTrackMotion    func(widget *Widget, trackMotion T.Gboolean)
+	DragDestSetTrackMotion    func(widget *Widget, trackMotion bool)
 	DragDestUnset             func(widget *Widget)
-	DragFinish                func(context *D.DragContext, success, del T.Gboolean, time T.GUint32)
+	DragFinish                func(context *D.DragContext, success, del bool, time T.GUint32)
 	DragGetData               func(widget *Widget, context *D.DragContext, target D.Atom, time T.GUint32)
 	DragGetSourceWidget       func(context *D.DragContext) *Widget
 	DragHighlight             func(widget *Widget)

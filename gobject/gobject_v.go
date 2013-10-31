@@ -28,8 +28,8 @@ var (
 	ValueGetType func() Type
 
 	ValueRegisterTransformFunc func(srcType Type, destType Type, transformFunc ValueTransformFunc)
-	ValueTypeCompatible        func(srcType Type, destType Type) T.Gboolean
-	ValueTypeTransformable     func(srcType Type, destType Type) T.Gboolean
+	ValueTypeCompatible        func(srcType Type, destType Type) bool
+	ValueTypeTransformable     func(srcType Type, destType Type) bool
 
 	valueCopy                   func(v *Value, destValue *Value)
 	valueDupBoxed               func(v *Value) T.Gpointer
@@ -37,8 +37,8 @@ var (
 	valueDupParam               func(v *Value) *ParamSpec
 	valueDupString              func(v *Value) string
 	valueDupVariant             func(v *Value) *T.GVariant
-	valueFitsPointer            func(v *Value) T.Gboolean
-	valueGetBoolean             func(v *Value) T.Gboolean
+	valueFitsPointer            func(v *Value) bool
+	valueGetBoolean             func(v *Value) bool
 	valueGetBoxed               func(v *Value) T.Gpointer
 	valueGetChar                func(v *Value) T.Gchar
 	valueGetDouble              func(v *Value) float64
@@ -61,7 +61,7 @@ var (
 	valueInit                   func(v *Value, gType Type) *Value
 	valuePeekPointer            func(v *Value) T.Gpointer
 	valueReset                  func(v *Value) *Value
-	valueSetBoolean             func(v *Value, vBoolean T.Gboolean)
+	valueSetBoolean             func(v *Value, vBoolean bool)
 	valueSetBoxed               func(v *Value, vBoxed T.Gconstpointer)
 	valueSetBoxedTakeOwnership  func(v *Value, vBoxed T.Gconstpointer)
 	valueSetChar                func(v *Value, vChar T.Gchar)
@@ -93,7 +93,7 @@ var (
 	valueTakeParam              func(v *Value, param *ParamSpec)
 	valueTakeString             func(v *Value, vString string)
 	valueTakeVariant            func(v *Value, variant *T.GVariant)
-	valueTransform              func(v *Value, dest *Value) T.Gboolean //
+	valueTransform              func(v *Value, dest *Value) bool //
 	valueUnset                  func(v *Value)
 )
 
@@ -103,8 +103,8 @@ func (v *Value) DupObject() T.Gpointer                        { return valueDupO
 func (v *Value) DupParam() *ParamSpec                         { return valueDupParam(v) }
 func (v *Value) DupString() string                            { return valueDupString(v) }
 func (v *Value) DupVariant() *T.GVariant                      { return valueDupVariant(v) }
-func (v *Value) FitsPointer() T.Gboolean                      { return valueFitsPointer(v) }
-func (v *Value) GetBoolean() T.Gboolean                       { return valueGetBoolean(v) }
+func (v *Value) FitsPointer() bool                            { return valueFitsPointer(v) }
+func (v *Value) GetBoolean() bool                             { return valueGetBoolean(v) }
 func (v *Value) GetBoxed() T.Gpointer                         { return valueGetBoxed(v) }
 func (v *Value) GetChar() T.Gchar                             { return valueGetChar(v) }
 func (v *Value) GetDouble() float64                           { return valueGetDouble(v) }
@@ -127,7 +127,7 @@ func (v *Value) GetVariant() *T.GVariant                      { return valueGetV
 func (v *Value) Init(gType Type) *Value                       { return valueInit(v, gType) }
 func (v *Value) PeekPointer() T.Gpointer                      { return valuePeekPointer(v) }
 func (v *Value) Reset() *Value                                { return valueReset(v) }
-func (v *Value) SetBoolean(vBoolean T.Gboolean)               { valueSetBoolean(v, vBoolean) }
+func (v *Value) SetBoolean(vBoolean bool)                     { valueSetBoolean(v, vBoolean) }
 func (v *Value) SetBoxed(vBoxed T.Gconstpointer)              { valueSetBoxed(v, vBoxed) }
 func (v *Value) SetBoxedTakeOwnership(vBoxed T.Gconstpointer) { valueSetBoxedTakeOwnership(v, vBoxed) }
 func (v *Value) SetChar(vChar T.Gchar)                        { valueSetChar(v, vChar) }
@@ -159,7 +159,7 @@ func (v *Value) TakeObject(vObject T.Gpointer)                { valueTakeObject(
 func (v *Value) TakeParam(param *ParamSpec)                   { valueTakeParam(v, param) }
 func (v *Value) TakeString(vString string)                    { valueTakeString(v, vString) }
 func (v *Value) TakeVariant(variant *T.GVariant)              { valueTakeVariant(v, variant) }
-func (v *Value) Transform(dest *Value) T.Gboolean             { return valueTransform(v, dest) }
+func (v *Value) Transform(dest *Value) bool                   { return valueTransform(v, dest) }
 func (v *Value) Unset()                                       { valueUnset(v) }
 
 type ValueArray struct {

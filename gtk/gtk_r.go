@@ -141,31 +141,31 @@ var (
 
 	rangeGetAdjustment              func(r *Range) *Adjustment
 	rangeGetFillLevel               func(r *Range) float64
-	rangeGetFlippable               func(r *Range) T.Gboolean
-	rangeGetInverted                func(r *Range) T.Gboolean
+	rangeGetFlippable               func(r *Range) bool
+	rangeGetInverted                func(r *Range) bool
 	rangeGetLowerStepperSensitivity func(r *Range) SensitivityType
 	rangeGetMinSliderSize           func(r *Range) int
 	rangeGetRangeRect               func(r *Range, rangeRect *D.Rectangle)
-	rangeGetRestrictToFillLevel     func(r *Range) T.Gboolean
+	rangeGetRestrictToFillLevel     func(r *Range) bool
 	rangeGetRoundDigits             func(r *Range) int
-	rangeGetShowFillLevel           func(r *Range) T.Gboolean
+	rangeGetShowFillLevel           func(r *Range) bool
 	rangeGetSliderRange             func(r *Range, sliderStart, sliderEnd *int)
-	rangeGetSliderSizeFixed         func(r *Range) T.Gboolean
+	rangeGetSliderSizeFixed         func(r *Range) bool
 	rangeGetUpdatePolicy            func(r *Range) UpdateType
 	rangeGetUpperStepperSensitivity func(r *Range) SensitivityType
 	rangeGetValue                   func(r *Range) float64
 	rangeSetAdjustment              func(r *Range, adjustment *Adjustment)
 	rangeSetFillLevel               func(r *Range, fillLevel float64)
-	rangeSetFlippable               func(r *Range, flippable T.Gboolean)
+	rangeSetFlippable               func(r *Range, flippable bool)
 	rangeSetIncrements              func(r *Range, step, page float64)
-	rangeSetInverted                func(r *Range, setting T.Gboolean)
+	rangeSetInverted                func(r *Range, setting bool)
 	rangeSetLowerStepperSensitivity func(r *Range, sensitivity SensitivityType)
-	rangeSetMinSliderSize           func(r *Range, minSize T.Gboolean)
+	rangeSetMinSliderSize           func(r *Range, minSize bool)
 	rangeSetRange                   func(r *Range, min, max float64)
-	rangeSetRestrictToFillLevel     func(r *Range, restrictToFillLevel T.Gboolean)
+	rangeSetRestrictToFillLevel     func(r *Range, restrictToFillLevel bool)
 	rangeSetRoundDigits             func(r *Range, roundDigits int)
-	rangeSetShowFillLevel           func(r *Range, showFillLevel T.Gboolean)
-	rangeSetSliderSizeFixed         func(r *Range, sizeFixed T.Gboolean)
+	rangeSetShowFillLevel           func(r *Range, showFillLevel bool)
+	rangeSetSliderSizeFixed         func(r *Range, sizeFixed bool)
 	rangeSetUpdatePolicy            func(r *Range, policy UpdateType)
 	rangeSetUpperStepperSensitivity func(r *Range, sensitivity SensitivityType)
 	rangeSetValue                   func(r *Range, value float64)
@@ -173,42 +173,42 @@ var (
 
 func (r *Range) GetAdjustment() *Adjustment { return rangeGetAdjustment(r) }
 func (r *Range) GetFillLevel() float64      { return rangeGetFillLevel(r) }
-func (r *Range) GetFlippable() T.Gboolean   { return rangeGetFlippable(r) }
-func (r *Range) GetInverted() T.Gboolean    { return rangeGetInverted(r) }
+func (r *Range) GetFlippable() bool         { return rangeGetFlippable(r) }
+func (r *Range) GetInverted() bool          { return rangeGetInverted(r) }
 func (r *Range) GetLowerStepperSensitivity() SensitivityType {
 	return rangeGetLowerStepperSensitivity(r)
 }
 func (r *Range) GetMinSliderSize() int               { return rangeGetMinSliderSize(r) }
 func (r *Range) GetRangeRect(rangeRect *D.Rectangle) { rangeGetRangeRect(r, rangeRect) }
-func (r *Range) GetRestrictToFillLevel() T.Gboolean  { return rangeGetRestrictToFillLevel(r) }
+func (r *Range) GetRestrictToFillLevel() bool        { return rangeGetRestrictToFillLevel(r) }
 func (r *Range) GetRoundDigits() int                 { return rangeGetRoundDigits(r) }
-func (r *Range) GetShowFillLevel() T.Gboolean        { return rangeGetShowFillLevel(r) }
+func (r *Range) GetShowFillLevel() bool              { return rangeGetShowFillLevel(r) }
 func (r *Range) GetSliderRange(sliderStart, sliderEnd *int) {
 	rangeGetSliderRange(r, sliderStart, sliderEnd)
 }
-func (r *Range) GetSliderSizeFixed() T.Gboolean { return rangeGetSliderSizeFixed(r) }
-func (r *Range) GetUpdatePolicy() UpdateType    { return rangeGetUpdatePolicy(r) }
+func (r *Range) GetSliderSizeFixed() bool    { return rangeGetSliderSizeFixed(r) }
+func (r *Range) GetUpdatePolicy() UpdateType { return rangeGetUpdatePolicy(r) }
 func (r *Range) GetUpperStepperSensitivity() SensitivityType {
 	return rangeGetUpperStepperSensitivity(r)
 }
 func (r *Range) GetValue() float64                    { return rangeGetValue(r) }
 func (r *Range) SetAdjustment(adjustment *Adjustment) { rangeSetAdjustment(r, adjustment) }
 func (r *Range) SetFillLevel(fillLevel float64)       { rangeSetFillLevel(r, fillLevel) }
-func (r *Range) SetFlippable(flippable T.Gboolean)    { rangeSetFlippable(r, flippable) }
+func (r *Range) SetFlippable(flippable bool)          { rangeSetFlippable(r, flippable) }
 func (r *Range) SetIncrements(step, page float64)     { rangeSetIncrements(r, step, page) }
-func (r *Range) SetInverted(setting T.Gboolean)       { rangeSetInverted(r, setting) }
+func (r *Range) SetInverted(setting bool)             { rangeSetInverted(r, setting) }
 func (r *Range) SetLowerStepperSensitivity(sensitivity SensitivityType) {
 	rangeSetLowerStepperSensitivity(r, sensitivity)
 }
-func (r *Range) SetMinSliderSize(minSize T.Gboolean) { rangeSetMinSliderSize(r, minSize) }
-func (r *Range) SetRange(min, max float64)           { rangeSetRange(r, min, max) }
-func (r *Range) SetRestrictToFillLevel(restrictToFillLevel T.Gboolean) {
+func (r *Range) SetMinSliderSize(minSize bool) { rangeSetMinSliderSize(r, minSize) }
+func (r *Range) SetRange(min, max float64)     { rangeSetRange(r, min, max) }
+func (r *Range) SetRestrictToFillLevel(restrictToFillLevel bool) {
 	rangeSetRestrictToFillLevel(r, restrictToFillLevel)
 }
-func (r *Range) SetRoundDigits(roundDigits int)            { rangeSetRoundDigits(r, roundDigits) }
-func (r *Range) SetShowFillLevel(showFillLevel T.Gboolean) { rangeSetShowFillLevel(r, showFillLevel) }
-func (r *Range) SetSliderSizeFixed(sizeFixed T.Gboolean)   { rangeSetSliderSizeFixed(r, sizeFixed) }
-func (r *Range) SetUpdatePolicy(policy UpdateType)         { rangeSetUpdatePolicy(r, policy) }
+func (r *Range) SetRoundDigits(roundDigits int)      { rangeSetRoundDigits(r, roundDigits) }
+func (r *Range) SetShowFillLevel(showFillLevel bool) { rangeSetShowFillLevel(r, showFillLevel) }
+func (r *Range) SetSliderSizeFixed(sizeFixed bool)   { rangeSetSliderSizeFixed(r, sizeFixed) }
+func (r *Range) SetUpdatePolicy(policy UpdateType)   { rangeSetUpdatePolicy(r, policy) }
 func (r *Range) SetUpperStepperSensitivity(sensitivity SensitivityType) {
 	rangeSetUpperStepperSensitivity(r, sensitivity)
 }
@@ -232,15 +232,15 @@ var (
 	RcGetThemeDir              func() string
 	RcParse                    func(filename string)
 	RcParseString              func(rcString string)
-	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) T.Gboolean
-	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) T.Gboolean
-	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) T.Gboolean
-	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) T.Gboolean
-	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) T.Gboolean
-	RcReparseAll               func() T.Gboolean
-	RcReparseAllForSettings    func(settings *Settings, forceLoad T.Gboolean) T.Gboolean
+	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcReparseAll               func() bool
+	RcReparseAllForSettings    func(settings *Settings, forceLoad bool) bool
 	RcResetStyles              func(settings *Settings)
-	RcSetDefaultFiles          func(filenames **T.Gchar)
+	RcSetDefaultFiles          func(filenames []string)
 
 	RcScannerNew func() *T.GScanner
 
@@ -251,7 +251,7 @@ var (
 )
 
 type RcPropertyParser func(pspec *T.GParamSpec,
-	rcString *T.GString, property_value *T.GValue) T.Gboolean
+	rcString *T.GString, property_value *T.GValue) bool
 
 type RcStyle struct {
 	Parent          T.GObject
@@ -307,12 +307,12 @@ var (
 	RecentActionNew           func(name, label, tooltip, stockId string) *Action
 	RecentActionNewForManager func(name, label, tooltip, stockId string, manager *RecentManager) *Action
 
-	recentActionGetShowNumbers func(r *RecentAction) T.Gboolean
-	recentActionSetShowNumbers func(r *RecentAction, showNumbers T.Gboolean)
+	recentActionGetShowNumbers func(r *RecentAction) bool
+	recentActionSetShowNumbers func(r *RecentAction, showNumbers bool)
 )
 
-func (r *RecentAction) GetShowNumbers() T.Gboolean { return recentActionGetShowNumbers(r) }
-func (r *RecentAction) SetShowNumbers(showNumbers T.Gboolean) {
+func (r *RecentAction) GetShowNumbers() bool { return recentActionGetShowNumbers(r) }
+func (r *RecentAction) SetShowNumbers(showNumbers bool) {
 	recentActionSetShowNumbers(r, showNumbers)
 }
 
@@ -348,29 +348,29 @@ var (
 	recentChooserGetFilter         func(r *RecentChooser) *RecentFilter
 	recentChooserGetItems          func(r *RecentChooser) *T.GList
 	recentChooserGetLimit          func(r *RecentChooser) int
-	recentChooserGetLocalOnly      func(r *RecentChooser) T.Gboolean
-	recentChooserGetSelectMultiple func(r *RecentChooser) T.Gboolean
-	recentChooserGetShowIcons      func(r *RecentChooser) T.Gboolean
-	recentChooserGetShowNotFound   func(r *RecentChooser) T.Gboolean
-	recentChooserGetShowNumbers    func(r *RecentChooser) T.Gboolean
-	recentChooserGetShowPrivate    func(r *RecentChooser) T.Gboolean
-	recentChooserGetShowTips       func(r *RecentChooser) T.Gboolean
+	recentChooserGetLocalOnly      func(r *RecentChooser) bool
+	recentChooserGetSelectMultiple func(r *RecentChooser) bool
+	recentChooserGetShowIcons      func(r *RecentChooser) bool
+	recentChooserGetShowNotFound   func(r *RecentChooser) bool
+	recentChooserGetShowNumbers    func(r *RecentChooser) bool
+	recentChooserGetShowPrivate    func(r *RecentChooser) bool
+	recentChooserGetShowTips       func(r *RecentChooser) bool
 	recentChooserGetSortType       func(r *RecentChooser) RecentSortType
 	recentChooserGetUris           func(r *RecentChooser, length *T.Gsize) []string
 	recentChooserListFilters       func(r *RecentChooser) *T.GSList
 	recentChooserRemoveFilter      func(r *RecentChooser, filter *RecentFilter)
 	recentChooserSelectAll         func(r *RecentChooser)
-	recentChooserSelectUri         func(r *RecentChooser, uri string, err **T.GError) T.Gboolean
-	recentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **T.GError) T.Gboolean
+	recentChooserSelectUri         func(r *RecentChooser, uri string, err **T.GError) bool
+	recentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **T.GError) bool
 	recentChooserSetFilter         func(r *RecentChooser, filter *RecentFilter)
 	recentChooserSetLimit          func(r *RecentChooser, limit int)
-	recentChooserSetLocalOnly      func(r *RecentChooser, localOnly T.Gboolean)
-	recentChooserSetSelectMultiple func(r *RecentChooser, selectMultiple T.Gboolean)
-	recentChooserSetShowIcons      func(r *RecentChooser, showIcons T.Gboolean)
-	recentChooserSetShowNotFound   func(r *RecentChooser, showNotFound T.Gboolean)
-	recentChooserSetShowNumbers    func(r *RecentChooser, showNumbers T.Gboolean)
-	recentChooserSetShowPrivate    func(r *RecentChooser, showPrivate T.Gboolean)
-	recentChooserSetShowTips       func(r *RecentChooser, showTips T.Gboolean)
+	recentChooserSetLocalOnly      func(r *RecentChooser, localOnly bool)
+	recentChooserSetSelectMultiple func(r *RecentChooser, selectMultiple bool)
+	recentChooserSetShowIcons      func(r *RecentChooser, showIcons bool)
+	recentChooserSetShowNotFound   func(r *RecentChooser, showNotFound bool)
+	recentChooserSetShowNumbers    func(r *RecentChooser, showNumbers bool)
+	recentChooserSetShowPrivate    func(r *RecentChooser, showPrivate bool)
+	recentChooserSetShowTips       func(r *RecentChooser, showTips bool)
 	recentChooserSetSortFunc       func(r *RecentChooser, sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify)
 	recentChooserSetSortType       func(r *RecentChooser, sortType RecentSortType)
 	recentChooserUnselectAll       func(r *RecentChooser)
@@ -383,41 +383,41 @@ func (r *RecentChooser) GetCurrentUri() string             { return recentChoose
 func (r *RecentChooser) GetFilter() *RecentFilter          { return recentChooserGetFilter(r) }
 func (r *RecentChooser) GetItems() *T.GList                { return recentChooserGetItems(r) }
 func (r *RecentChooser) GetLimit() int                     { return recentChooserGetLimit(r) }
-func (r *RecentChooser) GetLocalOnly() T.Gboolean          { return recentChooserGetLocalOnly(r) }
-func (r *RecentChooser) GetSelectMultiple() T.Gboolean     { return recentChooserGetSelectMultiple(r) }
-func (r *RecentChooser) GetShowIcons() T.Gboolean          { return recentChooserGetShowIcons(r) }
-func (r *RecentChooser) GetShowNotFound() T.Gboolean       { return recentChooserGetShowNotFound(r) }
-func (r *RecentChooser) GetShowNumbers() T.Gboolean        { return recentChooserGetShowNumbers(r) }
-func (r *RecentChooser) GetShowPrivate() T.Gboolean        { return recentChooserGetShowPrivate(r) }
-func (r *RecentChooser) GetShowTips() T.Gboolean           { return recentChooserGetShowTips(r) }
+func (r *RecentChooser) GetLocalOnly() bool                { return recentChooserGetLocalOnly(r) }
+func (r *RecentChooser) GetSelectMultiple() bool           { return recentChooserGetSelectMultiple(r) }
+func (r *RecentChooser) GetShowIcons() bool                { return recentChooserGetShowIcons(r) }
+func (r *RecentChooser) GetShowNotFound() bool             { return recentChooserGetShowNotFound(r) }
+func (r *RecentChooser) GetShowNumbers() bool              { return recentChooserGetShowNumbers(r) }
+func (r *RecentChooser) GetShowPrivate() bool              { return recentChooserGetShowPrivate(r) }
+func (r *RecentChooser) GetShowTips() bool                 { return recentChooserGetShowTips(r) }
 func (r *RecentChooser) GetSortType() RecentSortType       { return recentChooserGetSortType(r) }
-func (r *RecentChooser) GetUris(length *T.Gsize) []string { return recentChooserGetUris(r, length) }
+func (r *RecentChooser) GetUris(length *T.Gsize) []string  { return recentChooserGetUris(r, length) }
 func (r *RecentChooser) ListFilters() *T.GSList            { return recentChooserListFilters(r) }
 func (r *RecentChooser) RemoveFilter(filter *RecentFilter) { recentChooserRemoveFilter(r, filter) }
 func (r *RecentChooser) SelectAll()                        { recentChooserSelectAll(r) }
-func (r *RecentChooser) SelectUri(uri string, err **T.GError) T.Gboolean {
+func (r *RecentChooser) SelectUri(uri string, err **T.GError) bool {
 	return recentChooserSelectUri(r, uri, err)
 }
-func (r *RecentChooser) SetCurrentUri(uri string, err **T.GError) T.Gboolean {
+func (r *RecentChooser) SetCurrentUri(uri string, err **T.GError) bool {
 	return recentChooserSetCurrentUri(r, uri, err)
 }
-func (r *RecentChooser) SetFilter(filter *RecentFilter)    { recentChooserSetFilter(r, filter) }
-func (r *RecentChooser) SetLimit(limit int)                { recentChooserSetLimit(r, limit) }
-func (r *RecentChooser) SetLocalOnly(localOnly T.Gboolean) { recentChooserSetLocalOnly(r, localOnly) }
-func (r *RecentChooser) SetSelectMultiple(selectMultiple T.Gboolean) {
+func (r *RecentChooser) SetFilter(filter *RecentFilter) { recentChooserSetFilter(r, filter) }
+func (r *RecentChooser) SetLimit(limit int)             { recentChooserSetLimit(r, limit) }
+func (r *RecentChooser) SetLocalOnly(localOnly bool)    { recentChooserSetLocalOnly(r, localOnly) }
+func (r *RecentChooser) SetSelectMultiple(selectMultiple bool) {
 	recentChooserSetSelectMultiple(r, selectMultiple)
 }
-func (r *RecentChooser) SetShowIcons(showIcons T.Gboolean) { recentChooserSetShowIcons(r, showIcons) }
-func (r *RecentChooser) SetShowNotFound(showNotFound T.Gboolean) {
+func (r *RecentChooser) SetShowIcons(showIcons bool) { recentChooserSetShowIcons(r, showIcons) }
+func (r *RecentChooser) SetShowNotFound(showNotFound bool) {
 	recentChooserSetShowNotFound(r, showNotFound)
 }
-func (r *RecentChooser) SetShowNumbers(showNumbers T.Gboolean) {
+func (r *RecentChooser) SetShowNumbers(showNumbers bool) {
 	recentChooserSetShowNumbers(r, showNumbers)
 }
-func (r *RecentChooser) SetShowPrivate(showPrivate T.Gboolean) {
+func (r *RecentChooser) SetShowPrivate(showPrivate bool) {
 	recentChooserSetShowPrivate(r, showPrivate)
 }
-func (r *RecentChooser) SetShowTips(showTips T.Gboolean) { recentChooserSetShowTips(r, showTips) }
+func (r *RecentChooser) SetShowTips(showTips bool) { recentChooserSetShowTips(r, showTips) }
 func (r *RecentChooser) SetSortFunc(sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify) {
 	recentChooserSetSortFunc(r, sortFunc, sortData, dataDestroy)
 }
@@ -434,12 +434,12 @@ var (
 	RecentChooserMenuGetType func() O.Type
 	RecentChooserMenuNew     func() *Widget
 
-	recentChooserMenuGetShowNumbers func(r *RecentChooserMenu) T.Gboolean
-	recentChooserMenuSetShowNumbers func(r *RecentChooserMenu, showNumbers T.Gboolean)
+	recentChooserMenuGetShowNumbers func(r *RecentChooserMenu) bool
+	recentChooserMenuSetShowNumbers func(r *RecentChooserMenu, showNumbers bool)
 )
 
-func (r *RecentChooserMenu) GetShowNumbers() T.Gboolean { return recentChooserMenuGetShowNumbers(r) }
-func (r *RecentChooserMenu) SetShowNumbers(showNumbers T.Gboolean) {
+func (r *RecentChooserMenu) GetShowNumbers() bool { return recentChooserMenuGetShowNumbers(r) }
+func (r *RecentChooserMenu) SetShowNumbers(showNumbers bool) {
 	recentChooserMenuSetShowNumbers(r, showNumbers)
 }
 
@@ -453,10 +453,10 @@ type (
 var (
 	RecentInfoGetType func() O.Type
 
-	recentInfoExists             func(r *RecentInfo) T.Gboolean
+	recentInfoExists             func(r *RecentInfo) bool
 	recentInfoGetAdded           func(r *RecentInfo) T.TimeT
 	recentInfoGetAge             func(r *RecentInfo) int
-	recentInfoGetApplicationInfo func(r *RecentInfo, appName string, appExec **T.Gchar, count *uint, time *T.TimeT) T.Gboolean
+	recentInfoGetApplicationInfo func(r *RecentInfo, appName string, appExec **T.Gchar, count *uint, time *T.TimeT) bool
 	recentInfoGetApplications    func(r *RecentInfo, length *T.Gsize) []string
 	recentInfoGetDescription     func(r *RecentInfo) string
 	recentInfoGetDisplayName     func(r *RecentInfo) string
@@ -464,56 +464,56 @@ var (
 	recentInfoGetIcon            func(r *RecentInfo, size int) *D.Pixbuf
 	recentInfoGetMimeType        func(r *RecentInfo) string
 	recentInfoGetModified        func(r *RecentInfo) T.TimeT
-	recentInfoGetPrivateHint     func(r *RecentInfo) T.Gboolean
+	recentInfoGetPrivateHint     func(r *RecentInfo) bool
 	recentInfoGetShortName       func(r *RecentInfo) string
 	recentInfoGetUri             func(r *RecentInfo) string
 	recentInfoGetUriDisplay      func(r *RecentInfo) string
 	recentInfoGetVisited         func(r *RecentInfo) T.TimeT
-	recentInfoHasApplication     func(r *RecentInfo, appName string) T.Gboolean
-	recentInfoHasGroup           func(r *RecentInfo, groupName string) T.Gboolean
-	recentInfoIsLocal            func(r *RecentInfo) T.Gboolean
+	recentInfoHasApplication     func(r *RecentInfo, appName string) bool
+	recentInfoHasGroup           func(r *RecentInfo, groupName string) bool
+	recentInfoIsLocal            func(r *RecentInfo) bool
 	recentInfoLastApplication    func(r *RecentInfo) string
-	recentInfoMatch              func(r *RecentInfo, infoB *RecentInfo) T.Gboolean
+	recentInfoMatch              func(r *RecentInfo, infoB *RecentInfo) bool
 	recentInfoRef                func(r *RecentInfo) *RecentInfo
 	recentInfoUnref              func(r *RecentInfo)
 )
 
-func (r *RecentInfo) Exists() T.Gboolean { return recentInfoExists(r) }
-func (r *RecentInfo) GetAdded() T.TimeT  { return recentInfoGetAdded(r) }
-func (r *RecentInfo) GetAge() int        { return recentInfoGetAge(r) }
-func (r *RecentInfo) GetApplicationInfo(appName string, appExec **T.Gchar, count *uint, time *T.TimeT) T.Gboolean {
+func (r *RecentInfo) Exists() bool      { return recentInfoExists(r) }
+func (r *RecentInfo) GetAdded() T.TimeT { return recentInfoGetAdded(r) }
+func (r *RecentInfo) GetAge() int       { return recentInfoGetAge(r) }
+func (r *RecentInfo) GetApplicationInfo(appName string, appExec **T.Gchar, count *uint, time *T.TimeT) bool {
 	return recentInfoGetApplicationInfo(r, appName, appExec, count, time)
 }
 func (r *RecentInfo) GetApplications(length *T.Gsize) []string {
 	return recentInfoGetApplications(r, length)
 }
-func (r *RecentInfo) GetDescription() string              { return recentInfoGetDescription(r) }
-func (r *RecentInfo) GetDisplayName() string              { return recentInfoGetDisplayName(r) }
+func (r *RecentInfo) GetDescription() string             { return recentInfoGetDescription(r) }
+func (r *RecentInfo) GetDisplayName() string             { return recentInfoGetDisplayName(r) }
 func (r *RecentInfo) GetGroups(length *T.Gsize) []string { return recentInfoGetGroups(r, length) }
-func (r *RecentInfo) GetIcon(size int) *D.Pixbuf          { return recentInfoGetIcon(r, size) }
-func (r *RecentInfo) GetMimeType() string                 { return recentInfoGetMimeType(r) }
-func (r *RecentInfo) GetModified() T.TimeT                { return recentInfoGetModified(r) }
-func (r *RecentInfo) GetPrivateHint() T.Gboolean          { return recentInfoGetPrivateHint(r) }
-func (r *RecentInfo) GetShortName() string                { return recentInfoGetShortName(r) }
-func (r *RecentInfo) GetUri() string                      { return recentInfoGetUri(r) }
-func (r *RecentInfo) GetUriDisplay() string               { return recentInfoGetUriDisplay(r) }
-func (r *RecentInfo) GetVisited() T.TimeT                 { return recentInfoGetVisited(r) }
-func (r *RecentInfo) HasApplication(appName string) T.Gboolean {
+func (r *RecentInfo) GetIcon(size int) *D.Pixbuf         { return recentInfoGetIcon(r, size) }
+func (r *RecentInfo) GetMimeType() string                { return recentInfoGetMimeType(r) }
+func (r *RecentInfo) GetModified() T.TimeT               { return recentInfoGetModified(r) }
+func (r *RecentInfo) GetPrivateHint() bool               { return recentInfoGetPrivateHint(r) }
+func (r *RecentInfo) GetShortName() string               { return recentInfoGetShortName(r) }
+func (r *RecentInfo) GetUri() string                     { return recentInfoGetUri(r) }
+func (r *RecentInfo) GetUriDisplay() string              { return recentInfoGetUriDisplay(r) }
+func (r *RecentInfo) GetVisited() T.TimeT                { return recentInfoGetVisited(r) }
+func (r *RecentInfo) HasApplication(appName string) bool {
 	return recentInfoHasApplication(r, appName)
 }
-func (r *RecentInfo) HasGroup(groupName string) T.Gboolean { return recentInfoHasGroup(r, groupName) }
-func (r *RecentInfo) IsLocal() T.Gboolean                  { return recentInfoIsLocal(r) }
-func (r *RecentInfo) LastApplication() string              { return recentInfoLastApplication(r) }
-func (r *RecentInfo) Match(infoB *RecentInfo) T.Gboolean   { return recentInfoMatch(r, infoB) }
-func (r *RecentInfo) Ref() *RecentInfo                     { return recentInfoRef(r) }
-func (r *RecentInfo) Unref()                               { recentInfoUnref(r) }
+func (r *RecentInfo) HasGroup(groupName string) bool { return recentInfoHasGroup(r, groupName) }
+func (r *RecentInfo) IsLocal() bool                  { return recentInfoIsLocal(r) }
+func (r *RecentInfo) LastApplication() string        { return recentInfoLastApplication(r) }
+func (r *RecentInfo) Match(infoB *RecentInfo) bool   { return recentInfoMatch(r, infoB) }
+func (r *RecentInfo) Ref() *RecentInfo               { return recentInfoRef(r) }
+func (r *RecentInfo) Unref()                         { recentInfoUnref(r) }
 
 type (
 	RecentFilter struct{}
 
 	RecentFilterFunc func(
 		filterInfo *RecentFilterInfo,
-		userData T.Gpointer) T.Gboolean
+		userData T.Gpointer) bool
 
 	RecentFilterInfo struct {
 		Contains     RecentFilterFlags
@@ -550,7 +550,7 @@ var (
 	recentFilterAddMimeType      func(r *RecentFilter, mimeType string)
 	recentFilterAddPattern       func(r *RecentFilter, pattern string)
 	recentFilterAddPixbufFormats func(r *RecentFilter)
-	recentFilterFilter           func(r *RecentFilter, filterInfo *RecentFilterInfo) T.Gboolean
+	recentFilterFilter           func(r *RecentFilter, filterInfo *RecentFilterInfo) bool
 	recentFilterGetName          func(r *RecentFilter) string
 	recentFilterGetNeeded        func(r *RecentFilter) RecentFilterFlags
 	recentFilterSetName          func(r *RecentFilter, name string)
@@ -565,7 +565,7 @@ func (r *RecentFilter) AddGroup(group string)       { recentFilterAddGroup(r, gr
 func (r *RecentFilter) AddMimeType(mimeType string) { recentFilterAddMimeType(r, mimeType) }
 func (r *RecentFilter) AddPattern(pattern string)   { recentFilterAddPattern(r, pattern) }
 func (r *RecentFilter) AddPixbufFormats()           { recentFilterAddPixbufFormats(r) }
-func (r *RecentFilter) Filter(filterInfo *RecentFilterInfo) T.Gboolean {
+func (r *RecentFilter) Filter(filterInfo *RecentFilterInfo) bool {
 	return recentFilterFilter(r, filterInfo)
 }
 func (r *RecentFilter) GetName() string              { return recentFilterGetName(r) }
@@ -584,7 +584,7 @@ type RecentData struct {
 	AppName     *T.Gchar
 	AppExec     *T.Gchar
 	Groups      **T.Gchar
-	IsPrivate   T.Gboolean
+	IsPrivate   bool
 }
 
 var (
@@ -597,34 +597,34 @@ var (
 	RecentManagerGetDefault   func() *RecentManager
 	RecentManagerGetForScreen func(screen *D.Screen) *RecentManager
 
-	recentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) T.Gboolean
-	recentManagerAddItem    func(r *RecentManager, uri string) T.Gboolean
+	recentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) bool
+	recentManagerAddItem    func(r *RecentManager, uri string) bool
 	recentManagerGetItems   func(r *RecentManager) *T.GList
 	recentManagerGetLimit   func(r *RecentManager) int
-	recentManagerHasItem    func(r *RecentManager, uri string) T.Gboolean
+	recentManagerHasItem    func(r *RecentManager, uri string) bool
 	recentManagerLookupItem func(r *RecentManager, uri string, err **T.GError) *RecentInfo
-	recentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **T.GError) T.Gboolean
+	recentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **T.GError) bool
 	recentManagerPurgeItems func(r *RecentManager, err **T.GError) int
-	recentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) T.Gboolean
+	recentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) bool
 	recentManagerSetLimit   func(r *RecentManager, limit int)
 	recentManagerSetScreen  func(r *RecentManager, screen *D.Screen)
 )
 
-func (r *RecentManager) AddFull(uri string, recentData *RecentData) T.Gboolean {
+func (r *RecentManager) AddFull(uri string, recentData *RecentData) bool {
 	return recentManagerAddFull(r, uri, recentData)
 }
-func (r *RecentManager) AddItem(uri string) T.Gboolean { return recentManagerAddItem(r, uri) }
-func (r *RecentManager) GetItems() *T.GList            { return recentManagerGetItems(r) }
-func (r *RecentManager) GetLimit() int                 { return recentManagerGetLimit(r) }
-func (r *RecentManager) HasItem(uri string) T.Gboolean { return recentManagerHasItem(r, uri) }
+func (r *RecentManager) AddItem(uri string) bool { return recentManagerAddItem(r, uri) }
+func (r *RecentManager) GetItems() *T.GList      { return recentManagerGetItems(r) }
+func (r *RecentManager) GetLimit() int           { return recentManagerGetLimit(r) }
+func (r *RecentManager) HasItem(uri string) bool { return recentManagerHasItem(r, uri) }
 func (r *RecentManager) LookupItem(uri string, err **T.GError) *RecentInfo {
 	return recentManagerLookupItem(r, uri, err)
 }
-func (r *RecentManager) MoveItem(uri string, newUri string, err **T.GError) T.Gboolean {
+func (r *RecentManager) MoveItem(uri string, newUri string, err **T.GError) bool {
 	return recentManagerMoveItem(r, uri, newUri, err)
 }
 func (r *RecentManager) PurgeItems(err **T.GError) int { return recentManagerPurgeItems(r, err) }
-func (r *RecentManager) RemoveItem(uri string, err **T.GError) T.Gboolean {
+func (r *RecentManager) RemoveItem(uri string, err **T.GError) bool {
 	return recentManagerRemoveItem(r, uri, err)
 }
 func (r *RecentManager) SetLimit(limit int)         { recentManagerSetLimit(r, limit) }

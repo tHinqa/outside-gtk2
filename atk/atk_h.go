@@ -5,7 +5,7 @@ package atk
 
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 )
 
 type Hyperlink struct{ parent O.Object }
@@ -18,19 +18,19 @@ var (
 	hyperlinkGetObject      func(h *Hyperlink, i int) *Object
 	hyperlinkGetStartIndex  func(h *Hyperlink) int
 	hyperlinkGetUri         func(h *Hyperlink, i int) string
-	hyperlinkIsInline       func(h *Hyperlink) T.Gboolean
-	hyperlinkIsSelectedLink func(h *Hyperlink) T.Gboolean
-	hyperlinkIsValid        func(h *Hyperlink) T.Gboolean
+	hyperlinkIsInline       func(h *Hyperlink) bool
+	hyperlinkIsSelectedLink func(h *Hyperlink) bool
+	hyperlinkIsValid        func(h *Hyperlink) bool
 )
 
-func (h *Hyperlink) GetEndIndex() int           { return hyperlinkGetEndIndex(h) }
-func (h *Hyperlink) GetNAnchors() int           { return hyperlinkGetNAnchors(h) }
-func (h *Hyperlink) GetObject(i int) *Object    { return hyperlinkGetObject(h, i) }
-func (h *Hyperlink) GetStartIndex() int         { return hyperlinkGetStartIndex(h) }
-func (h *Hyperlink) GetUri(i int) string        { return hyperlinkGetUri(h, i) }
-func (h *Hyperlink) IsInline() T.Gboolean       { return hyperlinkIsInline(h) }
-func (h *Hyperlink) IsSelectedLink() T.Gboolean { return hyperlinkIsSelectedLink(h) }
-func (h *Hyperlink) IsValid() T.Gboolean        { return hyperlinkIsValid(h) }
+func (h *Hyperlink) GetEndIndex() int        { return hyperlinkGetEndIndex(h) }
+func (h *Hyperlink) GetNAnchors() int        { return hyperlinkGetNAnchors(h) }
+func (h *Hyperlink) GetObject(i int) *Object { return hyperlinkGetObject(h, i) }
+func (h *Hyperlink) GetStartIndex() int      { return hyperlinkGetStartIndex(h) }
+func (h *Hyperlink) GetUri(i int) string     { return hyperlinkGetUri(h, i) }
+func (h *Hyperlink) IsInline() bool          { return hyperlinkIsInline(h) }
+func (h *Hyperlink) IsSelectedLink() bool    { return hyperlinkIsSelectedLink(h) }
+func (h *Hyperlink) IsValid() bool           { return hyperlinkIsValid(h) }
 
 type HyperlinkImpl struct{}
 

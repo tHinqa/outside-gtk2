@@ -120,11 +120,11 @@ type OldEditable struct {
 var (
 	OldEditableGetType func() O.Type
 
-	oldEditableClaimSelection func(o *OldEditable, claim T.Gboolean, time T.GUint32)
+	oldEditableClaimSelection func(o *OldEditable, claim bool, time T.GUint32)
 	oldEditableChanged        func(o *OldEditable)
 )
 
-func (o *OldEditable) ClaimSelection(claim T.Gboolean, time T.GUint32) {
+func (o *OldEditable) ClaimSelection(claim bool, time T.GUint32) {
 	oldEditableClaimSelection(o, claim, time)
 }
 func (o *OldEditable) Changed() { oldEditableChanged(o) }

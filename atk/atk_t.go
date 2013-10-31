@@ -13,8 +13,8 @@ type Table struct{}
 var (
 	TableGetType func() O.Type
 
-	tableAddColumnSelection    func(t *Table, column int) T.Gboolean
-	tableAddRowSelection       func(t *Table, row int) T.Gboolean
+	tableAddColumnSelection    func(t *Table, column int) bool
+	tableAddRowSelection       func(t *Table, row int) bool
 	tableGetCaption            func(t *Table) *Object
 	tableGetColumnAtIndex      func(t *Table, index int) int
 	tableGetColumnDescription  func(t *Table, column int) string
@@ -30,12 +30,12 @@ var (
 	tableGetSelectedColumns    func(t *Table, selected **int) int
 	tableGetSelectedRows       func(t *Table, selected **int) int
 	tableGetSummary            func(t *Table) *Object
-	tableIsColumnSelected      func(t *Table, column int) T.Gboolean
-	tableIsRowSelected         func(t *Table, row int) T.Gboolean
-	tableIsSelected            func(t *Table, row, column int) T.Gboolean
+	tableIsColumnSelected      func(t *Table, column int) bool
+	tableIsRowSelected         func(t *Table, row int) bool
+	tableIsSelected            func(t *Table, row, column int) bool
 	tableRefAt                 func(t *Table, row, column int) *Object
-	tableRemoveColumnSelection func(t *Table, column int) T.Gboolean
-	tableRemoveRowSelection    func(t *Table, row int) T.Gboolean
+	tableRemoveColumnSelection func(t *Table, column int) bool
+	tableRemoveRowSelection    func(t *Table, row int) bool
 	tableSetCaption            func(t *Table, caption *Object)
 	tableSetColumnDescription  func(t *Table, column int, description string)
 	tableSetColumnHeader       func(t *Table, column int, header *Object)
@@ -44,32 +44,32 @@ var (
 	tableSetSummary            func(t *Table, accessible *Object)
 )
 
-func (t *Table) AddColumnSelection(column int) T.Gboolean { return tableAddColumnSelection(t, column) }
-func (t *Table) AddRowSelection(row int) T.Gboolean       { return tableAddRowSelection(t, row) }
-func (t *Table) GetCaption() *Object                      { return tableGetCaption(t) }
-func (t *Table) GetColumnAtIndex(index int) int           { return tableGetColumnAtIndex(t, index) }
-func (t *Table) GetColumnDescription(column int) string   { return tableGetColumnDescription(t, column) }
-func (t *Table) GetColumnExtentAt(row, column int) int    { return tableGetColumnExtentAt(t, row, column) }
-func (t *Table) GetColumnHeader(column int) *Object       { return tableGetColumnHeader(t, column) }
-func (t *Table) GetIndexAt(row, column int) int           { return tableGetIndexAt(t, row, column) }
-func (t *Table) GetNColumns() int                         { return tableGetNColumns(t) }
-func (t *Table) GetNRows() int                            { return tableGetNRows(t) }
-func (t *Table) GetRowAtIndex(index int) int              { return tableGetRowAtIndex(t, index) }
-func (t *Table) GetRowDescription(row int) string         { return tableGetRowDescription(t, row) }
-func (t *Table) GetRowExtentAt(row, column int) int       { return tableGetRowExtentAt(t, row, column) }
-func (t *Table) GetRowHeader(row int) *Object             { return tableGetRowHeader(t, row) }
-func (t *Table) GetSelectedColumns(selected **int) int    { return tableGetSelectedColumns(t, selected) }
-func (t *Table) GetSelectedRows(selected **int) int       { return tableGetSelectedRows(t, selected) }
-func (t *Table) GetSummary() *Object                      { return tableGetSummary(t) }
-func (t *Table) IsColumnSelected(column int) T.Gboolean   { return tableIsColumnSelected(t, column) }
-func (t *Table) IsRowSelected(row int) T.Gboolean         { return tableIsRowSelected(t, row) }
-func (t *Table) IsSelected(row, column int) T.Gboolean    { return tableIsSelected(t, row, column) }
-func (t *Table) RefAt(row, column int) *Object            { return tableRefAt(t, row, column) }
-func (t *Table) RemoveColumnSelection(column int) T.Gboolean {
+func (t *Table) AddColumnSelection(column int) bool     { return tableAddColumnSelection(t, column) }
+func (t *Table) AddRowSelection(row int) bool           { return tableAddRowSelection(t, row) }
+func (t *Table) GetCaption() *Object                    { return tableGetCaption(t) }
+func (t *Table) GetColumnAtIndex(index int) int         { return tableGetColumnAtIndex(t, index) }
+func (t *Table) GetColumnDescription(column int) string { return tableGetColumnDescription(t, column) }
+func (t *Table) GetColumnExtentAt(row, column int) int  { return tableGetColumnExtentAt(t, row, column) }
+func (t *Table) GetColumnHeader(column int) *Object     { return tableGetColumnHeader(t, column) }
+func (t *Table) GetIndexAt(row, column int) int         { return tableGetIndexAt(t, row, column) }
+func (t *Table) GetNColumns() int                       { return tableGetNColumns(t) }
+func (t *Table) GetNRows() int                          { return tableGetNRows(t) }
+func (t *Table) GetRowAtIndex(index int) int            { return tableGetRowAtIndex(t, index) }
+func (t *Table) GetRowDescription(row int) string       { return tableGetRowDescription(t, row) }
+func (t *Table) GetRowExtentAt(row, column int) int     { return tableGetRowExtentAt(t, row, column) }
+func (t *Table) GetRowHeader(row int) *Object           { return tableGetRowHeader(t, row) }
+func (t *Table) GetSelectedColumns(selected **int) int  { return tableGetSelectedColumns(t, selected) }
+func (t *Table) GetSelectedRows(selected **int) int     { return tableGetSelectedRows(t, selected) }
+func (t *Table) GetSummary() *Object                    { return tableGetSummary(t) }
+func (t *Table) IsColumnSelected(column int) bool       { return tableIsColumnSelected(t, column) }
+func (t *Table) IsRowSelected(row int) bool             { return tableIsRowSelected(t, row) }
+func (t *Table) IsSelected(row, column int) bool        { return tableIsSelected(t, row, column) }
+func (t *Table) RefAt(row, column int) *Object          { return tableRefAt(t, row, column) }
+func (t *Table) RemoveColumnSelection(column int) bool {
 	return tableRemoveColumnSelection(t, column)
 }
-func (t *Table) RemoveRowSelection(row int) T.Gboolean { return tableRemoveRowSelection(t, row) }
-func (t *Table) SetCaption(caption *Object)            { tableSetCaption(t, caption) }
+func (t *Table) RemoveRowSelection(row int) bool { return tableRemoveRowSelection(t, row) }
+func (t *Table) SetCaption(caption *Object)      { tableSetCaption(t, caption) }
 func (t *Table) SetColumnDescription(column int, description string) {
 	tableSetColumnDescription(t, column, description)
 }
@@ -88,7 +88,7 @@ var (
 	TextAttributeRegister func(name string) TextAttribute
 	TextFreeRanges        func(ranges **TextRange)
 
-	textAddSelection         func(t *Text, startOffset, endOffset int) T.Gboolean
+	textAddSelection         func(t *Text, startOffset, endOffset int) bool
 	textGetBoundedRanges     func(t *Text, rect *TextRectangle, coordType CoordType, xClipType, yClipType TextClipType) **TextRange
 	textGetCaretOffset       func(t *Text) int
 	textGetCharacterAtOffset func(t *Text, offset int) T.Gunichar
@@ -104,12 +104,12 @@ var (
 	textGetTextAfterOffset   func(t *Text, offset int, boundaryType TextBoundary, startOffset, endOffset *int) string
 	textGetTextAtOffset      func(t *Text, offset int, boundaryType TextBoundary, startOffset, endOffset *int) string
 	textGetTextBeforeOffset  func(t *Text, offset int, boundaryType TextBoundary, startOffset, endOffset *int) string
-	textRemoveSelection      func(t *Text, selectionNum int) T.Gboolean
-	textSetCaretOffset       func(t *Text, offset int) T.Gboolean
-	textSetSelection         func(t *Text, selectionNum, startOffset, endOffset int) T.Gboolean
+	textRemoveSelection      func(t *Text, selectionNum int) bool
+	textSetCaretOffset       func(t *Text, offset int) bool
+	textSetSelection         func(t *Text, selectionNum, startOffset, endOffset int) bool
 )
 
-func (t *Text) AddSelection(startOffset, endOffset int) T.Gboolean {
+func (t *Text) AddSelection(startOffset, endOffset int) bool {
 	return textAddSelection(t, startOffset, endOffset)
 }
 func (t *Text) GetBoundedRanges(rect *TextRectangle, coordType CoordType, xClipType, yClipType TextClipType) **TextRange {
@@ -147,11 +147,11 @@ func (t *Text) GetTextAtOffset(offset int, boundaryType TextBoundary, startOffse
 func (t *Text) GetTextBeforeOffset(offset int, boundaryType TextBoundary, startOffset, endOffset *int) string {
 	return textGetTextBeforeOffset(t, offset, boundaryType, startOffset, endOffset)
 }
-func (t *Text) RemoveSelection(selectionNum int) T.Gboolean {
+func (t *Text) RemoveSelection(selectionNum int) bool {
 	return textRemoveSelection(t, selectionNum)
 }
-func (t *Text) SetCaretOffset(offset int) T.Gboolean { return textSetCaretOffset(t, offset) }
-func (t *Text) SetSelection(selectionNum, startOffset, endOffset int) T.Gboolean {
+func (t *Text) SetCaretOffset(offset int) bool { return textSetCaretOffset(t, offset) }
+func (t *Text) SetSelection(selectionNum, startOffset, endOffset int) bool {
 	return textSetSelection(t, selectionNum, startOffset, endOffset)
 }
 

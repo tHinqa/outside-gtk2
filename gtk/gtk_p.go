@@ -77,8 +77,8 @@ var (
 	pageSetupGetPaperWidth                 func(p *PageSetup, unit Unit) float64
 	pageSetupGetRightMargin                func(p *PageSetup, unit Unit) float64
 	pageSetupGetTopMargin                  func(p *PageSetup, unit Unit) float64
-	pageSetupLoadFile                      func(p *PageSetup, fileName string, error **T.GError) T.Gboolean
-	pageSetupLoadKeyFile                   func(p *PageSetup, keyFile *T.GKeyFile, groupName string, error **T.GError) T.Gboolean
+	pageSetupLoadFile                      func(p *PageSetup, fileName string, error **T.GError) bool
+	pageSetupLoadKeyFile                   func(p *PageSetup, keyFile *T.GKeyFile, groupName string, error **T.GError) bool
 	pageSetupSetBottomMargin               func(p *PageSetup, margin float64, unit Unit)
 	pageSetupSetLeftMargin                 func(p *PageSetup, margin float64, unit Unit)
 	pageSetupSetOrientation                func(p *PageSetup, orientation Orientation)
@@ -86,7 +86,7 @@ var (
 	pageSetupSetPaperSizeAndDefaultMargins func(p *PageSetup, size *PaperSize)
 	pageSetupSetRightMargin                func(p *PageSetup, margin float64, unit Unit)
 	pageSetupSetTopMargin                  func(p *PageSetup, margin float64, unit Unit)
-	pageSetupToFile                        func(p *PageSetup, fileName string, error **T.GError) T.Gboolean
+	pageSetupToFile                        func(p *PageSetup, fileName string, error **T.GError) bool
 	pageSetupToKeyFile                     func(p *PageSetup, keyFile *T.GKeyFile, groupName string)
 )
 
@@ -101,10 +101,10 @@ func (p *PageSetup) GetPaperSize() *PaperSize          { return pageSetupGetPape
 func (p *PageSetup) GetPaperWidth(unit Unit) float64   { return pageSetupGetPaperWidth(p, unit) }
 func (p *PageSetup) GetRightMargin(unit Unit) float64  { return pageSetupGetRightMargin(p, unit) }
 func (p *PageSetup) GetTopMargin(unit Unit) float64    { return pageSetupGetTopMargin(p, unit) }
-func (p *PageSetup) LoadFile(fileName string, err **T.GError) T.Gboolean {
+func (p *PageSetup) LoadFile(fileName string, err **T.GError) bool {
 	return pageSetupLoadFile(p, fileName, err)
 }
-func (p *PageSetup) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) T.Gboolean {
+func (p *PageSetup) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) bool {
 	return pageSetupLoadKeyFile(p, keyFile, groupName, err)
 }
 func (p *PageSetup) SetBottomMargin(margin float64, unit Unit) {
@@ -126,7 +126,7 @@ func (p *PageSetup) SetRightMargin(margin float64, unit Unit) {
 func (p *PageSetup) SetTopMargin(margin float64, unit Unit) {
 	pageSetupSetTopMargin(p, margin, unit)
 }
-func (p *PageSetup) ToFile(fileName string, err **T.GError) T.Gboolean {
+func (p *PageSetup) ToFile(fileName string, err **T.GError) bool {
 	return pageSetupToFile(p, fileName, err)
 }
 func (p *PageSetup) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
@@ -174,8 +174,8 @@ var (
 	panedGetChild2       func(p *Paned) *Widget
 	panedGetHandleWindow func(p *Paned) *D.Window
 	panedGetPosition     func(p *Paned) int
-	panedPack1           func(p *Paned, child *Widget, resize, shrink T.Gboolean)
-	panedPack2           func(p *Paned, child *Widget, resize, shrink T.Gboolean)
+	panedPack1           func(p *Paned, child *Widget, resize, shrink bool)
+	panedPack2           func(p *Paned, child *Widget, resize, shrink bool)
 	panedSetPosition     func(p *Paned, position int)
 )
 
@@ -188,10 +188,10 @@ func (p *Paned) GetChild1() *Widget         { return panedGetChild1(p) }
 func (p *Paned) GetChild2() *Widget         { return panedGetChild2(p) }
 func (p *Paned) GetHandleWindow() *D.Window { return panedGetHandleWindow(p) }
 func (p *Paned) GetPosition() int           { return panedGetPosition(p) }
-func (p *Paned) Pack1(child *Widget, resize T.Gboolean, shrink T.Gboolean) {
+func (p *Paned) Pack1(child *Widget, resize bool, shrink bool) {
 	panedPack1(p, child, resize, shrink)
 }
-func (p *Paned) Pack2(child *Widget, resize T.Gboolean, shrink T.Gboolean) {
+func (p *Paned) Pack2(child *Widget, resize bool, shrink bool) {
 	panedPack2(p, child, resize, shrink)
 }
 func (p *Paned) SetPosition(position int) { panedSetPosition(p, position) }
@@ -206,7 +206,7 @@ var (
 	PaperSizeNewFromPpd     func(ppdName, ppdDisplayName string, width, height float64) *PaperSize
 
 	PaperSizeGetDefault    func() string
-	PaperSizeGetPaperSizes func(includeCustom T.Gboolean) *T.GList
+	PaperSizeGetPaperSizes func(includeCustom bool) *T.GList
 
 	paperSizeCopy                   func(s *PaperSize) *PaperSize
 	paperSizeFree                   func(s *PaperSize)
@@ -219,8 +219,8 @@ var (
 	paperSizeGetName                func(s *PaperSize) string
 	paperSizeGetPpdName             func(s *PaperSize) string
 	paperSizeGetWidth               func(s *PaperSize, unit Unit) float64
-	paperSizeIsCustom               func(s *PaperSize) T.Gboolean
-	paperSizeIsEqual                func(s *PaperSize, size2 *PaperSize) T.Gboolean
+	paperSizeIsCustom               func(s *PaperSize) bool
+	paperSizeIsEqual                func(s *PaperSize, size2 *PaperSize) bool
 	paperSizeSetSize                func(s *PaperSize, width, height float64, unit Unit)
 	paperSizeToKeyFile              func(s *PaperSize, keyFile *T.GKeyFile, groupName string)
 )
@@ -239,13 +239,13 @@ func (s *PaperSize) GetDefaultRightMargin(unit Unit) float64 {
 func (s *PaperSize) GetDefaultTopMargin(unit Unit) float64 {
 	return paperSizeGetDefaultTopMargin(s, unit)
 }
-func (s *PaperSize) GetDisplayName() string              { return paperSizeGetDisplayName(s) }
-func (s *PaperSize) GetHeight(unit Unit) float64         { return paperSizeGetHeight(s, unit) }
-func (s *PaperSize) GetName() string                     { return paperSizeGetName(s) }
-func (s *PaperSize) GetPpdName() string                  { return paperSizeGetPpdName(s) }
-func (s *PaperSize) GetWidth(unit Unit) float64          { return paperSizeGetWidth(s, unit) }
-func (s *PaperSize) IsCustom() T.Gboolean                { return paperSizeIsCustom(s) }
-func (s *PaperSize) IsEqual(size2 *PaperSize) T.Gboolean { return paperSizeIsEqual(s, size2) }
+func (s *PaperSize) GetDisplayName() string        { return paperSizeGetDisplayName(s) }
+func (s *PaperSize) GetHeight(unit Unit) float64   { return paperSizeGetHeight(s, unit) }
+func (s *PaperSize) GetName() string               { return paperSizeGetName(s) }
+func (s *PaperSize) GetPpdName() string            { return paperSizeGetPpdName(s) }
+func (s *PaperSize) GetWidth(unit Unit) float64    { return paperSizeGetWidth(s, unit) }
+func (s *PaperSize) IsCustom() bool                { return paperSizeIsCustom(s) }
+func (s *PaperSize) IsEqual(size2 *PaperSize) bool { return paperSizeIsEqual(s, size2) }
 func (s *PaperSize) SetSize(width, height float64, unit Unit) {
 	paperSizeSetSize(s, width, height, unit)
 }
@@ -291,12 +291,12 @@ var (
 
 	pixmapGet                 func(p *Pixmap, val **D.Pixmap, mask **T.GdkBitmap)
 	pixmapSet                 func(p *Pixmap, val *D.Pixmap, mask *T.GdkBitmap)
-	pixmapSetBuildInsensitive func(p *Pixmap, build T.Gboolean)
+	pixmapSetBuildInsensitive func(p *Pixmap, build bool)
 )
 
 func (p *Pixmap) Get(val **D.Pixmap, mask **T.GdkBitmap) { pixmapGet(p, val, mask) }
 func (p *Pixmap) Set(val *D.Pixmap, mask *T.GdkBitmap)   { pixmapSet(p, val, mask) }
-func (p *Pixmap) SetBuildInsensitive(build T.Gboolean)   { pixmapSetBuildInsensitive(p, build) }
+func (p *Pixmap) SetBuildInsensitive(build bool)         { pixmapSetBuildInsensitive(p, build) }
 
 type Plug struct {
 	Window         Window
@@ -314,7 +314,7 @@ var (
 
 	plugConstruct           func(p *Plug, socketId T.GdkNativeWindow)
 	plugConstructForDisplay func(p *Plug, display *D.Display, socketId T.GdkNativeWindow)
-	plugGetEmbedded         func(p *Plug) T.Gboolean
+	plugGetEmbedded         func(p *Plug) bool
 	plugGetId               func(p *Plug) T.GdkNativeWindow
 	plugGetSocketWindow     func(p *Plug) *D.Window
 )
@@ -323,7 +323,7 @@ func (p *Plug) Construct(socketId T.GdkNativeWindow) { plugConstruct(p, socketId
 func (p *Plug) ConstructForDisplay(display *D.Display, socketId T.GdkNativeWindow) {
 	plugConstructForDisplay(p, display, socketId)
 }
-func (p *Plug) GetEmbedded() T.Gboolean    { return plugGetEmbedded(p) }
+func (p *Plug) GetEmbedded() bool          { return plugGetEmbedded(p) }
 func (p *Plug) GetId() T.GdkNativeWindow   { return plugGetId(p) }
 func (p *Plug) GetSocketWindow() *D.Window { return plugGetSocketWindow(p) }
 
@@ -378,7 +378,7 @@ var (
 	previewDrawRow   func(p *Preview, data *T.Guchar, x, y, w int)
 	previewPut       func(p *Preview, window *D.Window, gc *D.GC, srcx, srcy, destx, desty, width, height int)
 	previewSetDither func(p *Preview, dither T.GdkRgbDither)
-	previewSetExpand func(p *Preview, expand T.Gboolean)
+	previewSetExpand func(p *Preview, expand bool)
 	previewSize      func(p *Preview, width, height int)
 )
 
@@ -387,7 +387,7 @@ func (p *Preview) Put(window *D.Window, gc *D.GC, srcx, srcy, destx, desty, widt
 	previewPut(p, window, gc, srcx, srcy, destx, desty, width, height)
 }
 func (p *Preview) SetDither(dither T.GdkRgbDither) { previewSetDither(p, dither) }
-func (p *Preview) SetExpand(expand T.Gboolean)     { previewSetExpand(p, expand) }
+func (p *Preview) SetExpand(expand bool)           { previewSetExpand(p, expand) }
 func (p *Preview) Size(width, height int)          { previewSize(p, width, height) }
 
 type PreviewInfo struct {
@@ -414,7 +414,7 @@ var (
 	printContextGetCairoContext    func(p *PrintContext) *C.Cairo
 	printContextGetDpiX            func(p *PrintContext) float64
 	printContextGetDpiY            func(p *PrintContext) float64
-	printContextGetHardMargins     func(p *PrintContext, top, bottom, left, right *float64) T.Gboolean
+	printContextGetHardMargins     func(p *PrintContext, top, bottom, left, right *float64) bool
 	printContextGetHeight          func(p *PrintContext) float64
 	printContextGetPageSetup       func(p *PrintContext) *PageSetup
 	printContextGetPangoFontmap    func(p *PrintContext) *P.FontMap
@@ -427,7 +427,7 @@ func (p *PrintContext) CreatePangoLayout() *P.Layout   { return printContextCrea
 func (p *PrintContext) GetCairoContext() *C.Cairo      { return printContextGetCairoContext(p) }
 func (p *PrintContext) GetDpiX() float64               { return printContextGetDpiX(p) }
 func (p *PrintContext) GetDpiY() float64               { return printContextGetDpiY(p) }
-func (p *PrintContext) GetHardMargins(top, bottom, left, right *float64) T.Gboolean {
+func (p *PrintContext) GetHardMargins(top, bottom, left, right *float64) bool {
 	return printContextGetHardMargins(p, top, bottom, left, right)
 }
 func (p *PrintContext) GetHeight() float64          { return printContextGetHeight(p) }
@@ -477,32 +477,32 @@ var (
 	printOperationCancel              func(p *PrintOperation)
 	printOperationDrawPageFinish      func(p *PrintOperation)
 	printOperationGetDefaultPageSetup func(p *PrintOperation) *PageSetup
-	printOperationGetEmbedPageSetup   func(p *PrintOperation) T.Gboolean
+	printOperationGetEmbedPageSetup   func(p *PrintOperation) bool
 	printOperationGetError            func(p *PrintOperation, err **T.GError)
-	printOperationGetHasSelection     func(p *PrintOperation) T.Gboolean
+	printOperationGetHasSelection     func(p *PrintOperation) bool
 	printOperationGetNPagesToPrint    func(p *PrintOperation) int
 	printOperationGetPrintSettings    func(p *PrintOperation) *PrintSettings
 	printOperationGetStatus           func(p *PrintOperation) PrintStatus
 	printOperationGetStatusString     func(p *PrintOperation) string
-	printOperationGetSupportSelection func(p *PrintOperation) T.Gboolean
-	printOperationIsFinished          func(p *PrintOperation) T.Gboolean
+	printOperationGetSupportSelection func(p *PrintOperation) bool
+	printOperationIsFinished          func(p *PrintOperation) bool
 	printOperationRun                 func(p *PrintOperation, action PrintOperationAction, parent *Window, err **T.GError) PrintOperationResult
-	printOperationSetAllowAsync       func(p *PrintOperation, allowAsync T.Gboolean)
+	printOperationSetAllowAsync       func(p *PrintOperation, allowAsync bool)
 	printOperationSetCurrentPage      func(p *PrintOperation, currentPage int)
 	printOperationSetCustomTabLabel   func(p *PrintOperation, label string)
 	printOperationSetDefaultPageSetup func(p *PrintOperation, defaultPageSetup *PageSetup)
 	printOperationSetDeferDrawing     func(p *PrintOperation)
-	printOperationSetEmbedPageSetup   func(p *PrintOperation, embed T.Gboolean)
+	printOperationSetEmbedPageSetup   func(p *PrintOperation, embed bool)
 	printOperationSetExportFilename   func(p *PrintOperation, filename string)
-	printOperationSetHasSelection     func(p *PrintOperation, hasSelection T.Gboolean)
+	printOperationSetHasSelection     func(p *PrintOperation, hasSelection bool)
 	printOperationSetJobName          func(p *PrintOperation, jobName string)
 	printOperationSetNPages           func(p *PrintOperation, nPages int)
 	printOperationSetPrintSettings    func(p *PrintOperation, printSettings *PrintSettings)
-	printOperationSetShowProgress     func(p *PrintOperation, showProgress T.Gboolean)
-	printOperationSetSupportSelection func(p *PrintOperation, supportSelection T.Gboolean)
-	printOperationSetTrackPrintStatus func(p *PrintOperation, trackStatus T.Gboolean)
+	printOperationSetShowProgress     func(p *PrintOperation, showProgress bool)
+	printOperationSetSupportSelection func(p *PrintOperation, supportSelection bool)
+	printOperationSetTrackPrintStatus func(p *PrintOperation, trackStatus bool)
 	printOperationSetUnit             func(p *PrintOperation, unit Unit)
-	printOperationSetUseFullPage      func(p *PrintOperation, fullPage T.Gboolean)
+	printOperationSetUseFullPage      func(p *PrintOperation, fullPage bool)
 )
 
 func (p *PrintOperation) Cancel()         { printOperationCancel(p) }
@@ -510,19 +510,19 @@ func (p *PrintOperation) DrawPageFinish() { printOperationDrawPageFinish(p) }
 func (p *PrintOperation) GetDefaultPageSetup() *PageSetup {
 	return printOperationGetDefaultPageSetup(p)
 }
-func (p *PrintOperation) GetEmbedPageSetup() T.Gboolean    { return printOperationGetEmbedPageSetup(p) }
+func (p *PrintOperation) GetEmbedPageSetup() bool          { return printOperationGetEmbedPageSetup(p) }
 func (p *PrintOperation) GetError(err **T.GError)          { printOperationGetError(p, err) }
-func (p *PrintOperation) GetHasSelection() T.Gboolean      { return printOperationGetHasSelection(p) }
+func (p *PrintOperation) GetHasSelection() bool            { return printOperationGetHasSelection(p) }
 func (p *PrintOperation) GetNPagesToPrint() int            { return printOperationGetNPagesToPrint(p) }
 func (p *PrintOperation) GetPrintSettings() *PrintSettings { return printOperationGetPrintSettings(p) }
 func (p *PrintOperation) GetStatus() PrintStatus           { return printOperationGetStatus(p) }
 func (p *PrintOperation) GetStatusString() string          { return printOperationGetStatusString(p) }
-func (p *PrintOperation) GetSupportSelection() T.Gboolean  { return printOperationGetSupportSelection(p) }
-func (p *PrintOperation) IsFinished() T.Gboolean           { return printOperationIsFinished(p) }
+func (p *PrintOperation) GetSupportSelection() bool        { return printOperationGetSupportSelection(p) }
+func (p *PrintOperation) IsFinished() bool                 { return printOperationIsFinished(p) }
 func (p *PrintOperation) Run(action PrintOperationAction, parent *Window, err **T.GError) PrintOperationResult {
 	return printOperationRun(p, action, parent, err)
 }
-func (p *PrintOperation) SetAllowAsync(allowAsync T.Gboolean) {
+func (p *PrintOperation) SetAllowAsync(allowAsync bool) {
 	printOperationSetAllowAsync(p, allowAsync)
 }
 func (p *PrintOperation) SetCurrentPage(currentPage int) {
@@ -533,13 +533,13 @@ func (p *PrintOperation) SetDefaultPageSetup(defaultPageSetup *PageSetup) {
 	printOperationSetDefaultPageSetup(p, defaultPageSetup)
 }
 func (p *PrintOperation) SetDeferDrawing() { printOperationSetDeferDrawing(p) }
-func (p *PrintOperation) SetEmbedPageSetup(embed T.Gboolean) {
+func (p *PrintOperation) SetEmbedPageSetup(embed bool) {
 	printOperationSetEmbedPageSetup(p, embed)
 }
 func (p *PrintOperation) SetExportFilename(filename string) {
 	printOperationSetExportFilename(p, filename)
 }
-func (p *PrintOperation) SetHasSelection(hasSelection T.Gboolean) {
+func (p *PrintOperation) SetHasSelection(hasSelection bool) {
 	printOperationSetHasSelection(p, hasSelection)
 }
 func (p *PrintOperation) SetJobName(jobName string) { printOperationSetJobName(p, jobName) }
@@ -547,17 +547,17 @@ func (p *PrintOperation) SetNPages(nPages int)      { printOperationSetNPages(p,
 func (p *PrintOperation) SetPrintSettings(printSettings *PrintSettings) {
 	printOperationSetPrintSettings(p, printSettings)
 }
-func (p *PrintOperation) SetShowProgress(showProgress T.Gboolean) {
+func (p *PrintOperation) SetShowProgress(showProgress bool) {
 	printOperationSetShowProgress(p, showProgress)
 }
-func (p *PrintOperation) SetSupportSelection(supportSelection T.Gboolean) {
+func (p *PrintOperation) SetSupportSelection(supportSelection bool) {
 	printOperationSetSupportSelection(p, supportSelection)
 }
-func (p *PrintOperation) SetTrackPrintStatus(trackStatus T.Gboolean) {
+func (p *PrintOperation) SetTrackPrintStatus(trackStatus bool) {
 	printOperationSetTrackPrintStatus(p, trackStatus)
 }
 func (p *PrintOperation) SetUnit(unit Unit) { printOperationSetUnit(p, unit) }
-func (p *PrintOperation) SetUseFullPage(fullPage T.Gboolean) {
+func (p *PrintOperation) SetUseFullPage(fullPage bool) {
 	printOperationSetUseFullPage(p, fullPage)
 }
 
@@ -576,12 +576,12 @@ var (
 	PrintOperationPreviewGetType func() O.Type
 
 	printOperationPreviewEndPreview func(p *PrintOperationPreview)
-	printOperationPreviewIsSelected func(p *PrintOperationPreview, pageNr int) T.Gboolean
+	printOperationPreviewIsSelected func(p *PrintOperationPreview, pageNr int) bool
 	printOperationPreviewRenderPage func(p *PrintOperationPreview, pageNr int)
 )
 
 func (p *PrintOperationPreview) EndPreview() { printOperationPreviewEndPreview(p) }
-func (p *PrintOperationPreview) IsSelected(pageNr int) T.Gboolean {
+func (p *PrintOperationPreview) IsSelected(pageNr int) bool {
 	return printOperationPreviewIsSelected(p, pageNr)
 }
 func (p *PrintOperationPreview) RenderPage(pageNr int) { printOperationPreviewRenderPage(p, pageNr) }
@@ -644,8 +644,8 @@ var (
 	printSettingsCopy                 func(p *PrintSettings) *PrintSettings
 	printSettingsForeach              func(p *PrintSettings, f PrintSettingsFunc, userData T.Gpointer)
 	printSettingsGet                  func(p *PrintSettings, key string) string
-	printSettingsGetBool              func(p *PrintSettings, key string) T.Gboolean
-	printSettingsGetCollate           func(p *PrintSettings) T.Gboolean
+	printSettingsGetBool              func(p *PrintSettings, key string) bool
+	printSettingsGetCollate           func(p *PrintSettings) bool
 	printSettingsGetDefaultSource     func(p *PrintSettings) string
 	printSettingsGetDither            func(p *PrintSettings) string
 	printSettingsGetDouble            func(p *PrintSettings, key string) float64
@@ -673,15 +673,15 @@ var (
 	printSettingsGetResolution        func(p *PrintSettings) int
 	printSettingsGetResolutionX       func(p *PrintSettings) int
 	printSettingsGetResolutionY       func(p *PrintSettings) int
-	printSettingsGetReverse           func(p *PrintSettings) T.Gboolean
+	printSettingsGetReverse           func(p *PrintSettings) bool
 	printSettingsGetScale             func(p *PrintSettings) float64
-	printSettingsGetUseColor          func(p *PrintSettings) T.Gboolean
-	printSettingsHasKey               func(p *PrintSettings, key string) T.Gboolean
-	printSettingsLoadFile             func(p *PrintSettings, fileName string, err **T.GError) T.Gboolean
-	printSettingsLoadKeyFile          func(p *PrintSettings, keyFile *T.GKeyFile, groupName string, err **T.GError) T.Gboolean
+	printSettingsGetUseColor          func(p *PrintSettings) bool
+	printSettingsHasKey               func(p *PrintSettings, key string) bool
+	printSettingsLoadFile             func(p *PrintSettings, fileName string, err **T.GError) bool
+	printSettingsLoadKeyFile          func(p *PrintSettings, keyFile *T.GKeyFile, groupName string, err **T.GError) bool
 	printSettingsSet                  func(p *PrintSettings, key, value string)
-	printSettingsSetBool              func(p *PrintSettings, key string, value T.Gboolean)
-	printSettingsSetCollate           func(p *PrintSettings, collate T.Gboolean)
+	printSettingsSetBool              func(p *PrintSettings, key string, value bool)
+	printSettingsSetCollate           func(p *PrintSettings, collate bool)
 	printSettingsSetDefaultSource     func(p *PrintSettings, defaultSource string)
 	printSettingsSetDither            func(p *PrintSettings, dither string)
 	printSettingsSetDouble            func(p *PrintSettings, key string, value float64)
@@ -706,10 +706,10 @@ var (
 	printSettingsSetQuality           func(p *PrintSettings, quality PrintQuality)
 	printSettingsSetResolution        func(p *PrintSettings, resolution int)
 	printSettingsSetResolutionXy      func(p *PrintSettings, resolutionX, resolutionY int)
-	printSettingsSetReverse           func(p *PrintSettings, reverse T.Gboolean)
+	printSettingsSetReverse           func(p *PrintSettings, reverse bool)
 	printSettingsSetScale             func(p *PrintSettings, scale float64)
-	printSettingsSetUseColor          func(p *PrintSettings, useColor T.Gboolean)
-	printSettingsToFile               func(p *PrintSettings, fileName string, err **T.GError) T.Gboolean
+	printSettingsSetUseColor          func(p *PrintSettings, useColor bool)
+	printSettingsToFile               func(p *PrintSettings, fileName string, err **T.GError) bool
 	printSettingsToKeyFile            func(p *PrintSettings, keyFile *T.GKeyFile, groupName string)
 	printSettingsUnset                func(p *PrintSettings, key string)
 )
@@ -718,12 +718,12 @@ func (p *PrintSettings) Copy() *PrintSettings { return printSettingsCopy(p) }
 func (p *PrintSettings) Foreach(f PrintSettingsFunc, userData T.Gpointer) {
 	printSettingsForeach(p, f, userData)
 }
-func (p *PrintSettings) Get(key string) string         { return printSettingsGet(p, key) }
-func (p *PrintSettings) GetBool(key string) T.Gboolean { return printSettingsGetBool(p, key) }
-func (p *PrintSettings) GetCollate() T.Gboolean        { return printSettingsGetCollate(p) }
-func (p *PrintSettings) GetDefaultSource() string      { return printSettingsGetDefaultSource(p) }
-func (p *PrintSettings) GetDither() string             { return printSettingsGetDither(p) }
-func (p *PrintSettings) GetDouble(key string) float64  { return printSettingsGetDouble(p, key) }
+func (p *PrintSettings) Get(key string) string        { return printSettingsGet(p, key) }
+func (p *PrintSettings) GetBool(key string) bool      { return printSettingsGetBool(p, key) }
+func (p *PrintSettings) GetCollate() bool             { return printSettingsGetCollate(p) }
+func (p *PrintSettings) GetDefaultSource() string     { return printSettingsGetDefaultSource(p) }
+func (p *PrintSettings) GetDither() string            { return printSettingsGetDither(p) }
+func (p *PrintSettings) GetDouble(key string) float64 { return printSettingsGetDouble(p, key) }
 func (p *PrintSettings) GetDoubleWithDefault(key string, def float64) float64 {
 	return printSettingsGetDoubleWithDefault(p, key, def)
 }
@@ -755,26 +755,26 @@ func (p *PrintSettings) GetPaperSize() *PaperSize { return printSettingsGetPaper
 func (p *PrintSettings) GetPaperWidth(unit Unit) float64 {
 	return printSettingsGetPaperWidth(p, unit)
 }
-func (p *PrintSettings) GetPrinter() string           { return printSettingsGetPrinter(p) }
-func (p *PrintSettings) GetPrinterLpi() float64       { return printSettingsGetPrinterLpi(p) }
-func (p *PrintSettings) GetPrintPages() PrintPages    { return printSettingsGetPrintPages(p) }
-func (p *PrintSettings) GetQuality() PrintQuality     { return printSettingsGetQuality(p) }
-func (p *PrintSettings) GetResolution() int           { return printSettingsGetResolution(p) }
-func (p *PrintSettings) GetResolutionX() int          { return printSettingsGetResolutionX(p) }
-func (p *PrintSettings) GetResolutionY() int          { return printSettingsGetResolutionY(p) }
-func (p *PrintSettings) GetReverse() T.Gboolean       { return printSettingsGetReverse(p) }
-func (p *PrintSettings) GetScale() float64            { return printSettingsGetScale(p) }
-func (p *PrintSettings) GetUseColor() T.Gboolean      { return printSettingsGetUseColor(p) }
-func (p *PrintSettings) HasKey(key string) T.Gboolean { return printSettingsHasKey(p, key) }
-func (p *PrintSettings) LoadFile(fileName string, err **T.GError) T.Gboolean {
+func (p *PrintSettings) GetPrinter() string        { return printSettingsGetPrinter(p) }
+func (p *PrintSettings) GetPrinterLpi() float64    { return printSettingsGetPrinterLpi(p) }
+func (p *PrintSettings) GetPrintPages() PrintPages { return printSettingsGetPrintPages(p) }
+func (p *PrintSettings) GetQuality() PrintQuality  { return printSettingsGetQuality(p) }
+func (p *PrintSettings) GetResolution() int        { return printSettingsGetResolution(p) }
+func (p *PrintSettings) GetResolutionX() int       { return printSettingsGetResolutionX(p) }
+func (p *PrintSettings) GetResolutionY() int       { return printSettingsGetResolutionY(p) }
+func (p *PrintSettings) GetReverse() bool          { return printSettingsGetReverse(p) }
+func (p *PrintSettings) GetScale() float64         { return printSettingsGetScale(p) }
+func (p *PrintSettings) GetUseColor() bool         { return printSettingsGetUseColor(p) }
+func (p *PrintSettings) HasKey(key string) bool    { return printSettingsHasKey(p, key) }
+func (p *PrintSettings) LoadFile(fileName string, err **T.GError) bool {
 	return printSettingsLoadFile(p, fileName, err)
 }
-func (p *PrintSettings) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) T.Gboolean {
+func (p *PrintSettings) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) bool {
 	return printSettingsLoadKeyFile(p, keyFile, groupName, err)
 }
-func (p *PrintSettings) Set(key, value string)                { printSettingsSet(p, key, value) }
-func (p *PrintSettings) SetBool(key string, value T.Gboolean) { printSettingsSetBool(p, key, value) }
-func (p *PrintSettings) SetCollate(collate T.Gboolean)        { printSettingsSetCollate(p, collate) }
+func (p *PrintSettings) Set(key, value string)          { printSettingsSet(p, key, value) }
+func (p *PrintSettings) SetBool(key string, value bool) { printSettingsSetBool(p, key, value) }
+func (p *PrintSettings) SetCollate(collate bool)        { printSettingsSetCollate(p, collate) }
 func (p *PrintSettings) SetDefaultSource(defaultSource string) {
 	printSettingsSetDefaultSource(p, defaultSource)
 }
@@ -815,10 +815,10 @@ func (p *PrintSettings) SetResolution(resolution int)    { printSettingsSetResol
 func (p *PrintSettings) SetResolutionXy(resolutionX, resolutionY int) {
 	printSettingsSetResolutionXy(p, resolutionX, resolutionY)
 }
-func (p *PrintSettings) SetReverse(reverse T.Gboolean)   { printSettingsSetReverse(p, reverse) }
-func (p *PrintSettings) SetScale(scale float64)          { printSettingsSetScale(p, scale) }
-func (p *PrintSettings) SetUseColor(useColor T.Gboolean) { printSettingsSetUseColor(p, useColor) }
-func (p *PrintSettings) ToFile(fileName string, err **T.GError) T.Gboolean {
+func (p *PrintSettings) SetReverse(reverse bool)   { printSettingsSetReverse(p, reverse) }
+func (p *PrintSettings) SetScale(scale float64)    { printSettingsSetScale(p, scale) }
+func (p *PrintSettings) SetUseColor(useColor bool) { printSettingsSetUseColor(p, useColor) }
+func (p *PrintSettings) ToFile(fileName string, err **T.GError) bool {
 	return printSettingsToFile(p, fileName, err)
 }
 func (p *PrintSettings) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
@@ -860,7 +860,7 @@ var PrivateFlagsGetType func() O.Type //TODO(t):Use?
 var (
 	ProgressGetType func() O.Type
 
-	progressSetShowText            func(p *Progress, showText T.Gboolean)
+	progressSetShowText            func(p *Progress, showText bool)
 	progressSetTextAlignment       func(p *Progress, xAlign, yAlign float32)
 	progressSetFormatString        func(p *Progress, format string)
 	progressSetAdjustment          func(p *Progress, adjustment *Adjustment)
@@ -868,27 +868,27 @@ var (
 	progressSetPercentage          func(p *Progress, percentage float64)
 	progressSetValue               func(p *Progress, value float64)
 	progressGetValue               func(p *Progress) float64
-	progressSetActivityMode        func(p *Progress, activityMode T.Gboolean)
+	progressSetActivityMode        func(p *Progress, activityMode bool)
 	progressGetCurrentText         func(p *Progress) string
 	progressGetTextFromValue       func(p *Progress, value float64) string
 	progressGetCurrentPercentage   func(p *Progress) float64
 	progressGetPercentageFromValue func(p *Progress, value float64) float64
 )
 
-func (p *Progress) SetShowText(showText T.Gboolean) { progressSetShowText(p, showText) }
+func (p *Progress) SetShowText(showText bool) { progressSetShowText(p, showText) }
 func (p *Progress) SetTextAlignment(xAlign, yAlign float32) {
 	progressSetTextAlignment(p, xAlign, yAlign)
 }
-func (p *Progress) SetFormatString(format string)           { progressSetFormatString(p, format) }
-func (p *Progress) SetAdjustment(adjustment *Adjustment)    { progressSetAdjustment(p, adjustment) }
-func (p *Progress) Configure(value, min, max float64)       { progressConfigure(p, value, min, max) }
-func (p *Progress) SetPercentage(percentage float64)        { progressSetPercentage(p, percentage) }
-func (p *Progress) SetValue(value float64)                  { progressSetValue(p, value) }
-func (p *Progress) GetValue() float64                       { return progressGetValue(p) }
-func (p *Progress) SetActivityMode(activityMode T.Gboolean) { progressSetActivityMode(p, activityMode) }
-func (p *Progress) GetCurrentText() string                  { return progressGetCurrentText(p) }
-func (p *Progress) GetTextFromValue(value float64) string   { return progressGetTextFromValue(p, value) }
-func (p *Progress) GetCurrentPercentage() float64           { return progressGetCurrentPercentage(p) }
+func (p *Progress) SetFormatString(format string)         { progressSetFormatString(p, format) }
+func (p *Progress) SetAdjustment(adjustment *Adjustment)  { progressSetAdjustment(p, adjustment) }
+func (p *Progress) Configure(value, min, max float64)     { progressConfigure(p, value, min, max) }
+func (p *Progress) SetPercentage(percentage float64)      { progressSetPercentage(p, percentage) }
+func (p *Progress) SetValue(value float64)                { progressSetValue(p, value) }
+func (p *Progress) GetValue() float64                     { return progressGetValue(p) }
+func (p *Progress) SetActivityMode(activityMode bool)     { progressSetActivityMode(p, activityMode) }
+func (p *Progress) GetCurrentText() string                { return progressGetCurrentText(p) }
+func (p *Progress) GetTextFromValue(value float64) string { return progressGetTextFromValue(p, value) }
+func (p *Progress) GetCurrentPercentage() float64         { return progressGetCurrentPercentage(p) }
 func (p *Progress) GetPercentageFromValue(value float64) float64 {
 	return progressGetPercentageFromValue(p, value)
 }

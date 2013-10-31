@@ -69,7 +69,7 @@ type (
 	MenuCallback func(widget *Widget, userData T.Gpointer)
 
 	MenuPositionFunc func(menu *Menu,
-		x, y *int, pushIn *T.Gboolean, userData T.Gpointer)
+		x, y *int, pushIn *bool, userData T.Gpointer)
 
 	MenuDetachFunc func(ttachWidget *Widget, menu *Menu)
 )
@@ -98,8 +98,8 @@ var (
 	menuGetActive            func(m *Menu) *Widget
 	menuGetAttachWidget      func(m *Menu) *Widget
 	menuGetMonitor           func(m *Menu) int
-	menuGetReserveToggleSize func(m *Menu) T.Gboolean
-	menuGetTearoffState      func(m *Menu) T.Gboolean
+	menuGetReserveToggleSize func(m *Menu) bool
+	menuGetTearoffState      func(m *Menu) bool
 	menuGetTitle             func(m *Menu) string
 	menuPopdown              func(m *Menu)
 	menuPopup                func(m *Menu, parentMenuShell, parentMenuItem *Widget, f MenuPositionFunc, data T.Gpointer, button uint, activateTime T.GUint32)
@@ -109,9 +109,9 @@ var (
 	menuSetAccelPath         func(m *Menu, accelPath string)
 	menuSetActive            func(m *Menu, index uint)
 	menuSetMonitor           func(m *Menu, monitorNum int)
-	menuSetReserveToggleSize func(m *Menu, reserveToggleSize T.Gboolean)
+	menuSetReserveToggleSize func(m *Menu, reserveToggleSize bool)
 	menuSetScreen            func(m *Menu, screen *D.Screen)
-	menuSetTearoffState      func(m *Menu, tornOff T.Gboolean)
+	menuSetTearoffState      func(m *Menu, tornOff bool)
 	menuSetTitle             func(m *Menu, title string)
 )
 
@@ -121,16 +121,16 @@ func (m *Menu) Attach(child *Widget, leftAttach, rightAttach, topAttach, bottomA
 func (m *Menu) AttachToWidget(attachWidget *Widget, detacher MenuDetachFunc) {
 	menuAttachToWidget(m, attachWidget, detacher)
 }
-func (m *Menu) Detach()                          { menuDetach(m) }
-func (m *Menu) GetAccelGroup() *AccelGroup       { return menuGetAccelGroup(m) }
-func (m *Menu) GetAccelPath() string             { return menuGetAccelPath(m) }
-func (m *Menu) GetActive() *Widget               { return menuGetActive(m) }
-func (m *Menu) GetAttachWidget() *Widget         { return menuGetAttachWidget(m) }
-func (m *Menu) GetMonitor() int                  { return menuGetMonitor(m) }
-func (m *Menu) GetReserveToggleSize() T.Gboolean { return menuGetReserveToggleSize(m) }
-func (m *Menu) GetTearoffState() T.Gboolean      { return menuGetTearoffState(m) }
-func (m *Menu) GetTitle() string                 { return menuGetTitle(m) }
-func (m *Menu) Popdown()                         { menuPopdown(m) }
+func (m *Menu) Detach()                    { menuDetach(m) }
+func (m *Menu) GetAccelGroup() *AccelGroup { return menuGetAccelGroup(m) }
+func (m *Menu) GetAccelPath() string       { return menuGetAccelPath(m) }
+func (m *Menu) GetActive() *Widget         { return menuGetActive(m) }
+func (m *Menu) GetAttachWidget() *Widget   { return menuGetAttachWidget(m) }
+func (m *Menu) GetMonitor() int            { return menuGetMonitor(m) }
+func (m *Menu) GetReserveToggleSize() bool { return menuGetReserveToggleSize(m) }
+func (m *Menu) GetTearoffState() bool      { return menuGetTearoffState(m) }
+func (m *Menu) GetTitle() string           { return menuGetTitle(m) }
+func (m *Menu) Popdown()                   { menuPopdown(m) }
 func (m *Menu) Popup(parentMenuShell, parentMenuItem *Widget, f MenuPositionFunc, data T.Gpointer, button uint, activateTime T.GUint32) {
 	menuPopup(m, parentMenuShell, parentMenuItem, f, data, button, activateTime)
 }
@@ -140,12 +140,12 @@ func (m *Menu) SetAccelGroup(accelGroup *AccelGroup)     { menuSetAccelGroup(m, 
 func (m *Menu) SetAccelPath(accelPath string)            { menuSetAccelPath(m, accelPath) }
 func (m *Menu) SetActive(index uint)                     { menuSetActive(m, index) }
 func (m *Menu) SetMonitor(monitorNum int)                { menuSetMonitor(m, monitorNum) }
-func (m *Menu) SetReserveToggleSize(reserveToggleSize T.Gboolean) {
+func (m *Menu) SetReserveToggleSize(reserveToggleSize bool) {
 	menuSetReserveToggleSize(m, reserveToggleSize)
 }
-func (m *Menu) SetScreen(screen *D.Screen)         { menuSetScreen(m, screen) }
-func (m *Menu) SetTearoffState(tornOff T.Gboolean) { menuSetTearoffState(m, tornOff) }
-func (m *Menu) SetTitle(title string)              { menuSetTitle(m, title) }
+func (m *Menu) SetScreen(screen *D.Screen)   { menuSetScreen(m, screen) }
+func (m *Menu) SetTearoffState(tornOff bool) { menuSetTearoffState(m, tornOff) }
+func (m *Menu) SetTitle(title string)        { menuSetTitle(m, title) }
 
 type MenuBar struct {
 	MenuShell MenuShell
@@ -197,16 +197,16 @@ var (
 	menuItemDeselect           func(m *MenuItem)
 	menuItemGetAccelPath       func(m *MenuItem) string
 	menuItemGetLabel           func(m *MenuItem) string
-	menuItemGetRightJustified  func(m *MenuItem) T.Gboolean
+	menuItemGetRightJustified  func(m *MenuItem) bool
 	menuItemGetSubmenu         func(m *MenuItem) *Widget
-	menuItemGetUseUnderline    func(m *MenuItem) T.Gboolean
+	menuItemGetUseUnderline    func(m *MenuItem) bool
 	menuItemRemoveSubmenu      func(m *MenuItem)
 	menuItemSelect             func(m *MenuItem)
 	menuItemSetAccelPath       func(m *MenuItem, accelPath string)
 	menuItemSetLabel           func(m *MenuItem, label string)
-	menuItemSetRightJustified  func(m *MenuItem, rightJustified T.Gboolean)
+	menuItemSetRightJustified  func(m *MenuItem, rightJustified bool)
 	menuItemSetSubmenu         func(m *MenuItem, submenu *Widget)
-	menuItemSetUseUnderline    func(m *MenuItem, setting T.Gboolean)
+	menuItemSetUseUnderline    func(m *MenuItem, setting bool)
 	menuItemToggleSizeAllocate func(m *MenuItem, allocation int)
 	menuItemToggleSizeRequest  func(m *MenuItem, requisition *int)
 )
@@ -215,18 +215,18 @@ func (m *MenuItem) Activate()                     { menuItemActivate(m) }
 func (m *MenuItem) Deselect()                     { menuItemDeselect(m) }
 func (m *MenuItem) GetAccelPath() string          { return menuItemGetAccelPath(m) }
 func (m *MenuItem) GetLabel() string              { return menuItemGetLabel(m) }
-func (m *MenuItem) GetRightJustified() T.Gboolean { return menuItemGetRightJustified(m) }
+func (m *MenuItem) GetRightJustified() bool       { return menuItemGetRightJustified(m) }
 func (m *MenuItem) GetSubmenu() *Widget           { return menuItemGetSubmenu(m) }
-func (m *MenuItem) GetUseUnderline() T.Gboolean   { return menuItemGetUseUnderline(m) }
+func (m *MenuItem) GetUseUnderline() bool         { return menuItemGetUseUnderline(m) }
 func (m *MenuItem) RemoveSubmenu()                { menuItemRemoveSubmenu(m) }
 func (m *MenuItem) Select()                       { menuItemSelect(m) }
 func (m *MenuItem) SetAccelPath(accelPath string) { menuItemSetAccelPath(m, accelPath) }
 func (m *MenuItem) SetLabel(label string)         { menuItemSetLabel(m, label) }
-func (m *MenuItem) SetRightJustified(rightJustified T.Gboolean) {
+func (m *MenuItem) SetRightJustified(rightJustified bool) {
 	menuItemSetRightJustified(m, rightJustified)
 }
 func (m *MenuItem) SetSubmenu(submenu *Widget)         { menuItemSetSubmenu(m, submenu) }
-func (m *MenuItem) SetUseUnderline(setting T.Gboolean) { menuItemSetUseUnderline(m, setting) }
+func (m *MenuItem) SetUseUnderline(setting bool)       { menuItemSetUseUnderline(m, setting) }
 func (m *MenuItem) ToggleSizeAllocate(allocation int)  { menuItemToggleSizeAllocate(m, allocation) }
 func (m *MenuItem) ToggleSizeRequest(requisition *int) { menuItemToggleSizeRequest(m, requisition) }
 
@@ -250,32 +250,32 @@ type MenuShell struct {
 var (
 	MenuShellGetType func() O.Type
 
-	menuShellActivateItem func(m *MenuShell, menuItem *Widget, forceDeactivate T.Gboolean)
+	menuShellActivateItem func(m *MenuShell, menuItem *Widget, forceDeactivate bool)
 	menuShellAppend       func(m *MenuShell, child *Widget)
 	menuShellCancel       func(m *MenuShell)
 	menuShellDeactivate   func(m *MenuShell)
 	menuShellDeselect     func(m *MenuShell)
-	menuShellGetTakeFocus func(m *MenuShell) T.Gboolean
+	menuShellGetTakeFocus func(m *MenuShell) bool
 	menuShellInsert       func(m *MenuShell, child *Widget, position int)
 	menuShellPrepend      func(m *MenuShell, child *Widget)
-	menuShellSelectFirst  func(m *MenuShell, searchSensitive T.Gboolean)
+	menuShellSelectFirst  func(m *MenuShell, searchSensitive bool)
 	menuShellSelectItem   func(m *MenuShell, menuItem *Widget)
-	menuShellSetTakeFocus func(m *MenuShell, takeFocus T.Gboolean)
+	menuShellSetTakeFocus func(m *MenuShell, takeFocus bool)
 )
 
-func (m *MenuShell) ActivateItem(menuItem *Widget, forceDeactivate T.Gboolean) {
+func (m *MenuShell) ActivateItem(menuItem *Widget, forceDeactivate bool) {
 	menuShellActivateItem(m, menuItem, forceDeactivate)
 }
-func (m *MenuShell) Append(child *Widget)                   { menuShellAppend(m, child) }
-func (m *MenuShell) Cancel()                                { menuShellCancel(m) }
-func (m *MenuShell) Deactivate()                            { menuShellDeactivate(m) }
-func (m *MenuShell) Deselect()                              { menuShellDeselect(m) }
-func (m *MenuShell) GetTakeFocus() T.Gboolean               { return menuShellGetTakeFocus(m) }
-func (m *MenuShell) Insert(child *Widget, position int)     { menuShellInsert(m, child, position) }
-func (m *MenuShell) Prepend(child *Widget)                  { menuShellPrepend(m, child) }
-func (m *MenuShell) SelectFirst(searchSensitive T.Gboolean) { menuShellSelectFirst(m, searchSensitive) }
-func (m *MenuShell) SelectItem(menuItem *Widget)            { menuShellSelectItem(m, menuItem) }
-func (m *MenuShell) SetTakeFocus(takeFocus T.Gboolean)      { menuShellSetTakeFocus(m, takeFocus) }
+func (m *MenuShell) Append(child *Widget)               { menuShellAppend(m, child) }
+func (m *MenuShell) Cancel()                            { menuShellCancel(m) }
+func (m *MenuShell) Deactivate()                        { menuShellDeactivate(m) }
+func (m *MenuShell) Deselect()                          { menuShellDeselect(m) }
+func (m *MenuShell) GetTakeFocus() bool                 { return menuShellGetTakeFocus(m) }
+func (m *MenuShell) Insert(child *Widget, position int) { menuShellInsert(m, child, position) }
+func (m *MenuShell) Prepend(child *Widget)              { menuShellPrepend(m, child) }
+func (m *MenuShell) SelectFirst(searchSensitive bool)   { menuShellSelectFirst(m, searchSensitive) }
+func (m *MenuShell) SelectItem(menuItem *Widget)        { menuShellSelectItem(m, menuItem) }
+func (m *MenuShell) SetTakeFocus(takeFocus bool)        { menuShellSetTakeFocus(m, takeFocus) }
 
 type MenuToolButton struct {
 	Parent ToolButton
@@ -393,14 +393,14 @@ var (
 
 	mountOperationGetParent func(m *MountOperation) *Window
 	mountOperationGetScreen func(m *MountOperation) *D.Screen
-	mountOperationIsShowing func(m *MountOperation) T.Gboolean
+	mountOperationIsShowing func(m *MountOperation) bool
 	mountOperationSetParent func(m *MountOperation, parent *Window)
 	mountOperationSetScreen func(m *MountOperation, screen *D.Screen)
 )
 
 func (m *MountOperation) GetParent() *Window         { return mountOperationGetParent(m) }
 func (m *MountOperation) GetScreen() *D.Screen       { return mountOperationGetScreen(m) }
-func (m *MountOperation) IsShowing() T.Gboolean      { return mountOperationIsShowing(m) }
+func (m *MountOperation) IsShowing() bool            { return mountOperationIsShowing(m) }
 func (m *MountOperation) SetParent(parent *Window)   { mountOperationSetParent(m, parent) }
 func (m *MountOperation) SetScreen(screen *D.Screen) { mountOperationSetScreen(m, screen) }
 

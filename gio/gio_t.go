@@ -23,14 +23,14 @@ type TcpConnection struct {
 var (
 	TcpConnectionGetType func() O.Type
 
-	tcpConnectionSetGracefulDisconnect func(t *TcpConnection, gracefulDisconnect T.Gboolean)
-	tcpConnectionGetGracefulDisconnect func(t *TcpConnection) T.Gboolean
+	tcpConnectionSetGracefulDisconnect func(t *TcpConnection, gracefulDisconnect bool)
+	tcpConnectionGetGracefulDisconnect func(t *TcpConnection) bool
 )
 
-func (t *TcpConnection) GetGracefulDisconnect() T.Gboolean {
+func (t *TcpConnection) GetGracefulDisconnect() bool {
 	return tcpConnectionGetGracefulDisconnect(t)
 }
-func (t *TcpConnection) SetGracefulDisconnect(gracefulDisconnect T.Gboolean) {
+func (t *TcpConnection) SetGracefulDisconnect(gracefulDisconnect bool) {
 	tcpConnectionSetGracefulDisconnect(t, gracefulDisconnect)
 }
 
@@ -87,13 +87,13 @@ var (
 	tlsBackendGetCertificateType      func(t *TlsBackend) O.Type
 	tlsBackendGetClientConnectionType func(t *TlsBackend) O.Type
 	tlsBackendGetServerConnectionType func(t *TlsBackend) O.Type
-	tlsBackendSupportsTls             func(t *TlsBackend) T.Gboolean
+	tlsBackendSupportsTls             func(t *TlsBackend) bool
 )
 
 func (t *TlsBackend) GetCertificateType() O.Type      { return tlsBackendGetCertificateType(t) }
 func (t *TlsBackend) GetClientConnectionType() O.Type { return tlsBackendGetClientConnectionType(t) }
 func (t *TlsBackend) GetServerConnectionType() O.Type { return tlsBackendGetServerConnectionType(t) }
-func (t *TlsBackend) SupportsTls() T.Gboolean         { return tlsBackendSupportsTls(t) }
+func (t *TlsBackend) SupportsTls() bool               { return tlsBackendSupportsTls(t) }
 
 var (
 	TlsCertificateGetType func() O.Type
@@ -124,15 +124,15 @@ var (
 	tlsConnectionGetPeerCertificate       func(t *TlsConnection) *TlsCertificate
 	tlsConnectionGetPeerCertificateErrors func(t *TlsConnection) TlsCertificateFlags
 	tlsConnectionGetRehandshakeMode       func(t *TlsConnection) TlsRehandshakeMode
-	tlsConnectionGetRequireCloseNotify    func(t *TlsConnection) T.Gboolean
-	tlsConnectionGetUseSystemCertdb       func(t *TlsConnection) T.Gboolean
-	tlsConnectionHandshake                func(t *TlsConnection, cancellable *Cancellable, err **T.GError) T.Gboolean
+	tlsConnectionGetRequireCloseNotify    func(t *TlsConnection) bool
+	tlsConnectionGetUseSystemCertdb       func(t *TlsConnection) bool
+	tlsConnectionHandshake                func(t *TlsConnection, cancellable *Cancellable, err **T.GError) bool
 	tlsConnectionHandshakeAsync           func(t *TlsConnection, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	tlsConnectionHandshakeFinish          func(t *TlsConnection, result *AsyncResult, err **T.GError) T.Gboolean
+	tlsConnectionHandshakeFinish          func(t *TlsConnection, result *AsyncResult, err **T.GError) bool
 	tlsConnectionSetCertificate           func(t *TlsConnection, certificate *TlsCertificate)
 	tlsConnectionSetRehandshakeMode       func(t *TlsConnection, mode TlsRehandshakeMode)
-	tlsConnectionSetRequireCloseNotify    func(t *TlsConnection, requireCloseNotify T.Gboolean)
-	tlsConnectionSetUseSystemCertdb       func(t *TlsConnection, useSystemCertdb T.Gboolean)
+	tlsConnectionSetRequireCloseNotify    func(t *TlsConnection, requireCloseNotify bool)
+	tlsConnectionSetUseSystemCertdb       func(t *TlsConnection, useSystemCertdb bool)
 )
 
 func (t *TlsConnection) GetCertificate() *TlsCertificate { return tlsConnectionGetCertificate(t) }
@@ -145,17 +145,17 @@ func (t *TlsConnection) GetPeerCertificateErrors() TlsCertificateFlags {
 func (t *TlsConnection) GetRehandshakeMode() TlsRehandshakeMode {
 	return tlsConnectionGetRehandshakeMode(t)
 }
-func (t *TlsConnection) GetRequireCloseNotify() T.Gboolean {
+func (t *TlsConnection) GetRequireCloseNotify() bool {
 	return tlsConnectionGetRequireCloseNotify(t)
 }
-func (t *TlsConnection) GetUseSystemCertdb() T.Gboolean { return tlsConnectionGetUseSystemCertdb(t) }
-func (t *TlsConnection) Handshake(cancellable *Cancellable, err **T.GError) T.Gboolean {
+func (t *TlsConnection) GetUseSystemCertdb() bool { return tlsConnectionGetUseSystemCertdb(t) }
+func (t *TlsConnection) Handshake(cancellable *Cancellable, err **T.GError) bool {
 	return tlsConnectionHandshake(t, cancellable, err)
 }
 func (t *TlsConnection) HandshakeAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	tlsConnectionHandshakeAsync(t, ioPriority, cancellable, callback, userData)
 }
-func (t *TlsConnection) HandshakeFinish(result *AsyncResult, err **T.GError) T.Gboolean {
+func (t *TlsConnection) HandshakeFinish(result *AsyncResult, err **T.GError) bool {
 	return tlsConnectionHandshakeFinish(t, result, err)
 }
 func (t *TlsConnection) SetCertificate(certificate *TlsCertificate) {
@@ -164,20 +164,20 @@ func (t *TlsConnection) SetCertificate(certificate *TlsCertificate) {
 func (t *TlsConnection) SetRehandshakeMode(mode TlsRehandshakeMode) {
 	tlsConnectionSetRehandshakeMode(t, mode)
 }
-func (t *TlsConnection) SetRequireCloseNotify(requireCloseNotify T.Gboolean) {
+func (t *TlsConnection) SetRequireCloseNotify(requireCloseNotify bool) {
 	tlsConnectionSetRequireCloseNotify(t, requireCloseNotify)
 }
-func (t *TlsConnection) SetUseSystemCertdb(useSystemCertdb T.Gboolean) {
+func (t *TlsConnection) SetUseSystemCertdb(useSystemCertdb bool) {
 	tlsConnectionSetUseSystemCertdb(t, useSystemCertdb)
 }
 
 var (
 	TlsErrorQuark func() T.GQuark
 
-	tlsConnectionEmitAcceptCertificate func(t *TlsConnection, peerCert *TlsCertificate, errors TlsCertificateFlags) T.Gboolean
+	tlsConnectionEmitAcceptCertificate func(t *TlsConnection, peerCert *TlsCertificate, errors TlsCertificateFlags) bool
 )
 
-func (t *TlsConnection) EmitAcceptCertificate(peerCert *TlsCertificate, errors TlsCertificateFlags) T.Gboolean {
+func (t *TlsConnection) EmitAcceptCertificate(peerCert *TlsCertificate, errors TlsCertificateFlags) bool {
 	return tlsConnectionEmitAcceptCertificate(t, peerCert, errors)
 }
 
@@ -189,10 +189,10 @@ var (
 
 	tlsClientConnectionGetAcceptedCas     func(t *TlsClientConnection) *T.GList
 	tlsClientConnectionGetServerIdentity  func(t *TlsClientConnection) *SocketConnectable
-	tlsClientConnectionGetUseSsl3         func(t *TlsClientConnection) T.Gboolean
+	tlsClientConnectionGetUseSsl3         func(t *TlsClientConnection) bool
 	tlsClientConnectionGetValidationFlags func(t *TlsClientConnection) TlsCertificateFlags
 	tlsClientConnectionSetServerIdentity  func(t *TlsClientConnection, identity *SocketConnectable)
-	tlsClientConnectionSetUseSsl3         func(t *TlsClientConnection, useSsl3 T.Gboolean)
+	tlsClientConnectionSetUseSsl3         func(t *TlsClientConnection, useSsl3 bool)
 	tlsClientConnectionSetValidationFlags func(t *TlsClientConnection, flags TlsCertificateFlags)
 )
 
@@ -200,14 +200,14 @@ func (t *TlsClientConnection) GetAcceptedCas() *T.GList { return tlsClientConnec
 func (t *TlsClientConnection) GetServerIdentity() *SocketConnectable {
 	return tlsClientConnectionGetServerIdentity(t)
 }
-func (t *TlsClientConnection) GetUseSsl3() T.Gboolean { return tlsClientConnectionGetUseSsl3(t) }
+func (t *TlsClientConnection) GetUseSsl3() bool { return tlsClientConnectionGetUseSsl3(t) }
 func (t *TlsClientConnection) GetValidationFlags() TlsCertificateFlags {
 	return tlsClientConnectionGetValidationFlags(t)
 }
 func (t *TlsClientConnection) SetServerIdentity(identity *SocketConnectable) {
 	tlsClientConnectionSetServerIdentity(t, identity)
 }
-func (t *TlsClientConnection) SetUseSsl3(useSsl3 T.Gboolean) {
+func (t *TlsClientConnection) SetUseSsl3(useSsl3 bool) {
 	tlsClientConnectionSetUseSsl3(t, useSsl3)
 }
 func (t *TlsClientConnection) SetValidationFlags(flags TlsCertificateFlags) {

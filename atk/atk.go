@@ -25,7 +25,7 @@ type (
 
 	EventListenerInit func()
 
-	FocusHandler func(*Object, T.Gboolean)
+	FocusHandler func(*Object, bool)
 
 	PropertyValues struct {
 		PropertyName *T.Gchar

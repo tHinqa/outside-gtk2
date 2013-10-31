@@ -105,7 +105,7 @@ var (
 		itype Type,
 		signalIdP *uint,
 		detailP *T.GQuark,
-		forceDetailQuark T.Gboolean) T.Gboolean
+		forceDetailQuark bool) bool
 
 	SignalGetInvocationHint func(
 		instance T.Gpointer) *T.GSignalInvocationHint
@@ -129,20 +129,20 @@ var (
 		instance T.Gpointer,
 		signalId uint,
 		detail T.GQuark,
-		mayBeBlocked T.Gboolean) T.Gboolean
+		mayBeBlocked bool) bool
 
 	SignalConnectClosureById func(
 		instance T.Gpointer,
 		signalId uint,
 		detail T.GQuark,
 		closure *Closure,
-		after T.Gboolean) T.Gulong
+		after bool) T.Gulong
 
 	SignalConnectClosure func(
 		instance T.Gpointer,
 		detailedSignal string,
 		closure *Closure,
-		after T.Gboolean) T.Gulong
+		after bool) T.Gulong
 
 	SignalConnectData func(
 		instance T.Gpointer,
@@ -160,7 +160,7 @@ var (
 		instance T.Gpointer, handlerId T.Gulong)
 
 	SignalHandlerIsConnected func(
-		instance T.Gpointer, handlerId T.Gulong) T.Gboolean
+		instance T.Gpointer, handlerId T.Gulong) bool
 
 	SignalHandlerFind func(
 		instance T.Gpointer,
@@ -211,10 +211,10 @@ var (
 		instance T.Gpointer, v ...VArg)
 
 	SignalAccumulatorTrueHandled func(ihint *T.GSignalInvocationHint,
-		returnAccu, handlerReturn *Value, dummy T.Gpointer) T.Gboolean
+		returnAccu, handlerReturn *Value, dummy T.Gpointer) bool
 
 	SignalAccumulatorFirstWins func(ihint *T.GSignalInvocationHint,
-		returnAccu, handlerReturn *Value, dummy T.Gpointer) T.Gboolean
+		returnAccu, handlerReturn *Value, dummy T.Gpointer) bool
 
 	SignalHandlersDestroy func(instance T.Gpointer)
 
@@ -437,7 +437,7 @@ var (
 
 	StrdupValueContents func(value *Value) string
 
-	UnicharValidate func(ch T.Gunichar) T.Gboolean
+	UnicharValidate func(ch T.Gunichar) bool
 
 	SlistRemoveAll func(list *T.GSList, data T.Gconstpointer) *T.GSList
 
@@ -451,6 +451,11 @@ var (
 	// ValueTransformsInit func()
 	// SignalInit func()
 )
+
+func SignalConnect(i T.Gpointer, s string,
+	cb T.GCallback, d T.Gpointer) T.Gulong {
+	return SignalConnectData(i, s, cb, d, nil, 0)
+}
 
 var dll = "libgobject-2.0-0.dll"
 

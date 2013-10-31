@@ -24,13 +24,13 @@ var (
 	cancellableConnect             func(c *Cancellable, callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong
 	cancellableDisconnect          func(c *Cancellable, handlerId T.Gulong)
 	cancellableGetFd               func(c *Cancellable) int
-	cancellableIsCancelled         func(c *Cancellable) T.Gboolean
-	cancellableMakePollfd          func(c *Cancellable, pollfd *T.GPollFD) T.Gboolean
+	cancellableIsCancelled         func(c *Cancellable) bool
+	cancellableMakePollfd          func(c *Cancellable, pollfd *T.GPollFD) bool
 	cancellablePopCurrent          func(c *Cancellable)
 	cancellablePushCurrent         func(c *Cancellable)
 	cancellableReleaseFd           func(c *Cancellable)
 	cancellableReset               func(c *Cancellable)
-	cancellableSetErrorIfCancelled func(c *Cancellable, err **T.GError) T.Gboolean
+	cancellableSetErrorIfCancelled func(c *Cancellable, err **T.GError) bool
 	cancellableSourceNew           func(c *Cancellable) *T.GSource
 )
 
@@ -40,15 +40,15 @@ func (c *Cancellable) Connect(callback T.GCallback, data T.Gpointer, dataDestroy
 }
 func (c *Cancellable) Disconnect(handlerId T.Gulong) { cancellableDisconnect(c, handlerId) }
 func (c *Cancellable) GetFd() int                    { return cancellableGetFd(c) }
-func (c *Cancellable) IsCancelled() T.Gboolean       { return cancellableIsCancelled(c) }
-func (c *Cancellable) MakePollfd(pollfd *T.GPollFD) T.Gboolean {
+func (c *Cancellable) IsCancelled() bool             { return cancellableIsCancelled(c) }
+func (c *Cancellable) MakePollfd(pollfd *T.GPollFD) bool {
 	return cancellableMakePollfd(c, pollfd)
 }
 func (c *Cancellable) PopCurrent()  { cancellablePopCurrent(c) }
 func (c *Cancellable) PushCurrent() { cancellablePushCurrent(c) }
 func (c *Cancellable) ReleaseFd()   { cancellableReleaseFd(c) }
 func (c *Cancellable) Reset()       { cancellableReset(c) }
-func (c *Cancellable) SetErrorIfCancelled(err **T.GError) T.Gboolean {
+func (c *Cancellable) SetErrorIfCancelled(err **T.GError) bool {
 	return cancellableSetErrorIfCancelled(c, err)
 }
 func (c *Cancellable) SourceNew() *T.GSource { return cancellableSourceNew(c) }
@@ -60,27 +60,27 @@ var (
 	charsetConverterNew     func(toCharset string, fromCharset string, err **T.GError) *CharsetConverter
 
 	charsetConverterGetNumFallbacks func(c *CharsetConverter) uint
-	charsetConverterGetUseFallback  func(c *CharsetConverter) T.Gboolean
-	charsetConverterSetUseFallback  func(c *CharsetConverter, useFallback T.Gboolean)
+	charsetConverterGetUseFallback  func(c *CharsetConverter) bool
+	charsetConverterSetUseFallback  func(c *CharsetConverter, useFallback bool)
 )
 
-func (c *CharsetConverter) GetNumFallbacks() uint      { return charsetConverterGetNumFallbacks(c) }
-func (c *CharsetConverter) GetUseFallback() T.Gboolean { return charsetConverterGetUseFallback(c) }
-func (c *CharsetConverter) SetUseFallback(useFallback T.Gboolean) {
+func (c *CharsetConverter) GetNumFallbacks() uint { return charsetConverterGetNumFallbacks(c) }
+func (c *CharsetConverter) GetUseFallback() bool  { return charsetConverterGetUseFallback(c) }
+func (c *CharsetConverter) SetUseFallback(useFallback bool) {
 	charsetConverterSetUseFallback(c, useFallback)
 }
 
 var (
-	ContentTypeCanBeExecutable func(typ string) T.Gboolean
-	ContentTypeEquals          func(type1 string, type2 string) T.Gboolean
+	ContentTypeCanBeExecutable func(typ string) bool
+	ContentTypeEquals          func(type1 string, type2 string) bool
 	ContentTypeFromMimeType    func(mimeType string) string
 	ContentTypeGetDescription  func(typ string) string
 	ContentTypeGetIcon         func(typ string) *Icon
 	ContentTypeGetMimeType     func(typ string) string
-	ContentTypeGuess           func(filename string, data *T.Guchar, dataSize T.Gsize, resultUncertain *T.Gboolean) string
+	ContentTypeGuess           func(filename string, data *T.Guchar, dataSize T.Gsize, resultUncertain *bool) string
 	ContentTypeGuessForTree    func(root *File) []string
-	ContentTypeIsA             func(typ string, supertype string) T.Gboolean
-	ContentTypeIsUnknown       func(typ string) T.Gboolean
+	ContentTypeIsA             func(typ string, supertype string) bool
+	ContentTypeIsUnknown       func(typ string) bool
 	ContentTypesGetRegistered  func() *T.GList
 )
 
@@ -154,7 +154,7 @@ var (
 	CredentialsNew     func() *Credentials
 
 	credentialsGetNative  func(c *Credentials, nativeType CredentialsType) T.Gpointer
-	credentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **T.GError) T.Gboolean
+	credentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **T.GError) bool
 	credentialsSetNative  func(c *Credentials, nativeType CredentialsType, native T.Gpointer)
 	credentialsToString   func(c *Credentials) string
 )
@@ -162,7 +162,7 @@ var (
 func (c *Credentials) GetNative(nativeType CredentialsType) T.Gpointer {
 	return credentialsGetNative(c, nativeType)
 }
-func (c *Credentials) IsSameUser(otherCredentials *Credentials, err **T.GError) T.Gboolean {
+func (c *Credentials) IsSameUser(otherCredentials *Credentials, err **T.GError) bool {
 	return credentialsIsSameUser(c, otherCredentials, err)
 }
 func (c *Credentials) SetNative(nativeType CredentialsType, native T.Gpointer) {

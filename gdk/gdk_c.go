@@ -56,27 +56,27 @@ type Color struct {
 var (
 	ColorGetType func() O.Type
 
-	ColorParse func(spec string, color *Color) T.Gboolean
+	ColorParse func(spec string, color *Color) bool
 
 	ColorAlloc  func(c *Colormap, color *Color) int
 	ColorBlack  func(c *Colormap, color *Color) int
 	ColorChange func(c *Colormap, color *Color) int
-	ColorsAlloc func(c *Colormap, contiguous T.Gboolean, planes *T.Gulong, nplanes int, pixels *T.Gulong, npixels int) int
+	ColorsAlloc func(c *Colormap, contiguous bool, planes *T.Gulong, nplanes int, pixels *T.Gulong, npixels int) int
 	ColorsFree  func(c *Colormap, pixels *T.Gulong, npixels int, planes T.Gulong)
 	ColorWhite  func(c *Colormap, color *Color) int
 
 	colorCopy     func(c *Color) *Color
-	colorEqual    func(c *Color, colorb *Color) T.Gboolean
+	colorEqual    func(c *Color, colorb *Color) bool
 	colorFree     func(c *Color)
 	colorHash     func(c *Color) uint
 	colorToString func(c *Color) string
 )
 
-func (c *Color) Copy() *Color                   { return colorCopy(c) }
-func (c *Color) Equal(colorb *Color) T.Gboolean { return colorEqual(c, colorb) }
-func (c *Color) Free()                          { colorFree(c) }
-func (c *Color) Hash() uint                     { return colorHash(c) }
-func (c *Color) ToString() string               { return colorToString(c) }
+func (c *Color) Copy() *Color             { return colorCopy(c) }
+func (c *Color) Equal(colorb *Color) bool { return colorEqual(c, colorb) }
+func (c *Color) Free()                    { colorFree(c) }
+func (c *Color) Hash() uint               { return colorHash(c) }
+func (c *Color) ToString() string         { return colorToString(c) }
 
 type Colormap struct {
 	Parent        O.Object
@@ -88,15 +88,15 @@ type Colormap struct {
 
 var (
 	ColormapGetType func() O.Type
-	ColormapNew     func(visual *Visual, allocate T.Gboolean) *Colormap
+	ColormapNew     func(visual *Visual, allocate bool) *Colormap
 
 	ColormapGetSystem     func() *Colormap
 	ColormapGetSystemSize func() int
 
 	ColorsStore func(c *Colormap, colors *Color, ncolors int)
 
-	colormapAllocColor  func(c *Colormap, color *Color, writeable T.Gboolean, bestMatch T.Gboolean) T.Gboolean
-	colormapAllocColors func(c *Colormap, colors *Color, nColors int, writeable T.Gboolean, bestMatch T.Gboolean, success *T.Gboolean) int
+	colormapAllocColor  func(c *Colormap, color *Color, writeable bool, bestMatch bool) bool
+	colormapAllocColors func(c *Colormap, colors *Color, nColors int, writeable bool, bestMatch bool, success *bool) int
 	colormapChange      func(c *Colormap, ncolors int)
 	colormapFreeColors  func(c *Colormap, colors *Color, nColors int)
 	colormapGetScreen   func(c *Colormap) *Screen
@@ -106,10 +106,10 @@ var (
 	colormapUnref       func(c *Colormap)
 )
 
-func (c *Colormap) AllocColor(color *Color, writeable T.Gboolean, bestMatch T.Gboolean) T.Gboolean {
+func (c *Colormap) AllocColor(color *Color, writeable bool, bestMatch bool) bool {
 	return colormapAllocColor(c, color, writeable, bestMatch)
 }
-func (c *Colormap) AllocColors(colors *Color, nColors int, writeable T.Gboolean, bestMatch T.Gboolean, success *T.Gboolean) int {
+func (c *Colormap) AllocColors(colors *Color, nColors int, writeable bool, bestMatch bool, success *bool) int {
 	return colormapAllocColors(c, colors, nColors, writeable, bestMatch, success)
 }
 func (c *Colormap) Change(ncolors int)                       { colormapChange(c, ncolors) }

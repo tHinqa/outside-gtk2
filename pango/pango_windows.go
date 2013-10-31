@@ -40,7 +40,7 @@ var (
 
 	Win32GetDc func() W.HDC
 
-	Win32GetDebugFlag func() T.Gboolean
+	Win32GetDebugFlag func() bool
 
 	Win32FontMapForDisplay func() *FontMap
 
@@ -62,7 +62,7 @@ var (
 	win32FontGetMetricsFactor func(font *Font) float64
 	win32FontLogfont          func(font *Font) *W.LOGFONTA
 	win32FontLogfontw         func(font *Font) *W.LOGFONTW
-	win32FontSelectFont       func(font *Font, hdc W.HDC) T.Gboolean
+	win32FontSelectFont       func(font *Font, hdc W.HDC) bool
 	win32GetUnknownGlyph      func(font *Font, wc T.Gunichar) Glyph
 )
 
@@ -71,7 +71,7 @@ func (f *Font) GetGlyphIndex(wc T.Gunichar) int     { return win32FontGetGlyphIn
 func (f *Font) GetMetricsFactor() float64           { return win32FontGetMetricsFactor(f) }
 func (f *Font) Logfont() *W.LOGFONTA                { return win32FontLogfont(f) }
 func (f *Font) Logfontw() *W.LOGFONTW               { return win32FontLogfontw(f) }
-func (f *Font) SelectFont(hdc W.HDC) T.Gboolean     { return win32FontSelectFont(f, hdc) }
+func (f *Font) SelectFont(hdc W.HDC) bool           { return win32FontSelectFont(f, hdc) }
 func (f *Font) GetUnknownGlyph(wc T.Gunichar) Glyph { return win32GetUnknownGlyph(f, wc) }
 
 var (

@@ -19,7 +19,7 @@ var (
 		info *OTInfo,
 		tableType OTTableType,
 		scriptTag OTTag,
-		scriptIndex *uint) T.Gboolean
+		scriptIndex *uint) bool
 
 	OtInfoFindLanguage func(
 		info *OTInfo,
@@ -27,7 +27,7 @@ var (
 		scriptIndex uint,
 		languageTag OTTag,
 		languageIndex *uint,
-		requiredFeatureIndex *uint) T.Gboolean
+		requiredFeatureIndex *uint) bool
 
 	OtInfoFindFeature func(
 		info *OTInfo,
@@ -35,7 +35,7 @@ var (
 		featureTag OTTag,
 		scriptIndex uint,
 		languageIndex uint,
-		featureIndex *uint) T.Gboolean
+		featureIndex *uint) bool
 
 	OtInfoListScripts func(
 		info *OTInfo,
@@ -65,7 +65,7 @@ var (
 
 	OtBufferSetRtl func(
 		buffer *OTBuffer,
-		rtl T.Gboolean)
+		rtl bool)
 
 	OtBufferAddGlyph func(
 		buffer *OTBuffer,
@@ -84,7 +84,7 @@ var (
 
 	OtBufferSetZeroWidthMarks func(
 		buffer *OTBuffer,
-		zeroWidthMarks T.Gboolean)
+		zeroWidthMarks bool)
 
 	OtRulesetGetForDescription func(
 		info *OTInfo,
@@ -112,7 +112,7 @@ var (
 		ruleset *OTRuleset,
 		tableType OTTableType,
 		featureTag OTTag,
-		propertyBit T.Gulong) T.Gboolean
+		propertyBit T.Gulong) bool
 
 	OtRulesetMaybeAddFeatures func(
 		ruleset *OTRuleset,
@@ -150,7 +150,7 @@ var (
 
 	OtRulesetDescriptionEqual func(
 		desc1 *OTRulesetDescription,
-		desc2 *OTRulesetDescription) T.Gboolean
+		desc2 *OTRulesetDescription) bool
 
 	OtRulesetDescriptionCopy func(
 		desc *OTRulesetDescription) *OTRulesetDescription

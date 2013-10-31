@@ -6,7 +6,7 @@ package gdk
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
@@ -30,13 +30,13 @@ var (
 	fontRef   func(f *Font) *Font
 	fontUnref func(f *Font)
 	fontId    func(f *Font) int
-	fontEqual func(f *Font, fontb *Font) T.Gboolean
+	fontEqual func(f *Font, fontb *Font) bool
 )
 
-func (f *Font) Ref() *Font                { return fontRef(f) }
-func (f *Font) Unref()                    { fontUnref(f) }
-func (f *Font) Id() int                   { return fontId(f) }
-func (f *Font) Equal(f2 *Font) T.Gboolean { return fontEqual(f, f2) }
+func (f *Font) Ref() *Font          { return fontRef(f) }
+func (f *Font) Unref()              { fontUnref(f) }
+func (f *Font) Id() int             { return fontId(f) }
+func (f *Font) Equal(f2 *Font) bool { return fontEqual(f, f2) }
 
 type FontType Enum
 

@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	ScanInt    func(pos **T.Char, out *int) T.Gboolean
-	ScanString func(pos **T.Char, out *T.GString) T.Gboolean
-	ScanWord   func(pos **T.Char, out *T.GString) T.Gboolean
+	ScanInt    func(pos **T.Char, out *int) bool
+	ScanString func(pos **T.Char, out *T.GString) bool
+	ScanWord   func(pos **T.Char, out *T.GString) bool
 )
 
 type Script Enum
@@ -115,18 +115,18 @@ var (
 
 	scriptIterFree     func(s *ScriptIter)
 	scriptIterGetRange func(s *ScriptIter, start, end **T.Char, script *Script)
-	scriptIterNext     func(s *ScriptIter) T.Gboolean
+	scriptIterNext     func(s *ScriptIter) bool
 )
 
 func (s *ScriptIter) Free() { scriptIterFree(s) }
 func (s *ScriptIter) GetRange(start, end **T.Char, script *Script) {
 	scriptIterGetRange(s, start, end, script)
 }
-func (s *ScriptIter) Next() T.Gboolean { return scriptIterNext(s) }
+func (s *ScriptIter) Next() bool { return scriptIterNext(s) }
 
 var (
 	Shape         func(text string, length int, Analysis *Analysis, glyphs *GlyphString)
-	SkipSpace     func(pos **T.Char) T.Gboolean
+	SkipSpace     func(pos **T.Char) bool
 	SplitFileList func(str string) []string
 )
 

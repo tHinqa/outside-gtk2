@@ -22,14 +22,14 @@ var (
 	vfsGetFileForPath         func(v *Vfs, path string) *File
 	vfsGetFileForUri          func(v *Vfs, uri string) *File
 	vfsGetSupportedUriSchemes func(v *Vfs) []string
-	vfsIsActive               func(v *Vfs) T.Gboolean
+	vfsIsActive               func(v *Vfs) bool
 	vfsParseName              func(v *Vfs, parseName string) *File
 )
 
 func (v *Vfs) GetFileForPath(path string) *File { return vfsGetFileForPath(v, path) }
 func (v *Vfs) GetFileForUri(uri string) *File   { return vfsGetFileForUri(v, uri) }
 func (v *Vfs) GetSupportedUriSchemes() []string { return vfsGetSupportedUriSchemes(v) }
-func (v *Vfs) IsActive() T.Gboolean             { return vfsIsActive(v) }
+func (v *Vfs) IsActive() bool                   { return vfsIsActive(v) }
 func (v *Vfs) ParseName(parseName string) *File { return vfsParseName(v, parseName) }
 
 type Volume struct{}
@@ -37,12 +37,12 @@ type Volume struct{}
 var (
 	VolumeGetType func() O.Type
 
-	volumeCanEject                 func(v *Volume) T.Gboolean
-	volumeCanMount                 func(v *Volume) T.Gboolean
+	volumeCanEject                 func(v *Volume) bool
+	volumeCanMount                 func(v *Volume) bool
 	volumeEject                    func(v *Volume, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	volumeEjectFinish              func(v *Volume, result *AsyncResult, err **T.GError) T.Gboolean
+	volumeEjectFinish              func(v *Volume, result *AsyncResult, err **T.GError) bool
 	volumeEjectWithOperation       func(v *Volume, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	volumeEjectWithOperationFinish func(v *Volume, result *AsyncResult, err **T.GError) T.Gboolean
+	volumeEjectWithOperationFinish func(v *Volume, result *AsyncResult, err **T.GError) bool
 	volumeEnumerateIdentifiers     func(v *Volume) []string
 	volumeGetActivationRoot        func(v *Volume) *File
 	volumeGetDrive                 func(v *Volume) *Drive
@@ -52,22 +52,22 @@ var (
 	volumeGetName                  func(v *Volume) string
 	volumeGetUuid                  func(v *Volume) string
 	volumeMount                    func(v *Volume, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	volumeMountFinish              func(v *Volume, result *AsyncResult, err **T.GError) T.Gboolean
-	volumeShouldAutomount          func(v *Volume) T.Gboolean
+	volumeMountFinish              func(v *Volume, result *AsyncResult, err **T.GError) bool
+	volumeShouldAutomount          func(v *Volume) bool
 )
 
-func (v *Volume) CanEject() T.Gboolean { return volumeCanEject(v) }
-func (v *Volume) CanMount() T.Gboolean { return volumeCanMount(v) }
+func (v *Volume) CanEject() bool { return volumeCanEject(v) }
+func (v *Volume) CanMount() bool { return volumeCanMount(v) }
 func (v *Volume) Eject(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	volumeEject(v, flags, cancellable, callback, userData)
 }
-func (v *Volume) EjectFinish(result *AsyncResult, err **T.GError) T.Gboolean {
+func (v *Volume) EjectFinish(result *AsyncResult, err **T.GError) bool {
 	return volumeEjectFinish(v, result, err)
 }
 func (v *Volume) EjectWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	volumeEjectWithOperation(v, flags, mountOperation, cancellable, callback, userData)
 }
-func (v *Volume) EjectWithOperationFinish(result *AsyncResult, err **T.GError) T.Gboolean {
+func (v *Volume) EjectWithOperationFinish(result *AsyncResult, err **T.GError) bool {
 	return volumeEjectWithOperationFinish(v, result, err)
 }
 func (v *Volume) EnumerateIdentifiers() []string   { return volumeEnumerateIdentifiers(v) }
@@ -81,10 +81,10 @@ func (v *Volume) GetUuid() string                  { return volumeGetUuid(v) }
 func (v *Volume) Mount(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	volumeMount(v, flags, mountOperation, cancellable, callback, userData)
 }
-func (v *Volume) MountFinish(result *AsyncResult, err **T.GError) T.Gboolean {
+func (v *Volume) MountFinish(result *AsyncResult, err **T.GError) bool {
 	return volumeMountFinish(v, result, err)
 }
-func (v *Volume) ShouldAutomount() T.Gboolean { return volumeShouldAutomount(v) }
+func (v *Volume) ShouldAutomount() bool { return volumeShouldAutomount(v) }
 
 type VolumeMonitor struct {
 	Parent O.Object

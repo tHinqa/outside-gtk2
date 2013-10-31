@@ -18,7 +18,7 @@ var (
 	documentGetDocument       func(d *Document) T.Gpointer
 	documentGetDocumentType   func(d *Document) string
 	documentGetLocale         func(d *Document) string
-	documentSetAttributeValue func(d *Document, attributeName, attributeValue string) T.Gboolean
+	documentSetAttributeValue func(d *Document, attributeName, attributeValue string) bool
 )
 
 func (d *Document) GetAttributes() *AttributeSet { return documentGetAttributes(d) }
@@ -28,6 +28,6 @@ func (d *Document) GetAttributeValue(attributeName string) string {
 func (d *Document) GetDocument() T.Gpointer { return documentGetDocument(d) }
 func (d *Document) GetDocumentType() string { return documentGetDocumentType(d) }
 func (d *Document) GetLocale() string       { return documentGetLocale(d) }
-func (d *Document) SetAttributeValue(attributeName, attributeValue string) T.Gboolean {
+func (d *Document) SetAttributeValue(attributeName, attributeValue string) bool {
 	return documentSetAttributeValue(d, attributeName, attributeValue)
 }

@@ -6,7 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
 )
 
@@ -47,7 +47,7 @@ type VBox struct {
 
 var (
 	VboxGetType func() O.Type
-	VboxNew     func(homogeneous T.Gboolean, spacing int) *Widget
+	VboxNew     func(homogeneous bool, spacing int) *Widget
 )
 
 type Viewport struct {

@@ -42,11 +42,11 @@ type FcFont struct {
 
 var (
 	FcFontGetType                func() O.Type
-	FcFontDescriptionFromPattern func(pattern *F.Pattern, includeSize T.Gboolean) *FontDescription
+	FcFontDescriptionFromPattern func(pattern *F.Pattern, includeSize bool) *FontDescription
 
 	fcFontGetGlyph        func(f *FcFont, wc T.Gunichar) uint
 	fcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
-	fcFontHasChar         func(f *FcFont, wc T.Gunichar) T.Gboolean
+	fcFontHasChar         func(f *FcFont, wc T.Gunichar) bool
 	fcFontKernGlyphs      func(f *FcFont, glyphs *GlyphString)
 	fcFontLockFace        func(f *FcFont) FT.Face
 	fcFontUnlockFace      func(f *FcFont)
@@ -54,7 +54,7 @@ var (
 
 func (f *FcFont) GetGlyph(wc T.Gunichar) uint         { return fcFontGetGlyph(f, wc) }
 func (f *FcFont) GetUnknownGlyph(wc T.Gunichar) Glyph { return fcFontGetUnknownGlyph(f, wc) }
-func (f *FcFont) HasChar(wc T.Gunichar) T.Gboolean    { return fcFontHasChar(f, wc) }
+func (f *FcFont) HasChar(wc T.Gunichar) bool          { return fcFontHasChar(f, wc) }
 func (f *FcFont) KernGlyphs(glyphs *GlyphString)      { fcFontKernGlyphs(f, glyphs) }
 func (f *FcFont) LockFace() FT.Face                   { return fcFontLockFace(f) }
 func (f *FcFont) UnlockFace()                         { fcFontUnlockFace(f) }
@@ -150,23 +150,23 @@ var (
 	FontDescriptionsFree         func(descs **FontDescription, nDescs int)
 	FontGetGlyphExtents          func(font *Font, glyph Glyph, inkRect *Rectangle, logicalRect *Rectangle)
 
-	fontDescriptionBetterMatch       func(f *FontDescription, oldMatch *FontDescription, newMatch *FontDescription) T.Gboolean
+	fontDescriptionBetterMatch       func(f *FontDescription, oldMatch *FontDescription, newMatch *FontDescription) bool
 	fontDescriptionCopy              func(f *FontDescription) *FontDescription
 	fontDescriptionCopyStatic        func(f *FontDescription) *FontDescription
-	fontDescriptionEqual             func(f *FontDescription, desc2 *FontDescription) T.Gboolean
+	fontDescriptionEqual             func(f *FontDescription, desc2 *FontDescription) bool
 	fontDescriptionFree              func(f *FontDescription)
 	fontDescriptionGetFamily         func(f *FontDescription) string
 	fontDescriptionGetGravity        func(f *FontDescription) Gravity
 	fontDescriptionGetSetFields      func(f *FontDescription) FontMask
 	fontDescriptionGetSize           func(f *FontDescription) int
-	fontDescriptionGetSizeIsAbsolute func(f *FontDescription) T.Gboolean
+	fontDescriptionGetSizeIsAbsolute func(f *FontDescription) bool
 	fontDescriptionGetStretch        func(f *FontDescription) Stretch
 	fontDescriptionGetStyle          func(f *FontDescription) Style
 	fontDescriptionGetVariant        func(f *FontDescription) Variant
 	fontDescriptionGetWeight         func(f *FontDescription) Weight
 	fontDescriptionHash              func(f *FontDescription) uint
-	fontDescriptionMerge             func(f *FontDescription, descToMerge *FontDescription, replaceExisting T.Gboolean)
-	fontDescriptionMergeStatic       func(f *FontDescription, descToMerge *FontDescription, replaceExisting T.Gboolean)
+	fontDescriptionMerge             func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
+	fontDescriptionMergeStatic       func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
 	fontDescriptionSetAbsoluteSize   func(f *FontDescription, size float64)
 	fontDescriptionSetFamily         func(f *FontDescription, family string)
 	fontDescriptionSetFamilyStatic   func(f *FontDescription, family string)
@@ -181,29 +181,29 @@ var (
 	fontDescriptionUnsetFields       func(f *FontDescription, toUnset FontMask)
 )
 
-func (f *FontDescription) BetterMatch(oldMatch *FontDescription, newMatch *FontDescription) T.Gboolean {
+func (f *FontDescription) BetterMatch(oldMatch *FontDescription, newMatch *FontDescription) bool {
 	return fontDescriptionBetterMatch(f, oldMatch, newMatch)
 }
 func (f *FontDescription) Copy() *FontDescription       { return fontDescriptionCopy(f) }
 func (f *FontDescription) CopyStatic() *FontDescription { return fontDescriptionCopyStatic(f) }
-func (f *FontDescription) Equal(desc2 *FontDescription) T.Gboolean {
+func (f *FontDescription) Equal(desc2 *FontDescription) bool {
 	return fontDescriptionEqual(f, desc2)
 }
-func (f *FontDescription) Free()                         { fontDescriptionFree(f) }
-func (f *FontDescription) GetFamily() string             { return fontDescriptionGetFamily(f) }
-func (f *FontDescription) GetGravity() Gravity           { return fontDescriptionGetGravity(f) }
-func (f *FontDescription) GetSetFields() FontMask        { return fontDescriptionGetSetFields(f) }
-func (f *FontDescription) GetSize() int                  { return fontDescriptionGetSize(f) }
-func (f *FontDescription) GetSizeIsAbsolute() T.Gboolean { return fontDescriptionGetSizeIsAbsolute(f) }
-func (f *FontDescription) GetStretch() Stretch           { return fontDescriptionGetStretch(f) }
-func (f *FontDescription) GetStyle() Style               { return fontDescriptionGetStyle(f) }
-func (f *FontDescription) GetVariant() Variant           { return fontDescriptionGetVariant(f) }
-func (f *FontDescription) GetWeight() Weight             { return fontDescriptionGetWeight(f) }
-func (f *FontDescription) Hash() uint                    { return fontDescriptionHash(f) }
-func (f *FontDescription) Merge(descToMerge *FontDescription, replaceExisting T.Gboolean) {
+func (f *FontDescription) Free()                   { fontDescriptionFree(f) }
+func (f *FontDescription) GetFamily() string       { return fontDescriptionGetFamily(f) }
+func (f *FontDescription) GetGravity() Gravity     { return fontDescriptionGetGravity(f) }
+func (f *FontDescription) GetSetFields() FontMask  { return fontDescriptionGetSetFields(f) }
+func (f *FontDescription) GetSize() int            { return fontDescriptionGetSize(f) }
+func (f *FontDescription) GetSizeIsAbsolute() bool { return fontDescriptionGetSizeIsAbsolute(f) }
+func (f *FontDescription) GetStretch() Stretch     { return fontDescriptionGetStretch(f) }
+func (f *FontDescription) GetStyle() Style         { return fontDescriptionGetStyle(f) }
+func (f *FontDescription) GetVariant() Variant     { return fontDescriptionGetVariant(f) }
+func (f *FontDescription) GetWeight() Weight       { return fontDescriptionGetWeight(f) }
+func (f *FontDescription) Hash() uint              { return fontDescriptionHash(f) }
+func (f *FontDescription) Merge(descToMerge *FontDescription, replaceExisting bool) {
 	fontDescriptionMerge(f, descToMerge, replaceExisting)
 }
-func (f *FontDescription) MergeStatic(descToMerge *FontDescription, replaceExisting T.Gboolean) {
+func (f *FontDescription) MergeStatic(descToMerge *FontDescription, replaceExisting bool) {
 	fontDescriptionMergeStatic(f, descToMerge, replaceExisting)
 }
 func (f *FontDescription) SetAbsoluteSize(size float64)  { fontDescriptionSetAbsoluteSize(f, size) }
@@ -226,13 +226,13 @@ var (
 
 	fontFaceDescribe      func(f *FontFace) *FontDescription
 	fontFaceGetFaceName   func(f *FontFace) string
-	fontFaceIsSynthesized func(f *FontFace) T.Gboolean
+	fontFaceIsSynthesized func(f *FontFace) bool
 	fontFaceListSizes     func(f *FontFace, sizes **int, nSizes *int)
 )
 
 func (f *FontFace) Describe() *FontDescription         { return fontFaceDescribe(f) }
 func (f *FontFace) GetFaceName() string                { return fontFaceGetFaceName(f) }
-func (f *FontFace) IsSynthesized() T.Gboolean          { return fontFaceIsSynthesized(f) }
+func (f *FontFace) IsSynthesized() bool                { return fontFaceIsSynthesized(f) }
 func (f *FontFace) ListSizes(sizes **int, nSizes *int) { fontFaceListSizes(f, sizes, nSizes) }
 
 type FontFamily struct{}
@@ -241,12 +241,12 @@ var (
 	FontFamilyGetType func() O.Type
 
 	fontFamilyGetName     func(f *FontFamily) string
-	fontFamilyIsMonospace func(f *FontFamily) T.Gboolean
+	fontFamilyIsMonospace func(f *FontFamily) bool
 	fontFamilyListFaces   func(f *FontFamily, faces ***FontFace, nFaces *int)
 )
 
-func (f *FontFamily) GetName() string         { return fontFamilyGetName(f) }
-func (f *FontFamily) IsMonospace() T.Gboolean { return fontFamilyIsMonospace(f) }
+func (f *FontFamily) GetName() string   { return fontFamilyGetName(f) }
+func (f *FontFamily) IsMonospace() bool { return fontFamilyIsMonospace(f) }
 func (f *FontFamily) ListFaces(faces ***FontFace, nFaces *int) {
 	fontFamilyListFaces(f, faces, nFaces)
 }
@@ -333,7 +333,7 @@ func (f *Fontset) GetFont(wc uint) *Font                           { return font
 func (f *Fontset) GetMetrics() *FontMetrics                        { return fontsetGetMetrics(f) }
 
 type FontsetForeachFunc func(
-	fontset *Fontset, font *Font, data T.Gpointer) T.Gboolean
+	fontset *Fontset, font *Font, data T.Gpointer) bool
 
 type FontsetSimple struct{}
 

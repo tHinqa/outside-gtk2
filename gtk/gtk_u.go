@@ -47,8 +47,8 @@ var (
 
 	UiManagerItemTypeGetType func() O.Type
 
-	uiManagerSetAddTearoffs    func(u *UIManager, addTearoffs T.Gboolean)
-	uiManagerGetAddTearoffs    func(u *UIManager) T.Gboolean
+	uiManagerSetAddTearoffs    func(u *UIManager, addTearoffs bool)
+	uiManagerGetAddTearoffs    func(u *UIManager) bool
 	uiManagerInsertActionGroup func(u *UIManager, actionGroup *ActionGroup, pos int)
 	uiManagerRemoveActionGroup func(u *UIManager, actionGroup *ActionGroup)
 	uiManagerGetActionGroups   func(u *UIManager) *T.GList
@@ -58,15 +58,15 @@ var (
 	uiManagerGetAction         func(u *UIManager, path string) *Action
 	uiManagerAddUiFromString   func(u *UIManager, buffer string, length T.Gssize, err **T.GError) uint
 	uiManagerAddUiFromFile     func(u *UIManager, filename string, err **T.GError) uint
-	uiManagerAddUi             func(u *UIManager, mergeId uint, path, name, action string, t UIManagerItemType, top T.Gboolean)
+	uiManagerAddUi             func(u *UIManager, mergeId uint, path, name, action string, t UIManagerItemType, top bool)
 	uiManagerRemoveUi          func(u *UIManager, mergeId uint)
 	uiManagerGetUi             func(u *UIManager) string
 	uiManagerEnsureUpdate      func(u *UIManager)
 	uiManagerNewMergeId        func(u *UIManager) uint
 )
 
-func (u *UIManager) SetAddTearoffs(addTearoffs T.Gboolean) { uiManagerSetAddTearoffs(u, addTearoffs) }
-func (u *UIManager) GetAddTearoffs() T.Gboolean            { return uiManagerGetAddTearoffs(u) }
+func (u *UIManager) SetAddTearoffs(addTearoffs bool) { uiManagerSetAddTearoffs(u, addTearoffs) }
+func (u *UIManager) GetAddTearoffs() bool            { return uiManagerGetAddTearoffs(u) }
 func (u *UIManager) InsertActionGroup(actionGroup *ActionGroup, pos int) {
 	uiManagerInsertActionGroup(u, actionGroup, pos)
 }
@@ -86,7 +86,7 @@ func (u *UIManager) AddUiFromString(buffer string, length T.Gssize, err **T.GErr
 func (u *UIManager) AddUiFromFile(filename string, err **T.GError) uint {
 	return uiManagerAddUiFromFile(u, filename, err)
 }
-func (u *UIManager) AddUi(mergeId uint, path, name, action string, t UIManagerItemType, top T.Gboolean) {
+func (u *UIManager) AddUi(mergeId uint, path, name, action string, t UIManagerItemType, top bool) {
 	uiManagerAddUi(u, mergeId, path, name, action, t, top)
 }
 func (u *UIManager) RemoveUi(mergeId uint) { uiManagerRemoveUi(u, mergeId) }

@@ -43,13 +43,13 @@ var (
 	relationAddTarget       func(r *Relation, target *Object)
 	relationGetRelationType func(r *Relation) RelationType
 	relationGetTarget       func(r *Relation) *T.GPtrArray
-	relationRemoveTarget    func(r *Relation, target *Object) T.Gboolean
+	relationRemoveTarget    func(r *Relation, target *Object) bool
 )
 
-func (r *Relation) AddTarget(target *Object)               { relationAddTarget(r, target) }
-func (r *Relation) GetRelationType() RelationType          { return relationGetRelationType(r) }
-func (r *Relation) GetTarget() *T.GPtrArray                { return relationGetTarget(r) }
-func (r *Relation) RemoveTarget(target *Object) T.Gboolean { return relationRemoveTarget(r, target) }
+func (r *Relation) AddTarget(target *Object)         { relationAddTarget(r, target) }
+func (r *Relation) GetRelationType() RelationType    { return relationGetRelationType(r) }
+func (r *Relation) GetTarget() *T.GPtrArray          { return relationGetTarget(r) }
+func (r *Relation) RemoveTarget(target *Object) bool { return relationRemoveTarget(r, target) }
 
 type RelationSet struct {
 	Parent    O.Object
@@ -62,7 +62,7 @@ var (
 
 	relationSetAdd               func(r *RelationSet, relation *Relation)
 	relationSetAddRelationByType func(r *RelationSet, relationship RelationType, target *Object)
-	relationSetContains          func(r *RelationSet, relationship RelationType) T.Gboolean
+	relationSetContains          func(r *RelationSet, relationship RelationType) bool
 	relationSetGetNRelations     func(r *RelationSet) int
 	relationSetGetRelation       func(r *RelationSet, i int) *Relation
 	relationSetGetRelationByType func(r *RelationSet, relationship RelationType) *Relation
@@ -73,7 +73,7 @@ func (r *RelationSet) Add(relation *Relation) { relationSetAdd(r, relation) }
 func (r *RelationSet) AddRelationByType(relationship RelationType, target *Object) {
 	relationSetAddRelationByType(r, relationship, target)
 }
-func (r *RelationSet) Contains(relationship RelationType) T.Gboolean {
+func (r *RelationSet) Contains(relationship RelationType) bool {
 	return relationSetContains(r, relationship)
 }
 func (r *RelationSet) GetNRelations() int          { return relationSetGetNRelations(r) }

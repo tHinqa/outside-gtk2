@@ -14,20 +14,20 @@ type Seekable struct{}
 var (
 	SeekableGetType func() O.Type
 
-	seekableCanSeek     func(seekable *Seekable) T.Gboolean
-	seekableCanTruncate func(seekable *Seekable) T.Gboolean
-	seekableSeek        func(seekable *Seekable, offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) T.Gboolean
+	seekableCanSeek     func(seekable *Seekable) bool
+	seekableCanTruncate func(seekable *Seekable) bool
+	seekableSeek        func(seekable *Seekable, offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) bool
 	seekableTell        func(seekable *Seekable) T.Goffset
-	seekableTruncate    func(seekable *Seekable, offset T.Goffset, cancellable *Cancellable, err **T.GError) T.Gboolean
+	seekableTruncate    func(seekable *Seekable, offset T.Goffset, cancellable *Cancellable, err **T.GError) bool
 )
 
-func (s *Seekable) CanSeek() T.Gboolean     { return seekableCanSeek(s) }
-func (s *Seekable) CanTruncate() T.Gboolean { return seekableCanTruncate(s) }
-func (s *Seekable) Seek(offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) T.Gboolean {
+func (s *Seekable) CanSeek() bool     { return seekableCanSeek(s) }
+func (s *Seekable) CanTruncate() bool { return seekableCanTruncate(s) }
+func (s *Seekable) Seek(offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) bool {
 	return seekableSeek(s, offset, typ, cancellable, err)
 }
 func (s *Seekable) Tell() T.Goffset { return seekableTell(s) }
-func (s *Seekable) Truncate(offset T.Goffset, cancellable *Cancellable, err **T.GError) T.Gboolean {
+func (s *Seekable) Truncate(offset T.Goffset, cancellable *Cancellable, err **T.GError) bool {
 	return seekableTruncate(s, offset, cancellable, err)
 }
 
@@ -59,36 +59,36 @@ var (
 	settingsApply           func(s *Settings)
 	settingsBind            func(s *Settings, key string, object T.Gpointer, property string, flags SettingsBindFlags)
 	settingsBindWithMapping func(s *Settings, key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy T.GDestroyNotify)
-	settingsBindWritable    func(s *Settings, key string, object T.Gpointer, property string, inverted T.Gboolean)
+	settingsBindWritable    func(s *Settings, key string, object T.Gpointer, property string, inverted bool)
 	settingsDelay           func(s *Settings)
 	settingsGet             func(s *Settings, key, format string, v ...VArg)
-	settingsGetBoolean      func(s *Settings, key string) T.Gboolean
+	settingsGetBoolean      func(s *Settings, key string) bool
 	settingsGetChild        func(s *Settings, name string) *Settings
 	settingsGetDouble       func(s *Settings, key string) float64
 	settingsGetEnum         func(s *Settings, key string) int
 	settingsGetFlags        func(s *Settings, key string) uint
-	settingsGetHasUnapplied func(s *Settings) T.Gboolean
+	settingsGetHasUnapplied func(s *Settings) bool
 	settingsGetInt          func(s *Settings, key string) int
 	settingsGetMapped       func(s *Settings, key string, mapping SettingsGetMapping, userData T.Gpointer) T.Gpointer
 	settingsGetRange        func(s *Settings, key string) *T.GVariant
 	settingsGetString       func(s *Settings, key string) string
 	settingsGetStrv         func(s *Settings, key string) []string
 	settingsGetValue        func(s *Settings, key string) *T.GVariant
-	settingsIsWritable      func(s *Settings, name string) T.Gboolean
+	settingsIsWritable      func(s *Settings, name string) bool
 	settingsListKeys        func(s *Settings) []string
 	settingsListChildren    func(s *Settings) []string
-	settingsRangeCheck      func(s *Settings, key string, value *T.GVariant) T.Gboolean
+	settingsRangeCheck      func(s *Settings, key string, value *T.GVariant) bool
 	settingsReset           func(s *Settings, key string)
 	settingsRevert          func(s *Settings)
-	settingsSet             func(s *Settings, key, format string, v ...VArg) T.Gboolean
-	settingsSetBoolean      func(s *Settings, key string, value T.Gboolean) T.Gboolean
-	settingsSetDouble       func(s *Settings, key string, value float64) T.Gboolean
-	settingsSetEnum         func(s *Settings, key string, value int) T.Gboolean
-	settingsSetFlags        func(s *Settings, key string, value uint) T.Gboolean
-	settingsSetInt          func(s *Settings, key string, value int) T.Gboolean
-	settingsSetString       func(s *Settings, key, value string) T.Gboolean
-	settingsSetStrv         func(s *Settings, key string, value **T.Gchar) T.Gboolean
-	settingsSetValue        func(s *Settings, key string, value *T.GVariant) T.Gboolean
+	settingsSet             func(s *Settings, key, format string, v ...VArg) bool
+	settingsSetBoolean      func(s *Settings, key string, value bool) bool
+	settingsSetDouble       func(s *Settings, key string, value float64) bool
+	settingsSetEnum         func(s *Settings, key string, value int) bool
+	settingsSetFlags        func(s *Settings, key string, value uint) bool
+	settingsSetInt          func(s *Settings, key string, value int) bool
+	settingsSetString       func(s *Settings, key, value string) bool
+	settingsSetStrv         func(s *Settings, key string, value []string) bool
+	settingsSetValue        func(s *Settings, key string, value *T.GVariant) bool
 )
 
 func (s *Settings) Apply() { settingsApply(s) }
@@ -98,50 +98,50 @@ func (s *Settings) Bind(key string, object T.Gpointer, property string, flags Se
 func (s *Settings) BindWithMapping(key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy T.GDestroyNotify) {
 	settingsBindWithMapping(s, key, object, property, flags, getMapping, setMapping, userData, destroy)
 }
-func (s *Settings) BindWritable(key string, object T.Gpointer, property string, inverted T.Gboolean) {
+func (s *Settings) BindWritable(key string, object T.Gpointer, property string, inverted bool) {
 	settingsBindWritable(s, key, object, property, inverted)
 }
 func (s *Settings) Delay()                            { settingsDelay(s) }
 func (s *Settings) Get(key, format string, v ...VArg) { settingsGet(s, key, format, v) }
-func (s *Settings) GetBoolean(key string) T.Gboolean  { return settingsGetBoolean(s, key) }
+func (s *Settings) GetBoolean(key string) bool        { return settingsGetBoolean(s, key) }
 func (s *Settings) GetChild(name string) *Settings    { return settingsGetChild(s, name) }
 func (s *Settings) GetDouble(key string) float64      { return settingsGetDouble(s, key) }
 func (s *Settings) GetEnum(key string) int            { return settingsGetEnum(s, key) }
 func (s *Settings) GetFlags(key string) uint          { return settingsGetFlags(s, key) }
-func (s *Settings) GetHasUnapplied() T.Gboolean       { return settingsGetHasUnapplied(s) }
+func (s *Settings) GetHasUnapplied() bool             { return settingsGetHasUnapplied(s) }
 func (s *Settings) GetInt(key string) int             { return settingsGetInt(s, key) }
 func (s *Settings) GetMapped(key string, mapping SettingsGetMapping, userData T.Gpointer) T.Gpointer {
 	return settingsGetMapped(s, key, mapping, userData)
 }
-func (s *Settings) GetRange(key string) *T.GVariant   { return settingsGetRange(s, key) }
-func (s *Settings) GetString(key string) string       { return settingsGetString(s, key) }
-func (s *Settings) GetStrv(key string) []string       { return settingsGetStrv(s, key) }
-func (s *Settings) GetValue(key string) *T.GVariant   { return settingsGetValue(s, key) }
-func (s *Settings) IsWritable(name string) T.Gboolean { return settingsIsWritable(s, name) }
-func (s *Settings) ListKeys() []string                { return settingsListKeys(s) }
-func (s *Settings) ListChildren() []string            { return settingsListChildren(s) }
-func (s *Settings) RangeCheck(key string, value *T.GVariant) T.Gboolean {
+func (s *Settings) GetRange(key string) *T.GVariant { return settingsGetRange(s, key) }
+func (s *Settings) GetString(key string) string     { return settingsGetString(s, key) }
+func (s *Settings) GetStrv(key string) []string     { return settingsGetStrv(s, key) }
+func (s *Settings) GetValue(key string) *T.GVariant { return settingsGetValue(s, key) }
+func (s *Settings) IsWritable(name string) bool     { return settingsIsWritable(s, name) }
+func (s *Settings) ListKeys() []string              { return settingsListKeys(s) }
+func (s *Settings) ListChildren() []string          { return settingsListChildren(s) }
+func (s *Settings) RangeCheck(key string, value *T.GVariant) bool {
 	return settingsRangeCheck(s, key, value)
 }
 func (s *Settings) Reset(key string) { settingsReset(s, key) }
 func (s *Settings) Revert()          { settingsRevert(s) }
-func (s *Settings) Set(key, format string, v ...VArg) T.Gboolean {
+func (s *Settings) Set(key, format string, v ...VArg) bool {
 	return settingsSet(s, key, format, v)
 }
-func (s *Settings) SetBoolean(key string, value T.Gboolean) T.Gboolean {
+func (s *Settings) SetBoolean(key string, value bool) bool {
 	return settingsSetBoolean(s, key, value)
 }
-func (s *Settings) SetDouble(key string, value float64) T.Gboolean {
+func (s *Settings) SetDouble(key string, value float64) bool {
 	return settingsSetDouble(s, key, value)
 }
-func (s *Settings) SetEnum(key string, value int) T.Gboolean   { return settingsSetEnum(s, key, value) }
-func (s *Settings) SetFlags(key string, value uint) T.Gboolean { return settingsSetFlags(s, key, value) }
-func (s *Settings) SetInt(key string, value int) T.Gboolean    { return settingsSetInt(s, key, value) }
-func (s *Settings) SetString(key, value string) T.Gboolean     { return settingsSetString(s, key, value) }
-func (s *Settings) SetStrv(key string, value **T.Gchar) T.Gboolean {
+func (s *Settings) SetEnum(key string, value int) bool   { return settingsSetEnum(s, key, value) }
+func (s *Settings) SetFlags(key string, value uint) bool { return settingsSetFlags(s, key, value) }
+func (s *Settings) SetInt(key string, value int) bool    { return settingsSetInt(s, key, value) }
+func (s *Settings) SetString(key, value string) bool     { return settingsSetString(s, key, value) }
+func (s *Settings) SetStrv(key string, value []string) bool {
 	return settingsSetStrv(s, key, value)
 }
-func (s *Settings) SetValue(key string, value *T.GVariant) T.Gboolean {
+func (s *Settings) SetValue(key string, value *T.GVariant) bool {
 	return settingsSetValue(s, key, value)
 }
 
@@ -150,10 +150,10 @@ type SettingsBackend struct{}
 var (
 	SettingsBackendGetType func() O.Type
 
-	SettingsBackendFlattenTree func(tree *T.GTree, path **T.Gchar, keys ***T.Gchar, values ***T.GVariant)
+	SettingsBackendFlattenTree func(tree *T.GTree, path []string, keys ***T.Gchar, values ***T.GVariant)
 	SettingsBackendGetDefault  func() *SettingsBackend
 
-	settingsBackendKeysChanged         func(s *SettingsBackend, path string, items **T.Gchar, originTag T.Gpointer)
+	settingsBackendKeysChanged         func(s *SettingsBackend, path string, items []string, originTag T.Gpointer)
 	settingsBackendChanged             func(s *SettingsBackend, key string, originTag T.Gpointer)
 	settingsBackendChangedTree         func(s *SettingsBackend, tree *T.GTree, originTag T.Gpointer)
 	settingsBackendPathChanged         func(s *SettingsBackend, path string, originTag T.Gpointer)
@@ -161,7 +161,7 @@ var (
 	settingsBackendWritableChanged     func(s *SettingsBackend, key string)
 )
 
-func (s *SettingsBackend) KeysChanged(path string, items **T.Gchar, originTag T.Gpointer) {
+func (s *SettingsBackend) KeysChanged(path string, items []string, originTag T.Gpointer) {
 	settingsBackendKeysChanged(s, path, items, originTag)
 }
 func (s *SettingsBackend) Changed(key string, originTag T.Gpointer) {
@@ -194,7 +194,7 @@ var SettingsBindFlagsGetType func() O.Type
 type SettingsBindGetMapping func(
 	value *O.Value,
 	variant *T.GVariant,
-	userData T.Gpointer) T.Gboolean
+	userData T.Gpointer) bool
 
 type SettingsBindSetMapping func(
 	value *O.Value,
@@ -204,7 +204,7 @@ type SettingsBindSetMapping func(
 type SettingsGetMapping func(
 	value *T.GVariant,
 	result *T.Gpointer,
-	userData T.Gpointer) T.Gboolean
+	userData T.Gpointer) bool
 
 type SimpleAction struct {
 	Parent O.Object
@@ -216,10 +216,10 @@ var (
 	SimpleActionNew         func(name string, parameterType *T.GVariantType) *SimpleAction
 	SimpleActionNewStateful func(name string, parameterType *T.GVariantType, state *T.GVariant) *SimpleAction
 
-	simpleActionSetEnabled func(s *SimpleAction, enabled T.Gboolean)
+	simpleActionSetEnabled func(s *SimpleAction, enabled bool)
 )
 
-func (s *SimpleAction) SetEnabled(enabled T.Gboolean) { simpleActionSetEnabled(s, enabled) }
+func (s *SimpleAction) SetEnabled(enabled bool) { simpleActionSetEnabled(s, enabled) }
 
 type SimpleActionGroup struct {
 	Parent O.Object
@@ -256,21 +256,21 @@ var (
 	SimpleAsyncResultNewFromError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
 	SimpleAsyncResultNewTakeError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
 
-	SimpleAsyncResultIsValid func(result *AsyncResult, source *O.Object, sourceTag T.Gpointer) T.Gboolean
+	SimpleAsyncResultIsValid func(result *AsyncResult, source *O.Object, sourceTag T.Gpointer) bool
 
 	simpleAsyncResultComplete              func(s *SimpleAsyncResult)
 	simpleAsyncResultCompleteInIdle        func(s *SimpleAsyncResult)
-	simpleAsyncResultGetOpResGboolean      func(s *SimpleAsyncResult) T.Gboolean
+	simpleAsyncResultGetOpResGboolean      func(s *SimpleAsyncResult) bool
 	simpleAsyncResultGetOpResGpointer      func(s *SimpleAsyncResult) T.Gpointer
 	simpleAsyncResultGetOpResGssize        func(s *SimpleAsyncResult) T.Gssize
 	simpleAsyncResultGetSourceTag          func(s *SimpleAsyncResult) T.Gpointer
-	simpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **T.GError) T.Gboolean
+	simpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **T.GError) bool
 	simpleAsyncResultRunInThread           func(s *SimpleAsyncResult, f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable)
 	simpleAsyncResultSetError              func(s *SimpleAsyncResult, domain T.GQuark, code int, format string, v ...VArg)
 	simpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain T.GQuark, code int, format string, args T.VaList)
 	simpleAsyncResultSetFromError          func(s *SimpleAsyncResult, err *T.GError)
-	simpleAsyncResultSetHandleCancellation func(s *SimpleAsyncResult, handleCancellation T.Gboolean)
-	simpleAsyncResultSetOpResGboolean      func(s *SimpleAsyncResult, opRes T.Gboolean)
+	simpleAsyncResultSetHandleCancellation func(s *SimpleAsyncResult, handleCancellation bool)
+	simpleAsyncResultSetOpResGboolean      func(s *SimpleAsyncResult, opRes bool)
 	simpleAsyncResultSetOpResGpointer      func(s *SimpleAsyncResult, opRes T.Gpointer, destroyOpRes T.GDestroyNotify)
 	simpleAsyncResultSetOpResGssize        func(s *SimpleAsyncResult, opRes T.Gssize)
 	simpleAsyncResultTakeError             func(s *SimpleAsyncResult, err *T.GError)
@@ -278,11 +278,11 @@ var (
 
 func (s *SimpleAsyncResult) Complete()                    { simpleAsyncResultComplete(s) }
 func (s *SimpleAsyncResult) CompleteInIdle()              { simpleAsyncResultCompleteInIdle(s) }
-func (s *SimpleAsyncResult) GetOpResGboolean() T.Gboolean { return simpleAsyncResultGetOpResGboolean(s) }
+func (s *SimpleAsyncResult) GetOpResGboolean() bool       { return simpleAsyncResultGetOpResGboolean(s) }
 func (s *SimpleAsyncResult) GetOpResGpointer() T.Gpointer { return simpleAsyncResultGetOpResGpointer(s) }
 func (s *SimpleAsyncResult) GetOpResGssize() T.Gssize     { return simpleAsyncResultGetOpResGssize(s) }
 func (s *SimpleAsyncResult) GetSourceTag() T.Gpointer     { return simpleAsyncResultGetSourceTag(s) }
-func (s *SimpleAsyncResult) PropagateError(dest **T.GError) T.Gboolean {
+func (s *SimpleAsyncResult) PropagateError(dest **T.GError) bool {
 	return simpleAsyncResultPropagateError(s, dest)
 }
 func (s *SimpleAsyncResult) RunInThread(f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable) {
@@ -295,10 +295,10 @@ func (s *SimpleAsyncResult) SetErrorVa(domain T.GQuark, code int, format string,
 	simpleAsyncResultSetErrorVa(s, domain, code, format, args)
 }
 func (s *SimpleAsyncResult) SetFromError(err *T.GError) { simpleAsyncResultSetFromError(s, err) }
-func (s *SimpleAsyncResult) SetHandleCancellation(handleCancellation T.Gboolean) {
+func (s *SimpleAsyncResult) SetHandleCancellation(handleCancellation bool) {
 	simpleAsyncResultSetHandleCancellation(s, handleCancellation)
 }
-func (s *SimpleAsyncResult) SetOpResGboolean(opRes T.Gboolean) {
+func (s *SimpleAsyncResult) SetOpResGboolean(opRes bool) {
 	simpleAsyncResultSetOpResGboolean(s, opRes)
 }
 func (s *SimpleAsyncResult) SetOpResGpointer(opRes T.Gpointer, destroyOpRes T.GDestroyNotify) {
@@ -314,7 +314,7 @@ type SimpleAsyncThreadFunc func(
 
 var (
 	SimplePermissionGetType func() O.Type
-	SimplePermissionNew     func(allowed T.Gboolean) *Permission
+	SimplePermissionNew     func(allowed bool) *Permission
 )
 
 type Socket struct {
@@ -333,36 +333,36 @@ var (
 	socketGetProtocol         func(s *Socket) SocketProtocol
 	socketGetLocalAddress     func(s *Socket, err **T.GError) *SocketAddress
 	socketGetRemoteAddress    func(s *Socket, err **T.GError) *SocketAddress
-	socketSetBlocking         func(s *Socket, blocking T.Gboolean)
-	socketGetBlocking         func(s *Socket) T.Gboolean
-	socketSetKeepalive        func(s *Socket, keepalive T.Gboolean)
-	socketGetKeepalive        func(s *Socket) T.Gboolean
+	socketSetBlocking         func(s *Socket, blocking bool)
+	socketGetBlocking         func(s *Socket) bool
+	socketSetKeepalive        func(s *Socket, keepalive bool)
+	socketGetKeepalive        func(s *Socket) bool
 	socketGetListenBacklog    func(s *Socket) int
 	socketSetListenBacklog    func(s *Socket, backlog int)
 	socketGetTimeout          func(s *Socket) uint
 	socketSetTimeout          func(s *Socket, timeout uint)
-	socketIsConnected         func(s *Socket) T.Gboolean
-	socketBind                func(s *Socket, address *SocketAddress, allowReuse T.Gboolean, err **T.GError) T.Gboolean
-	socketConnect             func(s *Socket, address *SocketAddress, cancellable *Cancellable, err **T.GError) T.Gboolean
-	socketCheckConnectResult  func(s *Socket, err **T.GError) T.Gboolean
+	socketIsConnected         func(s *Socket) bool
+	socketBind                func(s *Socket, address *SocketAddress, allowReuse bool, err **T.GError) bool
+	socketConnect             func(s *Socket, address *SocketAddress, cancellable *Cancellable, err **T.GError) bool
+	socketCheckConnectResult  func(s *Socket, err **T.GError) bool
 	socketConditionCheck      func(s *Socket, condition T.GIOCondition) T.GIOCondition
-	socketConditionWait       func(s *Socket, condition T.GIOCondition, cancellable *Cancellable, err **T.GError) T.Gboolean
+	socketConditionWait       func(s *Socket, condition T.GIOCondition, cancellable *Cancellable, err **T.GError) bool
 	socketAccept              func(s *Socket, cancellable *Cancellable, err **T.GError) *Socket
-	socketListen              func(s *Socket, err **T.GError) T.Gboolean
+	socketListen              func(s *Socket, err **T.GError) bool
 	socketReceive             func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
 	socketReceiveFrom         func(s *Socket, address **SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
 	socketSend                func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
 	socketSendTo              func(s *Socket, address *SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
 	socketReceiveMessage      func(s *Socket, address **SocketAddress, vectors *InputVector, numVectors int, messages ***SocketControlMessage, numMessages *int, flags *int, cancellable *Cancellable, err **T.GError) T.Gssize
 	socketSendMessage         func(s *Socket, address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages int, flags int, cancellable *Cancellable, err **T.GError) T.Gssize
-	socketClose               func(s *Socket, err **T.GError) T.Gboolean
-	socketShutdown            func(s *Socket, shutdownRead T.Gboolean, shutdownWrite T.Gboolean, err **T.GError) T.Gboolean
-	socketIsClosed            func(s *Socket) T.Gboolean
+	socketClose               func(s *Socket, err **T.GError) bool
+	socketShutdown            func(s *Socket, shutdownRead bool, shutdownWrite bool, err **T.GError) bool
+	socketIsClosed            func(s *Socket) bool
 	socketCreateSource        func(s *Socket, condition T.GIOCondition, cancellable *Cancellable) *O.Source
-	socketSpeaksIpv4          func(s *Socket) T.Gboolean
+	socketSpeaksIpv4          func(s *Socket) bool
 	socketGetCredentials      func(s *Socket, err **T.GError) *Credentials
-	socketReceiveWithBlocking func(s *Socket, buffer string, size T.Gsize, blocking T.Gboolean, cancellable *Cancellable, err **T.GError) T.Gssize
-	socketSendWithBlocking    func(s *Socket, buffer string, size T.Gsize, blocking T.Gboolean, cancellable *Cancellable, err **T.GError) T.Gssize
+	socketReceiveWithBlocking func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize
+	socketSendWithBlocking    func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize
 )
 
 func (s *Socket) GetFd() int                                    { return socketGetFd(s) }
@@ -373,34 +373,34 @@ func (s *Socket) GetLocalAddress(err **T.GError) *SocketAddress { return socketG
 func (s *Socket) GetRemoteAddress(err **T.GError) *SocketAddress {
 	return socketGetRemoteAddress(s, err)
 }
-func (s *Socket) SetBlocking(blocking T.Gboolean)   { socketSetBlocking(s, blocking) }
-func (s *Socket) GetBlocking() T.Gboolean           { return socketGetBlocking(s) }
-func (s *Socket) SetKeepalive(keepalive T.Gboolean) { socketSetKeepalive(s, keepalive) }
-func (s *Socket) GetKeepalive() T.Gboolean          { return socketGetKeepalive(s) }
-func (s *Socket) GetListenBacklog() int             { return socketGetListenBacklog(s) }
-func (s *Socket) SetListenBacklog(backlog int)      { socketSetListenBacklog(s, backlog) }
-func (s *Socket) GetTimeout() uint                  { return socketGetTimeout(s) }
-func (s *Socket) SetTimeout(timeout uint)           { socketSetTimeout(s, timeout) }
-func (s *Socket) IsConnected() T.Gboolean           { return socketIsConnected(s) }
-func (s *Socket) Bind(address *SocketAddress, allowReuse T.Gboolean, err **T.GError) T.Gboolean {
+func (s *Socket) SetBlocking(blocking bool)    { socketSetBlocking(s, blocking) }
+func (s *Socket) GetBlocking() bool            { return socketGetBlocking(s) }
+func (s *Socket) SetKeepalive(keepalive bool)  { socketSetKeepalive(s, keepalive) }
+func (s *Socket) GetKeepalive() bool           { return socketGetKeepalive(s) }
+func (s *Socket) GetListenBacklog() int        { return socketGetListenBacklog(s) }
+func (s *Socket) SetListenBacklog(backlog int) { socketSetListenBacklog(s, backlog) }
+func (s *Socket) GetTimeout() uint             { return socketGetTimeout(s) }
+func (s *Socket) SetTimeout(timeout uint)      { socketSetTimeout(s, timeout) }
+func (s *Socket) IsConnected() bool            { return socketIsConnected(s) }
+func (s *Socket) Bind(address *SocketAddress, allowReuse bool, err **T.GError) bool {
 	return socketBind(s, address, allowReuse, err)
 }
-func (s *Socket) Connect(address *SocketAddress, cancellable *Cancellable, err **T.GError) T.Gboolean {
+func (s *Socket) Connect(address *SocketAddress, cancellable *Cancellable, err **T.GError) bool {
 	return socketConnect(s, address, cancellable, err)
 }
-func (s *Socket) CheckConnectResult(err **T.GError) T.Gboolean {
+func (s *Socket) CheckConnectResult(err **T.GError) bool {
 	return socketCheckConnectResult(s, err)
 }
 func (s *Socket) ConditionCheck(condition T.GIOCondition) T.GIOCondition {
 	return socketConditionCheck(s, condition)
 }
-func (s *Socket) ConditionWait(condition T.GIOCondition, cancellable *Cancellable, err **T.GError) T.Gboolean {
+func (s *Socket) ConditionWait(condition T.GIOCondition, cancellable *Cancellable, err **T.GError) bool {
 	return socketConditionWait(s, condition, cancellable, err)
 }
 func (s *Socket) Accept(cancellable *Cancellable, err **T.GError) *Socket {
 	return socketAccept(s, cancellable, err)
 }
-func (s *Socket) Listen(err **T.GError) T.Gboolean { return socketListen(s, err) }
+func (s *Socket) Listen(err **T.GError) bool { return socketListen(s, err) }
 func (s *Socket) Receive(buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
 	return socketReceive(s, buffer, size, cancellable, err)
 }
@@ -419,20 +419,20 @@ func (s *Socket) ReceiveMessage(address **SocketAddress, vectors *InputVector, n
 func (s *Socket) SendMessage(address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages, flags int, cancellable *Cancellable, err **T.GError) T.Gssize {
 	return socketSendMessage(s, address, vectors, numVectors, messages, numMessages, flags, cancellable, err)
 }
-func (s *Socket) Close(err **T.GError) T.Gboolean { return socketClose(s, err) }
-func (s *Socket) Shutdown(shutdownRead, shutdownWrite T.Gboolean, err **T.GError) T.Gboolean {
+func (s *Socket) Close(err **T.GError) bool { return socketClose(s, err) }
+func (s *Socket) Shutdown(shutdownRead, shutdownWrite bool, err **T.GError) bool {
 	return socketShutdown(s, shutdownRead, shutdownWrite, err)
 }
-func (s *Socket) IsClosed() T.Gboolean { return socketIsClosed(s) }
+func (s *Socket) IsClosed() bool { return socketIsClosed(s) }
 func (s *Socket) CreateSource(condition T.GIOCondition, cancellable *Cancellable) *O.Source {
 	return socketCreateSource(s, condition, cancellable)
 }
-func (s *Socket) SpeaksIpv4() T.Gboolean                     { return socketSpeaksIpv4(s) }
+func (s *Socket) SpeaksIpv4() bool                           { return socketSpeaksIpv4(s) }
 func (s *Socket) GetCredentials(err **T.GError) *Credentials { return socketGetCredentials(s, err) }
-func (s *Socket) ReceiveWithBlocking(buffer string, size T.Gsize, blocking T.Gboolean, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) ReceiveWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize {
 	return socketReceiveWithBlocking(s, buffer, size, blocking, cancellable, err)
 }
-func (s *Socket) SendWithBlocking(buffer string, size T.Gsize, blocking T.Gboolean, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) SendWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize {
 	return socketSendWithBlocking(s, buffer, size, blocking, cancellable, err)
 }
 
@@ -446,12 +446,12 @@ var (
 
 	socketAddressGetFamily     func(s *SocketAddress) SocketFamily
 	socketAddressGetNativeSize func(s *SocketAddress) T.Gssize
-	socketAddressToNative      func(s *SocketAddress, dest T.Gpointer, destlen T.Gsize, err **T.GError) T.Gboolean
+	socketAddressToNative      func(s *SocketAddress, dest T.Gpointer, destlen T.Gsize, err **T.GError) bool
 )
 
 func (s *SocketAddress) GetFamily() SocketFamily { return socketAddressGetFamily(s) }
 func (s *SocketAddress) GetNativeSize() T.Gssize { return socketAddressGetNativeSize(s) }
-func (s *SocketAddress) ToNative(dest T.Gpointer, destlen T.Gsize, err **T.GError) T.Gboolean {
+func (s *SocketAddress) ToNative(dest T.Gpointer, destlen T.Gsize, err **T.GError) bool {
 	return socketAddressToNative(s, dest, destlen, err)
 }
 
@@ -499,21 +499,21 @@ var (
 	socketClientConnectToUri           func(s *SocketClient, uri string, defaultPort uint16, cancellable *Cancellable, err **T.GError) *SocketConnection
 	socketClientConnectToUriAsync      func(s *SocketClient, uri string, defaultPort uint16, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	socketClientConnectToUriFinish     func(s *SocketClient, result *AsyncResult, err **T.GError) *SocketConnection
-	socketClientGetEnableProxy         func(s *SocketClient) T.Gboolean
+	socketClientGetEnableProxy         func(s *SocketClient) bool
 	socketClientGetFamily              func(s *SocketClient) SocketFamily
 	socketClientGetLocalAddress        func(s *SocketClient) *SocketAddress
 	socketClientGetProtocol            func(s *SocketClient) SocketProtocol
 	socketClientGetSocketType          func(s *SocketClient) SocketType
 	socketClientGetTimeout             func(s *SocketClient) uint
-	socketClientGetTls                 func(s *SocketClient) T.Gboolean
+	socketClientGetTls                 func(s *SocketClient) bool
 	socketClientGetTlsValidationFlags  func(s *SocketClient) TlsCertificateFlags
-	socketClientSetEnableProxy         func(s *SocketClient, enable T.Gboolean)
+	socketClientSetEnableProxy         func(s *SocketClient, enable bool)
 	socketClientSetFamily              func(s *SocketClient, family SocketFamily)
 	socketClientSetLocalAddress        func(s *SocketClient, address *SocketAddress)
 	socketClientSetProtocol            func(s *SocketClient, protocol SocketProtocol)
 	socketClientSetSocketType          func(s *SocketClient, t SocketType)
 	socketClientSetTimeout             func(s *SocketClient, timeout uint)
-	socketClientSetTls                 func(s *SocketClient, tls T.Gboolean)
+	socketClientSetTls                 func(s *SocketClient, tls bool)
 	socketClientSetTlsValidationFlags  func(s *SocketClient, flags TlsCertificateFlags)
 )
 
@@ -556,25 +556,25 @@ func (s *SocketClient) ConnectToUriAsync(uri string, defaultPort uint16, cancell
 func (s *SocketClient) ConnectToUriFinish(result *AsyncResult, err **T.GError) *SocketConnection {
 	return socketClientConnectToUriFinish(s, result, err)
 }
-func (s *SocketClient) GetEnableProxy() T.Gboolean      { return socketClientGetEnableProxy(s) }
+func (s *SocketClient) GetEnableProxy() bool            { return socketClientGetEnableProxy(s) }
 func (s *SocketClient) GetFamily() SocketFamily         { return socketClientGetFamily(s) }
 func (s *SocketClient) GetLocalAddress() *SocketAddress { return socketClientGetLocalAddress(s) }
 func (s *SocketClient) GetProtocol() SocketProtocol     { return socketClientGetProtocol(s) }
 func (s *SocketClient) GetSocketType() SocketType       { return socketClientGetSocketType(s) }
 func (s *SocketClient) GetTimeout() uint                { return socketClientGetTimeout(s) }
-func (s *SocketClient) GetTls() T.Gboolean              { return socketClientGetTls(s) }
+func (s *SocketClient) GetTls() bool                    { return socketClientGetTls(s) }
 func (s *SocketClient) GetTlsValidationFlags() TlsCertificateFlags {
 	return socketClientGetTlsValidationFlags(s)
 }
-func (s *SocketClient) SetEnableProxy(enable T.Gboolean) { socketClientSetEnableProxy(s, enable) }
-func (s *SocketClient) SetFamily(family SocketFamily)    { socketClientSetFamily(s, family) }
+func (s *SocketClient) SetEnableProxy(enable bool)    { socketClientSetEnableProxy(s, enable) }
+func (s *SocketClient) SetFamily(family SocketFamily) { socketClientSetFamily(s, family) }
 func (s *SocketClient) SetLocalAddress(address *SocketAddress) {
 	socketClientSetLocalAddress(s, address)
 }
 func (s *SocketClient) SetProtocol(protocol SocketProtocol) { socketClientSetProtocol(s, protocol) }
 func (s *SocketClient) SetSocketType(t SocketType)          { socketClientSetSocketType(s, t) }
 func (s *SocketClient) SetTimeout(timeout uint)             { socketClientSetTimeout(s, timeout) }
-func (s *SocketClient) SetTls(tls T.Gboolean)               { socketClientSetTls(s, tls) }
+func (s *SocketClient) SetTls(tls bool)                     { socketClientSetTls(s, tls) }
 func (s *SocketClient) SetTlsValidationFlags(flags TlsCertificateFlags) {
 	socketClientSetTlsValidationFlags(s, flags)
 }
@@ -665,10 +665,10 @@ var (
 	socketListenerAcceptSocket       func(s *SocketListener, sourceObject **O.Object, cancellable *Cancellable, err **T.GError) *Socket
 	socketListenerAcceptSocketAsync  func(s *SocketListener, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	socketListenerAcceptSocketFinish func(s *SocketListener, result *AsyncResult, sourceObject **O.Object, err **T.GError) *Socket
-	socketListenerAddAddress         func(s *SocketListener, address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) T.Gboolean
+	socketListenerAddAddress         func(s *SocketListener, address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) bool
 	socketListenerAddAnyInetPort     func(s *SocketListener, sourceObject *O.Object, err **T.GError) uint16
-	socketListenerAddInetPort        func(s *SocketListener, port uint16, sourceObject *O.Object, err **T.GError) T.Gboolean
-	socketListenerAddSocket          func(s *SocketListener, socket *Socket, sourceObject *O.Object, err **T.GError) T.Gboolean
+	socketListenerAddInetPort        func(s *SocketListener, port uint16, sourceObject *O.Object, err **T.GError) bool
+	socketListenerAddSocket          func(s *SocketListener, socket *Socket, sourceObject *O.Object, err **T.GError) bool
 	socketListenerClose              func(s *SocketListener)
 	socketListenerSetBacklog         func(s *SocketListener, listenBacklog int)
 )
@@ -691,16 +691,16 @@ func (s *SocketListener) AcceptSocketAsync(cancellable *Cancellable, callback As
 func (s *SocketListener) AcceptSocketFinish(result *AsyncResult, sourceObject **O.Object, err **T.GError) *Socket {
 	return socketListenerAcceptSocketFinish(s, result, sourceObject, err)
 }
-func (s *SocketListener) AddAddress(address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) T.Gboolean {
+func (s *SocketListener) AddAddress(address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) bool {
 	return socketListenerAddAddress(s, address, t, protocol, sourceObject, effectiveAddress, err)
 }
 func (s *SocketListener) AddAnyInetPort(sourceObject *O.Object, err **T.GError) uint16 {
 	return socketListenerAddAnyInetPort(s, sourceObject, err)
 }
-func (s *SocketListener) AddInetPort(port uint16, sourceObject *O.Object, err **T.GError) T.Gboolean {
+func (s *SocketListener) AddInetPort(port uint16, sourceObject *O.Object, err **T.GError) bool {
 	return socketListenerAddInetPort(s, port, sourceObject, err)
 }
-func (s *SocketListener) AddSocket(socket *Socket, sourceObject *O.Object, err **T.GError) T.Gboolean {
+func (s *SocketListener) AddSocket(socket *Socket, sourceObject *O.Object, err **T.GError) bool {
 	return socketListenerAddSocket(s, socket, sourceObject, err)
 }
 func (s *SocketListener) Close()                       { socketListenerClose(s) }
@@ -729,14 +729,14 @@ var (
 	SocketServiceGetType func() O.Type
 	SocketServiceNew     func() *SocketService
 
-	socketServiceIsActive func(s *SocketService) T.Gboolean
+	socketServiceIsActive func(s *SocketService) bool
 	socketServiceStart    func(s *SocketService)
 	socketServiceStop     func(s *SocketService)
 )
 
-func (s *SocketService) IsActive() T.Gboolean { return socketServiceIsActive(s) }
-func (s *SocketService) Start()               { socketServiceStart(s) }
-func (s *SocketService) Stop()                { socketServiceStop(s) }
+func (s *SocketService) IsActive() bool { return socketServiceIsActive(s) }
+func (s *SocketService) Start()         { socketServiceStart(s) }
+func (s *SocketService) Stop()          { socketServiceStop(s) }
 
 type SocketType Enum
 

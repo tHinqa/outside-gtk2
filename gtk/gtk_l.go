@@ -52,18 +52,18 @@ var (
 	labelGetLabel              func(l *Label) string
 	labelGetLayout             func(l *Label) *P.Layout
 	labelGetLayoutOffsets      func(l *Label, x, y *int)
-	labelGetLineWrap           func(l *Label) T.Gboolean
+	labelGetLineWrap           func(l *Label) bool
 	labelGetLineWrapMode       func(l *Label) P.WrapMode
 	labelGetMaxWidthChars      func(l *Label) int
 	labelGetMnemonicKeyval     func(l *Label) uint
 	labelGetMnemonicWidget     func(l *Label) *Widget
-	labelGetSelectable         func(l *Label) T.Gboolean
-	labelGetSelectionBounds    func(l *Label, start, end *int) T.Gboolean
-	labelGetSingleLineMode     func(l *Label) T.Gboolean
+	labelGetSelectable         func(l *Label) bool
+	labelGetSelectionBounds    func(l *Label, start, end *int) bool
+	labelGetSingleLineMode     func(l *Label) bool
 	labelGetText               func(l *Label) string
-	labelGetTrackVisitedLinks  func(l *Label) T.Gboolean
-	labelGetUseMarkup          func(l *Label) T.Gboolean
-	labelGetUseUnderline       func(l *Label) T.Gboolean
+	labelGetTrackVisitedLinks  func(l *Label) bool
+	labelGetUseMarkup          func(l *Label) bool
+	labelGetUseUnderline       func(l *Label) bool
 	labelGetWidthChars         func(l *Label) int
 	labelParseUline            func(l *Label, string string) uint
 	labelSelectRegion          func(l *Label, startOffset, endOffset int)
@@ -72,20 +72,20 @@ var (
 	labelSetEllipsize          func(l *Label, mode P.EllipsizeMode)
 	labelSetJustify            func(l *Label, jtype Justification)
 	labelSetLabel              func(l *Label, str string)
-	labelSetLineWrap           func(l *Label, wrap T.Gboolean)
+	labelSetLineWrap           func(l *Label, wrap bool)
 	labelSetLineWrapMode       func(l *Label, wrapMode P.WrapMode)
 	labelSetMarkup             func(l *Label, str string)
 	labelSetMarkupWithMnemonic func(l *Label, str string)
 	labelSetMaxWidthChars      func(l *Label, nChars int)
 	labelSetMnemonicWidget     func(l *Label, widget *Widget)
 	labelSetPattern            func(l *Label, pattern string)
-	labelSetSelectable         func(l *Label, setting T.Gboolean)
-	labelSetSingleLineMode     func(l *Label, singleLineMode T.Gboolean)
+	labelSetSelectable         func(l *Label, setting bool)
+	labelSetSingleLineMode     func(l *Label, singleLineMode bool)
 	labelSetText               func(l *Label, str string)
 	labelSetTextWithMnemonic   func(l *Label, str string)
-	labelSetTrackVisitedLinks  func(l *Label, trackLinks T.Gboolean)
-	labelSetUseMarkup          func(l *Label, setting T.Gboolean)
-	labelSetUseUnderline       func(l *Label, setting T.Gboolean)
+	labelSetTrackVisitedLinks  func(l *Label, trackLinks bool)
+	labelSetUseMarkup          func(l *Label, setting bool)
+	labelSetUseUnderline       func(l *Label, setting bool)
 	labelSetWidthChars         func(l *Label, nChars int)
 )
 
@@ -98,20 +98,20 @@ func (l *Label) GetJustify() Justification     { return labelGetJustify(l) }
 func (l *Label) GetLabel() string              { return labelGetLabel(l) }
 func (l *Label) GetLayout() *P.Layout          { return labelGetLayout(l) }
 func (l *Label) GetLayoutOffsets(x, y *int)    { labelGetLayoutOffsets(l, x, y) }
-func (l *Label) GetLineWrap() T.Gboolean       { return labelGetLineWrap(l) }
+func (l *Label) GetLineWrap() bool       { return labelGetLineWrap(l) }
 func (l *Label) GetLineWrapMode() P.WrapMode   { return labelGetLineWrapMode(l) }
 func (l *Label) GetMaxWidthChars() int         { return labelGetMaxWidthChars(l) }
 func (l *Label) GetMnemonicKeyval() uint       { return labelGetMnemonicKeyval(l) }
 func (l *Label) GetMnemonicWidget() *Widget    { return labelGetMnemonicWidget(l) }
-func (l *Label) GetSelectable() T.Gboolean     { return labelGetSelectable(l) }
-func (l *Label) GetSelectionBounds(start, end *int) T.Gboolean {
+func (l *Label) GetSelectable() bool           { return labelGetSelectable(l) }
+func (l *Label) GetSelectionBounds(start, end *int) bool {
 	return labelGetSelectionBounds(l, start, end)
 }
-func (l *Label) GetSingleLineMode() T.Gboolean           { return labelGetSingleLineMode(l) }
+func (l *Label) GetSingleLineMode() bool                 { return labelGetSingleLineMode(l) }
 func (l *Label) GetText() string                         { return labelGetText(l) }
-func (l *Label) GetTrackVisitedLinks() T.Gboolean        { return labelGetTrackVisitedLinks(l) }
-func (l *Label) GetUseMarkup() T.Gboolean                { return labelGetUseMarkup(l) }
-func (l *Label) GetUseUnderline() T.Gboolean             { return labelGetUseUnderline(l) }
+func (l *Label) GetTrackVisitedLinks() bool              { return labelGetTrackVisitedLinks(l) }
+func (l *Label) GetUseMarkup() bool                      { return labelGetUseMarkup(l) }
+func (l *Label) GetUseUnderline() bool                   { return labelGetUseUnderline(l) }
 func (l *Label) GetWidthChars() int                      { return labelGetWidthChars(l) }
 func (l *Label) ParseUline(str string) uint              { return labelParseUline(l, str) }
 func (l *Label) SelectRegion(startOffset, endOffset int) { labelSelectRegion(l, startOffset, endOffset) }
@@ -120,30 +120,30 @@ func (l *Label) SetAttributes(attrs *P.AttrList)         { labelSetAttributes(l,
 func (l *Label) SetEllipsize(mode P.EllipsizeMode)       { labelSetEllipsize(l, mode) }
 func (l *Label) SetJustify(jtype Justification)          { labelSetJustify(l, jtype) }
 func (l *Label) SetLabel(str string)                     { labelSetLabel(l, str) }
-func (l *Label) SetLineWrap(wrap T.Gboolean)             { labelSetLineWrap(l, wrap) }
+func (l *Label) SetLineWrap(wrap bool)                   { labelSetLineWrap(l, wrap) }
 func (l *Label) SetLineWrapMode(wrapMode P.WrapMode)     { labelSetLineWrapMode(l, wrapMode) }
 func (l *Label) SetMarkup(str string)                    { labelSetMarkup(l, str) }
 func (l *Label) SetMarkupWithMnemonic(str string)        { labelSetMarkupWithMnemonic(l, str) }
 func (l *Label) SetMaxWidthChars(nChars int)             { labelSetMaxWidthChars(l, nChars) }
 func (l *Label) SetMnemonicWidget(widget *Widget)        { labelSetMnemonicWidget(l, widget) }
 func (l *Label) SetPattern(pattern string)               { labelSetPattern(l, pattern) }
-func (l *Label) SetSelectable(setting T.Gboolean)        { labelSetSelectable(l, setting) }
-func (l *Label) SetSingleLineMode(singleLineMode T.Gboolean) {
+func (l *Label) SetSelectable(setting bool)              { labelSetSelectable(l, setting) }
+func (l *Label) SetSingleLineMode(singleLineMode bool) {
 	labelSetSingleLineMode(l, singleLineMode)
 }
-func (l *Label) SetText(str string)                         { labelSetText(l, str) }
-func (l *Label) SetTextWithMnemonic(str string)             { labelSetTextWithMnemonic(l, str) }
-func (l *Label) SetTrackVisitedLinks(trackLinks T.Gboolean) { labelSetTrackVisitedLinks(l, trackLinks) }
-func (l *Label) SetUseMarkup(setting T.Gboolean)            { labelSetUseMarkup(l, setting) }
-func (l *Label) SetUseUnderline(setting T.Gboolean)         { labelSetUseUnderline(l, setting) }
-func (l *Label) SetWidthChars(nChars int)                   { labelSetWidthChars(l, nChars) }
+func (l *Label) SetText(str string)                   { labelSetText(l, str) }
+func (l *Label) SetTextWithMnemonic(str string)       { labelSetTextWithMnemonic(l, str) }
+func (l *Label) SetTrackVisitedLinks(trackLinks bool) { labelSetTrackVisitedLinks(l, trackLinks) }
+func (l *Label) SetUseMarkup(setting bool)            { labelSetUseMarkup(l, setting) }
+func (l *Label) SetUseUnderline(setting bool)         { labelSetUseUnderline(l, setting) }
+func (l *Label) SetWidthChars(nChars int)             { labelSetWidthChars(l, nChars) }
 
 type LabelClass struct {
 	Parent        MiscClass
-	MoveCursor    func(label *Label, step MovementStep, count int, extendSelection T.Gboolean)
+	MoveCursor    func(label *Label, step MovementStep, count int, extendSelection bool)
 	CopyClipboard func(label *Label)
 	PopulatePopup func(label *Label, menu *Menu)
-	Activate_link func(label *Label, uri *T.Gchar) T.Gboolean
+	Activate_link func(label *Label, uri *T.Gchar) bool
 	_, _, _       func()
 }
 
@@ -229,11 +229,11 @@ var (
 	listStoreInsertBefore      func(l *ListStore, iter *TreeIter, sibling *TreeIter)
 	listStoreInsertWithValues  func(l *ListStore, iter *TreeIter, position int, v ...VArg)
 	listStoreInsertWithValuesv func(l *ListStore, iter *TreeIter, position int, columns *int, values *T.GValue, nValues int)
-	listStoreIterIsValid       func(l *ListStore, iter *TreeIter) T.Gboolean
+	listStoreIterIsValid       func(l *ListStore, iter *TreeIter) bool
 	listStoreMoveAfter         func(l *ListStore, iter *TreeIter, position *TreeIter)
 	listStoreMoveBefore        func(l *ListStore, iter *TreeIter, position *TreeIter)
 	listStorePrepend           func(l *ListStore, iter *TreeIter)
-	listStoreRemove            func(l *ListStore, iter *TreeIter) T.Gboolean
+	listStoreRemove            func(l *ListStore, iter *TreeIter) bool
 	listStoreReorder           func(l *ListStore, newOrder *int)
 	listStoreSet               func(l *ListStore, iter *TreeIter, v ...VArg)
 	listStoreSetColumnTypes    func(l *ListStore, nColumns int, types *O.Type)
@@ -258,17 +258,17 @@ func (l *ListStore) InsertWithValues(iter *TreeIter, position int, v ...VArg) {
 func (l *ListStore) InsertWithValuesv(iter *TreeIter, position int, columns *int, values *T.GValue, nValues int) {
 	listStoreInsertWithValuesv(l, iter, position, columns, values, nValues)
 }
-func (l *ListStore) IterIsValid(iter *TreeIter) T.Gboolean { return listStoreIterIsValid(l, iter) }
+func (l *ListStore) IterIsValid(iter *TreeIter) bool { return listStoreIterIsValid(l, iter) }
 func (l *ListStore) MoveAfter(iter *TreeIter, position *TreeIter) {
 	listStoreMoveAfter(l, iter, position)
 }
 func (l *ListStore) MoveBefore(iter *TreeIter, position *TreeIter) {
 	listStoreMoveBefore(l, iter, position)
 }
-func (l *ListStore) Prepend(iter *TreeIter)           { listStorePrepend(l, iter) }
-func (l *ListStore) Remove(iter *TreeIter) T.Gboolean { return listStoreRemove(l, iter) }
-func (l *ListStore) Reorder(newOrder *int)            { listStoreReorder(l, newOrder) }
-func (l *ListStore) Set(iter *TreeIter, v ...VArg)    { listStoreSet(l, iter, v) }
+func (l *ListStore) Prepend(iter *TreeIter)        { listStorePrepend(l, iter) }
+func (l *ListStore) Remove(iter *TreeIter) bool    { return listStoreRemove(l, iter) }
+func (l *ListStore) Reorder(newOrder *int)         { listStoreReorder(l, newOrder) }
+func (l *ListStore) Set(iter *TreeIter, v ...VArg) { listStoreSet(l, iter, v) }
 func (l *ListStore) SetColumnTypes(nColumns int, types *O.Type) {
 	listStoreSetColumnTypes(l, nColumns, types)
 }
@@ -292,14 +292,14 @@ var (
 
 	linkButtonGetUri     func(l *LinkButton) string
 	linkButtonSetUri     func(l *LinkButton, uri string)
-	linkButtonGetVisited func(l *LinkButton) T.Gboolean
-	linkButtonSetVisited func(l *LinkButton, visited T.Gboolean)
+	linkButtonGetVisited func(l *LinkButton) bool
+	linkButtonSetVisited func(l *LinkButton, visited bool)
 )
 
-func (l *LinkButton) GetUri() string                { return linkButtonGetUri(l) }
-func (l *LinkButton) GetVisited() T.Gboolean        { return linkButtonGetVisited(l) }
-func (l *LinkButton) SetUri(uri string)             { linkButtonSetUri(l, uri) }
-func (l *LinkButton) SetVisited(visited T.Gboolean) { linkButtonSetVisited(l, visited) }
+func (l *LinkButton) GetUri() string          { return linkButtonGetUri(l) }
+func (l *LinkButton) GetVisited() bool        { return linkButtonGetVisited(l) }
+func (l *LinkButton) SetUri(uri string)       { linkButtonSetUri(l, uri) }
+func (l *LinkButton) SetVisited(visited bool) { linkButtonSetVisited(l, visited) }
 
 type List struct {
 	Container         Container
@@ -337,7 +337,7 @@ var (
 	listUnselectChild      func(l *List, child *Widget)
 	listChildPosition      func(l *List, child *Widget) int
 	listSetSelectionMode   func(l *List, mode SelectionMode)
-	listExtendSelection    func(l *List, scrollType ScrollType, position float32, autoStartSelection T.Gboolean)
+	listExtendSelection    func(l *List, scrollType ScrollType, position float32, autoStartSelection bool)
 	listStartSelection     func(l *List)
 	listEndSelection       func(l *List)
 	listSelectAll          func(l *List)
@@ -356,7 +356,7 @@ func (l *List) ChildPosition(child *Widget) int { return listChildPosition(l, ch
 func (l *List) ClearItems(start int, end int)   { listClearItems(l, start, end) }
 func (l *List) EndDragSelection()               { listEndDragSelection(l) }
 func (l *List) EndSelection()                   { listEndSelection(l) }
-func (l *List) ExtendSelection(scrollType ScrollType, position float32, autoStartSelection T.Gboolean) {
+func (l *List) ExtendSelection(scrollType ScrollType, position float32, autoStartSelection bool) {
 	listExtendSelection(l, scrollType, position, autoStartSelection)
 }
 func (l *List) InsertItems(items *T.GList, position int) { listInsertItems(l, items, position) }

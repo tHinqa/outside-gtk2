@@ -29,10 +29,10 @@ var (
 	DeviceGetCorePointer func() *Device
 	DevicesList          func() *T.GList
 
-	deviceGetAxis      func(d *Device, axes *float64, use T.GdkAxisUse, value *float64) T.Gboolean
+	deviceGetAxis      func(d *Device, axes *float64, use T.GdkAxisUse, value *float64) bool
 	deviceGetAxisUse   func(d *Device, index uint) T.GdkAxisUse
-	deviceGetHasCursor func(d *Device) T.Gboolean
-	deviceGetHistory   func(d *Device, window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) T.Gboolean
+	deviceGetHasCursor func(d *Device) bool
+	deviceGetHistory   func(d *Device, window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) bool
 	deviceGetKey       func(d *Device, index uint, keyval *uint, modifiers *T.GdkModifierType)
 	deviceGetMode      func(d *Device) T.GdkInputMode
 	deviceGetName      func(d *Device) string
@@ -42,16 +42,16 @@ var (
 	deviceGetState     func(d *Device, window *Window, axes *float64, mask *T.GdkModifierType)
 	deviceSetAxisUse   func(d *Device, index uint, use T.GdkAxisUse)
 	deviceSetKey       func(d *Device, index, keyval uint, modifiers T.GdkModifierType)
-	deviceSetMode      func(d *Device, mode T.GdkInputMode) T.Gboolean
+	deviceSetMode      func(d *Device, mode T.GdkInputMode) bool
 	deviceSetSource    func(d *Device, source T.GdkInputSource)
 )
 
-func (d *Device) GetAxis(axes *float64, use T.GdkAxisUse, value *float64) T.Gboolean {
+func (d *Device) GetAxis(axes *float64, use T.GdkAxisUse, value *float64) bool {
 	return deviceGetAxis(d, axes, use, value)
 }
 func (d *Device) GetAxisUse(index uint) T.GdkAxisUse { return deviceGetAxisUse(d, index) }
-func (d *Device) GetHasCursor() T.Gboolean           { return deviceGetHasCursor(d) }
-func (d *Device) GetHistory(window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) T.Gboolean {
+func (d *Device) GetHasCursor() bool                 { return deviceGetHasCursor(d) }
+func (d *Device) GetHistory(window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) bool {
 	return deviceGetHistory(d, window, start, stop, events, nEvents)
 }
 func (d *Device) GetKey(index uint, keyval *uint, modifiers *T.GdkModifierType) {
@@ -69,8 +69,8 @@ func (d *Device) SetAxisUse(index uint, use T.GdkAxisUse) { deviceSetAxisUse(d, 
 func (d *Device) SetKey(index, keyval uint, modifiers T.GdkModifierType) {
 	deviceSetKey(d, index, keyval, modifiers)
 }
-func (d *Device) SetMode(mode T.GdkInputMode) T.Gboolean { return deviceSetMode(d, mode) }
-func (d *Device) SetSource(source T.GdkInputSource)      { deviceSetSource(d, source) }
+func (d *Device) SetMode(mode T.GdkInputMode) bool  { return deviceSetMode(d, mode) }
+func (d *Device) SetSource(source T.GdkInputSource) { deviceSetSource(d, source) }
 
 type DeviceKey struct {
 	Keyval    uint
@@ -127,25 +127,25 @@ var (
 	displayGetPointer                    func(d *Display, screen **Screen, x, y *int, mask *T.GdkModifierType)
 	displayGetScreen                     func(d *Display, screenNum int) *Screen
 	displayGetWindowAtPointer            func(d *Display, winX, winY *int) *Window
-	displayIsClosed                      func(d *Display) T.Gboolean
+	displayIsClosed                      func(d *Display) bool
 	displayKeyboardUngrab                func(d *Display, time T.GUint32)
 	displayListDevices                   func(d *Display) *T.GList
 	displayPeekEvent                     func(d *Display) *Event
-	displayPointerIsGrabbed              func(d *Display) T.Gboolean
+	displayPointerIsGrabbed              func(d *Display) bool
 	displayPointerUngrab                 func(d *Display, time T.GUint32)
 	displayPutEvent                      func(d *Display, event *Event)
-	displayRequestSelectionNotification  func(d *Display, selection Atom) T.Gboolean
+	displayRequestSelectionNotification  func(d *Display, selection Atom) bool
 	displaySetDoubleClickDistance        func(d *Display, distance uint)
 	displaySetDoubleClickTime            func(d *Display, msec uint)
 	displaySetPointerHooks               func(d *Display, newHooks *DisplayPointerHooks) *DisplayPointerHooks
 	displayStoreClipboard                func(d *Display, clipboardWindow *Window, time T.GUint32, targets *Atom, nTargets int)
-	displaySupportsClipboardPersistence  func(d *Display) T.Gboolean
-	displaySupportsComposite             func(d *Display) T.Gboolean
-	displaySupportsCursorAlpha           func(d *Display) T.Gboolean
-	displaySupportsCursorColor           func(d *Display) T.Gboolean
-	displaySupportsInputShapes           func(d *Display) T.Gboolean
-	displaySupportsSelectionNotification func(d *Display) T.Gboolean
-	displaySupportsShapes                func(d *Display) T.Gboolean
+	displaySupportsClipboardPersistence  func(d *Display) bool
+	displaySupportsComposite             func(d *Display) bool
+	displaySupportsCursorAlpha           func(d *Display) bool
+	displaySupportsCursorColor           func(d *Display) bool
+	displaySupportsInputShapes           func(d *Display) bool
+	displaySupportsSelectionNotification func(d *Display) bool
+	displaySupportsShapes                func(d *Display) bool
 	displaySync                          func(d *Display)
 	displayWarpPointer                   func(d *Display, screen *Screen, x, y int)
 )
@@ -173,14 +173,14 @@ func (d *Display) GetScreen(screenNum int) *Screen { return displayGetScreen(d, 
 func (d *Display) GetWindowAtPointer(winX, winY *int) *Window {
 	return displayGetWindowAtPointer(d, winX, winY)
 }
-func (d *Display) IsClosed() T.Gboolean          { return displayIsClosed(d) }
+func (d *Display) IsClosed() bool                { return displayIsClosed(d) }
 func (d *Display) KeyboardUngrab(time T.GUint32) { displayKeyboardUngrab(d, time) }
 func (d *Display) ListDevices() *T.GList         { return displayListDevices(d) }
 func (d *Display) PeekEvent() *Event             { return displayPeekEvent(d) }
-func (d *Display) PointerIsGrabbed() T.Gboolean  { return displayPointerIsGrabbed(d) }
+func (d *Display) PointerIsGrabbed() bool        { return displayPointerIsGrabbed(d) }
 func (d *Display) PointerUngrab(time T.GUint32)  { displayPointerUngrab(d, time) }
 func (d *Display) PutEvent(event *Event)         { displayPutEvent(d, event) }
-func (d *Display) RequestSelectionNotification(selection Atom) T.Gboolean {
+func (d *Display) RequestSelectionNotification(selection Atom) bool {
 	return displayRequestSelectionNotification(d, selection)
 }
 func (d *Display) SetDoubleClickDistance(distance uint) { displaySetDoubleClickDistance(d, distance) }
@@ -191,17 +191,17 @@ func (d *Display) SetPointerHooks(newHooks *DisplayPointerHooks) *DisplayPointer
 func (d *Display) StoreClipboard(clipboardWindow *Window, time T.GUint32, targets *Atom, nTargets int) {
 	displayStoreClipboard(d, clipboardWindow, time, targets, nTargets)
 }
-func (d *Display) SupportsClipboardPersistence() T.Gboolean {
+func (d *Display) SupportsClipboardPersistence() bool {
 	return displaySupportsClipboardPersistence(d)
 }
-func (d *Display) SupportsComposite() T.Gboolean   { return displaySupportsComposite(d) }
-func (d *Display) SupportsCursorAlpha() T.Gboolean { return displaySupportsCursorAlpha(d) }
-func (d *Display) SupportsCursorColor() T.Gboolean { return displaySupportsCursorColor(d) }
-func (d *Display) SupportsInputShapes() T.Gboolean { return displaySupportsInputShapes(d) }
-func (d *Display) SupportsSelectionNotification() T.Gboolean {
+func (d *Display) SupportsComposite() bool   { return displaySupportsComposite(d) }
+func (d *Display) SupportsCursorAlpha() bool { return displaySupportsCursorAlpha(d) }
+func (d *Display) SupportsCursorColor() bool { return displaySupportsCursorColor(d) }
+func (d *Display) SupportsInputShapes() bool { return displaySupportsInputShapes(d) }
+func (d *Display) SupportsSelectionNotification() bool {
 	return displaySupportsSelectionNotification(d)
 }
-func (d *Display) SupportsShapes() T.Gboolean           { return displaySupportsShapes(d) }
+func (d *Display) SupportsShapes() bool                 { return displaySupportsShapes(d) }
 func (d *Display) Sync()                                { displaySync(d) }
 func (d *Display) WarpPointer(screen *Screen, x, y int) { displayWarpPointer(d, screen, x, y) }
 
@@ -250,7 +250,7 @@ var DragActionGetType func() O.Type
 type DragContext struct {
 	Parent          O.Object
 	Protocol        DragProtocol
-	Is_source       T.Gboolean
+	Is_source       bool
 	SourceWindow    *Window
 	DestWindow      *Window
 	Targets         *T.GList
@@ -271,14 +271,14 @@ var (
 	DragGetProtocolForDisplay func(display *Display, xid T.GdkNativeWindow, protocol *DragProtocol) T.GdkNativeWindow
 
 	DragDrop                func(context *DragContext, time T.GUint32)
-	DragDropSucceeded       func(context *DragContext) T.Gboolean
+	DragDropSucceeded       func(context *DragContext) bool
 	DragFindWindow          func(context *DragContext, dragWindow *Window, xRoot int, yRoot int, destWindow **Window, protocol *DragProtocol)
 	DragFindWindowForScreen func(context *DragContext, dragWindow *Window, screen *Screen, xRoot int, yRoot int, destWindow **Window, protocol *DragProtocol)
 	DragGetSelection        func(context *DragContext) Atom
-	DragMotion              func(context *DragContext, destWindow *Window, protocol DragProtocol, xRoot int, yRoot int, suggestedAction DragAction, possibleActions DragAction, time T.GUint32) T.Gboolean
+	DragMotion              func(context *DragContext, destWindow *Window, protocol DragProtocol, xRoot int, yRoot int, suggestedAction DragAction, possibleActions DragAction, time T.GUint32) bool
 	DragStatus              func(context *DragContext, action DragAction, time T.GUint32)
-	DropFinish              func(context *DragContext, success T.Gboolean, time T.GUint32)
-	DropReply               func(context *DragContext, ok T.Gboolean, time T.GUint32)
+	DropFinish              func(context *DragContext, success bool, time T.GUint32)
+	DropReply               func(context *DragContext, ok bool, time T.GUint32)
 
 	dragContextGetActions         func(context *DragContext) DragAction
 	dragContextGetDestWindow      func(context *DragContext) *Window
@@ -320,7 +320,7 @@ type Drawable struct{ parent O.Object }
 var (
 	DrawableGetType func() O.Type
 
-	DrawArc                  func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height, angle1, angle2 int)
+	DrawArc                  func(drawable *Drawable, gc *GC, filled bool, x, y, width, height, angle1, angle2 int)
 	DrawDrawable             func(drawable *Drawable, gc *GC, src *Drawable, xsrc, ysrc, xdest, ydest, width, height int)
 	DrawGlyphs               func(drawable *Drawable, gc *GC, font *P.Font, x, y int, glyphs *P.GlyphString)
 	DrawGlyphsTransformed    func(drawable *Drawable, gc *GC, matrix *P.Matrix, font *P.Font, x, y int, glyphs *P.GlyphString)
@@ -336,8 +336,8 @@ var (
 	DrawPixbuf               func(drawable *Drawable, gc *GC, pixbuf *Pixbuf, srcX, srcY, destX, destY, width, height int, dither T.GdkRgbDither, xDither, yDither int)
 	DrawPoint                func(drawable *Drawable, gc *GC, x, y int)
 	DrawPoints               func(drawable *Drawable, gc *GC, points *Point, nPoints int)
-	DrawPolygon              func(drawable *Drawable, gc *GC, filled T.Gboolean, points *Point, nPoints int)
-	DrawRectangle            func(drawable *Drawable, gc *GC, filled T.Gboolean, x, y, width, height int)
+	DrawPolygon              func(drawable *Drawable, gc *GC, filled bool, points *Point, nPoints int)
+	DrawRectangle            func(drawable *Drawable, gc *GC, filled bool, x, y, width, height int)
 	DrawRgb32Image           func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride int)
 	DrawRgb32ImageDithalign  func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, buf *T.Guchar, rowstride, xdith, ydith int)
 	DrawRgbImage             func(drawable *Drawable, gc *GC, x, y, width, height int, dith T.GdkRgbDither, rgbBuf *T.Guchar, rowstride int)

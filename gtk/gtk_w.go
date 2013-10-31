@@ -10,6 +10,7 @@ import (
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
+	"unsafe"
 )
 
 type WrapMode Enum
@@ -54,15 +55,15 @@ var (
 	WidgetSetDefaultDirection func(dir TextDirection)
 
 	//TODO(t): Methods?
-	WidgetTranslateCoordinates func(srcWidget *Widget, destWidget *Widget, srcX int, srcY int, destX *int, destY *int) T.Gboolean
+	WidgetTranslateCoordinates func(srcWidget *Widget, destWidget *Widget, srcX int, srcY int, destX *int, destY *int) bool
 	WidgetStyleAttach          func(style *Widget)
 
-	widgetActivate              func(w *Widget) T.Gboolean
+	widgetActivate              func(w *Widget) bool
 	widgetAddAccelerator        func(w *Widget, accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags)
 	widgetAddEvents             func(w *Widget, events int)
 	widgetAddMnemonicLabel      func(w *Widget, label *Widget)
-	widgetCanActivateAccel      func(w *Widget, signalId uint) T.Gboolean
-	widgetChildFocus            func(w *Widget, direction DirectionType) T.Gboolean
+	widgetCanActivateAccel      func(w *Widget, signalId uint) bool
+	widgetChildFocus            func(w *Widget, direction DirectionType) bool
 	widgetChildNotify           func(w *Widget, childProperty string)
 	widgetClassPath             func(w *Widget, pathLength *uint, path, pathReversed **T.Gchar)
 	widgetCreatePangoContext    func(w *Widget) *P.Context
@@ -72,39 +73,39 @@ var (
 	widgetDraw                  func(w *Widget, area *D.Rectangle)
 	widgetEnsureStyle           func(w *Widget)
 	widgetErrorBell             func(w *Widget)
-	widgetEvent                 func(w *Widget, event *D.Event) T.Gboolean
+	widgetEvent                 func(w *Widget, event *D.Event) bool
 	widgetFreezeChildNotify     func(w *Widget)
 	widgetGetAccessible         func(w *Widget) *A.Object
 	widgetGetAllocation         func(w *Widget, allocation *Allocation)
 	widgetGetAncestor           func(w *Widget, widgetType O.Type) *Widget
-	widgetGetAppPaintable       func(w *Widget) T.Gboolean
-	widgetGetCanDefault         func(w *Widget) T.Gboolean
-	widgetGetCanFocus           func(w *Widget) T.Gboolean
+	widgetGetAppPaintable       func(w *Widget) bool
+	widgetGetCanDefault         func(w *Widget) bool
+	widgetGetCanFocus           func(w *Widget) bool
 	widgetGetChildRequisition   func(w *Widget, requisition *Requisition)
-	widgetGetChildVisible       func(w *Widget) T.Gboolean
+	widgetGetChildVisible       func(w *Widget) bool
 	widgetGetColormap           func(w *Widget) *D.Colormap
 	widgetGetCompositeName      func(w *Widget) string
 	widgetGetDirection          func(w *Widget) TextDirection
 	widgetGetDisplay            func(w *Widget) *D.Display
-	widgetGetDoubleBuffered     func(w *Widget) T.Gboolean
+	widgetGetDoubleBuffered     func(w *Widget) bool
 	widgetGetEvents             func(w *Widget) int
 	widgetGetExtensionEvents    func(w *Widget) D.ExtensionMode
-	widgetGetHasTooltip         func(w *Widget) T.Gboolean
-	widgetGetHasWindow          func(w *Widget) T.Gboolean
-	widgetGetMapped             func(w *Widget) T.Gboolean
+	widgetGetHasTooltip         func(w *Widget) bool
+	widgetGetHasWindow          func(w *Widget) bool
+	widgetGetMapped             func(w *Widget) bool
 	widgetGetModifierStyle      func(w *Widget) *RcStyle
 	widgetGetName               func(w *Widget) string
-	widgetGetNoShowAll          func(w *Widget) T.Gboolean
+	widgetGetNoShowAll          func(w *Widget) bool
 	widgetGetPangoContext       func(w *Widget) *P.Context
 	widgetGetParent             func(w *Widget) *Widget
 	widgetGetParentWindow       func(w *Widget) *D.Window
 	widgetGetPointer            func(w *Widget, x *int, y *int)
-	widgetGetRealized           func(w *Widget) T.Gboolean
-	widgetGetReceivesDefault    func(w *Widget) T.Gboolean
+	widgetGetRealized           func(w *Widget) bool
+	widgetGetReceivesDefault    func(w *Widget) bool
 	widgetGetRequisition        func(w *Widget, requisition *Requisition)
 	widgetGetRootWindow         func(w *Widget) *D.Window
 	widgetGetScreen             func(w *Widget) *D.Screen
-	widgetGetSensitive          func(w *Widget) T.Gboolean
+	widgetGetSensitive          func(w *Widget) bool
 	widgetGetSettings           func(w *Widget) *Settings
 	widgetGetSizeRequest        func(w *Widget, width *int, height *int)
 	widgetGetSnapshot           func(w *Widget, clipRect *D.Rectangle) *D.Pixmap
@@ -114,32 +115,32 @@ var (
 	widgetGetTooltipText        func(w *Widget) string
 	widgetGetTooltipWindow      func(w *Widget) *Window
 	widgetGetToplevel           func(w *Widget) *Widget
-	widgetGetVisible            func(w *Widget) T.Gboolean
+	widgetGetVisible            func(w *Widget) bool
 	widgetGetVisual             func(w *Widget) *D.Visual
 	widgetGetWindow             func(w *Widget) *D.Window
 	widgetGrabDefault           func(w *Widget)
 	widgetGrabFocus             func(w *Widget)
-	widgetHasDefault            func(w *Widget) T.Gboolean
-	widgetHasFocus              func(w *Widget) T.Gboolean
-	widgetHasGrab               func(w *Widget) T.Gboolean
-	widgetHasRcStyle            func(w *Widget) T.Gboolean
-	widgetHasScreen             func(w *Widget) T.Gboolean
+	widgetHasDefault            func(w *Widget) bool
+	widgetHasFocus              func(w *Widget) bool
+	widgetHasGrab               func(w *Widget) bool
+	widgetHasRcStyle            func(w *Widget) bool
+	widgetHasScreen             func(w *Widget) bool
 	widgetHide                  func(w *Widget)
 	widgetHideAll               func(w *Widget)
-	widgetHideOnDelete          func(w *Widget) T.Gboolean
+	widgetHideOnDelete          func(w *Widget) bool
 	widgetInputShapeCombineMask func(w *Widget, shapeMask *T.GdkBitmap, offsetX, offsetY int)
-	widgetIntersect             func(w *Widget, area, intersection *D.Rectangle) T.Gboolean
-	widgetIsAncestor            func(w *Widget, ancestor *Widget) T.Gboolean
-	widgetIsComposited          func(w *Widget) T.Gboolean
-	widgetIsDrawable            func(w *Widget) T.Gboolean
-	widgetIsFocus               func(w *Widget) T.Gboolean
-	widgetIsSensitive           func(w *Widget) T.Gboolean
-	widgetIsToplevel            func(w *Widget) T.Gboolean
-	widgetKeynavFailed          func(w *Widget, direction DirectionType) T.Gboolean
+	widgetIntersect             func(w *Widget, area, intersection *D.Rectangle) bool
+	widgetIsAncestor            func(w *Widget, ancestor *Widget) bool
+	widgetIsComposited          func(w *Widget) bool
+	widgetIsDrawable            func(w *Widget) bool
+	widgetIsFocus               func(w *Widget) bool
+	widgetIsSensitive           func(w *Widget) bool
+	widgetIsToplevel            func(w *Widget) bool
+	widgetKeynavFailed          func(w *Widget, direction DirectionType) bool
 	widgetListAccelClosures     func(w *Widget) *T.GList
 	widgetListMnemonicLabels    func(w *Widget) *T.GList
 	widgetMap                   func(w *Widget)
-	widgetMnemonicActivate      func(w *Widget, groupCycling T.Gboolean) T.Gboolean
+	widgetMnemonicActivate      func(w *Widget, groupCycling bool) bool
 	widgetModifyBase            func(w *Widget, state StateType, color *D.Color)
 	widgetModifyBg              func(w *Widget, state StateType, color *D.Color)
 	widgetModifyCursor          func(w *Widget, primary *D.Color, secondary *D.Color)
@@ -157,39 +158,39 @@ var (
 	widgetRealize               func(w *Widget)
 	widgetRef                   func(w *Widget) *Widget
 	widgetRegionIntersect       func(w *Widget, region *D.Region) *D.Region
-	widgetRemoveAccelerator     func(w *Widget, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
+	widgetRemoveAccelerator     func(w *Widget, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) bool
 	widgetRemoveMnemonicLabel   func(w *Widget, label *Widget)
 	widgetRenderIcon            func(w *Widget, stockId string, size IconSize, detail string) *D.Pixbuf
 	widgetReparent              func(w, newParent *Widget)
 	widgetResetRcStyles         func(w *Widget)
 	widgetResetShapes           func(w *Widget)
 	widgetSendExpose            func(w *Widget, event *D.Event) int
-	widgetSendFocusChange       func(w *Widget, event *D.Event) T.Gboolean
+	widgetSendFocusChange       func(w *Widget, event *D.Event) bool
 	widgetSet                   func(w *Widget, firstPropertyName string, v ...VArg)
 	widgetSetAccelPath          func(w *Widget, accelPath string, accelGroup *AccelGroup)
 	widgetSetAllocation         func(w *Widget, allocation *Allocation)
-	widgetSetAppPaintable       func(w *Widget, appPaintable T.Gboolean)
-	widgetSetCanDefault         func(w *Widget, canDefault T.Gboolean)
-	widgetSetCanFocus           func(w *Widget, canFocus T.Gboolean)
-	widgetSetChildVisible       func(w *Widget, isVisible T.Gboolean)
+	widgetSetAppPaintable       func(w *Widget, appPaintable bool)
+	widgetSetCanDefault         func(w *Widget, canDefault bool)
+	widgetSetCanFocus           func(w *Widget, canFocus bool)
+	widgetSetChildVisible       func(w *Widget, isVisible bool)
 	widgetSetColormap           func(w *Widget, colormap *D.Colormap)
 	widgetSetCompositeName      func(w *Widget, name string)
 	widgetSetDirection          func(w *Widget, dir TextDirection)
-	widgetSetDoubleBuffered     func(w *Widget, doubleBuffered T.Gboolean)
+	widgetSetDoubleBuffered     func(w *Widget, doubleBuffered bool)
 	widgetSetEvents             func(w *Widget, events int)
 	widgetSetExtensionEvents    func(w *Widget, mode D.ExtensionMode)
-	widgetSetHasTooltip         func(w *Widget, hasTooltip T.Gboolean)
-	widgetSetHasWindow          func(w *Widget, hasWindow T.Gboolean)
-	widgetSetMapped             func(w *Widget, mapped T.Gboolean)
+	widgetSetHasTooltip         func(w *Widget, hasTooltip bool)
+	widgetSetHasWindow          func(w *Widget, hasWindow bool)
+	widgetSetMapped             func(w *Widget, mapped bool)
 	widgetSetName               func(w *Widget, name string)
-	widgetSetNoShowAll          func(w *Widget, noShowAll T.Gboolean)
+	widgetSetNoShowAll          func(w *Widget, noShowAll bool)
 	widgetSetParent             func(w *Widget, parent *Widget)
 	widgetSetParentWindow       func(w *Widget, parentWindow *D.Window)
-	widgetSetRealized           func(w *Widget, realized T.Gboolean)
-	widgetSetReceivesDefault    func(w *Widget, receivesDefault T.Gboolean)
-	widgetSetRedrawOnAllocate   func(w *Widget, redrawOnAllocate T.Gboolean)
-	widgetSetScrollAdjustments  func(w *Widget, hadjustment, vadjustment *Adjustment) T.Gboolean
-	widgetSetSensitive          func(w *Widget, sensitive T.Gboolean)
+	widgetSetRealized           func(w *Widget, realized bool)
+	widgetSetReceivesDefault    func(w *Widget, receivesDefault bool)
+	widgetSetRedrawOnAllocate   func(w *Widget, redrawOnAllocate bool)
+	widgetSetScrollAdjustments  func(w *Widget, hadjustment, vadjustment *Adjustment) bool
+	widgetSetSensitive          func(w *Widget, sensitive bool)
 	widgetSetSizeRequest        func(w *Widget, width int, height int)
 	widgetSetState              func(w *Widget, state StateType)
 	widgetSetStyle              func(w *Widget, style *Style)
@@ -198,7 +199,7 @@ var (
 	widgetSetTooltipWindow      func(w *Widget, customWindow *Window)
 	widgetSetUposition          func(w *Widget, x int, y int)
 	widgetSetUsize              func(w *Widget, width int, height int)
-	widgetSetVisible            func(w *Widget, visible T.Gboolean)
+	widgetSetVisible            func(w *Widget, visible bool)
 	widgetSetWindow             func(w *Widget, window *D.Window)
 	widgetShapeCombineMask      func(w *Widget, shapeMask *T.GdkBitmap, offsetX, offsetY int)
 	widgetShow                  func(w *Widget)
@@ -217,16 +218,21 @@ var (
 	widgetUnref                 func(w *Widget)
 )
 
-func (w *Widget) Activate() T.Gboolean { return widgetActivate(w) }
+func (w *Widget) AsAboutDialog() *AboutDialog { return (*AboutDialog)(unsafe.Pointer(w)) }
+func (w *Widget) AsContainer() *Container     { return (*Container)(unsafe.Pointer(w)) }
+func (w *Widget) AsPointer() T.Gpointer       { return (T.Gpointer)(unsafe.Pointer(w)) }
+func (w *Widget) AsWindow() *Window           { return (*Window)(unsafe.Pointer(w)) }
+
+func (w *Widget) Activate() bool { return widgetActivate(w) }
 func (w *Widget) AddAccelerator(accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags) {
 	widgetAddAccelerator(w, accelSignal, accelGroup, accelKey, accelMods, accelFlags)
 }
 func (w *Widget) AddEvents(events int)           { widgetAddEvents(w, events) }
 func (w *Widget) AddMnemonicLabel(label *Widget) { widgetAddMnemonicLabel(w, label) }
-func (w *Widget) CanActivateAccel(signalId uint) T.Gboolean {
+func (w *Widget) CanActivateAccel(signalId uint) bool {
 	return widgetCanActivateAccel(w, signalId)
 }
-func (w *Widget) ChildFocus(direction DirectionType) T.Gboolean {
+func (w *Widget) ChildFocus(direction DirectionType) bool {
 	return widgetChildFocus(w, direction)
 }
 func (w *Widget) ChildNotify(childProperty string) { widgetChildNotify(w, childProperty) }
@@ -242,41 +248,41 @@ func (w *Widget) Destroyed(widgetPointer **Widget)      { widgetDestroyed(w, wid
 func (w *Widget) Draw(area *D.Rectangle)                { widgetDraw(w, area) }
 func (w *Widget) EnsureStyle()                          { widgetEnsureStyle(w) }
 func (w *Widget) ErrorBell()                            { widgetErrorBell(w) }
-func (w *Widget) Event(event *D.Event) T.Gboolean       { return widgetEvent(w, event) }
+func (w *Widget) Event(event *D.Event) bool             { return widgetEvent(w, event) }
 func (w *Widget) FreezeChildNotify()                    { widgetFreezeChildNotify(w) }
 func (w *Widget) GetAccessible() *A.Object              { return widgetGetAccessible(w) }
 func (w *Widget) GetAllocation(allocation *Allocation)  { widgetGetAllocation(w, allocation) }
 func (w *Widget) GetAncestor(widgetType O.Type) *Widget { return widgetGetAncestor(w, widgetType) }
-func (w *Widget) GetAppPaintable() T.Gboolean           { return widgetGetAppPaintable(w) }
-func (w *Widget) GetCanDefault() T.Gboolean             { return widgetGetCanDefault(w) }
-func (w *Widget) GetCanFocus() T.Gboolean               { return widgetGetCanFocus(w) }
+func (w *Widget) GetAppPaintable() bool                 { return widgetGetAppPaintable(w) }
+func (w *Widget) GetCanDefault() bool                   { return widgetGetCanDefault(w) }
+func (w *Widget) GetCanFocus() bool                     { return widgetGetCanFocus(w) }
 func (w *Widget) GetChildRequisition(requisition *Requisition) {
 	widgetGetChildRequisition(w, requisition)
 }
-func (w *Widget) GetChildVisible() T.Gboolean             { return widgetGetChildVisible(w) }
+func (w *Widget) GetChildVisible() bool                   { return widgetGetChildVisible(w) }
 func (w *Widget) GetColormap() *D.Colormap                { return widgetGetColormap(w) }
 func (w *Widget) GetCompositeName() string                { return widgetGetCompositeName(w) }
 func (w *Widget) GetDirection() TextDirection             { return widgetGetDirection(w) }
 func (w *Widget) GetDisplay() *D.Display                  { return widgetGetDisplay(w) }
-func (w *Widget) GetDoubleBuffered() T.Gboolean           { return widgetGetDoubleBuffered(w) }
+func (w *Widget) GetDoubleBuffered() bool                 { return widgetGetDoubleBuffered(w) }
 func (w *Widget) GetEvents() int                          { return widgetGetEvents(w) }
 func (w *Widget) GetExtensionEvents() D.ExtensionMode     { return widgetGetExtensionEvents(w) }
-func (w *Widget) GetHasTooltip() T.Gboolean               { return widgetGetHasTooltip(w) }
-func (w *Widget) GetHasWindow() T.Gboolean                { return widgetGetHasWindow(w) }
-func (w *Widget) GetMapped() T.Gboolean                   { return widgetGetMapped(w) }
+func (w *Widget) GetHasTooltip() bool                     { return widgetGetHasTooltip(w) }
+func (w *Widget) GetHasWindow() bool                      { return widgetGetHasWindow(w) }
+func (w *Widget) GetMapped() bool                         { return widgetGetMapped(w) }
 func (w *Widget) GetModifierStyle() *RcStyle              { return widgetGetModifierStyle(w) }
 func (w *Widget) GetName() string                         { return widgetGetName(w) }
-func (w *Widget) GetNoShowAll() T.Gboolean                { return widgetGetNoShowAll(w) }
+func (w *Widget) GetNoShowAll() bool                      { return widgetGetNoShowAll(w) }
 func (w *Widget) GetPangoContext() *P.Context             { return widgetGetPangoContext(w) }
 func (w *Widget) GetParent() *Widget                      { return widgetGetParent(w) }
 func (w *Widget) GetParentWindow() *D.Window              { return widgetGetParentWindow(w) }
 func (w *Widget) GetPointer(x *int, y *int)               { widgetGetPointer(w, x, y) }
-func (w *Widget) GetRealized() T.Gboolean                 { return widgetGetRealized(w) }
-func (w *Widget) GetReceivesDefault() T.Gboolean          { return widgetGetReceivesDefault(w) }
+func (w *Widget) GetRealized() bool                       { return widgetGetRealized(w) }
+func (w *Widget) GetReceivesDefault() bool                { return widgetGetReceivesDefault(w) }
 func (w *Widget) GetRequisition(requisition *Requisition) { widgetGetRequisition(w, requisition) }
 func (w *Widget) GetRootWindow() *D.Window                { return widgetGetRootWindow(w) }
 func (w *Widget) GetScreen() *D.Screen                    { return widgetGetScreen(w) }
-func (w *Widget) GetSensitive() T.Gboolean                { return widgetGetSensitive(w) }
+func (w *Widget) GetSensitive() bool                      { return widgetGetSensitive(w) }
 func (w *Widget) GetSettings() *Settings                  { return widgetGetSettings(w) }
 func (w *Widget) GetSizeRequest(width, height *int)       { widgetGetSizeRequest(w, width, height) }
 func (w *Widget) GetSnapshot(clipRect *D.Rectangle) *D.Pixmap {
@@ -288,38 +294,38 @@ func (w *Widget) GetTooltipMarkup() string  { return widgetGetTooltipMarkup(w) }
 func (w *Widget) GetTooltipText() string    { return widgetGetTooltipText(w) }
 func (w *Widget) GetTooltipWindow() *Window { return widgetGetTooltipWindow(w) }
 func (w *Widget) GetToplevel() *Widget      { return widgetGetToplevel(w) }
-func (w *Widget) GetVisible() T.Gboolean    { return widgetGetVisible(w) }
+func (w *Widget) GetVisible() bool          { return widgetGetVisible(w) }
 func (w *Widget) GetVisual() *D.Visual      { return widgetGetVisual(w) }
 func (w *Widget) GetWindow() *D.Window      { return widgetGetWindow(w) }
 func (w *Widget) GrabDefault()              { widgetGrabDefault(w) }
 func (w *Widget) GrabFocus()                { widgetGrabFocus(w) }
-func (w *Widget) HasDefault() T.Gboolean    { return widgetHasDefault(w) }
-func (w *Widget) HasFocus() T.Gboolean      { return widgetHasFocus(w) }
-func (w *Widget) HasGrab() T.Gboolean       { return widgetHasGrab(w) }
-func (w *Widget) HasRcStyle() T.Gboolean    { return widgetHasRcStyle(w) }
-func (w *Widget) HasScreen() T.Gboolean     { return widgetHasScreen(w) }
+func (w *Widget) HasDefault() bool          { return widgetHasDefault(w) }
+func (w *Widget) HasFocus() bool            { return widgetHasFocus(w) }
+func (w *Widget) HasGrab() bool             { return widgetHasGrab(w) }
+func (w *Widget) HasRcStyle() bool          { return widgetHasRcStyle(w) }
+func (w *Widget) HasScreen() bool           { return widgetHasScreen(w) }
 func (w *Widget) Hide()                     { widgetHide(w) }
 func (w *Widget) HideAll()                  { widgetHideAll(w) }
-func (w *Widget) HideOnDelete() T.Gboolean  { return widgetHideOnDelete(w) }
+func (w *Widget) HideOnDelete() bool        { return widgetHideOnDelete(w) }
 func (w *Widget) InputShapeCombineMask(shapeMask *T.GdkBitmap, offsetX, offsetY int) {
 	widgetInputShapeCombineMask(w, shapeMask, offsetX, offsetY)
 }
-func (w *Widget) Intersect(area, intersection *D.Rectangle) T.Gboolean {
+func (w *Widget) Intersect(area, intersection *D.Rectangle) bool {
 	return widgetIntersect(w, area, intersection)
 }
-func (w *Widget) IsAncestor(ancestor *Widget) T.Gboolean { return widgetIsAncestor(w, ancestor) }
-func (w *Widget) IsComposited() T.Gboolean               { return widgetIsComposited(w) }
-func (w *Widget) IsDrawable() T.Gboolean                 { return widgetIsDrawable(w) }
-func (w *Widget) IsFocus() T.Gboolean                    { return widgetIsFocus(w) }
-func (w *Widget) IsSensitive() T.Gboolean                { return widgetIsSensitive(w) }
-func (w *Widget) IsToplevel() T.Gboolean                 { return widgetIsToplevel(w) }
-func (w *Widget) KeynavFailed(direction DirectionType) T.Gboolean {
+func (w *Widget) IsAncestor(ancestor *Widget) bool { return widgetIsAncestor(w, ancestor) }
+func (w *Widget) IsComposited() bool               { return widgetIsComposited(w) }
+func (w *Widget) IsDrawable() bool                 { return widgetIsDrawable(w) }
+func (w *Widget) IsFocus() bool                    { return widgetIsFocus(w) }
+func (w *Widget) IsSensitive() bool                { return widgetIsSensitive(w) }
+func (w *Widget) IsToplevel() bool                 { return widgetIsToplevel(w) }
+func (w *Widget) KeynavFailed(direction DirectionType) bool {
 	return widgetKeynavFailed(w, direction)
 }
 func (w *Widget) ListAccelClosures() *T.GList  { return widgetListAccelClosures(w) }
 func (w *Widget) ListMnemonicLabels() *T.GList { return widgetListMnemonicLabels(w) }
 func (w *Widget) Map()                         { widgetMap(w) }
-func (w *Widget) MnemonicActivate(groupCycling T.Gboolean) T.Gboolean {
+func (w *Widget) MnemonicActivate(groupCycling bool) bool {
 	return widgetMnemonicActivate(w, groupCycling)
 }
 func (w *Widget) ModifyBase(state StateType, color *D.Color) {
@@ -349,53 +355,53 @@ func (w *Widget) Ref() *Widget                           { return widgetRef(w) }
 func (w *Widget) RegionIntersect(region *D.Region) *D.Region {
 	return widgetRegionIntersect(w, region)
 }
-func (w *Widget) RemoveAccelerator(accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
+func (w *Widget) RemoveAccelerator(accelGroup *AccelGroup, accelKey uint, accelMods T.GdkModifierType) bool {
 	return widgetRemoveAccelerator(w, accelGroup, accelKey, accelMods)
 }
 func (w *Widget) RemoveMnemonicLabel(label *Widget) { widgetRemoveMnemonicLabel(w, label) }
 func (w *Widget) RenderIcon(stockId string, size IconSize, detail string) *D.Pixbuf {
 	return widgetRenderIcon(w, stockId, size, detail)
 }
-func (w *Widget) Reparent(newParent *Widget)                { widgetReparent(w, newParent) }
-func (w *Widget) ResetRcStyles()                            { widgetResetRcStyles(w) }
-func (w *Widget) ResetShapes()                              { widgetResetShapes(w) }
-func (w *Widget) SendExpose(event *D.Event) int             { return widgetSendExpose(w, event) }
-func (w *Widget) SendFocusChange(event *D.Event) T.Gboolean { return widgetSendFocusChange(w, event) }
-func (w *Widget) Set(firstPropertyName string, v ...VArg)   { widgetSet(w, firstPropertyName, v) }
+func (w *Widget) Reparent(newParent *Widget)              { widgetReparent(w, newParent) }
+func (w *Widget) ResetRcStyles()                          { widgetResetRcStyles(w) }
+func (w *Widget) ResetShapes()                            { widgetResetShapes(w) }
+func (w *Widget) SendExpose(event *D.Event) int           { return widgetSendExpose(w, event) }
+func (w *Widget) SendFocusChange(event *D.Event) bool     { return widgetSendFocusChange(w, event) }
+func (w *Widget) Set(firstPropertyName string, v ...VArg) { widgetSet(w, firstPropertyName, v) }
 func (w *Widget) SetAccelPath(accelPath string, accelGroup *AccelGroup) {
 	widgetSetAccelPath(w, accelPath, accelGroup)
 }
-func (w *Widget) SetAllocation(allocation *Allocation)    { widgetSetAllocation(w, allocation) }
-func (w *Widget) SetAppPaintable(appPaintable T.Gboolean) { widgetSetAppPaintable(w, appPaintable) }
-func (w *Widget) SetCanDefault(canDefault T.Gboolean)     { widgetSetCanDefault(w, canDefault) }
-func (w *Widget) SetCanFocus(canFocus T.Gboolean)         { widgetSetCanFocus(w, canFocus) }
-func (w *Widget) SetChildVisible(isVisible T.Gboolean)    { widgetSetChildVisible(w, isVisible) }
-func (w *Widget) SetColormap(colormap *D.Colormap)        { widgetSetColormap(w, colormap) }
-func (w *Widget) SetCompositeName(name string)            { widgetSetCompositeName(w, name) }
-func (w *Widget) SetDirection(dir TextDirection)          { widgetSetDirection(w, dir) }
-func (w *Widget) SetDoubleBuffered(doubleBuffered T.Gboolean) {
+func (w *Widget) SetAllocation(allocation *Allocation) { widgetSetAllocation(w, allocation) }
+func (w *Widget) SetAppPaintable(appPaintable bool)    { widgetSetAppPaintable(w, appPaintable) }
+func (w *Widget) SetCanDefault(canDefault bool)        { widgetSetCanDefault(w, canDefault) }
+func (w *Widget) SetCanFocus(canFocus bool)            { widgetSetCanFocus(w, canFocus) }
+func (w *Widget) SetChildVisible(isVisible bool)       { widgetSetChildVisible(w, isVisible) }
+func (w *Widget) SetColormap(colormap *D.Colormap)     { widgetSetColormap(w, colormap) }
+func (w *Widget) SetCompositeName(name string)         { widgetSetCompositeName(w, name) }
+func (w *Widget) SetDirection(dir TextDirection)       { widgetSetDirection(w, dir) }
+func (w *Widget) SetDoubleBuffered(doubleBuffered bool) {
 	widgetSetDoubleBuffered(w, doubleBuffered)
 }
 func (w *Widget) SetEvents(events int)                    { widgetSetEvents(w, events) }
 func (w *Widget) SetExtensionEvents(mode D.ExtensionMode) { widgetSetExtensionEvents(w, mode) }
-func (w *Widget) SetHasTooltip(hasTooltip T.Gboolean)     { widgetSetHasTooltip(w, hasTooltip) }
-func (w *Widget) SetHasWindow(hasWindow T.Gboolean)       { widgetSetHasWindow(w, hasWindow) }
-func (w *Widget) SetMapped(mapped T.Gboolean)             { widgetSetMapped(w, mapped) }
+func (w *Widget) SetHasTooltip(hasTooltip bool)           { widgetSetHasTooltip(w, hasTooltip) }
+func (w *Widget) SetHasWindow(hasWindow bool)             { widgetSetHasWindow(w, hasWindow) }
+func (w *Widget) SetMapped(mapped bool)                   { widgetSetMapped(w, mapped) }
 func (w *Widget) SetName(name string)                     { widgetSetName(w, name) }
-func (w *Widget) SetNoShowAll(noShowAll T.Gboolean)       { widgetSetNoShowAll(w, noShowAll) }
+func (w *Widget) SetNoShowAll(noShowAll bool)             { widgetSetNoShowAll(w, noShowAll) }
 func (w *Widget) SetParent(parent *Widget)                { widgetSetParent(w, parent) }
 func (w *Widget) SetParentWindow(parentWindow *D.Window)  { widgetSetParentWindow(w, parentWindow) }
-func (w *Widget) SetRealized(realized T.Gboolean)         { widgetSetRealized(w, realized) }
-func (w *Widget) SetReceivesDefault(receivesDefault T.Gboolean) {
+func (w *Widget) SetRealized(realized bool)               { widgetSetRealized(w, realized) }
+func (w *Widget) SetReceivesDefault(receivesDefault bool) {
 	widgetSetReceivesDefault(w, receivesDefault)
 }
-func (w *Widget) SetRedrawOnAllocate(redrawOnAllocate T.Gboolean) {
+func (w *Widget) SetRedrawOnAllocate(redrawOnAllocate bool) {
 	widgetSetRedrawOnAllocate(w, redrawOnAllocate)
 }
-func (w *Widget) SetScrollAdjustments(hadjustment, vadjustment *Adjustment) T.Gboolean {
+func (w *Widget) SetScrollAdjustments(hadjustment, vadjustment *Adjustment) bool {
 	return widgetSetScrollAdjustments(w, hadjustment, vadjustment)
 }
-func (w *Widget) SetSensitive(sensitive T.Gboolean)     { widgetSetSensitive(w, sensitive) }
+func (w *Widget) SetSensitive(sensitive bool)           { widgetSetSensitive(w, sensitive) }
 func (w *Widget) SetSizeRequest(width, height int)      { widgetSetSizeRequest(w, width, height) }
 func (w *Widget) SetState(state StateType)              { widgetSetState(w, state) }
 func (w *Widget) SetStyle(style *Style)                 { widgetSetStyle(w, style) }
@@ -404,7 +410,7 @@ func (w *Widget) SetTooltipText(text string)            { widgetSetTooltipText(w
 func (w *Widget) SetTooltipWindow(customWindow *Window) { widgetSetTooltipWindow(w, customWindow) }
 func (w *Widget) SetUposition(x, y int)                 { widgetSetUposition(w, x, y) }
 func (w *Widget) SetUsize(width, height int)            { widgetSetUsize(w, width, height) }
-func (w *Widget) SetVisible(visible T.Gboolean)         { widgetSetVisible(w, visible) }
+func (w *Widget) SetVisible(visible bool)               { widgetSetVisible(w, visible) }
 func (w *Widget) SetWindow(window *D.Window)            { widgetSetWindow(w, window) }
 func (w *Widget) ShapeCombineMask(shapeMask *T.GdkBitmap, offsetX, offsetY int) {
 	widgetShapeCombineMask(w, shapeMask, offsetX, offsetY)
@@ -461,68 +467,68 @@ type WidgetClass struct {
 	DirectionChanged func(widget *Widget,
 		previousDirection TextDirection)
 	GrabNotify func(widget *Widget,
-		wasGrabbed T.Gboolean)
+		wasGrabbed bool)
 	ChildNotify func(widget *Widget,
 		pspec *T.GParamSpec)
 	MnemonicActivate func(widget *Widget,
-		groupCycling T.Gboolean) T.Gboolean
+		groupCycling bool) bool
 	GrabFocus func(widget *Widget)
 	Focus     func(widget *Widget,
-		direction DirectionType) T.Gboolean
+		direction DirectionType) bool
 	Event func(widget *Widget,
-		event *D.Event) T.Gboolean
+		event *D.Event) bool
 	ButtonPressEvent func(widget *Widget,
-		event *D.EventButton) T.Gboolean
+		event *D.EventButton) bool
 	ButtonReleaseEvent func(widget *Widget,
-		event *D.EventButton) T.Gboolean
+		event *D.EventButton) bool
 	ScrollEvent func(widget *Widget,
-		event *D.EventScroll) T.Gboolean
+		event *D.EventScroll) bool
 	MotionNotifyEvent func(widget *Widget,
-		event *D.EventMotion) T.Gboolean
+		event *D.EventMotion) bool
 	DeleteEvent func(widget *Widget,
-		event *D.EventAny) T.Gboolean
+		event *D.EventAny) bool
 	DestroyEvent func(widget *Widget,
-		event *D.EventAny) T.Gboolean
+		event *D.EventAny) bool
 	ExposeEvent func(widget *Widget,
-		event *D.EventExpose) T.Gboolean
+		event *D.EventExpose) bool
 	KeyPressEvent func(widget *Widget,
-		event *D.EventKey) T.Gboolean
+		event *D.EventKey) bool
 	KeyReleaseEvent func(widget *Widget,
-		event *D.EventKey) T.Gboolean
+		event *D.EventKey) bool
 	EnterNotifyEvent func(widget *Widget,
-		event *D.EventCrossing) T.Gboolean
+		event *D.EventCrossing) bool
 	LeaveNotifyEvent func(widget *Widget,
-		event *D.EventCrossing) T.Gboolean
+		event *D.EventCrossing) bool
 	ConfigureEvent func(widget *Widget,
-		event *D.EventConfigure) T.Gboolean
+		event *D.EventConfigure) bool
 	FocusInEvent func(widget *Widget,
-		event *D.EventFocus) T.Gboolean
+		event *D.EventFocus) bool
 	FocusOutEvent func(widget *Widget,
-		event *D.EventFocus) T.Gboolean
+		event *D.EventFocus) bool
 	MapEvent func(widget *Widget,
-		event *D.EventAny) T.Gboolean
+		event *D.EventAny) bool
 	UnmapEvent func(widget *Widget,
-		event *D.EventAny) T.Gboolean
+		event *D.EventAny) bool
 	PropertyNotifyEvent func(widget *Widget,
-		event *D.EventProperty) T.Gboolean
+		event *D.EventProperty) bool
 	SelectionClearEvent func(widget *Widget,
-		event *D.EventSelection) T.Gboolean
+		event *D.EventSelection) bool
 	SelectionRequestEvent func(widget *Widget,
-		event *D.EventSelection) T.Gboolean
+		event *D.EventSelection) bool
 	SelectionNotifyEvent func(widget *Widget,
-		event *D.EventSelection) T.Gboolean
+		event *D.EventSelection) bool
 	ProximityInEvent func(widget *Widget,
-		event *D.EventProximity) T.Gboolean
+		event *D.EventProximity) bool
 	ProximityOutEvent func(widget *Widget,
-		event *D.EventProximity) T.Gboolean
+		event *D.EventProximity) bool
 	VisibilityNotifyEvent func(widget *Widget,
-		event *D.EventVisibility) T.Gboolean
+		event *D.EventVisibility) bool
 	ClientEvent func(widget *Widget,
-		event *D.EventClient) T.Gboolean
+		event *D.EventClient) bool
 	NoExposeEvent func(widget *Widget,
-		event *D.EventAny) T.Gboolean
+		event *D.EventAny) bool
 	WindowStateEvent func(widget *Widget,
-		event *D.EventWindowState) T.Gboolean
+		event *D.EventWindowState) bool
 	SelectionGet func(widget *Widget,
 		selectionData *SelectionData,
 		info, time uint)
@@ -544,29 +550,29 @@ type WidgetClass struct {
 		time uint)
 	DragMotion func(widget *Widget,
 		context *D.DragContext,
-		x, y int, time uint) T.Gboolean
+		x, y int, time uint) bool
 	DragDrop func(widget *Widget,
 		context *D.DragContext,
-		x, y int, time uint) T.Gboolean
+		x, y int, time uint) bool
 	DragDataReceived func(widget *Widget,
 		context *D.DragContext,
 		x, y int,
 		selectionData *SelectionData,
 		info, time uint)
-	PopupMenu func(widget *Widget) T.Gboolean
+	PopupMenu func(widget *Widget) bool
 	ShowHelp  func(widget *Widget,
-		helpType WidgetHelpType) T.Gboolean
+		helpType WidgetHelpType) bool
 	GetAccessible func(widget *Widget) *A.Object
 	ScreenChanged func(widget *Widget,
-		previousScreen *D.Screen) T.Gboolean
+		previousScreen *D.Screen) bool
 	CanActivateAccel func(widget *Widget,
-		signalId uint) T.Gboolean
+		signalId uint) bool
 	GrabBrokenEvent func(widget *Widget,
-		event *D.EventGrabBroken) T.Gboolean
+		event *D.EventGrabBroken) bool
 	CompositedChanged func(widget *Widget)
 	QueryTooltip      func(widget *Widget,
-		x, y int, keyboardTooltip T.Gboolean,
-		tooltip *Tooltip) T.Gboolean
+		x, y int, keyboardTooltip bool,
+		tooltip *Tooltip) bool
 	_, _, _ func()
 }
 
@@ -646,116 +652,124 @@ var (
 	WindowGetType func() O.Type
 	WindowNew     func(t WindowType) *Widget
 
-	WindowSetDefaultIconList         func(list *T.GList)
 	WindowGetDefaultIconList         func() *T.GList
-	WindowSetDefaultIcon             func(icon *D.Pixbuf)
-	WindowSetDefaultIconName         func(name string)
-	WindowGetDefaultIconName         func() string
-	WindowSetDefaultIconFromFile     func(filename string, err **T.GError) T.Gboolean
+	WindowGetDefaultIconName         func() string // 2.16
 	WindowListToplevels              func() *T.GList
-	WindowSetAutoStartupNotification func(setting T.Gboolean)
+	WindowSetAutoStartupNotification func(setting bool)                         // 2.2
+	WindowSetDefaultIcon             func(icon *D.Pixbuf)                       // 2.4
+	WindowSetDefaultIconFromFile     func(filename string, err **T.GError) bool // 2.2
+	WindowSetDefaultIconList         func(list *T.GList)
+	WindowSetDefaultIconName         func(name string) // 2.6
 
-	windowActivateDefault       func(w *Window) T.Gboolean
-	windowActivateFocus         func(w *Window) T.Gboolean
-	windowActivateKey           func(w *Window, event *D.EventKey) T.Gboolean
+	windowActivateDefault       func(w *Window) bool
+	windowActivateFocus         func(w *Window) bool
+	windowActivateKey           func(w *Window, event *D.EventKey) bool
 	windowAddAccelGroup         func(w *Window, accelGroup *AccelGroup)
 	windowAddEmbeddedXid        func(w *Window, xid T.GdkNativeWindow)
 	windowAddMnemonic           func(w *Window, keyval uint, target *Widget)
 	windowBeginMoveDrag         func(w *Window, button, rootX, rootY int, timestamp T.GUint32)
 	windowBeginResizeDrag       func(w *Window, edge D.WindowEdge, button, rootX, rootY int, timestamp T.GUint32)
 	windowDeiconify             func(w *Window)
-	windowFullscreen            func(w *Window)
-	windowGetAcceptFocus        func(w *Window) T.Gboolean
-	windowGetDecorated          func(w *Window) T.Gboolean
+	windowFullscreen            func(w *Window)      // 2.2
+	windowGetAcceptFocus        func(w *Window) bool // 2.4
+	windowGetDecorated          func(w *Window) bool
 	windowGetDefaultSize        func(w *Window, width, height *int)
-	windowGetDefaultWidget      func(w *Window) *Widget
-	windowGetDeletable          func(w *Window) T.Gboolean
-	windowGetDestroyWithParent  func(w *Window) T.Gboolean
+	windowGetDefaultWidget      func(w *Window) *Widget // 2.14
+	windowGetDeletable          func(w *Window) bool    // 2.10
+	windowGetDestroyWithParent  func(w *Window) bool
 	windowGetFocus              func(w *Window) *Widget
-	windowGetFocusOnMap         func(w *Window) T.Gboolean
+	windowGetFocusOnMap         func(w *Window) bool // 2.6
 	windowGetFrameDimensions    func(w *Window, left, top, right, bottom *int)
 	windowGetGravity            func(w *Window) D.Gravity
-	windowGetGroup              func(w *Window) *WindowGroup
-	windowGetHasFrame           func(w *Window) T.Gboolean
+	windowGetGroup              func(w *Window) *WindowGroup // 2.10
+	windowGetHasFrame           func(w *Window) bool
 	windowGetIcon               func(w *Window) *D.Pixbuf
 	windowGetIconList           func(w *Window) *T.GList
-	windowGetIconName           func(w *Window) string
+	windowGetIconName           func(w *Window) string // 2.6
 	windowGetMnemonicModifier   func(w *Window) T.GdkModifierType
-	windowGetMnemonicsVisible   func(w *Window) T.Gboolean
-	windowGetModal              func(w *Window) T.Gboolean
-	windowGetOpacity            func(w *Window) float64
+	windowGetMnemonicsVisible   func(w *Window) bool
+	windowGetModal              func(w *Window) bool
+	windowGetOpacity            func(w *Window) float64 // 2.12
 	windowGetPosition           func(w *Window, rootX, rootY *int)
-	windowGetResizable          func(w *Window) T.Gboolean
+	windowGetResizable          func(w *Window) bool
 	windowGetRole               func(w *Window) string
-	windowGetScreen             func(w *Window) *D.Screen
+	windowGetScreen             func(w *Window) *D.Screen // 2.2
 	windowGetSize               func(w *Window, width, height *int)
-	windowGetSkipPagerHint      func(w *Window) T.Gboolean
-	windowGetSkipTaskbarHint    func(w *Window) T.Gboolean
+	windowGetSkipPagerHint      func(w *Window) bool // 2.2
+	windowGetSkipTaskbarHint    func(w *Window) bool // 2.2
 	windowGetTitle              func(w *Window) string
 	windowGetTransientFor       func(w *Window) *Window
 	windowGetTypeHint           func(w *Window) D.WindowTypeHint
-	windowGetUrgencyHint        func(w *Window) T.Gboolean
+	windowGetUrgencyHint        func(w *Window) bool // 2.8
 	windowGetWindowType         func(w *Window) WindowType
-	windowHasGroup              func(w *Window) T.Gboolean
-	windowHasToplevelFocus      func(w *Window) T.Gboolean
+	windowHasGroup              func(w *Window) bool
+	windowHasToplevelFocus      func(w *Window) bool // 2.4
 	windowIconify               func(w *Window)
-	windowIsActive              func(w *Window) T.Gboolean
+	windowIsActive              func(w *Window) bool // 2.4
 	windowMaximize              func(w *Window)
-	windowMnemonicActivate      func(w *Window, keyval uint, modifier T.GdkModifierType) T.Gboolean
+	windowMnemonicActivate      func(w *Window, keyval uint, modifier T.GdkModifierType) bool
 	windowMove                  func(w *Window, x, y int)
-	windowParseGeometry         func(w *Window, geometry string) T.Gboolean
+	windowParseGeometry         func(w *Window, geometry string) bool
 	windowPresent               func(w *Window)
-	windowPresentWithTime       func(w *Window, timestamp T.GUint32)
-	windowPropagateKeyEvent     func(w *Window, event *D.EventKey) T.Gboolean
+	windowPresentWithTime       func(w *Window, timestamp T.GUint32) // 2.8
+	windowPropagateKeyEvent     func(w *Window, event *D.EventKey) bool
 	windowRemoveAccelGroup      func(w *Window, accelGroup *AccelGroup)
 	windowRemoveEmbeddedXid     func(w *Window, xid T.GdkNativeWindow)
 	windowRemoveMnemonic        func(w *Window, keyval uint, target *Widget)
 	windowReshowWithInitialSize func(w *Window)
 	windowResize                func(w *Window, width, height int)
-	windowSetAcceptFocus        func(w *Window, setting T.Gboolean)
-	windowSetDecorated          func(w *Window, setting T.Gboolean)
+	windowSetAcceptFocus        func(w *Window, setting bool) // 2.4
+	windowSetDecorated          func(w *Window, setting bool)
 	windowSetDefault            func(w *Window, defaultWidget *Widget)
 	windowSetDefaultSize        func(w *Window, width, height int)
-	windowSetDeletable          func(w *Window, setting T.Gboolean)
-	windowSetDestroyWithParent  func(w *Window, setting T.Gboolean)
+	windowSetDeletable          func(w *Window, setting bool) // 2.10
+	windowSetDestroyWithParent  func(w *Window, setting bool)
 	windowSetFocus              func(w *Window, focus *Widget)
-	windowSetFocusOnMap         func(w *Window, setting T.Gboolean)
+	windowSetFocusOnMap         func(w *Window, setting bool) // 2.6
 	windowSetFrameDimensions    func(w *Window, left, top, right, bottom int)
 	windowSetGeometryHints      func(w *Window, geometryWidget *Widget, geometry *D.Geometry, geomMask D.WindowHints)
 	windowSetGravity            func(w *Window, gravity D.Gravity)
-	windowSetHasFrame           func(w *Window, setting T.Gboolean)
+	windowSetHasFrame           func(w *Window, setting bool)
 	windowSetIcon               func(w *Window, icon *D.Pixbuf)
-	windowSetIconFromFile       func(w *Window, filename string, err **T.GError) T.Gboolean
+	windowSetIconFromFile       func(w *Window, filename string, err **T.GError) bool // 2.2
 	windowSetIconList           func(w *Window, list *T.GList)
-	windowSetIconName           func(w *Window, name string)
-	windowSetKeepAbove          func(w *Window, setting T.Gboolean)
-	windowSetKeepBelow          func(w *Window, setting T.Gboolean)
+	windowSetIconName           func(w *Window, name string)  // 2.6
+	windowSetKeepAbove          func(w *Window, setting bool) // 2.4
+	windowSetKeepBelow          func(w *Window, setting bool) // 2.4
 	windowSetMnemonicModifier   func(w *Window, modifier T.GdkModifierType)
-	windowSetMnemonicsVisible   func(w *Window, setting T.Gboolean)
-	windowSetModal              func(w *Window, modal T.Gboolean)
-	windowSetOpacity            func(w *Window, opacity float64)
-	windowSetPolicy             func(w *Window, allowShrink, allowGrow, autoShrink int)
-	windowSetPosition           func(w *Window, position WindowPosition)
-	windowSetResizable          func(w *Window, resizable T.Gboolean)
-	windowSetRole               func(w *Window, role string)
-	windowSetScreen             func(w *Window, screen *D.Screen)
-	windowSetSkipPagerHint      func(w *Window, setting T.Gboolean)
-	windowSetSkipTaskbarHint    func(w *Window, setting T.Gboolean)
-	windowSetStartupId          func(w *Window, startupId string)
-	windowSetTitle              func(w *Window, title string)
-	windowSetTransientFor       func(w *Window, parent *Window)
-	windowSetTypeHint           func(w *Window, hint D.WindowTypeHint)
-	windowSetUrgencyHint        func(w *Window, setting T.Gboolean)
-	windowSetWmclass            func(w *Window, wmclassName, wmclassClass string)
-	windowStick                 func(w *Window)
-	windowUnfullscreen          func(w *Window)
-	windowUnmaximize            func(w *Window)
-	windowUnstick               func(w *Window)
+	windowSetMnemonicsVisible   func(w *Window, setting bool)
+	windowSetModal              func(w *Window, modal bool)
+	windowSetOpacity            func(w *Window, opacity float64) // 2.12
+	// Deprecated windowSetPolicy func(w *Window, allowShrink, allowGrow, autoShrink int)
+	windowSetPosition        func(w *Window, position WindowPosition)
+	windowSetResizable       func(w *Window, resizable bool)
+	windowSetRole            func(w *Window, role string)
+	windowSetScreen          func(w *Window, screen *D.Screen) // 2.2
+	windowSetSkipPagerHint   func(w *Window, setting bool)     // 2.2
+	windowSetSkipTaskbarHint func(w *Window, setting bool)     // 2.2
+	windowSetStartupId       func(w *Window, startupId string) // 2.12
+	windowSetTitle           func(w *Window, title string)
+	windowSetTransientFor    func(w *Window, parent *Window)
+	windowSetTypeHint        func(w *Window, hint D.WindowTypeHint)
+	windowSetUrgencyHint     func(w *Window, setting bool) // 2.8
+	windowSetWmclass         func(w *Window, wmclassName, wmclassClass string)
+	windowStick              func(w *Window)
+	windowUnfullscreen       func(w *Window)
+	windowUnmaximize         func(w *Window)
+	windowUnstick            func(w *Window)
 )
 
-func (w *Window) ActivateDefault() T.Gboolean { return windowActivateDefault(w) }
-func (w *Window) ActivateFocus() T.Gboolean   { return windowActivateFocus(w) }
-func (w *Window) ActivateKey(event *D.EventKey) T.Gboolean {
+func NewWindow(t WindowType) (wt *Widget, w *Window) {
+	wt = WindowNew(t)
+	w = (*Window)(unsafe.Pointer(wt))
+	return
+}
+
+func (w *Window) AsContainer() *Container { return (*Container)(unsafe.Pointer(w)) }
+
+func (w *Window) ActivateDefault() bool { return windowActivateDefault(w) }
+func (w *Window) ActivateFocus() bool   { return windowActivateFocus(w) }
+func (w *Window) ActivateKey(event *D.EventKey) bool {
 	return windowActivateKey(w, event)
 }
 func (w *Window) AddAccelGroup(accelGroup *AccelGroup)    { windowAddAccelGroup(w, accelGroup) }
@@ -767,56 +781,56 @@ func (w *Window) BeginMoveDrag(button, rootX, rootY int, timestamp T.GUint32) {
 func (w *Window) BeginResizeDrag(edge D.WindowEdge, button, rootX, rootY int, timestamp T.GUint32) {
 	windowBeginResizeDrag(w, edge, button, rootX, rootY, timestamp)
 }
-func (w *Window) Deiconify()                 { windowDeiconify(w) }
-func (w *Window) Fullscreen()                { windowFullscreen(w) }
-func (w *Window) GetAcceptFocus() T.Gboolean { return windowGetAcceptFocus(w) }
-func (w *Window) GetDecorated() T.Gboolean   { return windowGetDecorated(w) }
-func (w *Window) GetDefaultSize(width, height *int) {
+func (w *Window) Deiconify()        { windowDeiconify(w) }
+func (w *Window) Fullscreen()       { windowFullscreen(w) }
+func (w *Window) AcceptFocus() bool { return windowGetAcceptFocus(w) }
+func (w *Window) Decorated() bool   { return windowGetDecorated(w) }
+func (w *Window) DefaultSize(width, height *int) {
 	windowGetDefaultSize(w, width, height)
 }
-func (w *Window) GetDefaultWidget() *Widget        { return windowGetDefaultWidget(w) }
-func (w *Window) GetDeletable() T.Gboolean         { return windowGetDeletable(w) }
-func (w *Window) GetDestroyWithParent() T.Gboolean { return windowGetDestroyWithParent(w) }
-func (w *Window) GetFocus() *Widget                { return windowGetFocus(w) }
-func (w *Window) GetFocusOnMap() T.Gboolean        { return windowGetFocusOnMap(w) }
-func (w *Window) GetFrameDimensions(left, top, right, bottom *int) {
+func (w *Window) GetDefaultWidget() *Widget { return windowGetDefaultWidget(w) } //Note(t):removing Get introduces ambiguity
+func (w *Window) Deletable() bool           { return windowGetDeletable(w) }
+func (w *Window) DestroyWithParent() bool   { return windowGetDestroyWithParent(w) }
+func (w *Window) Focus() *Widget            { return windowGetFocus(w) }
+func (w *Window) FocusOnMap() bool          { return windowGetFocusOnMap(w) }
+func (w *Window) FrameDimensions(left, top, right, bottom *int) {
 	windowGetFrameDimensions(w, left, top, right, bottom)
 }
-func (w *Window) GetGravity() D.Gravity                  { return windowGetGravity(w) }
-func (w *Window) GetGroup() *WindowGroup                 { return windowGetGroup(w) }
-func (w *Window) GetHasFrame() T.Gboolean                { return windowGetHasFrame(w) }
-func (w *Window) GetIcon() *D.Pixbuf                     { return windowGetIcon(w) }
-func (w *Window) GetIconList() *T.GList                  { return windowGetIconList(w) }
-func (w *Window) GetIconName() string                    { return windowGetIconName(w) }
-func (w *Window) GetMnemonicModifier() T.GdkModifierType { return windowGetMnemonicModifier(w) }
-func (w *Window) GetMnemonicsVisible() T.Gboolean        { return windowGetMnemonicsVisible(w) }
-func (w *Window) GetModal() T.Gboolean                   { return windowGetModal(w) }
-func (w *Window) GetOpacity() float64                    { return windowGetOpacity(w) }
-func (w *Window) GetPosition(rootX, rootY *int)          { windowGetPosition(w, rootX, rootY) }
-func (w *Window) GetResizable() T.Gboolean               { return windowGetResizable(w) }
-func (w *Window) GetRole() string                        { return windowGetRole(w) }
-func (w *Window) GetScreen() *D.Screen                   { return windowGetScreen(w) }
-func (w *Window) GetSize(width, height *int)             { windowGetSize(w, width, height) }
-func (w *Window) GetSkipPagerHint() T.Gboolean           { return windowGetSkipPagerHint(w) }
-func (w *Window) GetSkipTaskbarHint() T.Gboolean         { return windowGetSkipTaskbarHint(w) }
-func (w *Window) GetTitle() string                       { return windowGetTitle(w) }
-func (w *Window) GetTransientFor() *Window               { return windowGetTransientFor(w) }
-func (w *Window) GetTypeHint() D.WindowTypeHint          { return windowGetTypeHint(w) }
-func (w *Window) GetUrgencyHint() T.Gboolean             { return windowGetUrgencyHint(w) }
-func (w *Window) GetWindowType() WindowType              { return windowGetWindowType(w) }
-func (w *Window) HasGroup() T.Gboolean                   { return windowHasGroup(w) }
-func (w *Window) HasToplevelFocus() T.Gboolean           { return windowHasToplevelFocus(w) }
+func (w *Window) Gravity() D.Gravity                     { return windowGetGravity(w) }
+func (w *Window) GetGroup() *WindowGroup                 { return windowGetGroup(w) } //Note(t):removing Get introduces ambiguity
+func (w *Window) HasFrame() bool                         { return windowGetHasFrame(w) }
+func (w *Window) Icon() *D.Pixbuf                        { return windowGetIcon(w) }
+func (w *Window) IconList() *T.GList                     { return windowGetIconList(w) }
+func (w *Window) IconName() string                       { return windowGetIconName(w) }
+func (w *Window) GetMnemonicModifier() T.GdkModifierType { return windowGetMnemonicModifier(w) } //Note(t):removing Get introduces ambiguity
+func (w *Window) MnemonicsVisible() bool                 { return windowGetMnemonicsVisible(w) }
+func (w *Window) Modal() bool                            { return windowGetModal(w) }
+func (w *Window) Opacity() float64                       { return windowGetOpacity(w) }
+func (w *Window) Position(rootX, rootY *int)             { windowGetPosition(w, rootX, rootY) }
+func (w *Window) Resizable() bool                        { return windowGetResizable(w) }
+func (w *Window) Role() string                           { return windowGetRole(w) }
+func (w *Window) GetScreen() *D.Screen                   { return windowGetScreen(w) } //Note(t):removing Get introduces ambiguity
+func (w *Window) Size(width, height *int)                { windowGetSize(w, width, height) }
+func (w *Window) SkipPagerHint() bool                    { return windowGetSkipPagerHint(w) }
+func (w *Window) SkipTaskbarHint() bool                  { return windowGetSkipTaskbarHint(w) }
+func (w *Window) GetTitle() string                       { return windowGetTitle(w) } //Note(t):removing Get introduces ambiguity
+func (w *Window) TransientFor() *Window                  { return windowGetTransientFor(w) }
+func (w *Window) TypeHint() D.WindowTypeHint             { return windowGetTypeHint(w) }
+func (w *Window) UrgencyHint() bool                      { return windowGetUrgencyHint(w) }
+func (w *Window) WindowType() WindowType                 { return windowGetWindowType(w) }
+func (w *Window) HasGroup() bool                         { return windowHasGroup(w) }
+func (w *Window) HasToplevelFocus() bool                 { return windowHasToplevelFocus(w) }
 func (w *Window) Iconify()                               { windowIconify(w) }
-func (w *Window) IsActive() T.Gboolean                   { return windowIsActive(w) }
+func (w *Window) IsActive() bool                         { return windowIsActive(w) }
 func (w *Window) Maximize()                              { windowMaximize(w) }
-func (w *Window) MnemonicActivate(keyval uint, modifier T.GdkModifierType) T.Gboolean {
+func (w *Window) MnemonicActivate(keyval uint, modifier T.GdkModifierType) bool {
 	return windowMnemonicActivate(w, keyval, modifier)
 }
-func (w *Window) Move(x int, y int)                        { windowMove(w, x, y) }
-func (w *Window) ParseGeometry(geometry string) T.Gboolean { return windowParseGeometry(w, geometry) }
-func (w *Window) Present()                                 { windowPresent(w) }
-func (w *Window) PresentWithTime(timestamp T.GUint32)      { windowPresentWithTime(w, timestamp) }
-func (w *Window) PropagateKeyEvent(event *D.EventKey) T.Gboolean {
+func (w *Window) Move(x int, y int)                   { windowMove(w, x, y) }
+func (w *Window) ParseGeometry(geometry string) bool  { return windowParseGeometry(w, geometry) }
+func (w *Window) Present()                            { windowPresent(w) }
+func (w *Window) PresentWithTime(timestamp T.GUint32) { windowPresentWithTime(w, timestamp) }
+func (w *Window) PropagateKeyEvent(event *D.EventKey) bool {
 	return windowPropagateKeyEvent(w, event)
 }
 func (w *Window) RemoveAccelGroup(accelGroup *AccelGroup)    { windowRemoveAccelGroup(w, accelGroup) }
@@ -824,50 +838,52 @@ func (w *Window) RemoveEmbeddedXid(xid T.GdkNativeWindow)    { windowRemoveEmbed
 func (w *Window) RemoveMnemonic(keyval uint, target *Widget) { windowRemoveMnemonic(w, keyval, target) }
 func (w *Window) ReshowWithInitialSize()                     { windowReshowWithInitialSize(w) }
 func (w *Window) Resize(width, height int)                   { windowResize(w, width, height) }
-func (w *Window) SetAcceptFocus(setting T.Gboolean)          { windowSetAcceptFocus(w, setting) }
-func (w *Window) SetDecorated(setting T.Gboolean)            { windowSetDecorated(w, setting) }
+func (w *Window) SetAcceptFocus(setting bool)                { windowSetAcceptFocus(w, setting) }
+func (w *Window) SetDecorated(setting bool)                  { windowSetDecorated(w, setting) }
 func (w *Window) SetDefault(defaultWidget *Widget)           { windowSetDefault(w, defaultWidget) }
 func (w *Window) SetDefaultSize(width, height int)           { windowSetDefaultSize(w, width, height) }
-func (w *Window) SetDeletable(setting T.Gboolean)            { windowSetDeletable(w, setting) }
-func (w *Window) SetDestroyWithParent(setting T.Gboolean)    { windowSetDestroyWithParent(w, setting) }
+func (w *Window) SetDeletable(setting bool)                  { windowSetDeletable(w, setting) }
+func (w *Window) SetDestroyWithParent(setting bool)          { windowSetDestroyWithParent(w, setting) }
 func (w *Window) SetFocus(focus *Widget)                     { windowSetFocus(w, focus) }
-func (w *Window) SetFocusOnMap(setting T.Gboolean)           { windowSetFocusOnMap(w, setting) }
+func (w *Window) SetFocusOnMap(setting bool)                 { windowSetFocusOnMap(w, setting) }
 func (w *Window) SetFrameDimensions(left, top, right, bottom int) {
 	windowSetFrameDimensions(w, left, top, right, bottom)
 }
 func (w *Window) SetGeometryHints(geometryWidget *Widget, geometry *D.Geometry, geomMask D.WindowHints) {
 	windowSetGeometryHints(w, geometryWidget, geometry, geomMask)
 }
-func (w *Window) SetGravity(gravity D.Gravity)   { windowSetGravity(w, gravity) }
-func (w *Window) SetHasFrame(setting T.Gboolean) { windowSetHasFrame(w, setting) }
-func (w *Window) SetIcon(icon *D.Pixbuf)         { windowSetIcon(w, icon) }
-func (w *Window) SetIconFromFile(filename string, err **T.GError) T.Gboolean {
+func (w *Window) SetGravity(gravity D.Gravity) { windowSetGravity(w, gravity) }
+func (w *Window) SetHasFrame(setting bool)     { windowSetHasFrame(w, setting) }
+func (w *Window) SetIcon(icon *D.Pixbuf)       { windowSetIcon(w, icon) }
+func (w *Window) SetIconFromFile(filename string, err **T.GError) bool {
 	return windowSetIconFromFile(w, filename, err)
 }
-func (w *Window) SetIconList(list *T.GList)       { windowSetIconList(w, list) }
-func (w *Window) SetIconName(name string)         { windowSetIconName(w, name) }
-func (w *Window) SetKeepAbove(setting T.Gboolean) { windowSetKeepAbove(w, setting) }
-func (w *Window) SetKeepBelow(setting T.Gboolean) { windowSetKeepBelow(w, setting) }
+func (w *Window) SetIconList(list *T.GList) { windowSetIconList(w, list) }
+func (w *Window) SetIconName(name string)   { windowSetIconName(w, name) }
+func (w *Window) SetKeepAbove(setting bool) { windowSetKeepAbove(w, setting) }
+func (w *Window) SetKeepBelow(setting bool) { windowSetKeepBelow(w, setting) }
 func (w *Window) SetMnemonicModifier(modifier T.GdkModifierType) {
 	windowSetMnemonicModifier(w, modifier)
 }
-func (w *Window) SetMnemonicsVisible(setting T.Gboolean) { windowSetMnemonicsVisible(w, setting) }
-func (w *Window) SetModal(modal T.Gboolean)              { windowSetModal(w, modal) }
-func (w *Window) SetOpacity(opacity float64)             { windowSetOpacity(w, opacity) }
-func (w *Window) SetPolicy(allowShrink, allowGrow, autoShrink int) {
-	windowSetPolicy(w, allowShrink, allowGrow, autoShrink)
-}
-func (w *Window) SetPosition(position WindowPosition)   { windowSetPosition(w, position) }
-func (w *Window) SetResizable(resizable T.Gboolean)     { windowSetResizable(w, resizable) }
-func (w *Window) SetRole(role string)                   { windowSetRole(w, role) }
-func (w *Window) SetScreen(screen *D.Screen)            { windowSetScreen(w, screen) }
-func (w *Window) SetSkipPagerHint(setting T.Gboolean)   { windowSetSkipPagerHint(w, setting) }
-func (w *Window) SetSkipTaskbarHint(setting T.Gboolean) { windowSetSkipTaskbarHint(w, setting) }
-func (w *Window) SetStartupId(startupId string)         { windowSetStartupId(w, startupId) }
-func (w *Window) SetTitle(title string)                 { windowSetTitle(w, title) }
-func (w *Window) SetTransientFor(parent *Window)        { windowSetTransientFor(w, parent) }
-func (w *Window) SetTypeHint(hint D.WindowTypeHint)     { windowSetTypeHint(w, hint) }
-func (w *Window) SetUrgencyHint(setting T.Gboolean)     { windowSetUrgencyHint(w, setting) }
+func (w *Window) SetMnemonicsVisible(setting bool) { windowSetMnemonicsVisible(w, setting) }
+func (w *Window) SetModal(modal bool)              { windowSetModal(w, modal) }
+func (w *Window) SetOpacity(opacity float64)       { windowSetOpacity(w, opacity) }
+
+// Deprecated
+// func (w *Window) SetPolicy(allowShrink, allowGrow, autoShrink int) {
+// 	windowSetPolicy(w, allowShrink, allowGrow, autoShrink)
+// }
+func (w *Window) SetPosition(position WindowPosition) { windowSetPosition(w, position) }
+func (w *Window) SetResizable(resizable bool)         { windowSetResizable(w, resizable) }
+func (w *Window) SetRole(role string)                 { windowSetRole(w, role) }
+func (w *Window) SetScreen(screen *D.Screen)          { windowSetScreen(w, screen) }
+func (w *Window) SetSkipPagerHint(setting bool)       { windowSetSkipPagerHint(w, setting) }
+func (w *Window) SetSkipTaskbarHint(setting bool)     { windowSetSkipTaskbarHint(w, setting) }
+func (w *Window) SetStartupId(startupId string)       { windowSetStartupId(w, startupId) }
+func (w *Window) SetTitle(title string)               { windowSetTitle(w, title) }
+func (w *Window) SetTransientFor(parent *Window)      { windowSetTransientFor(w, parent) }
+func (w *Window) SetTypeHint(hint D.WindowTypeHint)   { windowSetTypeHint(w, hint) }
+func (w *Window) SetUrgencyHint(setting bool)         { windowSetUrgencyHint(w, setting) }
 func (w *Window) SetWmclass(wmclassName, wmclassClass string) {
 	windowSetWmclass(w, wmclassName, wmclassClass)
 }
@@ -918,3 +934,42 @@ const (
 )
 
 var WindowTypeGetType func() O.Type
+
+/*
+properties            ver  default                     actions
+"has-toplevel-focus"       false                       read
+"is-active"                false                       read
+"accept-focus"             true                        read/write
+"allow-grow"               true                        read/write
+"allow-shrink"             false                       read/write
+"decorated"           2.4  true                        read/write
+"default-height"           -1                          read/write
+"default-width"            -1                          read/write
+"deletable"           2.10 true                        read/write
+"destroy-with-parent"      false                       read/write
+"focus-on-map"             true                        read/write
+"gravity"             2.4  gdk.GRAVITY_NORTH_WEST      read/write
+"icon"                     ???                         read/write
+"icon-name"                nil                         read/write
+"modal"                    false                       read/write
+"opacity"                  1.0                         read/write
+"resizable"                true                        read/write
+"role"                     nil                         read/write
+"screen"                   ???                         read/write
+"skip-pager-hint"          false                       read/write
+"skip-taskbar-hint"        false                       read/write
+"title"                    nil                         read/write
+"transient-for"       2.10 ???                         read/write/construct
+"type"                     gtk.WINDOW_TOPLEVEL         read/write/construct only
+"type-hint"                gdk.WINDOW_TYPE_HINT_NORMAL read/write
+"urgency-hint"             false                       read/write
+"window-position"          gtk.WIN_POS_NONE            read/write
+"startup-id"          2.12 nil                         write
+
+signals
+"activate-default"  run last/action
+"activate-focus"    run last/action
+"frame-event"       run last
+"keys-changed"      run first
+"set-focus"         run last
+*/

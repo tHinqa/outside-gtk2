@@ -28,7 +28,7 @@ var (
 	ObjectConnect                  func(object T.Gpointer, signalSpec string, v ...VArg) T.Gpointer
 	ObjectDisconnect               func(object T.Gpointer, signalSpec string, v ...VArg)
 	ObjectGet                      func(object T.Gpointer, firstPropertyName string, v ...VArg)
-	ObjectIsFloating               func(object T.Gpointer) T.Gboolean
+	ObjectIsFloating               func(object T.Gpointer) bool
 	ObjectRef                      func(object T.Gpointer) T.Gpointer
 	ObjectRefSink                  func(object T.Gpointer) T.Gpointer
 	ObjectSet                      func(object T.Gpointer, firstPropertyName string, v ...VArg)

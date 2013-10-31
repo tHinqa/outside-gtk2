@@ -19,53 +19,53 @@ type (
 		_      *struct{}
 	}
 
-	AboutDialogActivateLinkFunc func(
+	AboutDialogActivateLink func(
 		about *AboutDialog, link string, data T.Gpointer)
 )
 
 var (
 	AboutDialogGetType func() O.Type
-	aboutDialogNew     func() *Widget
+	AboutDialogNew     func() *Widget // 2.6
 
-	AboutDialogSetEmailHook func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
-	AboutDialogSetUrlHook   func(f AboutDialogActivateLinkFunc, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLinkFunc
+	AboutDialogSetEmailHook func(f AboutDialogActivateLink, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLink // 2.6
+	AboutDialogSetUrlHook   func(f AboutDialogActivateLink, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLink // 2.6
 
-	ShowAboutDialog func(parent *Window, firstPropertyName string, v ...VArg)
+	ShowAboutDialog func(parent *Window, firstPropertyName string, v ...VArg) // 2.6
 
-	aboutDialogGetArtists      func(a *AboutDialog) []string
-	aboutDialogGetAuthors      func(a *AboutDialog) []string
-	aboutDialogGetComments     func(a *AboutDialog) string
-	aboutDialogGetCopyright    func(a *AboutDialog) string
-	aboutDialogGetDocumenters  func(a *AboutDialog) []string
-	aboutDialogGetLicense      func(a *AboutDialog) string
-	aboutDialogGetLogo         func(a *AboutDialog) *D.Pixbuf
-	aboutDialogGetLogoIconName func(a *AboutDialog) string
-	// Deprecated 2.12 aboutDialogGetName func(a *AboutDialog) string
-	aboutDialogGetProgramName       func(a *AboutDialog) string
-	aboutDialogGetTranslatorCredits func(a *AboutDialog) string
-	aboutDialogGetVersion           func(a *AboutDialog) string
-	aboutDialogGetWebsite           func(a *AboutDialog) string
-	aboutDialogGetWebsiteLabel      func(a *AboutDialog) string
-	aboutDialogGetWrapLicense       func(a *AboutDialog) bool
-	aboutDialogSetArtists           func(a *AboutDialog, artists []string)
-	aboutDialogSetAuthors           func(a *AboutDialog, authors []string)
-	aboutDialogSetComments          func(a *AboutDialog, comments string)
-	aboutDialogSetCopyright         func(a *AboutDialog, copyright string)
-	aboutDialogSetDocumenters       func(a *AboutDialog, documenters []string)
-	aboutDialogSetLicense           func(a *AboutDialog, license string)
-	aboutDialogSetLogo              func(a *AboutDialog, logo *D.Pixbuf)
-	aboutDialogSetLogoIconName      func(a *AboutDialog, iconName string)
-	// Deprecated 2.12 aboutDialogSetName func(a *AboutDialog, name string)
-	aboutDialogSetProgramName       func(a *AboutDialog, name string)
-	aboutDialogSetTranslatorCredits func(a *AboutDialog, translatorCredits string)
-	aboutDialogSetVersion           func(a *AboutDialog, version string)
-	aboutDialogSetWebsite           func(a *AboutDialog, website string)
-	aboutDialogSetWebsiteLabel      func(a *AboutDialog, websiteLabel string)
-	aboutDialogSetWrapLicense       func(a *AboutDialog, wrapLicense bool)
+	aboutDialogGetArtists      func(a *AboutDialog) []string  // 2.6
+	aboutDialogGetAuthors      func(a *AboutDialog) []string  // 2.6
+	aboutDialogGetComments     func(a *AboutDialog) string    // 2.6
+	aboutDialogGetCopyright    func(a *AboutDialog) string    // 2.6
+	aboutDialogGetDocumenters  func(a *AboutDialog) []string  // 2.6
+	aboutDialogGetLicense      func(a *AboutDialog) string    // 2.6
+	aboutDialogGetLogo         func(a *AboutDialog) *D.Pixbuf // 2.6
+	aboutDialogGetLogoIconName func(a *AboutDialog) string    // 2.6
+	// 2.6 Deprecated 2.12 aboutDialogGetName func(a *AboutDialog) string
+	aboutDialogGetProgramName       func(a *AboutDialog) string                // 2.12
+	aboutDialogGetTranslatorCredits func(a *AboutDialog) string                // 2.6
+	aboutDialogGetVersion           func(a *AboutDialog) string                // 2.6
+	aboutDialogGetWebsite           func(a *AboutDialog) string                // 2.6
+	aboutDialogGetWebsiteLabel      func(a *AboutDialog) string                // 2.6
+	aboutDialogGetWrapLicense       func(a *AboutDialog) bool                  // 2.8
+	aboutDialogSetArtists           func(a *AboutDialog, artists []string)     // 2.6
+	aboutDialogSetAuthors           func(a *AboutDialog, authors []string)     // 2.6
+	aboutDialogSetComments          func(a *AboutDialog, comments string)      // 2.6
+	aboutDialogSetCopyright         func(a *AboutDialog, copyright string)     // 2.6
+	aboutDialogSetDocumenters       func(a *AboutDialog, documenters []string) // 2.6
+	aboutDialogSetLicense           func(a *AboutDialog, license string)       // 2.6
+	aboutDialogSetLogo              func(a *AboutDialog, logo *D.Pixbuf)       // 2.6
+	aboutDialogSetLogoIconName      func(a *AboutDialog, iconName string)      // 2.6
+	// 2.6 Deprecated 2.12 aboutDialogSetName func(a *AboutDialog, name string)
+	aboutDialogSetProgramName       func(a *AboutDialog, name string)              // 2.12
+	aboutDialogSetTranslatorCredits func(a *AboutDialog, translatorCredits string) // 2.6
+	aboutDialogSetVersion           func(a *AboutDialog, version string)           // 2.6
+	aboutDialogSetWebsite           func(a *AboutDialog, website string)           // 2.6
+	aboutDialogSetWebsiteLabel      func(a *AboutDialog, websiteLabel string)      // 2.6
+	aboutDialogSetWrapLicense       func(a *AboutDialog, wrapLicense bool)         // 2.8
 )
 
-func AboutDialogNew() (a *AboutDialog, w *Widget) {
-	w = aboutDialogNew()
+func NewAboutDialog() (w *Widget, a *AboutDialog) {
+	w = AboutDialogNew()
 	a = (*AboutDialog)(unsafe.Pointer(w))
 	return
 }
@@ -109,6 +109,24 @@ func (a *AboutDialog) SetWrapLicense(wrapLicense bool) {
 
 // Deprecated 2.12 func (a *AboutDialog) GetName() string { return aboutDialogGetName(a) }
 
+/*
+Properties
+"artists"                  GStrv*                : Read / Write
+"authors"                  GStrv*                : Read / Write
+"comments"                 gchar*                : Read / Write
+"copyright"                gchar*                : Read / Write
+"documenters"              GStrv*                : Read / Write
+"license"                  gchar*                : Read / Write
+"logo"                     GdkPixbuf*            : Read / Write
+"logo-icon-name"           gchar*                : Read / Write
+"program-name"             gchar*                : Read / Write
+"translator-credits"       gchar*                : Read / Write
+"version"                  gchar*                : Read / Write
+"website"                  gchar*                : Read / Write
+"website-label"            gchar*                : Read / Write
+"wrap-license"             gboolean              : Read / Write
+*/
+
 var (
 	AcceleratorGetDefaultModMask func() uint
 
@@ -130,12 +148,12 @@ var (
 
 	AcceleratorValid func(
 		keyval uint,
-		modifiers T.GdkModifierType) T.Gboolean
+		modifiers T.GdkModifierType) bool
 )
 
 var (
 	AccelGroupsActivate func(object *T.GObject, accelKey uint,
-		accelMods T.GdkModifierType) T.Gboolean
+		accelMods T.GdkModifierType) bool
 
 	AccelGroupsFromObject func(object *T.GObject) *T.GSList
 )
@@ -178,14 +196,14 @@ type (
 	}
 
 	AccelGroupFindFunc func(key *AccelKey,
-		closure *O.Closure, data T.Gpointer) T.Gboolean
+		closure *O.Closure, data T.Gpointer) bool
 
 	AccelMapForeachFunc func(
 		data T.Gpointer,
 		accelPath string,
 		accelKey uint,
 		accelMods T.GdkModifierType,
-		changed T.Gboolean)
+		changed bool)
 )
 
 type AccelFlags Enum
@@ -220,7 +238,7 @@ var (
 
 	AccelMapAddEntry          func(accelPath string, accelKey uint, accelMods T.GdkModifierType)
 	AccelMapAddFilter         func(filterPattern string)
-	AccelMapChangeEntry       func(accelPath string, accelKey uint, accelMods T.GdkModifierType, replace T.Gboolean) T.Gboolean
+	AccelMapChangeEntry       func(accelPath string, accelKey uint, accelMods T.GdkModifierType, replace bool) bool
 	AccelMapForeach           func(data T.Gpointer, foreachFunc AccelMapForeachFunc)
 	AccelMapForeachUnfiltered func(data T.Gpointer, foreachFunc AccelMapForeachFunc)
 	AccelMapGet               func() *AccelMap
@@ -228,7 +246,7 @@ var (
 	AccelMapLoadFd            func(fd int)
 	AccelMapLoadScanner       func(scanner *T.GScanner)
 	AccelMapLockPath          func(accelPath string)
-	AccelMapLookupEntry       func(accelPath string, key *AccelKey) T.Gboolean
+	AccelMapLookupEntry       func(accelPath string, key *AccelKey) bool
 	AccelMapSave              func(fileName string)
 	AccelMapSaveFd            func(fd int)
 	AccelMapUnlockPath        func(accelPath string)
@@ -237,13 +255,13 @@ var (
 )
 
 var (
-	accelGroupActivate        func(a *AccelGroup, accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
+	accelGroupActivate        func(a *AccelGroup, accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) bool
 	accelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure)
 	accelGroupConnectByPath   func(a *AccelGroup, accelPath string, closure *O.Closure)
-	accelGroupDisconnect      func(a *AccelGroup, closure *O.Closure) T.Gboolean
-	accelGroupDisconnectKey   func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType) T.Gboolean
+	accelGroupDisconnect      func(a *AccelGroup, closure *O.Closure) bool
+	accelGroupDisconnectKey   func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType) bool
 	accelGroupFind            func(a *AccelGroup, findFunc AccelGroupFindFunc, data T.Gpointer) *AccelKey
-	accelGroupGetIsLocked     func(a *AccelGroup) T.Gboolean
+	accelGroupGetIsLocked     func(a *AccelGroup) bool
 	accelGroupGetModifierMask func(a *AccelGroup) T.GdkModifierType
 	accelGroupLock            func(a *AccelGroup)
 	accelGroupQuery           func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *AccelGroupEntry
@@ -251,12 +269,12 @@ var (
 
 	accelLabelGetAccelWidget  func(a *AccelLabel) *Widget
 	accelLabelGetAccelWidth   func(a *AccelLabel) uint
-	accelLabelRefetch         func(a *AccelLabel) T.Gboolean
+	accelLabelRefetch         func(a *AccelLabel) bool
 	accelLabelSetAccelClosure func(a *AccelLabel, accelClosure *O.Closure)
 	accelLabelSetAccelWidget  func(a *AccelLabel, accelWidget *Widget)
 )
 
-func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
+func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) bool {
 	return accelGroupActivate(a, accelQuark, acceleratable, accelKey, accelMods)
 }
 func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure) {
@@ -266,16 +284,16 @@ func (a *AccelGroup) ConnectByPath(
 	accelPath string, closure *O.Closure) {
 	accelGroupConnectByPath(a, accelPath, closure)
 }
-func (a *AccelGroup) Disconnect(closure *O.Closure) T.Gboolean {
+func (a *AccelGroup) Disconnect(closure *O.Closure) bool {
 	return accelGroupDisconnect(a, closure)
 }
-func (a *AccelGroup) DisconnectKey(accelKey uint, accelMods T.GdkModifierType) T.Gboolean {
+func (a *AccelGroup) DisconnectKey(accelKey uint, accelMods T.GdkModifierType) bool {
 	return accelGroupDisconnectKey(a, accelKey, accelMods)
 }
 func (a *AccelGroup) Find(findFunc AccelGroupFindFunc, data T.Gpointer) *AccelKey {
 	return accelGroupFind(a, findFunc, data)
 }
-func (a *AccelGroup) GetIsLocked() T.Gboolean            { return accelGroupGetIsLocked(a) }
+func (a *AccelGroup) GetIsLocked() bool                  { return accelGroupGetIsLocked(a) }
 func (a *AccelGroup) GetModifierMask() T.GdkModifierType { return accelGroupGetModifierMask(a) }
 func (a *AccelGroup) Lock()                              { accelGroupLock(a) }
 func (a *AccelGroup) Query(accelKey uint, accelMods T.GdkModifierType, nEntries *uint) *AccelGroupEntry {
@@ -285,7 +303,7 @@ func (a *AccelGroup) Unlock() { accelGroupUnlock(a) }
 
 func (a *AccelLabel) GetAccelWidget() *Widget { return accelLabelGetAccelWidget(a) }
 func (a *AccelLabel) GetAccelWidth() uint     { return accelLabelGetAccelWidth(a) }
-func (a *AccelLabel) Refetch() T.Gboolean     { return accelLabelRefetch(a) }
+func (a *AccelLabel) Refetch() bool           { return accelLabelRefetch(a) }
 func (a *AccelLabel) SetAccelClosure(accelClosure *O.Closure) {
 	accelLabelSetAccelClosure(a, accelClosure)
 }
@@ -351,85 +369,85 @@ var (
 	actionDisconnectProxy       func(a *Action, proxy *Widget)
 	actionGetAccelClosure       func(a *Action) *O.Closure
 	actionGetAccelPath          func(a *Action) string
-	actionGetAlwaysShowImage    func(a *Action) T.Gboolean
+	actionGetAlwaysShowImage    func(a *Action) bool
 	actionGetGicon              func(a *Action) *I.Icon
 	actionGetIconName           func(a *Action) string
-	actionGetIsImportant        func(a *Action) T.Gboolean
+	actionGetIsImportant        func(a *Action) bool
 	actionGetLabel              func(a *Action) string
 	actionGetName               func(a *Action) string
 	actionGetProxies            func(a *Action) *T.GSList
-	actionGetSensitive          func(a *Action) T.Gboolean
+	actionGetSensitive          func(a *Action) bool
 	actionGetShortLabel         func(a *Action) string
 	actionGetStockId            func(a *Action) string
 	actionGetTooltip            func(a *Action) string
-	actionGetVisible            func(a *Action) T.Gboolean
-	actionGetVisibleHorizontal  func(a *Action) T.Gboolean
-	actionGetVisibleVertical    func(a *Action) T.Gboolean
-	actionIsSensitive           func(a *Action) T.Gboolean
-	actionIsVisible             func(a *Action) T.Gboolean
+	actionGetVisible            func(a *Action) bool
+	actionGetVisibleHorizontal  func(a *Action) bool
+	actionGetVisibleVertical    func(a *Action) bool
+	actionIsSensitive           func(a *Action) bool
+	actionIsVisible             func(a *Action) bool
 	actionSetAccelGroup         func(a *Action, accelGroup *AccelGroup)
 	actionSetAccelPath          func(a *Action, accelPath string)
-	actionSetAlwaysShowImage    func(a *Action, alwaysShow T.Gboolean)
+	actionSetAlwaysShowImage    func(a *Action, alwaysShow bool)
 	actionSetGicon              func(a *Action, icon *I.Icon)
 	actionSetIconName           func(a *Action, iconName string)
-	actionSetIsImportant        func(a *Action, isImportant T.Gboolean)
+	actionSetIsImportant        func(a *Action, isImportant bool)
 	actionSetLabel              func(a *Action, label string)
-	actionSetSensitive          func(a *Action, sensitive T.Gboolean)
+	actionSetSensitive          func(a *Action, sensitive bool)
 	actionSetShortLabel         func(a *Action, shortLabel string)
 	actionSetStockId            func(a *Action, stockId string)
 	actionSetTooltip            func(a *Action, tooltip string)
-	actionSetVisible            func(a *Action, visible T.Gboolean)
-	actionSetVisibleHorizontal  func(a *Action, visibleHorizontal T.Gboolean)
-	actionSetVisibleVertical    func(a *Action, visibleVertical T.Gboolean)
+	actionSetVisible            func(a *Action, visible bool)
+	actionSetVisibleHorizontal  func(a *Action, visibleHorizontal bool)
+	actionSetVisibleVertical    func(a *Action, visibleVertical bool)
 	actionUnblockActivate       func(a *Action)
 	actionUnblockActivateFrom   func(a *Action, proxy *Widget)
 )
 
-func (a *Action) Activate()                                { actionActivate(a) }
-func (a *Action) BlockActivate()                           { actionBlockActivate(a) }
-func (a *Action) BlockActivateFrom(proxy *Widget)          { actionBlockActivateFrom(a, proxy) }
-func (a *Action) ConnectAccelerator()                      { actionConnectAccelerator(a) }
-func (a *Action) ConnectProxy(proxy *Widget)               { actionConnectProxy(a, proxy) }
-func (a *Action) CreateIcon(iconSize IconSize) *Widget     { return actionCreateIcon(a, iconSize) }
-func (a *Action) CreateMenu() *Widget                      { return actionCreateMenu(a) }
-func (a *Action) CreateMenuItem() *Widget                  { return actionCreateMenuItem(a) }
-func (a *Action) CreateToolItem() *Widget                  { return actionCreateToolItem(a) }
-func (a *Action) DisconnectAccelerator()                   { actionDisconnectAccelerator(a) }
-func (a *Action) DisconnectProxy(proxy *Widget)            { actionDisconnectProxy(a, proxy) }
-func (a *Action) GetAccelClosure() *O.Closure              { return actionGetAccelClosure(a) }
-func (a *Action) GetAccelPath() string                     { return actionGetAccelPath(a) }
-func (a *Action) GetAlwaysShowImage() T.Gboolean           { return actionGetAlwaysShowImage(a) }
-func (a *Action) GetGicon() *I.Icon                        { return actionGetGicon(a) }
-func (a *Action) GetIconName() string                      { return actionGetIconName(a) }
-func (a *Action) GetIsImportant() T.Gboolean               { return actionGetIsImportant(a) }
-func (a *Action) GetLabel() string                         { return actionGetLabel(a) }
-func (a *Action) GetName() string                          { return actionGetName(a) }
-func (a *Action) GetProxies() *T.GSList                    { return actionGetProxies(a) }
-func (a *Action) GetSensitive() T.Gboolean                 { return actionGetSensitive(a) }
-func (a *Action) GetShortLabel() string                    { return actionGetShortLabel(a) }
-func (a *Action) GetStockId() string                       { return actionGetStockId(a) }
-func (a *Action) GetTooltip() string                       { return actionGetTooltip(a) }
-func (a *Action) GetVisible() T.Gboolean                   { return actionGetVisible(a) }
-func (a *Action) GetVisibleHorizontal() T.Gboolean         { return actionGetVisibleHorizontal(a) }
-func (a *Action) GetVisibleVertical() T.Gboolean           { return actionGetVisibleVertical(a) }
-func (a *Action) IsSensitive() T.Gboolean                  { return actionIsSensitive(a) }
-func (a *Action) IsVisible() T.Gboolean                    { return actionIsVisible(a) }
-func (a *Action) SetAccelGroup(accelGroup *AccelGroup)     { actionSetAccelGroup(a, accelGroup) }
-func (a *Action) SetAccelPath(accelPath string)            { actionSetAccelPath(a, accelPath) }
-func (a *Action) SetAlwaysShowImage(alwaysShow T.Gboolean) { actionSetAlwaysShowImage(a, alwaysShow) }
-func (a *Action) SetGicon(icon *I.Icon)                    { actionSetGicon(a, icon) }
-func (a *Action) SetIconName(iconName string)              { actionSetIconName(a, iconName) }
-func (a *Action) SetIsImportant(isImportant T.Gboolean)    { actionSetIsImportant(a, isImportant) }
-func (a *Action) SetLabel(label string)                    { actionSetLabel(a, label) }
-func (a *Action) SetSensitive(sensitive T.Gboolean)        { actionSetSensitive(a, sensitive) }
-func (a *Action) SetShortLabel(shortLabel string)          { actionSetShortLabel(a, shortLabel) }
-func (a *Action) SetStockId(stockId string)                { actionSetStockId(a, stockId) }
-func (a *Action) SetTooltip(tooltip string)                { actionSetTooltip(a, tooltip) }
-func (a *Action) SetVisible(visible T.Gboolean)            { actionSetVisible(a, visible) }
-func (a *Action) SetVisibleHorizontal(visibleHorizontal T.Gboolean) {
+func (a *Action) Activate()                            { actionActivate(a) }
+func (a *Action) BlockActivate()                       { actionBlockActivate(a) }
+func (a *Action) BlockActivateFrom(proxy *Widget)      { actionBlockActivateFrom(a, proxy) }
+func (a *Action) ConnectAccelerator()                  { actionConnectAccelerator(a) }
+func (a *Action) ConnectProxy(proxy *Widget)           { actionConnectProxy(a, proxy) }
+func (a *Action) CreateIcon(iconSize IconSize) *Widget { return actionCreateIcon(a, iconSize) }
+func (a *Action) CreateMenu() *Widget                  { return actionCreateMenu(a) }
+func (a *Action) CreateMenuItem() *Widget              { return actionCreateMenuItem(a) }
+func (a *Action) CreateToolItem() *Widget              { return actionCreateToolItem(a) }
+func (a *Action) DisconnectAccelerator()               { actionDisconnectAccelerator(a) }
+func (a *Action) DisconnectProxy(proxy *Widget)        { actionDisconnectProxy(a, proxy) }
+func (a *Action) GetAccelClosure() *O.Closure          { return actionGetAccelClosure(a) }
+func (a *Action) GetAccelPath() string                 { return actionGetAccelPath(a) }
+func (a *Action) GetAlwaysShowImage() bool             { return actionGetAlwaysShowImage(a) }
+func (a *Action) GetGicon() *I.Icon                    { return actionGetGicon(a) }
+func (a *Action) GetIconName() string                  { return actionGetIconName(a) }
+func (a *Action) GetIsImportant() bool                 { return actionGetIsImportant(a) }
+func (a *Action) GetLabel() string                     { return actionGetLabel(a) }
+func (a *Action) GetName() string                      { return actionGetName(a) }
+func (a *Action) GetProxies() *T.GSList                { return actionGetProxies(a) }
+func (a *Action) GetSensitive() bool                   { return actionGetSensitive(a) }
+func (a *Action) GetShortLabel() string                { return actionGetShortLabel(a) }
+func (a *Action) GetStockId() string                   { return actionGetStockId(a) }
+func (a *Action) GetTooltip() string                   { return actionGetTooltip(a) }
+func (a *Action) GetVisible() bool                     { return actionGetVisible(a) }
+func (a *Action) GetVisibleHorizontal() bool           { return actionGetVisibleHorizontal(a) }
+func (a *Action) GetVisibleVertical() bool             { return actionGetVisibleVertical(a) }
+func (a *Action) IsSensitive() bool                    { return actionIsSensitive(a) }
+func (a *Action) IsVisible() bool                      { return actionIsVisible(a) }
+func (a *Action) SetAccelGroup(accelGroup *AccelGroup) { actionSetAccelGroup(a, accelGroup) }
+func (a *Action) SetAccelPath(accelPath string)        { actionSetAccelPath(a, accelPath) }
+func (a *Action) SetAlwaysShowImage(alwaysShow bool)   { actionSetAlwaysShowImage(a, alwaysShow) }
+func (a *Action) SetGicon(icon *I.Icon)                { actionSetGicon(a, icon) }
+func (a *Action) SetIconName(iconName string)          { actionSetIconName(a, iconName) }
+func (a *Action) SetIsImportant(isImportant bool)      { actionSetIsImportant(a, isImportant) }
+func (a *Action) SetLabel(label string)                { actionSetLabel(a, label) }
+func (a *Action) SetSensitive(sensitive bool)          { actionSetSensitive(a, sensitive) }
+func (a *Action) SetShortLabel(shortLabel string)      { actionSetShortLabel(a, shortLabel) }
+func (a *Action) SetStockId(stockId string)            { actionSetStockId(a, stockId) }
+func (a *Action) SetTooltip(tooltip string)            { actionSetTooltip(a, tooltip) }
+func (a *Action) SetVisible(visible bool)              { actionSetVisible(a, visible) }
+func (a *Action) SetVisibleHorizontal(visibleHorizontal bool) {
 	actionSetVisibleHorizontal(a, visibleHorizontal)
 }
-func (a *Action) SetVisibleVertical(visibleVertical T.Gboolean) {
+func (a *Action) SetVisibleVertical(visibleVertical bool) {
 	actionSetVisibleVertical(a, visibleVertical)
 }
 func (a *Action) UnblockActivate()                  { actionUnblockActivate(a) }
@@ -446,14 +464,14 @@ var (
 	actionGroupAddToggleActionsFull func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
 	actionGroupGetAction            func(a *ActionGroup, actionName string) *Action
 	actionGroupGetName              func(a *ActionGroup) string
-	actionGroupGetSensitive         func(a *ActionGroup) T.Gboolean
-	actionGroupGetVisible           func(a *ActionGroup) T.Gboolean
+	actionGroupGetSensitive         func(a *ActionGroup) bool
+	actionGroupGetVisible           func(a *ActionGroup) bool
 	actionGroupListActions          func(a *ActionGroup) *T.GList
 	actionGroupRemoveAction         func(a *ActionGroup, action *Action)
-	actionGroupSetSensitive         func(a *ActionGroup, sensitive T.Gboolean)
+	actionGroupSetSensitive         func(a *ActionGroup, sensitive bool)
 	actionGroupSetTranslateFunc     func(a *ActionGroup, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
 	actionGroupSetTranslationDomain func(a *ActionGroup, domain string)
-	actionGroupSetVisible           func(a *ActionGroup, visible T.Gboolean)
+	actionGroupSetVisible           func(a *ActionGroup, visible bool)
 	actionGroupTranslateString      func(a *ActionGroup, str string) string
 )
 
@@ -481,16 +499,16 @@ func (a *ActionGroup) AddToggleActionsFull(entries *ToggleActionEntry, nEntries 
 }
 func (a *ActionGroup) GetAction(actionName string) *Action { return actionGroupGetAction(a, actionName) }
 func (a *ActionGroup) GetName() string                     { return actionGroupGetName(a) }
-func (a *ActionGroup) GetSensitive() T.Gboolean            { return actionGroupGetSensitive(a) }
-func (a *ActionGroup) GetVisible() T.Gboolean              { return actionGroupGetVisible(a) }
+func (a *ActionGroup) GetSensitive() bool                  { return actionGroupGetSensitive(a) }
+func (a *ActionGroup) GetVisible() bool                    { return actionGroupGetVisible(a) }
 func (a *ActionGroup) ListActions() *T.GList               { return actionGroupListActions(a) }
 func (a *ActionGroup) RemoveAction(action *Action)         { actionGroupRemoveAction(a, action) }
-func (a *ActionGroup) SetSensitive(sensitive T.Gboolean)   { actionGroupSetSensitive(a, sensitive) }
+func (a *ActionGroup) SetSensitive(sensitive bool)         { actionGroupSetSensitive(a, sensitive) }
 func (a *ActionGroup) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
 	actionGroupSetTranslateFunc(a, f, data, notify)
 }
 func (a *ActionGroup) SetTranslationDomain(domain string) { actionGroupSetTranslationDomain(a, domain) }
-func (a *ActionGroup) SetVisible(visible T.Gboolean)      { actionGroupSetVisible(a, visible) }
+func (a *ActionGroup) SetVisible(visible bool)            { actionGroupSetVisible(a, visible) }
 func (a *ActionGroup) TranslateString(str string) string  { return actionGroupTranslateString(a, str) }
 
 type Activatable struct{}
@@ -500,17 +518,17 @@ var ActivatableGetType func() O.Type
 var (
 	activatableDoSetRelatedAction     func(a *Activatable, action *Action)
 	activatableGetRelatedAction       func(a *Activatable) *Action
-	activatableGetUseActionAppearance func(a *Activatable) T.Gboolean
+	activatableGetUseActionAppearance func(a *Activatable) bool
 	activatableSetRelatedAction       func(a *Activatable, action *Action)
-	activatableSetUseActionAppearance func(a *Activatable, useAppearance T.Gboolean)
+	activatableSetUseActionAppearance func(a *Activatable, useAppearance bool)
 	activatableSyncActionProperties   func(a *Activatable, action *Action)
 )
 
-func (a *Activatable) DoSetRelatedAction(action *Action)  { activatableDoSetRelatedAction(a, action) }
-func (a *Activatable) GetRelatedAction() *Action          { return activatableGetRelatedAction(a) }
-func (a *Activatable) GetUseActionAppearance() T.Gboolean { return activatableGetUseActionAppearance(a) }
-func (a *Activatable) SetRelatedAction(action *Action)    { activatableSetRelatedAction(a, action) }
-func (a *Activatable) SetUseActionAppearance(useAppearance T.Gboolean) {
+func (a *Activatable) DoSetRelatedAction(action *Action) { activatableDoSetRelatedAction(a, action) }
+func (a *Activatable) GetRelatedAction() *Action         { return activatableGetRelatedAction(a) }
+func (a *Activatable) GetUseActionAppearance() bool      { return activatableGetUseActionAppearance(a) }
+func (a *Activatable) SetRelatedAction(action *Action)   { activatableSetRelatedAction(a, action) }
+func (a *Activatable) SetUseActionAppearance(useAppearance bool) {
 	activatableSetUseActionAppearance(a, useAppearance)
 }
 func (a *Activatable) SyncActionProperties(action *Action) { activatableSyncActionProperties(a, action) }
@@ -602,7 +620,7 @@ func (a *Alignment) GetPadding(paddingTop, paddingBottom, paddingLeft, paddingRi
 type Allocation D.Rectangle
 
 var AlternativeDialogButtonOrder func(
-	screen *D.Screen) T.Gboolean
+	screen *D.Screen) bool
 
 type AnchorType Enum
 
@@ -698,7 +716,7 @@ var (
 	assistantGetCurrentPage     func(a *Assistant) int
 	assistantGetNPages          func(a *Assistant) int
 	assistantGetNthPage         func(a *Assistant, pageNum int) *Widget
-	assistantGetPageComplete    func(a *Assistant, page *Widget) T.Gboolean
+	assistantGetPageComplete    func(a *Assistant, page *Widget) bool
 	assistantGetPageHeaderImage func(a *Assistant, page *Widget) *D.Pixbuf
 	assistantGetPageSideImage   func(a *Assistant, page *Widget) *D.Pixbuf
 	assistantGetPageTitle       func(a *Assistant, page *Widget) string
@@ -708,7 +726,7 @@ var (
 	assistantRemoveActionWidget func(a *Assistant, child *Widget)
 	assistantSetCurrentPage     func(a *Assistant, pageNum int)
 	assistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify)
-	assistantSetPageComplete    func(a *Assistant, page *Widget, complete T.Gboolean)
+	assistantSetPageComplete    func(a *Assistant, page *Widget, complete bool)
 	assistantSetPageHeaderImage func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
 	assistantSetPageSideImage   func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
 	assistantSetPageTitle       func(a *Assistant, page *Widget, title string)
@@ -716,13 +734,13 @@ var (
 	assistantUpdateButtonsState func(a *Assistant)
 )
 
-func (a *Assistant) AddActionWidget(child *Widget)           { assistantAddActionWidget(a, child) }
-func (a *Assistant) AppendPage(page *Widget) int             { return assistantAppendPage(a, page) }
-func (a *Assistant) Commit()                                 { assistantCommit(a) }
-func (a *Assistant) GetCurrentPage() int                     { return assistantGetCurrentPage(a) }
-func (a *Assistant) GetNPages() int                          { return assistantGetNPages(a) }
-func (a *Assistant) GetNthPage(pageNum int) *Widget          { return assistantGetNthPage(a, pageNum) }
-func (a *Assistant) GetPageComplete(page *Widget) T.Gboolean { return assistantGetPageComplete(a, page) }
+func (a *Assistant) AddActionWidget(child *Widget)     { assistantAddActionWidget(a, child) }
+func (a *Assistant) AppendPage(page *Widget) int       { return assistantAppendPage(a, page) }
+func (a *Assistant) Commit()                           { assistantCommit(a) }
+func (a *Assistant) GetCurrentPage() int               { return assistantGetCurrentPage(a) }
+func (a *Assistant) GetNPages() int                    { return assistantGetNPages(a) }
+func (a *Assistant) GetNthPage(pageNum int) *Widget    { return assistantGetNthPage(a, pageNum) }
+func (a *Assistant) GetPageComplete(page *Widget) bool { return assistantGetPageComplete(a, page) }
 func (a *Assistant) GetPageHeaderImage(page *Widget) *D.Pixbuf {
 	return assistantGetPageHeaderImage(a, page)
 }
@@ -740,7 +758,7 @@ func (a *Assistant) SetCurrentPage(pageNum int)       { assistantSetCurrentPage(
 func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	assistantSetForwardPageFunc(a, pageFunc, data, destroy)
 }
-func (a *Assistant) SetPageComplete(page *Widget, complete T.Gboolean) {
+func (a *Assistant) SetPageComplete(page *Widget, complete bool) {
 	assistantSetPageComplete(a, page, complete)
 }
 func (a *Assistant) SetPageHeaderImage(page *Widget, pixbuf *D.Pixbuf) {
@@ -800,18 +818,18 @@ type AspectFrame struct {
 	Xalign           float32
 	Yalign           float32
 	Ratio            float32
-	ObeyChild        T.Gboolean
+	ObeyChild        bool
 	CenterAllocation Allocation
 }
 
 var (
 	AspectFrameGetType func() O.Type
-	AspectFrameNew     func(label string, xalign, yalign, ratio float32, obeyChild T.Gboolean) *Widget
+	AspectFrameNew     func(label string, xalign, yalign, ratio float32, obeyChild bool) *Widget
 )
 
-var aspectFrameSet func(a *AspectFrame, xalign, yalign, ratio float32, obeyChild T.Gboolean)
+var aspectFrameSet func(a *AspectFrame, xalign, yalign, ratio float32, obeyChild bool)
 
-func (a *AspectFrame) Set(xalign, yalign, ratio float32, obeyChild T.Gboolean) {
+func (a *AspectFrame) Set(xalign, yalign, ratio float32, obeyChild bool) {
 	aspectFrameSet(a, xalign, yalign, ratio, obeyChild)
 }
 

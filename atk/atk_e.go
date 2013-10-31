@@ -5,7 +5,7 @@ package atk
 
 import (
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 )
 
 type EditableText struct{}
@@ -18,7 +18,7 @@ var (
 	editableTextDeleteText       func(e *EditableText, startPos, endPos int)
 	editableTextInsertText       func(e *EditableText, str string, length int, position *int)
 	editableTextPasteText        func(e *EditableText, position int)
-	editableTextSetRunAttributes func(e *EditableText, attribSet *AttributeSet, startOffset, endOffset int) T.Gboolean
+	editableTextSetRunAttributes func(e *EditableText, attribSet *AttributeSet, startOffset, endOffset int) bool
 	editableTextSetTextContents  func(e *EditableText, str string)
 )
 
@@ -29,7 +29,7 @@ func (e *EditableText) InsertText(str string, length int, position *int) {
 	editableTextInsertText(e, str, length, position)
 }
 func (e *EditableText) PasteText(position int) { editableTextPasteText(e, position) }
-func (e *EditableText) SetRunAttributes(attribSet *AttributeSet, startOffset, endOffset int) T.Gboolean {
+func (e *EditableText) SetRunAttributes(attribSet *AttributeSet, startOffset, endOffset int) bool {
 	return editableTextSetRunAttributes(e, attribSet, startOffset, endOffset)
 }
 func (e *EditableText) SetTextContents(str string) { editableTextSetTextContents(e, str) }

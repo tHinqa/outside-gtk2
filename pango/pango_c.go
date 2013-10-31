@@ -57,7 +57,7 @@ var (
 )
 
 type CairoShapeRendererFunc func(cr *C.Cairo,
-	attr *AttrShape, doPath T.Gboolean, data T.Gpointer)
+	attr *AttrShape, doPath bool, data T.Gpointer)
 
 type Color struct {
 	Red   uint16
@@ -70,7 +70,7 @@ var (
 
 	ColorCopy     func(src *Color) *Color
 	ColorFree     func(c *Color)
-	ColorParse    func(c *Color, spec string) T.Gboolean
+	ColorParse    func(c *Color, spec string) bool
 	ColorToString func(c *Color) string
 )
 

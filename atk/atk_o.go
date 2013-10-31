@@ -21,7 +21,7 @@ type Object struct {
 var (
 	ObjectGetType func() O.Type
 
-	objectAddRelationship              func(o *Object, relationship RelationType, target *Object) T.Gboolean
+	objectAddRelationship              func(o *Object, relationship RelationType, target *Object) bool
 	objectConnectPropertyChangeHandler func(o *Object, handler *PropertyChangeHandler) uint
 	objectGetAttributes                func(o *Object) *AttributeSet
 	objectGetDescription               func(o *Object) string
@@ -33,19 +33,19 @@ var (
 	objectGetParent                    func(o *Object) *Object
 	objectGetRole                      func(o *Object) Role
 	objectInitialize                   func(o *Object, data T.Gpointer)
-	objectNotifyStateChange            func(o *Object, state State, value T.Gboolean)
+	objectNotifyStateChange            func(o *Object, state State, value bool)
 	objectRefAccessibleChild           func(o *Object, i int) *Object
 	objectRefRelationSet               func(o *Object) *RelationSet
 	objectRefStateSet                  func(o *Object) *StateSet
 	objectRemovePropertyChangeHandler  func(o *Object, handlerId uint)
-	objectRemoveRelationship           func(o *Object, relationship RelationType, target *Object) T.Gboolean
+	objectRemoveRelationship           func(o *Object, relationship RelationType, target *Object) bool
 	objectSetDescription               func(o *Object, description string)
 	objectSetName                      func(o *Object, name string)
 	objectSetParent                    func(o *Object, parent *Object)
 	objectSetRole                      func(o *Object, role Role)
 )
 
-func (o *Object) AddRelationship(relationship RelationType, target *Object) T.Gboolean {
+func (o *Object) AddRelationship(relationship RelationType, target *Object) bool {
 	return objectAddRelationship(o, relationship, target)
 }
 func (o *Object) ConnectPropertyChangeHandler(handler *PropertyChangeHandler) uint {
@@ -61,7 +61,7 @@ func (o *Object) GetName() string              { return objectGetName(o) }
 func (o *Object) GetParent() *Object           { return objectGetParent(o) }
 func (o *Object) GetRole() Role                { return objectGetRole(o) }
 func (o *Object) Initialize(data T.Gpointer)   { objectInitialize(o, data) }
-func (o *Object) NotifyStateChange(state State, value T.Gboolean) {
+func (o *Object) NotifyStateChange(state State, value bool) {
 	objectNotifyStateChange(o, state, value)
 }
 func (o *Object) RefAccessibleChild(i int) *Object { return objectRefAccessibleChild(o, i) }
@@ -70,7 +70,7 @@ func (o *Object) RefStateSet() *StateSet           { return objectRefStateSet(o)
 func (o *Object) RemovePropertyChangeHandler(handlerId uint) {
 	objectRemovePropertyChangeHandler(o, handlerId)
 }
-func (o *Object) RemoveRelationship(relationship RelationType, target *Object) T.Gboolean {
+func (o *Object) RemoveRelationship(relationship RelationType, target *Object) bool {
 	return objectRemoveRelationship(o, relationship, target)
 }
 func (o *Object) SetDescription(description string) { objectSetDescription(o, description) }

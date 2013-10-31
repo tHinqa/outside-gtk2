@@ -25,7 +25,7 @@ type (
 	HWND    uint32
 	HDC     uint32
 
-	Enum         int
+	Enum int
 )
 
 var (
@@ -34,14 +34,14 @@ var (
 	InputSetExtensionEvents func(
 		window *Window, mask int, mode ExtensionMode)
 
-	SetShowEvents func(showEvents T.Gboolean)
+	SetShowEvents func(showEvents bool)
 
-	GetShowEvents func() T.Gboolean
+	GetShowEvents func() bool
 
 	AddClientMessageFilter func(
 		messageType Atom, f T.GdkFilterFunc, data T.Gpointer)
 
-	SettingGet func(name string, value *T.GValue) T.Gboolean
+	SettingGet func(name string, value *T.GValue) bool
 
 	RgbInit func()
 
@@ -57,9 +57,9 @@ var (
 
 	RgbCmapFree func(cmap *T.GdkRgbCmap)
 
-	RgbSetVerbose func(verbose T.Gboolean)
+	RgbSetVerbose func(verbose bool)
 
-	RgbSetInstall func(install T.Gboolean)
+	RgbSetInstall func(install bool)
 
 	RgbSetMinColors func(minColors int)
 
@@ -67,9 +67,9 @@ var (
 
 	RgbGetVisual func() *Visual
 
-	RgbDitherable func() T.Gboolean
+	RgbDitherable func() bool
 
-	RgbColormapDitherable func(cmap *Colormap) T.Gboolean
+	RgbColormapDitherable func(cmap *Colormap) bool
 
 	FilterReturnGetType func() O.Type
 
@@ -163,16 +163,16 @@ var (
 
 	KeyvalToLower func(keyval uint) uint
 
-	KeyvalIsUpper func(keyval uint) T.Gboolean
+	KeyvalIsUpper func(keyval uint) bool
 
-	KeyvalIsLower func(keyval uint) T.Gboolean
+	KeyvalIsLower func(keyval uint) bool
 
 	KeyvalToUnicode func(keyval uint) T.GUint32
 
 	UnicodeToKeyval func(wc T.GUint32) uint
 
 	AtomIntern func(
-		atomName string, onlyIfExists T.Gboolean) Atom
+		atomName string, onlyIfExists bool) Atom
 
 	AtomInternStaticString func(atomName string) Atom
 
@@ -181,7 +181,7 @@ var (
 	PropertyGet func(window *Window, property, typ Atom,
 		offset, length T.Gulong, pdelete int,
 		actualPropertyType *Atom, actualFormat, actualLength *int,
-		data **T.Guchar) T.Gboolean
+		data **T.Guchar) bool
 
 	PropertyChange func(window *Window, property, typ Atom,
 		format int, mode PropMode, data *T.Guchar,
@@ -193,7 +193,7 @@ var (
 		text *T.Guchar, length int, list ***T.Gchar) int
 
 	Utf8ToCompoundText func(str string, encoding *Atom,
-		format *int, ctext **T.Guchar, length *int) T.Gboolean
+		format *int, ctext **T.Guchar, length *int) bool
 
 	StringToCompoundText func(str string, encoding *Atom,
 		format *int, ctext **T.Guchar, length *int) int
@@ -217,20 +217,20 @@ var (
 
 	Utf8ToCompoundTextForDisplay func(
 		display *Display, str string, encoding *Atom,
-		format *int, ctext **T.Guchar, length *int) T.Gboolean
+		format *int, ctext **T.Guchar, length *int) bool
 
 	FreeTextList func(list **T.Gchar)
 
 	FreeCompoundText func(ctext *T.Guchar)
 
 	SelectionOwnerSet func(owner *Window, selection Atom,
-		time T.GUint32, sendEvent T.Gboolean) T.Gboolean
+		time T.GUint32, sendEvent bool) bool
 
 	SelectionOwnerGet func(selection Atom) *Window
 
 	SelectionOwnerSetForDisplay func(display *Display,
 		owner *Window, selection Atom, time T.GUint32,
-		sendEvent T.Gboolean) T.Gboolean
+		sendEvent bool) bool
 
 	SelectionOwnerGetForDisplay func(
 		display *Display, selection Atom) *Window
@@ -249,19 +249,19 @@ var (
 		selection, target, property Atom, time T.GUint32)
 
 	SpawnOnScreen func(screen *Screen, workingDirectory string,
-		argv, envp **T.Gchar, flags T.GSpawnFlags,
+		argv, envp []string, flags T.GSpawnFlags,
 		childSetup T.GSpawnChildSetupFunc, userData T.Gpointer,
-		childPid *int, e **T.GError) T.Gboolean
+		childPid *int, e **T.GError) bool
 
 	SpawnOnScreenWithPipes func(screen *Screen,
-		workingDirectory string, argv, envp **T.Gchar,
+		workingDirectory string, argv, envp []string,
 		flags T.GSpawnFlags, childSetup T.GSpawnChildSetupFunc,
 		userData T.Gpointer, childPid, standardInput,
 		standardOutput, standardError *int,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnCommandLineOnScreen func(
-		screen *Screen, commandLine string, e **T.GError) T.Gboolean
+		screen *Screen, commandLine string, e **T.GError) bool
 
 	WindowForeignNew func(anid T.GdkNativeWindow) *Window
 
@@ -277,7 +277,7 @@ var (
 
 	SetSmClientId func(smClientId string)
 
-	WindowSetDebugUpdates func(setting T.Gboolean)
+	WindowSetDebugUpdates func(setting bool)
 
 	WindowConstrainSize func(geometry *Geometry, flags uint,
 		width, height int, newWidth, newHeight *int)
@@ -297,11 +297,11 @@ var (
 
 	TestSimulateKey func(window *Window, x, y int,
 		keyval uint, modifiers T.GdkModifierType,
-		keyPressrelease EventType) T.Gboolean
+		keyPressrelease EventType) bool
 
 	TestSimulateButton func(window *Window, x, y int,
 		button uint, modifiers T.GdkModifierType,
-		buttonPressrelease EventType) T.Gboolean
+		buttonPressrelease EventType) bool
 
 	QueryDepths func(depths **int, count *int)
 
@@ -313,7 +313,7 @@ var (
 
 	Init func(argc *int, argv ***T.Gchar)
 
-	InitCheck func(argc *int, argv ***T.Gchar) T.Gboolean
+	InitCheck func(argc *int, argv ***T.Gchar) bool
 
 	AddOptionEntriesLibgtkOnly func(group *T.GOptionGroup)
 
@@ -331,9 +331,9 @@ var (
 
 	ErrorTrapPop func() int
 
-	SetUseXshm func(useXshm T.Gboolean)
+	SetUseXshm func(useXshm bool)
 
-	GetUseXshm func() T.Gboolean
+	GetUseXshm func() bool
 
 	GetDisplay func() string
 
@@ -348,24 +348,24 @@ var (
 
 	InputRemove func(tag int)
 
-	PointerGrab func(window *Window, ownerEvents T.Gboolean,
+	PointerGrab func(window *Window, ownerEvents bool,
 		eventMask EventMask, confineTo *Window,
 		cursor *Cursor, time T.GUint32) GrabStatus
 
-	KeyboardGrab func(window *Window, ownerEvents T.Gboolean,
+	KeyboardGrab func(window *Window, ownerEvents bool,
 		time T.GUint32) GrabStatus
 
 	PointerGrabInfoLibgtkOnly func(display *Display,
-		grabWindow **Window, ownerEvents *T.Gboolean) T.Gboolean
+		grabWindow **Window, ownerEvents *bool) bool
 
 	KeyboardGrabInfoLibgtkOnly func(display *Display,
-		grabWindow **Window, ownerEvents *T.Gboolean) T.Gboolean
+		grabWindow **Window, ownerEvents *bool) bool
 
 	PointerUngrab func(time T.GUint32)
 
 	KeyboardUngrab func(time T.GUint32)
 
-	PointerIsGrabbed func() T.Gboolean
+	PointerIsGrabbed func() bool
 
 	ScreenWidth func() int
 
@@ -420,7 +420,7 @@ var (
 	SynthesizeWindowState func(window *Window,
 		unsetFlags WindowState, setFlags WindowState)
 
-	Win32WindowIsWin32 func(window *Window) T.Gboolean
+	Win32WindowIsWin32 func(window *Window) bool
 
 	Win32WindowGetImplHwnd func(window *Window) HWND
 

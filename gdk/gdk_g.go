@@ -40,7 +40,7 @@ var (
 	gcSetClipRectangle  func(gc *GC, rectangle *Rectangle)
 	gcSetClipRegion     func(gc *GC, region *Region)
 	gcSetSubwindow      func(gc *GC, mode T.GdkSubwindowMode)
-	gcSetExposures      func(gc *GC, exposures T.Gboolean)
+	gcSetExposures      func(gc *GC, exposures bool)
 	gcSetLineAttributes func(gc *GC, lineWidth int, lineStyle T.GdkLineStyle, capStyle CapStyle, joinStyle T.GdkJoinStyle)
 	gcSetDashes         func(gc *GC, dashOffset int, dashList *int8, n int)
 	gcOffset            func(gc *GC, xOffset, yOffset int)
@@ -69,7 +69,7 @@ func (g *GC) SetClipMask(mask *T.GdkBitmap)                       { gcSetClipMas
 func (g *GC) SetClipRectangle(rectangle *Rectangle)               { gcSetClipRectangle(g, rectangle) }
 func (g *GC) SetClipRegion(region *Region)                        { gcSetClipRegion(g, region) }
 func (g *GC) SetSubwindow(mode T.GdkSubwindowMode)                { gcSetSubwindow(g, mode) }
-func (g *GC) SetExposures(exposures T.Gboolean)                   { gcSetExposures(g, exposures) }
+func (g *GC) SetExposures(exposures bool)                         { gcSetExposures(g, exposures) }
 func (g *GC) SetLineAttributes(lineWidth int, lineStyle T.GdkLineStyle, capStyle CapStyle, joinStyle T.GdkJoinStyle) {
 	gcSetLineAttributes(g, lineWidth, lineStyle, capStyle, joinStyle)
 }

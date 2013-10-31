@@ -40,24 +40,24 @@ var (
 	attributeInit    func(Attr *Attribute, class *AttrClass)
 	attributeCopy    func(Attr *Attribute) *Attribute
 	attributeDestroy func(Attr *Attribute)
-	attributeEqual   func(Attr1 *Attribute, Attr2 *Attribute) T.Gboolean
+	attributeEqual   func(Attr1 *Attribute, Attr2 *Attribute) bool
 )
 
-func (a *Attribute) Init(class *AttrClass)             { attributeInit(a, class) }
-func (a *Attribute) Copy() *Attribute                  { return attributeCopy(a) }
-func (a *Attribute) Destroy()                          { attributeDestroy(a) }
-func (a *Attribute) Equal(Attr2 *Attribute) T.Gboolean { return attributeEqual(a, Attr2) }
+func (a *Attribute) Init(class *AttrClass)       { attributeInit(a, class) }
+func (a *Attribute) Copy() *Attribute            { return attributeCopy(a) }
+func (a *Attribute) Destroy()                    { attributeDestroy(a) }
+func (a *Attribute) Equal(Attr2 *Attribute) bool { return attributeEqual(a, Attr2) }
 
 type AttrClass struct {
 	Type    AttrType
 	Copy    func(attr *Attribute) *Attribute
 	Destroy func(attr *Attribute)
-	Equal   func(attr1, attr2 *Attribute) T.Gboolean
+	Equal   func(attr1, attr2 *Attribute) bool
 }
 
 var (
 	AttrBackgroundNew         func(red, green, blue uint16) *Attribute
-	AttrFallbackNew           func(enableFallback T.Gboolean) *Attribute
+	AttrFallbackNew           func(enableFallback bool) *Attribute
 	AttrFamilyNew             func(family string) *Attribute
 	AttrFontDescNew           func(desc *FontDescription) *Attribute
 	AttrForegroundNew         func(red, green, blue uint16) *Attribute
@@ -73,7 +73,7 @@ var (
 	AttrSizeNewAbsolute       func(size int) *Attribute
 	AttrStretchNew            func(stretch Stretch) *Attribute
 	AttrStrikethroughColorNew func(red, green, blue uint16) *Attribute
-	AttrStrikethroughNew      func(strikethrough T.Gboolean) *Attribute
+	AttrStrikethroughNew      func(strikethrough bool) *Attribute
 	AttrStyleNew              func(style Style) *Attribute
 	AttrTypeGetName           func(t AttrType) string
 	AttrTypeRegister          func(name string) AttrType
@@ -86,7 +86,7 @@ var (
 type AttrDataCopyFunc func(data T.Gconstpointer) T.Gpointer
 
 type AttrFilterFunc func(
-	attribute *Attribute, data T.Gpointer) T.Gboolean
+	attribute *Attribute, data T.Gpointer) bool
 
 type AttrList struct{}
 
@@ -125,7 +125,7 @@ var (
 	attrIteratorGet      func(iterator *AttrIterator, t AttrType) *Attribute
 	attrIteratorGetAttrs func(iterator *AttrIterator) *T.GSList
 	attrIteratorGetFont  func(iterator *AttrIterator, desc *FontDescription, language **Language, extraAttrs **T.GSList)
-	attrIteratorNext     func(iterator *AttrIterator) T.Gboolean
+	attrIteratorNext     func(iterator *AttrIterator) bool
 	attrIteratorRange    func(iterator *AttrIterator, start, end *int)
 )
 
@@ -136,7 +136,7 @@ func (a *AttrIterator) GetAttrs() *T.GSList       { return attrIteratorGetAttrs(
 func (a *AttrIterator) GetFont(desc *FontDescription, language **Language, extraAttrs **T.GSList) {
 	attrIteratorGetFont(a, desc, language, extraAttrs)
 }
-func (a *AttrIterator) Next() T.Gboolean      { return attrIteratorNext(a) }
+func (a *AttrIterator) Next() bool            { return attrIteratorNext(a) }
 func (a *AttrIterator) Range(start, end *int) { attrIteratorRange(a, start, end) }
 
 type AttrShape struct {

@@ -166,8 +166,8 @@ var (
 		t O.Type,
 		str string,
 		value *int,
-		warn T.Gboolean,
-		possible_values **T.Char) T.Gboolean
+		warn bool,
+		possible_values **T.Char) bool
 
 	ParseMarkup func(
 		markup_text string,
@@ -176,19 +176,19 @@ var (
 		Attr_list **AttrList,
 		text **T.Char,
 		AccelChar *T.Gunichar,
-		error **T.GError) T.Gboolean
+		error **T.GError) bool
 
 	ParseStretch func(str string,
-		stretch *Stretch, warn T.Gboolean) T.Gboolean
+		stretch *Stretch, warn bool) bool
 
 	ParseStyle func(str string,
-		style *Style, warn T.Gboolean) T.Gboolean
+		style *Style, warn bool) bool
 
 	ParseVariant func(str string,
-		variant *Variant, warn T.Gboolean) T.Gboolean
+		variant *Variant, warn bool) bool
 
 	ParseWeight func(str string,
-		weight *Weight, warn T.Gboolean) T.Gboolean
+		weight *Weight, warn bool) bool
 
 	QuantizeLineGeometry func(thickness, position *int)
 )

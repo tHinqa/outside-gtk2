@@ -38,17 +38,17 @@ func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
 func (_ String) Dispose(a T.Gpointer) { Free(a) }
 
 var (
-	ArrayNew func(zeroTerminated T.Gboolean,
-		clear T.Gboolean,
+	ArrayNew func(zeroTerminated bool,
+		clear bool,
 		elementSize uint) *T.GArray
 
-	ArraySizedNew func(zeroTerminated T.Gboolean,
-		clear T.Gboolean,
+	ArraySizedNew func(zeroTerminated bool,
+		clear bool,
 		elementSize uint,
 		reservedSize uint) *T.GArray
 
 	ArrayFree func(array *T.GArray,
-		freeSegment T.Gboolean) string
+		freeSegment bool) string
 
 	ArrayRef func(array *T.GArray) *T.GArray
 
@@ -96,7 +96,7 @@ var (
 	PtrArraySizedNew func(reservedSize uint) *T.GPtrArray
 
 	PtrArrayFree func(array *T.GPtrArray,
-		freeSeg T.Gboolean) *T.Gpointer
+		freeSeg bool) *T.Gpointer
 
 	PtrArrayRef func(array *T.GPtrArray) *T.GPtrArray
 
@@ -115,10 +115,10 @@ var (
 		index uint) T.Gpointer
 
 	PtrArrayRemove func(array *T.GPtrArray,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 
 	PtrArrayRemoveFast func(array *T.GPtrArray,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 
 	PtrArrayRemoveRange func(array *T.GPtrArray,
 		index uint,
@@ -141,7 +141,7 @@ var (
 	ByteArraySizedNew func(reservedSize uint) *T.GByteArray
 
 	ByteArrayFree func(array *T.GByteArray,
-		freeSegment T.Gboolean) *uint8
+		freeSegment bool) *uint8
 
 	ByteArrayRef func(array *T.GByteArray) *T.GByteArray
 
@@ -203,7 +203,7 @@ var (
 
 	ErrorMatches func(e *T.GError,
 		domain T.GQuark,
-		code int) T.Gboolean
+		code int) bool
 
 	SetError func(err **T.GError, domain T.GQuark, code int,
 		format string, v ...VArg)
@@ -262,7 +262,7 @@ var (
 	Vsnprintf func(str T.Gchar,
 		n T.Gulong, format string, args T.VaList) int
 
-	PathIsAbsolute func(fileName string) T.Gboolean
+	PathIsAbsolute func(fileName string) bool
 
 	PathSkipRoot func(fileName string) string
 
@@ -279,7 +279,7 @@ var (
 	Getenv func(variable string) string
 
 	Setenv func(
-		variable, value string, overwrite T.Gboolean) T.Gboolean
+		variable, value string, overwrite bool) bool
 
 	Unsetenv func(variable string)
 
@@ -291,15 +291,15 @@ var (
 
 	ThreadInitWithErrorcheckMutexes func(vtable *T.GThreadFunctions)
 
-	ThreadGetInitialized func() T.Gboolean
+	ThreadGetInitialized func() bool
 
 	StaticMutexGetMutexImpl func(mutex **T.GMutex) *T.GMutex
 
 	ThreadCreateFull func(f T.GThreadFunc,
 		data T.Gpointer,
 		stackSize T.Gulong,
-		joinable T.Gboolean,
-		bound T.Gboolean,
+		joinable bool,
+		bound bool,
 		priority T.GThreadPriority,
 		e **T.GError) *T.GThread
 
@@ -320,7 +320,7 @@ var (
 
 	StaticRecMutexLock func(mutex *T.GStaticRecMutex)
 
-	StaticRecMutexTrylock func(mutex *T.GStaticRecMutex) T.Gboolean
+	StaticRecMutexTrylock func(mutex *T.GStaticRecMutex) bool
 
 	StaticRecMutexUnlock func(mutex *T.GStaticRecMutex)
 
@@ -338,7 +338,7 @@ var (
 		lock *T.GStaticRWLock)
 
 	StaticRwLockReaderTrylock func(
-		lock *T.GStaticRWLock) T.Gboolean
+		lock *T.GStaticRWLock) bool
 
 	StaticRwLockReaderUnlock func(
 		lock *T.GStaticRWLock)
@@ -347,7 +347,7 @@ var (
 		lock *T.GStaticRWLock)
 
 	StaticRwLockWriterTrylock func(
-		lock *T.GStaticRWLock) T.Gboolean
+		lock *T.GStaticRWLock) bool
 
 	StaticRwLockWriterUnlock func(
 		lock *T.GStaticRWLock)
@@ -364,10 +364,10 @@ var (
 		arg T.Gpointer) T.Gpointer
 
 	OnceInitEnter func(
-		valueLocation *T.Gsize) T.Gboolean
+		valueLocation *T.Gsize) bool
 
 	OnceInitEnterImpl func(
-		valueLocation *T.Gsize) T.Gboolean
+		valueLocation *T.Gsize) bool
 
 	OnceInitLeave func(
 		valueLocation *T.Gsize,
@@ -437,12 +437,12 @@ var (
 
 	Base64EncodeStep func(in *T.Guchar,
 		leng T.Gsize,
-		breakLines T.Gboolean,
+		breakLines bool,
 		out string,
 		state *int,
 		save *int) T.Gsize
 
-	Base64EncodeClose func(breakLines T.Gboolean,
+	Base64EncodeClose func(breakLines bool,
 		out string,
 		state *int,
 		save *int) T.Gsize
@@ -468,7 +468,7 @@ var (
 
 	BitTrylock func(
 		address *int,
-		lockBit int) T.Gboolean
+		lockBit int) bool
 
 	BitUnlock func(
 		address *int,
@@ -496,11 +496,11 @@ var (
 
 	AtomicIntCompareAndExchange func(atomic *int,
 		oldval int,
-		newval int) T.Gboolean
+		newval int) bool
 
 	AtomicPointerCompareAndExchange func(atomic *T.Gpointer,
 		oldval T.Gpointer,
-		newval T.Gpointer) T.Gboolean
+		newval T.Gpointer) bool
 
 	AtomicIntGet func(atomic *int) int
 
@@ -521,19 +521,19 @@ var (
 	BookmarkFileFree func(bookmark *T.GBookmarkFile)
 
 	BookmarkFileLoadFromFile func(bookmark *T.GBookmarkFile,
-		filename string, e **T.GError) T.Gboolean
+		filename string, e **T.GError) bool
 
 	BookmarkFileLoadFromData func(bookmark *T.GBookmarkFile,
-		data string, length T.Gsize, e **T.GError) T.Gboolean
+		data string, length T.Gsize, e **T.GError) bool
 
 	BookmarkFileLoadFromDataDirs func(bookmark *T.GBookmarkFile,
-		file string, fullPath **T.Gchar, e **T.GError) T.Gboolean
+		file string, fullPath **T.Gchar, e **T.GError) bool
 
 	BookmarkFileToData func(bookmark *T.GBookmarkFile,
 		length *T.Gsize, e **T.GError) string
 
 	BookmarkFileToFile func(bookmark *T.GBookmarkFile,
-		filename string, e **T.GError) T.Gboolean
+		filename string, e **T.GError) bool
 
 	BookmarkFileSetTitle func(bookmark *T.GBookmarkFile,
 		uri, title string)
@@ -560,7 +560,7 @@ var (
 		uri, group string)
 
 	BookmarkFileHasGroup func(bookmark *T.GBookmarkFile,
-		uri, group string, e **T.GError) T.Gboolean
+		uri, group string, e **T.GError) bool
 
 	BookmarkFileGetGroups func(bookmark *T.GBookmarkFile,
 		uri string, length *T.Gsize, e **T.GError) []string
@@ -569,29 +569,29 @@ var (
 		uri, name, exec string)
 
 	BookmarkFileHasApplication func(bookmark *T.GBookmarkFile,
-		uri, name string, e **T.GError) T.Gboolean
+		uri, name string, e **T.GError) bool
 
 	BookmarkFileGetApplications func(bookmark *T.GBookmarkFile,
 		uri string, length *T.Gsize, e **T.GError) []string
 
 	BookmarkFileSetAppInfo func(bookmark *T.GBookmarkFile,
 		uri, name, exec string,
-		count int, stamp T.TimeT, e **T.GError) T.Gboolean
+		count int, stamp T.TimeT, e **T.GError) bool
 
 	BookmarkFileGetAppInfo func(bookmark *T.GBookmarkFile,
 		uri, name string,
 		exec **T.Gchar,
 		count *uint,
 		stamp *T.TimeT,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	BookmarkFileSetIsPrivate func(bookmark *T.GBookmarkFile,
 		uri string,
-		isPrivate T.Gboolean)
+		isPrivate bool)
 
 	BookmarkFileGetIsPrivate func(bookmark *T.GBookmarkFile,
 		uri string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	BookmarkFileSetIcon func(bookmark *T.GBookmarkFile,
 		uri, href, mimeType string)
@@ -600,7 +600,7 @@ var (
 		uri string,
 		href **T.Gchar,
 		mimeType **T.Gchar,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	BookmarkFileSetAdded func(bookmark *T.GBookmarkFile,
 		uri string,
@@ -625,7 +625,7 @@ var (
 		uri string, e **T.GError) T.TimeT
 
 	BookmarkFileHasItem func(bookmark *T.GBookmarkFile,
-		uri string) T.Gboolean
+		uri string) bool
 
 	BookmarkFileGetSize func(bookmark *T.GBookmarkFile) int
 
@@ -633,16 +633,16 @@ var (
 		length *T.Gsize) []string
 
 	BookmarkFileRemoveGroup func(bookmark *T.GBookmarkFile,
-		uri, group string, e **T.GError) T.Gboolean
+		uri, group string, e **T.GError) bool
 
 	BookmarkFileRemoveApplication func(bookmark *T.GBookmarkFile,
-		uri, name string, e **T.GError) T.Gboolean
+		uri, name string, e **T.GError) bool
 
 	BookmarkFileRemoveItem func(bookmark *T.GBookmarkFile,
-		uri string, e **T.GError) T.Gboolean
+		uri string, e **T.GError) bool
 
 	BookmarkFileMoveItem func(bookmark *T.GBookmarkFile,
-		oldUri, newUri string, e **T.GError) T.Gboolean
+		oldUri, newUri string, e **T.GError) bool
 
 	SliceAlloc func(blockSize T.Gsize) T.Gpointer
 
@@ -700,7 +700,7 @@ var (
 		nBlocks T.Gsize,
 		nBlockBytes T.Gsize) T.Gpointer
 
-	MemIsSystemMalloc func() T.Gboolean
+	MemIsSystemMalloc func() bool
 
 	MemProfile func()
 
@@ -964,7 +964,7 @@ var (
 
 	FilenameDisplayName func(filename string) string
 
-	GetFilenameCharsets func(charsets ***T.Gchar) T.Gboolean
+	GetFilenameCharsets func(charsets ***T.Gchar) bool
 
 	FilenameDisplayBasename func(filename string) string
 
@@ -1024,21 +1024,21 @@ var (
 
 	DateFree func(date *T.GDate)
 
-	DateValid func(date *T.GDate) T.Gboolean
+	DateValid func(date *T.GDate) bool
 
-	DateValidDay func(day T.GDateDay) T.Gboolean
+	DateValidDay func(day T.GDateDay) bool
 
-	DateValidMonth func(month T.GDateMonth) T.Gboolean
+	DateValidMonth func(month T.GDateMonth) bool
 
-	DateValidYear func(year T.GDateYear) T.Gboolean
+	DateValidYear func(year T.GDateYear) bool
 
-	DateValidWeekday func(weekday T.GDateWeekday) T.Gboolean
+	DateValidWeekday func(weekday T.GDateWeekday) bool
 
-	DateValidJulian func(julianDate T.GUint32) T.Gboolean
+	DateValidJulian func(julianDate T.GUint32) bool
 
 	DateValidDmy func(day T.GDateDay,
 		month T.GDateMonth,
-		year T.GDateYear) T.Gboolean
+		year T.GDateYear) bool
 
 	DateGetWeekday func(date *T.GDate) T.GDateWeekday
 
@@ -1079,9 +1079,9 @@ var (
 
 	DateSetJulian func(date *T.GDate, julianDate T.GUint32)
 
-	DateIsFirstOfMonth func(date *T.GDate) T.Gboolean
+	DateIsFirstOfMonth func(date *T.GDate) bool
 
-	DateIsLastOfMonth func(date *T.GDate) T.Gboolean
+	DateIsLastOfMonth func(date *T.GDate) bool
 
 	DateAddDays func(date *T.GDate, nDays uint)
 
@@ -1095,7 +1095,7 @@ var (
 
 	DateSubtractYears func(date *T.GDate, nYears uint)
 
-	DateIsLeapYear func(year T.GDateYear) T.Gboolean
+	DateIsLeapYear func(year T.GDateYear) bool
 
 	DateGetDaysInMonth func(month T.GDateMonth,
 		year T.GDateYear) uint8
@@ -1146,7 +1146,7 @@ var (
 		interval int) T.GInt32
 
 	TimeZoneIsDst func(tz *T.GTimeZone,
-		interval int) T.Gboolean
+		interval int) bool
 
 	DateTimeUnref func(datetime *T.GDateTime)
 
@@ -1229,7 +1229,7 @@ var (
 	DateTimeHash func(datetime T.Gconstpointer) uint
 
 	DateTimeEqual func(dt1 T.Gconstpointer,
-		dt2 T.Gconstpointer) T.Gboolean
+		dt2 T.Gconstpointer) bool
 
 	DateTimeGetYmd func(datetime *T.GDateTime,
 		year *int,
@@ -1263,13 +1263,13 @@ var (
 	DateTimeToUnix func(datetime *T.GDateTime) int64
 
 	DateTimeToTimeval func(datetime *T.GDateTime,
-		tv *T.GTimeVal) T.Gboolean
+		tv *T.GTimeVal) bool
 
 	DateTimeGetUtcOffset func(datetime *T.GDateTime) T.GTimeSpan
 
 	DateTimeGetTimezoneAbbreviation func(datetime *T.GDateTime) string
 
-	DateTimeIsDaylightSavings func(datetime *T.GDateTime) T.Gboolean
+	DateTimeIsDaylightSavings func(datetime *T.GDateTime) bool
 
 	DateTimeToTimezone func(datetime *T.GDateTime,
 		tz *T.GTimeZone) *T.GDateTime
@@ -1296,17 +1296,17 @@ var (
 	FileErrorFromErrno func(errNo int) T.GFileError
 
 	FileTest func(filename string,
-		test T.GFileTest) T.Gboolean
+		test T.GFileTest) bool
 
 	FileGetContents func(filename string,
 		contents **T.Gchar,
 		length *T.Gsize,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	FileSetContents func(filename string,
 		contents string,
 		length T.Gssize,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	FileReadLink func(filename string,
 		e **T.GError) string
@@ -1326,15 +1326,13 @@ var (
 	BuildPath func(separator string, firstElement string,
 		v ...VArg) string
 
-	BuildPathv func(separator string,
-		args **T.Gchar) string
+	BuildPathv func(separator string, args []string) string
 
 	BuildFilename func(firstElement string, v ...VArg) string
 
-	BuildFilenamev func(args **T.Gchar) string
+	BuildFilenamev func(args []string) string
 
-	MkdirWithParents func(pathname string,
-		mode int) int
+	MkdirWithParents func(pathname string, mode int) int
 
 	HashTableNew func(hashFunc T.GHashFunc,
 		keyEqualFunc T.GEqualFunc) *T.GHashTable
@@ -1355,12 +1353,12 @@ var (
 		value T.Gpointer)
 
 	HashTableRemove func(hashTable *T.GHashTable,
-		key T.Gconstpointer) T.Gboolean
+		key T.Gconstpointer) bool
 
 	HashTableRemoveAll func(hashTable *T.GHashTable)
 
 	HashTableSteal func(hashTable *T.GHashTable,
-		key T.Gconstpointer) T.Gboolean
+		key T.Gconstpointer) bool
 
 	HashTableStealAll func(hashTable *T.GHashTable)
 
@@ -1369,7 +1367,7 @@ var (
 
 	HashTableLookupExtended func(hashTable *T.GHashTable,
 		lookupKey T.Gconstpointer,
-		origKey, value *T.Gpointer) T.Gboolean
+		origKey, value *T.Gpointer) bool
 
 	HashTableForeach func(hashTable *T.GHashTable,
 		f T.GHFunc, userData T.Gpointer)
@@ -1394,7 +1392,7 @@ var (
 
 	HashTableIterNext func(iter *T.GHashTableIter,
 		key *T.Gpointer,
-		value *T.Gpointer) T.Gboolean
+		value *T.Gpointer) bool
 
 	HashTableIterGetHashTable func(iter *T.GHashTableIter) *T.GHashTable
 
@@ -1407,29 +1405,29 @@ var (
 	HashTableUnref func(hashTable *T.GHashTable)
 
 	StrEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) T.Gboolean
+		v2 T.Gconstpointer) bool
 
 	StrHash func(v T.Gconstpointer) uint
 
 	IntEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) T.Gboolean
+		v2 T.Gconstpointer) bool
 
 	IntHash func(v T.Gconstpointer) uint
 
 	Int64Equal func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) T.Gboolean
+		v2 T.Gconstpointer) bool
 
 	Int64Hash func(v T.Gconstpointer) uint
 
 	DoubleEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) T.Gboolean
+		v2 T.Gconstpointer) bool
 
 	DoubleHash func(v T.Gconstpointer) uint
 
 	DirectHash func(v T.Gconstpointer) uint
 
 	DirectEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) T.Gboolean
+		v2 T.Gconstpointer) bool
 
 	HookListInit func(hookList *T.GHookList,
 		hookSize uint)
@@ -1448,7 +1446,7 @@ var (
 		hook *T.GHook)
 
 	HookDestroy func(hookList *T.GHookList,
-		hookId T.Gulong) T.Gboolean
+		hookId T.Gulong) bool
 
 	HookDestroyLink func(hookList *T.GHookList,
 		hook *T.GHook)
@@ -1468,54 +1466,54 @@ var (
 		hookId T.Gulong) *T.GHook
 
 	HookFind func(hookList *T.GHookList,
-		needValids T.Gboolean,
+		needValids bool,
 		f T.GHookFindFunc,
 		data T.Gpointer) *T.GHook
 
 	HookFindData func(hookList *T.GHookList,
-		needValids T.Gboolean,
+		needValids bool,
 		data T.Gpointer) *T.GHook
 
 	HookFindFunc func(hookList *T.GHookList,
-		needValids T.Gboolean,
+		needValids bool,
 		f T.Gpointer) *T.GHook
 
 	HookFindFuncData func(hookList *T.GHookList,
-		needValids T.Gboolean,
+		needValids bool,
 		f T.Gpointer,
 		data T.Gpointer) *T.GHook
 
 	HookFirstValid func(hookList *T.GHookList,
-		mayBeInCall T.Gboolean) *T.GHook
+		mayBeInCall bool) *T.GHook
 
 	HookNextValid func(hookList *T.GHookList,
 		hook *T.GHook,
-		mayBeInCall T.Gboolean) *T.GHook
+		mayBeInCall bool) *T.GHook
 
 	HookCompareIds func(newHook *T.GHook,
 		sibling *T.GHook) int
 
 	HookListInvoke func(hookList *T.GHookList,
-		mayRecurse T.Gboolean)
+		mayRecurse bool)
 
 	HookListInvokeCheck func(hookList *T.GHookList,
-		mayRecurse T.Gboolean)
+		mayRecurse bool)
 
 	HookListMarshal func(hookList *T.GHookList,
-		mayRecurse T.Gboolean,
+		mayRecurse bool,
 		marshaller T.GHookMarshaller,
 		marshalData T.Gpointer)
 
 	HookListMarshalCheck func(hookList *T.GHookList,
-		mayRecurse T.Gboolean,
+		mayRecurse bool,
 		marshaller T.GHookCheckMarshaller,
 		marshalData T.Gpointer)
 
-	HostnameIsNonAscii func(hostname string) T.Gboolean
+	HostnameIsNonAscii func(hostname string) bool
 
-	HostnameIsAsciiEncoded func(hostname string) T.Gboolean
+	HostnameIsAsciiEncoded func(hostname string) bool
 
-	HostnameIsIpAddress func(hostname string) T.Gboolean
+	HostnameIsIpAddress func(hostname string) bool
 
 	HostnameToAscii func(hostname string) string
 
@@ -1623,9 +1621,9 @@ var (
 	MainContextDefault func() *T.GMainContext
 
 	MainContextIteration func(context *T.GMainContext,
-		mayBlock T.Gboolean) T.Gboolean
+		mayBlock bool) bool
 
-	MainContextPending func(context *T.GMainContext) T.Gboolean
+	MainContextPending func(context *T.GMainContext) bool
 
 	MainContextFindSourceById func(context *T.GMainContext,
 		sourceId uint) *O.Source
@@ -1639,17 +1637,17 @@ var (
 
 	MainContextWakeup func(context *T.GMainContext)
 
-	MainContextAcquire func(context *T.GMainContext) T.Gboolean
+	MainContextAcquire func(context *T.GMainContext) bool
 
 	MainContextRelease func(context *T.GMainContext)
 
-	MainContextIsOwner func(context *T.GMainContext) T.Gboolean
+	MainContextIsOwner func(context *T.GMainContext) bool
 
 	MainContextWait func(context *T.GMainContext,
-		cond *T.GCond, mutex *T.GMutex) T.Gboolean
+		cond *T.GCond, mutex *T.GMutex) bool
 
 	MainContextPrepare func(context *T.GMainContext,
-		priority *int) T.Gboolean
+		priority *int) bool
 
 	MainContextQuery func(context *T.GMainContext,
 		maxPriority int, timeout *int,
@@ -1684,7 +1682,7 @@ var (
 	MainContextGetThreadDefault func() *T.GMainContext
 
 	MainLoopNew func(context *T.GMainContext,
-		isRunning T.Gboolean) *T.GMainLoop
+		isRunning bool) *T.GMainLoop
 
 	MainLoopRun func(loop *T.GMainLoop)
 
@@ -1694,7 +1692,7 @@ var (
 
 	MainLoopUnref func(loop *T.GMainLoop)
 
-	MainLoopIsRunning func(loop *T.GMainLoop) T.Gboolean
+	MainLoopIsRunning func(loop *T.GMainLoop) bool
 
 	MainLoopGetContext func(loop *T.GMainLoop) *T.GMainContext
 
@@ -1717,9 +1715,9 @@ var (
 	SourceGetPriority func(source *O.Source) int
 
 	SourceSetCanRecurse func(source *O.Source,
-		canRecurse T.Gboolean)
+		canRecurse bool)
 
-	SourceGetCanRecurse func(source *O.Source) T.Gboolean
+	SourceGetCanRecurse func(source *O.Source) bool
 
 	SourceGetId func(source *O.Source) uint
 
@@ -1733,7 +1731,7 @@ var (
 	SourceSetFuncs func(source *O.Source,
 		funcs *O.SourceFuncs)
 
-	SourceIsDestroyed func(source *O.Source) T.Gboolean
+	SourceIsDestroyed func(source *O.Source) bool
 
 	SourceSetName func(source *O.Source,
 		name string)
@@ -1778,12 +1776,12 @@ var (
 
 	GetRealTime func() int64
 
-	SourceRemove func(tag uint) T.Gboolean
+	SourceRemove func(tag uint) bool
 
-	SourceRemoveByUserData func(userData T.Gpointer) T.Gboolean
+	SourceRemoveByUserData func(userData T.Gpointer) bool
 
 	SourceRemoveByFuncsUserData func(funcs *O.SourceFuncs,
-		userData T.Gpointer) T.Gboolean
+		userData T.Gpointer) bool
 
 	TimeoutAddFull func(priority int,
 		interval uint,
@@ -1823,7 +1821,7 @@ var (
 		data T.Gpointer,
 		notify T.GDestroyNotify) uint
 
-	IdleRemoveByData func(data T.Gpointer) T.Gboolean
+	IdleRemoveByData func(data T.Gpointer) bool
 
 	MainContextInvokeFull func(context *T.GMainContext,
 		priority int,
@@ -1835,7 +1833,7 @@ var (
 		function O.SourceFunc,
 		data T.Gpointer)
 
-	GetCharset func(charset **T.Char) T.Gboolean
+	GetCharset func(charset **T.Char) bool
 
 	UnicharIsalnum func(c T.Gunichar) bool
 
@@ -1869,7 +1867,7 @@ var (
 
 	UnicharIszerowidth func(c T.Gunichar) bool
 
-	UnicharIsmark func(c T.Gunichar) T.Gboolean
+	UnicharIsmark func(c T.Gunichar) bool
 
 	UnicharToupper func(c T.Gunichar) T.Gunichar
 
@@ -1975,9 +1973,9 @@ var (
 
 	Utf8Validate func(str string,
 		maxLen T.Gssize,
-		end **T.Gchar) T.Gboolean
+		end **T.Gchar) bool
 
-	UnicharValidate func(ch T.Gunichar) T.Gboolean
+	UnicharValidate func(ch T.Gunichar) bool
 
 	Utf8Strup func(str string, leng T.Gssize) string
 
@@ -2001,7 +1999,7 @@ var (
 		leng T.Gssize) string
 
 	UnicharGetMirrorChar func(ch T.Gunichar,
-		mirroredCh *T.Gunichar) T.Gboolean
+		mirroredCh *T.Gunichar) bool
 
 	UnicharGetScript func(ch T.Gunichar) T.GUnicodeScript
 
@@ -2026,10 +2024,10 @@ var (
 	StringSizedNew func(dflSize T.Gsize) *T.GString
 
 	StringFree func(str *T.GString,
-		freeSegment T.Gboolean) string
+		freeSegment bool) string
 
 	StringEqual func(v *T.GString,
-		v2 *T.GString) T.Gboolean
+		v2 *T.GString) bool
 
 	StringHash func(str *T.GString) uint
 
@@ -2118,7 +2116,7 @@ var (
 	StringAppendUriEscaped func(str *T.GString,
 		unescaped string,
 		reservedChars_Allowed string,
-		allowUtf8 T.Gboolean) *T.GString
+		allowUtf8 bool) *T.GString
 
 	IoChannelInit func(channel *T.GIOChannel)
 
@@ -2140,7 +2138,7 @@ var (
 	IoChannelClose func(channel *T.GIOChannel)
 
 	IoChannelShutdown func(channel *T.GIOChannel,
-		flush T.Gboolean, err **T.GError) T.GIOStatus
+		flush bool, err **T.GError) T.GIOStatus
 
 	IoAddWatchFull func(channel *T.GIOChannel,
 		priority int,
@@ -2178,9 +2176,9 @@ var (
 		length *int) string
 
 	IoChannelSetBuffered func(channel *T.GIOChannel,
-		buffered T.Gboolean)
+		buffered bool)
 
-	IoChannelGetBuffered func(channel *T.GIOChannel) T.Gboolean
+	IoChannelGetBuffered func(channel *T.GIOChannel) bool
 
 	IoChannelSetEncoding func(channel *T.GIOChannel,
 		encoding string,
@@ -2189,9 +2187,9 @@ var (
 	IoChannelGetEncoding func(channel *T.GIOChannel) string
 
 	IoChannelSetCloseOnUnref func(channel *T.GIOChannel,
-		doClose T.Gboolean)
+		doClose bool)
 
-	IoChannelGetCloseOnUnref func(channel *T.GIOChannel) T.Gboolean
+	IoChannelGetCloseOnUnref func(channel *T.GIOChannel) bool
 
 	IoChannelFlush func(channel *T.GIOChannel,
 		e **T.GError) T.GIOStatus
@@ -2275,26 +2273,26 @@ var (
 	KeyFileLoadFromFile func(keyFile *T.GKeyFile,
 		file string,
 		flags T.GKeyFileFlags,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileLoadFromData func(keyFile *T.GKeyFile,
 		data string,
 		length T.Gsize,
 		flags T.GKeyFileFlags,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileLoadFromDirs func(keyFile *T.GKeyFile,
 		file string,
-		searchDirs **T.Gchar,
+		searchDirs []string,
 		fullPath **T.Gchar,
 		flags T.GKeyFileFlags,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileLoadFromDataDirs func(keyFile *T.GKeyFile,
 		file string,
 		fullPath **T.Gchar,
 		flags T.GKeyFileFlags,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileToData func(keyFile *T.GKeyFile,
 		length *T.Gsize,
@@ -2311,12 +2309,12 @@ var (
 		e **T.GError) []string
 
 	KeyFileHasGroup func(keyFile *T.GKeyFile,
-		groupName string) T.Gboolean
+		groupName string) bool
 
 	KeyFileHasKey func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileGetValue func(keyFile *T.GKeyFile,
 		groupName string,
@@ -2353,12 +2351,12 @@ var (
 	KeyFileGetBoolean func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileSetBoolean func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		value T.Gboolean)
+		value bool)
 
 	KeyFileGetInteger func(keyFile *T.GKeyFile,
 		groupName string,
@@ -2409,7 +2407,7 @@ var (
 	KeyFileSetStringList func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		list **T.Gchar,
+		list []string,
 		length T.Gsize)
 
 	KeyFileGetLocaleStringList func(keyFile *T.GKeyFile,
@@ -2423,19 +2421,19 @@ var (
 		groupName string,
 		key string,
 		locale string,
-		list **T.Gchar,
+		list []string,
 		length T.Gsize)
 
 	KeyFileGetBooleanList func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
 		length *T.Gsize,
-		e **T.GError) *T.Gboolean
+		e **T.GError) *bool
 
 	KeyFileSetBooleanList func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		list *T.Gboolean,
+		list *bool,
 		length T.Gsize)
 
 	KeyFileGetIntegerList func(keyFile *T.GKeyFile,
@@ -2466,7 +2464,7 @@ var (
 		groupName string,
 		key string,
 		comment string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileGetComment func(keyFile *T.GKeyFile,
 		groupName string,
@@ -2476,19 +2474,19 @@ var (
 	KeyFileRemoveComment func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileRemoveKey func(keyFile *T.GKeyFile,
 		groupName string,
 		key string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	KeyFileRemoveGroup func(keyFile *T.GKeyFile,
 		groupName string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	MappedFileNew func(filename string,
-		writable T.Gboolean,
+		writable bool,
 		e **T.GError) *T.GMappedFile
 
 	MappedFileGetLength func(file *T.GMappedFile) T.Gsize
@@ -2511,7 +2509,7 @@ var (
 	MarkupParseContextParse func(context *T.GMarkupParseContext,
 		text string,
 		textLen T.Gssize,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	MarkupParseContextPush func(context *T.GMarkupParseContext,
 		parser *T.GMarkupParser,
@@ -2520,7 +2518,7 @@ var (
 	MarkupParseContextPop func(context *T.GMarkupParseContext) T.Gpointer
 
 	MarkupParseContextEndParse func(context *T.GMarkupParseContext,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	MarkupParseContextGetElement func(context *T.GMarkupParseContext) string
 
@@ -2621,7 +2619,7 @@ var (
 	NodeGetRoot func(node *T.GNode) *T.GNode
 
 	NodeIsAncestor func(node *T.GNode,
-		descendant *T.GNode) T.Gboolean
+		descendant *T.GNode) bool
 
 	NodeDepth func(node *T.GNode) uint
 
@@ -2686,14 +2684,14 @@ var (
 	OptionContextFree func(context *T.GOptionContext)
 
 	OptionContextSetHelpEnabled func(context *T.GOptionContext,
-		helpEnabled T.Gboolean)
+		helpEnabled bool)
 
-	OptionContextGetHelpEnabled func(context *T.GOptionContext) T.Gboolean
+	OptionContextGetHelpEnabled func(context *T.GOptionContext) bool
 
 	OptionContextSetIgnoreUnknownOptions func(context *T.GOptionContext,
-		ignoreUnknown T.Gboolean)
+		ignoreUnknown bool)
 
-	OptionContextGetIgnoreUnknownOptions func(context *T.GOptionContext) T.Gboolean
+	OptionContextGetIgnoreUnknownOptions func(context *T.GOptionContext) bool
 
 	OptionContextAddMainEntries func(context *T.GOptionContext,
 		entries *T.GOptionEntry,
@@ -2702,7 +2700,7 @@ var (
 	OptionContextParse func(context *T.GOptionContext,
 		argc *int,
 		argv ***T.Gchar,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	OptionContextSetTranslateFunc func(context *T.GOptionContext,
 		f T.GTranslateFunc,
@@ -2720,7 +2718,7 @@ var (
 	OptionContextGetMainGroup func(context *T.GOptionContext) *T.GOptionGroup
 
 	OptionContextGetHelp func(context *T.GOptionContext,
-		mainHelp T.Gboolean,
+		mainHelp bool,
 		group *T.GOptionGroup) string
 
 	OptionGroupNew func(name string,
@@ -2754,18 +2752,18 @@ var (
 	PatternSpecFree func(pspec *T.GPatternSpec)
 
 	PatternSpecEqual func(pspec1 *T.GPatternSpec,
-		pspec2 *T.GPatternSpec) T.Gboolean
+		pspec2 *T.GPatternSpec) bool
 
 	PatternMatch func(pspec *T.GPatternSpec,
 		stringLength uint,
 		str string,
-		stringReversed string) T.Gboolean
+		stringReversed string) bool
 
 	PatternMatchString func(pspec *T.GPatternSpec,
-		str string) T.Gboolean
+		str string) bool
 
 	PatternMatchSimple func(pattern string,
-		str string) T.Gboolean
+		str string) bool
 
 	SpacedPrimesClosest func(num uint) uint
 
@@ -2783,7 +2781,7 @@ var (
 
 	QueueClear func(queue *T.GQueue)
 
-	QueueIsEmpty func(queue *T.GQueue) T.Gboolean
+	QueueIsEmpty func(queue *T.GQueue) bool
 
 	QueueGetLength func(queue *T.GQueue) uint
 
@@ -2949,7 +2947,7 @@ var (
 		field int) int
 
 	RelationExists func(
-		relation *T.GRelation, v ...VArg) T.Gboolean
+		relation *T.GRelation, v ...VArg) bool
 
 	RelationPrint func(relation *T.GRelation)
 
@@ -2987,12 +2985,12 @@ var (
 	RegexMatchSimple func(pattern string,
 		str string,
 		compileOptions T.GRegexCompileFlags,
-		matchOptions T.GRegexMatchFlags) T.Gboolean
+		matchOptions T.GRegexMatchFlags) bool
 
 	RegexMatch func(regex *T.GRegex,
 		str string,
 		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo) T.Gboolean
+		matchInfo **T.GMatchInfo) bool
 
 	RegexMatchFull func(regex *T.GRegex,
 		str string,
@@ -3000,12 +2998,12 @@ var (
 		startPosition int,
 		matchOptions T.GRegexMatchFlags,
 		matchInfo **T.GMatchInfo,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	RegexMatchAll func(regex *T.GRegex,
 		str string,
 		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo) T.Gboolean
+		matchInfo **T.GMatchInfo) bool
 
 	RegexMatchAllFull func(regex *T.GRegex,
 		str string,
@@ -3013,7 +3011,7 @@ var (
 		startPosition int,
 		matchOptions T.GRegexMatchFlags,
 		matchInfo **T.GMatchInfo,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	RegexSplitSimple func(pattern string,
 		str string,
@@ -3058,8 +3056,8 @@ var (
 		e **T.GError) string
 
 	RegexCheckReplacement func(replacement string,
-		hasReferences *T.Gboolean,
-		e **T.GError) T.Gboolean
+		hasReferences *bool,
+		e **T.GError) bool
 
 	MatchInfoGetRegex func(matchInfo *T.GMatchInfo) *T.GRegex
 
@@ -3068,13 +3066,13 @@ var (
 	MatchInfoFree func(matchInfo *T.GMatchInfo)
 
 	MatchInfoNext func(matchInfo *T.GMatchInfo,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
-	MatchInfoMatches func(matchInfo *T.GMatchInfo) T.Gboolean
+	MatchInfoMatches func(matchInfo *T.GMatchInfo) bool
 
 	MatchInfoGetMatchCount func(matchInfo *T.GMatchInfo) int
 
-	MatchInfoIsPartialMatch func(matchInfo *T.GMatchInfo) T.Gboolean
+	MatchInfoIsPartialMatch func(matchInfo *T.GMatchInfo) bool
 
 	MatchInfoExpandReferences func(matchInfo *T.GMatchInfo,
 		stringToExpand string,
@@ -3086,13 +3084,13 @@ var (
 	MatchInfoFetchPos func(matchInfo *T.GMatchInfo,
 		matchNum int,
 		startPos *int,
-		endPos *int) T.Gboolean
+		endPos *int) bool
 
 	MatchInfoFetchNamed func(matchInfo *T.GMatchInfo,
 		name string) string
 
 	MatchInfoFetchNamedPos func(matchInfo *T.GMatchInfo,
-		name string, startPos *int, endPos *int) T.Gboolean
+		name string, startPos *int, endPos *int) bool
 
 	MatchInfoFetchAll func(
 		matchInfo *T.GMatchInfo) []string
@@ -3122,7 +3120,7 @@ var (
 
 	ScannerCurPosition func(scanner *T.GScanner) uint
 
-	ScannerEof func(scanner *T.GScanner) T.Gboolean
+	ScannerEof func(scanner *T.GScanner) bool
 
 	ScannerSetScope func(scanner *T.GScanner,
 		scopeId uint) uint
@@ -3245,9 +3243,9 @@ var (
 	SequenceSet func(iter *T.GSequenceIter,
 		data T.Gpointer)
 
-	SequenceIterIsBegin func(iter *T.GSequenceIter) T.Gboolean
+	SequenceIterIsBegin func(iter *T.GSequenceIter) bool
 
-	SequenceIterIsEnd func(iter *T.GSequenceIter) T.Gboolean
+	SequenceIterIsEnd func(iter *T.GSequenceIter) bool
 
 	SequenceIterNext func(iter *T.GSequenceIter) *T.GSequenceIter
 
@@ -3276,22 +3274,22 @@ var (
 	ShellParseArgv func(commandLine string,
 		argcp *int,
 		argvp ***T.Gchar,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnErrorQuark func() T.GQuark
 
 	SpawnAsync func(workingDirectory string,
-		argv **T.Gchar,
-		envp **T.Gchar,
+		argv []string,
+		envp []string,
 		flags T.GSpawnFlags,
 		childSetup T.GSpawnChildSetupFunc,
 		userData T.Gpointer,
 		childPid *T.GPid,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnAsyncWithPipes func(workingDirectory string,
-		argv **T.Gchar,
-		envp **T.Gchar,
+		argv []string,
+		envp []string,
 		flags T.GSpawnFlags,
 		childSetup T.GSpawnChildSetupFunc,
 		userData T.Gpointer,
@@ -3299,27 +3297,27 @@ var (
 		standardInput *int,
 		standardOutput *int,
 		standardError *int,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnSync func(workingDirectory string,
-		argv **T.Gchar,
-		envp **T.Gchar,
+		argv []string,
+		envp []string,
 		flags T.GSpawnFlags,
 		childSetup T.GSpawnChildSetupFunc,
 		userData T.Gpointer,
 		standardOutput **T.Gchar,
 		standardError **T.Gchar,
 		exitStatus *int,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnCommandLineSync func(commandLine string,
 		standardOutput **T.Gchar,
 		standardError **T.Gchar,
 		exitStatus *int,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnCommandLineAsync func(commandLine string,
-		e **T.GError) T.Gboolean
+		e **T.GError) bool
 
 	SpawnClosePid func(pid T.GPid)
 	//
@@ -3429,7 +3427,7 @@ var (
 
 	Strdupv func(strArray []string) StrSlice
 
-	StrvLength func(strArray **T.Gchar) uint // []string input not appropriate
+	StrvLength func(strArray **T.Gchar) uint // []string has len()
 
 	Stpcpy func(dest *T.Gchar, src string) *T.Gchar
 
@@ -3484,11 +3482,11 @@ var (
 		destroyData T.Gpointer)
 
 	TestTrapFork func(usecTimeout uint64,
-		testTrapFlags T.GTestTrapFlags) T.Gboolean
+		testTrapFlags T.GTestTrapFlags) bool
 
-	TestTrapHasPassed func() T.Gboolean
+	TestTrapHasPassed func() bool
 
-	TestTrapReachedTimeout func() T.Gboolean
+	TestTrapReachedTimeout func() bool
 
 	TestRandInt func() T.GInt32
 
@@ -3593,7 +3591,7 @@ var (
 	ThreadPoolNew func(f T.GFunc,
 		userData T.Gpointer,
 		maxThreads int,
-		exclusive T.Gboolean,
+		exclusive bool,
 		e **T.GError) *T.GThreadPool
 
 	ThreadPoolPush func(pool *T.GThreadPool,
@@ -3611,8 +3609,8 @@ var (
 	ThreadPoolUnprocessed func(pool *T.GThreadPool) uint
 
 	ThreadPoolFree func(pool *T.GThreadPool,
-		immediate T.Gboolean,
-		wait T.Gboolean)
+		immediate bool,
+		wait bool)
 
 	ThreadPoolSetMaxUnusedThreads func(maxThreads int)
 
@@ -3651,7 +3649,7 @@ var (
 		microseconds T.Glong)
 
 	TimeValFromIso8601 func(isoDate string,
-		time *T.GTimeVal) T.Gboolean
+		time *T.GTimeVal) bool
 
 	TimeValToIso8601 func(time *T.GTimeVal) string
 
@@ -3678,10 +3676,10 @@ var (
 		key T.Gpointer, value T.Gpointer)
 
 	TreeRemove func(tree *T.GTree,
-		key T.Gconstpointer) T.Gboolean
+		key T.Gconstpointer) bool
 
 	TreeSteal func(tree *T.GTree,
-		key T.Gconstpointer) T.Gboolean
+		key T.Gconstpointer) bool
 
 	TreeLookup func(tree *T.GTree,
 		key T.Gconstpointer) T.Gpointer
@@ -3689,7 +3687,7 @@ var (
 	TreeLookupExtended func(tree *T.GTree,
 		lookupKey T.Gconstpointer,
 		origKey *T.Gpointer,
-		value *T.Gpointer) T.Gboolean
+		value *T.Gpointer) bool
 
 	TreeForeach func(tree *T.GTree,
 		f T.GTraverseFunc,
@@ -3719,14 +3717,14 @@ var (
 
 	UriEscapeString func(unescaped string,
 		reservedCharsAllowed string,
-		allowUtf8 T.Gboolean) string
+		allowUtf8 bool) string
 
 	VariantTypeStringIsValid func(
-		typeString string) T.Gboolean
+		typeString string) bool
 
 	VariantTypeStringScan func(str string,
 		limit string,
-		endptr **T.Gchar) T.Gboolean
+		endptr **T.Gchar) bool
 
 	VariantTypeFree func(typ *T.GVariantType)
 
@@ -3740,29 +3738,29 @@ var (
 
 	VariantTypeDupString func(typ *T.GVariantType) string
 
-	VariantTypeIsDefinite func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsDefinite func(typ *T.GVariantType) bool
 
-	VariantTypeIsContainer func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsContainer func(typ *T.GVariantType) bool
 
-	VariantTypeIsBasic func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsBasic func(typ *T.GVariantType) bool
 
-	VariantTypeIsMaybe func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsMaybe func(typ *T.GVariantType) bool
 
-	VariantTypeIsArray func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsArray func(typ *T.GVariantType) bool
 
-	VariantTypeIsTuple func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsTuple func(typ *T.GVariantType) bool
 
-	VariantTypeIsDictEntry func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsDictEntry func(typ *T.GVariantType) bool
 
-	VariantTypeIsVariant func(typ *T.GVariantType) T.Gboolean
+	VariantTypeIsVariant func(typ *T.GVariantType) bool
 
 	VariantTypeHash func(typ T.Gconstpointer) uint
 
 	VariantTypeEqual func(type1 T.Gconstpointer,
-		type2 T.Gconstpointer) T.Gboolean
+		type2 T.Gconstpointer) bool
 
 	VariantTypeIsSubtypeOf func(typ *T.GVariantType,
-		supertyp *T.GVariantType) T.Gboolean
+		supertyp *T.GVariantType) bool
 
 	VariantTypeElement func(typ *T.GVariantType) *T.GVariantType
 
@@ -3794,20 +3792,20 @@ var (
 
 	VariantRefSink func(value *T.GVariant) *T.GVariant
 
-	VariantIsFloating func(value *T.GVariant) T.Gboolean
+	VariantIsFloating func(value *T.GVariant) bool
 
 	VariantGetType func(value *T.GVariant) *T.GVariantType
 
 	VariantGetTypeString func(value *T.GVariant) string
 
 	VariantIsOfType func(value *T.GVariant,
-		typ *T.GVariantType) T.Gboolean
+		typ *T.GVariantType) bool
 
-	VariantIsContainer func(value *T.GVariant) T.Gboolean
+	VariantIsContainer func(value *T.GVariant) bool
 
 	VariantClassify func(value *T.GVariant) T.GVariantClass
 
-	VariantNewBoolean func(value T.Gboolean) *T.GVariant
+	VariantNewBoolean func(value bool) *T.GVariant
 
 	VariantNewByte func(value T.Guchar) *T.GVariant
 
@@ -3831,11 +3829,11 @@ var (
 
 	VariantNewObjectPath func(objectPath string) *T.GVariant
 
-	VariantIsObjectPath func(str string) T.Gboolean
+	VariantIsObjectPath func(str string) bool
 
 	VariantNewSignature func(signature string) *T.GVariant
 
-	VariantIsSignature func(str string) T.Gboolean
+	VariantIsSignature func(str string) bool
 
 	VariantNewVariant func(value *T.GVariant) *T.GVariant
 
@@ -3847,7 +3845,7 @@ var (
 	VariantNewBytestringArray func(strv []string,
 		length T.Gssize) *T.GVariant
 
-	VariantGetBoolean func(value *T.GVariant) T.Gboolean
+	VariantGetBoolean func(value *T.GVariant) bool
 
 	VariantGetByte func(value *T.GVariant) T.Guchar
 
@@ -3916,7 +3914,7 @@ var (
 		index T.Gsize) *T.GVariant
 
 	VariantLookup func(dictionary *T.GVariant, key string,
-		formatString string, v ...VArg) T.Gboolean
+		formatString string, v ...VArg) bool
 
 	VariantLookupValue func(dictionary *T.GVariant,
 		key string,
@@ -3934,27 +3932,27 @@ var (
 		data T.Gpointer)
 
 	VariantPrint func(value *T.GVariant,
-		typeAnnotate T.Gboolean) string
+		typeAnnotate bool) string
 
 	VariantPrintString func(value *T.GVariant,
 		str *T.GString,
-		typeAnnotate T.Gboolean) *T.GString
+		typeAnnotate bool) *T.GString
 
 	VariantHash func(value T.Gconstpointer) uint
 
 	VariantEqual func(one T.Gconstpointer,
-		two T.Gconstpointer) T.Gboolean
+		two T.Gconstpointer) bool
 
 	VariantGetNormalForm func(value *T.GVariant) *T.GVariant
 
-	VariantIsNormalForm func(value *T.GVariant) T.Gboolean
+	VariantIsNormalForm func(value *T.GVariant) bool
 
 	VariantByteswap func(value *T.GVariant) *T.GVariant
 
 	VariantNewFromData func(typ *T.GVariantType,
 		data T.Gconstpointer,
 		size T.Gsize,
-		trusted T.Gboolean,
+		trusted bool,
 		notify T.GDestroyNotify,
 		userData T.Gpointer) *T.GVariant
 
@@ -3972,10 +3970,10 @@ var (
 	VariantIterNextValue func(iter *T.GVariantIter) *T.GVariant
 
 	VariantIterNext func(iter *T.GVariantIter,
-		formatString string, v ...VArg) T.Gboolean
+		formatString string, v ...VArg) bool
 
 	VariantIterLoop func(iter *T.GVariantIter,
-		formatString string, v ...VArg) T.Gboolean
+		formatString string, v ...VArg) bool
 
 	VariantParserGetErrorQuark func() T.GQuark
 
@@ -4108,7 +4106,7 @@ var (
 	MarkupCollectAttributes func(elementName string,
 		attributeNames []string, attributeValues []string,
 		err **T.GError, firstType T.GMarkupCollectType,
-		firstAttr string, v ...VArg) T.Gboolean
+		firstAttr string, v ...VArg) bool
 
 	MarkupErrorQuark func() T.GQuark
 

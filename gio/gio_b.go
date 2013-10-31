@@ -62,15 +62,15 @@ var (
 	BufferedOutputStreamNew      func(baseStream *OutputStream) *OutputStream
 	BufferedOutputStreamNewSized func(baseStream *OutputStream, size T.Gsize) *OutputStream
 
-	bufferedOutputStreamGetAutoGrow   func(b *BufferedOutputStream) T.Gboolean
+	bufferedOutputStreamGetAutoGrow   func(b *BufferedOutputStream) bool
 	bufferedOutputStreamGetBufferSize func(b *BufferedOutputStream) T.Gsize
-	bufferedOutputStreamSetAutoGrow   func(b *BufferedOutputStream, autoGrow T.Gboolean)
+	bufferedOutputStreamSetAutoGrow   func(b *BufferedOutputStream, autoGrow bool)
 	bufferedOutputStreamSetBufferSize func(b *BufferedOutputStream, size T.Gsize)
 )
 
-func (b *BufferedOutputStream) GetAutoGrow() T.Gboolean { return bufferedOutputStreamGetAutoGrow(b) }
-func (b *BufferedOutputStream) GetBufferSize() T.Gsize  { return bufferedOutputStreamGetBufferSize(b) }
-func (b *BufferedOutputStream) SetAutoGrow(autoGrow T.Gboolean) {
+func (b *BufferedOutputStream) GetAutoGrow() bool      { return bufferedOutputStreamGetAutoGrow(b) }
+func (b *BufferedOutputStream) GetBufferSize() T.Gsize { return bufferedOutputStreamGetBufferSize(b) }
+func (b *BufferedOutputStream) SetAutoGrow(autoGrow bool) {
 	bufferedOutputStreamSetAutoGrow(b, autoGrow)
 }
 func (b *BufferedOutputStream) SetBufferSize(size T.Gsize) {

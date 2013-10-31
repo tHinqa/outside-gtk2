@@ -8,7 +8,7 @@ import (
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
-var IsZeroWidth func(ch T.Gunichar) T.Gboolean
+var IsZeroWidth func(ch T.Gunichar) bool
 
 type Item struct {
 	Offset   int

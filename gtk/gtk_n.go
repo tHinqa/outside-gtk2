@@ -65,15 +65,15 @@ var (
 	notebookGetMenuLabelText     func(n *Notebook, child *Widget) string
 	notebookGetNPages            func(n *Notebook) int
 	notebookGetNthPage           func(n *Notebook, pageNum int) *Widget
-	notebookGetScrollable        func(n *Notebook) T.Gboolean
-	notebookGetShowBorder        func(n *Notebook) T.Gboolean
-	notebookGetShowTabs          func(n *Notebook) T.Gboolean
-	notebookGetTabDetachable     func(n *Notebook, child *Widget) T.Gboolean
+	notebookGetScrollable        func(n *Notebook) bool
+	notebookGetShowBorder        func(n *Notebook) bool
+	notebookGetShowTabs          func(n *Notebook) bool
+	notebookGetTabDetachable     func(n *Notebook, child *Widget) bool
 	notebookGetTabHborder        func(n *Notebook) uint16
 	notebookGetTabLabel          func(n *Notebook, child *Widget) *Widget
 	notebookGetTabLabelText      func(n *Notebook, child *Widget) string
 	notebookGetTabPos            func(n *Notebook) PositionType
-	notebookGetTabReorderable    func(n *Notebook, child *Widget) T.Gboolean
+	notebookGetTabReorderable    func(n *Notebook, child *Widget) bool
 	notebookGetTabVborder        func(n *Notebook) uint16
 	notebookInsertPage           func(n *Notebook, child, tabLabel *Widget, position int) int
 	notebookInsertPageMenu       func(n *Notebook, child, tabLabel, menuLabel *Widget, position int) int
@@ -84,7 +84,7 @@ var (
 	notebookPrependPage          func(n *Notebook, child, tabLabel *Widget) int
 	notebookPrependPageMenu      func(n *Notebook, child, tabLabel, menuLabel *Widget) int
 	notebookPrevPage             func(n *Notebook)
-	notebookQueryTabLabelPacking func(n *Notebook, child *Widget, expand, fill *T.Gboolean, packType *PackType)
+	notebookQueryTabLabelPacking func(n *Notebook, child *Widget, expand, fill *bool, packType *PackType)
 	notebookRemovePage           func(n *Notebook, pageNum int)
 	notebookReorderChild         func(n *Notebook, child *Widget, position int)
 	notebookSetActionWidget      func(n *Notebook, widget *Widget, packType PackType)
@@ -92,20 +92,20 @@ var (
 	notebookSetGroup             func(n *Notebook, group T.Gpointer)
 	notebookSetGroupId           func(n *Notebook, groupId int)
 	notebookSetGroupName         func(n *Notebook, groupName string)
-	notebookSetHomogeneousTabs   func(n *Notebook, homogeneous T.Gboolean)
+	notebookSetHomogeneousTabs   func(n *Notebook, homogeneous bool)
 	notebookSetMenuLabel         func(n *Notebook, child, menuLabel *Widget)
 	notebookSetMenuLabelText     func(n *Notebook, child *Widget, menuText string)
-	notebookSetScrollable        func(n *Notebook, scrollable T.Gboolean)
-	notebookSetShowBorder        func(n *Notebook, showBorder T.Gboolean)
-	notebookSetShowTabs          func(n *Notebook, showTabs T.Gboolean)
+	notebookSetScrollable        func(n *Notebook, scrollable bool)
+	notebookSetShowBorder        func(n *Notebook, showBorder bool)
+	notebookSetShowTabs          func(n *Notebook, showTabs bool)
 	notebookSetTabBorder         func(n *Notebook, borderWidth uint)
-	notebookSetTabDetachable     func(n *Notebook, child *Widget, detachable T.Gboolean)
+	notebookSetTabDetachable     func(n *Notebook, child *Widget, detachable bool)
 	notebookSetTabHborder        func(n *Notebook, tabHborder uint)
 	notebookSetTabLabel          func(n *Notebook, child, tabLabel *Widget)
-	notebookSetTabLabelPacking   func(n *Notebook, child *Widget, expand, fill T.Gboolean, packType PackType)
+	notebookSetTabLabelPacking   func(n *Notebook, child *Widget, expand, fill bool, packType PackType)
 	notebookSetTabLabelText      func(n *Notebook, child *Widget, tabText string)
 	notebookSetTabPos            func(n *Notebook, pos PositionType)
-	notebookSetTabReorderable    func(n *Notebook, child *Widget, reorderable T.Gboolean)
+	notebookSetTabReorderable    func(n *Notebook, child *Widget, reorderable bool)
 	notebookSetTabVborder        func(n *Notebook, tabVborder uint)
 )
 
@@ -126,17 +126,17 @@ func (n *Notebook) GetMenuLabel(child *Widget) *Widget    { return notebookGetMe
 func (n *Notebook) GetMenuLabelText(child *Widget) string { return notebookGetMenuLabelText(n, child) }
 func (n *Notebook) GetNPages() int                        { return notebookGetNPages(n) }
 func (n *Notebook) GetNthPage(pageNum int) *Widget        { return notebookGetNthPage(n, pageNum) }
-func (n *Notebook) GetScrollable() T.Gboolean             { return notebookGetScrollable(n) }
-func (n *Notebook) GetShowBorder() T.Gboolean             { return notebookGetShowBorder(n) }
-func (n *Notebook) GetShowTabs() T.Gboolean               { return notebookGetShowTabs(n) }
-func (n *Notebook) GetTabDetachable(child *Widget) T.Gboolean {
+func (n *Notebook) GetScrollable() bool                   { return notebookGetScrollable(n) }
+func (n *Notebook) GetShowBorder() bool                   { return notebookGetShowBorder(n) }
+func (n *Notebook) GetShowTabs() bool                     { return notebookGetShowTabs(n) }
+func (n *Notebook) GetTabDetachable(child *Widget) bool {
 	return notebookGetTabDetachable(n, child)
 }
 func (n *Notebook) GetTabHborder() uint16                { return notebookGetTabHborder(n) }
 func (n *Notebook) GetTabLabel(child *Widget) *Widget    { return notebookGetTabLabel(n, child) }
 func (n *Notebook) GetTabLabelText(child *Widget) string { return notebookGetTabLabelText(n, child) }
 func (n *Notebook) GetTabPos() PositionType              { return notebookGetTabPos(n) }
-func (n *Notebook) GetTabReorderable(child *Widget) T.Gboolean {
+func (n *Notebook) GetTabReorderable(child *Widget) bool {
 	return notebookGetTabReorderable(n, child)
 }
 func (n *Notebook) GetTabVborder() uint16 { return notebookGetTabVborder(n) }
@@ -157,7 +157,7 @@ func (n *Notebook) PrependPageMenu(child, tabLabel, menuLabel *Widget) int {
 	return notebookPrependPageMenu(n, child, tabLabel, menuLabel)
 }
 func (n *Notebook) PrevPage() { notebookPrevPage(n) }
-func (n *Notebook) QueryTabLabelPacking(child *Widget, expand, fill *T.Gboolean, packType *PackType) {
+func (n *Notebook) QueryTabLabelPacking(child *Widget, expand, fill *bool, packType *PackType) {
 	notebookQueryTabLabelPacking(n, child, expand, fill, packType)
 }
 func (n *Notebook) RemovePage(pageNum int) { notebookRemovePage(n, pageNum) }
@@ -171,30 +171,30 @@ func (n *Notebook) SetCurrentPage(pageNum int)    { notebookSetCurrentPage(n, pa
 func (n *Notebook) SetGroup(group T.Gpointer)     { notebookSetGroup(n, group) }
 func (n *Notebook) SetGroupId(groupId int)        { notebookSetGroupId(n, groupId) }
 func (n *Notebook) SetGroupName(groupName string) { notebookSetGroupName(n, groupName) }
-func (n *Notebook) SetHomogeneousTabs(homogeneous T.Gboolean) {
+func (n *Notebook) SetHomogeneousTabs(homogeneous bool) {
 	notebookSetHomogeneousTabs(n, homogeneous)
 }
 func (n *Notebook) SetMenuLabel(child, menuLabel *Widget) { notebookSetMenuLabel(n, child, menuLabel) }
 func (n *Notebook) SetMenuLabelText(child *Widget, menuText string) {
 	notebookSetMenuLabelText(n, child, menuText)
 }
-func (n *Notebook) SetScrollable(scrollable T.Gboolean) { notebookSetScrollable(n, scrollable) }
-func (n *Notebook) SetShowBorder(showBorder T.Gboolean) { notebookSetShowBorder(n, showBorder) }
-func (n *Notebook) SetShowTabs(showTabs T.Gboolean)     { notebookSetShowTabs(n, showTabs) }
-func (n *Notebook) SetTabBorder(borderWidth uint)       { notebookSetTabBorder(n, borderWidth) }
-func (n *Notebook) SetTabDetachable(child *Widget, detachable T.Gboolean) {
+func (n *Notebook) SetScrollable(scrollable bool) { notebookSetScrollable(n, scrollable) }
+func (n *Notebook) SetShowBorder(showBorder bool) { notebookSetShowBorder(n, showBorder) }
+func (n *Notebook) SetShowTabs(showTabs bool)     { notebookSetShowTabs(n, showTabs) }
+func (n *Notebook) SetTabBorder(borderWidth uint) { notebookSetTabBorder(n, borderWidth) }
+func (n *Notebook) SetTabDetachable(child *Widget, detachable bool) {
 	notebookSetTabDetachable(n, child, detachable)
 }
 func (n *Notebook) SetTabHborder(tabHborder uint)       { notebookSetTabHborder(n, tabHborder) }
 func (n *Notebook) SetTabLabel(child, tabLabel *Widget) { notebookSetTabLabel(n, child, tabLabel) }
-func (n *Notebook) SetTabLabelPacking(child *Widget, expand, fill T.Gboolean, packType PackType) {
+func (n *Notebook) SetTabLabelPacking(child *Widget, expand, fill bool, packType PackType) {
 	notebookSetTabLabelPacking(n, child, expand, fill, packType)
 }
 func (n *Notebook) SetTabLabelText(child *Widget, tabText string) {
 	notebookSetTabLabelText(n, child, tabText)
 }
 func (n *Notebook) SetTabPos(pos PositionType) { notebookSetTabPos(n, pos) }
-func (n *Notebook) SetTabReorderable(child *Widget, reorderable T.Gboolean) {
+func (n *Notebook) SetTabReorderable(child *Widget, reorderable bool) {
 	notebookSetTabReorderable(n, child, reorderable)
 }
 func (n *Notebook) SetTabVborder(tabVborder uint) { notebookSetTabVborder(n, tabVborder) }

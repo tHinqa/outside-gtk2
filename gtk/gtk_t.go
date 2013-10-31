@@ -41,20 +41,20 @@ type (
 
 var (
 	TableGetType func() O.Type
-	TableNew     func(rows, columns uint, homogeneous T.Gboolean) *Widget
+	TableNew     func(rows, columns uint, homogeneous bool) *Widget
 
 	tableAttach               func(t *Table, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint, xoptions, yoptions AttachOptions, xpadding, ypadding uint)
 	tableAttachDefaults       func(t *Table, widget *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint)
 	tableGetColSpacing        func(t *Table, column uint) uint
 	tableGetDefaultColSpacing func(t *Table) uint
 	tableGetDefaultRowSpacing func(t *Table) uint
-	tableGetHomogeneous       func(t *Table) T.Gboolean
+	tableGetHomogeneous       func(t *Table) bool
 	tableGetRowSpacing        func(t *Table, row uint) uint
 	tableGetSize              func(t *Table, rows, columns *uint)
 	tableResize               func(t *Table, rows, columns uint)
 	tableSetColSpacing        func(t *Table, column, spacing uint)
 	tableSetColSpacings       func(t *Table, spacing uint)
-	tableSetHomogeneous       func(t *Table, homogeneous T.Gboolean)
+	tableSetHomogeneous       func(t *Table, homogeneous bool)
 	tableSetRowSpacing        func(t *Table, row, spacing uint)
 	tableSetRowSpacings       func(t *Table, spacing uint)
 )
@@ -65,18 +65,18 @@ func (t *Table) Attach(child *Widget, leftAttach, rightAttach, topAttach, bottom
 func (t *Table) AttachDefaults(widget *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint) {
 	tableAttachDefaults(t, widget, leftAttach, rightAttach, topAttach, bottomAttach)
 }
-func (t *Table) GetColSpacing(column uint) uint        { return tableGetColSpacing(t, column) }
-func (t *Table) GetDefaultColSpacing() uint            { return tableGetDefaultColSpacing(t) }
-func (t *Table) GetDefaultRowSpacing() uint            { return tableGetDefaultRowSpacing(t) }
-func (t *Table) GetHomogeneous() T.Gboolean            { return tableGetHomogeneous(t) }
-func (t *Table) GetRowSpacing(row uint) uint           { return tableGetRowSpacing(t, row) }
-func (t *Table) GetSize(rows, columns *uint)           { tableGetSize(t, rows, columns) }
-func (t *Table) Resize(rows, columns uint)             { tableResize(t, rows, columns) }
-func (t *Table) SetColSpacing(column, spacing uint)    { tableSetColSpacing(t, column, spacing) }
-func (t *Table) SetColSpacings(spacing uint)           { tableSetColSpacings(t, spacing) }
-func (t *Table) SetHomogeneous(homogeneous T.Gboolean) { tableSetHomogeneous(t, homogeneous) }
-func (t *Table) SetRowSpacing(row, spacing uint)       { tableSetRowSpacing(t, row, spacing) }
-func (t *Table) SetRowSpacings(spacing uint)           { tableSetRowSpacings(t, spacing) }
+func (t *Table) GetColSpacing(column uint) uint     { return tableGetColSpacing(t, column) }
+func (t *Table) GetDefaultColSpacing() uint         { return tableGetDefaultColSpacing(t) }
+func (t *Table) GetDefaultRowSpacing() uint         { return tableGetDefaultRowSpacing(t) }
+func (t *Table) GetHomogeneous() bool               { return tableGetHomogeneous(t) }
+func (t *Table) GetRowSpacing(row uint) uint        { return tableGetRowSpacing(t, row) }
+func (t *Table) GetSize(rows, columns *uint)        { tableGetSize(t, rows, columns) }
+func (t *Table) Resize(rows, columns uint)          { tableResize(t, rows, columns) }
+func (t *Table) SetColSpacing(column, spacing uint) { tableSetColSpacing(t, column, spacing) }
+func (t *Table) SetColSpacings(spacing uint)        { tableSetColSpacings(t, spacing) }
+func (t *Table) SetHomogeneous(homogeneous bool)    { tableSetHomogeneous(t, homogeneous) }
+func (t *Table) SetRowSpacing(row, spacing uint)    { tableSetRowSpacing(t, row, spacing) }
+func (t *Table) SetRowSpacings(spacing uint)        { tableSetRowSpacings(t, spacing) }
 
 type TargetEntry struct {
 	Target *T.Gchar
@@ -111,22 +111,22 @@ var (
 	targetListUnref              func(t *TargetList)
 	targetListAdd                func(t *TargetList, target D.Atom, flags, info uint)
 	targetListAddTextTargets     func(t *TargetList, info uint)
-	targetListAddRichTextTargets func(t *TargetList, info uint, deserializable T.Gboolean, buffer *TextBuffer)
-	targetListAddImageTargets    func(t *TargetList, info uint, writable T.Gboolean)
+	targetListAddRichTextTargets func(t *TargetList, info uint, deserializable bool, buffer *TextBuffer)
+	targetListAddImageTargets    func(t *TargetList, info uint, writable bool)
 	targetListAddUriTargets      func(t *TargetList, info uint)
 	targetListAddTable           func(t *TargetList, targets *TargetEntry, ntargets uint)
 	targetListRemove             func(t *TargetList, target D.Atom)
-	targetListFind               func(t *TargetList, target D.Atom, info *uint) T.Gboolean
+	targetListFind               func(t *TargetList, target D.Atom, info *uint) bool
 )
 
 func (t *TargetList) Ref() *TargetList                    { return targetListRef(t) }
 func (t *TargetList) Unref()                              { targetListUnref(t) }
 func (t *TargetList) Add(target D.Atom, flags, info uint) { targetListAdd(t, target, flags, info) }
 func (t *TargetList) AddTextTargets(info uint)            { targetListAddTextTargets(t, info) }
-func (t *TargetList) AddRichTextTargets(info uint, deserializable T.Gboolean, buffer *TextBuffer) {
+func (t *TargetList) AddRichTextTargets(info uint, deserializable bool, buffer *TextBuffer) {
 	targetListAddRichTextTargets(t, info, deserializable, buffer)
 }
-func (t *TargetList) AddImageTargets(info uint, writable T.Gboolean) {
+func (t *TargetList) AddImageTargets(info uint, writable bool) {
 	targetListAddImageTargets(t, info, writable)
 }
 func (t *TargetList) AddUriTargets(info uint) { targetListAddUriTargets(t, info) }
@@ -134,15 +134,15 @@ func (t *TargetList) AddTable(targets *TargetEntry, ntargets uint) {
 	targetListAddTable(t, targets, ntargets)
 }
 func (t *TargetList) Remove(target D.Atom) { targetListRemove(t, target) }
-func (t *TargetList) Find(target D.Atom, info *uint) T.Gboolean {
+func (t *TargetList) Find(target D.Atom, info *uint) bool {
 	return targetListFind(t, target, info)
 }
 
 var (
-	TargetsIncludeText     func(targets *D.Atom, nTargets int) T.Gboolean
-	TargetsIncludeRichText func(targets *D.Atom, nTargets int, buffer *TextBuffer) T.Gboolean
-	TargetsIncludeImage    func(targets *D.Atom, nTargets int, writable T.Gboolean) T.Gboolean
-	TargetsIncludeUri      func(targets *D.Atom, nTargets int) T.Gboolean
+	TargetsIncludeText     func(targets *D.Atom, nTargets int) bool
+	TargetsIncludeRichText func(targets *D.Atom, nTargets int, buffer *TextBuffer) bool
+	TargetsIncludeImage    func(targets *D.Atom, nTargets int, writable bool) bool
+	TargetsIncludeUri      func(targets *D.Atom, nTargets int) bool
 )
 
 var (
@@ -236,8 +236,8 @@ type (
 	TextBufferDeserializeFunc func(
 		registerBuffer, contentBuffer *TextBuffer,
 		iter *TextIter, data *uint8, length T.Gsize,
-		createTags T.Gboolean, userData T.Gpointer,
-		e **T.GError) T.Gboolean
+		createTags bool, userData T.Gpointer,
+		e **T.GError) bool
 )
 
 var (
@@ -249,28 +249,28 @@ var (
 	textBufferAddSelectionClipboard       func(t *TextBuffer, clipboard *Clipboard)
 	textBufferApplyTag                    func(t *TextBuffer, tag *TextTag, start, end *TextIter)
 	textBufferApplyTagByName              func(t *TextBuffer, name string, start, end *TextIter)
-	textBufferBackspace                   func(t *TextBuffer, iter *TextIter, interactive, defaultEditable T.Gboolean) T.Gboolean
+	textBufferBackspace                   func(t *TextBuffer, iter *TextIter, interactive, defaultEditable bool) bool
 	textBufferBeginUserAction             func(t *TextBuffer)
 	textBufferCopyClipboard               func(t *TextBuffer, clipboard *Clipboard)
 	textBufferCreateChildAnchor           func(t *TextBuffer, iter *TextIter) *TextChildAnchor
-	textBufferCreateMark                  func(t *TextBuffer, markName string, where *TextIter, leftGravity T.Gboolean) *TextMark
+	textBufferCreateMark                  func(t *TextBuffer, markName string, where *TextIter, leftGravity bool) *TextMark
 	textBufferCreateTag                   func(t *TextBuffer, tagName, firstPropertyName string, v ...VArg) *TextTag
-	textBufferCutClipboard                func(t *TextBuffer, clipboard *Clipboard, defaultEditable T.Gboolean)
+	textBufferCutClipboard                func(t *TextBuffer, clipboard *Clipboard, defaultEditable bool)
 	textBufferDelete                      func(t *TextBuffer, start, end *TextIter)
-	textBufferDeleteInteractive           func(t *TextBuffer, startIter, endIter *TextIter, defaultEditable T.Gboolean) T.Gboolean
+	textBufferDeleteInteractive           func(t *TextBuffer, startIter, endIter *TextIter, defaultEditable bool) bool
 	textBufferDeleteMark                  func(t *TextBuffer, mark *TextMark)
 	textBufferDeleteMarkByName            func(t *TextBuffer, name string)
-	textBufferDeleteSelection             func(t *TextBuffer, interactive, defaultEditable T.Gboolean) T.Gboolean
-	textBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, error **T.GError) T.Gboolean
-	textBufferDeserializeGetCanCreateTags func(t *TextBuffer, format D.Atom) T.Gboolean
-	textBufferDeserializeSetCanCreateTags func(t *TextBuffer, format D.Atom, canCreateTags T.Gboolean)
+	textBufferDeleteSelection             func(t *TextBuffer, interactive, defaultEditable bool) bool
+	textBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, error **T.GError) bool
+	textBufferDeserializeGetCanCreateTags func(t *TextBuffer, format D.Atom) bool
+	textBufferDeserializeSetCanCreateTags func(t *TextBuffer, format D.Atom, canCreateTags bool)
 	textBufferEndUserAction               func(t *TextBuffer)
 	textBufferGetBounds                   func(t *TextBuffer, start, end *TextIter)
 	textBufferGetCharCount                func(t *TextBuffer) int
 	textBufferGetCopyTargetList           func(t *TextBuffer) *TargetList
 	textBufferGetDeserializeFormats       func(t *TextBuffer, nFormats *int) *D.Atom
 	textBufferGetEndIter                  func(t *TextBuffer, iter *TextIter)
-	textBufferGetHasSelection             func(t *TextBuffer) T.Gboolean
+	textBufferGetHasSelection             func(t *TextBuffer) bool
 	textBufferGetInsert                   func(t *TextBuffer) *TextMark
 	textBufferGetIterAtChildAnchor        func(t *TextBuffer, iter *TextIter, anchor *TextChildAnchor)
 	textBufferGetIterAtLine               func(t *TextBuffer, iter *TextIter, lineNumber int)
@@ -280,28 +280,28 @@ var (
 	textBufferGetIterAtOffset             func(t *TextBuffer, iter *TextIter, charOffset int)
 	textBufferGetLineCount                func(t *TextBuffer) int
 	textBufferGetMark                     func(t *TextBuffer, name string) *TextMark
-	textBufferGetModified                 func(t *TextBuffer) T.Gboolean
+	textBufferGetModified                 func(t *TextBuffer) bool
 	textBufferGetPasteTargetList          func(t *TextBuffer) *TargetList
 	textBufferGetSelectionBound           func(t *TextBuffer) *TextMark
-	textBufferGetSelectionBounds          func(t *TextBuffer, start, end *TextIter) T.Gboolean
+	textBufferGetSelectionBounds          func(t *TextBuffer, start, end *TextIter) bool
 	textBufferGetSerializeFormats         func(t *TextBuffer, nFormats *int) *D.Atom
-	textBufferGetSlice                    func(t *TextBuffer, start, end *TextIter, includeHiddenChars T.Gboolean) string
+	textBufferGetSlice                    func(t *TextBuffer, start, end *TextIter, includeHiddenChars bool) string
 	textBufferGetStartIter                func(t *TextBuffer, iter *TextIter)
 	textBufferGetTagTable                 func(t *TextBuffer) *TextTagTable
-	textBufferGetText                     func(t *TextBuffer, start, end *TextIter, includeHiddenChars T.Gboolean) string
+	textBufferGetText                     func(t *TextBuffer, start, end *TextIter, includeHiddenChars bool) string
 	textBufferInsert                      func(t *TextBuffer, iter *TextIter, text string, leng int)
 	textBufferInsertAtCursor              func(t *TextBuffer, text string, leng int)
 	textBufferInsertChildAnchor           func(t *TextBuffer, iter *TextIter, anchor *TextChildAnchor)
-	textBufferInsertInteractive           func(t *TextBuffer, iter *TextIter, text string, leng int, defaultEditable T.Gboolean) T.Gboolean
-	textBufferInsertInteractiveAtCursor   func(t *TextBuffer, text string, leng int, defaultEditable T.Gboolean) T.Gboolean
+	textBufferInsertInteractive           func(t *TextBuffer, iter *TextIter, text string, leng int, defaultEditable bool) bool
+	textBufferInsertInteractiveAtCursor   func(t *TextBuffer, text string, leng int, defaultEditable bool) bool
 	textBufferInsertPixbuf                func(t *TextBuffer, iter *TextIter, pixbuf *D.Pixbuf)
 	textBufferInsertRange                 func(t *TextBuffer, iter, start, end *TextIter)
-	textBufferInsertRangeInteractive      func(t *TextBuffer, iter, start, end *TextIter, defaultEditable T.Gboolean) T.Gboolean
+	textBufferInsertRangeInteractive      func(t *TextBuffer, iter, start, end *TextIter, defaultEditable bool) bool
 	textBufferInsertWithTags              func(t *TextBuffer, iter *TextIter, text string, leng int, firstTag *TextTag, v ...VArg)
 	textBufferInsertWithTagsByName        func(t *TextBuffer, iter *TextIter, text string, leng int, firstTagName string, v ...VArg)
 	textBufferMoveMark                    func(t *TextBuffer, mark *TextMark, where *TextIter)
 	textBufferMoveMarkByName              func(t *TextBuffer, name string, where *TextIter)
-	textBufferPasteClipboard              func(t *TextBuffer, clipboard *Clipboard, overrideLocation *TextIter, defaultEditable T.Gboolean)
+	textBufferPasteClipboard              func(t *TextBuffer, clipboard *Clipboard, overrideLocation *TextIter, defaultEditable bool)
 	textBufferPlaceCursor                 func(t *TextBuffer, where *TextIter)
 	textBufferRegisterDeserializeFormat   func(t *TextBuffer, mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom
 	textBufferRegisterDeserializeTagset   func(t *TextBuffer, tagsetName string) D.Atom
@@ -313,7 +313,7 @@ var (
 	textBufferRemoveTagByName             func(t *TextBuffer, name string, start, end *TextIter)
 	textBufferSelectRange                 func(t *TextBuffer, ins, bound *TextIter)
 	textBufferSerialize                   func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, start, end *TextIter, length *T.Gsize) *uint8
-	textBufferSetModified                 func(t *TextBuffer, setting T.Gboolean)
+	textBufferSetModified                 func(t *TextBuffer, setting bool)
 	textBufferSetText                     func(t *TextBuffer, text string, leng int)
 	textBufferUnregisterDeserializeFormat func(t *TextBuffer, format D.Atom)
 	textBufferUnregisterSerializeFormat   func(t *TextBuffer, format D.Atom)
@@ -331,7 +331,7 @@ func (t *TextBuffer) ApplyTag(tag *TextTag, start, end *TextIter) {
 func (t *TextBuffer) ApplyTagByName(name string, start, end *TextIter) {
 	textBufferApplyTagByName(t, name, start, end)
 }
-func (t *TextBuffer) Backspace(iter *TextIter, interactive, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) Backspace(iter *TextIter, interactive, defaultEditable bool) bool {
 	return textBufferBackspace(t, iter, interactive, defaultEditable)
 }
 func (t *TextBuffer) BeginUserAction()                   { textBufferBeginUserAction(t) }
@@ -339,31 +339,31 @@ func (t *TextBuffer) CopyClipboard(clipboard *Clipboard) { textBufferCopyClipboa
 func (t *TextBuffer) CreateChildAnchor(iter *TextIter) *TextChildAnchor {
 	return textBufferCreateChildAnchor(t, iter)
 }
-func (t *TextBuffer) CreateMark(markName string, where *TextIter, leftGravity T.Gboolean) *TextMark {
+func (t *TextBuffer) CreateMark(markName string, where *TextIter, leftGravity bool) *TextMark {
 	return textBufferCreateMark(t, markName, where, leftGravity)
 }
 func (t *TextBuffer) CreateTag(tagName string, firstPropertyName string, v ...VArg) *TextTag {
 	return textBufferCreateTag(t, tagName, firstPropertyName, v)
 }
-func (t *TextBuffer) CutClipboard(clipboard *Clipboard, defaultEditable T.Gboolean) {
+func (t *TextBuffer) CutClipboard(clipboard *Clipboard, defaultEditable bool) {
 	textBufferCutClipboard(t, clipboard, defaultEditable)
 }
 func (t *TextBuffer) Delete(start, end *TextIter) { textBufferDelete(t, start, end) }
-func (t *TextBuffer) DeleteInteractive(startIter, endIter *TextIter, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) DeleteInteractive(startIter, endIter *TextIter, defaultEditable bool) bool {
 	return textBufferDeleteInteractive(t, startIter, endIter, defaultEditable)
 }
 func (t *TextBuffer) DeleteMark(mark *TextMark)    { textBufferDeleteMark(t, mark) }
 func (t *TextBuffer) DeleteMarkByName(name string) { textBufferDeleteMarkByName(t, name) }
-func (t *TextBuffer) DeleteSelection(interactive, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) DeleteSelection(interactive, defaultEditable bool) bool {
 	return textBufferDeleteSelection(t, interactive, defaultEditable)
 }
-func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, err **T.GError) T.Gboolean {
+func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, err **T.GError) bool {
 	return textBufferDeserialize(t, contentBuffer, format, iter, data, length, err)
 }
-func (t *TextBuffer) DeserializeGetCanCreateTags(format D.Atom) T.Gboolean {
+func (t *TextBuffer) DeserializeGetCanCreateTags(format D.Atom) bool {
 	return textBufferDeserializeGetCanCreateTags(t, format)
 }
-func (t *TextBuffer) DeserializeSetCanCreateTags(format D.Atom, canCreateTags T.Gboolean) {
+func (t *TextBuffer) DeserializeSetCanCreateTags(format D.Atom, canCreateTags bool) {
 	textBufferDeserializeSetCanCreateTags(t, format, canCreateTags)
 }
 func (t *TextBuffer) EndUserAction()                 { textBufferEndUserAction(t) }
@@ -373,9 +373,9 @@ func (t *TextBuffer) GetCopyTargetList() *TargetList { return textBufferGetCopyT
 func (t *TextBuffer) GetDeserializeFormats(nFormats *int) *D.Atom {
 	return textBufferGetDeserializeFormats(t, nFormats)
 }
-func (t *TextBuffer) GetEndIter(iter *TextIter)   { textBufferGetEndIter(t, iter) }
-func (t *TextBuffer) GetHasSelection() T.Gboolean { return textBufferGetHasSelection(t) }
-func (t *TextBuffer) GetInsert() *TextMark        { return textBufferGetInsert(t) }
+func (t *TextBuffer) GetEndIter(iter *TextIter) { textBufferGetEndIter(t, iter) }
+func (t *TextBuffer) GetHasSelection() bool     { return textBufferGetHasSelection(t) }
+func (t *TextBuffer) GetInsert() *TextMark      { return textBufferGetInsert(t) }
 func (t *TextBuffer) GetIterAtChildAnchor(iter *TextIter, anchor *TextChildAnchor) {
 	textBufferGetIterAtChildAnchor(t, iter, anchor)
 }
@@ -396,21 +396,21 @@ func (t *TextBuffer) GetIterAtOffset(iter *TextIter, charOffset int) {
 }
 func (t *TextBuffer) GetLineCount() int               { return textBufferGetLineCount(t) }
 func (t *TextBuffer) GetMark(name string) *TextMark   { return textBufferGetMark(t, name) }
-func (t *TextBuffer) GetModified() T.Gboolean         { return textBufferGetModified(t) }
+func (t *TextBuffer) GetModified() bool               { return textBufferGetModified(t) }
 func (t *TextBuffer) GetPasteTargetList() *TargetList { return textBufferGetPasteTargetList(t) }
 func (t *TextBuffer) GetSelectionBound() *TextMark    { return textBufferGetSelectionBound(t) }
-func (t *TextBuffer) GetSelectionBounds(start, end *TextIter) T.Gboolean {
+func (t *TextBuffer) GetSelectionBounds(start, end *TextIter) bool {
 	return textBufferGetSelectionBounds(t, start, end)
 }
 func (t *TextBuffer) GetSerializeFormats(nFormats *int) *D.Atom {
 	return textBufferGetSerializeFormats(t, nFormats)
 }
-func (t *TextBuffer) GetSlice(start, end *TextIter, includeHiddenChars T.Gboolean) string {
+func (t *TextBuffer) GetSlice(start, end *TextIter, includeHiddenChars bool) string {
 	return textBufferGetSlice(t, start, end, includeHiddenChars)
 }
 func (t *TextBuffer) GetStartIter(iter *TextIter) { textBufferGetStartIter(t, iter) }
 func (t *TextBuffer) GetTagTable() *TextTagTable  { return textBufferGetTagTable(t) }
-func (t *TextBuffer) GetText(start, end *TextIter, includeHiddenChars T.Gboolean) string {
+func (t *TextBuffer) GetText(start, end *TextIter, includeHiddenChars bool) string {
 	return textBufferGetText(t, start, end, includeHiddenChars)
 }
 func (t *TextBuffer) Insert(iter *TextIter, text string, leng int) {
@@ -420,10 +420,10 @@ func (t *TextBuffer) InsertAtCursor(text string, leng int) { textBufferInsertAtC
 func (t *TextBuffer) InsertChildAnchor(iter *TextIter, anchor *TextChildAnchor) {
 	textBufferInsertChildAnchor(t, iter, anchor)
 }
-func (t *TextBuffer) InsertInteractive(iter *TextIter, text string, leng int, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) InsertInteractive(iter *TextIter, text string, leng int, defaultEditable bool) bool {
 	return textBufferInsertInteractive(t, iter, text, leng, defaultEditable)
 }
-func (t *TextBuffer) InsertInteractiveAtCursor(text string, leng int, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) InsertInteractiveAtCursor(text string, leng int, defaultEditable bool) bool {
 	return textBufferInsertInteractiveAtCursor(t, text, leng, defaultEditable)
 }
 func (t *TextBuffer) InsertPixbuf(iter *TextIter, pixbuf *D.Pixbuf) {
@@ -432,7 +432,7 @@ func (t *TextBuffer) InsertPixbuf(iter *TextIter, pixbuf *D.Pixbuf) {
 func (t *TextBuffer) InsertRange(iter, start, end *TextIter) {
 	textBufferInsertRange(t, iter, start, end)
 }
-func (t *TextBuffer) InsertRangeInteractive(iter, start, end *TextIter, defaultEditable T.Gboolean) T.Gboolean {
+func (t *TextBuffer) InsertRangeInteractive(iter, start, end *TextIter, defaultEditable bool) bool {
 	return textBufferInsertRangeInteractive(t, iter, start, end, defaultEditable)
 }
 func (t *TextBuffer) InsertWithTags(iter *TextIter, text string, leng int, firstTag *TextTag, v ...VArg) {
@@ -447,7 +447,7 @@ func (t *TextBuffer) MoveMark(mark *TextMark, where *TextIter) {
 func (t *TextBuffer) MoveMarkByName(name string, where *TextIter) {
 	textBufferMoveMarkByName(t, name, where)
 }
-func (t *TextBuffer) PasteClipboard(clipboard *Clipboard, overrideLocation *TextIter, defaultEditable T.Gboolean) {
+func (t *TextBuffer) PasteClipboard(clipboard *Clipboard, overrideLocation *TextIter, defaultEditable bool) {
 	textBufferPasteClipboard(t, clipboard, overrideLocation, defaultEditable)
 }
 func (t *TextBuffer) PlaceCursor(where *TextIter) { textBufferPlaceCursor(t, where) }
@@ -477,8 +477,8 @@ func (t *TextBuffer) SelectRange(ins, bound *TextIter) { textBufferSelectRange(t
 func (t *TextBuffer) Serialize(contentBuffer *TextBuffer, format D.Atom, start, end *TextIter, length *T.Gsize) *uint8 {
 	return textBufferSerialize(t, contentBuffer, format, start, end, length)
 }
-func (t *TextBuffer) SetModified(setting T.Gboolean) { textBufferSetModified(t, setting) }
-func (t *TextBuffer) SetText(text string, leng int)  { textBufferSetText(t, text, leng) }
+func (t *TextBuffer) SetModified(setting bool)      { textBufferSetModified(t, setting) }
+func (t *TextBuffer) SetText(text string, leng int) { textBufferSetText(t, text, leng) }
 func (t *TextBuffer) UnregisterDeserializeFormat(format D.Atom) {
 	textBufferUnregisterDeserializeFormat(t, format)
 }
@@ -487,7 +487,7 @@ func (t *TextBuffer) UnregisterSerializeFormat(format D.Atom) {
 }
 
 type TextCharPredicate func(
-	ch T.Gunichar, userData T.Gpointer) T.Gboolean
+	ch T.Gunichar, userData T.Gpointer) bool
 
 type TextChildAnchor struct {
 	Parent  T.GObject
@@ -498,12 +498,12 @@ var (
 	TextChildAnchorGetType func() O.Type
 	TextChildAnchorNew     func() *TextChildAnchor
 
-	textChildAnchorGetDeleted func(t *TextChildAnchor) T.Gboolean
+	textChildAnchorGetDeleted func(t *TextChildAnchor) bool
 	textChildAnchorGetWidgets func(t *TextChildAnchor) *T.GList
 )
 
-func (t *TextChildAnchor) GetDeleted() T.Gboolean { return textChildAnchorGetDeleted(t) }
-func (t *TextChildAnchor) GetWidgets() *T.GList   { return textChildAnchorGetWidgets(t) }
+func (t *TextChildAnchor) GetDeleted() bool     { return textChildAnchorGetDeleted(t) }
+func (t *TextChildAnchor) GetWidgets() *T.GList { return textChildAnchorGetWidgets(t) }
 
 var TextDirectionGetType func() O.Type
 
@@ -535,58 +535,58 @@ type TextIter struct { //TODO(t): ALL _?
 var (
 	TextIterGetType func() O.Type
 
-	textIterBackwardChar                   func(t *TextIter) T.Gboolean
-	textIterBackwardChars                  func(t *TextIter, count int) T.Gboolean
-	textIterBackwardCursorPosition         func(t *TextIter) T.Gboolean
-	textIterBackwardCursorPositions        func(t *TextIter, count int) T.Gboolean
-	textIterBackwardFindChar               func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
-	textIterBackwardLine                   func(t *TextIter) T.Gboolean
-	textIterBackwardLines                  func(t *TextIter, count int) T.Gboolean
-	textIterBackwardSearch                 func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean
-	textIterBackwardSentenceStart          func(t *TextIter) T.Gboolean
-	textIterBackwardSentenceStarts         func(t *TextIter, count int) T.Gboolean
-	textIterBackwardToTagToggle            func(t *TextIter, tag *TextTag) T.Gboolean
-	textIterBackwardVisibleCursorPosition  func(t *TextIter) T.Gboolean
-	textIterBackwardVisibleCursorPositions func(t *TextIter, count int) T.Gboolean
-	textIterBackwardVisibleLine            func(t *TextIter) T.Gboolean
-	textIterBackwardVisibleLines           func(t *TextIter, count int) T.Gboolean
-	textIterBackwardVisibleWordStart       func(t *TextIter) T.Gboolean
-	textIterBackwardVisibleWordStarts      func(t *TextIter, count int) T.Gboolean
-	textIterBackwardWordStart              func(t *TextIter) T.Gboolean
-	textIterBackwardWordStarts             func(t *TextIter, count int) T.Gboolean
-	textIterBeginsTag                      func(t *TextIter, tag *TextTag) T.Gboolean
-	textIterCanInsert                      func(t *TextIter, defaultEditability T.Gboolean) T.Gboolean
+	textIterBackwardChar                   func(t *TextIter) bool
+	textIterBackwardChars                  func(t *TextIter, count int) bool
+	textIterBackwardCursorPosition         func(t *TextIter) bool
+	textIterBackwardCursorPositions        func(t *TextIter, count int) bool
+	textIterBackwardFindChar               func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) bool
+	textIterBackwardLine                   func(t *TextIter) bool
+	textIterBackwardLines                  func(t *TextIter, count int) bool
+	textIterBackwardSearch                 func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) bool
+	textIterBackwardSentenceStart          func(t *TextIter) bool
+	textIterBackwardSentenceStarts         func(t *TextIter, count int) bool
+	textIterBackwardToTagToggle            func(t *TextIter, tag *TextTag) bool
+	textIterBackwardVisibleCursorPosition  func(t *TextIter) bool
+	textIterBackwardVisibleCursorPositions func(t *TextIter, count int) bool
+	textIterBackwardVisibleLine            func(t *TextIter) bool
+	textIterBackwardVisibleLines           func(t *TextIter, count int) bool
+	textIterBackwardVisibleWordStart       func(t *TextIter) bool
+	textIterBackwardVisibleWordStarts      func(t *TextIter, count int) bool
+	textIterBackwardWordStart              func(t *TextIter) bool
+	textIterBackwardWordStarts             func(t *TextIter, count int) bool
+	textIterBeginsTag                      func(t *TextIter, tag *TextTag) bool
+	textIterCanInsert                      func(t *TextIter, defaultEditability bool) bool
 	textIterCompare                        func(t *TextIter, rhs *TextIter) int
 	textIterCopy                           func(t *TextIter) *TextIter
-	textIterEditable                       func(t *TextIter, defaultSetting T.Gboolean) T.Gboolean
-	textIterEndsLine                       func(t *TextIter) T.Gboolean
-	textIterEndsSentence                   func(t *TextIter) T.Gboolean
-	textIterEndsTag                        func(t *TextIter, tag *TextTag) T.Gboolean
-	textIterEndsWord                       func(t *TextIter) T.Gboolean
-	textIterEqual                          func(t *TextIter, rhs *TextIter) T.Gboolean
-	textIterForwardChar                    func(t *TextIter) T.Gboolean
-	textIterForwardChars                   func(t *TextIter, count int) T.Gboolean
-	textIterForwardCursorPosition          func(t *TextIter) T.Gboolean
-	textIterForwardCursorPositions         func(t *TextIter, count int) T.Gboolean
-	textIterForwardFindChar                func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean
-	textIterForwardLine                    func(t *TextIter) T.Gboolean
-	textIterForwardLines                   func(t *TextIter, count int) T.Gboolean
-	textIterForwardSearch                  func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean
-	textIterForwardSentenceEnd             func(t *TextIter) T.Gboolean
-	textIterForwardSentenceEnds            func(t *TextIter, count int) T.Gboolean
+	textIterEditable                       func(t *TextIter, defaultSetting bool) bool
+	textIterEndsLine                       func(t *TextIter) bool
+	textIterEndsSentence                   func(t *TextIter) bool
+	textIterEndsTag                        func(t *TextIter, tag *TextTag) bool
+	textIterEndsWord                       func(t *TextIter) bool
+	textIterEqual                          func(t *TextIter, rhs *TextIter) bool
+	textIterForwardChar                    func(t *TextIter) bool
+	textIterForwardChars                   func(t *TextIter, count int) bool
+	textIterForwardCursorPosition          func(t *TextIter) bool
+	textIterForwardCursorPositions         func(t *TextIter, count int) bool
+	textIterForwardFindChar                func(t *TextIter, pred TextCharPredicate, userData T.Gpointer, limit *TextIter) bool
+	textIterForwardLine                    func(t *TextIter) bool
+	textIterForwardLines                   func(t *TextIter, count int) bool
+	textIterForwardSearch                  func(t *TextIter, str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) bool
+	textIterForwardSentenceEnd             func(t *TextIter) bool
+	textIterForwardSentenceEnds            func(t *TextIter, count int) bool
 	textIterForwardToEnd                   func(t *TextIter)
-	textIterForwardToLineEnd               func(t *TextIter) T.Gboolean
-	textIterForwardToTagToggle             func(t *TextIter, tag *TextTag) T.Gboolean
-	textIterForwardVisibleCursorPosition   func(t *TextIter) T.Gboolean
-	textIterForwardVisibleCursorPositions  func(t *TextIter, count int) T.Gboolean
-	textIterForwardVisibleLine             func(t *TextIter) T.Gboolean
-	textIterForwardVisibleLines            func(t *TextIter, count int) T.Gboolean
-	textIterForwardVisibleWordEnd          func(t *TextIter) T.Gboolean
-	textIterForwardVisibleWordEnds         func(t *TextIter, count int) T.Gboolean
-	textIterForwardWordEnd                 func(t *TextIter) T.Gboolean
-	textIterForwardWordEnds                func(t *TextIter, count int) T.Gboolean
+	textIterForwardToLineEnd               func(t *TextIter) bool
+	textIterForwardToTagToggle             func(t *TextIter, tag *TextTag) bool
+	textIterForwardVisibleCursorPosition   func(t *TextIter) bool
+	textIterForwardVisibleCursorPositions  func(t *TextIter, count int) bool
+	textIterForwardVisibleLine             func(t *TextIter) bool
+	textIterForwardVisibleLines            func(t *TextIter, count int) bool
+	textIterForwardVisibleWordEnd          func(t *TextIter) bool
+	textIterForwardVisibleWordEnds         func(t *TextIter, count int) bool
+	textIterForwardWordEnd                 func(t *TextIter) bool
+	textIterForwardWordEnds                func(t *TextIter, count int) bool
 	textIterFree                           func(t *TextIter)
-	textIterGetAttributes                  func(t *TextIter, values *TextAttributes) T.Gboolean
+	textIterGetAttributes                  func(t *TextIter, values *TextAttributes) bool
 	textIterGetBuffer                      func(t *TextIter) *TextBuffer
 	textIterGetBytesInLine                 func(t *TextIter) int
 	textIterGetChar                        func(t *TextIter) T.Gunichar
@@ -602,18 +602,18 @@ var (
 	textIterGetSlice                       func(t *TextIter, end *TextIter) string
 	textIterGetTags                        func(t *TextIter) *T.GSList
 	textIterGetText                        func(t *TextIter, end *TextIter) string
-	textIterGetToggledTags                 func(t *TextIter, toggledOn T.Gboolean) *T.GSList
+	textIterGetToggledTags                 func(t *TextIter, toggledOn bool) *T.GSList
 	textIterGetVisibleLineIndex            func(t *TextIter) int
 	textIterGetVisibleLineOffset           func(t *TextIter) int
 	textIterGetVisibleSlice                func(t *TextIter, end *TextIter) string
 	textIterGetVisibleText                 func(t *TextIter, end *TextIter) string
-	textIterHasTag                         func(t *TextIter, tag *TextTag) T.Gboolean
-	textIterInRange                        func(t *TextIter, start, end *TextIter) T.Gboolean
-	textIterInsideSentence                 func(t *TextIter) T.Gboolean
-	textIterInsideWord                     func(t *TextIter) T.Gboolean
-	textIterIsCursorPosition               func(t *TextIter) T.Gboolean
-	textIterIsEnd                          func(t *TextIter) T.Gboolean
-	textIterIsStart                        func(t *TextIter) T.Gboolean
+	textIterHasTag                         func(t *TextIter, tag *TextTag) bool
+	textIterInRange                        func(t *TextIter, start, end *TextIter) bool
+	textIterInsideSentence                 func(t *TextIter) bool
+	textIterInsideWord                     func(t *TextIter) bool
+	textIterIsCursorPosition               func(t *TextIter) bool
+	textIterIsEnd                          func(t *TextIter) bool
+	textIterIsStart                        func(t *TextIter) bool
 	textIterOrder                          func(t *TextIter, second *TextIter)
 	textIterSetLine                        func(t *TextIter, lineNumber int)
 	textIterSetLineIndex                   func(t *TextIter, byteOnLine int)
@@ -621,106 +621,106 @@ var (
 	textIterSetOffset                      func(t *TextIter, charOffset int)
 	textIterSetVisibleLineIndex            func(t *TextIter, byteOnLine int)
 	textIterSetVisibleLineOffset           func(t *TextIter, charOnLine int)
-	textIterStartsLine                     func(t *TextIter) T.Gboolean
-	textIterStartsSentence                 func(t *TextIter) T.Gboolean
-	textIterStartsWord                     func(t *TextIter) T.Gboolean
-	textIterTogglesTag                     func(t *TextIter, tag *TextTag) T.Gboolean
+	textIterStartsLine                     func(t *TextIter) bool
+	textIterStartsSentence                 func(t *TextIter) bool
+	textIterStartsWord                     func(t *TextIter) bool
+	textIterTogglesTag                     func(t *TextIter, tag *TextTag) bool
 )
 
-func (t *TextIter) BackwardChar() T.Gboolean           { return textIterBackwardChar(t) }
-func (t *TextIter) BackwardChars(count int) T.Gboolean { return textIterBackwardChars(t, count) }
-func (t *TextIter) BackwardCursorPosition() T.Gboolean { return textIterBackwardCursorPosition(t) }
-func (t *TextIter) BackwardCursorPositions(count int) T.Gboolean {
+func (t *TextIter) BackwardChar() bool           { return textIterBackwardChar(t) }
+func (t *TextIter) BackwardChars(count int) bool { return textIterBackwardChars(t, count) }
+func (t *TextIter) BackwardCursorPosition() bool { return textIterBackwardCursorPosition(t) }
+func (t *TextIter) BackwardCursorPositions(count int) bool {
 	return textIterBackwardCursorPositions(t, count)
 }
-func (t *TextIter) BackwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
+func (t *TextIter) BackwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) bool {
 	return textIterBackwardFindChar(t, pred, userData, limit)
 }
-func (t *TextIter) BackwardLine() T.Gboolean           { return textIterBackwardLine(t) }
-func (t *TextIter) BackwardLines(count int) T.Gboolean { return textIterBackwardLines(t, count) }
-func (t *TextIter) BackwardSearch(str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean {
+func (t *TextIter) BackwardLine() bool           { return textIterBackwardLine(t) }
+func (t *TextIter) BackwardLines(count int) bool { return textIterBackwardLines(t, count) }
+func (t *TextIter) BackwardSearch(str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) bool {
 	return textIterBackwardSearch(t, str, flags, matchStart, matchEnd, limit)
 }
-func (t *TextIter) BackwardSentenceStart() T.Gboolean { return textIterBackwardSentenceStart(t) }
-func (t *TextIter) BackwardSentenceStarts(count int) T.Gboolean {
+func (t *TextIter) BackwardSentenceStart() bool { return textIterBackwardSentenceStart(t) }
+func (t *TextIter) BackwardSentenceStarts(count int) bool {
 	return textIterBackwardSentenceStarts(t, count)
 }
-func (t *TextIter) BackwardToTagToggle(tag *TextTag) T.Gboolean {
+func (t *TextIter) BackwardToTagToggle(tag *TextTag) bool {
 	return textIterBackwardToTagToggle(t, tag)
 }
-func (t *TextIter) BackwardVisibleCursorPosition() T.Gboolean {
+func (t *TextIter) BackwardVisibleCursorPosition() bool {
 	return textIterBackwardVisibleCursorPosition(t)
 }
-func (t *TextIter) BackwardVisibleCursorPositions(count int) T.Gboolean {
+func (t *TextIter) BackwardVisibleCursorPositions(count int) bool {
 	return textIterBackwardVisibleCursorPositions(t, count)
 }
-func (t *TextIter) BackwardVisibleLine() T.Gboolean { return textIterBackwardVisibleLine(t) }
-func (t *TextIter) BackwardVisibleLines(count int) T.Gboolean {
+func (t *TextIter) BackwardVisibleLine() bool { return textIterBackwardVisibleLine(t) }
+func (t *TextIter) BackwardVisibleLines(count int) bool {
 	return textIterBackwardVisibleLines(t, count)
 }
-func (t *TextIter) BackwardVisibleWordStart() T.Gboolean { return textIterBackwardVisibleWordStart(t) }
-func (t *TextIter) BackwardVisibleWordStarts(count int) T.Gboolean {
+func (t *TextIter) BackwardVisibleWordStart() bool { return textIterBackwardVisibleWordStart(t) }
+func (t *TextIter) BackwardVisibleWordStarts(count int) bool {
 	return textIterBackwardVisibleWordStarts(t, count)
 }
-func (t *TextIter) BackwardWordStart() T.Gboolean { return textIterBackwardWordStart(t) }
-func (t *TextIter) BackwardWordStarts(count int) T.Gboolean {
+func (t *TextIter) BackwardWordStart() bool { return textIterBackwardWordStart(t) }
+func (t *TextIter) BackwardWordStarts(count int) bool {
 	return textIterBackwardWordStarts(t, count)
 }
-func (t *TextIter) BeginsTag(tag *TextTag) T.Gboolean { return textIterBeginsTag(t, tag) }
-func (t *TextIter) CanInsert(defaultEditability T.Gboolean) T.Gboolean {
+func (t *TextIter) BeginsTag(tag *TextTag) bool { return textIterBeginsTag(t, tag) }
+func (t *TextIter) CanInsert(defaultEditability bool) bool {
 	return textIterCanInsert(t, defaultEditability)
 }
 func (t *TextIter) Compare(rhs *TextIter) int { return textIterCompare(t, rhs) }
 func (t *TextIter) Copy() *TextIter           { return textIterCopy(t) }
-func (t *TextIter) Editable(defaultSetting T.Gboolean) T.Gboolean {
+func (t *TextIter) Editable(defaultSetting bool) bool {
 	return textIterEditable(t, defaultSetting)
 }
-func (t *TextIter) EndsLine() T.Gboolean              { return textIterEndsLine(t) }
-func (t *TextIter) EndsSentence() T.Gboolean          { return textIterEndsSentence(t) }
-func (t *TextIter) EndsTag(tag *TextTag) T.Gboolean   { return textIterEndsTag(t, tag) }
-func (t *TextIter) EndsWord() T.Gboolean              { return textIterEndsWord(t) }
-func (t *TextIter) Equal(rhs *TextIter) T.Gboolean    { return textIterEqual(t, rhs) }
-func (t *TextIter) ForwardChar() T.Gboolean           { return textIterForwardChar(t) }
-func (t *TextIter) ForwardChars(count int) T.Gboolean { return textIterForwardChars(t, count) }
-func (t *TextIter) ForwardCursorPosition() T.Gboolean { return textIterForwardCursorPosition(t) }
-func (t *TextIter) ForwardCursorPositions(count int) T.Gboolean {
+func (t *TextIter) EndsLine() bool              { return textIterEndsLine(t) }
+func (t *TextIter) EndsSentence() bool          { return textIterEndsSentence(t) }
+func (t *TextIter) EndsTag(tag *TextTag) bool   { return textIterEndsTag(t, tag) }
+func (t *TextIter) EndsWord() bool              { return textIterEndsWord(t) }
+func (t *TextIter) Equal(rhs *TextIter) bool    { return textIterEqual(t, rhs) }
+func (t *TextIter) ForwardChar() bool           { return textIterForwardChar(t) }
+func (t *TextIter) ForwardChars(count int) bool { return textIterForwardChars(t, count) }
+func (t *TextIter) ForwardCursorPosition() bool { return textIterForwardCursorPosition(t) }
+func (t *TextIter) ForwardCursorPositions(count int) bool {
 	return textIterForwardCursorPositions(t, count)
 }
-func (t *TextIter) ForwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) T.Gboolean {
+func (t *TextIter) ForwardFindChar(pred TextCharPredicate, userData T.Gpointer, limit *TextIter) bool {
 	return textIterForwardFindChar(t, pred, userData, limit)
 }
-func (t *TextIter) ForwardLine() T.Gboolean           { return textIterForwardLine(t) }
-func (t *TextIter) ForwardLines(count int) T.Gboolean { return textIterForwardLines(t, count) }
-func (t *TextIter) ForwardSearch(str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) T.Gboolean {
+func (t *TextIter) ForwardLine() bool           { return textIterForwardLine(t) }
+func (t *TextIter) ForwardLines(count int) bool { return textIterForwardLines(t, count) }
+func (t *TextIter) ForwardSearch(str string, flags TextSearchFlags, matchStart, matchEnd, limit *TextIter) bool {
 	return textIterForwardSearch(t, str, flags, matchStart, matchEnd, limit)
 }
-func (t *TextIter) ForwardSentenceEnd() T.Gboolean { return textIterForwardSentenceEnd(t) }
-func (t *TextIter) ForwardSentenceEnds(count int) T.Gboolean {
+func (t *TextIter) ForwardSentenceEnd() bool { return textIterForwardSentenceEnd(t) }
+func (t *TextIter) ForwardSentenceEnds(count int) bool {
 	return textIterForwardSentenceEnds(t, count)
 }
-func (t *TextIter) ForwardToEnd()                { textIterForwardToEnd(t) }
-func (t *TextIter) ForwardToLineEnd() T.Gboolean { return textIterForwardToLineEnd(t) }
-func (t *TextIter) ForwardToTagToggle(tag *TextTag) T.Gboolean {
+func (t *TextIter) ForwardToEnd()          { textIterForwardToEnd(t) }
+func (t *TextIter) ForwardToLineEnd() bool { return textIterForwardToLineEnd(t) }
+func (t *TextIter) ForwardToTagToggle(tag *TextTag) bool {
 	return textIterForwardToTagToggle(t, tag)
 }
-func (t *TextIter) ForwardVisibleCursorPosition() T.Gboolean {
+func (t *TextIter) ForwardVisibleCursorPosition() bool {
 	return textIterForwardVisibleCursorPosition(t)
 }
-func (t *TextIter) ForwardVisibleCursorPositions(count int) T.Gboolean {
+func (t *TextIter) ForwardVisibleCursorPositions(count int) bool {
 	return textIterForwardVisibleCursorPositions(t, count)
 }
-func (t *TextIter) ForwardVisibleLine() T.Gboolean { return textIterForwardVisibleLine(t) }
-func (t *TextIter) ForwardVisibleLines(count int) T.Gboolean {
+func (t *TextIter) ForwardVisibleLine() bool { return textIterForwardVisibleLine(t) }
+func (t *TextIter) ForwardVisibleLines(count int) bool {
 	return textIterForwardVisibleLines(t, count)
 }
-func (t *TextIter) ForwardVisibleWordEnd() T.Gboolean { return textIterForwardVisibleWordEnd(t) }
-func (t *TextIter) ForwardVisibleWordEnds(count int) T.Gboolean {
+func (t *TextIter) ForwardVisibleWordEnd() bool { return textIterForwardVisibleWordEnd(t) }
+func (t *TextIter) ForwardVisibleWordEnds(count int) bool {
 	return textIterForwardVisibleWordEnds(t, count)
 }
-func (t *TextIter) ForwardWordEnd() T.Gboolean           { return textIterForwardWordEnd(t) }
-func (t *TextIter) ForwardWordEnds(count int) T.Gboolean { return textIterForwardWordEnds(t, count) }
-func (t *TextIter) Free()                                { textIterFree(t) }
-func (t *TextIter) GetAttributes(values *TextAttributes) T.Gboolean {
+func (t *TextIter) ForwardWordEnd() bool           { return textIterForwardWordEnd(t) }
+func (t *TextIter) ForwardWordEnds(count int) bool { return textIterForwardWordEnds(t, count) }
+func (t *TextIter) Free()                          { textIterFree(t) }
+func (t *TextIter) GetAttributes(values *TextAttributes) bool {
 	return textIterGetAttributes(t, values)
 }
 func (t *TextIter) GetBuffer() *TextBuffer           { return textIterGetBuffer(t) }
@@ -738,31 +738,31 @@ func (t *TextIter) GetPixbuf() *D.Pixbuf             { return textIterGetPixbuf(
 func (t *TextIter) GetSlice(end *TextIter) string    { return textIterGetSlice(t, end) }
 func (t *TextIter) GetTags() *T.GSList               { return textIterGetTags(t) }
 func (t *TextIter) GetText(end *TextIter) string     { return textIterGetText(t, end) }
-func (t *TextIter) GetToggledTags(toggledOn T.Gboolean) *T.GSList {
+func (t *TextIter) GetToggledTags(toggledOn bool) *T.GSList {
 	return textIterGetToggledTags(t, toggledOn)
 }
-func (t *TextIter) GetVisibleLineIndex() int                { return textIterGetVisibleLineIndex(t) }
-func (t *TextIter) GetVisibleLineOffset() int               { return textIterGetVisibleLineOffset(t) }
-func (t *TextIter) GetVisibleSlice(end *TextIter) string    { return textIterGetVisibleSlice(t, end) }
-func (t *TextIter) GetVisibleText(end *TextIter) string     { return textIterGetVisibleText(t, end) }
-func (t *TextIter) HasTag(tag *TextTag) T.Gboolean          { return textIterHasTag(t, tag) }
-func (t *TextIter) InRange(start, end *TextIter) T.Gboolean { return textIterInRange(t, start, end) }
-func (t *TextIter) InsideSentence() T.Gboolean              { return textIterInsideSentence(t) }
-func (t *TextIter) InsideWord() T.Gboolean                  { return textIterInsideWord(t) }
-func (t *TextIter) IsCursorPosition() T.Gboolean            { return textIterIsCursorPosition(t) }
-func (t *TextIter) IsEnd() T.Gboolean                       { return textIterIsEnd(t) }
-func (t *TextIter) IsStart() T.Gboolean                     { return textIterIsStart(t) }
-func (t *TextIter) Order(second *TextIter)                  { textIterOrder(t, second) }
-func (t *TextIter) SetLine(lineNumber int)                  { textIterSetLine(t, lineNumber) }
-func (t *TextIter) SetLineIndex(byteOnLine int)             { textIterSetLineIndex(t, byteOnLine) }
-func (t *TextIter) SetLineOffset(charOnLine int)            { textIterSetLineOffset(t, charOnLine) }
-func (t *TextIter) SetOffset(charOffset int)                { textIterSetOffset(t, charOffset) }
-func (t *TextIter) SetVisibleLineIndex(byteOnLine int)      { textIterSetVisibleLineIndex(t, byteOnLine) }
-func (t *TextIter) SetVisibleLineOffset(charOnLine int)     { textIterSetVisibleLineOffset(t, charOnLine) }
-func (t *TextIter) StartsLine() T.Gboolean                  { return textIterStartsLine(t) }
-func (t *TextIter) StartsSentence() T.Gboolean              { return textIterStartsSentence(t) }
-func (t *TextIter) StartsWord() T.Gboolean                  { return textIterStartsWord(t) }
-func (t *TextIter) TogglesTag(tag *TextTag) T.Gboolean      { return textIterTogglesTag(t, tag) }
+func (t *TextIter) GetVisibleLineIndex() int             { return textIterGetVisibleLineIndex(t) }
+func (t *TextIter) GetVisibleLineOffset() int            { return textIterGetVisibleLineOffset(t) }
+func (t *TextIter) GetVisibleSlice(end *TextIter) string { return textIterGetVisibleSlice(t, end) }
+func (t *TextIter) GetVisibleText(end *TextIter) string  { return textIterGetVisibleText(t, end) }
+func (t *TextIter) HasTag(tag *TextTag) bool             { return textIterHasTag(t, tag) }
+func (t *TextIter) InRange(start, end *TextIter) bool    { return textIterInRange(t, start, end) }
+func (t *TextIter) InsideSentence() bool                 { return textIterInsideSentence(t) }
+func (t *TextIter) InsideWord() bool                     { return textIterInsideWord(t) }
+func (t *TextIter) IsCursorPosition() bool               { return textIterIsCursorPosition(t) }
+func (t *TextIter) IsEnd() bool                          { return textIterIsEnd(t) }
+func (t *TextIter) IsStart() bool                        { return textIterIsStart(t) }
+func (t *TextIter) Order(second *TextIter)               { textIterOrder(t, second) }
+func (t *TextIter) SetLine(lineNumber int)               { textIterSetLine(t, lineNumber) }
+func (t *TextIter) SetLineIndex(byteOnLine int)          { textIterSetLineIndex(t, byteOnLine) }
+func (t *TextIter) SetLineOffset(charOnLine int)         { textIterSetLineOffset(t, charOnLine) }
+func (t *TextIter) SetOffset(charOffset int)             { textIterSetOffset(t, charOffset) }
+func (t *TextIter) SetVisibleLineIndex(byteOnLine int)   { textIterSetVisibleLineIndex(t, byteOnLine) }
+func (t *TextIter) SetVisibleLineOffset(charOnLine int)  { textIterSetVisibleLineOffset(t, charOnLine) }
+func (t *TextIter) StartsLine() bool                     { return textIterStartsLine(t) }
+func (t *TextIter) StartsSentence() bool                 { return textIterStartsSentence(t) }
+func (t *TextIter) StartsWord() bool                     { return textIterStartsWord(t) }
+func (t *TextIter) TogglesTag(tag *TextTag) bool         { return textIterTogglesTag(t, tag) }
 
 type (
 	TextLayout       struct{}
@@ -776,14 +776,14 @@ type TextMark struct {
 
 var (
 	TextMarkGetType func() O.Type
-	TextMarkNew     func(name string, leftGravity T.Gboolean) *TextMark
+	TextMarkNew     func(name string, leftGravity bool) *TextMark
 
-	TextMarkSetVisible     func(t *TextMark, setting T.Gboolean)
-	TextMarkGetVisible     func(t *TextMark) T.Gboolean
+	TextMarkSetVisible     func(t *TextMark, setting bool)
+	TextMarkGetVisible     func(t *TextMark) bool
 	TextMarkGetName        func(t *TextMark) string
-	TextMarkGetDeleted     func(t *TextMark) T.Gboolean
+	TextMarkGetDeleted     func(t *TextMark) bool
 	TextMarkGetBuffer      func(t *TextMark) *TextBuffer
-	TextMarkGetLeftGravity func(t *TextMark) T.Gboolean
+	TextMarkGetLeftGravity func(t *TextMark) bool
 )
 
 type TextPendingScroll struct{}
@@ -834,12 +834,12 @@ var (
 	TextTagGetType func() O.Type
 	TextTagNew     func(name string) *TextTag
 
-	textTagEvent       func(t *TextTag, eventObject *T.GObject, event *D.Event, iter *TextIter) T.Gboolean
+	textTagEvent       func(t *TextTag, eventObject *T.GObject, event *D.Event, iter *TextIter) bool
 	textTagGetPriority func(t *TextTag) int
 	textTagSetPriority func(t *TextTag, priority int)
 )
 
-func (t *TextTag) Event(eventObject *T.GObject, event *D.Event, iter *TextIter) T.Gboolean {
+func (t *TextTag) Event(eventObject *T.GObject, event *D.Event, iter *TextIter) bool {
 	return textTagEvent(t, eventObject, event, iter)
 }
 func (t *TextTag) GetPriority() int         { return textTagGetPriority(t) }
@@ -935,14 +935,14 @@ var (
 
 	TextViewSetBuffer                func(t *TextView, buffer *TextBuffer)
 	TextViewGetBuffer                func(t *TextView) *TextBuffer
-	TextViewScrollToIter             func(t *TextView, iter *TextIter, withinMargin float64, useAlign T.Gboolean, xalign, yalign float64) T.Gboolean
-	TextViewScrollToMark             func(t *TextView, mark *TextMark, withinMargin float64, useAlign T.Gboolean, xalign, yalign float64)
+	TextViewScrollToIter             func(t *TextView, iter *TextIter, withinMargin float64, useAlign bool, xalign, yalign float64) bool
+	TextViewScrollToMark             func(t *TextView, mark *TextMark, withinMargin float64, useAlign bool, xalign, yalign float64)
 	TextViewScrollMarkOnscreen       func(t *TextView, mark *TextMark)
-	TextViewMoveMarkOnscreen         func(t *TextView, mark *TextMark) T.Gboolean
-	TextViewPlaceCursorOnscreen      func(t *TextView) T.Gboolean
+	TextViewMoveMarkOnscreen         func(t *TextView, mark *TextMark) bool
+	TextViewPlaceCursorOnscreen      func(t *TextView) bool
 	TextViewGetVisibleRect           func(t *TextView, visibleRect *D.Rectangle)
-	TextViewSetCursorVisible         func(t *TextView, setting T.Gboolean)
-	TextViewGetCursorVisible         func(t *TextView) T.Gboolean
+	TextViewSetCursorVisible         func(t *TextView, setting bool)
+	TextViewGetCursorVisible         func(t *TextView) bool
 	TextViewGetIterLocation          func(t *TextView, iter *TextIter, location *D.Rectangle)
 	TextViewGetIterAtLocation        func(t *TextView, iter *TextIter, x, y int)
 	TextViewGetIterAtPosition        func(t *TextView, iter *TextIter, trailing *int, x, y int)
@@ -956,25 +956,25 @@ var (
 	TextViewGetWindowType            func(t *TextView, window *D.Window) TextWindowType
 	TextViewSetBorderWindowSize      func(t *TextView, tw TextWindowType, size int)
 	TextViewGetBorderWindowSize      func(t *TextView, tw TextWindowType) int
-	TextViewForwardDisplayLine       func(t *TextView, iter *TextIter) T.Gboolean
-	TextViewBackwardDisplayLine      func(t *TextView, iter *TextIter) T.Gboolean
-	TextViewForwardDisplayLineEnd    func(t *TextView, iter *TextIter) T.Gboolean
-	TextViewBackwardDisplayLineStart func(t *TextView, iter *TextIter) T.Gboolean
-	TextViewStartsDisplayLine        func(t *TextView, iter *TextIter) T.Gboolean
-	TextViewMoveVisually             func(t *TextView, iter *TextIter, count int) T.Gboolean
-	TextViewImContextFilterKeypress  func(t *TextView, event *D.EventKey) T.Gboolean
+	TextViewForwardDisplayLine       func(t *TextView, iter *TextIter) bool
+	TextViewBackwardDisplayLine      func(t *TextView, iter *TextIter) bool
+	TextViewForwardDisplayLineEnd    func(t *TextView, iter *TextIter) bool
+	TextViewBackwardDisplayLineStart func(t *TextView, iter *TextIter) bool
+	TextViewStartsDisplayLine        func(t *TextView, iter *TextIter) bool
+	TextViewMoveVisually             func(t *TextView, iter *TextIter, count int) bool
+	TextViewImContextFilterKeypress  func(t *TextView, event *D.EventKey) bool
 	TextViewResetImContext           func(t *TextView)
 	TextViewAddChildAtAnchor         func(t *TextView, child *Widget, anchor *TextChildAnchor)
 	TextViewAddChildInWindow         func(t *TextView, child *Widget, whichWindow TextWindowType, xpos, ypos int)
 	TextViewMoveChild                func(t *TextView, child *Widget, xpos, ypos int)
 	TextViewSetWrapMode              func(t *TextView, wrapMode WrapMode)
 	TextViewGetWrapMode              func(t *TextView) WrapMode
-	TextViewSetEditable              func(t *TextView, setting T.Gboolean)
-	TextViewGetEditable              func(t *TextView) T.Gboolean
-	TextViewSetOverwrite             func(t *TextView, overwrite T.Gboolean)
-	TextViewGetOverwrite             func(t *TextView) T.Gboolean
-	TextViewSetAcceptsTab            func(t *TextView, acceptsTab T.Gboolean)
-	TextViewGetAcceptsTab            func(t *TextView) T.Gboolean
+	TextViewSetEditable              func(t *TextView, setting bool)
+	TextViewGetEditable              func(t *TextView) bool
+	TextViewSetOverwrite             func(t *TextView, overwrite bool)
+	TextViewGetOverwrite             func(t *TextView) bool
+	TextViewSetAcceptsTab            func(t *TextView, acceptsTab bool)
+	TextViewGetAcceptsTab            func(t *TextView) bool
 	TextViewSetPixelsAboveLines      func(t *TextView, pixelsAboveLines int)
 	TextViewGetPixelsAboveLines      func(t *TextView) int
 	TextViewSetPixelsBelowLines      func(t *TextView, pixelsBelowLines int)
@@ -1054,17 +1054,17 @@ var (
 	ToggleActionGetType func() O.Type
 	ToggleActionNew     func(name, label, tooltip, stockId string) *ToggleAction
 
-	toggleActionGetActive      func(t *ToggleAction) T.Gboolean
-	toggleActionGetDrawAsRadio func(t *ToggleAction) T.Gboolean
-	toggleActionSetActive      func(t *ToggleAction, isActive T.Gboolean)
-	toggleActionSetDrawAsRadio func(t *ToggleAction, drawAsRadio T.Gboolean)
+	toggleActionGetActive      func(t *ToggleAction) bool
+	toggleActionGetDrawAsRadio func(t *ToggleAction) bool
+	toggleActionSetActive      func(t *ToggleAction, isActive bool)
+	toggleActionSetDrawAsRadio func(t *ToggleAction, drawAsRadio bool)
 	toggleActionToggled        func(t *ToggleAction)
 )
 
-func (t *ToggleAction) GetActive() T.Gboolean         { return toggleActionGetActive(t) }
-func (t *ToggleAction) GetDrawAsRadio() T.Gboolean    { return toggleActionGetDrawAsRadio(t) }
-func (t *ToggleAction) SetActive(isActive T.Gboolean) { toggleActionSetActive(t, isActive) }
-func (t *ToggleAction) SetDrawAsRadio(drawAsRadio T.Gboolean) {
+func (t *ToggleAction) GetActive() bool         { return toggleActionGetActive(t) }
+func (t *ToggleAction) GetDrawAsRadio() bool    { return toggleActionGetDrawAsRadio(t) }
+func (t *ToggleAction) SetActive(isActive bool) { toggleActionSetActive(t, isActive) }
+func (t *ToggleAction) SetDrawAsRadio(drawAsRadio bool) {
 	toggleActionSetDrawAsRadio(t, drawAsRadio)
 }
 func (t *ToggleAction) Toggled() { toggleActionToggled(t) }
@@ -1093,22 +1093,22 @@ var (
 	ToggleButtonNewWithLabel    func(label string) *Widget
 	ToggleButtonNewWithMnemonic func(label string) *Widget
 
-	toggleButtonGetActive       func(t *ToggleButton) T.Gboolean
-	toggleButtonGetInconsistent func(t *ToggleButton) T.Gboolean
-	toggleButtonGetMode         func(t *ToggleButton) T.Gboolean
-	toggleButtonSetActive       func(t *ToggleButton, isActive T.Gboolean)
-	toggleButtonSetInconsistent func(t *ToggleButton, setting T.Gboolean)
-	toggleButtonSetMode         func(t *ToggleButton, drawIndicator T.Gboolean)
+	toggleButtonGetActive       func(t *ToggleButton) bool
+	toggleButtonGetInconsistent func(t *ToggleButton) bool
+	toggleButtonGetMode         func(t *ToggleButton) bool
+	toggleButtonSetActive       func(t *ToggleButton, isActive bool)
+	toggleButtonSetInconsistent func(t *ToggleButton, setting bool)
+	toggleButtonSetMode         func(t *ToggleButton, drawIndicator bool)
 	toggleButtonToggled         func(t *ToggleButton)
 )
 
-func (t *ToggleButton) GetActive() T.Gboolean              { return toggleButtonGetActive(t) }
-func (t *ToggleButton) GetInconsistent() T.Gboolean        { return toggleButtonGetInconsistent(t) }
-func (t *ToggleButton) GetMode() T.Gboolean                { return toggleButtonGetMode(t) }
-func (t *ToggleButton) SetActive(isActive T.Gboolean)      { toggleButtonSetActive(t, isActive) }
-func (t *ToggleButton) SetInconsistent(setting T.Gboolean) { toggleButtonSetInconsistent(t, setting) }
-func (t *ToggleButton) SetMode(drawIndicator T.Gboolean)   { toggleButtonSetMode(t, drawIndicator) }
-func (t *ToggleButton) Toggled()                           { toggleButtonToggled(t) }
+func (t *ToggleButton) GetActive() bool              { return toggleButtonGetActive(t) }
+func (t *ToggleButton) GetInconsistent() bool        { return toggleButtonGetInconsistent(t) }
+func (t *ToggleButton) GetMode() bool                { return toggleButtonGetMode(t) }
+func (t *ToggleButton) SetActive(isActive bool)      { toggleButtonSetActive(t, isActive) }
+func (t *ToggleButton) SetInconsistent(setting bool) { toggleButtonSetInconsistent(t, setting) }
+func (t *ToggleButton) SetMode(drawIndicator bool)   { toggleButtonSetMode(t, drawIndicator) }
+func (t *ToggleButton) Toggled()                     { toggleButtonToggled(t) }
 
 type ToggleToolButton struct {
 	Parent ToolButton
@@ -1120,12 +1120,12 @@ var (
 	ToggleToolButtonNew          func() *ToolItem
 	ToggleToolButtonNewFromStock func(stockId string) *ToolItem
 
-	toggleToolButtonGetActive func(t *ToggleToolButton) T.Gboolean
-	toggleToolButtonSetActive func(t *ToggleToolButton, isActive T.Gboolean)
+	toggleToolButtonGetActive func(t *ToggleToolButton) bool
+	toggleToolButtonSetActive func(t *ToggleToolButton, isActive bool)
 )
 
-func (t *ToggleToolButton) GetActive() T.Gboolean         { return toggleToolButtonGetActive(t) }
-func (t *ToggleToolButton) SetActive(isActive T.Gboolean) { toggleToolButtonSetActive(t, isActive) }
+func (t *ToggleToolButton) GetActive() bool         { return toggleToolButtonGetActive(t) }
+func (t *ToggleToolButton) SetActive(isActive bool) { toggleToolButtonSetActive(t, isActive) }
 
 type (
 	Toolbar struct {
@@ -1182,9 +1182,9 @@ var (
 	toolbarGetNthItem           func(t *Toolbar, n int) *ToolItem
 	toolbarGetOrientation       func(t *Toolbar) Orientation
 	toolbarGetReliefStyle       func(t *Toolbar) ReliefStyle
-	toolbarGetShowArrow         func(t *Toolbar) T.Gboolean
+	toolbarGetShowArrow         func(t *Toolbar) bool
 	toolbarGetStyle             func(t *Toolbar) ToolbarStyle
-	toolbarGetTooltips          func(t *Toolbar) T.Gboolean
+	toolbarGetTooltips          func(t *Toolbar) bool
 	toolbarInsert               func(t *Toolbar, item *ToolItem, pos int)
 	toolbarInsertElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget
 	toolbarInsertItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget
@@ -1199,9 +1199,9 @@ var (
 	toolbarSetDropHighlightItem func(t *Toolbar, toolItem *ToolItem, index int)
 	toolbarSetIconSize          func(t *Toolbar, iconSize IconSize)
 	toolbarSetOrientation       func(t *Toolbar, orientation Orientation)
-	toolbarSetShowArrow         func(t *Toolbar, showArrow T.Gboolean)
+	toolbarSetShowArrow         func(t *Toolbar, showArrow bool)
 	toolbarSetStyle             func(t *Toolbar, style ToolbarStyle)
-	toolbarSetTooltips          func(t *Toolbar, enable T.Gboolean)
+	toolbarSetTooltips          func(t *Toolbar, enable bool)
 	toolbarUnsetIconSize        func(t *Toolbar)
 	toolbarUnsetStyle           func(t *Toolbar)
 )
@@ -1223,9 +1223,9 @@ func (t *Toolbar) GetNItems() int                  { return toolbarGetNItems(t) 
 func (t *Toolbar) GetNthItem(n int) *ToolItem      { return toolbarGetNthItem(t, n) }
 func (t *Toolbar) GetOrientation() Orientation     { return toolbarGetOrientation(t) }
 func (t *Toolbar) GetReliefStyle() ReliefStyle     { return toolbarGetReliefStyle(t) }
-func (t *Toolbar) GetShowArrow() T.Gboolean        { return toolbarGetShowArrow(t) }
+func (t *Toolbar) GetShowArrow() bool              { return toolbarGetShowArrow(t) }
 func (t *Toolbar) GetStyle() ToolbarStyle          { return toolbarGetStyle(t) }
-func (t *Toolbar) GetTooltips() T.Gboolean         { return toolbarGetTooltips(t) }
+func (t *Toolbar) GetTooltips() bool               { return toolbarGetTooltips(t) }
 func (t *Toolbar) Insert(item *ToolItem, pos int)  { toolbarInsert(t, item, pos) }
 func (t *Toolbar) InsertElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget {
 	return toolbarInsertElement(t, ct, widget, text, tooltipText, tooltipPrivateText, icon, callback, userData, position)
@@ -1256,9 +1256,9 @@ func (t *Toolbar) SetDropHighlightItem(toolItem *ToolItem, index int) {
 }
 func (t *Toolbar) SetIconSize(iconSize IconSize)          { toolbarSetIconSize(t, iconSize) }
 func (t *Toolbar) SetOrientation(orientation Orientation) { toolbarSetOrientation(t, orientation) }
-func (t *Toolbar) SetShowArrow(showArrow T.Gboolean)      { toolbarSetShowArrow(t, showArrow) }
+func (t *Toolbar) SetShowArrow(showArrow bool)            { toolbarSetShowArrow(t, showArrow) }
 func (t *Toolbar) SetStyle(style ToolbarStyle)            { toolbarSetStyle(t, style) }
-func (t *Toolbar) SetTooltips(enable T.Gboolean)          { toolbarSetTooltips(t, enable) }
+func (t *Toolbar) SetTooltips(enable bool)                { toolbarSetTooltips(t, enable) }
 func (t *Toolbar) UnsetIconSize()                         { toolbarUnsetIconSize(t) }
 func (t *Toolbar) UnsetStyle()                            { toolbarUnsetStyle(t) }
 
@@ -1277,13 +1277,13 @@ var (
 	toolButtonGetLabel        func(t *ToolButton) string
 	toolButtonGetLabelWidget  func(t *ToolButton) *Widget
 	toolButtonGetStockId      func(t *ToolButton) string
-	toolButtonGetUseUnderline func(t *ToolButton) T.Gboolean
+	toolButtonGetUseUnderline func(t *ToolButton) bool
 	toolButtonSetIconName     func(t *ToolButton, iconName string)
 	toolButtonSetIconWidget   func(t *ToolButton, iconWidget *Widget)
 	toolButtonSetLabel        func(t *ToolButton, label string)
 	toolButtonSetLabelWidget  func(t *ToolButton, labelWidget *Widget)
 	toolButtonSetStockId      func(t *ToolButton, stockId string)
-	toolButtonSetUseUnderline func(t *ToolButton, useUnderline T.Gboolean)
+	toolButtonSetUseUnderline func(t *ToolButton, useUnderline bool)
 )
 
 func (t *ToolButton) GetIconName() string                { return toolButtonGetIconName(t) }
@@ -1291,13 +1291,13 @@ func (t *ToolButton) GetIconWidget() *Widget             { return toolButtonGetI
 func (t *ToolButton) GetLabel() string                   { return toolButtonGetLabel(t) }
 func (t *ToolButton) GetLabelWidget() *Widget            { return toolButtonGetLabelWidget(t) }
 func (t *ToolButton) GetStockId() string                 { return toolButtonGetStockId(t) }
-func (t *ToolButton) GetUseUnderline() T.Gboolean        { return toolButtonGetUseUnderline(t) }
+func (t *ToolButton) GetUseUnderline() bool              { return toolButtonGetUseUnderline(t) }
 func (t *ToolButton) SetIconName(iconName string)        { toolButtonSetIconName(t, iconName) }
 func (t *ToolButton) SetIconWidget(iconWidget *Widget)   { toolButtonSetIconWidget(t, iconWidget) }
 func (t *ToolButton) SetLabel(label string)              { toolButtonSetLabel(t, label) }
 func (t *ToolButton) SetLabelWidget(labelWidget *Widget) { toolButtonSetLabelWidget(t, labelWidget) }
 func (t *ToolButton) SetStockId(stockId string)          { toolButtonSetStockId(t, stockId) }
-func (t *ToolButton) SetUseUnderline(useUnderline T.Gboolean) {
+func (t *ToolButton) SetUseUnderline(useUnderline bool) {
 	toolButtonSetUseUnderline(t, useUnderline)
 }
 
@@ -1311,10 +1311,10 @@ var (
 	ToolItemNew     func() *ToolItem
 
 	toolItemGetEllipsizeMode      func(t *ToolItem) P.EllipsizeMode
-	toolItemGetExpand             func(t *ToolItem) T.Gboolean
-	toolItemGetHomogeneous        func(t *ToolItem) T.Gboolean
+	toolItemGetExpand             func(t *ToolItem) bool
+	toolItemGetHomogeneous        func(t *ToolItem) bool
 	toolItemGetIconSize           func(t *ToolItem) IconSize
-	toolItemGetIsImportant        func(t *ToolItem) T.Gboolean
+	toolItemGetIsImportant        func(t *ToolItem) bool
 	toolItemGetOrientation        func(t *ToolItem) Orientation
 	toolItemGetProxyMenuItem      func(t *ToolItem, menuItemId string) *Widget
 	toolItemGetReliefStyle        func(t *ToolItem) ReliefStyle
@@ -1322,46 +1322,46 @@ var (
 	toolItemGetTextOrientation    func(t *ToolItem) Orientation
 	toolItemGetTextSizeGroup      func(t *ToolItem) *SizeGroup
 	toolItemGetToolbarStyle       func(t *ToolItem) ToolbarStyle
-	toolItemGetUseDragWindow      func(t *ToolItem) T.Gboolean
-	toolItemGetVisibleHorizontal  func(t *ToolItem) T.Gboolean
-	toolItemGetVisibleVertical    func(t *ToolItem) T.Gboolean
+	toolItemGetUseDragWindow      func(t *ToolItem) bool
+	toolItemGetVisibleHorizontal  func(t *ToolItem) bool
+	toolItemGetVisibleVertical    func(t *ToolItem) bool
 	toolItemRebuildMenu           func(t *ToolItem)
 	toolItemRetrieveProxyMenuItem func(t *ToolItem) *Widget
-	toolItemSetExpand             func(t *ToolItem, expand T.Gboolean)
-	toolItemSetHomogeneous        func(t *ToolItem, homogeneous T.Gboolean)
-	toolItemSetIsImportant        func(t *ToolItem, isImportant T.Gboolean)
+	toolItemSetExpand             func(t *ToolItem, expand bool)
+	toolItemSetHomogeneous        func(t *ToolItem, homogeneous bool)
+	toolItemSetIsImportant        func(t *ToolItem, isImportant bool)
 	toolItemSetProxyMenuItem      func(t *ToolItem, menuItemId string, menuItem *Widget)
 	toolItemSetTooltip            func(t *ToolItem, tooltips *Tooltips, tipText, tipPrivate string)
 	toolItemSetTooltipMarkup      func(t *ToolItem, markup string)
 	toolItemSetTooltipText        func(t *ToolItem, text string)
-	toolItemSetUseDragWindow      func(t *ToolItem, useDragWindow T.Gboolean)
-	toolItemSetVisibleHorizontal  func(t *ToolItem, visibleHorizontal T.Gboolean)
-	toolItemSetVisibleVertical    func(t *ToolItem, visibleVertical T.Gboolean)
+	toolItemSetUseDragWindow      func(t *ToolItem, useDragWindow bool)
+	toolItemSetVisibleHorizontal  func(t *ToolItem, visibleHorizontal bool)
+	toolItemSetVisibleVertical    func(t *ToolItem, visibleVertical bool)
 	toolItemToolbarReconfigured   func(t *ToolItem)
 )
 
 func (t *ToolItem) GetEllipsizeMode() P.EllipsizeMode { return toolItemGetEllipsizeMode(t) }
-func (t *ToolItem) GetExpand() T.Gboolean             { return toolItemGetExpand(t) }
-func (t *ToolItem) GetHomogeneous() T.Gboolean        { return toolItemGetHomogeneous(t) }
+func (t *ToolItem) GetExpand() bool                   { return toolItemGetExpand(t) }
+func (t *ToolItem) GetHomogeneous() bool              { return toolItemGetHomogeneous(t) }
 func (t *ToolItem) GetIconSize() IconSize             { return toolItemGetIconSize(t) }
-func (t *ToolItem) GetIsImportant() T.Gboolean        { return toolItemGetIsImportant(t) }
+func (t *ToolItem) GetIsImportant() bool              { return toolItemGetIsImportant(t) }
 func (t *ToolItem) GetOrientation() Orientation       { return toolItemGetOrientation(t) }
 func (t *ToolItem) GetProxyMenuItem(menuItemId string) *Widget {
 	return toolItemGetProxyMenuItem(t, menuItemId)
 }
-func (t *ToolItem) GetReliefStyle() ReliefStyle           { return toolItemGetReliefStyle(t) }
-func (t *ToolItem) GetTextAlignment() float32             { return toolItemGetTextAlignment(t) }
-func (t *ToolItem) GetTextOrientation() Orientation       { return toolItemGetTextOrientation(t) }
-func (t *ToolItem) GetTextSizeGroup() *SizeGroup          { return toolItemGetTextSizeGroup(t) }
-func (t *ToolItem) GetToolbarStyle() ToolbarStyle         { return toolItemGetToolbarStyle(t) }
-func (t *ToolItem) GetUseDragWindow() T.Gboolean          { return toolItemGetUseDragWindow(t) }
-func (t *ToolItem) GetVisibleHorizontal() T.Gboolean      { return toolItemGetVisibleHorizontal(t) }
-func (t *ToolItem) GetVisibleVertical() T.Gboolean        { return toolItemGetVisibleVertical(t) }
-func (t *ToolItem) RebuildMenu()                          { toolItemRebuildMenu(t) }
-func (t *ToolItem) RetrieveProxyMenuItem() *Widget        { return toolItemRetrieveProxyMenuItem(t) }
-func (t *ToolItem) SetExpand(expand T.Gboolean)           { toolItemSetExpand(t, expand) }
-func (t *ToolItem) SetHomogeneous(homogeneous T.Gboolean) { toolItemSetHomogeneous(t, homogeneous) }
-func (t *ToolItem) SetIsImportant(isImportant T.Gboolean) { toolItemSetIsImportant(t, isImportant) }
+func (t *ToolItem) GetReliefStyle() ReliefStyle     { return toolItemGetReliefStyle(t) }
+func (t *ToolItem) GetTextAlignment() float32       { return toolItemGetTextAlignment(t) }
+func (t *ToolItem) GetTextOrientation() Orientation { return toolItemGetTextOrientation(t) }
+func (t *ToolItem) GetTextSizeGroup() *SizeGroup    { return toolItemGetTextSizeGroup(t) }
+func (t *ToolItem) GetToolbarStyle() ToolbarStyle   { return toolItemGetToolbarStyle(t) }
+func (t *ToolItem) GetUseDragWindow() bool          { return toolItemGetUseDragWindow(t) }
+func (t *ToolItem) GetVisibleHorizontal() bool      { return toolItemGetVisibleHorizontal(t) }
+func (t *ToolItem) GetVisibleVertical() bool        { return toolItemGetVisibleVertical(t) }
+func (t *ToolItem) RebuildMenu()                    { toolItemRebuildMenu(t) }
+func (t *ToolItem) RetrieveProxyMenuItem() *Widget  { return toolItemRetrieveProxyMenuItem(t) }
+func (t *ToolItem) SetExpand(expand bool)           { toolItemSetExpand(t, expand) }
+func (t *ToolItem) SetHomogeneous(homogeneous bool) { toolItemSetHomogeneous(t, homogeneous) }
+func (t *ToolItem) SetIsImportant(isImportant bool) { toolItemSetIsImportant(t, isImportant) }
 func (t *ToolItem) SetProxyMenuItem(menuItemId string, menuItem *Widget) {
 	toolItemSetProxyMenuItem(t, menuItemId, menuItem)
 }
@@ -1370,13 +1370,13 @@ func (t *ToolItem) SetTooltip(tooltips *Tooltips, tipText, tipPrivate string) {
 }
 func (t *ToolItem) SetTooltipMarkup(markup string) { toolItemSetTooltipMarkup(t, markup) }
 func (t *ToolItem) SetTooltipText(text string)     { toolItemSetTooltipText(t, text) }
-func (t *ToolItem) SetUseDragWindow(useDragWindow T.Gboolean) {
+func (t *ToolItem) SetUseDragWindow(useDragWindow bool) {
 	toolItemSetUseDragWindow(t, useDragWindow)
 }
-func (t *ToolItem) SetVisibleHorizontal(visibleHorizontal T.Gboolean) {
+func (t *ToolItem) SetVisibleHorizontal(visibleHorizontal bool) {
 	toolItemSetVisibleHorizontal(t, visibleHorizontal)
 }
-func (t *ToolItem) SetVisibleVertical(visibleVertical T.Gboolean) {
+func (t *ToolItem) SetVisibleVertical(visibleVertical bool) {
 	toolItemSetVisibleVertical(t, visibleVertical)
 }
 func (t *ToolItem) ToolbarReconfigured() { toolItemToolbarReconfigured(t) }
@@ -1390,7 +1390,7 @@ var (
 	ToolItemGroupGetType func() O.Type
 	ToolItemGroupNew     func(label string) *Widget
 
-	toolItemGroupGetCollapsed    func(t *ToolItemGroup) T.Gboolean
+	toolItemGroupGetCollapsed    func(t *ToolItemGroup) bool
 	toolItemGroupGetDropItem     func(t *ToolItemGroup, x, y int) *ToolItem
 	toolItemGroupGetEllipsize    func(t *ToolItemGroup) P.EllipsizeMode
 	toolItemGroupGetHeaderRelief func(t *ToolItemGroup) ReliefStyle
@@ -1400,7 +1400,7 @@ var (
 	toolItemGroupGetNItems       func(t *ToolItemGroup) uint
 	toolItemGroupGetNthItem      func(t *ToolItemGroup, index uint) *ToolItem
 	toolItemGroupInsert          func(t *ToolItemGroup, item *ToolItem, position int)
-	toolItemGroupSetCollapsed    func(t *ToolItemGroup, collapsed T.Gboolean)
+	toolItemGroupSetCollapsed    func(t *ToolItemGroup, collapsed bool)
 	toolItemGroupSetEllipsize    func(t *ToolItemGroup, ellipsize P.EllipsizeMode)
 	toolItemGroupSetHeaderRelief func(t *ToolItemGroup, style ReliefStyle)
 	toolItemGroupSetItemPosition func(t *ToolItemGroup, item *ToolItem, position int)
@@ -1408,7 +1408,7 @@ var (
 	toolItemGroupSetLabelWidget  func(t *ToolItemGroup, labelWidget *Widget)
 )
 
-func (t *ToolItemGroup) GetCollapsed() T.Gboolean       { return toolItemGroupGetCollapsed(t) }
+func (t *ToolItemGroup) GetCollapsed() bool             { return toolItemGroupGetCollapsed(t) }
 func (t *ToolItemGroup) GetDropItem(x, y int) *ToolItem { return toolItemGroupGetDropItem(t, x, y) }
 func (t *ToolItemGroup) GetEllipsize() P.EllipsizeMode  { return toolItemGroupGetEllipsize(t) }
 func (t *ToolItemGroup) GetHeaderRelief() ReliefStyle   { return toolItemGroupGetHeaderRelief(t) }
@@ -1420,7 +1420,7 @@ func (t *ToolItemGroup) GetLabelWidget() *Widget             { return toolItemGr
 func (t *ToolItemGroup) GetNItems() uint                     { return toolItemGroupGetNItems(t) }
 func (t *ToolItemGroup) GetNthItem(index uint) *ToolItem     { return toolItemGroupGetNthItem(t, index) }
 func (t *ToolItemGroup) Insert(item *ToolItem, position int) { toolItemGroupInsert(t, item, position) }
-func (t *ToolItemGroup) SetCollapsed(collapsed T.Gboolean)   { toolItemGroupSetCollapsed(t, collapsed) }
+func (t *ToolItemGroup) SetCollapsed(collapsed bool)         { toolItemGroupSetCollapsed(t, collapsed) }
 func (t *ToolItemGroup) SetEllipsize(ellipsize P.EllipsizeMode) {
 	toolItemGroupSetEllipsize(t, ellipsize)
 }
@@ -1459,16 +1459,16 @@ var (
 	toolPaletteGetDragItem      func(t *ToolPalette, selection *SelectionData) *Widget
 	toolPaletteGetDropGroup     func(t *ToolPalette, x, y int) *ToolItemGroup
 	toolPaletteGetDropItem      func(t *ToolPalette, x, y int) *ToolItem
-	toolPaletteGetExclusive     func(t *ToolPalette, group *ToolItemGroup) T.Gboolean
-	toolPaletteGetExpand        func(t *ToolPalette, group *ToolItemGroup) T.Gboolean
+	toolPaletteGetExclusive     func(t *ToolPalette, group *ToolItemGroup) bool
+	toolPaletteGetExpand        func(t *ToolPalette, group *ToolItemGroup) bool
 	toolPaletteGetGroupPosition func(t *ToolPalette, group *ToolItemGroup) int
 	toolPaletteGetHadjustment   func(t *ToolPalette) *Adjustment
 	toolPaletteGetIconSize      func(t *ToolPalette) IconSize
 	toolPaletteGetStyle         func(t *ToolPalette) ToolbarStyle
 	toolPaletteGetVadjustment   func(t *ToolPalette) *Adjustment
 	toolPaletteSetDragSource    func(t *ToolPalette, targets ToolPaletteDragTargets)
-	toolPaletteSetExclusive     func(t *ToolPalette, group *ToolItemGroup, exclusive T.Gboolean)
-	toolPaletteSetExpand        func(t *ToolPalette, group *ToolItemGroup, expand T.Gboolean)
+	toolPaletteSetExclusive     func(t *ToolPalette, group *ToolItemGroup, exclusive bool)
+	toolPaletteSetExpand        func(t *ToolPalette, group *ToolItemGroup, expand bool)
 	toolPaletteSetGroupPosition func(t *ToolPalette, group *ToolItemGroup, position int)
 	toolPaletteSetIconSize      func(t *ToolPalette, iconSize IconSize)
 	toolPaletteSetStyle         func(t *ToolPalette, style ToolbarStyle)
@@ -1484,10 +1484,10 @@ func (t *ToolPalette) GetDragItem(selection *SelectionData) *Widget {
 }
 func (t *ToolPalette) GetDropGroup(x, y int) *ToolItemGroup { return toolPaletteGetDropGroup(t, x, y) }
 func (t *ToolPalette) GetDropItem(x, y int) *ToolItem       { return toolPaletteGetDropItem(t, x, y) }
-func (t *ToolPalette) GetExclusive(group *ToolItemGroup) T.Gboolean {
+func (t *ToolPalette) GetExclusive(group *ToolItemGroup) bool {
 	return toolPaletteGetExclusive(t, group)
 }
-func (t *ToolPalette) GetExpand(group *ToolItemGroup) T.Gboolean {
+func (t *ToolPalette) GetExpand(group *ToolItemGroup) bool {
 	return toolPaletteGetExpand(t, group)
 }
 func (t *ToolPalette) GetGroupPosition(group *ToolItemGroup) int {
@@ -1500,10 +1500,10 @@ func (t *ToolPalette) GetVadjustment() *Adjustment { return toolPaletteGetVadjus
 func (t *ToolPalette) SetDragSource(targets ToolPaletteDragTargets) {
 	toolPaletteSetDragSource(t, targets)
 }
-func (t *ToolPalette) SetExclusive(group *ToolItemGroup, exclusive T.Gboolean) {
+func (t *ToolPalette) SetExclusive(group *ToolItemGroup, exclusive bool) {
 	toolPaletteSetExclusive(t, group, exclusive)
 }
-func (t *ToolPalette) SetExpand(group *ToolItemGroup, expand T.Gboolean) {
+func (t *ToolPalette) SetExpand(group *ToolItemGroup, expand bool) {
 	toolPaletteSetExpand(t, group, expand)
 }
 func (t *ToolPalette) SetGroupPosition(group *ToolItemGroup, position int) {
@@ -1601,7 +1601,7 @@ var (
 	TooltipsNew     func() *Tooltips
 
 	TooltipsDataGet              func(widget *Widget) *TooltipsData
-	TooltipsGetInfoFromTipWindow func(tipWindow *Window, tooltips **Tooltips, currentWidget **Widget) T.Gboolean
+	TooltipsGetInfoFromTipWindow func(tipWindow *Window, tooltips **Tooltips, currentWidget **Widget) bool
 
 	tooltipsDisable     func(t *Tooltips)
 	tooltipsEnable      func(t *Tooltips)
@@ -1651,7 +1651,7 @@ var (
 	treeSelectChild      func(t *Tree, treeItem *Widget)
 	treeSelectItem       func(t *Tree, item int)
 	treeSetSelectionMode func(t *Tree, mode SelectionMode)
-	treeSetViewLines     func(t *Tree, flag T.Gboolean)
+	treeSetViewLines     func(t *Tree, flag bool)
 	treeSetViewMode      func(t *Tree, mode TreeViewMode)
 	treeUnselectChild    func(t *Tree, treeItem *Widget)
 	treeUnselectItem     func(t *Tree, item int)
@@ -1667,7 +1667,7 @@ func (t *Tree) RemoveItems(items *T.GList)            { treeRemoveItems(t, items
 func (t *Tree) SelectChild(treeItem *Widget)          { treeSelectChild(t, treeItem) }
 func (t *Tree) SelectItem(item int)                   { treeSelectItem(t, item) }
 func (t *Tree) SetSelectionMode(mode SelectionMode)   { treeSetSelectionMode(t, mode) }
-func (t *Tree) SetViewLines(flag T.Gboolean)          { treeSetViewLines(t, flag) }
+func (t *Tree) SetViewLines(flag bool)                { treeSetViewLines(t, flag) }
 func (t *Tree) SetViewMode(mode TreeViewMode)         { treeSetViewMode(t, mode) }
 func (t *Tree) UnselectChild(treeItem *Widget)        { treeUnselectChild(t, treeItem) }
 func (t *Tree) UnselectItem(item int)                 { treeUnselectItem(t, item) }
@@ -1677,18 +1677,18 @@ type TreeDragSource struct{}
 var (
 	TreeDragSourceGetType func() O.Type
 
-	treeDragSourceDragDataDelete func(t *TreeDragSource, path *TreePath) T.Gboolean
-	treeDragSourceDragDataGet    func(t *TreeDragSource, path *TreePath, selectionData *SelectionData) T.Gboolean
-	treeDragSourceRowDraggable   func(t *TreeDragSource, path *TreePath) T.Gboolean
+	treeDragSourceDragDataDelete func(t *TreeDragSource, path *TreePath) bool
+	treeDragSourceDragDataGet    func(t *TreeDragSource, path *TreePath, selectionData *SelectionData) bool
+	treeDragSourceRowDraggable   func(t *TreeDragSource, path *TreePath) bool
 )
 
-func (t *TreeDragSource) DragDataDelete(path *TreePath) T.Gboolean {
+func (t *TreeDragSource) DragDataDelete(path *TreePath) bool {
 	return treeDragSourceDragDataDelete(t, path)
 }
-func (t *TreeDragSource) DragDataGet(path *TreePath, selectionData *SelectionData) T.Gboolean {
+func (t *TreeDragSource) DragDataGet(path *TreePath, selectionData *SelectionData) bool {
 	return treeDragSourceDragDataGet(t, path, selectionData)
 }
-func (t *TreeDragSource) RowDraggable(path *TreePath) T.Gboolean {
+func (t *TreeDragSource) RowDraggable(path *TreePath) bool {
 	return treeDragSourceRowDraggable(t, path)
 }
 
@@ -1697,14 +1697,14 @@ type TreeDragDest struct{}
 var (
 	TreeDragDestGetType func() O.Type
 
-	treeDragDestDragDataReceived func(t *TreeDragDest, dest *TreePath, selectionData *SelectionData) T.Gboolean
-	treeDragDestRowDropPossible  func(t *TreeDragDest, destPath *TreePath, selectionData *SelectionData) T.Gboolean
+	treeDragDestDragDataReceived func(t *TreeDragDest, dest *TreePath, selectionData *SelectionData) bool
+	treeDragDestRowDropPossible  func(t *TreeDragDest, destPath *TreePath, selectionData *SelectionData) bool
 )
 
-func (t *TreeDragDest) DragDataReceived(dest *TreePath, selectionData *SelectionData) T.Gboolean {
+func (t *TreeDragDest) DragDataReceived(dest *TreePath, selectionData *SelectionData) bool {
 	return treeDragDestDragDataReceived(t, dest, selectionData)
 }
-func (t *TreeDragDest) RowDropPossible(destPath *TreePath, selectionData *SelectionData) T.Gboolean {
+func (t *TreeDragDest) RowDropPossible(destPath *TreePath, selectionData *SelectionData) bool {
 	return treeDragDestRowDropPossible(t, destPath, selectionData)
 }
 
@@ -1762,33 +1762,33 @@ type (
 		model *TreeModel,
 		path *TreePath,
 		iter *TreeIter,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 )
 
 var (
 	TreeModelGetType func() O.Type
 
-	TreeGetRowDragData func(s *SelectionData, treeModel **TreeModel, path **TreePath) T.Gboolean
-	TreeSetRowDragData func(s *SelectionData, treeModel *TreeModel, path *TreePath) T.Gboolean
+	TreeGetRowDragData func(s *SelectionData, treeModel **TreeModel, path **TreePath) bool
+	TreeSetRowDragData func(s *SelectionData, treeModel *TreeModel, path *TreePath) bool
 
 	treeModelForeach            func(t *TreeModel, f TreeModelForeachFunc, userData T.Gpointer)
 	treeModelGet                func(t *TreeModel, iter *TreeIter, v ...VArg)
 	treeModelGetColumnType      func(t *TreeModel, index int) O.Type
 	treeModelGetFlags           func(t *TreeModel) TreeModelFlags
-	treeModelGetIter            func(t *TreeModel, iter *TreeIter, path *TreePath) T.Gboolean
-	treeModelGetIterFirst       func(t *TreeModel, iter *TreeIter) T.Gboolean
-	treeModelGetIterFromString  func(t *TreeModel, iter *TreeIter, pathString string) T.Gboolean
+	treeModelGetIter            func(t *TreeModel, iter *TreeIter, path *TreePath) bool
+	treeModelGetIterFirst       func(t *TreeModel, iter *TreeIter) bool
+	treeModelGetIterFromString  func(t *TreeModel, iter *TreeIter, pathString string) bool
 	treeModelGetNColumns        func(t *TreeModel) int
 	treeModelGetPath            func(t *TreeModel, iter *TreeIter) *TreePath
 	treeModelGetStringFromIter  func(t *TreeModel, iter *TreeIter) string
 	treeModelGetValist          func(t *TreeModel, iter *TreeIter, varArgs T.VaList)
 	treeModelGetValue           func(t *TreeModel, iter *TreeIter, column int, value *T.GValue)
-	treeModelIterChildren       func(t *TreeModel, iter *TreeIter, parent *TreeIter) T.Gboolean
-	treeModelIterHasChild       func(t *TreeModel, iter *TreeIter) T.Gboolean
+	treeModelIterChildren       func(t *TreeModel, iter *TreeIter, parent *TreeIter) bool
+	treeModelIterHasChild       func(t *TreeModel, iter *TreeIter) bool
 	treeModelIterNChildren      func(t *TreeModel, iter *TreeIter) int
-	treeModelIterNext           func(t *TreeModel, iter *TreeIter) T.Gboolean
-	treeModelIterNthChild       func(t *TreeModel, iter *TreeIter, parent *TreeIter, n int) T.Gboolean
-	treeModelIterParent         func(t *TreeModel, iter *TreeIter, child *TreeIter) T.Gboolean
+	treeModelIterNext           func(t *TreeModel, iter *TreeIter) bool
+	treeModelIterNthChild       func(t *TreeModel, iter *TreeIter, parent *TreeIter, n int) bool
+	treeModelIterParent         func(t *TreeModel, iter *TreeIter, child *TreeIter) bool
 	treeModelRefNode            func(t *TreeModel, iter *TreeIter)
 	treeModelRowChanged         func(t *TreeModel, path *TreePath, iter *TreeIter)
 	treeModelRowDeleted         func(t *TreeModel, path *TreePath)
@@ -1804,11 +1804,11 @@ func (t *TreeModel) Foreach(f TreeModelForeachFunc, userData T.Gpointer) {
 func (t *TreeModel) Get(iter *TreeIter, v ...VArg)  { treeModelGet(t, iter, v) }
 func (t *TreeModel) GetColumnType(index int) O.Type { return treeModelGetColumnType(t, index) }
 func (t *TreeModel) GetFlags() TreeModelFlags       { return treeModelGetFlags(t) }
-func (t *TreeModel) GetIter(iter *TreeIter, path *TreePath) T.Gboolean {
+func (t *TreeModel) GetIter(iter *TreeIter, path *TreePath) bool {
 	return treeModelGetIter(t, iter, path)
 }
-func (t *TreeModel) GetIterFirst(iter *TreeIter) T.Gboolean { return treeModelGetIterFirst(t, iter) }
-func (t *TreeModel) GetIterFromString(iter *TreeIter, pathString string) T.Gboolean {
+func (t *TreeModel) GetIterFirst(iter *TreeIter) bool { return treeModelGetIterFirst(t, iter) }
+func (t *TreeModel) GetIterFromString(iter *TreeIter, pathString string) bool {
 	return treeModelGetIterFromString(t, iter, pathString)
 }
 func (t *TreeModel) GetNColumns() int                 { return treeModelGetNColumns(t) }
@@ -1820,16 +1820,16 @@ func (t *TreeModel) GetValist(iter *TreeIter, varArgs T.VaList) { treeModelGetVa
 func (t *TreeModel) GetValue(iter *TreeIter, column int, value *T.GValue) {
 	treeModelGetValue(t, iter, column, value)
 }
-func (t *TreeModel) IterChildren(iter *TreeIter, parent *TreeIter) T.Gboolean {
+func (t *TreeModel) IterChildren(iter *TreeIter, parent *TreeIter) bool {
 	return treeModelIterChildren(t, iter, parent)
 }
-func (t *TreeModel) IterHasChild(iter *TreeIter) T.Gboolean { return treeModelIterHasChild(t, iter) }
-func (t *TreeModel) IterNChildren(iter *TreeIter) int       { return treeModelIterNChildren(t, iter) }
-func (t *TreeModel) IterNext(iter *TreeIter) T.Gboolean     { return treeModelIterNext(t, iter) }
-func (t *TreeModel) IterNthChild(iter, parent *TreeIter, n int) T.Gboolean {
+func (t *TreeModel) IterHasChild(iter *TreeIter) bool { return treeModelIterHasChild(t, iter) }
+func (t *TreeModel) IterNChildren(iter *TreeIter) int { return treeModelIterNChildren(t, iter) }
+func (t *TreeModel) IterNext(iter *TreeIter) bool     { return treeModelIterNext(t, iter) }
+func (t *TreeModel) IterNthChild(iter, parent *TreeIter, n int) bool {
 	return treeModelIterNthChild(t, iter, parent, n)
 }
-func (t *TreeModel) IterParent(iter, child *TreeIter) T.Gboolean {
+func (t *TreeModel) IterParent(iter, child *TreeIter) bool {
 	return treeModelIterParent(t, iter, child)
 }
 func (t *TreeModel) RefNode(iter *TreeIter) { treeModelRefNode(t, iter) }
@@ -1857,7 +1857,7 @@ type (
 	TreeModelFilterVisibleFunc func(
 		model *TreeModel,
 		iter *TreeIter,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 
 	TreeModelFilterModifyFunc func(
 		model *TreeModel,
@@ -1872,7 +1872,7 @@ var (
 	TreeModelFilterNew     func(childModel *TreeModel, root *TreePath) *TreeModel
 
 	treeModelFilterClearCache             func(t *TreeModelFilter)
-	treeModelFilterConvertChildIterToIter func(t *TreeModelFilter, filterIter *TreeIter, childIter *TreeIter) T.Gboolean
+	treeModelFilterConvertChildIterToIter func(t *TreeModelFilter, filterIter *TreeIter, childIter *TreeIter) bool
 	treeModelFilterConvertChildPathToPath func(t *TreeModelFilter, childPath *TreePath) *TreePath
 	treeModelFilterConvertIterToChildIter func(t *TreeModelFilter, childIter *TreeIter, filterIter *TreeIter)
 	treeModelFilterConvertPathToChildPath func(t *TreeModelFilter, filterPath *TreePath) *TreePath
@@ -1884,7 +1884,7 @@ var (
 )
 
 func (t *TreeModelFilter) ClearCache() { treeModelFilterClearCache(t) }
-func (t *TreeModelFilter) ConvertChildIterToIter(filterIter *TreeIter, childIter *TreeIter) T.Gboolean {
+func (t *TreeModelFilter) ConvertChildIterToIter(filterIter *TreeIter, childIter *TreeIter) bool {
 	return treeModelFilterConvertChildIterToIter(t, filterIter, childIter)
 }
 func (t *TreeModelFilter) ConvertChildPathToPath(childPath *TreePath) *TreePath {
@@ -1940,17 +1940,17 @@ var (
 	TreeModelSortNewWithModel func(childModel *TreeModel) *TreeModel
 
 	treeModelSortClearCache             func(t *TreeModelSort)
-	treeModelSortConvertChildIterToIter func(t *TreeModelSort, sortIter *TreeIter, childIter *TreeIter) T.Gboolean
+	treeModelSortConvertChildIterToIter func(t *TreeModelSort, sortIter *TreeIter, childIter *TreeIter) bool
 	treeModelSortConvertChildPathToPath func(t *TreeModelSort, childPath *TreePath) *TreePath
 	treeModelSortConvertIterToChildIter func(t *TreeModelSort, childIter *TreeIter, sortedIter *TreeIter)
 	treeModelSortConvertPathToChildPath func(t *TreeModelSort, sortedPath *TreePath) *TreePath
 	treeModelSortGetModel               func(t *TreeModelSort) *TreeModel
-	treeModelSortIterIsValid            func(t *TreeModelSort, iter *TreeIter) T.Gboolean
+	treeModelSortIterIsValid            func(t *TreeModelSort, iter *TreeIter) bool
 	treeModelSortResetDefaultSortFunc   func(t *TreeModelSort)
 )
 
 func (t *TreeModelSort) ClearCache() { treeModelSortClearCache(t) }
-func (t *TreeModelSort) ConvertChildIterToIter(sortIter *TreeIter, childIter *TreeIter) T.Gboolean {
+func (t *TreeModelSort) ConvertChildIterToIter(sortIter *TreeIter, childIter *TreeIter) bool {
 	return treeModelSortConvertChildIterToIter(t, sortIter, childIter)
 }
 func (t *TreeModelSort) ConvertChildPathToPath(childPath *TreePath) *TreePath {
@@ -1963,7 +1963,7 @@ func (t *TreeModelSort) ConvertPathToChildPath(sortedPath *TreePath) *TreePath {
 	return treeModelSortConvertPathToChildPath(t, sortedPath)
 }
 func (t *TreeModelSort) GetModel() *TreeModel { return treeModelSortGetModel(t) }
-func (t *TreeModelSort) IterIsValid(iter *TreeIter) T.Gboolean {
+func (t *TreeModelSort) IterIsValid(iter *TreeIter) bool {
 	return treeModelSortIterIsValid(t, iter)
 }
 func (t *TreeModelSort) ResetDefaultSortFunc() { treeModelSortResetDefaultSortFunc(t) }
@@ -1985,13 +1985,13 @@ var (
 	treePathGetDepth            func(t *TreePath) int
 	treePathGetIndices          func(t *TreePath) *int
 	treePathGetIndicesWithDepth func(t *TreePath, depth *int) *int
-	treePathIsAncestor          func(t *TreePath, descendant *TreePath) T.Gboolean
-	treePathIsDescendant        func(t *TreePath, ancestor *TreePath) T.Gboolean
+	treePathIsAncestor          func(t *TreePath, descendant *TreePath) bool
+	treePathIsDescendant        func(t *TreePath, ancestor *TreePath) bool
 	treePathNext                func(t *TreePath)
 	treePathPrependIndex        func(t *TreePath, index int)
-	treePathPrev                func(t *TreePath) T.Gboolean
+	treePathPrev                func(t *TreePath) bool
 	treePathToString            func(t *TreePath) string
-	treePathUp                  func(t *TreePath) T.Gboolean
+	treePathUp                  func(t *TreePath) bool
 )
 
 func (t *TreePath) AppendIndex(index int)               { treePathAppendIndex(t, index) }
@@ -2002,17 +2002,17 @@ func (t *TreePath) Free()                               { treePathFree(t) }
 func (t *TreePath) GetDepth() int                       { return treePathGetDepth(t) }
 func (t *TreePath) GetIndices() *int                    { return treePathGetIndices(t) }
 func (t *TreePath) GetIndicesWithDepth(depth *int) *int { return treePathGetIndicesWithDepth(t, depth) }
-func (t *TreePath) IsAncestor(descendant *TreePath) T.Gboolean {
+func (t *TreePath) IsAncestor(descendant *TreePath) bool {
 	return treePathIsAncestor(t, descendant)
 }
-func (t *TreePath) IsDescendant(ancestor *TreePath) T.Gboolean {
+func (t *TreePath) IsDescendant(ancestor *TreePath) bool {
 	return treePathIsDescendant(t, ancestor)
 }
 func (t *TreePath) Next()                  { treePathNext(t) }
 func (t *TreePath) PrependIndex(index int) { treePathPrependIndex(t, index) }
-func (t *TreePath) Prev() T.Gboolean       { return treePathPrev(t) }
+func (t *TreePath) Prev() bool             { return treePathPrev(t) }
 func (t *TreePath) ToString() string       { return treePathToString(t) }
-func (t *TreePath) Up() T.Gboolean         { return treePathUp(t) }
+func (t *TreePath) Up() bool               { return treePathUp(t) }
 
 type TreeRowReference struct{}
 
@@ -2029,14 +2029,14 @@ var (
 	treeRowReferenceFree     func(t *TreeRowReference)
 	treeRowReferenceGetModel func(t *TreeRowReference) *TreeModel
 	treeRowReferenceGetPath  func(t *TreeRowReference) *TreePath
-	treeRowReferenceValid    func(t *TreeRowReference) T.Gboolean
+	treeRowReferenceValid    func(t *TreeRowReference) bool
 )
 
 func (t *TreeRowReference) Copy() *TreeRowReference { return treeRowReferenceCopy(t) }
 func (t *TreeRowReference) Free()                   { treeRowReferenceFree(t) }
 func (t *TreeRowReference) GetModel() *TreeModel    { return treeRowReferenceGetModel(t) }
 func (t *TreeRowReference) GetPath() *TreePath      { return treeRowReferenceGetPath(t) }
-func (t *TreeRowReference) Valid() T.Gboolean       { return treeRowReferenceValid(t) }
+func (t *TreeRowReference) Valid() bool             { return treeRowReferenceValid(t) }
 
 type (
 	TreeSelection struct {
@@ -2057,13 +2057,13 @@ var (
 
 	treeSelectionCountSelectedRows func(t *TreeSelection) int
 	treeSelectionGetMode           func(t *TreeSelection) SelectionMode
-	treeSelectionGetSelected       func(t *TreeSelection, model **TreeModel, iter *TreeIter) T.Gboolean
+	treeSelectionGetSelected       func(t *TreeSelection, model **TreeModel, iter *TreeIter) bool
 	treeSelectionGetSelectedRows   func(t *TreeSelection, model **TreeModel) *T.GList
 	treeSelectionGetSelectFunction func(t *TreeSelection) TreeSelectionFunc
 	treeSelectionGetTreeView       func(t *TreeSelection) *TreeView
 	treeSelectionGetUserData       func(t *TreeSelection) T.Gpointer
-	treeSelectionIterIsSelected    func(t *TreeSelection, iter *TreeIter) T.Gboolean
-	treeSelectionPathIsSelected    func(t *TreeSelection, path *TreePath) T.Gboolean
+	treeSelectionIterIsSelected    func(t *TreeSelection, iter *TreeIter) bool
+	treeSelectionPathIsSelected    func(t *TreeSelection, path *TreePath) bool
 	treeSelectionSelectAll         func(t *TreeSelection)
 	treeSelectionSelectedForeach   func(t *TreeSelection, f TreeSelectionForeachFunc, data T.Gpointer)
 	treeSelectionSelectIter        func(t *TreeSelection, iter *TreeIter)
@@ -2079,7 +2079,7 @@ var (
 
 func (t *TreeSelection) CountSelectedRows() int { return treeSelectionCountSelectedRows(t) }
 func (t *TreeSelection) GetMode() SelectionMode { return treeSelectionGetMode(t) }
-func (t *TreeSelection) GetSelected(model **TreeModel, iter *TreeIter) T.Gboolean {
+func (t *TreeSelection) GetSelected(model **TreeModel, iter *TreeIter) bool {
 	return treeSelectionGetSelected(t, model, iter)
 }
 func (t *TreeSelection) GetSelectedRows(model **TreeModel) *T.GList {
@@ -2090,10 +2090,10 @@ func (t *TreeSelection) GetSelectFunction() TreeSelectionFunc {
 }
 func (t *TreeSelection) GetTreeView() *TreeView  { return treeSelectionGetTreeView(t) }
 func (t *TreeSelection) GetUserData() T.Gpointer { return treeSelectionGetUserData(t) }
-func (t *TreeSelection) IterIsSelected(iter *TreeIter) T.Gboolean {
+func (t *TreeSelection) IterIsSelected(iter *TreeIter) bool {
 	return treeSelectionIterIsSelected(t, iter)
 }
-func (t *TreeSelection) PathIsSelected(path *TreePath) T.Gboolean {
+func (t *TreeSelection) PathIsSelected(path *TreePath) bool {
 	return treeSelectionPathIsSelected(t, path)
 }
 func (t *TreeSelection) SelectAll() { treeSelectionSelectAll(t) }
@@ -2121,18 +2121,18 @@ type TreeSortable struct{}
 var (
 	TreeSortableGetType func() O.Type
 
-	treeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *SortType) T.Gboolean
-	treeSortableHasDefaultSortFunc func(t *TreeSortable) T.Gboolean
+	treeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *SortType) bool
+	treeSortableHasDefaultSortFunc func(t *TreeSortable) bool
 	treeSortableSetDefaultSortFunc func(t *TreeSortable, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
 	treeSortableSetSortColumnId    func(t *TreeSortable, sortColumnId int, order SortType)
 	treeSortableSetSortFunc        func(t *TreeSortable, sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
 	treeSortableSortColumnChanged  func(t *TreeSortable)
 )
 
-func (t *TreeSortable) GetSortColumnId(sortColumnId *int, order *SortType) T.Gboolean {
+func (t *TreeSortable) GetSortColumnId(sortColumnId *int, order *SortType) bool {
 	return treeSortableGetSortColumnId(t, sortColumnId, order)
 }
-func (t *TreeSortable) HasDefaultSortFunc() T.Gboolean { return treeSortableHasDefaultSortFunc(t) }
+func (t *TreeSortable) HasDefaultSortFunc() bool { return treeSortableHasDefaultSortFunc(t) }
 func (t *TreeSortable) SetDefaultSortFunc(sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
 	treeSortableSetDefaultSortFunc(t, sortFunc, userData, destroy)
 }
@@ -2172,13 +2172,13 @@ var (
 	treeStoreInsertBefore      func(t *TreeStore, iter *TreeIter, parent *TreeIter, sibling *TreeIter)
 	treeStoreInsertWithValues  func(t *TreeStore, iter *TreeIter, parent *TreeIter, position int, v ...VArg)
 	treeStoreInsertWithValuesv func(t *TreeStore, iter *TreeIter, parent *TreeIter, position int, columns *int, values *T.GValue, nValues int)
-	treeStoreIsAncestor        func(t *TreeStore, iter *TreeIter, descendant *TreeIter) T.Gboolean
+	treeStoreIsAncestor        func(t *TreeStore, iter *TreeIter, descendant *TreeIter) bool
 	treeStoreIterDepth         func(t *TreeStore, iter *TreeIter) int
-	treeStoreIterIsValid       func(t *TreeStore, iter *TreeIter) T.Gboolean
+	treeStoreIterIsValid       func(t *TreeStore, iter *TreeIter) bool
 	treeStoreMoveAfter         func(t *TreeStore, iter *TreeIter, position *TreeIter)
 	treeStoreMoveBefore        func(t *TreeStore, iter *TreeIter, position *TreeIter)
 	treeStorePrepend           func(t *TreeStore, iter *TreeIter, parent *TreeIter)
-	treeStoreRemove            func(t *TreeStore, iter *TreeIter) T.Gboolean
+	treeStoreRemove            func(t *TreeStore, iter *TreeIter) bool
 	treeStoreReorder           func(t *TreeStore, parent *TreeIter, newOrder *int)
 	treeStoreSet               func(t *TreeStore, iter *TreeIter, v ...VArg)
 	treeStoreSetColumnTypes    func(t *TreeStore, nColumns int, types *O.Type)
@@ -2205,15 +2205,15 @@ func (t *TreeStore) InsertWithValues(iter, parent *TreeIter, position int, v ...
 func (t *TreeStore) InsertWithValuesv(iter, parent *TreeIter, position int, columns *int, values *T.GValue, nValues int) {
 	treeStoreInsertWithValuesv(t, iter, parent, position, columns, values, nValues)
 }
-func (t *TreeStore) IsAncestor(iter, descendant *TreeIter) T.Gboolean {
+func (t *TreeStore) IsAncestor(iter, descendant *TreeIter) bool {
 	return treeStoreIsAncestor(t, iter, descendant)
 }
 func (t *TreeStore) IterDepth(iter *TreeIter) int            { return treeStoreIterDepth(t, iter) }
-func (t *TreeStore) IterIsValid(iter *TreeIter) T.Gboolean   { return treeStoreIterIsValid(t, iter) }
+func (t *TreeStore) IterIsValid(iter *TreeIter) bool         { return treeStoreIterIsValid(t, iter) }
 func (t *TreeStore) MoveAfter(iter, position *TreeIter)      { treeStoreMoveAfter(t, iter, position) }
 func (t *TreeStore) MoveBefore(iter, position *TreeIter)     { treeStoreMoveBefore(t, iter, position) }
 func (t *TreeStore) Prepend(iter, parent *TreeIter)          { treeStorePrepend(t, iter, parent) }
-func (t *TreeStore) Remove(iter *TreeIter) T.Gboolean        { return treeStoreRemove(t, iter) }
+func (t *TreeStore) Remove(iter *TreeIter) bool              { return treeStoreRemove(t, iter) }
 func (t *TreeStore) Reorder(parent *TreeIter, newOrder *int) { treeStoreReorder(t, parent, newOrder) }
 func (t *TreeStore) Set(iter *TreeIter, v ...VArg)           { treeStoreSet(t, iter, v) }
 func (t *TreeStore) SetColumnTypes(nColumns int, types *O.Type) {
@@ -2237,14 +2237,14 @@ type (
 	TreeViewRowSeparatorFunc func(
 		model *TreeModel,
 		iter *TreeIter,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 
 	TreeViewSearchEqualFunc func(
 		model *TreeModel,
 		column int,
 		key string,
 		iter *TreeIter,
-		searchData T.Gpointer) T.Gboolean
+		searchData T.Gpointer) bool
 
 	TreeViewSearchPositionFunc func(
 		tree_view *TreeView,
@@ -2253,7 +2253,7 @@ type (
 
 	TreeSelectionFunc func(selection *TreeSelection,
 		model *TreeModel, path *TreePath,
-		pathCurrentlySelected T.Gboolean, data T.Gpointer) T.Gboolean
+		pathCurrentlySelected bool, data T.Gpointer) bool
 
 	TreeCellDataFunc func(
 		tree_column *TreeViewColumn,
@@ -2272,7 +2272,7 @@ type (
 		column *TreeViewColumn,
 		prevColumn *TreeViewColumn,
 		nextColumn *TreeViewColumn,
-		data T.Gpointer) T.Gboolean
+		data T.Gpointer) bool
 
 	TreeDestroyCountFunc func(
 		treeView *TreeView,
@@ -2328,7 +2328,7 @@ var (
 
 	treeViewAppendColumn                   func(t *TreeView, column *TreeViewColumn) int
 	treeViewCollapseAll                    func(t *TreeView)
-	treeViewCollapseRow                    func(t *TreeView, path *TreePath) T.Gboolean
+	treeViewCollapseRow                    func(t *TreeView, path *TreePath) bool
 	treeViewColumnsAutosize                func(t *TreeView)
 	treeViewConvertBinWindowToTreeCoords   func(t *TreeView, bx, by int, tx, ty *int)
 	treeViewConvertBinWindowToWidgetCoords func(t *TreeView, bx, by int, wx, wy *int)
@@ -2340,7 +2340,7 @@ var (
 	treeViewEnableModelDragDest            func(t *TreeView, targets *TargetEntry, nTargets int, actions D.DragAction)
 	treeViewEnableModelDragSource          func(t *TreeView, startButtonMask T.GdkModifierType, targets *TargetEntry, nTargets int, actions D.DragAction)
 	treeViewExpandAll                      func(t *TreeView)
-	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll T.Gboolean) T.Gboolean
+	treeViewExpandRow                      func(t *TreeView, path *TreePath, openAll bool) bool
 	treeViewExpandToPath                   func(t *TreeView, path *TreePath)
 	treeViewGetBackgroundArea              func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *D.Rectangle)
 	treeViewGetBinWindow                   func(t *TreeView) *D.Window
@@ -2348,73 +2348,73 @@ var (
 	treeViewGetColumn                      func(t *TreeView, n int) *TreeViewColumn
 	treeViewGetColumns                     func(t *TreeView) *T.GList
 	treeViewGetCursor                      func(t *TreeView, path **TreePath, focusColumn **TreeViewColumn)
-	treeViewGetDestRowAtPos                func(t *TreeView, dragX, dragY int, path **TreePath, pos *TreeViewDropPosition) T.Gboolean
+	treeViewGetDestRowAtPos                func(t *TreeView, dragX, dragY int, path **TreePath, pos *TreeViewDropPosition) bool
 	treeViewGetDragDestRow                 func(t *TreeView, path **TreePath, pos *TreeViewDropPosition)
-	treeViewGetEnableSearch                func(t *TreeView) T.Gboolean
-	treeViewGetEnableTreeLines             func(t *TreeView) T.Gboolean
+	treeViewGetEnableSearch                func(t *TreeView) bool
+	treeViewGetEnableTreeLines             func(t *TreeView) bool
 	treeViewGetExpanderColumn              func(t *TreeView) *TreeViewColumn
-	treeViewGetFixedHeightMode             func(t *TreeView) T.Gboolean
+	treeViewGetFixedHeightMode             func(t *TreeView) bool
 	treeViewGetGridLines                   func(t *TreeView) TreeViewGridLines
 	treeViewGetHadjustment                 func(t *TreeView) *Adjustment
-	treeViewGetHeadersClickable            func(t *TreeView) T.Gboolean
-	treeViewGetHeadersVisible              func(t *TreeView) T.Gboolean
-	treeViewGetHoverExpand                 func(t *TreeView) T.Gboolean
-	treeViewGetHoverSelection              func(t *TreeView) T.Gboolean
+	treeViewGetHeadersClickable            func(t *TreeView) bool
+	treeViewGetHeadersVisible              func(t *TreeView) bool
+	treeViewGetHoverExpand                 func(t *TreeView) bool
+	treeViewGetHoverSelection              func(t *TreeView) bool
 	treeViewGetLevelIndentation            func(t *TreeView) int
 	treeViewGetModel                       func(t *TreeView) *TreeModel
-	treeViewGetPathAtPos                   func(t *TreeView, x, y int, path **TreePath, column **TreeViewColumn, cellX, cellY *int) T.Gboolean
-	treeViewGetReorderable                 func(t *TreeView) T.Gboolean
+	treeViewGetPathAtPos                   func(t *TreeView, x, y int, path **TreePath, column **TreeViewColumn, cellX, cellY *int) bool
+	treeViewGetReorderable                 func(t *TreeView) bool
 	treeViewGetRowSeparatorFunc            func(t *TreeView) TreeViewRowSeparatorFunc
-	treeViewGetRubberBanding               func(t *TreeView) T.Gboolean
-	treeViewGetRulesHint                   func(t *TreeView) T.Gboolean
+	treeViewGetRubberBanding               func(t *TreeView) bool
+	treeViewGetRulesHint                   func(t *TreeView) bool
 	treeViewGetSearchColumn                func(t *TreeView) int
 	treeViewGetSearchEntry                 func(t *TreeView) *Entry
 	treeViewGetSearchEqualFunc             func(t *TreeView) TreeViewSearchEqualFunc
 	treeViewGetSearchPositionFunc          func(t *TreeView) TreeViewSearchPositionFunc
 	treeViewGetSelection                   func(t *TreeView) *TreeSelection
-	treeViewGetShowExpanders               func(t *TreeView) T.Gboolean
+	treeViewGetShowExpanders               func(t *TreeView) bool
 	treeViewGetTooltipColumn               func(t *TreeView) int
-	treeViewGetTooltipContext              func(t *TreeView, x, y *int, keyboardTip T.Gboolean, model **TreeModel, path **TreePath, iter *TreeIter) T.Gboolean
+	treeViewGetTooltipContext              func(t *TreeView, x, y *int, keyboardTip bool, model **TreeModel, path **TreePath, iter *TreeIter) bool
 	treeViewGetVadjustment                 func(t *TreeView) *Adjustment
-	treeViewGetVisibleRange                func(t *TreeView, startPath **TreePath, endPath **TreePath) T.Gboolean
+	treeViewGetVisibleRange                func(t *TreeView, startPath **TreePath, endPath **TreePath) bool
 	treeViewGetVisibleRect                 func(t *TreeView, visibleRect *D.Rectangle)
 	treeViewInsertColumn                   func(t *TreeView, column *TreeViewColumn, position int) int
 	treeViewInsertColumnWithAttributes     func(t *TreeView, position int, title string, cell *CellRenderer, v ...VArg) int
 	treeViewInsertColumnWithDataFunc       func(t *TreeView, position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify T.GDestroyNotify) int
-	treeViewIsRubberBandingActive          func(t *TreeView) T.Gboolean
+	treeViewIsRubberBandingActive          func(t *TreeView) bool
 	treeViewMapExpandedRows                func(t *TreeView, f TreeViewMappingFunc, data T.Gpointer)
 	treeViewMoveColumnAfter                func(t *TreeView, column *TreeViewColumn, baseColumn *TreeViewColumn)
 	treeViewRemoveColumn                   func(t *TreeView, column *TreeViewColumn) int
 	treeViewRowActivated                   func(t *TreeView, path *TreePath, column *TreeViewColumn)
-	treeViewRowExpanded                    func(t *TreeView, path *TreePath) T.Gboolean
-	treeViewScrollToCell                   func(t *TreeView, path *TreePath, column *TreeViewColumn, useAlign T.Gboolean, rowAlign, colAlign float32)
+	treeViewRowExpanded                    func(t *TreeView, path *TreePath) bool
+	treeViewScrollToCell                   func(t *TreeView, path *TreePath, column *TreeViewColumn, useAlign bool, rowAlign, colAlign float32)
 	treeViewScrollToPoint                  func(t *TreeView, treeX, treeY int)
 	treeViewSetColumnDragFunction          func(t *TreeView, f TreeViewColumnDropFunc, userData T.Gpointer, destroy T.GDestroyNotify)
-	treeViewSetCursor                      func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, startEditing T.Gboolean)
-	treeViewSetCursorOnCell                func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing T.Gboolean)
+	treeViewSetCursor                      func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, startEditing bool)
+	treeViewSetCursorOnCell                func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing bool)
 	treeViewSetDestroyCountFunc            func(t *TreeView, f TreeDestroyCountFunc, data T.Gpointer, destroy T.GDestroyNotify)
 	treeViewSetDragDestRow                 func(t *TreeView, path *TreePath, pos TreeViewDropPosition)
-	treeViewSetEnableSearch                func(t *TreeView, enableSearch T.Gboolean)
-	treeViewSetEnableTreeLines             func(t *TreeView, enabled T.Gboolean)
+	treeViewSetEnableSearch                func(t *TreeView, enableSearch bool)
+	treeViewSetEnableTreeLines             func(t *TreeView, enabled bool)
 	treeViewSetExpanderColumn              func(t *TreeView, column *TreeViewColumn)
-	treeViewSetFixedHeightMode             func(t *TreeView, enable T.Gboolean)
+	treeViewSetFixedHeightMode             func(t *TreeView, enable bool)
 	treeViewSetGridLines                   func(t *TreeView, gridLines TreeViewGridLines)
 	treeViewSetHadjustment                 func(t *TreeView, adjustment *Adjustment)
-	treeViewSetHeadersClickable            func(t *TreeView, setting T.Gboolean)
-	treeViewSetHeadersVisible              func(t *TreeView, headersVisible T.Gboolean)
-	treeViewSetHoverExpand                 func(t *TreeView, expand T.Gboolean)
-	treeViewSetHoverSelection              func(t *TreeView, hover T.Gboolean)
+	treeViewSetHeadersClickable            func(t *TreeView, setting bool)
+	treeViewSetHeadersVisible              func(t *TreeView, headersVisible bool)
+	treeViewSetHoverExpand                 func(t *TreeView, expand bool)
+	treeViewSetHoverSelection              func(t *TreeView, hover bool)
 	treeViewSetLevelIndentation            func(t *TreeView, indentation int)
 	treeViewSetModel                       func(t *TreeView, model *TreeModel)
-	treeViewSetReorderable                 func(t *TreeView, reorderable T.Gboolean)
+	treeViewSetReorderable                 func(t *TreeView, reorderable bool)
 	treeViewSetRowSeparatorFunc            func(t *TreeView, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
-	treeViewSetRubberBanding               func(t *TreeView, enable T.Gboolean)
-	treeViewSetRulesHint                   func(t *TreeView, setting T.Gboolean)
+	treeViewSetRubberBanding               func(t *TreeView, enable bool)
+	treeViewSetRulesHint                   func(t *TreeView, setting bool)
 	treeViewSetSearchColumn                func(t *TreeView, column int)
 	treeViewSetSearchEntry                 func(t *TreeView, entry *Entry)
 	treeViewSetSearchEqualFunc             func(t *TreeView, searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy T.GDestroyNotify)
 	treeViewSetSearchPositionFunc          func(t *TreeView, f TreeViewSearchPositionFunc, data T.Gpointer, destroy T.GDestroyNotify)
-	treeViewSetShowExpanders               func(t *TreeView, enabled T.Gboolean)
+	treeViewSetShowExpanders               func(t *TreeView, enabled bool)
 	treeViewSetTooltipCell                 func(t *TreeView, tooltip *Tooltip, path *TreePath, column *TreeViewColumn, cell *CellRenderer)
 	treeViewSetTooltipColumn               func(t *TreeView, column int)
 	treeViewSetTooltipRow                  func(t *TreeView, tooltip *Tooltip, path *TreePath)
@@ -2427,7 +2427,7 @@ var (
 
 func (t *TreeView) AppendColumn(column *TreeViewColumn) int { return treeViewAppendColumn(t, column) }
 func (t *TreeView) CollapseAll()                            { treeViewCollapseAll(t) }
-func (t *TreeView) CollapseRow(path *TreePath) T.Gboolean   { return treeViewCollapseRow(t, path) }
+func (t *TreeView) CollapseRow(path *TreePath) bool         { return treeViewCollapseRow(t, path) }
 func (t *TreeView) ColumnsAutosize()                        { treeViewColumnsAutosize(t) }
 func (t *TreeView) ConvertBinWindowToTreeCoords(bx, by int, tx, ty *int) {
 	treeViewConvertBinWindowToTreeCoords(t, bx, by, tx, ty)
@@ -2457,7 +2457,7 @@ func (t *TreeView) EnableModelDragSource(startButtonMask T.GdkModifierType, targ
 	treeViewEnableModelDragSource(t, startButtonMask, targets, nTargets, actions)
 }
 func (t *TreeView) ExpandAll() { treeViewExpandAll(t) }
-func (t *TreeView) ExpandRow(path *TreePath, openAll T.Gboolean) T.Gboolean {
+func (t *TreeView) ExpandRow(path *TreePath, openAll bool) bool {
 	return treeViewExpandRow(t, path, openAll)
 }
 func (t *TreeView) ExpandToPath(path *TreePath) { treeViewExpandToPath(t, path) }
@@ -2473,35 +2473,35 @@ func (t *TreeView) GetColumns() *T.GList            { return treeViewGetColumns(
 func (t *TreeView) GetCursor(path **TreePath, focusColumn **TreeViewColumn) {
 	treeViewGetCursor(t, path, focusColumn)
 }
-func (t *TreeView) GetDestRowAtPos(dragX, dragY int, path **TreePath, pos *TreeViewDropPosition) T.Gboolean {
+func (t *TreeView) GetDestRowAtPos(dragX, dragY int, path **TreePath, pos *TreeViewDropPosition) bool {
 	return treeViewGetDestRowAtPos(t, dragX, dragY, path, pos)
 }
 func (t *TreeView) GetDragDestRow(path **TreePath, pos *TreeViewDropPosition) {
 	treeViewGetDragDestRow(t, path, pos)
 }
-func (t *TreeView) GetEnableSearch() T.Gboolean        { return treeViewGetEnableSearch(t) }
-func (t *TreeView) GetEnableTreeLines() T.Gboolean     { return treeViewGetEnableTreeLines(t) }
+func (t *TreeView) GetEnableSearch() bool              { return treeViewGetEnableSearch(t) }
+func (t *TreeView) GetEnableTreeLines() bool           { return treeViewGetEnableTreeLines(t) }
 func (t *TreeView) GetExpanderColumn() *TreeViewColumn { return treeViewGetExpanderColumn(t) }
-func (t *TreeView) GetFixedHeightMode() T.Gboolean     { return treeViewGetFixedHeightMode(t) }
+func (t *TreeView) GetFixedHeightMode() bool           { return treeViewGetFixedHeightMode(t) }
 func (t *TreeView) GetGridLines() TreeViewGridLines    { return treeViewGetGridLines(t) }
 func (t *TreeView) GetHadjustment() *Adjustment        { return treeViewGetHadjustment(t) }
-func (t *TreeView) GetHeadersClickable() T.Gboolean    { return treeViewGetHeadersClickable(t) }
-func (t *TreeView) GetHeadersVisible() T.Gboolean      { return treeViewGetHeadersVisible(t) }
-func (t *TreeView) GetHoverExpand() T.Gboolean         { return treeViewGetHoverExpand(t) }
-func (t *TreeView) GetHoverSelection() T.Gboolean      { return treeViewGetHoverSelection(t) }
+func (t *TreeView) GetHeadersClickable() bool          { return treeViewGetHeadersClickable(t) }
+func (t *TreeView) GetHeadersVisible() bool            { return treeViewGetHeadersVisible(t) }
+func (t *TreeView) GetHoverExpand() bool               { return treeViewGetHoverExpand(t) }
+func (t *TreeView) GetHoverSelection() bool            { return treeViewGetHoverSelection(t) }
 func (t *TreeView) GetLevelIndentation() int           { return treeViewGetLevelIndentation(t) }
 func (t *TreeView) GetModel() *TreeModel               { return treeViewGetModel(t) }
-func (t *TreeView) GetPathAtPos(x, y int, path **TreePath, column **TreeViewColumn, cellX, cellY *int) T.Gboolean {
+func (t *TreeView) GetPathAtPos(x, y int, path **TreePath, column **TreeViewColumn, cellX, cellY *int) bool {
 	return treeViewGetPathAtPos(t, x, y, path, column, cellX, cellY)
 }
-func (t *TreeView) GetReorderable() T.Gboolean { return treeViewGetReorderable(t) }
+func (t *TreeView) GetReorderable() bool { return treeViewGetReorderable(t) }
 func (t *TreeView) GetRowSeparatorFunc() TreeViewRowSeparatorFunc {
 	return treeViewGetRowSeparatorFunc(t)
 }
-func (t *TreeView) GetRubberBanding() T.Gboolean { return treeViewGetRubberBanding(t) }
-func (t *TreeView) GetRulesHint() T.Gboolean     { return treeViewGetRulesHint(t) }
-func (t *TreeView) GetSearchColumn() int         { return treeViewGetSearchColumn(t) }
-func (t *TreeView) GetSearchEntry() *Entry       { return treeViewGetSearchEntry(t) }
+func (t *TreeView) GetRubberBanding() bool { return treeViewGetRubberBanding(t) }
+func (t *TreeView) GetRulesHint() bool     { return treeViewGetRulesHint(t) }
+func (t *TreeView) GetSearchColumn() int   { return treeViewGetSearchColumn(t) }
+func (t *TreeView) GetSearchEntry() *Entry { return treeViewGetSearchEntry(t) }
 func (t *TreeView) GetSearchEqualFunc() TreeViewSearchEqualFunc {
 	return treeViewGetSearchEqualFunc(t)
 }
@@ -2509,13 +2509,13 @@ func (t *TreeView) GetSearchPositionFunc() TreeViewSearchPositionFunc {
 	return treeViewGetSearchPositionFunc(t)
 }
 func (t *TreeView) GetSelection() *TreeSelection { return treeViewGetSelection(t) }
-func (t *TreeView) GetShowExpanders() T.Gboolean { return treeViewGetShowExpanders(t) }
+func (t *TreeView) GetShowExpanders() bool       { return treeViewGetShowExpanders(t) }
 func (t *TreeView) GetTooltipColumn() int        { return treeViewGetTooltipColumn(t) }
-func (t *TreeView) GetTooltipContext(x, y *int, keyboardTip T.Gboolean, model **TreeModel, path **TreePath, iter *TreeIter) T.Gboolean {
+func (t *TreeView) GetTooltipContext(x, y *int, keyboardTip bool, model **TreeModel, path **TreePath, iter *TreeIter) bool {
 	return treeViewGetTooltipContext(t, x, y, keyboardTip, model, path, iter)
 }
 func (t *TreeView) GetVadjustment() *Adjustment { return treeViewGetVadjustment(t) }
-func (t *TreeView) GetVisibleRange(startPath **TreePath, endPath **TreePath) T.Gboolean {
+func (t *TreeView) GetVisibleRange(startPath **TreePath, endPath **TreePath) bool {
 	return treeViewGetVisibleRange(t, startPath, endPath)
 }
 func (t *TreeView) GetVisibleRect(visibleRect *D.Rectangle) {
@@ -2530,7 +2530,7 @@ func (t *TreeView) InsertColumnWithAttributes(position int, title string, cell *
 func (t *TreeView) InsertColumnWithDataFunc(position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify T.GDestroyNotify) int {
 	return treeViewInsertColumnWithDataFunc(t, position, title, cell, f, data, dnotify)
 }
-func (t *TreeView) IsRubberBandingActive() T.Gboolean { return treeViewIsRubberBandingActive(t) }
+func (t *TreeView) IsRubberBandingActive() bool { return treeViewIsRubberBandingActive(t) }
 func (t *TreeView) MapExpandedRows(f TreeViewMappingFunc, data T.Gpointer) {
 	treeViewMapExpandedRows(t, f, data)
 }
@@ -2541,18 +2541,18 @@ func (t *TreeView) RemoveColumn(column *TreeViewColumn) int { return treeViewRem
 func (t *TreeView) RowActivated(path *TreePath, column *TreeViewColumn) {
 	treeViewRowActivated(t, path, column)
 }
-func (t *TreeView) RowExpanded(path *TreePath) T.Gboolean { return treeViewRowExpanded(t, path) }
-func (t *TreeView) ScrollToCell(path *TreePath, column *TreeViewColumn, useAlign T.Gboolean, rowAlign, colAlign float32) {
+func (t *TreeView) RowExpanded(path *TreePath) bool { return treeViewRowExpanded(t, path) }
+func (t *TreeView) ScrollToCell(path *TreePath, column *TreeViewColumn, useAlign bool, rowAlign, colAlign float32) {
 	treeViewScrollToCell(t, path, column, useAlign, rowAlign, colAlign)
 }
 func (t *TreeView) ScrollToPoint(treeX, treeY int) { treeViewScrollToPoint(t, treeX, treeY) }
 func (t *TreeView) SetColumnDragFunction(f TreeViewColumnDropFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
 	treeViewSetColumnDragFunction(t, f, userData, destroy)
 }
-func (t *TreeView) SetCursor(path *TreePath, focusColumn *TreeViewColumn, startEditing T.Gboolean) {
+func (t *TreeView) SetCursor(path *TreePath, focusColumn *TreeViewColumn, startEditing bool) {
 	treeViewSetCursor(t, path, focusColumn, startEditing)
 }
-func (t *TreeView) SetCursorOnCell(path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing T.Gboolean) {
+func (t *TreeView) SetCursorOnCell(path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing bool) {
 	treeViewSetCursorOnCell(t, path, focusColumn, focusCell, startEditing)
 }
 func (t *TreeView) SetDestroyCountFunc(f TreeDestroyCountFunc, data T.Gpointer, destroy T.GDestroyNotify) {
@@ -2561,35 +2561,35 @@ func (t *TreeView) SetDestroyCountFunc(f TreeDestroyCountFunc, data T.Gpointer, 
 func (t *TreeView) SetDragDestRow(path *TreePath, pos TreeViewDropPosition) {
 	treeViewSetDragDestRow(t, path, pos)
 }
-func (t *TreeView) SetEnableSearch(enableSearch T.Gboolean)  { treeViewSetEnableSearch(t, enableSearch) }
-func (t *TreeView) SetEnableTreeLines(enabled T.Gboolean)    { treeViewSetEnableTreeLines(t, enabled) }
+func (t *TreeView) SetEnableSearch(enableSearch bool)        { treeViewSetEnableSearch(t, enableSearch) }
+func (t *TreeView) SetEnableTreeLines(enabled bool)          { treeViewSetEnableTreeLines(t, enabled) }
 func (t *TreeView) SetExpanderColumn(column *TreeViewColumn) { treeViewSetExpanderColumn(t, column) }
-func (t *TreeView) SetFixedHeightMode(enable T.Gboolean)     { treeViewSetFixedHeightMode(t, enable) }
+func (t *TreeView) SetFixedHeightMode(enable bool)           { treeViewSetFixedHeightMode(t, enable) }
 func (t *TreeView) SetGridLines(gridLines TreeViewGridLines) { treeViewSetGridLines(t, gridLines) }
 func (t *TreeView) SetHadjustment(adjustment *Adjustment)    { treeViewSetHadjustment(t, adjustment) }
-func (t *TreeView) SetHeadersClickable(setting T.Gboolean)   { treeViewSetHeadersClickable(t, setting) }
-func (t *TreeView) SetHeadersVisible(headersVisible T.Gboolean) {
+func (t *TreeView) SetHeadersClickable(setting bool)         { treeViewSetHeadersClickable(t, setting) }
+func (t *TreeView) SetHeadersVisible(headersVisible bool) {
 	treeViewSetHeadersVisible(t, headersVisible)
 }
-func (t *TreeView) SetHoverExpand(expand T.Gboolean)      { treeViewSetHoverExpand(t, expand) }
-func (t *TreeView) SetHoverSelection(hover T.Gboolean)    { treeViewSetHoverSelection(t, hover) }
-func (t *TreeView) SetLevelIndentation(indentation int)   { treeViewSetLevelIndentation(t, indentation) }
-func (t *TreeView) SetModel(model *TreeModel)             { treeViewSetModel(t, model) }
-func (t *TreeView) SetReorderable(reorderable T.Gboolean) { treeViewSetReorderable(t, reorderable) }
+func (t *TreeView) SetHoverExpand(expand bool)          { treeViewSetHoverExpand(t, expand) }
+func (t *TreeView) SetHoverSelection(hover bool)        { treeViewSetHoverSelection(t, hover) }
+func (t *TreeView) SetLevelIndentation(indentation int) { treeViewSetLevelIndentation(t, indentation) }
+func (t *TreeView) SetModel(model *TreeModel)           { treeViewSetModel(t, model) }
+func (t *TreeView) SetReorderable(reorderable bool)     { treeViewSetReorderable(t, reorderable) }
 func (t *TreeView) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	treeViewSetRowSeparatorFunc(t, f, data, destroy)
 }
-func (t *TreeView) SetRubberBanding(enable T.Gboolean) { treeViewSetRubberBanding(t, enable) }
-func (t *TreeView) SetRulesHint(setting T.Gboolean)    { treeViewSetRulesHint(t, setting) }
-func (t *TreeView) SetSearchColumn(column int)         { treeViewSetSearchColumn(t, column) }
-func (t *TreeView) SetSearchEntry(entry *Entry)        { treeViewSetSearchEntry(t, entry) }
+func (t *TreeView) SetRubberBanding(enable bool) { treeViewSetRubberBanding(t, enable) }
+func (t *TreeView) SetRulesHint(setting bool)    { treeViewSetRulesHint(t, setting) }
+func (t *TreeView) SetSearchColumn(column int)   { treeViewSetSearchColumn(t, column) }
+func (t *TreeView) SetSearchEntry(entry *Entry)  { treeViewSetSearchEntry(t, entry) }
 func (t *TreeView) SetSearchEqualFunc(searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy T.GDestroyNotify) {
 	treeViewSetSearchEqualFunc(t, searchEqualFunc, searchUserData, searchDestroy)
 }
 func (t *TreeView) SetSearchPositionFunc(f TreeViewSearchPositionFunc, data T.Gpointer, destroy T.GDestroyNotify) {
 	treeViewSetSearchPositionFunc(t, f, data, destroy)
 }
-func (t *TreeView) SetShowExpanders(enabled T.Gboolean) { treeViewSetShowExpanders(t, enabled) }
+func (t *TreeView) SetShowExpanders(enabled bool) { treeViewSetShowExpanders(t, enabled) }
 func (t *TreeView) SetTooltipCell(tooltip *Tooltip, path *TreePath, column *TreeViewColumn, cell *CellRenderer) {
 	treeViewSetTooltipCell(t, tooltip, path, column, cell)
 }
@@ -2655,67 +2655,67 @@ var (
 	TreeViewColumnSizingGetType func() O.Type
 
 	treeViewColumnAddAttribute     func(t *TreeViewColumn, cellRenderer *CellRenderer, attribute string, column int)
-	treeViewColumnCellGetPosition  func(t *TreeViewColumn, cellRenderer *CellRenderer, startPos, width *int) T.Gboolean
+	treeViewColumnCellGetPosition  func(t *TreeViewColumn, cellRenderer *CellRenderer, startPos, width *int) bool
 	treeViewColumnCellGetSize      func(t *TreeViewColumn, cellArea *D.Rectangle, xOffset, yOffset, width, height *int)
-	treeViewColumnCellIsVisible    func(t *TreeViewColumn) T.Gboolean
-	treeViewColumnCellSetCellData  func(t *TreeViewColumn, treeModel *TreeModel, iter *TreeIter, isExpander, isExpanded T.Gboolean)
+	treeViewColumnCellIsVisible    func(t *TreeViewColumn) bool
+	treeViewColumnCellSetCellData  func(t *TreeViewColumn, treeModel *TreeModel, iter *TreeIter, isExpander, isExpanded bool)
 	treeViewColumnClear            func(t *TreeViewColumn)
 	treeViewColumnClearAttributes  func(t *TreeViewColumn, cellRenderer *CellRenderer)
 	treeViewColumnClicked          func(t *TreeViewColumn)
 	treeViewColumnFocusCell        func(t *TreeViewColumn, cell *CellRenderer)
 	treeViewColumnGetAlignment     func(t *TreeViewColumn) float32
 	treeViewColumnGetCellRenderers func(t *TreeViewColumn) *T.GList
-	treeViewColumnGetClickable     func(t *TreeViewColumn) T.Gboolean
-	treeViewColumnGetExpand        func(t *TreeViewColumn) T.Gboolean
+	treeViewColumnGetClickable     func(t *TreeViewColumn) bool
+	treeViewColumnGetExpand        func(t *TreeViewColumn) bool
 	treeViewColumnGetFixedWidth    func(t *TreeViewColumn) int
 	treeViewColumnGetMaxWidth      func(t *TreeViewColumn) int
 	treeViewColumnGetMinWidth      func(t *TreeViewColumn) int
-	treeViewColumnGetReorderable   func(t *TreeViewColumn) T.Gboolean
-	treeViewColumnGetResizable     func(t *TreeViewColumn) T.Gboolean
+	treeViewColumnGetReorderable   func(t *TreeViewColumn) bool
+	treeViewColumnGetResizable     func(t *TreeViewColumn) bool
 	treeViewColumnGetSizing        func(t *TreeViewColumn) TreeViewColumnSizing
 	treeViewColumnGetSortColumnId  func(t *TreeViewColumn) int
-	treeViewColumnGetSortIndicator func(t *TreeViewColumn) T.Gboolean
+	treeViewColumnGetSortIndicator func(t *TreeViewColumn) bool
 	treeViewColumnGetSortOrder     func(t *TreeViewColumn) SortType
 	treeViewColumnGetSpacing       func(t *TreeViewColumn) int
 	treeViewColumnGetTitle         func(t *TreeViewColumn) string
 	treeViewColumnGetTreeView      func(t *TreeViewColumn) *Widget
-	treeViewColumnGetVisible       func(t *TreeViewColumn) T.Gboolean
+	treeViewColumnGetVisible       func(t *TreeViewColumn) bool
 	treeViewColumnGetWidget        func(t *TreeViewColumn) *Widget
 	treeViewColumnGetWidth         func(t *TreeViewColumn) int
-	treeViewColumnPackEnd          func(t *TreeViewColumn, cell *CellRenderer, expand T.Gboolean)
-	treeViewColumnPackStart        func(t *TreeViewColumn, cell *CellRenderer, expand T.Gboolean)
+	treeViewColumnPackEnd          func(t *TreeViewColumn, cell *CellRenderer, expand bool)
+	treeViewColumnPackStart        func(t *TreeViewColumn, cell *CellRenderer, expand bool)
 	treeViewColumnQueueResize      func(t *TreeViewColumn)
 	treeViewColumnSetAlignment     func(t *TreeViewColumn, xalign float32)
 	treeViewColumnSetAttributes    func(t *TreeViewColumn, cellRenderer *CellRenderer, v ...VArg)
 	treeViewColumnSetCellDataFunc  func(t *TreeViewColumn, cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
-	treeViewColumnSetClickable     func(t *TreeViewColumn, clickable T.Gboolean)
-	treeViewColumnSetExpand        func(t *TreeViewColumn, expand T.Gboolean)
+	treeViewColumnSetClickable     func(t *TreeViewColumn, clickable bool)
+	treeViewColumnSetExpand        func(t *TreeViewColumn, expand bool)
 	treeViewColumnSetFixedWidth    func(t *TreeViewColumn, fixedWidth int)
 	treeViewColumnSetMaxWidth      func(t *TreeViewColumn, maxWidth int)
 	treeViewColumnSetMinWidth      func(t *TreeViewColumn, minWidth int)
-	treeViewColumnSetReorderable   func(t *TreeViewColumn, reorderable T.Gboolean)
-	treeViewColumnSetResizable     func(t *TreeViewColumn, resizable T.Gboolean)
+	treeViewColumnSetReorderable   func(t *TreeViewColumn, reorderable bool)
+	treeViewColumnSetResizable     func(t *TreeViewColumn, resizable bool)
 	treeViewColumnSetSizing        func(t *TreeViewColumn, typ TreeViewColumnSizing)
 	treeViewColumnSetSortColumnId  func(t *TreeViewColumn, sortColumnId int)
-	treeViewColumnSetSortIndicator func(t *TreeViewColumn, setting T.Gboolean)
+	treeViewColumnSetSortIndicator func(t *TreeViewColumn, setting bool)
 	treeViewColumnSetSortOrder     func(t *TreeViewColumn, order SortType)
 	treeViewColumnSetSpacing       func(t *TreeViewColumn, spacing int)
 	treeViewColumnSetTitle         func(t *TreeViewColumn, title string)
-	treeViewColumnSetVisible       func(t *TreeViewColumn, visible T.Gboolean)
+	treeViewColumnSetVisible       func(t *TreeViewColumn, visible bool)
 	treeViewColumnSetWidget        func(t *TreeViewColumn, widget *Widget)
 )
 
 func (t *TreeViewColumn) AddAttribute(cellRenderer *CellRenderer, attribute string, column int) {
 	treeViewColumnAddAttribute(t, cellRenderer, attribute, column)
 }
-func (t *TreeViewColumn) CellGetPosition(cellRenderer *CellRenderer, startPos *int, width *int) T.Gboolean {
+func (t *TreeViewColumn) CellGetPosition(cellRenderer *CellRenderer, startPos *int, width *int) bool {
 	return treeViewColumnCellGetPosition(t, cellRenderer, startPos, width)
 }
 func (t *TreeViewColumn) CellGetSize(cellArea *D.Rectangle, xOffset, yOffset, width, height *int) {
 	treeViewColumnCellGetSize(t, cellArea, xOffset, yOffset, width, height)
 }
-func (t *TreeViewColumn) CellIsVisible() T.Gboolean { return treeViewColumnCellIsVisible(t) }
-func (t *TreeViewColumn) CellSetCellData(treeModel *TreeModel, iter *TreeIter, isExpander, isExpanded T.Gboolean) {
+func (t *TreeViewColumn) CellIsVisible() bool { return treeViewColumnCellIsVisible(t) }
+func (t *TreeViewColumn) CellSetCellData(treeModel *TreeModel, iter *TreeIter, isExpander, isExpanded bool) {
 	treeViewColumnCellSetCellData(t, treeModel, iter, isExpander, isExpanded)
 }
 func (t *TreeViewColumn) Clear() { treeViewColumnClear(t) }
@@ -2726,24 +2726,24 @@ func (t *TreeViewColumn) Clicked()                        { treeViewColumnClicke
 func (t *TreeViewColumn) FocusCell(cell *CellRenderer)    { treeViewColumnFocusCell(t, cell) }
 func (t *TreeViewColumn) GetAlignment() float32           { return treeViewColumnGetAlignment(t) }
 func (t *TreeViewColumn) GetCellRenderers() *T.GList      { return treeViewColumnGetCellRenderers(t) }
-func (t *TreeViewColumn) GetClickable() T.Gboolean        { return treeViewColumnGetClickable(t) }
-func (t *TreeViewColumn) GetExpand() T.Gboolean           { return treeViewColumnGetExpand(t) }
+func (t *TreeViewColumn) GetClickable() bool              { return treeViewColumnGetClickable(t) }
+func (t *TreeViewColumn) GetExpand() bool                 { return treeViewColumnGetExpand(t) }
 func (t *TreeViewColumn) GetFixedWidth() int              { return treeViewColumnGetFixedWidth(t) }
 func (t *TreeViewColumn) GetMaxWidth() int                { return treeViewColumnGetMaxWidth(t) }
 func (t *TreeViewColumn) GetMinWidth() int                { return treeViewColumnGetMinWidth(t) }
-func (t *TreeViewColumn) GetReorderable() T.Gboolean      { return treeViewColumnGetReorderable(t) }
-func (t *TreeViewColumn) GetResizable() T.Gboolean        { return treeViewColumnGetResizable(t) }
+func (t *TreeViewColumn) GetReorderable() bool            { return treeViewColumnGetReorderable(t) }
+func (t *TreeViewColumn) GetResizable() bool              { return treeViewColumnGetResizable(t) }
 func (t *TreeViewColumn) GetSizing() TreeViewColumnSizing { return treeViewColumnGetSizing(t) }
 func (t *TreeViewColumn) GetSortColumnId() int            { return treeViewColumnGetSortColumnId(t) }
-func (t *TreeViewColumn) GetSortIndicator() T.Gboolean    { return treeViewColumnGetSortIndicator(t) }
+func (t *TreeViewColumn) GetSortIndicator() bool          { return treeViewColumnGetSortIndicator(t) }
 func (t *TreeViewColumn) GetSortOrder() SortType          { return treeViewColumnGetSortOrder(t) }
 func (t *TreeViewColumn) GetSpacing() int                 { return treeViewColumnGetSpacing(t) }
 func (t *TreeViewColumn) GetTitle() string                { return treeViewColumnGetTitle(t) }
 func (t *TreeViewColumn) GetTreeView() *Widget            { return treeViewColumnGetTreeView(t) }
-func (t *TreeViewColumn) GetVisible() T.Gboolean          { return treeViewColumnGetVisible(t) }
+func (t *TreeViewColumn) GetVisible() bool                { return treeViewColumnGetVisible(t) }
 func (t *TreeViewColumn) GetWidget() *Widget              { return treeViewColumnGetWidget(t) }
 func (t *TreeViewColumn) GetWidth() int                   { return treeViewColumnGetWidth(t) }
-func (t *TreeViewColumn) PackStart(cell *CellRenderer, expand T.Gboolean) {
+func (t *TreeViewColumn) PackStart(cell *CellRenderer, expand bool) {
 	treeViewColumnPackEnd(t, cell, expand)
 }
 func (t *TreeViewColumn) QueueResize()                { treeViewColumnQueueResize(t) }
@@ -2754,27 +2754,27 @@ func (t *TreeViewColumn) SetAttributes(cellRenderer *CellRenderer, v ...VArg) {
 func (t *TreeViewColumn) SetCellDataFunc(cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
 	treeViewColumnSetCellDataFunc(t, cellRenderer, f, funcData, destroy)
 }
-func (t *TreeViewColumn) SetClickable(clickable T.Gboolean) { treeViewColumnSetClickable(t, clickable) }
-func (t *TreeViewColumn) SetExpand(expand T.Gboolean)       { treeViewColumnSetExpand(t, expand) }
-func (t *TreeViewColumn) SetFixedWidth(fixedWidth int)      { treeViewColumnSetFixedWidth(t, fixedWidth) }
-func (t *TreeViewColumn) SetMaxWidth(maxWidth int)          { treeViewColumnSetMaxWidth(t, maxWidth) }
-func (t *TreeViewColumn) SetMinWidth(minWidth int)          { treeViewColumnSetMinWidth(t, minWidth) }
-func (t *TreeViewColumn) SetReorderable(reorderable T.Gboolean) {
+func (t *TreeViewColumn) SetClickable(clickable bool)  { treeViewColumnSetClickable(t, clickable) }
+func (t *TreeViewColumn) SetExpand(expand bool)        { treeViewColumnSetExpand(t, expand) }
+func (t *TreeViewColumn) SetFixedWidth(fixedWidth int) { treeViewColumnSetFixedWidth(t, fixedWidth) }
+func (t *TreeViewColumn) SetMaxWidth(maxWidth int)     { treeViewColumnSetMaxWidth(t, maxWidth) }
+func (t *TreeViewColumn) SetMinWidth(minWidth int)     { treeViewColumnSetMinWidth(t, minWidth) }
+func (t *TreeViewColumn) SetReorderable(reorderable bool) {
 	treeViewColumnSetReorderable(t, reorderable)
 }
-func (t *TreeViewColumn) SetResizable(resizable T.Gboolean)  { treeViewColumnSetResizable(t, resizable) }
+func (t *TreeViewColumn) SetResizable(resizable bool)        { treeViewColumnSetResizable(t, resizable) }
 func (t *TreeViewColumn) SetSizing(typ TreeViewColumnSizing) { treeViewColumnSetSizing(t, typ) }
 func (t *TreeViewColumn) SetSortColumnId(sortColumnId int) {
 	treeViewColumnSetSortColumnId(t, sortColumnId)
 }
-func (t *TreeViewColumn) SetSortIndicator(setting T.Gboolean) {
+func (t *TreeViewColumn) SetSortIndicator(setting bool) {
 	treeViewColumnSetSortIndicator(t, setting)
 }
-func (t *TreeViewColumn) SetSortOrder(order SortType)   { treeViewColumnSetSortOrder(t, order) }
-func (t *TreeViewColumn) SetSpacing(spacing int)        { treeViewColumnSetSpacing(t, spacing) }
-func (t *TreeViewColumn) SetTitle(title string)         { treeViewColumnSetTitle(t, title) }
-func (t *TreeViewColumn) SetVisible(visible T.Gboolean) { treeViewColumnSetVisible(t, visible) }
-func (t *TreeViewColumn) SetWidget(widget *Widget)      { treeViewColumnSetWidget(t, widget) }
+func (t *TreeViewColumn) SetSortOrder(order SortType) { treeViewColumnSetSortOrder(t, order) }
+func (t *TreeViewColumn) SetSpacing(spacing int)      { treeViewColumnSetSpacing(t, spacing) }
+func (t *TreeViewColumn) SetTitle(title string)       { treeViewColumnSetTitle(t, title) }
+func (t *TreeViewColumn) SetVisible(visible bool)     { treeViewColumnSetVisible(t, visible) }
+func (t *TreeViewColumn) SetWidget(widget *Widget)    { treeViewColumnSetWidget(t, widget) }
 
 type (
 	Type O.Type

@@ -32,7 +32,7 @@ var (
 	HandleBoxGetType func() O.Type
 	HandleBoxNew     func() *Widget
 
-	handleBoxGetChildDetached  func(h *HandleBox) T.Gboolean
+	handleBoxGetChildDetached  func(h *HandleBox) bool
 	handleBoxGetHandlePosition func(h *HandleBox) PositionType
 	handleBoxGetShadowType     func(h *HandleBox) ShadowType
 	handleBoxGetSnapEdge       func(h *HandleBox) PositionType
@@ -41,7 +41,7 @@ var (
 	handleBoxSetSnapEdge       func(h *HandleBox, edge PositionType)
 )
 
-func (h *HandleBox) GetChildDetached() T.Gboolean    { return handleBoxGetChildDetached(h) }
+func (h *HandleBox) GetChildDetached() bool          { return handleBoxGetChildDetached(h) }
 func (h *HandleBox) GetHandlePosition() PositionType { return handleBoxGetHandlePosition(h) }
 func (h *HandleBox) GetShadowType() ShadowType       { return handleBoxGetShadowType(h) }
 func (h *HandleBox) GetSnapEdge() PositionType       { return handleBoxGetSnapEdge(h) }
@@ -58,7 +58,7 @@ type HBox struct {
 var (
 	HboxGetType func() O.Type
 
-	HboxNew func(homogeneous T.Gboolean, spacing int) *Widget
+	HboxNew func(homogeneous bool, spacing int) *Widget
 )
 var (
 	HbuttonBoxGetType func() O.Type
@@ -102,14 +102,14 @@ var (
 
 	hsvGetColor    func(hsv *HSV, h, s, v *float64)
 	hsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)
-	hsvIsAdjusting func(hsv *HSV) T.Gboolean
+	hsvIsAdjusting func(hsv *HSV) bool
 	hsvSetColor    func(hsv *HSV, h, s, v float64)
 	hsvSetMetrics  func(hsv *HSV, size int, ringWidth int)
 )
 
 func (hsv *HSV) GetColor(h, s, v *float64)       { hsvGetColor(hsv, h, s, v) }
 func (hsv *HSV) GetMetrics(size, ringWidth *int) { hsvGetMetrics(hsv, size, ringWidth) }
-func (hsv *HSV) IsAdjusting() T.Gboolean         { return hsvIsAdjusting(hsv) }
+func (hsv *HSV) IsAdjusting() bool               { return hsvIsAdjusting(hsv) }
 func (hsv *HSV) SetColor(h, s, v float64)        { hsvSetColor(hsv, h, s, v) }
 func (hsv *HSV) SetMetrics(size, ringWidth int)  { hsvSetMetrics(hsv, size, ringWidth) }
 

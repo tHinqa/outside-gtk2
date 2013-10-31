@@ -38,13 +38,13 @@ type SourceCallbackFuncs struct {
 
 type SourceDummyMarshal func()
 
-type SourceFunc func(data T.Gpointer) T.Gboolean
+type SourceFunc func(data T.Gpointer) bool
 
 type SourceFuncs struct {
-	Prepare  func(source *Source, timeout *int) T.Gboolean
-	Check    func(source *Source) T.Gboolean
+	Prepare  func(source *Source, timeout *int) bool
+	Check    func(source *Source) bool
 	Dispatch func(
-		source *Source, callback SourceFunc, userData T.Gpointer) T.Gboolean
+		source *Source, callback SourceFunc, userData T.Gpointer) bool
 	Finalize func(source *Source)
 
 	ClosureCallback SourceFunc

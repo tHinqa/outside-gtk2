@@ -47,14 +47,14 @@ var (
 	ScreenGetRgbColormap         func(s *Screen) *Colormap
 	ScreenGetRgbVisual           func(s *Screen) *Visual
 	ScreenGetRootWindow          func(s *Screen) *Window
-	ScreenGetSetting             func(s *Screen, name string, value *T.GValue) T.Gboolean
+	ScreenGetSetting             func(s *Screen, name string, value *T.GValue) bool
 	ScreenGetSystemColormap      func(s *Screen) *Colormap
 	ScreenGetSystemVisual        func(s *Screen) *Visual
 	ScreenGetToplevelWindows     func(s *Screen) *T.GList
 	ScreenGetWidth               func(s *Screen) int
 	ScreenGetWidthMm             func(s *Screen) int
 	ScreenGetWindowStack         func(s *Screen) *T.GList
-	ScreenIsComposited           func(s *Screen) T.Gboolean
+	ScreenIsComposited           func(s *Screen) bool
 	ScreenListVisuals            func(s *Screen) *T.GList
 	ScreenMakeDisplayName        func(s *Screen) string
 	ScreenSetDefaultColormap     func(s *Screen, colormap *Colormap)
@@ -66,7 +66,7 @@ func (s *Screen) BroadcastClientMessage(event *Event) { ScreenBroadcastClientMes
 func (s *Screen) GetActiveWindow() *Window            { return ScreenGetActiveWindow(s) }
 func (s *Screen) GetDefaultColormap() *Colormap       { return ScreenGetDefaultColormap(s) }
 func (s *Screen) GetDisplay() *Display                { return ScreenGetDisplay(s) }
-func (s *Screen) GetFontOptions() *C.FontOptions { return ScreenGetFontOptions(s) }
+func (s *Screen) GetFontOptions() *C.FontOptions      { return ScreenGetFontOptions(s) }
 func (s *Screen) GetHeight() int                      { return ScreenGetHeight(s) }
 func (s *Screen) GetHeightMm() int                    { return ScreenGetHeightMm(s) }
 func (s *Screen) GetMonitorAtPoint(x, y int) int      { return ScreenGetMonitorAtPoint(s, x, y) }
@@ -92,18 +92,18 @@ func (s *Screen) GetRgbaVisual() *Visual               { return ScreenGetRgbaVis
 func (s *Screen) GetRgbColormap() *Colormap            { return ScreenGetRgbColormap(s) }
 func (s *Screen) GetRgbVisual() *Visual                { return ScreenGetRgbVisual(s) }
 func (s *Screen) GetRootWindow() *Window               { return ScreenGetRootWindow(s) }
-func (s *Screen) GetSetting(name string, value *T.GValue) T.Gboolean {
+func (s *Screen) GetSetting(name string, value *T.GValue) bool {
 	return ScreenGetSetting(s, name, value)
 }
-func (s *Screen) GetSystemColormap() *Colormap               { return ScreenGetSystemColormap(s) }
-func (s *Screen) GetSystemVisual() *Visual                   { return ScreenGetSystemVisual(s) }
-func (s *Screen) GetToplevelWindows() *T.GList               { return ScreenGetToplevelWindows(s) }
-func (s *Screen) GetWidth() int                              { return ScreenGetWidth(s) }
-func (s *Screen) GetWidthMm() int                            { return ScreenGetWidthMm(s) }
-func (s *Screen) GetWindowStack() *T.GList                   { return ScreenGetWindowStack(s) }
-func (s *Screen) IsComposited() T.Gboolean                   { return ScreenIsComposited(s) }
-func (s *Screen) ListVisuals() *T.GList                      { return ScreenListVisuals(s) }
-func (s *Screen) MakeDisplayName() string                    { return ScreenMakeDisplayName(s) }
-func (s *Screen) SetDefaultColormap(colormap *Colormap)      { ScreenSetDefaultColormap(s, colormap) }
+func (s *Screen) GetSystemColormap() *Colormap          { return ScreenGetSystemColormap(s) }
+func (s *Screen) GetSystemVisual() *Visual              { return ScreenGetSystemVisual(s) }
+func (s *Screen) GetToplevelWindows() *T.GList          { return ScreenGetToplevelWindows(s) }
+func (s *Screen) GetWidth() int                         { return ScreenGetWidth(s) }
+func (s *Screen) GetWidthMm() int                       { return ScreenGetWidthMm(s) }
+func (s *Screen) GetWindowStack() *T.GList              { return ScreenGetWindowStack(s) }
+func (s *Screen) IsComposited() bool                    { return ScreenIsComposited(s) }
+func (s *Screen) ListVisuals() *T.GList                 { return ScreenListVisuals(s) }
+func (s *Screen) MakeDisplayName() string               { return ScreenMakeDisplayName(s) }
+func (s *Screen) SetDefaultColormap(colormap *Colormap) { ScreenSetDefaultColormap(s, colormap) }
 func (s *Screen) SetFontOptions(options *C.FontOptions) { ScreenSetFontOptions(s, options) }
-func (s *Screen) SetResolution(dpi float64)                  { ScreenSetResolution(s, dpi) }
+func (s *Screen) SetResolution(dpi float64)             { ScreenSetResolution(s, dpi) }

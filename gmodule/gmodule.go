@@ -20,21 +20,21 @@ type Module struct{}
 
 var (
 	ModuleError     func() string
-	ModuleSupported func() T.Gboolean
+	ModuleSupported func() bool
 	ModuleOpen      func(
 		fileName string, flags ModuleFlags) *Module
 	ModuleBuildPath func(directory, moduleName string) string
 
-	moduleClose        func(m *Module) T.Gboolean
+	moduleClose        func(m *Module) bool
 	moduleMakeResident func(m *Module)
 	moduleName         func(m *Module) string
-	moduleSymbol       func(m *Module, symbolName string, symbol *T.Gpointer) T.Gboolean
+	moduleSymbol       func(m *Module, symbolName string, symbol *T.Gpointer) bool
 )
 
-func (m *Module) Close() T.Gboolean { return moduleClose(m) }
-func (m *Module) MakeResident()     { moduleMakeResident(m) }
-func (m *Module) Name() string      { return moduleName(m) }
-func (m *Module) Symbol(symbolName string, symbol *T.Gpointer) T.Gboolean {
+func (m *Module) Close() bool   { return moduleClose(m) }
+func (m *Module) MakeResident() { moduleMakeResident(m) }
+func (m *Module) Name() string  { return moduleName(m) }
+func (m *Module) Symbol(symbolName string, symbol *T.Gpointer) bool {
 	return moduleSymbol(m, symbolName, symbol)
 }
 

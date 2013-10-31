@@ -16,18 +16,18 @@ type Win32InputStream struct {
 
 var (
 	Win32InputStreamGetType func() O.Type
-	Win32InputStreamNew     func(handle *T.Void, closeHandle T.Gboolean) *InputStream
+	Win32InputStreamNew     func(handle *T.Void, closeHandle bool) *InputStream
 
-	win32InputStreamSetCloseHandle func(stream *Win32InputStream, closeHandle T.Gboolean)
-	win32InputStreamGetCloseHandle func(stream *Win32InputStream) T.Gboolean
+	win32InputStreamSetCloseHandle func(stream *Win32InputStream, closeHandle bool)
+	win32InputStreamGetCloseHandle func(stream *Win32InputStream) bool
 	win32InputStreamGetHandle      func(stream *Win32InputStream) *T.Void
 )
 
-func (w *Win32InputStream) SetCloseHandle(closeHandle T.Gboolean) {
+func (w *Win32InputStream) SetCloseHandle(closeHandle bool) {
 	win32InputStreamSetCloseHandle(w, closeHandle)
 }
-func (w *Win32InputStream) GetCloseHandle() T.Gboolean { return win32InputStreamGetCloseHandle(w) }
-func (w *Win32InputStream) GetHandle() *T.Void         { return win32InputStreamGetHandle(w) }
+func (w *Win32InputStream) GetCloseHandle() bool { return win32InputStreamGetCloseHandle(w) }
+func (w *Win32InputStream) GetHandle() *T.Void   { return win32InputStreamGetHandle(w) }
 
 type Win32OutputStream struct {
 	Parent OutputStream
@@ -36,15 +36,15 @@ type Win32OutputStream struct {
 
 var (
 	Win32OutputStreamGetType func() O.Type
-	Win32OutputStreamNew     func(handle *T.Void, closeHandle T.Gboolean) *OutputStream
+	Win32OutputStreamNew     func(handle *T.Void, closeHandle bool) *OutputStream
 
-	win32OutputStreamSetCloseHandle func(stream *Win32OutputStream, closeHandle T.Gboolean)
-	win32OutputStreamGetCloseHandle func(stream *Win32OutputStream) T.Gboolean
+	win32OutputStreamSetCloseHandle func(stream *Win32OutputStream, closeHandle bool)
+	win32OutputStreamGetCloseHandle func(stream *Win32OutputStream) bool
 	win32OutputStreamGetHandle      func(stream *Win32OutputStream) *T.Void
 )
 
-func (w *Win32OutputStream) SetCloseHandle(closeHandle T.Gboolean) {
+func (w *Win32OutputStream) SetCloseHandle(closeHandle bool) {
 	win32OutputStreamSetCloseHandle(w, closeHandle)
 }
-func (w *Win32OutputStream) GetCloseHandle() T.Gboolean { return win32OutputStreamGetCloseHandle(w) }
-func (w *Win32OutputStream) GetHandle() *T.Void         { return win32OutputStreamGetHandle(w) }
+func (w *Win32OutputStream) GetCloseHandle() bool { return win32OutputStreamGetCloseHandle(w) }
+func (w *Win32OutputStream) GetHandle() *T.Void   { return win32OutputStreamGetHandle(w) }
