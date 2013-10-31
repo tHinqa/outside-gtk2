@@ -4,6 +4,7 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -27,7 +28,7 @@ type Analysis struct {
 	Flags       uint8
 	Script      uint8
 	Language    *Language
-	ExtraAttrs  *T.GSList
+	ExtraAttrs  *L.SList
 }
 
 type Attribute struct {
@@ -37,16 +38,16 @@ type Attribute struct {
 }
 
 var (
-	attributeInit    func(Attr *Attribute, class *AttrClass)
-	attributeCopy    func(Attr *Attribute) *Attribute
-	attributeDestroy func(Attr *Attribute)
-	attributeEqual   func(Attr1 *Attribute, Attr2 *Attribute) bool
+	AttributeInit    func(Attr *Attribute, class *AttrClass)
+	AttributeCopy    func(Attr *Attribute) *Attribute
+	AttributeDestroy func(Attr *Attribute)
+	AttributeEqual   func(Attr1 *Attribute, Attr2 *Attribute) bool
 )
 
-func (a *Attribute) Init(class *AttrClass)       { attributeInit(a, class) }
-func (a *Attribute) Copy() *Attribute            { return attributeCopy(a) }
-func (a *Attribute) Destroy()                    { attributeDestroy(a) }
-func (a *Attribute) Equal(Attr2 *Attribute) bool { return attributeEqual(a, Attr2) }
+func (a *Attribute) Init(class *AttrClass)       { AttributeInit(a, class) }
+func (a *Attribute) Copy() *Attribute            { return AttributeCopy(a) }
+func (a *Attribute) Destroy()                    { AttributeDestroy(a) }
+func (a *Attribute) Equal(Attr2 *Attribute) bool { return AttributeEqual(a, Attr2) }
 
 type AttrClass struct {
 	Type    AttrType
@@ -86,7 +87,7 @@ var (
 type AttrDataCopyFunc func(data T.Gconstpointer) T.Gpointer
 
 type AttrFilterFunc func(
-	attribute *Attribute, data T.Gpointer) bool
+	Attribute *Attribute, data T.Gpointer) bool
 
 type AttrList struct{}
 
@@ -94,50 +95,50 @@ var (
 	AttrListGetType func() O.Type
 	AttrListNew     func() *AttrList
 
-	attrListChange       func(list *AttrList, Attr *Attribute)
-	attrListCopy         func(list *AttrList) *AttrList
-	attrListFilter       func(list *AttrList, f AttrFilterFunc, data T.Gpointer) *AttrList
-	attrListGetIterator  func(list *AttrList) *AttrIterator
-	attrListInsert       func(list *AttrList, Attr *Attribute)
-	attrListInsertBefore func(list *AttrList, Attr *Attribute)
-	attrListRef          func(list *AttrList) *AttrList
-	attrListSplice       func(list *AttrList, other *AttrList, pos int, len int)
-	attrListUnref        func(list *AttrList)
+	AttrListChange       func(list *AttrList, Attr *Attribute)
+	AttrListCopy         func(list *AttrList) *AttrList
+	AttrListFilter       func(list *AttrList, f AttrFilterFunc, data T.Gpointer) *AttrList
+	AttrListGetIterator  func(list *AttrList) *AttrIterator
+	AttrListInsert       func(list *AttrList, Attr *Attribute)
+	AttrListInsertBefore func(list *AttrList, Attr *Attribute)
+	AttrListRef          func(list *AttrList) *AttrList
+	AttrListSplice       func(list *AttrList, other *AttrList, pos int, len int)
+	AttrListUnref        func(list *AttrList)
 )
 
-func (a *AttrList) Change(Attr *Attribute) { attrListChange(a, Attr) }
-func (a *AttrList) Copy() *AttrList        { return attrListCopy(a) }
+func (a *AttrList) Change(Attr *Attribute) { AttrListChange(a, Attr) }
+func (a *AttrList) Copy() *AttrList        { return AttrListCopy(a) }
 func (a *AttrList) Filter(f AttrFilterFunc, data T.Gpointer) *AttrList {
-	return attrListFilter(a, f, data)
+	return AttrListFilter(a, f, data)
 }
-func (a *AttrList) GetIterator() *AttrIterator                { return attrListGetIterator(a) }
-func (a *AttrList) Insert(Attr *Attribute)                    { attrListInsert(a, Attr) }
-func (a *AttrList) InsertBefore(Attr *Attribute)              { attrListInsertBefore(a, Attr) }
-func (a *AttrList) Ref() *AttrList                            { return attrListRef(a) }
-func (a *AttrList) Splice(other *AttrList, pos int, leng int) { attrListSplice(a, other, pos, leng) }
-func (a *AttrList) Unref()                                    { attrListUnref(a) }
+func (a *AttrList) GetIterator() *AttrIterator                { return AttrListGetIterator(a) }
+func (a *AttrList) Insert(Attr *Attribute)                    { AttrListInsert(a, Attr) }
+func (a *AttrList) InsertBefore(Attr *Attribute)              { AttrListInsertBefore(a, Attr) }
+func (a *AttrList) Ref() *AttrList                            { return AttrListRef(a) }
+func (a *AttrList) Splice(other *AttrList, pos int, leng int) { AttrListSplice(a, other, pos, leng) }
+func (a *AttrList) Unref()                                    { AttrListUnref(a) }
 
 type AttrIterator struct{}
 
 var (
-	attrIteratorCopy     func(iterator *AttrIterator) *AttrIterator
-	attrIteratorDestroy  func(iterator *AttrIterator)
-	attrIteratorGet      func(iterator *AttrIterator, t AttrType) *Attribute
-	attrIteratorGetAttrs func(iterator *AttrIterator) *T.GSList
-	attrIteratorGetFont  func(iterator *AttrIterator, desc *FontDescription, language **Language, extraAttrs **T.GSList)
-	attrIteratorNext     func(iterator *AttrIterator) bool
-	attrIteratorRange    func(iterator *AttrIterator, start, end *int)
+	AttrIteratorCopy     func(iterator *AttrIterator) *AttrIterator
+	AttrIteratorDestroy  func(iterator *AttrIterator)
+	AttrIteratorGet      func(iterator *AttrIterator, t AttrType) *Attribute
+	AttrIteratorGetAttrs func(iterator *AttrIterator) *L.SList
+	AttrIteratorGetFont  func(iterator *AttrIterator, desc *FontDescription, language **Language, extraAttrs **L.SList)
+	AttrIteratorNext     func(iterator *AttrIterator) bool
+	AttrIteratorRange    func(iterator *AttrIterator, start, end *int)
 )
 
-func (a *AttrIterator) Copy() *AttrIterator       { return attrIteratorCopy(a) }
-func (a *AttrIterator) Destroy()                  { attrIteratorDestroy(a) }
-func (a *AttrIterator) Get(t AttrType) *Attribute { return attrIteratorGet(a, t) }
-func (a *AttrIterator) GetAttrs() *T.GSList       { return attrIteratorGetAttrs(a) }
-func (a *AttrIterator) GetFont(desc *FontDescription, language **Language, extraAttrs **T.GSList) {
-	attrIteratorGetFont(a, desc, language, extraAttrs)
+func (a *AttrIterator) Copy() *AttrIterator       { return AttrIteratorCopy(a) }
+func (a *AttrIterator) Destroy()                  { AttrIteratorDestroy(a) }
+func (a *AttrIterator) Get(t AttrType) *Attribute { return AttrIteratorGet(a, t) }
+func (a *AttrIterator) GetAttrs() *L.SList        { return AttrIteratorGetAttrs(a) }
+func (a *AttrIterator) GetFont(desc *FontDescription, language **Language, extraAttrs **L.SList) {
+	AttrIteratorGetFont(a, desc, language, extraAttrs)
 }
-func (a *AttrIterator) Next() bool            { return attrIteratorNext(a) }
-func (a *AttrIterator) Range(start, end *int) { attrIteratorRange(a, start, end) }
+func (a *AttrIterator) Next() bool            { return AttrIteratorNext(a) }
+func (a *AttrIterator) Range(start, end *int) { AttrIteratorRange(a, start, end) }
 
 type AttrShape struct {
 	Attr        Attribute

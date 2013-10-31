@@ -90,62 +90,62 @@ var (
 	MenuDirectionTypeGetType func() O.Type
 	MenuGetForAttachWidget   func(widget *Widget) *T.GList
 
-	menuAttach               func(m *Menu, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint)
-	menuAttachToWidget       func(m *Menu, attachWidget *Widget, detacher MenuDetachFunc)
-	menuDetach               func(m *Menu)
-	menuGetAccelGroup        func(m *Menu) *AccelGroup
-	menuGetAccelPath         func(m *Menu) string
-	menuGetActive            func(m *Menu) *Widget
-	menuGetAttachWidget      func(m *Menu) *Widget
-	menuGetMonitor           func(m *Menu) int
-	menuGetReserveToggleSize func(m *Menu) bool
-	menuGetTearoffState      func(m *Menu) bool
-	menuGetTitle             func(m *Menu) string
-	menuPopdown              func(m *Menu)
-	menuPopup                func(m *Menu, parentMenuShell, parentMenuItem *Widget, f MenuPositionFunc, data T.Gpointer, button uint, activateTime T.GUint32)
-	menuReorderChild         func(m *Menu, child *Widget, position int)
-	menuReposition           func(m *Menu)
-	menuSetAccelGroup        func(m *Menu, accelGroup *AccelGroup)
-	menuSetAccelPath         func(m *Menu, accelPath string)
-	menuSetActive            func(m *Menu, index uint)
-	menuSetMonitor           func(m *Menu, monitorNum int)
-	menuSetReserveToggleSize func(m *Menu, reserveToggleSize bool)
-	menuSetScreen            func(m *Menu, screen *D.Screen)
-	menuSetTearoffState      func(m *Menu, tornOff bool)
-	menuSetTitle             func(m *Menu, title string)
+	MenuAttach               func(m *Menu, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint)
+	MenuAttachToWidget       func(m *Menu, attachWidget *Widget, detacher MenuDetachFunc)
+	MenuDetach               func(m *Menu)
+	MenuGetAccelGroup        func(m *Menu) *AccelGroup
+	MenuGetAccelPath         func(m *Menu) string
+	MenuGetActive            func(m *Menu) *Widget
+	MenuGetAttachWidget      func(m *Menu) *Widget
+	MenuGetMonitor           func(m *Menu) int
+	MenuGetReserveToggleSize func(m *Menu) bool
+	MenuGetTearoffState      func(m *Menu) bool
+	MenuGetTitle             func(m *Menu) string
+	MenuPopdown              func(m *Menu)
+	MenuPopup                func(m *Menu, parentMenuShell, parentMenuItem *Widget, f MenuPositionFunc, data T.Gpointer, button uint, activateTime T.GUint32)
+	MenuReorderChild         func(m *Menu, child *Widget, position int)
+	MenuReposition           func(m *Menu)
+	MenuSetAccelGroup        func(m *Menu, accelGroup *AccelGroup)
+	MenuSetAccelPath         func(m *Menu, accelPath string)
+	MenuSetActive            func(m *Menu, index uint)
+	MenuSetMonitor           func(m *Menu, monitorNum int)
+	MenuSetReserveToggleSize func(m *Menu, reserveToggleSize bool)
+	MenuSetScreen            func(m *Menu, screen *D.Screen)
+	MenuSetTearoffState      func(m *Menu, tornOff bool)
+	MenuSetTitle             func(m *Menu, title string)
 )
 
 func (m *Menu) Attach(child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint) {
-	menuAttach(m, child, leftAttach, rightAttach, topAttach, bottomAttach)
+	MenuAttach(m, child, leftAttach, rightAttach, topAttach, bottomAttach)
 }
 func (m *Menu) AttachToWidget(attachWidget *Widget, detacher MenuDetachFunc) {
-	menuAttachToWidget(m, attachWidget, detacher)
+	MenuAttachToWidget(m, attachWidget, detacher)
 }
-func (m *Menu) Detach()                    { menuDetach(m) }
-func (m *Menu) GetAccelGroup() *AccelGroup { return menuGetAccelGroup(m) }
-func (m *Menu) GetAccelPath() string       { return menuGetAccelPath(m) }
-func (m *Menu) GetActive() *Widget         { return menuGetActive(m) }
-func (m *Menu) GetAttachWidget() *Widget   { return menuGetAttachWidget(m) }
-func (m *Menu) GetMonitor() int            { return menuGetMonitor(m) }
-func (m *Menu) GetReserveToggleSize() bool { return menuGetReserveToggleSize(m) }
-func (m *Menu) GetTearoffState() bool      { return menuGetTearoffState(m) }
-func (m *Menu) GetTitle() string           { return menuGetTitle(m) }
-func (m *Menu) Popdown()                   { menuPopdown(m) }
+func (m *Menu) Detach()                    { MenuDetach(m) }
+func (m *Menu) GetAccelGroup() *AccelGroup { return MenuGetAccelGroup(m) }
+func (m *Menu) GetAccelPath() string       { return MenuGetAccelPath(m) }
+func (m *Menu) GetActive() *Widget         { return MenuGetActive(m) }
+func (m *Menu) GetAttachWidget() *Widget   { return MenuGetAttachWidget(m) }
+func (m *Menu) GetMonitor() int            { return MenuGetMonitor(m) }
+func (m *Menu) GetReserveToggleSize() bool { return MenuGetReserveToggleSize(m) }
+func (m *Menu) GetTearoffState() bool      { return MenuGetTearoffState(m) }
+func (m *Menu) GetTitle() string           { return MenuGetTitle(m) }
+func (m *Menu) Popdown()                   { MenuPopdown(m) }
 func (m *Menu) Popup(parentMenuShell, parentMenuItem *Widget, f MenuPositionFunc, data T.Gpointer, button uint, activateTime T.GUint32) {
-	menuPopup(m, parentMenuShell, parentMenuItem, f, data, button, activateTime)
+	MenuPopup(m, parentMenuShell, parentMenuItem, f, data, button, activateTime)
 }
-func (m *Menu) ReorderChild(child *Widget, position int) { menuReorderChild(m, child, position) }
-func (m *Menu) Reposition()                              { menuReposition(m) }
-func (m *Menu) SetAccelGroup(accelGroup *AccelGroup)     { menuSetAccelGroup(m, accelGroup) }
-func (m *Menu) SetAccelPath(accelPath string)            { menuSetAccelPath(m, accelPath) }
-func (m *Menu) SetActive(index uint)                     { menuSetActive(m, index) }
-func (m *Menu) SetMonitor(monitorNum int)                { menuSetMonitor(m, monitorNum) }
+func (m *Menu) ReorderChild(child *Widget, position int) { MenuReorderChild(m, child, position) }
+func (m *Menu) Reposition()                              { MenuReposition(m) }
+func (m *Menu) SetAccelGroup(accelGroup *AccelGroup)     { MenuSetAccelGroup(m, accelGroup) }
+func (m *Menu) SetAccelPath(accelPath string)            { MenuSetAccelPath(m, accelPath) }
+func (m *Menu) SetActive(index uint)                     { MenuSetActive(m, index) }
+func (m *Menu) SetMonitor(monitorNum int)                { MenuSetMonitor(m, monitorNum) }
 func (m *Menu) SetReserveToggleSize(reserveToggleSize bool) {
-	menuSetReserveToggleSize(m, reserveToggleSize)
+	MenuSetReserveToggleSize(m, reserveToggleSize)
 }
-func (m *Menu) SetScreen(screen *D.Screen)   { menuSetScreen(m, screen) }
-func (m *Menu) SetTearoffState(tornOff bool) { menuSetTearoffState(m, tornOff) }
-func (m *Menu) SetTitle(title string)        { menuSetTitle(m, title) }
+func (m *Menu) SetScreen(screen *D.Screen)   { MenuSetScreen(m, screen) }
+func (m *Menu) SetTearoffState(tornOff bool) { MenuSetTearoffState(m, tornOff) }
+func (m *Menu) SetTitle(title string)        { MenuSetTitle(m, title) }
 
 type MenuBar struct {
 	MenuShell MenuShell
@@ -155,18 +155,18 @@ var (
 	MenuBarGetType func() O.Type
 	MenuBarNew     func() *Widget
 
-	menuBarGetChildPackDirection func(m *MenuBar) PackDirection
-	menuBarGetPackDirection      func(m *MenuBar) PackDirection
-	menuBarSetChildPackDirection func(m *MenuBar, childPackDir PackDirection)
-	menuBarSetPackDirection      func(m *MenuBar, packDir PackDirection)
+	MenuBarGetChildPackDirection func(m *MenuBar) PackDirection
+	MenuBarGetPackDirection      func(m *MenuBar) PackDirection
+	MenuBarSetChildPackDirection func(m *MenuBar, childPackDir PackDirection)
+	MenuBarSetPackDirection      func(m *MenuBar, packDir PackDirection)
 )
 
-func (m *MenuBar) GetChildPackDirection() PackDirection { return menuBarGetChildPackDirection(m) }
-func (m *MenuBar) GetPackDirection() PackDirection      { return menuBarGetPackDirection(m) }
+func (m *MenuBar) GetChildPackDirection() PackDirection { return MenuBarGetChildPackDirection(m) }
+func (m *MenuBar) GetPackDirection() PackDirection      { return MenuBarGetPackDirection(m) }
 func (m *MenuBar) SetChildPackDirection(childPackDir PackDirection) {
-	menuBarSetChildPackDirection(m, childPackDir)
+	MenuBarSetChildPackDirection(m, childPackDir)
 }
-func (m *MenuBar) SetPackDirection(packDir PackDirection) { menuBarSetPackDirection(m, packDir) }
+func (m *MenuBar) SetPackDirection(packDir PackDirection) { MenuBarSetPackDirection(m, packDir) }
 
 type (
 	MenuItem struct {
@@ -193,42 +193,42 @@ var (
 	MenuItemNewWithLabel    func(label string) *Widget
 	MenuItemNewWithMnemonic func(label string) *Widget
 
-	menuItemActivate           func(m *MenuItem)
-	menuItemDeselect           func(m *MenuItem)
-	menuItemGetAccelPath       func(m *MenuItem) string
-	menuItemGetLabel           func(m *MenuItem) string
-	menuItemGetRightJustified  func(m *MenuItem) bool
-	menuItemGetSubmenu         func(m *MenuItem) *Widget
-	menuItemGetUseUnderline    func(m *MenuItem) bool
-	menuItemRemoveSubmenu      func(m *MenuItem)
-	menuItemSelect             func(m *MenuItem)
-	menuItemSetAccelPath       func(m *MenuItem, accelPath string)
-	menuItemSetLabel           func(m *MenuItem, label string)
-	menuItemSetRightJustified  func(m *MenuItem, rightJustified bool)
-	menuItemSetSubmenu         func(m *MenuItem, submenu *Widget)
-	menuItemSetUseUnderline    func(m *MenuItem, setting bool)
-	menuItemToggleSizeAllocate func(m *MenuItem, allocation int)
-	menuItemToggleSizeRequest  func(m *MenuItem, requisition *int)
+	MenuItemActivate           func(m *MenuItem)
+	MenuItemDeselect           func(m *MenuItem)
+	MenuItemGetAccelPath       func(m *MenuItem) string
+	MenuItemGetLabel           func(m *MenuItem) string
+	MenuItemGetRightJustified  func(m *MenuItem) bool
+	MenuItemGetSubmenu         func(m *MenuItem) *Widget
+	MenuItemGetUseUnderline    func(m *MenuItem) bool
+	MenuItemRemoveSubmenu      func(m *MenuItem)
+	MenuItemSelect             func(m *MenuItem)
+	MenuItemSetAccelPath       func(m *MenuItem, accelPath string)
+	MenuItemSetLabel           func(m *MenuItem, label string)
+	MenuItemSetRightJustified  func(m *MenuItem, rightJustified bool)
+	MenuItemSetSubmenu         func(m *MenuItem, submenu *Widget)
+	MenuItemSetUseUnderline    func(m *MenuItem, setting bool)
+	MenuItemToggleSizeAllocate func(m *MenuItem, allocation int)
+	MenuItemToggleSizeRequest  func(m *MenuItem, requisition *int)
 )
 
-func (m *MenuItem) Activate()                     { menuItemActivate(m) }
-func (m *MenuItem) Deselect()                     { menuItemDeselect(m) }
-func (m *MenuItem) GetAccelPath() string          { return menuItemGetAccelPath(m) }
-func (m *MenuItem) GetLabel() string              { return menuItemGetLabel(m) }
-func (m *MenuItem) GetRightJustified() bool       { return menuItemGetRightJustified(m) }
-func (m *MenuItem) GetSubmenu() *Widget           { return menuItemGetSubmenu(m) }
-func (m *MenuItem) GetUseUnderline() bool         { return menuItemGetUseUnderline(m) }
-func (m *MenuItem) RemoveSubmenu()                { menuItemRemoveSubmenu(m) }
-func (m *MenuItem) Select()                       { menuItemSelect(m) }
-func (m *MenuItem) SetAccelPath(accelPath string) { menuItemSetAccelPath(m, accelPath) }
-func (m *MenuItem) SetLabel(label string)         { menuItemSetLabel(m, label) }
+func (m *MenuItem) Activate()                     { MenuItemActivate(m) }
+func (m *MenuItem) Deselect()                     { MenuItemDeselect(m) }
+func (m *MenuItem) GetAccelPath() string          { return MenuItemGetAccelPath(m) }
+func (m *MenuItem) GetLabel() string              { return MenuItemGetLabel(m) }
+func (m *MenuItem) GetRightJustified() bool       { return MenuItemGetRightJustified(m) }
+func (m *MenuItem) GetSubmenu() *Widget           { return MenuItemGetSubmenu(m) }
+func (m *MenuItem) GetUseUnderline() bool         { return MenuItemGetUseUnderline(m) }
+func (m *MenuItem) RemoveSubmenu()                { MenuItemRemoveSubmenu(m) }
+func (m *MenuItem) Select()                       { MenuItemSelect(m) }
+func (m *MenuItem) SetAccelPath(accelPath string) { MenuItemSetAccelPath(m, accelPath) }
+func (m *MenuItem) SetLabel(label string)         { MenuItemSetLabel(m, label) }
 func (m *MenuItem) SetRightJustified(rightJustified bool) {
-	menuItemSetRightJustified(m, rightJustified)
+	MenuItemSetRightJustified(m, rightJustified)
 }
-func (m *MenuItem) SetSubmenu(submenu *Widget)         { menuItemSetSubmenu(m, submenu) }
-func (m *MenuItem) SetUseUnderline(setting bool)       { menuItemSetUseUnderline(m, setting) }
-func (m *MenuItem) ToggleSizeAllocate(allocation int)  { menuItemToggleSizeAllocate(m, allocation) }
-func (m *MenuItem) ToggleSizeRequest(requisition *int) { menuItemToggleSizeRequest(m, requisition) }
+func (m *MenuItem) SetSubmenu(submenu *Widget)         { MenuItemSetSubmenu(m, submenu) }
+func (m *MenuItem) SetUseUnderline(setting bool)       { MenuItemSetUseUnderline(m, setting) }
+func (m *MenuItem) ToggleSizeAllocate(allocation int)  { MenuItemToggleSizeAllocate(m, allocation) }
+func (m *MenuItem) ToggleSizeRequest(requisition *int) { MenuItemToggleSizeRequest(m, requisition) }
 
 type MenuShell struct {
 	Container       Container
@@ -250,32 +250,32 @@ type MenuShell struct {
 var (
 	MenuShellGetType func() O.Type
 
-	menuShellActivateItem func(m *MenuShell, menuItem *Widget, forceDeactivate bool)
-	menuShellAppend       func(m *MenuShell, child *Widget)
-	menuShellCancel       func(m *MenuShell)
-	menuShellDeactivate   func(m *MenuShell)
-	menuShellDeselect     func(m *MenuShell)
-	menuShellGetTakeFocus func(m *MenuShell) bool
-	menuShellInsert       func(m *MenuShell, child *Widget, position int)
-	menuShellPrepend      func(m *MenuShell, child *Widget)
-	menuShellSelectFirst  func(m *MenuShell, searchSensitive bool)
-	menuShellSelectItem   func(m *MenuShell, menuItem *Widget)
-	menuShellSetTakeFocus func(m *MenuShell, takeFocus bool)
+	MenuShellActivateItem func(m *MenuShell, menuItem *Widget, forceDeactivate bool)
+	MenuShellAppend       func(m *MenuShell, child *Widget)
+	MenuShellCancel       func(m *MenuShell)
+	MenuShellDeactivate   func(m *MenuShell)
+	MenuShellDeselect     func(m *MenuShell)
+	MenuShellGetTakeFocus func(m *MenuShell) bool
+	MenuShellInsert       func(m *MenuShell, child *Widget, position int)
+	MenuShellPrepend      func(m *MenuShell, child *Widget)
+	MenuShellSelectFirst  func(m *MenuShell, searchSensitive bool)
+	MenuShellSelectItem   func(m *MenuShell, menuItem *Widget)
+	MenuShellSetTakeFocus func(m *MenuShell, takeFocus bool)
 )
 
 func (m *MenuShell) ActivateItem(menuItem *Widget, forceDeactivate bool) {
-	menuShellActivateItem(m, menuItem, forceDeactivate)
+	MenuShellActivateItem(m, menuItem, forceDeactivate)
 }
-func (m *MenuShell) Append(child *Widget)               { menuShellAppend(m, child) }
-func (m *MenuShell) Cancel()                            { menuShellCancel(m) }
-func (m *MenuShell) Deactivate()                        { menuShellDeactivate(m) }
-func (m *MenuShell) Deselect()                          { menuShellDeselect(m) }
-func (m *MenuShell) GetTakeFocus() bool                 { return menuShellGetTakeFocus(m) }
-func (m *MenuShell) Insert(child *Widget, position int) { menuShellInsert(m, child, position) }
-func (m *MenuShell) Prepend(child *Widget)              { menuShellPrepend(m, child) }
-func (m *MenuShell) SelectFirst(searchSensitive bool)   { menuShellSelectFirst(m, searchSensitive) }
-func (m *MenuShell) SelectItem(menuItem *Widget)        { menuShellSelectItem(m, menuItem) }
-func (m *MenuShell) SetTakeFocus(takeFocus bool)        { menuShellSetTakeFocus(m, takeFocus) }
+func (m *MenuShell) Append(child *Widget)               { MenuShellAppend(m, child) }
+func (m *MenuShell) Cancel()                            { MenuShellCancel(m) }
+func (m *MenuShell) Deactivate()                        { MenuShellDeactivate(m) }
+func (m *MenuShell) Deselect()                          { MenuShellDeselect(m) }
+func (m *MenuShell) GetTakeFocus() bool                 { return MenuShellGetTakeFocus(m) }
+func (m *MenuShell) Insert(child *Widget, position int) { MenuShellInsert(m, child, position) }
+func (m *MenuShell) Prepend(child *Widget)              { MenuShellPrepend(m, child) }
+func (m *MenuShell) SelectFirst(searchSensitive bool)   { MenuShellSelectFirst(m, searchSensitive) }
+func (m *MenuShell) SelectItem(menuItem *Widget)        { MenuShellSelectItem(m, menuItem) }
+func (m *MenuShell) SetTakeFocus(takeFocus bool)        { MenuShellSetTakeFocus(m, takeFocus) }
 
 type MenuToolButton struct {
 	Parent ToolButton
@@ -287,22 +287,22 @@ var (
 	MenuToolButtonNew          func(iconWidget *Widget, label string) *ToolItem
 	MenuToolButtonNewFromStock func(stockId string) *ToolItem
 
-	menuToolButtonGetMenu               func(t *MenuToolButton) *Widget
-	menuToolButtonSetArrowTooltip       func(t *MenuToolButton, tooltips *Tooltips, tipText, tipPrivate string)
-	menuToolButtonSetArrowTooltipMarkup func(t *MenuToolButton, markup string)
-	menuToolButtonSetArrowTooltipText   func(t *MenuToolButton, text string)
-	menuToolButtonSetMenu               func(t *MenuToolButton, menu *Widget)
+	MenuToolButtonGetMenu               func(t *MenuToolButton) *Widget
+	MenuToolButtonSetArrowTooltip       func(t *MenuToolButton, tooltips *Tooltips, tipText, tipPrivate string)
+	MenuToolButtonSetArrowTooltipMarkup func(t *MenuToolButton, markup string)
+	MenuToolButtonSetArrowTooltipText   func(t *MenuToolButton, text string)
+	MenuToolButtonSetMenu               func(t *MenuToolButton, menu *Widget)
 )
 
-func (t *MenuToolButton) GetMenu() *Widget { return menuToolButtonGetMenu(t) }
+func (t *MenuToolButton) GetMenu() *Widget { return MenuToolButtonGetMenu(t) }
 func (t *MenuToolButton) SetArrowTooltip(tooltips *Tooltips, tipText, tipPrivate string) {
-	menuToolButtonSetArrowTooltip(t, tooltips, tipText, tipPrivate)
+	MenuToolButtonSetArrowTooltip(t, tooltips, tipText, tipPrivate)
 }
 func (t *MenuToolButton) SetArrowTooltipMarkup(markup string) {
-	menuToolButtonSetArrowTooltipMarkup(t, markup)
+	MenuToolButtonSetArrowTooltipMarkup(t, markup)
 }
-func (t *MenuToolButton) SetArrowTooltipText(text string) { menuToolButtonSetArrowTooltipText(t, text) }
-func (t *MenuToolButton) SetMenu(menu *Widget)            { menuToolButtonSetMenu(t, menu) }
+func (t *MenuToolButton) SetArrowTooltipText(text string) { MenuToolButtonSetArrowTooltipText(t, text) }
+func (t *MenuToolButton) SetMenu(menu *Widget)            { MenuToolButtonSetMenu(t, menu) }
 
 type MessageType Enum
 
@@ -327,16 +327,16 @@ type Misc struct {
 var (
 	MiscGetType func() O.Type
 
-	miscGetAlignment func(m *Misc, xalign, yalign *float32)
-	miscGetPadding   func(m *Misc, xpad, ypad *int)
-	miscSetAlignment func(m *Misc, xalign, yalign float32)
-	miscSetPadding   func(m *Misc, xpad, ypad int)
+	MiscGetAlignment func(m *Misc, xalign, yalign *float32)
+	MiscGetPadding   func(m *Misc, xpad, ypad *int)
+	MiscSetAlignment func(m *Misc, xalign, yalign float32)
+	MiscSetPadding   func(m *Misc, xpad, ypad int)
 )
 
-func (m *Misc) GetAlignment(xalign, yalign *float32) { miscGetAlignment(m, xalign, yalign) }
-func (m *Misc) GetPadding(xpad, ypad *int)           { miscGetPadding(m, xpad, ypad) }
-func (m *Misc) SetAlignment(xalign, yalign float32)  { miscSetAlignment(m, xalign, yalign) }
-func (m *Misc) SetPadding(xpad, ypad int)            { miscSetPadding(m, xpad, ypad) }
+func (m *Misc) GetAlignment(xalign, yalign *float32) { MiscGetAlignment(m, xalign, yalign) }
+func (m *Misc) GetPadding(xpad, ypad *int)           { MiscGetPadding(m, xpad, ypad) }
+func (m *Misc) SetAlignment(xalign, yalign float32)  { MiscSetAlignment(m, xalign, yalign) }
+func (m *Misc) SetPadding(xpad, ypad int)            { MiscSetPadding(m, xpad, ypad) }
 
 type MiscClass struct {
 	ParentClass WidgetClass
@@ -353,24 +353,24 @@ var (
 	MessageDialogNew           func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
 	MessageDialogNewWithMarkup func(parent *Window, flags DialogFlags, t MessageType, buttons ButtonsType, messageFormat string, v ...VArg) *Widget
 
-	messageDialogFormatSecondaryMarkup func(m *MessageDialog, messageFormat string, v ...VArg)
-	messageDialogFormatSecondaryText   func(m *MessageDialog, messageFormat string, v ...VArg)
-	messageDialogGetImage              func(m *MessageDialog) *Widget
-	messageDialogGetMessageArea        func(m *MessageDialog) *Widget
-	messageDialogSetImage              func(m *MessageDialog, image *Widget)
-	messageDialogSetMarkup             func(m *MessageDialog, str string)
+	MessageDialogFormatSecondaryMarkup func(m *MessageDialog, messageFormat string, v ...VArg)
+	MessageDialogFormatSecondaryText   func(m *MessageDialog, messageFormat string, v ...VArg)
+	MessageDialogGetImage              func(m *MessageDialog) *Widget
+	MessageDialogGetMessageArea        func(m *MessageDialog) *Widget
+	MessageDialogSetImage              func(m *MessageDialog, image *Widget)
+	MessageDialogSetMarkup             func(m *MessageDialog, str string)
 )
 
 func (m *MessageDialog) FormatSecondaryMarkup(messageFormat string, v ...VArg) {
-	messageDialogFormatSecondaryMarkup(m, messageFormat, v)
+	MessageDialogFormatSecondaryMarkup(m, messageFormat, v)
 }
 func (m *MessageDialog) FormatSecondaryText(messageFormat string, v ...VArg) {
-	messageDialogFormatSecondaryText(m, messageFormat, v)
+	MessageDialogFormatSecondaryText(m, messageFormat, v)
 }
-func (m *MessageDialog) GetImage() *Widget       { return messageDialogGetImage(m) }
-func (m *MessageDialog) GetMessageArea() *Widget { return messageDialogGetMessageArea(m) }
-func (m *MessageDialog) SetImage(image *Widget)  { messageDialogSetImage(m, image) }
-func (m *MessageDialog) SetMarkup(str string)    { messageDialogSetMarkup(m, str) }
+func (m *MessageDialog) GetImage() *Widget       { return MessageDialogGetImage(m) }
+func (m *MessageDialog) GetMessageArea() *Widget { return MessageDialogGetMessageArea(m) }
+func (m *MessageDialog) SetImage(image *Widget)  { MessageDialogSetImage(m, image) }
+func (m *MessageDialog) SetMarkup(str string)    { MessageDialogSetMarkup(m, str) }
 
 type MetricType Enum
 
@@ -391,18 +391,18 @@ var (
 	MountOperationGetType func() O.Type
 	MountOperationNew     func(parent *Window) *MountOperation
 
-	mountOperationGetParent func(m *MountOperation) *Window
-	mountOperationGetScreen func(m *MountOperation) *D.Screen
-	mountOperationIsShowing func(m *MountOperation) bool
-	mountOperationSetParent func(m *MountOperation, parent *Window)
-	mountOperationSetScreen func(m *MountOperation, screen *D.Screen)
+	MountOperationGetParent func(m *MountOperation) *Window
+	MountOperationGetScreen func(m *MountOperation) *D.Screen
+	MountOperationIsShowing func(m *MountOperation) bool
+	MountOperationSetParent func(m *MountOperation, parent *Window)
+	MountOperationSetScreen func(m *MountOperation, screen *D.Screen)
 )
 
-func (m *MountOperation) GetParent() *Window         { return mountOperationGetParent(m) }
-func (m *MountOperation) GetScreen() *D.Screen       { return mountOperationGetScreen(m) }
-func (m *MountOperation) IsShowing() bool            { return mountOperationIsShowing(m) }
-func (m *MountOperation) SetParent(parent *Window)   { mountOperationSetParent(m, parent) }
-func (m *MountOperation) SetScreen(screen *D.Screen) { mountOperationSetScreen(m, screen) }
+func (m *MountOperation) GetParent() *Window         { return MountOperationGetParent(m) }
+func (m *MountOperation) GetScreen() *D.Screen       { return MountOperationGetScreen(m) }
+func (m *MountOperation) IsShowing() bool            { return MountOperationIsShowing(m) }
+func (m *MountOperation) SetParent(parent *Window)   { MountOperationSetParent(m, parent) }
+func (m *MountOperation) SetScreen(screen *D.Screen) { MountOperationSetScreen(m, screen) }
 
 type MovementStep Enum
 

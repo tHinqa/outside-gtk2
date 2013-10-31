@@ -17,38 +17,38 @@ type Editable struct{}
 var (
 	EditableGetType func() O.Type
 
-	editableCopyClipboard      func(e *Editable)
-	editableCutClipboard       func(e *Editable)
-	editableDeleteSelection    func(e *Editable)
-	editableDeleteText         func(e *Editable, startPos, endPos int)
-	editableGetChars           func(e *Editable, startPos, endPos int) string
-	editableGetEditable        func(e *Editable) bool
-	editableGetPosition        func(e *Editable) int
-	editableGetSelectionBounds func(e *Editable, startPos, endPos *int) bool
-	editableInsertText         func(e *Editable, newText string, newTextLength int, position *int)
-	editablePasteClipboard     func(e *Editable)
-	editableSelectRegion       func(e *Editable, startPos, endPos int)
-	editableSetEditable        func(e *Editable, isEditable bool)
-	editableSetPosition        func(e *Editable, position int)
+	EditableCopyClipboard      func(e *Editable)
+	EditableCutClipboard       func(e *Editable)
+	EditableDeleteSelection    func(e *Editable)
+	EditableDeleteText         func(e *Editable, startPos, endPos int)
+	EditableGetChars           func(e *Editable, startPos, endPos int) string
+	EditableGetEditable        func(e *Editable) bool
+	EditableGetPosition        func(e *Editable) int
+	EditableGetSelectionBounds func(e *Editable, startPos, endPos *int) bool
+	EditableInsertText         func(e *Editable, newText string, newTextLength int, position *int)
+	EditablePasteClipboard     func(e *Editable)
+	EditableSelectRegion       func(e *Editable, startPos, endPos int)
+	EditableSetEditable        func(e *Editable, isEditable bool)
+	EditableSetPosition        func(e *Editable, position int)
 )
 
-func (e *Editable) CopyClipboard()                       { editableCopyClipboard(e) }
-func (e *Editable) CutClipboard()                        { editableCutClipboard(e) }
-func (e *Editable) DeleteSelection()                     { editableDeleteSelection(e) }
-func (e *Editable) DeleteText(startPos, endPos int)      { editableDeleteText(e, startPos, endPos) }
-func (e *Editable) GetChars(startPos, endPos int) string { return editableGetChars(e, startPos, endPos) }
-func (e *Editable) GetEditable() bool                    { return editableGetEditable(e) }
-func (e *Editable) GetPosition() int                     { return editableGetPosition(e) }
+func (e *Editable) CopyClipboard()                       { EditableCopyClipboard(e) }
+func (e *Editable) CutClipboard()                        { EditableCutClipboard(e) }
+func (e *Editable) DeleteSelection()                     { EditableDeleteSelection(e) }
+func (e *Editable) DeleteText(startPos, endPos int)      { EditableDeleteText(e, startPos, endPos) }
+func (e *Editable) GetChars(startPos, endPos int) string { return EditableGetChars(e, startPos, endPos) }
+func (e *Editable) GetEditable() bool                    { return EditableGetEditable(e) }
+func (e *Editable) GetPosition() int                     { return EditableGetPosition(e) }
 func (e *Editable) GetSelectionBounds(startPos, endPos *int) bool {
-	return editableGetSelectionBounds(e, startPos, endPos)
+	return EditableGetSelectionBounds(e, startPos, endPos)
 }
 func (e *Editable) InsertText(newText string, newTextLength int, position *int) {
-	editableInsertText(e, newText, newTextLength, position)
+	EditableInsertText(e, newText, newTextLength, position)
 }
-func (e *Editable) PasteClipboard()                   { editablePasteClipboard(e) }
-func (e *Editable) SelectRegion(startPos, endPos int) { editableSelectRegion(e, startPos, endPos) }
-func (e *Editable) SetEditable(isEditable bool)       { editableSetEditable(e, isEditable) }
-func (e *Editable) SetPosition(position int)          { editableSetPosition(e, position) }
+func (e *Editable) PasteClipboard()                   { EditablePasteClipboard(e) }
+func (e *Editable) SelectRegion(startPos, endPos int) { EditableSelectRegion(e, startPos, endPos) }
+func (e *Editable) SetEditable(isEditable bool)       { EditableSetEditable(e, isEditable) }
+func (e *Editable) SetPosition(position int)          { EditableSetPosition(e, position) }
 
 type Entry struct {
 	Widget Widget
@@ -122,214 +122,214 @@ var (
 
 	EntryIconPositionGetType func() O.Type
 
-	entryAppendText               func(e *Entry, text string)
-	entryGetActivatesDefault      func(e *Entry) bool
-	entryGetAlignment             func(e *Entry) float32
-	entryGetBuffer                func(e *Entry) *EntryBuffer
-	entryGetCompletion            func(e *Entry) *EntryCompletion
-	entryGetCurrentIconDragSource func(e *Entry) int
-	entryGetCursorHadjustment     func(e *Entry) *Adjustment
-	entryGetHasFrame              func(e *Entry) bool
-	entryGetIconActivatable       func(e *Entry, iconPos EntryIconPosition) bool
-	entryGetIconAtPos             func(e *Entry, x, y int) int
-	entryGetIconGicon             func(e *Entry, iconPos EntryIconPosition) *I.Icon
-	entryGetIconName              func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *D.Pixbuf
-	entryGetIconSensitive         func(e *Entry, iconPos EntryIconPosition) bool
-	entryGetIconStock             func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconStorageType       func(e *Entry, iconPos EntryIconPosition) ImageType
-	entryGetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconTooltipText       func(e *Entry, iconPos EntryIconPosition) string
-	entryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *D.Window
-	entryGetInnerBorder           func(e *Entry) *Border
-	entryGetInvisibleChar         func(e *Entry) T.Gunichar
-	entryGetLayout                func(e *Entry) *P.Layout
-	entryGetLayoutOffsets         func(e *Entry, x, y *int)
-	entryGetMaxLength             func(e *Entry) int
-	entryGetOverwriteMode         func(e *Entry) bool
-	entryGetProgressFraction      func(e *Entry) float64
-	entryGetProgressPulseStep     func(e *Entry) float64
-	entryGetText                  func(e *Entry) string
-	entryGetTextLength            func(e *Entry) uint16
-	entryGetTextWindow            func(e *Entry) *D.Window
-	entryGetVisibility            func(e *Entry) bool
-	entryGetWidthChars            func(e *Entry) int
-	entryImContextFilterKeypress  func(e *Entry, event *D.EventKey) bool
-	entryLayoutIndexToTextIndex   func(e *Entry, layoutIndex int) int
-	entryPrependText              func(e *Entry, text string)
-	entryProgressPulse            func(e *Entry)
-	entryResetImContext           func(e *Entry)
-	entrySelectRegion             func(e *Entry, start, end int)
-	entrySetActivatesDefault      func(e *Entry, setting bool)
-	entrySetAlignment             func(e *Entry, xalign float32)
-	entrySetBuffer                func(e *Entry, buffer *EntryBuffer)
-	entrySetCompletion            func(e *Entry, completion *EntryCompletion)
-	entrySetCursorHadjustment     func(e *Entry, adjustment *Adjustment)
-	entrySetEditable              func(e *Entry, editable bool)
-	entrySetHasFrame              func(e *Entry, setting bool)
-	entrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable bool)
-	entrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction)
-	entrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *I.Icon)
-	entrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
-	entrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *D.Pixbuf)
-	entrySetIconFromStock         func(e *Entry, iconPos EntryIconPosition, stockId string)
-	entrySetIconSensitive         func(e *Entry, iconPos EntryIconPosition, sensitive bool)
-	entrySetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition, tooltip string)
-	entrySetIconTooltipText       func(e *Entry, iconPos EntryIconPosition, tooltip string)
-	entrySetInnerBorder           func(e *Entry, border *Border)
-	entrySetInvisibleChar         func(e *Entry, ch T.Gunichar)
-	entrySetMaxLength             func(e *Entry, max int)
-	entrySetOverwriteMode         func(e *Entry, overwrite bool)
-	entrySetPosition              func(e *Entry, position int)
-	entrySetProgressFraction      func(e *Entry, fraction float64)
-	entrySetProgressPulseStep     func(e *Entry, fraction float64)
-	entrySetText                  func(e *Entry, text string)
-	entrySetVisibility            func(e *Entry, visible bool)
-	entrySetWidthChars            func(e *Entry, nChars int)
-	entryTextIndexToLayoutIndex   func(e *Entry, textIndex int) int
-	entryUnsetInvisibleChar       func(e *Entry)
+	EntryAppendText               func(e *Entry, text string)
+	EntryGetActivatesDefault      func(e *Entry) bool
+	EntryGetAlignment             func(e *Entry) float32
+	EntryGetBuffer                func(e *Entry) *EntryBuffer
+	EntryGetCompletion            func(e *Entry) *EntryCompletion
+	EntryGetCurrentIconDragSource func(e *Entry) int
+	EntryGetCursorHadjustment     func(e *Entry) *Adjustment
+	EntryGetHasFrame              func(e *Entry) bool
+	EntryGetIconActivatable       func(e *Entry, iconPos EntryIconPosition) bool
+	EntryGetIconAtPos             func(e *Entry, x, y int) int
+	EntryGetIconGicon             func(e *Entry, iconPos EntryIconPosition) *I.Icon
+	EntryGetIconName              func(e *Entry, iconPos EntryIconPosition) string
+	EntryGetIconPixbuf            func(e *Entry, iconPos EntryIconPosition) *D.Pixbuf
+	EntryGetIconSensitive         func(e *Entry, iconPos EntryIconPosition) bool
+	EntryGetIconStock             func(e *Entry, iconPos EntryIconPosition) string
+	EntryGetIconStorageType       func(e *Entry, iconPos EntryIconPosition) ImageType
+	EntryGetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition) string
+	EntryGetIconTooltipText       func(e *Entry, iconPos EntryIconPosition) string
+	EntryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *D.Window
+	EntryGetInnerBorder           func(e *Entry) *Border
+	EntryGetInvisibleChar         func(e *Entry) T.Gunichar
+	EntryGetLayout                func(e *Entry) *P.Layout
+	EntryGetLayoutOffsets         func(e *Entry, x, y *int)
+	EntryGetMaxLength             func(e *Entry) int
+	EntryGetOverwriteMode         func(e *Entry) bool
+	EntryGetProgressFraction      func(e *Entry) float64
+	EntryGetProgressPulseStep     func(e *Entry) float64
+	EntryGetText                  func(e *Entry) string
+	EntryGetTextLength            func(e *Entry) uint16
+	EntryGetTextWindow            func(e *Entry) *D.Window
+	EntryGetVisibility            func(e *Entry) bool
+	EntryGetWidthChars            func(e *Entry) int
+	EntryImContextFilterKeypress  func(e *Entry, event *D.EventKey) bool
+	EntryLayoutIndexToTextIndex   func(e *Entry, layoutIndex int) int
+	EntryPrependText              func(e *Entry, text string)
+	EntryProgressPulse            func(e *Entry)
+	EntryResetImContext           func(e *Entry)
+	EntrySelectRegion             func(e *Entry, start, end int)
+	EntrySetActivatesDefault      func(e *Entry, setting bool)
+	EntrySetAlignment             func(e *Entry, xalign float32)
+	EntrySetBuffer                func(e *Entry, buffer *EntryBuffer)
+	EntrySetCompletion            func(e *Entry, completion *EntryCompletion)
+	EntrySetCursorHadjustment     func(e *Entry, adjustment *Adjustment)
+	EntrySetEditable              func(e *Entry, editable bool)
+	EntrySetHasFrame              func(e *Entry, setting bool)
+	EntrySetIconActivatable       func(e *Entry, iconPos EntryIconPosition, activatable bool)
+	EntrySetIconDragSource        func(e *Entry, iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction)
+	EntrySetIconFromGicon         func(e *Entry, iconPos EntryIconPosition, icon *I.Icon)
+	EntrySetIconFromIconName      func(e *Entry, iconPos EntryIconPosition, iconName string)
+	EntrySetIconFromPixbuf        func(e *Entry, iconPos EntryIconPosition, pixbuf *D.Pixbuf)
+	EntrySetIconFromStock         func(e *Entry, iconPos EntryIconPosition, stockId string)
+	EntrySetIconSensitive         func(e *Entry, iconPos EntryIconPosition, sensitive bool)
+	EntrySetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition, tooltip string)
+	EntrySetIconTooltipText       func(e *Entry, iconPos EntryIconPosition, tooltip string)
+	EntrySetInnerBorder           func(e *Entry, border *Border)
+	EntrySetInvisibleChar         func(e *Entry, ch T.Gunichar)
+	EntrySetMaxLength             func(e *Entry, max int)
+	EntrySetOverwriteMode         func(e *Entry, overwrite bool)
+	EntrySetPosition              func(e *Entry, position int)
+	EntrySetProgressFraction      func(e *Entry, fraction float64)
+	EntrySetProgressPulseStep     func(e *Entry, fraction float64)
+	EntrySetText                  func(e *Entry, text string)
+	EntrySetVisibility            func(e *Entry, visible bool)
+	EntrySetWidthChars            func(e *Entry, nChars int)
+	EntryTextIndexToLayoutIndex   func(e *Entry, textIndex int) int
+	EntryUnsetInvisibleChar       func(e *Entry)
 )
 
-func (e *Entry) AppendText(text string)            { entryAppendText(e, text) }
-func (e *Entry) GetActivatesDefault() bool         { return entryGetActivatesDefault(e) }
-func (e *Entry) GetAlignment() float32             { return entryGetAlignment(e) }
-func (e *Entry) GetBuffer() *EntryBuffer           { return entryGetBuffer(e) }
-func (e *Entry) GetCompletion() *EntryCompletion   { return entryGetCompletion(e) }
-func (e *Entry) GetCurrentIconDragSource() int     { return entryGetCurrentIconDragSource(e) }
-func (e *Entry) GetCursorHadjustment() *Adjustment { return entryGetCursorHadjustment(e) }
-func (e *Entry) GetHasFrame() bool                 { return entryGetHasFrame(e) }
+func (e *Entry) AppendText(text string)            { EntryAppendText(e, text) }
+func (e *Entry) GetActivatesDefault() bool         { return EntryGetActivatesDefault(e) }
+func (e *Entry) GetAlignment() float32             { return EntryGetAlignment(e) }
+func (e *Entry) GetBuffer() *EntryBuffer           { return EntryGetBuffer(e) }
+func (e *Entry) GetCompletion() *EntryCompletion   { return EntryGetCompletion(e) }
+func (e *Entry) GetCurrentIconDragSource() int     { return EntryGetCurrentIconDragSource(e) }
+func (e *Entry) GetCursorHadjustment() *Adjustment { return EntryGetCursorHadjustment(e) }
+func (e *Entry) GetHasFrame() bool                 { return EntryGetHasFrame(e) }
 func (e *Entry) GetIconActivatable(iconPos EntryIconPosition) bool {
-	return entryGetIconActivatable(e, iconPos)
+	return EntryGetIconActivatable(e, iconPos)
 }
-func (e *Entry) GetIconAtPos(x, y int) int                      { return entryGetIconAtPos(e, x, y) }
-func (e *Entry) GetIconGicon(iconPos EntryIconPosition) *I.Icon { return entryGetIconGicon(e, iconPos) }
-func (e *Entry) GetIconName(iconPos EntryIconPosition) string   { return entryGetIconName(e, iconPos) }
+func (e *Entry) GetIconAtPos(x, y int) int                      { return EntryGetIconAtPos(e, x, y) }
+func (e *Entry) GetIconGicon(iconPos EntryIconPosition) *I.Icon { return EntryGetIconGicon(e, iconPos) }
+func (e *Entry) GetIconName(iconPos EntryIconPosition) string   { return EntryGetIconName(e, iconPos) }
 func (e *Entry) GetIconPixbuf(iconPos EntryIconPosition) *D.Pixbuf {
-	return entryGetIconPixbuf(e, iconPos)
+	return EntryGetIconPixbuf(e, iconPos)
 }
 func (e *Entry) GetIconSensitive(iconPos EntryIconPosition) bool {
-	return entryGetIconSensitive(e, iconPos)
+	return EntryGetIconSensitive(e, iconPos)
 }
-func (e *Entry) GetIconStock(iconPos EntryIconPosition) string { return entryGetIconStock(e, iconPos) }
+func (e *Entry) GetIconStock(iconPos EntryIconPosition) string { return EntryGetIconStock(e, iconPos) }
 func (e *Entry) GetIconStorageType(iconPos EntryIconPosition) ImageType {
-	return entryGetIconStorageType(e, iconPos)
+	return EntryGetIconStorageType(e, iconPos)
 }
 func (e *Entry) GetIconTooltipMarkup(iconPos EntryIconPosition) string {
-	return entryGetIconTooltipMarkup(e, iconPos)
+	return EntryGetIconTooltipMarkup(e, iconPos)
 }
 func (e *Entry) GetIconTooltipText(iconPos EntryIconPosition) string {
-	return entryGetIconTooltipText(e, iconPos)
+	return EntryGetIconTooltipText(e, iconPos)
 }
 func (e *Entry) GetIconWindow(iconPos EntryIconPosition) *D.Window {
-	return entryGetIconWindow(e, iconPos)
+	return EntryGetIconWindow(e, iconPos)
 }
-func (e *Entry) GetInnerBorder() *Border       { return entryGetInnerBorder(e) }
-func (e *Entry) GetInvisibleChar() T.Gunichar  { return entryGetInvisibleChar(e) }
-func (e *Entry) GetLayout() *P.Layout          { return entryGetLayout(e) }
-func (e *Entry) GetLayoutOffsets(x, y *int)    { entryGetLayoutOffsets(e, x, y) }
-func (e *Entry) GetMaxLength() int             { return entryGetMaxLength(e) }
-func (e *Entry) GetOverwriteMode() bool        { return entryGetOverwriteMode(e) }
-func (e *Entry) GetProgressFraction() float64  { return entryGetProgressFraction(e) }
-func (e *Entry) GetProgressPulseStep() float64 { return entryGetProgressPulseStep(e) }
-func (e *Entry) GetText() string               { return entryGetText(e) }
-func (e *Entry) GetTextLength() uint16         { return entryGetTextLength(e) }
-func (e *Entry) GetTextWindow() *D.Window      { return entryGetTextWindow(e) }
-func (e *Entry) GetVisibility() bool           { return entryGetVisibility(e) }
-func (e *Entry) GetWidthChars() int            { return entryGetWidthChars(e) }
+func (e *Entry) GetInnerBorder() *Border       { return EntryGetInnerBorder(e) }
+func (e *Entry) GetInvisibleChar() T.Gunichar  { return EntryGetInvisibleChar(e) }
+func (e *Entry) GetLayout() *P.Layout          { return EntryGetLayout(e) }
+func (e *Entry) GetLayoutOffsets(x, y *int)    { EntryGetLayoutOffsets(e, x, y) }
+func (e *Entry) GetMaxLength() int             { return EntryGetMaxLength(e) }
+func (e *Entry) GetOverwriteMode() bool        { return EntryGetOverwriteMode(e) }
+func (e *Entry) GetProgressFraction() float64  { return EntryGetProgressFraction(e) }
+func (e *Entry) GetProgressPulseStep() float64 { return EntryGetProgressPulseStep(e) }
+func (e *Entry) GetText() string               { return EntryGetText(e) }
+func (e *Entry) GetTextLength() uint16         { return EntryGetTextLength(e) }
+func (e *Entry) GetTextWindow() *D.Window      { return EntryGetTextWindow(e) }
+func (e *Entry) GetVisibility() bool           { return EntryGetVisibility(e) }
+func (e *Entry) GetWidthChars() int            { return EntryGetWidthChars(e) }
 func (e *Entry) ImContextFilterKeypress(event *D.EventKey) bool {
-	return entryImContextFilterKeypress(e, event)
+	return EntryImContextFilterKeypress(e, event)
 }
 func (e *Entry) LayoutIndexToTextIndex(layoutIndex int) int {
-	return entryLayoutIndexToTextIndex(e, layoutIndex)
+	return EntryLayoutIndexToTextIndex(e, layoutIndex)
 }
-func (e *Entry) PrependText(text string)                     { entryPrependText(e, text) }
-func (e *Entry) ProgressPulse()                              { entryProgressPulse(e) }
-func (e *Entry) ResetImContext()                             { entryResetImContext(e) }
-func (e *Entry) SelectRegion(start, end int)                 { entrySelectRegion(e, start, end) }
-func (e *Entry) SetActivatesDefault(setting bool)            { entrySetActivatesDefault(e, setting) }
-func (e *Entry) SetAlignment(xalign float32)                 { entrySetAlignment(e, xalign) }
-func (e *Entry) SetBuffer(buffer *EntryBuffer)               { entrySetBuffer(e, buffer) }
-func (e *Entry) SetCompletion(completion *EntryCompletion)   { entrySetCompletion(e, completion) }
-func (e *Entry) SetCursorHadjustment(adjustment *Adjustment) { entrySetCursorHadjustment(e, adjustment) }
-func (e *Entry) SetEditable(editable bool)                   { entrySetEditable(e, editable) }
-func (e *Entry) SetHasFrame(setting bool)                    { entrySetHasFrame(e, setting) }
+func (e *Entry) PrependText(text string)                     { EntryPrependText(e, text) }
+func (e *Entry) ProgressPulse()                              { EntryProgressPulse(e) }
+func (e *Entry) ResetImContext()                             { EntryResetImContext(e) }
+func (e *Entry) SelectRegion(start, end int)                 { EntrySelectRegion(e, start, end) }
+func (e *Entry) SetActivatesDefault(setting bool)            { EntrySetActivatesDefault(e, setting) }
+func (e *Entry) SetAlignment(xalign float32)                 { EntrySetAlignment(e, xalign) }
+func (e *Entry) SetBuffer(buffer *EntryBuffer)               { EntrySetBuffer(e, buffer) }
+func (e *Entry) SetCompletion(completion *EntryCompletion)   { EntrySetCompletion(e, completion) }
+func (e *Entry) SetCursorHadjustment(adjustment *Adjustment) { EntrySetCursorHadjustment(e, adjustment) }
+func (e *Entry) SetEditable(editable bool)                   { EntrySetEditable(e, editable) }
+func (e *Entry) SetHasFrame(setting bool)                    { EntrySetHasFrame(e, setting) }
 func (e *Entry) SetIconActivatable(iconPos EntryIconPosition, activatable bool) {
-	entrySetIconActivatable(e, iconPos, activatable)
+	EntrySetIconActivatable(e, iconPos, activatable)
 }
 func (e *Entry) SetIconDragSource(iconPos EntryIconPosition, targetList *TargetList, actions D.DragAction) {
-	entrySetIconDragSource(e, iconPos, targetList, actions)
+	EntrySetIconDragSource(e, iconPos, targetList, actions)
 }
 func (e *Entry) SetIconFromGicon(iconPos EntryIconPosition, icon *I.Icon) {
-	entrySetIconFromGicon(e, iconPos, icon)
+	EntrySetIconFromGicon(e, iconPos, icon)
 }
 func (e *Entry) SetIconFromIconName(iconPos EntryIconPosition, iconName string) {
-	entrySetIconFromIconName(e, iconPos, iconName)
+	EntrySetIconFromIconName(e, iconPos, iconName)
 }
 func (e *Entry) SetIconFromPixbuf(iconPos EntryIconPosition, pixbuf *D.Pixbuf) {
-	entrySetIconFromPixbuf(e, iconPos, pixbuf)
+	EntrySetIconFromPixbuf(e, iconPos, pixbuf)
 }
 func (e *Entry) SetIconFromStock(iconPos EntryIconPosition, stockId string) {
-	entrySetIconFromStock(e, iconPos, stockId)
+	EntrySetIconFromStock(e, iconPos, stockId)
 }
 func (e *Entry) SetIconSensitive(iconPos EntryIconPosition, sensitive bool) {
-	entrySetIconSensitive(e, iconPos, sensitive)
+	EntrySetIconSensitive(e, iconPos, sensitive)
 }
 func (e *Entry) SetIconTooltipMarkup(iconPos EntryIconPosition, tooltip string) {
-	entrySetIconTooltipMarkup(e, iconPos, tooltip)
+	EntrySetIconTooltipMarkup(e, iconPos, tooltip)
 }
 func (e *Entry) SetIconTooltipText(iconPos EntryIconPosition, tooltip string) {
-	entrySetIconTooltipText(e, iconPos, tooltip)
+	EntrySetIconTooltipText(e, iconPos, tooltip)
 }
-func (e *Entry) SetInnerBorder(border *Border)         { entrySetInnerBorder(e, border) }
-func (e *Entry) SetInvisibleChar(ch T.Gunichar)        { entrySetInvisibleChar(e, ch) }
-func (e *Entry) SetMaxLength(max int)                  { entrySetMaxLength(e, max) }
-func (e *Entry) SetOverwriteMode(overwrite bool)       { entrySetOverwriteMode(e, overwrite) }
-func (e *Entry) SetPosition(position int)              { entrySetPosition(e, position) }
-func (e *Entry) SetProgressFraction(fraction float64)  { entrySetProgressFraction(e, fraction) }
-func (e *Entry) SetProgressPulseStep(fraction float64) { entrySetProgressPulseStep(e, fraction) }
-func (e *Entry) SetText(text string)                   { entrySetText(e, text) }
-func (e *Entry) SetVisibility(visible bool)            { entrySetVisibility(e, visible) }
-func (e *Entry) SetWidthChars(nChars int)              { entrySetWidthChars(e, nChars) }
+func (e *Entry) SetInnerBorder(border *Border)         { EntrySetInnerBorder(e, border) }
+func (e *Entry) SetInvisibleChar(ch T.Gunichar)        { EntrySetInvisibleChar(e, ch) }
+func (e *Entry) SetMaxLength(max int)                  { EntrySetMaxLength(e, max) }
+func (e *Entry) SetOverwriteMode(overwrite bool)       { EntrySetOverwriteMode(e, overwrite) }
+func (e *Entry) SetPosition(position int)              { EntrySetPosition(e, position) }
+func (e *Entry) SetProgressFraction(fraction float64)  { EntrySetProgressFraction(e, fraction) }
+func (e *Entry) SetProgressPulseStep(fraction float64) { EntrySetProgressPulseStep(e, fraction) }
+func (e *Entry) SetText(text string)                   { EntrySetText(e, text) }
+func (e *Entry) SetVisibility(visible bool)            { EntrySetVisibility(e, visible) }
+func (e *Entry) SetWidthChars(nChars int)              { EntrySetWidthChars(e, nChars) }
 func (e *Entry) TextIndexToLayoutIndex(textIndex int) int {
-	return entryTextIndexToLayoutIndex(e, textIndex)
+	return EntryTextIndexToLayoutIndex(e, textIndex)
 }
-func (e *Entry) UnsetInvisibleChar() { entryUnsetInvisibleChar(e) }
+func (e *Entry) UnsetInvisibleChar() { EntryUnsetInvisibleChar(e) }
 
 var (
 	EntryBufferGetType func() O.Type
 	EntryBufferNew     func(
 		initialChars string, nInitialChars int) *EntryBuffer
 
-	entryBufferGetBytes         func(e *EntryBuffer) T.Gsize
-	entryBufferGetLength        func(e *EntryBuffer) uint
-	entryBufferGetText          func(e *EntryBuffer) string
-	entryBufferSetText          func(e *EntryBuffer, chars string, nChars int)
-	entryBufferSetMaxLength     func(e *EntryBuffer, maxLength int)
-	entryBufferGetMaxLength     func(e *EntryBuffer) int
-	entryBufferInsertText       func(e *EntryBuffer, position uint, chars string, nChars int) uint
-	entryBufferDeleteText       func(e *EntryBuffer, position uint, nChars int) uint
-	entryBufferEmitInsertedText func(e *EntryBuffer, position uint, chars string, nChars uint)
-	entryBufferEmitDeletedText  func(e *EntryBuffer, position uint, nChars uint)
+	EntryBufferGetBytes         func(e *EntryBuffer) T.Gsize
+	EntryBufferGetLength        func(e *EntryBuffer) uint
+	EntryBufferGetText          func(e *EntryBuffer) string
+	EntryBufferSetText          func(e *EntryBuffer, chars string, nChars int)
+	EntryBufferSetMaxLength     func(e *EntryBuffer, maxLength int)
+	EntryBufferGetMaxLength     func(e *EntryBuffer) int
+	EntryBufferInsertText       func(e *EntryBuffer, position uint, chars string, nChars int) uint
+	EntryBufferDeleteText       func(e *EntryBuffer, position uint, nChars int) uint
+	EntryBufferEmitInsertedText func(e *EntryBuffer, position uint, chars string, nChars uint)
+	EntryBufferEmitDeletedText  func(e *EntryBuffer, position uint, nChars uint)
 )
 
 func (e *EntryBuffer) DeleteText(position uint, nChars int) uint {
-	return entryBufferDeleteText(e, position, nChars)
+	return EntryBufferDeleteText(e, position, nChars)
 }
 func (e *EntryBuffer) EmitDeletedText(position uint, nChars uint) {
-	entryBufferEmitDeletedText(e, position, nChars)
+	EntryBufferEmitDeletedText(e, position, nChars)
 }
 func (e *EntryBuffer) EmitInsertedText(position uint, chars string, nChars uint) {
-	entryBufferEmitInsertedText(e, position, chars, nChars)
+	EntryBufferEmitInsertedText(e, position, chars, nChars)
 }
-func (e *EntryBuffer) GetBytes() T.Gsize { return entryBufferGetBytes(e) }
-func (e *EntryBuffer) GetLength() uint   { return entryBufferGetLength(e) }
-func (e *EntryBuffer) GetMaxLength() int { return entryBufferGetMaxLength(e) }
-func (e *EntryBuffer) GetText() string   { return entryBufferGetText(e) }
+func (e *EntryBuffer) GetBytes() T.Gsize { return EntryBufferGetBytes(e) }
+func (e *EntryBuffer) GetLength() uint   { return EntryBufferGetLength(e) }
+func (e *EntryBuffer) GetMaxLength() int { return EntryBufferGetMaxLength(e) }
+func (e *EntryBuffer) GetText() string   { return EntryBufferGetText(e) }
 func (e *EntryBuffer) InsertText(position uint, chars string, nChars int) uint {
-	return entryBufferInsertText(e, position, chars, nChars)
+	return EntryBufferInsertText(e, position, chars, nChars)
 }
-func (e *EntryBuffer) SetMaxLength(maxLength int)       { entryBufferSetMaxLength(e, maxLength) }
-func (e *EntryBuffer) SetText(chars string, nChars int) { entryBufferSetText(e, chars, nChars) }
+func (e *EntryBuffer) SetMaxLength(maxLength int)       { EntryBufferSetMaxLength(e, maxLength) }
+func (e *EntryBuffer) SetText(chars string, nChars int) { EntryBufferSetText(e, chars, nChars) }
 
 type (
 	GtkEntryCompletion struct {
@@ -348,78 +348,78 @@ var (
 	EntryCompletionGetType func() O.Type
 	EntryCompletionNew     func() *EntryCompletion
 
-	entryCompletionComplete            func(completion *EntryCompletion)
-	entryCompletionDeleteAction        func(completion *EntryCompletion, index int)
-	entryCompletionGetCompletionPrefix func(completion *EntryCompletion) string
-	entryCompletionGetEntry            func(completion *EntryCompletion) *Widget
-	entryCompletionGetInlineCompletion func(completion *EntryCompletion) bool
-	entryCompletionGetInlineSelection  func(completion *EntryCompletion) bool
-	entryCompletionGetMinimumKeyLength func(completion *EntryCompletion) int
-	entryCompletionGetModel            func(completion *EntryCompletion) *TreeModel
-	entryCompletionGetPopupCompletion  func(completion *EntryCompletion) bool
-	entryCompletionGetPopupSetWidth    func(completion *EntryCompletion) bool
-	entryCompletionGetPopupSingleMatch func(completion *EntryCompletion) bool
-	entryCompletionGetTextColumn       func(completion *EntryCompletion) int
-	entryCompletionInsertActionMarkup  func(completion *EntryCompletion, index int, markup string)
-	entryCompletionInsertActionText    func(completion *EntryCompletion, index int, text string)
-	entryCompletionInsertPrefix        func(completion *EntryCompletion)
-	entryCompletionSetInlineCompletion func(completion *EntryCompletion, inlineCompletion bool)
-	entryCompletionSetInlineSelection  func(completion *EntryCompletion, inlineSelection bool)
-	entryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify)
-	entryCompletionSetMinimumKeyLength func(completion *EntryCompletion, length int)
-	entryCompletionSetModel            func(completion *EntryCompletion, model *TreeModel)
-	entryCompletionSetPopupCompletion  func(completion *EntryCompletion, popupCompletion bool)
-	entryCompletionSetPopupSetWidth    func(completion *EntryCompletion, popupSetWidth bool)
-	entryCompletionSetPopupSingleMatch func(completion *EntryCompletion, popupSingleMatch bool)
-	entryCompletionSetTextColumn       func(completion *EntryCompletion, column int)
+	EntryCompletionComplete            func(completion *EntryCompletion)
+	EntryCompletionDeleteAction        func(completion *EntryCompletion, index int)
+	EntryCompletionGetCompletionPrefix func(completion *EntryCompletion) string
+	EntryCompletionGetEntry            func(completion *EntryCompletion) *Widget
+	EntryCompletionGetInlineCompletion func(completion *EntryCompletion) bool
+	EntryCompletionGetInlineSelection  func(completion *EntryCompletion) bool
+	EntryCompletionGetMinimumKeyLength func(completion *EntryCompletion) int
+	EntryCompletionGetModel            func(completion *EntryCompletion) *TreeModel
+	EntryCompletionGetPopupCompletion  func(completion *EntryCompletion) bool
+	EntryCompletionGetPopupSetWidth    func(completion *EntryCompletion) bool
+	EntryCompletionGetPopupSingleMatch func(completion *EntryCompletion) bool
+	EntryCompletionGetTextColumn       func(completion *EntryCompletion) int
+	EntryCompletionInsertActionMarkup  func(completion *EntryCompletion, index int, markup string)
+	EntryCompletionInsertActionText    func(completion *EntryCompletion, index int, text string)
+	EntryCompletionInsertPrefix        func(completion *EntryCompletion)
+	EntryCompletionSetInlineCompletion func(completion *EntryCompletion, inlineCompletion bool)
+	EntryCompletionSetInlineSelection  func(completion *EntryCompletion, inlineSelection bool)
+	EntryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify)
+	EntryCompletionSetMinimumKeyLength func(completion *EntryCompletion, length int)
+	EntryCompletionSetModel            func(completion *EntryCompletion, model *TreeModel)
+	EntryCompletionSetPopupCompletion  func(completion *EntryCompletion, popupCompletion bool)
+	EntryCompletionSetPopupSetWidth    func(completion *EntryCompletion, popupSetWidth bool)
+	EntryCompletionSetPopupSingleMatch func(completion *EntryCompletion, popupSingleMatch bool)
+	EntryCompletionSetTextColumn       func(completion *EntryCompletion, column int)
 )
 
-func (e *EntryCompletion) Complete()                   { entryCompletionComplete(e) }
-func (e *EntryCompletion) DeleteAction(index int)      { entryCompletionDeleteAction(e, index) }
-func (e *EntryCompletion) GetCompletionPrefix() string { return entryCompletionGetCompletionPrefix(e) }
-func (e *EntryCompletion) GetEntry() *Widget           { return entryCompletionGetEntry(e) }
+func (e *EntryCompletion) Complete()                   { EntryCompletionComplete(e) }
+func (e *EntryCompletion) DeleteAction(index int)      { EntryCompletionDeleteAction(e, index) }
+func (e *EntryCompletion) GetCompletionPrefix() string { return EntryCompletionGetCompletionPrefix(e) }
+func (e *EntryCompletion) GetEntry() *Widget           { return EntryCompletionGetEntry(e) }
 func (e *EntryCompletion) GetInlineCompletion() bool {
-	return entryCompletionGetInlineCompletion(e)
+	return EntryCompletionGetInlineCompletion(e)
 }
-func (e *EntryCompletion) GetInlineSelection() bool { return entryCompletionGetInlineSelection(e) }
-func (e *EntryCompletion) GetMinimumKeyLength() int { return entryCompletionGetMinimumKeyLength(e) }
-func (e *EntryCompletion) GetModel() *TreeModel     { return entryCompletionGetModel(e) }
-func (e *EntryCompletion) GetPopupCompletion() bool { return entryCompletionGetPopupCompletion(e) }
-func (e *EntryCompletion) GetPopupSetWidth() bool   { return entryCompletionGetPopupSetWidth(e) }
+func (e *EntryCompletion) GetInlineSelection() bool { return EntryCompletionGetInlineSelection(e) }
+func (e *EntryCompletion) GetMinimumKeyLength() int { return EntryCompletionGetMinimumKeyLength(e) }
+func (e *EntryCompletion) GetModel() *TreeModel     { return EntryCompletionGetModel(e) }
+func (e *EntryCompletion) GetPopupCompletion() bool { return EntryCompletionGetPopupCompletion(e) }
+func (e *EntryCompletion) GetPopupSetWidth() bool   { return EntryCompletionGetPopupSetWidth(e) }
 func (e *EntryCompletion) GetPopupSingleMatch() bool {
-	return entryCompletionGetPopupSingleMatch(e)
+	return EntryCompletionGetPopupSingleMatch(e)
 }
-func (e *EntryCompletion) GetTextColumn() int { return entryCompletionGetTextColumn(e) }
+func (e *EntryCompletion) GetTextColumn() int { return EntryCompletionGetTextColumn(e) }
 func (e *EntryCompletion) InsertActionMarkup(index int, markup string) {
-	entryCompletionInsertActionMarkup(e, index, markup)
+	EntryCompletionInsertActionMarkup(e, index, markup)
 }
 func (e *EntryCompletion) InsertActionText(index int, text string) {
-	entryCompletionInsertActionText(e, index, text)
+	EntryCompletionInsertActionText(e, index, text)
 }
-func (e *EntryCompletion) InsertPrefix() { entryCompletionInsertPrefix(e) }
+func (e *EntryCompletion) InsertPrefix() { EntryCompletionInsertPrefix(e) }
 func (e *EntryCompletion) SetInlineCompletion(inlineCompletion bool) {
-	entryCompletionSetInlineCompletion(e, inlineCompletion)
+	EntryCompletionSetInlineCompletion(e, inlineCompletion)
 }
 func (e *EntryCompletion) SetInlineSelection(inlineSelection bool) {
-	entryCompletionSetInlineSelection(e, inlineSelection)
+	EntryCompletionSetInlineSelection(e, inlineSelection)
 }
 func (e *EntryCompletion) SetMatchFunc(f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify) {
-	entryCompletionSetMatchFunc(e, f, funcData, funcNotify)
+	EntryCompletionSetMatchFunc(e, f, funcData, funcNotify)
 }
 func (e *EntryCompletion) SetMinimumKeyLength(length int) {
-	entryCompletionSetMinimumKeyLength(e, length)
+	EntryCompletionSetMinimumKeyLength(e, length)
 }
-func (e *EntryCompletion) SetModel(model *TreeModel) { entryCompletionSetModel(e, model) }
+func (e *EntryCompletion) SetModel(model *TreeModel) { EntryCompletionSetModel(e, model) }
 func (e *EntryCompletion) SetPopupCompletion(popupCompletion bool) {
-	entryCompletionSetPopupCompletion(e, popupCompletion)
+	EntryCompletionSetPopupCompletion(e, popupCompletion)
 }
 func (e *EntryCompletion) SetPopupSetWidth(popupSetWidth bool) {
-	entryCompletionSetPopupSetWidth(e, popupSetWidth)
+	EntryCompletionSetPopupSetWidth(e, popupSetWidth)
 }
 func (e *EntryCompletion) SetPopupSingleMatch(popupSingleMatch bool) {
-	entryCompletionSetPopupSingleMatch(e, popupSingleMatch)
+	EntryCompletionSetPopupSingleMatch(e, popupSingleMatch)
 }
-func (e *EntryCompletion) SetTextColumn(column int) { entryCompletionSetTextColumn(e, column) }
+func (e *EntryCompletion) SetTextColumn(column int) { EntryCompletionSetTextColumn(e, column) }
 
 type EnumValue O.EnumValue
 
@@ -429,17 +429,17 @@ var (
 	EventBoxGetType func() O.Type
 	EventBoxNew     func() *Widget
 
-	eventBoxGetAboveChild    func(e *EventBox) bool
-	eventBoxGetVisibleWindow func(e *EventBox) bool
-	eventBoxSetAboveChild    func(e *EventBox, aboveChild bool)
-	eventBoxSetVisibleWindow func(e *EventBox, visibleWindow bool)
+	EventBoxGetAboveChild    func(e *EventBox) bool
+	EventBoxGetVisibleWindow func(e *EventBox) bool
+	EventBoxSetAboveChild    func(e *EventBox, aboveChild bool)
+	EventBoxSetVisibleWindow func(e *EventBox, visibleWindow bool)
 )
 
-func (e *EventBox) GetAboveChild() bool           { return eventBoxGetAboveChild(e) }
-func (e *EventBox) GetVisibleWindow() bool        { return eventBoxGetVisibleWindow(e) }
-func (e *EventBox) SetAboveChild(aboveChild bool) { eventBoxSetAboveChild(e, aboveChild) }
+func (e *EventBox) GetAboveChild() bool           { return EventBoxGetAboveChild(e) }
+func (e *EventBox) GetVisibleWindow() bool        { return EventBoxGetVisibleWindow(e) }
+func (e *EventBox) SetAboveChild(aboveChild bool) { EventBoxSetAboveChild(e, aboveChild) }
 func (e *EventBox) SetVisibleWindow(visibleWindow bool) {
-	eventBoxSetVisibleWindow(e, visibleWindow)
+	EventBoxSetVisibleWindow(e, visibleWindow)
 }
 
 type Expander struct {
@@ -463,33 +463,33 @@ var (
 
 	ExpanderStyleGetType func() O.Type
 
-	expanderSetExpanded     func(e *Expander, expanded bool)
-	expanderGetExpanded     func(e *Expander) bool
-	expanderSetSpacing      func(e *Expander, spacing int)
-	expanderGetSpacing      func(e *Expander) int
-	expanderSetLabel        func(e *Expander, label string)
-	expanderGetLabel        func(e *Expander) string
-	expanderSetUseUnderline func(e *Expander, useUnderline bool)
-	expanderGetUseUnderline func(e *Expander) bool
-	expanderSetUseMarkup    func(e *Expander, useMarkup bool)
-	expanderGetUseMarkup    func(e *Expander) bool
-	expanderSetLabelWidget  func(e *Expander, labelWidget *Widget)
-	expanderGetLabelWidget  func(e *Expander) *Widget
-	expanderSetLabelFill    func(e *Expander, labelFill bool)
-	expanderGetLabelFill    func(e *Expander) bool
+	ExpanderSetExpanded     func(e *Expander, expanded bool)
+	ExpanderGetExpanded     func(e *Expander) bool
+	ExpanderSetSpacing      func(e *Expander, spacing int)
+	ExpanderGetSpacing      func(e *Expander) int
+	ExpanderSetLabel        func(e *Expander, label string)
+	ExpanderGetLabel        func(e *Expander) string
+	ExpanderSetUseUnderline func(e *Expander, useUnderline bool)
+	ExpanderGetUseUnderline func(e *Expander) bool
+	ExpanderSetUseMarkup    func(e *Expander, useMarkup bool)
+	ExpanderGetUseMarkup    func(e *Expander) bool
+	ExpanderSetLabelWidget  func(e *Expander, labelWidget *Widget)
+	ExpanderGetLabelWidget  func(e *Expander) *Widget
+	ExpanderSetLabelFill    func(e *Expander, labelFill bool)
+	ExpanderGetLabelFill    func(e *Expander) bool
 )
 
-func (e *Expander) GetExpanded() bool                  { return expanderGetExpanded(e) }
-func (e *Expander) GetLabel() string                   { return expanderGetLabel(e) }
-func (e *Expander) GetLabelFill() bool                 { return expanderGetLabelFill(e) }
-func (e *Expander) GetLabelWidget() *Widget            { return expanderGetLabelWidget(e) }
-func (e *Expander) GetSpacing() int                    { return expanderGetSpacing(e) }
-func (e *Expander) GetUseMarkup() bool                 { return expanderGetUseMarkup(e) }
-func (e *Expander) GetUseUnderline() bool              { return expanderGetUseUnderline(e) }
-func (e *Expander) SetExpanded(expanded bool)          { expanderSetExpanded(e, expanded) }
-func (e *Expander) SetLabel(label string)              { expanderSetLabel(e, label) }
-func (e *Expander) SetLabelFill(labelFill bool)        { expanderSetLabelFill(e, labelFill) }
-func (e *Expander) SetLabelWidget(labelWidget *Widget) { expanderSetLabelWidget(e, labelWidget) }
-func (e *Expander) SetSpacing(spacing int)             { expanderSetSpacing(e, spacing) }
-func (e *Expander) SetUseMarkup(useMarkup bool)        { expanderSetUseMarkup(e, useMarkup) }
-func (e *Expander) SetUseUnderline(useUnderline bool)  { expanderSetUseUnderline(e, useUnderline) }
+func (e *Expander) GetExpanded() bool                  { return ExpanderGetExpanded(e) }
+func (e *Expander) GetLabel() string                   { return ExpanderGetLabel(e) }
+func (e *Expander) GetLabelFill() bool                 { return ExpanderGetLabelFill(e) }
+func (e *Expander) GetLabelWidget() *Widget            { return ExpanderGetLabelWidget(e) }
+func (e *Expander) GetSpacing() int                    { return ExpanderGetSpacing(e) }
+func (e *Expander) GetUseMarkup() bool                 { return ExpanderGetUseMarkup(e) }
+func (e *Expander) GetUseUnderline() bool              { return ExpanderGetUseUnderline(e) }
+func (e *Expander) SetExpanded(expanded bool)          { ExpanderSetExpanded(e, expanded) }
+func (e *Expander) SetLabel(label string)              { ExpanderSetLabel(e, label) }
+func (e *Expander) SetLabelFill(labelFill bool)        { ExpanderSetLabelFill(e, labelFill) }
+func (e *Expander) SetLabelWidget(labelWidget *Widget) { ExpanderSetLabelWidget(e, labelWidget) }
+func (e *Expander) SetSpacing(spacing int)             { ExpanderSetSpacing(e, spacing) }
+func (e *Expander) SetUseMarkup(useMarkup bool)        { ExpanderSetUseMarkup(e, useMarkup) }
+func (e *Expander) SetUseUnderline(useUnderline bool)  { ExpanderSetUseUnderline(e, useUnderline) }

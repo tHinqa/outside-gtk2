@@ -20,54 +20,54 @@ var (
 
 	CancellableGetCurrent func() *Cancellable
 
-	cancellableCancel              func(c *Cancellable)
-	cancellableConnect             func(c *Cancellable, callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong
-	cancellableDisconnect          func(c *Cancellable, handlerId T.Gulong)
-	cancellableGetFd               func(c *Cancellable) int
-	cancellableIsCancelled         func(c *Cancellable) bool
-	cancellableMakePollfd          func(c *Cancellable, pollfd *T.GPollFD) bool
-	cancellablePopCurrent          func(c *Cancellable)
-	cancellablePushCurrent         func(c *Cancellable)
-	cancellableReleaseFd           func(c *Cancellable)
-	cancellableReset               func(c *Cancellable)
-	cancellableSetErrorIfCancelled func(c *Cancellable, err **T.GError) bool
-	cancellableSourceNew           func(c *Cancellable) *T.GSource
+	CancellableCancel              func(c *Cancellable)
+	CancellableConnect             func(c *Cancellable, callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong
+	CancellableDisconnect          func(c *Cancellable, handlerId T.Gulong)
+	CancellableGetFd               func(c *Cancellable) int
+	CancellableIsCancelled         func(c *Cancellable) bool
+	CancellableMakePollfd          func(c *Cancellable, pollfd *T.GPollFD) bool
+	CancellablePopCurrent          func(c *Cancellable)
+	CancellablePushCurrent         func(c *Cancellable)
+	CancellableReleaseFd           func(c *Cancellable)
+	CancellableReset               func(c *Cancellable)
+	CancellableSetErrorIfCancelled func(c *Cancellable, err **T.GError) bool
+	CancellableSourceNew           func(c *Cancellable) *T.GSource
 )
 
-func (c *Cancellable) Cancel() { cancellableCancel(c) }
+func (c *Cancellable) Cancel() { CancellableCancel(c) }
 func (c *Cancellable) Connect(callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong {
-	return cancellableConnect(c, callback, data, dataDestroyFunc)
+	return CancellableConnect(c, callback, data, dataDestroyFunc)
 }
-func (c *Cancellable) Disconnect(handlerId T.Gulong) { cancellableDisconnect(c, handlerId) }
-func (c *Cancellable) GetFd() int                    { return cancellableGetFd(c) }
-func (c *Cancellable) IsCancelled() bool             { return cancellableIsCancelled(c) }
+func (c *Cancellable) Disconnect(handlerId T.Gulong) { CancellableDisconnect(c, handlerId) }
+func (c *Cancellable) GetFd() int                    { return CancellableGetFd(c) }
+func (c *Cancellable) IsCancelled() bool             { return CancellableIsCancelled(c) }
 func (c *Cancellable) MakePollfd(pollfd *T.GPollFD) bool {
-	return cancellableMakePollfd(c, pollfd)
+	return CancellableMakePollfd(c, pollfd)
 }
-func (c *Cancellable) PopCurrent()  { cancellablePopCurrent(c) }
-func (c *Cancellable) PushCurrent() { cancellablePushCurrent(c) }
-func (c *Cancellable) ReleaseFd()   { cancellableReleaseFd(c) }
-func (c *Cancellable) Reset()       { cancellableReset(c) }
+func (c *Cancellable) PopCurrent()  { CancellablePopCurrent(c) }
+func (c *Cancellable) PushCurrent() { CancellablePushCurrent(c) }
+func (c *Cancellable) ReleaseFd()   { CancellableReleaseFd(c) }
+func (c *Cancellable) Reset()       { CancellableReset(c) }
 func (c *Cancellable) SetErrorIfCancelled(err **T.GError) bool {
-	return cancellableSetErrorIfCancelled(c, err)
+	return CancellableSetErrorIfCancelled(c, err)
 }
-func (c *Cancellable) SourceNew() *T.GSource { return cancellableSourceNew(c) }
+func (c *Cancellable) SourceNew() *T.GSource { return CancellableSourceNew(c) }
 
 type CharsetConverter struct{}
 
 var (
-	charsetConverterGetType func() O.Type
-	charsetConverterNew     func(toCharset string, fromCharset string, err **T.GError) *CharsetConverter
+	CharsetConverterGetType func() O.Type
+	CharsetConverterNew     func(toCharset string, fromCharset string, err **T.GError) *CharsetConverter
 
-	charsetConverterGetNumFallbacks func(c *CharsetConverter) uint
-	charsetConverterGetUseFallback  func(c *CharsetConverter) bool
-	charsetConverterSetUseFallback  func(c *CharsetConverter, useFallback bool)
+	CharsetConverterGetNumFallbacks func(c *CharsetConverter) uint
+	CharsetConverterGetUseFallback  func(c *CharsetConverter) bool
+	CharsetConverterSetUseFallback  func(c *CharsetConverter, useFallback bool)
 )
 
-func (c *CharsetConverter) GetNumFallbacks() uint { return charsetConverterGetNumFallbacks(c) }
-func (c *CharsetConverter) GetUseFallback() bool  { return charsetConverterGetUseFallback(c) }
+func (c *CharsetConverter) GetNumFallbacks() uint { return CharsetConverterGetNumFallbacks(c) }
+func (c *CharsetConverter) GetUseFallback() bool  { return CharsetConverterGetUseFallback(c) }
 func (c *CharsetConverter) SetUseFallback(useFallback bool) {
-	charsetConverterSetUseFallback(c, useFallback)
+	CharsetConverterSetUseFallback(c, useFallback)
 }
 
 var (
@@ -89,14 +89,14 @@ type Converter struct{}
 var (
 	ConverterGetType func() O.Type
 
-	converterConvert func(c *Converter, inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **T.GError) ConverterResult
-	converterReset   func(c *Converter)
+	ConverterConvert func(c *Converter, inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **T.GError) ConverterResult
+	ConverterReset   func(c *Converter)
 )
 
 func (c *Converter) Convert(inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **T.GError) ConverterResult {
-	return converterConvert(c, inbuf, inbufSize, outbuf, outbufSize, flags, bytesRead, bytesWritten, err)
+	return ConverterConvert(c, inbuf, inbufSize, outbuf, outbufSize, flags, bytesRead, bytesWritten, err)
 }
-func (c *Converter) Reset() { converterReset(c) }
+func (c *Converter) Reset() { ConverterReset(c) }
 
 type ConverterFlags Enum
 
@@ -117,10 +117,10 @@ var (
 	ConverterInputStreamGetType func() O.Type
 	ConverterInputStreamNew     func(baseStream *InputStream, converter *Converter) *InputStream
 
-	converterInputStreamGetConverter func(c *ConverterInputStream) *Converter
+	ConverterInputStreamGetConverter func(c *ConverterInputStream) *Converter
 )
 
-func (c *ConverterInputStream) GetConverter() *Converter { return converterInputStreamGetConverter(c) }
+func (c *ConverterInputStream) GetConverter() *Converter { return ConverterInputStreamGetConverter(c) }
 
 type ConverterOutputStream struct {
 	Parent FilterOutputStream
@@ -131,10 +131,10 @@ var (
 	ConverterOutputStreamGetType func() O.Type
 	ConverterOutputStreamNew     func(baseStream *OutputStream, converter *Converter) *OutputStream
 
-	converterOutputStreamGetConverter func(c *ConverterOutputStream) *Converter
+	ConverterOutputStreamGetConverter func(c *ConverterOutputStream) *Converter
 )
 
-func (c *ConverterOutputStream) GetConverter() *Converter { return converterOutputStreamGetConverter(c) }
+func (c *ConverterOutputStream) GetConverter() *Converter { return ConverterOutputStreamGetConverter(c) }
 
 type ConverterResult Enum
 
@@ -153,22 +153,22 @@ var (
 	CredentialsGetType func() O.Type
 	CredentialsNew     func() *Credentials
 
-	credentialsGetNative  func(c *Credentials, nativeType CredentialsType) T.Gpointer
-	credentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **T.GError) bool
-	credentialsSetNative  func(c *Credentials, nativeType CredentialsType, native T.Gpointer)
-	credentialsToString   func(c *Credentials) string
+	CredentialsGetNative  func(c *Credentials, nativeType CredentialsType) T.Gpointer
+	CredentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **T.GError) bool
+	CredentialsSetNative  func(c *Credentials, nativeType CredentialsType, native T.Gpointer)
+	CredentialsToString   func(c *Credentials) string
 )
 
 func (c *Credentials) GetNative(nativeType CredentialsType) T.Gpointer {
-	return credentialsGetNative(c, nativeType)
+	return CredentialsGetNative(c, nativeType)
 }
 func (c *Credentials) IsSameUser(otherCredentials *Credentials, err **T.GError) bool {
-	return credentialsIsSameUser(c, otherCredentials, err)
+	return CredentialsIsSameUser(c, otherCredentials, err)
 }
 func (c *Credentials) SetNative(nativeType CredentialsType, native T.Gpointer) {
-	credentialsSetNative(c, nativeType, native)
+	CredentialsSetNative(c, nativeType, native)
 }
-func (c *Credentials) ToString() string { return credentialsToString(c) }
+func (c *Credentials) ToString() string { return CredentialsToString(c) }
 
 type CredentialsType Enum
 

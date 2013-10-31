@@ -69,30 +69,30 @@ var (
 	ToyFontFaceCreate  func(family string, slant FontSlant, weight FontWeight) *FontFace
 	UserFontFaceCreate func() *FontFace
 
-	fontFaceDestroy           func(f *FontFace)
-	fontFaceGetReferenceCount func(f *FontFace) uint
-	fontFaceGetType           func(f *FontFace) FontType
-	fontFaceGetUserData       func(f *FontFace, key *UserDataKey) *T.Void
-	fontFaceReference         func(f *FontFace) *FontFace
-	fontFaceSetUserData       func(f *FontFace, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
-	fontFaceStatus            func(f *FontFace) Status
-	toyFontFaceGetFamily      func(f *FontFace) string
-	toyFontFaceGetSlant       func(f *FontFace) FontSlant
-	toyFontFaceGetWeight      func(f *FontFace) FontWeight
+	FontFaceDestroy           func(f *FontFace)
+	FontFaceGetReferenceCount func(f *FontFace) uint
+	FontFaceGetType           func(f *FontFace) FontType
+	FontFaceGetUserData       func(f *FontFace, key *UserDataKey) *T.Void
+	FontFaceReference         func(f *FontFace) *FontFace
+	FontFaceSetUserData       func(f *FontFace, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
+	FontFaceStatus            func(f *FontFace) Status
+	ToyFontFaceGetFamily      func(f *FontFace) string
+	ToyFontFaceGetSlant       func(f *FontFace) FontSlant
+	ToyFontFaceGetWeight      func(f *FontFace) FontWeight
 )
 
-func (f *FontFace) Destroy()                             { fontFaceDestroy(f) }
-func (f *FontFace) GetFamily() string                    { return toyFontFaceGetFamily(f) }
-func (f *FontFace) GetReferenceCount() uint              { return fontFaceGetReferenceCount(f) }
-func (f *FontFace) GetSlant() FontSlant                  { return toyFontFaceGetSlant(f) }
-func (f *FontFace) GetType() FontType                    { return fontFaceGetType(f) }
-func (f *FontFace) GetUserData(key *UserDataKey) *T.Void { return fontFaceGetUserData(f, key) }
-func (f *FontFace) GetWeight() FontWeight                { return toyFontFaceGetWeight(f) }
-func (f *FontFace) Reference() *FontFace                 { return fontFaceReference(f) }
+func (f *FontFace) Destroy()                             { FontFaceDestroy(f) }
+func (f *FontFace) GetFamily() string                    { return ToyFontFaceGetFamily(f) }
+func (f *FontFace) GetReferenceCount() uint              { return FontFaceGetReferenceCount(f) }
+func (f *FontFace) GetSlant() FontSlant                  { return ToyFontFaceGetSlant(f) }
+func (f *FontFace) GetType() FontType                    { return FontFaceGetType(f) }
+func (f *FontFace) GetUserData(key *UserDataKey) *T.Void { return FontFaceGetUserData(f, key) }
+func (f *FontFace) GetWeight() FontWeight                { return ToyFontFaceGetWeight(f) }
+func (f *FontFace) Reference() *FontFace                 { return FontFaceReference(f) }
 func (f *FontFace) SetUserData(key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status {
-	return fontFaceSetUserData(f, key, userData, destroy)
+	return FontFaceSetUserData(f, key, userData, destroy)
 }
-func (f *FontFace) Status() Status { return fontFaceStatus(f) }
+func (f *FontFace) Status() Status { return FontFaceStatus(f) }
 
 var (
 	UserFontFaceGetInitFunc           func(f *FontFace) UserScaledFontInitFunc
@@ -133,40 +133,40 @@ type FontOptions struct{}
 var (
 	FontOptionsCreate func() *FontOptions
 
-	fontOptionsCopy             func(f *FontOptions) *FontOptions
-	fontOptionsDestroy          func(f *FontOptions)
-	fontOptionsEqual            func(f *FontOptions, other *FontOptions) Bool
-	fontOptionsGetAntialias     func(f *FontOptions) Antialias
-	fontOptionsGetHintMetrics   func(f *FontOptions) HintMetrics
-	fontOptionsGetHintStyle     func(f *FontOptions) HintStyle
-	fontOptionsGetSubpixelOrder func(f *FontOptions) SubpixelOrder
-	fontOptionsHash             func(f *FontOptions) T.UnsignedLong
-	fontOptionsMerge            func(f *FontOptions, other *FontOptions)
-	fontOptionsSetAntialias     func(f *FontOptions, antialias Antialias)
-	fontOptionsSetHintMetrics   func(f *FontOptions, hintMetrics HintMetrics)
-	fontOptionsSetHintStyle     func(f *FontOptions, hintStyle HintStyle)
-	fontOptionsSetSubpixelOrder func(f *FontOptions, subpixelOrder SubpixelOrder)
-	fontOptionsStatus           func(f *FontOptions) Status
+	FontOptionsCopy             func(f *FontOptions) *FontOptions
+	FontOptionsDestroy          func(f *FontOptions)
+	FontOptionsEqual            func(f *FontOptions, other *FontOptions) Bool
+	FontOptionsGetAntialias     func(f *FontOptions) Antialias
+	FontOptionsGetHintMetrics   func(f *FontOptions) HintMetrics
+	FontOptionsGetHintStyle     func(f *FontOptions) HintStyle
+	FontOptionsGetSubpixelOrder func(f *FontOptions) SubpixelOrder
+	FontOptionsHash             func(f *FontOptions) T.UnsignedLong
+	FontOptionsMerge            func(f *FontOptions, other *FontOptions)
+	FontOptionsSetAntialias     func(f *FontOptions, antialias Antialias)
+	FontOptionsSetHintMetrics   func(f *FontOptions, hintMetrics HintMetrics)
+	FontOptionsSetHintStyle     func(f *FontOptions, hintStyle HintStyle)
+	FontOptionsSetSubpixelOrder func(f *FontOptions, subpixelOrder SubpixelOrder)
+	FontOptionsStatus           func(f *FontOptions) Status
 )
 
-func (f *FontOptions) Copy() *FontOptions               { return fontOptionsCopy(f) }
-func (f *FontOptions) Destroy()                         { fontOptionsDestroy(f) }
-func (f *FontOptions) Equal(other *FontOptions) Bool    { return fontOptionsEqual(f, other) }
-func (f *FontOptions) GetAntialias() Antialias          { return fontOptionsGetAntialias(f) }
-func (f *FontOptions) GetHintMetrics() HintMetrics      { return fontOptionsGetHintMetrics(f) }
-func (f *FontOptions) GetHintStyle() HintStyle          { return fontOptionsGetHintStyle(f) }
-func (f *FontOptions) GetSubpixelOrder() SubpixelOrder  { return fontOptionsGetSubpixelOrder(f) }
-func (f *FontOptions) Hash() T.UnsignedLong             { return fontOptionsHash(f) }
-func (f *FontOptions) Merge(other *FontOptions)         { fontOptionsMerge(f, other) }
-func (f *FontOptions) SetAntialias(antialias Antialias) { fontOptionsSetAntialias(f, antialias) }
+func (f *FontOptions) Copy() *FontOptions               { return FontOptionsCopy(f) }
+func (f *FontOptions) Destroy()                         { FontOptionsDestroy(f) }
+func (f *FontOptions) Equal(other *FontOptions) Bool    { return FontOptionsEqual(f, other) }
+func (f *FontOptions) GetAntialias() Antialias          { return FontOptionsGetAntialias(f) }
+func (f *FontOptions) GetHintMetrics() HintMetrics      { return FontOptionsGetHintMetrics(f) }
+func (f *FontOptions) GetHintStyle() HintStyle          { return FontOptionsGetHintStyle(f) }
+func (f *FontOptions) GetSubpixelOrder() SubpixelOrder  { return FontOptionsGetSubpixelOrder(f) }
+func (f *FontOptions) Hash() T.UnsignedLong             { return FontOptionsHash(f) }
+func (f *FontOptions) Merge(other *FontOptions)         { FontOptionsMerge(f, other) }
+func (f *FontOptions) SetAntialias(antialias Antialias) { FontOptionsSetAntialias(f, antialias) }
 func (f *FontOptions) SetHintMetrics(hintMetrics HintMetrics) {
-	fontOptionsSetHintMetrics(f, hintMetrics)
+	FontOptionsSetHintMetrics(f, hintMetrics)
 }
-func (f *FontOptions) SetHintStyle(hintStyle HintStyle) { fontOptionsSetHintStyle(f, hintStyle) }
+func (f *FontOptions) SetHintStyle(hintStyle HintStyle) { FontOptionsSetHintStyle(f, hintStyle) }
 func (f *FontOptions) SetSubpixelOrder(subpixelOrder SubpixelOrder) {
-	fontOptionsSetSubpixelOrder(f, subpixelOrder)
+	FontOptionsSetSubpixelOrder(f, subpixelOrder)
 }
-func (f *FontOptions) Status() Status { return fontOptionsStatus(f) }
+func (f *FontOptions) Status() Status { return FontOptionsStatus(f) }
 
 type FontSlant Enum
 
@@ -215,9 +215,9 @@ var (
 type ScaledFont struct{}
 
 var (
-	ftScaledFontLockFace   func(s *ScaledFont) FT.Face
-	ftScaledFontUnlockFace func(s *ScaledFont)
+	FtScaledFontLockFace   func(s *ScaledFont) FT.Face
+	FtScaledFontUnlockFace func(s *ScaledFont)
 )
 
-func (s *ScaledFont) LockFace() FT.Face { return ftScaledFontLockFace(s) }
-func (s *ScaledFont) UnlockFace()       { ftScaledFontUnlockFace(s) }
+func (s *ScaledFont) LockFace() FT.Face { return FtScaledFontLockFace(s) }
+func (s *ScaledFont) UnlockFace()       { FtScaledFontUnlockFace(s) }

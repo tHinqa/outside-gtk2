@@ -21,53 +21,53 @@ var (
 
 	ObjectAddArgType func(argName string, argType O.Type, argFlags, argId uint)
 
-	objectDestroy            func(o *Object)
-	objectGet                func(o *Object, firstPropertyName string, v ...VArg)
-	objectGetData            func(o *Object, key string) T.Gpointer
-	objectGetDataById        func(o *Object, dataId T.GQuark) T.Gpointer
-	objectGetUserData        func(o *Object) T.Gpointer
-	objectRef                func(o *Object) *Object
-	objectRemoveData         func(o *Object, key string)
-	objectRemoveDataById     func(o *Object, dataId T.GQuark)
-	objectRemoveNoNotify     func(o *Object, key string)
-	objectRemoveNoNotifyById func(o *Object, keyId T.GQuark)
-	objectSet                func(o *Object, firstPropertyName string, v ...VArg)
-	objectSetData            func(o *Object, key string, data T.Gpointer)
-	objectSetDataById        func(o *Object, dataId T.GQuark, data T.Gpointer)
-	objectSetDataByIdFull    func(o *Object, dataId T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
-	objectSetDataFull        func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
-	objectSetUserData        func(o *Object, data T.Gpointer)
-	objectSink               func(o *Object)
-	objectUnref              func(o *Object)
-	objectWeakref            func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
-	objectWeakunref          func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
+	ObjectDestroy            func(o *Object)
+	ObjectGet                func(o *Object, firstPropertyName string, v ...VArg)
+	ObjectGetData            func(o *Object, key string) T.Gpointer
+	ObjectGetDataById        func(o *Object, dataId T.GQuark) T.Gpointer
+	ObjectGetUserData        func(o *Object) T.Gpointer
+	ObjectRef                func(o *Object) *Object
+	ObjectRemoveData         func(o *Object, key string)
+	ObjectRemoveDataById     func(o *Object, dataId T.GQuark)
+	ObjectRemoveNoNotify     func(o *Object, key string)
+	ObjectRemoveNoNotifyById func(o *Object, keyId T.GQuark)
+	ObjectSet                func(o *Object, firstPropertyName string, v ...VArg)
+	ObjectSetData            func(o *Object, key string, data T.Gpointer)
+	ObjectSetDataById        func(o *Object, dataId T.GQuark, data T.Gpointer)
+	ObjectSetDataByIdFull    func(o *Object, dataId T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetDataFull        func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetUserData        func(o *Object, data T.Gpointer)
+	ObjectSink               func(o *Object)
+	ObjectUnref              func(o *Object)
+	ObjectWeakref            func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
+	ObjectWeakunref          func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
 )
 
-func (o *Object) Destroy()                                     { objectDestroy(o) }
-func (o *Object) Get(firstPropertyName string, v ...VArg)      { objectGet(o, firstPropertyName, v) }
-func (o *Object) GetData(key string) T.Gpointer                { return objectGetData(o, key) }
-func (o *Object) GetDataById(dataId T.GQuark) T.Gpointer       { return objectGetDataById(o, dataId) }
-func (o *Object) GetUserData() T.Gpointer                      { return objectGetUserData(o) }
-func (o *Object) Ref() *Object                                 { return objectRef(o) }
-func (o *Object) RemoveData(key string)                        { objectRemoveData(o, key) }
-func (o *Object) RemoveDataById(dataId T.GQuark)               { objectRemoveDataById(o, dataId) }
-func (o *Object) RemoveNoNotify(key string)                    { objectRemoveNoNotify(o, key) }
-func (o *Object) RemoveNoNotifyById(keyId T.GQuark)            { objectRemoveNoNotifyById(o, keyId) }
-func (o *Object) Set(firstPropertyName string, v ...VArg)      { objectSet(o, firstPropertyName, v) }
-func (o *Object) SetData(key string, data T.Gpointer)          { objectSetData(o, key, data) }
-func (o *Object) SetDataById(dataId T.GQuark, data T.Gpointer) { objectSetDataById(o, dataId, data) }
+func (o *Object) Destroy()                                     { ObjectDestroy(o) }
+func (o *Object) Get(firstPropertyName string, v ...VArg)      { ObjectGet(o, firstPropertyName, v) }
+func (o *Object) GetData(key string) T.Gpointer                { return ObjectGetData(o, key) }
+func (o *Object) GetDataById(dataId T.GQuark) T.Gpointer       { return ObjectGetDataById(o, dataId) }
+func (o *Object) GetUserData() T.Gpointer                      { return ObjectGetUserData(o) }
+func (o *Object) Ref() *Object                                 { return ObjectRef(o) }
+func (o *Object) RemoveData(key string)                        { ObjectRemoveData(o, key) }
+func (o *Object) RemoveDataById(dataId T.GQuark)               { ObjectRemoveDataById(o, dataId) }
+func (o *Object) RemoveNoNotify(key string)                    { ObjectRemoveNoNotify(o, key) }
+func (o *Object) RemoveNoNotifyById(keyId T.GQuark)            { ObjectRemoveNoNotifyById(o, keyId) }
+func (o *Object) Set(firstPropertyName string, v ...VArg)      { ObjectSet(o, firstPropertyName, v) }
+func (o *Object) SetData(key string, data T.Gpointer)          { ObjectSetData(o, key, data) }
+func (o *Object) SetDataById(dataId T.GQuark, data T.Gpointer) { ObjectSetDataById(o, dataId, data) }
 func (o *Object) SetDataByIdFull(dataId T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
-	objectSetDataByIdFull(o, dataId, data, destroy)
+	ObjectSetDataByIdFull(o, dataId, data, destroy)
 }
 func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNotify) {
-	objectSetDataFull(o, key, data, destroy)
+	ObjectSetDataFull(o, key, data, destroy)
 }
-func (o *Object) SetUserData(data T.Gpointer)                      { objectSetUserData(o, data) }
-func (o *Object) Sink()                                            { objectSink(o) }
-func (o *Object) Unref()                                           { objectUnref(o) }
-func (o *Object) Weakref(notify T.GDestroyNotify, data T.Gpointer) { objectWeakref(o, notify, data) }
+func (o *Object) SetUserData(data T.Gpointer)                      { ObjectSetUserData(o, data) }
+func (o *Object) Sink()                                            { ObjectSink(o) }
+func (o *Object) Unref()                                           { ObjectUnref(o) }
+func (o *Object) Weakref(notify T.GDestroyNotify, data T.Gpointer) { ObjectWeakref(o, notify, data) }
 func (o *Object) Weakunref(notify T.GDestroyNotify, data T.Gpointer) {
-	objectWeakunref(o, notify, data)
+	ObjectWeakunref(o, notify, data)
 }
 
 type ObjectClass struct {
@@ -98,12 +98,12 @@ var (
 	OffscreenWindowGetType func() O.Type
 	OffscreenWindowNew     func() *Widget
 
-	offscreenWindowGetPixbuf func(o *OffscreenWindow) *D.Pixbuf
-	offscreenWindowGetPixmap func(o *OffscreenWindow) *D.Pixmap
+	OffscreenWindowGetPixbuf func(o *OffscreenWindow) *D.Pixbuf
+	OffscreenWindowGetPixmap func(o *OffscreenWindow) *D.Pixmap
 )
 
-func (o *OffscreenWindow) GetPixbuf() *D.Pixbuf { return offscreenWindowGetPixbuf(o) }
-func (o *OffscreenWindow) GetPixmap() *D.Pixmap { return offscreenWindowGetPixmap(o) }
+func (o *OffscreenWindow) GetPixbuf() *D.Pixbuf { return OffscreenWindowGetPixbuf(o) }
+func (o *OffscreenWindow) GetPixmap() *D.Pixmap { return OffscreenWindowGetPixmap(o) }
 
 type OldEditable struct {
 	Widget            Widget
@@ -120,14 +120,14 @@ type OldEditable struct {
 var (
 	OldEditableGetType func() O.Type
 
-	oldEditableClaimSelection func(o *OldEditable, claim bool, time T.GUint32)
-	oldEditableChanged        func(o *OldEditable)
+	OldEditableClaimSelection func(o *OldEditable, claim bool, time T.GUint32)
+	OldEditableChanged        func(o *OldEditable)
 )
 
 func (o *OldEditable) ClaimSelection(claim bool, time T.GUint32) {
-	oldEditableClaimSelection(o, claim, time)
+	OldEditableClaimSelection(o, claim, time)
 }
-func (o *OldEditable) Changed() { oldEditableChanged(o) }
+func (o *OldEditable) Changed() { OldEditableChanged(o) }
 
 type OptionMenu struct {
 	Button   Button
@@ -141,18 +141,18 @@ var (
 	OptionMenuGetType func() O.Type
 	OptionMenuNew     func() *Widget
 
-	optionMenuGetHistory func(o *OptionMenu) int
-	optionMenuGetMenu    func(o *OptionMenu) *Widget
-	optionMenuRemoveMenu func(o *OptionMenu)
-	optionMenuSetHistory func(o *OptionMenu, index uint)
-	optionMenuSetMenu    func(o *OptionMenu, menu *Widget)
+	OptionMenuGetHistory func(o *OptionMenu) int
+	OptionMenuGetMenu    func(o *OptionMenu) *Widget
+	OptionMenuRemoveMenu func(o *OptionMenu)
+	OptionMenuSetHistory func(o *OptionMenu, index uint)
+	OptionMenuSetMenu    func(o *OptionMenu, menu *Widget)
 )
 
-func (o *OptionMenu) GetHistory() int       { return optionMenuGetHistory(o) }
-func (o *OptionMenu) GetMenu() *Widget      { return optionMenuGetMenu(o) }
-func (o *OptionMenu) RemoveMenu()           { optionMenuRemoveMenu(o) }
-func (o *OptionMenu) SetHistory(index uint) { optionMenuSetHistory(o, index) }
-func (o *OptionMenu) SetMenu(menu *Widget)  { optionMenuSetMenu(o, menu) }
+func (o *OptionMenu) GetHistory() int       { return OptionMenuGetHistory(o) }
+func (o *OptionMenu) GetMenu() *Widget      { return OptionMenuGetMenu(o) }
+func (o *OptionMenu) RemoveMenu()           { OptionMenuRemoveMenu(o) }
+func (o *OptionMenu) SetHistory(index uint) { OptionMenuSetHistory(o, index) }
+func (o *OptionMenu) SetMenu(menu *Widget)  { OptionMenuSetMenu(o, menu) }
 
 type Orientable struct{}
 
@@ -168,11 +168,11 @@ var (
 
 	OrientationGetType func() O.Type
 
-	orientableGetOrientation func(o *Orientable) Orientation
-	orientableSetOrientation func(o *Orientable, orientation Orientation)
+	OrientableGetOrientation func(o *Orientable) Orientation
+	OrientableSetOrientation func(o *Orientable, orientation Orientation)
 )
 
-func (o *Orientable) GetOrientation() Orientation { return orientableGetOrientation(o) }
+func (o *Orientable) GetOrientation() Orientation { return OrientableGetOrientation(o) }
 func (o *Orientable) SetOrientation(orientation Orientation) {
-	orientableSetOrientation(o, orientation)
+	OrientableSetOrientation(o, orientation)
 }

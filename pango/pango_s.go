@@ -4,14 +4,15 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 var (
 	ScanInt    func(pos **T.Char, out *int) bool
-	ScanString func(pos **T.Char, out *T.GString) bool
-	ScanWord   func(pos **T.Char, out *T.GString) bool
+	ScanString func(pos **T.Char, out *L.String) bool
+	ScanWord   func(pos **T.Char, out *L.String) bool
 )
 
 type Script Enum
@@ -103,26 +104,26 @@ var (
 
 	ScriptForUnichar func(ch T.Gunichar) Script
 
-	scriptGetSampleLanguage func(s Script) *Language
+	ScriptGetSampleLanguage func(s Script) *Language
 )
 
-func (s Script) GetSampleLanguage() *Language { return scriptGetSampleLanguage(s) }
+func (s Script) GetSampleLanguage() *Language { return ScriptGetSampleLanguage(s) }
 
 type ScriptIter struct{}
 
 var (
 	ScriptIterNew func(text string, length int) *ScriptIter
 
-	scriptIterFree     func(s *ScriptIter)
-	scriptIterGetRange func(s *ScriptIter, start, end **T.Char, script *Script)
-	scriptIterNext     func(s *ScriptIter) bool
+	ScriptIterFree     func(s *ScriptIter)
+	ScriptIterGetRange func(s *ScriptIter, start, end **T.Char, script *Script)
+	ScriptIterNext     func(s *ScriptIter) bool
 )
 
-func (s *ScriptIter) Free() { scriptIterFree(s) }
+func (s *ScriptIter) Free() { ScriptIterFree(s) }
 func (s *ScriptIter) GetRange(start, end **T.Char, script *Script) {
-	scriptIterGetRange(s, start, end, script)
+	ScriptIterGetRange(s, start, end, script)
 }
-func (s *ScriptIter) Next() bool { return scriptIterNext(s) }
+func (s *ScriptIter) Next() bool { return ScriptIterNext(s) }
 
 var (
 	Shape         func(text string, length int, Analysis *Analysis, glyphs *GlyphString)

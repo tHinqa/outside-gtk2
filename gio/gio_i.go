@@ -33,36 +33,36 @@ var (
 	InetAddressNewFromString func(string string) *InetAddress
 	InetAddressNewLoopback   func(family SocketFamily) *InetAddress
 
-	inetAddressGetFamily        func(i *InetAddress) SocketFamily
-	inetAddressGetIsAny         func(i *InetAddress) bool
-	inetAddressGetIsLinkLocal   func(i *InetAddress) bool
-	inetAddressGetIsLoopback    func(i *InetAddress) bool
-	inetAddressGetIsMcGlobal    func(i *InetAddress) bool
-	inetAddressGetIsMcLinkLocal func(i *InetAddress) bool
-	inetAddressGetIsMcNodeLocal func(i *InetAddress) bool
-	inetAddressGetIsMcOrgLocal  func(i *InetAddress) bool
-	inetAddressGetIsMcSiteLocal func(i *InetAddress) bool
-	inetAddressGetIsMulticast   func(i *InetAddress) bool
-	inetAddressGetIsSiteLocal   func(i *InetAddress) bool
-	inetAddressGetNativeSize    func(i *InetAddress) T.Gsize
-	inetAddressToBytes          func(i *InetAddress) *uint8
-	inetAddressToString         func(i *InetAddress) string
+	InetAddressGetFamily        func(i *InetAddress) SocketFamily
+	InetAddressGetIsAny         func(i *InetAddress) bool
+	InetAddressGetIsLinkLocal   func(i *InetAddress) bool
+	InetAddressGetIsLoopback    func(i *InetAddress) bool
+	InetAddressGetIsMcGlobal    func(i *InetAddress) bool
+	InetAddressGetIsMcLinkLocal func(i *InetAddress) bool
+	InetAddressGetIsMcNodeLocal func(i *InetAddress) bool
+	InetAddressGetIsMcOrgLocal  func(i *InetAddress) bool
+	InetAddressGetIsMcSiteLocal func(i *InetAddress) bool
+	InetAddressGetIsMulticast   func(i *InetAddress) bool
+	InetAddressGetIsSiteLocal   func(i *InetAddress) bool
+	InetAddressGetNativeSize    func(i *InetAddress) T.Gsize
+	InetAddressToBytes          func(i *InetAddress) *uint8
+	InetAddressToString         func(i *InetAddress) string
 )
 
-func (i *InetAddress) GetFamily() SocketFamily { return inetAddressGetFamily(i) }
-func (i *InetAddress) GetIsAny() bool          { return inetAddressGetIsAny(i) }
-func (i *InetAddress) GetIsLinkLocal() bool    { return inetAddressGetIsLinkLocal(i) }
-func (i *InetAddress) GetIsLoopback() bool     { return inetAddressGetIsLoopback(i) }
-func (i *InetAddress) GetIsMcGlobal() bool     { return inetAddressGetIsMcGlobal(i) }
-func (i *InetAddress) GetIsMcLinkLocal() bool  { return inetAddressGetIsMcLinkLocal(i) }
-func (i *InetAddress) GetIsMcNodeLocal() bool  { return inetAddressGetIsMcNodeLocal(i) }
-func (i *InetAddress) GetIsMcOrgLocal() bool   { return inetAddressGetIsMcOrgLocal(i) }
-func (i *InetAddress) GetIsMcSiteLocal() bool  { return inetAddressGetIsMcSiteLocal(i) }
-func (i *InetAddress) GetIsMulticast() bool    { return inetAddressGetIsMulticast(i) }
-func (i *InetAddress) GetIsSiteLocal() bool    { return inetAddressGetIsSiteLocal(i) }
-func (i *InetAddress) GetNativeSize() T.Gsize  { return inetAddressGetNativeSize(i) }
-func (i *InetAddress) ToBytes() *uint8         { return inetAddressToBytes(i) }
-func (i *InetAddress) ToString() string        { return inetAddressToString(i) }
+func (i *InetAddress) GetFamily() SocketFamily { return InetAddressGetFamily(i) }
+func (i *InetAddress) GetIsAny() bool          { return InetAddressGetIsAny(i) }
+func (i *InetAddress) GetIsLinkLocal() bool    { return InetAddressGetIsLinkLocal(i) }
+func (i *InetAddress) GetIsLoopback() bool     { return InetAddressGetIsLoopback(i) }
+func (i *InetAddress) GetIsMcGlobal() bool     { return InetAddressGetIsMcGlobal(i) }
+func (i *InetAddress) GetIsMcLinkLocal() bool  { return InetAddressGetIsMcLinkLocal(i) }
+func (i *InetAddress) GetIsMcNodeLocal() bool  { return InetAddressGetIsMcNodeLocal(i) }
+func (i *InetAddress) GetIsMcOrgLocal() bool   { return InetAddressGetIsMcOrgLocal(i) }
+func (i *InetAddress) GetIsMcSiteLocal() bool  { return InetAddressGetIsMcSiteLocal(i) }
+func (i *InetAddress) GetIsMulticast() bool    { return InetAddressGetIsMulticast(i) }
+func (i *InetAddress) GetIsSiteLocal() bool    { return InetAddressGetIsSiteLocal(i) }
+func (i *InetAddress) GetNativeSize() T.Gsize  { return InetAddressGetNativeSize(i) }
+func (i *InetAddress) ToBytes() *uint8         { return InetAddressToBytes(i) }
+func (i *InetAddress) ToString() string        { return InetAddressToString(i) }
 
 type InetSocketAddress struct {
 	Parent SocketAddress
@@ -73,12 +73,12 @@ var (
 	InetSocketAddressGetType func() O.Type
 	InetSocketAddressNew     func(address *InetAddress, port uint16) *SocketAddress
 
-	inetSocketAddressGetAddress func(i *InetSocketAddress) *InetAddress
-	inetSocketAddressGetPort    func(i *InetSocketAddress) uint16
+	InetSocketAddressGetAddress func(i *InetSocketAddress) *InetAddress
+	InetSocketAddressGetPort    func(i *InetSocketAddress) uint16
 )
 
-func (i *InetSocketAddress) GetAddress() *InetAddress { return inetSocketAddressGetAddress(i) }
-func (i *InetSocketAddress) GetPort() uint16          { return inetSocketAddressGetPort(i) }
+func (i *InetSocketAddress) GetAddress() *InetAddress { return InetSocketAddressGetAddress(i) }
+func (i *InetSocketAddress) GetPort() uint16          { return InetSocketAddressGetPort(i) }
 
 type Initable struct{}
 
@@ -88,11 +88,11 @@ var (
 	InitableNewv      func(objectType O.Type, nParameters uint, parameters *T.GParameter, cancellable *Cancellable, err **T.GError) T.Gpointer
 	InitableNewValist func(objectType O.Type, firstPropertyName string, varArgs T.VaList, cancellable *Cancellable, err **T.GError) *O.Object
 
-	initableInit func(i *Initable, cancellable *Cancellable, err **T.GError) bool
+	InitableInit func(i *Initable, cancellable *Cancellable, err **T.GError) bool
 )
 
 func (i *Initable) Init(cancellable *Cancellable, err **T.GError) bool {
-	return initableInit(i, cancellable, err)
+	return InitableInit(i, cancellable, err)
 }
 
 type InputStream struct {
@@ -103,55 +103,55 @@ type InputStream struct {
 var (
 	InputStreamGetType func() O.Type
 
-	inputStreamClearPending func(i *InputStream)
-	inputStreamClose        func(i *InputStream, cancellable *Cancellable, err **T.GError) bool
-	inputStreamCloseAsync   func(i *InputStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	inputStreamCloseFinish  func(i *InputStream, result *AsyncResult, err **T.GError) bool
-	inputStreamHasPending   func(i *InputStream) bool
-	inputStreamIsClosed     func(i *InputStream) bool
-	inputStreamRead         func(i *InputStream, buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	inputStreamReadAll      func(i *InputStream, buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **T.GError) bool
-	inputStreamReadAsync    func(i *InputStream, buffer *T.Void, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	inputStreamReadFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
-	inputStreamSetPending   func(i *InputStream, err **T.GError) bool
-	inputStreamSkip         func(i *InputStream, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	inputStreamSkipAsync    func(i *InputStream, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	inputStreamSkipFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
+	InputStreamClearPending func(i *InputStream)
+	InputStreamClose        func(i *InputStream, cancellable *Cancellable, err **T.GError) bool
+	InputStreamCloseAsync   func(i *InputStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	InputStreamCloseFinish  func(i *InputStream, result *AsyncResult, err **T.GError) bool
+	InputStreamHasPending   func(i *InputStream) bool
+	InputStreamIsClosed     func(i *InputStream) bool
+	InputStreamRead         func(i *InputStream, buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
+	InputStreamReadAll      func(i *InputStream, buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **T.GError) bool
+	InputStreamReadAsync    func(i *InputStream, buffer *T.Void, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	InputStreamReadFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
+	InputStreamSetPending   func(i *InputStream, err **T.GError) bool
+	InputStreamSkip         func(i *InputStream, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
+	InputStreamSkipAsync    func(i *InputStream, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	InputStreamSkipFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
 )
 
-func (i *InputStream) ClearPending() { inputStreamClearPending(i) }
+func (i *InputStream) ClearPending() { InputStreamClearPending(i) }
 func (i *InputStream) Close(cancellable *Cancellable, err **T.GError) bool {
-	return inputStreamClose(i, cancellable, err)
+	return InputStreamClose(i, cancellable, err)
 }
 func (i *InputStream) CloseAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	inputStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
+	InputStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
 }
 func (i *InputStream) CloseFinish(result *AsyncResult, err **T.GError) bool {
-	return inputStreamCloseFinish(i, result, err)
+	return InputStreamCloseFinish(i, result, err)
 }
-func (i *InputStream) HasPending() bool { return inputStreamHasPending(i) }
-func (i *InputStream) IsClosed() bool   { return inputStreamIsClosed(i) }
+func (i *InputStream) HasPending() bool { return InputStreamHasPending(i) }
+func (i *InputStream) IsClosed() bool   { return InputStreamIsClosed(i) }
 func (i *InputStream) Read(buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
-	return inputStreamRead(i, buffer, count, cancellable, err)
+	return InputStreamRead(i, buffer, count, cancellable, err)
 }
 func (i *InputStream) ReadAll(buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **T.GError) bool {
-	return inputStreamReadAll(i, buffer, count, bytesRead, cancellable, err)
+	return InputStreamReadAll(i, buffer, count, bytesRead, cancellable, err)
 }
 func (i *InputStream) ReadAsync(buffer *T.Void, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	inputStreamReadAsync(i, buffer, count, ioPriority, cancellable, callback, userData)
+	InputStreamReadAsync(i, buffer, count, ioPriority, cancellable, callback, userData)
 }
 func (i *InputStream) ReadFinish(result *AsyncResult, err **T.GError) T.Gssize {
-	return inputStreamReadFinish(i, result, err)
+	return InputStreamReadFinish(i, result, err)
 }
-func (i *InputStream) SetPending(err **T.GError) bool { return inputStreamSetPending(i, err) }
+func (i *InputStream) SetPending(err **T.GError) bool { return InputStreamSetPending(i, err) }
 func (i *InputStream) Skip(count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
-	return inputStreamSkip(i, count, cancellable, err)
+	return InputStreamSkip(i, count, cancellable, err)
 }
 func (i *InputStream) SkipAsync(count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	inputStreamSkipAsync(i, count, ioPriority, cancellable, callback, userData)
+	InputStreamSkipAsync(i, count, ioPriority, cancellable, callback, userData)
 }
 func (i *InputStream) SkipFinish(result *AsyncResult, err **T.GError) T.Gssize {
-	return inputStreamSkipFinish(i, result, err)
+	return InputStreamSkipFinish(i, result, err)
 }
 
 type InputVector struct {
@@ -219,16 +219,16 @@ var IoErrorEnumGetType func() O.Type
 type IOExtension struct{}
 
 var (
-	ioExtensionGetName     func(i *IOExtension) string
-	ioExtensionGetPriority func(i *IOExtension) int
-	ioExtensionGetType     func(i *IOExtension) O.Type
-	ioExtensionRefClass    func(i *IOExtension) *O.TypeClass
+	IoExtensionGetName     func(i *IOExtension) string
+	IoExtensionGetPriority func(i *IOExtension) int
+	IoExtensionGetType     func(i *IOExtension) O.Type
+	IoExtensionRefClass    func(i *IOExtension) *O.TypeClass
 )
 
-func (i *IOExtension) GetName() string        { return ioExtensionGetName(i) }
-func (i *IOExtension) GetPriority() int       { return ioExtensionGetPriority(i) }
-func (i *IOExtension) GetType() O.Type        { return ioExtensionGetType(i) }
-func (i *IOExtension) RefClass() *O.TypeClass { return ioExtensionRefClass(i) }
+func (i *IOExtension) GetName() string        { return IoExtensionGetName(i) }
+func (i *IOExtension) GetPriority() int       { return IoExtensionGetPriority(i) }
+func (i *IOExtension) GetType() O.Type        { return IoExtensionGetType(i) }
+func (i *IOExtension) RefClass() *O.TypeClass { return IoExtensionRefClass(i) }
 
 type IOExtensionPoint struct{}
 
@@ -238,18 +238,18 @@ var (
 
 	IoExtensionPointImplement func(extensionPointName string, typ O.Type, extensionName string, priority int) *IOExtension
 
-	ioExtensionPointGetExtensionByName func(i *IOExtensionPoint, name string) *IOExtension
-	ioExtensionPointGetExtensions      func(i *IOExtensionPoint) *T.GList
-	ioExtensionPointGetRequiredType    func(i *IOExtensionPoint) O.Type
-	ioExtensionPointSetRequiredType    func(i *IOExtensionPoint, typ O.Type)
+	IoExtensionPointGetExtensionByName func(i *IOExtensionPoint, name string) *IOExtension
+	IoExtensionPointGetExtensions      func(i *IOExtensionPoint) *T.GList
+	IoExtensionPointGetRequiredType    func(i *IOExtensionPoint) O.Type
+	IoExtensionPointSetRequiredType    func(i *IOExtensionPoint, typ O.Type)
 )
 
 func (i *IOExtensionPoint) GetExtensionByName(name string) *IOExtension {
-	return ioExtensionPointGetExtensionByName(i, name)
+	return IoExtensionPointGetExtensionByName(i, name)
 }
-func (i *IOExtensionPoint) GetExtensions() *T.GList    { return ioExtensionPointGetExtensions(i) }
-func (i *IOExtensionPoint) GetRequiredType() O.Type    { return ioExtensionPointGetRequiredType(i) }
-func (i *IOExtensionPoint) SetRequiredType(typ O.Type) { ioExtensionPointSetRequiredType(i, typ) }
+func (i *IOExtensionPoint) GetExtensions() *T.GList    { return IoExtensionPointGetExtensions(i) }
+func (i *IOExtensionPoint) GetRequiredType() O.Type    { return IoExtensionPointGetRequiredType(i) }
+func (i *IOExtensionPoint) SetRequiredType(typ O.Type) { IoExtensionPointSetRequiredType(i, typ) }
 
 type IOModule struct{}
 
@@ -261,12 +261,12 @@ var (
 	IoModulesLoadAllInDirectory func(dirname string) *T.GList
 	IoModulesScanAllInDirectory func(dirname string)
 
-	ioModuleLoad   func(i *IOModule)
-	ioModuleUnload func(i *IOModule)
+	IoModuleLoad   func(i *IOModule)
+	IoModuleUnload func(i *IOModule)
 )
 
-func (i *IOModule) Load()   { ioModuleLoad(i) }
-func (i *IOModule) Unload() { ioModuleUnload(i) }
+func (i *IOModule) Load()   { IoModuleLoad(i) }
+func (i *IOModule) Unload() { IoModuleUnload(i) }
 
 var (
 	IoSchedulerCancelAllJobs func()
@@ -282,15 +282,15 @@ type IOSchedulerJobFunc func(
 type IOSchedulerJob struct{}
 
 var (
-	ioSchedulerJobSendToMainloop      func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) bool
-	ioSchedulerJobSendToMainloopAsync func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify)
+	IoSchedulerJobSendToMainloop      func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) bool
+	IoSchedulerJobSendToMainloopAsync func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify)
 )
 
 func (i *IOSchedulerJob) SendToMainloop(f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) bool {
-	return ioSchedulerJobSendToMainloop(i, f, userData, notify)
+	return IoSchedulerJobSendToMainloop(i, f, userData, notify)
 }
 func (i *IOSchedulerJob) SendToMainloopAsync(f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) {
-	ioSchedulerJobSendToMainloopAsync(i, f, userData, notify)
+	IoSchedulerJobSendToMainloopAsync(i, f, userData, notify)
 }
 
 type IOStream struct {
@@ -303,35 +303,35 @@ var (
 
 	IoStreamSpliceFinish func(result *AsyncResult, err **T.GError) bool
 
-	ioStreamClearPending    func(i *IOStream)
-	ioStreamClose           func(i *IOStream, cancellable *Cancellable, err **T.GError) bool
-	ioStreamCloseAsync      func(i *IOStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	ioStreamCloseFinish     func(i *IOStream, result *AsyncResult, err **T.GError) bool
-	ioStreamGetInputStream  func(i *IOStream) *InputStream
-	ioStreamGetOutputStream func(i *IOStream) *OutputStream
-	ioStreamHasPending      func(i *IOStream) bool
-	ioStreamIsClosed        func(i *IOStream) bool
-	ioStreamSetPending      func(i *IOStream, err **T.GError) bool
-	ioStreamSpliceAsync     func(i *IOStream, stream2 *IOStream, flags IOStreamSpliceFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	IoStreamClearPending    func(i *IOStream)
+	IoStreamClose           func(i *IOStream, cancellable *Cancellable, err **T.GError) bool
+	IoStreamCloseAsync      func(i *IOStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	IoStreamCloseFinish     func(i *IOStream, result *AsyncResult, err **T.GError) bool
+	IoStreamGetInputStream  func(i *IOStream) *InputStream
+	IoStreamGetOutputStream func(i *IOStream) *OutputStream
+	IoStreamHasPending      func(i *IOStream) bool
+	IoStreamIsClosed        func(i *IOStream) bool
+	IoStreamSetPending      func(i *IOStream, err **T.GError) bool
+	IoStreamSpliceAsync     func(i *IOStream, stream2 *IOStream, flags IOStreamSpliceFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 )
 
-func (i *IOStream) ClearPending() { ioStreamClearPending(i) }
+func (i *IOStream) ClearPending() { IoStreamClearPending(i) }
 func (i *IOStream) Close(cancellable *Cancellable, err **T.GError) bool {
-	return ioStreamClose(i, cancellable, err)
+	return IoStreamClose(i, cancellable, err)
 }
 func (i *IOStream) CloseAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	ioStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
+	IoStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
 }
 func (i *IOStream) CloseFinish(result *AsyncResult, err **T.GError) bool {
-	return ioStreamCloseFinish(i, result, err)
+	return IoStreamCloseFinish(i, result, err)
 }
-func (i *IOStream) GetInputStream() *InputStream   { return ioStreamGetInputStream(i) }
-func (i *IOStream) GetOutputStream() *OutputStream { return ioStreamGetOutputStream(i) }
-func (i *IOStream) HasPending() bool               { return ioStreamHasPending(i) }
-func (i *IOStream) IsClosed() bool                 { return ioStreamIsClosed(i) }
-func (i *IOStream) SetPending(err **T.GError) bool { return ioStreamSetPending(i, err) }
+func (i *IOStream) GetInputStream() *InputStream   { return IoStreamGetInputStream(i) }
+func (i *IOStream) GetOutputStream() *OutputStream { return IoStreamGetOutputStream(i) }
+func (i *IOStream) HasPending() bool               { return IoStreamHasPending(i) }
+func (i *IOStream) IsClosed() bool                 { return IoStreamIsClosed(i) }
+func (i *IOStream) SetPending(err **T.GError) bool { return IoStreamSetPending(i, err) }
 func (i *IOStream) SpliceAsync(stream2 *IOStream, flags IOStreamSpliceFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	ioStreamSpliceAsync(i, stream2, flags, ioPriority, cancellable, callback, userData)
+	IoStreamSpliceAsync(i, stream2, flags, ioPriority, cancellable, callback, userData)
 }
 
 type IOStreamSpliceFlags Enum

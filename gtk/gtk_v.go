@@ -63,24 +63,24 @@ var (
 	ViewportGetType func() O.Type
 	ViewportNew     func(hadjustment, vadjustment *Adjustment) *Widget
 
-	viewportGetBinWindow   func(v *Viewport) *D.Window
-	viewportGetHadjustment func(v *Viewport) *Adjustment
-	viewportGetShadowType  func(v *Viewport) ShadowType
-	viewportGetVadjustment func(v *Viewport) *Adjustment
-	viewportGetViewWindow  func(v *Viewport) *D.Window
-	viewportSetHadjustment func(v *Viewport, adjustment *Adjustment)
-	viewportSetShadowType  func(v *Viewport, t ShadowType)
-	viewportSetVadjustment func(v *Viewport, adjustment *Adjustment)
+	ViewportGetBinWindow   func(v *Viewport) *D.Window
+	ViewportGetHadjustment func(v *Viewport) *Adjustment
+	ViewportGetShadowType  func(v *Viewport) ShadowType
+	ViewportGetVadjustment func(v *Viewport) *Adjustment
+	ViewportGetViewWindow  func(v *Viewport) *D.Window
+	ViewportSetHadjustment func(v *Viewport, adjustment *Adjustment)
+	ViewportSetShadowType  func(v *Viewport, t ShadowType)
+	ViewportSetVadjustment func(v *Viewport, adjustment *Adjustment)
 )
 
-func (v *Viewport) GetBinWindow() *D.Window      { return viewportGetBinWindow(v) }
-func (v *Viewport) GetHadjustment() *Adjustment  { return viewportGetHadjustment(v) }
-func (v *Viewport) GetShadowType() ShadowType    { return viewportGetShadowType(v) }
-func (v *Viewport) GetVadjustment() *Adjustment  { return viewportGetVadjustment(v) }
-func (v *Viewport) GetViewWindow() *D.Window     { return viewportGetViewWindow(v) }
-func (v *Viewport) SetHadjustment(a *Adjustment) { viewportSetHadjustment(v, a) }
-func (v *Viewport) SetShadowType(t ShadowType)   { viewportSetShadowType(v, t) }
-func (v *Viewport) SetVadjustment(a *Adjustment) { viewportSetVadjustment(v, a) }
+func (v *Viewport) GetBinWindow() *D.Window      { return ViewportGetBinWindow(v) }
+func (v *Viewport) GetHadjustment() *Adjustment  { return ViewportGetHadjustment(v) }
+func (v *Viewport) GetShadowType() ShadowType    { return ViewportGetShadowType(v) }
+func (v *Viewport) GetVadjustment() *Adjustment  { return ViewportGetVadjustment(v) }
+func (v *Viewport) GetViewWindow() *D.Window     { return ViewportGetViewWindow(v) }
+func (v *Viewport) SetHadjustment(a *Adjustment) { ViewportSetHadjustment(v, a) }
+func (v *Viewport) SetShadowType(t ShadowType)   { ViewportSetShadowType(v, t) }
+func (v *Viewport) SetVadjustment(a *Adjustment) { ViewportSetVadjustment(v, a) }
 
 type Visibility Enum
 

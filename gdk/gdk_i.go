@@ -31,40 +31,40 @@ var (
 
 	ImageGet func(drawable *Drawable, x, y, width, height int) *Image
 
-	imageGetBitsPerPixel  func(image *Image) uint16
-	imageGetByteOrder     func(image *Image) T.GdkByteOrder
-	imageGetBytesPerLine  func(image *Image) uint16
-	imageGetBytesPerPixel func(image *Image) uint16
-	imageGetColormap      func(image *Image) *Colormap
-	imageGetDepth         func(image *Image) uint16
-	imageGetHeight        func(image *Image) int
-	imageGetImageType     func(image *Image) ImageType
-	imageGetPixel         func(image *Image, x, y int) T.GUint32
-	imageGetPixels        func(image *Image) T.Gpointer
-	imageGetVisual        func(image *Image) *Visual
-	imageGetWidth         func(image *Image) int
-	imagePutPixel         func(image *Image, x, y int, pixel T.GUint32)
-	imageRef              func(image *Image) *Image
-	imageSetColormap      func(image *Image, colormap *Colormap)
-	imageUnref            func(image *Image)
+	ImageGetBitsPerPixel  func(image *Image) uint16
+	ImageGetByteOrder     func(image *Image) T.GdkByteOrder
+	ImageGetBytesPerLine  func(image *Image) uint16
+	ImageGetBytesPerPixel func(image *Image) uint16
+	ImageGetColormap      func(image *Image) *Colormap
+	ImageGetDepth         func(image *Image) uint16
+	ImageGetHeight        func(image *Image) int
+	ImageGetImageType     func(image *Image) ImageType
+	ImageGetPixel         func(image *Image, x, y int) T.GUint32
+	ImageGetPixels        func(image *Image) T.Gpointer
+	ImageGetVisual        func(image *Image) *Visual
+	ImageGetWidth         func(image *Image) int
+	ImagePutPixel         func(image *Image, x, y int, pixel T.GUint32)
+	ImageRef              func(image *Image) *Image
+	ImageSetColormap      func(image *Image, colormap *Colormap)
+	ImageUnref            func(image *Image)
 )
 
-func (i *Image) GetBitsPerPixel() uint16            { return imageGetBitsPerPixel(i) }
-func (i *Image) GetByteOrder() T.GdkByteOrder       { return imageGetByteOrder(i) }
-func (i *Image) GetBytesPerLine() uint16            { return imageGetBytesPerLine(i) }
-func (i *Image) GetBytesPerPixel() uint16           { return imageGetBytesPerPixel(i) }
-func (i *Image) GetColormap() *Colormap             { return imageGetColormap(i) }
-func (i *Image) GetDepth() uint16                   { return imageGetDepth(i) }
-func (i *Image) GetHeight() int                     { return imageGetHeight(i) }
-func (i *Image) GetImageType() ImageType            { return imageGetImageType(i) }
-func (i *Image) GetPixel(x, y int) T.GUint32        { return imageGetPixel(i, x, y) }
-func (i *Image) GetPixels() T.Gpointer              { return imageGetPixels(i) }
-func (i *Image) GetVisual() *Visual                 { return imageGetVisual(i) }
-func (i *Image) GetWidth() int                      { return imageGetWidth(i) }
-func (i *Image) PutPixel(x, y int, pixel T.GUint32) { imagePutPixel(i, x, y, pixel) }
-func (i *Image) Ref() *Image                        { return imageRef(i) }
-func (i *Image) SetColormap(colormap *Colormap)     { imageSetColormap(i, colormap) }
-func (i *Image) Unref()                             { imageUnref(i) }
+func (i *Image) GetBitsPerPixel() uint16            { return ImageGetBitsPerPixel(i) }
+func (i *Image) GetByteOrder() T.GdkByteOrder       { return ImageGetByteOrder(i) }
+func (i *Image) GetBytesPerLine() uint16            { return ImageGetBytesPerLine(i) }
+func (i *Image) GetBytesPerPixel() uint16           { return ImageGetBytesPerPixel(i) }
+func (i *Image) GetColormap() *Colormap             { return ImageGetColormap(i) }
+func (i *Image) GetDepth() uint16                   { return ImageGetDepth(i) }
+func (i *Image) GetHeight() int                     { return ImageGetHeight(i) }
+func (i *Image) GetImageType() ImageType            { return ImageGetImageType(i) }
+func (i *Image) GetPixel(x, y int) T.GUint32        { return ImageGetPixel(i, x, y) }
+func (i *Image) GetPixels() T.Gpointer              { return ImageGetPixels(i) }
+func (i *Image) GetVisual() *Visual                 { return ImageGetVisual(i) }
+func (i *Image) GetWidth() int                      { return ImageGetWidth(i) }
+func (i *Image) PutPixel(x, y int, pixel T.GUint32) { ImagePutPixel(i, x, y, pixel) }
+func (i *Image) Ref() *Image                        { return ImageRef(i) }
+func (i *Image) SetColormap(colormap *Colormap)     { ImageSetColormap(i, colormap) }
+func (i *Image) Unref()                             { ImageUnref(i) }
 
 type ImageType Enum
 

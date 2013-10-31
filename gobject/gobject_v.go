@@ -31,136 +31,136 @@ var (
 	ValueTypeCompatible        func(srcType Type, destType Type) bool
 	ValueTypeTransformable     func(srcType Type, destType Type) bool
 
-	valueCopy                   func(v *Value, destValue *Value)
-	valueDupBoxed               func(v *Value) T.Gpointer
-	valueDupObject              func(v *Value) T.Gpointer
-	valueDupParam               func(v *Value) *ParamSpec
-	valueDupString              func(v *Value) string
-	valueDupVariant             func(v *Value) *T.GVariant
-	valueFitsPointer            func(v *Value) bool
-	valueGetBoolean             func(v *Value) bool
-	valueGetBoxed               func(v *Value) T.Gpointer
-	valueGetChar                func(v *Value) T.Gchar
-	valueGetDouble              func(v *Value) float64
-	valueGetEnum                func(v *Value) int
-	valueGetFlags               func(v *Value) uint
-	valueGetFloat               func(v *Value) float32
-	valueGetGtype               func(v *Value) Type
-	valueGetInt                 func(v *Value) int
-	valueGetInt64               func(v *Value) int64
-	valueGetLong                func(v *Value) T.Glong
-	valueGetObject              func(v *Value) T.Gpointer
-	valueGetParam               func(v *Value) *ParamSpec
-	valueGetPointer             func(v *Value) T.Gpointer
-	valueGetString              func(v *Value) string
-	valueGetUchar               func(v *Value) T.Guchar
-	valueGetUint                func(v *Value) uint
-	valueGetUint64              func(v *Value) uint64
-	valueGetUlong               func(v *Value) T.Gulong
-	valueGetVariant             func(v *Value) *T.GVariant
-	valueInit                   func(v *Value, gType Type) *Value
-	valuePeekPointer            func(v *Value) T.Gpointer
-	valueReset                  func(v *Value) *Value
-	valueSetBoolean             func(v *Value, vBoolean bool)
-	valueSetBoxed               func(v *Value, vBoxed T.Gconstpointer)
-	valueSetBoxedTakeOwnership  func(v *Value, vBoxed T.Gconstpointer)
-	valueSetChar                func(v *Value, vChar T.Gchar)
-	valueSetDouble              func(v *Value, vDouble float64)
-	valueSetEnum                func(v *Value, vEnum int)
-	valueSetFlags               func(v *Value, vFlags uint)
-	valueSetFloat               func(v *Value, vFloat float32)
-	valueSetGtype               func(v *Value, vGtype Type)
-	valueSetInstance            func(v *Value, instance T.Gpointer)
-	valueSetInt                 func(v *Value, vInt int)
-	valueSetInt64               func(v *Value, vInt64 int64)
-	valueSetLong                func(v *Value, vLong T.Glong)
-	valueSetObject              func(v *Value, vObject T.Gpointer)
-	valueSetObjectTakeOwnership func(v *Value, vObject T.Gpointer)
-	valueSetParam               func(v *Value, param *ParamSpec)
-	valueSetParamTakeOwnership  func(v *Value, param *ParamSpec)
-	valueSetPointer             func(v *Value, vPointer T.Gpointer)
-	valueSetStaticBoxed         func(v *Value, vBoxed T.Gconstpointer)
-	valueSetStaticString        func(v *Value, vString string)
-	valueSetString              func(v *Value, vString string)
-	valueSetStringTakeOwnership func(v *Value, vString string)
-	valueSetUchar               func(v *Value, vUchar T.Guchar)
-	valueSetUint                func(v *Value, vUint uint)
-	valueSetUint64              func(v *Value, vUint64 uint64)
-	valueSetUlong               func(v *Value, vUlong T.Gulong)
-	valueSetVariant             func(v *Value, variant *T.GVariant)
-	valueTakeBoxed              func(v *Value, vBoxed T.Gconstpointer)
-	valueTakeObject             func(v *Value, vObject T.Gpointer)
-	valueTakeParam              func(v *Value, param *ParamSpec)
-	valueTakeString             func(v *Value, vString string)
-	valueTakeVariant            func(v *Value, variant *T.GVariant)
-	valueTransform              func(v *Value, dest *Value) bool //
-	valueUnset                  func(v *Value)
+	ValueCopy                   func(v *Value, destValue *Value)
+	ValueDupBoxed               func(v *Value) T.Gpointer
+	ValueDupObject              func(v *Value) T.Gpointer
+	ValueDupParam               func(v *Value) *ParamSpec
+	ValueDupString              func(v *Value) string
+	ValueDupVariant             func(v *Value) *T.GVariant
+	ValueFitsPointer            func(v *Value) bool
+	ValueGetBoolean             func(v *Value) bool
+	ValueGetBoxed               func(v *Value) T.Gpointer
+	ValueGetChar                func(v *Value) T.Gchar
+	ValueGetDouble              func(v *Value) float64
+	ValueGetEnum                func(v *Value) int
+	ValueGetFlags               func(v *Value) uint
+	ValueGetFloat               func(v *Value) float32
+	ValueGetGtype               func(v *Value) Type
+	ValueGetInt                 func(v *Value) int
+	ValueGetInt64               func(v *Value) int64
+	ValueGetLong                func(v *Value) T.Glong
+	ValueGetObject              func(v *Value) T.Gpointer
+	ValueGetParam               func(v *Value) *ParamSpec
+	ValueGetPointer             func(v *Value) T.Gpointer
+	ValueGetString              func(v *Value) string
+	ValueGetUchar               func(v *Value) T.Guchar
+	ValueGetUint                func(v *Value) uint
+	ValueGetUint64              func(v *Value) uint64
+	ValueGetUlong               func(v *Value) T.Gulong
+	ValueGetVariant             func(v *Value) *T.GVariant
+	ValueInit                   func(v *Value, gType Type) *Value
+	ValuePeekPointer            func(v *Value) T.Gpointer
+	ValueReset                  func(v *Value) *Value
+	ValueSetBoolean             func(v *Value, vBoolean bool)
+	ValueSetBoxed               func(v *Value, vBoxed T.Gconstpointer)
+	ValueSetBoxedTakeOwnership  func(v *Value, vBoxed T.Gconstpointer)
+	ValueSetChar                func(v *Value, vChar T.Gchar)
+	ValueSetDouble              func(v *Value, vDouble float64)
+	ValueSetEnum                func(v *Value, vEnum int)
+	ValueSetFlags               func(v *Value, vFlags uint)
+	ValueSetFloat               func(v *Value, vFloat float32)
+	ValueSetGtype               func(v *Value, vGtype Type)
+	ValueSetInstance            func(v *Value, instance T.Gpointer)
+	ValueSetInt                 func(v *Value, vInt int)
+	ValueSetInt64               func(v *Value, vInt64 int64)
+	ValueSetLong                func(v *Value, vLong T.Glong)
+	ValueSetObject              func(v *Value, vObject T.Gpointer)
+	ValueSetObjectTakeOwnership func(v *Value, vObject T.Gpointer)
+	ValueSetParam               func(v *Value, param *ParamSpec)
+	ValueSetParamTakeOwnership  func(v *Value, param *ParamSpec)
+	ValueSetPointer             func(v *Value, vPointer T.Gpointer)
+	ValueSetStaticBoxed         func(v *Value, vBoxed T.Gconstpointer)
+	ValueSetStaticString        func(v *Value, vString string)
+	ValueSetString              func(v *Value, vString string)
+	ValueSetStringTakeOwnership func(v *Value, vString string)
+	ValueSetUchar               func(v *Value, vUchar T.Guchar)
+	ValueSetUint                func(v *Value, vUint uint)
+	ValueSetUint64              func(v *Value, vUint64 uint64)
+	ValueSetUlong               func(v *Value, vUlong T.Gulong)
+	ValueSetVariant             func(v *Value, variant *T.GVariant)
+	ValueTakeBoxed              func(v *Value, vBoxed T.Gconstpointer)
+	ValueTakeObject             func(v *Value, vObject T.Gpointer)
+	ValueTakeParam              func(v *Value, param *ParamSpec)
+	ValueTakeString             func(v *Value, vString string)
+	ValueTakeVariant            func(v *Value, variant *T.GVariant)
+	ValueTransform              func(v *Value, dest *Value) bool //
+	ValueUnset                  func(v *Value)
 )
 
-func (v *Value) Copy(destValue *Value)                        { valueCopy(v, destValue) }
-func (v *Value) DupBoxed() T.Gpointer                         { return valueDupBoxed(v) }
-func (v *Value) DupObject() T.Gpointer                        { return valueDupObject(v) }
-func (v *Value) DupParam() *ParamSpec                         { return valueDupParam(v) }
-func (v *Value) DupString() string                            { return valueDupString(v) }
-func (v *Value) DupVariant() *T.GVariant                      { return valueDupVariant(v) }
-func (v *Value) FitsPointer() bool                            { return valueFitsPointer(v) }
-func (v *Value) GetBoolean() bool                             { return valueGetBoolean(v) }
-func (v *Value) GetBoxed() T.Gpointer                         { return valueGetBoxed(v) }
-func (v *Value) GetChar() T.Gchar                             { return valueGetChar(v) }
-func (v *Value) GetDouble() float64                           { return valueGetDouble(v) }
-func (v *Value) GetEnum() int                                 { return valueGetEnum(v) }
-func (v *Value) GetFlags() uint                               { return valueGetFlags(v) }
-func (v *Value) GetFloat() float32                            { return valueGetFloat(v) }
-func (v *Value) GetGtype() Type                               { return valueGetGtype(v) }
-func (v *Value) GetInt() int                                  { return valueGetInt(v) }
-func (v *Value) GetInt64() int64                              { return valueGetInt64(v) }
-func (v *Value) GetLong() T.Glong                             { return valueGetLong(v) }
-func (v *Value) GetObject() T.Gpointer                        { return valueGetObject(v) }
-func (v *Value) GetParam() *ParamSpec                         { return valueGetParam(v) }
-func (v *Value) GetPointer() T.Gpointer                       { return valueGetPointer(v) }
-func (v *Value) GetString() string                            { return valueGetString(v) }
-func (v *Value) GetUchar() T.Guchar                           { return valueGetUchar(v) }
-func (v *Value) GetUint() uint                                { return valueGetUint(v) }
-func (v *Value) GetUint64() uint64                            { return valueGetUint64(v) }
-func (v *Value) GetUlong() T.Gulong                           { return valueGetUlong(v) }
-func (v *Value) GetVariant() *T.GVariant                      { return valueGetVariant(v) }
-func (v *Value) Init(gType Type) *Value                       { return valueInit(v, gType) }
-func (v *Value) PeekPointer() T.Gpointer                      { return valuePeekPointer(v) }
-func (v *Value) Reset() *Value                                { return valueReset(v) }
-func (v *Value) SetBoolean(vBoolean bool)                     { valueSetBoolean(v, vBoolean) }
-func (v *Value) SetBoxed(vBoxed T.Gconstpointer)              { valueSetBoxed(v, vBoxed) }
-func (v *Value) SetBoxedTakeOwnership(vBoxed T.Gconstpointer) { valueSetBoxedTakeOwnership(v, vBoxed) }
-func (v *Value) SetChar(vChar T.Gchar)                        { valueSetChar(v, vChar) }
-func (v *Value) SetDouble(vDouble float64)                    { valueSetDouble(v, vDouble) }
-func (v *Value) SetEnum(vEnum int)                            { valueSetEnum(v, vEnum) }
-func (v *Value) SetFlags(vFlags uint)                         { valueSetFlags(v, vFlags) }
-func (v *Value) SetFloat(vFloat float32)                      { valueSetFloat(v, vFloat) }
-func (v *Value) SetGtype(vGtype Type)                         { valueSetGtype(v, vGtype) }
-func (v *Value) SetInstance(instance T.Gpointer)              { valueSetInstance(v, instance) }
-func (v *Value) SetInt(vInt int)                              { valueSetInt(v, vInt) }
-func (v *Value) SetInt64(vInt64 int64)                        { valueSetInt64(v, vInt64) }
-func (v *Value) SetLong(vLong T.Glong)                        { valueSetLong(v, vLong) }
-func (v *Value) SetObject(vObject T.Gpointer)                 { valueSetObject(v, vObject) }
-func (v *Value) SetObjectTakeOwnership(vObject T.Gpointer)    { valueSetObjectTakeOwnership(v, vObject) }
-func (v *Value) SetParam(param *ParamSpec)                    { valueSetParam(v, param) }
-func (v *Value) SetParamTakeOwnership(param *ParamSpec)       { valueSetParamTakeOwnership(v, param) }
-func (v *Value) SetPointer(vPointer T.Gpointer)               { valueSetPointer(v, vPointer) }
-func (v *Value) SetStaticBoxed(vBoxed T.Gconstpointer)        { valueSetStaticBoxed(v, vBoxed) }
-func (v *Value) SetStaticString(vString string)               { valueSetStaticString(v, vString) }
-func (v *Value) SetString(vString string)                     { valueSetString(v, vString) }
-func (v *Value) SetStringTakeOwnership(vString string)        { valueSetStringTakeOwnership(v, vString) }
-func (v *Value) SetUchar(vUchar T.Guchar)                     { valueSetUchar(v, vUchar) }
-func (v *Value) SetUint(vUint uint)                           { valueSetUint(v, vUint) }
-func (v *Value) SetUint64(vUint64 uint64)                     { valueSetUint64(v, vUint64) }
-func (v *Value) SetUlong(vUlong T.Gulong)                     { valueSetUlong(v, vUlong) }
-func (v *Value) SetVariant(variant *T.GVariant)               { valueSetVariant(v, variant) }
-func (v *Value) TakeBoxed(vBoxed T.Gconstpointer)             { valueTakeBoxed(v, vBoxed) }
-func (v *Value) TakeObject(vObject T.Gpointer)                { valueTakeObject(v, vObject) }
-func (v *Value) TakeParam(param *ParamSpec)                   { valueTakeParam(v, param) }
-func (v *Value) TakeString(vString string)                    { valueTakeString(v, vString) }
-func (v *Value) TakeVariant(variant *T.GVariant)              { valueTakeVariant(v, variant) }
-func (v *Value) Transform(dest *Value) bool                   { return valueTransform(v, dest) }
-func (v *Value) Unset()                                       { valueUnset(v) }
+func (v *Value) Copy(destValue *Value)                        { ValueCopy(v, destValue) }
+func (v *Value) DupBoxed() T.Gpointer                         { return ValueDupBoxed(v) }
+func (v *Value) DupObject() T.Gpointer                        { return ValueDupObject(v) }
+func (v *Value) DupParam() *ParamSpec                         { return ValueDupParam(v) }
+func (v *Value) DupString() string                            { return ValueDupString(v) }
+func (v *Value) DupVariant() *T.GVariant                      { return ValueDupVariant(v) }
+func (v *Value) FitsPointer() bool                            { return ValueFitsPointer(v) }
+func (v *Value) GetBoolean() bool                             { return ValueGetBoolean(v) }
+func (v *Value) GetBoxed() T.Gpointer                         { return ValueGetBoxed(v) }
+func (v *Value) GetChar() T.Gchar                             { return ValueGetChar(v) }
+func (v *Value) GetDouble() float64                           { return ValueGetDouble(v) }
+func (v *Value) GetEnum() int                                 { return ValueGetEnum(v) }
+func (v *Value) GetFlags() uint                               { return ValueGetFlags(v) }
+func (v *Value) GetFloat() float32                            { return ValueGetFloat(v) }
+func (v *Value) GetGtype() Type                               { return ValueGetGtype(v) }
+func (v *Value) GetInt() int                                  { return ValueGetInt(v) }
+func (v *Value) GetInt64() int64                              { return ValueGetInt64(v) }
+func (v *Value) GetLong() T.Glong                             { return ValueGetLong(v) }
+func (v *Value) GetObject() T.Gpointer                        { return ValueGetObject(v) }
+func (v *Value) GetParam() *ParamSpec                         { return ValueGetParam(v) }
+func (v *Value) GetPointer() T.Gpointer                       { return ValueGetPointer(v) }
+func (v *Value) GetString() string                            { return ValueGetString(v) }
+func (v *Value) GetUchar() T.Guchar                           { return ValueGetUchar(v) }
+func (v *Value) GetUint() uint                                { return ValueGetUint(v) }
+func (v *Value) GetUint64() uint64                            { return ValueGetUint64(v) }
+func (v *Value) GetUlong() T.Gulong                           { return ValueGetUlong(v) }
+func (v *Value) GetVariant() *T.GVariant                      { return ValueGetVariant(v) }
+func (v *Value) Init(gType Type) *Value                       { return ValueInit(v, gType) }
+func (v *Value) PeekPointer() T.Gpointer                      { return ValuePeekPointer(v) }
+func (v *Value) Reset() *Value                                { return ValueReset(v) }
+func (v *Value) SetBoolean(vBoolean bool)                     { ValueSetBoolean(v, vBoolean) }
+func (v *Value) SetBoxed(vBoxed T.Gconstpointer)              { ValueSetBoxed(v, vBoxed) }
+func (v *Value) SetBoxedTakeOwnership(vBoxed T.Gconstpointer) { ValueSetBoxedTakeOwnership(v, vBoxed) }
+func (v *Value) SetChar(vChar T.Gchar)                        { ValueSetChar(v, vChar) }
+func (v *Value) SetDouble(vDouble float64)                    { ValueSetDouble(v, vDouble) }
+func (v *Value) SetEnum(vEnum int)                            { ValueSetEnum(v, vEnum) }
+func (v *Value) SetFlags(vFlags uint)                         { ValueSetFlags(v, vFlags) }
+func (v *Value) SetFloat(vFloat float32)                      { ValueSetFloat(v, vFloat) }
+func (v *Value) SetGtype(vGtype Type)                         { ValueSetGtype(v, vGtype) }
+func (v *Value) SetInstance(instance T.Gpointer)              { ValueSetInstance(v, instance) }
+func (v *Value) SetInt(vInt int)                              { ValueSetInt(v, vInt) }
+func (v *Value) SetInt64(vInt64 int64)                        { ValueSetInt64(v, vInt64) }
+func (v *Value) SetLong(vLong T.Glong)                        { ValueSetLong(v, vLong) }
+func (v *Value) SetObject(vObject T.Gpointer)                 { ValueSetObject(v, vObject) }
+func (v *Value) SetObjectTakeOwnership(vObject T.Gpointer)    { ValueSetObjectTakeOwnership(v, vObject) }
+func (v *Value) SetParam(param *ParamSpec)                    { ValueSetParam(v, param) }
+func (v *Value) SetParamTakeOwnership(param *ParamSpec)       { ValueSetParamTakeOwnership(v, param) }
+func (v *Value) SetPointer(vPointer T.Gpointer)               { ValueSetPointer(v, vPointer) }
+func (v *Value) SetStaticBoxed(vBoxed T.Gconstpointer)        { ValueSetStaticBoxed(v, vBoxed) }
+func (v *Value) SetStaticString(vString string)               { ValueSetStaticString(v, vString) }
+func (v *Value) SetString(vString string)                     { ValueSetString(v, vString) }
+func (v *Value) SetStringTakeOwnership(vString string)        { ValueSetStringTakeOwnership(v, vString) }
+func (v *Value) SetUchar(vUchar T.Guchar)                     { ValueSetUchar(v, vUchar) }
+func (v *Value) SetUint(vUint uint)                           { ValueSetUint(v, vUint) }
+func (v *Value) SetUint64(vUint64 uint64)                     { ValueSetUint64(v, vUint64) }
+func (v *Value) SetUlong(vUlong T.Gulong)                     { ValueSetUlong(v, vUlong) }
+func (v *Value) SetVariant(variant *T.GVariant)               { ValueSetVariant(v, variant) }
+func (v *Value) TakeBoxed(vBoxed T.Gconstpointer)             { ValueTakeBoxed(v, vBoxed) }
+func (v *Value) TakeObject(vObject T.Gpointer)                { ValueTakeObject(v, vObject) }
+func (v *Value) TakeParam(param *ParamSpec)                   { ValueTakeParam(v, param) }
+func (v *Value) TakeString(vString string)                    { ValueTakeString(v, vString) }
+func (v *Value) TakeVariant(variant *T.GVariant)              { ValueTakeVariant(v, variant) }
+func (v *Value) Transform(dest *Value) bool                   { return ValueTransform(v, dest) }
+func (v *Value) Unset()                                       { ValueUnset(v) }
 
 type ValueArray struct {
 	NValues     uint

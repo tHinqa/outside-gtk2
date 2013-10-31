@@ -5,6 +5,7 @@ package gdk
 
 import (
 	I "github.com/tHinqa/outside-gtk2/gio"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -34,19 +35,19 @@ var (
 
 	PangoRendererGetDefault func(screen *Screen) *P.Renderer
 
-	pangoRendererSetDrawable      func(p *PangoRenderer, drawable *Drawable)
-	pangoRendererSetGc            func(p *PangoRenderer, gc *GC)
-	pangoRendererSetStipple       func(p *PangoRenderer, part P.RenderPart, stipple *T.GdkBitmap)
-	pangoRendererSetOverrideColor func(p *PangoRenderer, part P.RenderPart, color *Color)
+	PangoRendererSetDrawable      func(p *PangoRenderer, drawable *Drawable)
+	PangoRendererSetGc            func(p *PangoRenderer, gc *GC)
+	PangoRendererSetStipple       func(p *PangoRenderer, part P.RenderPart, stipple *T.GdkBitmap)
+	PangoRendererSetOverrideColor func(p *PangoRenderer, part P.RenderPart, color *Color)
 )
 
-func (p *PangoRenderer) SetDrawable(drawable *Drawable) { pangoRendererSetDrawable(p, drawable) }
-func (p *PangoRenderer) SetGc(gc *GC)                   { pangoRendererSetGc(p, gc) }
+func (p *PangoRenderer) SetDrawable(drawable *Drawable) { PangoRendererSetDrawable(p, drawable) }
+func (p *PangoRenderer) SetGc(gc *GC)                   { PangoRendererSetGc(p, gc) }
 func (p *PangoRenderer) SetStipple(part P.RenderPart, stipple *T.GdkBitmap) {
-	pangoRendererSetStipple(p, part, stipple)
+	PangoRendererSetStipple(p, part, stipple)
 }
 func (p *PangoRenderer) SetOverrideColor(part P.RenderPart, color *Color) {
-	pangoRendererSetOverrideColor(p, part, color)
+	PangoRendererSetOverrideColor(p, part, color)
 }
 
 var PangoAttrStippleNew func(stipple *T.GdkBitmap) *P.Attribute
@@ -70,116 +71,116 @@ var (
 
 	PixbufErrorQuark         func() T.GQuark
 	PixbufGetFileInfo        func(filename string, width, height *int) *PixbufFormat
-	PixbufGetFormats         func() *T.GSList
+	PixbufGetFormats         func() *L.SList
 	PixbufSaveToStreamFinish func(asyncResult *I.AsyncResult, e **T.GError) bool
 
 	PixbufGetFromDrawable func(dest *Pixbuf, src *Drawable, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
 	PixbufGetFromImage    func(dest *Pixbuf, src *Image, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
 
-	pixbufAddAlpha                 func(pixbuf *Pixbuf, substituteColor bool, r, g, b T.Guchar) *Pixbuf
-	pixbufApplyEmbeddedOrientation func(src *Pixbuf) *Pixbuf
-	pixbufComposite                func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha int)
-	pixbufCompositeColor           func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha, checkX, checkY, checkSize int, color1, color2 T.GUint32)
-	pixbufCompositeColorSimple     func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType, overallAlpha, checkSize int, color1, color2 T.GUint32) *Pixbuf
-	pixbufCopy                     func(pixbuf *Pixbuf) *Pixbuf
-	pixbufCopyArea                 func(srcPixbuf *Pixbuf, srcX, srcY, width, height int, destPixbuf *Pixbuf, destX, destY int)
-	pixbufFill                     func(pixbuf *Pixbuf, pixel T.GUint32)
-	pixbufFlip                     func(src *Pixbuf, horizontal bool) *Pixbuf
-	pixbufGetBitsPerSample         func(pixbuf *Pixbuf) int
-	pixbufGetColorspace            func(pixbuf *Pixbuf) Colorspace
-	pixbufGetHasAlpha              func(pixbuf *Pixbuf) bool
-	pixbufGetHeight                func(pixbuf *Pixbuf) int
-	pixbufGetNChannels             func(pixbuf *Pixbuf) int
-	pixbufGetOption                func(pixbuf *Pixbuf, key string) string
-	pixbufGetPixels                func(pixbuf *Pixbuf) *T.Guchar
-	pixbufGetRowstride             func(pixbuf *Pixbuf) int
-	pixbufGetWidth                 func(pixbuf *Pixbuf) int
-	pixbufNewSubpixbuf             func(pixbuf *Pixbuf, srcX, srcY, width, height int) *Pixbuf
-	pixbufRef                      func(pixbuf *Pixbuf) *Pixbuf
-	pixbufRotateSimple             func(src *Pixbuf, angle PixbufRotation) *Pixbuf
-	pixbufSaturateAndPixelate      func(src, dest *Pixbuf, saturation float32, pixelate bool)
-	pixbufSaveToBuffer             func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **T.GError, v ...VArg) bool
-	pixbufSaveToBufferv            func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
-	pixbufSaveToCallback           func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) bool
-	pixbufSaveToCallbackv          func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
-	pixbufSaveToStream             func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **T.GError, v ...VArg) bool
-	pixbufSaveToStreamAsync        func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg)
-	pixbufSaveUtf8                 func(pixbuf *Pixbuf, filename, typ string, e **T.GError, v ...VArg) bool
-	pixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
-	pixbufScale                    func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType)
-	pixbufScaleSimple              func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf
-	pixbufSetOption                func(pixbuf *Pixbuf, key, value string) bool
-	pixbufUnref                    func(pixbuf *Pixbuf)
+	PixbufAddAlpha                 func(pixbuf *Pixbuf, substituteColor bool, r, g, b T.Guchar) *Pixbuf
+	PixbufApplyEmbeddedOrientation func(src *Pixbuf) *Pixbuf
+	PixbufComposite                func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha int)
+	PixbufCompositeColor           func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha, checkX, checkY, checkSize int, color1, color2 T.GUint32)
+	PixbufCompositeColorSimple     func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType, overallAlpha, checkSize int, color1, color2 T.GUint32) *Pixbuf
+	PixbufCopy                     func(pixbuf *Pixbuf) *Pixbuf
+	PixbufCopyArea                 func(srcPixbuf *Pixbuf, srcX, srcY, width, height int, destPixbuf *Pixbuf, destX, destY int)
+	PixbufFill                     func(pixbuf *Pixbuf, pixel T.GUint32)
+	PixbufFlip                     func(src *Pixbuf, horizontal bool) *Pixbuf
+	PixbufGetBitsPerSample         func(pixbuf *Pixbuf) int
+	PixbufGetColorspace            func(pixbuf *Pixbuf) Colorspace
+	PixbufGetHasAlpha              func(pixbuf *Pixbuf) bool
+	PixbufGetHeight                func(pixbuf *Pixbuf) int
+	PixbufGetNChannels             func(pixbuf *Pixbuf) int
+	PixbufGetOption                func(pixbuf *Pixbuf, key string) string
+	PixbufGetPixels                func(pixbuf *Pixbuf) *T.Guchar
+	PixbufGetRowstride             func(pixbuf *Pixbuf) int
+	PixbufGetWidth                 func(pixbuf *Pixbuf) int
+	PixbufNewSubpixbuf             func(pixbuf *Pixbuf, srcX, srcY, width, height int) *Pixbuf
+	PixbufRef                      func(pixbuf *Pixbuf) *Pixbuf
+	PixbufRotateSimple             func(src *Pixbuf, angle PixbufRotation) *Pixbuf
+	PixbufSaturateAndPixelate      func(src, dest *Pixbuf, saturation float32, pixelate bool)
+	PixbufSaveToBuffer             func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **T.GError, v ...VArg) bool
+	PixbufSaveToBufferv            func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
+	PixbufSaveToCallback           func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) bool
+	PixbufSaveToCallbackv          func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
+	PixbufSaveToStream             func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **T.GError, v ...VArg) bool
+	PixbufSaveToStreamAsync        func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg)
+	PixbufSaveUtf8                 func(pixbuf *Pixbuf, filename, typ string, e **T.GError, v ...VArg) bool
+	PixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
+	PixbufScale                    func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType)
+	PixbufScaleSimple              func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf
+	PixbufSetOption                func(pixbuf *Pixbuf, key, value string) bool
+	PixbufUnref                    func(pixbuf *Pixbuf)
 )
 
 func (p *Pixbuf) AddAlpha(substituteColor bool, r, g, b T.Guchar) *Pixbuf {
-	return pixbufAddAlpha(p, substituteColor, r, g, b)
+	return PixbufAddAlpha(p, substituteColor, r, g, b)
 }
-func (p *Pixbuf) ApplyEmbeddedOrientation() *Pixbuf { return pixbufApplyEmbeddedOrientation(p) }
+func (p *Pixbuf) ApplyEmbeddedOrientation() *Pixbuf { return PixbufApplyEmbeddedOrientation(p) }
 func (p *Pixbuf) Composite(dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha int) {
-	pixbufComposite(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType, overallAlpha)
+	PixbufComposite(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType, overallAlpha)
 }
 func (p *Pixbuf) CompositeColor(dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType, overallAlpha, checkX, checkY, checkSize int, color1, color2 T.GUint32) {
-	pixbufCompositeColor(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType, overallAlpha, checkX, checkY, checkSize, color1, color2)
+	PixbufCompositeColor(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType, overallAlpha, checkX, checkY, checkSize, color1, color2)
 }
 func (p *Pixbuf) CompositeColorSimple(destWidth, destHeight int, interpType T.GdkInterpType, overallAlpha, checkSize int, color1, color2 T.GUint32) *Pixbuf {
-	return pixbufCompositeColorSimple(p, destWidth, destHeight, interpType, overallAlpha, checkSize, color1, color2)
+	return PixbufCompositeColorSimple(p, destWidth, destHeight, interpType, overallAlpha, checkSize, color1, color2)
 }
-func (p *Pixbuf) Copy() *Pixbuf { return pixbufCopy(p) }
+func (p *Pixbuf) Copy() *Pixbuf { return PixbufCopy(p) }
 func (p *Pixbuf) CopyArea(srcX, srcY, width, height int, destPixbuf *Pixbuf, destX, destY int) {
-	pixbufCopyArea(p, srcX, srcY, width, height, destPixbuf, destX, destY)
+	PixbufCopyArea(p, srcX, srcY, width, height, destPixbuf, destX, destY)
 }
-func (p *Pixbuf) Fill(pixel T.GUint32)         { pixbufFill(p, pixel) }
-func (p *Pixbuf) Flip(horizontal bool) *Pixbuf { return pixbufFlip(p, horizontal) }
-func (p *Pixbuf) GetBitsPerSample() int        { return pixbufGetBitsPerSample(p) }
-func (p *Pixbuf) GetColorspace() Colorspace    { return pixbufGetColorspace(p) }
-func (p *Pixbuf) GetHasAlpha() bool            { return pixbufGetHasAlpha(p) }
-func (p *Pixbuf) GetHeight() int               { return pixbufGetHeight(p) }
-func (p *Pixbuf) GetNChannels() int            { return pixbufGetNChannels(p) }
-func (p *Pixbuf) GetOption(key string) string  { return pixbufGetOption(p, key) }
-func (p *Pixbuf) GetPixels() *T.Guchar         { return pixbufGetPixels(p) }
-func (p *Pixbuf) GetRowstride() int            { return pixbufGetRowstride(p) }
-func (p *Pixbuf) GetWidth() int                { return pixbufGetWidth(p) }
+func (p *Pixbuf) Fill(pixel T.GUint32)         { PixbufFill(p, pixel) }
+func (p *Pixbuf) Flip(horizontal bool) *Pixbuf { return PixbufFlip(p, horizontal) }
+func (p *Pixbuf) GetBitsPerSample() int        { return PixbufGetBitsPerSample(p) }
+func (p *Pixbuf) GetColorspace() Colorspace    { return PixbufGetColorspace(p) }
+func (p *Pixbuf) GetHasAlpha() bool            { return PixbufGetHasAlpha(p) }
+func (p *Pixbuf) GetHeight() int               { return PixbufGetHeight(p) }
+func (p *Pixbuf) GetNChannels() int            { return PixbufGetNChannels(p) }
+func (p *Pixbuf) GetOption(key string) string  { return PixbufGetOption(p, key) }
+func (p *Pixbuf) GetPixels() *T.Guchar         { return PixbufGetPixels(p) }
+func (p *Pixbuf) GetRowstride() int            { return PixbufGetRowstride(p) }
+func (p *Pixbuf) GetWidth() int                { return PixbufGetWidth(p) }
 func (p *Pixbuf) NewSubpixbuf(srcX, srcY, width, height int) *Pixbuf {
-	return pixbufNewSubpixbuf(p, srcX, srcY, width, height)
+	return PixbufNewSubpixbuf(p, srcX, srcY, width, height)
 }
-func (p *Pixbuf) Ref() *Pixbuf                              { return pixbufRef(p) }
-func (p *Pixbuf) RotateSimple(angle PixbufRotation) *Pixbuf { return pixbufRotateSimple(p, angle) }
+func (p *Pixbuf) Ref() *Pixbuf                              { return PixbufRef(p) }
+func (p *Pixbuf) RotateSimple(angle PixbufRotation) *Pixbuf { return PixbufRotateSimple(p, angle) }
 func (p *Pixbuf) SaturateAndPixelate(dest *Pixbuf, saturation float32, pixelate bool) {
-	pixbufSaturateAndPixelate(p, dest, saturation, pixelate)
+	PixbufSaturateAndPixelate(p, dest, saturation, pixelate)
 }
 func (p *Pixbuf) SaveToBuffer(buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **T.GError, v ...VArg) bool {
-	return pixbufSaveToBuffer(p, buffer, bufferSize, typ, e, v)
+	return PixbufSaveToBuffer(p, buffer, bufferSize, typ, e, v)
 }
 func (p *Pixbuf) SaveToBufferv(buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
-	return pixbufSaveToBufferv(p, buffer, bufferSize, typ, optionKeys, optionValues, e)
+	return PixbufSaveToBufferv(p, buffer, bufferSize, typ, optionKeys, optionValues, e)
 }
 func (p *Pixbuf) SaveToCallback(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) bool {
-	return pixbufSaveToCallback(p, saveFunc, userData, typ, err, v)
+	return PixbufSaveToCallback(p, saveFunc, userData, typ, err, v)
 }
 func (p *Pixbuf) SaveToCallbackv(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
-	return pixbufSaveToCallbackv(p, saveFunc, userData, typ, optionKeys, optionValues, e)
+	return PixbufSaveToCallbackv(p, saveFunc, userData, typ, optionKeys, optionValues, e)
 }
 func (p *Pixbuf) SaveToStream(stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **T.GError, v ...VArg) bool {
-	return pixbufSaveToStream(p, stream, typ, cancellable, e, v)
+	return PixbufSaveToStream(p, stream, typ, cancellable, e, v)
 }
 func (p *Pixbuf) SaveToStreamAsync(stream *I.OutputStream, typ string, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg) {
-	pixbufSaveToStreamAsync(p, stream, typ, cancellable, callback, userData, v)
+	PixbufSaveToStreamAsync(p, stream, typ, cancellable, callback, userData, v)
 }
 func (p *Pixbuf) SaveUtf8(filename, typ string, e **T.GError, v ...VArg) bool {
-	return pixbufSaveUtf8(p, filename, typ, e, v)
+	return PixbufSaveUtf8(p, filename, typ, e, v)
 }
 func (p *Pixbuf) SavevUtf8(filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
-	return pixbufSavevUtf8(p, filename, typ, optionKeys, optionValues, e)
+	return PixbufSavevUtf8(p, filename, typ, optionKeys, optionValues, e)
 }
 func (p *Pixbuf) Scale(dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType) {
-	pixbufScale(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType)
+	PixbufScale(p, dest, destX, destY, destWidth, destHeight, offsetX, offsetY, scaleX, scaleY, interpType)
 }
 func (p *Pixbuf) ScaleSimple(destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf {
-	return pixbufScaleSimple(p, destWidth, destHeight, interpType)
+	return PixbufScaleSimple(p, destWidth, destHeight, interpType)
 }
-func (p *Pixbuf) SetOption(key, value string) bool { return pixbufSetOption(p, key, value) }
-func (p *Pixbuf) Unref()                           { pixbufUnref(p) }
+func (p *Pixbuf) SetOption(key, value string) bool { return PixbufSetOption(p, key, value) }
+func (p *Pixbuf) Unref()                           { PixbufUnref(p) }
 
 var (
 	PixbufErrorGetType func() O.Type
@@ -200,24 +201,24 @@ var (
 	PixbufAnimationGetType         func() O.Type
 	PixbufAnimationNewFromFileUtf8 func(filename string, e **T.GError) *PixbufAnimation
 
-	pixbufAnimationGetHeight      func(animation *PixbufAnimation) int
-	pixbufAnimationGetIter        func(animation *PixbufAnimation, startTime *T.GTimeVal) *PixbufAnimationIter
-	pixbufAnimationGetStaticImage func(animation *PixbufAnimation) *Pixbuf
-	pixbufAnimationGetWidth       func(animation *PixbufAnimation) int
-	pixbufAnimationIsStaticImage  func(animation *PixbufAnimation) bool
-	pixbufAnimationRef            func(animation *PixbufAnimation) *PixbufAnimation
-	pixbufAnimationUnref          func(animation *PixbufAnimation)
+	PixbufAnimationGetHeight      func(animation *PixbufAnimation) int
+	PixbufAnimationGetIter        func(animation *PixbufAnimation, startTime *T.GTimeVal) *PixbufAnimationIter
+	PixbufAnimationGetStaticImage func(animation *PixbufAnimation) *Pixbuf
+	PixbufAnimationGetWidth       func(animation *PixbufAnimation) int
+	PixbufAnimationIsStaticImage  func(animation *PixbufAnimation) bool
+	PixbufAnimationRef            func(animation *PixbufAnimation) *PixbufAnimation
+	PixbufAnimationUnref          func(animation *PixbufAnimation)
 )
 
-func (p *PixbufAnimation) GetHeight() int { return pixbufAnimationGetHeight(p) }
+func (p *PixbufAnimation) GetHeight() int { return PixbufAnimationGetHeight(p) }
 func (p *PixbufAnimation) GetIter(startTime *T.GTimeVal) *PixbufAnimationIter {
-	return pixbufAnimationGetIter(p, startTime)
+	return PixbufAnimationGetIter(p, startTime)
 }
-func (p *PixbufAnimation) GetStaticImage() *Pixbuf { return pixbufAnimationGetStaticImage(p) }
-func (p *PixbufAnimation) GetWidth() int           { return pixbufAnimationGetWidth(p) }
-func (p *PixbufAnimation) IsStaticImage() bool     { return pixbufAnimationIsStaticImage(p) }
-func (p *PixbufAnimation) Ref() *PixbufAnimation   { return pixbufAnimationRef(p) }
-func (p *PixbufAnimation) Unref()                  { pixbufAnimationUnref(p) }
+func (p *PixbufAnimation) GetStaticImage() *Pixbuf { return PixbufAnimationGetStaticImage(p) }
+func (p *PixbufAnimation) GetWidth() int           { return PixbufAnimationGetWidth(p) }
+func (p *PixbufAnimation) IsStaticImage() bool     { return PixbufAnimationIsStaticImage(p) }
+func (p *PixbufAnimation) Ref() *PixbufAnimation   { return PixbufAnimationRef(p) }
+func (p *PixbufAnimation) Unref()                  { PixbufAnimationUnref(p) }
 
 type PixbufAnimationIter struct{}
 
@@ -232,7 +233,7 @@ var (
 )
 
 type PixbufDestroyNotify func(
-	pixels *T.Guchar,
+	Pixels *T.Guchar,
 	data T.Gpointer)
 
 type PixbufFormat struct{}
@@ -308,14 +309,14 @@ var (
 	PixbufSimpleAnimGetType func() O.Type
 	PixbufSimpleAnimNew     func(width, height int, rate float32) *PixbufSimpleAnim
 
-	pixbufSimpleAnimAddFrame func(animation *PixbufSimpleAnim, pixbuf *Pixbuf)
-	pixbufSimpleAnimSetLoop  func(animation *PixbufSimpleAnim, loop bool)
-	pixbufSimpleAnimGetLoop  func(animation *PixbufSimpleAnim) bool
+	PixbufSimpleAnimAddFrame func(animation *PixbufSimpleAnim, pixbuf *Pixbuf)
+	PixbufSimpleAnimSetLoop  func(animation *PixbufSimpleAnim, loop bool)
+	PixbufSimpleAnimGetLoop  func(animation *PixbufSimpleAnim) bool
 )
 
-func (p *PixbufSimpleAnim) AddFrame(pixbuf *Pixbuf) { pixbufSimpleAnimAddFrame(p, pixbuf) }
-func (p *PixbufSimpleAnim) SetLoop(loop bool)       { pixbufSimpleAnimSetLoop(p, loop) }
-func (p *PixbufSimpleAnim) GetLoop() bool           { return pixbufSimpleAnimGetLoop(p) }
+func (p *PixbufSimpleAnim) AddFrame(pixbuf *Pixbuf) { PixbufSimpleAnimAddFrame(p, pixbuf) }
+func (p *PixbufSimpleAnim) SetLoop(loop bool)       { PixbufSimpleAnimSetLoop(p, loop) }
+func (p *PixbufSimpleAnim) GetLoop() bool           { return PixbufSimpleAnimGetLoop(p) }
 
 var PixbufSimpleAnimIterGetType func() O.Type
 
@@ -332,21 +333,21 @@ type Pixdata struct {
 var (
 	PixbufFromPixdata func(p *Pixdata, copyPixels bool, e **T.GError) *Pixbuf
 
-	pixdataDeserialize func(p *Pixdata, streamLength uint, stream *uint8, e **T.GError) bool
-	pixdataFromPixbuf  func(p *Pixdata, pixbuf *Pixbuf, useRle bool) T.Gpointer
-	pixdataSerialize   func(p *Pixdata, streamLengthP *uint) *uint8
-	pixdataToCsource   func(p *Pixdata, name string, dumpType PixdataDumpType) *T.GString
+	PixdataDeserialize func(p *Pixdata, streamLength uint, stream *uint8, e **T.GError) bool
+	PixdataFromPixbuf  func(p *Pixdata, pixbuf *Pixbuf, useRle bool) T.Gpointer
+	PixdataSerialize   func(p *Pixdata, streamLengthP *uint) *uint8
+	PixdataToCsource   func(p *Pixdata, name string, dumpType PixdataDumpType) *L.String
 )
 
 func (p *Pixdata) Deserialize(streamLength uint, stream *uint8, e **T.GError) bool {
-	return pixdataDeserialize(p, streamLength, stream, e)
+	return PixdataDeserialize(p, streamLength, stream, e)
 }
 func (p *Pixdata) FromPixbuf(pixbuf *Pixbuf, useRle bool) T.Gpointer {
-	return pixdataFromPixbuf(p, pixbuf, useRle)
+	return PixdataFromPixbuf(p, pixbuf, useRle)
 }
-func (p *Pixdata) Serialize(streamLengthP *uint) *uint8 { return pixdataSerialize(p, streamLengthP) }
-func (p *Pixdata) ToCsource(name string, dumpType PixdataDumpType) *T.GString {
-	return pixdataToCsource(p, name, dumpType)
+func (p *Pixdata) Serialize(streamLengthP *uint) *uint8 { return PixdataSerialize(p, streamLengthP) }
+func (p *Pixdata) ToCsource(name string, dumpType PixdataDumpType) *L.String {
+	return PixdataToCsource(p, name, dumpType)
 }
 
 type PixdataType Enum
@@ -407,10 +408,10 @@ var (
 	PixmapLookup                 func(anid T.GdkNativeWindow) *Pixmap
 	PixmapLookupForDisplay       func(display *Display, anid T.GdkNativeWindow) *Pixmap
 
-	pixmapGetSize func(p *Pixmap, width, height *int)
+	PixmapGetSize func(p *Pixmap, width, height *int)
 )
 
-func (p *Pixmap) GetSize(width, height *int) { pixmapGetSize(p, width, height) }
+func (p *Pixmap) GetSize(width, height *int) { PixmapGetSize(p, width, height) }
 
 type Point struct {
 	X int

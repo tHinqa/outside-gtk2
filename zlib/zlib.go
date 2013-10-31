@@ -93,83 +93,83 @@ var (
 	Gzdopen func(fd int, mode string) *GzFile
 	Gzopen  func(string, string) *GzFile
 
-	gzbuffer    func(g *GzFile, size uint) int
-	gzclearerr  func(g *GzFile)
-	gzclose     func(g *GzFile) int
-	gzcloseR    func(g *GzFile) int
-	gzcloseW    func(g *GzFile) int
-	gzdirect    func(g *GzFile) int
-	gzeof       func(g *GzFile) int
-	gzerror     func(g *GzFile, errnum *int) string
-	gzflush     func(g *GzFile, flush int) int
-	gzgetc      func(g *GzFile) int
-	gzgets      func(g *GzFile, buf string, leng int) string
-	gzoffset    func(g *GzFile) T.Long
-	gzprintf    func(g *GzFile, format string, v ...VArg) int
-	gzputc      func(g *GzFile, c int) int
-	gzputs      func(g *GzFile, s string) int
-	gzread      func(g *GzFile, buf *T.Void, leng uint) int
-	gzrewind    func(g *GzFile) int
-	gzseek      func(*GzFile, T.Long, int) T.Long
-	gzsetparams func(g *GzFile, level, strategy int) int
-	gztell      func(g *GzFile) T.Long
-	gzungetc    func(c int, file *GzFile) int
-	gzwrite     func(g *GzFile, buf *T.Void, leng uint) int
+	Gzbuffer    func(g *GzFile, size uint) int
+	Gzclearerr  func(g *GzFile)
+	Gzclose     func(g *GzFile) int
+	GzcloseR    func(g *GzFile) int
+	GzcloseW    func(g *GzFile) int
+	Gzdirect    func(g *GzFile) int
+	Gzeof       func(g *GzFile) int
+	Gzerror     func(g *GzFile, errnum *int) string
+	Gzflush     func(g *GzFile, flush int) int
+	Gzgetc      func(g *GzFile) int
+	Gzgets      func(g *GzFile, buf string, leng int) string
+	Gzoffset    func(g *GzFile) T.Long
+	Gzprintf    func(g *GzFile, format string, v ...VArg) int
+	Gzputc      func(g *GzFile, c int) int
+	Gzputs      func(g *GzFile, s string) int
+	Gzread      func(g *GzFile, buf *T.Void, leng uint) int
+	Gzrewind    func(g *GzFile) int
+	Gzseek      func(*GzFile, T.Long, int) T.Long
+	Gzsetparams func(g *GzFile, level, strategy int) int
+	Gztell      func(g *GzFile) T.Long
+	Gzungetc    func(c int, file *GzFile) int
+	Gzwrite     func(g *GzFile, buf *T.Void, leng uint) int
 )
 
-func (g *GzFile) Buffer(size uint) int                { return gzbuffer(g, size) }
-func (g *GzFile) Clearerr()                           { gzclearerr(g) }
-func (g *GzFile) Close() int                          { return gzclose(g) }
-func (g *GzFile) CloseR() int                         { return gzcloseR(g) }
-func (g *GzFile) CloseW() int                         { return gzcloseW(g) }
-func (g *GzFile) Direct() int                         { return gzdirect(g) }
-func (g *GzFile) Eof() int                            { return gzeof(g) }
-func (g *GzFile) Error(errnum *int) string            { return gzerror(g, errnum) }
-func (g *GzFile) Flush(flush int) int                 { return gzflush(g, flush) }
-func (g *GzFile) Getc() int                           { return gzgetc(g) }
-func (g *GzFile) Gets(buf string, leng int) string    { return gzgets(g, buf, leng) }
-func (g *GzFile) Offset() T.Long                      { return gzoffset(g) }
-func (g *GzFile) Printf(format string, v ...VArg) int { return gzprintf(g, format, v) }
-func (g *GzFile) Putc(c int) int                      { return gzputc(g, c) }
-func (g *GzFile) Puts(s string) int                   { return gzputs(g, s) }
-func (g *GzFile) Read(buf *T.Void, leng uint) int     { return gzread(g, buf, leng) }
-func (g *GzFile) Rewind() int                         { return gzrewind(g) }
-func (g *GzFile) Seek(a1 T.Long, a2 int) T.Long       { return gzseek(g, a1, a2) }
-func (g *GzFile) Setparams(level, strategy int) int   { return gzsetparams(g, level, strategy) }
-func (g *GzFile) Tell() T.Long                        { return gztell(g) }
-func (g *GzFile) Ungetc(c int) int                    { return gzungetc(c, g) }
-func (g *GzFile) Write(buf *T.Void, leng uint) int    { return gzwrite(g, buf, leng) }
+func (g *GzFile) Buffer(size uint) int                { return Gzbuffer(g, size) }
+func (g *GzFile) Clearerr()                           { Gzclearerr(g) }
+func (g *GzFile) Close() int                          { return Gzclose(g) }
+func (g *GzFile) CloseR() int                         { return GzcloseR(g) }
+func (g *GzFile) CloseW() int                         { return GzcloseW(g) }
+func (g *GzFile) Direct() int                         { return Gzdirect(g) }
+func (g *GzFile) Eof() int                            { return Gzeof(g) }
+func (g *GzFile) Error(errnum *int) string            { return Gzerror(g, errnum) }
+func (g *GzFile) Flush(flush int) int                 { return Gzflush(g, flush) }
+func (g *GzFile) Getc() int                           { return Gzgetc(g) }
+func (g *GzFile) Gets(buf string, leng int) string    { return Gzgets(g, buf, leng) }
+func (g *GzFile) Offset() T.Long                      { return Gzoffset(g) }
+func (g *GzFile) Printf(format string, v ...VArg) int { return Gzprintf(g, format, v) }
+func (g *GzFile) Putc(c int) int                      { return Gzputc(g, c) }
+func (g *GzFile) Puts(s string) int                   { return Gzputs(g, s) }
+func (g *GzFile) Read(buf *T.Void, leng uint) int     { return Gzread(g, buf, leng) }
+func (g *GzFile) Rewind() int                         { return Gzrewind(g) }
+func (g *GzFile) Seek(a1 T.Long, a2 int) T.Long       { return Gzseek(g, a1, a2) }
+func (g *GzFile) Setparams(level, strategy int) int   { return Gzsetparams(g, level, strategy) }
+func (g *GzFile) Tell() T.Long                        { return Gztell(g) }
+func (g *GzFile) Ungetc(c int) int                    { return Gzungetc(c, g) }
+func (g *GzFile) Write(buf *T.Void, leng uint) int    { return Gzwrite(g, buf, leng) }
 
 var (
-	deflate              func(z *ZStream, flush int) int
-	deflateBound         func(z *ZStream, sourceLen T.UnsignedLong) T.UnsignedLong
-	deflateCopy          func(dest, source *ZStream) int
-	deflateEnd           func(z *ZStream) int
-	deflateInit          func(z *ZStream, level int, version string, streamSize int) int
-	deflateInit2         func(z *ZStream, level, method, windowBits, memLevel, strategy int, version string, streamSize int) int
-	deflateParams        func(z *ZStream, level, strategy int) int
-	deflatePrime         func(z *ZStream, bits, value int) int
-	deflateReset         func(z *ZStream) int
-	deflateSetDictionary func(z *ZStream, dictionary *byte, dictLength uint) int
-	deflateSetHeader     func(z *ZStream, head *GzHeader) int
-	deflateTune          func(z *ZStream, goodLength, maxLazy, niceLength, maxChain int) int
-	inflate              func(z *ZStream, flush int) int
-	inflateBack          func(z *ZStream, in InFunc, inDesc *T.Void, out OutFunc, outDesc *T.Void) int
-	inflateBackEnd       func(z *ZStream) int
-	inflateBackInit      func(z *ZStream, windowBits int, window *T.UnsignedChar, version string, streamSize int) int
-	inflateCopy          func(dest, source *ZStream) int
-	inflateEnd           func(z *ZStream) int
-	inflateGetHeader     func(z *ZStream, head *GzHeader) int
-	inflateInit          func(z *ZStream, version string, streamSize int) int
-	inflateInit2         func(z *ZStream, windowBits int, version string, streamSize int) int
-	inflateMark          func(z *ZStream) T.Long
-	inflatePrime         func(z *ZStream, bits, value int) int
-	inflateReset         func(z *ZStream) int
-	inflateReset2        func(z *ZStream, windowBits int) int
-	inflateSetDictionary func(z *ZStream, dictionary *byte, dictLength uint) int
-	inflateSync          func(z *ZStream) int
-	inflateSyncPoint     func(z *ZStream) int
-	inflateUndermine     func(z *ZStream, i int) int
+	Deflate              func(z *ZStream, flush int) int
+	DeflateBound         func(z *ZStream, sourceLen T.UnsignedLong) T.UnsignedLong
+	DeflateCopy          func(dest, source *ZStream) int
+	DeflateEnd           func(z *ZStream) int
+	DeflateInit          func(z *ZStream, level int, version string, streamSize int) int
+	DeflateInit2         func(z *ZStream, level, method, windowBits, memLevel, strategy int, version string, streamSize int) int
+	DeflateParams        func(z *ZStream, level, strategy int) int
+	DeflatePrime         func(z *ZStream, bits, value int) int
+	DeflateReset         func(z *ZStream) int
+	DeflateSetDictionary func(z *ZStream, dictionary *byte, dictLength uint) int
+	DeflateSetHeader     func(z *ZStream, head *GzHeader) int
+	DeflateTune          func(z *ZStream, goodLength, maxLazy, niceLength, maxChain int) int
+	Inflate              func(z *ZStream, flush int) int
+	InflateBack          func(z *ZStream, in InFunc, inDesc *T.Void, out OutFunc, outDesc *T.Void) int
+	InflateBackEnd       func(z *ZStream) int
+	InflateBackInit      func(z *ZStream, windowBits int, window *T.UnsignedChar, version string, streamSize int) int
+	InflateCopy          func(dest, source *ZStream) int
+	InflateEnd           func(z *ZStream) int
+	InflateGetHeader     func(z *ZStream, head *GzHeader) int
+	InflateInit          func(z *ZStream, version string, streamSize int) int
+	InflateInit2         func(z *ZStream, windowBits int, version string, streamSize int) int
+	InflateMark          func(z *ZStream) T.Long
+	InflatePrime         func(z *ZStream, bits, value int) int
+	InflateReset         func(z *ZStream) int
+	InflateReset2        func(z *ZStream, windowBits int) int
+	InflateSetDictionary func(z *ZStream, dictionary *byte, dictLength uint) int
+	InflateSync          func(z *ZStream) int
+	InflateSyncPoint     func(z *ZStream) int
+	InflateUndermine     func(z *ZStream, i int) int
 )
 
 type ZStream struct {
@@ -189,57 +189,57 @@ type ZStream struct {
 	_        T.UnsignedLong
 }
 
-func (z *ZStream) Deflate(flush int) int { return deflate(z, flush) }
+func (z *ZStream) Deflate(flush int) int { return Deflate(z, flush) }
 func (z *ZStream) DeflateBound(sourceLen T.UnsignedLong) T.UnsignedLong {
-	return deflateBound(z, sourceLen)
+	return DeflateBound(z, sourceLen)
 }
-func (dst *ZStream) DeflateCopyFrom(src *ZStream) int { return deflateCopy(dst, src) }
-func (src *ZStream) DeflateCopyTo(dst *ZStream) int   { return deflateCopy(dst, src) }
-func (z *ZStream) DeflateEnd() int                    { return deflateEnd(z) }
+func (dst *ZStream) DeflateCopyFrom(src *ZStream) int { return DeflateCopy(dst, src) }
+func (src *ZStream) DeflateCopyTo(dst *ZStream) int   { return DeflateCopy(dst, src) }
+func (z *ZStream) DeflateEnd() int                    { return DeflateEnd(z) }
 func (z *ZStream) DeflateInit(level int, version string, streamSize int) int {
-	return deflateInit(z, level, version, streamSize)
+	return DeflateInit(z, level, version, streamSize)
 }
 func (z *ZStream) DeflateInit2(level, method, windowBits, memLevel, strategy int, version string, streamSize int) int {
-	return deflateInit2(z, level, method, windowBits, memLevel, strategy, version, streamSize)
+	return DeflateInit2(z, level, method, windowBits, memLevel, strategy, version, streamSize)
 }
-func (z *ZStream) DeflateParams(level, strategy int) int { return deflateParams(z, level, strategy) }
-func (z *ZStream) DeflatePrime(bits, value int) int      { return deflatePrime(z, bits, value) }
-func (z *ZStream) DeflateReset() int                     { return deflateReset(z) }
+func (z *ZStream) DeflateParams(level, strategy int) int { return DeflateParams(z, level, strategy) }
+func (z *ZStream) DeflatePrime(bits, value int) int      { return DeflatePrime(z, bits, value) }
+func (z *ZStream) DeflateReset() int                     { return DeflateReset(z) }
 func (z *ZStream) DeflateSetDictionary(dictionary *byte, dictLength uint) int {
-	return deflateSetDictionary(z, dictionary, dictLength)
+	return DeflateSetDictionary(z, dictionary, dictLength)
 }
-func (z *ZStream) DeflateSetHeader(head *GzHeader) int { return deflateSetHeader(z, head) }
+func (z *ZStream) DeflateSetHeader(head *GzHeader) int { return DeflateSetHeader(z, head) }
 func (z *ZStream) DeflateTune(goodLength, maxLazy, niceLength, maxChain int) int {
-	return deflateTune(z, goodLength, maxLazy, niceLength, maxChain)
+	return DeflateTune(z, goodLength, maxLazy, niceLength, maxChain)
 }
-func (z *ZStream) Inflate(flush int) int { return inflate(z, flush) }
+func (z *ZStream) Inflate(flush int) int { return Inflate(z, flush) }
 func (z *ZStream) InflateBack(in InFunc, inDesc *T.Void, out OutFunc, outDesc *T.Void) int {
-	return inflateBack(z, in, inDesc, out, outDesc)
+	return InflateBack(z, in, inDesc, out, outDesc)
 }
-func (z *ZStream) InflateBackEnd() int { return inflateBackEnd(z) }
+func (z *ZStream) InflateBackEnd() int { return InflateBackEnd(z) }
 func (z *ZStream) InflateBackInit(windowBits int, window *T.UnsignedChar, version string, streamSize int) int {
-	return inflateBackInit(z, windowBits, window, version, streamSize)
+	return InflateBackInit(z, windowBits, window, version, streamSize)
 }
-func (dst *ZStream) InflateCopyFrom(src *ZStream) int  { return inflateCopy(dst, src) }
-func (src *ZStream) InflateCopyTo(dst *ZStream) int    { return inflateCopy(dst, src) }
-func (z *ZStream) InflateEnd() int                     { return inflateEnd(z) }
-func (z *ZStream) InflateGetHeader(head *GzHeader) int { return inflateGetHeader(z, head) }
+func (dst *ZStream) InflateCopyFrom(src *ZStream) int  { return InflateCopy(dst, src) }
+func (src *ZStream) InflateCopyTo(dst *ZStream) int    { return InflateCopy(dst, src) }
+func (z *ZStream) InflateEnd() int                     { return InflateEnd(z) }
+func (z *ZStream) InflateGetHeader(head *GzHeader) int { return InflateGetHeader(z, head) }
 func (z *ZStream) InflateInit(version string, streamSize int) int {
-	return inflateInit(z, version, streamSize)
+	return InflateInit(z, version, streamSize)
 }
 func (z *ZStream) InflateInit2(windowBits int, version string, streamSize int) int {
-	return inflateInit2(z, windowBits, version, streamSize)
+	return InflateInit2(z, windowBits, version, streamSize)
 }
-func (z *ZStream) InflateMark() T.Long              { return inflateMark(z) }
-func (z *ZStream) InflatePrime(bits, value int) int { return inflatePrime(z, bits, value) }
-func (z *ZStream) InflateReset() int                { return inflateReset(z) }
-func (z *ZStream) InflateReset2(windowBits int) int { return inflateReset2(z, windowBits) }
+func (z *ZStream) InflateMark() T.Long              { return InflateMark(z) }
+func (z *ZStream) InflatePrime(bits, value int) int { return InflatePrime(z, bits, value) }
+func (z *ZStream) InflateReset() int                { return InflateReset(z) }
+func (z *ZStream) InflateReset2(windowBits int) int { return InflateReset2(z, windowBits) }
 func (z *ZStream) InflateSetDictionary(dictionary *byte, dictLength uint) int {
-	return inflateSetDictionary(z, dictionary, dictLength)
+	return InflateSetDictionary(z, dictionary, dictLength)
 }
-func (z *ZStream) InflateSync() int           { return inflateSync(z) }
-func (z *ZStream) InflateSyncPoint() int      { return inflateSyncPoint(z) }
-func (z *ZStream) InflateUndermine(i int) int { return inflateUndermine(z, i) }
+func (z *ZStream) InflateSync() int           { return InflateSync(z) }
+func (z *ZStream) InflateSyncPoint() int      { return InflateSyncPoint(z) }
+func (z *ZStream) InflateUndermine(i int) int { return InflateUndermine(z, i) }
 
 var dll = "zlib1.dll"
 
@@ -251,60 +251,60 @@ var apiList = outside.Apis{
 	{"compressBound", &CompressBound},
 	{"crc32", &Crc32},
 	{"crc32_combine", &Crc32Combine},
-	{"deflate", &deflate},
-	{"deflateBound", &deflateBound},
-	{"deflateCopy", &deflateCopy},
-	{"deflateEnd", &deflateEnd},
-	{"deflateInit2_", &deflateInit2},
-	{"deflateInit_", &deflateInit},
-	{"deflateParams", &deflateParams},
-	{"deflatePrime", &deflatePrime},
-	{"deflateReset", &deflateReset},
-	{"deflateSetDictionary", &deflateSetDictionary},
-	{"deflateSetHeader", &deflateSetHeader},
-	{"deflateTune", &deflateTune},
+	{"deflate", &Deflate},
+	{"deflateBound", &DeflateBound},
+	{"deflateCopy", &DeflateCopy},
+	{"deflateEnd", &DeflateEnd},
+	{"deflateInit2_", &DeflateInit2},
+	{"deflateInit_", &DeflateInit},
+	{"deflateParams", &DeflateParams},
+	{"deflatePrime", &DeflatePrime},
+	{"deflateReset", &DeflateReset},
+	{"deflateSetDictionary", &DeflateSetDictionary},
+	{"deflateSetHeader", &DeflateSetHeader},
+	{"deflateTune", &DeflateTune},
 	{"get_crc_table", &GetCrcTable},
-	{"gzbuffer", &gzbuffer},
-	{"gzclearerr", &gzclearerr},
-	{"gzclose", &gzclose},
-	{"gzclose_r", &gzcloseR},
-	{"gzclose_w", &gzcloseW},
-	{"gzdirect", &gzdirect},
+	{"gzbuffer", &Gzbuffer},
+	{"gzclearerr", &Gzclearerr},
+	{"gzclose", &Gzclose},
+	{"gzclose_r", &GzcloseR},
+	{"gzclose_w", &GzcloseW},
+	{"gzdirect", &Gzdirect},
 	{"gzdopen", &Gzdopen},
-	{"gzeof", &gzeof},
-	{"gzerror", &gzerror},
-	{"gzflush", &gzflush},
-	{"gzgetc", &gzgetc},
-	{"gzgets", &gzgets},
-	{"gzoffset", &gzoffset},
+	{"gzeof", &Gzeof},
+	{"gzerror", &Gzerror},
+	{"gzflush", &Gzflush},
+	{"gzgetc", &Gzgetc},
+	{"gzgets", &Gzgets},
+	{"gzoffset", &Gzoffset},
 	{"gzopen", &Gzopen},
-	{"gzprintf", &gzprintf},
-	{"gzputc", &gzputc},
-	{"gzputs", &gzputs},
-	{"gzread", &gzread},
-	{"gzrewind", &gzrewind},
-	{"gzseek", &gzseek},
-	{"gzsetparams", &gzsetparams},
-	{"gztell", &gztell},
-	{"gzungetc", &gzungetc},
-	{"gzwrite", &gzwrite},
-	{"inflate", &inflate},
-	{"inflateBack", &inflateBack},
-	{"inflateBackEnd", &inflateBackEnd},
-	{"inflateBackInit_", &inflateBackInit},
-	{"inflateCopy", &inflateCopy},
-	{"inflateEnd", &inflateEnd},
-	{"inflateGetHeader", &inflateGetHeader},
-	{"inflateInit2_", &inflateInit2},
-	{"inflateInit_", &inflateInit},
-	{"inflateMark", &inflateMark},
-	{"inflatePrime", &inflatePrime},
-	{"inflateReset", &inflateReset},
-	{"inflateReset2", &inflateReset2},
-	{"inflateSetDictionary", &inflateSetDictionary},
-	{"inflateSync", &inflateSync},
-	{"inflateSyncPoint", &inflateSyncPoint},
-	{"inflateUndermine", &inflateUndermine},
+	{"gzprintf", &Gzprintf},
+	{"gzputc", &Gzputc},
+	{"gzputs", &Gzputs},
+	{"gzread", &Gzread},
+	{"gzrewind", &Gzrewind},
+	{"gzseek", &Gzseek},
+	{"gzsetparams", &Gzsetparams},
+	{"gztell", &Gztell},
+	{"gzungetc", &Gzungetc},
+	{"gzwrite", &Gzwrite},
+	{"inflate", &Inflate},
+	{"inflateBack", &InflateBack},
+	{"inflateBackEnd", &InflateBackEnd},
+	{"inflateBackInit_", &InflateBackInit},
+	{"inflateCopy", &InflateCopy},
+	{"inflateEnd", &InflateEnd},
+	{"inflateGetHeader", &InflateGetHeader},
+	{"inflateInit2_", &InflateInit2},
+	{"inflateInit_", &InflateInit},
+	{"inflateMark", &InflateMark},
+	{"inflatePrime", &InflatePrime},
+	{"inflateReset", &InflateReset},
+	{"inflateReset2", &InflateReset2},
+	{"inflateSetDictionary", &InflateSetDictionary},
+	{"inflateSync", &InflateSync},
+	{"inflateSyncPoint", &InflateSyncPoint},
+	{"inflateUndermine", &InflateUndermine},
 	{"uncompress", &Uncompress},
 	{"zError", &ZError},
 	{"zlibCompileFlags", &ZlibCompileFlags},

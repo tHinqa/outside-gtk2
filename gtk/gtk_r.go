@@ -21,16 +21,16 @@ var (
 	RadioActionGetType func() O.Type
 	RadioActionNew     func(name, label, tooltip, stockId string, value int) *RadioAction
 
-	radioActionGetCurrentValue func(r *RadioAction) int
-	radioActionGetGroup        func(r *RadioAction) *T.GSList
-	radioActionSetCurrentValue func(r *RadioAction, currentValue int)
-	radioActionSetGroup        func(r *RadioAction, group *T.GSList)
+	RadioActionGetCurrentValue func(r *RadioAction) int
+	RadioActionGetGroup        func(r *RadioAction) *L.SList
+	RadioActionSetCurrentValue func(r *RadioAction, currentValue int)
+	RadioActionSetGroup        func(r *RadioAction, group *L.SList)
 )
 
-func (r *RadioAction) GetCurrentValue() int             { return radioActionGetCurrentValue(r) }
-func (r *RadioAction) GetGroup() *T.GSList              { return radioActionGetGroup(r) }
-func (r *RadioAction) SetCurrentValue(currentValue int) { radioActionSetCurrentValue(r, currentValue) }
-func (r *RadioAction) SetGroup(group *T.GSList)         { radioActionSetGroup(r, group) }
+func (r *RadioAction) GetCurrentValue() int             { return RadioActionGetCurrentValue(r) }
+func (r *RadioAction) GetGroup() *L.SList               { return RadioActionGetGroup(r) }
+func (r *RadioAction) SetCurrentValue(currentValue int) { RadioActionSetCurrentValue(r, currentValue) }
+func (r *RadioAction) SetGroup(group *L.SList)          { RadioActionSetGroup(r, group) }
 
 type RadioActionEntry struct {
 	Name        *T.Gchar
@@ -43,45 +43,45 @@ type RadioActionEntry struct {
 
 type RadioButton struct {
 	CheckButton CheckButton
-	Group       *T.GSList
+	Group       *L.SList
 }
 
 var (
 	RadioButtonGetType                   func() O.Type
-	RadioButtonNew                       func(group *T.GSList) *Widget
+	RadioButtonNew                       func(group *L.SList) *Widget
 	RadioButtonNewFromWidget             func(radioGroupMember *RadioButton) *Widget
-	RadioButtonNewWithLabel              func(group *T.GSList, label string) *Widget
+	RadioButtonNewWithLabel              func(group *L.SList, label string) *Widget
 	RadioButtonNewWithLabelFromWidget    func(radioGroupMember *RadioButton, label string) *Widget
-	RadioButtonNewWithMnemonic           func(group *T.GSList, label string) *Widget
+	RadioButtonNewWithMnemonic           func(group *L.SList, label string) *Widget
 	RadioButtonNewWithMnemonicFromWidget func(radioGroupMember *RadioButton, label string) *Widget
 
-	radioButtonGetGroup func(r *RadioButton) *T.GSList
-	radioButtonSetGroup func(r *RadioButton, group *T.GSList)
+	RadioButtonGetGroup func(r *RadioButton) *L.SList
+	RadioButtonSetGroup func(r *RadioButton, group *L.SList)
 )
 
-func (r *RadioButton) GetGroup() *T.GSList      { return radioButtonGetGroup(r) }
-func (r *RadioButton) SetGroup(group *T.GSList) { radioButtonSetGroup(r, group) }
+func (r *RadioButton) GetGroup() *L.SList      { return RadioButtonGetGroup(r) }
+func (r *RadioButton) SetGroup(group *L.SList) { RadioButtonSetGroup(r, group) }
 
 type RadioMenuItem struct {
 	CheckMenuItem CheckMenuItem
-	Group         *T.GSList
+	Group         *L.SList
 }
 
 var (
 	RadioMenuItemGetType                   func() O.Type
-	RadioMenuItemNew                       func(group *T.GSList) *Widget
+	RadioMenuItemNew                       func(group *L.SList) *Widget
 	RadioMenuItemNewFromWidget             func(group *RadioMenuItem) *Widget
-	RadioMenuItemNewWithLabel              func(group *T.GSList, label string) *Widget
+	RadioMenuItemNewWithLabel              func(group *L.SList, label string) *Widget
 	RadioMenuItemNewWithLabelFromWidget    func(group *RadioMenuItem, label string) *Widget
-	RadioMenuItemNewWithMnemonic           func(group *T.GSList, label string) *Widget
+	RadioMenuItemNewWithMnemonic           func(group *L.SList, label string) *Widget
 	RadioMenuItemNewWithMnemonicFromWidget func(group *RadioMenuItem, label string) *Widget
 
-	radioMenuItemGetGroup func(r *RadioMenuItem) *T.GSList
-	radioMenuItemSetGroup func(r *RadioMenuItem, group *T.GSList)
+	RadioMenuItemGetGroup func(r *RadioMenuItem) *L.SList
+	RadioMenuItemSetGroup func(r *RadioMenuItem, group *L.SList)
 )
 
-func (r *RadioMenuItem) GetGroup() *T.GSList      { return radioMenuItemGetGroup(r) }
-func (r *RadioMenuItem) SetGroup(group *T.GSList) { radioMenuItemSetGroup(r, group) }
+func (r *RadioMenuItem) GetGroup() *L.SList      { return RadioMenuItemGetGroup(r) }
+func (r *RadioMenuItem) SetGroup(group *L.SList) { RadioMenuItemSetGroup(r, group) }
 
 type RadioToolButton struct {
 	Parent ToggleToolButton
@@ -89,17 +89,17 @@ type RadioToolButton struct {
 
 var (
 	RadioToolButtonGetType                func() O.Type
-	RadioToolButtonNew                    func(group *T.GSList) *ToolItem
-	RadioToolButtonNewFromStock           func(group *T.GSList, stockId string) *ToolItem
+	RadioToolButtonNew                    func(group *L.SList) *ToolItem
+	RadioToolButtonNewFromStock           func(group *L.SList, stockId string) *ToolItem
 	RadioToolButtonNewFromWidget          func(group *RadioToolButton) *ToolItem
 	RadioToolButtonNewWithStockFromWidget func(group *RadioToolButton, stockId string) *ToolItem
 
-	radioToolButtonGetGroup func(r *RadioToolButton) *T.GSList
-	radioToolButtonSetGroup func(r *RadioToolButton, group *T.GSList)
+	RadioToolButtonGetGroup func(r *RadioToolButton) *L.SList
+	RadioToolButtonSetGroup func(r *RadioToolButton, group *L.SList)
 )
 
-func (r *RadioToolButton) GetGroup() *T.GSList      { return radioToolButtonGetGroup(r) }
-func (r *RadioToolButton) SetGroup(group *T.GSList) { radioToolButtonSetGroup(r, group) }
+func (r *RadioToolButton) GetGroup() *L.SList      { return RadioToolButtonGetGroup(r) }
+func (r *RadioToolButton) SetGroup(group *L.SList) { RadioToolButtonSetGroup(r, group) }
 
 type (
 	Range struct {
@@ -140,80 +140,80 @@ type (
 var (
 	RangeGetType func() O.Type
 
-	rangeGetAdjustment              func(r *Range) *Adjustment
-	rangeGetFillLevel               func(r *Range) float64
-	rangeGetFlippable               func(r *Range) bool
-	rangeGetInverted                func(r *Range) bool
-	rangeGetLowerStepperSensitivity func(r *Range) SensitivityType
-	rangeGetMinSliderSize           func(r *Range) int
-	rangeGetRangeRect               func(r *Range, rangeRect *D.Rectangle)
-	rangeGetRestrictToFillLevel     func(r *Range) bool
-	rangeGetRoundDigits             func(r *Range) int
-	rangeGetShowFillLevel           func(r *Range) bool
-	rangeGetSliderRange             func(r *Range, sliderStart, sliderEnd *int)
-	rangeGetSliderSizeFixed         func(r *Range) bool
-	rangeGetUpdatePolicy            func(r *Range) UpdateType
-	rangeGetUpperStepperSensitivity func(r *Range) SensitivityType
-	rangeGetValue                   func(r *Range) float64
-	rangeSetAdjustment              func(r *Range, adjustment *Adjustment)
-	rangeSetFillLevel               func(r *Range, fillLevel float64)
-	rangeSetFlippable               func(r *Range, flippable bool)
-	rangeSetIncrements              func(r *Range, step, page float64)
-	rangeSetInverted                func(r *Range, setting bool)
-	rangeSetLowerStepperSensitivity func(r *Range, sensitivity SensitivityType)
-	rangeSetMinSliderSize           func(r *Range, minSize bool)
-	rangeSetRange                   func(r *Range, min, max float64)
-	rangeSetRestrictToFillLevel     func(r *Range, restrictToFillLevel bool)
-	rangeSetRoundDigits             func(r *Range, roundDigits int)
-	rangeSetShowFillLevel           func(r *Range, showFillLevel bool)
-	rangeSetSliderSizeFixed         func(r *Range, sizeFixed bool)
-	rangeSetUpdatePolicy            func(r *Range, policy UpdateType)
-	rangeSetUpperStepperSensitivity func(r *Range, sensitivity SensitivityType)
-	rangeSetValue                   func(r *Range, value float64)
+	RangeGetAdjustment              func(r *Range) *Adjustment
+	RangeGetFillLevel               func(r *Range) float64
+	RangeGetFlippable               func(r *Range) bool
+	RangeGetInverted                func(r *Range) bool
+	RangeGetLowerStepperSensitivity func(r *Range) SensitivityType
+	RangeGetMinSliderSize           func(r *Range) int
+	RangeGetRangeRect               func(r *Range, rangeRect *D.Rectangle)
+	RangeGetRestrictToFillLevel     func(r *Range) bool
+	RangeGetRoundDigits             func(r *Range) int
+	RangeGetShowFillLevel           func(r *Range) bool
+	RangeGetSliderRange             func(r *Range, sliderStart, sliderEnd *int)
+	RangeGetSliderSizeFixed         func(r *Range) bool
+	RangeGetUpdatePolicy            func(r *Range) UpdateType
+	RangeGetUpperStepperSensitivity func(r *Range) SensitivityType
+	RangeGetValue                   func(r *Range) float64
+	RangeSetAdjustment              func(r *Range, adjustment *Adjustment)
+	RangeSetFillLevel               func(r *Range, fillLevel float64)
+	RangeSetFlippable               func(r *Range, flippable bool)
+	RangeSetIncrements              func(r *Range, step, page float64)
+	RangeSetInverted                func(r *Range, setting bool)
+	RangeSetLowerStepperSensitivity func(r *Range, sensitivity SensitivityType)
+	RangeSetMinSliderSize           func(r *Range, minSize bool)
+	RangeSetRange                   func(r *Range, min, max float64)
+	RangeSetRestrictToFillLevel     func(r *Range, restrictToFillLevel bool)
+	RangeSetRoundDigits             func(r *Range, roundDigits int)
+	RangeSetShowFillLevel           func(r *Range, showFillLevel bool)
+	RangeSetSliderSizeFixed         func(r *Range, sizeFixed bool)
+	RangeSetUpdatePolicy            func(r *Range, policy UpdateType)
+	RangeSetUpperStepperSensitivity func(r *Range, sensitivity SensitivityType)
+	RangeSetValue                   func(r *Range, value float64)
 )
 
-func (r *Range) GetAdjustment() *Adjustment { return rangeGetAdjustment(r) }
-func (r *Range) GetFillLevel() float64      { return rangeGetFillLevel(r) }
-func (r *Range) GetFlippable() bool         { return rangeGetFlippable(r) }
-func (r *Range) GetInverted() bool          { return rangeGetInverted(r) }
+func (r *Range) GetAdjustment() *Adjustment { return RangeGetAdjustment(r) }
+func (r *Range) GetFillLevel() float64      { return RangeGetFillLevel(r) }
+func (r *Range) GetFlippable() bool         { return RangeGetFlippable(r) }
+func (r *Range) GetInverted() bool          { return RangeGetInverted(r) }
 func (r *Range) GetLowerStepperSensitivity() SensitivityType {
-	return rangeGetLowerStepperSensitivity(r)
+	return RangeGetLowerStepperSensitivity(r)
 }
-func (r *Range) GetMinSliderSize() int               { return rangeGetMinSliderSize(r) }
-func (r *Range) GetRangeRect(rangeRect *D.Rectangle) { rangeGetRangeRect(r, rangeRect) }
-func (r *Range) GetRestrictToFillLevel() bool        { return rangeGetRestrictToFillLevel(r) }
-func (r *Range) GetRoundDigits() int                 { return rangeGetRoundDigits(r) }
-func (r *Range) GetShowFillLevel() bool              { return rangeGetShowFillLevel(r) }
+func (r *Range) GetMinSliderSize() int               { return RangeGetMinSliderSize(r) }
+func (r *Range) GetRangeRect(rangeRect *D.Rectangle) { RangeGetRangeRect(r, rangeRect) }
+func (r *Range) GetRestrictToFillLevel() bool        { return RangeGetRestrictToFillLevel(r) }
+func (r *Range) GetRoundDigits() int                 { return RangeGetRoundDigits(r) }
+func (r *Range) GetShowFillLevel() bool              { return RangeGetShowFillLevel(r) }
 func (r *Range) GetSliderRange(sliderStart, sliderEnd *int) {
-	rangeGetSliderRange(r, sliderStart, sliderEnd)
+	RangeGetSliderRange(r, sliderStart, sliderEnd)
 }
-func (r *Range) GetSliderSizeFixed() bool    { return rangeGetSliderSizeFixed(r) }
-func (r *Range) GetUpdatePolicy() UpdateType { return rangeGetUpdatePolicy(r) }
+func (r *Range) GetSliderSizeFixed() bool    { return RangeGetSliderSizeFixed(r) }
+func (r *Range) GetUpdatePolicy() UpdateType { return RangeGetUpdatePolicy(r) }
 func (r *Range) GetUpperStepperSensitivity() SensitivityType {
-	return rangeGetUpperStepperSensitivity(r)
+	return RangeGetUpperStepperSensitivity(r)
 }
-func (r *Range) GetValue() float64                    { return rangeGetValue(r) }
-func (r *Range) SetAdjustment(adjustment *Adjustment) { rangeSetAdjustment(r, adjustment) }
-func (r *Range) SetFillLevel(fillLevel float64)       { rangeSetFillLevel(r, fillLevel) }
-func (r *Range) SetFlippable(flippable bool)          { rangeSetFlippable(r, flippable) }
-func (r *Range) SetIncrements(step, page float64)     { rangeSetIncrements(r, step, page) }
-func (r *Range) SetInverted(setting bool)             { rangeSetInverted(r, setting) }
+func (r *Range) GetValue() float64                    { return RangeGetValue(r) }
+func (r *Range) SetAdjustment(adjustment *Adjustment) { RangeSetAdjustment(r, adjustment) }
+func (r *Range) SetFillLevel(fillLevel float64)       { RangeSetFillLevel(r, fillLevel) }
+func (r *Range) SetFlippable(flippable bool)          { RangeSetFlippable(r, flippable) }
+func (r *Range) SetIncrements(step, page float64)     { RangeSetIncrements(r, step, page) }
+func (r *Range) SetInverted(setting bool)             { RangeSetInverted(r, setting) }
 func (r *Range) SetLowerStepperSensitivity(sensitivity SensitivityType) {
-	rangeSetLowerStepperSensitivity(r, sensitivity)
+	RangeSetLowerStepperSensitivity(r, sensitivity)
 }
-func (r *Range) SetMinSliderSize(minSize bool) { rangeSetMinSliderSize(r, minSize) }
-func (r *Range) SetRange(min, max float64)     { rangeSetRange(r, min, max) }
+func (r *Range) SetMinSliderSize(minSize bool) { RangeSetMinSliderSize(r, minSize) }
+func (r *Range) SetRange(min, max float64)     { RangeSetRange(r, min, max) }
 func (r *Range) SetRestrictToFillLevel(restrictToFillLevel bool) {
-	rangeSetRestrictToFillLevel(r, restrictToFillLevel)
+	RangeSetRestrictToFillLevel(r, restrictToFillLevel)
 }
-func (r *Range) SetRoundDigits(roundDigits int)      { rangeSetRoundDigits(r, roundDigits) }
-func (r *Range) SetShowFillLevel(showFillLevel bool) { rangeSetShowFillLevel(r, showFillLevel) }
-func (r *Range) SetSliderSizeFixed(sizeFixed bool)   { rangeSetSliderSizeFixed(r, sizeFixed) }
-func (r *Range) SetUpdatePolicy(policy UpdateType)   { rangeSetUpdatePolicy(r, policy) }
+func (r *Range) SetRoundDigits(roundDigits int)      { RangeSetRoundDigits(r, roundDigits) }
+func (r *Range) SetShowFillLevel(showFillLevel bool) { RangeSetShowFillLevel(r, showFillLevel) }
+func (r *Range) SetSliderSizeFixed(sizeFixed bool)   { RangeSetSliderSizeFixed(r, sizeFixed) }
+func (r *Range) SetUpdatePolicy(policy UpdateType)   { RangeSetUpdatePolicy(r, policy) }
 func (r *Range) SetUpperStepperSensitivity(sensitivity SensitivityType) {
-	rangeSetUpperStepperSensitivity(r, sensitivity)
+	RangeSetUpperStepperSensitivity(r, sensitivity)
 }
-func (r *Range) SetValue(value float64) { rangeSetValue(r, value) }
+func (r *Range) SetValue(value float64) { RangeSetValue(r, value) }
 
 type RcContext struct{}
 
@@ -223,7 +223,7 @@ var (
 
 	RcAddDefaultFile           func(filename string)
 	RcFindModuleInPath         func(moduleFile string) string
-	RcFindPixmapInPath         func(settings *Settings, scanner *T.GScanner, pixmapFile string) string
+	RcFindPixmapInPath         func(settings *Settings, scanner *L.Scanner, pixmapFile string) string
 	RcGetDefaultFiles          func() []string
 	RcGetImModuleFile          func() string
 	RcGetImModulePath          func() string
@@ -233,26 +233,26 @@ var (
 	RcGetThemeDir              func() string
 	RcParse                    func(filename string)
 	RcParseString              func(rcString string)
-	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
-	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
-	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
-	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
-	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *T.GString, propertyValue *T.GValue) bool
+	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
+	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
+	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
+	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
+	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
 	RcReparseAll               func() bool
 	RcReparseAllForSettings    func(settings *Settings, forceLoad bool) bool
 	RcResetStyles              func(settings *Settings)
 	RcSetDefaultFiles          func(filenames []string)
 
-	RcScannerNew func() *T.GScanner
+	RcScannerNew func() *L.Scanner
 
-	RcParseColor     func(scanner *T.GScanner, color *D.Color) uint
-	RcParseColorFull func(scanner *T.GScanner, style *RcStyle, color *D.Color) uint
-	RcParseState     func(scanner *T.GScanner, state *StateType) uint
-	RcParsePriority  func(scanner *T.GScanner, priority *PathPriorityType) uint
+	RcParseColor     func(scanner *L.Scanner, color *D.Color) uint
+	RcParseColorFull func(scanner *L.Scanner, style *RcStyle, color *D.Color) uint
+	RcParseState     func(scanner *L.Scanner, state *StateType) uint
+	RcParsePriority  func(scanner *L.Scanner, priority *PathPriorityType) uint
 )
 
 type RcPropertyParser func(pspec *T.GParamSpec,
-	rcString *T.GString, property_value *T.GValue) bool
+	rcString *L.String, property_value *T.GValue) bool
 
 type RcStyle struct {
 	Parent          T.GObject
@@ -267,8 +267,8 @@ type RcStyle struct {
 	Xthickness      int
 	Ythickness      int
 	RcProperties    *L.Array
-	RcStyleLists    *T.GSList
-	IconFactories   *T.GSList
+	RcStyleLists    *L.SList
+	IconFactories   *L.SList
 	EngineSpecified uint //: 1
 }
 
@@ -289,14 +289,14 @@ var (
 	RcAddWidgetClassStyle func(r *RcStyle, pattern string)
 	RcAddClassStyle       func(r *RcStyle, pattern string)
 
-	rcStyleCopy  func(r *RcStyle) *RcStyle
-	rcStyleRef   func(r *RcStyle)
-	rcStyleUnref func(r *RcStyle)
+	RcStyleCopy  func(r *RcStyle) *RcStyle
+	RcStyleRef   func(r *RcStyle)
+	RcStyleUnref func(r *RcStyle)
 )
 
-func (r *RcStyle) Copy() *RcStyle { return rcStyleCopy(r) }
-func (r *RcStyle) Ref()           { rcStyleRef(r) }
-func (r *RcStyle) Unref()         { rcStyleUnref(r) }
+func (r *RcStyle) Copy() *RcStyle { return RcStyleCopy(r) }
+func (r *RcStyle) Ref()           { RcStyleRef(r) }
+func (r *RcStyle) Unref()         { RcStyleUnref(r) }
 
 type RecentAction struct {
 	Parent Action
@@ -308,13 +308,13 @@ var (
 	RecentActionNew           func(name, label, tooltip, stockId string) *Action
 	RecentActionNewForManager func(name, label, tooltip, stockId string, manager *RecentManager) *Action
 
-	recentActionGetShowNumbers func(r *RecentAction) bool
-	recentActionSetShowNumbers func(r *RecentAction, showNumbers bool)
+	RecentActionGetShowNumbers func(r *RecentAction) bool
+	RecentActionSetShowNumbers func(r *RecentAction, showNumbers bool)
 )
 
-func (r *RecentAction) GetShowNumbers() bool { return recentActionGetShowNumbers(r) }
+func (r *RecentAction) GetShowNumbers() bool { return RecentActionGetShowNumbers(r) }
 func (r *RecentAction) SetShowNumbers(showNumbers bool) {
-	recentActionSetShowNumbers(r, showNumbers)
+	RecentActionSetShowNumbers(r, showNumbers)
 }
 
 type RecentChooser struct{}
@@ -343,88 +343,88 @@ var (
 
 	RecentChooserErrorQuark func() T.GQuark
 
-	recentChooserAddFilter         func(r *RecentChooser, filter *RecentFilter)
-	recentChooserGetCurrentItem    func(r *RecentChooser) *RecentInfo
-	recentChooserGetCurrentUri     func(r *RecentChooser) string
-	recentChooserGetFilter         func(r *RecentChooser) *RecentFilter
-	recentChooserGetItems          func(r *RecentChooser) *T.GList
-	recentChooserGetLimit          func(r *RecentChooser) int
-	recentChooserGetLocalOnly      func(r *RecentChooser) bool
-	recentChooserGetSelectMultiple func(r *RecentChooser) bool
-	recentChooserGetShowIcons      func(r *RecentChooser) bool
-	recentChooserGetShowNotFound   func(r *RecentChooser) bool
-	recentChooserGetShowNumbers    func(r *RecentChooser) bool
-	recentChooserGetShowPrivate    func(r *RecentChooser) bool
-	recentChooserGetShowTips       func(r *RecentChooser) bool
-	recentChooserGetSortType       func(r *RecentChooser) RecentSortType
-	recentChooserGetUris           func(r *RecentChooser, length *T.Gsize) []string
-	recentChooserListFilters       func(r *RecentChooser) *T.GSList
-	recentChooserRemoveFilter      func(r *RecentChooser, filter *RecentFilter)
-	recentChooserSelectAll         func(r *RecentChooser)
-	recentChooserSelectUri         func(r *RecentChooser, uri string, err **T.GError) bool
-	recentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **T.GError) bool
-	recentChooserSetFilter         func(r *RecentChooser, filter *RecentFilter)
-	recentChooserSetLimit          func(r *RecentChooser, limit int)
-	recentChooserSetLocalOnly      func(r *RecentChooser, localOnly bool)
-	recentChooserSetSelectMultiple func(r *RecentChooser, selectMultiple bool)
-	recentChooserSetShowIcons      func(r *RecentChooser, showIcons bool)
-	recentChooserSetShowNotFound   func(r *RecentChooser, showNotFound bool)
-	recentChooserSetShowNumbers    func(r *RecentChooser, showNumbers bool)
-	recentChooserSetShowPrivate    func(r *RecentChooser, showPrivate bool)
-	recentChooserSetShowTips       func(r *RecentChooser, showTips bool)
-	recentChooserSetSortFunc       func(r *RecentChooser, sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify)
-	recentChooserSetSortType       func(r *RecentChooser, sortType RecentSortType)
-	recentChooserUnselectAll       func(r *RecentChooser)
-	recentChooserUnselectUri       func(r *RecentChooser, uri string)
+	RecentChooserAddFilter         func(r *RecentChooser, filter *RecentFilter)
+	RecentChooserGetCurrentItem    func(r *RecentChooser) *RecentInfo
+	RecentChooserGetCurrentUri     func(r *RecentChooser) string
+	RecentChooserGetFilter         func(r *RecentChooser) *RecentFilter
+	RecentChooserGetItems          func(r *RecentChooser) *T.GList
+	RecentChooserGetLimit          func(r *RecentChooser) int
+	RecentChooserGetLocalOnly      func(r *RecentChooser) bool
+	RecentChooserGetSelectMultiple func(r *RecentChooser) bool
+	RecentChooserGetShowIcons      func(r *RecentChooser) bool
+	RecentChooserGetShowNotFound   func(r *RecentChooser) bool
+	RecentChooserGetShowNumbers    func(r *RecentChooser) bool
+	RecentChooserGetShowPrivate    func(r *RecentChooser) bool
+	RecentChooserGetShowTips       func(r *RecentChooser) bool
+	RecentChooserGetSortType       func(r *RecentChooser) RecentSortType
+	RecentChooserGetUris           func(r *RecentChooser, length *T.Gsize) []string
+	RecentChooserListFilters       func(r *RecentChooser) *L.SList
+	RecentChooserRemoveFilter      func(r *RecentChooser, filter *RecentFilter)
+	RecentChooserSelectAll         func(r *RecentChooser)
+	RecentChooserSelectUri         func(r *RecentChooser, uri string, err **T.GError) bool
+	RecentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **T.GError) bool
+	RecentChooserSetFilter         func(r *RecentChooser, filter *RecentFilter)
+	RecentChooserSetLimit          func(r *RecentChooser, limit int)
+	RecentChooserSetLocalOnly      func(r *RecentChooser, localOnly bool)
+	RecentChooserSetSelectMultiple func(r *RecentChooser, selectMultiple bool)
+	RecentChooserSetShowIcons      func(r *RecentChooser, showIcons bool)
+	RecentChooserSetShowNotFound   func(r *RecentChooser, showNotFound bool)
+	RecentChooserSetShowNumbers    func(r *RecentChooser, showNumbers bool)
+	RecentChooserSetShowPrivate    func(r *RecentChooser, showPrivate bool)
+	RecentChooserSetShowTips       func(r *RecentChooser, showTips bool)
+	RecentChooserSetSortFunc       func(r *RecentChooser, sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify)
+	RecentChooserSetSortType       func(r *RecentChooser, sortType RecentSortType)
+	RecentChooserUnselectAll       func(r *RecentChooser)
+	RecentChooserUnselectUri       func(r *RecentChooser, uri string)
 )
 
-func (r *RecentChooser) AddFilter(filter *RecentFilter)    { recentChooserAddFilter(r, filter) }
-func (r *RecentChooser) GetCurrentItem() *RecentInfo       { return recentChooserGetCurrentItem(r) }
-func (r *RecentChooser) GetCurrentUri() string             { return recentChooserGetCurrentUri(r) }
-func (r *RecentChooser) GetFilter() *RecentFilter          { return recentChooserGetFilter(r) }
-func (r *RecentChooser) GetItems() *T.GList                { return recentChooserGetItems(r) }
-func (r *RecentChooser) GetLimit() int                     { return recentChooserGetLimit(r) }
-func (r *RecentChooser) GetLocalOnly() bool                { return recentChooserGetLocalOnly(r) }
-func (r *RecentChooser) GetSelectMultiple() bool           { return recentChooserGetSelectMultiple(r) }
-func (r *RecentChooser) GetShowIcons() bool                { return recentChooserGetShowIcons(r) }
-func (r *RecentChooser) GetShowNotFound() bool             { return recentChooserGetShowNotFound(r) }
-func (r *RecentChooser) GetShowNumbers() bool              { return recentChooserGetShowNumbers(r) }
-func (r *RecentChooser) GetShowPrivate() bool              { return recentChooserGetShowPrivate(r) }
-func (r *RecentChooser) GetShowTips() bool                 { return recentChooserGetShowTips(r) }
-func (r *RecentChooser) GetSortType() RecentSortType       { return recentChooserGetSortType(r) }
-func (r *RecentChooser) GetUris(length *T.Gsize) []string  { return recentChooserGetUris(r, length) }
-func (r *RecentChooser) ListFilters() *T.GSList            { return recentChooserListFilters(r) }
-func (r *RecentChooser) RemoveFilter(filter *RecentFilter) { recentChooserRemoveFilter(r, filter) }
-func (r *RecentChooser) SelectAll()                        { recentChooserSelectAll(r) }
+func (r *RecentChooser) AddFilter(filter *RecentFilter)    { RecentChooserAddFilter(r, filter) }
+func (r *RecentChooser) GetCurrentItem() *RecentInfo       { return RecentChooserGetCurrentItem(r) }
+func (r *RecentChooser) GetCurrentUri() string             { return RecentChooserGetCurrentUri(r) }
+func (r *RecentChooser) GetFilter() *RecentFilter          { return RecentChooserGetFilter(r) }
+func (r *RecentChooser) GetItems() *T.GList                { return RecentChooserGetItems(r) }
+func (r *RecentChooser) GetLimit() int                     { return RecentChooserGetLimit(r) }
+func (r *RecentChooser) GetLocalOnly() bool                { return RecentChooserGetLocalOnly(r) }
+func (r *RecentChooser) GetSelectMultiple() bool           { return RecentChooserGetSelectMultiple(r) }
+func (r *RecentChooser) GetShowIcons() bool                { return RecentChooserGetShowIcons(r) }
+func (r *RecentChooser) GetShowNotFound() bool             { return RecentChooserGetShowNotFound(r) }
+func (r *RecentChooser) GetShowNumbers() bool              { return RecentChooserGetShowNumbers(r) }
+func (r *RecentChooser) GetShowPrivate() bool              { return RecentChooserGetShowPrivate(r) }
+func (r *RecentChooser) GetShowTips() bool                 { return RecentChooserGetShowTips(r) }
+func (r *RecentChooser) GetSortType() RecentSortType       { return RecentChooserGetSortType(r) }
+func (r *RecentChooser) GetUris(length *T.Gsize) []string  { return RecentChooserGetUris(r, length) }
+func (r *RecentChooser) ListFilters() *L.SList             { return RecentChooserListFilters(r) }
+func (r *RecentChooser) RemoveFilter(filter *RecentFilter) { RecentChooserRemoveFilter(r, filter) }
+func (r *RecentChooser) SelectAll()                        { RecentChooserSelectAll(r) }
 func (r *RecentChooser) SelectUri(uri string, err **T.GError) bool {
-	return recentChooserSelectUri(r, uri, err)
+	return RecentChooserSelectUri(r, uri, err)
 }
 func (r *RecentChooser) SetCurrentUri(uri string, err **T.GError) bool {
-	return recentChooserSetCurrentUri(r, uri, err)
+	return RecentChooserSetCurrentUri(r, uri, err)
 }
-func (r *RecentChooser) SetFilter(filter *RecentFilter) { recentChooserSetFilter(r, filter) }
-func (r *RecentChooser) SetLimit(limit int)             { recentChooserSetLimit(r, limit) }
-func (r *RecentChooser) SetLocalOnly(localOnly bool)    { recentChooserSetLocalOnly(r, localOnly) }
+func (r *RecentChooser) SetFilter(filter *RecentFilter) { RecentChooserSetFilter(r, filter) }
+func (r *RecentChooser) SetLimit(limit int)             { RecentChooserSetLimit(r, limit) }
+func (r *RecentChooser) SetLocalOnly(localOnly bool)    { RecentChooserSetLocalOnly(r, localOnly) }
 func (r *RecentChooser) SetSelectMultiple(selectMultiple bool) {
-	recentChooserSetSelectMultiple(r, selectMultiple)
+	RecentChooserSetSelectMultiple(r, selectMultiple)
 }
-func (r *RecentChooser) SetShowIcons(showIcons bool) { recentChooserSetShowIcons(r, showIcons) }
+func (r *RecentChooser) SetShowIcons(showIcons bool) { RecentChooserSetShowIcons(r, showIcons) }
 func (r *RecentChooser) SetShowNotFound(showNotFound bool) {
-	recentChooserSetShowNotFound(r, showNotFound)
+	RecentChooserSetShowNotFound(r, showNotFound)
 }
 func (r *RecentChooser) SetShowNumbers(showNumbers bool) {
-	recentChooserSetShowNumbers(r, showNumbers)
+	RecentChooserSetShowNumbers(r, showNumbers)
 }
 func (r *RecentChooser) SetShowPrivate(showPrivate bool) {
-	recentChooserSetShowPrivate(r, showPrivate)
+	RecentChooserSetShowPrivate(r, showPrivate)
 }
-func (r *RecentChooser) SetShowTips(showTips bool) { recentChooserSetShowTips(r, showTips) }
+func (r *RecentChooser) SetShowTips(showTips bool) { RecentChooserSetShowTips(r, showTips) }
 func (r *RecentChooser) SetSortFunc(sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify) {
-	recentChooserSetSortFunc(r, sortFunc, sortData, dataDestroy)
+	RecentChooserSetSortFunc(r, sortFunc, sortData, dataDestroy)
 }
-func (r *RecentChooser) SetSortType(sortType RecentSortType) { recentChooserSetSortType(r, sortType) }
-func (r *RecentChooser) UnselectAll()                        { recentChooserUnselectAll(r) }
-func (r *RecentChooser) UnselectUri(uri string)              { recentChooserUnselectUri(r, uri) }
+func (r *RecentChooser) SetSortType(sortType RecentSortType) { RecentChooserSetSortType(r, sortType) }
+func (r *RecentChooser) UnselectAll()                        { RecentChooserUnselectAll(r) }
+func (r *RecentChooser) UnselectUri(uri string)              { RecentChooserUnselectUri(r, uri) }
 
 type RecentChooserMenu struct {
 	Parent Menu
@@ -435,13 +435,13 @@ var (
 	RecentChooserMenuGetType func() O.Type
 	RecentChooserMenuNew     func() *Widget
 
-	recentChooserMenuGetShowNumbers func(r *RecentChooserMenu) bool
-	recentChooserMenuSetShowNumbers func(r *RecentChooserMenu, showNumbers bool)
+	RecentChooserMenuGetShowNumbers func(r *RecentChooserMenu) bool
+	RecentChooserMenuSetShowNumbers func(r *RecentChooserMenu, showNumbers bool)
 )
 
-func (r *RecentChooserMenu) GetShowNumbers() bool { return recentChooserMenuGetShowNumbers(r) }
+func (r *RecentChooserMenu) GetShowNumbers() bool { return RecentChooserMenuGetShowNumbers(r) }
 func (r *RecentChooserMenu) SetShowNumbers(showNumbers bool) {
-	recentChooserMenuSetShowNumbers(r, showNumbers)
+	RecentChooserMenuSetShowNumbers(r, showNumbers)
 }
 
 type (
@@ -454,60 +454,60 @@ type (
 var (
 	RecentInfoGetType func() O.Type
 
-	recentInfoExists             func(r *RecentInfo) bool
-	recentInfoGetAdded           func(r *RecentInfo) T.TimeT
-	recentInfoGetAge             func(r *RecentInfo) int
-	recentInfoGetApplicationInfo func(r *RecentInfo, appName string, appExec **T.Gchar, count *uint, time *T.TimeT) bool
-	recentInfoGetApplications    func(r *RecentInfo, length *T.Gsize) []string
-	recentInfoGetDescription     func(r *RecentInfo) string
-	recentInfoGetDisplayName     func(r *RecentInfo) string
-	recentInfoGetGroups          func(r *RecentInfo, length *T.Gsize) []string
-	recentInfoGetIcon            func(r *RecentInfo, size int) *D.Pixbuf
-	recentInfoGetMimeType        func(r *RecentInfo) string
-	recentInfoGetModified        func(r *RecentInfo) T.TimeT
-	recentInfoGetPrivateHint     func(r *RecentInfo) bool
-	recentInfoGetShortName       func(r *RecentInfo) string
-	recentInfoGetUri             func(r *RecentInfo) string
-	recentInfoGetUriDisplay      func(r *RecentInfo) string
-	recentInfoGetVisited         func(r *RecentInfo) T.TimeT
-	recentInfoHasApplication     func(r *RecentInfo, appName string) bool
-	recentInfoHasGroup           func(r *RecentInfo, groupName string) bool
-	recentInfoIsLocal            func(r *RecentInfo) bool
-	recentInfoLastApplication    func(r *RecentInfo) string
-	recentInfoMatch              func(r *RecentInfo, infoB *RecentInfo) bool
-	recentInfoRef                func(r *RecentInfo) *RecentInfo
-	recentInfoUnref              func(r *RecentInfo)
+	RecentInfoExists             func(r *RecentInfo) bool
+	RecentInfoGetAdded           func(r *RecentInfo) T.TimeT
+	RecentInfoGetAge             func(r *RecentInfo) int
+	RecentInfoGetApplicationInfo func(r *RecentInfo, appName string, appExec **T.Gchar, count *uint, time *T.TimeT) bool
+	RecentInfoGetApplications    func(r *RecentInfo, length *T.Gsize) []string
+	RecentInfoGetDescription     func(r *RecentInfo) string
+	RecentInfoGetDisplayName     func(r *RecentInfo) string
+	RecentInfoGetGroups          func(r *RecentInfo, length *T.Gsize) []string
+	RecentInfoGetIcon            func(r *RecentInfo, size int) *D.Pixbuf
+	RecentInfoGetMimeType        func(r *RecentInfo) string
+	RecentInfoGetModified        func(r *RecentInfo) T.TimeT
+	RecentInfoGetPrivateHint     func(r *RecentInfo) bool
+	RecentInfoGetShortName       func(r *RecentInfo) string
+	RecentInfoGetUri             func(r *RecentInfo) string
+	RecentInfoGetUriDisplay      func(r *RecentInfo) string
+	RecentInfoGetVisited         func(r *RecentInfo) T.TimeT
+	RecentInfoHasApplication     func(r *RecentInfo, appName string) bool
+	RecentInfoHasGroup           func(r *RecentInfo, groupName string) bool
+	RecentInfoIsLocal            func(r *RecentInfo) bool
+	RecentInfoLastApplication    func(r *RecentInfo) string
+	RecentInfoMatch              func(r *RecentInfo, infoB *RecentInfo) bool
+	RecentInfoRef                func(r *RecentInfo) *RecentInfo
+	RecentInfoUnref              func(r *RecentInfo)
 )
 
-func (r *RecentInfo) Exists() bool      { return recentInfoExists(r) }
-func (r *RecentInfo) GetAdded() T.TimeT { return recentInfoGetAdded(r) }
-func (r *RecentInfo) GetAge() int       { return recentInfoGetAge(r) }
+func (r *RecentInfo) Exists() bool      { return RecentInfoExists(r) }
+func (r *RecentInfo) GetAdded() T.TimeT { return RecentInfoGetAdded(r) }
+func (r *RecentInfo) GetAge() int       { return RecentInfoGetAge(r) }
 func (r *RecentInfo) GetApplicationInfo(appName string, appExec **T.Gchar, count *uint, time *T.TimeT) bool {
-	return recentInfoGetApplicationInfo(r, appName, appExec, count, time)
+	return RecentInfoGetApplicationInfo(r, appName, appExec, count, time)
 }
 func (r *RecentInfo) GetApplications(length *T.Gsize) []string {
-	return recentInfoGetApplications(r, length)
+	return RecentInfoGetApplications(r, length)
 }
-func (r *RecentInfo) GetDescription() string             { return recentInfoGetDescription(r) }
-func (r *RecentInfo) GetDisplayName() string             { return recentInfoGetDisplayName(r) }
-func (r *RecentInfo) GetGroups(length *T.Gsize) []string { return recentInfoGetGroups(r, length) }
-func (r *RecentInfo) GetIcon(size int) *D.Pixbuf         { return recentInfoGetIcon(r, size) }
-func (r *RecentInfo) GetMimeType() string                { return recentInfoGetMimeType(r) }
-func (r *RecentInfo) GetModified() T.TimeT               { return recentInfoGetModified(r) }
-func (r *RecentInfo) GetPrivateHint() bool               { return recentInfoGetPrivateHint(r) }
-func (r *RecentInfo) GetShortName() string               { return recentInfoGetShortName(r) }
-func (r *RecentInfo) GetUri() string                     { return recentInfoGetUri(r) }
-func (r *RecentInfo) GetUriDisplay() string              { return recentInfoGetUriDisplay(r) }
-func (r *RecentInfo) GetVisited() T.TimeT                { return recentInfoGetVisited(r) }
+func (r *RecentInfo) GetDescription() string             { return RecentInfoGetDescription(r) }
+func (r *RecentInfo) GetDisplayName() string             { return RecentInfoGetDisplayName(r) }
+func (r *RecentInfo) GetGroups(length *T.Gsize) []string { return RecentInfoGetGroups(r, length) }
+func (r *RecentInfo) GetIcon(size int) *D.Pixbuf         { return RecentInfoGetIcon(r, size) }
+func (r *RecentInfo) GetMimeType() string                { return RecentInfoGetMimeType(r) }
+func (r *RecentInfo) GetModified() T.TimeT               { return RecentInfoGetModified(r) }
+func (r *RecentInfo) GetPrivateHint() bool               { return RecentInfoGetPrivateHint(r) }
+func (r *RecentInfo) GetShortName() string               { return RecentInfoGetShortName(r) }
+func (r *RecentInfo) GetUri() string                     { return RecentInfoGetUri(r) }
+func (r *RecentInfo) GetUriDisplay() string              { return RecentInfoGetUriDisplay(r) }
+func (r *RecentInfo) GetVisited() T.TimeT                { return RecentInfoGetVisited(r) }
 func (r *RecentInfo) HasApplication(appName string) bool {
-	return recentInfoHasApplication(r, appName)
+	return RecentInfoHasApplication(r, appName)
 }
-func (r *RecentInfo) HasGroup(groupName string) bool { return recentInfoHasGroup(r, groupName) }
-func (r *RecentInfo) IsLocal() bool                  { return recentInfoIsLocal(r) }
-func (r *RecentInfo) LastApplication() string        { return recentInfoLastApplication(r) }
-func (r *RecentInfo) Match(infoB *RecentInfo) bool   { return recentInfoMatch(r, infoB) }
-func (r *RecentInfo) Ref() *RecentInfo               { return recentInfoRef(r) }
-func (r *RecentInfo) Unref()                         { recentInfoUnref(r) }
+func (r *RecentInfo) HasGroup(groupName string) bool { return RecentInfoHasGroup(r, groupName) }
+func (r *RecentInfo) IsLocal() bool                  { return RecentInfoIsLocal(r) }
+func (r *RecentInfo) LastApplication() string        { return RecentInfoLastApplication(r) }
+func (r *RecentInfo) Match(infoB *RecentInfo) bool   { return RecentInfoMatch(r, infoB) }
+func (r *RecentInfo) Ref() *RecentInfo               { return RecentInfoRef(r) }
+func (r *RecentInfo) Unref()                         { RecentInfoUnref(r) }
 
 type (
 	RecentFilter struct{}
@@ -544,34 +544,34 @@ var (
 
 	RecentFilterFlagsGetType func() O.Type
 
-	recentFilterAddAge           func(r *RecentFilter, days int)
-	recentFilterAddApplication   func(r *RecentFilter, application string)
-	recentFilterAddCustom        func(r *RecentFilter, needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy T.GDestroyNotify)
-	recentFilterAddGroup         func(r *RecentFilter, group string)
-	recentFilterAddMimeType      func(r *RecentFilter, mimeType string)
-	recentFilterAddPattern       func(r *RecentFilter, pattern string)
-	recentFilterAddPixbufFormats func(r *RecentFilter)
-	recentFilterFilter           func(r *RecentFilter, filterInfo *RecentFilterInfo) bool
-	recentFilterGetName          func(r *RecentFilter) string
-	recentFilterGetNeeded        func(r *RecentFilter) RecentFilterFlags
-	recentFilterSetName          func(r *RecentFilter, name string)
+	RecentFilterAddAge           func(r *RecentFilter, days int)
+	RecentFilterAddApplication   func(r *RecentFilter, application string)
+	RecentFilterAddCustom        func(r *RecentFilter, needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy T.GDestroyNotify)
+	RecentFilterAddGroup         func(r *RecentFilter, group string)
+	RecentFilterAddMimeType      func(r *RecentFilter, mimeType string)
+	RecentFilterAddPattern       func(r *RecentFilter, pattern string)
+	RecentFilterAddPixbufFormats func(r *RecentFilter)
+	RecentFilterFilter           func(r *RecentFilter, filterInfo *RecentFilterInfo) bool
+	RecentFilterGetName          func(r *RecentFilter) string
+	RecentFilterGetNeeded        func(r *RecentFilter) RecentFilterFlags
+	RecentFilterSetName          func(r *RecentFilter, name string)
 )
 
-func (r *RecentFilter) AddAge(days int)                   { recentFilterAddAge(r, days) }
-func (r *RecentFilter) AddApplication(application string) { recentFilterAddApplication(r, application) }
+func (r *RecentFilter) AddAge(days int)                   { RecentFilterAddAge(r, days) }
+func (r *RecentFilter) AddApplication(application string) { RecentFilterAddApplication(r, application) }
 func (r *RecentFilter) AddCustom(needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy T.GDestroyNotify) {
-	recentFilterAddCustom(r, needed, f, data, dataDestroy)
+	RecentFilterAddCustom(r, needed, f, data, dataDestroy)
 }
-func (r *RecentFilter) AddGroup(group string)       { recentFilterAddGroup(r, group) }
-func (r *RecentFilter) AddMimeType(mimeType string) { recentFilterAddMimeType(r, mimeType) }
-func (r *RecentFilter) AddPattern(pattern string)   { recentFilterAddPattern(r, pattern) }
-func (r *RecentFilter) AddPixbufFormats()           { recentFilterAddPixbufFormats(r) }
+func (r *RecentFilter) AddGroup(group string)       { RecentFilterAddGroup(r, group) }
+func (r *RecentFilter) AddMimeType(mimeType string) { RecentFilterAddMimeType(r, mimeType) }
+func (r *RecentFilter) AddPattern(pattern string)   { RecentFilterAddPattern(r, pattern) }
+func (r *RecentFilter) AddPixbufFormats()           { RecentFilterAddPixbufFormats(r) }
 func (r *RecentFilter) Filter(filterInfo *RecentFilterInfo) bool {
-	return recentFilterFilter(r, filterInfo)
+	return RecentFilterFilter(r, filterInfo)
 }
-func (r *RecentFilter) GetName() string              { return recentFilterGetName(r) }
-func (r *RecentFilter) GetNeeded() RecentFilterFlags { return recentFilterGetNeeded(r) }
-func (r *RecentFilter) SetName(name string)          { recentFilterSetName(r, name) }
+func (r *RecentFilter) GetName() string              { return RecentFilterGetName(r) }
+func (r *RecentFilter) GetNeeded() RecentFilterFlags { return RecentFilterGetNeeded(r) }
+func (r *RecentFilter) SetName(name string)          { RecentFilterSetName(r, name) }
 
 type RecentManager struct {
 	Parent T.GObject
@@ -598,38 +598,38 @@ var (
 	RecentManagerGetDefault   func() *RecentManager
 	RecentManagerGetForScreen func(screen *D.Screen) *RecentManager
 
-	recentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) bool
-	recentManagerAddItem    func(r *RecentManager, uri string) bool
-	recentManagerGetItems   func(r *RecentManager) *T.GList
-	recentManagerGetLimit   func(r *RecentManager) int
-	recentManagerHasItem    func(r *RecentManager, uri string) bool
-	recentManagerLookupItem func(r *RecentManager, uri string, err **T.GError) *RecentInfo
-	recentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **T.GError) bool
-	recentManagerPurgeItems func(r *RecentManager, err **T.GError) int
-	recentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) bool
-	recentManagerSetLimit   func(r *RecentManager, limit int)
-	recentManagerSetScreen  func(r *RecentManager, screen *D.Screen)
+	RecentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) bool
+	RecentManagerAddItem    func(r *RecentManager, uri string) bool
+	RecentManagerGetItems   func(r *RecentManager) *T.GList
+	RecentManagerGetLimit   func(r *RecentManager) int
+	RecentManagerHasItem    func(r *RecentManager, uri string) bool
+	RecentManagerLookupItem func(r *RecentManager, uri string, err **T.GError) *RecentInfo
+	RecentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **T.GError) bool
+	RecentManagerPurgeItems func(r *RecentManager, err **T.GError) int
+	RecentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) bool
+	RecentManagerSetLimit   func(r *RecentManager, limit int)
+	RecentManagerSetScreen  func(r *RecentManager, screen *D.Screen)
 )
 
 func (r *RecentManager) AddFull(uri string, recentData *RecentData) bool {
-	return recentManagerAddFull(r, uri, recentData)
+	return RecentManagerAddFull(r, uri, recentData)
 }
-func (r *RecentManager) AddItem(uri string) bool { return recentManagerAddItem(r, uri) }
-func (r *RecentManager) GetItems() *T.GList      { return recentManagerGetItems(r) }
-func (r *RecentManager) GetLimit() int           { return recentManagerGetLimit(r) }
-func (r *RecentManager) HasItem(uri string) bool { return recentManagerHasItem(r, uri) }
+func (r *RecentManager) AddItem(uri string) bool { return RecentManagerAddItem(r, uri) }
+func (r *RecentManager) GetItems() *T.GList      { return RecentManagerGetItems(r) }
+func (r *RecentManager) GetLimit() int           { return RecentManagerGetLimit(r) }
+func (r *RecentManager) HasItem(uri string) bool { return RecentManagerHasItem(r, uri) }
 func (r *RecentManager) LookupItem(uri string, err **T.GError) *RecentInfo {
-	return recentManagerLookupItem(r, uri, err)
+	return RecentManagerLookupItem(r, uri, err)
 }
 func (r *RecentManager) MoveItem(uri string, newUri string, err **T.GError) bool {
-	return recentManagerMoveItem(r, uri, newUri, err)
+	return RecentManagerMoveItem(r, uri, newUri, err)
 }
-func (r *RecentManager) PurgeItems(err **T.GError) int { return recentManagerPurgeItems(r, err) }
+func (r *RecentManager) PurgeItems(err **T.GError) int { return RecentManagerPurgeItems(r, err) }
 func (r *RecentManager) RemoveItem(uri string, err **T.GError) bool {
-	return recentManagerRemoveItem(r, uri, err)
+	return RecentManagerRemoveItem(r, uri, err)
 }
-func (r *RecentManager) SetLimit(limit int)         { recentManagerSetLimit(r, limit) }
-func (r *RecentManager) SetScreen(screen *D.Screen) { recentManagerSetScreen(r, screen) }
+func (r *RecentManager) SetLimit(limit int)         { RecentManagerSetLimit(r, limit) }
+func (r *RecentManager) SetScreen(screen *D.Screen) { RecentManagerSetScreen(r, screen) }
 
 var RecentSortTypeGetType func() O.Type
 
@@ -651,12 +651,12 @@ type Requisition struct {
 var (
 	RequisitionGetType func() O.Type
 
-	requisitionCopy func(r *Requisition) *Requisition
-	requisitionFree func(r *Requisition)
+	RequisitionCopy func(r *Requisition) *Requisition
+	RequisitionFree func(r *Requisition)
 )
 
-func (r *Requisition) Copy() *Requisition { return requisitionCopy(r) }
-func (r *Requisition) Free()              { requisitionFree(r) }
+func (r *Requisition) Copy() *Requisition { return RequisitionCopy(r) }
+func (r *Requisition) Free()              { RequisitionFree(r) }
 
 type ResizeMode Enum
 
@@ -713,21 +713,21 @@ type (
 var (
 	RulerGetType func() O.Type
 
-	rulerDrawPos   func(r *Ruler)
-	rulerDrawTicks func(r *Ruler)
-	rulerGetMetric func(r *Ruler) MetricType
-	rulerGetRange  func(r *Ruler, lower, upper, position, maxSize *float64)
-	rulerSetMetric func(r *Ruler, metric MetricType)
-	rulerSetRange  func(r *Ruler, lower, upper, position, maxSize float64)
+	RulerDrawPos   func(r *Ruler)
+	RulerDrawTicks func(r *Ruler)
+	RulerGetMetric func(r *Ruler) MetricType
+	RulerGetRange  func(r *Ruler, lower, upper, position, maxSize *float64)
+	RulerSetMetric func(r *Ruler, metric MetricType)
+	RulerSetRange  func(r *Ruler, lower, upper, position, maxSize float64)
 )
 
-func (r *Ruler) DrawPos()              { rulerDrawPos(r) }
-func (r *Ruler) DrawTicks()            { rulerDrawTicks(r) }
-func (r *Ruler) GetMetric() MetricType { return rulerGetMetric(r) }
+func (r *Ruler) DrawPos()              { RulerDrawPos(r) }
+func (r *Ruler) DrawTicks()            { RulerDrawTicks(r) }
+func (r *Ruler) GetMetric() MetricType { return RulerGetMetric(r) }
 func (r *Ruler) GetRange(lower, upper, position, maxSize *float64) {
-	rulerGetRange(r, lower, upper, position, maxSize)
+	RulerGetRange(r, lower, upper, position, maxSize)
 }
-func (r *Ruler) SetMetric(metric MetricType) { rulerSetMetric(r, metric) }
+func (r *Ruler) SetMetric(metric MetricType) { RulerSetMetric(r, metric) }
 func (r *Ruler) SetRange(lower, upper, position, maxSize float64) {
-	rulerSetRange(r, lower, upper, position, maxSize)
+	RulerSetRange(r, lower, upper, position, maxSize)
 }

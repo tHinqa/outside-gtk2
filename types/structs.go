@@ -196,78 +196,18 @@ type (
 		Length uint
 	}
 
-	GScanner struct {
-		UserData       Gpointer
-		MaxParseErrors uint
-		ParseErrors    uint
-		InputName      *Gchar
-		Qdata          *GData
-		Config         *GScannerConfig
-		Token          GTokenType
-		Value          GTokenValue
-		Line           uint
-		Position       uint
-		NextToken      GTokenType
-		NextValue      GTokenValue
-		NextLine       uint
-		NextPosition   uint
-		SymbolTable    *GHashTable
-		InputFd        int
-		Text           *Gchar
-		TextEnd        *Gchar
-		Buffer         *Gchar
-		ScopeId        uint
-		MsgHandler     GScannerMsgFunc
+	SList struct { // For functions in gobject and glib (import cycle
+		Data Gpointer
+		Next *SList
 	}
-
-	GScannerConfig struct {
-		CsetSkipCharacters  *Gchar
-		CsetIdentifierFirst *Gchar
-		CsetIdentifierNth   *Gchar
-		CpairCommentSingle  *Gchar
-		Bits                uint
-		// CaseSensitive : 1
-		// SkipCommentMulti : 1
-		// SkipCommentSingle : 1
-		// ScanCommentMulti : 1
-		// ScanIdentifier : 1
-		// ScanIdentifier1char : 1
-		// ScanIdentifier_NULL : 1
-		// ScanSymbols : 1
-		// ScanBinary : 1
-		// ScanOctal : 1
-		// ScanFloat : 1
-		// ScanHex : 1
-		// ScanHexDollar : 1
-		// ScanStringSq : 1
-		// ScanStringDq : 1
-		// Numbers2Int : 1
-		// Int2Float : 1
-		// Identifier2String : 1
-		// Char2Token : 1
-		// Symbol2Token : 1
-		// Scope0Fallback : 1
-		// StoreInt64 : 1
-		PaddingDummy uint
-	}
-
-	GSList struct{} //REMOVE
 
 	GSource struct{} //REMOVE
 
-	GStaticPrivate struct {
-		Index uint
-	}
-
-	GString struct {
-		Str          *Gchar
-		Len          Gsize
-		AllocatedLen Gsize
-	}
+	GString struct{} // REMOVE
 
 	GTestLogBuffer struct {
 		Data *GString
-		Msgs *GSList
+		Msgs *SList
 	}
 
 	GTestLogMsg struct {
@@ -457,7 +397,7 @@ type (
 	GdkRgbCmap struct {
 		Colors   [256]GUint32
 		NColors  int
-		InfoList *GSList
+		InfoList *SList
 	}
 
 	GdkSegment struct {

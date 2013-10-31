@@ -23,66 +23,66 @@ var (
 	GcNew           func(drawable *Drawable) *GC
 	GcNewWithValues func(drawable *Drawable, values *GCValues, valuesMask GCValuesMask) *GC
 
-	gcRef               func(gc *GC) *GC
-	gcUnref             func(gc *GC)
-	gcGetValues         func(gc *GC, values *GCValues)
-	gcSetValues         func(gc *GC, values *GCValues, valuesMask GCValuesMask)
-	gcSetForeground     func(gc *GC, color *Color)
-	gcSetBackground     func(gc *GC, color *Color)
-	gcSetFont           func(gc *GC, font *Font)
-	gcSetFunction       func(gc *GC, function T.GdkFunction)
-	gcSetFill           func(gc *GC, fill T.GdkFill)
-	gcSetTile           func(gc *GC, tile *Pixmap)
-	gcSetStipple        func(gc *GC, stipple *Pixmap)
-	gcSetTsOrigin       func(gc *GC, x, y int)
-	gcSetClipOrigin     func(gc *GC, x, y int)
-	gcSetClipMask       func(gc *GC, mask *T.GdkBitmap)
-	gcSetClipRectangle  func(gc *GC, rectangle *Rectangle)
-	gcSetClipRegion     func(gc *GC, region *Region)
-	gcSetSubwindow      func(gc *GC, mode T.GdkSubwindowMode)
-	gcSetExposures      func(gc *GC, exposures bool)
-	gcSetLineAttributes func(gc *GC, lineWidth int, lineStyle T.GdkLineStyle, capStyle CapStyle, joinStyle T.GdkJoinStyle)
-	gcSetDashes         func(gc *GC, dashOffset int, dashList *int8, n int)
-	gcOffset            func(gc *GC, xOffset, yOffset int)
-	gcCopy              func(dstGc, srcGc *GC)
-	gcSetColormap       func(gc *GC, colormap *Colormap)
-	gcGetColormap       func(gc *GC) *Colormap
-	gcSetRgbFgColor     func(gc *GC, color *Color)
-	gcSetRgbBgColor     func(gc *GC, color *Color)
-	gcGetScreen         func(gc *GC) *Screen
+	GcRef               func(gc *GC) *GC
+	GcUnref             func(gc *GC)
+	GcGetValues         func(gc *GC, values *GCValues)
+	GcSetValues         func(gc *GC, values *GCValues, valuesMask GCValuesMask)
+	GcSetForeground     func(gc *GC, color *Color)
+	GcSetBackground     func(gc *GC, color *Color)
+	GcSetFont           func(gc *GC, font *Font)
+	GcSetFunction       func(gc *GC, function T.GdkFunction)
+	GcSetFill           func(gc *GC, fill T.GdkFill)
+	GcSetTile           func(gc *GC, tile *Pixmap)
+	GcSetStipple        func(gc *GC, stipple *Pixmap)
+	GcSetTsOrigin       func(gc *GC, x, y int)
+	GcSetClipOrigin     func(gc *GC, x, y int)
+	GcSetClipMask       func(gc *GC, mask *T.GdkBitmap)
+	GcSetClipRectangle  func(gc *GC, rectangle *Rectangle)
+	GcSetClipRegion     func(gc *GC, region *Region)
+	GcSetSubwindow      func(gc *GC, mode T.GdkSubwindowMode)
+	GcSetExposures      func(gc *GC, exposures bool)
+	GcSetLineAttributes func(gc *GC, lineWidth int, lineStyle T.GdkLineStyle, capStyle CapStyle, joinStyle T.GdkJoinStyle)
+	GcSetDashes         func(gc *GC, dashOffset int, dashList *int8, n int)
+	GcOffset            func(gc *GC, xOffset, yOffset int)
+	GcCopy              func(dstGc, srcGc *GC)
+	GcSetColormap       func(gc *GC, colormap *Colormap)
+	GcGetColormap       func(gc *GC) *Colormap
+	GcSetRgbFgColor     func(gc *GC, color *Color)
+	GcSetRgbBgColor     func(gc *GC, color *Color)
+	GcGetScreen         func(gc *GC) *Screen
 )
 
-func (g *GC) Ref() *GC                                            { return gcRef(g) }
-func (g *GC) Unref()                                              { gcUnref(g) }
-func (g *GC) GetValues(values *GCValues)                          { gcGetValues(g, values) }
-func (g *GC) SetValues(values *GCValues, valuesMask GCValuesMask) { gcSetValues(g, values, valuesMask) }
-func (g *GC) SetForeground(color *Color)                          { gcSetForeground(g, color) }
-func (g *GC) SetBackground(color *Color)                          { gcSetBackground(g, color) }
-func (g *GC) SetFont(font *Font)                                  { gcSetFont(g, font) }
-func (g *GC) SetFunction(function T.GdkFunction)                  { gcSetFunction(g, function) }
-func (g *GC) SetFill(fill T.GdkFill)                              { gcSetFill(g, fill) }
-func (g *GC) SetTile(tile *Pixmap)                                { gcSetTile(g, tile) }
-func (g *GC) SetStipple(stipple *Pixmap)                          { gcSetStipple(g, stipple) }
-func (g *GC) SetTsOrigin(x, y int)                                { gcSetTsOrigin(g, x, y) }
-func (g *GC) SetClipOrigin(x, y int)                              { gcSetClipOrigin(g, x, y) }
-func (g *GC) SetClipMask(mask *T.GdkBitmap)                       { gcSetClipMask(g, mask) }
-func (g *GC) SetClipRectangle(rectangle *Rectangle)               { gcSetClipRectangle(g, rectangle) }
-func (g *GC) SetClipRegion(region *Region)                        { gcSetClipRegion(g, region) }
-func (g *GC) SetSubwindow(mode T.GdkSubwindowMode)                { gcSetSubwindow(g, mode) }
-func (g *GC) SetExposures(exposures bool)                         { gcSetExposures(g, exposures) }
+func (g *GC) Ref() *GC                                            { return GcRef(g) }
+func (g *GC) Unref()                                              { GcUnref(g) }
+func (g *GC) GetValues(values *GCValues)                          { GcGetValues(g, values) }
+func (g *GC) SetValues(values *GCValues, valuesMask GCValuesMask) { GcSetValues(g, values, valuesMask) }
+func (g *GC) SetForeground(color *Color)                          { GcSetForeground(g, color) }
+func (g *GC) SetBackground(color *Color)                          { GcSetBackground(g, color) }
+func (g *GC) SetFont(font *Font)                                  { GcSetFont(g, font) }
+func (g *GC) SetFunction(function T.GdkFunction)                  { GcSetFunction(g, function) }
+func (g *GC) SetFill(fill T.GdkFill)                              { GcSetFill(g, fill) }
+func (g *GC) SetTile(tile *Pixmap)                                { GcSetTile(g, tile) }
+func (g *GC) SetStipple(stipple *Pixmap)                          { GcSetStipple(g, stipple) }
+func (g *GC) SetTsOrigin(x, y int)                                { GcSetTsOrigin(g, x, y) }
+func (g *GC) SetClipOrigin(x, y int)                              { GcSetClipOrigin(g, x, y) }
+func (g *GC) SetClipMask(mask *T.GdkBitmap)                       { GcSetClipMask(g, mask) }
+func (g *GC) SetClipRectangle(rectangle *Rectangle)               { GcSetClipRectangle(g, rectangle) }
+func (g *GC) SetClipRegion(region *Region)                        { GcSetClipRegion(g, region) }
+func (g *GC) SetSubwindow(mode T.GdkSubwindowMode)                { GcSetSubwindow(g, mode) }
+func (g *GC) SetExposures(exposures bool)                         { GcSetExposures(g, exposures) }
 func (g *GC) SetLineAttributes(lineWidth int, lineStyle T.GdkLineStyle, capStyle CapStyle, joinStyle T.GdkJoinStyle) {
-	gcSetLineAttributes(g, lineWidth, lineStyle, capStyle, joinStyle)
+	GcSetLineAttributes(g, lineWidth, lineStyle, capStyle, joinStyle)
 }
 func (g *GC) SetDashes(dashOffset int, dashList *int8, n int) {
-	gcSetDashes(g, dashOffset, dashList, n)
+	GcSetDashes(g, dashOffset, dashList, n)
 }
-func (g *GC) Offset(xOffset, yOffset int)    { gcOffset(g, xOffset, yOffset) }
-func (g *GC) Copy(srcGc *GC)                 { gcCopy(g, srcGc) }
-func (g *GC) SetColormap(colormap *Colormap) { gcSetColormap(g, colormap) }
-func (g *GC) GetColormap() *Colormap         { return gcGetColormap(g) }
-func (g *GC) SetRgbFgColor(color *Color)     { gcSetRgbFgColor(g, color) }
-func (g *GC) SetRgbBgColor(color *Color)     { gcSetRgbBgColor(g, color) }
-func (g *GC) GetScreen() *Screen             { return gcGetScreen(g) }
+func (g *GC) Offset(xOffset, yOffset int)    { GcOffset(g, xOffset, yOffset) }
+func (g *GC) Copy(srcGc *GC)                 { GcCopy(g, srcGc) }
+func (g *GC) SetColormap(colormap *Colormap) { GcSetColormap(g, colormap) }
+func (g *GC) GetColormap() *Colormap         { return GcGetColormap(g) }
+func (g *GC) SetRgbFgColor(color *Color)     { GcSetRgbFgColor(g, color) }
+func (g *GC) SetRgbBgColor(color *Color)     { GcSetRgbBgColor(g, color) }
+func (g *GC) GetScreen() *Screen             { return GcGetScreen(g) }
 
 type GCValues struct {
 	Foreground        Color

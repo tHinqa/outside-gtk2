@@ -8,32 +8,32 @@ import (
 )
 
 var (
-	win32FontFaceCreateForHfont         func(font HFONT) *FontFace
-	win32FontFaceCreateForLogfontw      func(logfont *LOGFONTW) *FontFace
-	win32FontFaceCreateForLogfontwHfont func(logfont *LOGFONTW, font HFONT) *FontFace
+	Win32FontFaceCreateForHfont         func(font HFONT) *FontFace
+	Win32FontFaceCreateForLogfontw      func(logfont *LOGFONTW) *FontFace
+	Win32FontFaceCreateForLogfontwHfont func(logfont *LOGFONTW, font HFONT) *FontFace
 )
 
 func (f HFONT) FontFaceCreate() *FontFace {
-	return win32FontFaceCreateForHfont(f)
+	return Win32FontFaceCreateForHfont(f)
 }
 func (f *LOGFONTW) FontFaceCreate() *FontFace {
-	return win32FontFaceCreateForLogfontw(f)
+	return Win32FontFaceCreateForLogfontw(f)
 }
 func (f *LOGFONTW) FontFaceCreateHfont(h HFONT) *FontFace {
-	return win32FontFaceCreateForLogfontwHfont(f, h)
+	return Win32FontFaceCreateForLogfontwHfont(f, h)
 }
 
 var (
-	win32PrintingSurfaceCreate func(h HDC) *Surface
-	win32SurfaceCreate         func(h HDC) *Surface
-	win32SurfaceCreateWithDdb  func(h HDC, format Format, width, height int) *Surface
+	Win32PrintingSurfaceCreate func(h HDC) *Surface
+	Win32SurfaceCreate         func(h HDC) *Surface
+	Win32SurfaceCreateWithDdb  func(h HDC, format Format, width, height int) *Surface
 	SurfaceCreateWithDib       func(format Format, width, height int) *Surface
 )
 
-func (h HDC) PrintingSurfaceCreate() *Surface { return win32PrintingSurfaceCreate(h) }
-func (h HDC) SurfaceCreate() *Surface         { return win32SurfaceCreate(h) }
+func (h HDC) PrintingSurfaceCreate() *Surface { return Win32PrintingSurfaceCreate(h) }
+func (h HDC) SurfaceCreate() *Surface         { return Win32SurfaceCreate(h) }
 func (h HDC) SurfaceCreateWithDdb(format Format, width, height int) *Surface {
-	return win32SurfaceCreateWithDdb(h, format, width, height)
+	return Win32SurfaceCreateWithDdb(h, format, width, height)
 }
 
 var (
@@ -41,19 +41,19 @@ var (
 	SurfaceGetImage func(s *Surface) *Surface
 )
 var (
-	win32ScaledFontDoneFont           func(s *ScaledFont)
-	win32ScaledFontGetDeviceToLogical func(s *ScaledFont, deviceToLogical *Matrix)
-	win32ScaledFontGetLogicalToDevice func(s *ScaledFont, logicalToDevice *Matrix)
-	win32ScaledFontGetMetricsFactor   func(s *ScaledFont) float64
-	win32ScaledFontSelectFont         func(s *ScaledFont, hdc HDC) Status
+	Win32ScaledFontDoneFont           func(s *ScaledFont)
+	Win32ScaledFontGetDeviceToLogical func(s *ScaledFont, deviceToLogical *Matrix)
+	Win32ScaledFontGetLogicalToDevice func(s *ScaledFont, logicalToDevice *Matrix)
+	Win32ScaledFontGetMetricsFactor   func(s *ScaledFont) float64
+	Win32ScaledFontSelectFont         func(s *ScaledFont, hdc HDC) Status
 )
 
-func (s *ScaledFont) DoneFont() { win32ScaledFontDoneFont(s) }
+func (s *ScaledFont) DoneFont() { Win32ScaledFontDoneFont(s) }
 func (s *ScaledFont) GetDeviceToLogical(deviceToLogical *Matrix) {
-	win32ScaledFontGetDeviceToLogical(s, deviceToLogical)
+	Win32ScaledFontGetDeviceToLogical(s, deviceToLogical)
 }
 func (s *ScaledFont) GetLogicalToDevice(logicalToDevice *Matrix) {
-	win32ScaledFontGetLogicalToDevice(s, logicalToDevice)
+	Win32ScaledFontGetLogicalToDevice(s, logicalToDevice)
 }
-func (s *ScaledFont) GetMetricsFactor() float64 { return win32ScaledFontGetMetricsFactor(s) }
-func (s *ScaledFont) SelectFont(hdc HDC) Status { return win32ScaledFontSelectFont(s, hdc) }
+func (s *ScaledFont) GetMetricsFactor() float64 { return Win32ScaledFontGetMetricsFactor(s) }
+func (s *ScaledFont) SelectFont(hdc HDC) Status { return Win32ScaledFontSelectFont(s, hdc) }

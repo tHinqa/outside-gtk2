@@ -4,6 +4,7 @@
 package gtk
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -47,52 +48,52 @@ var (
 
 	UiManagerItemTypeGetType func() O.Type
 
-	uiManagerSetAddTearoffs    func(u *UIManager, addTearoffs bool)
-	uiManagerGetAddTearoffs    func(u *UIManager) bool
-	uiManagerInsertActionGroup func(u *UIManager, actionGroup *ActionGroup, pos int)
-	uiManagerRemoveActionGroup func(u *UIManager, actionGroup *ActionGroup)
-	uiManagerGetActionGroups   func(u *UIManager) *T.GList
-	uiManagerGetAccelGroup     func(u *UIManager) *AccelGroup
-	uiManagerGetWidget         func(u *UIManager, path string) *Widget
-	uiManagerGetToplevels      func(u *UIManager, types UIManagerItemType) *T.GSList
-	uiManagerGetAction         func(u *UIManager, path string) *Action
-	uiManagerAddUiFromString   func(u *UIManager, buffer string, length T.Gssize, err **T.GError) uint
-	uiManagerAddUiFromFile     func(u *UIManager, filename string, err **T.GError) uint
-	uiManagerAddUi             func(u *UIManager, mergeId uint, path, name, action string, t UIManagerItemType, top bool)
-	uiManagerRemoveUi          func(u *UIManager, mergeId uint)
-	uiManagerGetUi             func(u *UIManager) string
-	uiManagerEnsureUpdate      func(u *UIManager)
-	uiManagerNewMergeId        func(u *UIManager) uint
+	UiManagerSetAddTearoffs    func(u *UIManager, addTearoffs bool)
+	UiManagerGetAddTearoffs    func(u *UIManager) bool
+	UiManagerInsertActionGroup func(u *UIManager, actionGroup *ActionGroup, pos int)
+	UiManagerRemoveActionGroup func(u *UIManager, actionGroup *ActionGroup)
+	UiManagerGetActionGroups   func(u *UIManager) *T.GList
+	UiManagerGetAccelGroup     func(u *UIManager) *AccelGroup
+	UiManagerGetWidget         func(u *UIManager, path string) *Widget
+	UiManagerGetToplevels      func(u *UIManager, types UIManagerItemType) *L.SList
+	UiManagerGetAction         func(u *UIManager, path string) *Action
+	UiManagerAddUiFromString   func(u *UIManager, buffer string, length T.Gssize, err **T.GError) uint
+	UiManagerAddUiFromFile     func(u *UIManager, filename string, err **T.GError) uint
+	UiManagerAddUi             func(u *UIManager, mergeId uint, path, name, action string, t UIManagerItemType, top bool)
+	UiManagerRemoveUi          func(u *UIManager, mergeId uint)
+	UiManagerGetUi             func(u *UIManager) string
+	UiManagerEnsureUpdate      func(u *UIManager)
+	UiManagerNewMergeId        func(u *UIManager) uint
 )
 
-func (u *UIManager) SetAddTearoffs(addTearoffs bool) { uiManagerSetAddTearoffs(u, addTearoffs) }
-func (u *UIManager) GetAddTearoffs() bool            { return uiManagerGetAddTearoffs(u) }
+func (u *UIManager) SetAddTearoffs(addTearoffs bool) { UiManagerSetAddTearoffs(u, addTearoffs) }
+func (u *UIManager) GetAddTearoffs() bool            { return UiManagerGetAddTearoffs(u) }
 func (u *UIManager) InsertActionGroup(actionGroup *ActionGroup, pos int) {
-	uiManagerInsertActionGroup(u, actionGroup, pos)
+	UiManagerInsertActionGroup(u, actionGroup, pos)
 }
 func (u *UIManager) RemoveActionGroup(actionGroup *ActionGroup) {
-	uiManagerRemoveActionGroup(u, actionGroup)
+	UiManagerRemoveActionGroup(u, actionGroup)
 }
-func (u *UIManager) GetActionGroups() *T.GList     { return uiManagerGetActionGroups(u) }
-func (u *UIManager) GetAccelGroup() *AccelGroup    { return uiManagerGetAccelGroup(u) }
-func (u *UIManager) GetWidget(path string) *Widget { return uiManagerGetWidget(u, path) }
-func (u *UIManager) GetToplevels(types UIManagerItemType) *T.GSList {
-	return uiManagerGetToplevels(u, types)
+func (u *UIManager) GetActionGroups() *T.GList     { return UiManagerGetActionGroups(u) }
+func (u *UIManager) GetAccelGroup() *AccelGroup    { return UiManagerGetAccelGroup(u) }
+func (u *UIManager) GetWidget(path string) *Widget { return UiManagerGetWidget(u, path) }
+func (u *UIManager) GetToplevels(types UIManagerItemType) *L.SList {
+	return UiManagerGetToplevels(u, types)
 }
-func (u *UIManager) GetAction(path string) *Action { return uiManagerGetAction(u, path) }
+func (u *UIManager) GetAction(path string) *Action { return UiManagerGetAction(u, path) }
 func (u *UIManager) AddUiFromString(buffer string, length T.Gssize, err **T.GError) uint {
-	return uiManagerAddUiFromString(u, buffer, length, err)
+	return UiManagerAddUiFromString(u, buffer, length, err)
 }
 func (u *UIManager) AddUiFromFile(filename string, err **T.GError) uint {
-	return uiManagerAddUiFromFile(u, filename, err)
+	return UiManagerAddUiFromFile(u, filename, err)
 }
 func (u *UIManager) AddUi(mergeId uint, path, name, action string, t UIManagerItemType, top bool) {
-	uiManagerAddUi(u, mergeId, path, name, action, t, top)
+	UiManagerAddUi(u, mergeId, path, name, action, t, top)
 }
-func (u *UIManager) RemoveUi(mergeId uint) { uiManagerRemoveUi(u, mergeId) }
-func (u *UIManager) GetUi() string         { return uiManagerGetUi(u) }
-func (u *UIManager) EnsureUpdate()         { uiManagerEnsureUpdate(u) }
-func (u *UIManager) NewMergeId() uint      { return uiManagerNewMergeId(u) }
+func (u *UIManager) RemoveUi(mergeId uint) { UiManagerRemoveUi(u, mergeId) }
+func (u *UIManager) GetUi() string         { return UiManagerGetUi(u) }
+func (u *UIManager) EnsureUpdate()         { UiManagerEnsureUpdate(u) }
+func (u *UIManager) NewMergeId() uint      { return UiManagerNewMergeId(u) }
 
 type UpdateType Enum
 

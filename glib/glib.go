@@ -32,12 +32,12 @@ const (
 
 type (
 	StrSlice []string
-	String   string
+	Str      string
 )
 
 func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
 
-func (_ String) Dispose(a T.Gpointer) { Free(a) }
+func (_ Str) Dispose(a T.Gpointer) { Free(a) }
 
 var (
 	QuarkTryString func(str string) T.GQuark
@@ -1506,12 +1506,12 @@ var (
 
 	IoChannelReadLine func(channel *T.GIOChannel,
 		strReturn **T.Gchar,
-		length *T.Gsize,
+		length,
 		terminatorPos *T.Gsize,
 		e **T.GError) T.GIOStatus
 
 	IoChannelReadLineString func(channel *T.GIOChannel,
-		buffer *T.GString,
+		buffer *String,
 		terminatorPos *T.Gsize,
 		e **T.GError) T.GIOStatus
 
@@ -1832,7 +1832,7 @@ var (
 
 	MarkupParseContextGetElement func(context *T.GMarkupParseContext) string
 
-	MarkupParseContextGetElementStack func(context *T.GMarkupParseContext) *T.GSList
+	MarkupParseContextGetElementStack func(context *T.GMarkupParseContext) *SList
 
 	MarkupParseContextGetPosition func(context *T.GMarkupParseContext,
 		lineNumber *int,
@@ -2452,33 +2452,33 @@ var (
 
 	AsciiStrncasecmp func(s1 string, s2 string, n T.Gsize) int
 
-	AsciiStrdown func(str string, leng T.Gssize) String
+	AsciiStrdown func(str string, leng T.Gssize) Str
 
-	AsciiStrup func(str string, leng T.Gssize) String
+	AsciiStrup func(str string, leng T.Gssize) Str
 
 	//Deprecated 2.2
 	// Strcasecmp func(s1 string, s2 string) int
 	// Strncasecmp func(s1 string, s2 string, n uint) int
-	// Strdown func(str string) String
-	// Strup func(str string) String
+	// Strdown func(str string) Str
+	// Strup func(str string) Str
 
-	Strdup func(str string) String
+	Strdup func(str string) Str
 
-	StrdupPrintf func(format string, v ...VArg) String
+	StrdupPrintf func(format string, v ...VArg) Str
 
-	StrdupVprintf func(format string, args T.VaList) String
+	StrdupVprintf func(format string, args T.VaList) Str
 
-	Strndup func(str string, n T.Gsize) String
+	Strndup func(str string, n T.Gsize) Str
 
-	Strnfill func(length T.Gsize, fillChar T.Gchar) String
+	Strnfill func(length T.Gsize, fillChar T.Gchar) Str
 
-	Strconcat func(string1 string, v ...VArg) String
+	Strconcat func(string1 string, v ...VArg) Str
 
-	Strjoin func(separator string, v ...VArg) String
+	Strjoin func(separator string, v ...VArg) Str
 
-	Strcompress func(source string) String
+	Strcompress func(source string) Str
 
-	Strescape func(source, exceptions string) String
+	Strescape func(source, exceptions string) Str
 
 	Memdup func(mem T.Gconstpointer, byteSize uint) T.Gpointer
 
@@ -2487,7 +2487,7 @@ var (
 	StrsplitSet func(
 		str, delimiters string, maxTokens int) StrSlice
 
-	Strjoinv func(separator string, strArray []string) String
+	Strjoinv func(separator string, strArray []string) Str
 
 	Strfreev func(strArray **T.Gchar) // left as is for Dispose
 
@@ -2961,8 +2961,8 @@ var (
 		typeAnnotate bool) string
 
 	VariantPrintString func(value *T.GVariant,
-		str *T.GString,
-		typeAnnotate bool) *T.GString
+		str *String,
+		typeAnnotate bool) *String
 
 	VariantHash func(value T.Gconstpointer) uint
 
@@ -3161,23 +3161,23 @@ var apiList = outside.Apis{
 	// Undocumented {"_g_debug_flags", &_gDebugFlags},
 	// Undocumented {"_g_debug_initialized", &_gDebugInitialized},
 	{"g_access", &Access},
-	{"g_allocator_free", &allocatorFree},
+	{"g_allocator_free", &AllocatorFree},
 	{"g_allocator_new", &AllocatorNew},
-	{"g_array_append_vals", &arrayAppendVals},
-	{"g_array_free", &arrayFree},
-	{"g_array_get_element_size", &arrayGetElementSize},
-	{"g_array_insert_vals", &arrayInsertVals},
+	{"g_array_append_vals", &ArrayAppendVals},
+	{"g_array_free", &ArrayFree},
+	{"g_array_get_element_size", &ArrayGetElementSize},
+	{"g_array_insert_vals", &ArrayInsertVals},
 	{"g_array_new", &ArrayNew},
-	{"g_array_prepend_vals", &arrayPrependVals},
-	{"g_array_ref", &arrayRef},
-	{"g_array_remove_index", &arrayRemoveIndex},
-	{"g_array_remove_index_fast", &arrayRemoveIndexFast},
-	{"g_array_remove_range", &arrayRemoveRange},
-	{"g_array_set_size", &arraySetSize},
+	{"g_array_prepend_vals", &ArrayPrependVals},
+	{"g_array_ref", &ArrayRef},
+	{"g_array_remove_index", &ArrayRemoveIndex},
+	{"g_array_remove_index_fast", &ArrayRemoveIndexFast},
+	{"g_array_remove_range", &ArrayRemoveRange},
+	{"g_array_set_size", &ArraySetSize},
 	{"g_array_sized_new", &ArraySizedNew},
-	{"g_array_sort", &arraySort},
-	{"g_array_sort_with_data", &arraySortWithData},
-	{"g_array_unref", &arrayUnref},
+	{"g_array_sort", &ArraySort},
+	{"g_array_sort_with_data", &ArraySortWithData},
+	{"g_array_unref", &ArrayUnref},
 	{"g_ascii_digit_value", &AsciiDigitValue},
 	{"g_ascii_dtostr", &AsciiDtostr},
 	{"g_ascii_formatd", &AsciiFormatd},
@@ -3197,28 +3197,28 @@ var apiList = outside.Apis{
 	{"g_assertion_message_cmpstr", &AssertionMessageCmpstr},
 	{"g_assertion_message_error", &AssertionMessageError},
 	{"g_assertion_message_expr", &AssertionMessageExpr},
-	{"g_async_queue_length", &asyncQueueLength},
-	{"g_async_queue_length_unlocked", &asyncQueueLengthUnlocked},
-	{"g_async_queue_lock", &asyncQueueLock},
+	{"g_async_queue_length", &AsyncQueueLength},
+	{"g_async_queue_length_unlocked", &AsyncQueueLengthUnlocked},
+	{"g_async_queue_lock", &AsyncQueueLock},
 	{"g_async_queue_new", &AsyncQueueNew},
 	{"g_async_queue_new_full", &AsyncQueueNewFull},
-	{"g_async_queue_pop", &asyncQueuePop},
-	{"g_async_queue_pop_unlocked", &asyncQueuePopUnlocked},
-	{"g_async_queue_push", &asyncQueuePush},
-	{"g_async_queue_push_sorted", &asyncQueuePushSorted},
-	{"g_async_queue_push_sorted_unlocked", &asyncQueuePushSortedUnlocked},
-	{"g_async_queue_push_unlocked", &asyncQueuePushUnlocked},
-	{"g_async_queue_ref", &asyncQueueRef},
-	{"g_async_queue_ref_unlocked", &asyncQueueRefUnlocked},
-	{"g_async_queue_sort", &asyncQueueSort},
-	{"g_async_queue_sort_unlocked", &asyncQueueSortUnlocked},
-	{"g_async_queue_timed_pop", &asyncQueueTimedPop},
-	{"g_async_queue_timed_pop_unlocked", &asyncQueueTimedPopUnlocked},
-	{"g_async_queue_try_pop", &asyncQueueTryPop},
-	{"g_async_queue_try_pop_unlocked", &asyncQueueTryPopUnlocked},
-	{"g_async_queue_unlock", &asyncQueueUnlock},
-	{"g_async_queue_unref", &asyncQueueUnref},
-	{"g_async_queue_unref_and_unlock", &asyncQueueUnrefAndUnlock},
+	{"g_async_queue_pop", &AsyncQueuePop},
+	{"g_async_queue_pop_unlocked", &AsyncQueuePopUnlocked},
+	{"g_async_queue_push", &AsyncQueuePush},
+	{"g_async_queue_push_sorted", &AsyncQueuePushSorted},
+	{"g_async_queue_push_sorted_unlocked", &AsyncQueuePushSortedUnlocked},
+	{"g_async_queue_push_unlocked", &AsyncQueuePushUnlocked},
+	{"g_async_queue_ref", &AsyncQueueRef},
+	{"g_async_queue_ref_unlocked", &AsyncQueueRefUnlocked},
+	{"g_async_queue_sort", &AsyncQueueSort},
+	{"g_async_queue_sort_unlocked", &AsyncQueueSortUnlocked},
+	{"g_async_queue_timed_pop", &AsyncQueueTimedPop},
+	{"g_async_queue_timed_pop_unlocked", &AsyncQueueTimedPopUnlocked},
+	{"g_async_queue_try_pop", &AsyncQueueTryPop},
+	{"g_async_queue_try_pop_unlocked", &AsyncQueueTryPopUnlocked},
+	{"g_async_queue_unlock", &AsyncQueueUnlock},
+	{"g_async_queue_unref", &AsyncQueueUnref},
+	{"g_async_queue_unref_and_unlock", &AsyncQueueUnrefAndUnlock},
 	{"g_atexit", &Atexit},
 	{"g_atomic_int_add", &AtomicIntAdd},
 	{"g_atomic_int_compare_and_exchange", &AtomicIntCompareAndExchange},
@@ -3242,63 +3242,63 @@ var apiList = outside.Apis{
 	{"g_bit_trylock", &BitTrylock},
 	{"g_bit_unlock", &BitUnlock},
 	{"g_blow_chunks", &BlowChunks},
-	{"g_bookmark_file_add_application", &bookmarkFileAddApplication},
-	{"g_bookmark_file_add_group", &bookmarkFileAddGroup},
+	{"g_bookmark_file_add_application", &BookmarkFileAddApplication},
+	{"g_bookmark_file_add_group", &BookmarkFileAddGroup},
 	{"g_bookmark_file_error_quark", &BookmarkFileErrorQuark},
-	{"g_bookmark_file_free", &bookmarkFileFree},
-	{"g_bookmark_file_get_added", &bookmarkFileGetAdded},
-	{"g_bookmark_file_get_app_info", &bookmarkFileGetAppInfo},
-	{"g_bookmark_file_get_applications", &bookmarkFileGetApplications},
-	{"g_bookmark_file_get_description", &bookmarkFileGetDescription},
-	{"g_bookmark_file_get_groups", &bookmarkFileGetGroups},
-	{"g_bookmark_file_get_icon", &bookmarkFileGetIcon},
-	{"g_bookmark_file_get_is_private", &bookmarkFileGetIsPrivate},
-	{"g_bookmark_file_get_mime_type", &bookmarkFileGetMimeType},
-	{"g_bookmark_file_get_modified", &bookmarkFileGetModified},
-	{"g_bookmark_file_get_size", &bookmarkFileGetSize},
-	{"g_bookmark_file_get_title", &bookmarkFileGetTitle},
-	{"g_bookmark_file_get_uris", &bookmarkFileGetUris},
-	{"g_bookmark_file_get_visited", &bookmarkFileGetVisited},
-	{"g_bookmark_file_has_application", &bookmarkFileHasApplication},
-	{"g_bookmark_file_has_group", &bookmarkFileHasGroup},
-	{"g_bookmark_file_has_item", &bookmarkFileHasItem},
-	{"g_bookmark_file_load_from_data", &bookmarkFileLoadFromData},
-	{"g_bookmark_file_load_from_data_dirs", &bookmarkFileLoadFromDataDirs},
-	{"g_bookmark_file_load_from_file", &bookmarkFileLoadFromFile},
-	{"g_bookmark_file_move_item", &bookmarkFileMoveItem},
+	{"g_bookmark_file_free", &BookmarkFileFree},
+	{"g_bookmark_file_get_added", &BookmarkFileGetAdded},
+	{"g_bookmark_file_get_app_info", &BookmarkFileGetAppInfo},
+	{"g_bookmark_file_get_applications", &BookmarkFileGetApplications},
+	{"g_bookmark_file_get_description", &BookmarkFileGetDescription},
+	{"g_bookmark_file_get_groups", &BookmarkFileGetGroups},
+	{"g_bookmark_file_get_icon", &BookmarkFileGetIcon},
+	{"g_bookmark_file_get_is_private", &BookmarkFileGetIsPrivate},
+	{"g_bookmark_file_get_mime_type", &BookmarkFileGetMimeType},
+	{"g_bookmark_file_get_modified", &BookmarkFileGetModified},
+	{"g_bookmark_file_get_size", &BookmarkFileGetSize},
+	{"g_bookmark_file_get_title", &BookmarkFileGetTitle},
+	{"g_bookmark_file_get_uris", &BookmarkFileGetUris},
+	{"g_bookmark_file_get_visited", &BookmarkFileGetVisited},
+	{"g_bookmark_file_has_application", &BookmarkFileHasApplication},
+	{"g_bookmark_file_has_group", &BookmarkFileHasGroup},
+	{"g_bookmark_file_has_item", &BookmarkFileHasItem},
+	{"g_bookmark_file_load_from_data", &BookmarkFileLoadFromData},
+	{"g_bookmark_file_load_from_data_dirs", &BookmarkFileLoadFromDataDirs},
+	{"g_bookmark_file_load_from_file", &BookmarkFileLoadFromFile},
+	{"g_bookmark_file_move_item", &BookmarkFileMoveItem},
 	{"g_bookmark_file_new", &BookmarkFileNew},
-	{"g_bookmark_file_remove_application", &bookmarkFileRemoveApplication},
-	{"g_bookmark_file_remove_group", &bookmarkFileRemoveGroup},
-	{"g_bookmark_file_remove_item", &bookmarkFileRemoveItem},
-	{"g_bookmark_file_set_added", &bookmarkFileSetAdded},
-	{"g_bookmark_file_set_app_info", &bookmarkFileSetAppInfo},
-	{"g_bookmark_file_set_description", &bookmarkFileSetDescription},
-	{"g_bookmark_file_set_groups", &bookmarkFileSetGroups},
-	{"g_bookmark_file_set_icon", &bookmarkFileSetIcon},
-	{"g_bookmark_file_set_is_private", &bookmarkFileSetIsPrivate},
-	{"g_bookmark_file_set_mime_type", &bookmarkFileSetMimeType},
-	{"g_bookmark_file_set_modified", &bookmarkFileSetModified},
-	{"g_bookmark_file_set_title", &bookmarkFileSetTitle},
-	{"g_bookmark_file_set_visited", &bookmarkFileSetVisited},
-	{"g_bookmark_file_to_data", &bookmarkFileToData},
-	{"g_bookmark_file_to_file", &bookmarkFileToFile},
+	{"g_bookmark_file_remove_application", &BookmarkFileRemoveApplication},
+	{"g_bookmark_file_remove_group", &BookmarkFileRemoveGroup},
+	{"g_bookmark_file_remove_item", &BookmarkFileRemoveItem},
+	{"g_bookmark_file_set_added", &BookmarkFileSetAdded},
+	{"g_bookmark_file_set_app_info", &BookmarkFileSetAppInfo},
+	{"g_bookmark_file_set_description", &BookmarkFileSetDescription},
+	{"g_bookmark_file_set_groups", &BookmarkFileSetGroups},
+	{"g_bookmark_file_set_icon", &BookmarkFileSetIcon},
+	{"g_bookmark_file_set_is_private", &BookmarkFileSetIsPrivate},
+	{"g_bookmark_file_set_mime_type", &BookmarkFileSetMimeType},
+	{"g_bookmark_file_set_modified", &BookmarkFileSetModified},
+	{"g_bookmark_file_set_title", &BookmarkFileSetTitle},
+	{"g_bookmark_file_set_visited", &BookmarkFileSetVisited},
+	{"g_bookmark_file_to_data", &BookmarkFileToData},
+	{"g_bookmark_file_to_file", &BookmarkFileToFile},
 	{"g_build_filename", &BuildFilename},
 	{"g_build_filenamev", &BuildFilenamev},
 	{"g_build_path", &BuildPath},
 	{"g_build_pathv", &BuildPathv},
-	{"g_byte_array_append", &byteArrayAppend},
-	{"g_byte_array_free", &byteArrayFree},
+	{"g_byte_array_append", &ByteArrayAppend},
+	{"g_byte_array_free", &ByteArrayFree},
 	{"g_byte_array_new", &ByteArrayNew},
-	{"g_byte_array_prepend", &byteArrayPrepend},
-	{"g_byte_array_ref", &byteArrayRef},
-	{"g_byte_array_remove_index", &byteArrayRemoveIndex},
-	{"g_byte_array_remove_index_fast", &byteArrayRemoveIndexFast},
-	{"g_byte_array_remove_range", &byteArrayRemoveRange},
-	{"g_byte_array_set_size", &byteArraySetSize},
+	{"g_byte_array_prepend", &ByteArrayPrepend},
+	{"g_byte_array_ref", &ByteArrayRef},
+	{"g_byte_array_remove_index", &ByteArrayRemoveIndex},
+	{"g_byte_array_remove_index_fast", &ByteArrayRemoveIndexFast},
+	{"g_byte_array_remove_range", &ByteArrayRemoveRange},
+	{"g_byte_array_set_size", &ByteArraySetSize},
 	{"g_byte_array_sized_new", &ByteArraySizedNew},
-	{"g_byte_array_sort", &byteArraySort},
-	{"g_byte_array_sort_with_data", &byteArraySortWithData},
-	{"g_byte_array_unref", &byteArrayUnref},
+	{"g_byte_array_sort", &ByteArraySort},
+	{"g_byte_array_sort_with_data", &ByteArraySortWithData},
+	{"g_byte_array_unref", &ByteArrayUnref},
 	{"g_cache_destroy", &CacheDestroy},
 	{"g_cache_insert", &CacheInsert},
 	{"g_cache_key_foreach", &CacheKeyForeach},
@@ -3883,11 +3883,11 @@ var apiList = outside.Apis{
 	{"g_path_get_dirname", &PathGetDirname},
 	{"g_path_is_absolute", &PathIsAbsolute},
 	{"g_path_skip_root", &PathSkipRoot},
-	{"g_pattern_match", &patternMatch},
+	{"g_pattern_match", &PatternMatch},
 	{"g_pattern_match_simple", &PatternMatchSimple},
-	{"g_pattern_match_string", &patternMatchString},
-	{"g_pattern_spec_equal", &patternSpecEqual},
-	{"g_pattern_spec_free", &patternSpecFree},
+	{"g_pattern_match_string", &PatternMatchString},
+	{"g_pattern_spec_equal", &PatternSpecEqual},
+	{"g_pattern_spec_free", &PatternSpecFree},
 	{"g_pattern_spec_new", &PatternSpecNew},
 	{"g_poll", &Poll},
 	{"g_prefix_error", &PrefixError},
@@ -3897,23 +3897,23 @@ var apiList = outside.Apis{
 	{"g_printf_string_upper_bound", &PrintfStringUpperBound},
 	{"g_propagate_error", &PropagateError},
 	{"g_propagate_prefixed_error", &PropagatePrefixedError},
-	{"g_ptr_array_add", &ptrArrayAdd},
-	{"g_ptr_array_foreach", &ptrArrayForeach},
-	{"g_ptr_array_free", &ptrArrayFree},
+	{"g_ptr_array_add", &PtrArrayAdd},
+	{"g_ptr_array_foreach", &PtrArrayForeach},
+	{"g_ptr_array_free", &PtrArrayFree},
 	{"g_ptr_array_new", &PtrArrayNew},
 	{"g_ptr_array_new_with_free_func", &PtrArrayNewWithFreeFunc},
-	{"g_ptr_array_ref", &ptrArrayRef},
-	{"g_ptr_array_remove", &ptrArrayRemove},
-	{"g_ptr_array_remove_fast", &ptrArrayRemoveFast},
-	{"g_ptr_array_remove_index", &ptrArrayRemoveIndex},
-	{"g_ptr_array_remove_index_fast", &ptrArrayRemoveIndexFast},
-	{"g_ptr_array_remove_range", &ptrArrayRemoveRange},
-	{"g_ptr_array_set_free_func", &ptrArraySetFreeFunc},
-	{"g_ptr_array_set_size", &ptrArraySetSize},
+	{"g_ptr_array_ref", &PtrArrayRef},
+	{"g_ptr_array_remove", &PtrArrayRemove},
+	{"g_ptr_array_remove_fast", &PtrArrayRemoveFast},
+	{"g_ptr_array_remove_index", &PtrArrayRemoveIndex},
+	{"g_ptr_array_remove_index_fast", &PtrArrayRemoveIndexFast},
+	{"g_ptr_array_remove_range", &PtrArrayRemoveRange},
+	{"g_ptr_array_set_free_func", &PtrArraySetFreeFunc},
+	{"g_ptr_array_set_size", &PtrArraySetSize},
 	{"g_ptr_array_sized_new", &PtrArraySizedNew},
-	{"g_ptr_array_sort", &ptrArraySort},
-	{"g_ptr_array_sort_with_data", &ptrArraySortWithData},
-	{"g_ptr_array_unref", &ptrArrayUnref},
+	{"g_ptr_array_sort", &PtrArraySort},
+	{"g_ptr_array_sort_with_data", &PtrArraySortWithData},
+	{"g_ptr_array_unref", &PtrArrayUnref},
 	{"g_qsort_with_data", &QsortWithData},
 	{"g_quark_from_static_string", &QuarkFromStaticString},
 	{"g_quark_from_string", &QuarkFromString},
@@ -4092,35 +4092,35 @@ var apiList = outside.Apis{
 	{"g_slice_get_config_state", &SliceGetConfigState},
 	{"g_slice_set_config", &SliceSetConfig},
 	{"g_slist_alloc", &SlistAlloc},
-	{"g_slist_append", &slistAppend},
-	{"g_slist_concat", &slistConcat},
-	{"g_slist_copy", &slistCopy},
-	{"g_slist_delete_link", &slistDeleteLink},
-	{"g_slist_find", &slistFind},
-	{"g_slist_find_custom", &slistFindCustom},
-	{"g_slist_foreach", &slistForeach},
-	{"g_slist_free", &slistFree},
-	{"g_slist_free_1", &slistFree1},
-	{"g_slist_free_full", &slistFreeFull},
-	{"g_slist_index", &slistIndex},
-	{"g_slist_insert", &slistInsert},
-	{"g_slist_insert_before", &slistInsertBefore},
-	{"g_slist_insert_sorted", &slistInsertSorted},
-	{"g_slist_insert_sorted_with_data", &slistInsertSortedWithData},
-	{"g_slist_last", &slistLast},
-	{"g_slist_length", &slistLength},
-	{"g_slist_nth", &slistNth},
-	{"g_slist_nth_data", &slistNthData},
+	{"g_slist_append", &SlistAppend},
+	{"g_slist_concat", &SlistConcat},
+	{"g_slist_copy", &SlistCopy},
+	{"g_slist_delete_link", &SlistDeleteLink},
+	{"g_slist_find", &SlistFind},
+	{"g_slist_find_custom", &SlistFindCustom},
+	{"g_slist_foreach", &SlistForeach},
+	{"g_slist_free", &SlistFree},
+	{"g_slist_free_1", &SlistFree1},
+	{"g_slist_free_full", &SlistFreeFull},
+	{"g_slist_index", &SlistIndex},
+	{"g_slist_insert", &SlistInsert},
+	{"g_slist_insert_before", &SlistInsertBefore},
+	{"g_slist_insert_sorted", &SlistInsertSorted},
+	{"g_slist_insert_sorted_with_data", &SlistInsertSortedWithData},
+	{"g_slist_last", &SlistLast},
+	{"g_slist_length", &SlistLength},
+	{"g_slist_nth", &SlistNth},
+	{"g_slist_nth_data", &SlistNthData},
 	{"g_slist_pop_allocator", &SlistPopAllocator},
-	{"g_slist_position", &slistPosition},
-	{"g_slist_prepend", &slistPrepend},
+	{"g_slist_position", &SlistPosition},
+	{"g_slist_prepend", &SlistPrepend},
 	{"g_slist_push_allocator", &SlistPushAllocator},
-	{"g_slist_remove", &slistRemove},
-	{"g_slist_remove_all", &slistRemoveAll},
-	{"g_slist_remove_link", &slistRemoveLink},
-	{"g_slist_reverse", &slistReverse},
-	{"g_slist_sort", &slistSort},
-	{"g_slist_sort_with_data", &slistSortWithData},
+	{"g_slist_remove", &SlistRemove},
+	{"g_slist_remove_all", &SlistRemoveAll},
+	{"g_slist_remove_link", &SlistRemoveLink},
+	{"g_slist_reverse", &SlistReverse},
+	{"g_slist_sort", &SlistSort},
+	{"g_slist_sort_with_data", &SlistSortWithData},
 	{"g_snprintf", &Snprintf},
 	{"g_source_add_child_source", &SourceAddChildSource},
 	{"g_source_add_poll", &SourceAddPoll},
@@ -4171,21 +4171,21 @@ var apiList = outside.Apis{
 	{"g_static_private_get", &StaticPrivateGet},
 	{"g_static_private_init", &StaticPrivateInit},
 	{"g_static_private_set", &StaticPrivateSet},
-	{"g_static_rec_mutex_free", &staticRecMutexFree},
-	{"g_static_rec_mutex_init", &staticRecMutexInit},
-	{"g_static_rec_mutex_lock", &staticRecMutexLock},
-	{"g_static_rec_mutex_lock_full", &staticRecMutexLockFull},
-	{"g_static_rec_mutex_trylock", &staticRecMutexTrylock},
-	{"g_static_rec_mutex_unlock", &staticRecMutexUnlock},
-	{"g_static_rec_mutex_unlock_full", &staticRecMutexUnlockFull},
-	{"g_static_rw_lock_free", &staticRwLockFree},
-	{"g_static_rw_lock_init", &staticRwLockInit},
-	{"g_static_rw_lock_reader_lock", &staticRwLockReaderLock},
-	{"g_static_rw_lock_reader_trylock", &staticRwLockReaderTrylock},
-	{"g_static_rw_lock_reader_unlock", &staticRwLockReaderUnlock},
-	{"g_static_rw_lock_writer_lock", &staticRwLockWriterLock},
-	{"g_static_rw_lock_writer_trylock", &staticRwLockWriterTrylock},
-	{"g_static_rw_lock_writer_unlock", &staticRwLockWriterUnlock},
+	{"g_static_rec_mutex_free", &StaticRecMutexFree},
+	{"g_static_rec_mutex_init", &StaticRecMutexInit},
+	{"g_static_rec_mutex_lock", &StaticRecMutexLock},
+	{"g_static_rec_mutex_lock_full", &StaticRecMutexLockFull},
+	{"g_static_rec_mutex_trylock", &StaticRecMutexTrylock},
+	{"g_static_rec_mutex_unlock", &StaticRecMutexUnlock},
+	{"g_static_rec_mutex_unlock_full", &StaticRecMutexUnlockFull},
+	{"g_static_rw_lock_free", &StaticRwLockFree},
+	{"g_static_rw_lock_init", &StaticRwLockInit},
+	{"g_static_rw_lock_reader_lock", &StaticRwLockReaderLock},
+	{"g_static_rw_lock_reader_trylock", &StaticRwLockReaderTrylock},
+	{"g_static_rw_lock_reader_unlock", &StaticRwLockReaderUnlock},
+	{"g_static_rw_lock_writer_lock", &StaticRwLockWriterLock},
+	{"g_static_rw_lock_writer_trylock", &StaticRwLockWriterTrylock},
+	{"g_static_rw_lock_writer_unlock", &StaticRwLockWriterUnlock},
 	{"g_stpcpy", &Stpcpy},
 	{"g_str_equal", &StrEqual},
 	{"g_str_has_prefix", &StrHasPrefix},

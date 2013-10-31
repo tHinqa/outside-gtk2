@@ -158,54 +158,54 @@ type Atomic struct{}
 var (
 	AtomicCreate func(file string) *Atomic
 
-	atomicDeleteNew   func(a *Atomic)
-	atomicDestroy     func(a *Atomic)
-	atomicLock        func(a *Atomic) bool
-	atomicNewFile     func(a *Atomic) string
-	atomicOrigFile    func(a *Atomic) string
-	atomicReplaceOrig func(a *Atomic) bool
-	atomicUnlock      func(a *Atomic)
+	AtomicDeleteNew   func(a *Atomic)
+	AtomicDestroy     func(a *Atomic)
+	AtomicLock        func(a *Atomic) bool
+	AtomicNewFile     func(a *Atomic) string
+	AtomicOrigFile    func(a *Atomic) string
+	AtomicReplaceOrig func(a *Atomic) bool
+	AtomicUnlock      func(a *Atomic)
 )
 
-func (a *Atomic) DeleteNew()        { atomicDeleteNew(a) }
-func (a *Atomic) Destroy()          { atomicDestroy(a) }
-func (a *Atomic) Lock() bool        { return atomicLock(a) }
-func (a *Atomic) NewFile() string   { return atomicNewFile(a) }
-func (a *Atomic) OrigFile() string  { return atomicOrigFile(a) }
-func (a *Atomic) ReplaceOrig() bool { return atomicReplaceOrig(a) }
-func (a *Atomic) Unlock()           { atomicUnlock(a) }
+func (a *Atomic) DeleteNew()        { AtomicDeleteNew(a) }
+func (a *Atomic) Destroy()          { AtomicDestroy(a) }
+func (a *Atomic) Lock() bool        { return AtomicLock(a) }
+func (a *Atomic) NewFile() string   { return AtomicNewFile(a) }
+func (a *Atomic) OrigFile() string  { return AtomicOrigFile(a) }
+func (a *Atomic) ReplaceOrig() bool { return AtomicReplaceOrig(a) }
+func (a *Atomic) Unlock()           { AtomicUnlock(a) }
 
 type Blanks struct{}
 
 var (
 	BlanksCreate func() *Blanks
 
-	blanksAdd      func(b *Blanks, ucs4 Char32) bool
-	blanksDestroy  func(b *Blanks)
-	blanksIsMember func(b *Blanks, ucs4 Char32) bool
+	BlanksAdd      func(b *Blanks, ucs4 Char32) bool
+	BlanksDestroy  func(b *Blanks)
+	BlanksIsMember func(b *Blanks, ucs4 Char32) bool
 )
 
-func (b *Blanks) Add(ucs4 Char32) bool      { return blanksAdd(b, ucs4) }
-func (b *Blanks) Destroy()                  { blanksDestroy(b) }
-func (b *Blanks) IsMember(ucs4 Char32) bool { return blanksIsMember(b, ucs4) }
+func (b *Blanks) Add(ucs4 Char32) bool      { return BlanksAdd(b, ucs4) }
+func (b *Blanks) Destroy()                  { BlanksDestroy(b) }
+func (b *Blanks) IsMember(ucs4 Char32) bool { return BlanksIsMember(b, ucs4) }
 
 type Cache struct{}
 
 var (
 	DirCacheUnload func(c *Cache)
 
-	cacheCopySet   func(c *Cache) *FontSet
-	cacheDir       func(c *Cache) string
-	cacheNumFont   func(c *Cache) int
-	cacheNumSubdir func(c *Cache) int
-	cacheSubdir    func(c *Cache, i int) string
+	CacheCopySet   func(c *Cache) *FontSet
+	CacheDir       func(c *Cache) string
+	CacheNumFont   func(c *Cache) int
+	CacheNumSubdir func(c *Cache) int
+	CacheSubdir    func(c *Cache, i int) string
 )
 
-func (c *Cache) CopySet() *FontSet   { return cacheCopySet(c) }
-func (c *Cache) Dir() string         { return cacheDir(c) }
-func (c *Cache) NumFont() int        { return cacheNumFont(c) }
-func (c *Cache) NumSubdir() int      { return cacheNumSubdir(c) }
-func (c *Cache) Subdir(i int) string { return cacheSubdir(c, i) }
+func (c *Cache) CopySet() *FontSet   { return CacheCopySet(c) }
+func (c *Cache) Dir() string         { return CacheDir(c) }
+func (c *Cache) NumFont() int        { return CacheNumFont(c) }
+func (c *Cache) NumSubdir() int      { return CacheNumSubdir(c) }
+func (c *Cache) Subdir(i int) string { return CacheSubdir(c, i) }
 
 type CharSet struct{}
 
@@ -213,46 +213,46 @@ var (
 	CharSetCreate func() *CharSet
 	CharSetNew    func() *CharSet
 
-	charSetAddChar        func(c *CharSet, ucs4 Char32) bool
-	charSetCopy           func(c *CharSet) *CharSet
-	charSetCount          func(c *CharSet) Char32
-	charSetCoverage       func(c *CharSet, page Char32, result *Char32) Char32
-	charSetDestroy        func(c *CharSet)
-	charSetEqual          func(c *CharSet, c2 *CharSet) bool
-	charSetFirstPage      func(c *CharSet, Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32
-	charSetHasChar        func(c *CharSet, ucs4 Char32) bool
-	charSetIntersect      func(c, c2 *CharSet) *CharSet
-	charSetIntersectCount func(c, c2 *CharSet) Char32
-	charSetIsSubset       func(c, c2 *CharSet) bool
-	charSetMerge          func(c, c2 *CharSet, changed *bool) bool
-	charSetNextPage       func(c *CharSet, Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32
-	charSetSubtract       func(c, c2 *CharSet) *CharSet
-	charSetSubtractCount  func(c, c2 *CharSet) Char32
-	charSetUnion          func(c, c2 *CharSet) *CharSet
+	CharSetAddChar        func(c *CharSet, ucs4 Char32) bool
+	CharSetCopy           func(c *CharSet) *CharSet
+	CharSetCount          func(c *CharSet) Char32
+	CharSetCoverage       func(c *CharSet, page Char32, result *Char32) Char32
+	CharSetDestroy        func(c *CharSet)
+	CharSetEqual          func(c *CharSet, c2 *CharSet) bool
+	CharSetFirstPage      func(c *CharSet, Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32
+	CharSetHasChar        func(c *CharSet, ucs4 Char32) bool
+	CharSetIntersect      func(c, c2 *CharSet) *CharSet
+	CharSetIntersectCount func(c, c2 *CharSet) Char32
+	CharSetIsSubset       func(c, c2 *CharSet) bool
+	CharSetMerge          func(c, c2 *CharSet, changed *bool) bool
+	CharSetNextPage       func(c *CharSet, Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32
+	CharSetSubtract       func(c, c2 *CharSet) *CharSet
+	CharSetSubtractCount  func(c, c2 *CharSet) Char32
+	CharSetUnion          func(c, c2 *CharSet) *CharSet
 )
 
-func (c *CharSet) AddChar(ucs4 Char32) bool { return charSetAddChar(c, ucs4) }
-func (c *CharSet) Copy() *CharSet           { return charSetCopy(c) }
-func (c *CharSet) Count() Char32            { return charSetCount(c) }
+func (c *CharSet) AddChar(ucs4 Char32) bool { return CharSetAddChar(c, ucs4) }
+func (c *CharSet) Copy() *CharSet           { return CharSetCopy(c) }
+func (c *CharSet) Count() Char32            { return CharSetCount(c) }
 func (c *CharSet) Coverage(page Char32, result *Char32) Char32 {
-	return charSetCoverage(c, page, result)
+	return CharSetCoverage(c, page, result)
 }
-func (c *CharSet) Destroy()               { charSetDestroy(c) }
-func (c *CharSet) Equal(c2 *CharSet) bool { return charSetEqual(c, c2) }
+func (c *CharSet) Destroy()               { CharSetDestroy(c) }
+func (c *CharSet) Equal(c2 *CharSet) bool { return CharSetEqual(c, c2) }
 func (c *CharSet) FirstPage(Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32 {
-	return charSetFirstPage(c, Map, next)
+	return CharSetFirstPage(c, Map, next)
 }
-func (c *CharSet) HasChar(ucs4 Char32) bool              { return charSetHasChar(c, ucs4) }
-func (c *CharSet) Intersect(c2 *CharSet) *CharSet        { return charSetIntersect(c, c2) }
-func (c *CharSet) IntersectCount(c2 *CharSet) Char32     { return charSetIntersectCount(c, c2) }
-func (c *CharSet) IsSubset(c2 *CharSet) bool             { return charSetIsSubset(c, c2) }
-func (c *CharSet) Merge(c2 *CharSet, changed *bool) bool { return charSetMerge(c, c2, changed) }
+func (c *CharSet) HasChar(ucs4 Char32) bool              { return CharSetHasChar(c, ucs4) }
+func (c *CharSet) Intersect(c2 *CharSet) *CharSet        { return CharSetIntersect(c, c2) }
+func (c *CharSet) IntersectCount(c2 *CharSet) Char32     { return CharSetIntersectCount(c, c2) }
+func (c *CharSet) IsSubset(c2 *CharSet) bool             { return CharSetIsSubset(c, c2) }
+func (c *CharSet) Merge(c2 *CharSet, changed *bool) bool { return CharSetMerge(c, c2, changed) }
 func (c *CharSet) NextPage(Map [FC_CHARSET_MAP_SIZE]Char32, next *Char32) Char32 {
-	return charSetNextPage(c, Map, next)
+	return CharSetNextPage(c, Map, next)
 }
-func (c *CharSet) Subtract(c2 *CharSet) *CharSet    { return charSetSubtract(c, c2) }
-func (c *CharSet) SubtractCount(c2 *CharSet) Char32 { return charSetSubtractCount(c, c2) }
-func (c *CharSet) Union(c2 *CharSet) *CharSet       { return charSetUnion(c, c2) }
+func (c *CharSet) Subtract(c2 *CharSet) *CharSet    { return CharSetSubtract(c, c2) }
+func (c *CharSet) SubtractCount(c2 *CharSet) Char32 { return CharSetSubtractCount(c, c2) }
+func (c *CharSet) Union(c2 *CharSet) *CharSet       { return CharSetUnion(c, c2) }
 
 type Config struct{}
 
@@ -263,54 +263,54 @@ var (
 	ConfigGetCurrent func() *Config
 	ConfigHome       func() string
 
-	configAppFontAddDir     func(c *Config, dir string) bool
-	configAppFontAddFile    func(c *Config, file string) bool
-	configAppFontClear      func(c *Config)
-	configBuildFonts        func(c *Config) bool
-	configDestroy           func(c *Config)
-	configGetBlanks         func(c *Config) *Blanks
-	configGetCache          func(c *Config) string
-	configGetCacheDirs      func(c *Config) *StrList
-	configGetConfigDirs     func(c *Config) *StrList
-	configGetConfigFiles    func(c *Config) *StrList
-	configGetFontDirs       func(c *Config) *StrList
-	configGetFonts          func(c *Config, set SetName) *FontSet
-	configGetRescanInterval func(c *Config) int
-	configParseAndLoad      func(c *Config, file string, complain bool) bool
-	configReference         func(c *Config) *Config
-	configSetCurrent        func(c *Config) bool
-	configSetRescanInterval func(c *Config, rescanInterval int) bool
-	configSubstitute        func(c *Config, p *Pattern, kind MatchKind) bool
-	configSubstituteWithPat func(c *Config, p, pPat *Pattern, kind MatchKind) bool
-	configUptoDate          func(c *Config) bool
+	ConfigAppFontAddDir     func(c *Config, dir string) bool
+	ConfigAppFontAddFile    func(c *Config, file string) bool
+	ConfigAppFontClear      func(c *Config)
+	ConfigBuildFonts        func(c *Config) bool
+	ConfigDestroy           func(c *Config)
+	ConfigGetBlanks         func(c *Config) *Blanks
+	ConfigGetCache          func(c *Config) string
+	ConfigGetCacheDirs      func(c *Config) *StrList
+	ConfigGetConfigDirs     func(c *Config) *StrList
+	ConfigGetConfigFiles    func(c *Config) *StrList
+	ConfigGetFontDirs       func(c *Config) *StrList
+	ConfigGetFonts          func(c *Config, set SetName) *FontSet
+	ConfigGetRescanInterval func(c *Config) int
+	ConfigParseAndLoad      func(c *Config, file string, complain bool) bool
+	ConfigReference         func(c *Config) *Config
+	ConfigSetCurrent        func(c *Config) bool
+	ConfigSetRescanInterval func(c *Config, rescanInterval int) bool
+	ConfigSubstitute        func(c *Config, p *Pattern, kind MatchKind) bool
+	ConfigSubstituteWithPat func(c *Config, p, pPat *Pattern, kind MatchKind) bool
+	ConfigUptoDate          func(c *Config) bool
 )
 
-func (c *Config) AppFontAddDir(dir string) bool   { return configAppFontAddDir(c, dir) }
-func (c *Config) AppFontAddFile(file string) bool { return configAppFontAddFile(c, file) }
-func (c *Config) AppFontClear()                   { configAppFontClear(c) }
-func (c *Config) Blanks() *Blanks                 { return configGetBlanks(c) }
-func (c *Config) BuildFonts() bool                { return configBuildFonts(c) }
-func (c *Config) Destroy()                        { configDestroy(c) }
-func (c *Config) Cache() string                   { return configGetCache(c) }
-func (c *Config) CacheDirs() *StrList             { return configGetCacheDirs(c) }
-func (c *Config) ConfigDirs() *StrList            { return configGetConfigDirs(c) }
-func (c *Config) ConfigFiles() *StrList           { return configGetConfigFiles(c) }
-func (c *Config) Current() bool                   { return configSetCurrent(c) }
-func (c *Config) FontDirs() *StrList              { return configGetFontDirs(c) }
-func (c *Config) Fonts(set SetName) *FontSet      { return configGetFonts(c, set) }
+func (c *Config) AppFontAddDir(dir string) bool   { return ConfigAppFontAddDir(c, dir) }
+func (c *Config) AppFontAddFile(file string) bool { return ConfigAppFontAddFile(c, file) }
+func (c *Config) AppFontClear()                   { ConfigAppFontClear(c) }
+func (c *Config) Blanks() *Blanks                 { return ConfigGetBlanks(c) }
+func (c *Config) BuildFonts() bool                { return ConfigBuildFonts(c) }
+func (c *Config) Destroy()                        { ConfigDestroy(c) }
+func (c *Config) Cache() string                   { return ConfigGetCache(c) }
+func (c *Config) CacheDirs() *StrList             { return ConfigGetCacheDirs(c) }
+func (c *Config) ConfigDirs() *StrList            { return ConfigGetConfigDirs(c) }
+func (c *Config) ConfigFiles() *StrList           { return ConfigGetConfigFiles(c) }
+func (c *Config) Current() bool                   { return ConfigSetCurrent(c) }
+func (c *Config) FontDirs() *StrList              { return ConfigGetFontDirs(c) }
+func (c *Config) Fonts(set SetName) *FontSet      { return ConfigGetFonts(c, set) }
 func (c *Config) ParseAndLoad(file string, complain bool) bool {
-	return configParseAndLoad(c, file, complain)
+	return ConfigParseAndLoad(c, file, complain)
 }
-func (c *Config) Reference() *Config  { return configReference(c) }
-func (c *Config) RescanInterval() int { return configGetRescanInterval(c) }
+func (c *Config) Reference() *Config  { return ConfigReference(c) }
+func (c *Config) RescanInterval() int { return ConfigGetRescanInterval(c) }
 func (c *Config) SetRescanInterval(rescanInterval int) bool {
-	return configSetRescanInterval(c, rescanInterval)
+	return ConfigSetRescanInterval(c, rescanInterval)
 }
-func (c *Config) Substitute(p *Pattern, kind MatchKind) bool { return configSubstitute(c, p, kind) }
+func (c *Config) Substitute(p *Pattern, kind MatchKind) bool { return ConfigSubstitute(c, p, kind) }
 func (c *Config) SubstituteWithPat(p, pPat *Pattern, kind MatchKind) bool {
-	return configSubstituteWithPat(c, p, pPat, kind)
+	return ConfigSubstituteWithPat(c, p, pPat, kind)
 }
-func (c *Config) UptoDate() bool { return configUptoDate(c) }
+func (c *Config) UptoDate() bool { return ConfigUptoDate(c) }
 
 type Constant struct {
 	Name   *uint8
@@ -344,16 +344,16 @@ var (
 		nsets int, p *Pattern, trim bool,
 		csp **CharSet, result *Result) *FontSet
 
-	fontSetAdd         func(f *FontSet, font *Pattern) bool
-	fontSetDestroy     func(f *FontSet)
-	fontSetPrint       func(f *FontSet)
-	fontSetSortDestroy func(f *FontSet)
+	FontSetAdd         func(f *FontSet, font *Pattern) bool
+	FontSetDestroy     func(f *FontSet)
+	FontSetPrint       func(f *FontSet)
+	FontSetSortDestroy func(f *FontSet)
 )
 
-func (f *FontSet) Add(font *Pattern) bool { return fontSetAdd(f, font) }
-func (f *FontSet) Destroy()               { fontSetDestroy(f) }
-func (f *FontSet) Print()                 { fontSetPrint(f) }
-func (f *FontSet) SortDestroy()           { fontSetSortDestroy(f) }
+func (f *FontSet) Add(font *Pattern) bool { return FontSetAdd(f, font) }
+func (f *FontSet) Destroy()               { FontSetDestroy(f) }
+func (f *FontSet) Print()                 { FontSetPrint(f) }
+func (f *FontSet) SortDestroy()           { FontSetSortDestroy(f) }
 
 type LangResult Enum
 
@@ -370,26 +370,26 @@ var (
 	LangSetCreate  func() *LangSet
 	LangGetCharSet func(lang string) *CharSet
 
-	langSetAdd      func(l *LangSet, lang string) bool
-	langSetCompare  func(l, l2 *LangSet) LangResult
-	langSetContains func(l, l2 *LangSet) bool
-	langSetCopy     func(l *LangSet) *LangSet
-	langSetDestroy  func(l *LangSet)
-	langSetEqual    func(l, l2 *LangSet) bool
-	langSetGetLangs func(l *LangSet) *StrSet
-	langSetHash     func(l *LangSet) Char32
-	langSetHasLang  func(l *LangSet, lang string) LangResult
+	LangSetAdd      func(l *LangSet, lang string) bool
+	LangSetCompare  func(l, l2 *LangSet) LangResult
+	LangSetContains func(l, l2 *LangSet) bool
+	LangSetCopy     func(l *LangSet) *LangSet
+	LangSetDestroy  func(l *LangSet)
+	LangSetEqual    func(l, l2 *LangSet) bool
+	LangSetGetLangs func(l *LangSet) *StrSet
+	LangSetHash     func(l *LangSet) Char32
+	LangSetHasLang  func(l *LangSet, lang string) LangResult
 )
 
-func (l *LangSet) Add(lang string) bool           { return langSetAdd(l, lang) }
-func (l *LangSet) Compare(l2 *LangSet) LangResult { return langSetCompare(l, l2) }
-func (l *LangSet) Contains(l2 *LangSet) bool      { return langSetContains(l, l2) }
-func (l *LangSet) Copy() *LangSet                 { return langSetCopy(l) }
-func (l *LangSet) Destroy()                       { langSetDestroy(l) }
-func (l *LangSet) Equal(l2 *LangSet) bool         { return langSetEqual(l, l2) }
-func (l *LangSet) GetLangs() *StrSet              { return langSetGetLangs(l) }
-func (l *LangSet) Hash() Char32                   { return langSetHash(l) }
-func (l *LangSet) HasLang(lang string) LangResult { return langSetHasLang(l, lang) }
+func (l *LangSet) Add(lang string) bool           { return LangSetAdd(l, lang) }
+func (l *LangSet) Compare(l2 *LangSet) LangResult { return LangSetCompare(l, l2) }
+func (l *LangSet) Contains(l2 *LangSet) bool      { return LangSetContains(l, l2) }
+func (l *LangSet) Copy() *LangSet                 { return LangSetCopy(l) }
+func (l *LangSet) Destroy()                       { LangSetDestroy(l) }
+func (l *LangSet) Equal(l2 *LangSet) bool         { return LangSetEqual(l, l2) }
+func (l *LangSet) GetLangs() *StrSet              { return LangSetGetLangs(l) }
+func (l *LangSet) Hash() Char32                   { return LangSetHash(l) }
+func (l *LangSet) HasLang(lang string) LangResult { return LangSetHasLang(l, lang) }
 
 type MatchKind Enum
 
@@ -406,18 +406,18 @@ type Matrix struct {
 var (
 	MatrixMultiply func(result, a, b *Matrix)
 
-	matrixCopy   func(m *Matrix) *Matrix
-	matrixEqual  func(m1, m2 *Matrix) bool
-	matrixRotate func(m *Matrix, c, s float64)
-	matrixScale  func(m *Matrix, sx, sy float64)
-	matrixShear  func(m *Matrix, sh, sv float64)
+	MatrixCopy   func(m *Matrix) *Matrix
+	MatrixEqual  func(m1, m2 *Matrix) bool
+	MatrixRotate func(m *Matrix, c, s float64)
+	MatrixScale  func(m *Matrix, sx, sy float64)
+	MatrixShear  func(m *Matrix, sh, sv float64)
 )
 
-func (m *Matrix) Copy() *Matrix         { return matrixCopy(m) }
-func (m *Matrix) Equal(m2 *Matrix) bool { return matrixEqual(m, m2) }
-func (m *Matrix) Rotate(c, s float64)   { matrixRotate(m, c, s) }
-func (m *Matrix) Scale(sx, sy float64)  { matrixScale(m, sx, sy) }
-func (m *Matrix) Shear(sh, sv float64)  { matrixShear(m, sh, sv) }
+func (m *Matrix) Copy() *Matrix         { return MatrixCopy(m) }
+func (m *Matrix) Equal(m2 *Matrix) bool { return MatrixEqual(m, m2) }
+func (m *Matrix) Rotate(c, s float64)   { MatrixRotate(m, c, s) }
+func (m *Matrix) Scale(sx, sy float64)  { MatrixScale(m, sx, sy) }
+func (m *Matrix) Shear(sh, sv float64)  { MatrixShear(m, sh, sv) }
 
 type ObjectSet struct {
 	Nobject int
@@ -430,12 +430,12 @@ var (
 	ObjectSetCreate  func() *ObjectSet
 	ObjectSetVaBuild func(first string, va T.VaList) *ObjectSet
 
-	objectSetAdd     func(os *ObjectSet, object string) bool
-	objectSetDestroy func(os *ObjectSet)
+	ObjectSetAdd     func(os *ObjectSet, object string) bool
+	ObjectSetDestroy func(os *ObjectSet)
 )
 
-func (o *ObjectSet) Add(object string) bool { return objectSetAdd(o, object) }
-func (o *ObjectSet) Destroy()               { objectSetDestroy(o) }
+func (o *ObjectSet) Add(object string) bool { return ObjectSetAdd(o, object) }
+func (o *ObjectSet) Destroy()               { ObjectSetDestroy(o) }
 
 type ObjectType struct {
 	Object *T.Char
@@ -450,92 +450,92 @@ var (
 	DefaultSubstitute func(p *Pattern)
 	NameUnparse       func(p *Pattern) string
 
-	patternAdd         func(p *Pattern, object string, value Value, append bool) bool
-	patternAddBool     func(p *Pattern, object string, b bool) bool
-	patternAddCharSet  func(p *Pattern, object string, c *CharSet) bool
-	patternAddDouble   func(p *Pattern, object string, d float64) bool
-	patternAddFTFace   func(p *Pattern, object string, f FT.Face) bool
-	patternAddInteger  func(p *Pattern, object string, i int) bool
-	patternAddLangSet  func(p *Pattern, object string, ls *LangSet) bool
-	patternAddMatrix   func(p *Pattern, object string, s *Matrix) bool
-	patternAddString   func(p *Pattern, object string, s string) bool
-	patternAddWeak     func(p *Pattern, object string, value Value, append bool) bool
-	patternBuild       func(p *Pattern, v ...VArg) *Pattern
-	patternDel         func(p *Pattern, object string) bool
-	patternDestroy     func(p *Pattern)
-	patternDuplicate   func(p *Pattern) *Pattern
-	patternEqual       func(p *Pattern, pb *Pattern) bool
-	patternEqualSubset func(p *Pattern, pb *Pattern, os *ObjectSet) bool
-	patternFilter      func(p *Pattern, os *ObjectSet) *Pattern
-	patternFormat      func(p *Pattern, format string) string
-	patternGet         func(p *Pattern, object string, id int, v *Value) Result
-	patternGetBool     func(p *Pattern, object string, n int, b *bool) Result
-	patternGetCharSet  func(p *Pattern, object string, n int, c **CharSet) Result
-	patternGetDouble   func(p *Pattern, object string, n int, d *float64) Result
-	patternGetFTFace   func(p *Pattern, object string, n int, f *FT.Face) Result
-	patternGetInteger  func(p *Pattern, object string, n int, i *int) Result
-	patternGetLangSet  func(p *Pattern, object string, n int, ls **LangSet) Result
-	patternGetMatrix   func(p *Pattern, object string, n int, s **Matrix) Result
-	patternGetString   func(p *Pattern, object string, n int, s *string) Result
-	patternHash        func(p *Pattern) Char32
-	patternPrint       func(p *Pattern)
-	patternReference   func(p *Pattern)
-	patternRemove      func(p *Pattern, object string, id int) bool
-	patternVaBuild     func(p *Pattern, va T.VaList) *Pattern
+	PatternAdd         func(p *Pattern, object string, value Value, append bool) bool
+	PatternAddBool     func(p *Pattern, object string, b bool) bool
+	PatternAddCharSet  func(p *Pattern, object string, c *CharSet) bool
+	PatternAddDouble   func(p *Pattern, object string, d float64) bool
+	PatternAddFTFace   func(p *Pattern, object string, f FT.Face) bool
+	PatternAddInteger  func(p *Pattern, object string, i int) bool
+	PatternAddLangSet  func(p *Pattern, object string, ls *LangSet) bool
+	PatternAddMatrix   func(p *Pattern, object string, s *Matrix) bool
+	PatternAddString   func(p *Pattern, object string, s string) bool
+	PatternAddWeak     func(p *Pattern, object string, value Value, append bool) bool
+	PatternBuild       func(p *Pattern, v ...VArg) *Pattern
+	PatternDel         func(p *Pattern, object string) bool
+	PatternDestroy     func(p *Pattern)
+	PatternDuplicate   func(p *Pattern) *Pattern
+	PatternEqual       func(p *Pattern, pb *Pattern) bool
+	PatternEqualSubset func(p *Pattern, pb *Pattern, os *ObjectSet) bool
+	PatternFilter      func(p *Pattern, os *ObjectSet) *Pattern
+	PatternFormat      func(p *Pattern, format string) string
+	PatternGet         func(p *Pattern, object string, id int, v *Value) Result
+	PatternGetBool     func(p *Pattern, object string, n int, b *bool) Result
+	PatternGetCharSet  func(p *Pattern, object string, n int, c **CharSet) Result
+	PatternGetDouble   func(p *Pattern, object string, n int, d *float64) Result
+	PatternGetFTFace   func(p *Pattern, object string, n int, f *FT.Face) Result
+	PatternGetInteger  func(p *Pattern, object string, n int, i *int) Result
+	PatternGetLangSet  func(p *Pattern, object string, n int, ls **LangSet) Result
+	PatternGetMatrix   func(p *Pattern, object string, n int, s **Matrix) Result
+	PatternGetString   func(p *Pattern, object string, n int, s *string) Result
+	PatternHash        func(p *Pattern) Char32
+	PatternPrint       func(p *Pattern)
+	PatternReference   func(p *Pattern)
+	PatternRemove      func(p *Pattern, object string, id int) bool
+	PatternVaBuild     func(p *Pattern, va T.VaList) *Pattern
 )
 
 func (p *Pattern) Add(object string, value Value, append bool) bool {
-	return patternAdd(p, object, value, append)
+	return PatternAdd(p, object, value, append)
 }
-func (p *Pattern) Addbool(object string, b bool) bool         { return patternAddBool(p, object, b) }
-func (p *Pattern) AddCharSet(object string, c *CharSet) bool  { return patternAddCharSet(p, object, c) }
-func (p *Pattern) AddDouble(object string, d float64) bool    { return patternAddDouble(p, object, d) }
-func (p *Pattern) AddFTFace(object string, f FT.Face) bool    { return patternAddFTFace(p, object, f) }
-func (p *Pattern) AddInteger(object string, i int) bool       { return patternAddInteger(p, object, i) }
-func (p *Pattern) AddLangSet(object string, ls *LangSet) bool { return patternAddLangSet(p, object, ls) }
-func (p *Pattern) AddMatrix(object string, s *Matrix) bool    { return patternAddMatrix(p, object, s) }
-func (p *Pattern) AddString(object string, s string) bool     { return patternAddString(p, object, s) }
+func (p *Pattern) Addbool(object string, b bool) bool         { return PatternAddBool(p, object, b) }
+func (p *Pattern) AddCharSet(object string, c *CharSet) bool  { return PatternAddCharSet(p, object, c) }
+func (p *Pattern) AddDouble(object string, d float64) bool    { return PatternAddDouble(p, object, d) }
+func (p *Pattern) AddFTFace(object string, f FT.Face) bool    { return PatternAddFTFace(p, object, f) }
+func (p *Pattern) AddInteger(object string, i int) bool       { return PatternAddInteger(p, object, i) }
+func (p *Pattern) AddLangSet(object string, ls *LangSet) bool { return PatternAddLangSet(p, object, ls) }
+func (p *Pattern) AddMatrix(object string, s *Matrix) bool    { return PatternAddMatrix(p, object, s) }
+func (p *Pattern) AddString(object string, s string) bool     { return PatternAddString(p, object, s) }
 func (p *Pattern) AddWeak(object string, value Value, append bool) bool {
-	return patternAddWeak(p, object, value, append)
+	return PatternAddWeak(p, object, value, append)
 }
-func (p *Pattern) Build(v ...VArg) *Pattern                    { return patternBuild(p, v) }
-func (p *Pattern) Del(object string) bool                      { return patternDel(p, object) }
-func (p *Pattern) Destroy()                                    { patternDestroy(p) }
-func (p *Pattern) Duplicate() *Pattern                         { return patternDuplicate(p) }
-func (p *Pattern) Equal(pb *Pattern) bool                      { return patternEqual(p, pb) }
-func (p *Pattern) EqualSubset(pb *Pattern, os *ObjectSet) bool { return patternEqualSubset(p, pb, os) }
-func (p *Pattern) Filter(os *ObjectSet) *Pattern               { return patternFilter(p, os) }
-func (p *Pattern) Format(format string) string                 { return patternFormat(p, format) }
-func (p *Pattern) Get(object string, id int, v *Value) Result  { return patternGet(p, object, id, v) }
+func (p *Pattern) Build(v ...VArg) *Pattern                    { return PatternBuild(p, v) }
+func (p *Pattern) Del(object string) bool                      { return PatternDel(p, object) }
+func (p *Pattern) Destroy()                                    { PatternDestroy(p) }
+func (p *Pattern) Duplicate() *Pattern                         { return PatternDuplicate(p) }
+func (p *Pattern) Equal(pb *Pattern) bool                      { return PatternEqual(p, pb) }
+func (p *Pattern) EqualSubset(pb *Pattern, os *ObjectSet) bool { return PatternEqualSubset(p, pb, os) }
+func (p *Pattern) Filter(os *ObjectSet) *Pattern               { return PatternFilter(p, os) }
+func (p *Pattern) Format(format string) string                 { return PatternFormat(p, format) }
+func (p *Pattern) Get(object string, id int, v *Value) Result  { return PatternGet(p, object, id, v) }
 func (p *Pattern) GetBool(object string, n int, b *bool) Result {
-	return patternGetBool(p, object, n, b)
+	return PatternGetBool(p, object, n, b)
 }
 func (p *Pattern) GetCharSet(object string, n int, c **CharSet) Result {
-	return patternGetCharSet(p, object, n, c)
+	return PatternGetCharSet(p, object, n, c)
 }
 func (p *Pattern) GetDouble(object string, n int, d *float64) Result {
-	return patternGetDouble(p, object, n, d)
+	return PatternGetDouble(p, object, n, d)
 }
 func (p *Pattern) GetFTFace(object string, n int, f *FT.Face) Result {
-	return patternGetFTFace(p, object, n, f)
+	return PatternGetFTFace(p, object, n, f)
 }
 func (p *Pattern) GetInteger(object string, n int, i *int) Result {
-	return patternGetInteger(p, object, n, i)
+	return PatternGetInteger(p, object, n, i)
 }
 func (p *Pattern) GetLangSet(object string, n int, ls **LangSet) Result {
-	return patternGetLangSet(p, object, n, ls)
+	return PatternGetLangSet(p, object, n, ls)
 }
 func (p *Pattern) GetMatrix(object string, n int, s **Matrix) Result {
-	return patternGetMatrix(p, object, n, s)
+	return PatternGetMatrix(p, object, n, s)
 }
 func (p *Pattern) GetString(object string, n int, s *string) Result {
-	return patternGetString(p, object, n, s)
+	return PatternGetString(p, object, n, s)
 }
-func (p *Pattern) Hash() Char32                      { return patternHash(p) }
-func (p *Pattern) Print()                            { patternPrint(p) }
-func (p *Pattern) Reference()                        { patternReference(p) }
-func (p *Pattern) Remove(object string, id int) bool { return patternRemove(p, object, id) }
-func (p *Pattern) VaBuild(va T.VaList) *Pattern      { return patternVaBuild(p, va) }
+func (p *Pattern) Hash() Char32                      { return PatternHash(p) }
+func (p *Pattern) Print()                            { PatternPrint(p) }
+func (p *Pattern) Reference()                        { PatternReference(p) }
+func (p *Pattern) Remove(object string, id int) bool { return PatternRemove(p, object, id) }
+func (p *Pattern) VaBuild(va T.VaList) *Pattern      { return PatternVaBuild(p, va) }
 
 type Result Enum
 
@@ -559,32 +559,32 @@ type StrList struct{}
 var (
 	StrListCreate func(set *StrSet) *StrList
 
-	strListDone func(s *StrList)
-	strListNext func(s *StrList) string
+	StrListDone func(s *StrList)
+	StrListNext func(s *StrList) string
 )
 
-func (s *StrList) Done()        { strListDone(s) }
-func (s *StrList) Next() string { return strListNext(s) }
+func (s *StrList) Done()        { StrListDone(s) }
+func (s *StrList) Next() string { return StrListNext(s) }
 
 type StrSet struct{}
 
 var (
 	StrSetCreate func() *StrSet
 
-	strSetAdd         func(s *StrSet, str string) bool
-	strSetAddFilename func(s *StrSet, str string) bool
-	strSetDel         func(s *StrSet, str string) bool
-	strSetDestroy     func(s *StrSet)
-	strSetEqual       func(s, s2 *StrSet) bool
-	strSetMember      func(s *StrSet, str string) bool
+	StrSetAdd         func(s *StrSet, str string) bool
+	StrSetAddFilename func(s *StrSet, str string) bool
+	StrSetDel         func(s *StrSet, str string) bool
+	StrSetDestroy     func(s *StrSet)
+	StrSetEqual       func(s, s2 *StrSet) bool
+	StrSetMember      func(s *StrSet, str string) bool
 )
 
-func (s *StrSet) Add(str string) bool         { return strSetAdd(s, str) }
-func (s *StrSet) AddFilename(str string) bool { return strSetAddFilename(s, str) }
-func (s *StrSet) Del(str string) bool         { return strSetDel(s, str) }
-func (s *StrSet) Destroy()                    { strSetDestroy(s) }
-func (s *StrSet) Equal(s2 *StrSet) bool       { return strSetEqual(s, s2) }
-func (s *StrSet) Member(str string) bool      { return strSetMember(s, str) }
+func (s *StrSet) Add(str string) bool         { return StrSetAdd(s, str) }
+func (s *StrSet) AddFilename(str string) bool { return StrSetAddFilename(s, str) }
+func (s *StrSet) Del(str string) bool         { return StrSetDel(s, str) }
+func (s *StrSet) Destroy()                    { StrSetDestroy(s) }
+func (s *StrSet) Equal(s2 *StrSet) bool       { return StrSetEqual(s, s2) }
+func (s *StrSet) Member(str string) bool      { return StrSetMember(s, str) }
 
 type Type Enum
 
@@ -614,80 +614,80 @@ type Value struct {
 }
 
 var (
-	valueDestroy func(v Value)
-	valueEqual   func(va, vb Value) bool
-	valuePrint   func(v Value)
-	valueSave    func(v Value) Value
+	ValueDestroy func(v Value)
+	ValueEqual   func(va, vb Value) bool
+	ValuePrint   func(v Value)
+	ValueSave    func(v Value) Value
 )
 
-func (v Value) Destroy()            { valueDestroy(v) }
-func (v Value) Equal(v2 Value) bool { return valueEqual(v, v2) }
-func (v Value) Print()              { valuePrint(v) }
-func (v Value) Save() Value         { return valueSave(v) }
+func (v Value) Destroy()            { ValueDestroy(v) }
+func (v Value) Equal(v2 Value) bool { return ValueEqual(v, v2) }
+func (v Value) Print()              { ValuePrint(v) }
+func (v Value) Save() Value         { return ValueSave(v) }
 
 var dll = "libfontconfig-1.dll"
 
 var apiList = outside.Apis{
 	{"FcAtomicCreate", &AtomicCreate},
-	{"FcAtomicDeleteNew", &atomicDeleteNew},
-	{"FcAtomicDestroy", &atomicDestroy},
-	{"FcAtomicLock", &atomicLock},
-	{"FcAtomicNewFile", &atomicNewFile},
-	{"FcAtomicOrigFile", &atomicOrigFile},
-	{"FcAtomicReplaceOrig", &atomicReplaceOrig},
-	{"FcAtomicUnlock", &atomicUnlock},
-	{"FcBlanksAdd", &blanksAdd},
+	{"FcAtomicDeleteNew", &AtomicDeleteNew},
+	{"FcAtomicDestroy", &AtomicDestroy},
+	{"FcAtomicLock", &AtomicLock},
+	{"FcAtomicNewFile", &AtomicNewFile},
+	{"FcAtomicOrigFile", &AtomicOrigFile},
+	{"FcAtomicReplaceOrig", &AtomicReplaceOrig},
+	{"FcAtomicUnlock", &AtomicUnlock},
+	{"FcBlanksAdd", &BlanksAdd},
 	{"FcBlanksCreate", &BlanksCreate},
-	{"FcBlanksDestroy", &blanksDestroy},
-	{"FcBlanksIsMember", &blanksIsMember},
-	{"FcCacheCopySet", &cacheCopySet},
-	{"FcCacheDir", &cacheDir},
-	{"FcCacheNumFont", &cacheNumFont},
-	{"FcCacheNumSubdir", &cacheNumSubdir},
-	{"FcCacheSubdir", &cacheSubdir},
-	{"FcCharSetAddChar", &charSetAddChar},
-	{"FcCharSetCopy", &charSetCopy},
-	{"FcCharSetCount", &charSetCount},
-	{"FcCharSetCoverage", &charSetCoverage},
+	{"FcBlanksDestroy", &BlanksDestroy},
+	{"FcBlanksIsMember", &BlanksIsMember},
+	{"FcCacheCopySet", &CacheCopySet},
+	{"FcCacheDir", &CacheDir},
+	{"FcCacheNumFont", &CacheNumFont},
+	{"FcCacheNumSubdir", &CacheNumSubdir},
+	{"FcCacheSubdir", &CacheSubdir},
+	{"FcCharSetAddChar", &CharSetAddChar},
+	{"FcCharSetCopy", &CharSetCopy},
+	{"FcCharSetCount", &CharSetCount},
+	{"FcCharSetCoverage", &CharSetCoverage},
 	{"FcCharSetCreate", &CharSetCreate},
-	{"FcCharSetDestroy", &charSetDestroy},
-	{"FcCharSetEqual", &charSetEqual},
-	{"FcCharSetFirstPage", &charSetFirstPage},
-	{"FcCharSetHasChar", &charSetHasChar},
-	{"FcCharSetIntersect", &charSetIntersect},
-	{"FcCharSetIntersectCount", &charSetIntersectCount},
-	{"FcCharSetIsSubset", &charSetIsSubset},
-	{"FcCharSetMerge", &charSetMerge},
+	{"FcCharSetDestroy", &CharSetDestroy},
+	{"FcCharSetEqual", &CharSetEqual},
+	{"FcCharSetFirstPage", &CharSetFirstPage},
+	{"FcCharSetHasChar", &CharSetHasChar},
+	{"FcCharSetIntersect", &CharSetIntersect},
+	{"FcCharSetIntersectCount", &CharSetIntersectCount},
+	{"FcCharSetIsSubset", &CharSetIsSubset},
+	{"FcCharSetMerge", &CharSetMerge},
 	{"FcCharSetNew", &CharSetNew},
-	{"FcCharSetNextPage", &charSetNextPage},
-	{"FcCharSetSubtract", &charSetSubtract},
-	{"FcCharSetSubtractCount", &charSetSubtractCount},
-	{"FcCharSetUnion", &charSetUnion},
-	{"FcConfigAppFontAddDir", &configAppFontAddDir},
-	{"FcConfigAppFontAddFile", &configAppFontAddFile},
-	{"FcConfigAppFontClear", &configAppFontClear},
-	{"FcConfigBuildFonts", &configBuildFonts},
+	{"FcCharSetNextPage", &CharSetNextPage},
+	{"FcCharSetSubtract", &CharSetSubtract},
+	{"FcCharSetSubtractCount", &CharSetSubtractCount},
+	{"FcCharSetUnion", &CharSetUnion},
+	{"FcConfigAppFontAddDir", &ConfigAppFontAddDir},
+	{"FcConfigAppFontAddFile", &ConfigAppFontAddFile},
+	{"FcConfigAppFontClear", &ConfigAppFontClear},
+	{"FcConfigBuildFonts", &ConfigBuildFonts},
 	{"FcConfigCreate", &ConfigCreate},
-	{"FcConfigDestroy", &configDestroy},
+	{"FcConfigDestroy", &ConfigDestroy},
 	{"FcConfigEnableHome", &ConfigEnableHome},
 	{"FcConfigFilename", &ConfigFilename},
-	{"FcConfigGetBlanks", &configGetBlanks},
-	{"FcConfigGetCache", &configGetCache},
-	{"FcConfigGetCacheDirs", &configGetCacheDirs},
-	{"FcConfigGetConfigDirs", &configGetConfigDirs},
-	{"FcConfigGetConfigFiles", &configGetConfigFiles},
+	{"FcConfigGetBlanks", &ConfigGetBlanks},
+	{"FcConfigGetCache", &ConfigGetCache},
+	{"FcConfigGetCacheDirs", &ConfigGetCacheDirs},
+	{"FcConfigGetConfigDirs", &ConfigGetConfigDirs},
+	{"FcConfigGetConfigFiles", &ConfigGetConfigFiles},
 	{"FcConfigGetCurrent", &ConfigGetCurrent},
-	{"FcConfigGetFontDirs", &configGetFontDirs},
-	{"FcConfigGetFonts", &configGetFonts},
+	{"FcConfigGetFontDirs", &ConfigGetFontDirs},
+	{"FcConfigGetFonts", &ConfigGetFonts},
 	// Deprecated/Undocumented {"FcConfigGetRescanInterval", &ConfigGetRescanInterval},
 	{"FcConfigHome", &ConfigHome},
-	{"FcConfigParseAndLoad", &configParseAndLoad},
-	{"FcConfigReference", &configReference},
-	{"FcConfigSetCurrent", &configSetCurrent},
+	{"FcConfigParseAndLoad", &ConfigParseAndLoad},
+	{"FcConfigReference", &ConfigReference},
+	{"FcConfigSetCurrent", &ConfigSetCurrent},
 	// Deprecated/Undocumented {"FcConfigSetRescanInterval", &ConfigSetRescanInterval},
-	{"FcConfigSubstitute", &configSubstitute},
-	{"FcConfigSubstituteWithPat", &configSubstituteWithPat},
-	{"FcConfigUptoDate", &configUptoDate},
+	{"FcConfigSubstitute", &ConfigSubstitute},
+	{"FcConfigSubstituteWithPat", &ConfigSubstituteWithPat},
+	{"FcConfigUptoDate", &ConfigUptoDate},
 	{"FcDefaultSubstitute", &DefaultSubstitute},
 	{"FcDirCacheLoad", &DirCacheLoad},
 	{"FcDirCacheLoadFile", &DirCacheLoadFile},
@@ -703,14 +703,14 @@ var apiList = outside.Apis{
 	{"FcFontList", &FontList},
 	{"FcFontMatch", &FontMatch},
 	{"FcFontRenderPrepare", &FontRenderPrepare},
-	{"FcFontSetAdd", &fontSetAdd},
+	{"FcFontSetAdd", &FontSetAdd},
 	{"FcFontSetCreate", &FontSetCreate},
-	{"FcFontSetDestroy", &fontSetDestroy},
+	{"FcFontSetDestroy", &FontSetDestroy},
 	{"FcFontSetList", &FontSetList},
 	{"FcFontSetMatch", &FontSetMatch},
-	{"FcFontSetPrint", &fontSetPrint},
+	{"FcFontSetPrint", &FontSetPrint},
 	{"FcFontSetSort", &FontSetSort},
-	{"FcFontSetSortDestroy", &fontSetSortDestroy},
+	{"FcFontSetSortDestroy", &FontSetSortDestroy},
 	{"FcFontSort", &FontSort},
 	{"FcFreeTypeCharIndex", &FreeTypeCharIndex},
 	{"FcFreeTypeCharSet", &FreeTypeCharSet},
@@ -725,22 +725,22 @@ var apiList = outside.Apis{
 	{"FcInitLoadConfigAndFonts", &InitLoadConfigAndFonts},
 	{"FcInitReinitialize", &InitReinitialize},
 	{"FcLangGetCharSet", &LangGetCharSet},
-	{"FcLangSetAdd", &langSetAdd},
-	{"FcLangSetCompare", &langSetCompare},
-	{"FcLangSetContains", &langSetContains},
-	{"FcLangSetCopy", &langSetCopy},
+	{"FcLangSetAdd", &LangSetAdd},
+	{"FcLangSetCompare", &LangSetCompare},
+	{"FcLangSetContains", &LangSetContains},
+	{"FcLangSetCopy", &LangSetCopy},
 	{"FcLangSetCreate", &LangSetCreate},
-	{"FcLangSetDestroy", &langSetDestroy},
-	{"FcLangSetEqual", &langSetEqual},
-	{"FcLangSetGetLangs", &langSetGetLangs},
-	{"FcLangSetHasLang", &langSetHasLang},
-	{"FcLangSetHash", &langSetHash},
-	{"FcMatrixCopy", &matrixCopy},
-	{"FcMatrixEqual", &matrixEqual},
+	{"FcLangSetDestroy", &LangSetDestroy},
+	{"FcLangSetEqual", &LangSetEqual},
+	{"FcLangSetGetLangs", &LangSetGetLangs},
+	{"FcLangSetHasLang", &LangSetHasLang},
+	{"FcLangSetHash", &LangSetHash},
+	{"FcMatrixCopy", &MatrixCopy},
+	{"FcMatrixEqual", &MatrixEqual},
 	{"FcMatrixMultiply", &MatrixMultiply},
-	{"FcMatrixRotate", &matrixRotate},
-	{"FcMatrixScale", &matrixScale},
-	{"FcMatrixShear", &matrixShear},
+	{"FcMatrixRotate", &MatrixRotate},
+	{"FcMatrixScale", &MatrixScale},
+	{"FcMatrixShear", &MatrixShear},
 	{"FcNameConstant", &NameConstant},
 	{"FcNameGetConstant", &NameGetConstant},
 	{"FcNameGetObjectType", &NameGetObjectType},
@@ -750,44 +750,44 @@ var apiList = outside.Apis{
 	{"FcNameUnparse", &NameUnparse},
 	{"FcNameUnregisterConstants", &NameUnregisterConstants},
 	{"FcNameUnregisterObjectTypes", &NameUnregisterObjectTypes},
-	{"FcObjectSetAdd", &objectSetAdd},
+	{"FcObjectSetAdd", &ObjectSetAdd},
 	{"FcObjectSetBuild", &ObjectSetBuild},
 	{"FcObjectSetCreate", &ObjectSetCreate},
-	{"FcObjectSetDestroy", &objectSetDestroy},
+	{"FcObjectSetDestroy", &ObjectSetDestroy},
 	{"FcObjectSetVaBuild", &ObjectSetVaBuild},
-	{"FcPatternAdd", &patternAdd},
-	{"FcPatternAddBool", &patternAddBool},
-	{"FcPatternAddCharSet", &patternAddCharSet},
-	{"FcPatternAddDouble", &patternAddDouble},
-	{"FcPatternAddFTFace", &patternAddFTFace},
-	{"FcPatternAddInteger", &patternAddInteger},
-	{"FcPatternAddLangSet", &patternAddLangSet},
-	{"FcPatternAddMatrix", &patternAddMatrix},
-	{"FcPatternAddString", &patternAddString},
-	{"FcPatternAddWeak", &patternAddWeak},
-	{"FcPatternBuild", &patternBuild},
+	{"FcPatternAdd", &PatternAdd},
+	{"FcPatternAddBool", &PatternAddBool},
+	{"FcPatternAddCharSet", &PatternAddCharSet},
+	{"FcPatternAddDouble", &PatternAddDouble},
+	{"FcPatternAddFTFace", &PatternAddFTFace},
+	{"FcPatternAddInteger", &PatternAddInteger},
+	{"FcPatternAddLangSet", &PatternAddLangSet},
+	{"FcPatternAddMatrix", &PatternAddMatrix},
+	{"FcPatternAddString", &PatternAddString},
+	{"FcPatternAddWeak", &PatternAddWeak},
+	{"FcPatternBuild", &PatternBuild},
 	{"FcPatternCreate", &PatternCreate},
-	{"FcPatternDel", &patternDel},
-	{"FcPatternDestroy", &patternDestroy},
-	{"FcPatternDuplicate", &patternDuplicate},
-	{"FcPatternEqual", &patternEqual},
-	{"FcPatternEqualSubset", &patternEqualSubset},
-	{"FcPatternFilter", &patternFilter},
-	{"FcPatternFormat", &patternFormat},
-	{"FcPatternGet", &patternGet},
-	{"FcPatternGetBool", &patternGetBool},
-	{"FcPatternGetCharSet", &patternGetCharSet},
-	{"FcPatternGetDouble", &patternGetDouble},
-	{"FcPatternGetFTFace", &patternGetFTFace},
-	{"FcPatternGetInteger", &patternGetInteger},
-	{"FcPatternGetLangSet", &patternGetLangSet},
-	{"FcPatternGetMatrix", &patternGetMatrix},
-	{"FcPatternGetString", &patternGetString},
-	{"FcPatternHash", &patternHash},
-	{"FcPatternPrint", &patternPrint},
-	{"FcPatternReference", &patternReference},
-	{"FcPatternRemove", &patternRemove},
-	{"FcPatternVaBuild", &patternVaBuild},
+	{"FcPatternDel", &PatternDel},
+	{"FcPatternDestroy", &PatternDestroy},
+	{"FcPatternDuplicate", &PatternDuplicate},
+	{"FcPatternEqual", &PatternEqual},
+	{"FcPatternEqualSubset", &PatternEqualSubset},
+	{"FcPatternFilter", &PatternFilter},
+	{"FcPatternFormat", &PatternFormat},
+	{"FcPatternGet", &PatternGet},
+	{"FcPatternGetBool", &PatternGetBool},
+	{"FcPatternGetCharSet", &PatternGetCharSet},
+	{"FcPatternGetDouble", &PatternGetDouble},
+	{"FcPatternGetFTFace", &PatternGetFTFace},
+	{"FcPatternGetInteger", &PatternGetInteger},
+	{"FcPatternGetLangSet", &PatternGetLangSet},
+	{"FcPatternGetMatrix", &PatternGetMatrix},
+	{"FcPatternGetString", &PatternGetString},
+	{"FcPatternHash", &PatternHash},
+	{"FcPatternPrint", &PatternPrint},
+	{"FcPatternReference", &PatternReference},
+	{"FcPatternRemove", &PatternRemove},
+	{"FcPatternVaBuild", &PatternVaBuild},
 	{"FcStrBasename", &StrBasename},
 	{"FcStrCmp", &StrCmp},
 	{"FcStrCmpIgnoreCase", &StrCmpIgnoreCase},
@@ -797,16 +797,16 @@ var apiList = outside.Apis{
 	{"FcStrDowncase", &StrDowncase},
 	{"FcStrFree", &StrFree},
 	{"FcStrListCreate", &StrListCreate},
-	{"FcStrListDone", &strListDone},
-	{"FcStrListNext", &strListNext},
+	{"FcStrListDone", &StrListDone},
+	{"FcStrListNext", &StrListNext},
 	{"FcStrPlus", &StrPlus},
-	{"FcStrSetAdd", &strSetAdd},
-	{"FcStrSetAddFilename", &strSetAddFilename},
+	{"FcStrSetAdd", &StrSetAdd},
+	{"FcStrSetAddFilename", &StrSetAddFilename},
 	{"FcStrSetCreate", &StrSetCreate},
-	{"FcStrSetDel", &strSetDel},
-	{"FcStrSetDestroy", &strSetDestroy},
-	{"FcStrSetEqual", &strSetEqual},
-	{"FcStrSetMember", &strSetMember},
+	{"FcStrSetDel", &StrSetDel},
+	{"FcStrSetDestroy", &StrSetDestroy},
+	{"FcStrSetEqual", &StrSetEqual},
+	{"FcStrSetMember", &StrSetMember},
 	{"FcStrStr", &StrStr},
 	{"FcStrStrIgnoreCase", &StrStrIgnoreCase},
 	{"FcUcs4ToUtf8", &Ucs4ToUtf8},
@@ -814,8 +814,8 @@ var apiList = outside.Apis{
 	{"FcUtf16ToUcs4", &Utf16ToUcs4},
 	{"FcUtf8Len", &Utf8Len},
 	{"FcUtf8ToUcs4", &Utf8ToUcs4},
-	{"FcValueDestroy", &valueDestroy},
-	{"FcValueEqual", &valueEqual},
-	{"FcValuePrint", &valuePrint},
-	{"FcValueSave", &valueSave},
+	{"FcValueDestroy", &ValueDestroy},
+	{"FcValueEqual", &ValueEqual},
+	{"FcValuePrint", &ValuePrint},
+	{"FcValueSave", &ValueSave},
 }

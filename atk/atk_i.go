@@ -13,21 +13,21 @@ type Image struct{}
 var (
 	ImageGetType func() O.Type
 
-	imageGetImageDescription func(i *Image) string
-	imageGetImageLocale      func(i *Image) string
-	imageGetImagePosition    func(i *Image, x, y *int, coordType CoordType)
-	imageGetImageSize        func(i *Image, width, height *int)
-	imageSetImageDescription func(i *Image, description string) bool
+	ImageGetImageDescription func(i *Image) string
+	ImageGetImageLocale      func(i *Image) string
+	ImageGetImagePosition    func(i *Image, x, y *int, coordType CoordType)
+	ImageGetImageSize        func(i *Image, width, height *int)
+	ImageSetImageDescription func(i *Image, description string) bool
 )
 
-func (i *Image) GetImageDescription() string { return imageGetImageDescription(i) }
-func (i *Image) GetImageLocale() string      { return imageGetImageLocale(i) }
+func (i *Image) GetImageDescription() string { return ImageGetImageDescription(i) }
+func (i *Image) GetImageLocale() string      { return ImageGetImageLocale(i) }
 func (i *Image) GetImagePosition(x, y *int, coordType CoordType) {
-	imageGetImagePosition(i, x, y, coordType)
+	ImageGetImagePosition(i, x, y, coordType)
 }
-func (i *Image) GetImageSize(width, height *int) { imageGetImageSize(i, width, height) }
+func (i *Image) GetImageSize(width, height *int) { ImageGetImageSize(i, width, height) }
 func (i *Image) SetImageDescription(description string) bool {
-	return imageSetImageDescription(i, description)
+	return ImageSetImageDescription(i, description)
 }
 
 type Implementor struct{}
@@ -35,7 +35,7 @@ type Implementor struct{}
 var (
 	ImplementorGetType func() O.Type
 
-	implementorRefAccessible func(i *Implementor) *Object
+	ImplementorRefAccessible func(i *Implementor) *Object
 )
 
-func (i *Implementor) RefAccessible() *Object { return implementorRefAccessible(i) }
+func (i *Implementor) RefAccessible() *Object { return ImplementorRefAccessible(i) }

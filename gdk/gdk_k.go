@@ -21,33 +21,33 @@ var (
 	KeymapGetDefault    func() *Keymap
 	KeymapGetForDisplay func(display *Display) *Keymap
 
-	keymapAddVirtualModifiers    func(k *Keymap, state *T.GdkModifierType)
-	keymapGetCapsLockState       func(k *Keymap) bool
-	keymapGetDirection           func(k *Keymap) P.Direction
-	keymapGetEntriesForKeycode   func(k *Keymap, hardwareKeycode uint, keys **KeymapKey, keyvals **uint, nEntries *int) bool
-	keymapGetEntriesForKeyval    func(k *Keymap, keyval uint, keys **KeymapKey, nKeys *int) bool
-	keymapHaveBidiLayouts        func(k *Keymap) bool
-	keymapLookupKey              func(k *Keymap, key *KeymapKey) uint
-	keymapMapVirtualModifiers    func(k *Keymap, state *T.GdkModifierType) bool
-	keymapTranslateKeyboardState func(k *Keymap, hardwareKeycode uint, state T.GdkModifierType, group int, keyval *uint, effectiveGroup, level *int, consumedModifiers *T.GdkModifierType) bool
+	KeymapAddVirtualModifiers    func(k *Keymap, state *T.GdkModifierType)
+	KeymapGetCapsLockState       func(k *Keymap) bool
+	KeymapGetDirection           func(k *Keymap) P.Direction
+	KeymapGetEntriesForKeycode   func(k *Keymap, hardwareKeycode uint, keys **KeymapKey, keyvals **uint, nEntries *int) bool
+	KeymapGetEntriesForKeyval    func(k *Keymap, keyval uint, keys **KeymapKey, nKeys *int) bool
+	KeymapHaveBidiLayouts        func(k *Keymap) bool
+	KeymapLookupKey              func(k *Keymap, key *KeymapKey) uint
+	KeymapMapVirtualModifiers    func(k *Keymap, state *T.GdkModifierType) bool
+	KeymapTranslateKeyboardState func(k *Keymap, hardwareKeycode uint, state T.GdkModifierType, group int, keyval *uint, effectiveGroup, level *int, consumedModifiers *T.GdkModifierType) bool
 )
 
-func (k *Keymap) AddVirtualModifiers(state *T.GdkModifierType) { keymapAddVirtualModifiers(k, state) }
-func (k *Keymap) GetCapsLockState() bool                       { return keymapGetCapsLockState(k) }
-func (k *Keymap) GetDirection() P.Direction                    { return keymapGetDirection(k) }
+func (k *Keymap) AddVirtualModifiers(state *T.GdkModifierType) { KeymapAddVirtualModifiers(k, state) }
+func (k *Keymap) GetCapsLockState() bool                       { return KeymapGetCapsLockState(k) }
+func (k *Keymap) GetDirection() P.Direction                    { return KeymapGetDirection(k) }
 func (k *Keymap) GetEntriesForKeycode(hardwareKeycode uint, keys **KeymapKey, keyvals **uint, nEntries *int) bool {
-	return keymapGetEntriesForKeycode(k, hardwareKeycode, keys, keyvals, nEntries)
+	return KeymapGetEntriesForKeycode(k, hardwareKeycode, keys, keyvals, nEntries)
 }
 func (k *Keymap) GetEntriesForKeyval(keyval uint, keys **KeymapKey, nKeys *int) bool {
-	return keymapGetEntriesForKeyval(k, keyval, keys, nKeys)
+	return KeymapGetEntriesForKeyval(k, keyval, keys, nKeys)
 }
-func (k *Keymap) HaveBidiLayouts() bool         { return keymapHaveBidiLayouts(k) }
-func (k *Keymap) LookupKey(key *KeymapKey) uint { return keymapLookupKey(k, key) }
+func (k *Keymap) HaveBidiLayouts() bool         { return KeymapHaveBidiLayouts(k) }
+func (k *Keymap) LookupKey(key *KeymapKey) uint { return KeymapLookupKey(k, key) }
 func (k *Keymap) MapVirtualModifiers(state *T.GdkModifierType) bool {
-	return keymapMapVirtualModifiers(k, state)
+	return KeymapMapVirtualModifiers(k, state)
 }
 func (k *Keymap) TranslateKeyboardState(hardwareKeycode uint, state T.GdkModifierType, group int, keyval *uint, effectiveGroup, level *int, consumedModifiers *T.GdkModifierType) bool {
-	return keymapTranslateKeyboardState(k, hardwareKeycode, state, group, keyval, effectiveGroup, level, consumedModifiers)
+	return KeymapTranslateKeyboardState(k, hardwareKeycode, state, group, keyval, effectiveGroup, level, consumedModifiers)
 }
 
 type KeymapKey struct {

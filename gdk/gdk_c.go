@@ -14,26 +14,26 @@ type Cairo struct{} //TODO(t):Def and push methods to /cairo? pragmatic pros/con
 var (
 	CairoCreate func(drawable *Drawable) *Cairo
 
-	cairoResetClip       func(c *Cairo, drawable *Drawable)
-	cairoSetSourceColor  func(c *Cairo, color *Color)
-	cairoSetSourcePixbuf func(c *Cairo, pixbuf *Pixbuf, pixbufX, pixbufY float64)
-	cairoSetSourcePixmap func(c *Cairo, pixmap *Pixmap, pixmapX, pixmapY float64)
-	cairoSetSourceWindow func(c *Cairo, window *Window, x, y float64)
-	cairoRectangle       func(c *Cairo, rectangle *Rectangle)
-	cairoRegion          func(c *Cairo, region *Region)
+	CairoResetClip       func(c *Cairo, drawable *Drawable)
+	CairoSetSourceColor  func(c *Cairo, color *Color)
+	CairoSetSourcePixbuf func(c *Cairo, pixbuf *Pixbuf, pixbufX, pixbufY float64)
+	CairoSetSourcePixmap func(c *Cairo, pixmap *Pixmap, pixmapX, pixmapY float64)
+	CairoSetSourceWindow func(c *Cairo, window *Window, x, y float64)
+	CairoRectangle       func(c *Cairo, rectangle *Rectangle)
+	CairoRegion          func(c *Cairo, region *Region)
 )
 
-func (c *Cairo) ResetClip(drawable *Drawable) { cairoResetClip(c, drawable) }
-func (c *Cairo) SetSourceColor(color *Color)  { cairoSetSourceColor(c, color) }
+func (c *Cairo) ResetClip(drawable *Drawable) { CairoResetClip(c, drawable) }
+func (c *Cairo) SetSourceColor(color *Color)  { CairoSetSourceColor(c, color) }
 func (c *Cairo) SetSourcePixbuf(pixbuf *Pixbuf, pixbufX, pixbufY float64) {
-	cairoSetSourcePixbuf(c, pixbuf, pixbufX, pixbufY)
+	CairoSetSourcePixbuf(c, pixbuf, pixbufX, pixbufY)
 }
 func (c *Cairo) SetSourcePixmap(pixmap *Pixmap, pixmapX, pixmapY float64) {
-	cairoSetSourcePixmap(c, pixmap, pixmapX, pixmapY)
+	CairoSetSourcePixmap(c, pixmap, pixmapX, pixmapY)
 }
-func (c *Cairo) SetSourceWindow(window *Window, x, y float64) { cairoSetSourceWindow(c, window, x, y) }
-func (c *Cairo) Rectangle(rectangle *Rectangle)               { cairoRectangle(c, rectangle) }
-func (c *Cairo) Region(region *Region)                        { cairoRegion(c, region) }
+func (c *Cairo) SetSourceWindow(window *Window, x, y float64) { CairoSetSourceWindow(c, window, x, y) }
+func (c *Cairo) Rectangle(rectangle *Rectangle)               { CairoRectangle(c, rectangle) }
+func (c *Cairo) Region(region *Region)                        { CairoRegion(c, region) }
 
 type CapStyle Enum
 
@@ -65,18 +65,18 @@ var (
 	ColorsFree  func(c *Colormap, pixels *T.Gulong, npixels int, planes T.Gulong)
 	ColorWhite  func(c *Colormap, color *Color) int
 
-	colorCopy     func(c *Color) *Color
-	colorEqual    func(c *Color, colorb *Color) bool
-	colorFree     func(c *Color)
-	colorHash     func(c *Color) uint
-	colorToString func(c *Color) string
+	ColorCopy     func(c *Color) *Color
+	ColorEqual    func(c *Color, colorb *Color) bool
+	ColorFree     func(c *Color)
+	ColorHash     func(c *Color) uint
+	ColorToString func(c *Color) string
 )
 
-func (c *Color) Copy() *Color             { return colorCopy(c) }
-func (c *Color) Equal(colorb *Color) bool { return colorEqual(c, colorb) }
-func (c *Color) Free()                    { colorFree(c) }
-func (c *Color) Hash() uint               { return colorHash(c) }
-func (c *Color) ToString() string         { return colorToString(c) }
+func (c *Color) Copy() *Color             { return ColorCopy(c) }
+func (c *Color) Equal(colorb *Color) bool { return ColorEqual(c, colorb) }
+func (c *Color) Free()                    { ColorFree(c) }
+func (c *Color) Hash() uint               { return ColorHash(c) }
+func (c *Color) ToString() string         { return ColorToString(c) }
 
 type Colormap struct {
 	Parent        O.Object
@@ -95,30 +95,30 @@ var (
 
 	ColorsStore func(c *Colormap, colors *Color, ncolors int)
 
-	colormapAllocColor  func(c *Colormap, color *Color, writeable bool, bestMatch bool) bool
-	colormapAllocColors func(c *Colormap, colors *Color, nColors int, writeable bool, bestMatch bool, success *bool) int
-	colormapChange      func(c *Colormap, ncolors int)
-	colormapFreeColors  func(c *Colormap, colors *Color, nColors int)
-	colormapGetScreen   func(c *Colormap) *Screen
-	colormapGetVisual   func(c *Colormap) *Visual
-	colormapQueryColor  func(c *Colormap, pixel T.Gulong, result *Color)
-	colormapRef         func(c *Colormap) *Colormap
-	colormapUnref       func(c *Colormap)
+	ColormapAllocColor  func(c *Colormap, color *Color, writeable bool, bestMatch bool) bool
+	ColormapAllocColors func(c *Colormap, colors *Color, nColors int, writeable bool, bestMatch bool, success *bool) int
+	ColormapChange      func(c *Colormap, ncolors int)
+	ColormapFreeColors  func(c *Colormap, colors *Color, nColors int)
+	ColormapGetScreen   func(c *Colormap) *Screen
+	ColormapGetVisual   func(c *Colormap) *Visual
+	ColormapQueryColor  func(c *Colormap, pixel T.Gulong, result *Color)
+	ColormapRef         func(c *Colormap) *Colormap
+	ColormapUnref       func(c *Colormap)
 )
 
 func (c *Colormap) AllocColor(color *Color, writeable bool, bestMatch bool) bool {
-	return colormapAllocColor(c, color, writeable, bestMatch)
+	return ColormapAllocColor(c, color, writeable, bestMatch)
 }
 func (c *Colormap) AllocColors(colors *Color, nColors int, writeable bool, bestMatch bool, success *bool) int {
-	return colormapAllocColors(c, colors, nColors, writeable, bestMatch, success)
+	return ColormapAllocColors(c, colors, nColors, writeable, bestMatch, success)
 }
-func (c *Colormap) Change(ncolors int)                       { colormapChange(c, ncolors) }
-func (c *Colormap) FreeColors(colors *Color, nColors int)    { colormapFreeColors(c, colors, nColors) }
-func (c *Colormap) GetScreen() *Screen                       { return colormapGetScreen(c) }
-func (c *Colormap) GetVisual() *Visual                       { return colormapGetVisual(c) }
-func (c *Colormap) QueryColor(pixel T.Gulong, result *Color) { colormapQueryColor(c, pixel, result) }
-func (c *Colormap) Ref() *Colormap                           { return colormapRef(c) }
-func (c *Colormap) Unref()                                   { colormapUnref(c) }
+func (c *Colormap) Change(ncolors int)                       { ColormapChange(c, ncolors) }
+func (c *Colormap) FreeColors(colors *Color, nColors int)    { ColormapFreeColors(c, colors, nColors) }
+func (c *Colormap) GetScreen() *Screen                       { return ColormapGetScreen(c) }
+func (c *Colormap) GetVisual() *Visual                       { return ColormapGetVisual(c) }
+func (c *Colormap) QueryColor(pixel T.Gulong, result *Color) { ColormapQueryColor(c, pixel, result) }
+func (c *Colormap) Ref() *Colormap                           { return ColormapRef(c) }
+func (c *Colormap) Unref()                                   { ColormapUnref(c) }
 
 type Colorspace Enum
 
@@ -152,18 +152,18 @@ var (
 	CursorNewFromPixbuf func(display *Display, pixbuf *Pixbuf, x int, y int) *Cursor
 	CursorNewFromPixmap func(source *Pixmap, mask *Pixmap, fg *Color, bg *Color, x int, y int) *Cursor
 
-	cursorGetCursorType func(cursor *Cursor) CursorType
-	cursorGetDisplay    func(cursor *Cursor) *Display
-	cursorGetImage      func(cursor *Cursor) *Pixbuf
-	cursorRef           func(cursor *Cursor) *Cursor
-	cursorUnref         func(cursor *Cursor)
+	CursorGetCursorType func(cursor *Cursor) CursorType
+	CursorGetDisplay    func(cursor *Cursor) *Display
+	CursorGetImage      func(cursor *Cursor) *Pixbuf
+	CursorRef           func(cursor *Cursor) *Cursor
+	CursorUnref         func(cursor *Cursor)
 )
 
-func (c *Cursor) GetCursorType() CursorType { return cursorGetCursorType(c) }
-func (c *Cursor) GetDisplay() *Display      { return cursorGetDisplay(c) }
-func (c *Cursor) GetImage() *Pixbuf         { return cursorGetImage(c) }
-func (c *Cursor) Ref() *Cursor              { return cursorRef(c) }
-func (c *Cursor) Unref()                    { cursorUnref(c) }
+func (c *Cursor) GetCursorType() CursorType { return CursorGetCursorType(c) }
+func (c *Cursor) GetDisplay() *Display      { return CursorGetDisplay(c) }
+func (c *Cursor) GetImage() *Pixbuf         { return CursorGetImage(c) }
+func (c *Cursor) Ref() *Cursor              { return CursorRef(c) }
+func (c *Cursor) Unref()                    { CursorUnref(c) }
 
 type CursorType Enum
 

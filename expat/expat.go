@@ -254,231 +254,231 @@ var (
 	ParserCreateNS func(encoding *Char, namespaceSeparator Char) Parser
 	ParserCreateMM func(encoding *Char, memsuite *MemoryHandlingSuite, namespaceSeparator *Char) Parser
 
-	defaultCurrent                  func(p Parser)
-	externalEntityParserCreate      func(p Parser, context, encoding *Char) Parser
-	freeContentModel                func(p Parser, model *Content)
-	getBase                         func(p Parser) string
-	getBuffer                       func(p Parser, leng int) *T.Void
-	getCurrentByteCount             func(p Parser) int
-	getCurrentByteIndex             func(p Parser) Index
-	getCurrentColumnNumber          func(p Parser) Size
-	getCurrentLineNumber            func(p Parser) Size
-	getErrorCode                    func(p Parser) Error
-	getIdAttributeIndex             func(p Parser) int
-	getInputContext                 func(p Parser, offset, size *int) string
-	getParsingStatus                func(p Parser, status *ParsingStatus)
-	getSpecifiedAttributeCount      func(p Parser) int
-	memFree                         func(p Parser, ptr *T.Void)
-	memMalloc                       func(p Parser, size T.Size_t) *T.Void
-	memRealloc                      func(p Parser, ptr *T.Void, size T.Size_t) *T.Void
-	parse                           func(p Parser, s *T.Char, leng, isFinal int) Status
-	parseBuffer                     func(p Parser, leng, isFinal int) Status
-	parserFree                      func(p Parser)
-	parserReset                     func(p Parser, encoding *Char) Bool
-	resumeParser                    func(p Parser) Status
-	setAttlistDeclHandler           func(p Parser, attdecl AttlistDeclHandler)
-	setBase                         func(p Parser, base string) Status
-	setCdataSectionHandler          func(p Parser, start StartCdataSectionHandler, end EndCdataSectionHandler)
-	setCharacterDataHandler         func(p Parser, handler CharacterDataHandler)
-	setCommentHandler               func(p Parser, handler CommentHandler)
-	setDefaultHandler               func(p Parser, handler DefaultHandler)
-	setDefaultHandlerExpand         func(p Parser, handler DefaultHandler)
-	setDoctypeDeclHandler           func(p Parser, start StartDoctypeDeclHandler, end EndDoctypeDeclHandler)
-	setElementDeclHandler           func(p Parser, eldecl ElementDeclHandler)
-	setElementHandler               func(p Parser, start StartElementHandler, end EndElementHandler)
-	setEncoding                     func(p Parser, encoding string) Status
-	setEndCdataSectionHandler       func(p Parser, end EndCdataSectionHandler)
-	setEndDoctypeDeclHandler        func(p Parser, end EndDoctypeDeclHandler)
-	setEndElementHandler            func(p Parser, handler EndElementHandler)
-	setEndNamespaceDeclHandler      func(p Parser, end EndNamespaceDeclHandler)
-	setEntityDeclHandler            func(p Parser, handler EntityDeclHandler)
-	setExternalEntityRefHandler     func(p Parser, handler ExternalEntityRefHandler)
-	setExternalEntityRefHandlerArg  func(p Parser, arg *T.Void)
-	setNamespaceDeclHandler         func(p Parser, start StartNamespaceDeclHandler, end EndNamespaceDeclHandler)
-	setNotationDeclHandler          func(p Parser, handler NotationDeclHandler)
-	setNotStandaloneHandler         func(p Parser, handler NotStandaloneHandler)
-	setParamEntityParsing           func(p Parser, parsing ParamEntityParsing) int
-	setProcessingInstructionHandler func(p Parser, handler ProcessingInstructionHandler)
-	setReturnNSTriplet              func(p Parser, do_nst int)
-	setSkippedEntityHandler         func(p Parser, handler SkippedEntityHandler)
-	setStartCdataSectionHandler     func(p Parser, start StartCdataSectionHandler)
-	setStartDoctypeDeclHandler      func(p Parser, start StartDoctypeDeclHandler)
-	setStartElementHandler          func(p Parser, handler StartElementHandler)
-	setStartNamespaceDeclHandler    func(p Parser, start StartNamespaceDeclHandler)
-	setUnknownEncodingHandler       func(p Parser, handler UnknownEncodingHandler, encodingHandlerData *T.Void)
-	setUnparsedEntityDeclHandler    func(p Parser, handler UnparsedEntityDeclHandler)
-	setUserData                     func(p Parser, userData *T.Void)
-	setXmlDeclHandler               func(p Parser, xmldecl XmlDeclHandler)
-	stopParser                      func(p Parser, resumable Bool) Status
-	useForeignDTD                   func(p Parser, useDTD Bool) Error
-	useParserAsHandlerArg           func(p Parser)
+	DefaultCurrent                  func(p Parser)
+	ExternalEntityParserCreate      func(p Parser, context, encoding *Char) Parser
+	FreeContentModel                func(p Parser, model *Content)
+	GetBase                         func(p Parser) string
+	GetBuffer                       func(p Parser, leng int) *T.Void
+	GetCurrentByteCount             func(p Parser) int
+	GetCurrentByteIndex             func(p Parser) Index
+	GetCurrentColumnNumber          func(p Parser) Size
+	GetCurrentLineNumber            func(p Parser) Size
+	GetErrorCode                    func(p Parser) Error
+	GetIdAttributeIndex             func(p Parser) int
+	GetInputContext                 func(p Parser, offset, size *int) string
+	GetParsingStatus                func(p Parser, status *ParsingStatus)
+	GetSpecifiedAttributeCount      func(p Parser) int
+	MemFree                         func(p Parser, ptr *T.Void)
+	MemMalloc                       func(p Parser, size T.Size_t) *T.Void
+	MemRealloc                      func(p Parser, ptr *T.Void, size T.Size_t) *T.Void
+	Parse                           func(p Parser, s *T.Char, leng, isFinal int) Status
+	ParseBuffer                     func(p Parser, leng, isFinal int) Status
+	ParserFree                      func(p Parser)
+	ParserReset                     func(p Parser, encoding *Char) Bool
+	ResumeParser                    func(p Parser) Status
+	SetAttlistDeclHandler           func(p Parser, attdecl AttlistDeclHandler)
+	SetBase                         func(p Parser, base string) Status
+	SetCdataSectionHandler          func(p Parser, start StartCdataSectionHandler, end EndCdataSectionHandler)
+	SetCharacterDataHandler         func(p Parser, handler CharacterDataHandler)
+	SetCommentHandler               func(p Parser, handler CommentHandler)
+	SetDefaultHandler               func(p Parser, handler DefaultHandler)
+	SetDefaultHandlerExpand         func(p Parser, handler DefaultHandler)
+	SetDoctypeDeclHandler           func(p Parser, start StartDoctypeDeclHandler, end EndDoctypeDeclHandler)
+	SetElementDeclHandler           func(p Parser, eldecl ElementDeclHandler)
+	SetElementHandler               func(p Parser, start StartElementHandler, end EndElementHandler)
+	SetEncoding                     func(p Parser, encoding string) Status
+	SetEndCdataSectionHandler       func(p Parser, end EndCdataSectionHandler)
+	SetEndDoctypeDeclHandler        func(p Parser, end EndDoctypeDeclHandler)
+	SetEndElementHandler            func(p Parser, handler EndElementHandler)
+	SetEndNamespaceDeclHandler      func(p Parser, end EndNamespaceDeclHandler)
+	SetEntityDeclHandler            func(p Parser, handler EntityDeclHandler)
+	SetExternalEntityRefHandler     func(p Parser, handler ExternalEntityRefHandler)
+	SetExternalEntityRefHandlerArg  func(p Parser, arg *T.Void)
+	SetNamespaceDeclHandler         func(p Parser, start StartNamespaceDeclHandler, end EndNamespaceDeclHandler)
+	SetNotationDeclHandler          func(p Parser, handler NotationDeclHandler)
+	SetNotStandaloneHandler         func(p Parser, handler NotStandaloneHandler)
+	SetParamEntityParsing           func(p Parser, parsing ParamEntityParsing) int
+	SetProcessingInstructionHandler func(p Parser, handler ProcessingInstructionHandler)
+	SetReturnNSTriplet              func(p Parser, do_nst int)
+	SetSkippedEntityHandler         func(p Parser, handler SkippedEntityHandler)
+	SetStartCdataSectionHandler     func(p Parser, start StartCdataSectionHandler)
+	SetStartDoctypeDeclHandler      func(p Parser, start StartDoctypeDeclHandler)
+	SetStartElementHandler          func(p Parser, handler StartElementHandler)
+	SetStartNamespaceDeclHandler    func(p Parser, start StartNamespaceDeclHandler)
+	SetUnknownEncodingHandler       func(p Parser, handler UnknownEncodingHandler, encodingHandlerData *T.Void)
+	SetUnparsedEntityDeclHandler    func(p Parser, handler UnparsedEntityDeclHandler)
+	SetUserData                     func(p Parser, userData *T.Void)
+	SetXmlDeclHandler               func(p Parser, xmldecl XmlDeclHandler)
+	StopParser                      func(p Parser, resumable Bool) Status
+	UseForeignDTD                   func(p Parser, useDTD Bool) Error
+	UseParserAsHandlerArg           func(p Parser)
 )
 
-func (p Parser) DefaultCurrent() { defaultCurrent(p) }
+func (p Parser) DefaultCurrent() { DefaultCurrent(p) }
 func (p Parser) ExternalEntityParserCreate(context, encoding *Char) Parser {
-	return externalEntityParserCreate(p, context, encoding)
+	return ExternalEntityParserCreate(p, context, encoding)
 }
-func (p Parser) FreeContentModel(model *Content)                  { freeContentModel(p, model) }
-func (p Parser) Base() string                                     { return getBase(p) }
-func (p Parser) Buffer(leng int) *T.Void                          { return getBuffer(p, leng) }
-func (p Parser) CurrentByteCount() int                            { return getCurrentByteCount(p) }
-func (p Parser) CurrentByteIndex() Index                          { return getCurrentByteIndex(p) }
-func (p Parser) CurrentColumnNumber() Size                        { return getCurrentColumnNumber(p) }
-func (p Parser) CurrentLineNumber() Size                          { return getCurrentLineNumber(p) }
-func (p Parser) ErrorCode() Error                                 { return getErrorCode(p) }
-func (p Parser) IdAttributeIndex() int                            { return getIdAttributeIndex(p) }
-func (p Parser) InputContext(offset, size *int) string            { return getInputContext(p, offset, size) }
-func (p Parser) MemFree(ptr *T.Void)                              { memFree(p, ptr) }
-func (p Parser) MemMalloc(size T.Size_t) *T.Void                  { return memMalloc(p, size) }
-func (p Parser) MemRealloc(ptr *T.Void, size T.Size_t) *T.Void    { return memRealloc(p, ptr, size) }
-func (p Parser) Parse(s *T.Char, leng, isFinal int) Status        { return parse(p, s, leng, isFinal) }
-func (p Parser) ParseBuffer(leng, isFinal int) Status             { return parseBuffer(p, leng, isFinal) }
-func (p Parser) ParserFree()                                      { parserFree(p) }
-func (p Parser) ParserReset(encoding *Char) Bool                  { return parserReset(p, encoding) }
-func (p Parser) ParsingStatus(status *ParsingStatus)              { getParsingStatus(p, status) }
-func (p Parser) ResumeParser() Status                             { return resumeParser(p) }
-func (p Parser) SetAttlistDeclHandler(attdecl AttlistDeclHandler) { setAttlistDeclHandler(p, attdecl) }
-func (p Parser) SetBase(base string) Status                       { return setBase(p, base) }
+func (p Parser) FreeContentModel(model *Content)                  { FreeContentModel(p, model) }
+func (p Parser) Base() string                                     { return GetBase(p) }
+func (p Parser) Buffer(leng int) *T.Void                          { return GetBuffer(p, leng) }
+func (p Parser) CurrentByteCount() int                            { return GetCurrentByteCount(p) }
+func (p Parser) CurrentByteIndex() Index                          { return GetCurrentByteIndex(p) }
+func (p Parser) CurrentColumnNumber() Size                        { return GetCurrentColumnNumber(p) }
+func (p Parser) CurrentLineNumber() Size                          { return GetCurrentLineNumber(p) }
+func (p Parser) ErrorCode() Error                                 { return GetErrorCode(p) }
+func (p Parser) IdAttributeIndex() int                            { return GetIdAttributeIndex(p) }
+func (p Parser) InputContext(offset, size *int) string            { return GetInputContext(p, offset, size) }
+func (p Parser) MemFree(ptr *T.Void)                              { MemFree(p, ptr) }
+func (p Parser) MemMalloc(size T.Size_t) *T.Void                  { return MemMalloc(p, size) }
+func (p Parser) MemRealloc(ptr *T.Void, size T.Size_t) *T.Void    { return MemRealloc(p, ptr, size) }
+func (p Parser) Parse(s *T.Char, leng, isFinal int) Status        { return Parse(p, s, leng, isFinal) }
+func (p Parser) ParseBuffer(leng, isFinal int) Status             { return ParseBuffer(p, leng, isFinal) }
+func (p Parser) ParserFree()                                      { ParserFree(p) }
+func (p Parser) ParserReset(encoding *Char) Bool                  { return ParserReset(p, encoding) }
+func (p Parser) ParsingStatus(status *ParsingStatus)              { GetParsingStatus(p, status) }
+func (p Parser) ResumeParser() Status                             { return ResumeParser(p) }
+func (p Parser) SetAttlistDeclHandler(attdecl AttlistDeclHandler) { SetAttlistDeclHandler(p, attdecl) }
+func (p Parser) SetBase(base string) Status                       { return SetBase(p, base) }
 func (p Parser) SetCdataSectionHandler(start StartCdataSectionHandler, end EndCdataSectionHandler) {
-	setCdataSectionHandler(p, start, end)
+	SetCdataSectionHandler(p, start, end)
 }
 func (p Parser) SetCharacterDataHandler(handler CharacterDataHandler) {
-	setCharacterDataHandler(p, handler)
+	SetCharacterDataHandler(p, handler)
 }
-func (p Parser) SetCommentHandler(handler CommentHandler)       { setCommentHandler(p, handler) }
-func (p Parser) SetDefaultHandler(handler DefaultHandler)       { setDefaultHandler(p, handler) }
-func (p Parser) SetDefaultHandlerExpand(handler DefaultHandler) { setDefaultHandlerExpand(p, handler) }
+func (p Parser) SetCommentHandler(handler CommentHandler)       { SetCommentHandler(p, handler) }
+func (p Parser) SetDefaultHandler(handler DefaultHandler)       { SetDefaultHandler(p, handler) }
+func (p Parser) SetDefaultHandlerExpand(handler DefaultHandler) { SetDefaultHandlerExpand(p, handler) }
 func (p Parser) SetDoctypeDeclHandler(start StartDoctypeDeclHandler, end EndDoctypeDeclHandler) {
-	setDoctypeDeclHandler(p, start, end)
+	SetDoctypeDeclHandler(p, start, end)
 }
-func (p Parser) SetElementDeclHandler(eldecl ElementDeclHandler) { setElementDeclHandler(p, eldecl) }
+func (p Parser) SetElementDeclHandler(eldecl ElementDeclHandler) { SetElementDeclHandler(p, eldecl) }
 func (p Parser) SetElementHandler(start StartElementHandler, end EndElementHandler) {
-	setElementHandler(p, start, end)
+	SetElementHandler(p, start, end)
 }
-func (p Parser) SetEncoding(encoding string) Status { return setEncoding(p, encoding) }
+func (p Parser) SetEncoding(encoding string) Status { return SetEncoding(p, encoding) }
 func (p Parser) SetEndCdataSectionHandler(end EndCdataSectionHandler) {
-	setEndCdataSectionHandler(p, end)
+	SetEndCdataSectionHandler(p, end)
 }
-func (p Parser) SetEndDoctypeDeclHandler(end EndDoctypeDeclHandler) { setEndDoctypeDeclHandler(p, end) }
-func (p Parser) SetEndElementHandler(handler EndElementHandler)     { setEndElementHandler(p, handler) }
+func (p Parser) SetEndDoctypeDeclHandler(end EndDoctypeDeclHandler) { SetEndDoctypeDeclHandler(p, end) }
+func (p Parser) SetEndElementHandler(handler EndElementHandler)     { SetEndElementHandler(p, handler) }
 func (p Parser) SetEndNamespaceDeclHandler(end EndNamespaceDeclHandler) {
-	setEndNamespaceDeclHandler(p, end)
+	SetEndNamespaceDeclHandler(p, end)
 }
-func (p Parser) SetEntityDeclHandler(handler EntityDeclHandler) { setEntityDeclHandler(p, handler) }
+func (p Parser) SetEntityDeclHandler(handler EntityDeclHandler) { SetEntityDeclHandler(p, handler) }
 func (p Parser) SetExternalEntityRefHandler(handler ExternalEntityRefHandler) {
-	setExternalEntityRefHandler(p, handler)
+	SetExternalEntityRefHandler(p, handler)
 }
-func (p Parser) SetExternalEntityRefHandlerArg(arg *T.Void) { setExternalEntityRefHandlerArg(p, arg) }
+func (p Parser) SetExternalEntityRefHandlerArg(arg *T.Void) { SetExternalEntityRefHandlerArg(p, arg) }
 func (p Parser) SetNamespaceDeclHandler(start StartNamespaceDeclHandler, end EndNamespaceDeclHandler) {
-	setNamespaceDeclHandler(p, start, end)
+	SetNamespaceDeclHandler(p, start, end)
 }
 func (p Parser) SetNotationDeclHandler(handler NotationDeclHandler) {
-	setNotationDeclHandler(p, handler)
+	SetNotationDeclHandler(p, handler)
 }
 func (p Parser) SetNotStandaloneHandler(handler NotStandaloneHandler) {
-	setNotStandaloneHandler(p, handler)
+	SetNotStandaloneHandler(p, handler)
 }
 func (p Parser) SetParamEntityParsing(parsing ParamEntityParsing) int {
-	return setParamEntityParsing(p, parsing)
+	return SetParamEntityParsing(p, parsing)
 }
 func (p Parser) SetProcessingInstructionHandler(handler ProcessingInstructionHandler) {
-	setProcessingInstructionHandler(p, handler)
+	SetProcessingInstructionHandler(p, handler)
 }
-func (p Parser) SetReturnNSTriplet(do_nst int) { setReturnNSTriplet(p, do_nst) }
+func (p Parser) SetReturnNSTriplet(do_nst int) { SetReturnNSTriplet(p, do_nst) }
 func (p Parser) SetSkippedEntityHandler(handler SkippedEntityHandler) {
-	setSkippedEntityHandler(p, handler)
+	SetSkippedEntityHandler(p, handler)
 }
 func (p Parser) SetStartCdataSectionHandler(start StartCdataSectionHandler) {
-	setStartCdataSectionHandler(p, start)
+	SetStartCdataSectionHandler(p, start)
 }
 func (p Parser) SetStartDoctypeDeclHandler(start StartDoctypeDeclHandler) {
-	setStartDoctypeDeclHandler(p, start)
+	SetStartDoctypeDeclHandler(p, start)
 }
 func (p Parser) SetStartElementHandler(handler StartElementHandler) {
-	setStartElementHandler(p, handler)
+	SetStartElementHandler(p, handler)
 }
 func (p Parser) SetStartNamespaceDeclHandler(start StartNamespaceDeclHandler) {
-	setStartNamespaceDeclHandler(p, start)
+	SetStartNamespaceDeclHandler(p, start)
 }
 func (p Parser) SetUnknownEncodingHandler(handler UnknownEncodingHandler, encodingHandlerData *T.Void) {
-	setUnknownEncodingHandler(p, handler, encodingHandlerData)
+	SetUnknownEncodingHandler(p, handler, encodingHandlerData)
 }
 func (p Parser) SetUnparsedEntityDeclHandler(handler UnparsedEntityDeclHandler) {
-	setUnparsedEntityDeclHandler(p, handler)
+	SetUnparsedEntityDeclHandler(p, handler)
 }
-func (p Parser) SetUserData(userData *T.Void)             { setUserData(p, userData) }
-func (p Parser) SetXmlDeclHandler(xmldecl XmlDeclHandler) { setXmlDeclHandler(p, xmldecl) }
-func (p Parser) SpecifiedAttributeCount() int             { return getSpecifiedAttributeCount(p) }
-func (p Parser) StopParser(resumable Bool) Status         { return stopParser(p, resumable) }
-func (p Parser) UseForeignDTD(useDTD Bool) Error          { return useForeignDTD(p, useDTD) }
-func (p Parser) UseParserAsHandlerArg()                   { useParserAsHandlerArg(p) }
+func (p Parser) SetUserData(userData *T.Void)             { SetUserData(p, userData) }
+func (p Parser) SetXmlDeclHandler(xmldecl XmlDeclHandler) { SetXmlDeclHandler(p, xmldecl) }
+func (p Parser) SpecifiedAttributeCount() int             { return GetSpecifiedAttributeCount(p) }
+func (p Parser) StopParser(resumable Bool) Status         { return StopParser(p, resumable) }
+func (p Parser) UseForeignDTD(useDTD Bool) Error          { return UseForeignDTD(p, useDTD) }
+func (p Parser) UseParserAsHandlerArg()                   { UseParserAsHandlerArg(p) }
 
 var dll = "libexpat-1.dll"
 
 var apiList = outside.Apis{
-	{"XML_DefaultCurrent", &defaultCurrent},
+	{"XML_DefaultCurrent", &DefaultCurrent},
 	{"XML_ErrorString", &ErrorString},
 	{"XML_ExpatVersion", &ExpatVersion},
 	{"XML_ExpatVersionInfo", &ExpatVersionInfo},
-	{"XML_ExternalEntityParserCreate", &externalEntityParserCreate},
-	{"XML_FreeContentModel", &freeContentModel},
-	{"XML_GetBase", &getBase},
-	{"XML_GetBuffer", &getBuffer},
-	{"XML_GetCurrentByteCount", &getCurrentByteCount},
-	{"XML_GetCurrentByteIndex", &getCurrentByteIndex},
-	{"XML_GetCurrentColumnNumber", &getCurrentColumnNumber},
-	{"XML_GetCurrentLineNumber", &getCurrentLineNumber},
-	{"XML_GetErrorCode", &getErrorCode},
+	{"XML_ExternalEntityParserCreate", &ExternalEntityParserCreate},
+	{"XML_FreeContentModel", &FreeContentModel},
+	{"XML_GetBase", &GetBase},
+	{"XML_GetBuffer", &GetBuffer},
+	{"XML_GetCurrentByteCount", &GetCurrentByteCount},
+	{"XML_GetCurrentByteIndex", &GetCurrentByteIndex},
+	{"XML_GetCurrentColumnNumber", &GetCurrentColumnNumber},
+	{"XML_GetCurrentLineNumber", &GetCurrentLineNumber},
+	{"XML_GetErrorCode", &GetErrorCode},
 	{"XML_GetFeatureList", &GetFeatureList},
-	{"XML_GetIdAttributeIndex", &getIdAttributeIndex},
-	{"XML_GetInputContext", &getInputContext},
-	{"XML_GetParsingStatus", &getParsingStatus},
-	{"XML_GetSpecifiedAttributeCount", &getSpecifiedAttributeCount},
-	{"XML_MemFree", &memFree},
-	{"XML_MemMalloc", &memMalloc},
-	{"XML_MemRealloc", &memRealloc},
-	{"XML_Parse", &parse},
-	{"XML_ParseBuffer", &parseBuffer},
+	{"XML_GetIdAttributeIndex", &GetIdAttributeIndex},
+	{"XML_GetInputContext", &GetInputContext},
+	{"XML_GetParsingStatus", &GetParsingStatus},
+	{"XML_GetSpecifiedAttributeCount", &GetSpecifiedAttributeCount},
+	{"XML_MemFree", &MemFree},
+	{"XML_MemMalloc", &MemMalloc},
+	{"XML_MemRealloc", &MemRealloc},
+	{"XML_Parse", &Parse},
+	{"XML_ParseBuffer", &ParseBuffer},
 	{"XML_ParserCreate", &ParserCreate},
 	{"XML_ParserCreateNS", &ParserCreateNS},
 	{"XML_ParserCreate_MM", &ParserCreateMM},
-	{"XML_ParserFree", &parserFree},
-	{"XML_ParserReset", &parserReset},
-	{"XML_ResumeParser", &resumeParser},
-	{"XML_SetAttlistDeclHandler", &setAttlistDeclHandler},
-	{"XML_SetBase", &setBase},
-	{"XML_SetCdataSectionHandler", &setCdataSectionHandler},
-	{"XML_SetCharacterDataHandler", &setCharacterDataHandler},
-	{"XML_SetCommentHandler", &setCommentHandler},
-	{"XML_SetDefaultHandler", &setDefaultHandler},
-	{"XML_SetDefaultHandlerExpand", &setDefaultHandlerExpand},
-	{"XML_SetDoctypeDeclHandler", &setDoctypeDeclHandler},
-	{"XML_SetElementDeclHandler", &setElementDeclHandler},
-	{"XML_SetElementHandler", &setElementHandler},
-	{"XML_SetEncoding", &setEncoding},
-	{"XML_SetEndCdataSectionHandler", &setEndCdataSectionHandler},
-	{"XML_SetEndDoctypeDeclHandler", &setEndDoctypeDeclHandler},
-	{"XML_SetEndElementHandler", &setEndElementHandler},
-	{"XML_SetEndNamespaceDeclHandler", &setEndNamespaceDeclHandler},
-	{"XML_SetEntityDeclHandler", &setEntityDeclHandler},
-	{"XML_SetExternalEntityRefHandler", &setExternalEntityRefHandler},
-	{"XML_SetExternalEntityRefHandlerArg", &setExternalEntityRefHandlerArg},
-	{"XML_SetNamespaceDeclHandler", &setNamespaceDeclHandler},
-	{"XML_SetNotStandaloneHandler", &setNotStandaloneHandler},
-	{"XML_SetNotationDeclHandler", &setNotationDeclHandler},
-	{"XML_SetParamEntityParsing", &setParamEntityParsing},
-	{"XML_SetProcessingInstructionHandler", &setProcessingInstructionHandler},
-	{"XML_SetReturnNSTriplet", &setReturnNSTriplet},
-	{"XML_SetSkippedEntityHandler", &setSkippedEntityHandler},
-	{"XML_SetStartCdataSectionHandler", &setStartCdataSectionHandler},
-	{"XML_SetStartDoctypeDeclHandler", &setStartDoctypeDeclHandler},
-	{"XML_SetStartElementHandler", &setStartElementHandler},
-	{"XML_SetStartNamespaceDeclHandler", &setStartNamespaceDeclHandler},
-	{"XML_SetUnknownEncodingHandler", &setUnknownEncodingHandler},
-	{"XML_SetUnparsedEntityDeclHandler", &setUnparsedEntityDeclHandler},
-	{"XML_SetUserData", &setUserData},
-	{"XML_SetXmlDeclHandler", &setXmlDeclHandler},
-	{"XML_StopParser", &stopParser},
-	{"XML_UseForeignDTD", &useForeignDTD},
-	{"XML_UseParserAsHandlerArg", &useParserAsHandlerArg},
+	{"XML_ParserFree", &ParserFree},
+	{"XML_ParserReset", &ParserReset},
+	{"XML_ResumeParser", &ResumeParser},
+	{"XML_SetAttlistDeclHandler", &SetAttlistDeclHandler},
+	{"XML_SetBase", &SetBase},
+	{"XML_SetCdataSectionHandler", &SetCdataSectionHandler},
+	{"XML_SetCharacterDataHandler", &SetCharacterDataHandler},
+	{"XML_SetCommentHandler", &SetCommentHandler},
+	{"XML_SetDefaultHandler", &SetDefaultHandler},
+	{"XML_SetDefaultHandlerExpand", &SetDefaultHandlerExpand},
+	{"XML_SetDoctypeDeclHandler", &SetDoctypeDeclHandler},
+	{"XML_SetElementDeclHandler", &SetElementDeclHandler},
+	{"XML_SetElementHandler", &SetElementHandler},
+	{"XML_SetEncoding", &SetEncoding},
+	{"XML_SetEndCdataSectionHandler", &SetEndCdataSectionHandler},
+	{"XML_SetEndDoctypeDeclHandler", &SetEndDoctypeDeclHandler},
+	{"XML_SetEndElementHandler", &SetEndElementHandler},
+	{"XML_SetEndNamespaceDeclHandler", &SetEndNamespaceDeclHandler},
+	{"XML_SetEntityDeclHandler", &SetEntityDeclHandler},
+	{"XML_SetExternalEntityRefHandler", &SetExternalEntityRefHandler},
+	{"XML_SetExternalEntityRefHandlerArg", &SetExternalEntityRefHandlerArg},
+	{"XML_SetNamespaceDeclHandler", &SetNamespaceDeclHandler},
+	{"XML_SetNotStandaloneHandler", &SetNotStandaloneHandler},
+	{"XML_SetNotationDeclHandler", &SetNotationDeclHandler},
+	{"XML_SetParamEntityParsing", &SetParamEntityParsing},
+	{"XML_SetProcessingInstructionHandler", &SetProcessingInstructionHandler},
+	{"XML_SetReturnNSTriplet", &SetReturnNSTriplet},
+	{"XML_SetSkippedEntityHandler", &SetSkippedEntityHandler},
+	{"XML_SetStartCdataSectionHandler", &SetStartCdataSectionHandler},
+	{"XML_SetStartDoctypeDeclHandler", &SetStartDoctypeDeclHandler},
+	{"XML_SetStartElementHandler", &SetStartElementHandler},
+	{"XML_SetStartNamespaceDeclHandler", &SetStartNamespaceDeclHandler},
+	{"XML_SetUnknownEncodingHandler", &SetUnknownEncodingHandler},
+	{"XML_SetUnparsedEntityDeclHandler", &SetUnparsedEntityDeclHandler},
+	{"XML_SetUserData", &SetUserData},
+	{"XML_SetXmlDeclHandler", &SetXmlDeclHandler},
+	{"XML_StopParser", &StopParser},
+	{"XML_UseForeignDTD", &UseForeignDTD},
+	{"XML_UseParserAsHandlerArg", &UseParserAsHandlerArg},
 }

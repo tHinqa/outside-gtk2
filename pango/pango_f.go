@@ -6,6 +6,7 @@ package pango
 import (
 	F "github.com/tHinqa/outside-gtk2/fontconfig"
 	FT "github.com/tHinqa/outside-gtk2/freetype2"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -15,13 +16,13 @@ type FcDecoder struct{ parent O.Object }
 var (
 	FcDecoderGetType func() O.Type
 
-	fcDecoderGetCharset func(f *FcDecoder, fcfont *FcFont) *F.CharSet
-	fcDecoderGetGlyph   func(f *FcDecoder, fcfont *FcFont, wc T.GUint32) Glyph
+	FcDecoderGetCharset func(f *FcDecoder, fcfont *FcFont) *F.CharSet
+	FcDecoderGetGlyph   func(f *FcDecoder, fcfont *FcFont, wc T.GUint32) Glyph
 )
 
-func (f *FcDecoder) GetCharset(fcfont *FcFont) *F.CharSet { return fcDecoderGetCharset(f, fcfont) }
+func (f *FcDecoder) GetCharset(fcfont *FcFont) *F.CharSet { return FcDecoderGetCharset(f, fcfont) }
 func (f *FcDecoder) GetGlyph(fcfont *FcFont, wc T.GUint32) Glyph {
-	return fcDecoderGetGlyph(f, fcfont, wc)
+	return FcDecoderGetGlyph(f, fcfont, wc)
 }
 
 type FcDecoderFindFunc func(
@@ -34,7 +35,7 @@ type FcFont struct {
 	Priv          T.Gpointer
 	Matrix        Matrix
 	Description   *FontDescription
-	MetricsByLang *T.GSList
+	MetricsByLang *L.SList
 	Bits          uint
 	// IsHinted : 1
 	// IsTransformed : 1
@@ -44,32 +45,32 @@ var (
 	FcFontGetType                func() O.Type
 	FcFontDescriptionFromPattern func(pattern *F.Pattern, includeSize bool) *FontDescription
 
-	fcFontGetGlyph        func(f *FcFont, wc T.Gunichar) uint
-	fcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
-	fcFontHasChar         func(f *FcFont, wc T.Gunichar) bool
-	fcFontKernGlyphs      func(f *FcFont, glyphs *GlyphString)
-	fcFontLockFace        func(f *FcFont) FT.Face
-	fcFontUnlockFace      func(f *FcFont)
+	FcFontGetGlyph        func(f *FcFont, wc T.Gunichar) uint
+	FcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
+	FcFontHasChar         func(f *FcFont, wc T.Gunichar) bool
+	FcFontKernGlyphs      func(f *FcFont, glyphs *GlyphString)
+	FcFontLockFace        func(f *FcFont) FT.Face
+	FcFontUnlockFace      func(f *FcFont)
 )
 
-func (f *FcFont) GetGlyph(wc T.Gunichar) uint         { return fcFontGetGlyph(f, wc) }
-func (f *FcFont) GetUnknownGlyph(wc T.Gunichar) Glyph { return fcFontGetUnknownGlyph(f, wc) }
-func (f *FcFont) HasChar(wc T.Gunichar) bool          { return fcFontHasChar(f, wc) }
-func (f *FcFont) KernGlyphs(glyphs *GlyphString)      { fcFontKernGlyphs(f, glyphs) }
-func (f *FcFont) LockFace() FT.Face                   { return fcFontLockFace(f) }
-func (f *FcFont) UnlockFace()                         { fcFontUnlockFace(f) }
+func (f *FcFont) GetGlyph(wc T.Gunichar) uint         { return FcFontGetGlyph(f, wc) }
+func (f *FcFont) GetUnknownGlyph(wc T.Gunichar) Glyph { return FcFontGetUnknownGlyph(f, wc) }
+func (f *FcFont) HasChar(wc T.Gunichar) bool          { return FcFontHasChar(f, wc) }
+func (f *FcFont) KernGlyphs(glyphs *GlyphString)      { FcFontKernGlyphs(f, glyphs) }
+func (f *FcFont) LockFace() FT.Face                   { return FcFontLockFace(f) }
+func (f *FcFont) UnlockFace()                         { FcFontUnlockFace(f) }
 
 type FcFontKey struct{}
 
 var (
-	fcFontKeyGetContextKey func(f *FcFontKey) T.Gpointer
-	fcFontKeyGetMatrix     func(f *FcFontKey) *Matrix
-	fcFontKeyGetPattern    func(f *FcFontKey) *F.Pattern
+	FcFontKeyGetContextKey func(f *FcFontKey) T.Gpointer
+	FcFontKeyGetMatrix     func(f *FcFontKey) *Matrix
+	FcFontKeyGetPattern    func(f *FcFontKey) *F.Pattern
 )
 
-func (f *FcFontKey) GetContextKey() T.Gpointer { return fcFontKeyGetContextKey(f) }
-func (f *FcFontKey) GetMatrix() *Matrix        { return fcFontKeyGetMatrix(f) }
-func (f *FcFontKey) GetPattern() *F.Pattern    { return fcFontKeyGetPattern(f) }
+func (f *FcFontKey) GetContextKey() T.Gpointer { return FcFontKeyGetContextKey(f) }
+func (f *FcFontKey) GetMatrix() *Matrix        { return FcFontKeyGetMatrix(f) }
+func (f *FcFontKey) GetPattern() *F.Pattern    { return FcFontKeyGetPattern(f) }
 
 type FcFontMap struct {
 	Parent FontMap
@@ -79,40 +80,40 @@ type FcFontMap struct {
 var (
 	FcFontMapGetType func() O.Type
 
-	fcFontMapAddDecoderFindFunc func(f *FcFontMap, findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify)
-	fcFontMapCacheClear         func(f *FcFontMap)
-	fcFontMapCreateContext      func(f *FcFontMap) *Context
-	fcFontMapFindDecoder        func(f *FcFontMap, pattern *F.Pattern) *FcDecoder
-	fcFontMapShutdown           func(f *FcFontMap)
+	FcFontMapAddDecoderFindFunc func(f *FcFontMap, findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify)
+	FcFontMapCacheClear         func(f *FcFontMap)
+	FcFontMapCreateContext      func(f *FcFontMap) *Context
+	FcFontMapFindDecoder        func(f *FcFontMap, pattern *F.Pattern) *FcDecoder
+	FcFontMapShutdown           func(f *FcFontMap)
 )
 
 func (f *FcFontMap) AddDecoderFindFunc(findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify) {
-	fcFontMapAddDecoderFindFunc(f, findfunc, userData, dnotify)
+	FcFontMapAddDecoderFindFunc(f, findfunc, userData, dnotify)
 }
-func (f *FcFontMap) CacheClear()             { fcFontMapCacheClear(f) }
-func (f *FcFontMap) CreateContext() *Context { return fcFontMapCreateContext(f) }
+func (f *FcFontMap) CacheClear()             { FcFontMapCacheClear(f) }
+func (f *FcFontMap) CreateContext() *Context { return FcFontMapCreateContext(f) }
 func (f *FcFontMap) FindDecoder(pattern *F.Pattern) *FcDecoder {
-	return fcFontMapFindDecoder(f, pattern)
+	return FcFontMapFindDecoder(f, pattern)
 }
-func (f *FcFontMap) Shutdown() { fcFontMapShutdown(f) }
+func (f *FcFontMap) Shutdown() { FcFontMapShutdown(f) }
 
 type FcFontsetKey struct{}
 
 var (
-	fcFontsetKeyGetAbsoluteSize func(f *FcFontsetKey) float64
-	fcFontsetKeyGetContextKey   func(f *FcFontsetKey) T.Gpointer
-	fcFontsetKeyGetDescription  func(f *FcFontsetKey) *FontDescription
-	fcFontsetKeyGetLanguage     func(f *FcFontsetKey) *Language
-	fcFontsetKeyGetMatrix       func(f *FcFontsetKey) *Matrix
-	fcFontsetKeyGetResolution   func(f *FcFontsetKey) float64
+	FcFontsetKeyGetAbsoluteSize func(f *FcFontsetKey) float64
+	FcFontsetKeyGetContextKey   func(f *FcFontsetKey) T.Gpointer
+	FcFontsetKeyGetDescription  func(f *FcFontsetKey) *FontDescription
+	FcFontsetKeyGetLanguage     func(f *FcFontsetKey) *Language
+	FcFontsetKeyGetMatrix       func(f *FcFontsetKey) *Matrix
+	FcFontsetKeyGetResolution   func(f *FcFontsetKey) float64
 )
 
-func (f *FcFontsetKey) GetAbsoluteSize() float64         { return fcFontsetKeyGetAbsoluteSize(f) }
-func (f *FcFontsetKey) GetContextKey() T.Gpointer        { return fcFontsetKeyGetContextKey(f) }
-func (f *FcFontsetKey) GetDescription() *FontDescription { return fcFontsetKeyGetDescription(f) }
-func (f *FcFontsetKey) GetLanguage() *Language           { return fcFontsetKeyGetLanguage(f) }
-func (f *FcFontsetKey) GetMatrix() *Matrix               { return fcFontsetKeyGetMatrix(f) }
-func (f *FcFontsetKey) GetResolution() float64           { return fcFontsetKeyGetResolution(f) }
+func (f *FcFontsetKey) GetAbsoluteSize() float64         { return FcFontsetKeyGetAbsoluteSize(f) }
+func (f *FcFontsetKey) GetContextKey() T.Gpointer        { return FcFontsetKeyGetContextKey(f) }
+func (f *FcFontsetKey) GetDescription() *FontDescription { return FcFontsetKeyGetDescription(f) }
+func (f *FcFontsetKey) GetLanguage() *Language           { return FcFontsetKeyGetLanguage(f) }
+func (f *FcFontsetKey) GetMatrix() *Matrix               { return FcFontsetKeyGetMatrix(f) }
+func (f *FcFontsetKey) GetResolution() float64           { return FcFontsetKeyGetResolution(f) }
 
 var (
 	FindBaseDir           func(text string, length int) Direction
@@ -125,18 +126,18 @@ type Font struct{}
 var (
 	FontGetType func() O.Type
 
-	fontFindShaper  func(f *Font, language *Language, ch T.GUint32) *EngineShape
-	fontGetCoverage func(f *Font, language *Language) *Coverage
-	fontGetFontMap  func(f *Font) *FontMap
-	fontGetMetrics  func(f *Font, language *Language) *FontMetrics
+	FontFindShaper  func(f *Font, language *Language, ch T.GUint32) *EngineShape
+	FontGetCoverage func(f *Font, language *Language) *Coverage
+	FontGetFontMap  func(f *Font) *FontMap
+	FontGetMetrics  func(f *Font, language *Language) *FontMetrics
 )
 
 func (f *Font) FindShaper(language *Language, ch T.GUint32) *EngineShape {
-	return fontFindShaper(f, language, ch)
+	return FontFindShaper(f, language, ch)
 }
-func (f *Font) GetCoverage(language *Language) *Coverage   { return fontGetCoverage(f, language) }
-func (f *Font) GetFontMap() *FontMap                       { return fontGetFontMap(f) }
-func (f *Font) GetMetrics(language *Language) *FontMetrics { return fontGetMetrics(f, language) }
+func (f *Font) GetCoverage(language *Language) *Coverage   { return FontGetCoverage(f, language) }
+func (f *Font) GetFontMap() *FontMap                       { return FontGetFontMap(f) }
+func (f *Font) GetMetrics(language *Language) *FontMetrics { return FontGetMetrics(f, language) }
 
 type FontDescription struct{}
 
@@ -150,105 +151,105 @@ var (
 	FontDescriptionsFree         func(descs **FontDescription, nDescs int)
 	FontGetGlyphExtents          func(font *Font, glyph Glyph, inkRect *Rectangle, logicalRect *Rectangle)
 
-	fontDescriptionBetterMatch       func(f *FontDescription, oldMatch *FontDescription, newMatch *FontDescription) bool
-	fontDescriptionCopy              func(f *FontDescription) *FontDescription
-	fontDescriptionCopyStatic        func(f *FontDescription) *FontDescription
-	fontDescriptionEqual             func(f *FontDescription, desc2 *FontDescription) bool
-	fontDescriptionFree              func(f *FontDescription)
-	fontDescriptionGetFamily         func(f *FontDescription) string
-	fontDescriptionGetGravity        func(f *FontDescription) Gravity
-	fontDescriptionGetSetFields      func(f *FontDescription) FontMask
-	fontDescriptionGetSize           func(f *FontDescription) int
-	fontDescriptionGetSizeIsAbsolute func(f *FontDescription) bool
-	fontDescriptionGetStretch        func(f *FontDescription) Stretch
-	fontDescriptionGetStyle          func(f *FontDescription) Style
-	fontDescriptionGetVariant        func(f *FontDescription) Variant
-	fontDescriptionGetWeight         func(f *FontDescription) Weight
-	fontDescriptionHash              func(f *FontDescription) uint
-	fontDescriptionMerge             func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
-	fontDescriptionMergeStatic       func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
-	fontDescriptionSetAbsoluteSize   func(f *FontDescription, size float64)
-	fontDescriptionSetFamily         func(f *FontDescription, family string)
-	fontDescriptionSetFamilyStatic   func(f *FontDescription, family string)
-	fontDescriptionSetGravity        func(f *FontDescription, gravity Gravity)
-	fontDescriptionSetSize           func(f *FontDescription, size int)
-	fontDescriptionSetStretch        func(f *FontDescription, stretch Stretch)
-	fontDescriptionSetStyle          func(f *FontDescription, style Style)
-	fontDescriptionSetVariant        func(f *FontDescription, variant Variant)
-	fontDescriptionSetWeight         func(f *FontDescription, weight Weight)
-	fontDescriptionToFilename        func(f *FontDescription) string
-	fontDescriptionToString          func(f *FontDescription) string
-	fontDescriptionUnsetFields       func(f *FontDescription, toUnset FontMask)
+	FontDescriptionBetterMatch       func(f *FontDescription, oldMatch *FontDescription, newMatch *FontDescription) bool
+	FontDescriptionCopy              func(f *FontDescription) *FontDescription
+	FontDescriptionCopyStatic        func(f *FontDescription) *FontDescription
+	FontDescriptionEqual             func(f *FontDescription, desc2 *FontDescription) bool
+	FontDescriptionFree              func(f *FontDescription)
+	FontDescriptionGetFamily         func(f *FontDescription) string
+	FontDescriptionGetGravity        func(f *FontDescription) Gravity
+	FontDescriptionGetSetFields      func(f *FontDescription) FontMask
+	FontDescriptionGetSize           func(f *FontDescription) int
+	FontDescriptionGetSizeIsAbsolute func(f *FontDescription) bool
+	FontDescriptionGetStretch        func(f *FontDescription) Stretch
+	FontDescriptionGetStyle          func(f *FontDescription) Style
+	FontDescriptionGetVariant        func(f *FontDescription) Variant
+	FontDescriptionGetWeight         func(f *FontDescription) Weight
+	FontDescriptionHash              func(f *FontDescription) uint
+	FontDescriptionMerge             func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
+	FontDescriptionMergeStatic       func(f *FontDescription, descToMerge *FontDescription, replaceExisting bool)
+	FontDescriptionSetAbsoluteSize   func(f *FontDescription, size float64)
+	FontDescriptionSetFamily         func(f *FontDescription, family string)
+	FontDescriptionSetFamilyStatic   func(f *FontDescription, family string)
+	FontDescriptionSetGravity        func(f *FontDescription, gravity Gravity)
+	FontDescriptionSetSize           func(f *FontDescription, size int)
+	FontDescriptionSetStretch        func(f *FontDescription, stretch Stretch)
+	FontDescriptionSetStyle          func(f *FontDescription, style Style)
+	FontDescriptionSetVariant        func(f *FontDescription, variant Variant)
+	FontDescriptionSetWeight         func(f *FontDescription, weight Weight)
+	FontDescriptionToFilename        func(f *FontDescription) string
+	FontDescriptionToString          func(f *FontDescription) string
+	FontDescriptionUnsetFields       func(f *FontDescription, toUnset FontMask)
 )
 
 func (f *FontDescription) BetterMatch(oldMatch *FontDescription, newMatch *FontDescription) bool {
-	return fontDescriptionBetterMatch(f, oldMatch, newMatch)
+	return FontDescriptionBetterMatch(f, oldMatch, newMatch)
 }
-func (f *FontDescription) Copy() *FontDescription       { return fontDescriptionCopy(f) }
-func (f *FontDescription) CopyStatic() *FontDescription { return fontDescriptionCopyStatic(f) }
+func (f *FontDescription) Copy() *FontDescription       { return FontDescriptionCopy(f) }
+func (f *FontDescription) CopyStatic() *FontDescription { return FontDescriptionCopyStatic(f) }
 func (f *FontDescription) Equal(desc2 *FontDescription) bool {
-	return fontDescriptionEqual(f, desc2)
+	return FontDescriptionEqual(f, desc2)
 }
-func (f *FontDescription) Free()                   { fontDescriptionFree(f) }
-func (f *FontDescription) GetFamily() string       { return fontDescriptionGetFamily(f) }
-func (f *FontDescription) GetGravity() Gravity     { return fontDescriptionGetGravity(f) }
-func (f *FontDescription) GetSetFields() FontMask  { return fontDescriptionGetSetFields(f) }
-func (f *FontDescription) GetSize() int            { return fontDescriptionGetSize(f) }
-func (f *FontDescription) GetSizeIsAbsolute() bool { return fontDescriptionGetSizeIsAbsolute(f) }
-func (f *FontDescription) GetStretch() Stretch     { return fontDescriptionGetStretch(f) }
-func (f *FontDescription) GetStyle() Style         { return fontDescriptionGetStyle(f) }
-func (f *FontDescription) GetVariant() Variant     { return fontDescriptionGetVariant(f) }
-func (f *FontDescription) GetWeight() Weight       { return fontDescriptionGetWeight(f) }
-func (f *FontDescription) Hash() uint              { return fontDescriptionHash(f) }
+func (f *FontDescription) Free()                   { FontDescriptionFree(f) }
+func (f *FontDescription) GetFamily() string       { return FontDescriptionGetFamily(f) }
+func (f *FontDescription) GetGravity() Gravity     { return FontDescriptionGetGravity(f) }
+func (f *FontDescription) GetSetFields() FontMask  { return FontDescriptionGetSetFields(f) }
+func (f *FontDescription) GetSize() int            { return FontDescriptionGetSize(f) }
+func (f *FontDescription) GetSizeIsAbsolute() bool { return FontDescriptionGetSizeIsAbsolute(f) }
+func (f *FontDescription) GetStretch() Stretch     { return FontDescriptionGetStretch(f) }
+func (f *FontDescription) GetStyle() Style         { return FontDescriptionGetStyle(f) }
+func (f *FontDescription) GetVariant() Variant     { return FontDescriptionGetVariant(f) }
+func (f *FontDescription) GetWeight() Weight       { return FontDescriptionGetWeight(f) }
+func (f *FontDescription) Hash() uint              { return FontDescriptionHash(f) }
 func (f *FontDescription) Merge(descToMerge *FontDescription, replaceExisting bool) {
-	fontDescriptionMerge(f, descToMerge, replaceExisting)
+	FontDescriptionMerge(f, descToMerge, replaceExisting)
 }
 func (f *FontDescription) MergeStatic(descToMerge *FontDescription, replaceExisting bool) {
-	fontDescriptionMergeStatic(f, descToMerge, replaceExisting)
+	FontDescriptionMergeStatic(f, descToMerge, replaceExisting)
 }
-func (f *FontDescription) SetAbsoluteSize(size float64)  { fontDescriptionSetAbsoluteSize(f, size) }
-func (f *FontDescription) SetFamily(family string)       { fontDescriptionSetFamily(f, family) }
-func (f *FontDescription) SetFamilyStatic(family string) { fontDescriptionSetFamilyStatic(f, family) }
-func (f *FontDescription) SetGravity(gravity Gravity)    { fontDescriptionSetGravity(f, gravity) }
-func (f *FontDescription) SetSize(size int)              { fontDescriptionSetSize(f, size) }
-func (f *FontDescription) SetStretch(stretch Stretch)    { fontDescriptionSetStretch(f, stretch) }
-func (f *FontDescription) SetStyle(style Style)          { fontDescriptionSetStyle(f, style) }
-func (f *FontDescription) SetVariant(variant Variant)    { fontDescriptionSetVariant(f, variant) }
-func (f *FontDescription) SetWeight(weight Weight)       { fontDescriptionSetWeight(f, weight) }
-func (f *FontDescription) ToFilename() string            { return fontDescriptionToFilename(f) }
-func (f *FontDescription) ToString() string              { return fontDescriptionToString(f) }
-func (f *FontDescription) UnsetFields(toUnset FontMask)  { fontDescriptionUnsetFields(f, toUnset) }
+func (f *FontDescription) SetAbsoluteSize(size float64)  { FontDescriptionSetAbsoluteSize(f, size) }
+func (f *FontDescription) SetFamily(family string)       { FontDescriptionSetFamily(f, family) }
+func (f *FontDescription) SetFamilyStatic(family string) { FontDescriptionSetFamilyStatic(f, family) }
+func (f *FontDescription) SetGravity(gravity Gravity)    { FontDescriptionSetGravity(f, gravity) }
+func (f *FontDescription) SetSize(size int)              { FontDescriptionSetSize(f, size) }
+func (f *FontDescription) SetStretch(stretch Stretch)    { FontDescriptionSetStretch(f, stretch) }
+func (f *FontDescription) SetStyle(style Style)          { FontDescriptionSetStyle(f, style) }
+func (f *FontDescription) SetVariant(variant Variant)    { FontDescriptionSetVariant(f, variant) }
+func (f *FontDescription) SetWeight(weight Weight)       { FontDescriptionSetWeight(f, weight) }
+func (f *FontDescription) ToFilename() string            { return FontDescriptionToFilename(f) }
+func (f *FontDescription) ToString() string              { return FontDescriptionToString(f) }
+func (f *FontDescription) UnsetFields(toUnset FontMask)  { FontDescriptionUnsetFields(f, toUnset) }
 
 type FontFace struct{}
 
 var (
 	FontFaceGetType func() O.Type
 
-	fontFaceDescribe      func(f *FontFace) *FontDescription
-	fontFaceGetFaceName   func(f *FontFace) string
-	fontFaceIsSynthesized func(f *FontFace) bool
-	fontFaceListSizes     func(f *FontFace, sizes **int, nSizes *int)
+	FontFaceDescribe      func(f *FontFace) *FontDescription
+	FontFaceGetFaceName   func(f *FontFace) string
+	FontFaceIsSynthesized func(f *FontFace) bool
+	FontFaceListSizes     func(f *FontFace, sizes **int, nSizes *int)
 )
 
-func (f *FontFace) Describe() *FontDescription         { return fontFaceDescribe(f) }
-func (f *FontFace) GetFaceName() string                { return fontFaceGetFaceName(f) }
-func (f *FontFace) IsSynthesized() bool                { return fontFaceIsSynthesized(f) }
-func (f *FontFace) ListSizes(sizes **int, nSizes *int) { fontFaceListSizes(f, sizes, nSizes) }
+func (f *FontFace) Describe() *FontDescription         { return FontFaceDescribe(f) }
+func (f *FontFace) GetFaceName() string                { return FontFaceGetFaceName(f) }
+func (f *FontFace) IsSynthesized() bool                { return FontFaceIsSynthesized(f) }
+func (f *FontFace) ListSizes(sizes **int, nSizes *int) { FontFaceListSizes(f, sizes, nSizes) }
 
 type FontFamily struct{}
 
 var (
 	FontFamilyGetType func() O.Type
 
-	fontFamilyGetName     func(f *FontFamily) string
-	fontFamilyIsMonospace func(f *FontFamily) bool
-	fontFamilyListFaces   func(f *FontFamily, faces ***FontFace, nFaces *int)
+	FontFamilyGetName     func(f *FontFamily) string
+	FontFamilyIsMonospace func(f *FontFamily) bool
+	FontFamilyListFaces   func(f *FontFamily, faces ***FontFace, nFaces *int)
 )
 
-func (f *FontFamily) GetName() string   { return fontFamilyGetName(f) }
-func (f *FontFamily) IsMonospace() bool { return fontFamilyIsMonospace(f) }
+func (f *FontFamily) GetName() string   { return FontFamilyGetName(f) }
+func (f *FontFamily) IsMonospace() bool { return FontFamilyIsMonospace(f) }
 func (f *FontFamily) ListFaces(faces ***FontFace, nFaces *int) {
-	fontFamilyListFaces(f, faces, nFaces)
+	FontFamilyListFaces(f, faces, nFaces)
 }
 
 type FontMap struct{}
@@ -256,23 +257,23 @@ type FontMap struct{}
 var (
 	FontMapGetType func() O.Type
 
-	fontMapCreateContext      func(f *FontMap) *Context
-	fontMapGetShapeEngineType func(f *FontMap) string
-	fontMapListFamilies       func(f *FontMap, families ***FontFamily, nFamilies *int)
-	fontMapLoadFont           func(f *FontMap, context *Context, desc *FontDescription) *Font
-	fontMapLoadFontset        func(f *FontMap, context *Context, desc *FontDescription, language *Language) *Fontset
+	FontMapCreateContext      func(f *FontMap) *Context
+	FontMapGetShapeEngineType func(f *FontMap) string
+	FontMapListFamilies       func(f *FontMap, families ***FontFamily, nFamilies *int)
+	FontMapLoadFont           func(f *FontMap, context *Context, desc *FontDescription) *Font
+	FontMapLoadFontset        func(f *FontMap, context *Context, desc *FontDescription, language *Language) *Fontset
 )
 
-func (f *FontMap) CreateContext() *Context    { return fontMapCreateContext(f) }
-func (f *FontMap) GetShapeEngineType() string { return fontMapGetShapeEngineType(f) }
+func (f *FontMap) CreateContext() *Context    { return FontMapCreateContext(f) }
+func (f *FontMap) GetShapeEngineType() string { return FontMapGetShapeEngineType(f) }
 func (f *FontMap) ListFamilies(families ***FontFamily, nFamilies *int) {
-	fontMapListFamilies(f, families, nFamilies)
+	FontMapListFamilies(f, families, nFamilies)
 }
 func (f *FontMap) LoadFont(context *Context, desc *FontDescription) *Font {
-	return fontMapLoadFont(f, context, desc)
+	return FontMapLoadFont(f, context, desc)
 }
 func (f *FontMap) LoadFontset(context *Context, desc *FontDescription, language *Language) *Fontset {
-	return fontMapLoadFontset(f, context, desc, language)
+	return FontMapLoadFontset(f, context, desc, language)
 }
 
 type FontMask Enum
@@ -295,45 +296,45 @@ var (
 	FontMetricsGetType func() O.Type
 	FontMetricsNew     func() *FontMetrics
 
-	fontMetricsGetApproximateCharWidth   func(f *FontMetrics) int
-	fontMetricsGetApproximateDigitWidth  func(f *FontMetrics) int
-	fontMetricsGetAscent                 func(f *FontMetrics) int
-	fontMetricsGetDescent                func(f *FontMetrics) int
-	fontMetricsGetStrikethroughPosition  func(f *FontMetrics) int
-	fontMetricsGetStrikethroughThickness func(f *FontMetrics) int
-	fontMetricsGetUnderlinePosition      func(f *FontMetrics) int
-	fontMetricsGetUnderlineThickness     func(f *FontMetrics) int
-	fontMetricsRef                       func(f *FontMetrics) *FontMetrics
-	fontMetricsUnref                     func(f *FontMetrics)
+	FontMetricsGetApproximateCharWidth   func(f *FontMetrics) int
+	FontMetricsGetApproximateDigitWidth  func(f *FontMetrics) int
+	FontMetricsGetAscent                 func(f *FontMetrics) int
+	FontMetricsGetDescent                func(f *FontMetrics) int
+	FontMetricsGetStrikethroughPosition  func(f *FontMetrics) int
+	FontMetricsGetStrikethroughThickness func(f *FontMetrics) int
+	FontMetricsGetUnderlinePosition      func(f *FontMetrics) int
+	FontMetricsGetUnderlineThickness     func(f *FontMetrics) int
+	FontMetricsRef                       func(f *FontMetrics) *FontMetrics
+	FontMetricsUnref                     func(f *FontMetrics)
 )
 
-func (f *FontMetrics) GetApproximateCharWidth() int   { return fontMetricsGetApproximateCharWidth(f) }
-func (f *FontMetrics) GetApproximateDigitWidth() int  { return fontMetricsGetApproximateDigitWidth(f) }
-func (f *FontMetrics) GetAscent() int                 { return fontMetricsGetAscent(f) }
-func (f *FontMetrics) GetDescent() int                { return fontMetricsGetDescent(f) }
-func (f *FontMetrics) GetStrikethroughPosition() int  { return fontMetricsGetStrikethroughPosition(f) }
-func (f *FontMetrics) GetStrikethroughThickness() int { return fontMetricsGetStrikethroughThickness(f) }
-func (f *FontMetrics) GetUnderlinePosition() int      { return fontMetricsGetUnderlinePosition(f) }
-func (f *FontMetrics) GetUnderlineThickness() int     { return fontMetricsGetUnderlineThickness(f) }
-func (f *FontMetrics) Ref() *FontMetrics              { return fontMetricsRef(f) }
-func (f *FontMetrics) Unref()                         { fontMetricsUnref(f) }
+func (f *FontMetrics) GetApproximateCharWidth() int   { return FontMetricsGetApproximateCharWidth(f) }
+func (f *FontMetrics) GetApproximateDigitWidth() int  { return FontMetricsGetApproximateDigitWidth(f) }
+func (f *FontMetrics) GetAscent() int                 { return FontMetricsGetAscent(f) }
+func (f *FontMetrics) GetDescent() int                { return FontMetricsGetDescent(f) }
+func (f *FontMetrics) GetStrikethroughPosition() int  { return FontMetricsGetStrikethroughPosition(f) }
+func (f *FontMetrics) GetStrikethroughThickness() int { return FontMetricsGetStrikethroughThickness(f) }
+func (f *FontMetrics) GetUnderlinePosition() int      { return FontMetricsGetUnderlinePosition(f) }
+func (f *FontMetrics) GetUnderlineThickness() int     { return FontMetricsGetUnderlineThickness(f) }
+func (f *FontMetrics) Ref() *FontMetrics              { return FontMetricsRef(f) }
+func (f *FontMetrics) Unref()                         { FontMetricsUnref(f) }
 
 type Fontset struct{}
 
 var (
 	FontsetGetType func() O.Type
 
-	fontsetForeach    func(f *Fontset, fnc FontsetForeachFunc, data T.Gpointer)
-	fontsetGetFont    func(f *Fontset, wc uint) *Font
-	fontsetGetMetrics func(f *Fontset) *FontMetrics
+	FontsetForeach    func(f *Fontset, fnc FontsetForeachFunc, data T.Gpointer)
+	FontsetGetFont    func(f *Fontset, wc uint) *Font
+	FontsetGetMetrics func(f *Fontset) *FontMetrics
 )
 
-func (f *Fontset) Foreach(fnc FontsetForeachFunc, data T.Gpointer) { fontsetForeach(f, fnc, data) }
-func (f *Fontset) GetFont(wc uint) *Font                           { return fontsetGetFont(f, wc) }
-func (f *Fontset) GetMetrics() *FontMetrics                        { return fontsetGetMetrics(f) }
+func (f *Fontset) Foreach(fnc FontsetForeachFunc, data T.Gpointer) { FontsetForeach(f, fnc, data) }
+func (f *Fontset) GetFont(wc uint) *Font                           { return FontsetGetFont(f, wc) }
+func (f *Fontset) GetMetrics() *FontMetrics                        { return FontsetGetMetrics(f) }
 
 type FontsetForeachFunc func(
-	fontset *Fontset, font *Font, data T.Gpointer) bool
+	Fontset *Fontset, font *Font, data T.Gpointer) bool
 
 type FontsetSimple struct{}
 
@@ -341,12 +342,12 @@ var (
 	FontsetSimpleGetType func() O.Type
 	FontsetSimpleNew     func(language *Language) *FontsetSimple
 
-	fontsetSimpleAppend func(f *FontsetSimple, font *Font)
-	fontsetSimpleSize   func(f *FontsetSimple) int
+	FontsetSimpleAppend func(f *FontsetSimple, font *Font)
+	FontsetSimpleSize   func(f *FontsetSimple) int
 )
 
-func (f *FontsetSimple) Append(font *Font) { fontsetSimpleAppend(f, font) }
-func (f *FontsetSimple) Size() int         { return fontsetSimpleSize(f) }
+func (f *FontsetSimple) Append(font *Font) { FontsetSimpleAppend(f, font) }
+func (f *FontsetSimple) Size() int         { return FontsetSimpleSize(f) }
 
 var (
 	Ft2FontGetCoverage func(font *Font, language *Language) *Coverage
@@ -362,20 +363,20 @@ var (
 
 	Ft2FontMapForDisplay func() *FontMap
 
-	ft2FontMapCreateContext        func(f *FT2FontMap) *Context
-	ft2FontMapSetDefaultSubstitute func(f *FT2FontMap, fnc FT2SubstituteFunc, data T.Gpointer, notify T.GDestroyNotify)
-	ft2FontMapSetResolution        func(f *FT2FontMap, dpiX, dpiY float64)
-	ft2FontMapSubstituteChanged    func(f *FT2FontMap)
+	Ft2FontMapCreateContext        func(f *FT2FontMap) *Context
+	Ft2FontMapSetDefaultSubstitute func(f *FT2FontMap, fnc FT2SubstituteFunc, data T.Gpointer, notify T.GDestroyNotify)
+	Ft2FontMapSetResolution        func(f *FT2FontMap, dpiX, dpiY float64)
+	Ft2FontMapSubstituteChanged    func(f *FT2FontMap)
 )
 
-func (f *FT2FontMap) CreateContext() *Context { return ft2FontMapCreateContext(f) }
+func (f *FT2FontMap) CreateContext() *Context { return Ft2FontMapCreateContext(f) }
 func (f *FT2FontMap) SetDefaultSubstitute(fnc FT2SubstituteFunc, data T.Gpointer, notify T.GDestroyNotify) {
-	ft2FontMapSetDefaultSubstitute(f, fnc, data, notify)
+	Ft2FontMapSetDefaultSubstitute(f, fnc, data, notify)
 }
 func (f *FT2FontMap) SetResolution(dpiX, dpiY float64) {
-	ft2FontMapSetResolution(f, dpiX, dpiY)
+	Ft2FontMapSetResolution(f, dpiX, dpiY)
 }
-func (f *FT2FontMap) SubstituteChanged() { ft2FontMapSubstituteChanged(f) }
+func (f *FT2FontMap) SubstituteChanged() { Ft2FontMapSubstituteChanged(f) }
 
 var (
 	Ft2GetContext      func(dpiX, dpiY float64) *Context

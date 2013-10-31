@@ -22,29 +22,29 @@ var (
 	TabArrayNew              func(initialSize int, positionsInPixels bool) *TabArray
 	TabArrayNewWithPositions func(size int, positionsInPixels bool, firstAlignment TabAlign, firstPosition int, v ...VArg) *TabArray
 
-	tabArrayCopy                 func(t *TabArray) *TabArray
-	tabArrayFree                 func(t *TabArray)
-	tabArrayGetPositionsInPixels func(t *TabArray) bool
-	tabArrayGetSize              func(t *TabArray) int
-	tabArrayGetTab               func(t *TabArray, tabIndex int, Alignment *TabAlign, location *int)
-	tabArrayGetTabs              func(t *TabArray, Alignments **TabAlign, locations **int)
-	tabArrayResize               func(t *TabArray, newSize int)
-	tabArraySetTab               func(t *TabArray, tabIndex int, Alignment TabAlign, location int)
+	TabArrayCopy                 func(t *TabArray) *TabArray
+	TabArrayFree                 func(t *TabArray)
+	TabArrayGetPositionsInPixels func(t *TabArray) bool
+	TabArrayGetSize              func(t *TabArray) int
+	TabArrayGetTab               func(t *TabArray, tabIndex int, Alignment *TabAlign, location *int)
+	TabArrayGetTabs              func(t *TabArray, Alignments **TabAlign, locations **int)
+	TabArrayResize               func(t *TabArray, newSize int)
+	TabArraySetTab               func(t *TabArray, tabIndex int, Alignment TabAlign, location int)
 )
 
-func (t *TabArray) Copy() *TabArray            { return tabArrayCopy(t) }
-func (t *TabArray) Free()                      { tabArrayFree(t) }
-func (t *TabArray) GetPositionsInPixels() bool { return tabArrayGetPositionsInPixels(t) }
-func (t *TabArray) GetSize() int               { return tabArrayGetSize(t) }
+func (t *TabArray) Copy() *TabArray            { return TabArrayCopy(t) }
+func (t *TabArray) Free()                      { TabArrayFree(t) }
+func (t *TabArray) GetPositionsInPixels() bool { return TabArrayGetPositionsInPixels(t) }
+func (t *TabArray) GetSize() int               { return TabArrayGetSize(t) }
 func (t *TabArray) GetTab(tabIndex int, Alignment *TabAlign, location *int) {
-	tabArrayGetTab(t, tabIndex, Alignment, location)
+	TabArrayGetTab(t, tabIndex, Alignment, location)
 }
 func (t *TabArray) GetTabs(Alignments **TabAlign, locations **int) {
-	tabArrayGetTabs(t, Alignments, locations)
+	TabArrayGetTabs(t, Alignments, locations)
 }
-func (t *TabArray) Resize(newSize int) { tabArrayResize(t, newSize) }
+func (t *TabArray) Resize(newSize int) { TabArrayResize(t, newSize) }
 func (t *TabArray) SetTab(tabIndex int, Alignment TabAlign, location int) {
-	tabArraySetTab(t, tabIndex, Alignment, location)
+	TabArraySetTab(t, tabIndex, Alignment, location)
 }
 
 var TrimString func(str string) string

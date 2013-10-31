@@ -12,32 +12,32 @@ var DebugResetStaticData func()
 type Device struct{}
 
 var (
-	deviceAcquire           func(d *Device) Status
-	deviceDestroy           func(d *Device)
-	deviceFinish            func(d *Device)
-	deviceFlush             func(d *Device)
-	deviceGetReferenceCount func(d *Device) uint
-	deviceGetType           func(d *Device) DeviceType
-	deviceGetUserData       func(d *Device, key *UserDataKey) *T.Void
-	deviceReference         func(d *Device) *Device
-	deviceRelease           func(d *Device)
-	deviceSetUserData       func(d *Device, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
-	deviceStatus            func(d *Device) Status
+	DeviceAcquire           func(d *Device) Status
+	DeviceDestroy           func(d *Device)
+	DeviceFinish            func(d *Device)
+	DeviceFlush             func(d *Device)
+	DeviceGetReferenceCount func(d *Device) uint
+	DeviceGetType           func(d *Device) DeviceType
+	DeviceGetUserData       func(d *Device, key *UserDataKey) *T.Void
+	DeviceReference         func(d *Device) *Device
+	DeviceRelease           func(d *Device)
+	DeviceSetUserData       func(d *Device, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
+	DeviceStatus            func(d *Device) Status
 )
 
-func (d *Device) Acquire() Status                      { return deviceAcquire(d) }
-func (d *Device) Destroy()                             { deviceDestroy(d) }
-func (d *Device) Finish()                              { deviceFinish(d) }
-func (d *Device) Flush()                               { deviceFlush(d) }
-func (d *Device) GetReferenceCount() uint              { return deviceGetReferenceCount(d) }
-func (d *Device) GetType() DeviceType                  { return deviceGetType(d) }
-func (d *Device) GetUserData(key *UserDataKey) *T.Void { return deviceGetUserData(d, key) }
-func (d *Device) Reference() *Device                   { return deviceReference(d) }
-func (d *Device) Release()                             { deviceRelease(d) }
+func (d *Device) Acquire() Status                      { return DeviceAcquire(d) }
+func (d *Device) Destroy()                             { DeviceDestroy(d) }
+func (d *Device) Finish()                              { DeviceFinish(d) }
+func (d *Device) Flush()                               { DeviceFlush(d) }
+func (d *Device) GetReferenceCount() uint              { return DeviceGetReferenceCount(d) }
+func (d *Device) GetType() DeviceType                  { return DeviceGetType(d) }
+func (d *Device) GetUserData(key *UserDataKey) *T.Void { return DeviceGetUserData(d, key) }
+func (d *Device) Reference() *Device                   { return DeviceReference(d) }
+func (d *Device) Release()                             { DeviceRelease(d) }
 func (d *Device) SetUserData(key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status {
-	return deviceSetUserData(d, key, userData, destroy)
+	return DeviceSetUserData(d, key, userData, destroy)
 }
-func (d *Device) Status() Status { return deviceStatus(d) }
+func (d *Device) Status() Status { return DeviceStatus(d) }
 
 type DeviceType Enum
 

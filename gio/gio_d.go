@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -18,85 +19,85 @@ var (
 	DataInputStreamGetType func() O.Type
 	DataInputStreamNew     func(baseStream *InputStream) *DataInputStream
 
-	dataInputStreamGetByteOrder    func(d *DataInputStream) DataStreamByteOrder
-	dataInputStreamGetNewlineType  func(d *DataInputStream) DataStreamNewlineType
-	dataInputStreamReadByte        func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.Guchar
-	dataInputStreamReadInt16       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) int16
-	dataInputStreamReadInt32       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.GInt32
-	dataInputStreamReadInt64       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) int64
-	dataInputStreamReadLine        func(d *DataInputStream, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
-	dataInputStreamReadLineAsync   func(d *DataInputStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dataInputStreamReadLineFinish  func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
-	dataInputStreamReadUint16      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) uint16
-	dataInputStreamReadUint32      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.GUint32
-	dataInputStreamReadUint64      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) uint64
-	dataInputStreamReadUntil       func(d *DataInputStream, stopChars string, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
-	dataInputStreamReadUntilAsync  func(d *DataInputStream, stopChars string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dataInputStreamReadUntilFinish func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
-	dataInputStreamReadUpto        func(d *DataInputStream, stopChars string, stopCharsLen T.Gssize, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
-	dataInputStreamReadUptoAsync   func(d *DataInputStream, stopChars string, stopCharsLen T.Gssize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dataInputStreamReadUptoFinish  func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
-	dataInputStreamSetByteOrder    func(d *DataInputStream, order DataStreamByteOrder)
-	dataInputStreamSetNewlineType  func(d *DataInputStream, typ DataStreamNewlineType)
+	DataInputStreamGetByteOrder    func(d *DataInputStream) DataStreamByteOrder
+	DataInputStreamGetNewlineType  func(d *DataInputStream) DataStreamNewlineType
+	DataInputStreamReadByte        func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.Guchar
+	DataInputStreamReadInt16       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) int16
+	DataInputStreamReadInt32       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.GInt32
+	DataInputStreamReadInt64       func(d *DataInputStream, cancellable *Cancellable, err **T.GError) int64
+	DataInputStreamReadLine        func(d *DataInputStream, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
+	DataInputStreamReadLineAsync   func(d *DataInputStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DataInputStreamReadLineFinish  func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
+	DataInputStreamReadUint16      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) uint16
+	DataInputStreamReadUint32      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) T.GUint32
+	DataInputStreamReadUint64      func(d *DataInputStream, cancellable *Cancellable, err **T.GError) uint64
+	DataInputStreamReadUntil       func(d *DataInputStream, stopChars string, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
+	DataInputStreamReadUntilAsync  func(d *DataInputStream, stopChars string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DataInputStreamReadUntilFinish func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
+	DataInputStreamReadUpto        func(d *DataInputStream, stopChars string, stopCharsLen T.Gssize, length *T.Gsize, cancellable *Cancellable, err **T.GError) string
+	DataInputStreamReadUptoAsync   func(d *DataInputStream, stopChars string, stopCharsLen T.Gssize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DataInputStreamReadUptoFinish  func(d *DataInputStream, result *AsyncResult, length *T.Gsize, err **T.GError) string
+	DataInputStreamSetByteOrder    func(d *DataInputStream, order DataStreamByteOrder)
+	DataInputStreamSetNewlineType  func(d *DataInputStream, typ DataStreamNewlineType)
 )
 
-func (d *DataInputStream) GetByteOrder() DataStreamByteOrder { return dataInputStreamGetByteOrder(d) }
+func (d *DataInputStream) GetByteOrder() DataStreamByteOrder { return DataInputStreamGetByteOrder(d) }
 func (d *DataInputStream) GetNewlineType() DataStreamNewlineType {
-	return dataInputStreamGetNewlineType(d)
+	return DataInputStreamGetNewlineType(d)
 }
 func (d *DataInputStream) ReadByte(cancellable *Cancellable, err **T.GError) T.Guchar {
-	return dataInputStreamReadByte(d, cancellable, err)
+	return DataInputStreamReadByte(d, cancellable, err)
 }
 func (d *DataInputStream) ReadInt16(cancellable *Cancellable, err **T.GError) int16 {
-	return dataInputStreamReadInt16(d, cancellable, err)
+	return DataInputStreamReadInt16(d, cancellable, err)
 }
 func (d *DataInputStream) ReadInt32(cancellable *Cancellable, err **T.GError) T.GInt32 {
-	return dataInputStreamReadInt32(d, cancellable, err)
+	return DataInputStreamReadInt32(d, cancellable, err)
 }
 func (d *DataInputStream) ReadInt64(cancellable *Cancellable, err **T.GError) int64 {
-	return dataInputStreamReadInt64(d, cancellable, err)
+	return DataInputStreamReadInt64(d, cancellable, err)
 }
 func (d *DataInputStream) ReadLine(length *T.Gsize, cancellable *Cancellable, err **T.GError) string {
-	return dataInputStreamReadLine(d, length, cancellable, err)
+	return DataInputStreamReadLine(d, length, cancellable, err)
 }
 func (d *DataInputStream) ReadLineAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dataInputStreamReadLineAsync(d, ioPriority, cancellable, callback, userData)
+	DataInputStreamReadLineAsync(d, ioPriority, cancellable, callback, userData)
 }
 func (d *DataInputStream) ReadLineFinish(result *AsyncResult, length *T.Gsize, err **T.GError) string {
-	return dataInputStreamReadLineFinish(d, result, length, err)
+	return DataInputStreamReadLineFinish(d, result, length, err)
 }
 func (d *DataInputStream) ReadUint16(cancellable *Cancellable, err **T.GError) uint16 {
-	return dataInputStreamReadUint16(d, cancellable, err)
+	return DataInputStreamReadUint16(d, cancellable, err)
 }
 func (d *DataInputStream) ReadUint32(cancellable *Cancellable, err **T.GError) T.GUint32 {
-	return dataInputStreamReadUint32(d, cancellable, err)
+	return DataInputStreamReadUint32(d, cancellable, err)
 }
 func (d *DataInputStream) ReadUint64(cancellable *Cancellable, err **T.GError) uint64 {
-	return dataInputStreamReadUint64(d, cancellable, err)
+	return DataInputStreamReadUint64(d, cancellable, err)
 }
 func (d *DataInputStream) ReadUntil(stopChars string, length *T.Gsize, cancellable *Cancellable, err **T.GError) string {
-	return dataInputStreamReadUntil(d, stopChars, length, cancellable, err)
+	return DataInputStreamReadUntil(d, stopChars, length, cancellable, err)
 }
 func (d *DataInputStream) ReadUntilAsync(stopChars string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dataInputStreamReadUntilAsync(d, stopChars, ioPriority, cancellable, callback, userData)
+	DataInputStreamReadUntilAsync(d, stopChars, ioPriority, cancellable, callback, userData)
 }
 func (d *DataInputStream) ReadUntilFinish(result *AsyncResult, length *T.Gsize, err **T.GError) string {
-	return dataInputStreamReadUntilFinish(d, result, length, err)
+	return DataInputStreamReadUntilFinish(d, result, length, err)
 }
 func (d *DataInputStream) ReadUpto(stopChars string, stopCharsLen T.Gssize, length *T.Gsize, cancellable *Cancellable, err **T.GError) string {
-	return dataInputStreamReadUpto(d, stopChars, stopCharsLen, length, cancellable, err)
+	return DataInputStreamReadUpto(d, stopChars, stopCharsLen, length, cancellable, err)
 }
 func (d *DataInputStream) ReadUptoAsync(stopChars string, stopCharsLen T.Gssize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dataInputStreamReadUptoAsync(d, stopChars, stopCharsLen, ioPriority, cancellable, callback, userData)
+	DataInputStreamReadUptoAsync(d, stopChars, stopCharsLen, ioPriority, cancellable, callback, userData)
 }
 func (d *DataInputStream) ReadUptoFinish(result *AsyncResult, length *T.Gsize, err **T.GError) string {
-	return dataInputStreamReadUptoFinish(d, result, length, err)
+	return DataInputStreamReadUptoFinish(d, result, length, err)
 }
 func (d *DataInputStream) SetByteOrder(order DataStreamByteOrder) {
-	dataInputStreamSetByteOrder(d, order)
+	DataInputStreamSetByteOrder(d, order)
 }
 func (d *DataInputStream) SetNewlineType(typ DataStreamNewlineType) {
-	dataInputStreamSetNewlineType(d, typ)
+	DataInputStreamSetNewlineType(d, typ)
 }
 
 type DataOutputStream struct {
@@ -108,45 +109,45 @@ var (
 	DataOutputStreamGetType func() O.Type
 	DataOutputStreamNew     func(baseStream *OutputStream) *DataOutputStream
 
-	dataOutputStreamGetByteOrder func(d *DataOutputStream) DataStreamByteOrder
-	dataOutputStreamPutByte      func(d *DataOutputStream, data T.Guchar, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutInt16     func(d *DataOutputStream, data int16, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutInt32     func(d *DataOutputStream, data T.GInt32, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutInt64     func(d *DataOutputStream, data int64, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutString    func(d *DataOutputStream, str string, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutUint16    func(d *DataOutputStream, data uint16, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutUint32    func(d *DataOutputStream, data T.GUint32, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamPutUint64    func(d *DataOutputStream, data uint64, cancellable *Cancellable, err **T.GError) bool
-	dataOutputStreamSetByteOrder func(d *DataOutputStream, order DataStreamByteOrder)
+	DataOutputStreamGetByteOrder func(d *DataOutputStream) DataStreamByteOrder
+	DataOutputStreamPutByte      func(d *DataOutputStream, data T.Guchar, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutInt16     func(d *DataOutputStream, data int16, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutInt32     func(d *DataOutputStream, data T.GInt32, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutInt64     func(d *DataOutputStream, data int64, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutString    func(d *DataOutputStream, str string, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutUint16    func(d *DataOutputStream, data uint16, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutUint32    func(d *DataOutputStream, data T.GUint32, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamPutUint64    func(d *DataOutputStream, data uint64, cancellable *Cancellable, err **T.GError) bool
+	DataOutputStreamSetByteOrder func(d *DataOutputStream, order DataStreamByteOrder)
 )
 
-func (d *DataOutputStream) GetByteOrder() DataStreamByteOrder { return dataOutputStreamGetByteOrder(d) }
+func (d *DataOutputStream) GetByteOrder() DataStreamByteOrder { return DataOutputStreamGetByteOrder(d) }
 func (d *DataOutputStream) PutByte(data T.Guchar, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutByte(d, data, cancellable, err)
+	return DataOutputStreamPutByte(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutInt16(data int16, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutInt16(d, data, cancellable, err)
+	return DataOutputStreamPutInt16(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutInt32(data T.GInt32, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutInt32(d, data, cancellable, err)
+	return DataOutputStreamPutInt32(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutInt64(data int64, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutInt64(d, data, cancellable, err)
+	return DataOutputStreamPutInt64(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutString(str string, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutString(d, str, cancellable, err)
+	return DataOutputStreamPutString(d, str, cancellable, err)
 }
 func (d *DataOutputStream) PutUint16(data uint16, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutUint16(d, data, cancellable, err)
+	return DataOutputStreamPutUint16(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutUint32(data T.GUint32, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutUint32(d, data, cancellable, err)
+	return DataOutputStreamPutUint32(d, data, cancellable, err)
 }
 func (d *DataOutputStream) PutUint64(data uint64, cancellable *Cancellable, err **T.GError) bool {
-	return dataOutputStreamPutUint64(d, data, cancellable, err)
+	return DataOutputStreamPutUint64(d, data, cancellable, err)
 }
 func (d *DataOutputStream) SetByteOrder(order DataStreamByteOrder) {
-	dataOutputStreamSetByteOrder(d, order)
+	DataOutputStreamSetByteOrder(d, order)
 }
 
 type DataStreamByteOrder Enum
@@ -189,12 +190,12 @@ var (
 
 	DBusAnnotationInfoLookup func(annotations **DBusAnnotationInfo, name string) string
 
-	dBusAnnotationInfoRef   func(d *DBusAnnotationInfo) *DBusAnnotationInfo
-	dBusAnnotationInfoUnref func(d *DBusAnnotationInfo)
+	DBusAnnotationInfoRef   func(d *DBusAnnotationInfo) *DBusAnnotationInfo
+	DBusAnnotationInfoUnref func(d *DBusAnnotationInfo)
 )
 
-func (d *DBusAnnotationInfo) Ref() *DBusAnnotationInfo { return dBusAnnotationInfoRef(d) }
-func (d *DBusAnnotationInfo) Unref()                   { dBusAnnotationInfoUnref(d) }
+func (d *DBusAnnotationInfo) Ref() *DBusAnnotationInfo { return DBusAnnotationInfoRef(d) }
+func (d *DBusAnnotationInfo) Unref()                   { DBusAnnotationInfoUnref(d) }
 
 type DBusArgInfo struct {
 	RefCount    int
@@ -206,12 +207,12 @@ type DBusArgInfo struct {
 var (
 	DBusArgInfoGetType func() O.Type
 
-	dBusArgInfoRef   func(d *DBusArgInfo) *DBusArgInfo
-	dBusArgInfoUnref func(d *DBusArgInfo)
+	DBusArgInfoRef   func(d *DBusArgInfo) *DBusArgInfo
+	DBusArgInfoUnref func(d *DBusArgInfo)
 )
 
-func (d *DBusArgInfo) Ref() *DBusArgInfo { return dBusArgInfoRef(d) }
-func (d *DBusArgInfo) Unref()            { dBusArgInfoUnref(d) }
+func (d *DBusArgInfo) Ref() *DBusArgInfo { return DBusArgInfoRef(d) }
+func (d *DBusArgInfo) Unref()            { DBusArgInfoUnref(d) }
 
 type DBusAuthObserver struct{}
 
@@ -219,11 +220,11 @@ var (
 	DBusAuthObserverGetType func() O.Type
 	DBusAuthObserverNew     func() *DBusAuthObserver
 
-	dBusAuthObserverAuthorizeAuthenticatedPeer func(d *DBusAuthObserver, stream *IOStream, credentials *Credentials) bool
+	DBusAuthObserverAuthorizeAuthenticatedPeer func(d *DBusAuthObserver, stream *IOStream, credentials *Credentials) bool
 )
 
 func (d *DBusAuthObserver) AuthorizeAuthenticatedPeer(stream *IOStream, credentials *Credentials) bool {
-	return dBusAuthObserverAuthorizeAuthenticatedPeer(d, stream, credentials)
+	return DBusAuthObserverAuthorizeAuthenticatedPeer(d, stream, credentials)
 }
 
 type DBusCallFlags Enum
@@ -255,115 +256,115 @@ var (
 	DBusConnectionNewForAddressSync   func(address string, flags DBusConnectionFlags, observer *DBusAuthObserver, cancellable *Cancellable, err **T.GError) *DBusConnection
 	DBusConnectionNewSync             func(d *IOStream, guid string, flags DBusConnectionFlags, observer *DBusAuthObserver, cancellable *Cancellable, err **T.GError) *DBusConnection
 
-	dBusConnectionAddFilter                  func(d *DBusConnection, filterFunction DBusMessageFilterFunction, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	dBusConnectionCall                       func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dBusConnectionCallFinish                 func(d *DBusConnection, res *AsyncResult, err **T.GError) *T.GVariant
-	dBusConnectionCallSync                   func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
-	dBusConnectionClose                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dBusConnectionCloseFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
-	dBusConnectionCloseSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
-	dBusConnectionEmitSignal                 func(d *DBusConnection, destinationBusName, objectPath, interfaceName string, signalName string, parameters *T.GVariant, err **T.GError) bool
-	dBusConnectionFlush                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dBusConnectionFlushFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
-	dBusConnectionFlushSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
-	dBusConnectionGetCapabilities            func(d *DBusConnection) DBusCapabilityFlags
-	dBusConnectionGetExitOnClose             func(d *DBusConnection) bool
-	dBusConnectionGetGuid                    func(d *DBusConnection) string
-	dBusConnectionGetPeerCredentials         func(d *DBusConnection) *Credentials
-	dBusConnectionGetStream                  func(d *DBusConnection) *IOStream
-	dBusConnectionGetUniqueName              func(d *DBusConnection) string
-	dBusConnectionIsClosed                   func(d *DBusConnection) bool
-	dBusConnectionRegisterObject             func(d *DBusConnection, objectPath string, interfaceInfo *DBusInterfaceInfo, vtable *DBusInterfaceVTable, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint
-	dBusConnectionRegisterSubtree            func(d *DBusConnection, objectPath string, vtable *DBusSubtreeVTable, flags DBusSubtreeFlags, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint
-	dBusConnectionRemoveFilter               func(d *DBusConnection, filterId uint)
-	dBusConnectionSendMessage                func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, outSerial *T.GUint32, err **T.GError) bool
-	dBusConnectionSendMessageWithReply       func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dBusConnectionSendMessageWithReplyFinish func(d *DBusConnection, res *AsyncResult, err **T.GError) *DBusMessage
-	dBusConnectionSendMessageWithReplySync   func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, err **T.GError) *DBusMessage
-	dBusConnectionSetExitOnClose             func(d *DBusConnection, exitOnClose bool)
-	dBusConnectionSignalSubscribe            func(d *DBusConnection, sender, interfaceName, member, objectPath, arg0 string, flags DBusSignalFlags, callback DBusSignalCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	dBusConnectionSignalUnsubscribe          func(d *DBusConnection, subscriptionId uint)
-	dBusConnectionStartMessageProcessing     func(d *DBusConnection)
-	dBusConnectionUnregisterObject           func(d *DBusConnection, registrationId uint) bool
-	dBusConnectionUnregisterSubtree          func(d *DBusConnection, registrationId uint) bool
+	DBusConnectionAddFilter                  func(d *DBusConnection, filterFunction DBusMessageFilterFunction, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	DBusConnectionCall                       func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusConnectionCallFinish                 func(d *DBusConnection, res *AsyncResult, err **T.GError) *T.GVariant
+	DBusConnectionCallSync                   func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
+	DBusConnectionClose                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusConnectionCloseFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
+	DBusConnectionCloseSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
+	DBusConnectionEmitSignal                 func(d *DBusConnection, destinationBusName, objectPath, interfaceName string, signalName string, parameters *T.GVariant, err **T.GError) bool
+	DBusConnectionFlush                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusConnectionFlushFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
+	DBusConnectionFlushSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
+	DBusConnectionGetCapabilities            func(d *DBusConnection) DBusCapabilityFlags
+	DBusConnectionGetExitOnClose             func(d *DBusConnection) bool
+	DBusConnectionGetGuid                    func(d *DBusConnection) string
+	DBusConnectionGetPeerCredentials         func(d *DBusConnection) *Credentials
+	DBusConnectionGetStream                  func(d *DBusConnection) *IOStream
+	DBusConnectionGetUniqueName              func(d *DBusConnection) string
+	DBusConnectionIsClosed                   func(d *DBusConnection) bool
+	DBusConnectionRegisterObject             func(d *DBusConnection, objectPath string, interfaceInfo *DBusInterfaceInfo, vtable *DBusInterfaceVTable, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint
+	DBusConnectionRegisterSubtree            func(d *DBusConnection, objectPath string, vtable *DBusSubtreeVTable, flags DBusSubtreeFlags, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint
+	DBusConnectionRemoveFilter               func(d *DBusConnection, filterId uint)
+	DBusConnectionSendMessage                func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, outSerial *T.GUint32, err **T.GError) bool
+	DBusConnectionSendMessageWithReply       func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusConnectionSendMessageWithReplyFinish func(d *DBusConnection, res *AsyncResult, err **T.GError) *DBusMessage
+	DBusConnectionSendMessageWithReplySync   func(d *DBusConnection, message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, err **T.GError) *DBusMessage
+	DBusConnectionSetExitOnClose             func(d *DBusConnection, exitOnClose bool)
+	DBusConnectionSignalSubscribe            func(d *DBusConnection, sender, interfaceName, member, objectPath, arg0 string, flags DBusSignalFlags, callback DBusSignalCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	DBusConnectionSignalUnsubscribe          func(d *DBusConnection, subscriptionId uint)
+	DBusConnectionStartMessageProcessing     func(d *DBusConnection)
+	DBusConnectionUnregisterObject           func(d *DBusConnection, registrationId uint) bool
+	DBusConnectionUnregisterSubtree          func(d *DBusConnection, registrationId uint) bool
 )
 
 func (d *DBusConnection) AddFilter(filterFunction DBusMessageFilterFunction, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
-	return dBusConnectionAddFilter(d, filterFunction, userData, userDataFreeFunc)
+	return DBusConnectionAddFilter(d, filterFunction, userData, userDataFreeFunc)
 }
 func (d *DBusConnection) Call(busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dBusConnectionCall(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, callback, userData)
+	DBusConnectionCall(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, callback, userData)
 }
 func (d *DBusConnection) CallFinish(res *AsyncResult, err **T.GError) *T.GVariant {
-	return dBusConnectionCallFinish(d, res, err)
+	return DBusConnectionCallFinish(d, res, err)
 }
 func (d *DBusConnection) CallSync(busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant {
-	return dBusConnectionCallSync(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, err)
+	return DBusConnectionCallSync(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, err)
 }
 func (d *DBusConnection) Close(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dBusConnectionClose(d, cancellable, callback, userData)
+	DBusConnectionClose(d, cancellable, callback, userData)
 }
 func (d *DBusConnection) CloseFinish(res *AsyncResult, err **T.GError) bool {
-	return dBusConnectionCloseFinish(d, res, err)
+	return DBusConnectionCloseFinish(d, res, err)
 }
 func (d *DBusConnection) CloseSync(cancellable *Cancellable, err **T.GError) bool {
-	return dBusConnectionCloseSync(d, cancellable, err)
+	return DBusConnectionCloseSync(d, cancellable, err)
 }
 func (d *DBusConnection) EmitSignal(destinationBusName, objectPath, interfaceName string, signalName string, parameters *T.GVariant, err **T.GError) bool {
-	return dBusConnectionEmitSignal(d, destinationBusName, objectPath, interfaceName, signalName, parameters, err)
+	return DBusConnectionEmitSignal(d, destinationBusName, objectPath, interfaceName, signalName, parameters, err)
 }
 func (d *DBusConnection) Flush(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dBusConnectionFlush(d, cancellable, callback, userData)
+	DBusConnectionFlush(d, cancellable, callback, userData)
 }
 func (d *DBusConnection) FlushFinish(res *AsyncResult, err **T.GError) bool {
-	return dBusConnectionFlushFinish(d, res, err)
+	return DBusConnectionFlushFinish(d, res, err)
 }
 func (d *DBusConnection) FlushSync(cancellable *Cancellable, err **T.GError) bool {
-	return dBusConnectionFlushSync(d, cancellable, err)
+	return DBusConnectionFlushSync(d, cancellable, err)
 }
 func (d *DBusConnection) GetCapabilities() DBusCapabilityFlags {
-	return dBusConnectionGetCapabilities(d)
+	return DBusConnectionGetCapabilities(d)
 }
-func (d *DBusConnection) GetExitOnClose() bool             { return dBusConnectionGetExitOnClose(d) }
-func (d *DBusConnection) GetGuid() string                  { return dBusConnectionGetGuid(d) }
-func (d *DBusConnection) GetPeerCredentials() *Credentials { return dBusConnectionGetPeerCredentials(d) }
-func (d *DBusConnection) GetStream() *IOStream             { return dBusConnectionGetStream(d) }
-func (d *DBusConnection) GetUniqueName() string            { return dBusConnectionGetUniqueName(d) }
-func (d *DBusConnection) IsClosed() bool                   { return dBusConnectionIsClosed(d) }
+func (d *DBusConnection) GetExitOnClose() bool             { return DBusConnectionGetExitOnClose(d) }
+func (d *DBusConnection) GetGuid() string                  { return DBusConnectionGetGuid(d) }
+func (d *DBusConnection) GetPeerCredentials() *Credentials { return DBusConnectionGetPeerCredentials(d) }
+func (d *DBusConnection) GetStream() *IOStream             { return DBusConnectionGetStream(d) }
+func (d *DBusConnection) GetUniqueName() string            { return DBusConnectionGetUniqueName(d) }
+func (d *DBusConnection) IsClosed() bool                   { return DBusConnectionIsClosed(d) }
 func (d *DBusConnection) RegisterObject(objectPath string, interfaceInfo *DBusInterfaceInfo, vtable *DBusInterfaceVTable, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint {
-	return dBusConnectionRegisterObject(d, objectPath, interfaceInfo, vtable, userData, userDataFreeFunc, err)
+	return DBusConnectionRegisterObject(d, objectPath, interfaceInfo, vtable, userData, userDataFreeFunc, err)
 }
 func (d *DBusConnection) RegisterSubtree(objectPath string, vtable *DBusSubtreeVTable, flags DBusSubtreeFlags, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify, err **T.GError) uint {
-	return dBusConnectionRegisterSubtree(d, objectPath, vtable, flags, userData, userDataFreeFunc, err)
+	return DBusConnectionRegisterSubtree(d, objectPath, vtable, flags, userData, userDataFreeFunc, err)
 }
-func (d *DBusConnection) RemoveFilter(filterId uint) { dBusConnectionRemoveFilter(d, filterId) }
+func (d *DBusConnection) RemoveFilter(filterId uint) { DBusConnectionRemoveFilter(d, filterId) }
 func (d *DBusConnection) SendMessage(message *DBusMessage, flags DBusSendMessageFlags, outSerial *T.GUint32, err **T.GError) bool {
-	return dBusConnectionSendMessage(d, message, flags, outSerial, err)
+	return DBusConnectionSendMessage(d, message, flags, outSerial, err)
 }
 func (d *DBusConnection) SendMessageWithReply(message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dBusConnectionSendMessageWithReply(d, message, flags, timeoutMsec, outSerial, cancellable, callback, userData)
+	DBusConnectionSendMessageWithReply(d, message, flags, timeoutMsec, outSerial, cancellable, callback, userData)
 }
 func (d *DBusConnection) SendMessageWithReplyFinish(res *AsyncResult, err **T.GError) *DBusMessage {
-	return dBusConnectionSendMessageWithReplyFinish(d, res, err)
+	return DBusConnectionSendMessageWithReplyFinish(d, res, err)
 }
 func (d *DBusConnection) SendMessageWithReplySync(message *DBusMessage, flags DBusSendMessageFlags, timeoutMsec int, outSerial *T.GUint32, cancellable *Cancellable, err **T.GError) *DBusMessage {
-	return dBusConnectionSendMessageWithReplySync(d, message, flags, timeoutMsec, outSerial, cancellable, err)
+	return DBusConnectionSendMessageWithReplySync(d, message, flags, timeoutMsec, outSerial, cancellable, err)
 }
 func (d *DBusConnection) SetExitOnClose(exitOnClose bool) {
-	dBusConnectionSetExitOnClose(d, exitOnClose)
+	DBusConnectionSetExitOnClose(d, exitOnClose)
 }
 func (d *DBusConnection) SignalSubscribe(sender, interfaceName, member, objectPath, arg0 string, flags DBusSignalFlags, callback DBusSignalCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
-	return dBusConnectionSignalSubscribe(d, sender, interfaceName, member, objectPath, arg0, flags, callback, userData, userDataFreeFunc)
+	return DBusConnectionSignalSubscribe(d, sender, interfaceName, member, objectPath, arg0, flags, callback, userData, userDataFreeFunc)
 }
 func (d *DBusConnection) SignalUnsubscribe(subscriptionId uint) {
-	dBusConnectionSignalUnsubscribe(d, subscriptionId)
+	DBusConnectionSignalUnsubscribe(d, subscriptionId)
 }
-func (d *DBusConnection) StartMessageProcessing() { dBusConnectionStartMessageProcessing(d) }
+func (d *DBusConnection) StartMessageProcessing() { DBusConnectionStartMessageProcessing(d) }
 func (d *DBusConnection) UnregisterObject(registrationId uint) bool {
-	return dBusConnectionUnregisterObject(d, registrationId)
+	return DBusConnectionUnregisterObject(d, registrationId)
 }
 func (d *DBusConnection) UnregisterSubtree(registrationId uint) bool {
-	return dBusConnectionUnregisterSubtree(d, registrationId)
+	return DBusConnectionUnregisterSubtree(d, registrationId)
 }
 
 type DBusConnectionFlags Enum
@@ -434,28 +435,28 @@ var DBusGenerateGuid func() string
 var (
 	DBusInterfaceInfoGetType func() O.Type
 
-	dBusInterfaceInfoGenerateXml    func(d *DBusInterfaceInfo, indent uint, stringBuilder *T.GString)
-	dBusInterfaceInfoLookupMethod   func(d *DBusInterfaceInfo, name string) *DBusMethodInfo
-	dBusInterfaceInfoLookupProperty func(d *DBusInterfaceInfo, name string) *DBusPropertyInfo
-	dBusInterfaceInfoLookupSignal   func(d *DBusInterfaceInfo, name string) *DBusSignalInfo
-	dBusInterfaceInfoRef            func(d *DBusInterfaceInfo) *DBusInterfaceInfo
-	dBusInterfaceInfoUnref          func(d *DBusInterfaceInfo)
+	DBusInterfaceInfoGenerateXml    func(d *DBusInterfaceInfo, indent uint, stringBuilder *L.String)
+	DBusInterfaceInfoLookupMethod   func(d *DBusInterfaceInfo, name string) *DBusMethodInfo
+	DBusInterfaceInfoLookupProperty func(d *DBusInterfaceInfo, name string) *DBusPropertyInfo
+	DBusInterfaceInfoLookupSignal   func(d *DBusInterfaceInfo, name string) *DBusSignalInfo
+	DBusInterfaceInfoRef            func(d *DBusInterfaceInfo) *DBusInterfaceInfo
+	DBusInterfaceInfoUnref          func(d *DBusInterfaceInfo)
 )
 
-func (d *DBusInterfaceInfo) GenerateXml(indent uint, stringBuilder *T.GString) {
-	dBusInterfaceInfoGenerateXml(d, indent, stringBuilder)
+func (d *DBusInterfaceInfo) GenerateXml(indent uint, stringBuilder *L.String) {
+	DBusInterfaceInfoGenerateXml(d, indent, stringBuilder)
 }
 func (d *DBusInterfaceInfo) LookupMethod(name string) *DBusMethodInfo {
-	return dBusInterfaceInfoLookupMethod(d, name)
+	return DBusInterfaceInfoLookupMethod(d, name)
 }
 func (d *DBusInterfaceInfo) LookupProperty(name string) *DBusPropertyInfo {
-	return dBusInterfaceInfoLookupProperty(d, name)
+	return DBusInterfaceInfoLookupProperty(d, name)
 }
 func (d *DBusInterfaceInfo) LookupSignal(name string) *DBusSignalInfo {
-	return dBusInterfaceInfoLookupSignal(d, name)
+	return DBusInterfaceInfoLookupSignal(d, name)
 }
-func (d *DBusInterfaceInfo) Ref() *DBusInterfaceInfo { return dBusInterfaceInfoRef(d) }
-func (d *DBusInterfaceInfo) Unref()                  { dBusInterfaceInfoUnref(d) }
+func (d *DBusInterfaceInfo) Ref() *DBusInterfaceInfo { return DBusInterfaceInfoRef(d) }
+func (d *DBusInterfaceInfo) Unref()                  { DBusInterfaceInfoUnref(d) }
 
 var (
 	DBusIsAddress          func(string string) bool
@@ -478,110 +479,110 @@ var (
 
 	DBusMessageBytesNeeded func(blob *T.Guchar, blobLen T.Gsize, err **T.GError) T.Gssize
 
-	dBusMessageCopy                  func(d *DBusMessage, err **T.GError) *DBusMessage
-	dBusMessageGetArg0               func(d *DBusMessage) string
-	dBusMessageGetBody               func(d *DBusMessage) *T.GVariant
-	dBusMessageGetByteOrder          func(d *DBusMessage) DBusMessageByteOrder
-	dBusMessageGetDestination        func(d *DBusMessage) string
-	dBusMessageGetErrorName          func(d *DBusMessage) string
-	dBusMessageGetFlags              func(d *DBusMessage) DBusMessageFlags
-	dBusMessageGetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField) *T.GVariant
-	dBusMessageGetHeaderFields       func(d *DBusMessage) *T.Guchar
-	dBusMessageGetInterface          func(d *DBusMessage) string
-	dBusMessageGetLocked             func(d *DBusMessage) bool
-	dBusMessageGetMember             func(d *DBusMessage) string
-	dBusMessageGetMessageType        func(d *DBusMessage) DBusMessageType
-	dBusMessageGetNumUnixFds         func(d *DBusMessage) T.GUint32
-	dBusMessageGetPath               func(d *DBusMessage) string
-	dBusMessageGetReplySerial        func(d *DBusMessage) T.GUint32
-	dBusMessageGetSender             func(d *DBusMessage) string
-	dBusMessageGetSerial             func(d *DBusMessage) T.GUint32
-	dBusMessageGetSignature          func(d *DBusMessage) string
-	dBusMessageGetUnixFdList         func(d *DBusMessage) *T.GUnixFDList
-	dBusMessageLock                  func(d *DBusMessage)
-	dBusMessageNewMethodError        func(d *DBusMessage, errorName, errorMessageFormat string, v ...VArg) *DBusMessage
-	dBusMessageNewMethodErrorLiteral func(d *DBusMessage, errorName, errorMessage string) *DBusMessage
-	dBusMessageNewMethodErrorValist  func(d *DBusMessage, errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage
-	dBusMessageNewMethodReply        func(d *DBusMessage) *DBusMessage
-	dBusMessagePrint                 func(d *DBusMessage, indent uint) string
-	dBusMessageSetBody               func(d *DBusMessage, body *T.GVariant)
-	dBusMessageSetByteOrder          func(d *DBusMessage, byteOrder DBusMessageByteOrder)
-	dBusMessageSetDestination        func(d *DBusMessage, value string)
-	dBusMessageSetErrorName          func(d *DBusMessage, value string)
-	dBusMessageSetFlags              func(d *DBusMessage, flags DBusMessageFlags)
-	dBusMessageSetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField, value *T.GVariant)
-	dBusMessageSetInterface          func(d *DBusMessage, value string)
-	dBusMessageSetMember             func(d *DBusMessage, value string)
-	dBusMessageSetMessageType        func(d *DBusMessage, typ DBusMessageType)
-	dBusMessageSetNumUnixFds         func(d *DBusMessage, value T.GUint32)
-	dBusMessageSetPath               func(d *DBusMessage, value string)
-	dBusMessageSetReplySerial        func(d *DBusMessage, value T.GUint32)
-	dBusMessageSetSender             func(d *DBusMessage, value string)
-	dBusMessageSetSerial             func(d *DBusMessage, serial T.GUint32)
-	dBusMessageSetSignature          func(d *DBusMessage, value string)
-	dBusMessageSetUnixFdList         func(d *DBusMessage, fdList *T.GUnixFDList)
-	dBusMessageToBlob                func(d *DBusMessage, outSize *T.Gsize, capabilities DBusCapabilityFlags, err **T.GError) *T.Guchar
-	dBusMessageToGerror              func(d *DBusMessage, err **T.GError) bool
+	DBusMessageCopy                  func(d *DBusMessage, err **T.GError) *DBusMessage
+	DBusMessageGetArg0               func(d *DBusMessage) string
+	DBusMessageGetBody               func(d *DBusMessage) *T.GVariant
+	DBusMessageGetByteOrder          func(d *DBusMessage) DBusMessageByteOrder
+	DBusMessageGetDestination        func(d *DBusMessage) string
+	DBusMessageGetErrorName          func(d *DBusMessage) string
+	DBusMessageGetFlags              func(d *DBusMessage) DBusMessageFlags
+	DBusMessageGetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField) *T.GVariant
+	DBusMessageGetHeaderFields       func(d *DBusMessage) *T.Guchar
+	DBusMessageGetInterface          func(d *DBusMessage) string
+	DBusMessageGetLocked             func(d *DBusMessage) bool
+	DBusMessageGetMember             func(d *DBusMessage) string
+	DBusMessageGetMessageType        func(d *DBusMessage) DBusMessageType
+	DBusMessageGetNumUnixFds         func(d *DBusMessage) T.GUint32
+	DBusMessageGetPath               func(d *DBusMessage) string
+	DBusMessageGetReplySerial        func(d *DBusMessage) T.GUint32
+	DBusMessageGetSender             func(d *DBusMessage) string
+	DBusMessageGetSerial             func(d *DBusMessage) T.GUint32
+	DBusMessageGetSignature          func(d *DBusMessage) string
+	DBusMessageGetUnixFdList         func(d *DBusMessage) *T.GUnixFDList
+	DBusMessageLock                  func(d *DBusMessage)
+	DBusMessageNewMethodError        func(d *DBusMessage, errorName, errorMessageFormat string, v ...VArg) *DBusMessage
+	DBusMessageNewMethodErrorLiteral func(d *DBusMessage, errorName, errorMessage string) *DBusMessage
+	DBusMessageNewMethodErrorValist  func(d *DBusMessage, errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage
+	DBusMessageNewMethodReply        func(d *DBusMessage) *DBusMessage
+	DBusMessagePrint                 func(d *DBusMessage, indent uint) string
+	DBusMessageSetBody               func(d *DBusMessage, body *T.GVariant)
+	DBusMessageSetByteOrder          func(d *DBusMessage, byteOrder DBusMessageByteOrder)
+	DBusMessageSetDestination        func(d *DBusMessage, value string)
+	DBusMessageSetErrorName          func(d *DBusMessage, value string)
+	DBusMessageSetFlags              func(d *DBusMessage, flags DBusMessageFlags)
+	DBusMessageSetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField, value *T.GVariant)
+	DBusMessageSetInterface          func(d *DBusMessage, value string)
+	DBusMessageSetMember             func(d *DBusMessage, value string)
+	DBusMessageSetMessageType        func(d *DBusMessage, typ DBusMessageType)
+	DBusMessageSetNumUnixFds         func(d *DBusMessage, value T.GUint32)
+	DBusMessageSetPath               func(d *DBusMessage, value string)
+	DBusMessageSetReplySerial        func(d *DBusMessage, value T.GUint32)
+	DBusMessageSetSender             func(d *DBusMessage, value string)
+	DBusMessageSetSerial             func(d *DBusMessage, serial T.GUint32)
+	DBusMessageSetSignature          func(d *DBusMessage, value string)
+	DBusMessageSetUnixFdList         func(d *DBusMessage, fdList *T.GUnixFDList)
+	DBusMessageToBlob                func(d *DBusMessage, outSize *T.Gsize, capabilities DBusCapabilityFlags, err **T.GError) *T.Guchar
+	DBusMessageToGerror              func(d *DBusMessage, err **T.GError) bool
 )
 
-func (d *DBusMessage) Copy(err **T.GError) *DBusMessage   { return dBusMessageCopy(d, err) }
-func (d *DBusMessage) GetArg0() string                    { return dBusMessageGetArg0(d) }
-func (d *DBusMessage) GetBody() *T.GVariant               { return dBusMessageGetBody(d) }
-func (d *DBusMessage) GetByteOrder() DBusMessageByteOrder { return dBusMessageGetByteOrder(d) }
-func (d *DBusMessage) GetDestination() string             { return dBusMessageGetDestination(d) }
-func (d *DBusMessage) GetErrorName() string               { return dBusMessageGetErrorName(d) }
-func (d *DBusMessage) GetFlags() DBusMessageFlags         { return dBusMessageGetFlags(d) }
+func (d *DBusMessage) Copy(err **T.GError) *DBusMessage   { return DBusMessageCopy(d, err) }
+func (d *DBusMessage) GetArg0() string                    { return DBusMessageGetArg0(d) }
+func (d *DBusMessage) GetBody() *T.GVariant               { return DBusMessageGetBody(d) }
+func (d *DBusMessage) GetByteOrder() DBusMessageByteOrder { return DBusMessageGetByteOrder(d) }
+func (d *DBusMessage) GetDestination() string             { return DBusMessageGetDestination(d) }
+func (d *DBusMessage) GetErrorName() string               { return DBusMessageGetErrorName(d) }
+func (d *DBusMessage) GetFlags() DBusMessageFlags         { return DBusMessageGetFlags(d) }
 func (d *DBusMessage) GetHeader(headerField DBusMessageHeaderField) *T.GVariant {
-	return dBusMessageGetHeader(d, headerField)
+	return DBusMessageGetHeader(d, headerField)
 }
-func (d *DBusMessage) GetHeaderFields() *T.Guchar      { return dBusMessageGetHeaderFields(d) }
-func (d *DBusMessage) GetInterface() string            { return dBusMessageGetInterface(d) }
-func (d *DBusMessage) GetLocked() bool                 { return dBusMessageGetLocked(d) }
-func (d *DBusMessage) GetMember() string               { return dBusMessageGetMember(d) }
-func (d *DBusMessage) GetMessageType() DBusMessageType { return dBusMessageGetMessageType(d) }
-func (d *DBusMessage) GetNumUnixFds() T.GUint32        { return dBusMessageGetNumUnixFds(d) }
-func (d *DBusMessage) GetPath() string                 { return dBusMessageGetPath(d) }
-func (d *DBusMessage) GetReplySerial() T.GUint32       { return dBusMessageGetReplySerial(d) }
-func (d *DBusMessage) GetSender() string               { return dBusMessageGetSender(d) }
-func (d *DBusMessage) GetSerial() T.GUint32            { return dBusMessageGetSerial(d) }
-func (d *DBusMessage) GetSignature() string            { return dBusMessageGetSignature(d) }
-func (d *DBusMessage) GetUnixFdList() *T.GUnixFDList   { return dBusMessageGetUnixFdList(d) }
-func (d *DBusMessage) Lock()                           { dBusMessageLock(d) }
+func (d *DBusMessage) GetHeaderFields() *T.Guchar      { return DBusMessageGetHeaderFields(d) }
+func (d *DBusMessage) GetInterface() string            { return DBusMessageGetInterface(d) }
+func (d *DBusMessage) GetLocked() bool                 { return DBusMessageGetLocked(d) }
+func (d *DBusMessage) GetMember() string               { return DBusMessageGetMember(d) }
+func (d *DBusMessage) GetMessageType() DBusMessageType { return DBusMessageGetMessageType(d) }
+func (d *DBusMessage) GetNumUnixFds() T.GUint32        { return DBusMessageGetNumUnixFds(d) }
+func (d *DBusMessage) GetPath() string                 { return DBusMessageGetPath(d) }
+func (d *DBusMessage) GetReplySerial() T.GUint32       { return DBusMessageGetReplySerial(d) }
+func (d *DBusMessage) GetSender() string               { return DBusMessageGetSender(d) }
+func (d *DBusMessage) GetSerial() T.GUint32            { return DBusMessageGetSerial(d) }
+func (d *DBusMessage) GetSignature() string            { return DBusMessageGetSignature(d) }
+func (d *DBusMessage) GetUnixFdList() *T.GUnixFDList   { return DBusMessageGetUnixFdList(d) }
+func (d *DBusMessage) Lock()                           { DBusMessageLock(d) }
 func (d *DBusMessage) NewMethodError(errorName, errorMessageFormat string, v ...VArg) *DBusMessage {
-	return dBusMessageNewMethodError(d, errorName, errorMessageFormat, v)
+	return DBusMessageNewMethodError(d, errorName, errorMessageFormat, v)
 }
 func (d *DBusMessage) NewMethodErrorLiteral(errorName, errorMessage string) *DBusMessage {
-	return dBusMessageNewMethodErrorLiteral(d, errorName, errorMessage)
+	return DBusMessageNewMethodErrorLiteral(d, errorName, errorMessage)
 }
 func (d *DBusMessage) NewMethodErrorValist(errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage {
-	return dBusMessageNewMethodErrorValist(d, errorName, errorMessageFormat, varArgs)
+	return DBusMessageNewMethodErrorValist(d, errorName, errorMessageFormat, varArgs)
 }
-func (d *DBusMessage) NewMethodReply() *DBusMessage { return dBusMessageNewMethodReply(d) }
-func (d *DBusMessage) Print(indent uint) string     { return dBusMessagePrint(d, indent) }
-func (d *DBusMessage) SetBody(body *T.GVariant)     { dBusMessageSetBody(d, body) }
+func (d *DBusMessage) NewMethodReply() *DBusMessage { return DBusMessageNewMethodReply(d) }
+func (d *DBusMessage) Print(indent uint) string     { return DBusMessagePrint(d, indent) }
+func (d *DBusMessage) SetBody(body *T.GVariant)     { DBusMessageSetBody(d, body) }
 func (d *DBusMessage) SetByteOrder(byteOrder DBusMessageByteOrder) {
-	dBusMessageSetByteOrder(d, byteOrder)
+	DBusMessageSetByteOrder(d, byteOrder)
 }
-func (d *DBusMessage) SetDestination(value string)     { dBusMessageSetDestination(d, value) }
-func (d *DBusMessage) SetErrorName(value string)       { dBusMessageSetErrorName(d, value) }
-func (d *DBusMessage) SetFlags(flags DBusMessageFlags) { dBusMessageSetFlags(d, flags) }
+func (d *DBusMessage) SetDestination(value string)     { DBusMessageSetDestination(d, value) }
+func (d *DBusMessage) SetErrorName(value string)       { DBusMessageSetErrorName(d, value) }
+func (d *DBusMessage) SetFlags(flags DBusMessageFlags) { DBusMessageSetFlags(d, flags) }
 func (d *DBusMessage) SetHeader(headerField DBusMessageHeaderField, value *T.GVariant) {
-	dBusMessageSetHeader(d, headerField, value)
+	DBusMessageSetHeader(d, headerField, value)
 }
-func (d *DBusMessage) SetInterface(value string)           { dBusMessageSetInterface(d, value) }
-func (d *DBusMessage) SetMember(value string)              { dBusMessageSetMember(d, value) }
-func (d *DBusMessage) SetMessageType(typ DBusMessageType)  { dBusMessageSetMessageType(d, typ) }
-func (d *DBusMessage) SetNumUnixFds(value T.GUint32)       { dBusMessageSetNumUnixFds(d, value) }
-func (d *DBusMessage) SetPath(value string)                { dBusMessageSetPath(d, value) }
-func (d *DBusMessage) SetReplySerial(value T.GUint32)      { dBusMessageSetReplySerial(d, value) }
-func (d *DBusMessage) SetSender(value string)              { dBusMessageSetSender(d, value) }
-func (d *DBusMessage) SetSerial(serial T.GUint32)          { dBusMessageSetSerial(d, serial) }
-func (d *DBusMessage) SetSignature(value string)           { dBusMessageSetSignature(d, value) }
-func (d *DBusMessage) SetUnixFdList(fdList *T.GUnixFDList) { dBusMessageSetUnixFdList(d, fdList) }
+func (d *DBusMessage) SetInterface(value string)           { DBusMessageSetInterface(d, value) }
+func (d *DBusMessage) SetMember(value string)              { DBusMessageSetMember(d, value) }
+func (d *DBusMessage) SetMessageType(typ DBusMessageType)  { DBusMessageSetMessageType(d, typ) }
+func (d *DBusMessage) SetNumUnixFds(value T.GUint32)       { DBusMessageSetNumUnixFds(d, value) }
+func (d *DBusMessage) SetPath(value string)                { DBusMessageSetPath(d, value) }
+func (d *DBusMessage) SetReplySerial(value T.GUint32)      { DBusMessageSetReplySerial(d, value) }
+func (d *DBusMessage) SetSender(value string)              { DBusMessageSetSender(d, value) }
+func (d *DBusMessage) SetSerial(serial T.GUint32)          { DBusMessageSetSerial(d, serial) }
+func (d *DBusMessage) SetSignature(value string)           { DBusMessageSetSignature(d, value) }
+func (d *DBusMessage) SetUnixFdList(fdList *T.GUnixFDList) { DBusMessageSetUnixFdList(d, fdList) }
 func (d *DBusMessage) ToBlob(outSize *T.Gsize, capabilities DBusCapabilityFlags, err **T.GError) *T.Guchar {
-	return dBusMessageToBlob(d, outSize, capabilities, err)
+	return DBusMessageToBlob(d, outSize, capabilities, err)
 }
-func (d *DBusMessage) ToGerror(err **T.GError) bool { return dBusMessageToGerror(d, err) }
+func (d *DBusMessage) ToGerror(err **T.GError) bool { return DBusMessageToGerror(d, err) }
 
 type DBusMessageByteOrder Enum
 
@@ -648,67 +649,67 @@ type DBusMethodInfo struct {
 var (
 	DBusMethodInfoGetType func() O.Type
 
-	dBusMethodInfoRef   func(d *DBusMethodInfo) *DBusMethodInfo
-	dBusMethodInfoUnref func(d *DBusMethodInfo)
+	DBusMethodInfoRef   func(d *DBusMethodInfo) *DBusMethodInfo
+	DBusMethodInfoUnref func(d *DBusMethodInfo)
 )
 
-func (d *DBusMethodInfo) Ref() *DBusMethodInfo { return dBusMethodInfoRef(d) }
-func (d *DBusMethodInfo) Unref()               { dBusMethodInfoUnref(d) }
+func (d *DBusMethodInfo) Ref() *DBusMethodInfo { return DBusMethodInfoRef(d) }
+func (d *DBusMethodInfo) Unref()               { DBusMethodInfoUnref(d) }
 
 type DBusMethodInvocation struct{}
 
 var (
 	DBusMethodInvocationGetType func() O.Type
 
-	dBusMethodInvocationGetConnection      func(d *DBusMethodInvocation) *DBusConnection
-	dBusMethodInvocationGetInterfaceName   func(d *DBusMethodInvocation) string
-	dBusMethodInvocationGetMessage         func(d *DBusMethodInvocation) *DBusMessage
-	dBusMethodInvocationGetMethodInfo      func(d *DBusMethodInvocation) *DBusMethodInfo
-	dBusMethodInvocationGetMethodName      func(d *DBusMethodInvocation) string
-	dBusMethodInvocationGetObjectPath      func(d *DBusMethodInvocation) string
-	dBusMethodInvocationGetParameters      func(d *DBusMethodInvocation) *T.GVariant
-	dBusMethodInvocationGetSender          func(d *DBusMethodInvocation) string
-	dBusMethodInvocationGetUserData        func(d *DBusMethodInvocation) T.Gpointer
-	dBusMethodInvocationReturnDBusError    func(d *DBusMethodInvocation, errorName, errorMessage string)
-	dBusMethodInvocationReturnError        func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, v ...VArg)
-	dBusMethodInvocationReturnErrorLiteral func(d *DBusMethodInvocation, domain T.GQuark, code int, message string)
-	dBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, varArgs T.VaList)
-	dBusMethodInvocationReturnGerror       func(d *DBusMethodInvocation, err *T.GError)
-	dBusMethodInvocationReturnValue        func(d *DBusMethodInvocation, parameters *T.GVariant)
+	DBusMethodInvocationGetConnection      func(d *DBusMethodInvocation) *DBusConnection
+	DBusMethodInvocationGetInterfaceName   func(d *DBusMethodInvocation) string
+	DBusMethodInvocationGetMessage         func(d *DBusMethodInvocation) *DBusMessage
+	DBusMethodInvocationGetMethodInfo      func(d *DBusMethodInvocation) *DBusMethodInfo
+	DBusMethodInvocationGetMethodName      func(d *DBusMethodInvocation) string
+	DBusMethodInvocationGetObjectPath      func(d *DBusMethodInvocation) string
+	DBusMethodInvocationGetParameters      func(d *DBusMethodInvocation) *T.GVariant
+	DBusMethodInvocationGetSender          func(d *DBusMethodInvocation) string
+	DBusMethodInvocationGetUserData        func(d *DBusMethodInvocation) T.Gpointer
+	DBusMethodInvocationReturnDBusError    func(d *DBusMethodInvocation, errorName, errorMessage string)
+	DBusMethodInvocationReturnError        func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, v ...VArg)
+	DBusMethodInvocationReturnErrorLiteral func(d *DBusMethodInvocation, domain T.GQuark, code int, message string)
+	DBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, varArgs T.VaList)
+	DBusMethodInvocationReturnGerror       func(d *DBusMethodInvocation, err *T.GError)
+	DBusMethodInvocationReturnValue        func(d *DBusMethodInvocation, parameters *T.GVariant)
 )
 
 func (d *DBusMethodInvocation) GetConnection() *DBusConnection {
-	return dBusMethodInvocationGetConnection(d)
+	return DBusMethodInvocationGetConnection(d)
 }
 func (d *DBusMethodInvocation) GetInterfaceName() string {
-	return dBusMethodInvocationGetInterfaceName(d)
+	return DBusMethodInvocationGetInterfaceName(d)
 }
-func (d *DBusMethodInvocation) GetMessage() *DBusMessage { return dBusMethodInvocationGetMessage(d) }
+func (d *DBusMethodInvocation) GetMessage() *DBusMessage { return DBusMethodInvocationGetMessage(d) }
 func (d *DBusMethodInvocation) GetMethodInfo() *DBusMethodInfo {
-	return dBusMethodInvocationGetMethodInfo(d)
+	return DBusMethodInvocationGetMethodInfo(d)
 }
-func (d *DBusMethodInvocation) GetMethodName() string { return dBusMethodInvocationGetMethodName(d) }
-func (d *DBusMethodInvocation) GetObjectPath() string { return dBusMethodInvocationGetObjectPath(d) }
+func (d *DBusMethodInvocation) GetMethodName() string { return DBusMethodInvocationGetMethodName(d) }
+func (d *DBusMethodInvocation) GetObjectPath() string { return DBusMethodInvocationGetObjectPath(d) }
 func (d *DBusMethodInvocation) GetParameters() *T.GVariant {
-	return dBusMethodInvocationGetParameters(d)
+	return DBusMethodInvocationGetParameters(d)
 }
-func (d *DBusMethodInvocation) GetSender() string       { return dBusMethodInvocationGetSender(d) }
-func (d *DBusMethodInvocation) GetUserData() T.Gpointer { return dBusMethodInvocationGetUserData(d) }
+func (d *DBusMethodInvocation) GetSender() string       { return DBusMethodInvocationGetSender(d) }
+func (d *DBusMethodInvocation) GetUserData() T.Gpointer { return DBusMethodInvocationGetUserData(d) }
 func (d *DBusMethodInvocation) ReturnDBusError(errorName, errorMessage string) {
-	dBusMethodInvocationReturnDBusError(d, errorName, errorMessage)
+	DBusMethodInvocationReturnDBusError(d, errorName, errorMessage)
 }
 func (d *DBusMethodInvocation) ReturnError(domain T.GQuark, code int, format string, v ...VArg) {
-	dBusMethodInvocationReturnError(d, domain, code, format, v)
+	DBusMethodInvocationReturnError(d, domain, code, format, v)
 }
 func (d *DBusMethodInvocation) ReturnErrorLiteral(domain T.GQuark, code int, message string) {
-	dBusMethodInvocationReturnErrorLiteral(d, domain, code, message)
+	DBusMethodInvocationReturnErrorLiteral(d, domain, code, message)
 }
 func (d *DBusMethodInvocation) ReturnErrorValist(domain T.GQuark, code int, format string, varArgs T.VaList) {
-	dBusMethodInvocationReturnErrorValist(d, domain, code, format, varArgs)
+	DBusMethodInvocationReturnErrorValist(d, domain, code, format, varArgs)
 }
-func (d *DBusMethodInvocation) ReturnGerror(err *T.GError) { dBusMethodInvocationReturnGerror(d, err) }
+func (d *DBusMethodInvocation) ReturnGerror(err *T.GError) { DBusMethodInvocationReturnGerror(d, err) }
 func (d *DBusMethodInvocation) ReturnValue(parameters *T.GVariant) {
-	dBusMethodInvocationReturnValue(d, parameters)
+	DBusMethodInvocationReturnValue(d, parameters)
 }
 
 type DBusNodeInfo struct {
@@ -723,20 +724,20 @@ var (
 	DBusNodeInfoGetType   func() O.Type
 	DBusNodeInfoNewForXml func(xmlData string, err **T.GError) *DBusNodeInfo
 
-	dBusNodeInfoGenerateXml     func(d *DBusNodeInfo, indent uint, stringBuilder *T.GString)
-	dBusNodeInfoLookupInterface func(d *DBusNodeInfo, name string) *DBusInterfaceInfo
-	dBusNodeInfoRef             func(d *DBusNodeInfo) *DBusNodeInfo
-	dBusNodeInfoUnref           func(d *DBusNodeInfo)
+	DBusNodeInfoGenerateXml     func(d *DBusNodeInfo, indent uint, stringBuilder *L.String)
+	DBusNodeInfoLookupInterface func(d *DBusNodeInfo, name string) *DBusInterfaceInfo
+	DBusNodeInfoRef             func(d *DBusNodeInfo) *DBusNodeInfo
+	DBusNodeInfoUnref           func(d *DBusNodeInfo)
 )
 
-func (d *DBusNodeInfo) GenerateXml(indent uint, stringBuilder *T.GString) {
-	dBusNodeInfoGenerateXml(d, indent, stringBuilder)
+func (d *DBusNodeInfo) GenerateXml(indent uint, stringBuilder *L.String) {
+	DBusNodeInfoGenerateXml(d, indent, stringBuilder)
 }
 func (d *DBusNodeInfo) LookupInterface(name string) *DBusInterfaceInfo {
-	return dBusNodeInfoLookupInterface(d, name)
+	return DBusNodeInfoLookupInterface(d, name)
 }
-func (d *DBusNodeInfo) Ref() *DBusNodeInfo { return dBusNodeInfoRef(d) }
-func (d *DBusNodeInfo) Unref()             { dBusNodeInfoUnref(d) }
+func (d *DBusNodeInfo) Ref() *DBusNodeInfo { return DBusNodeInfoRef(d) }
+func (d *DBusNodeInfo) Unref()             { DBusNodeInfoUnref(d) }
 
 type DBusPropertyInfo struct {
 	RefCount    int
@@ -749,12 +750,12 @@ type DBusPropertyInfo struct {
 var (
 	DBusPropertyInfoGetType func() O.Type
 
-	dBusPropertyInfoRef   func(d *DBusPropertyInfo) *DBusPropertyInfo
-	dBusPropertyInfoUnref func(d *DBusPropertyInfo)
+	DBusPropertyInfoRef   func(d *DBusPropertyInfo) *DBusPropertyInfo
+	DBusPropertyInfoUnref func(d *DBusPropertyInfo)
 )
 
-func (d *DBusPropertyInfo) Ref() *DBusPropertyInfo { return dBusPropertyInfoRef(d) }
-func (d *DBusPropertyInfo) Unref()                 { dBusPropertyInfoUnref(d) }
+func (d *DBusPropertyInfo) Ref() *DBusPropertyInfo { return DBusPropertyInfoRef(d) }
+func (d *DBusPropertyInfo) Unref()                 { DBusPropertyInfoUnref(d) }
 
 type DBusPropertyInfoFlags Enum
 
@@ -780,50 +781,50 @@ var (
 	DBusProxyNewForBusSync   func(busType BusType, flags DBusProxyFlags, info *DBusInterfaceInfo, name string, objectPath string, interfaceName string, cancellable *Cancellable, err **T.GError) *DBusProxy
 	DBusProxyNewSync         func(d *DBusConnection, flags DBusProxyFlags, info *DBusInterfaceInfo, name string, objectPath string, interfaceName string, cancellable *Cancellable, err **T.GError) *DBusProxy
 
-	dBusProxyCall                   func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	dBusProxyCallFinish             func(d *DBusProxy, res *AsyncResult, err **T.GError) *T.GVariant
-	dBusProxyCallSync               func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
-	dBusProxyGetCachedProperty      func(d *DBusProxy, propertyName string) *T.GVariant
-	dBusProxyGetCachedPropertyNames func(d *DBusProxy) []string
-	dBusProxyGetConnection          func(d *DBusProxy) *DBusConnection
-	dBusProxyGetDefaultTimeout      func(d *DBusProxy) int
-	dBusProxyGetFlags               func(d *DBusProxy) DBusProxyFlags
-	dBusProxyGetInterfaceInfo       func(d *DBusProxy) *DBusInterfaceInfo
-	dBusProxyGetInterfaceName       func(d *DBusProxy) string
-	dBusProxyGetName                func(d *DBusProxy) string
-	dBusProxyGetNameOwner           func(d *DBusProxy) string
-	dBusProxyGetObjectPath          func(d *DBusProxy) string
-	dBusProxySetCachedProperty      func(d *DBusProxy, propertyName string, value *T.GVariant)
-	dBusProxySetDefaultTimeout      func(d *DBusProxy, timeoutMsec int)
-	dBusProxySetInterfaceInfo       func(d *DBusProxy, info *DBusInterfaceInfo)
+	DBusProxyCall                   func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusProxyCallFinish             func(d *DBusProxy, res *AsyncResult, err **T.GError) *T.GVariant
+	DBusProxyCallSync               func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
+	DBusProxyGetCachedProperty      func(d *DBusProxy, propertyName string) *T.GVariant
+	DBusProxyGetCachedPropertyNames func(d *DBusProxy) []string
+	DBusProxyGetConnection          func(d *DBusProxy) *DBusConnection
+	DBusProxyGetDefaultTimeout      func(d *DBusProxy) int
+	DBusProxyGetFlags               func(d *DBusProxy) DBusProxyFlags
+	DBusProxyGetInterfaceInfo       func(d *DBusProxy) *DBusInterfaceInfo
+	DBusProxyGetInterfaceName       func(d *DBusProxy) string
+	DBusProxyGetName                func(d *DBusProxy) string
+	DBusProxyGetNameOwner           func(d *DBusProxy) string
+	DBusProxyGetObjectPath          func(d *DBusProxy) string
+	DBusProxySetCachedProperty      func(d *DBusProxy, propertyName string, value *T.GVariant)
+	DBusProxySetDefaultTimeout      func(d *DBusProxy, timeoutMsec int)
+	DBusProxySetInterfaceInfo       func(d *DBusProxy, info *DBusInterfaceInfo)
 )
 
 func (d *DBusProxy) Call(methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	dBusProxyCall(d, methodName, parameters, flags, timeoutMsec, cancellable, callback, userData)
+	DBusProxyCall(d, methodName, parameters, flags, timeoutMsec, cancellable, callback, userData)
 }
 func (d *DBusProxy) CallFinish(res *AsyncResult, err **T.GError) *T.GVariant {
-	return dBusProxyCallFinish(d, res, err)
+	return DBusProxyCallFinish(d, res, err)
 }
 func (d *DBusProxy) CallSync(methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant {
-	return dBusProxyCallSync(d, methodName, parameters, flags, timeoutMsec, cancellable, err)
+	return DBusProxyCallSync(d, methodName, parameters, flags, timeoutMsec, cancellable, err)
 }
 func (d *DBusProxy) GetCachedProperty(propertyName string) *T.GVariant {
-	return dBusProxyGetCachedProperty(d, propertyName)
+	return DBusProxyGetCachedProperty(d, propertyName)
 }
-func (d *DBusProxy) GetCachedPropertyNames() []string     { return dBusProxyGetCachedPropertyNames(d) }
-func (d *DBusProxy) GetConnection() *DBusConnection       { return dBusProxyGetConnection(d) }
-func (d *DBusProxy) GetDefaultTimeout() int               { return dBusProxyGetDefaultTimeout(d) }
-func (d *DBusProxy) GetFlags() DBusProxyFlags             { return dBusProxyGetFlags(d) }
-func (d *DBusProxy) GetInterfaceInfo() *DBusInterfaceInfo { return dBusProxyGetInterfaceInfo(d) }
-func (d *DBusProxy) GetInterfaceName() string             { return dBusProxyGetInterfaceName(d) }
-func (d *DBusProxy) GetName() string                      { return dBusProxyGetName(d) }
-func (d *DBusProxy) GetNameOwner() string                 { return dBusProxyGetNameOwner(d) }
-func (d *DBusProxy) GetObjectPath() string                { return dBusProxyGetObjectPath(d) }
+func (d *DBusProxy) GetCachedPropertyNames() []string     { return DBusProxyGetCachedPropertyNames(d) }
+func (d *DBusProxy) GetConnection() *DBusConnection       { return DBusProxyGetConnection(d) }
+func (d *DBusProxy) GetDefaultTimeout() int               { return DBusProxyGetDefaultTimeout(d) }
+func (d *DBusProxy) GetFlags() DBusProxyFlags             { return DBusProxyGetFlags(d) }
+func (d *DBusProxy) GetInterfaceInfo() *DBusInterfaceInfo { return DBusProxyGetInterfaceInfo(d) }
+func (d *DBusProxy) GetInterfaceName() string             { return DBusProxyGetInterfaceName(d) }
+func (d *DBusProxy) GetName() string                      { return DBusProxyGetName(d) }
+func (d *DBusProxy) GetNameOwner() string                 { return DBusProxyGetNameOwner(d) }
+func (d *DBusProxy) GetObjectPath() string                { return DBusProxyGetObjectPath(d) }
 func (d *DBusProxy) SetCachedProperty(propertyName string, value *T.GVariant) {
-	dBusProxySetCachedProperty(d, propertyName, value)
+	DBusProxySetCachedProperty(d, propertyName, value)
 }
-func (d *DBusProxy) SetDefaultTimeout(timeoutMsec int)        { dBusProxySetDefaultTimeout(d, timeoutMsec) }
-func (d *DBusProxy) SetInterfaceInfo(info *DBusInterfaceInfo) { dBusProxySetInterfaceInfo(d, info) }
+func (d *DBusProxy) SetDefaultTimeout(timeoutMsec int)        { DBusProxySetDefaultTimeout(d, timeoutMsec) }
+func (d *DBusProxy) SetInterfaceInfo(info *DBusInterfaceInfo) { DBusProxySetInterfaceInfo(d, info) }
 
 type DBusProxyFlags Enum
 
@@ -851,20 +852,20 @@ var (
 	DBusServerGetType func() O.Type
 	DBusServerNewSync func(address string, flags DBusServerFlags, guid string, observer *DBusAuthObserver, cancellable *Cancellable, err **T.GError) *DBusServer
 
-	dBusServerGetClientAddress func(d *DBusServer) string
-	dBusServerGetFlags         func(d *DBusServer) DBusServerFlags
-	dBusServerGetGuid          func(d *DBusServer) string
-	dBusServerIsActive         func(d *DBusServer) bool
-	dBusServerStart            func(d *DBusServer)
-	dBusServerStop             func(d *DBusServer)
+	DBusServerGetClientAddress func(d *DBusServer) string
+	DBusServerGetFlags         func(d *DBusServer) DBusServerFlags
+	DBusServerGetGuid          func(d *DBusServer) string
+	DBusServerIsActive         func(d *DBusServer) bool
+	DBusServerStart            func(d *DBusServer)
+	DBusServerStop             func(d *DBusServer)
 )
 
-func (d *DBusServer) GetClientAddress() string  { return dBusServerGetClientAddress(d) }
-func (d *DBusServer) GetFlags() DBusServerFlags { return dBusServerGetFlags(d) }
-func (d *DBusServer) GetGuid() string           { return dBusServerGetGuid(d) }
-func (d *DBusServer) IsActive() bool            { return dBusServerIsActive(d) }
-func (d *DBusServer) Start()                    { dBusServerStart(d) }
-func (d *DBusServer) Stop()                     { dBusServerStop(d) }
+func (d *DBusServer) GetClientAddress() string  { return DBusServerGetClientAddress(d) }
+func (d *DBusServer) GetFlags() DBusServerFlags { return DBusServerGetFlags(d) }
+func (d *DBusServer) GetGuid() string           { return DBusServerGetGuid(d) }
+func (d *DBusServer) IsActive() bool            { return DBusServerIsActive(d) }
+func (d *DBusServer) Start()                    { DBusServerStart(d) }
+func (d *DBusServer) Stop()                     { DBusServerStop(d) }
 
 type DBusServerFlags Enum
 
@@ -890,12 +891,12 @@ type DBusSignalInfo struct {
 var (
 	DBusSignalInfoGetType func() O.Type
 
-	dBusSignalInfoRef   func(d *DBusSignalInfo) *DBusSignalInfo
-	dBusSignalInfoUnref func(d *DBusSignalInfo)
+	DBusSignalInfoRef   func(d *DBusSignalInfo) *DBusSignalInfo
+	DBusSignalInfoUnref func(d *DBusSignalInfo)
 )
 
-func (d *DBusSignalInfo) Ref() *DBusSignalInfo { return dBusSignalInfoRef(d) }
-func (d *DBusSignalInfo) Unref()               { dBusSignalInfoUnref(d) }
+func (d *DBusSignalInfo) Ref() *DBusSignalInfo { return DBusSignalInfoRef(d) }
+func (d *DBusSignalInfo) Unref()               { DBusSignalInfoUnref(d) }
 
 type DBusSignalFlags Enum
 
@@ -939,77 +940,77 @@ type Drive struct{}
 var (
 	DriveGetType func() O.Type
 
-	driveCanEject                 func(d *Drive) bool
-	driveCanPollForMedia          func(d *Drive) bool
-	driveCanStart                 func(d *Drive) bool
-	driveCanStartDegraded         func(d *Drive) bool
-	driveCanStop                  func(d *Drive) bool
-	driveEject                    func(d *Drive, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	driveEjectFinish              func(d *Drive, result *AsyncResult, err **T.GError) bool
-	driveEjectWithOperation       func(d *Drive, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	driveEjectWithOperationFinish func(d *Drive, result *AsyncResult, err **T.GError) bool
-	driveEnumerateIdentifiers     func(d *Drive) []string
-	driveGetIcon                  func(d *Drive) *Icon
-	driveGetIdentifier            func(d *Drive, kind string) string
-	driveGetName                  func(d *Drive) string
-	driveGetStartStopType         func(d *Drive) DriveStartStopType
-	driveGetVolumes               func(d *Drive) *T.GList
-	driveHasMedia                 func(d *Drive) bool
-	driveHasVolumes               func(d *Drive) bool
-	driveIsMediaCheckAutomatic    func(d *Drive) bool
-	driveIsMediaRemovable         func(d *Drive) bool
-	drivePollForMedia             func(d *Drive, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	drivePollForMediaFinish       func(d *Drive, result *AsyncResult, err **T.GError) bool
-	driveStart                    func(d *Drive, flags DriveStartFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	driveStartFinish              func(d *Drive, result *AsyncResult, err **T.GError) bool
-	driveStop                     func(d *Drive, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	driveStopFinish               func(d *Drive, result *AsyncResult, err **T.GError) bool
+	DriveCanEject                 func(d *Drive) bool
+	DriveCanPollForMedia          func(d *Drive) bool
+	DriveCanStart                 func(d *Drive) bool
+	DriveCanStartDegraded         func(d *Drive) bool
+	DriveCanStop                  func(d *Drive) bool
+	DriveEject                    func(d *Drive, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DriveEjectFinish              func(d *Drive, result *AsyncResult, err **T.GError) bool
+	DriveEjectWithOperation       func(d *Drive, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DriveEjectWithOperationFinish func(d *Drive, result *AsyncResult, err **T.GError) bool
+	DriveEnumerateIdentifiers     func(d *Drive) []string
+	DriveGetIcon                  func(d *Drive) *Icon
+	DriveGetIdentifier            func(d *Drive, kind string) string
+	DriveGetName                  func(d *Drive) string
+	DriveGetStartStopType         func(d *Drive) DriveStartStopType
+	DriveGetVolumes               func(d *Drive) *T.GList
+	DriveHasMedia                 func(d *Drive) bool
+	DriveHasVolumes               func(d *Drive) bool
+	DriveIsMediaCheckAutomatic    func(d *Drive) bool
+	DriveIsMediaRemovable         func(d *Drive) bool
+	DrivePollForMedia             func(d *Drive, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DrivePollForMediaFinish       func(d *Drive, result *AsyncResult, err **T.GError) bool
+	DriveStart                    func(d *Drive, flags DriveStartFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DriveStartFinish              func(d *Drive, result *AsyncResult, err **T.GError) bool
+	DriveStop                     func(d *Drive, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DriveStopFinish               func(d *Drive, result *AsyncResult, err **T.GError) bool
 )
 
-func (d *Drive) CanEject() bool         { return driveCanEject(d) }
-func (d *Drive) CanPollForMedia() bool  { return driveCanPollForMedia(d) }
-func (d *Drive) CanStart() bool         { return driveCanStart(d) }
-func (d *Drive) CanStartDegraded() bool { return driveCanStartDegraded(d) }
-func (d *Drive) CanStop() bool          { return driveCanStop(d) }
+func (d *Drive) CanEject() bool         { return DriveCanEject(d) }
+func (d *Drive) CanPollForMedia() bool  { return DriveCanPollForMedia(d) }
+func (d *Drive) CanStart() bool         { return DriveCanStart(d) }
+func (d *Drive) CanStartDegraded() bool { return DriveCanStartDegraded(d) }
+func (d *Drive) CanStop() bool          { return DriveCanStop(d) }
 func (d *Drive) Eject(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	driveEject(d, flags, cancellable, callback, userData)
+	DriveEject(d, flags, cancellable, callback, userData)
 }
 func (d *Drive) EjectFinish(result *AsyncResult, err **T.GError) bool {
-	return driveEjectFinish(d, result, err)
+	return DriveEjectFinish(d, result, err)
 }
 func (d *Drive) EjectWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	driveEjectWithOperation(d, flags, mountOperation, cancellable, callback, userData)
+	DriveEjectWithOperation(d, flags, mountOperation, cancellable, callback, userData)
 }
 func (d *Drive) EjectWithOperationFinish(result *AsyncResult, err **T.GError) bool {
-	return driveEjectWithOperationFinish(d, result, err)
+	return DriveEjectWithOperationFinish(d, result, err)
 }
-func (d *Drive) EnumerateIdentifiers() []string       { return driveEnumerateIdentifiers(d) }
-func (d *Drive) GetIcon() *Icon                       { return driveGetIcon(d) }
-func (d *Drive) GetIdentifier(kind string) string     { return driveGetIdentifier(d, kind) }
-func (d *Drive) GetName() string                      { return driveGetName(d) }
-func (d *Drive) GetStartStopType() DriveStartStopType { return driveGetStartStopType(d) }
-func (d *Drive) GetVolumes() *T.GList                 { return driveGetVolumes(d) }
-func (d *Drive) HasMedia() bool                       { return driveHasMedia(d) }
-func (d *Drive) HasVolumes() bool                     { return driveHasVolumes(d) }
-func (d *Drive) IsMediaCheckAutomatic() bool          { return driveIsMediaCheckAutomatic(d) }
-func (d *Drive) IsMediaRemovable() bool               { return driveIsMediaRemovable(d) }
+func (d *Drive) EnumerateIdentifiers() []string       { return DriveEnumerateIdentifiers(d) }
+func (d *Drive) GetIcon() *Icon                       { return DriveGetIcon(d) }
+func (d *Drive) GetIdentifier(kind string) string     { return DriveGetIdentifier(d, kind) }
+func (d *Drive) GetName() string                      { return DriveGetName(d) }
+func (d *Drive) GetStartStopType() DriveStartStopType { return DriveGetStartStopType(d) }
+func (d *Drive) GetVolumes() *T.GList                 { return DriveGetVolumes(d) }
+func (d *Drive) HasMedia() bool                       { return DriveHasMedia(d) }
+func (d *Drive) HasVolumes() bool                     { return DriveHasVolumes(d) }
+func (d *Drive) IsMediaCheckAutomatic() bool          { return DriveIsMediaCheckAutomatic(d) }
+func (d *Drive) IsMediaRemovable() bool               { return DriveIsMediaRemovable(d) }
 func (d *Drive) PollForMedia(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	drivePollForMedia(d, cancellable, callback, userData)
+	DrivePollForMedia(d, cancellable, callback, userData)
 }
 func (d *Drive) PollForMediaFinish(result *AsyncResult, err **T.GError) bool {
-	return drivePollForMediaFinish(d, result, err)
+	return DrivePollForMediaFinish(d, result, err)
 }
 func (d *Drive) Start(flags DriveStartFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	driveStart(d, flags, mountOperation, cancellable, callback, userData)
+	DriveStart(d, flags, mountOperation, cancellable, callback, userData)
 }
 func (d *Drive) StartFinish(result *AsyncResult, err **T.GError) bool {
-	return driveStartFinish(d, result, err)
+	return DriveStartFinish(d, result, err)
 }
 func (d *Drive) Stop(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	driveStop(d, flags, mountOperation, cancellable, callback, userData)
+	DriveStop(d, flags, mountOperation, cancellable, callback, userData)
 }
 func (d *Drive) StopFinish(result *AsyncResult, err **T.GError) bool {
-	return driveStopFinish(d, result, err)
+	return DriveStopFinish(d, result, err)
 }
 
 type DriveStartFlags Enum

@@ -4,6 +4,7 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -16,163 +17,163 @@ var (
 	LanguageFromString func(language string) *Language
 	LanguageGetDefault func() *Language
 
-	languageGetSampleString func(l *Language) string
-	languageGetScripts      func(l *Language, numScripts *int) *Script
-	languageIncludesScript  func(l *Language, script Script) bool
-	languageMatches         func(l *Language, rangeList string) bool
-	languageToString        func(l *Language) string
+	LanguageGetSampleString func(l *Language) string
+	LanguageGetScripts      func(l *Language, numScripts *int) *Script
+	LanguageIncludesScript  func(l *Language, script Script) bool
+	LanguageMatches         func(l *Language, rangeList string) bool
+	LanguageToString        func(l *Language) string
 )
 
-func (l *Language) GetSampleString() string { return languageGetSampleString(l) }
+func (l *Language) GetSampleString() string { return LanguageGetSampleString(l) }
 func (l *Language) GetScripts(numScripts *int) *Script {
-	return languageGetScripts(l, numScripts)
+	return LanguageGetScripts(l, numScripts)
 }
 func (l *Language) IncludesScript(script Script) bool {
-	return languageIncludesScript(l, script)
+	return LanguageIncludesScript(l, script)
 }
-func (l *Language) Matches(rangeList string) bool { return languageMatches(l, rangeList) }
-func (l *Language) ToString() string              { return languageToString(l) }
+func (l *Language) Matches(rangeList string) bool { return LanguageMatches(l, rangeList) }
+func (l *Language) ToString() string              { return LanguageToString(l) }
 
 type Layout struct{}
 
 var (
-	layoutGetType func() O.Type
-	layoutNew     func(context *Context) *Layout
+	LayoutGetType func() O.Type
+	LayoutNew     func(context *Context) *Layout
 
-	layoutContextChanged         func(l *Layout)
-	layoutCopy                   func(l *Layout) *Layout
-	layoutGetAlignment           func(l *Layout) Alignment
-	layoutGetAttributes          func(l *Layout) *AttrList
-	layoutGetAutoDir             func(l *Layout) bool
-	layoutGetBaseline            func(l *Layout) int
-	layoutGetCharacterCount      func(l *Layout) int
-	layoutGetContext             func(l *Layout) *Context
-	layoutGetCursorPos           func(l *Layout, index int, strongPos *Rectangle, weakPos *Rectangle)
-	layoutGetEllipsize           func(l *Layout) EllipsizeMode
-	layoutGetExtents             func(l *Layout, inkRect *Rectangle, logicalRect *Rectangle)
-	layoutGetFontDescription     func(l *Layout) *FontDescription
-	layoutGetHeight              func(l *Layout) int
-	layoutGetIndent              func(l *Layout) int
-	layoutGetIter                func(l *Layout) *LayoutIter
-	layoutGetJustify             func(l *Layout) bool
-	layoutGetLine                func(l *Layout, line int) *LayoutLine
-	layoutGetLineCount           func(l *Layout) int
-	layoutGetLineReadonly        func(l *Layout, line int) *LayoutLine
-	layoutGetLines               func(l *Layout) *T.GSList
-	layoutGetLinesReadonly       func(l *Layout) *T.GSList
-	layoutGetLogAttrs            func(l *Layout, Attrs **LogAttr, nAttrs *int)
-	layoutGetLogAttrsReadonly    func(l *Layout, nAttrs *int) *LogAttr
-	layoutGetPixelExtents        func(l *Layout, inkRect *Rectangle, logicalRect *Rectangle)
-	layoutGetPixelSize           func(l *Layout, width *int, height *int)
-	layoutGetSingleParagraphMode func(l *Layout) bool
-	layoutGetSize                func(l *Layout, width *int, height *int)
-	layoutGetSpacing             func(l *Layout) int
-	layoutGetTabs                func(l *Layout) *TabArray
-	layoutGetText                func(l *Layout) string
-	layoutGetUnknownGlyphsCount  func(l *Layout) int
-	layoutGetWidth               func(l *Layout) int
-	layoutGetWrap                func(l *Layout) WrapMode
-	layoutIndexToLineX           func(l *Layout, index int, trailing bool, line *int, xPos *int)
-	layoutIndexToPos             func(l *Layout, index int, pos *Rectangle)
-	layoutIsEllipsized           func(l *Layout) bool
-	layoutIsWrapped              func(l *Layout) bool
-	layoutMoveCursorVisually     func(l *Layout, strong bool, oldIndex int, oldTrailing int, direction int, newIndex *int, newTrailing *int)
-	layoutSetAlignment           func(l *Layout, Alignment Alignment)
-	layoutSetAttributes          func(l *Layout, Attrs *AttrList)
-	layoutSetAutoDir             func(l *Layout, AutoDir bool)
-	layoutSetEllipsize           func(l *Layout, ellipsize EllipsizeMode)
-	layoutSetFontDescription     func(l *Layout, desc *FontDescription)
-	layoutSetHeight              func(l *Layout, height int)
-	layoutSetIndent              func(l *Layout, indent int)
-	layoutSetJustify             func(l *Layout, justify bool)
-	layoutSetMarkup              func(l *Layout, markup string, length int)
-	layoutSetMarkupWithAccel     func(l *Layout, markup string, length int, AccelMarker T.Gunichar, AccelChar *T.Gunichar)
-	layoutSetSingleParagraphMode func(l *Layout, setting bool)
-	layoutSetSpacing             func(l *Layout, spacing int)
-	layoutSetTabs                func(l *Layout, tabs *TabArray)
-	layoutSetText                func(l *Layout, text string, length int)
-	layoutSetWidth               func(l *Layout, width int)
-	layoutSetWrap                func(l *Layout, wrap WrapMode)
-	layoutXyToIndex              func(l *Layout, x int, y int, index *int, trailing *int) bool
+	LayoutContextChanged         func(l *Layout)
+	LayoutCopy                   func(l *Layout) *Layout
+	LayoutGetAlignment           func(l *Layout) Alignment
+	LayoutGetAttributes          func(l *Layout) *AttrList
+	LayoutGetAutoDir             func(l *Layout) bool
+	LayoutGetBaseline            func(l *Layout) int
+	LayoutGetCharacterCount      func(l *Layout) int
+	LayoutGetContext             func(l *Layout) *Context
+	LayoutGetCursorPos           func(l *Layout, index int, strongPos *Rectangle, weakPos *Rectangle)
+	LayoutGetEllipsize           func(l *Layout) EllipsizeMode
+	LayoutGetExtents             func(l *Layout, inkRect *Rectangle, logicalRect *Rectangle)
+	LayoutGetFontDescription     func(l *Layout) *FontDescription
+	LayoutGetHeight              func(l *Layout) int
+	LayoutGetIndent              func(l *Layout) int
+	LayoutGetIter                func(l *Layout) *LayoutIter
+	LayoutGetJustify             func(l *Layout) bool
+	LayoutGetLine                func(l *Layout, line int) *LayoutLine
+	LayoutGetLineCount           func(l *Layout) int
+	LayoutGetLineReadonly        func(l *Layout, line int) *LayoutLine
+	LayoutGetLines               func(l *Layout) *L.SList
+	LayoutGetLinesReadonly       func(l *Layout) *L.SList
+	LayoutGetLogAttrs            func(l *Layout, Attrs **LogAttr, nAttrs *int)
+	LayoutGetLogAttrsReadonly    func(l *Layout, nAttrs *int) *LogAttr
+	LayoutGetPixelExtents        func(l *Layout, inkRect *Rectangle, logicalRect *Rectangle)
+	LayoutGetPixelSize           func(l *Layout, width *int, height *int)
+	LayoutGetSingleParagraphMode func(l *Layout) bool
+	LayoutGetSize                func(l *Layout, width *int, height *int)
+	LayoutGetSpacing             func(l *Layout) int
+	LayoutGetTabs                func(l *Layout) *TabArray
+	LayoutGetText                func(l *Layout) string
+	LayoutGetUnknownGlyphsCount  func(l *Layout) int
+	LayoutGetWidth               func(l *Layout) int
+	LayoutGetWrap                func(l *Layout) WrapMode
+	LayoutIndexToLineX           func(l *Layout, index int, trailing bool, line *int, xPos *int)
+	LayoutIndexToPos             func(l *Layout, index int, pos *Rectangle)
+	LayoutIsEllipsized           func(l *Layout) bool
+	LayoutIsWrapped              func(l *Layout) bool
+	LayoutMoveCursorVisually     func(l *Layout, strong bool, oldIndex int, oldTrailing int, direction int, newIndex *int, newTrailing *int)
+	LayoutSetAlignment           func(l *Layout, Alignment Alignment)
+	LayoutSetAttributes          func(l *Layout, Attrs *AttrList)
+	LayoutSetAutoDir             func(l *Layout, AutoDir bool)
+	LayoutSetEllipsize           func(l *Layout, ellipsize EllipsizeMode)
+	LayoutSetFontDescription     func(l *Layout, desc *FontDescription)
+	LayoutSetHeight              func(l *Layout, height int)
+	LayoutSetIndent              func(l *Layout, indent int)
+	LayoutSetJustify             func(l *Layout, justify bool)
+	LayoutSetMarkup              func(l *Layout, markup string, length int)
+	LayoutSetMarkupWithAccel     func(l *Layout, markup string, length int, AccelMarker T.Gunichar, AccelChar *T.Gunichar)
+	LayoutSetSingleParagraphMode func(l *Layout, setting bool)
+	LayoutSetSpacing             func(l *Layout, spacing int)
+	LayoutSetTabs                func(l *Layout, tabs *TabArray)
+	LayoutSetText                func(l *Layout, text string, length int)
+	LayoutSetWidth               func(l *Layout, width int)
+	LayoutSetWrap                func(l *Layout, wrap WrapMode)
+	LayoutXyToIndex              func(l *Layout, x int, y int, index *int, trailing *int) bool
 )
 
-func (l *Layout) ContextChanged()          { layoutContextChanged(l) }
-func (l *Layout) Copy() *Layout            { return layoutCopy(l) }
-func (l *Layout) GetAlignment() Alignment  { return layoutGetAlignment(l) }
-func (l *Layout) GetAttributes() *AttrList { return layoutGetAttributes(l) }
-func (l *Layout) GetAutoDir() bool         { return layoutGetAutoDir(l) }
-func (l *Layout) GetBaseline() int         { return layoutGetBaseline(l) }
-func (l *Layout) GetCharacterCount() int   { return layoutGetCharacterCount(l) }
-func (l *Layout) GetContext() *Context     { return layoutGetContext(l) }
+func (l *Layout) ContextChanged()          { LayoutContextChanged(l) }
+func (l *Layout) Copy() *Layout            { return LayoutCopy(l) }
+func (l *Layout) GetAlignment() Alignment  { return LayoutGetAlignment(l) }
+func (l *Layout) GetAttributes() *AttrList { return LayoutGetAttributes(l) }
+func (l *Layout) GetAutoDir() bool         { return LayoutGetAutoDir(l) }
+func (l *Layout) GetBaseline() int         { return LayoutGetBaseline(l) }
+func (l *Layout) GetCharacterCount() int   { return LayoutGetCharacterCount(l) }
+func (l *Layout) GetContext() *Context     { return LayoutGetContext(l) }
 func (l *Layout) GetCursorPos(index int, strongPos *Rectangle, weakPos *Rectangle) {
-	layoutGetCursorPos(l, index, strongPos, weakPos)
+	LayoutGetCursorPos(l, index, strongPos, weakPos)
 }
-func (l *Layout) GetEllipsize() EllipsizeMode { return layoutGetEllipsize(l) }
+func (l *Layout) GetEllipsize() EllipsizeMode { return LayoutGetEllipsize(l) }
 func (l *Layout) GetExtents(inkRect *Rectangle, logicalRect *Rectangle) {
-	layoutGetExtents(l, inkRect, logicalRect)
+	LayoutGetExtents(l, inkRect, logicalRect)
 }
-func (l *Layout) GetFontDescription() *FontDescription     { return layoutGetFontDescription(l) }
-func (l *Layout) GetHeight() int                           { return layoutGetHeight(l) }
-func (l *Layout) GetIndent() int                           { return layoutGetIndent(l) }
-func (l *Layout) GetIter() *LayoutIter                     { return layoutGetIter(l) }
-func (l *Layout) GetJustify() bool                         { return layoutGetJustify(l) }
-func (l *Layout) GetLine(line int) *LayoutLine             { return layoutGetLine(l, line) }
-func (l *Layout) GetLineCount() int                        { return layoutGetLineCount(l) }
-func (l *Layout) GetLineReadonly(line int) *LayoutLine     { return layoutGetLineReadonly(l, line) }
-func (l *Layout) GetLines() *T.GSList                      { return layoutGetLines(l) }
-func (l *Layout) GetLinesReadonly() *T.GSList              { return layoutGetLinesReadonly(l) }
-func (l *Layout) GetLogAttrs(Attrs **LogAttr, nAttrs *int) { layoutGetLogAttrs(l, Attrs, nAttrs) }
+func (l *Layout) GetFontDescription() *FontDescription     { return LayoutGetFontDescription(l) }
+func (l *Layout) GetHeight() int                           { return LayoutGetHeight(l) }
+func (l *Layout) GetIndent() int                           { return LayoutGetIndent(l) }
+func (l *Layout) GetIter() *LayoutIter                     { return LayoutGetIter(l) }
+func (l *Layout) GetJustify() bool                         { return LayoutGetJustify(l) }
+func (l *Layout) GetLine(line int) *LayoutLine             { return LayoutGetLine(l, line) }
+func (l *Layout) GetLineCount() int                        { return LayoutGetLineCount(l) }
+func (l *Layout) GetLineReadonly(line int) *LayoutLine     { return LayoutGetLineReadonly(l, line) }
+func (l *Layout) GetLines() *L.SList                       { return LayoutGetLines(l) }
+func (l *Layout) GetLinesReadonly() *L.SList               { return LayoutGetLinesReadonly(l) }
+func (l *Layout) GetLogAttrs(Attrs **LogAttr, nAttrs *int) { LayoutGetLogAttrs(l, Attrs, nAttrs) }
 func (l *Layout) GetLogAttrsReadonly(nAttrs *int) *LogAttr {
-	return layoutGetLogAttrsReadonly(l, nAttrs)
+	return LayoutGetLogAttrsReadonly(l, nAttrs)
 }
 func (l *Layout) GetPixelExtents(inkRect *Rectangle, logicalRect *Rectangle) {
-	layoutGetPixelExtents(l, inkRect, logicalRect)
+	LayoutGetPixelExtents(l, inkRect, logicalRect)
 }
-func (l *Layout) GetPixelSize(width, height *int) { layoutGetPixelSize(l, width, height) }
-func (l *Layout) GetSingleParagraphMode() bool    { return layoutGetSingleParagraphMode(l) }
-func (l *Layout) GetSize(width, height *int)      { layoutGetSize(l, width, height) }
-func (l *Layout) GetSpacing() int                 { return layoutGetSpacing(l) }
-func (l *Layout) GetTabs() *TabArray              { return layoutGetTabs(l) }
-func (l *Layout) GetText() string                 { return layoutGetText(l) }
-func (l *Layout) GetUnknownGlyphsCount() int      { return layoutGetUnknownGlyphsCount(l) }
-func (l *Layout) GetWidth() int                   { return layoutGetWidth(l) }
-func (l *Layout) GetWrap() WrapMode               { return layoutGetWrap(l) }
+func (l *Layout) GetPixelSize(width, height *int) { LayoutGetPixelSize(l, width, height) }
+func (l *Layout) GetSingleParagraphMode() bool    { return LayoutGetSingleParagraphMode(l) }
+func (l *Layout) GetSize(width, height *int)      { LayoutGetSize(l, width, height) }
+func (l *Layout) GetSpacing() int                 { return LayoutGetSpacing(l) }
+func (l *Layout) GetTabs() *TabArray              { return LayoutGetTabs(l) }
+func (l *Layout) GetText() string                 { return LayoutGetText(l) }
+func (l *Layout) GetUnknownGlyphsCount() int      { return LayoutGetUnknownGlyphsCount(l) }
+func (l *Layout) GetWidth() int                   { return LayoutGetWidth(l) }
+func (l *Layout) GetWrap() WrapMode               { return LayoutGetWrap(l) }
 func (l *Layout) IndexToLineX(index int, trailing bool, line, xPos *int) {
-	layoutIndexToLineX(l, index, trailing, line, xPos)
+	LayoutIndexToLineX(l, index, trailing, line, xPos)
 }
-func (l *Layout) IndexToPos(index int, pos *Rectangle) { layoutIndexToPos(l, index, pos) }
-func (l *Layout) IsEllipsized() bool                   { return layoutIsEllipsized(l) }
-func (l *Layout) IsWrapped() bool                      { return layoutIsWrapped(l) }
+func (l *Layout) IndexToPos(index int, pos *Rectangle) { LayoutIndexToPos(l, index, pos) }
+func (l *Layout) IsEllipsized() bool                   { return LayoutIsEllipsized(l) }
+func (l *Layout) IsWrapped() bool                      { return LayoutIsWrapped(l) }
 func (l *Layout) MoveCursorVisually(strong bool, oldIndex, oldTrailing, direction int, newIndex, newTrailing *int) {
-	layoutMoveCursorVisually(l, strong, oldIndex, oldTrailing, direction, newIndex, newTrailing)
+	LayoutMoveCursorVisually(l, strong, oldIndex, oldTrailing, direction, newIndex, newTrailing)
 }
-func (l *Layout) SetAlignment(Alignment Alignment)         { layoutSetAlignment(l, Alignment) }
-func (l *Layout) SetAttributes(Attrs *AttrList)            { layoutSetAttributes(l, Attrs) }
-func (l *Layout) SetAutoDir(AutoDir bool)                  { layoutSetAutoDir(l, AutoDir) }
-func (l *Layout) SetEllipsize(ellipsize EllipsizeMode)     { layoutSetEllipsize(l, ellipsize) }
-func (l *Layout) SetFontDescription(desc *FontDescription) { layoutSetFontDescription(l, desc) }
-func (l *Layout) SetHeight(height int)                     { layoutSetHeight(l, height) }
-func (l *Layout) SetIndent(indent int)                     { layoutSetIndent(l, indent) }
-func (l *Layout) SetJustify(justify bool)                  { layoutSetJustify(l, justify) }
-func (l *Layout) SetMarkup(markup string, length int)      { layoutSetMarkup(l, markup, length) }
+func (l *Layout) SetAlignment(Alignment Alignment)         { LayoutSetAlignment(l, Alignment) }
+func (l *Layout) SetAttributes(Attrs *AttrList)            { LayoutSetAttributes(l, Attrs) }
+func (l *Layout) SetAutoDir(AutoDir bool)                  { LayoutSetAutoDir(l, AutoDir) }
+func (l *Layout) SetEllipsize(ellipsize EllipsizeMode)     { LayoutSetEllipsize(l, ellipsize) }
+func (l *Layout) SetFontDescription(desc *FontDescription) { LayoutSetFontDescription(l, desc) }
+func (l *Layout) SetHeight(height int)                     { LayoutSetHeight(l, height) }
+func (l *Layout) SetIndent(indent int)                     { LayoutSetIndent(l, indent) }
+func (l *Layout) SetJustify(justify bool)                  { LayoutSetJustify(l, justify) }
+func (l *Layout) SetMarkup(markup string, length int)      { LayoutSetMarkup(l, markup, length) }
 func (l *Layout) SetMarkupWithAccel(markup string, length int, AccelMarker T.Gunichar, AccelChar *T.Gunichar) {
-	layoutSetMarkupWithAccel(l, markup, length, AccelMarker, AccelChar)
+	LayoutSetMarkupWithAccel(l, markup, length, AccelMarker, AccelChar)
 }
-func (l *Layout) SetSingleParagraphMode(setting bool) { layoutSetSingleParagraphMode(l, setting) }
-func (l *Layout) SetSpacing(spacing int)              { layoutSetSpacing(l, spacing) }
-func (l *Layout) SetTabs(tabs *TabArray)              { layoutSetTabs(l, tabs) }
-func (l *Layout) SetText(text string, length int)     { layoutSetText(l, text, length) }
-func (l *Layout) SetWidth(width int)                  { layoutSetWidth(l, width) }
-func (l *Layout) SetWrap(wrap WrapMode)               { layoutSetWrap(l, wrap) }
+func (l *Layout) SetSingleParagraphMode(setting bool) { LayoutSetSingleParagraphMode(l, setting) }
+func (l *Layout) SetSpacing(spacing int)              { LayoutSetSpacing(l, spacing) }
+func (l *Layout) SetTabs(tabs *TabArray)              { LayoutSetTabs(l, tabs) }
+func (l *Layout) SetText(text string, length int)     { LayoutSetText(l, text, length) }
+func (l *Layout) SetWidth(width int)                  { LayoutSetWidth(l, width) }
+func (l *Layout) SetWrap(wrap WrapMode)               { LayoutSetWrap(l, wrap) }
 func (l *Layout) XyToIndex(x, y int, index, trailing *int) bool {
-	return layoutXyToIndex(l, x, y, index, trailing)
+	return LayoutXyToIndex(l, x, y, index, trailing)
 }
 
 type LayoutLine struct {
 	Layout     *Layout
 	StartIndex int
 	Length     int
-	Runs       *T.GSList
+	Runs       *L.SList
 	Bits       uint
 	// IsParagraphStart : 1
 	// ResolvedDir : 3
@@ -181,31 +182,31 @@ type LayoutLine struct {
 var (
 	LayoutLineGetType func() O.Type
 
-	layoutLineGetExtents      func(l *LayoutLine, inkRect, logicalRect *Rectangle)
-	layoutLineGetPixelExtents func(l *LayoutLine, inkRect, logicalRect *Rectangle)
-	layoutLineGetXRanges      func(l *LayoutLine, startIndex, endIndex int, ranges **int, nRanges *int)
-	layoutLineIndexToX        func(l *LayoutLine, index int, trailing bool, xPos *int)
-	layoutLineRef             func(l *LayoutLine) *LayoutLine
-	layoutLineUnref           func(l *LayoutLine)
-	layoutLineXToIndex        func(l *LayoutLine, xPos int, index, trailing *int) bool
+	LayoutLineGetExtents      func(l *LayoutLine, inkRect, logicalRect *Rectangle)
+	LayoutLineGetPixelExtents func(l *LayoutLine, inkRect, logicalRect *Rectangle)
+	LayoutLineGetXRanges      func(l *LayoutLine, startIndex, endIndex int, ranges **int, nRanges *int)
+	LayoutLineIndexToX        func(l *LayoutLine, index int, trailing bool, xPos *int)
+	LayoutLineRef             func(l *LayoutLine) *LayoutLine
+	LayoutLineUnref           func(l *LayoutLine)
+	LayoutLineXToIndex        func(l *LayoutLine, xPos int, index, trailing *int) bool
 )
 
 func (l *LayoutLine) GetExtents(inkRect, logicalRect *Rectangle) {
-	layoutLineGetExtents(l, inkRect, logicalRect)
+	LayoutLineGetExtents(l, inkRect, logicalRect)
 }
 func (l *LayoutLine) GetPixelExtents(inkRect, logicalRect *Rectangle) {
-	layoutLineGetPixelExtents(l, inkRect, logicalRect)
+	LayoutLineGetPixelExtents(l, inkRect, logicalRect)
 }
 func (l *LayoutLine) GetXRanges(startIndex, endIndex int, ranges **int, nRanges *int) {
-	layoutLineGetXRanges(l, startIndex, endIndex, ranges, nRanges)
+	LayoutLineGetXRanges(l, startIndex, endIndex, ranges, nRanges)
 }
 func (l *LayoutLine) IndexToX(index int, trailing bool, xPos *int) {
-	layoutLineIndexToX(l, index, trailing, xPos)
+	LayoutLineIndexToX(l, index, trailing, xPos)
 }
-func (l *LayoutLine) Ref() *LayoutLine { return layoutLineRef(l) }
-func (l *LayoutLine) Unref()           { layoutLineUnref(l) }
+func (l *LayoutLine) Ref() *LayoutLine { return LayoutLineRef(l) }
+func (l *LayoutLine) Unref()           { LayoutLineUnref(l) }
 func (l *LayoutLine) XToIndex(xPos int, index, trailing *int) bool {
-	return layoutLineXToIndex(l, xPos, index, trailing)
+	return LayoutLineXToIndex(l, xPos, index, trailing)
 }
 
 type LayoutIter struct{}
@@ -213,63 +214,63 @@ type LayoutIter struct{}
 var (
 	LayoutIterGetType func() O.Type
 
-	layoutIterAtLastLine        func(l *LayoutIter) bool
-	layoutIterCopy              func(l *LayoutIter) *LayoutIter
-	layoutIterFree              func(l *LayoutIter)
-	layoutIterGetBaseline       func(l *LayoutIter) int
-	layoutIterGetCharExtents    func(l *LayoutIter, logicalRect *Rectangle)
-	layoutIterGetClusterExtents func(l *LayoutIter, inkRect, logicalRect *Rectangle)
-	layoutIterGetIndex          func(l *LayoutIter) int
-	layoutIterGetLayout         func(l *LayoutIter) *Layout
-	layoutIterGetLayoutExtents  func(l *LayoutIter, inkRect, logicalRect *Rectangle)
-	layoutIterGetLine           func(l *LayoutIter) *LayoutLine
-	layoutIterGetLineExtents    func(l *LayoutIter, inkRect, logicalRect *Rectangle)
-	layoutIterGetLineReadonly   func(l *LayoutIter) *LayoutLine
-	layoutIterGetLineYrange     func(l *LayoutIter, y0, y1 *int)
-	layoutIterGetRun            func(l *LayoutIter) *LayoutRun
-	layoutIterGetRunExtents     func(l *LayoutIter, inkRect, logicalRect *Rectangle)
-	layoutIterGetRunReadonly    func(l *LayoutIter) *LayoutRun
-	layoutIterNextChar          func(l *LayoutIter) bool
-	layoutIterNextCluster       func(l *LayoutIter) bool
-	layoutIterNextLine          func(l *LayoutIter) bool
-	layoutIterNextRun           func(l *LayoutIter) bool
+	LayoutIterAtLastLine        func(l *LayoutIter) bool
+	LayoutIterCopy              func(l *LayoutIter) *LayoutIter
+	LayoutIterFree              func(l *LayoutIter)
+	LayoutIterGetBaseline       func(l *LayoutIter) int
+	LayoutIterGetCharExtents    func(l *LayoutIter, logicalRect *Rectangle)
+	LayoutIterGetClusterExtents func(l *LayoutIter, inkRect, logicalRect *Rectangle)
+	LayoutIterGetIndex          func(l *LayoutIter) int
+	LayoutIterGetLayout         func(l *LayoutIter) *Layout
+	LayoutIterGetLayoutExtents  func(l *LayoutIter, inkRect, logicalRect *Rectangle)
+	LayoutIterGetLine           func(l *LayoutIter) *LayoutLine
+	LayoutIterGetLineExtents    func(l *LayoutIter, inkRect, logicalRect *Rectangle)
+	LayoutIterGetLineReadonly   func(l *LayoutIter) *LayoutLine
+	LayoutIterGetLineYrange     func(l *LayoutIter, y0, y1 *int)
+	LayoutIterGetRun            func(l *LayoutIter) *LayoutRun
+	LayoutIterGetRunExtents     func(l *LayoutIter, inkRect, logicalRect *Rectangle)
+	LayoutIterGetRunReadonly    func(l *LayoutIter) *LayoutRun
+	LayoutIterNextChar          func(l *LayoutIter) bool
+	LayoutIterNextCluster       func(l *LayoutIter) bool
+	LayoutIterNextLine          func(l *LayoutIter) bool
+	LayoutIterNextRun           func(l *LayoutIter) bool
 )
 
-func (l *LayoutIter) AtLastLine() bool  { return layoutIterAtLastLine(l) }
-func (l *LayoutIter) Copy() *LayoutIter { return layoutIterCopy(l) }
-func (l *LayoutIter) Free()             { layoutIterFree(l) }
-func (l *LayoutIter) GetBaseline() int  { return layoutIterGetBaseline(l) }
+func (l *LayoutIter) AtLastLine() bool  { return LayoutIterAtLastLine(l) }
+func (l *LayoutIter) Copy() *LayoutIter { return LayoutIterCopy(l) }
+func (l *LayoutIter) Free()             { LayoutIterFree(l) }
+func (l *LayoutIter) GetBaseline() int  { return LayoutIterGetBaseline(l) }
 func (l *LayoutIter) GetCharExtents(logicalRect *Rectangle) {
-	layoutIterGetCharExtents(l, logicalRect)
+	LayoutIterGetCharExtents(l, logicalRect)
 }
 func (l *LayoutIter) GetClusterExtents(inkRect, logicalRect *Rectangle) {
-	layoutIterGetClusterExtents(l, inkRect, logicalRect)
+	LayoutIterGetClusterExtents(l, inkRect, logicalRect)
 }
-func (l *LayoutIter) GetIndex() int      { return layoutIterGetIndex(l) }
-func (l *LayoutIter) GetLayout() *Layout { return layoutIterGetLayout(l) }
+func (l *LayoutIter) GetIndex() int      { return LayoutIterGetIndex(l) }
+func (l *LayoutIter) GetLayout() *Layout { return LayoutIterGetLayout(l) }
 func (l *LayoutIter) GetLayoutExtents(inkRect, logicalRect *Rectangle) {
-	layoutIterGetLayoutExtents(l, inkRect, logicalRect)
+	LayoutIterGetLayoutExtents(l, inkRect, logicalRect)
 }
-func (l *LayoutIter) GetLine() *LayoutLine { return layoutIterGetLine(l) }
+func (l *LayoutIter) GetLine() *LayoutLine { return LayoutIterGetLine(l) }
 func (l *LayoutIter) GetLineExtents(inkRect, logicalRect *Rectangle) {
-	layoutIterGetLineExtents(l, inkRect, logicalRect)
+	LayoutIterGetLineExtents(l, inkRect, logicalRect)
 }
-func (l *LayoutIter) GetLineReadonly() *LayoutLine { return layoutIterGetLineReadonly(l) }
-func (l *LayoutIter) GetLineYrange(y0, y1 *int)    { layoutIterGetLineYrange(l, y0, y1) }
-func (l *LayoutIter) GetRun() *LayoutRun           { return layoutIterGetRun(l) }
+func (l *LayoutIter) GetLineReadonly() *LayoutLine { return LayoutIterGetLineReadonly(l) }
+func (l *LayoutIter) GetLineYrange(y0, y1 *int)    { LayoutIterGetLineYrange(l, y0, y1) }
+func (l *LayoutIter) GetRun() *LayoutRun           { return LayoutIterGetRun(l) }
 func (l *LayoutIter) GetRunExtents(inkRect, logicalRect *Rectangle) {
-	layoutIterGetRunExtents(l, inkRect, logicalRect)
+	LayoutIterGetRunExtents(l, inkRect, logicalRect)
 }
-func (l *LayoutIter) GetRunReadonly() *LayoutRun { return layoutIterGetRunReadonly(l) }
-func (l *LayoutIter) NextChar() bool             { return layoutIterNextChar(l) }
-func (l *LayoutIter) NextCluster() bool          { return layoutIterNextCluster(l) }
-func (l *LayoutIter) NextLine() bool             { return layoutIterNextLine(l) }
-func (l *LayoutIter) NextRun() bool              { return layoutIterNextRun(l) }
+func (l *LayoutIter) GetRunReadonly() *LayoutRun { return LayoutIterGetRunReadonly(l) }
+func (l *LayoutIter) NextChar() bool             { return LayoutIterNextChar(l) }
+func (l *LayoutIter) NextCluster() bool          { return LayoutIterNextCluster(l) }
+func (l *LayoutIter) NextLine() bool             { return LayoutIterNextLine(l) }
+func (l *LayoutIter) NextRun() bool              { return LayoutIterNextRun(l) }
 
 type LayoutRun GlyphItem
 
 var Log2visGetEmbeddingLevels func(text string,
-	length int, pbaseDir *Direction) *uint8
+	Length int, pbaseDir *Direction) *uint8
 
 type LogAttr struct {
 	Bits uint

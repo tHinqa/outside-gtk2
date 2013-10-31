@@ -21,14 +21,14 @@ var (
 	ItemGetType func() O.Type
 	ItemNew     func() *Item
 
-	itemCopy  func(i *Item) *Item
-	itemFree  func(i *Item)
-	itemSplit func(i *Item, splitIndex, splitOffset int) *Item
+	ItemCopy  func(i *Item) *Item
+	ItemFree  func(i *Item)
+	ItemSplit func(i *Item, splitIndex, splitOffset int) *Item
 )
 
-func (i *Item) Copy() *Item                   { return itemCopy(i) }
-func (i *Item) Free()                         { itemFree(i) }
-func (i *Item) Split(index, offset int) *Item { return itemSplit(i, index, offset) }
+func (i *Item) Copy() *Item                   { return ItemCopy(i) }
+func (i *Item) Free()                         { ItemFree(i) }
+func (i *Item) Split(index, offset int) *Item { return ItemSplit(i, index, offset) }
 
 var (
 	Itemize            func(context *Context, text string, startIndex, length int, Attrs *AttrList, cachedIter *AttrIterator) *T.GList

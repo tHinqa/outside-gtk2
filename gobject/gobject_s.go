@@ -17,7 +17,7 @@ type Source struct {
 	Priority      int
 	Flags         uint
 	SourceId      uint
-	PollFds       *T.GSList
+	PollFds       *SList
 	Prev          *Source
 	Next          *Source
 	Name          *T.Char

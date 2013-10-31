@@ -4,20 +4,21 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
+	// T "github.com/tHinqa/outside-gtk2/types"
 )
 
 type Map struct{}
 
 var (
-	mapGetEngine  func(m *Map, script Script) *Engine
-	mapGetEngines func(m *Map, script Script, exactEngines, fallbackEngines **T.GSList)
+	MapGetEngine  func(m *Map, script Script) *Engine
+	MapGetEngines func(m *Map, script Script, exactEngines, fallbackEngines **L.SList)
 )
 
-func (m *Map) GetEngine(script Script) *Engine { return mapGetEngine(m, script) }
-func (m *Map) GetEngines(script Script, exactEngines, fallbackEngines **T.GSList) {
-	mapGetEngines(m, script, exactEngines, fallbackEngines)
+func (m *Map) GetEngine(script Script) *Engine { return MapGetEngine(m, script) }
+func (m *Map) GetEngines(script Script, exactEngines, fallbackEngines **L.SList) {
+	MapGetEngines(m, script, exactEngines, fallbackEngines)
 }
 
 type Matrix struct {
@@ -32,31 +33,31 @@ type Matrix struct {
 var (
 	MatrixGetType func() O.Type
 
-	matrixCopy                    func(m *Matrix) *Matrix
-	matrixFree                    func(m *Matrix)
-	matrixTranslate               func(m *Matrix, tx, ty float64)
-	matrixScale                   func(m *Matrix, scaleX, scaleY float64)
-	matrixRotate                  func(m *Matrix, degrees float64)
-	matrixConcat                  func(m, newMatrix *Matrix)
-	matrixTransformPoint          func(m *Matrix, x, y *float64)
-	matrixTransformDistance       func(m *Matrix, dx, dy *float64)
-	matrixTransformRectangle      func(m *Matrix, rect *Rectangle)
-	matrixTransformPixelRectangle func(m *Matrix, rect *Rectangle)
-	matrixGetFontScaleFactor      func(m *Matrix) float64
+	MatrixCopy                    func(m *Matrix) *Matrix
+	MatrixFree                    func(m *Matrix)
+	MatrixTranslate               func(m *Matrix, tx, ty float64)
+	MatrixScale                   func(m *Matrix, scaleX, scaleY float64)
+	MatrixRotate                  func(m *Matrix, degrees float64)
+	MatrixConcat                  func(m, newMatrix *Matrix)
+	MatrixTransformPoint          func(m *Matrix, x, y *float64)
+	MatrixTransformDistance       func(m *Matrix, dx, dy *float64)
+	MatrixTransformRectangle      func(m *Matrix, rect *Rectangle)
+	MatrixTransformPixelRectangle func(m *Matrix, rect *Rectangle)
+	MatrixGetFontScaleFactor      func(m *Matrix) float64
 )
 
-func (m *Matrix) Copy() *Matrix                      { return matrixCopy(m) }
-func (m *Matrix) Free()                              { matrixFree(m) }
-func (m *Matrix) Translate(tx, ty float64)           { matrixTranslate(m, tx, ty) }
-func (m *Matrix) Scale(scaleX, scaleY float64)       { matrixScale(m, scaleX, scaleY) }
-func (m *Matrix) Rotate(degrees float64)             { matrixRotate(m, degrees) }
-func (m *Matrix) Concat(newMatrix *Matrix)           { matrixConcat(m, newMatrix) }
-func (m *Matrix) TransformPoint(x, y *float64)       { matrixTransformPoint(m, x, y) }
-func (m *Matrix) TransformDistance(dx, dy *float64)  { matrixTransformDistance(m, dx, dy) }
-func (m *Matrix) TransformRectangle(rect *Rectangle) { matrixTransformRectangle(m, rect) }
+func (m *Matrix) Copy() *Matrix                      { return MatrixCopy(m) }
+func (m *Matrix) Free()                              { MatrixFree(m) }
+func (m *Matrix) Translate(tx, ty float64)           { MatrixTranslate(m, tx, ty) }
+func (m *Matrix) Scale(scaleX, scaleY float64)       { MatrixScale(m, scaleX, scaleY) }
+func (m *Matrix) Rotate(degrees float64)             { MatrixRotate(m, degrees) }
+func (m *Matrix) Concat(newMatrix *Matrix)           { MatrixConcat(m, newMatrix) }
+func (m *Matrix) TransformPoint(x, y *float64)       { MatrixTransformPoint(m, x, y) }
+func (m *Matrix) TransformDistance(dx, dy *float64)  { MatrixTransformDistance(m, dx, dy) }
+func (m *Matrix) TransformRectangle(rect *Rectangle) { MatrixTransformRectangle(m, rect) }
 func (m *Matrix) TransformPixelRectangle(rect *Rectangle) {
-	matrixTransformPixelRectangle(m, rect)
+	MatrixTransformPixelRectangle(m, rect)
 }
-func (m *Matrix) GetFontScaleFactor() float64 { return matrixGetFontScaleFactor(m) }
+func (m *Matrix) GetFontScaleFactor() float64 { return MatrixGetFontScaleFactor(m) }
 
 var ModuleRegister func(module *IncludedModule)

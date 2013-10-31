@@ -21,17 +21,17 @@ type FlagsClass struct {
 }
 
 var (
-	flagsGetFirstValue  func(f *FlagsClass, value uint) *FlagsValue
-	flagsGetValueByName func(f *FlagsClass, name string) *FlagsValue
-	flagsGetValueByNick func(f *FlagsClass, nick string) *FlagsValue
+	FlagsGetFirstValue  func(f *FlagsClass, value uint) *FlagsValue
+	FlagsGetValueByName func(f *FlagsClass, name string) *FlagsValue
+	FlagsGetValueByNick func(f *FlagsClass, nick string) *FlagsValue
 )
 
-func (f *FlagsClass) GetFirstValue(value uint) *FlagsValue { return flagsGetFirstValue(f, value) }
+func (f *FlagsClass) GetFirstValue(value uint) *FlagsValue { return FlagsGetFirstValue(f, value) }
 func (f *FlagsClass) GetValueByName(name string) *FlagsValue {
-	return flagsGetValueByName(f, name)
+	return FlagsGetValueByName(f, name)
 }
 func (f *FlagsClass) GetValueByNick(nick string) *FlagsValue {
-	return flagsGetValueByNick(f, nick)
+	return FlagsGetValueByNick(f, nick)
 }
 
 type FlagsValue struct {

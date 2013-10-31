@@ -46,66 +46,66 @@ var (
 	PatternCreateRgb        func(red, green, blue float64) *Pattern
 	PatternCreateRgba       func(red, green, blue, alpha float64) *Pattern
 
-	patternAddColorStopRgb   func(p *Pattern, offset, red, green, blue float64)
-	patternAddColorStopRgba  func(p *Pattern, offset, red, green, blue, alpha float64)
-	patternDestroy           func(p *Pattern)
-	patternGetColorStopCount func(p *Pattern, count *int) Status
-	patternGetColorStopRgba  func(p *Pattern, index int, offset, red, green, blue, alpha *float64) Status
-	patternGetExtend         func(p *Pattern) Extend
-	patternGetFilter         func(p *Pattern) Filter
-	patternGetLinearPoints   func(p *Pattern, x0, y0, x1, y1 *float64) Status
-	patternGetMatrix         func(p *Pattern, matrix *Matrix)
-	patternGetRadialCircles  func(p *Pattern, x0, y0, r0, x1, y1, r1 *float64) Status
-	patternGetReferenceCount func(p *Pattern) uint
-	patternGetRgba           func(p *Pattern, red, green, blue, alpha *float64) Status
-	patternGetSurface        func(p *Pattern, surface **Surface) Status
-	patternGetType           func(p *Pattern) PatternType
-	patternGetUserData       func(p *Pattern, key *UserDataKey) *T.Void
-	patternReference         func(p *Pattern) *Pattern
-	patternSetExtend         func(p *Pattern, extend Extend)
-	patternSetFilter         func(p *Pattern, filter Filter)
-	patternSetMatrix         func(p *Pattern, matrix *Matrix)
-	patternSetUserData       func(p *Pattern, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
-	patternStatus            func(p *Pattern) Status
+	PatternAddColorStopRgb   func(p *Pattern, offset, red, green, blue float64)
+	PatternAddColorStopRgba  func(p *Pattern, offset, red, green, blue, alpha float64)
+	PatternDestroy           func(p *Pattern)
+	PatternGetColorStopCount func(p *Pattern, count *int) Status
+	PatternGetColorStopRgba  func(p *Pattern, index int, offset, red, green, blue, alpha *float64) Status
+	PatternGetExtend         func(p *Pattern) Extend
+	PatternGetFilter         func(p *Pattern) Filter
+	PatternGetLinearPoints   func(p *Pattern, x0, y0, x1, y1 *float64) Status
+	PatternGetMatrix         func(p *Pattern, matrix *Matrix)
+	PatternGetRadialCircles  func(p *Pattern, x0, y0, r0, x1, y1, r1 *float64) Status
+	PatternGetReferenceCount func(p *Pattern) uint
+	PatternGetRgba           func(p *Pattern, red, green, blue, alpha *float64) Status
+	PatternGetSurface        func(p *Pattern, surface **Surface) Status
+	PatternGetType           func(p *Pattern) PatternType
+	PatternGetUserData       func(p *Pattern, key *UserDataKey) *T.Void
+	PatternReference         func(p *Pattern) *Pattern
+	PatternSetExtend         func(p *Pattern, extend Extend)
+	PatternSetFilter         func(p *Pattern, filter Filter)
+	PatternSetMatrix         func(p *Pattern, matrix *Matrix)
+	PatternSetUserData       func(p *Pattern, key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status
+	PatternStatus            func(p *Pattern) Status
 )
 
 func (p *Pattern) AddColorStopRgb(offset, red, green, blue float64) {
-	patternAddColorStopRgb(p, offset, red, green, blue)
+	PatternAddColorStopRgb(p, offset, red, green, blue)
 }
 func (p *Pattern) AddColorStopRgba(offset, red, green, blue, alpha float64) {
-	patternAddColorStopRgba(p, offset, red, green, blue, alpha)
+	PatternAddColorStopRgba(p, offset, red, green, blue, alpha)
 }
-func (p *Pattern) Destroy() { patternDestroy(p) }
+func (p *Pattern) Destroy() { PatternDestroy(p) }
 func (p *Pattern) GetColorStopCount(count *int) Status {
-	return patternGetColorStopCount(p, count)
+	return PatternGetColorStopCount(p, count)
 }
 func (p *Pattern) GetColorStopRgba(index int, offset, red, green, blue, alpha *float64) Status {
-	return patternGetColorStopRgba(p, index, offset, red, green, blue, alpha)
+	return PatternGetColorStopRgba(p, index, offset, red, green, blue, alpha)
 }
-func (p *Pattern) GetExtend() Extend { return patternGetExtend(p) }
-func (p *Pattern) GetFilter() Filter { return patternGetFilter(p) }
+func (p *Pattern) GetExtend() Extend { return PatternGetExtend(p) }
+func (p *Pattern) GetFilter() Filter { return PatternGetFilter(p) }
 func (p *Pattern) GetLinearPoints(x0, y0, x1, y1 *float64) Status {
-	return patternGetLinearPoints(p, x0, y0, x1, y1)
+	return PatternGetLinearPoints(p, x0, y0, x1, y1)
 }
-func (p *Pattern) GetMatrix(matrix *Matrix) { patternGetMatrix(p, matrix) }
+func (p *Pattern) GetMatrix(matrix *Matrix) { PatternGetMatrix(p, matrix) }
 func (p *Pattern) GetRadialCircles(x0, y0, r0, x1, y1, r1 *float64) Status {
-	return patternGetRadialCircles(p, x0, y0, r0, x1, y1, r1)
+	return PatternGetRadialCircles(p, x0, y0, r0, x1, y1, r1)
 }
-func (p *Pattern) GetReferenceCount() uint { return patternGetReferenceCount(p) }
+func (p *Pattern) GetReferenceCount() uint { return PatternGetReferenceCount(p) }
 func (p *Pattern) GetRgba(red, green, blue, alpha *float64) Status {
-	return patternGetRgba(p, red, green, blue, alpha)
+	return PatternGetRgba(p, red, green, blue, alpha)
 }
-func (p *Pattern) GetSurface(surface **Surface) Status  { return patternGetSurface(p, surface) }
-func (p *Pattern) GetType() PatternType                 { return patternGetType(p) }
-func (p *Pattern) GetUserData(key *UserDataKey) *T.Void { return patternGetUserData(p, key) }
-func (p *Pattern) Reference() *Pattern                  { return patternReference(p) }
-func (p *Pattern) SetExtend(extend Extend)              { patternSetExtend(p, extend) }
-func (p *Pattern) SetFilter(filter Filter)              { patternSetFilter(p, filter) }
-func (p *Pattern) SetMatrix(matrix *Matrix)             { patternSetMatrix(p, matrix) }
+func (p *Pattern) GetSurface(surface **Surface) Status  { return PatternGetSurface(p, surface) }
+func (p *Pattern) GetType() PatternType                 { return PatternGetType(p) }
+func (p *Pattern) GetUserData(key *UserDataKey) *T.Void { return PatternGetUserData(p, key) }
+func (p *Pattern) Reference() *Pattern                  { return PatternReference(p) }
+func (p *Pattern) SetExtend(extend Extend)              { PatternSetExtend(p, extend) }
+func (p *Pattern) SetFilter(filter Filter)              { PatternSetFilter(p, filter) }
+func (p *Pattern) SetMatrix(matrix *Matrix)             { PatternSetMatrix(p, matrix) }
 func (p *Pattern) SetUserData(key *UserDataKey, userData *T.Void, destroy DestroyFunc) Status {
-	return patternSetUserData(p, key, userData, destroy)
+	return PatternSetUserData(p, key, userData, destroy)
 }
-func (p *Pattern) Status() Status { return patternStatus(p) }
+func (p *Pattern) Status() Status { return PatternStatus(p) }
 
 type PatternType Enum
 
@@ -148,21 +148,21 @@ var (
 	PsSurfaceCreate          func(filename string, widthInPoints float64, heightInPoints float64) *Surface
 	PsSurfaceCreateForStream func(writeFunc WriteFunc, closure *T.Void, widthInPoints float64, heightInPoints float64) *Surface
 
-	psSurfaceDscBeginPageSetup func(s *Surface)
-	psSurfaceDscBeginSetup     func(s *Surface)
-	psSurfaceDscComment        func(s *Surface, comment string)
-	psSurfaceGetEps            func(s *Surface)
-	psSurfaceRestrictToLevel   func(s *Surface, level PsLevel)
-	psSurfaceSetEps            func(s *Surface, eps Bool) string
-	psSurfaceSetSize           func(s *Surface, widthInPoints, heightInPoints float64) Bool
+	PsSurfaceDscBeginPageSetup func(s *Surface)
+	PsSurfaceDscBeginSetup     func(s *Surface)
+	PsSurfaceDscComment        func(s *Surface, comment string)
+	PsSurfaceGetEps            func(s *Surface)
+	PsSurfaceRestrictToLevel   func(s *Surface, level PsLevel)
+	PsSurfaceSetEps            func(s *Surface, eps Bool) string
+	PsSurfaceSetSize           func(s *Surface, widthInPoints, heightInPoints float64) Bool
 )
 
-func (s *Surface) DscBeginPageSetup()            { psSurfaceDscBeginPageSetup(s) }
-func (s *Surface) DscBeginSetup()                { psSurfaceDscBeginSetup(s) }
-func (s *Surface) DscComment(comment string)     { psSurfaceDscComment(s, comment) }
-func (s *Surface) GetEps()                       { psSurfaceGetEps(s) }
-func (s *Surface) RestrictToLevel(level PsLevel) { psSurfaceRestrictToLevel(s, level) }
-func (s *Surface) SetEps(eps Bool) string        { return psSurfaceSetEps(s, eps) }
+func (s *Surface) DscBeginPageSetup()            { PsSurfaceDscBeginPageSetup(s) }
+func (s *Surface) DscBeginSetup()                { PsSurfaceDscBeginSetup(s) }
+func (s *Surface) DscComment(comment string)     { PsSurfaceDscComment(s, comment) }
+func (s *Surface) GetEps()                       { PsSurfaceGetEps(s) }
+func (s *Surface) RestrictToLevel(level PsLevel) { PsSurfaceRestrictToLevel(s, level) }
+func (s *Surface) SetEps(eps Bool) string        { return PsSurfaceSetEps(s, eps) }
 func (s *Surface) SetSize(widthInPoints, heightInPoints float64) Bool {
-	return psSurfaceSetSize(s, widthInPoints, heightInPoints)
+	return PsSurfaceSetSize(s, widthInPoints, heightInPoints)
 }

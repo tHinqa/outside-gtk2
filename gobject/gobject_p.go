@@ -62,72 +62,72 @@ var (
 	ParamSpecValueArray func(name, nick, blurb string, elementSpec *ParamSpec, flags ParamFlags) *ParamSpec
 	ParamSpecVariant    func(name, nick, blurb string, t *T.GVariantType, defaultValue *T.GVariant, flags ParamFlags) *ParamSpec
 
-	paramSpecGetBlurb          func(p *ParamSpec) string
-	paramSpecGetName           func(p *ParamSpec) string
-	paramSpecGetNick           func(p *ParamSpec) string
-	paramSpecGetQdata          func(p *ParamSpec, quark T.GQuark) T.Gpointer
-	paramSpecGetRedirectTarget func(p *ParamSpec) *ParamSpec
-	paramSpecRef               func(p *ParamSpec) *ParamSpec
-	paramSpecRefSink           func(p *ParamSpec) *ParamSpec
-	paramSpecSetQdata          func(p *ParamSpec, quark T.GQuark, data T.Gpointer)
-	paramSpecSetQdataFull      func(p *ParamSpec, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
-	paramSpecSink              func(p *ParamSpec)
-	paramSpecStealQdata        func(p *ParamSpec, quark T.GQuark) T.Gpointer
-	paramSpecUnref             func(p *ParamSpec)
-	paramValueSetDefault       func(p *ParamSpec, value *Value)
-	paramValueDefaults         func(p *ParamSpec, value *Value) bool
-	paramValueValidate         func(p *ParamSpec, value *Value) bool
-	paramValueConvert          func(p *ParamSpec, srcValue, destValue *Value, strictValidation bool) bool
-	paramValuesCmp             func(p *ParamSpec, value1, value2 *Value) int
+	ParamSpecGetBlurb          func(p *ParamSpec) string
+	ParamSpecGetName           func(p *ParamSpec) string
+	ParamSpecGetNick           func(p *ParamSpec) string
+	ParamSpecGetQdata          func(p *ParamSpec, quark T.GQuark) T.Gpointer
+	ParamSpecGetRedirectTarget func(p *ParamSpec) *ParamSpec
+	ParamSpecRef               func(p *ParamSpec) *ParamSpec
+	ParamSpecRefSink           func(p *ParamSpec) *ParamSpec
+	ParamSpecSetQdata          func(p *ParamSpec, quark T.GQuark, data T.Gpointer)
+	ParamSpecSetQdataFull      func(p *ParamSpec, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ParamSpecSink              func(p *ParamSpec)
+	ParamSpecStealQdata        func(p *ParamSpec, quark T.GQuark) T.Gpointer
+	ParamSpecUnref             func(p *ParamSpec)
+	ParamValueSetDefault       func(p *ParamSpec, value *Value)
+	ParamValueDefaults         func(p *ParamSpec, value *Value) bool
+	ParamValueValidate         func(p *ParamSpec, value *Value) bool
+	ParamValueConvert          func(p *ParamSpec, srcValue, destValue *Value, strictValidation bool) bool
+	ParamValuesCmp             func(p *ParamSpec, value1, value2 *Value) int
 )
 
 func (p *ParamSpec) Convert(srcValue, destValue *Value, strictValidation bool) bool {
-	return paramValueConvert(p, srcValue, destValue, strictValidation)
+	return ParamValueConvert(p, srcValue, destValue, strictValidation)
 }
-func (p *ParamSpec) Defaults(value *Value) bool               { return paramValueDefaults(p, value) }
-func (p *ParamSpec) GetBlurb() string                         { return paramSpecGetBlurb(p) }
-func (p *ParamSpec) GetName() string                          { return paramSpecGetName(p) }
-func (p *ParamSpec) GetNick() string                          { return paramSpecGetNick(p) }
-func (p *ParamSpec) GetQdata(quark T.GQuark) T.Gpointer       { return paramSpecGetQdata(p, quark) }
-func (p *ParamSpec) GetRedirectTarget() *ParamSpec            { return paramSpecGetRedirectTarget(p) }
-func (p *ParamSpec) Ref() *ParamSpec                          { return paramSpecRef(p) }
-func (p *ParamSpec) RefSink() *ParamSpec                      { return paramSpecRefSink(p) }
-func (p *ParamSpec) SetDefault(value *Value)                  { paramValueSetDefault(p, value) }
-func (p *ParamSpec) SetQdata(quark T.GQuark, data T.Gpointer) { paramSpecSetQdata(p, quark, data) }
+func (p *ParamSpec) Defaults(value *Value) bool               { return ParamValueDefaults(p, value) }
+func (p *ParamSpec) GetBlurb() string                         { return ParamSpecGetBlurb(p) }
+func (p *ParamSpec) GetName() string                          { return ParamSpecGetName(p) }
+func (p *ParamSpec) GetNick() string                          { return ParamSpecGetNick(p) }
+func (p *ParamSpec) GetQdata(quark T.GQuark) T.Gpointer       { return ParamSpecGetQdata(p, quark) }
+func (p *ParamSpec) GetRedirectTarget() *ParamSpec            { return ParamSpecGetRedirectTarget(p) }
+func (p *ParamSpec) Ref() *ParamSpec                          { return ParamSpecRef(p) }
+func (p *ParamSpec) RefSink() *ParamSpec                      { return ParamSpecRefSink(p) }
+func (p *ParamSpec) SetDefault(value *Value)                  { ParamValueSetDefault(p, value) }
+func (p *ParamSpec) SetQdata(quark T.GQuark, data T.Gpointer) { ParamSpecSetQdata(p, quark, data) }
 func (p *ParamSpec) SetQdataFull(quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
-	paramSpecSetQdataFull(p, quark, data, destroy)
+	ParamSpecSetQdataFull(p, quark, data, destroy)
 }
-func (p *ParamSpec) Sink()                                { paramSpecSink(p) }
-func (p *ParamSpec) StealQdata(quark T.GQuark) T.Gpointer { return paramSpecStealQdata(p, quark) }
-func (p *ParamSpec) Unref()                               { paramSpecUnref(p) }
-func (p *ParamSpec) Validate(value *Value) bool           { return paramValueValidate(p, value) }
-func (p *ParamSpec) ValuesCmp(value1, value2 *Value) int  { return paramValuesCmp(p, value1, value2) }
+func (p *ParamSpec) Sink()                                { ParamSpecSink(p) }
+func (p *ParamSpec) StealQdata(quark T.GQuark) T.Gpointer { return ParamSpecStealQdata(p, quark) }
+func (p *ParamSpec) Unref()                               { ParamSpecUnref(p) }
+func (p *ParamSpec) Validate(value *Value) bool           { return ParamValueValidate(p, value) }
+func (p *ParamSpec) ValuesCmp(value1, value2 *Value) int  { return ParamValuesCmp(p, value1, value2) }
 
 type ParamSpecPool struct{}
 
 var (
 	ParamSpecPoolNew func(typePrefixing bool) *ParamSpecPool
 
-	paramSpecPoolInsert    func(p *ParamSpecPool, pspec *ParamSpec, ownerType Type)
-	paramSpecPoolList      func(p *ParamSpecPool, ownerType Type, nPspecsP *uint) **ParamSpec
-	paramSpecPoolListOwned func(p *ParamSpecPool, ownerType Type) *T.GList
-	paramSpecPoolLookup    func(p *ParamSpecPool, paramName string, ownerType Type, walkAncestors bool) *ParamSpec
-	paramSpecPoolRemove    func(p *ParamSpecPool, pspec *ParamSpec)
+	ParamSpecPoolInsert    func(p *ParamSpecPool, pspec *ParamSpec, ownerType Type)
+	ParamSpecPoolList      func(p *ParamSpecPool, ownerType Type, nPspecsP *uint) **ParamSpec
+	ParamSpecPoolListOwned func(p *ParamSpecPool, ownerType Type) *T.GList
+	ParamSpecPoolLookup    func(p *ParamSpecPool, paramName string, ownerType Type, walkAncestors bool) *ParamSpec
+	ParamSpecPoolRemove    func(p *ParamSpecPool, pspec *ParamSpec)
 )
 
 func (p *ParamSpecPool) Insert(pspec *ParamSpec, ownerType Type) {
-	paramSpecPoolInsert(p, pspec, ownerType)
+	ParamSpecPoolInsert(p, pspec, ownerType)
 }
 func (p *ParamSpecPool) List(ownerType Type, nPspecsP *uint) **ParamSpec {
-	return paramSpecPoolList(p, ownerType, nPspecsP)
+	return ParamSpecPoolList(p, ownerType, nPspecsP)
 }
 func (p *ParamSpecPool) ListOwned(ownerType Type) *T.GList {
-	return paramSpecPoolListOwned(p, ownerType)
+	return ParamSpecPoolListOwned(p, ownerType)
 }
 func (p *ParamSpecPool) Lookup(paramName string, ownerType Type, walkAncestors bool) *ParamSpec {
-	return paramSpecPoolLookup(p, paramName, ownerType, walkAncestors)
+	return ParamSpecPoolLookup(p, paramName, ownerType, walkAncestors)
 }
-func (p *ParamSpecPool) Remove(pspec *ParamSpec) { paramSpecPoolRemove(p, pspec) }
+func (p *ParamSpecPool) Remove(pspec *ParamSpec) { ParamSpecPoolRemove(p, pspec) }
 
 type ParamSpecTypeInfo struct {
 	InstanceSize      uint16

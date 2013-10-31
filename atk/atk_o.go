@@ -21,75 +21,75 @@ type Object struct {
 var (
 	ObjectGetType func() O.Type
 
-	objectAddRelationship              func(o *Object, relationship RelationType, target *Object) bool
-	objectConnectPropertyChangeHandler func(o *Object, handler *PropertyChangeHandler) uint
-	objectGetAttributes                func(o *Object) *AttributeSet
-	objectGetDescription               func(o *Object) string
-	objectGetIndexInParent             func(o *Object) int
-	objectGetLayer                     func(o *Object) Layer
-	objectGetMdiZorder                 func(o *Object) int
-	objectGetNAccessibleChildren       func(o *Object) int
-	objectGetName                      func(o *Object) string
-	objectGetParent                    func(o *Object) *Object
-	objectGetRole                      func(o *Object) Role
-	objectInitialize                   func(o *Object, data T.Gpointer)
-	objectNotifyStateChange            func(o *Object, state State, value bool)
-	objectRefAccessibleChild           func(o *Object, i int) *Object
-	objectRefRelationSet               func(o *Object) *RelationSet
-	objectRefStateSet                  func(o *Object) *StateSet
-	objectRemovePropertyChangeHandler  func(o *Object, handlerId uint)
-	objectRemoveRelationship           func(o *Object, relationship RelationType, target *Object) bool
-	objectSetDescription               func(o *Object, description string)
-	objectSetName                      func(o *Object, name string)
-	objectSetParent                    func(o *Object, parent *Object)
-	objectSetRole                      func(o *Object, role Role)
+	ObjectAddRelationship              func(o *Object, relationship RelationType, target *Object) bool
+	ObjectConnectPropertyChangeHandler func(o *Object, handler *PropertyChangeHandler) uint
+	ObjectGetAttributes                func(o *Object) *AttributeSet
+	ObjectGetDescription               func(o *Object) string
+	ObjectGetIndexInParent             func(o *Object) int
+	ObjectGetLayer                     func(o *Object) Layer
+	ObjectGetMdiZorder                 func(o *Object) int
+	ObjectGetNAccessibleChildren       func(o *Object) int
+	ObjectGetName                      func(o *Object) string
+	ObjectGetParent                    func(o *Object) *Object
+	ObjectGetRole                      func(o *Object) Role
+	ObjectInitialize                   func(o *Object, data T.Gpointer)
+	ObjectNotifyStateChange            func(o *Object, state State, value bool)
+	ObjectRefAccessibleChild           func(o *Object, i int) *Object
+	ObjectRefRelationSet               func(o *Object) *RelationSet
+	ObjectRefStateSet                  func(o *Object) *StateSet
+	ObjectRemovePropertyChangeHandler  func(o *Object, handlerId uint)
+	ObjectRemoveRelationship           func(o *Object, relationship RelationType, target *Object) bool
+	ObjectSetDescription               func(o *Object, description string)
+	ObjectSetName                      func(o *Object, name string)
+	ObjectSetParent                    func(o *Object, parent *Object)
+	ObjectSetRole                      func(o *Object, role Role)
 )
 
 func (o *Object) AddRelationship(relationship RelationType, target *Object) bool {
-	return objectAddRelationship(o, relationship, target)
+	return ObjectAddRelationship(o, relationship, target)
 }
 func (o *Object) ConnectPropertyChangeHandler(handler *PropertyChangeHandler) uint {
-	return objectConnectPropertyChangeHandler(o, handler)
+	return ObjectConnectPropertyChangeHandler(o, handler)
 }
-func (o *Object) GetAttributes() *AttributeSet { return objectGetAttributes(o) }
-func (o *Object) GetDescription() string       { return objectGetDescription(o) }
-func (o *Object) GetIndexInParent() int        { return objectGetIndexInParent(o) }
-func (o *Object) GetLayer() Layer              { return objectGetLayer(o) }
-func (o *Object) GetMdiZorder() int            { return objectGetMdiZorder(o) }
-func (o *Object) GetNAccessibleChildren() int  { return objectGetNAccessibleChildren(o) }
-func (o *Object) GetName() string              { return objectGetName(o) }
-func (o *Object) GetParent() *Object           { return objectGetParent(o) }
-func (o *Object) GetRole() Role                { return objectGetRole(o) }
-func (o *Object) Initialize(data T.Gpointer)   { objectInitialize(o, data) }
+func (o *Object) GetAttributes() *AttributeSet { return ObjectGetAttributes(o) }
+func (o *Object) GetDescription() string       { return ObjectGetDescription(o) }
+func (o *Object) GetIndexInParent() int        { return ObjectGetIndexInParent(o) }
+func (o *Object) GetLayer() Layer              { return ObjectGetLayer(o) }
+func (o *Object) GetMdiZorder() int            { return ObjectGetMdiZorder(o) }
+func (o *Object) GetNAccessibleChildren() int  { return ObjectGetNAccessibleChildren(o) }
+func (o *Object) GetName() string              { return ObjectGetName(o) }
+func (o *Object) GetParent() *Object           { return ObjectGetParent(o) }
+func (o *Object) GetRole() Role                { return ObjectGetRole(o) }
+func (o *Object) Initialize(data T.Gpointer)   { ObjectInitialize(o, data) }
 func (o *Object) NotifyStateChange(state State, value bool) {
-	objectNotifyStateChange(o, state, value)
+	ObjectNotifyStateChange(o, state, value)
 }
-func (o *Object) RefAccessibleChild(i int) *Object { return objectRefAccessibleChild(o, i) }
-func (o *Object) RefRelationSet() *RelationSet     { return objectRefRelationSet(o) }
-func (o *Object) RefStateSet() *StateSet           { return objectRefStateSet(o) }
+func (o *Object) RefAccessibleChild(i int) *Object { return ObjectRefAccessibleChild(o, i) }
+func (o *Object) RefRelationSet() *RelationSet     { return ObjectRefRelationSet(o) }
+func (o *Object) RefStateSet() *StateSet           { return ObjectRefStateSet(o) }
 func (o *Object) RemovePropertyChangeHandler(handlerId uint) {
-	objectRemovePropertyChangeHandler(o, handlerId)
+	ObjectRemovePropertyChangeHandler(o, handlerId)
 }
 func (o *Object) RemoveRelationship(relationship RelationType, target *Object) bool {
-	return objectRemoveRelationship(o, relationship, target)
+	return ObjectRemoveRelationship(o, relationship, target)
 }
-func (o *Object) SetDescription(description string) { objectSetDescription(o, description) }
-func (o *Object) SetName(name string)               { objectSetName(o, name) }
-func (o *Object) SetParent(parent *Object)          { objectSetParent(o, parent) }
-func (o *Object) SetRole(role Role)                 { objectSetRole(o, role) }
+func (o *Object) SetDescription(description string) { ObjectSetDescription(o, description) }
+func (o *Object) SetName(name string)               { ObjectSetName(o, name) }
+func (o *Object) SetParent(parent *Object)          { ObjectSetParent(o, parent) }
+func (o *Object) SetRole(role Role)                 { ObjectSetRole(o, role) }
 
 type ObjectFactory struct{ parent O.Object }
 
 var (
 	ObjectFactoryGetType func() O.Type
 
-	objectFactoryCreateAccessible  func(o *ObjectFactory, obj *O.Object) *Object
-	objectFactoryGetAccessibleType func(o *ObjectFactory) O.Type
-	objectFactoryInvalidate        func(o *ObjectFactory)
+	ObjectFactoryCreateAccessible  func(o *ObjectFactory, obj *O.Object) *Object
+	ObjectFactoryGetAccessibleType func(o *ObjectFactory) O.Type
+	ObjectFactoryInvalidate        func(o *ObjectFactory)
 )
 
 func (o *ObjectFactory) CreateAccessible(obj *O.Object) *Object {
-	return objectFactoryCreateAccessible(o, obj)
+	return ObjectFactoryCreateAccessible(o, obj)
 }
-func (o *ObjectFactory) GetAccessibleType() O.Type { return objectFactoryGetAccessibleType(o) }
-func (o *ObjectFactory) Invalidate()               { objectFactoryInvalidate(o) }
+func (o *ObjectFactory) GetAccessibleType() O.Type { return ObjectFactoryGetAccessibleType(o) }
+func (o *ObjectFactory) Invalidate()               { ObjectFactoryInvalidate(o) }

@@ -13,21 +13,21 @@ type Document struct{}
 var (
 	DocumentGetType func() O.Type
 
-	documentGetAttributes     func(d *Document) *AttributeSet
-	documentGetAttributeValue func(d *Document, attributeName string) string
-	documentGetDocument       func(d *Document) T.Gpointer
-	documentGetDocumentType   func(d *Document) string
-	documentGetLocale         func(d *Document) string
-	documentSetAttributeValue func(d *Document, attributeName, attributeValue string) bool
+	DocumentGetAttributes     func(d *Document) *AttributeSet
+	DocumentGetAttributeValue func(d *Document, attributeName string) string
+	DocumentGetDocument       func(d *Document) T.Gpointer
+	DocumentGetDocumentType   func(d *Document) string
+	DocumentGetLocale         func(d *Document) string
+	DocumentSetAttributeValue func(d *Document, attributeName, attributeValue string) bool
 )
 
-func (d *Document) GetAttributes() *AttributeSet { return documentGetAttributes(d) }
+func (d *Document) GetAttributes() *AttributeSet { return DocumentGetAttributes(d) }
 func (d *Document) GetAttributeValue(attributeName string) string {
-	return documentGetAttributeValue(d, attributeName)
+	return DocumentGetAttributeValue(d, attributeName)
 }
-func (d *Document) GetDocument() T.Gpointer { return documentGetDocument(d) }
-func (d *Document) GetDocumentType() string { return documentGetDocumentType(d) }
-func (d *Document) GetLocale() string       { return documentGetLocale(d) }
+func (d *Document) GetDocument() T.Gpointer { return DocumentGetDocument(d) }
+func (d *Document) GetDocumentType() string { return DocumentGetDocumentType(d) }
+func (d *Document) GetLocale() string       { return DocumentGetLocale(d) }
 func (d *Document) SetAttributeValue(attributeName, attributeValue string) bool {
-	return documentSetAttributeValue(d, attributeName, attributeValue)
+	return DocumentSetAttributeValue(d, attributeName, attributeValue)
 }

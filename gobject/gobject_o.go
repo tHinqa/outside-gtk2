@@ -34,82 +34,82 @@ var (
 	ObjectSet                      func(object T.Gpointer, firstPropertyName string, v ...VArg)
 	ObjectUnref                    func(object T.Gpointer)
 
-	objectAddToggleRef      func(o *Object, notify T.GToggleNotify, data T.Gpointer)
-	objectAddWeakPointer    func(o *Object, weakPointerLocation *T.Gpointer)
-	objectForceFloating     func(o *Object)
-	objectFreezeNotify      func(o *Object)
-	objectGetData           func(o *Object, key string) T.Gpointer
-	objectGetProperty       func(o *Object, propertyName string, value *Value)
-	objectGetQdata          func(o *Object, quark T.GQuark) T.Gpointer
-	objectGetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
-	objectNotify            func(o *Object, propertyName string)
-	objectNotifyByPspec     func(o *Object, pspec *ParamSpec)
-	objectRemoveToggleRef   func(o *Object, notify T.GToggleNotify, data T.Gpointer)
-	objectRemoveWeakPointer func(o *Object, weakPointerLocation *T.Gpointer)
-	objectRunDispose        func(o *Object)
-	objectSetData           func(o *Object, key string, data T.Gpointer)
-	objectSetDataFull       func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
-	objectSetProperty       func(o *Object, propertyName string, value *Value)
-	objectSetQdata          func(o *Object, quark T.GQuark, data T.Gpointer)
-	objectSetQdataFull      func(o *Object, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
-	objectSetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
-	objectStealData         func(o *Object, key string) T.Gpointer
-	objectStealQdata        func(o *Object, quark T.GQuark) T.Gpointer
-	objectThawNotify        func(o *Object)
-	objectWatchClosure      func(o *Object, closure *Closure)
-	objectWeakRef           func(o *Object, notify T.GWeakNotify, data T.Gpointer)
-	objectWeakUnref         func(o *Object, notify T.GWeakNotify, data T.Gpointer)
+	ObjectAddToggleRef      func(o *Object, notify T.GToggleNotify, data T.Gpointer)
+	ObjectAddWeakPointer    func(o *Object, weakPointerLocation *T.Gpointer)
+	ObjectForceFloating     func(o *Object)
+	ObjectFreezeNotify      func(o *Object)
+	ObjectGetData           func(o *Object, key string) T.Gpointer
+	ObjectGetProperty       func(o *Object, propertyName string, value *Value)
+	ObjectGetQdata          func(o *Object, quark T.GQuark) T.Gpointer
+	ObjectGetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
+	ObjectNotify            func(o *Object, propertyName string)
+	ObjectNotifyByPspec     func(o *Object, pspec *ParamSpec)
+	ObjectRemoveToggleRef   func(o *Object, notify T.GToggleNotify, data T.Gpointer)
+	ObjectRemoveWeakPointer func(o *Object, weakPointerLocation *T.Gpointer)
+	ObjectRunDispose        func(o *Object)
+	ObjectSetData           func(o *Object, key string, data T.Gpointer)
+	ObjectSetDataFull       func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetProperty       func(o *Object, propertyName string, value *Value)
+	ObjectSetQdata          func(o *Object, quark T.GQuark, data T.Gpointer)
+	ObjectSetQdataFull      func(o *Object, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
+	ObjectStealData         func(o *Object, key string) T.Gpointer
+	ObjectStealQdata        func(o *Object, quark T.GQuark) T.Gpointer
+	ObjectThawNotify        func(o *Object)
+	ObjectWatchClosure      func(o *Object, closure *Closure)
+	ObjectWeakRef           func(o *Object, notify T.GWeakNotify, data T.Gpointer)
+	ObjectWeakUnref         func(o *Object, notify T.GWeakNotify, data T.Gpointer)
 )
 
 func (o *Object) AddToggleRef(notify T.GToggleNotify, data T.Gpointer) {
-	objectAddToggleRef(o, notify, data)
+	ObjectAddToggleRef(o, notify, data)
 }
 func (o *Object) AddWeakPointer(weakPointerLocation *T.Gpointer) {
-	objectAddWeakPointer(o, weakPointerLocation)
+	ObjectAddWeakPointer(o, weakPointerLocation)
 }
-func (o *Object) ForceFloating()                { objectForceFloating(o) }
-func (o *Object) FreezeNotify()                 { objectFreezeNotify(o) }
-func (o *Object) GetData(key string) T.Gpointer { return objectGetData(o, key) }
+func (o *Object) ForceFloating()                { ObjectForceFloating(o) }
+func (o *Object) FreezeNotify()                 { ObjectFreezeNotify(o) }
+func (o *Object) GetData(key string) T.Gpointer { return ObjectGetData(o, key) }
 func (o *Object) GetProperty(propertyName string, value *Value) {
-	objectGetProperty(o, propertyName, value)
+	ObjectGetProperty(o, propertyName, value)
 }
-func (o *Object) GetQdata(quark T.GQuark) T.Gpointer { return objectGetQdata(o, quark) }
+func (o *Object) GetQdata(quark T.GQuark) T.Gpointer { return ObjectGetQdata(o, quark) }
 func (o *Object) GetValist(firstPropertyName string, varArgs T.VaList) {
-	objectGetValist(o, firstPropertyName, varArgs)
+	ObjectGetValist(o, firstPropertyName, varArgs)
 }
-func (o *Object) Notify(propertyName string)     { objectNotify(o, propertyName) }
-func (o *Object) NotifyByPspec(pspec *ParamSpec) { objectNotifyByPspec(o, pspec) }
+func (o *Object) Notify(propertyName string)     { ObjectNotify(o, propertyName) }
+func (o *Object) NotifyByPspec(pspec *ParamSpec) { ObjectNotifyByPspec(o, pspec) }
 func (o *Object) RemoveToggleRef(notify T.GToggleNotify, data T.Gpointer) {
-	objectRemoveToggleRef(o, notify, data)
+	ObjectRemoveToggleRef(o, notify, data)
 }
 func (o *Object) RemoveWeakPointer(weakPointerLocation *T.Gpointer) {
-	objectRemoveWeakPointer(o, weakPointerLocation)
+	ObjectRemoveWeakPointer(o, weakPointerLocation)
 }
-func (o *Object) RunDispose()                         { objectRunDispose(o) }
-func (o *Object) SetData(key string, data T.Gpointer) { objectSetData(o, key, data) }
+func (o *Object) RunDispose()                         { ObjectRunDispose(o) }
+func (o *Object) SetData(key string, data T.Gpointer) { ObjectSetData(o, key, data) }
 func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNotify) {
-	objectSetDataFull(o, key, data, destroy)
+	ObjectSetDataFull(o, key, data, destroy)
 }
 func (o *Object) SetProperty(propertyName string, value *Value) {
-	objectSetProperty(o, propertyName, value)
+	ObjectSetProperty(o, propertyName, value)
 }
-func (o *Object) SetQdata(quark T.GQuark, data T.Gpointer) { objectSetQdata(o, quark, data) }
+func (o *Object) SetQdata(quark T.GQuark, data T.Gpointer) { ObjectSetQdata(o, quark, data) }
 func (o *Object) SetQdataFull(quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
-	objectSetQdataFull(o, quark, data, destroy)
+	ObjectSetQdataFull(o, quark, data, destroy)
 }
 func (o *Object) SetValist(firstPropertyName string, varArgs T.VaList) {
-	objectSetValist(o, firstPropertyName, varArgs)
+	ObjectSetValist(o, firstPropertyName, varArgs)
 }
-func (o *Object) StealData(key string) T.Gpointer                 { return objectStealData(o, key) }
-func (o *Object) StealQdata(quark T.GQuark) T.Gpointer            { return objectStealQdata(o, quark) }
-func (o *Object) ThawNotify()                                     { objectThawNotify(o) }
-func (o *Object) WatchClosure(closure *Closure)                   { objectWatchClosure(o, closure) }
-func (o *Object) WeakRef(notify T.GWeakNotify, data T.Gpointer)   { objectWeakRef(o, notify, data) }
-func (o *Object) WeakUnref(notify T.GWeakNotify, data T.Gpointer) { objectWeakUnref(o, notify, data) }
+func (o *Object) StealData(key string) T.Gpointer                 { return ObjectStealData(o, key) }
+func (o *Object) StealQdata(quark T.GQuark) T.Gpointer            { return ObjectStealQdata(o, quark) }
+func (o *Object) ThawNotify()                                     { ObjectThawNotify(o) }
+func (o *Object) WatchClosure(closure *Closure)                   { ObjectWatchClosure(o, closure) }
+func (o *Object) WeakRef(notify T.GWeakNotify, data T.Gpointer)   { ObjectWeakRef(o, notify, data) }
+func (o *Object) WeakUnref(notify T.GWeakNotify, data T.Gpointer) { ObjectWeakUnref(o, notify, data) }
 
 type ObjectClass struct {
 	TypeClass           TypeClass
-	ConstructProperties *T.GSList
+	ConstructProperties *SList
 
 	Constructor               func(Type Type, nConstructProperties uint, constructProperties *T.GObjectConstructParam) *Object
 	SetProperty               func(object *Object, propertyId uint, value Value, pspec *ParamSpec)

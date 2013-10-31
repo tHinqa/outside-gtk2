@@ -19,11 +19,11 @@ var (
 	MemoryInputStreamNew         func() *InputStream
 	MemoryInputStreamNewFromData func(data *T.Void, len T.Gssize, destroy T.GDestroyNotify) *InputStream
 
-	memoryInputStreamAddData func(m *MemoryInputStream, data *T.Void, len T.Gssize, destroy T.GDestroyNotify)
+	MemoryInputStreamAddData func(m *MemoryInputStream, data *T.Void, len T.Gssize, destroy T.GDestroyNotify)
 )
 
 func (m *MemoryInputStream) AddData(data *T.Void, len T.Gssize, destroy T.GDestroyNotify) {
-	memoryInputStreamAddData(m, data, len, destroy)
+	MemoryInputStreamAddData(m, data, len, destroy)
 }
 
 type MemoryOutputStream struct {
@@ -35,102 +35,102 @@ var (
 	MemoryOutputStreamGetType func() O.Type
 	MemoryOutputStreamNew     func(data T.Gpointer, size T.Gsize, reallocFunction T.GReallocFunc, destroyFunction T.GDestroyNotify) *OutputStream
 
-	memoryOutputStreamGetData     func(m *MemoryOutputStream) T.Gpointer
-	memoryOutputStreamGetDataSize func(m *MemoryOutputStream) T.Gsize
-	memoryOutputStreamGetSize     func(m *MemoryOutputStream) T.Gsize
-	memoryOutputStreamStealData   func(m *MemoryOutputStream) T.Gpointer
+	MemoryOutputStreamGetData     func(m *MemoryOutputStream) T.Gpointer
+	MemoryOutputStreamGetDataSize func(m *MemoryOutputStream) T.Gsize
+	MemoryOutputStreamGetSize     func(m *MemoryOutputStream) T.Gsize
+	MemoryOutputStreamStealData   func(m *MemoryOutputStream) T.Gpointer
 )
 
-func (m *MemoryOutputStream) GetData() T.Gpointer   { return memoryOutputStreamGetData(m) }
-func (m *MemoryOutputStream) GetDataSize() T.Gsize  { return memoryOutputStreamGetDataSize(m) }
-func (m *MemoryOutputStream) GetSize() T.Gsize      { return memoryOutputStreamGetSize(m) }
-func (m *MemoryOutputStream) StealData() T.Gpointer { return memoryOutputStreamStealData(m) }
+func (m *MemoryOutputStream) GetData() T.Gpointer   { return MemoryOutputStreamGetData(m) }
+func (m *MemoryOutputStream) GetDataSize() T.Gsize  { return MemoryOutputStreamGetDataSize(m) }
+func (m *MemoryOutputStream) GetSize() T.Gsize      { return MemoryOutputStreamGetSize(m) }
+func (m *MemoryOutputStream) StealData() T.Gpointer { return MemoryOutputStreamStealData(m) }
 
 var MemorySettingsBackendNew func() *SettingsBackend
 
 var (
 	MountGetType func() O.Type
 
-	mountCanEject                   func(m *Mount) bool
-	mountCanUnmount                 func(m *Mount) bool
-	mountEject                      func(m *Mount, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountEjectFinish                func(m *Mount, result *AsyncResult, err **T.GError) bool
-	mountEjectWithOperation         func(m *Mount, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountEjectWithOperationFinish   func(m *Mount, result *AsyncResult, err **T.GError) bool
-	mountGetDefaultLocation         func(m *Mount) *File
-	mountGetDrive                   func(m *Mount) *Drive
-	mountGetIcon                    func(m *Mount) *Icon
-	mountGetName                    func(m *Mount) string
-	mountGetRoot                    func(m *Mount) *File
-	mountGetUuid                    func(m *Mount) string
-	mountGetVolume                  func(m *Mount) *Volume
-	mountGuessContentType           func(m *Mount, forceRescan bool, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountGuessContentTypeFinish     func(m *Mount, result *AsyncResult, err **T.GError) []string
-	mountGuessContentTypeSync       func(m *Mount, forceRescan bool, cancellable *Cancellable, err **T.GError) []string
-	mountIsShadowed                 func(m *Mount) bool
-	mountRemount                    func(m *Mount, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountRemountFinish              func(m *Mount, result *AsyncResult, err **T.GError) bool
-	mountShadow                     func(m *Mount)
-	mountUnmount                    func(m *Mount, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountUnmountFinish              func(m *Mount, result *AsyncResult, err **T.GError) bool
-	mountUnmountWithOperation       func(m *Mount, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	mountUnmountWithOperationFinish func(m *Mount, result *AsyncResult, err **T.GError) bool
-	mountUnshadow                   func(m *Mount)
+	MountCanEject                   func(m *Mount) bool
+	MountCanUnmount                 func(m *Mount) bool
+	MountEject                      func(m *Mount, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountEjectFinish                func(m *Mount, result *AsyncResult, err **T.GError) bool
+	MountEjectWithOperation         func(m *Mount, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountEjectWithOperationFinish   func(m *Mount, result *AsyncResult, err **T.GError) bool
+	MountGetDefaultLocation         func(m *Mount) *File
+	MountGetDrive                   func(m *Mount) *Drive
+	MountGetIcon                    func(m *Mount) *Icon
+	MountGetName                    func(m *Mount) string
+	MountGetRoot                    func(m *Mount) *File
+	MountGetUuid                    func(m *Mount) string
+	MountGetVolume                  func(m *Mount) *Volume
+	MountGuessContentType           func(m *Mount, forceRescan bool, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountGuessContentTypeFinish     func(m *Mount, result *AsyncResult, err **T.GError) []string
+	MountGuessContentTypeSync       func(m *Mount, forceRescan bool, cancellable *Cancellable, err **T.GError) []string
+	MountIsShadowed                 func(m *Mount) bool
+	MountRemount                    func(m *Mount, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountRemountFinish              func(m *Mount, result *AsyncResult, err **T.GError) bool
+	MountShadow                     func(m *Mount)
+	MountUnmount                    func(m *Mount, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountUnmountFinish              func(m *Mount, result *AsyncResult, err **T.GError) bool
+	MountUnmountWithOperation       func(m *Mount, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	MountUnmountWithOperationFinish func(m *Mount, result *AsyncResult, err **T.GError) bool
+	MountUnshadow                   func(m *Mount)
 )
 
 type Mount struct{}
 
-func (m *Mount) CanEject() bool   { return mountCanEject(m) }
-func (m *Mount) CanUnmount() bool { return mountCanUnmount(m) }
+func (m *Mount) CanEject() bool   { return MountCanEject(m) }
+func (m *Mount) CanUnmount() bool { return MountCanUnmount(m) }
 func (m *Mount) Eject(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountEject(m, flags, cancellable, callback, userData)
+	MountEject(m, flags, cancellable, callback, userData)
 }
 func (m *Mount) EjectFinish(result *AsyncResult, err **T.GError) bool {
-	return mountEjectFinish(m, result, err)
+	return MountEjectFinish(m, result, err)
 }
 func (m *Mount) EjectWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountEjectWithOperation(m, flags, mountOperation, cancellable, callback, userData)
+	MountEjectWithOperation(m, flags, mountOperation, cancellable, callback, userData)
 }
 func (m *Mount) EjectWithOperationFinish(result *AsyncResult, err **T.GError) bool {
-	return mountEjectWithOperationFinish(m, result, err)
+	return MountEjectWithOperationFinish(m, result, err)
 }
-func (m *Mount) GetDefaultLocation() *File { return mountGetDefaultLocation(m) }
-func (m *Mount) GetDrive() *Drive          { return mountGetDrive(m) }
-func (m *Mount) GetIcon() *Icon            { return mountGetIcon(m) }
-func (m *Mount) GetName() string           { return mountGetName(m) }
-func (m *Mount) GetRoot() *File            { return mountGetRoot(m) }
-func (m *Mount) GetUuid() string           { return mountGetUuid(m) }
-func (m *Mount) GetVolume() *Volume        { return mountGetVolume(m) }
+func (m *Mount) GetDefaultLocation() *File { return MountGetDefaultLocation(m) }
+func (m *Mount) GetDrive() *Drive          { return MountGetDrive(m) }
+func (m *Mount) GetIcon() *Icon            { return MountGetIcon(m) }
+func (m *Mount) GetName() string           { return MountGetName(m) }
+func (m *Mount) GetRoot() *File            { return MountGetRoot(m) }
+func (m *Mount) GetUuid() string           { return MountGetUuid(m) }
+func (m *Mount) GetVolume() *Volume        { return MountGetVolume(m) }
 func (m *Mount) GuessContentType(forceRescan bool, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountGuessContentType(m, forceRescan, cancellable, callback, userData)
+	MountGuessContentType(m, forceRescan, cancellable, callback, userData)
 }
 func (m *Mount) GuessContentTypeFinish(result *AsyncResult, err **T.GError) []string {
-	return mountGuessContentTypeFinish(m, result, err)
+	return MountGuessContentTypeFinish(m, result, err)
 }
 func (m *Mount) GuessContentTypeSync(forceRescan bool, cancellable *Cancellable, err **T.GError) []string {
-	return mountGuessContentTypeSync(m, forceRescan, cancellable, err)
+	return MountGuessContentTypeSync(m, forceRescan, cancellable, err)
 }
-func (m *Mount) IsShadowed() bool { return mountIsShadowed(m) }
+func (m *Mount) IsShadowed() bool { return MountIsShadowed(m) }
 func (m *Mount) Remount(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountRemount(m, flags, mountOperation, cancellable, callback, userData)
+	MountRemount(m, flags, mountOperation, cancellable, callback, userData)
 }
 func (m *Mount) RemountFinish(result *AsyncResult, err **T.GError) bool {
-	return mountRemountFinish(m, result, err)
+	return MountRemountFinish(m, result, err)
 }
-func (m *Mount) Shadow() { mountShadow(m) }
+func (m *Mount) Shadow() { MountShadow(m) }
 func (m *Mount) Unmount(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountUnmount(m, flags, cancellable, callback, userData)
+	MountUnmount(m, flags, cancellable, callback, userData)
 }
 func (m *Mount) UnmountFinish(result *AsyncResult, err **T.GError) bool {
-	return mountUnmountFinish(m, result, err)
+	return MountUnmountFinish(m, result, err)
 }
 func (m *Mount) UnmountWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
-	mountUnmountWithOperation(m, flags, mountOperation, cancellable, callback, userData)
+	MountUnmountWithOperation(m, flags, mountOperation, cancellable, callback, userData)
 }
 func (m *Mount) UnmountWithOperationFinish(result *AsyncResult, err **T.GError) bool {
-	return mountUnmountWithOperationFinish(m, result, err)
+	return MountUnmountWithOperationFinish(m, result, err)
 }
-func (m *Mount) Unshadow() { mountUnshadow(m) }
+func (m *Mount) Unshadow() { MountUnshadow(m) }
 
 type MountMountFlags Enum
 
@@ -147,36 +147,36 @@ var (
 	MountOperationGetType func() O.Type
 	MountOperationNew     func() *MountOperation
 
-	mountOperationGetAnonymous    func(m *MountOperation) bool
-	mountOperationGetChoice       func(m *MountOperation) int
-	mountOperationGetDomain       func(m *MountOperation) string
-	mountOperationGetPassword     func(m *MountOperation) string
-	mountOperationGetPasswordSave func(m *MountOperation) T.GPasswordSave
-	mountOperationGetUsername     func(m *MountOperation) string
-	mountOperationReply           func(m *MountOperation, result MountOperationResult)
-	mountOperationSetAnonymous    func(m *MountOperation, anonymous bool)
-	mountOperationSetChoice       func(m *MountOperation, choice int)
-	mountOperationSetDomain       func(m *MountOperation, domain string)
-	mountOperationSetPassword     func(m *MountOperation, password string)
-	mountOperationSetPasswordSave func(m *MountOperation, save T.GPasswordSave)
-	mountOperationSetUsername     func(m *MountOperation, username string)
+	MountOperationGetAnonymous    func(m *MountOperation) bool
+	MountOperationGetChoice       func(m *MountOperation) int
+	MountOperationGetDomain       func(m *MountOperation) string
+	MountOperationGetPassword     func(m *MountOperation) string
+	MountOperationGetPasswordSave func(m *MountOperation) T.GPasswordSave
+	MountOperationGetUsername     func(m *MountOperation) string
+	MountOperationReply           func(m *MountOperation, result MountOperationResult)
+	MountOperationSetAnonymous    func(m *MountOperation, anonymous bool)
+	MountOperationSetChoice       func(m *MountOperation, choice int)
+	MountOperationSetDomain       func(m *MountOperation, domain string)
+	MountOperationSetPassword     func(m *MountOperation, password string)
+	MountOperationSetPasswordSave func(m *MountOperation, save T.GPasswordSave)
+	MountOperationSetUsername     func(m *MountOperation, username string)
 )
 
-func (m *MountOperation) GetAnonymous() bool                { return mountOperationGetAnonymous(m) }
-func (m *MountOperation) GetChoice() int                    { return mountOperationGetChoice(m) }
-func (m *MountOperation) GetDomain() string                 { return mountOperationGetDomain(m) }
-func (m *MountOperation) GetPassword() string               { return mountOperationGetPassword(m) }
-func (m *MountOperation) GetPasswordSave() T.GPasswordSave  { return mountOperationGetPasswordSave(m) }
-func (m *MountOperation) GetUsername() string               { return mountOperationGetUsername(m) }
-func (m *MountOperation) Reply(result MountOperationResult) { mountOperationReply(m, result) }
-func (m *MountOperation) SetAnonymous(anonymous bool)       { mountOperationSetAnonymous(m, anonymous) }
-func (m *MountOperation) SetChoice(choice int)              { mountOperationSetChoice(m, choice) }
-func (m *MountOperation) SetDomain(domain string)           { mountOperationSetDomain(m, domain) }
-func (m *MountOperation) SetPassword(password string)       { mountOperationSetPassword(m, password) }
+func (m *MountOperation) GetAnonymous() bool                { return MountOperationGetAnonymous(m) }
+func (m *MountOperation) GetChoice() int                    { return MountOperationGetChoice(m) }
+func (m *MountOperation) GetDomain() string                 { return MountOperationGetDomain(m) }
+func (m *MountOperation) GetPassword() string               { return MountOperationGetPassword(m) }
+func (m *MountOperation) GetPasswordSave() T.GPasswordSave  { return MountOperationGetPasswordSave(m) }
+func (m *MountOperation) GetUsername() string               { return MountOperationGetUsername(m) }
+func (m *MountOperation) Reply(result MountOperationResult) { MountOperationReply(m, result) }
+func (m *MountOperation) SetAnonymous(anonymous bool)       { MountOperationSetAnonymous(m, anonymous) }
+func (m *MountOperation) SetChoice(choice int)              { MountOperationSetChoice(m, choice) }
+func (m *MountOperation) SetDomain(domain string)           { MountOperationSetDomain(m, domain) }
+func (m *MountOperation) SetPassword(password string)       { MountOperationSetPassword(m, password) }
 func (m *MountOperation) SetPasswordSave(save T.GPasswordSave) {
-	mountOperationSetPasswordSave(m, save)
+	MountOperationSetPasswordSave(m, save)
 }
-func (m *MountOperation) SetUsername(username string) { mountOperationSetUsername(m, username) }
+func (m *MountOperation) SetUsername(username string) { MountOperationSetUsername(m, username) }
 
 type MountOperationResult Enum
 

@@ -23,14 +23,14 @@ var (
 	NetworkAddressParse    func(hostAndPort string, defaultPort uint16, err **T.GError) *SocketConnectable
 	NetworkAddressParseUri func(uri string, defaultPort uint16, err **T.GError) *SocketConnectable
 
-	networkAddressGetHostname func(n *NetworkAddress) string
-	networkAddressGetPort     func(n *NetworkAddress) uint16
-	networkAddressGetScheme   func(n *NetworkAddress) string
+	NetworkAddressGetHostname func(n *NetworkAddress) string
+	NetworkAddressGetPort     func(n *NetworkAddress) uint16
+	NetworkAddressGetScheme   func(n *NetworkAddress) string
 )
 
-func (n *NetworkAddress) GetHostname() string { return networkAddressGetHostname(n) }
-func (n *NetworkAddress) GetPort() uint16     { return networkAddressGetPort(n) }
-func (n *NetworkAddress) GetScheme() string   { return networkAddressGetScheme(n) }
+func (n *NetworkAddress) GetHostname() string { return NetworkAddressGetHostname(n) }
+func (n *NetworkAddress) GetPort() uint16     { return NetworkAddressGetPort(n) }
+func (n *NetworkAddress) GetScheme() string   { return NetworkAddressGetScheme(n) }
 
 type NetworkService struct {
 	Parent O.Object
@@ -41,17 +41,17 @@ var (
 	NetworkServiceGetType func() O.Type
 	NetworkServiceNew     func(service string, protocol string, domain string) *SocketConnectable
 
-	networkServiceGetService  func(n *NetworkService) string
-	networkServiceGetProtocol func(n *NetworkService) string
-	networkServiceGetDomain   func(n *NetworkService) string
-	networkServiceGetScheme   func(n *NetworkService) string
-	networkServiceSetScheme   func(n *NetworkService, scheme string)
+	NetworkServiceGetService  func(n *NetworkService) string
+	NetworkServiceGetProtocol func(n *NetworkService) string
+	NetworkServiceGetDomain   func(n *NetworkService) string
+	NetworkServiceGetScheme   func(n *NetworkService) string
+	NetworkServiceSetScheme   func(n *NetworkService, scheme string)
 )
 
-func (n *NetworkService) GetService() string      { return networkServiceGetService(n) }
-func (n *NetworkService) GetProtocol() string     { return networkServiceGetProtocol(n) }
-func (n *NetworkService) GetDomain() string       { return networkServiceGetDomain(n) }
-func (n *NetworkService) GetScheme() string       { return networkServiceGetScheme(n) }
-func (n *NetworkService) SetScheme(scheme string) { networkServiceSetScheme(n, scheme) }
+func (n *NetworkService) GetService() string      { return NetworkServiceGetService(n) }
+func (n *NetworkService) GetProtocol() string     { return NetworkServiceGetProtocol(n) }
+func (n *NetworkService) GetDomain() string       { return NetworkServiceGetDomain(n) }
+func (n *NetworkService) GetScheme() string       { return NetworkServiceGetScheme(n) }
+func (n *NetworkService) SetScheme(scheme string) { NetworkServiceSetScheme(n, scheme) }
 
 var NullSettingsBackendNew func() *SettingsBackend

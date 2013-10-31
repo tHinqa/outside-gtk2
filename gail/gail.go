@@ -83,19 +83,19 @@ var (
 	TextUtilGetType func() O.Type
 	TextUtilNew     func() *TextUtil
 
-	textUtilTextSetup    func(t *TextUtil, text string)
-	textUtilBufferSetup  func(t *TextUtil, buffer *G.TextBuffer)
-	textUtilGetText      func(t *TextUtil, layout T.Gpointer, function OffsetType, boundaryType A.TextBoundary, offset int, startOffset, endOffset *int) string
-	textUtilGetSubstring func(t *TextUtil, startPos, endPos int) string
+	TextUtilTextSetup    func(t *TextUtil, text string)
+	TextUtilBufferSetup  func(t *TextUtil, buffer *G.TextBuffer)
+	TextUtilGetText      func(t *TextUtil, layout T.Gpointer, function OffsetType, boundaryType A.TextBoundary, offset int, startOffset, endOffset *int) string
+	TextUtilGetSubstring func(t *TextUtil, startPos, endPos int) string
 )
 
-func (t *TextUtil) TextSetup(text string)            { textUtilTextSetup(t, text) }
-func (t *TextUtil) BufferSetup(buffer *G.TextBuffer) { textUtilBufferSetup(t, buffer) }
+func (t *TextUtil) TextSetup(text string)            { TextUtilTextSetup(t, text) }
+func (t *TextUtil) BufferSetup(buffer *G.TextBuffer) { TextUtilBufferSetup(t, buffer) }
 func (t *TextUtil) GetText(layout T.Gpointer, function OffsetType, boundaryType A.TextBoundary, offset int, startOffset, endOffset *int) string {
-	return textUtilGetText(t, layout, function, boundaryType, offset, startOffset, endOffset)
+	return TextUtilGetText(t, layout, function, boundaryType, offset, startOffset, endOffset)
 }
 func (t *TextUtil) GetSubstring(startPos, endPos int) string {
-	return textUtilGetSubstring(t, startPos, endPos)
+	return TextUtilGetSubstring(t, startPos, endPos)
 }
 
 var dll = "libgailutil-18.dll"
@@ -109,10 +109,10 @@ var apiList = outside.Apis{
 	{"gail_misc_get_index_at_point_in_layout", &MiscGetIndexAtPointInLayout},
 	{"gail_misc_get_origins", &MiscGetOrigins},
 	{"gail_misc_layout_get_run_attributes", &MiscLayoutGetRunAttributes},
-	{"gail_text_util_buffer_setup", &textUtilBufferSetup},
-	{"gail_text_util_get_substring", &textUtilGetSubstring},
-	{"gail_text_util_get_text", &textUtilGetText},
+	{"gail_text_util_buffer_setup", &TextUtilBufferSetup},
+	{"gail_text_util_get_substring", &TextUtilGetSubstring},
+	{"gail_text_util_get_text", &TextUtilGetText},
 	{"gail_text_util_get_type", &TextUtilGetType},
 	{"gail_text_util_new", &TextUtilNew},
-	{"gail_text_util_text_setup", &textUtilTextSetup},
+	{"gail_text_util_text_setup", &TextUtilTextSetup},
 }

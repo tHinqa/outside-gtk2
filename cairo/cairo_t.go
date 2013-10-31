@@ -11,10 +11,10 @@ type TextCluster struct {
 var (
 	TextClusterAllocate func(numClusters int) *TextCluster
 
-	textClusterFree func(t *TextCluster)
+	TextClusterFree func(t *TextCluster)
 )
 
-func (t *TextCluster) Free() { textClusterFree(t) }
+func (t *TextCluster) Free() { TextClusterFree(t) }
 
 type TextClusterFlags Enum
 

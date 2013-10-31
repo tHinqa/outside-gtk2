@@ -4,6 +4,7 @@
 package gdk
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -29,48 +30,48 @@ var (
 	DeviceGetCorePointer func() *Device
 	DevicesList          func() *T.GList
 
-	deviceGetAxis      func(d *Device, axes *float64, use T.GdkAxisUse, value *float64) bool
-	deviceGetAxisUse   func(d *Device, index uint) T.GdkAxisUse
-	deviceGetHasCursor func(d *Device) bool
-	deviceGetHistory   func(d *Device, window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) bool
-	deviceGetKey       func(d *Device, index uint, keyval *uint, modifiers *T.GdkModifierType)
-	deviceGetMode      func(d *Device) T.GdkInputMode
-	deviceGetName      func(d *Device) string
-	deviceGetNAxes     func(d *Device) int
-	deviceGetNKeys     func(d *Device) int
-	deviceGetSource    func(d *Device) T.GdkInputSource
-	deviceGetState     func(d *Device, window *Window, axes *float64, mask *T.GdkModifierType)
-	deviceSetAxisUse   func(d *Device, index uint, use T.GdkAxisUse)
-	deviceSetKey       func(d *Device, index, keyval uint, modifiers T.GdkModifierType)
-	deviceSetMode      func(d *Device, mode T.GdkInputMode) bool
-	deviceSetSource    func(d *Device, source T.GdkInputSource)
+	DeviceGetAxis      func(d *Device, axes *float64, use T.GdkAxisUse, value *float64) bool
+	DeviceGetAxisUse   func(d *Device, index uint) T.GdkAxisUse
+	DeviceGetHasCursor func(d *Device) bool
+	DeviceGetHistory   func(d *Device, window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) bool
+	DeviceGetKey       func(d *Device, index uint, keyval *uint, modifiers *T.GdkModifierType)
+	DeviceGetMode      func(d *Device) T.GdkInputMode
+	DeviceGetName      func(d *Device) string
+	DeviceGetNAxes     func(d *Device) int
+	DeviceGetNKeys     func(d *Device) int
+	DeviceGetSource    func(d *Device) T.GdkInputSource
+	DeviceGetState     func(d *Device, window *Window, axes *float64, mask *T.GdkModifierType)
+	DeviceSetAxisUse   func(d *Device, index uint, use T.GdkAxisUse)
+	DeviceSetKey       func(d *Device, index, keyval uint, modifiers T.GdkModifierType)
+	DeviceSetMode      func(d *Device, mode T.GdkInputMode) bool
+	DeviceSetSource    func(d *Device, source T.GdkInputSource)
 )
 
 func (d *Device) GetAxis(axes *float64, use T.GdkAxisUse, value *float64) bool {
-	return deviceGetAxis(d, axes, use, value)
+	return DeviceGetAxis(d, axes, use, value)
 }
-func (d *Device) GetAxisUse(index uint) T.GdkAxisUse { return deviceGetAxisUse(d, index) }
-func (d *Device) GetHasCursor() bool                 { return deviceGetHasCursor(d) }
+func (d *Device) GetAxisUse(index uint) T.GdkAxisUse { return DeviceGetAxisUse(d, index) }
+func (d *Device) GetHasCursor() bool                 { return DeviceGetHasCursor(d) }
 func (d *Device) GetHistory(window *Window, start, stop T.GUint32, events ***T.GdkTimeCoord, nEvents *int) bool {
-	return deviceGetHistory(d, window, start, stop, events, nEvents)
+	return DeviceGetHistory(d, window, start, stop, events, nEvents)
 }
 func (d *Device) GetKey(index uint, keyval *uint, modifiers *T.GdkModifierType) {
-	deviceGetKey(d, index, keyval, modifiers)
+	DeviceGetKey(d, index, keyval, modifiers)
 }
-func (d *Device) GetMode() T.GdkInputMode     { return deviceGetMode(d) }
-func (d *Device) GetName() string             { return deviceGetName(d) }
-func (d *Device) GetNAxes() int               { return deviceGetNAxes(d) }
-func (d *Device) GetNKeys() int               { return deviceGetNKeys(d) }
-func (d *Device) GetSource() T.GdkInputSource { return deviceGetSource(d) }
+func (d *Device) GetMode() T.GdkInputMode     { return DeviceGetMode(d) }
+func (d *Device) GetName() string             { return DeviceGetName(d) }
+func (d *Device) GetNAxes() int               { return DeviceGetNAxes(d) }
+func (d *Device) GetNKeys() int               { return DeviceGetNKeys(d) }
+func (d *Device) GetSource() T.GdkInputSource { return DeviceGetSource(d) }
 func (d *Device) GetState(window *Window, axes *float64, mask *T.GdkModifierType) {
-	deviceGetState(d, window, axes, mask)
+	DeviceGetState(d, window, axes, mask)
 }
-func (d *Device) SetAxisUse(index uint, use T.GdkAxisUse) { deviceSetAxisUse(d, index, use) }
+func (d *Device) SetAxisUse(index uint, use T.GdkAxisUse) { DeviceSetAxisUse(d, index, use) }
 func (d *Device) SetKey(index, keyval uint, modifiers T.GdkModifierType) {
-	deviceSetKey(d, index, keyval, modifiers)
+	DeviceSetKey(d, index, keyval, modifiers)
 }
-func (d *Device) SetMode(mode T.GdkInputMode) bool  { return deviceSetMode(d, mode) }
-func (d *Device) SetSource(source T.GdkInputSource) { deviceSetSource(d, source) }
+func (d *Device) SetMode(mode T.GdkInputMode) bool  { return DeviceSetMode(d, mode) }
+func (d *Device) SetSource(source T.GdkInputSource) { DeviceSetSource(d, source) }
 
 type DeviceKey struct {
 	Keyval    uint
@@ -112,98 +113,98 @@ var (
 	DisplayOpen                  func(displayName string) *Display
 	DisplayOpenDefaultLibgtkOnly func() *Display
 
-	displayAddClientMessageFilter        func(d *Display, messageType Atom, f T.GdkFilterFunc, data T.Gpointer)
-	displayBeep                          func(d *Display)
-	displayClose                         func(d *Display)
-	displayFlush                         func(d *Display)
-	displayGetCorePointer                func(d *Display) *Device
-	displayGetDefaultCursorSize          func(d *Display) uint
-	displayGetDefaultGroup               func(d *Display) *Window
-	displayGetDefaultScreen              func(d *Display) *Screen
-	displayGetEvent                      func(d *Display) *Event
-	displayGetMaximalCursorSize          func(d *Display, width, height *uint)
-	displayGetName                       func(d *Display) string
-	displayGetNScreens                   func(d *Display) int
-	displayGetPointer                    func(d *Display, screen **Screen, x, y *int, mask *T.GdkModifierType)
-	displayGetScreen                     func(d *Display, screenNum int) *Screen
-	displayGetWindowAtPointer            func(d *Display, winX, winY *int) *Window
-	displayIsClosed                      func(d *Display) bool
-	displayKeyboardUngrab                func(d *Display, time T.GUint32)
-	displayListDevices                   func(d *Display) *T.GList
-	displayPeekEvent                     func(d *Display) *Event
-	displayPointerIsGrabbed              func(d *Display) bool
-	displayPointerUngrab                 func(d *Display, time T.GUint32)
-	displayPutEvent                      func(d *Display, event *Event)
-	displayRequestSelectionNotification  func(d *Display, selection Atom) bool
-	displaySetDoubleClickDistance        func(d *Display, distance uint)
-	displaySetDoubleClickTime            func(d *Display, msec uint)
-	displaySetPointerHooks               func(d *Display, newHooks *DisplayPointerHooks) *DisplayPointerHooks
-	displayStoreClipboard                func(d *Display, clipboardWindow *Window, time T.GUint32, targets *Atom, nTargets int)
-	displaySupportsClipboardPersistence  func(d *Display) bool
-	displaySupportsComposite             func(d *Display) bool
-	displaySupportsCursorAlpha           func(d *Display) bool
-	displaySupportsCursorColor           func(d *Display) bool
-	displaySupportsInputShapes           func(d *Display) bool
-	displaySupportsSelectionNotification func(d *Display) bool
-	displaySupportsShapes                func(d *Display) bool
-	displaySync                          func(d *Display)
-	displayWarpPointer                   func(d *Display, screen *Screen, x, y int)
+	DisplayAddClientMessageFilter        func(d *Display, messageType Atom, f T.GdkFilterFunc, data T.Gpointer)
+	DisplayBeep                          func(d *Display)
+	DisplayClose                         func(d *Display)
+	DisplayFlush                         func(d *Display)
+	DisplayGetCorePointer                func(d *Display) *Device
+	DisplayGetDefaultCursorSize          func(d *Display) uint
+	DisplayGetDefaultGroup               func(d *Display) *Window
+	DisplayGetDefaultScreen              func(d *Display) *Screen
+	DisplayGetEvent                      func(d *Display) *Event
+	DisplayGetMaximalCursorSize          func(d *Display, width, height *uint)
+	DisplayGetName                       func(d *Display) string
+	DisplayGetNScreens                   func(d *Display) int
+	DisplayGetPointer                    func(d *Display, screen **Screen, x, y *int, mask *T.GdkModifierType)
+	DisplayGetScreen                     func(d *Display, screenNum int) *Screen
+	DisplayGetWindowAtPointer            func(d *Display, winX, winY *int) *Window
+	DisplayIsClosed                      func(d *Display) bool
+	DisplayKeyboardUngrab                func(d *Display, time T.GUint32)
+	DisplayListDevices                   func(d *Display) *T.GList
+	DisplayPeekEvent                     func(d *Display) *Event
+	DisplayPointerIsGrabbed              func(d *Display) bool
+	DisplayPointerUngrab                 func(d *Display, time T.GUint32)
+	DisplayPutEvent                      func(d *Display, event *Event)
+	DisplayRequestSelectionNotification  func(d *Display, selection Atom) bool
+	DisplaySetDoubleClickDistance        func(d *Display, distance uint)
+	DisplaySetDoubleClickTime            func(d *Display, msec uint)
+	DisplaySetPointerHooks               func(d *Display, newHooks *DisplayPointerHooks) *DisplayPointerHooks
+	DisplayStoreClipboard                func(d *Display, clipboardWindow *Window, time T.GUint32, targets *Atom, nTargets int)
+	DisplaySupportsClipboardPersistence  func(d *Display) bool
+	DisplaySupportsComposite             func(d *Display) bool
+	DisplaySupportsCursorAlpha           func(d *Display) bool
+	DisplaySupportsCursorColor           func(d *Display) bool
+	DisplaySupportsInputShapes           func(d *Display) bool
+	DisplaySupportsSelectionNotification func(d *Display) bool
+	DisplaySupportsShapes                func(d *Display) bool
+	DisplaySync                          func(d *Display)
+	DisplayWarpPointer                   func(d *Display, screen *Screen, x, y int)
 )
 
 func (d *Display) AddClientMessageFilter(messageType Atom, f T.GdkFilterFunc, data T.Gpointer) {
-	displayAddClientMessageFilter(d, messageType, f, data)
+	DisplayAddClientMessageFilter(d, messageType, f, data)
 }
-func (d *Display) Beep()                      { displayBeep(d) }
-func (d *Display) Close()                     { displayClose(d) }
-func (d *Display) Flush()                     { displayFlush(d) }
-func (d *Display) GetCorePointer() *Device    { return displayGetCorePointer(d) }
-func (d *Display) GetDefaultCursorSize() uint { return displayGetDefaultCursorSize(d) }
-func (d *Display) GetDefaultGroup() *Window   { return displayGetDefaultGroup(d) }
-func (d *Display) GetDefaultScreen() *Screen  { return displayGetDefaultScreen(d) }
-func (d *Display) GetEvent() *Event           { return displayGetEvent(d) }
+func (d *Display) Beep()                      { DisplayBeep(d) }
+func (d *Display) Close()                     { DisplayClose(d) }
+func (d *Display) Flush()                     { DisplayFlush(d) }
+func (d *Display) GetCorePointer() *Device    { return DisplayGetCorePointer(d) }
+func (d *Display) GetDefaultCursorSize() uint { return DisplayGetDefaultCursorSize(d) }
+func (d *Display) GetDefaultGroup() *Window   { return DisplayGetDefaultGroup(d) }
+func (d *Display) GetDefaultScreen() *Screen  { return DisplayGetDefaultScreen(d) }
+func (d *Display) GetEvent() *Event           { return DisplayGetEvent(d) }
 func (d *Display) GetMaximalCursorSize(width, height *uint) {
-	displayGetMaximalCursorSize(d, width, height)
+	DisplayGetMaximalCursorSize(d, width, height)
 }
-func (d *Display) GetName() string  { return displayGetName(d) }
-func (d *Display) GetNScreens() int { return displayGetNScreens(d) }
+func (d *Display) GetName() string  { return DisplayGetName(d) }
+func (d *Display) GetNScreens() int { return DisplayGetNScreens(d) }
 func (d *Display) GetPointer(screen **Screen, x, y *int, mask *T.GdkModifierType) {
-	displayGetPointer(d, screen, x, y, mask)
+	DisplayGetPointer(d, screen, x, y, mask)
 }
-func (d *Display) GetScreen(screenNum int) *Screen { return displayGetScreen(d, screenNum) }
+func (d *Display) GetScreen(screenNum int) *Screen { return DisplayGetScreen(d, screenNum) }
 func (d *Display) GetWindowAtPointer(winX, winY *int) *Window {
-	return displayGetWindowAtPointer(d, winX, winY)
+	return DisplayGetWindowAtPointer(d, winX, winY)
 }
-func (d *Display) IsClosed() bool                { return displayIsClosed(d) }
-func (d *Display) KeyboardUngrab(time T.GUint32) { displayKeyboardUngrab(d, time) }
-func (d *Display) ListDevices() *T.GList         { return displayListDevices(d) }
-func (d *Display) PeekEvent() *Event             { return displayPeekEvent(d) }
-func (d *Display) PointerIsGrabbed() bool        { return displayPointerIsGrabbed(d) }
-func (d *Display) PointerUngrab(time T.GUint32)  { displayPointerUngrab(d, time) }
-func (d *Display) PutEvent(event *Event)         { displayPutEvent(d, event) }
+func (d *Display) IsClosed() bool                { return DisplayIsClosed(d) }
+func (d *Display) KeyboardUngrab(time T.GUint32) { DisplayKeyboardUngrab(d, time) }
+func (d *Display) ListDevices() *T.GList         { return DisplayListDevices(d) }
+func (d *Display) PeekEvent() *Event             { return DisplayPeekEvent(d) }
+func (d *Display) PointerIsGrabbed() bool        { return DisplayPointerIsGrabbed(d) }
+func (d *Display) PointerUngrab(time T.GUint32)  { DisplayPointerUngrab(d, time) }
+func (d *Display) PutEvent(event *Event)         { DisplayPutEvent(d, event) }
 func (d *Display) RequestSelectionNotification(selection Atom) bool {
-	return displayRequestSelectionNotification(d, selection)
+	return DisplayRequestSelectionNotification(d, selection)
 }
-func (d *Display) SetDoubleClickDistance(distance uint) { displaySetDoubleClickDistance(d, distance) }
-func (d *Display) SetDoubleClickTime(msec uint)         { displaySetDoubleClickTime(d, msec) }
+func (d *Display) SetDoubleClickDistance(distance uint) { DisplaySetDoubleClickDistance(d, distance) }
+func (d *Display) SetDoubleClickTime(msec uint)         { DisplaySetDoubleClickTime(d, msec) }
 func (d *Display) SetPointerHooks(newHooks *DisplayPointerHooks) *DisplayPointerHooks {
-	return displaySetPointerHooks(d, newHooks)
+	return DisplaySetPointerHooks(d, newHooks)
 }
 func (d *Display) StoreClipboard(clipboardWindow *Window, time T.GUint32, targets *Atom, nTargets int) {
-	displayStoreClipboard(d, clipboardWindow, time, targets, nTargets)
+	DisplayStoreClipboard(d, clipboardWindow, time, targets, nTargets)
 }
 func (d *Display) SupportsClipboardPersistence() bool {
-	return displaySupportsClipboardPersistence(d)
+	return DisplaySupportsClipboardPersistence(d)
 }
-func (d *Display) SupportsComposite() bool   { return displaySupportsComposite(d) }
-func (d *Display) SupportsCursorAlpha() bool { return displaySupportsCursorAlpha(d) }
-func (d *Display) SupportsCursorColor() bool { return displaySupportsCursorColor(d) }
-func (d *Display) SupportsInputShapes() bool { return displaySupportsInputShapes(d) }
+func (d *Display) SupportsComposite() bool   { return DisplaySupportsComposite(d) }
+func (d *Display) SupportsCursorAlpha() bool { return DisplaySupportsCursorAlpha(d) }
+func (d *Display) SupportsCursorColor() bool { return DisplaySupportsCursorColor(d) }
+func (d *Display) SupportsInputShapes() bool { return DisplaySupportsInputShapes(d) }
 func (d *Display) SupportsSelectionNotification() bool {
-	return displaySupportsSelectionNotification(d)
+	return DisplaySupportsSelectionNotification(d)
 }
-func (d *Display) SupportsShapes() bool                 { return displaySupportsShapes(d) }
-func (d *Display) Sync()                                { displaySync(d) }
-func (d *Display) WarpPointer(screen *Screen, x, y int) { displayWarpPointer(d, screen, x, y) }
+func (d *Display) SupportsShapes() bool                 { return DisplaySupportsShapes(d) }
+func (d *Display) Sync()                                { DisplaySync(d) }
+func (d *Display) WarpPointer(screen *Screen, x, y int) { DisplayWarpPointer(d, screen, x, y) }
 
 type DisplayPointerHooks struct {
 	GetPointer func(
@@ -223,15 +224,15 @@ var (
 
 	DisplayManagerGet func() *DisplayManager
 
-	displayManagerGetDefaultDisplay func(d *DisplayManager) *Display
-	displayManagerListDisplays      func(d *DisplayManager) *T.GSList
-	displayManagerSetDefaultDisplay func(d *DisplayManager, display *Display)
+	DisplayManagerGetDefaultDisplay func(d *DisplayManager) *Display
+	DisplayManagerListDisplays      func(d *DisplayManager) *L.SList
+	DisplayManagerSetDefaultDisplay func(d *DisplayManager, display *Display)
 )
 
-func (d *DisplayManager) GetDefaultDisplay() *Display { return displayManagerGetDefaultDisplay(d) }
-func (d *DisplayManager) ListDisplays() *T.GSList     { return displayManagerListDisplays(d) }
+func (d *DisplayManager) GetDefaultDisplay() *Display { return DisplayManagerGetDefaultDisplay(d) }
+func (d *DisplayManager) ListDisplays() *L.SList     { return DisplayManagerListDisplays(d) }
 func (d *DisplayManager) SetDefaultDisplay(display *Display) {
-	displayManagerSetDefaultDisplay(d, display)
+	DisplayManagerSetDefaultDisplay(d, display)
 }
 
 type DragAction Enum
@@ -280,26 +281,26 @@ var (
 	DropFinish              func(context *DragContext, success bool, time T.GUint32)
 	DropReply               func(context *DragContext, ok bool, time T.GUint32)
 
-	dragContextGetActions         func(context *DragContext) DragAction
-	dragContextGetDestWindow      func(context *DragContext) *Window
-	dragContextGetProtocol        func(context *DragContext) DragProtocol
-	dragContextGetSelectedAction  func(context *DragContext) DragAction
-	dragContextGetSourceWindow    func(context *DragContext) *Window
-	dragContextGetSuggestedAction func(context *DragContext) DragAction
-	dragContextListTargets        func(context *DragContext) *T.GList
-	dragContextRef                func(context *DragContext)
-	dragContextUnref              func(context *DragContext)
+	DragContextGetActions         func(context *DragContext) DragAction
+	DragContextGetDestWindow      func(context *DragContext) *Window
+	DragContextGetProtocol        func(context *DragContext) DragProtocol
+	DragContextGetSelectedAction  func(context *DragContext) DragAction
+	DragContextGetSourceWindow    func(context *DragContext) *Window
+	DragContextGetSuggestedAction func(context *DragContext) DragAction
+	DragContextListTargets        func(context *DragContext) *T.GList
+	DragContextRef                func(context *DragContext)
+	DragContextUnref              func(context *DragContext)
 )
 
-func (d *DragContext) GetActions() DragAction         { return dragContextGetActions(d) }
-func (d *DragContext) GetDestWindow() *Window         { return dragContextGetDestWindow(d) }
-func (d *DragContext) GetProtocol() DragProtocol      { return dragContextGetProtocol(d) }
-func (d *DragContext) GetSelectedAction() DragAction  { return dragContextGetSelectedAction(d) }
-func (d *DragContext) GetSourceWindow() *Window       { return dragContextGetSourceWindow(d) }
-func (d *DragContext) GetSuggestedAction() DragAction { return dragContextGetSuggestedAction(d) }
-func (d *DragContext) ListTargets() *T.GList          { return dragContextListTargets(d) }
-func (d *DragContext) Ref()                           { dragContextRef(d) }
-func (d *DragContext) Unref()                         { dragContextUnref(d) }
+func (d *DragContext) GetActions() DragAction         { return DragContextGetActions(d) }
+func (d *DragContext) GetDestWindow() *Window         { return DragContextGetDestWindow(d) }
+func (d *DragContext) GetProtocol() DragProtocol      { return DragContextGetProtocol(d) }
+func (d *DragContext) GetSelectedAction() DragAction  { return DragContextGetSelectedAction(d) }
+func (d *DragContext) GetSourceWindow() *Window       { return DragContextGetSourceWindow(d) }
+func (d *DragContext) GetSuggestedAction() DragAction { return DragContextGetSuggestedAction(d) }
+func (d *DragContext) ListTargets() *T.GList          { return DragContextListTargets(d) }
+func (d *DragContext) Ref()                           { DragContextRef(d) }
+func (d *DragContext) Unref()                         { DragContextUnref(d) }
 
 type DragProtocol Enum
 
@@ -348,41 +349,41 @@ var (
 	DrawTextWc               func(drawable *Drawable, font *Font, gc *GC, x, y int, text *T.GdkWChar, textLength int)
 	DrawTrapezoids           func(drawable *Drawable, gc *GC, trapezoids *T.GdkTrapezoid, nTrapezoids int)
 
-	drawableCopyToImage      func(d *Drawable, image *Image, srcX, srcY, destX, destY, width, height int) *Image
-	drawableGetClipRegion    func(d *Drawable) *Region
-	drawableGetColormap      func(d *Drawable) *Colormap
-	drawableGetData          func(d *Drawable, key string) T.Gpointer
-	drawableGetDepth         func(d *Drawable) int
-	drawableGetDisplay       func(d *Drawable) *Display
-	drawableGetImage         func(d *Drawable, x, y, width, height int) *Image
-	drawableGetScreen        func(d *Drawable) *Screen
-	drawableGetSize          func(d *Drawable, width, height *int)
-	drawableGetVisibleRegion func(d *Drawable) *Region
-	drawableGetVisual        func(d *Drawable) *Visual
-	drawableRef              func(d *Drawable) *Drawable
-	drawableSetColormap      func(d *Drawable, colormap *Colormap)
-	drawableSetData          func(d *Drawable, key string, data T.Gpointer, destroyFunc T.GDestroyNotify)
-	drawableUnref            func(d *Drawable)
+	DrawableCopyToImage      func(d *Drawable, image *Image, srcX, srcY, destX, destY, width, height int) *Image
+	DrawableGetClipRegion    func(d *Drawable) *Region
+	DrawableGetColormap      func(d *Drawable) *Colormap
+	DrawableGetData          func(d *Drawable, key string) T.Gpointer
+	DrawableGetDepth         func(d *Drawable) int
+	DrawableGetDisplay       func(d *Drawable) *Display
+	DrawableGetImage         func(d *Drawable, x, y, width, height int) *Image
+	DrawableGetScreen        func(d *Drawable) *Screen
+	DrawableGetSize          func(d *Drawable, width, height *int)
+	DrawableGetVisibleRegion func(d *Drawable) *Region
+	DrawableGetVisual        func(d *Drawable) *Visual
+	DrawableRef              func(d *Drawable) *Drawable
+	DrawableSetColormap      func(d *Drawable, colormap *Colormap)
+	DrawableSetData          func(d *Drawable, key string, data T.Gpointer, destroyFunc T.GDestroyNotify)
+	DrawableUnref            func(d *Drawable)
 )
 
 func (d *Drawable) CopyToImage(image *Image, srcX, srcY, destX, destY, width, height int) *Image {
-	return drawableCopyToImage(d, image, srcX, srcY, destX, destY, width, height)
+	return DrawableCopyToImage(d, image, srcX, srcY, destX, destY, width, height)
 }
-func (d *Drawable) GetClipRegion() *Region        { return drawableGetClipRegion(d) }
-func (d *Drawable) GetColormap() *Colormap        { return drawableGetColormap(d) }
-func (d *Drawable) GetData(key string) T.Gpointer { return drawableGetData(d, key) }
-func (d *Drawable) GetDepth() int                 { return drawableGetDepth(d) }
-func (d *Drawable) GetDisplay() *Display          { return drawableGetDisplay(d) }
+func (d *Drawable) GetClipRegion() *Region        { return DrawableGetClipRegion(d) }
+func (d *Drawable) GetColormap() *Colormap        { return DrawableGetColormap(d) }
+func (d *Drawable) GetData(key string) T.Gpointer { return DrawableGetData(d, key) }
+func (d *Drawable) GetDepth() int                 { return DrawableGetDepth(d) }
+func (d *Drawable) GetDisplay() *Display          { return DrawableGetDisplay(d) }
 func (d *Drawable) GetImage(x, y, width, height int) *Image {
-	return drawableGetImage(d, x, y, width, height)
+	return DrawableGetImage(d, x, y, width, height)
 }
-func (d *Drawable) GetScreen() *Screen             { return drawableGetScreen(d) }
-func (d *Drawable) GetSize(width, height *int)     { drawableGetSize(d, width, height) }
-func (d *Drawable) GetVisibleRegion() *Region      { return drawableGetVisibleRegion(d) }
-func (d *Drawable) GetVisual() *Visual             { return drawableGetVisual(d) }
-func (d *Drawable) Ref() *Drawable                 { return drawableRef(d) }
-func (d *Drawable) SetColormap(colormap *Colormap) { drawableSetColormap(d, colormap) }
+func (d *Drawable) GetScreen() *Screen             { return DrawableGetScreen(d) }
+func (d *Drawable) GetSize(width, height *int)     { DrawableGetSize(d, width, height) }
+func (d *Drawable) GetVisibleRegion() *Region      { return DrawableGetVisibleRegion(d) }
+func (d *Drawable) GetVisual() *Visual             { return DrawableGetVisual(d) }
+func (d *Drawable) Ref() *Drawable                 { return DrawableRef(d) }
+func (d *Drawable) SetColormap(colormap *Colormap) { DrawableSetColormap(d, colormap) }
 func (d *Drawable) SetData(key string, data T.Gpointer, destroyFunc T.GDestroyNotify) {
-	drawableSetData(d, key, data, destroyFunc)
+	DrawableSetData(d, key, data, destroyFunc)
 }
-func (d *Drawable) Unref() { drawableUnref(d) }
+func (d *Drawable) Unref() { DrawableUnref(d) }

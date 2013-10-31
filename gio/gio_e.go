@@ -16,12 +16,12 @@ var (
 	EmblemNew           func(icon *Icon) *Emblem
 	EmblemNewWithOrigin func(icon *Icon, origin EmblemOrigin) *Emblem
 
-	emblemGetIcon   func(e *Emblem) *Icon
-	emblemGetOrigin func(e *Emblem) EmblemOrigin
+	EmblemGetIcon   func(e *Emblem) *Icon
+	EmblemGetOrigin func(e *Emblem) EmblemOrigin
 )
 
-func (e *Emblem) GetIcon() *Icon          { return emblemGetIcon(e) }
-func (e *Emblem) GetOrigin() EmblemOrigin { return emblemGetOrigin(e) }
+func (e *Emblem) GetIcon() *Icon          { return EmblemGetIcon(e) }
+func (e *Emblem) GetOrigin() EmblemOrigin { return EmblemGetOrigin(e) }
 
 type EmblemedIcon struct {
 	Parent O.Object
@@ -32,16 +32,16 @@ var (
 	EmblemedIconGetType func() O.Type
 	EmblemedIconNew     func(icon *Icon, emblem *Emblem) *Icon
 
-	emblemedIconGetIcon      func(e *EmblemedIcon) *Icon
-	emblemedIconGetEmblems   func(e *EmblemedIcon) *T.GList
-	emblemedIconAddEmblem    func(e *EmblemedIcon, emblem *Emblem)
-	emblemedIconClearEmblems func(e *EmblemedIcon)
+	EmblemedIconGetIcon      func(e *EmblemedIcon) *Icon
+	EmblemedIconGetEmblems   func(e *EmblemedIcon) *T.GList
+	EmblemedIconAddEmblem    func(e *EmblemedIcon, emblem *Emblem)
+	EmblemedIconClearEmblems func(e *EmblemedIcon)
 )
 
-func (e *EmblemedIcon) GetIcon() *Icon           { return emblemedIconGetIcon(e) }
-func (e *EmblemedIcon) GetEmblems() *T.GList     { return emblemedIconGetEmblems(e) }
-func (e *EmblemedIcon) AddEmblem(emblem *Emblem) { emblemedIconAddEmblem(e, emblem) }
-func (e *EmblemedIcon) ClearEmblems()            { emblemedIconClearEmblems(e) }
+func (e *EmblemedIcon) GetIcon() *Icon           { return EmblemedIconGetIcon(e) }
+func (e *EmblemedIcon) GetEmblems() *T.GList     { return EmblemedIconGetEmblems(e) }
+func (e *EmblemedIcon) AddEmblem(emblem *Emblem) { EmblemedIconAddEmblem(e, emblem) }
+func (e *EmblemedIcon) ClearEmblems()            { EmblemedIconClearEmblems(e) }
 
 type EmblemOrigin Enum
 

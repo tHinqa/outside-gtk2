@@ -19,21 +19,21 @@ var (
 	AppLaunchContextGetType func() O.Type
 	AppLaunchContextNew     func() *AppLaunchContext
 
-	appLaunchContextSetDesktop   func(a *AppLaunchContext, desktop int)
-	appLaunchContextSetDisplay   func(a *AppLaunchContext, display *Display)
-	appLaunchContextSetIcon      func(a *AppLaunchContext, icon *I.Icon)
-	appLaunchContextSetIconName  func(a *AppLaunchContext, iconName string)
-	appLaunchContextSetScreen    func(a *AppLaunchContext, screen *Screen)
-	appLaunchContextSetTimestamp func(a *AppLaunchContext, timestamp T.GUint32)
+	AppLaunchContextSetDesktop   func(a *AppLaunchContext, desktop int)
+	AppLaunchContextSetDisplay   func(a *AppLaunchContext, display *Display)
+	AppLaunchContextSetIcon      func(a *AppLaunchContext, icon *I.Icon)
+	AppLaunchContextSetIconName  func(a *AppLaunchContext, iconName string)
+	AppLaunchContextSetScreen    func(a *AppLaunchContext, screen *Screen)
+	AppLaunchContextSetTimestamp func(a *AppLaunchContext, timestamp T.GUint32)
 )
 
-func (a *AppLaunchContext) SetDesktop(desktop int)      { appLaunchContextSetDesktop(a, desktop) }
-func (a *AppLaunchContext) SetDisplay(display *Display) { appLaunchContextSetDisplay(a, display) }
-func (a *AppLaunchContext) SetIcon(icon *I.Icon)       { appLaunchContextSetIcon(a, icon) }
-func (a *AppLaunchContext) SetIconName(iconName string) { appLaunchContextSetIconName(a, iconName) }
-func (a *AppLaunchContext) SetScreen(screen *Screen)    { appLaunchContextSetScreen(a, screen) }
+func (a *AppLaunchContext) SetDesktop(desktop int)      { AppLaunchContextSetDesktop(a, desktop) }
+func (a *AppLaunchContext) SetDisplay(display *Display) { AppLaunchContextSetDisplay(a, display) }
+func (a *AppLaunchContext) SetIcon(icon *I.Icon)        { AppLaunchContextSetIcon(a, icon) }
+func (a *AppLaunchContext) SetIconName(iconName string) { AppLaunchContextSetIconName(a, iconName) }
+func (a *AppLaunchContext) SetScreen(screen *Screen)    { AppLaunchContextSetScreen(a, screen) }
 func (a *AppLaunchContext) SetTimestamp(timestamp T.GUint32) {
-	appLaunchContextSetTimestamp(a, timestamp)
+	AppLaunchContextSetTimestamp(a, timestamp)
 }
 
 type Atom *struct{}

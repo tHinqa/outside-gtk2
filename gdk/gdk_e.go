@@ -45,38 +45,38 @@ var (
 	EventRequestMotions              func(event *EventMotion)
 	EventSendClientMessageForDisplay func(display *Display, event *Event, winid T.GdkNativeWindow) bool
 
-	eventCopy                   func(event *Event) *Event
-	eventFree                   func(event *Event)
-	eventGetAxis                func(event *Event, axisUse T.GdkAxisUse, value *float64) bool
-	eventGetCoords              func(event *Event, xWin, yWin *float64) bool
-	eventGetRootCoords          func(event *Event, xRoot, yRoot *float64) bool
-	eventGetScreen              func(event *Event) *Screen
-	eventGetState               func(event *Event, state *T.GdkModifierType) bool
-	eventGetTime                func(event *Event) T.GUint32
-	eventPut                    func(event *Event)
-	eventSendClientMessage      func(event *Event, winid T.GdkNativeWindow) bool
-	eventSendClientmessageToall func(event *Event)
-	eventSetScreen              func(event *Event, screen *Screen)
+	EventCopy                   func(event *Event) *Event
+	EventFree                   func(event *Event)
+	EventGetAxis                func(event *Event, axisUse T.GdkAxisUse, value *float64) bool
+	EventGetCoords              func(event *Event, xWin, yWin *float64) bool
+	EventGetRootCoords          func(event *Event, xRoot, yRoot *float64) bool
+	EventGetScreen              func(event *Event) *Screen
+	EventGetState               func(event *Event, state *T.GdkModifierType) bool
+	EventGetTime                func(event *Event) T.GUint32
+	EventPut                    func(event *Event)
+	EventSendClientMessage      func(event *Event, winid T.GdkNativeWindow) bool
+	EventSendClientmessageToall func(event *Event)
+	EventSetScreen              func(event *Event, screen *Screen)
 )
 
-func (e *Event) Copy() *Event { return eventCopy(e) }
-func (e *Event) Free()        { eventFree(e) }
+func (e *Event) Copy() *Event { return EventCopy(e) }
+func (e *Event) Free()        { EventFree(e) }
 func (e *Event) GetAxis(axisUse T.GdkAxisUse, value *float64) bool {
-	return eventGetAxis(e, axisUse, value)
+	return EventGetAxis(e, axisUse, value)
 }
-func (e *Event) GetCoords(xWin, yWin *float64) bool { return eventGetCoords(e, xWin, yWin) }
+func (e *Event) GetCoords(xWin, yWin *float64) bool { return EventGetCoords(e, xWin, yWin) }
 func (e *Event) GetRootCoords(xRoot, yRoot *float64) bool {
-	return eventGetRootCoords(e, xRoot, yRoot)
+	return EventGetRootCoords(e, xRoot, yRoot)
 }
-func (e *Event) GetScreen() *Screen                     { return eventGetScreen(e) }
-func (e *Event) GetState(state *T.GdkModifierType) bool { return eventGetState(e, state) }
-func (e *Event) GetTime() T.GUint32                     { return eventGetTime(e) }
-func (e *Event) Put()                                   { eventPut(e) }
+func (e *Event) GetScreen() *Screen                     { return EventGetScreen(e) }
+func (e *Event) GetState(state *T.GdkModifierType) bool { return EventGetState(e, state) }
+func (e *Event) GetTime() T.GUint32                     { return EventGetTime(e) }
+func (e *Event) Put()                                   { EventPut(e) }
 func (e *Event) SendClientMessage(winid T.GdkNativeWindow) bool {
-	return eventSendClientMessage(e, winid)
+	return EventSendClientMessage(e, winid)
 }
-func (e *Event) SendClientmessageToall()  { eventSendClientmessageToall(e) }
-func (e *Event) SetScreen(screen *Screen) { eventSetScreen(e, screen) }
+func (e *Event) SendClientmessageToall()  { EventSendClientmessageToall(e) }
+func (e *Event) SetScreen(screen *Screen) { EventSetScreen(e, screen) }
 
 type EventFunc func(event *Event, data T.Gpointer)
 

@@ -20,16 +20,16 @@ type Registry struct {
 var (
 	RegistryGetType func() O.Type
 
-	registryGetFactory     func(r *Registry, t O.Type) *ObjectFactory
-	registrySetFactoryType func(r *Registry, t O.Type, factoryType O.Type)
-	registryGetFactoryType func(r *Registry, t O.Type) O.Type
+	RegistryGetFactory     func(r *Registry, t O.Type) *ObjectFactory
+	RegistrySetFactoryType func(r *Registry, t O.Type, factoryType O.Type)
+	RegistryGetFactoryType func(r *Registry, t O.Type) O.Type
 )
 
-func (r *Registry) GetFactory(t O.Type) *ObjectFactory { return registryGetFactory(r, t) }
+func (r *Registry) GetFactory(t O.Type) *ObjectFactory { return RegistryGetFactory(r, t) }
 func (r *Registry) SetFactoryType(t O.Type, factoryType O.Type) {
-	registrySetFactoryType(r, t, factoryType)
+	RegistrySetFactoryType(r, t, factoryType)
 }
-func (r *Registry) GetFactoryType(t O.Type) O.Type { return registryGetFactoryType(r, t) }
+func (r *Registry) GetFactoryType(t O.Type) O.Type { return RegistryGetFactoryType(r, t) }
 
 type Relation struct {
 	Parent       O.Object
@@ -41,16 +41,16 @@ var (
 	RelationGetType func() O.Type
 	RelationNew     func(targets **Object, nTargets int, relationship RelationType) *Relation
 
-	relationAddTarget       func(r *Relation, target *Object)
-	relationGetRelationType func(r *Relation) RelationType
-	relationGetTarget       func(r *Relation) *L.PtrArray
-	relationRemoveTarget    func(r *Relation, target *Object) bool
+	RelationAddTarget       func(r *Relation, target *Object)
+	RelationGetRelationType func(r *Relation) RelationType
+	RelationGetTarget       func(r *Relation) *L.PtrArray
+	RelationRemoveTarget    func(r *Relation, target *Object) bool
 )
 
-func (r *Relation) AddTarget(target *Object)         { relationAddTarget(r, target) }
-func (r *Relation) GetRelationType() RelationType    { return relationGetRelationType(r) }
-func (r *Relation) GetTarget() *L.PtrArray           { return relationGetTarget(r) }
-func (r *Relation) RemoveTarget(target *Object) bool { return relationRemoveTarget(r, target) }
+func (r *Relation) AddTarget(target *Object)         { RelationAddTarget(r, target) }
+func (r *Relation) GetRelationType() RelationType    { return RelationGetRelationType(r) }
+func (r *Relation) GetTarget() *L.PtrArray           { return RelationGetTarget(r) }
+func (r *Relation) RemoveTarget(target *Object) bool { return RelationRemoveTarget(r, target) }
 
 type RelationSet struct {
 	Parent    O.Object
@@ -61,28 +61,28 @@ var (
 	RelationSetGetType func() O.Type
 	RelationSetNew     func() *RelationSet
 
-	relationSetAdd               func(r *RelationSet, relation *Relation)
-	relationSetAddRelationByType func(r *RelationSet, relationship RelationType, target *Object)
-	relationSetContains          func(r *RelationSet, relationship RelationType) bool
-	relationSetGetNRelations     func(r *RelationSet) int
-	relationSetGetRelation       func(r *RelationSet, i int) *Relation
-	relationSetGetRelationByType func(r *RelationSet, relationship RelationType) *Relation
-	relationSetRemove            func(r *RelationSet, relation *Relation)
+	RelationSetAdd               func(r *RelationSet, relation *Relation)
+	RelationSetAddRelationByType func(r *RelationSet, relationship RelationType, target *Object)
+	RelationSetContains          func(r *RelationSet, relationship RelationType) bool
+	RelationSetGetNRelations     func(r *RelationSet) int
+	RelationSetGetRelation       func(r *RelationSet, i int) *Relation
+	RelationSetGetRelationByType func(r *RelationSet, relationship RelationType) *Relation
+	RelationSetRemove            func(r *RelationSet, relation *Relation)
 )
 
-func (r *RelationSet) Add(relation *Relation) { relationSetAdd(r, relation) }
+func (r *RelationSet) Add(relation *Relation) { RelationSetAdd(r, relation) }
 func (r *RelationSet) AddRelationByType(relationship RelationType, target *Object) {
-	relationSetAddRelationByType(r, relationship, target)
+	RelationSetAddRelationByType(r, relationship, target)
 }
 func (r *RelationSet) Contains(relationship RelationType) bool {
-	return relationSetContains(r, relationship)
+	return RelationSetContains(r, relationship)
 }
-func (r *RelationSet) GetNRelations() int          { return relationSetGetNRelations(r) }
-func (r *RelationSet) GetRelation(i int) *Relation { return relationSetGetRelation(r, i) }
+func (r *RelationSet) GetNRelations() int          { return RelationSetGetNRelations(r) }
+func (r *RelationSet) GetRelation(i int) *Relation { return RelationSetGetRelation(r, i) }
 func (r *RelationSet) GetRelationByType(relationship RelationType) *Relation {
-	return relationSetGetRelationByType(r, relationship)
+	return RelationSetGetRelationByType(r, relationship)
 }
-func (r *RelationSet) Remove(relation *Relation) { relationSetRemove(r, relation) }
+func (r *RelationSet) Remove(relation *Relation) { RelationSetRemove(r, relation) }
 
 type RelationType Enum
 
@@ -113,10 +113,10 @@ var (
 	RelationTypeRegister func(name string) RelationType
 	RelationTypeForName  func(name string) RelationType
 
-	relationTypeGetName func(r RelationType) string
+	RelationTypeGetName func(r RelationType) string
 )
 
-func (r RelationType) GetName() string { return relationTypeGetName(r) }
+func (r RelationType) GetName() string { return RelationTypeGetName(r) }
 
 var (
 	RemoveFocusTracker        func(trackerId uint)
@@ -224,9 +224,9 @@ var (
 	RoleForName  func(name string) Role
 	RoleRegister func(name string) Role
 
-	roleGetLocalizedName func(r Role) string
-	roleGetName          func(r Role) string
+	RoleGetLocalizedName func(r Role) string
+	RoleGetName          func(r Role) string
 )
 
-func (r Role) GetLocalizedName() string { return roleGetLocalizedName(r) }
-func (r Role) GetName() string          { return roleGetName(r) }
+func (r Role) GetLocalizedName() string { return RoleGetLocalizedName(r) }
+func (r Role) GetName() string          { return RoleGetName(r) }

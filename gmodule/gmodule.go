@@ -25,17 +25,17 @@ var (
 		fileName string, flags ModuleFlags) *Module
 	ModuleBuildPath func(directory, moduleName string) string
 
-	moduleClose        func(m *Module) bool
-	moduleMakeResident func(m *Module)
-	moduleName         func(m *Module) string
-	moduleSymbol       func(m *Module, symbolName string, symbol *T.Gpointer) bool
+	ModuleClose        func(m *Module) bool
+	ModuleMakeResident func(m *Module)
+	ModuleName         func(m *Module) string
+	ModuleSymbol       func(m *Module, symbolName string, symbol *T.Gpointer) bool
 )
 
-func (m *Module) Close() bool   { return moduleClose(m) }
-func (m *Module) MakeResident() { moduleMakeResident(m) }
-func (m *Module) Name() string  { return moduleName(m) }
+func (m *Module) Close() bool   { return ModuleClose(m) }
+func (m *Module) MakeResident() { ModuleMakeResident(m) }
+func (m *Module) Name() string  { return ModuleName(m) }
 func (m *Module) Symbol(symbolName string, symbol *T.Gpointer) bool {
-	return moduleSymbol(m, symbolName, symbol)
+	return ModuleSymbol(m, symbolName, symbol)
 }
 
 type ModuleFlags Enum
@@ -50,13 +50,13 @@ var dll = "libgmodule-2.0-0.dll"
 
 var apiList = outside.Apis{
 	{"g_module_build_path", &ModuleBuildPath},
-	{"g_module_close", &moduleClose},
+	{"g_module_close", &ModuleClose},
 	{"g_module_error", &ModuleError},
-	{"g_module_make_resident", &moduleMakeResident},
+	{"g_module_make_resident", &ModuleMakeResident},
 	// Windows _utf8 {"g_module_name", &ModuleName},
-	{"g_module_name_utf8", &moduleName},
+	{"g_module_name_utf8", &ModuleName},
 	// Windows _utf8 {"g_module_open", &ModuleOpen},
 	{"g_module_open_utf8", &ModuleOpen},
 	{"g_module_supported", &ModuleSupported},
-	{"g_module_symbol", &moduleSymbol},
+	{"g_module_symbol", &ModuleSymbol},
 }

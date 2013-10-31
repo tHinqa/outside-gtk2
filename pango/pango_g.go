@@ -4,6 +4,7 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -45,27 +46,27 @@ type (
 var (
 	GlyphItemGetType func() O.Type
 
-	glyphItemApplyAttrs       func(glyphItem *GlyphItem, text string, list *AttrList) *T.GSList
-	glyphItemCopy             func(orig *GlyphItem) *GlyphItem
-	glyphItemFree             func(glyphItem *GlyphItem)
-	glyphItemGetLogicalWidths func(glyphItem *GlyphItem, text string, logicalWidths *int)
-	glyphItemLetterSpace      func(glyphItem *GlyphItem, text string, logAttrs *LogAttr, letterSpacing int)
-	glyphItemSplit            func(orig *GlyphItem, text string, splitIndex int) *GlyphItem
+	GlyphItemApplyAttrs       func(glyphItem *GlyphItem, text string, list *AttrList) *L.SList
+	GlyphItemCopy             func(orig *GlyphItem) *GlyphItem
+	GlyphItemFree             func(glyphItem *GlyphItem)
+	GlyphItemGetLogicalWidths func(glyphItem *GlyphItem, text string, logicalWidths *int)
+	GlyphItemLetterSpace      func(glyphItem *GlyphItem, text string, logAttrs *LogAttr, letterSpacing int)
+	GlyphItemSplit            func(orig *GlyphItem, text string, splitIndex int) *GlyphItem
 )
 
-func (g *GlyphItem) ApplyAttrs(text string, list *AttrList) *T.GSList {
-	return glyphItemApplyAttrs(g, text, list)
+func (g *GlyphItem) ApplyAttrs(text string, list *AttrList) *L.SList {
+	return GlyphItemApplyAttrs(g, text, list)
 }
-func (g *GlyphItem) Copy() *GlyphItem { return glyphItemCopy(g) }
-func (g *GlyphItem) Free()            { glyphItemFree(g) }
+func (g *GlyphItem) Copy() *GlyphItem { return GlyphItemCopy(g) }
+func (g *GlyphItem) Free()            { GlyphItemFree(g) }
 func (g *GlyphItem) GetLogicalWidths(text string, logicalWidths *int) {
-	glyphItemGetLogicalWidths(g, text, logicalWidths)
+	GlyphItemGetLogicalWidths(g, text, logicalWidths)
 }
 func (g *GlyphItem) LetterSpace(text string, logAttrs *LogAttr, letterSpacing int) {
-	glyphItemLetterSpace(g, text, logAttrs, letterSpacing)
+	GlyphItemLetterSpace(g, text, logAttrs, letterSpacing)
 }
 func (g *GlyphItem) Split(text string, splitIndex int) *GlyphItem {
-	return glyphItemSplit(g, text, splitIndex)
+	return GlyphItemSplit(g, text, splitIndex)
 }
 
 type GlyphItemIter struct {
@@ -82,24 +83,24 @@ type GlyphItemIter struct {
 var (
 	GlyphItemIterGetType func() O.Type
 
-	glyphItemIterCopy        func(orig *GlyphItemIter) *GlyphItemIter
-	glyphItemIterFree        func(iter *GlyphItemIter)
-	glyphItemIterInitEnd     func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
-	glyphItemIterInitStart   func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
-	glyphItemIterNextCluster func(iter *GlyphItemIter) bool
-	glyphItemIterPrevCluster func(iter *GlyphItemIter) bool
+	GlyphItemIterCopy        func(orig *GlyphItemIter) *GlyphItemIter
+	GlyphItemIterFree        func(iter *GlyphItemIter)
+	GlyphItemIterInitEnd     func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
+	GlyphItemIterInitStart   func(iter *GlyphItemIter, glyphItem *GlyphItem, text string) bool
+	GlyphItemIterNextCluster func(iter *GlyphItemIter) bool
+	GlyphItemIterPrevCluster func(iter *GlyphItemIter) bool
 )
 
-func (g *GlyphItemIter) Copy() *GlyphItemIter { return glyphItemIterCopy(g) }
-func (g *GlyphItemIter) Free()                { glyphItemIterFree(g) }
+func (g *GlyphItemIter) Copy() *GlyphItemIter { return GlyphItemIterCopy(g) }
+func (g *GlyphItemIter) Free()                { GlyphItemIterFree(g) }
 func (g *GlyphItemIter) InitEnd(glyphItem *GlyphItem, text string) bool {
-	return glyphItemIterInitEnd(g, glyphItem, text)
+	return GlyphItemIterInitEnd(g, glyphItem, text)
 }
 func (g *GlyphItemIter) InitStart(glyphItem *GlyphItem, text string) bool {
-	return glyphItemIterInitStart(g, glyphItem, text)
+	return GlyphItemIterInitStart(g, glyphItem, text)
 }
-func (g *GlyphItemIter) NextCluster() bool { return glyphItemIterNextCluster(g) }
-func (g *GlyphItemIter) PrevCluster() bool { return glyphItemIterPrevCluster(g) }
+func (g *GlyphItemIter) NextCluster() bool { return GlyphItemIterNextCluster(g) }
+func (g *GlyphItemIter) PrevCluster() bool { return GlyphItemIterPrevCluster(g) }
 
 type GlyphString struct {
 	NumGlyphs   int
@@ -112,35 +113,35 @@ var (
 	GlyphStringGetType func() O.Type
 	GlyphStringNew     func() *GlyphString
 
-	glyphStringCopy             func(g *GlyphString) *GlyphString
-	glyphStringExtents          func(g *GlyphString, font *Font, inkRect *Rectangle, logicalRect *Rectangle)
-	glyphStringExtentsRange     func(g *GlyphString, start, end int, font *Font, inkRect *Rectangle, logicalRect *Rectangle)
-	glyphStringFree             func(g *GlyphString)
-	glyphStringGetLogicalWidths func(g *GlyphString, text string, length, embeddingLevel int, logicalWidths *int)
-	glyphStringGetWidth         func(g *GlyphString) int
-	glyphStringIndexToX         func(g *GlyphString, text string, length int, Analysis *Analysis, index int, trailing bool, xPos *int)
-	glyphStringSetSize          func(g *GlyphString, newLen int)
-	glyphStringXToIndex         func(g *GlyphString, text string, length int, Analysis *Analysis, xPos int, index, trailing *int)
+	GlyphStringCopy             func(g *GlyphString) *GlyphString
+	GlyphStringExtents          func(g *GlyphString, font *Font, inkRect *Rectangle, logicalRect *Rectangle)
+	GlyphStringExtentsRange     func(g *GlyphString, start, end int, font *Font, inkRect *Rectangle, logicalRect *Rectangle)
+	GlyphStringFree             func(g *GlyphString)
+	GlyphStringGetLogicalWidths func(g *GlyphString, text string, length, embeddingLevel int, logicalWidths *int)
+	GlyphStringGetWidth         func(g *GlyphString) int
+	GlyphStringIndexToX         func(g *GlyphString, text string, length int, Analysis *Analysis, index int, trailing bool, xPos *int)
+	GlyphStringSetSize          func(g *GlyphString, newLen int)
+	GlyphStringXToIndex         func(g *GlyphString, text string, length int, Analysis *Analysis, xPos int, index, trailing *int)
 )
 
-func (g *GlyphString) Copy() *GlyphString { return glyphStringCopy(g) }
+func (g *GlyphString) Copy() *GlyphString { return GlyphStringCopy(g) }
 func (g *GlyphString) Extents(font *Font, inkRect *Rectangle, logicalRect *Rectangle) {
-	glyphStringExtents(g, font, inkRect, logicalRect)
+	GlyphStringExtents(g, font, inkRect, logicalRect)
 }
 func (g *GlyphString) ExtentsRange(start, end int, font *Font, inkRect *Rectangle, logicalRect *Rectangle) {
-	glyphStringExtentsRange(g, start, end, font, inkRect, logicalRect)
+	GlyphStringExtentsRange(g, start, end, font, inkRect, logicalRect)
 }
-func (g *GlyphString) Free() { glyphStringFree(g) }
+func (g *GlyphString) Free() { GlyphStringFree(g) }
 func (g *GlyphString) GetLogicalWidths(text string, length, embeddingLevel int, logicalWidths *int) {
-	glyphStringGetLogicalWidths(g, text, length, embeddingLevel, logicalWidths)
+	GlyphStringGetLogicalWidths(g, text, length, embeddingLevel, logicalWidths)
 }
-func (g *GlyphString) GetWidth() int { return glyphStringGetWidth(g) }
+func (g *GlyphString) GetWidth() int { return GlyphStringGetWidth(g) }
 func (g *GlyphString) IndexToX(text string, length int, Analysis *Analysis, index int, trailing bool, xPos *int) {
-	glyphStringIndexToX(g, text, length, Analysis, index, trailing, xPos)
+	GlyphStringIndexToX(g, text, length, Analysis, index, trailing, xPos)
 }
-func (g *GlyphString) SetSize(newLen int) { glyphStringSetSize(g, newLen) }
+func (g *GlyphString) SetSize(newLen int) { GlyphStringSetSize(g, newLen) }
 func (g *GlyphString) XToIndex(text string, length int, Analysis *Analysis, xPos int, index, trailing *int) {
-	glyphStringXToIndex(g, text, length, Analysis, xPos, index, trailing)
+	GlyphStringXToIndex(g, text, length, Analysis, xPos, index, trailing)
 }
 
 type Gravity Enum
@@ -160,10 +161,10 @@ var (
 	GravityGetForScript         func(script Script, baseGravity Gravity, hint GravityHint) Gravity
 	GravityGetForScriptAndWidth func(script Script, wide bool, baseGravity Gravity, hint GravityHint) Gravity
 
-	gravityToRotation func(g Gravity) float64
+	GravityToRotation func(g Gravity) float64
 )
 
-func (g Gravity) ToRotation() float64 { return gravityToRotation(g) }
+func (g Gravity) ToRotation() float64 { return GravityToRotation(g) }
 
 type GravityHint Enum
 

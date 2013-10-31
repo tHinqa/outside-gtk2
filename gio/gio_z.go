@@ -13,12 +13,12 @@ var (
 	ZlibCompressorGetType func() O.Type
 	ZlibCompressorNew     func(format ZlibCompressorFormat, level int) *ZlibCompressor
 
-	zlibCompressorGetFileInfo func(compressor *ZlibCompressor) *FileInfo
-	zlibCompressorSetFileInfo func(compressor *ZlibCompressor, fileInfo *FileInfo)
+	ZlibCompressorGetFileInfo func(compressor *ZlibCompressor) *FileInfo
+	ZlibCompressorSetFileInfo func(compressor *ZlibCompressor, fileInfo *FileInfo)
 )
 
-func (z *ZlibCompressor) GetFileInfo() *FileInfo         { return zlibCompressorGetFileInfo(z) }
-func (z *ZlibCompressor) SetFileInfo(fileInfo *FileInfo) { zlibCompressorSetFileInfo(z, fileInfo) }
+func (z *ZlibCompressor) GetFileInfo() *FileInfo         { return ZlibCompressorGetFileInfo(z) }
+func (z *ZlibCompressor) SetFileInfo(fileInfo *FileInfo) { ZlibCompressorSetFileInfo(z, fileInfo) }
 
 type ZlibDecompressor struct{}
 
@@ -26,10 +26,10 @@ var (
 	ZlibDecompressorGetType func() O.Type
 	ZlibDecompressorNew     func(format ZlibCompressorFormat) *ZlibDecompressor
 
-	zlibDecompressorGetFileInfo func(decompressor *ZlibDecompressor) *FileInfo
+	ZlibDecompressorGetFileInfo func(decompressor *ZlibDecompressor) *FileInfo
 )
 
-func (z *ZlibDecompressor) GetFileInfo() *FileInfo { return zlibDecompressorGetFileInfo(z) }
+func (z *ZlibDecompressor) GetFileInfo() *FileInfo { return ZlibDecompressorGetFileInfo(z) }
 
 type ZlibCompressorFormat Enum
 

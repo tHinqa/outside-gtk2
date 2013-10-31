@@ -51,7 +51,6 @@ type (
 	Goffset                int64
 	GPid                   *struct{}
 	GQuark                 GUint32
-	GSequenceIter          GSequenceNode
 	GSignalCMarshaller     GClosureMarshal
 	GTime                  GInt32
 	GTimeSpan              int64
@@ -89,11 +88,8 @@ type (
 	GRegex                   struct{}
 	GRelation                struct{}
 	GResolverPrivate         struct{}
-	GSequence                struct{}
-	GSequenceNode            struct{}
 	GSocketConnectionPrivate struct{}
 	GSocketServicePrivate    struct{}
-	GStringChunk             struct{}
 	GTestCase                struct{}
 	GTestSuite               struct{}
 	GTimer                   struct{}
@@ -841,18 +837,6 @@ const (
 	G_SPAWN_ERROR_ISDIR
 	G_SPAWN_ERROR_LIBBAD
 	G_SPAWN_ERROR_FAILED
-)
-
-type GSpawnFlags Enum
-
-const (
-	G_SPAWN_LEAVE_DESCRIPTORS_OPEN GSpawnFlags = 1 << iota
-	G_SPAWN_DO_NOT_REAP_CHILD
-	G_SPAWN_SEARCH_PATH
-	G_SPAWN_STDOUT_TO_DEV_NULL
-	G_SPAWN_STDERR_TO_DEV_NULL
-	G_SPAWN_CHILD_INHERITS_STDIN
-	G_SPAWN_FILE_AND_ARGV_ZERO
 )
 
 type GAsciiType Enum
@@ -1656,14 +1640,6 @@ type (
 
 	GRegexEvalCallback func(match_info *GMatchInfo,
 		result *GString, user_data Gpointer) Gboolean
-
-	GScannerMsgFunc func(
-		scanner *GScanner, message string, err Gboolean)
-
-	GSequenceIterCompareFunc func(
-		a, b *GSequenceIter, data Gpointer) int
-
-	GSpawnChildSetupFunc func(user_data Gpointer)
 
 	GTestDataFunc func(user_data Gconstpointer)
 

@@ -32,24 +32,24 @@ var (
 	HandleBoxGetType func() O.Type
 	HandleBoxNew     func() *Widget
 
-	handleBoxGetChildDetached  func(h *HandleBox) bool
-	handleBoxGetHandlePosition func(h *HandleBox) PositionType
-	handleBoxGetShadowType     func(h *HandleBox) ShadowType
-	handleBoxGetSnapEdge       func(h *HandleBox) PositionType
-	handleBoxSetHandlePosition func(h *HandleBox, position PositionType)
-	handleBoxSetShadowType     func(h *HandleBox, t ShadowType)
-	handleBoxSetSnapEdge       func(h *HandleBox, edge PositionType)
+	HandleBoxGetChildDetached  func(h *HandleBox) bool
+	HandleBoxGetHandlePosition func(h *HandleBox) PositionType
+	HandleBoxGetShadowType     func(h *HandleBox) ShadowType
+	HandleBoxGetSnapEdge       func(h *HandleBox) PositionType
+	HandleBoxSetHandlePosition func(h *HandleBox, position PositionType)
+	HandleBoxSetShadowType     func(h *HandleBox, t ShadowType)
+	HandleBoxSetSnapEdge       func(h *HandleBox, edge PositionType)
 )
 
-func (h *HandleBox) GetChildDetached() bool          { return handleBoxGetChildDetached(h) }
-func (h *HandleBox) GetHandlePosition() PositionType { return handleBoxGetHandlePosition(h) }
-func (h *HandleBox) GetShadowType() ShadowType       { return handleBoxGetShadowType(h) }
-func (h *HandleBox) GetSnapEdge() PositionType       { return handleBoxGetSnapEdge(h) }
+func (h *HandleBox) GetChildDetached() bool          { return HandleBoxGetChildDetached(h) }
+func (h *HandleBox) GetHandlePosition() PositionType { return HandleBoxGetHandlePosition(h) }
+func (h *HandleBox) GetShadowType() ShadowType       { return HandleBoxGetShadowType(h) }
+func (h *HandleBox) GetSnapEdge() PositionType       { return HandleBoxGetSnapEdge(h) }
 func (h *HandleBox) SetHandlePosition(position PositionType) {
-	handleBoxSetHandlePosition(h, position)
+	HandleBoxSetHandlePosition(h, position)
 }
-func (h *HandleBox) SetShadowType(t ShadowType)    { handleBoxSetShadowType(h, t) }
-func (h *HandleBox) SetSnapEdge(edge PositionType) { handleBoxSetSnapEdge(h, edge) }
+func (h *HandleBox) SetShadowType(t ShadowType)    { HandleBoxSetShadowType(h, t) }
+func (h *HandleBox) SetSnapEdge(edge PositionType) { HandleBoxSetSnapEdge(h, edge) }
 
 type HBox struct {
 	Box Box
@@ -100,17 +100,17 @@ var (
 	HsvGetType func() O.Type
 	HsvNew     func() *Widget
 
-	hsvGetColor    func(hsv *HSV, h, s, v *float64)
-	hsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)
-	hsvIsAdjusting func(hsv *HSV) bool
-	hsvSetColor    func(hsv *HSV, h, s, v float64)
-	hsvSetMetrics  func(hsv *HSV, size int, ringWidth int)
+	HsvGetColor    func(hsv *HSV, h, s, v *float64)
+	HsvGetMetrics  func(hsv *HSV, size *int, ringWidth *int)
+	HsvIsAdjusting func(hsv *HSV) bool
+	HsvSetColor    func(hsv *HSV, h, s, v float64)
+	HsvSetMetrics  func(hsv *HSV, size int, ringWidth int)
 )
 
-func (hsv *HSV) GetColor(h, s, v *float64)       { hsvGetColor(hsv, h, s, v) }
-func (hsv *HSV) GetMetrics(size, ringWidth *int) { hsvGetMetrics(hsv, size, ringWidth) }
-func (hsv *HSV) IsAdjusting() bool               { return hsvIsAdjusting(hsv) }
-func (hsv *HSV) SetColor(h, s, v float64)        { hsvSetColor(hsv, h, s, v) }
-func (hsv *HSV) SetMetrics(size, ringWidth int)  { hsvSetMetrics(hsv, size, ringWidth) }
+func (hsv *HSV) GetColor(h, s, v *float64)       { HsvGetColor(hsv, h, s, v) }
+func (hsv *HSV) GetMetrics(size, ringWidth *int) { HsvGetMetrics(hsv, size, ringWidth) }
+func (hsv *HSV) IsAdjusting() bool               { return HsvIsAdjusting(hsv) }
+func (hsv *HSV) SetColor(h, s, v float64)        { HsvSetColor(hsv, h, s, v) }
+func (hsv *HSV) SetMetrics(size, ringWidth int)  { HsvSetMetrics(hsv, size, ringWidth) }
 
 var HsvToRgb func(h, s, v float64, r, g, b *float64)

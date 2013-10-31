@@ -23,9 +23,9 @@ type GObjectAccessible struct {
 	Parent Object
 }
 
-var gobjectAccessibleGetObject func(obj *GObjectAccessible) *O.Object
+var GobjectAccessibleGetObject func(obj *GObjectAccessible) *O.Object
 
-func (o *GObjectAccessible) GetObject() *O.Object { return gobjectAccessibleGetObject(o) }
+func (o *GObjectAccessible) GetObject() *O.Object { return GobjectAccessibleGetObject(o) }
 
 var (
 	GetDefaultRegistry func() *Registry

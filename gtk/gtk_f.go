@@ -56,160 +56,160 @@ var (
 	FileChooserWidgetNew            func(action FileChooserAction) *Widget
 	FileChooserWidgetNewWithBackend func(action FileChooserAction, backend string) *Widget
 
-	fileChooserAddFilter                  func(f *FileChooser, filter *FileFilter)
-	fileChooserAddShortcutFolder          func(f *FileChooser, folder string, error **T.GError) bool
-	fileChooserAddShortcutFolderUri       func(f *FileChooser, uri string, error **T.GError) bool
-	fileChooserGetAction                  func(f *FileChooser) FileChooserAction
-	fileChooserGetCreateFolders           func(f *FileChooser) bool
-	fileChooserGetCurrentFolder           func(f *FileChooser) string
-	fileChooserGetCurrentFolderFile       func(f *FileChooser) *I.File
-	fileChooserGetCurrentFolderUri        func(f *FileChooser) string
-	fileChooserGetDoOverwriteConfirmation func(f *FileChooser) bool
-	fileChooserGetExtraWidget             func(f *FileChooser) *Widget
-	fileChooserGetFile                    func(f *FileChooser) *I.File
-	fileChooserGetFilename                func(f *FileChooser) string
-	fileChooserGetFilenames               func(f *FileChooser) *T.GSList
-	fileChooserGetFiles                   func(f *FileChooser) *T.GSList
-	fileChooserGetFilter                  func(f *FileChooser) *FileFilter
-	fileChooserGetLocalOnly               func(f *FileChooser) bool
-	fileChooserGetPreviewFile             func(f *FileChooser) *I.File
-	fileChooserGetPreviewFilename         func(f *FileChooser) string
-	fileChooserGetPreviewUri              func(f *FileChooser) string
-	fileChooserGetPreviewWidget           func(f *FileChooser) *Widget
-	fileChooserGetPreviewWidgetActive     func(f *FileChooser) bool
-	fileChooserGetSelectMultiple          func(f *FileChooser) bool
-	fileChooserGetShowHidden              func(f *FileChooser) bool
-	fileChooserGetUri                     func(f *FileChooser) string
-	fileChooserGetUris                    func(f *FileChooser) *T.GSList
-	fileChooserGetUsePreviewLabel         func(f *FileChooser) bool
-	fileChooserListFilters                func(f *FileChooser) *T.GSList
-	fileChooserListShortcutFolders        func(f *FileChooser) *T.GSList
-	fileChooserListShortcutFolderUris     func(f *FileChooser) *T.GSList
-	fileChooserRemoveFilter               func(f *FileChooser, filter *FileFilter)
-	fileChooserRemoveShortcutFolder       func(f *FileChooser, folder string, error **T.GError) bool
-	fileChooserRemoveShortcutFolderUri    func(f *FileChooser, uri string, error **T.GError) bool
-	fileChooserSelectAll                  func(f *FileChooser)
-	fileChooserSelectFile                 func(f *FileChooser, file *I.File, error **T.GError) bool
-	fileChooserSelectFilename             func(f *FileChooser, filename string) bool
-	fileChooserSelectUri                  func(f *FileChooser, uri string) bool
-	fileChooserSetAction                  func(f *FileChooser, action FileChooserAction)
-	fileChooserSetCreateFolders           func(f *FileChooser, createFolders bool)
-	fileChooserSetCurrentFolder           func(f *FileChooser, filename string) bool
-	fileChooserSetCurrentFolderFile       func(f *FileChooser, file *I.File, error **T.GError) bool
-	fileChooserSetCurrentFolderUri        func(f *FileChooser, uri string) bool
-	fileChooserSetCurrentName             func(f *FileChooser, name string)
-	fileChooserSetDoOverwriteConfirmation func(f *FileChooser, doOverwriteConfirmation bool)
-	fileChooserSetExtraWidget             func(f *FileChooser, extraWidget *Widget)
-	fileChooserSetFile                    func(f *FileChooser, file *I.File, error **T.GError) bool
-	fileChooserSetFilename                func(f *FileChooser, filename string) bool
-	fileChooserSetFilter                  func(f *FileChooser, filter *FileFilter)
-	fileChooserSetLocalOnly               func(f *FileChooser, localOnly bool)
-	fileChooserSetPreviewWidget           func(f *FileChooser, previewWidget *Widget)
-	fileChooserSetPreviewWidgetActive     func(f *FileChooser, active bool)
-	fileChooserSetSelectMultiple          func(f *FileChooser, selectMultiple bool)
-	fileChooserSetShowHidden              func(f *FileChooser, showHidden bool)
-	fileChooserSetUri                     func(f *FileChooser, uri string) bool
-	fileChooserSetUsePreviewLabel         func(f *FileChooser, useLabel bool)
-	fileChooserUnselectAll                func(f *FileChooser)
-	fileChooserUnselectFile               func(f *FileChooser, file *I.File)
-	fileChooserUnselectFilename           func(f *FileChooser, filename string)
-	fileChooserUnselectUri                func(f *FileChooser, uri string)
+	FileChooserAddFilter                  func(f *FileChooser, filter *FileFilter)
+	FileChooserAddShortcutFolder          func(f *FileChooser, folder string, error **T.GError) bool
+	FileChooserAddShortcutFolderUri       func(f *FileChooser, uri string, error **T.GError) bool
+	FileChooserGetAction                  func(f *FileChooser) FileChooserAction
+	FileChooserGetCreateFolders           func(f *FileChooser) bool
+	FileChooserGetCurrentFolder           func(f *FileChooser) string
+	FileChooserGetCurrentFolderFile       func(f *FileChooser) *I.File
+	FileChooserGetCurrentFolderUri        func(f *FileChooser) string
+	FileChooserGetDoOverwriteConfirmation func(f *FileChooser) bool
+	FileChooserGetExtraWidget             func(f *FileChooser) *Widget
+	FileChooserGetFile                    func(f *FileChooser) *I.File
+	FileChooserGetFilename                func(f *FileChooser) string
+	FileChooserGetFilenames               func(f *FileChooser) *L.SList
+	FileChooserGetFiles                   func(f *FileChooser) *L.SList
+	FileChooserGetFilter                  func(f *FileChooser) *FileFilter
+	FileChooserGetLocalOnly               func(f *FileChooser) bool
+	FileChooserGetPreviewFile             func(f *FileChooser) *I.File
+	FileChooserGetPreviewFilename         func(f *FileChooser) string
+	FileChooserGetPreviewUri              func(f *FileChooser) string
+	FileChooserGetPreviewWidget           func(f *FileChooser) *Widget
+	FileChooserGetPreviewWidgetActive     func(f *FileChooser) bool
+	FileChooserGetSelectMultiple          func(f *FileChooser) bool
+	FileChooserGetShowHidden              func(f *FileChooser) bool
+	FileChooserGetUri                     func(f *FileChooser) string
+	FileChooserGetUris                    func(f *FileChooser) *L.SList
+	FileChooserGetUsePreviewLabel         func(f *FileChooser) bool
+	FileChooserListFilters                func(f *FileChooser) *L.SList
+	FileChooserListShortcutFolders        func(f *FileChooser) *L.SList
+	FileChooserListShortcutFolderUris     func(f *FileChooser) *L.SList
+	FileChooserRemoveFilter               func(f *FileChooser, filter *FileFilter)
+	FileChooserRemoveShortcutFolder       func(f *FileChooser, folder string, error **T.GError) bool
+	FileChooserRemoveShortcutFolderUri    func(f *FileChooser, uri string, error **T.GError) bool
+	FileChooserSelectAll                  func(f *FileChooser)
+	FileChooserSelectFile                 func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSelectFilename             func(f *FileChooser, filename string) bool
+	FileChooserSelectUri                  func(f *FileChooser, uri string) bool
+	FileChooserSetAction                  func(f *FileChooser, action FileChooserAction)
+	FileChooserSetCreateFolders           func(f *FileChooser, createFolders bool)
+	FileChooserSetCurrentFolder           func(f *FileChooser, filename string) bool
+	FileChooserSetCurrentFolderFile       func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSetCurrentFolderUri        func(f *FileChooser, uri string) bool
+	FileChooserSetCurrentName             func(f *FileChooser, name string)
+	FileChooserSetDoOverwriteConfirmation func(f *FileChooser, doOverwriteConfirmation bool)
+	FileChooserSetExtraWidget             func(f *FileChooser, extraWidget *Widget)
+	FileChooserSetFile                    func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSetFilename                func(f *FileChooser, filename string) bool
+	FileChooserSetFilter                  func(f *FileChooser, filter *FileFilter)
+	FileChooserSetLocalOnly               func(f *FileChooser, localOnly bool)
+	FileChooserSetPreviewWidget           func(f *FileChooser, previewWidget *Widget)
+	FileChooserSetPreviewWidgetActive     func(f *FileChooser, active bool)
+	FileChooserSetSelectMultiple          func(f *FileChooser, selectMultiple bool)
+	FileChooserSetShowHidden              func(f *FileChooser, showHidden bool)
+	FileChooserSetUri                     func(f *FileChooser, uri string) bool
+	FileChooserSetUsePreviewLabel         func(f *FileChooser, useLabel bool)
+	FileChooserUnselectAll                func(f *FileChooser)
+	FileChooserUnselectFile               func(f *FileChooser, file *I.File)
+	FileChooserUnselectFilename           func(f *FileChooser, filename string)
+	FileChooserUnselectUri                func(f *FileChooser, uri string)
 )
 
-func (f *FileChooser) AddFilter(filter *FileFilter) { fileChooserAddFilter(f, filter) }
+func (f *FileChooser) AddFilter(filter *FileFilter) { FileChooserAddFilter(f, filter) }
 func (f *FileChooser) AddShortcutFolder(folder string, err **T.GError) bool {
-	return fileChooserAddShortcutFolder(f, folder, err)
+	return FileChooserAddShortcutFolder(f, folder, err)
 }
 func (f *FileChooser) AddShortcutFolderUri(uri string, err **T.GError) bool {
-	return fileChooserAddShortcutFolderUri(f, uri, err)
+	return FileChooserAddShortcutFolderUri(f, uri, err)
 }
-func (f *FileChooser) GetAction() FileChooserAction  { return fileChooserGetAction(f) }
-func (f *FileChooser) GetCreateFolders() bool        { return fileChooserGetCreateFolders(f) }
-func (f *FileChooser) GetCurrentFolder() string      { return fileChooserGetCurrentFolder(f) }
-func (f *FileChooser) GetCurrentFolderFile() *I.File { return fileChooserGetCurrentFolderFile(f) }
-func (f *FileChooser) GetCurrentFolderUri() string   { return fileChooserGetCurrentFolderUri(f) }
+func (f *FileChooser) GetAction() FileChooserAction  { return FileChooserGetAction(f) }
+func (f *FileChooser) GetCreateFolders() bool        { return FileChooserGetCreateFolders(f) }
+func (f *FileChooser) GetCurrentFolder() string      { return FileChooserGetCurrentFolder(f) }
+func (f *FileChooser) GetCurrentFolderFile() *I.File { return FileChooserGetCurrentFolderFile(f) }
+func (f *FileChooser) GetCurrentFolderUri() string   { return FileChooserGetCurrentFolderUri(f) }
 func (f *FileChooser) GetDoOverwriteConfirmation() bool {
-	return fileChooserGetDoOverwriteConfirmation(f)
+	return FileChooserGetDoOverwriteConfirmation(f)
 }
-func (f *FileChooser) GetExtraWidget() *Widget           { return fileChooserGetExtraWidget(f) }
-func (f *FileChooser) GetFile() *I.File                  { return fileChooserGetFile(f) }
-func (f *FileChooser) GetFilename() string               { return fileChooserGetFilename(f) }
-func (f *FileChooser) GetFilenames() *T.GSList           { return fileChooserGetFilenames(f) }
-func (f *FileChooser) GetFiles() *T.GSList               { return fileChooserGetFiles(f) }
-func (f *FileChooser) GetFilter() *FileFilter            { return fileChooserGetFilter(f) }
-func (f *FileChooser) GetLocalOnly() bool                { return fileChooserGetLocalOnly(f) }
-func (f *FileChooser) GetPreviewFile() *I.File           { return fileChooserGetPreviewFile(f) }
-func (f *FileChooser) GetPreviewFilename() string        { return fileChooserGetPreviewFilename(f) }
-func (f *FileChooser) GetPreviewUri() string             { return fileChooserGetPreviewUri(f) }
-func (f *FileChooser) GetPreviewWidget() *Widget         { return fileChooserGetPreviewWidget(f) }
-func (f *FileChooser) GetPreviewWidgetActive() bool      { return fileChooserGetPreviewWidgetActive(f) }
-func (f *FileChooser) GetSelectMultiple() bool           { return fileChooserGetSelectMultiple(f) }
-func (f *FileChooser) GetShowHidden() bool               { return fileChooserGetShowHidden(f) }
-func (f *FileChooser) GetUri() string                    { return fileChooserGetUri(f) }
-func (f *FileChooser) GetUris() *T.GSList                { return fileChooserGetUris(f) }
-func (f *FileChooser) GetUsePreviewLabel() bool          { return fileChooserGetUsePreviewLabel(f) }
-func (f *FileChooser) ListFilters() *T.GSList            { return fileChooserListFilters(f) }
-func (f *FileChooser) ListShortcutFolders() *T.GSList    { return fileChooserListShortcutFolders(f) }
-func (f *FileChooser) ListShortcutFolderUris() *T.GSList { return fileChooserListShortcutFolderUris(f) }
-func (f *FileChooser) RemoveFilter(filter *FileFilter)   { fileChooserRemoveFilter(f, filter) }
+func (f *FileChooser) GetExtraWidget() *Widget          { return FileChooserGetExtraWidget(f) }
+func (f *FileChooser) GetFile() *I.File                 { return FileChooserGetFile(f) }
+func (f *FileChooser) GetFilename() string              { return FileChooserGetFilename(f) }
+func (f *FileChooser) GetFilenames() *L.SList           { return FileChooserGetFilenames(f) }
+func (f *FileChooser) GetFiles() *L.SList               { return FileChooserGetFiles(f) }
+func (f *FileChooser) GetFilter() *FileFilter           { return FileChooserGetFilter(f) }
+func (f *FileChooser) GetLocalOnly() bool               { return FileChooserGetLocalOnly(f) }
+func (f *FileChooser) GetPreviewFile() *I.File          { return FileChooserGetPreviewFile(f) }
+func (f *FileChooser) GetPreviewFilename() string       { return FileChooserGetPreviewFilename(f) }
+func (f *FileChooser) GetPreviewUri() string            { return FileChooserGetPreviewUri(f) }
+func (f *FileChooser) GetPreviewWidget() *Widget        { return FileChooserGetPreviewWidget(f) }
+func (f *FileChooser) GetPreviewWidgetActive() bool     { return FileChooserGetPreviewWidgetActive(f) }
+func (f *FileChooser) GetSelectMultiple() bool          { return FileChooserGetSelectMultiple(f) }
+func (f *FileChooser) GetShowHidden() bool              { return FileChooserGetShowHidden(f) }
+func (f *FileChooser) GetUri() string                   { return FileChooserGetUri(f) }
+func (f *FileChooser) GetUris() *L.SList                { return FileChooserGetUris(f) }
+func (f *FileChooser) GetUsePreviewLabel() bool         { return FileChooserGetUsePreviewLabel(f) }
+func (f *FileChooser) ListFilters() *L.SList            { return FileChooserListFilters(f) }
+func (f *FileChooser) ListShortcutFolders() *L.SList    { return FileChooserListShortcutFolders(f) }
+func (f *FileChooser) ListShortcutFolderUris() *L.SList { return FileChooserListShortcutFolderUris(f) }
+func (f *FileChooser) RemoveFilter(filter *FileFilter)  { FileChooserRemoveFilter(f, filter) }
 func (f *FileChooser) RemoveShortcutFolder(folder string, err **T.GError) bool {
-	return fileChooserRemoveShortcutFolder(f, folder, err)
+	return FileChooserRemoveShortcutFolder(f, folder, err)
 }
 func (f *FileChooser) RemoveShortcutFolderUri(uri string, err **T.GError) bool {
-	return fileChooserRemoveShortcutFolderUri(f, uri, err)
+	return FileChooserRemoveShortcutFolderUri(f, uri, err)
 }
-func (f *FileChooser) SelectAll() { fileChooserSelectAll(f) }
+func (f *FileChooser) SelectAll() { FileChooserSelectAll(f) }
 func (f *FileChooser) SelectFile(file *I.File, err **T.GError) bool {
-	return fileChooserSelectFile(f, file, err)
+	return FileChooserSelectFile(f, file, err)
 }
 func (f *FileChooser) SelectFilename(filename string) bool {
-	return fileChooserSelectFilename(f, filename)
+	return FileChooserSelectFilename(f, filename)
 }
-func (f *FileChooser) SelectUri(uri string) bool          { return fileChooserSelectUri(f, uri) }
-func (f *FileChooser) SetAction(action FileChooserAction) { fileChooserSetAction(f, action) }
+func (f *FileChooser) SelectUri(uri string) bool          { return FileChooserSelectUri(f, uri) }
+func (f *FileChooser) SetAction(action FileChooserAction) { FileChooserSetAction(f, action) }
 func (f *FileChooser) SetCreateFolders(createFolders bool) {
-	fileChooserSetCreateFolders(f, createFolders)
+	FileChooserSetCreateFolders(f, createFolders)
 }
 func (f *FileChooser) SetCurrentFolder(filename string) bool {
-	return fileChooserSetCurrentFolder(f, filename)
+	return FileChooserSetCurrentFolder(f, filename)
 }
 func (f *FileChooser) SetCurrentFolderFile(file *I.File, err **T.GError) bool {
-	return fileChooserSetCurrentFolderFile(f, file, err)
+	return FileChooserSetCurrentFolderFile(f, file, err)
 }
 func (f *FileChooser) SetCurrentFolderUri(uri string) bool {
-	return fileChooserSetCurrentFolderUri(f, uri)
+	return FileChooserSetCurrentFolderUri(f, uri)
 }
-func (f *FileChooser) SetCurrentName(name string) { fileChooserSetCurrentName(f, name) }
+func (f *FileChooser) SetCurrentName(name string) { FileChooserSetCurrentName(f, name) }
 func (f *FileChooser) SetDoOverwriteConfirmation(doOverwriteConfirmation bool) {
-	fileChooserSetDoOverwriteConfirmation(f, doOverwriteConfirmation)
+	FileChooserSetDoOverwriteConfirmation(f, doOverwriteConfirmation)
 }
-func (f *FileChooser) SetExtraWidget(extraWidget *Widget) { fileChooserSetExtraWidget(f, extraWidget) }
+func (f *FileChooser) SetExtraWidget(extraWidget *Widget) { FileChooserSetExtraWidget(f, extraWidget) }
 func (f *FileChooser) SetFile(file *I.File, err **T.GError) bool {
-	return fileChooserSetFile(f, file, err)
+	return FileChooserSetFile(f, file, err)
 }
 func (f *FileChooser) SetFilename(filename string) bool {
-	return fileChooserSetFilename(f, filename)
+	return FileChooserSetFilename(f, filename)
 }
-func (f *FileChooser) SetFilter(filter *FileFilter) { fileChooserSetFilter(f, filter) }
-func (f *FileChooser) SetLocalOnly(localOnly bool)  { fileChooserSetLocalOnly(f, localOnly) }
+func (f *FileChooser) SetFilter(filter *FileFilter) { FileChooserSetFilter(f, filter) }
+func (f *FileChooser) SetLocalOnly(localOnly bool)  { FileChooserSetLocalOnly(f, localOnly) }
 func (f *FileChooser) SetPreviewWidget(previewWidget *Widget) {
-	fileChooserSetPreviewWidget(f, previewWidget)
+	FileChooserSetPreviewWidget(f, previewWidget)
 }
 func (f *FileChooser) SetPreviewWidgetActive(active bool) {
-	fileChooserSetPreviewWidgetActive(f, active)
+	FileChooserSetPreviewWidgetActive(f, active)
 }
 func (f *FileChooser) SetSelectMultiple(selectMultiple bool) {
-	fileChooserSetSelectMultiple(f, selectMultiple)
+	FileChooserSetSelectMultiple(f, selectMultiple)
 }
-func (f *FileChooser) SetShowHidden(showHidden bool) { fileChooserSetShowHidden(f, showHidden) }
-func (f *FileChooser) SetUri(uri string) bool        { return fileChooserSetUri(f, uri) }
+func (f *FileChooser) SetShowHidden(showHidden bool) { FileChooserSetShowHidden(f, showHidden) }
+func (f *FileChooser) SetUri(uri string) bool        { return FileChooserSetUri(f, uri) }
 func (f *FileChooser) SetUsePreviewLabel(useLabel bool) {
-	fileChooserSetUsePreviewLabel(f, useLabel)
+	FileChooserSetUsePreviewLabel(f, useLabel)
 }
-func (f *FileChooser) UnselectAll()                     { fileChooserUnselectAll(f) }
-func (f *FileChooser) UnselectFile(file *I.File)        { fileChooserUnselectFile(f, file) }
-func (f *FileChooser) UnselectFilename(filename string) { fileChooserUnselectFilename(f, filename) }
-func (f *FileChooser) UnselectUri(uri string)           { fileChooserUnselectUri(f, uri) }
+func (f *FileChooser) UnselectAll()                     { FileChooserUnselectAll(f) }
+func (f *FileChooser) UnselectFile(file *I.File)        { FileChooserUnselectFile(f, file) }
+func (f *FileChooser) UnselectFilename(filename string) { FileChooserUnselectFilename(f, filename) }
+func (f *FileChooser) UnselectUri(uri string)           { FileChooserUnselectUri(f, uri) }
 
 type FileChooserButton struct {
 	Parent HBox
@@ -222,22 +222,22 @@ var (
 	FileChooserButtonNewWithBackend func(title string, action FileChooserAction, backend string) *Widget
 	FileChooserButtonNewWithDialog  func(dialog *Widget) *Widget
 
-	fileChooserButtonGetTitle        func(f *FileChooserButton) string
-	fileChooserButtonSetTitle        func(f *FileChooserButton, title string)
-	fileChooserButtonGetWidthChars   func(f *FileChooserButton) int
-	fileChooserButtonSetWidthChars   func(f *FileChooserButton, nChars int)
-	fileChooserButtonGetFocusOnClick func(f *FileChooserButton) bool
-	fileChooserButtonSetFocusOnClick func(f *FileChooserButton, focusOnClick bool)
+	FileChooserButtonGetTitle        func(f *FileChooserButton) string
+	FileChooserButtonSetTitle        func(f *FileChooserButton, title string)
+	FileChooserButtonGetWidthChars   func(f *FileChooserButton) int
+	FileChooserButtonSetWidthChars   func(f *FileChooserButton, nChars int)
+	FileChooserButtonGetFocusOnClick func(f *FileChooserButton) bool
+	FileChooserButtonSetFocusOnClick func(f *FileChooserButton, focusOnClick bool)
 )
 
-func (f *FileChooserButton) ButtonGetTitle() string { return fileChooserButtonGetTitle(f) }
-func (f *FileChooserButton) GetFocusOnClick() bool  { return fileChooserButtonGetFocusOnClick(f) }
-func (f *FileChooserButton) GetWidthChars() int     { return fileChooserButtonGetWidthChars(f) }
+func (f *FileChooserButton) ButtonGetTitle() string { return FileChooserButtonGetTitle(f) }
+func (f *FileChooserButton) GetFocusOnClick() bool  { return FileChooserButtonGetFocusOnClick(f) }
+func (f *FileChooserButton) GetWidthChars() int     { return FileChooserButtonGetWidthChars(f) }
 func (f *FileChooserButton) SetFocusOnClick(focusOnClick bool) {
-	fileChooserButtonSetFocusOnClick(f, focusOnClick)
+	FileChooserButtonSetFocusOnClick(f, focusOnClick)
 }
-func (f *FileChooserButton) SetTitle(title string)    { fileChooserButtonSetTitle(f, title) }
-func (f *FileChooserButton) SetWidthChars(nChars int) { fileChooserButtonSetWidthChars(f, nChars) }
+func (f *FileChooserButton) SetTitle(title string)    { FileChooserButtonSetTitle(f, title) }
+func (f *FileChooserButton) SetWidthChars(nChars int) { FileChooserButtonSetWidthChars(f, nChars) }
 
 type (
 	FileFilter struct{}
@@ -269,28 +269,28 @@ var (
 	FileFilterFlagsGetType func() O.Type
 	FileFilterNew          func() *FileFilter
 
-	fileFilterAddCustom        func(filter *FileFilter, needed FileFilterFlags, f FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify)
-	fileFilterAddMimeType      func(filter *FileFilter, mimeType string)
-	fileFilterAddPattern       func(filter *FileFilter, pattern string)
-	fileFilterAddPixbufFormats func(filter *FileFilter)
-	fileFilterFilter           func(filter *FileFilter, filterInfo *FileFilterInfo) bool
-	fileFilterGetName          func(filter *FileFilter) string
-	fileFilterGetNeeded        func(filter *FileFilter) FileFilterFlags
-	fileFilterSetName          func(filter *FileFilter, name string)
+	FileFilterAddCustom        func(filter *FileFilter, needed FileFilterFlags, f FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify)
+	FileFilterAddMimeType      func(filter *FileFilter, mimeType string)
+	FileFilterAddPattern       func(filter *FileFilter, pattern string)
+	FileFilterAddPixbufFormats func(filter *FileFilter)
+	FileFilterFilter           func(filter *FileFilter, filterInfo *FileFilterInfo) bool
+	FileFilterGetName          func(filter *FileFilter) string
+	FileFilterGetNeeded        func(filter *FileFilter) FileFilterFlags
+	FileFilterSetName          func(filter *FileFilter, name string)
 )
 
 func (f *FileFilter) AddCustom(needed FileFilterFlags, fnc FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify) {
-	fileFilterAddCustom(f, needed, fnc, data, notify)
+	FileFilterAddCustom(f, needed, fnc, data, notify)
 }
-func (f *FileFilter) AddMimeType(mimeType string) { fileFilterAddMimeType(f, mimeType) }
-func (f *FileFilter) AddPattern(pattern string)   { fileFilterAddPattern(f, pattern) }
-func (f *FileFilter) AddPixbufFormats()           { fileFilterAddPixbufFormats(f) }
+func (f *FileFilter) AddMimeType(mimeType string) { FileFilterAddMimeType(f, mimeType) }
+func (f *FileFilter) AddPattern(pattern string)   { FileFilterAddPattern(f, pattern) }
+func (f *FileFilter) AddPixbufFormats()           { FileFilterAddPixbufFormats(f) }
 func (f *FileFilter) Filter(filterInfo *FileFilterInfo) bool {
-	return fileFilterFilter(f, filterInfo)
+	return FileFilterFilter(f, filterInfo)
 }
-func (f *FileFilter) GetName() string            { return fileFilterGetName(f) }
-func (f *FileFilter) GetNeeded() FileFilterFlags { return fileFilterGetNeeded(f) }
-func (f *FileFilter) SetName(name string)        { fileFilterSetName(f, name) }
+func (f *FileFilter) GetName() string            { return FileFilterGetName(f) }
+func (f *FileFilter) GetNeeded() FileFilterFlags { return FileFilterGetNeeded(f) }
+func (f *FileFilter) SetName(name string)        { FileFilterSetName(f, name) }
 
 type FileSelection struct {
 	Parent_instance  Dialog
@@ -322,26 +322,26 @@ var (
 	FileSelectionGetType func() O.Type
 	FileSelectionNew     func(title string) *Widget
 
-	fileSelectionComplete          func(f *FileSelection, pattern string)
-	fileSelectionGetFilename       func(f *FileSelection) string
-	fileSelectionGetSelections     func(f *FileSelection) []string
-	fileSelectionGetSelectMultiple func(f *FileSelection) bool
-	fileSelectionHideFileopButtons func(f *FileSelection)
-	fileSelectionSetFilename       func(f *FileSelection, filename string)
-	fileSelectionSetSelectMultiple func(f *FileSelection, selectMultiple bool)
-	fileSelectionShowFileopButtons func(f *FileSelection)
+	FileSelectionComplete          func(f *FileSelection, pattern string)
+	FileSelectionGetFilename       func(f *FileSelection) string
+	FileSelectionGetSelections     func(f *FileSelection) []string
+	FileSelectionGetSelectMultiple func(f *FileSelection) bool
+	FileSelectionHideFileopButtons func(f *FileSelection)
+	FileSelectionSetFilename       func(f *FileSelection, filename string)
+	FileSelectionSetSelectMultiple func(f *FileSelection, selectMultiple bool)
+	FileSelectionShowFileopButtons func(f *FileSelection)
 )
 
-func (f *FileSelection) Complete(pattern string)     { fileSelectionComplete(f, pattern) }
-func (f *FileSelection) GetFilename() string         { return fileSelectionGetFilename(f) }
-func (f *FileSelection) GetSelections() []string     { return fileSelectionGetSelections(f) }
-func (f *FileSelection) GetSelectMultiple() bool     { return fileSelectionGetSelectMultiple(f) }
-func (f *FileSelection) HideFileopButtons()          { fileSelectionHideFileopButtons(f) }
-func (f *FileSelection) SetFilename(filename string) { fileSelectionSetFilename(f, filename) }
+func (f *FileSelection) Complete(pattern string)     { FileSelectionComplete(f, pattern) }
+func (f *FileSelection) GetFilename() string         { return FileSelectionGetFilename(f) }
+func (f *FileSelection) GetSelections() []string     { return FileSelectionGetSelections(f) }
+func (f *FileSelection) GetSelectMultiple() bool     { return FileSelectionGetSelectMultiple(f) }
+func (f *FileSelection) HideFileopButtons()          { FileSelectionHideFileopButtons(f) }
+func (f *FileSelection) SetFilename(filename string) { FileSelectionSetFilename(f, filename) }
 func (f *FileSelection) SetSelectMultiple(selectMultiple bool) {
-	fileSelectionSetSelectMultiple(f, selectMultiple)
+	FileSelectionSetSelectMultiple(f, selectMultiple)
 }
-func (f *FileSelection) ShowFileopButtons() { fileSelectionShowFileopButtons(f) }
+func (f *FileSelection) ShowFileopButtons() { FileSelectionShowFileopButtons(f) }
 
 type Fixed struct {
 	Container Container
@@ -352,16 +352,16 @@ var (
 	FixedGetType func() O.Type
 	FixedNew     func() *Widget
 
-	fixedGetHasWindow func(f *Fixed) bool
-	fixedMove         func(f *Fixed, widget *Widget, x, y int)
-	fixedPut          func(f *Fixed, widget *Widget, x, y int)
-	fixedSetHasWindow func(f *Fixed, hasWindow bool)
+	FixedGetHasWindow func(f *Fixed) bool
+	FixedMove         func(f *Fixed, widget *Widget, x, y int)
+	FixedPut          func(f *Fixed, widget *Widget, x, y int)
+	FixedSetHasWindow func(f *Fixed, hasWindow bool)
 )
 
-func (f *Fixed) GetHasWindow() bool            { return fixedGetHasWindow(f) }
-func (f *Fixed) Move(widget *Widget, x, y int) { fixedMove(f, widget, x, y) }
-func (f *Fixed) Put(widget *Widget, x, y int)  { fixedPut(f, widget, x, y) }
-func (f *Fixed) SetHasWindow(hasWindow bool)   { fixedSetHasWindow(f, hasWindow) }
+func (f *Fixed) GetHasWindow() bool            { return FixedGetHasWindow(f) }
+func (f *Fixed) Move(widget *Widget, x, y int) { FixedMove(f, widget, x, y) }
+func (f *Fixed) Put(widget *Widget, x, y int)  { FixedPut(f, widget, x, y) }
+func (f *Fixed) SetHasWindow(hasWindow bool)   { FixedSetHasWindow(f, hasWindow) }
 
 type FlagValue O.FlagsValue
 
@@ -375,34 +375,34 @@ var (
 	FontButtonNew         func() *Widget
 	FontButtonNewWithFont func(fontname string) *Widget
 
-	fontButtonGetFontName  func(f *FontButton) string
-	fontButtonGetShowSize  func(f *FontButton) bool
-	fontButtonGetShowStyle func(f *FontButton) bool
-	fontButtonGetTitle     func(f *FontButton) string
-	fontButtonGetUseFont   func(f *FontButton) bool
-	fontButtonGetUseSize   func(f *FontButton) bool
-	fontButtonSetFontName  func(f *FontButton, fontname string) bool
-	fontButtonSetShowSize  func(f *FontButton, showSize bool)
-	fontButtonSetShowStyle func(f *FontButton, showStyle bool)
-	fontButtonSetTitle     func(f *FontButton, title string)
-	fontButtonSetUseFont   func(f *FontButton, useFont bool)
-	fontButtonSetUseSize   func(f *FontButton, useSize bool)
+	FontButtonGetFontName  func(f *FontButton) string
+	FontButtonGetShowSize  func(f *FontButton) bool
+	FontButtonGetShowStyle func(f *FontButton) bool
+	FontButtonGetTitle     func(f *FontButton) string
+	FontButtonGetUseFont   func(f *FontButton) bool
+	FontButtonGetUseSize   func(f *FontButton) bool
+	FontButtonSetFontName  func(f *FontButton, fontname string) bool
+	FontButtonSetShowSize  func(f *FontButton, showSize bool)
+	FontButtonSetShowStyle func(f *FontButton, showStyle bool)
+	FontButtonSetTitle     func(f *FontButton, title string)
+	FontButtonSetUseFont   func(f *FontButton, useFont bool)
+	FontButtonSetUseSize   func(f *FontButton, useSize bool)
 )
 
-func (f *FontButton) GetFontName() string { return fontButtonGetFontName(f) }
-func (f *FontButton) GetShowSize() bool   { return fontButtonGetShowSize(f) }
-func (f *FontButton) GetShowStyle() bool  { return fontButtonGetShowStyle(f) }
-func (f *FontButton) GetTitle() string    { return fontButtonGetTitle(f) }
-func (f *FontButton) GetUseFont() bool    { return fontButtonGetUseFont(f) }
-func (f *FontButton) GetUseSize() bool    { return fontButtonGetUseSize(f) }
+func (f *FontButton) GetFontName() string { return FontButtonGetFontName(f) }
+func (f *FontButton) GetShowSize() bool   { return FontButtonGetShowSize(f) }
+func (f *FontButton) GetShowStyle() bool  { return FontButtonGetShowStyle(f) }
+func (f *FontButton) GetTitle() string    { return FontButtonGetTitle(f) }
+func (f *FontButton) GetUseFont() bool    { return FontButtonGetUseFont(f) }
+func (f *FontButton) GetUseSize() bool    { return FontButtonGetUseSize(f) }
 func (f *FontButton) SetFontName(fontname string) bool {
-	return fontButtonSetFontName(f, fontname)
+	return FontButtonSetFontName(f, fontname)
 }
-func (f *FontButton) SetShowSize(showSize bool)   { fontButtonSetShowSize(f, showSize) }
-func (f *FontButton) SetShowStyle(showStyle bool) { fontButtonSetShowStyle(f, showStyle) }
-func (f *FontButton) SetTitle(title string)       { fontButtonSetTitle(f, title) }
-func (f *FontButton) SetUseFont(useFont bool)     { fontButtonSetUseFont(f, useFont) }
-func (f *FontButton) SetUseSize(useSize bool)     { fontButtonSetUseSize(f, useSize) }
+func (f *FontButton) SetShowSize(showSize bool)   { FontButtonSetShowSize(f, showSize) }
+func (f *FontButton) SetShowStyle(showStyle bool) { FontButtonSetShowStyle(f, showStyle) }
+func (f *FontButton) SetTitle(title string)       { FontButtonSetTitle(f, title) }
+func (f *FontButton) SetUseFont(useFont bool)     { FontButtonSetUseFont(f, useFont) }
+func (f *FontButton) SetUseSize(useSize bool)     { FontButtonSetUseSize(f, useSize) }
 
 type FontSelection struct {
 	Parent_instance  VBox
@@ -426,36 +426,36 @@ var (
 	FontSelectionGetType func() O.Type
 	FontSelectionNew     func() *Widget
 
-	fontSelectionGetFace         func(f *FontSelection) *P.FontFace
-	fontSelectionGetFaceList     func(f *FontSelection) *Widget
-	fontSelectionGetFamily       func(f *FontSelection) *P.FontFamily
-	fontSelectionGetFamilyList   func(f *FontSelection) *Widget
-	fontSelectionGetFont         func(f *FontSelection) *D.Font
-	fontSelectionGetFontName     func(f *FontSelection) string
-	fontSelectionGetPreviewEntry func(f *FontSelection) *Widget
-	fontSelectionGetPreviewText  func(f *FontSelection) string
-	fontSelectionGetSize         func(f *FontSelection) int
-	fontSelectionGetSizeEntry    func(f *FontSelection) *Widget
-	fontSelectionGetSizeList     func(f *FontSelection) *Widget
-	fontSelectionSetFontName     func(f *FontSelection, fontname string) bool
-	fontSelectionSetPreviewText  func(f *FontSelection, text string)
+	FontSelectionGetFace         func(f *FontSelection) *P.FontFace
+	FontSelectionGetFaceList     func(f *FontSelection) *Widget
+	FontSelectionGetFamily       func(f *FontSelection) *P.FontFamily
+	FontSelectionGetFamilyList   func(f *FontSelection) *Widget
+	FontSelectionGetFont         func(f *FontSelection) *D.Font
+	FontSelectionGetFontName     func(f *FontSelection) string
+	FontSelectionGetPreviewEntry func(f *FontSelection) *Widget
+	FontSelectionGetPreviewText  func(f *FontSelection) string
+	FontSelectionGetSize         func(f *FontSelection) int
+	FontSelectionGetSizeEntry    func(f *FontSelection) *Widget
+	FontSelectionGetSizeList     func(f *FontSelection) *Widget
+	FontSelectionSetFontName     func(f *FontSelection, fontname string) bool
+	FontSelectionSetPreviewText  func(f *FontSelection, text string)
 )
 
-func (f *FontSelection) GetFace() *P.FontFace     { return fontSelectionGetFace(f) }
-func (f *FontSelection) GetFaceList() *Widget     { return fontSelectionGetFaceList(f) }
-func (f *FontSelection) GetFamily() *P.FontFamily { return fontSelectionGetFamily(f) }
-func (f *FontSelection) GetFamilyList() *Widget   { return fontSelectionGetFamilyList(f) }
-func (f *FontSelection) GetFont() *D.Font         { return fontSelectionGetFont(f) }
-func (f *FontSelection) GetFontName() string      { return fontSelectionGetFontName(f) }
-func (f *FontSelection) GetPreviewEntry() *Widget { return fontSelectionGetPreviewEntry(f) }
-func (f *FontSelection) GetPreviewText() string   { return fontSelectionGetPreviewText(f) }
-func (f *FontSelection) GetSize() int             { return fontSelectionGetSize(f) }
-func (f *FontSelection) GetSizeEntry() *Widget    { return fontSelectionGetSizeEntry(f) }
-func (f *FontSelection) GetSizeList() *Widget     { return fontSelectionGetSizeList(f) }
+func (f *FontSelection) GetFace() *P.FontFace     { return FontSelectionGetFace(f) }
+func (f *FontSelection) GetFaceList() *Widget     { return FontSelectionGetFaceList(f) }
+func (f *FontSelection) GetFamily() *P.FontFamily { return FontSelectionGetFamily(f) }
+func (f *FontSelection) GetFamilyList() *Widget   { return FontSelectionGetFamilyList(f) }
+func (f *FontSelection) GetFont() *D.Font         { return FontSelectionGetFont(f) }
+func (f *FontSelection) GetFontName() string      { return FontSelectionGetFontName(f) }
+func (f *FontSelection) GetPreviewEntry() *Widget { return FontSelectionGetPreviewEntry(f) }
+func (f *FontSelection) GetPreviewText() string   { return FontSelectionGetPreviewText(f) }
+func (f *FontSelection) GetSize() int             { return FontSelectionGetSize(f) }
+func (f *FontSelection) GetSizeEntry() *Widget    { return FontSelectionGetSizeEntry(f) }
+func (f *FontSelection) GetSizeList() *Widget     { return FontSelectionGetSizeList(f) }
 func (f *FontSelection) SetFontName(fontname string) bool {
-	return fontSelectionSetFontName(f, fontname)
+	return FontSelectionSetFontName(f, fontname)
 }
-func (f *FontSelection) SetPreviewText(text string) { fontSelectionSetPreviewText(f, text) }
+func (f *FontSelection) SetPreviewText(text string) { FontSelectionSetPreviewText(f, text) }
 
 type FontSelectionDialog struct {
 	Parent       Dialog
@@ -473,30 +473,30 @@ var (
 	FontSelectionDialogGetType func() O.Type
 	FontSelectionDialogNew     func(title string) *Widget
 
-	fontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *Widget
-	fontSelectionDialogGetCancelButton  func(f *FontSelectionDialog) *Widget
-	fontSelectionDialogGetFont          func(f *FontSelectionDialog) *D.Font
-	fontSelectionDialogGetFontName      func(f *FontSelectionDialog) string
-	fontSelectionDialogGetFontSelection func(f *FontSelectionDialog) *Widget
-	fontSelectionDialogGetOkButton      func(f *FontSelectionDialog) *Widget
-	fontSelectionDialogGetPreviewText   func(f *FontSelectionDialog) string
-	fontSelectionDialogSetFontName      func(f *FontSelectionDialog, fontname string) bool
-	fontSelectionDialogSetPreviewText   func(f *FontSelectionDialog, text string)
+	FontSelectionDialogGetApplyButton   func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetCancelButton  func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetFont          func(f *FontSelectionDialog) *D.Font
+	FontSelectionDialogGetFontName      func(f *FontSelectionDialog) string
+	FontSelectionDialogGetFontSelection func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetOkButton      func(f *FontSelectionDialog) *Widget
+	FontSelectionDialogGetPreviewText   func(f *FontSelectionDialog) string
+	FontSelectionDialogSetFontName      func(f *FontSelectionDialog, fontname string) bool
+	FontSelectionDialogSetPreviewText   func(f *FontSelectionDialog, text string)
 )
 
-func (f *FontSelectionDialog) GetApplyButton() *Widget  { return fontSelectionDialogGetApplyButton(f) }
-func (f *FontSelectionDialog) GetCancelButton() *Widget { return fontSelectionDialogGetCancelButton(f) }
-func (f *FontSelectionDialog) GetFont() *D.Font         { return fontSelectionDialogGetFont(f) }
-func (f *FontSelectionDialog) GetFontName() string      { return fontSelectionDialogGetFontName(f) }
+func (f *FontSelectionDialog) GetApplyButton() *Widget  { return FontSelectionDialogGetApplyButton(f) }
+func (f *FontSelectionDialog) GetCancelButton() *Widget { return FontSelectionDialogGetCancelButton(f) }
+func (f *FontSelectionDialog) GetFont() *D.Font         { return FontSelectionDialogGetFont(f) }
+func (f *FontSelectionDialog) GetFontName() string      { return FontSelectionDialogGetFontName(f) }
 func (f *FontSelectionDialog) GetFontSelection() *Widget {
-	return fontSelectionDialogGetFontSelection(f)
+	return FontSelectionDialogGetFontSelection(f)
 }
-func (f *FontSelectionDialog) GetOkButton() *Widget   { return fontSelectionDialogGetOkButton(f) }
-func (f *FontSelectionDialog) GetPreviewText() string { return fontSelectionDialogGetPreviewText(f) }
+func (f *FontSelectionDialog) GetOkButton() *Widget   { return FontSelectionDialogGetOkButton(f) }
+func (f *FontSelectionDialog) GetPreviewText() string { return FontSelectionDialogGetPreviewText(f) }
 func (f *FontSelectionDialog) SetFontName(fontname string) bool {
-	return fontSelectionDialogSetFontName(f, fontname)
+	return FontSelectionDialogSetFontName(f, fontname)
 }
-func (f *FontSelectionDialog) SetPreviewText(text string) { fontSelectionDialogSetPreviewText(f, text) }
+func (f *FontSelectionDialog) SetPreviewText(text string) { FontSelectionDialogSetPreviewText(f, text) }
 
 type Frame struct {
 	Bin             Bin
@@ -511,23 +511,23 @@ var (
 	FrameGetType func() O.Type
 	FrameNew     func(label string) *Widget
 
-	frameGetLabel       func(f *Frame) string
-	frameGetLabelAlign  func(f *Frame, xalign, yalign *float32)
-	frameGetLabelWidget func(f *Frame) *Widget
-	frameGetShadowType  func(f *Frame) ShadowType
-	frameSetLabel       func(f *Frame, label string)
-	frameSetLabelAlign  func(f *Frame, xalign, yalign float32)
-	frameSetLabelWidget func(f *Frame, labelWidget *Widget)
-	frameSetShadowType  func(f *Frame, t ShadowType)
+	FrameGetLabel       func(f *Frame) string
+	FrameGetLabelAlign  func(f *Frame, xalign, yalign *float32)
+	FrameGetLabelWidget func(f *Frame) *Widget
+	FrameGetShadowType  func(f *Frame) ShadowType
+	FrameSetLabel       func(f *Frame, label string)
+	FrameSetLabelAlign  func(f *Frame, xalign, yalign float32)
+	FrameSetLabelWidget func(f *Frame, labelWidget *Widget)
+	FrameSetShadowType  func(f *Frame, t ShadowType)
 )
 
-func (f *Frame) GetLabel() string                      { return frameGetLabel(f) }
-func (f *Frame) GetLabelAlign(xalign, yalign *float32) { frameGetLabelAlign(f, xalign, yalign) }
-func (f *Frame) GetLabelWidget() *Widget               { return frameGetLabelWidget(f) }
-func (f *Frame) GetShadowType() ShadowType             { return frameGetShadowType(f) }
-func (f *Frame) SetLabel(label string)                 { frameSetLabel(f, label) }
-func (f *Frame) SetLabelAlign(xalign, yalign float32)  { frameSetLabelAlign(f, xalign, yalign) }
-func (f *Frame) SetLabelWidget(labelWidget *Widget)    { frameSetLabelWidget(f, labelWidget) }
-func (f *Frame) SetShadowType(t ShadowType)            { frameSetShadowType(f, t) }
+func (f *Frame) GetLabel() string                      { return FrameGetLabel(f) }
+func (f *Frame) GetLabelAlign(xalign, yalign *float32) { FrameGetLabelAlign(f, xalign, yalign) }
+func (f *Frame) GetLabelWidget() *Widget               { return FrameGetLabelWidget(f) }
+func (f *Frame) GetShadowType() ShadowType             { return FrameGetShadowType(f) }
+func (f *Frame) SetLabel(label string)                 { FrameSetLabel(f, label) }
+func (f *Frame) SetLabelAlign(xalign, yalign float32)  { FrameSetLabelAlign(f, xalign, yalign) }
+func (f *Frame) SetLabelWidget(labelWidget *Widget)    { FrameSetLabelWidget(f, labelWidget) }
+func (f *Frame) SetShadowType(t ShadowType)            { FrameSetShadowType(f, t) }
 
 type Function func(data T.Gpointer) bool

@@ -27,16 +27,16 @@ var (
 	FontsetLoad           func(fontsetName string) *Font
 	FontsetLoadForDisplay func(display *Display, fontsetName string) *Font
 
-	fontRef   func(f *Font) *Font
-	fontUnref func(f *Font)
-	fontId    func(f *Font) int
-	fontEqual func(f *Font, fontb *Font) bool
+	FontRef   func(f *Font) *Font
+	FontUnref func(f *Font)
+	FontId    func(f *Font) int
+	FontEqual func(f *Font, fontb *Font) bool
 )
 
-func (f *Font) Ref() *Font          { return fontRef(f) }
-func (f *Font) Unref()              { fontUnref(f) }
-func (f *Font) Id() int             { return fontId(f) }
-func (f *Font) Equal(f2 *Font) bool { return fontEqual(f, f2) }
+func (f *Font) Ref() *Font          { return FontRef(f) }
+func (f *Font) Unref()              { FontUnref(f) }
+func (f *Font) Id() int             { return FontId(f) }
+func (f *Font) Equal(f2 *Font) bool { return FontEqual(f, f2) }
 
 type FontType Enum
 

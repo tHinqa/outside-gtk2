@@ -18,16 +18,16 @@ var (
 	Win32InputStreamGetType func() O.Type
 	Win32InputStreamNew     func(handle *T.Void, closeHandle bool) *InputStream
 
-	win32InputStreamSetCloseHandle func(stream *Win32InputStream, closeHandle bool)
-	win32InputStreamGetCloseHandle func(stream *Win32InputStream) bool
-	win32InputStreamGetHandle      func(stream *Win32InputStream) *T.Void
+	Win32InputStreamSetCloseHandle func(stream *Win32InputStream, closeHandle bool)
+	Win32InputStreamGetCloseHandle func(stream *Win32InputStream) bool
+	Win32InputStreamGetHandle      func(stream *Win32InputStream) *T.Void
 )
 
 func (w *Win32InputStream) SetCloseHandle(closeHandle bool) {
-	win32InputStreamSetCloseHandle(w, closeHandle)
+	Win32InputStreamSetCloseHandle(w, closeHandle)
 }
-func (w *Win32InputStream) GetCloseHandle() bool { return win32InputStreamGetCloseHandle(w) }
-func (w *Win32InputStream) GetHandle() *T.Void   { return win32InputStreamGetHandle(w) }
+func (w *Win32InputStream) GetCloseHandle() bool { return Win32InputStreamGetCloseHandle(w) }
+func (w *Win32InputStream) GetHandle() *T.Void   { return Win32InputStreamGetHandle(w) }
 
 type Win32OutputStream struct {
 	Parent OutputStream
@@ -38,13 +38,13 @@ var (
 	Win32OutputStreamGetType func() O.Type
 	Win32OutputStreamNew     func(handle *T.Void, closeHandle bool) *OutputStream
 
-	win32OutputStreamSetCloseHandle func(stream *Win32OutputStream, closeHandle bool)
-	win32OutputStreamGetCloseHandle func(stream *Win32OutputStream) bool
-	win32OutputStreamGetHandle      func(stream *Win32OutputStream) *T.Void
+	Win32OutputStreamSetCloseHandle func(stream *Win32OutputStream, closeHandle bool)
+	Win32OutputStreamGetCloseHandle func(stream *Win32OutputStream) bool
+	Win32OutputStreamGetHandle      func(stream *Win32OutputStream) *T.Void
 )
 
 func (w *Win32OutputStream) SetCloseHandle(closeHandle bool) {
-	win32OutputStreamSetCloseHandle(w, closeHandle)
+	Win32OutputStreamSetCloseHandle(w, closeHandle)
 }
-func (w *Win32OutputStream) GetCloseHandle() bool { return win32OutputStreamGetCloseHandle(w) }
-func (w *Win32OutputStream) GetHandle() *T.Void   { return win32OutputStreamGetHandle(w) }
+func (w *Win32OutputStream) GetCloseHandle() bool { return Win32OutputStreamGetCloseHandle(w) }
+func (w *Win32OutputStream) GetHandle() *T.Void   { return Win32OutputStreamGetHandle(w) }
