@@ -6,15 +6,14 @@ package atk
 import (
 	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 var RectangleGetType func() O.Type //TODO(t):Use?
 
 type Registry struct {
 	Parent                O.Object
-	FactoryTypeRegistry   *T.GHashTable
-	FactorySingletonCache *T.GHashTable
+	FactoryTypeRegistry   *L.HashTable
+	FactorySingletonCache *L.HashTable
 }
 
 var (

@@ -255,7 +255,7 @@ type RcPropertyParser func(pspec *T.GParamSpec,
 	rcString *L.String, property_value *T.GValue) bool
 
 type RcStyle struct {
-	Parent          T.GObject
+	Parent          O.Object
 	Name            *T.Gchar
 	BgPixmapName    *[5]T.Gchar //TODO(t): CHECK
 	FontDesc        *P.FontDescription
@@ -341,7 +341,7 @@ var (
 	RecentChooserDialogNew           func(title string, parent *Window, firstButtonText string, v ...VArg) *Widget
 	RecentChooserDialogNewForManager func(title string, parent *Window, manager *RecentManager, firstButtonText string, v ...VArg) *Widget
 
-	RecentChooserErrorQuark func() T.GQuark
+	RecentChooserErrorQuark func() L.Quark
 
 	RecentChooserAddFilter         func(r *RecentChooser, filter *RecentFilter)
 	RecentChooserGetCurrentItem    func(r *RecentChooser) *RecentInfo
@@ -574,7 +574,7 @@ func (r *RecentFilter) GetNeeded() RecentFilterFlags { return RecentFilterGetNee
 func (r *RecentFilter) SetName(name string)          { RecentFilterSetName(r, name) }
 
 type RecentManager struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
@@ -593,7 +593,7 @@ var (
 	RecentManagerNew     func() *RecentManager
 
 	RecentManagerErrorGetType func() O.Type
-	RecentManagerErrorQuark   func() T.GQuark
+	RecentManagerErrorQuark   func() L.Quark
 
 	RecentManagerGetDefault   func() *RecentManager
 	RecentManagerGetForScreen func(screen *D.Screen) *RecentManager

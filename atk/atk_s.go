@@ -4,8 +4,8 @@
 package atk
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
 )
 
 type StateType Enum
@@ -136,13 +136,13 @@ var (
 
 	StreamableContentGetMimeType   func(s *StreamableContent, i int) string
 	StreamableContentGetNMimeTypes func(s *StreamableContent) int
-	StreamableContentGetStream     func(s *StreamableContent, mimeType string) *T.GIOChannel
+	StreamableContentGetStream     func(s *StreamableContent, mimeType string) *L.IOChannel
 	StreamableContentGetUri        func(s *StreamableContent, mimeType string) string
 )
 
 func (s *StreamableContent) GetMimeType(i int) string { return StreamableContentGetMimeType(s, i) }
 func (s *StreamableContent) GetNMimeTypes() int       { return StreamableContentGetNMimeTypes(s) }
-func (s *StreamableContent) GetStream(mimeType string) *T.GIOChannel {
+func (s *StreamableContent) GetStream(mimeType string) *L.IOChannel {
 	return StreamableContentGetStream(s, mimeType)
 }
 func (s *StreamableContent) GetUri(mimeType string) string {

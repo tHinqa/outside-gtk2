@@ -122,7 +122,7 @@ type Completion struct {
 
 var (
 	CompletionGetType    func() O.Type
-	CompletionErrorQuark func() T.GQuark
+	CompletionErrorQuark func() L.Quark
 
 	CompletionAddProvider        func(c *Completion, provider *CompletionProvider, err **T.GError) bool
 	CompletionBlockInteractive   func(c *Completion)

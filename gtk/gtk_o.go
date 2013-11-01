@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -24,17 +25,17 @@ var (
 	ObjectDestroy            func(o *Object)
 	ObjectGet                func(o *Object, firstPropertyName string, v ...VArg)
 	ObjectGetData            func(o *Object, key string) T.Gpointer
-	ObjectGetDataById        func(o *Object, dataId T.GQuark) T.Gpointer
+	ObjectGetDataById        func(o *Object, dataId L.Quark) T.Gpointer
 	ObjectGetUserData        func(o *Object) T.Gpointer
 	ObjectRef                func(o *Object) *Object
 	ObjectRemoveData         func(o *Object, key string)
-	ObjectRemoveDataById     func(o *Object, dataId T.GQuark)
+	ObjectRemoveDataById     func(o *Object, dataId L.Quark)
 	ObjectRemoveNoNotify     func(o *Object, key string)
-	ObjectRemoveNoNotifyById func(o *Object, keyId T.GQuark)
+	ObjectRemoveNoNotifyById func(o *Object, keyId L.Quark)
 	ObjectSet                func(o *Object, firstPropertyName string, v ...VArg)
 	ObjectSetData            func(o *Object, key string, data T.Gpointer)
-	ObjectSetDataById        func(o *Object, dataId T.GQuark, data T.Gpointer)
-	ObjectSetDataByIdFull    func(o *Object, dataId T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetDataById        func(o *Object, dataId L.Quark, data T.Gpointer)
+	ObjectSetDataByIdFull    func(o *Object, dataId L.Quark, data T.Gpointer, destroy T.GDestroyNotify)
 	ObjectSetDataFull        func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
 	ObjectSetUserData        func(o *Object, data T.Gpointer)
 	ObjectSink               func(o *Object)
@@ -43,20 +44,20 @@ var (
 	ObjectWeakunref          func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
 )
 
-func (o *Object) Destroy()                                     { ObjectDestroy(o) }
-func (o *Object) Get(firstPropertyName string, v ...VArg)      { ObjectGet(o, firstPropertyName, v) }
-func (o *Object) GetData(key string) T.Gpointer                { return ObjectGetData(o, key) }
-func (o *Object) GetDataById(dataId T.GQuark) T.Gpointer       { return ObjectGetDataById(o, dataId) }
-func (o *Object) GetUserData() T.Gpointer                      { return ObjectGetUserData(o) }
-func (o *Object) Ref() *Object                                 { return ObjectRef(o) }
-func (o *Object) RemoveData(key string)                        { ObjectRemoveData(o, key) }
-func (o *Object) RemoveDataById(dataId T.GQuark)               { ObjectRemoveDataById(o, dataId) }
-func (o *Object) RemoveNoNotify(key string)                    { ObjectRemoveNoNotify(o, key) }
-func (o *Object) RemoveNoNotifyById(keyId T.GQuark)            { ObjectRemoveNoNotifyById(o, keyId) }
-func (o *Object) Set(firstPropertyName string, v ...VArg)      { ObjectSet(o, firstPropertyName, v) }
-func (o *Object) SetData(key string, data T.Gpointer)          { ObjectSetData(o, key, data) }
-func (o *Object) SetDataById(dataId T.GQuark, data T.Gpointer) { ObjectSetDataById(o, dataId, data) }
-func (o *Object) SetDataByIdFull(dataId T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) Destroy()                                    { ObjectDestroy(o) }
+func (o *Object) Get(firstPropertyName string, v ...VArg)     { ObjectGet(o, firstPropertyName, v) }
+func (o *Object) GetData(key string) T.Gpointer               { return ObjectGetData(o, key) }
+func (o *Object) GetDataById(dataId L.Quark) T.Gpointer       { return ObjectGetDataById(o, dataId) }
+func (o *Object) GetUserData() T.Gpointer                     { return ObjectGetUserData(o) }
+func (o *Object) Ref() *Object                                { return ObjectRef(o) }
+func (o *Object) RemoveData(key string)                       { ObjectRemoveData(o, key) }
+func (o *Object) RemoveDataById(dataId L.Quark)               { ObjectRemoveDataById(o, dataId) }
+func (o *Object) RemoveNoNotify(key string)                   { ObjectRemoveNoNotify(o, key) }
+func (o *Object) RemoveNoNotifyById(keyId L.Quark)            { ObjectRemoveNoNotifyById(o, keyId) }
+func (o *Object) Set(firstPropertyName string, v ...VArg)     { ObjectSet(o, firstPropertyName, v) }
+func (o *Object) SetData(key string, data T.Gpointer)         { ObjectSetData(o, key, data) }
+func (o *Object) SetDataById(dataId L.Quark, data T.Gpointer) { ObjectSetDataById(o, dataId, data) }
+func (o *Object) SetDataByIdFull(dataId L.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
 	ObjectSetDataByIdFull(o, dataId, data, destroy)
 }
 func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNotify) {

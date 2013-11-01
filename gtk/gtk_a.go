@@ -153,10 +153,10 @@ var (
 )
 
 var (
-	AccelGroupsActivate func(object *T.GObject, accelKey uint,
+	AccelGroupsActivate func(object *O.Object, accelKey uint,
 		accelMods T.GdkModifierType) bool
 
-	AccelGroupsFromObject func(object *T.GObject) *L.SList
+	AccelGroupsFromObject func(object *O.Object) *L.SList
 )
 
 type AccelLabelClass struct {
@@ -176,7 +176,7 @@ type (
 	AccelMap struct{}
 
 	AccelGroup struct {
-		Parent         T.GObject
+		Parent         O.Object
 		LockCount      uint
 		ModifierMask   T.GdkModifierType
 		Acceleratables *L.SList
@@ -187,7 +187,7 @@ type (
 	AccelGroupEntry struct {
 		Key            AccelKey
 		Closure        *O.Closure
-		AccelPathQuark T.GQuark
+		AccelPathQuark L.Quark
 	}
 
 	AccelKey struct { //
@@ -256,7 +256,7 @@ var (
 )
 
 var (
-	AccelGroupActivate        func(a *AccelGroup, accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) bool
+	AccelGroupActivate        func(a *AccelGroup, accelQuark L.Quark, acceleratable *O.Object, accelKey uint, accelMods T.GdkModifierType) bool
 	AccelGroupConnect         func(a *AccelGroup, accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure)
 	AccelGroupConnectByPath   func(a *AccelGroup, accelPath string, closure *O.Closure)
 	AccelGroupDisconnect      func(a *AccelGroup, closure *O.Closure) bool
@@ -275,7 +275,7 @@ var (
 	AccelLabelSetAccelWidget  func(a *AccelLabel, accelWidget *Widget)
 )
 
-func (a *AccelGroup) Activate(accelQuark T.GQuark, acceleratable *T.GObject, accelKey uint, accelMods T.GdkModifierType) bool {
+func (a *AccelGroup) Activate(accelQuark L.Quark, acceleratable *O.Object, accelKey uint, accelMods T.GdkModifierType) bool {
 	return AccelGroupActivate(a, accelQuark, acceleratable, accelKey, accelMods)
 }
 func (a *AccelGroup) Connect(accelKey uint, accelMods T.GdkModifierType, accelFlags AccelFlags, closure *O.Closure) {
@@ -327,12 +327,12 @@ func (a *Accessible) GetWidget() *Widget       { return AccessibleGetWidget(a) }
 func (a *Accessible) ConnectWidgetDestroyed()  { AccessibleConnectWidgetDestroyed(a) }
 
 type Action struct {
-	Object T.GObject
+	Object O.Object
 	_      *struct{}
 }
 
 type ActionGroup struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 

@@ -40,26 +40,18 @@ func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
 func (_ Str) Dispose(a T.Gpointer) { Free(a) }
 
 var (
-	QuarkTryString func(str string) T.GQuark
-
-	QuarkFromStaticString func(str string) T.GQuark
-
-	QuarkFromString func(str string) T.GQuark
-
-	QuarkToString func(quark T.GQuark) string
-
 	InternString func(str string) string
 
 	InternStaticString func(str string) string
 
-	ErrorNew func(domain T.GQuark, code int, format string,
+	ErrorNew func(domain Quark, code int, format string,
 		v ...VArg) *T.GError
 
-	ErrorNewLiteral func(domain T.GQuark,
+	ErrorNewLiteral func(domain Quark,
 		code int,
 		message string) *T.GError
 
-	ErrorNewValist func(domain T.GQuark,
+	ErrorNewValist func(domain Quark,
 		code int,
 		format string,
 		args T.VaList) *T.GError
@@ -69,14 +61,14 @@ var (
 	ErrorCopy func(e *T.GError) *T.GError
 
 	ErrorMatches func(e *T.GError,
-		domain T.GQuark,
+		domain Quark,
 		code int) bool
 
-	SetError func(err **T.GError, domain T.GQuark, code int,
+	SetError func(err **T.GError, domain Quark, code int,
 		format string, v ...VArg)
 
 	SetErrorLiteral func(err **T.GError,
-		domain T.GQuark,
+		domain Quark,
 		code int,
 		message string)
 
@@ -154,37 +146,13 @@ var (
 
 	GetEnviron func() []string //TODO(t):Documented?
 
-	ThreadInit func(vtable *T.GThreadFunctions)
-
-	ThreadInitWithErrorcheckMutexes func(vtable *T.GThreadFunctions)
-
-	ThreadGetInitialized func() bool
-
 	StaticMutexGetMutexImpl func(mutex **T.GMutex) *T.GMutex
 
-	ThreadCreateFull func(f T.GThreadFunc,
-		data T.Gpointer,
-		stackSize T.Gulong,
-		joinable bool,
-		bound bool,
-		priority T.GThreadPriority,
-		e **T.GError) *T.GThread
-
-	ThreadSelf func() *T.GThread
-
-	ThreadExit func(retval T.Gpointer)
-
-	ThreadJoin func(thread *T.GThread) T.Gpointer
-
-	ThreadSetPriority func(thread *T.GThread,
-		priority T.GThreadPriority)
-
-	ThreadForeach func(threadFunc T.GFunc,
-		userData T.Gpointer)
+	Usleep func(microseconds T.Gulong)
 
 	OnceImpl func(
 		once *T.GOnce,
-		f T.GThreadFunc,
+		f ThreadFunc,
 		arg T.Gpointer) T.Gpointer
 
 	OnceInitEnter func(
@@ -201,17 +169,11 @@ var (
 
 	OnErrorStackTrace func(prgName string)
 
-	Base64EncodeStep func(in *T.Guchar,
-		leng T.Gsize,
-		breakLines bool,
-		out string,
-		state *int,
-		save *int) T.Gsize
+	Base64EncodeStep func(in *T.Guchar, leng T.Gsize,
+		breakLines bool, out string, state, save *int) T.Gsize
 
-	Base64EncodeClose func(breakLines bool,
-		out string,
-		state *int,
-		save *int) T.Gsize
+	Base64EncodeClose func(breakLines bool, out string,
+		state, save *int) T.Gsize
 
 	Base64Encode func(data *T.Guchar,
 		leng T.Gsize) string
@@ -222,23 +184,16 @@ var (
 		state *int,
 		save *uint) T.Gsize
 
-	Base64Decode func(text string,
-		outLen *T.Gsize) *T.Guchar
+	Base64Decode func(text string, outLen *T.Gsize) *T.Guchar
 
-	Base64DecodeInplace func(text string,
-		outLen *T.Gsize) *T.Guchar
+	Base64DecodeInplace func(
+		text string, outLen *T.Gsize) *T.Guchar
 
-	BitLock func(
-		address *int,
-		lockBit int)
+	BitLock func(address *int, lockBit int)
 
-	BitTrylock func(
-		address *int,
-		lockBit int) bool
+	BitTrylock func(address *int, lockBit int) bool
 
-	BitUnlock func(
-		address *int,
-		lockBit int)
+	BitUnlock func(address *int, lockBit int)
 
 	GetSystemConfigDirs func() []string
 
@@ -250,11 +205,8 @@ var (
 
 	Atexit func(f T.GVoidFunc)
 
-	GlibCheckVersion func(requiredMajor uint,
-		requiredMinor uint,
-		requiredMicro uint) string
-
-	ThreadErrorQuark func() T.GQuark
+	GlibCheckVersion func(
+		requiredMajor, requiredMinor, requiredMicro uint) string
 
 	Free func(mem T.Gpointer)
 
@@ -269,284 +221,59 @@ var (
 
 	TryMalloc0 func(nBytes T.Gsize) T.Gpointer
 
-	TryRealloc func(mem T.Gpointer,
-		nBytes T.Gsize) T.Gpointer
+	TryRealloc func(mem T.Gpointer, nBytes T.Gsize) T.Gpointer
 
-	MallocN func(nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+	MallocN func(nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
-	Malloc0N func(nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+	Malloc0N func(nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
 	ReallocN func(mem T.Gpointer,
-		nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+		nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
-	TryMallocN func(nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+	TryMallocN func(nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
-	TryMalloc0N func(nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+	TryMalloc0N func(nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
 	TryReallocN func(mem T.Gpointer,
-		nBlocks T.Gsize,
-		nBlockBytes T.Gsize) T.Gpointer
+		nBlocks T.Gsize, nBlockBytes T.Gsize) T.Gpointer
 
 	MemIsSystemMalloc func() bool
 
 	MemProfile func()
 
-	MemChunkNew func(name string, atomSize int,
-		areaSize T.Gsize, typ int) *T.GMemChunk
-
-	MemChunkDestroy func(memChunk *T.GMemChunk)
-
-	MemChunkAlloc func(memChunk *T.GMemChunk) T.Gpointer
-
-	MemChunkAlloc0 func(memChunk *T.GMemChunk) T.Gpointer
-
-	MemChunkFree func(memChunk *T.GMemChunk,
-		mem T.Gpointer)
-
-	MemChunkClean func(memChunk *T.GMemChunk)
-
-	MemChunkReset func(memChunk *T.GMemChunk)
-
-	MemChunkPrint func(memChunk *T.GMemChunk)
-
-	MemChunkInfo func()
-
 	BlowChunks func()
 
-	ListAlloc func() *T.GList
+	ConvertErrorQuark func() Quark
 
-	ListFree func(list *T.GList)
-
-	ListFree1 func(list *T.GList)
-
-	ListFreeFull func(list *T.GList,
-		freeFunc T.GDestroyNotify)
-
-	ListAppend func(list *T.GList,
-		data T.Gpointer) *T.GList
-
-	ListPrepend func(list *T.GList,
-		data T.Gpointer) *T.GList
-
-	ListInsert func(list *T.GList,
-		data T.Gpointer,
-		position int) *T.GList
-
-	ListInsertSorted func(list *T.GList,
-		data T.Gpointer,
-		f T.GCompareFunc) *T.GList
-
-	ListInsertSortedWithData func(list *T.GList,
-		data T.Gpointer,
-		fGCompareDataFunc,
-		userData T.Gpointer) *T.GList
-
-	ListInsertBefore func(list *T.GList,
-		sibling *T.GList,
-		data T.Gpointer) *T.GList
-
-	ListConcat func(list1 *T.GList,
-		list2 *T.GList) *T.GList
-
-	ListRemove func(list *T.GList,
-		data T.Gconstpointer) *T.GList
-
-	ListRemoveAll func(list *T.GList,
-		data T.Gconstpointer) *T.GList
-
-	ListRemoveLink func(list *T.GList,
-		llink *T.GList) *T.GList
-
-	ListDeleteLink func(list *T.GList,
-		link *T.GList) *T.GList
-
-	ListReverse func(list *T.GList) *T.GList
-
-	ListCopy func(list *T.GList) *T.GList
-
-	ListNth func(list *T.GList,
-		n uint) *T.GList
-
-	ListNthPrev func(list *T.GList,
-		n uint) *T.GList
-
-	ListFind func(list *T.GList,
-		data T.Gconstpointer) *T.GList
-
-	ListFindCustom func(list *T.GList,
-		data T.Gconstpointer,
-		f T.GCompareFunc) *T.GList
-
-	ListPosition func(list *T.GList,
-		llink *T.GList) int
-
-	ListIndex func(list *T.GList,
-		data T.Gconstpointer) int
-
-	ListLast func(list *T.GList) *T.GList
-
-	ListFirst func(list *T.GList) *T.GList
-
-	ListLength func(list *T.GList) uint
-
-	ListForeach func(list *T.GList,
-		f T.GFunc,
-		userData T.Gpointer)
-
-	ListSort func(list *T.GList,
-		compareFunc T.GCompareFunc) *T.GList
-
-	ListSortWithData func(list *T.GList,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer) *T.GList
-
-	ListNthData func(list *T.GList,
-		n uint) T.Gpointer
-
-	ListPushAllocator func(allocator T.Gpointer)
-
-	ListPopAllocator func()
-
-	CacheNew func(valueNewFunc T.GCacheNewFunc,
-		valueDestroyFunc T.GCacheDestroyFunc,
-		keyDupFunc T.GCacheDupFunc,
-		keyDestroyFunc T.GCacheDestroyFunc,
-		hashKeyFunc T.GHashFunc,
-		hashValueFunc T.GHashFunc,
-		keyEqualFunc T.GEqualFunc) *T.GCache
-
-	CacheDestroy func(cache *T.GCache)
-
-	CacheInsert func(cache *T.GCache,
-		key T.Gpointer) T.Gpointer
-
-	CacheRemove func(cache *T.GCache,
-		value T.Gconstpointer)
-
-	CacheKeyForeach func(cache *T.GCache,
-		f T.GHFunc, userData T.Gpointer)
-
-	CacheValueForeach func(cache *T.GCache,
-		f T.GHFunc, userData T.Gpointer)
-
-	ChecksumTypeGetLength func(checksumType T.GChecksumType) T.Gssize
-
-	ChecksumNew func(checksumType T.GChecksumType) *T.GChecksum
-
-	ChecksumReset func(checksum *T.GChecksum)
-
-	ChecksumCopy func(checksum *T.GChecksum) *T.GChecksum
-
-	ChecksumFree func(checksum *T.GChecksum)
-
-	ChecksumUpdate func(checksum *T.GChecksum,
-		data *T.Guchar, length T.Gssize)
-
-	ChecksumGetString func(checksum *T.GChecksum) string
-
-	ChecksumGetDigest func(checksum *T.GChecksum,
-		buffer *uint8, digestLen *T.Gsize)
-
-	ComputeChecksumForData func(checksumType T.GChecksumType,
-		data *T.Guchar, length T.Gsize) string
-
-	ComputeChecksumForString func(checksumType T.GChecksumType,
-		str string, length T.Gssize) string
-
-	CompletionNew func(f T.GCompletionFunc) *T.GCompletion
-
-	CompletionAddItems func(cmp *T.GCompletion, items *T.GList)
-
-	CompletionRemoveItems func(cmp *T.GCompletion,
-		items *T.GList)
-
-	CompletionClearItems func(cmp *T.GCompletion)
-
-	CompletionComplete func(cmp *T.GCompletion,
-		prefix string,
-		newPrefix **T.Gchar) *T.GList
-
-	CompletionCompleteUtf8 func(cmp *T.GCompletion,
-		prefix string,
-		newPrefix **T.Gchar) *T.GList
-
-	CompletionSetCompare func(cmp *T.GCompletion,
-		strncmpFunc T.GCompletionStrncmpFunc)
-
-	CompletionFree func(cmp *T.GCompletion)
-
-	ConvertErrorQuark func() T.GQuark
-
-	IconvOpen func(toCodeset string,
-		fromCodeset string) T.GIConv
-
-	Iconv func(converter T.GIConv,
-		inbuf **T.Gchar,
-		inbytesLeft *T.Gsize,
-		outbuf **T.Gchar,
-		outbytesLeft *T.Gsize) T.Gsize
-
-	IconvClose func(converter T.GIConv) int
-
-	Convert func(str string,
-		leng T.Gssize,
-		toCodeset string,
-		fromCodeset string,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
+	Convert func(str string, leng T.Gssize,
+		toCodeset, fromCodeset string,
+		bytesRead, bytesWritten *T.Gsize,
 		e **T.GError) string
 
-	ConvertWithIconv func(str string,
-		leng T.Gssize,
-		converter T.GIConv,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	ConvertWithIconv func(str string, leng T.Gssize,
+		converter IConv,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
-	ConvertWithFallback func(str string,
-		leng T.Gssize,
-		toCodeset string,
-		fromCodeset string,
-		fallback string,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	ConvertWithFallback func(str string, leng T.Gssize,
+		toCodeset, fromCodeset, fallback string,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
-	LocaleToUtf8 func(opsysstr string,
-		leng T.Gssize,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	LocaleToUtf8 func(opsysstr string, leng T.Gssize,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
-	LocaleFromUtf8 func(utf8str string,
-		leng T.Gssize,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	LocaleFromUtf8 func(utf8str string, leng T.Gssize,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
-	FilenameToUtf8 func(opsysstr string,
-		leng T.Gssize,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	FilenameToUtf8 func(opsysstr string, leng T.Gssize,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
-	FilenameFromUtf8 func(utf8str string,
-		leng T.Gssize,
-		bytesRead *T.Gsize,
-		bytesWritten *T.Gsize,
-		e **T.GError) string
+	FilenameFromUtf8 func(utf8str string, leng T.Gssize,
+		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
 
 	FilenameFromUri func(uri string,
-		hostname **T.Gchar,
-		e **T.GError) string
+		hostname **T.Gchar, e **T.GError) string
 
-	FilenameToUri func(filename string,
-		hostname string,
+	FilenameToUri func(filename, hostname string,
 		e **T.GError) string
 
 	FilenameDisplayName func(filename string) string
@@ -562,355 +289,65 @@ var (
 	DatalistClear func(datalist **T.GData)
 
 	DatalistIdGetData func(datalist **T.GData,
-		keyId T.GQuark) T.Gpointer
+		keyId Quark) T.Gpointer
 
 	DatalistIdSetDataFull func(datalist **T.GData,
-		keyId T.GQuark,
+		keyId Quark,
 		data T.Gpointer,
 		destroyFunc T.GDestroyNotify)
 
 	DatalistIdRemoveNoNotify func(datalist **T.GData,
-		keyId T.GQuark) T.Gpointer
+		keyId Quark) T.Gpointer
 
 	DatalistForeach func(datalist **T.GData,
 		f T.GDataForeachFunc,
 		userData T.Gpointer)
 
-	DatalistSetFlags func(datalist **T.GData,
-		flags uint)
+	DatalistSetFlags func(datalist **T.GData, flags uint)
 
-	DatalistUnsetFlags func(datalist **T.GData,
-		flags uint)
+	DatalistUnsetFlags func(datalist **T.GData, flags uint)
 
 	DatalistGetFlags func(datalist **T.GData) uint
 
 	DatasetDestroy func(datasetLocation T.Gconstpointer)
 
 	DatasetIdGetData func(datasetLocation T.Gconstpointer,
-		keyId T.GQuark) T.Gpointer
+		keyId Quark) T.Gpointer
 
 	DatasetIdSetDataFull func(datasetLocation T.Gconstpointer,
-		keyId T.GQuark,
-		data T.Gpointer,
+		keyId Quark, data T.Gpointer,
 		destroyFunc T.GDestroyNotify)
 
 	DatasetIdRemoveNoNotify func(datasetLocation T.Gconstpointer,
-		keyId T.GQuark) T.Gpointer
+		keyId Quark) T.Gpointer
 
 	DatasetForeach func(datasetLocation T.Gconstpointer,
-		f T.GDataForeachFunc,
-		userData T.Gpointer)
+		f T.GDataForeachFunc, userData T.Gpointer)
 
-	DateNew func() *T.GDate
-
-	DateNewDmy func(day T.GDateDay,
-		month T.GDateMonth,
-		year T.GDateYear) *T.GDate
-
-	DateNewJulian func(julianDay T.GUint32) *T.GDate
-
-	DateFree func(date *T.GDate)
-
-	DateValid func(date *T.GDate) bool
-
-	DateValidDay func(day T.GDateDay) bool
-
-	DateValidMonth func(month T.GDateMonth) bool
-
-	DateValidYear func(year T.GDateYear) bool
-
-	DateValidWeekday func(weekday T.GDateWeekday) bool
-
-	DateValidJulian func(julianDate T.GUint32) bool
-
-	DateValidDmy func(day T.GDateDay,
-		month T.GDateMonth,
-		year T.GDateYear) bool
-
-	DateGetWeekday func(date *T.GDate) T.GDateWeekday
-
-	DateGetMonth func(date *T.GDate) T.GDateMonth
-
-	DateGetYear func(date *T.GDate) T.GDateYear
-
-	DateGetDay func(date *T.GDate) T.GDateDay
-
-	DateGetJulian func(date *T.GDate) T.GUint32
-
-	DateGetDayOfYear func(date *T.GDate) uint
-
-	DateGetMondayWeekOfYear func(date *T.GDate) uint
-
-	DateGetSundayWeekOfYear func(date *T.GDate) uint
-
-	DateGetIso8601WeekOfYear func(date *T.GDate) uint
-
-	DateClear func(date *T.GDate, nDates uint)
-
-	DateSetParse func(date *T.GDate, str string)
-
-	DateSetTimeT func(date *T.GDate, timet T.TimeT)
-
-	DateSetTimeVal func(date *T.GDate, timeval *T.GTimeVal)
-
-	DateSetTime func(date *T.GDate, time T.GTime)
-
-	DateSetMonth func(date *T.GDate, month T.GDateMonth)
-
-	DateSetDay func(date *T.GDate, day T.GDateDay)
-
-	DateSetYear func(date *T.GDate, year T.GDateYear)
-
-	DateSetDmy func(date *T.GDate,
-		day T.GDateDay, month T.GDateMonth, y T.GDateYear)
-
-	DateSetJulian func(date *T.GDate, julianDate T.GUint32)
-
-	DateIsFirstOfMonth func(date *T.GDate) bool
-
-	DateIsLastOfMonth func(date *T.GDate) bool
-
-	DateAddDays func(date *T.GDate, nDays uint)
-
-	DateSubtractDays func(date *T.GDate, nDays uint)
-
-	DateAddMonths func(date *T.GDate, nMonths uint)
-
-	DateSubtractMonths func(date *T.GDate, nMonths uint)
-
-	DateAddYears func(date *T.GDate, nYears uint)
-
-	DateSubtractYears func(date *T.GDate, nYears uint)
-
-	DateIsLeapYear func(year T.GDateYear) bool
-
-	DateGetDaysInMonth func(month T.GDateMonth,
-		year T.GDateYear) uint8
-
-	DateGetMondayWeeksInYear func(year T.GDateYear) uint8
-
-	DateGetSundayWeeksInYear func(year T.GDateYear) uint8
-
-	DateDaysBetween func(date1 *T.GDate,
-		date2 *T.GDate) int
-
-	DateCompare func(lhs *T.GDate,
-		rhs *T.GDate) int
-
-	DateToStructTm func(date *T.GDate, tm *T.Tm)
-
-	DateClamp func(date, minDate, maxDate *T.GDate)
-
-	DateOrder func(date1 *T.GDate, date2 *T.GDate)
-
-	DateStrftime func(s string,
-		slen T.Gsize,
-		format string,
-		date *T.GDate) T.Gsize
-
-	TimeZoneNew func(identifier string) *T.GTimeZone
-
-	TimeZoneNewUtc func() *T.GTimeZone
-
-	TimeZoneNewLocal func() *T.GTimeZone
-
-	TimeZoneRef func(tz *T.GTimeZone) *T.GTimeZone
-
-	TimeZoneUnref func(tz *T.GTimeZone)
-
-	TimeZoneFindInterval func(tz *T.GTimeZone,
-		typ T.GTimeType,
-		time int64) int
-
-	TimeZoneAdjustTime func(tz *T.GTimeZone,
-		typ T.GTimeType,
-		time *int64) int
-
-	TimeZoneGetAbbreviation func(tz *T.GTimeZone,
-		interval int) string
-
-	TimeZoneGetOffset func(tz *T.GTimeZone,
-		interval int) T.GInt32
-
-	TimeZoneIsDst func(tz *T.GTimeZone,
-		interval int) bool
-
-	DateTimeUnref func(datetime *T.GDateTime)
-
-	DateTimeRef func(datetime *T.GDateTime) *T.GDateTime
-
-	DateTimeNewNow func(tz *T.GTimeZone) *T.GDateTime
-
-	DateTimeNewNowLocal func() *T.GDateTime
-
-	DateTimeNewNowUtc func() *T.GDateTime
-
-	DateTimeNewFromUnixLocal func(t int64) *T.GDateTime
-
-	DateTimeNewFromUnixUtc func(t int64) *T.GDateTime
-
-	DateTimeNewFromTimevalLocal func(tv *T.GTimeVal) *T.GDateTime
-
-	DateTimeNewFromTimevalUtc func(tv *T.GTimeVal) *T.GDateTime
-
-	DateTimeNew func(tz *T.GTimeZone,
-		year int,
-		month int,
-		day int,
-		hour int,
-		minute int,
-		seconds float64) *T.GDateTime
-
-	DateTimeNewLocal func(year int,
-		month int,
-		day int,
-		hour int,
-		minute int,
-		seconds float64) *T.GDateTime
-
-	DateTimeNewUtc func(year int,
-		month int,
-		day int,
-		hour int,
-		minute int,
-		seconds float64) *T.GDateTime
-
-	DateTimeAdd func(datetime *T.GDateTime,
-		timespan T.GTimeSpan) *T.GDateTime
-
-	DateTimeAddYears func(datetime *T.GDateTime,
-		years int) *T.GDateTime
-
-	DateTimeAddMonths func(datetime *T.GDateTime,
-		months int) *T.GDateTime
-
-	DateTimeAddWeeks func(datetime *T.GDateTime,
-		weeks int) *T.GDateTime
-
-	DateTimeAddDays func(datetime *T.GDateTime,
-		days int) *T.GDateTime
-
-	DateTimeAddHours func(datetime *T.GDateTime,
-		hours int) *T.GDateTime
-
-	DateTimeAddMinutes func(datetime *T.GDateTime,
-		minutes int) *T.GDateTime
-
-	DateTimeAddSeconds func(datetime *T.GDateTime,
-		seconds float64) *T.GDateTime
-
-	DateTimeAddFull func(datetime *T.GDateTime,
-		years int,
-		months int,
-		days int,
-		hours int,
-		minutes int,
-		seconds float64) *T.GDateTime
-
-	DateTimeCompare func(dt1 T.Gconstpointer,
-		dt2 T.Gconstpointer) int
-
-	DateTimeDifference func(end *T.GDateTime,
-		begin *T.GDateTime) T.GTimeSpan
-
-	DateTimeHash func(datetime T.Gconstpointer) uint
-
-	DateTimeEqual func(dt1 T.Gconstpointer,
-		dt2 T.Gconstpointer) bool
-
-	DateTimeGetYmd func(datetime *T.GDateTime,
-		year *int,
-		month *int,
-		day *int)
-
-	DateTimeGetYear func(datetime *T.GDateTime) int
-
-	DateTimeGetMonth func(datetime *T.GDateTime) int
-
-	DateTimeGetDayOfMonth func(datetime *T.GDateTime) int
-
-	DateTimeGetWeekNumberingYear func(datetime *T.GDateTime) int
-
-	DateTimeGetWeekOfYear func(datetime *T.GDateTime) int
-
-	DateTimeGetDayOfWeek func(datetime *T.GDateTime) int
-
-	DateTimeGetDayOfYear func(datetime *T.GDateTime) int
-
-	DateTimeGetHour func(datetime *T.GDateTime) int
-
-	DateTimeGetMinute func(datetime *T.GDateTime) int
-
-	DateTimeGetSecond func(datetime *T.GDateTime) int
-
-	DateTimeGetMicrosecond func(datetime *T.GDateTime) int
-
-	DateTimeGetSeconds func(datetime *T.GDateTime) float64
-
-	DateTimeToUnix func(datetime *T.GDateTime) int64
-
-	DateTimeToTimeval func(datetime *T.GDateTime,
-		tv *T.GTimeVal) bool
-
-	DateTimeGetUtcOffset func(datetime *T.GDateTime) T.GTimeSpan
-
-	DateTimeGetTimezoneAbbreviation func(datetime *T.GDateTime) string
-
-	DateTimeIsDaylightSavings func(datetime *T.GDateTime) bool
-
-	DateTimeToTimezone func(datetime *T.GDateTime,
-		tz *T.GTimeZone) *T.GDateTime
-
-	DateTimeToLocal func(datetime *T.GDateTime) *T.GDateTime
-
-	DateTimeToUtc func(datetime *T.GDateTime) *T.GDateTime
-
-	DateTimeFormat func(datetime *T.GDateTime,
-		format string) string
-
-	DirOpenUtf8 func(path string,
-		flags uint,
-		e **T.GError) *T.GDir
-
-	DirReadNameUtf8 func(dir *T.GDir) string
-
-	DirRewind func(dir *T.GDir)
-
-	DirClose func(dir *T.GDir)
-
-	FileErrorQuark func() T.GQuark
+	FileErrorQuark func() Quark
 
 	FileErrorFromErrno func(errNo int) T.GFileError
 
-	FileTest func(filename string,
-		test T.GFileTest) bool
+	FileTest func(filename string, test T.GFileTest) bool
 
-	FileGetContents func(filename string,
-		contents **T.Gchar,
-		length *T.Gsize,
-		e **T.GError) bool
+	FileGetContents func(filename string, contents **T.Gchar,
+		length *T.Gsize, e **T.GError) bool
 
-	FileSetContents func(filename string,
-		contents string,
-		length T.Gssize,
-		e **T.GError) bool
+	FileSetContents func(filename, contents string,
+		length T.Gssize, e **T.GError) bool
 
-	FileReadLink func(filename string,
-		e **T.GError) string
+	FileReadLink func(filename string, e **T.GError) string
 
 	Mkstemp func(tmpl string) int
 
-	MkstempFull func(tmpl string,
-		flags int,
-		mode int) int
+	MkstempFull func(tmpl string, flags, mode int) int
 
-	FileOpenTmp func(tmpl string,
-		nameUsed **T.Gchar,
+	FileOpenTmp func(tmpl string, nameUsed **T.Gchar,
 		e **T.GError) int
 
 	FormatSizeForDisplay func(size T.Goffset) string
 
-	BuildPath func(separator string, firstElement string,
+	BuildPath func(separator, firstElement string,
 		v ...VArg) string
 
 	BuildPathv func(separator string, args []string) string
@@ -921,180 +358,25 @@ var (
 
 	MkdirWithParents func(pathname string, mode int) int
 
-	HashTableNew func(hashFunc T.GHashFunc,
-		keyEqualFunc T.GEqualFunc) *T.GHashTable
-
-	HashTableNewFull func(hashFunc T.GHashFunc,
-		keyEqualFunc T.GEqualFunc,
-		keyDestroyFunc T.GDestroyNotify,
-		valueDestroyFunc T.GDestroyNotify) *T.GHashTable
-
-	HashTableDestroy func(hashTable *T.GHashTable)
-
-	HashTableInsert func(hashTable *T.GHashTable,
-		key T.Gpointer,
-		value T.Gpointer)
-
-	HashTableReplace func(hashTable *T.GHashTable,
-		key T.Gpointer,
-		value T.Gpointer)
-
-	HashTableRemove func(hashTable *T.GHashTable,
-		key T.Gconstpointer) bool
-
-	HashTableRemoveAll func(hashTable *T.GHashTable)
-
-	HashTableSteal func(hashTable *T.GHashTable,
-		key T.Gconstpointer) bool
-
-	HashTableStealAll func(hashTable *T.GHashTable)
-
-	HashTableLookup func(hashTable *T.GHashTable,
-		key T.Gconstpointer) T.Gpointer
-
-	HashTableLookupExtended func(hashTable *T.GHashTable,
-		lookupKey T.Gconstpointer,
-		origKey, value *T.Gpointer) bool
-
-	HashTableForeach func(hashTable *T.GHashTable,
-		f T.GHFunc, userData T.Gpointer)
-
-	HashTableFind func(hashTable *T.GHashTable,
-		predicate T.GHRFunc, userData T.Gpointer) T.Gpointer
-
-	HashTableForeachRemove func(hashTable *T.GHashTable,
-		f T.GHRFunc, userData T.Gpointer) uint
-
-	HashTableForeachSteal func(hashTable *T.GHashTable,
-		f T.GHRFunc, userData T.Gpointer) uint
-
-	HashTableSize func(hashTable *T.GHashTable) uint
-
-	HashTableGetKeys func(hashTable *T.GHashTable) *T.GList
-
-	HashTableGetValues func(hashTable *T.GHashTable) *T.GList
-
-	HashTableIterInit func(iter *T.GHashTableIter,
-		hashTable *T.GHashTable)
-
-	HashTableIterNext func(iter *T.GHashTableIter,
-		key *T.Gpointer,
-		value *T.Gpointer) bool
-
-	HashTableIterGetHashTable func(iter *T.GHashTableIter) *T.GHashTable
-
-	HashTableIterRemove func(iter *T.GHashTableIter)
-
-	HashTableIterSteal func(iter *T.GHashTableIter)
-
-	HashTableRef func(hashTable *T.GHashTable) *T.GHashTable
-
-	HashTableUnref func(hashTable *T.GHashTable)
-
-	StrEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) bool
+	StrEqual func(v1, v2 T.Gconstpointer) bool
 
 	StrHash func(v T.Gconstpointer) uint
 
-	IntEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) bool
+	IntEqual func(v1, v2 T.Gconstpointer) bool
 
 	IntHash func(v T.Gconstpointer) uint
 
-	Int64Equal func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) bool
+	Int64Equal func(v1, v2 T.Gconstpointer) bool
 
 	Int64Hash func(v T.Gconstpointer) uint
 
-	DoubleEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) bool
+	DoubleEqual func(v1, v2 T.Gconstpointer) bool
 
 	DoubleHash func(v T.Gconstpointer) uint
 
 	DirectHash func(v T.Gconstpointer) uint
 
-	DirectEqual func(v1 T.Gconstpointer,
-		v2 T.Gconstpointer) bool
-
-	HookListInit func(hookList *T.GHookList,
-		hookSize uint)
-
-	HookListClear func(hookList *T.GHookList)
-
-	HookAlloc func(hookList *T.GHookList) *T.GHook
-
-	HookFree func(hookList *T.GHookList,
-		hook *T.GHook)
-
-	HookRef func(hookList *T.GHookList,
-		hook *T.GHook) *T.GHook
-
-	HookUnref func(hookList *T.GHookList,
-		hook *T.GHook)
-
-	HookDestroy func(hookList *T.GHookList,
-		hookId T.Gulong) bool
-
-	HookDestroyLink func(hookList *T.GHookList,
-		hook *T.GHook)
-
-	HookPrepend func(hookList *T.GHookList,
-		hook *T.GHook)
-
-	HookInsertBefore func(hookList *T.GHookList,
-		sibling *T.GHook,
-		hook *T.GHook)
-
-	HookInsertSorted func(hookList *T.GHookList,
-		hook *T.GHook,
-		f T.GHookCompareFunc)
-
-	HookGet func(hookList *T.GHookList,
-		hookId T.Gulong) *T.GHook
-
-	HookFind func(hookList *T.GHookList,
-		needValids bool,
-		f T.GHookFindFunc,
-		data T.Gpointer) *T.GHook
-
-	HookFindData func(hookList *T.GHookList,
-		needValids bool,
-		data T.Gpointer) *T.GHook
-
-	HookFindFunc func(hookList *T.GHookList,
-		needValids bool,
-		f T.Gpointer) *T.GHook
-
-	HookFindFuncData func(hookList *T.GHookList,
-		needValids bool,
-		f T.Gpointer,
-		data T.Gpointer) *T.GHook
-
-	HookFirstValid func(hookList *T.GHookList,
-		mayBeInCall bool) *T.GHook
-
-	HookNextValid func(hookList *T.GHookList,
-		hook *T.GHook,
-		mayBeInCall bool) *T.GHook
-
-	HookCompareIds func(newHook *T.GHook,
-		sibling *T.GHook) int
-
-	HookListInvoke func(hookList *T.GHookList,
-		mayRecurse bool)
-
-	HookListInvokeCheck func(hookList *T.GHookList,
-		mayRecurse bool)
-
-	HookListMarshal func(hookList *T.GHookList,
-		mayRecurse bool,
-		marshaller T.GHookMarshaller,
-		marshalData T.Gpointer)
-
-	HookListMarshalCheck func(hookList *T.GHookList,
-		mayRecurse bool,
-		marshaller T.GHookCheckMarshaller,
-		marshalData T.Gpointer)
+	DirectEqual func(v1, v2 T.Gconstpointer) bool
 
 	HostnameIsNonAscii func(hostname string) bool
 
@@ -1106,107 +388,21 @@ var (
 
 	HostnameToUnicode func(hostname string) string
 
-	Poll func(fds *T.GPollFD,
-		nfds uint,
-		timeout int) int
-
-	MainContextNew func() *T.GMainContext
-
-	MainContextRef func(context *T.GMainContext) *T.GMainContext
-
-	MainContextUnref func(context *T.GMainContext)
-
-	MainContextDefault func() *T.GMainContext
-
-	MainContextIteration func(context *T.GMainContext,
-		mayBlock bool) bool
-
-	MainContextPending func(context *T.GMainContext) bool
-
-	MainContextFindSourceById func(context *T.GMainContext,
-		sourceId uint) *O.Source
-
-	MainContextFindSourceByUserData func(context *T.GMainContext,
-		userData T.Gpointer) *O.Source
-
-	MainContextFindSourceByFuncsUserData func(context *T.GMainContext,
-		funcs *O.SourceFuncs,
-		userData T.Gpointer) *O.Source
-
-	MainContextWakeup func(context *T.GMainContext)
-
-	MainContextAcquire func(context *T.GMainContext) bool
-
-	MainContextRelease func(context *T.GMainContext)
-
-	MainContextIsOwner func(context *T.GMainContext) bool
-
-	MainContextWait func(context *T.GMainContext,
-		cond *T.GCond, mutex *T.GMutex) bool
-
-	MainContextPrepare func(context *T.GMainContext,
-		priority *int) bool
-
-	MainContextQuery func(context *T.GMainContext,
-		maxPriority int, timeout *int,
-		fds *T.GPollFD, nFds int) int
-
-	MainContextCheck func(context *T.GMainContext,
-		maxPriority int, fds *T.GPollFD,
-		nFds int) int
-
-	MainContextDispatch func(context *T.GMainContext)
-
-	MainContextSetPollFunc func(context *T.GMainContext,
-		f T.GPollFunc)
-
-	MainContextGetPollFunc func(context *T.GMainContext) T.GPollFunc
-
-	MainContextAddPoll func(context *T.GMainContext,
-		fd *T.GPollFD,
-		priority int)
-
-	MainContextRemovePoll func(context *T.GMainContext,
-		fd *T.GPollFD)
-
-	MainDepth func() int
-
-	MainCurrentSource func() *O.Source
-
-	MainContextPushThreadDefault func(context *T.GMainContext)
-
-	MainContextPopThreadDefault func(context *T.GMainContext)
-
-	MainContextGetThreadDefault func() *T.GMainContext
-
-	MainLoopNew func(context *T.GMainContext,
-		isRunning bool) *T.GMainLoop
-
-	MainLoopRun func(loop *T.GMainLoop)
-
-	MainLoopQuit func(loop *T.GMainLoop)
-
-	MainLoopRef func(loop *T.GMainLoop) *T.GMainLoop
-
-	MainLoopUnref func(loop *T.GMainLoop)
-
-	MainLoopIsRunning func(loop *T.GMainLoop) bool
-
-	MainLoopGetContext func(loop *T.GMainLoop) *T.GMainContext
+	Poll func(fds *T.GPollFD, nfds uint, timeout int) int
 
 	IdleSourceNew func() *O.Source
 
 	ChildWatchSourceNew func(pid T.GPid) *O.Source
 
-	TimeoutSourceNew func(interval uint) *O.Source
-
-	TimeoutSourceNewSeconds func(interval uint) *O.Source
-
-	GetCurrentTime func(result *T.GTimeVal)
+	GetCurrentTime func(result *TimeVal)
 
 	GetMonotonicTime func() int64
 
 	GetRealTime func() int64
+
+	TimeoutSourceNew func(interval uint) *O.Source
+
+	TimeoutSourceNewSeconds func(interval uint) *O.Source
 
 	TimeoutAddFull func(priority int,
 		interval uint,
@@ -1215,8 +411,7 @@ var (
 		notify T.GDestroyNotify) uint
 
 	TimeoutAdd func(interval uint,
-		function O.SourceFunc,
-		data T.Gpointer) uint
+		function O.SourceFunc, data T.Gpointer) uint
 
 	TimeoutAddSecondsFull func(priority int,
 		interval uint,
@@ -1248,73 +443,7 @@ var (
 
 	IdleRemoveByData func(data T.Gpointer) bool
 
-	MainContextInvokeFull func(context *T.GMainContext,
-		priority int,
-		function O.SourceFunc,
-		data T.Gpointer,
-		notify T.GDestroyNotify)
-
-	MainContextInvoke func(context *T.GMainContext,
-		function O.SourceFunc,
-		data T.Gpointer)
-
 	GetCharset func(charset **T.Char) bool
-
-	UnicharIsalnum func(c T.Gunichar) bool
-
-	UnicharIsalpha func(c T.Gunichar) bool
-
-	UnicharIscntrl func(c T.Gunichar) bool
-
-	UnicharIsdigit func(c T.Gunichar) bool
-
-	UnicharIsgraph func(c T.Gunichar) bool
-
-	UnicharIslower func(c T.Gunichar) bool
-
-	UnicharIsprint func(c T.Gunichar) bool
-
-	UnicharIspunct func(c T.Gunichar) bool
-
-	UnicharIsspace func(c T.Gunichar) bool
-
-	UnicharIsupper func(c T.Gunichar) bool
-
-	UnicharIsxdigit func(c T.Gunichar) bool
-
-	UnicharIstitle func(c T.Gunichar) bool
-
-	UnicharIsdefined func(c T.Gunichar) bool
-
-	UnicharIswide func(c T.Gunichar) bool
-
-	UnicharIswideCjk func(c T.Gunichar) bool
-
-	UnicharIszerowidth func(c T.Gunichar) bool
-
-	UnicharIsmark func(c T.Gunichar) bool
-
-	UnicharToupper func(c T.Gunichar) T.Gunichar
-
-	UnicharTolower func(c T.Gunichar) T.Gunichar
-
-	UnicharTotitle func(c T.Gunichar) T.Gunichar
-
-	UnicharDigitValue func(c T.Gunichar) int
-
-	UnicharXdigitValue func(c T.Gunichar) int
-
-	UnicharType func(c T.Gunichar) T.GUnicodeType
-
-	UnicharBreakType func(c T.Gunichar) T.GUnicodeBreakType
-
-	UnicharCombiningClass func(uc T.Gunichar) int
-
-	UnicodeCanonicalOrdering func(str *T.Gunichar,
-		leng T.Gsize)
-
-	UnicodeCanonicalDecomposition func(ch T.Gunichar,
-		resultLen *T.Gsize) *T.Gunichar
 
 	Utf8GetChar func(p string) T.Gunichar
 
@@ -1335,518 +464,62 @@ var (
 	Utf8FindPrevChar func(str string,
 		p string) string
 
-	Utf8Strlen func(p string,
-		max T.Gssize) T.Glong
+	Utf8Strlen func(p string, max T.Gssize) T.Glong
 
-	Utf8Strncpy func(dest string,
-		src string,
-		n T.Gsize) string
+	Utf8Strncpy func(dest, src string, n T.Gsize) string
 
-	Utf8Strchr func(p string,
-		leng T.Gssize,
-		c T.Gunichar) string
+	Utf8Strchr func(p string, leng T.Gssize, c T.Gunichar) string
 
-	Utf8Strrchr func(p string,
-		leng T.Gssize,
-		c T.Gunichar) string
+	Utf8Strrchr func(p string, leng T.Gssize, c T.Gunichar) string
 
-	Utf8Strreverse func(str string,
-		leng T.Gssize) string
+	Utf8Strreverse func(str string, leng T.Gssize) string
 
-	Utf8ToUtf16 func(str string,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Utf8ToUtf16 func(str string, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) *T.Gunichar2
 
-	Utf8ToUcs4 func(str string,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Utf8ToUcs4 func(str string, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) *T.Gunichar
 
-	Utf8ToUcs4Fast func(str string,
-		leng T.Glong,
+	Utf8ToUcs4Fast func(str string, leng T.Glong,
 		itemsWritten *T.Glong) *T.Gunichar
 
-	Utf16ToUcs4 func(str *T.Gunichar2,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Utf16ToUcs4 func(str *T.Gunichar2, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) *T.Gunichar
 
-	Utf16ToUtf8 func(str *T.Gunichar2,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Utf16ToUtf8 func(str *T.Gunichar2, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) string
 
-	Ucs4ToUtf16 func(str *T.Gunichar,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Ucs4ToUtf16 func(str *T.Gunichar, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) *T.Gunichar2
 
-	Ucs4ToUtf8 func(str *T.Gunichar,
-		leng T.Glong,
-		itemsRead *T.Glong,
-		itemsWritten *T.Glong,
+	Ucs4ToUtf8 func(str *T.Gunichar, leng T.Glong,
+		itemsRead, itemsWritten *T.Glong,
 		e **T.GError) string
 
-	UnicharToUtf8 func(c T.Gunichar,
-		outbuf string) int
-
-	Utf8Validate func(str string,
-		maxLen T.Gssize,
+	Utf8Validate func(str string, maxLen T.Gssize,
 		end **T.Gchar) bool
-
-	UnicharValidate func(ch T.Gunichar) bool
 
 	Utf8Strup func(str string, leng T.Gssize) string
 
-	Utf8Strdown func(str string,
-		leng T.Gssize) string
+	Utf8Strdown func(str string, leng T.Gssize) string
 
-	Utf8Casefold func(str string,
-		leng T.Gssize) string
+	Utf8Casefold func(str string, leng T.Gssize) string
 
 	Utf8Normalize func(str string,
 		leng T.Gssize,
 		mode T.GNormalizeMode) string
 
-	Utf8Collate func(str1 string,
-		str2 string) int
+	Utf8Collate func(str1 string, str2 string) int
 
-	Utf8CollateKey func(str string,
-		leng T.Gssize) string
+	Utf8CollateKey func(str string, leng T.Gssize) string
 
 	Utf8CollateKeyForFilename func(str string,
 		leng T.Gssize) string
-
-	UnicharGetMirrorChar func(ch T.Gunichar,
-		mirroredCh *T.Gunichar) bool
-
-	UnicharGetScript func(ch T.Gunichar) T.GUnicodeScript
-
-	IoChannelInit func(channel *T.GIOChannel)
-
-	IoChannelRef func(channel *T.GIOChannel) *T.GIOChannel
-
-	IoChannelUnref func(channel *T.GIOChannel)
-
-	IoChannelRead func(channel *T.GIOChannel,
-		buf string, count T.Gsize,
-		bytesRead *T.Gsize) T.GIOError
-
-	IoChannelWrite func(channel *T.GIOChannel,
-		buf string, count T.Gsize,
-		bytesWritten *T.Gsize) T.GIOError
-
-	IoChannelSeek func(channel *T.GIOChannel,
-		offset int64, typ T.GSeekType) T.GIOError
-
-	IoChannelClose func(channel *T.GIOChannel)
-
-	IoChannelShutdown func(channel *T.GIOChannel,
-		flush bool, err **T.GError) T.GIOStatus
-
-	IoAddWatchFull func(channel *T.GIOChannel,
-		priority int,
-		condition T.GIOCondition,
-		f T.GIOFunc,
-		userData T.Gpointer,
-		notify T.GDestroyNotify) uint
-
-	IoCreateWatch func(channel *T.GIOChannel,
-		condition T.GIOCondition) *O.Source
-
-	IoAddWatch func(channel *T.GIOChannel,
-		condition T.GIOCondition,
-		f T.GIOFunc,
-		userData T.Gpointer) uint
-
-	IoChannelSetBufferSize func(channel *T.GIOChannel,
-		size T.Gsize)
-
-	IoChannelGetBufferSize func(channel *T.GIOChannel) T.Gsize
-
-	IoChannelGetBufferCondition func(channel *T.GIOChannel) T.GIOCondition
-
-	IoChannelSetFlags func(channel *T.GIOChannel,
-		flags T.GIOFlags,
-		e **T.GError) T.GIOStatus
-
-	IoChannelGetFlags func(channel *T.GIOChannel) T.GIOFlags
-
-	IoChannelSetLineTerm func(channel *T.GIOChannel,
-		lineTerm string,
-		length int)
-
-	IoChannelGetLineTerm func(channel *T.GIOChannel,
-		length *int) string
-
-	IoChannelSetBuffered func(channel *T.GIOChannel,
-		buffered bool)
-
-	IoChannelGetBuffered func(channel *T.GIOChannel) bool
-
-	IoChannelSetEncoding func(channel *T.GIOChannel,
-		encoding string,
-		e **T.GError) T.GIOStatus
-
-	IoChannelGetEncoding func(channel *T.GIOChannel) string
-
-	IoChannelSetCloseOnUnref func(channel *T.GIOChannel,
-		doClose bool)
-
-	IoChannelGetCloseOnUnref func(channel *T.GIOChannel) bool
-
-	IoChannelFlush func(channel *T.GIOChannel,
-		e **T.GError) T.GIOStatus
-
-	IoChannelReadLine func(channel *T.GIOChannel,
-		strReturn **T.Gchar,
-		length,
-		terminatorPos *T.Gsize,
-		e **T.GError) T.GIOStatus
-
-	IoChannelReadLineString func(channel *T.GIOChannel,
-		buffer *String,
-		terminatorPos *T.Gsize,
-		e **T.GError) T.GIOStatus
-
-	IoChannelReadToEnd func(channel *T.GIOChannel,
-		strReturn **T.Gchar,
-		length *T.Gsize,
-		e **T.GError) T.GIOStatus
-
-	IoChannelReadChars func(channel *T.GIOChannel,
-		buf string,
-		count T.Gsize,
-		bytesRead *T.Gsize,
-		e **T.GError) T.GIOStatus
-
-	IoChannelReadUnichar func(channel *T.GIOChannel,
-		thechar *T.Gunichar,
-		e **T.GError) T.GIOStatus
-
-	IoChannelWriteChars func(channel *T.GIOChannel,
-		buf string,
-		count T.Gssize,
-		bytesWritten *T.Gsize,
-		e **T.GError) T.GIOStatus
-
-	IoChannelWriteUnichar func(channel *T.GIOChannel,
-		thechar T.Gunichar,
-		e **T.GError) T.GIOStatus
-
-	IoChannelSeekPosition func(channel *T.GIOChannel,
-		offset int64,
-		typ T.GSeekType,
-		e **T.GError) T.GIOStatus
-
-	IoChannelNewFile func(filename string,
-		mode string,
-		e **T.GError) *T.GIOChannel
-
-	IoChannelErrorQuark func() T.GQuark
-
-	IoChannelErrorFromErrno func(en int) T.GIOChannelError
-
-	IoChannelUnixNew func(fd int) *T.GIOChannel
-
-	IoChannelUnixGetFd func(channel *T.GIOChannel) int
-
-	IoChannelWin32MakePollfd func(channel *T.GIOChannel,
-		condition T.GIOCondition,
-		fd *T.GPollFD)
-
-	IoChannelWin32Poll func(fds *T.GPollFD,
-		nFds int,
-		timeout int) int
-
-	IoChannelWin32NewMessages func(hwnd uint) *T.GIOChannel
-
-	IoChannelWin32NewFd func(fd int) *T.GIOChannel
-
-	IoChannelWin32GetFd func(channel *T.GIOChannel) int
-
-	IoChannelWin32NewSocket func(socket int) *T.GIOChannel
-
-	KeyFileNew func() *T.GKeyFile
-
-	KeyFileFree func(keyFile *T.GKeyFile)
-
-	KeyFileSetListSeparator func(keyFile *T.GKeyFile,
-		separator T.Gchar)
-
-	KeyFileLoadFromFile func(keyFile *T.GKeyFile,
-		file string,
-		flags T.GKeyFileFlags,
-		e **T.GError) bool
-
-	KeyFileLoadFromData func(keyFile *T.GKeyFile,
-		data string,
-		length T.Gsize,
-		flags T.GKeyFileFlags,
-		e **T.GError) bool
-
-	KeyFileLoadFromDirs func(keyFile *T.GKeyFile,
-		file string,
-		searchDirs []string,
-		fullPath **T.Gchar,
-		flags T.GKeyFileFlags,
-		e **T.GError) bool
-
-	KeyFileLoadFromDataDirs func(keyFile *T.GKeyFile,
-		file string,
-		fullPath **T.Gchar,
-		flags T.GKeyFileFlags,
-		e **T.GError) bool
-
-	KeyFileToData func(keyFile *T.GKeyFile,
-		length *T.Gsize,
-		e **T.GError) string
-
-	KeyFileGetStartGroup func(keyFile *T.GKeyFile) string
-
-	KeyFileGetGroups func(keyFile *T.GKeyFile,
-		length *T.Gsize) []string
-
-	KeyFileGetKeys func(keyFile *T.GKeyFile,
-		groupName string,
-		length *T.Gsize,
-		e **T.GError) []string
-
-	KeyFileHasGroup func(keyFile *T.GKeyFile,
-		groupName string) bool
-
-	KeyFileHasKey func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) bool
-
-	KeyFileGetValue func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) string
-
-	KeyFileSetValue func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value string)
-
-	KeyFileGetString func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) string
-
-	KeyFileSetString func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		str string)
-
-	KeyFileGetLocaleString func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		locale string,
-		e **T.GError) string
-
-	KeyFileSetLocaleString func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		locale string,
-		str string)
-
-	KeyFileGetBoolean func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) bool
-
-	KeyFileSetBoolean func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value bool)
-
-	KeyFileGetInteger func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) int
-
-	KeyFileSetInteger func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value int)
-
-	KeyFileGetInt64 func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) int64
-
-	KeyFileSetInt64 func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value int64)
-
-	KeyFileGetUint64 func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) uint64
-
-	KeyFileSetUint64 func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value uint64)
-
-	KeyFileGetDouble func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) float64
-
-	KeyFileSetDouble func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		value float64)
-
-	KeyFileGetStringList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		length *T.Gsize,
-		e **T.GError) []string
-
-	KeyFileSetStringList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		list []string,
-		length T.Gsize)
-
-	KeyFileGetLocaleStringList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		locale string,
-		length *T.Gsize,
-		e **T.GError) []string
-
-	KeyFileSetLocaleStringList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		locale string,
-		list []string,
-		length T.Gsize)
-
-	KeyFileGetBooleanList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		length *T.Gsize,
-		e **T.GError) *bool
-
-	KeyFileSetBooleanList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		list *bool,
-		length T.Gsize)
-
-	KeyFileGetIntegerList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		length *T.Gsize,
-		e **T.GError) *int
-
-	KeyFileSetDoubleList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		list *float64,
-		length T.Gsize)
-
-	KeyFileGetDoubleList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		length *T.Gsize,
-		e **T.GError) *float64
-
-	KeyFileSetIntegerList func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		list *int,
-		length T.Gsize)
-
-	KeyFileSetComment func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		comment string,
-		e **T.GError) bool
-
-	KeyFileGetComment func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) string
-
-	KeyFileRemoveComment func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) bool
-
-	KeyFileRemoveKey func(keyFile *T.GKeyFile,
-		groupName string,
-		key string,
-		e **T.GError) bool
-
-	KeyFileRemoveGroup func(keyFile *T.GKeyFile,
-		groupName string,
-		e **T.GError) bool
-
-	MappedFileNew func(filename string,
-		writable bool,
-		e **T.GError) *T.GMappedFile
-
-	MappedFileGetLength func(file *T.GMappedFile) T.Gsize
-
-	MappedFileGetContents func(file *T.GMappedFile) string
-
-	MappedFileRef func(file *T.GMappedFile) *T.GMappedFile
-
-	MappedFileUnref func(file *T.GMappedFile)
-
-	MappedFileFree func(file *T.GMappedFile)
-
-	MarkupParseContextNew func(parser *T.GMarkupParser,
-		flags T.GMarkupParseFlags,
-		userData T.Gpointer,
-		userDataDnotify T.GDestroyNotify) *T.GMarkupParseContext
-
-	MarkupParseContextFree func(context *T.GMarkupParseContext)
-
-	MarkupParseContextParse func(context *T.GMarkupParseContext,
-		text string,
-		textLen T.Gssize,
-		e **T.GError) bool
-
-	MarkupParseContextPush func(context *T.GMarkupParseContext,
-		parser *T.GMarkupParser,
-		userData T.Gpointer)
-
-	MarkupParseContextPop func(context *T.GMarkupParseContext) T.Gpointer
-
-	MarkupParseContextEndParse func(context *T.GMarkupParseContext,
-		e **T.GError) bool
-
-	MarkupParseContextGetElement func(context *T.GMarkupParseContext) string
-
-	MarkupParseContextGetElementStack func(context *T.GMarkupParseContext) *SList
-
-	MarkupParseContextGetPosition func(context *T.GMarkupParseContext,
-		lineNumber *int,
-		charNumber *int)
-
-	MarkupParseContextGetUserData func(context *T.GMarkupParseContext) T.Gpointer
-
-	MarkupEscapeText func(text string,
-		length T.Gssize) string
-
-	MarkupPrintfEscaped func(format string, v ...VArg) string
-
-	MarkupVprintfEscaped func(format string,
-		args T.VaList) string
 
 	LogSetHandler func(logDomain string,
 		logLevels T.GLogLevelFlags,
@@ -1924,7 +597,7 @@ var (
 	NodePrepend func(parent *T.GNode, node *T.GNode) *T.GNode
 
 	NodeNNodes func(root *T.GNode,
-		flags T.GTraverseFlags) uint
+		flags TraverseFlags) uint
 
 	NodeGetRoot func(node *T.GNode) *T.GNode
 
@@ -1934,13 +607,13 @@ var (
 	NodeDepth func(node *T.GNode) uint
 
 	NodeFind func(root *T.GNode,
-		order T.GTraverseType,
-		flags T.GTraverseFlags,
+		order TraverseType,
+		flags TraverseFlags,
 		data T.Gpointer) *T.GNode
 
 	NodeTraverse func(root *T.GNode,
-		order T.GTraverseType,
-		flags T.GTraverseFlags,
+		order TraverseType,
+		flags TraverseFlags,
 		maxDepth int,
 		f T.GNodeTraverseFunc,
 		data T.Gpointer)
@@ -1948,7 +621,7 @@ var (
 	NodeMaxHeight func(root *T.GNode) uint
 
 	NodeChildrenForeach func(node *T.GNode,
-		flags T.GTraverseFlags,
+		flags TraverseFlags,
 		f T.GNodeForeachFunc,
 		data T.Gpointer)
 
@@ -1962,7 +635,7 @@ var (
 	NodeLastChild func(node *T.GNode) *T.GNode
 
 	NodeFindChild func(node *T.GNode,
-		flags T.GTraverseFlags,
+		flags TraverseFlags,
 		data T.Gpointer) *T.GNode
 
 	NodeChildPosition func(node *T.GNode,
@@ -1979,84 +652,6 @@ var (
 
 	NodePopAllocator func()
 
-	OptionContextNew func(parameterString string) *T.GOptionContext
-
-	OptionContextSetSummary func(context *T.GOptionContext,
-		summary string)
-
-	OptionContextGetSummary func(context *T.GOptionContext) string
-
-	OptionContextSetDescription func(context *T.GOptionContext,
-		description string)
-
-	OptionContextGetDescription func(context *T.GOptionContext) string
-
-	OptionContextFree func(context *T.GOptionContext)
-
-	OptionContextSetHelpEnabled func(context *T.GOptionContext,
-		helpEnabled bool)
-
-	OptionContextGetHelpEnabled func(context *T.GOptionContext) bool
-
-	OptionContextSetIgnoreUnknownOptions func(context *T.GOptionContext,
-		ignoreUnknown bool)
-
-	OptionContextGetIgnoreUnknownOptions func(context *T.GOptionContext) bool
-
-	OptionContextAddMainEntries func(context *T.GOptionContext,
-		entries *T.GOptionEntry,
-		translationDomain string)
-
-	OptionContextParse func(context *T.GOptionContext,
-		argc *int,
-		argv ***T.Gchar,
-		e **T.GError) bool
-
-	OptionContextSetTranslateFunc func(context *T.GOptionContext,
-		f T.GTranslateFunc,
-		data T.Gpointer,
-		destroyNotify T.GDestroyNotify)
-
-	OptionContextSetTranslationDomain func(context *T.GOptionContext,
-		domain string)
-
-	OptionContextAddGroup func(context *T.GOptionContext,
-		group *T.GOptionGroup)
-
-	OptionContextSetMainGroup func(context *T.GOptionContext,
-		group *T.GOptionGroup)
-	OptionContextGetMainGroup func(context *T.GOptionContext) *T.GOptionGroup
-
-	OptionContextGetHelp func(context *T.GOptionContext,
-		mainHelp bool,
-		group *T.GOptionGroup) string
-
-	OptionGroupNew func(name string,
-		description string,
-		helpDescription string,
-		userData T.Gpointer,
-		destroy T.GDestroyNotify) *T.GOptionGroup
-
-	OptionGroupSetParseHooks func(group *T.GOptionGroup,
-		preParseFunc T.GOptionParseFunc,
-		postParseFunc T.GOptionParseFunc)
-
-	OptionGroupSetErrorHook func(group *T.GOptionGroup,
-		errorFunc T.GOptionErrorFunc)
-
-	OptionGroupFree func(group *T.GOptionGroup)
-
-	OptionGroupAddEntries func(group *T.GOptionGroup,
-		entries *T.GOptionEntry)
-
-	OptionGroupSetTranslateFunc func(group *T.GOptionGroup,
-		f T.GTranslateFunc,
-		data T.Gpointer,
-		destroyNotify T.GDestroyNotify)
-
-	OptionGroupSetTranslationDomain func(group *T.GOptionGroup,
-		domain string)
-
 	SpacedPrimesClosest func(num uint) uint
 
 	QsortWithData func(pbase T.Gconstpointer,
@@ -2065,293 +660,7 @@ var (
 		compareFunc T.GCompareDataFunc,
 		userData T.Gpointer)
 
-	QueueNew func() *T.GQueue
-
-	QueueFree func(queue *T.GQueue)
-
-	QueueInit func(queue *T.GQueue)
-
-	QueueClear func(queue *T.GQueue)
-
-	QueueIsEmpty func(queue *T.GQueue) bool
-
-	QueueGetLength func(queue *T.GQueue) uint
-
-	QueueReverse func(queue *T.GQueue)
-
-	QueueCopy func(queue *T.GQueue) *T.GQueue
-
-	QueueForeach func(queue *T.GQueue,
-		f T.GFunc,
-		userData T.Gpointer)
-
-	QueueFind func(queue *T.GQueue,
-		data T.Gconstpointer) *T.GList
-
-	QueueFindCustom func(queue *T.GQueue,
-		data T.Gconstpointer,
-		f T.GCompareFunc) *T.GList
-
-	QueueSort func(queue *T.GQueue,
-		compareFunc T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	QueuePushHead func(queue *T.GQueue,
-		data T.Gpointer)
-
-	QueuePushTail func(queue *T.GQueue,
-		data T.Gpointer)
-
-	QueuePushNth func(queue *T.GQueue,
-		data T.Gpointer,
-		n int)
-
-	QueuePopHead func(queue *T.GQueue) T.Gpointer
-
-	QueuePopTail func(queue *T.GQueue) T.Gpointer
-
-	QueuePopNth func(queue *T.GQueue,
-		n uint) T.Gpointer
-
-	QueuePeekHead func(queue *T.GQueue) T.Gpointer
-
-	QueuePeekTail func(queue *T.GQueue) T.Gpointer
-
-	QueuePeekNth func(queue *T.GQueue,
-		n uint) T.Gpointer
-
-	QueueIndex func(queue *T.GQueue,
-		data T.Gconstpointer) int
-
-	QueueRemove func(queue *T.GQueue,
-		data T.Gconstpointer)
-
-	QueueRemoveAll func(queue *T.GQueue,
-		data T.Gconstpointer)
-
-	QueueInsertBefore func(queue *T.GQueue,
-		sibling *T.GList,
-		data T.Gpointer)
-
-	QueueInsertAfter func(queue *T.GQueue,
-		sibling *T.GList,
-		data T.Gpointer)
-
-	QueueInsertSorted func(queue *T.GQueue,
-		data T.Gpointer,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	QueuePushHeadLink func(queue *T.GQueue,
-		link *T.GList)
-
-	QueuePushTailLink func(queue *T.GQueue,
-		link *T.GList)
-
-	QueuePushNthLink func(queue *T.GQueue,
-		n int,
-		link *T.GList)
-
-	QueuePopHeadLink func(queue *T.GQueue) *T.GList
-
-	QueuePopTailLink func(queue *T.GQueue) *T.GList
-
-	QueuePopNthLink func(queue *T.GQueue,
-		n uint) *T.GList
-
-	QueuePeekHeadLink func(queue *T.GQueue) *T.GList
-
-	QueuePeekTailLink func(queue *T.GQueue) *T.GList
-
-	QueuePeekNthLink func(queue *T.GQueue,
-		n uint) *T.GList
-
-	QueueLinkIndex func(queue *T.GQueue,
-		link *T.GList) int
-
-	QueueUnlink func(queue *T.GQueue, link *T.GList)
-
-	QueueDeleteLink func(queue *T.GQueue, link *T.GList)
-
-	RandNewWithSeed func(seed T.GUint32) *T.GRand
-
-	RandNewWithSeedArray func(seed *T.GUint32,
-		seedLength uint) *T.GRand
-
-	RandNew func() *T.GRand
-
-	RandFree func(rand *T.GRand)
-
-	RandCopy func(rand *T.GRand) *T.GRand
-
-	RandSetSeed func(rand *T.GRand,
-		seed T.GUint32)
-
-	RandSetSeedArray func(rand *T.GRand,
-		seed *T.GUint32,
-		seedLength uint)
-
-	RandInt func(rand *T.GRand) T.GUint32
-
-	RandIntRange func(rand *T.GRand,
-		begin T.GInt32,
-		end T.GInt32) T.GInt32
-
-	RandDouble func(rand *T.GRand) float64
-
-	RandDoubleRange func(rand *T.GRand,
-		begin float64,
-		end float64) float64
-
-	RandomSetSeed func(seed T.GUint32)
-
-	RandomInt func() T.GUint32
-
-	RandomIntRange func(begin T.GInt32,
-		end T.GInt32) T.GInt32
-
-	RandomDouble func() float64
-
-	RandomDoubleRange func(begin float64,
-		end float64) float64
-
-	RelationNew func(fields int) *T.GRelation
-
-	RelationDestroy func(relation *T.GRelation)
-
-	RelationIndex func(relation *T.GRelation,
-		field int,
-		hashFunc T.GHashFunc,
-		keyEqualFunc T.GEqualFunc)
-
-	RelationInsert func(relation *T.GRelation, v ...VArg)
-
-	RelationDelete func(relation *T.GRelation,
-		key T.Gconstpointer,
-		field int) int
-
-	RelationSelect func(relation *T.GRelation,
-		key T.Gconstpointer,
-		field int) *T.GTuples
-
-	RelationCount func(relation *T.GRelation,
-		key T.Gconstpointer,
-		field int) int
-
-	RelationExists func(
-		relation *T.GRelation, v ...VArg) bool
-
-	RelationPrint func(relation *T.GRelation)
-
-	TuplesDestroy func(tuples *T.GTuples)
-
-	TuplesIndex func(tuples *T.GTuples,
-		index int,
-		field int) T.Gpointer
-
-	RegexNew func(pattern string,
-		compileOptions T.GRegexCompileFlags,
-		matchOptions T.GRegexMatchFlags,
-		e **T.GError) *T.GRegex
-
-	RegexRef func(regex *T.GRegex) *T.GRegex
-
-	RegexUnref func(regex *T.GRegex)
-
-	RegexGetPattern func(regex *T.GRegex) string
-
-	RegexGetMaxBackref func(regex *T.GRegex) int
-
-	RegexGetCaptureCount func(regex *T.GRegex) int
-
-	RegexGetStringNumber func(regex *T.GRegex,
-		name string) int
-
-	RegexEscapeString func(str string,
-		length int) string
-
-	RegexGetCompileFlags func(regex *T.GRegex) T.GRegexCompileFlags
-
-	RegexGetMatchFlags func(regex *T.GRegex) T.GRegexMatchFlags
-
-	RegexMatchSimple func(pattern string,
-		str string,
-		compileOptions T.GRegexCompileFlags,
-		matchOptions T.GRegexMatchFlags) bool
-
-	RegexMatch func(regex *T.GRegex,
-		str string,
-		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo) bool
-
-	RegexMatchFull func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo,
-		e **T.GError) bool
-
-	RegexMatchAll func(regex *T.GRegex,
-		str string,
-		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo) bool
-
-	RegexMatchAllFull func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		matchOptions T.GRegexMatchFlags,
-		matchInfo **T.GMatchInfo,
-		e **T.GError) bool
-
-	RegexSplitSimple func(pattern string,
-		str string,
-		compileOptions T.GRegexCompileFlags,
-		matchOptions T.GRegexMatchFlags) []string
-
-	RegexSplit func(regex *T.GRegex,
-		str string,
-		matchOptions T.GRegexMatchFlags) []string
-
-	RegexSplitFull func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		matchOptions T.GRegexMatchFlags,
-		maxTokens int,
-		e **T.GError) []string
-
-	RegexReplace func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		replacement string,
-		matchOptions T.GRegexMatchFlags,
-		e **T.GError) string
-
-	RegexReplaceLiteral func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		replacement string,
-		matchOptions T.GRegexMatchFlags,
-		e **T.GError) string
-
-	RegexReplaceEval func(regex *T.GRegex,
-		str string,
-		stringLen T.Gssize,
-		startPosition int,
-		matchOptions T.GRegexMatchFlags,
-		eval T.GRegexEvalCallback,
-		userData T.Gpointer,
-		e **T.GError) string
-
-	RegexCheckReplacement func(replacement string,
-		hasReferences *bool,
-		e **T.GError) bool
-
-	MatchInfoGetRegex func(matchInfo *T.GMatchInfo) *T.GRegex
+	MatchInfoGetRegex func(matchInfo *T.GMatchInfo) *Regex
 
 	MatchInfoGetString func(matchInfo *T.GMatchInfo) string
 
@@ -2513,546 +822,18 @@ var (
 	//
 	Strcmp0 func(str1, str2 string) int
 
-	TestMinimizedResult func(minimizedQuantity float64,
-		format string, v ...VArg)
-
-	TestMaximizedResult func(maximizedQuantity float64,
-		format string, v ...VArg)
-
-	TestInit func(argc *int, argv ***T.Char, v ...VArg)
-
-	TestRun func() int
-
-	TestAddFunc func(testpath string,
-		testFunc T.GTestFunc)
-
-	TestAddDataFunc func(testpath string,
-		testData T.Gconstpointer,
-		testFunc T.GTestDataFunc)
-
-	TestMessage func(format string, v ...VArg)
-
-	TestBugBase func(uriPattern string)
-
-	TestBug func(bugUriSnippet string)
-
-	TestTimerStart func()
-
-	TestTimerElapsed func() float64
-
-	TestTimerLast func() float64
-
-	TestQueueFree func(gfreePointer T.Gpointer)
-
-	TestQueueDestroy func(destroyFunc T.GDestroyNotify,
-		destroyData T.Gpointer)
-
-	TestTrapFork func(usecTimeout uint64,
-		testTrapFlags T.GTestTrapFlags) bool
-
-	TestTrapHasPassed func() bool
-
-	TestTrapReachedTimeout func() bool
-
-	TestRandInt func() T.GInt32
-
-	TestRandIntRange func(begin T.GInt32,
-		end T.GInt32) T.GInt32
-
-	TestRandDouble func() float64
-
-	TestRandDoubleRange func(rangeStart float64,
-		rangeEnd float64) float64
-
-	TestCreateCase func(testName string,
-		dataSize T.Gsize,
-		testData T.Gconstpointer,
-		dataSetup T.GTestFixtureFunc,
-		dataTest T.GTestFixtureFunc,
-		dataTeardown T.GTestFixtureFunc) *T.GTestCase
-
-	TestCreateSuite func(suiteName string) *T.GTestSuite
-
-	TestGetRoot func() *T.GTestSuite
-
-	TestSuiteAdd func(suite *T.GTestSuite,
-		testCase *T.GTestCase)
-
-	TestSuiteAddSuite func(suite *T.GTestSuite,
-		nestedsuite *T.GTestSuite)
-
-	TestRunSuite func(suite *T.GTestSuite) int
-
-	TestTrapAssertions func(domain string,
-		file string,
-		line int,
-		f string,
-		assertionFlags uint64,
-		pattern string)
-
-	TestAddVtable func(testpath string,
-		dataSize T.Gsize,
-		testData T.Gconstpointer,
-		dataSetup T.GTestFixtureFunc,
-		dataTest T.GTestFixtureFunc,
-		dataTeardown T.GTestFixtureFunc)
-
-	TestLogTypeName func(logType T.GTestLogType) string
-
-	TestLogBufferNew func() *T.GTestLogBuffer
-
-	TestLogBufferFree func(tbuffer *T.GTestLogBuffer)
-
-	TestLogBufferPush func(tbuffer *T.GTestLogBuffer,
-		nBytes uint,
-		bytes *uint8)
-
-	TestLogBufferPop func(tbuffer *T.GTestLogBuffer) *T.GTestLogMsg
-
-	TestLogMsgFree func(tmsg *T.GTestLogMsg)
-
-	TestLogSetFatalHandler func(logFunc T.GTestLogFatalFunc,
-		userData T.Gpointer)
-
-	ThreadPoolNew func(f T.GFunc,
-		userData T.Gpointer,
-		maxThreads int,
-		exclusive bool,
-		e **T.GError) *T.GThreadPool
-
-	ThreadPoolPush func(pool *T.GThreadPool,
-		data T.Gpointer,
-		e **T.GError)
-
-	ThreadPoolSetMaxThreads func(pool *T.GThreadPool,
-		maxThreads int,
-		e **T.GError)
-
-	ThreadPoolGetMaxThreads func(pool *T.GThreadPool) int
-
-	ThreadPoolGetNumThreads func(pool *T.GThreadPool) uint
-
-	ThreadPoolUnprocessed func(pool *T.GThreadPool) uint
-
-	ThreadPoolFree func(pool *T.GThreadPool,
-		immediate bool,
-		wait bool)
-
-	ThreadPoolSetMaxUnusedThreads func(maxThreads int)
-
-	ThreadPoolGetMaxUnusedThreads func() int
-
-	ThreadPoolGetNumUnusedThreads func() uint
-
-	ThreadPoolStopUnusedThreads func()
-
-	ThreadPoolSetSortFunction func(pool *T.GThreadPool,
-		f T.GCompareDataFunc,
-		userData T.Gpointer)
-
-	ThreadPoolSetMaxIdleTime func(interval uint)
-
-	ThreadPoolGetMaxIdleTime func() uint
-
-	TimerNew func() *T.GTimer
-
-	TimerDestroy func(timer *T.GTimer)
-
-	TimerStart func(timer *T.GTimer)
-
-	TimerStop func(timer *T.GTimer)
-
-	TimerReset func(timer *T.GTimer)
-
-	TimerContinue func(timer *T.GTimer)
-
-	TimerElapsed func(timer *T.GTimer,
-		microseconds *T.Gulong) float64
-
-	Usleep func(microseconds T.Gulong)
-
-	TimeValAdd func(time *T.GTimeVal,
-		microseconds T.Glong)
-
-	TimeValFromIso8601 func(isoDate string,
-		time *T.GTimeVal) bool
-
-	TimeValToIso8601 func(time *T.GTimeVal) string
-
-	TreeNew func(keyCompareFunc T.GCompareFunc) *T.GTree
-
-	TreeNewWithData func(keyCompareFunc T.GCompareDataFunc,
-		keyCompareData T.Gpointer) *T.GTree
-
-	TreeNewFull func(keyCompareFunc T.GCompareDataFunc,
-		keyCompareData T.Gpointer,
-		keyDestroyFunc T.GDestroyNotify,
-		valueDestroyFunc T.GDestroyNotify) *T.GTree
-
-	TreeRef func(tree *T.GTree) *T.GTree
-
-	TreeUnref func(tree *T.GTree)
-
-	TreeDestroy func(tree *T.GTree)
-
-	TreeInsert func(tree *T.GTree,
-		key T.Gpointer, value T.Gpointer)
-
-	TreeReplace func(tree *T.GTree,
-		key T.Gpointer, value T.Gpointer)
-
-	TreeRemove func(tree *T.GTree,
-		key T.Gconstpointer) bool
-
-	TreeSteal func(tree *T.GTree,
-		key T.Gconstpointer) bool
-
-	TreeLookup func(tree *T.GTree,
-		key T.Gconstpointer) T.Gpointer
-
-	TreeLookupExtended func(tree *T.GTree,
-		lookupKey T.Gconstpointer,
-		origKey *T.Gpointer,
-		value *T.Gpointer) bool
-
-	TreeForeach func(tree *T.GTree,
-		f T.GTraverseFunc,
-		userData T.Gpointer)
-
-	TreeTraverse func(tree *T.GTree,
-		traverseFunc T.GTraverseFunc,
-		traverseType T.GTraverseType,
-		userData T.Gpointer)
-
-	TreeSearch func(tree *T.GTree,
-		searchFunc T.GCompareFunc,
-		userData T.Gconstpointer) T.Gpointer
-
-	TreeHeight func(tree *T.GTree) int
-
-	TreeNnodes func(tree *T.GTree) int
-
-	UriUnescapeString func(escapedString string,
+	UriUnescapeString func(escapedString,
 		illegalCharacters string) string
 
-	UriUnescapeSegment func(escapedString string,
-		escapedStringEnd string,
+	UriUnescapeSegment func(escapedString,
+		escapedStringEnd,
 		illegalCharacters string) string
 
 	UriParseScheme func(uri string) string
 
-	UriEscapeString func(unescaped string,
+	UriEscapeString func(unescaped,
 		reservedCharsAllowed string,
 		allowUtf8 bool) string
-
-	VariantTypeStringIsValid func(
-		typeString string) bool
-
-	VariantTypeStringScan func(str string,
-		limit string,
-		endptr **T.Gchar) bool
-
-	VariantTypeFree func(typ *T.GVariantType)
-
-	VariantTypeCopy func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeNew func(typeString string) *T.GVariantType
-
-	VariantTypeGetStringLength func(typ *T.GVariantType) T.Gsize
-
-	VariantTypePeekString func(typ *T.GVariantType) string
-
-	VariantTypeDupString func(typ *T.GVariantType) string
-
-	VariantTypeIsDefinite func(typ *T.GVariantType) bool
-
-	VariantTypeIsContainer func(typ *T.GVariantType) bool
-
-	VariantTypeIsBasic func(typ *T.GVariantType) bool
-
-	VariantTypeIsMaybe func(typ *T.GVariantType) bool
-
-	VariantTypeIsArray func(typ *T.GVariantType) bool
-
-	VariantTypeIsTuple func(typ *T.GVariantType) bool
-
-	VariantTypeIsDictEntry func(typ *T.GVariantType) bool
-
-	VariantTypeIsVariant func(typ *T.GVariantType) bool
-
-	VariantTypeHash func(typ T.Gconstpointer) uint
-
-	VariantTypeEqual func(type1 T.Gconstpointer,
-		type2 T.Gconstpointer) bool
-
-	VariantTypeIsSubtypeOf func(typ *T.GVariantType,
-		supertyp *T.GVariantType) bool
-
-	VariantTypeElement func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeFirst func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeNext func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeNItems func(typ *T.GVariantType) T.Gsize
-
-	VariantTypeKey func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeValue func(typ *T.GVariantType) *T.GVariantType
-
-	VariantTypeNewArray func(element *T.GVariantType) *T.GVariantType
-
-	VariantTypeNewMaybe func(element *T.GVariantType) *T.GVariantType
-
-	VariantTypeNewTuple func(items **T.GVariantType,
-		length int) *T.GVariantType
-
-	VariantTypeNewDictEntry func(key *T.GVariantType,
-		value *T.GVariantType) *T.GVariantType
-
-	VariantTypeChecked func(string) *T.GVariantType
-
-	VariantUnref func(value *T.GVariant)
-
-	VariantRef func(value *T.GVariant) *T.GVariant
-
-	VariantRefSink func(value *T.GVariant) *T.GVariant
-
-	VariantIsFloating func(value *T.GVariant) bool
-
-	VariantGetType func(value *T.GVariant) *T.GVariantType
-
-	VariantGetTypeString func(value *T.GVariant) string
-
-	VariantIsOfType func(value *T.GVariant,
-		typ *T.GVariantType) bool
-
-	VariantIsContainer func(value *T.GVariant) bool
-
-	VariantClassify func(value *T.GVariant) T.GVariantClass
-
-	VariantNewBoolean func(value bool) *T.GVariant
-
-	VariantNewByte func(value T.Guchar) *T.GVariant
-
-	VariantNewInt16 func(value int16) *T.GVariant
-
-	VariantNewUint16 func(value uint16) *T.GVariant
-
-	VariantNewInt32 func(value T.GInt32) *T.GVariant
-
-	VariantNewUint32 func(value T.GUint32) *T.GVariant
-
-	VariantNewInt64 func(value int64) *T.GVariant
-
-	VariantNewUint64 func(value uint64) *T.GVariant
-
-	VariantNewHandle func(value T.GInt32) *T.GVariant
-
-	VariantNewDouble func(value float64) *T.GVariant
-
-	VariantNewString func(str string) *T.GVariant
-
-	VariantNewObjectPath func(objectPath string) *T.GVariant
-
-	VariantIsObjectPath func(str string) bool
-
-	VariantNewSignature func(signature string) *T.GVariant
-
-	VariantIsSignature func(str string) bool
-
-	VariantNewVariant func(value *T.GVariant) *T.GVariant
-
-	VariantNewStrv func(strv []string,
-		length T.Gssize) *T.GVariant
-
-	VariantNewBytestring func(str string) *T.GVariant
-
-	VariantNewBytestringArray func(strv []string,
-		length T.Gssize) *T.GVariant
-
-	VariantGetBoolean func(value *T.GVariant) bool
-
-	VariantGetByte func(value *T.GVariant) T.Guchar
-
-	VariantGetInt16 func(value *T.GVariant) int16
-
-	VariantGetUint16 func(value *T.GVariant) uint16
-
-	VariantGetInt32 func(value *T.GVariant) T.GInt32
-
-	VariantGetUint32 func(value *T.GVariant) T.GUint32
-
-	VariantGetInt64 func(value *T.GVariant) int64
-
-	VariantGetUint64 func(value *T.GVariant) uint64
-
-	VariantGetHandle func(value *T.GVariant) T.GInt32
-
-	VariantGetDouble func(value *T.GVariant) float64
-
-	VariantGetVariant func(value *T.GVariant) *T.GVariant
-
-	VariantGetString func(value *T.GVariant,
-		length *T.Gsize) string
-
-	VariantDupString func(value *T.GVariant,
-		length *T.Gsize) string
-
-	VariantGetStrv func(value *T.GVariant,
-		length *T.Gsize) []string
-
-	VariantDupStrv func(value *T.GVariant,
-		length *T.Gsize) []string
-
-	VariantGetBytestring func(value *T.GVariant) string
-
-	VariantDupBytestring func(value *T.GVariant,
-		length *T.Gsize) string
-
-	VariantGetBytestringArray func(value *T.GVariant,
-		length *T.Gsize) []string
-
-	VariantDupBytestringArray func(value *T.GVariant,
-		length *T.Gsize) []string
-
-	VariantNewMaybe func(childType *T.GVariantType,
-		child *T.GVariant) *T.GVariant
-
-	VariantNewArray func(childType *T.GVariantType,
-		children **T.GVariant,
-		nChildren T.Gsize) *T.GVariant
-
-	VariantNewTuple func(children **T.GVariant,
-		nChildren T.Gsize) *T.GVariant
-
-	VariantNewDictEntry func(key *T.GVariant,
-		value *T.GVariant) *T.GVariant
-
-	VariantGetMaybe func(value *T.GVariant) *T.GVariant
-
-	VariantNChildren func(value *T.GVariant) T.Gsize
-
-	VariantGetChild func(value *T.GVariant, index T.Gsize,
-		formatString string, v ...VArg)
-
-	VariantGetChildValue func(value *T.GVariant,
-		index T.Gsize) *T.GVariant
-
-	VariantLookup func(dictionary *T.GVariant, key string,
-		formatString string, v ...VArg) bool
-
-	VariantLookupValue func(dictionary *T.GVariant,
-		key string,
-		expectedType *T.GVariantType) *T.GVariant
-
-	VariantGetFixedArray func(value *T.GVariant,
-		nElements *T.Gsize,
-		elementSize T.Gsize) T.Gconstpointer
-
-	VariantGetSize func(value *T.GVariant) T.Gsize
-
-	VariantGetData func(value *T.GVariant) T.Gconstpointer
-
-	VariantStore func(value *T.GVariant,
-		data T.Gpointer)
-
-	VariantPrint func(value *T.GVariant,
-		typeAnnotate bool) string
-
-	VariantPrintString func(value *T.GVariant,
-		str *String,
-		typeAnnotate bool) *String
-
-	VariantHash func(value T.Gconstpointer) uint
-
-	VariantEqual func(one T.Gconstpointer,
-		two T.Gconstpointer) bool
-
-	VariantGetNormalForm func(value *T.GVariant) *T.GVariant
-
-	VariantIsNormalForm func(value *T.GVariant) bool
-
-	VariantByteswap func(value *T.GVariant) *T.GVariant
-
-	VariantNewFromData func(typ *T.GVariantType,
-		data T.Gconstpointer,
-		size T.Gsize,
-		trusted bool,
-		notify T.GDestroyNotify,
-		userData T.Gpointer) *T.GVariant
-
-	VariantIterNew func(value *T.GVariant) *T.GVariantIter
-
-	VariantIterInit func(iter *T.GVariantIter,
-		value *T.GVariant) T.Gsize
-
-	VariantIterCopy func(iter *T.GVariantIter) *T.GVariantIter
-
-	VariantIterNChildren func(iter *T.GVariantIter) T.Gsize
-
-	VariantIterFree func(iter *T.GVariantIter)
-
-	VariantIterNextValue func(iter *T.GVariantIter) *T.GVariant
-
-	VariantIterNext func(iter *T.GVariantIter,
-		formatString string, v ...VArg) bool
-
-	VariantIterLoop func(iter *T.GVariantIter,
-		formatString string, v ...VArg) bool
-
-	VariantParserGetErrorQuark func() T.GQuark
-
-	VariantBuilderNew func(typ *T.GVariantType) *T.GVariantBuilder
-
-	VariantBuilderUnref func(builder *T.GVariantBuilder)
-
-	VariantBuilderRef func(builder *T.GVariantBuilder) *T.GVariantBuilder
-
-	VariantBuilderInit func(builder *T.GVariantBuilder,
-		typ *T.GVariantType)
-
-	VariantBuilderEnd func(builder *T.GVariantBuilder) *T.GVariant
-
-	VariantBuilderClear func(builder *T.GVariantBuilder)
-
-	VariantBuilderOpen func(
-		builder *T.GVariantBuilder, typ *T.GVariantType)
-
-	VariantBuilderClose func(builder *T.GVariantBuilder)
-
-	VariantBuilderAddValue func(
-		builder *T.GVariantBuilder, value *T.GVariant)
-
-	VariantBuilderAdd func(builder *T.GVariantBuilder,
-		formatString string, v ...VArg)
-
-	VariantBuilderAddParsed func(
-		builder *T.GVariantBuilder, format string, v ...VArg)
-
-	VariantNew func(
-		formatString string, v ...VArg) *T.GVariant
-
-	VariantGet func(
-		value *T.GVariant, formatString string, v ...VArg)
-
-	VariantNewVa func(formatString string,
-		endptr []string, app *T.VaList) *T.GVariant
-
-	VariantGetVa func(value *T.GVariant, formatString string,
-		endptr []string, app *T.VaList)
-
-	VariantParse func(typ *T.GVariantType, text, limit string,
-		endptr []string, err **T.GError) *T.GVariant
-
-	VariantNewParsed func(
-		format string, v ...VArg) *T.GVariant
-
-	VariantNewParsedVa func(format string,
-		app *T.VaList) *T.GVariant
-
-	VariantCompare func(one T.Gconstpointer,
-		two T.Gconstpointer) int
 
 	Win32Ftruncate func(f int,
 		size uint) int
@@ -3083,7 +864,7 @@ var (
 
 	Creat func(filename string, mode int) int
 
-	Rename func(oldfilename string, newfilename string) int
+	Rename func(oldfilename, newfilename string) int
 
 	Mkdir func(filename string, mode int) int
 
@@ -3099,10 +880,10 @@ var (
 
 	Rmdir func(filename string) int
 
-	Fopen func(filename string, mode string) *T.FILE
+	Fopen func(filename, mode string) *T.FILE
 
 	Freopen func(
-		filename string, mode string, stream *T.FILE) *T.FILE
+		filename, mode string, stream *T.FILE) *T.FILE
 
 	Utime func(filename string, utb *T.Utimbuf) int
 
@@ -3127,32 +908,21 @@ var (
 
 	GetUserSpecialDir func(directory T.GUserDirectory) string
 
-	KeyFileErrorQuark func() T.GQuark
-
 	MarkupCollectAttributes func(elementName string,
 		attributeNames []string, attributeValues []string,
 		err **T.GError, firstType T.GMarkupCollectType,
 		firstAttr string, v ...VArg) bool
 
-	MarkupErrorQuark func() T.GQuark
+	MarkupErrorQuark func() Quark
 
 	MemSetVtable func(vtable *T.GMemVTable)
 
-	OptionErrorQuark func() T.GQuark
+	OptionErrorQuark func() Quark
 
 	PrintfStringUpperBound func(
 		format string, args T.VaList) T.Gsize
 
-	RegexErrorQuark func() T.GQuark
-
-	TrashStackPush func(
-		stackP **T.GTrashStack, dataP T.Gpointer)
-
-	TrashStackPop func(stackP **T.GTrashStack) T.Gpointer
-
-	TrashStackPeek func(stackP **T.GTrashStack) T.Gpointer
-
-	TrashStackHeight func(stackP **T.GTrashStack) uint
+	RegexErrorQuark func() Quark
 )
 
 var dll = "libglib-2.0-0.dll"
@@ -3447,9 +1217,9 @@ var apiList = outside.Apis{
 	{"g_dgettext", &Dgettext},
 	{"g_dir_close", &DirClose},
 	// Windows: _utf8 {"g_dir_open", &DirOpen},
-	{"g_dir_open_utf8", &DirOpenUtf8},
+	{"g_dir_open_utf8", &DirOpen},
 	// Windows: _utf8 {"g_dir_read_name", &DirReadName},
-	{"g_dir_read_name_utf8", &DirReadNameUtf8},
+	{"g_dir_read_name_utf8", &DirReadName},
 	{"g_dir_rewind", &DirRewind},
 	{"g_direct_equal", &DirectEqual},
 	{"g_direct_hash", &DirectHash},
@@ -3553,7 +1323,7 @@ var apiList = outside.Apis{
 	{"g_hook_destroy_link", &HookDestroyLink},
 	{"g_hook_find", &HookFind},
 	{"g_hook_find_data", &HookFindData},
-	{"g_hook_find_func", &HookFindFunc},
+	{"g_hook_find_func", &HookFindFunc_},
 	{"g_hook_find_func_data", &HookFindFuncData},
 	{"g_hook_first_valid", &HookFirstValid},
 	{"g_hook_free", &HookFree},
@@ -4631,7 +2401,7 @@ var dataList = outside.Data{
 	{"g_io_watch_funcs", (*O.SourceFuncs)(nil)},
 	{"g_mem_gc_friendly", (*T.Gboolean)(nil)},
 	{"g_test_config_vars", (*T.GTestConfig)(nil)},
-	{"g_thread_functions_for_glib_use", (*T.GThreadFunctions)(nil)},
+	{"g_thread_functions_for_glib_use", (*ThreadFunctions)(nil)},
 	{"g_thread_gettime", (*T.G_thread_gettime)(nil)},
 	{"g_thread_use_default_impl", (*T.Gboolean)(nil)},
 	{"g_threads_got_initialized", (*T.Gboolean)(nil)},

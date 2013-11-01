@@ -297,7 +297,7 @@ func (s *SeparatorToolItem) GetDraw() bool     { return SeparatorToolItemGetDraw
 func (s *SeparatorToolItem) SetDraw(draw bool) { SeparatorToolItemSetDraw(s, draw) }
 
 type Settings struct {
-	Parent          T.GObject
+	Parent          O.Object
 	QueuedSettings  *T.GData
 	Property_values *SettingsPropertyValue
 	RcContext       *RcContext
@@ -375,7 +375,7 @@ const (
 var SignalRunTypeGetType func() O.Type
 
 type SizeGroup struct {
-	Parent  T.GObject
+	Parent  O.Object
 	Widgets *L.SList
 	Mode    uint8
 	Bits    uint
@@ -630,7 +630,7 @@ func (s *Statusbar) RemoveAll(contextId uint)              { StatusbarRemoveAll(
 func (s *Statusbar) SetHasResizeGrip(setting bool)         { StatusbarSetHasResizeGrip(s, setting) }
 
 type StatusIcon struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
@@ -730,7 +730,7 @@ var (
 )
 
 type Style struct {
-	Parent          T.GObject
+	Parent          O.Object
 	Fg              [5]D.Color
 	Bg              [5]D.Color
 	Light           [5]D.Color

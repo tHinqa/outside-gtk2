@@ -14,7 +14,7 @@ type BookmarkFile struct{}
 var (
 	BookmarkFileNew func() *BookmarkFile
 
-	BookmarkFileErrorQuark func() T.GQuark
+	BookmarkFileErrorQuark func() Quark
 
 	BookmarkFileAddApplication    func(bookmark *BookmarkFile, uri, name, exec string)
 	BookmarkFileAddGroup          func(bookmark *BookmarkFile, uri, group string)

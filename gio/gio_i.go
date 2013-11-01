@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -160,7 +161,7 @@ type InputVector struct {
 }
 
 var (
-	IoErrorQuark          func() T.GQuark
+	IoErrorQuark          func() L.Quark
 	IoErrorFromErrno      func(errNo int) IOErrorEnum
 	IoErrorFromWin32Error func(errorCode int) IOErrorEnum
 )

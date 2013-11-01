@@ -7,6 +7,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -490,18 +491,18 @@ var (
 		argc *int,
 		argv ***T.Char,
 		parameterString string,
-		entries *T.GOptionEntry,
+		entries *L.OptionEntry,
 		translationDomain string,
 		error **T.GError) bool
 
 	GetOptionGroup func(
-		openDefaultDisplay bool) *T.GOptionGroup
+		openDefaultDisplay bool) *L.OptionGroup
 
 	InitAbiCheck func(
 		argc *int,
 		argv ***T.Char,
 		numChecks int,
-		sizeof_GtkWindow, sizeof_GtkBox T.SizeT)
+		sizeofGtkWindow, sizeofGtkBox T.SizeT)
 
 	InitCheckAbiCheck func(
 		argc *int,

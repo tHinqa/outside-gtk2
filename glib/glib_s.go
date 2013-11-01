@@ -25,7 +25,7 @@ type (
 		NextValue      T.GTokenValue
 		NextLine       uint
 		NextPosition   uint
-		SymbolTable    *T.GHashTable
+		SymbolTable    *HashTable
 		InputFd        int
 		Text           *T.Gchar
 		TextEnd        *T.Gchar
@@ -87,7 +87,7 @@ var (
 	ScannerScopeAddSymbol     func(s *Scanner, scopeId uint, symbol string, value T.Gpointer)
 	ScannerScopeRemoveSymbol  func(s *Scanner, scopeId uint, symbol string)
 	ScannerScopeLookupSymbol  func(s *Scanner, scopeId uint, symbol string) T.Gpointer
-	ScannerScopeForeachSymbol func(s *Scanner, scopeId uint, f T.GHFunc, userData T.Gpointer)
+	ScannerScopeForeachSymbol func(s *Scanner, scopeId uint, f HFunc, userData T.Gpointer)
 	ScannerLookupSymbol       func(s *Scanner, symbol string) T.Gpointer
 	ScannerUnexpToken         func(s *Scanner, expectedToken T.GTokenType, identifierSpec, symbolSpec, symbolName, message string, isError int)
 	ScannerError              func(s *Scanner, format string, v ...VArg)
@@ -115,7 +115,7 @@ func (s *Scanner) ScopeRemoveSymbol(scopeId uint, symbol string) {
 func (s *Scanner) ScopeLookupSymbol(scopeId uint, symbol string) T.Gpointer {
 	return ScannerScopeLookupSymbol(s, scopeId, symbol)
 }
-func (s *Scanner) ScopeForeachSymbol(scopeId uint, f T.GHFunc, userData T.Gpointer) {
+func (s *Scanner) ScopeForeachSymbol(scopeId uint, f HFunc, userData T.Gpointer) {
 	ScannerScopeForeachSymbol(s, scopeId, f, userData)
 }
 func (s *Scanner) LookupSymbol(symbol string) T.Gpointer { return ScannerLookupSymbol(s, symbol) }
@@ -124,6 +124,14 @@ func (s *Scanner) UnexpToken(expectedToken T.GTokenType, identifierSpec, symbolS
 }
 func (s *Scanner) Error(format string, v ...VArg) { ScannerError(s, format, v) }
 func (s *Scanner) Warn(format string, v ...VArg)  { ScannerWarn(s, format, v) }
+
+type SeekType Enum
+
+const (
+	SEEK_CUR SeekType = iota
+	SEEK_SET
+	SEEK_END
+)
 
 type Sequence struct{}
 
@@ -149,7 +157,7 @@ var (
 )
 
 func (s *Sequence) Free()                                  { SequenceFree(s) }
-func (s *Sequence) GetLength() int                         { return SequenceGetLength(s) }
+func (s *Sequence) Length() int                            { return SequenceGetLength(s) }
 func (s *Sequence) Foreach(f T.GFunc, userData T.Gpointer) { SequenceForeach(s, f, userData) }
 func (s *Sequence) Sort(cmpFunc T.GCompareDataFunc, cmpData T.Gpointer) {
 	SequenceSort(s, cmpFunc, cmpData)
@@ -157,9 +165,9 @@ func (s *Sequence) Sort(cmpFunc T.GCompareDataFunc, cmpData T.Gpointer) {
 func (s *Sequence) SortIter(cmpFunc SequenceIterCompareFunc, cmpData T.Gpointer) {
 	SequenceSortIter(s, cmpFunc, cmpData)
 }
-func (s *Sequence) GetBeginIter() *SequenceIter           { return SequenceGetBeginIter(s) }
-func (s *Sequence) GetEndIter() *SequenceIter             { return SequenceGetEndIter(s) }
-func (s *Sequence) GetIterAtPos(pos int) *SequenceIter    { return SequenceGetIterAtPos(s, pos) }
+func (s *Sequence) BeginIter() *SequenceIter              { return SequenceGetBeginIter(s) }
+func (s *Sequence) EndIter() *SequenceIter                { return SequenceGetEndIter(s) }
+func (s *Sequence) IterAtPos(pos int) *SequenceIter       { return SequenceGetIterAtPos(s, pos) }
 func (s *Sequence) Append(data T.Gpointer) *SequenceIter  { return SequenceAppend(s, data) }
 func (s *Sequence) Prepend(data T.Gpointer) *SequenceIter { return SequencePrepend(s, data) }
 func (s *Sequence) InsertSorted(data T.Gpointer, cmpFunc T.GCompareDataFunc, cmpData T.Gpointer) *SequenceIter {
@@ -247,7 +255,7 @@ func (s *SequenceIter) RangeGetMidpoint(end *SequenceIter) *SequenceIter {
 }
 
 var (
-	ShellErrorQuark func() T.GQuark
+	ShellErrorQuark func() Quark
 	ShellQuote      func(unquotedString string) string
 	ShellUnquote    func(quotedString string, e **T.GError) string
 	ShellParseArgv  func(commandLine string, argcp *int, argvp ***T.Gchar, e **T.GError) bool
@@ -271,10 +279,16 @@ var (
 	SliceFree1               func(blockSize T.Gsize, memBlock T.Gpointer)
 	SliceFreeChainWithOffset func(blockSize T.Gsize, memChain T.Gpointer, nextOffset T.Gsize)
 
-	SliceSetConfig      func(s SliceConfig, value int64)
 	SliceGetConfig      func(s SliceConfig) int64
 	SliceGetConfigState func(s SliceConfig, address int64, nValues *uint) *int64
+	SliceSetConfig      func(s SliceConfig, value int64)
 )
+
+func (s SliceConfig) Get() int64 { return SliceGetConfig(s) }
+func (s SliceConfig) GetState(address int64, nValues *uint) *int64 {
+	return SliceGetConfigState(s, address, nValues)
+}
+func (s SliceConfig) Set(value int64) { SliceSetConfig(s, value) }
 
 type SList T.SList
 
@@ -353,34 +367,62 @@ func (s *SList) SortWithData(compareFunc T.GCompareDataFunc, userData T.Gpointer
 type Source O.Source
 
 var (
-	SourceNew                   func(sourceFuncs *O.SourceFuncs, structSize uint) *O.Source
+	SourceNew                   func(sourceFuncs *O.SourceFuncs, structSize uint) *Source
 	SourceRemove                func(tag uint) bool
-	SourceRemoveByUserData      func(userData T.Gpointer) bool
 	SourceRemoveByFuncsUserData func(funcs *O.SourceFuncs, userData T.Gpointer) bool
-	SourceRef                   func(source *O.Source) *O.Source
-	SourceUnref                 func(source *O.Source)
-	SourceAttach                func(source *O.Source, context *T.GMainContext) uint
-	SourceDestroy               func(source *O.Source)
-	SourceSetPriority           func(source *O.Source, priority int)
-	SourceGetPriority           func(source *O.Source) int
-	SourceSetCanRecurse         func(source *O.Source, canRecurse bool)
-	SourceGetCanRecurse         func(source *O.Source) bool
-	SourceGetId                 func(source *O.Source) uint
-	SourceGetContext            func(source *O.Source) *T.GMainContext
-	SourceSetCallback           func(source *O.Source, f O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify)
-	SourceSetFuncs              func(source *O.Source, funcs *O.SourceFuncs)
-	SourceIsDestroyed           func(source *O.Source) bool
-	SourceSetName               func(source *O.Source, name string)
-	SourceGetName               func(source *O.Source) string
+	SourceRemoveByUserData      func(userData T.Gpointer) bool
 	SourceSetNameById           func(tag uint, name string)
-	SourceSetCallbackIndirect   func(source *O.Source, callbackData T.Gpointer, callbackFuncs *O.SourceCallbackFuncs)
-	SourceAddPoll               func(source *O.Source, fd *T.GPollFD)
-	SourceRemovePoll            func(source *O.Source, fd *T.GPollFD)
-	SourceAddChildSource        func(source *O.Source, childSource *O.Source)
-	SourceRemoveChildSource     func(source *O.Source, childSource *O.Source)
-	SourceGetCurrentTime        func(source *O.Source, timeval *T.GTimeVal)
-	SourceGetTime               func(source *O.Source) int64
+
+	SourceAddChildSource      func(s *Source, childSource *Source)
+	SourceAddPoll             func(s *Source, fd *T.GPollFD)
+	SourceAttach              func(s *Source, context *MainContext) uint
+	SourceDestroy             func(s *Source)
+	SourceGetCanRecurse       func(s *Source) bool
+	SourceGetContext          func(s *Source) *MainContext
+	SourceGetCurrentTime      func(s *Source, timeval *TimeVal)
+	SourceGetId               func(s *Source) uint
+	SourceGetName             func(s *Source) string
+	SourceGetPriority         func(s *Source) int
+	SourceGetTime             func(s *Source) int64
+	SourceIsDestroyed         func(s *Source) bool
+	SourceRef                 func(s *Source) *Source
+	SourceRemoveChildSource   func(s *Source, childSource *Source)
+	SourceRemovePoll          func(s *Source, fd *T.GPollFD)
+	SourceSetCallback         func(s *Source, f O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify)
+	SourceSetCallbackIndirect func(s *Source, callbackData T.Gpointer, callbackFuncs *O.SourceCallbackFuncs)
+	SourceSetCanRecurse       func(s *Source, canRecurse bool)
+	SourceSetFuncs            func(s *Source, funcs *O.SourceFuncs)
+	SourceSetName             func(s *Source, name string)
+	SourceSetPriority         func(s *Source, priority int)
+	SourceUnref               func(s *Source)
 )
+
+func (s *Source) AddChildSource(childSource *Source)    { SourceAddChildSource(s, childSource) }
+func (s *Source) AddPoll(fd *T.GPollFD)                 { SourceAddPoll(s, fd) }
+func (s *Source) Attach(context *MainContext) uint      { return SourceAttach(s, context) }
+func (s *Source) Destroy()                              { SourceDestroy(s) }
+func (s *Source) GetCanRecurse() bool                   { return SourceGetCanRecurse(s) }
+func (s *Source) GetContext() *MainContext              { return SourceGetContext(s) }
+func (s *Source) GetCurrentTime(timeval *TimeVal)       { SourceGetCurrentTime(s, timeval) }
+func (s *Source) GetId() uint                           { return SourceGetId(s) }
+func (s *Source) GetName() string                       { return SourceGetName(s) }
+func (s *Source) GetPriority() int                      { return SourceGetPriority(s) }
+func (s *Source) GetTime() int64                        { return SourceGetTime(s) }
+func (s *Source) IsDestroyed() bool                     { return SourceIsDestroyed(s) }
+func (s *Source) Ref() *Source                          { return SourceRef(s) }
+func (s *Source) RemoveChildSource(childSource *Source) { SourceRemoveChildSource(s, childSource) }
+func (s *Source) RemovePoll(fd *T.GPollFD)              { SourceRemovePoll(s, fd) }
+func (s *Source) SetCallback(f O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify) {
+	SourceSetCallback(s, f, data, notify)
+}
+func (s *Source) SetCallbackIndirect(callbackData T.Gpointer, callbackFuncs *O.SourceCallbackFuncs) {
+	SourceSetCallbackIndirect(s, callbackData, callbackFuncs)
+}
+func (s *Source) SetCanRecurse(canRecurse bool) { SourceSetCanRecurse(s, canRecurse) }
+func (s *Source) SetFuncs(funcs *O.SourceFuncs) { SourceSetFuncs(s, funcs) }
+func (s *Source) SetName(name string)           { SourceSetName(s, name) }
+func (s *Source) SetPriority(priority int)      { SourceSetPriority(s, priority) }
+func (s *Source) Unref()                        { SourceUnref(s) }
 
 type SpawnFlags Enum
 
@@ -402,15 +444,15 @@ var (
 	SpawnClosePid         func(pid T.GPid)
 	SpawnCommandLineAsync func(commandLine string, e **T.GError) bool
 	SpawnCommandLineSync  func(commandLine string, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **T.GError) bool
-	SpawnErrorQuark       func() T.GQuark
+	SpawnErrorQuark       func() Quark
 	SpawnSync             func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **T.GError) bool
 )
 
 type StaticMutex *T.GMutex
 
 var (
-	StaticMutexInit func(s *StaticMutex)
-	StaticMutexFree func(s *StaticMutex)
+	StaticMutexInit func(s *StaticMutex) // Can't methodize **!
+	StaticMutexFree func(s *StaticMutex) // Can't methodize **!
 )
 
 type StaticPrivate struct {
@@ -418,11 +460,18 @@ type StaticPrivate struct {
 }
 
 var (
-	StaticPrivateFree func(privateKey *StaticPrivate)
-	StaticPrivateGet  func(privateKey *StaticPrivate) T.Gpointer
-	StaticPrivateInit func(privateKey *StaticPrivate)
-	StaticPrivateSet  func(privateKey *StaticPrivate, data T.Gpointer, notify T.GDestroyNotify)
+	StaticPrivateFree func(s *StaticPrivate)
+	StaticPrivateGet  func(s *StaticPrivate) T.Gpointer
+	StaticPrivateInit func(s *StaticPrivate)
+	StaticPrivateSet  func(s *StaticPrivate, data T.Gpointer, notify T.GDestroyNotify)
 )
+
+func (s *StaticPrivate) Free()           { StaticPrivateFree(s) }
+func (s *StaticPrivate) Get() T.Gpointer { return StaticPrivateGet(s) }
+func (s *StaticPrivate) Init()           { StaticPrivateInit(s) }
+func (s *StaticPrivate) Set(data T.Gpointer, notify T.GDestroyNotify) {
+	StaticPrivateSet(s, data, notify)
+}
 
 type StaticRecMutex struct {
 	Mutex StaticMutex
@@ -493,48 +542,97 @@ type String struct {
 }
 
 var (
-	StringNew              func(init string) *String
-	StringNewLen           func(init string, leng T.Gssize) *String
-	StringSizedNew         func(dflSize T.Gsize) *String
-	StringFree             func(str *String, freeSegment bool) string
-	StringEqual            func(v *String, v2 *String) bool
-	StringHash             func(str *String) uint
-	StringAssign           func(str *String, rval string) *String
-	StringTruncate         func(str *String, leng T.Gsize) *String
-	StringSetSize          func(str *String, leng T.Gsize) *String
-	StringInsertLen        func(str *String, pos T.Gssize, val string, leng T.Gssize) *String
-	StringAppend           func(str *String, val string) *String
-	StringAppendLen        func(str *String, val string, leng T.Gssize) *String
-	StringAppendC          func(str *String, c T.Gchar) *String
-	StringAppendUnichar    func(str *String, wc T.Gunichar) *String
-	StringPrepend          func(str *String, val string) *String
-	StringPrependC         func(str *String, c T.Gchar) *String
-	StringPrependUnichar   func(str *String, wc T.Gunichar) *String
-	StringPrependLen       func(str *String, val string, leng T.Gssize) *String
-	StringInsert           func(str *String, pos T.Gssize, val string) *String
-	StringInsertC          func(str *String, pos T.Gssize, c T.Gchar) *String
-	StringInsertUnichar    func(str *String, pos T.Gssize, wc T.Gunichar) *String
-	StringOverwrite        func(str *String, pos T.Gsize, val string) *String
-	StringOverwriteLen     func(str *String, pos T.Gsize, val string, leng T.Gssize) *String
-	StringErase            func(str *String, pos T.Gssize, leng T.Gssize) *String
-	StringAsciiDown        func(str *String) *String
-	StringAsciiUp          func(str *String) *String
-	StringVprintf          func(str *String, format string, args T.VaList)
-	StringPrintf           func(str *String, format string, v ...VArg)
-	StringAppendVprintf    func(str *String, format string, args T.VaList)
-	StringAppendPrintf     func(str *String, format string, v ...VArg)
-	StringAppendUriEscaped func(str *String, unescaped string, reservedChars_Allowed string, allowUtf8 bool) *String
-	StringDown             func(str *String) *String
-	StringUp               func(str *String) *String
+	StringNew      func(init string) *String
+	StringNewLen   func(init string, leng T.Gssize) *String
+	StringSizedNew func(dflSize T.Gsize) *String
+
+	StringAppend           func(s *String, val string) *String
+	StringAppendC          func(s *String, c T.Gchar) *String
+	StringAppendLen        func(s *String, val string, leng T.Gssize) *String
+	StringAppendPrintf     func(s *String, format string, v ...VArg)
+	StringAppendUnichar    func(s *String, wc T.Gunichar) *String
+	StringAppendUriEscaped func(s *String, unescaped, reservedCharsAllowed string, allowUtf8 bool) *String
+	StringAppendVprintf    func(s *String, format string, args T.VaList)
+	StringAsciiDown        func(s *String) *String
+	StringAsciiUp          func(s *String) *String
+	StringAssign           func(s *String, rval string) *String
+	StringDown             func(s *String) *String
+	StringEqual            func(s *String, s2 *String) bool
+	StringErase            func(s *String, pos T.Gssize, leng T.Gssize) *String
+	StringFree             func(s *String, freeSegment bool) string
+	StringHash             func(s *String) uint
+	StringInsert           func(s *String, pos T.Gssize, val string) *String
+	StringInsertC          func(s *String, pos T.Gssize, c T.Gchar) *String
+	StringInsertLen        func(s *String, pos T.Gssize, val string, leng T.Gssize) *String
+	StringInsertUnichar    func(s *String, pos T.Gssize, wc T.Gunichar) *String
+	StringOverwrite        func(s *String, pos T.Gsize, val string) *String
+	StringOverwriteLen     func(s *String, pos T.Gsize, val string, leng T.Gssize) *String
+	StringPrepend          func(s *String, val string) *String
+	StringPrependC         func(s *String, c T.Gchar) *String
+	StringPrependLen       func(s *String, val string, leng T.Gssize) *String
+	StringPrependUnichar   func(s *String, wc T.Gunichar) *String
+	StringPrintf           func(s *String, format string, v ...VArg)
+	StringSetSize          func(s *String, leng T.Gsize) *String
+	StringTruncate         func(s *String, leng T.Gsize) *String
+	StringUp               func(s *String) *String
+	StringVprintf          func(s *String, format string, args T.VaList)
 )
+
+func (s *String) Append(val string) *String                   { return StringAppend(s, val) }
+func (s *String) AppendC(c T.Gchar) *String                   { return StringAppendC(s, c) }
+func (s *String) AppendLen(val string, leng T.Gssize) *String { return StringAppendLen(s, val, leng) }
+func (s *String) AppendPrintf(format string, v ...VArg)       { StringAppendPrintf(s, format, v) }
+func (s *String) AppendUnichar(wc T.Gunichar) *String         { return StringAppendUnichar(s, wc) }
+func (s *String) AppendUriEscaped(unescaped, reservedCharsAllowed string, allowUtf8 bool) *String {
+	return StringAppendUriEscaped(s, unescaped, reservedCharsAllowed, allowUtf8)
+}
+func (s *String) AppendVprintf(format string, args T.VaList) { StringAppendVprintf(s, format, args) }
+func (s *String) AsciiDown() *String                         { return StringAsciiDown(s) }
+func (s *String) AsciiUp() *String                           { return StringAsciiUp(s) }
+func (s *String) Assign(rval string) *String                 { return StringAssign(s, rval) }
+func (s *String) Down() *String                              { return StringDown(s) }
+func (s *String) Equal(s2 *String) bool                      { return StringEqual(s, s2) }
+func (s *String) Erase(pos T.Gssize, leng T.Gssize) *String  { return StringErase(s, pos, leng) }
+func (s *String) Free(freeSegment bool) string               { return StringFree(s, freeSegment) }
+func (s *String) Hash() uint                                 { return StringHash(s) }
+func (s *String) Insert(pos T.Gssize, val string) *String    { return StringInsert(s, pos, val) }
+func (s *String) InsertC(pos T.Gssize, c T.Gchar) *String    { return StringInsertC(s, pos, c) }
+func (s *String) InsertLen(pos T.Gssize, val string, leng T.Gssize) *String {
+	return StringInsertLen(s, pos, val, leng)
+}
+func (s *String) InsertUnichar(pos T.Gssize, wc T.Gunichar) *String {
+	return StringInsertUnichar(s, pos, wc)
+}
+func (s *String) Overwrite(pos T.Gsize, val string) *String { return StringOverwrite(s, pos, val) }
+func (s *String) OverwriteLen(pos T.Gsize, val string, leng T.Gssize) *String {
+	return StringOverwriteLen(s, pos, val, leng)
+}
+func (s *String) Prepend(val string) *String                   { return StringPrepend(s, val) }
+func (s *String) PrependC(c T.Gchar) *String                   { return StringPrependC(s, c) }
+func (s *String) PrependLen(val string, leng T.Gssize) *String { return StringPrependLen(s, val, leng) }
+func (s *String) PrependUnichar(wc T.Gunichar) *String         { return StringPrependUnichar(s, wc) }
+func (s *String) Printf(format string, v ...VArg)              { StringPrintf(s, format, v) }
+func (s *String) SetSize(leng T.Gsize) *String                 { return StringSetSize(s, leng) }
+func (s *String) Truncate(leng T.Gsize) *String                { return StringTruncate(s, leng) }
+func (s *String) Up() *String                                  { return StringUp(s) }
+func (s *String) Vprintf(format string, args T.VaList)         { StringVprintf(s, format, args) }
 
 type StringChunk struct{}
 
 var (
-	StringChunkNew         func(size T.Gsize) *StringChunk
-	StringChunkFree        func(chunk *StringChunk)
-	StringChunkClear       func(chunk *StringChunk)
-	StringChunkInsert      func(chunk *StringChunk, str string) string
-	StringChunkInsertLen   func(chunk *StringChunk, str string, leng T.Gssize) string
-	StringChunkInsertConst func(chunk *StringChunk, str string) string
+	StringChunkNew func(size T.Gsize) *StringChunk
+
+	StringChunkFree        func(s *StringChunk)
+	StringChunkClear       func(s *StringChunk)
+	StringChunkInsert      func(s *StringChunk, str string) string
+	StringChunkInsertLen   func(s *StringChunk, str string, leng T.Gssize) string
+	StringChunkInsertConst func(s *StringChunk, str string) string
 )
+
+func (s *StringChunk) Free()                    { StringChunkFree(s) }
+func (s *StringChunk) Clear()                   { StringChunkClear(s) }
+func (s *StringChunk) Insert(str string) string { return StringChunkInsert(s, str) }
+func (s *StringChunk) InsertLen(str string, leng T.Gssize) string {
+	return StringChunkInsertLen(s, str, leng)
+}
+func (s *StringChunk) InsertConst(str string) string { return StringChunkInsertConst(s, str) }

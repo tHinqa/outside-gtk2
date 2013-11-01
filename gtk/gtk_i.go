@@ -14,8 +14,8 @@ import (
 )
 
 type IconFactory struct {
-	Parent T.GObject
-	Icons  *T.GHashTable
+	Parent O.Object
+	Icons  *L.HashTable
 }
 
 var (
@@ -184,7 +184,7 @@ func (i *IconSource) SetState(state StateType)        { IconSourceSetState(i, st
 func (i *IconSource) SetStateWildcarded(setting bool) { IconSourceSetStateWildcarded(i, setting) }
 
 type IconTheme struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
@@ -193,7 +193,7 @@ var (
 	IconThemeNew     func() *IconTheme
 
 	IconThemeErrorGetType func() O.Type
-	IconThemeErrorQuark   func() T.GQuark
+	IconThemeErrorQuark   func() L.Quark
 	IconThemeGetDefault   func() *IconTheme
 
 	IconThemeGetForScreen   func(screen *D.Screen) *IconTheme

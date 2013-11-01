@@ -43,7 +43,7 @@ const (
 
 var (
 	FileChooserGetType    func() O.Type
-	FileChooserErrorQuark func() T.GQuark
+	FileChooserErrorQuark func() L.Quark
 
 	FileChooserActionGetType       func() O.Type
 	FileChooserConfirmationGetType func() O.Type

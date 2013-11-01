@@ -217,7 +217,7 @@ type TextBTree struct{}
 
 type (
 	TextBuffer struct {
-		Parent                   T.GObject
+		Parent                   O.Object
 		TagTable                 *TextTagTable
 		Btree                    *TextBTree
 		ClipboardContentsBuffers *L.SList
@@ -491,7 +491,7 @@ type TextCharPredicate func(
 	ch T.Gunichar, userData T.Gpointer) bool
 
 type TextChildAnchor struct {
-	Parent  T.GObject
+	Parent  O.Object
 	Segment T.Gpointer
 }
 
@@ -771,7 +771,7 @@ type (
 )
 
 type TextMark struct {
-	Parent  T.GObject
+	Parent  O.Object
 	Segment T.Gpointer
 }
 
@@ -799,7 +799,7 @@ const (
 )
 
 type TextTag struct {
-	Parent   T.GObject
+	Parent   O.Object
 	Table    *TextTagTable
 	Name     *T.Char
 	Priority int
@@ -835,12 +835,12 @@ var (
 	TextTagGetType func() O.Type
 	TextTagNew     func(name string) *TextTag
 
-	TextTagEvent       func(t *TextTag, eventObject *T.GObject, event *D.Event, iter *TextIter) bool
+	TextTagEvent       func(t *TextTag, eventObject *O.Object, event *D.Event, iter *TextIter) bool
 	TextTagGetPriority func(t *TextTag) int
 	TextTagSetPriority func(t *TextTag, priority int)
 )
 
-func (t *TextTag) Event(eventObject *T.GObject, event *D.Event, iter *TextIter) bool {
+func (t *TextTag) Event(eventObject *O.Object, event *D.Event, iter *TextIter) bool {
 	return TextTagEvent(t, eventObject, event, iter)
 }
 func (t *TextTag) GetPriority() int         { return TextTagGetPriority(t) }
@@ -848,8 +848,8 @@ func (t *TextTag) SetPriority(priority int) { TextTagSetPriority(t, priority) }
 
 type (
 	TextTagTable struct {
-		Parent    T.GObject
-		Hash      *T.GHashTable
+		Parent    O.Object
+		Hash      *L.HashTable
 		Anonymous *L.SList
 		AnonCount int
 		Buffers   *L.SList
@@ -1586,14 +1586,14 @@ type (
 		// have_grab : 1
 		// use_sticky_delay : 1
 		TimerTag    int
-		LastPopdown T.GTimeVal
+		LastPopdown L.TimeVal
 	}
 
 	TooltipsData struct {
-		Tooltips    *Tooltips
-		Widget      *Widget
-		Tip_text    *T.Gchar
-		Tip_private *T.Gchar
+		Tooltips   *Tooltips
+		Widget     *Widget
+		TipText    *T.Gchar
+		TipPrivate *T.Gchar
 	}
 )
 
@@ -1851,7 +1851,7 @@ func (t *TreeModel) UnrefNode(iter *TreeIter) { TreeModelUnrefNode(t, iter) }
 
 type (
 	TreeModelFilter struct {
-		Parent T.GObject
+		Parent O.Object
 		_      *struct{}
 	}
 
@@ -1917,7 +1917,7 @@ const (
 var TreeModelFlagsGetType func() O.Type
 
 type TreeModelSort struct {
-	Parent             T.GObject
+	Parent             O.Object
 	Root               T.Gpointer
 	Stamp              int
 	ChildFlags         uint
@@ -2021,10 +2021,10 @@ var (
 	TreeRowReferenceGetType func() O.Type
 	TreeRowReferenceNew     func(model *TreeModel, path *TreePath) *TreeRowReference
 
-	TreeRowReferenceDeleted   func(proxy *T.GObject, path *TreePath)
-	TreeRowReferenceInserted  func(proxy *T.GObject, path *TreePath)
-	TreeRowReferenceNewProxy  func(proxy *T.GObject, model *TreeModel, path *TreePath) *TreeRowReference
-	TreeRowReferenceReordered func(proxy *T.GObject, path *TreePath, iter *TreeIter, newOrder *int)
+	TreeRowReferenceDeleted   func(proxy *O.Object, path *TreePath)
+	TreeRowReferenceInserted  func(proxy *O.Object, path *TreePath)
+	TreeRowReferenceNewProxy  func(proxy *O.Object, model *TreeModel, path *TreePath) *TreeRowReference
+	TreeRowReferenceReordered func(proxy *O.Object, path *TreePath, iter *TreeIter, newOrder *int)
 
 	TreeRowReferenceCopy     func(t *TreeRowReference) *TreeRowReference
 	TreeRowReferenceFree     func(t *TreeRowReference)
@@ -2041,7 +2041,7 @@ func (t *TreeRowReference) Valid() bool             { return TreeRowReferenceVal
 
 type (
 	TreeSelection struct {
-		Parent   T.GObject
+		Parent   O.Object
 		TreeView *TreeView
 		Type     SelectionMode
 		UserFunc TreeSelectionFunc
@@ -2146,7 +2146,7 @@ func (t *TreeSortable) SetSortFunc(sortColumnId int, sortFunc TreeIterCompareFun
 func (t *TreeSortable) SortColumnChanged() { TreeSortableSortColumnChanged(t) }
 
 type TreeStore struct {
-	Parent             T.GObject
+	Parent             O.Object
 	Stamp              int
 	Root               T.Gpointer
 	Last               T.Gpointer

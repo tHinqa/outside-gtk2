@@ -36,7 +36,7 @@ var (
 	ValueDupObject              func(v *Value) T.Gpointer
 	ValueDupParam               func(v *Value) *ParamSpec
 	ValueDupString              func(v *Value) string
-	ValueDupVariant             func(v *Value) *T.GVariant
+	ValueDupVariant             func(v *Value) *T.Variant
 	ValueFitsPointer            func(v *Value) bool
 	ValueGetBoolean             func(v *Value) bool
 	ValueGetBoxed               func(v *Value) T.Gpointer
@@ -57,7 +57,7 @@ var (
 	ValueGetUint                func(v *Value) uint
 	ValueGetUint64              func(v *Value) uint64
 	ValueGetUlong               func(v *Value) T.Gulong
-	ValueGetVariant             func(v *Value) *T.GVariant
+	ValueGetVariant             func(v *Value) *T.Variant
 	ValueInit                   func(v *Value, gType Type) *Value
 	ValuePeekPointer            func(v *Value) T.Gpointer
 	ValueReset                  func(v *Value) *Value
@@ -87,12 +87,12 @@ var (
 	ValueSetUint                func(v *Value, vUint uint)
 	ValueSetUint64              func(v *Value, vUint64 uint64)
 	ValueSetUlong               func(v *Value, vUlong T.Gulong)
-	ValueSetVariant             func(v *Value, variant *T.GVariant)
+	ValueSetVariant             func(v *Value, variant *T.Variant)
 	ValueTakeBoxed              func(v *Value, vBoxed T.Gconstpointer)
 	ValueTakeObject             func(v *Value, vObject T.Gpointer)
 	ValueTakeParam              func(v *Value, param *ParamSpec)
 	ValueTakeString             func(v *Value, vString string)
-	ValueTakeVariant            func(v *Value, variant *T.GVariant)
+	ValueTakeVariant            func(v *Value, variant *T.Variant)
 	ValueTransform              func(v *Value, dest *Value) bool //
 	ValueUnset                  func(v *Value)
 )
@@ -102,7 +102,7 @@ func (v *Value) DupBoxed() T.Gpointer                         { return ValueDupB
 func (v *Value) DupObject() T.Gpointer                        { return ValueDupObject(v) }
 func (v *Value) DupParam() *ParamSpec                         { return ValueDupParam(v) }
 func (v *Value) DupString() string                            { return ValueDupString(v) }
-func (v *Value) DupVariant() *T.GVariant                      { return ValueDupVariant(v) }
+func (v *Value) DupVariant() *T.Variant                       { return ValueDupVariant(v) }
 func (v *Value) FitsPointer() bool                            { return ValueFitsPointer(v) }
 func (v *Value) GetBoolean() bool                             { return ValueGetBoolean(v) }
 func (v *Value) GetBoxed() T.Gpointer                         { return ValueGetBoxed(v) }
@@ -123,7 +123,7 @@ func (v *Value) GetUchar() T.Guchar                           { return ValueGetU
 func (v *Value) GetUint() uint                                { return ValueGetUint(v) }
 func (v *Value) GetUint64() uint64                            { return ValueGetUint64(v) }
 func (v *Value) GetUlong() T.Gulong                           { return ValueGetUlong(v) }
-func (v *Value) GetVariant() *T.GVariant                      { return ValueGetVariant(v) }
+func (v *Value) GetVariant() *T.Variant                       { return ValueGetVariant(v) }
 func (v *Value) Init(gType Type) *Value                       { return ValueInit(v, gType) }
 func (v *Value) PeekPointer() T.Gpointer                      { return ValuePeekPointer(v) }
 func (v *Value) Reset() *Value                                { return ValueReset(v) }
@@ -153,12 +153,12 @@ func (v *Value) SetUchar(vUchar T.Guchar)                     { ValueSetUchar(v,
 func (v *Value) SetUint(vUint uint)                           { ValueSetUint(v, vUint) }
 func (v *Value) SetUint64(vUint64 uint64)                     { ValueSetUint64(v, vUint64) }
 func (v *Value) SetUlong(vUlong T.Gulong)                     { ValueSetUlong(v, vUlong) }
-func (v *Value) SetVariant(variant *T.GVariant)               { ValueSetVariant(v, variant) }
+func (v *Value) SetVariant(variant *T.Variant)                { ValueSetVariant(v, variant) }
 func (v *Value) TakeBoxed(vBoxed T.Gconstpointer)             { ValueTakeBoxed(v, vBoxed) }
 func (v *Value) TakeObject(vObject T.Gpointer)                { ValueTakeObject(v, vObject) }
 func (v *Value) TakeParam(param *ParamSpec)                   { ValueTakeParam(v, param) }
 func (v *Value) TakeString(vString string)                    { ValueTakeString(v, vString) }
-func (v *Value) TakeVariant(variant *T.GVariant)              { ValueTakeVariant(v, variant) }
+func (v *Value) TakeVariant(variant *T.Variant)               { ValueTakeVariant(v, variant) }
 func (v *Value) Transform(dest *Value) bool                   { return ValueTransform(v, dest) }
 func (v *Value) Unset()                                       { ValueUnset(v) }
 

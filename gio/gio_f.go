@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -627,7 +628,7 @@ var (
 	FileInfoGetIsBackup            func(f *FileInfo) bool
 	FileInfoGetIsHidden            func(f *FileInfo) bool
 	FileInfoGetIsSymlink           func(f *FileInfo) bool
-	FileInfoGetModificationTime    func(f *FileInfo, result *T.GTimeVal)
+	FileInfoGetModificationTime    func(f *FileInfo, result *L.TimeVal)
 	FileInfoGetName                func(f *FileInfo) string
 	FileInfoGetSize                func(f *FileInfo) T.Goffset
 	FileInfoGetSortOrder           func(f *FileInfo) T.GInt32
@@ -655,7 +656,7 @@ var (
 	FileInfoSetIcon                func(f *FileInfo, icon *Icon)
 	FileInfoSetIsHidden            func(f *FileInfo, isHidden bool)
 	FileInfoSetIsSymlink           func(f *FileInfo, isSymlink bool)
-	FileInfoSetModificationTime    func(f *FileInfo, mtime *T.GTimeVal)
+	FileInfoSetModificationTime    func(f *FileInfo, mtime *L.TimeVal)
 	FileInfoSetName                func(f *FileInfo, name string)
 	FileInfoSetSize                func(f *FileInfo, size T.Goffset)
 	FileInfoSetSortOrder           func(f *FileInfo, sortOrder T.GInt32)
@@ -712,7 +713,7 @@ func (f *FileInfo) GetIcon() *Icon                         { return FileInfoGetI
 func (f *FileInfo) GetIsBackup() bool                      { return FileInfoGetIsBackup(f) }
 func (f *FileInfo) GetIsHidden() bool                      { return FileInfoGetIsHidden(f) }
 func (f *FileInfo) GetIsSymlink() bool                     { return FileInfoGetIsSymlink(f) }
-func (f *FileInfo) GetModificationTime(result *T.GTimeVal) { FileInfoGetModificationTime(f, result) }
+func (f *FileInfo) GetModificationTime(result *L.TimeVal) { FileInfoGetModificationTime(f, result) }
 func (f *FileInfo) GetName() string                        { return FileInfoGetName(f) }
 func (f *FileInfo) GetSize() T.Goffset                     { return FileInfoGetSize(f) }
 func (f *FileInfo) GetSortOrder() T.GInt32                 { return FileInfoGetSortOrder(f) }
@@ -768,7 +769,7 @@ func (f *FileInfo) SetFileType(typ FileType)              { FileInfoSetFileType(
 func (f *FileInfo) SetIcon(icon *Icon)                    { FileInfoSetIcon(f, icon) }
 func (f *FileInfo) SetIsHidden(isHidden bool)             { FileInfoSetIsHidden(f, isHidden) }
 func (f *FileInfo) SetIsSymlink(isSymlink bool)           { FileInfoSetIsSymlink(f, isSymlink) }
-func (f *FileInfo) SetModificationTime(mtime *T.GTimeVal) { FileInfoSetModificationTime(f, mtime) }
+func (f *FileInfo) SetModificationTime(mtime *L.TimeVal) { FileInfoSetModificationTime(f, mtime) }
 func (f *FileInfo) SetName(name string)                   { FileInfoSetName(f, name) }
 func (f *FileInfo) SetSize(size T.Goffset)                { FileInfoSetSize(f, size) }
 func (f *FileInfo) SetSortOrder(sortOrder T.GInt32)       { FileInfoSetSortOrder(f, sortOrder) }

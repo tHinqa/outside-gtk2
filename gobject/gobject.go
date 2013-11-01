@@ -77,17 +77,17 @@ var (
 	SignalEmitv func(
 		instanceAndParams *Value,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		returnValue *Value)
 
 	SignalEmitValist func(
 		instance T.Gpointer,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		varArgs T.VaList)
 
 	SignalEmit func(instance T.Gpointer, signalId uint,
-		detail T.GQuark, v ...VArg)
+		detail T.Quark, v ...VArg)
 
 	SignalEmitByName func(instance T.Gpointer,
 		detailedSignal string, v ...VArg)
@@ -104,21 +104,21 @@ var (
 		detailedSignal string,
 		itype Type,
 		signalIdP *uint,
-		detailP *T.GQuark,
+		detailP *T.Quark,
 		forceDetailQuark bool) bool
 
 	SignalGetInvocationHint func(
 		instance T.Gpointer) *T.GSignalInvocationHint
 
 	SignalStopEmission func(
-		instance T.Gpointer, signalId uint, detail T.GQuark)
+		instance T.Gpointer, signalId uint, detail T.Quark)
 
 	SignalStopEmissionByName func(
 		instance T.Gpointer, detailedSignal string)
 
 	SignalAddEmissionHook func(
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		hookFunc T.GSignalEmissionHook,
 		hookData T.Gpointer,
 		dataDestroy T.GDestroyNotify) T.Gulong
@@ -128,13 +128,13 @@ var (
 	SignalHasHandlerPending func(
 		instance T.Gpointer,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		mayBeBlocked bool) bool
 
 	SignalConnectClosureById func(
 		instance T.Gpointer,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		closure *Closure,
 		after bool) T.Gulong
 
@@ -166,7 +166,7 @@ var (
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) T.Gulong
@@ -175,7 +175,7 @@ var (
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint
@@ -184,7 +184,7 @@ var (
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint
@@ -193,7 +193,7 @@ var (
 		instance T.Gpointer,
 		mask T.GSignalMatchType,
 		signalId uint,
-		detail T.GQuark,
+		detail T.Quark,
 		closure *Closure,
 		fnc T.Gpointer,
 		data T.Gpointer) uint

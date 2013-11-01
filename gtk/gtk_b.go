@@ -172,34 +172,34 @@ type Buildable struct{}
 var BuildableGetType func() O.Type
 
 var (
-	BuildableAddChild             func(b *Buildable, builder *Builder, child *T.GObject, typ string)
-	BuildableConstructChild       func(b *Buildable, builder *Builder, name string) *T.GObject
-	BuildableCustomFinished       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data T.Gpointer)
-	BuildableCustomTagEnd         func(b *Buildable, builder *Builder, child *T.GObject, tagname string, data *T.Gpointer)
-	BuildableCustomTagStart       func(b *Buildable, builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) bool
-	BuildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *T.GObject
+	BuildableAddChild             func(b *Buildable, builder *Builder, child *O.Object, typ string)
+	BuildableConstructChild       func(b *Buildable, builder *Builder, name string) *O.Object
+	BuildableCustomFinished       func(b *Buildable, builder *Builder, child *O.Object, tagname string, data T.Gpointer)
+	BuildableCustomTagEnd         func(b *Buildable, builder *Builder, child *O.Object, tagname string, data *T.Gpointer)
+	BuildableCustomTagStart       func(b *Buildable, builder *Builder, child *O.Object, tagname string, parser *L.MarkupParser, data *T.Gpointer) bool
+	BuildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *O.Object
 	BuildableGetName              func(b *Buildable) string
 	BuildableParserFinished       func(b *Buildable, builder *Builder)
 	BuildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *T.GValue)
 	BuildableSetName              func(b *Buildable, name string)
 )
 
-func (b *Buildable) AddChild(builder *Builder, child *T.GObject, typ string) {
+func (b *Buildable) AddChild(builder *Builder, child *O.Object, typ string) {
 	BuildableAddChild(b, builder, child, typ)
 }
-func (b *Buildable) ConstructChild(builder *Builder, name string) *T.GObject {
+func (b *Buildable) ConstructChild(builder *Builder, name string) *O.Object {
 	return BuildableConstructChild(b, builder, name)
 }
-func (b *Buildable) CustomFinished(builder *Builder, child *T.GObject, tagname string, data T.Gpointer) {
+func (b *Buildable) CustomFinished(builder *Builder, child *O.Object, tagname string, data T.Gpointer) {
 	BuildableCustomFinished(b, builder, child, tagname, data)
 }
-func (b *Buildable) CustomTagEnd(builder *Builder, child *T.GObject, tagname string, data *T.Gpointer) {
+func (b *Buildable) CustomTagEnd(builder *Builder, child *O.Object, tagname string, data *T.Gpointer) {
 	BuildableCustomTagEnd(b, builder, child, tagname, data)
 }
-func (b *Buildable) CustomTagStart(builder *Builder, child *T.GObject, tagname string, parser *T.GMarkupParser, data *T.Gpointer) bool {
+func (b *Buildable) CustomTagStart(builder *Builder, child *O.Object, tagname string, parser *L.MarkupParser, data *T.Gpointer) bool {
 	return BuildableCustomTagStart(b, builder, child, tagname, parser, data)
 }
-func (b *Buildable) GetInternalChild(builder *Builder, childname string) *T.GObject {
+func (b *Buildable) GetInternalChild(builder *Builder, childname string) *O.Object {
 	return BuildableGetInternalChild(b, builder, childname)
 }
 func (b *Buildable) GetName() string                 { return BuildableGetName(b) }
@@ -211,12 +211,12 @@ func (b *Buildable) SetName(name string) { BuildableSetName(b, name) }
 
 type (
 	Builder struct {
-		Parent T.GObject
+		Parent O.Object
 		_      *struct{}
 	}
 
-	BuilderConnectFunc func(builder *Builder, object *T.GObject,
-		signalName, handlerName string, connectObject *T.GObject,
+	BuilderConnectFunc func(builder *Builder, object *O.Object,
+		signalName, handlerName string, connectObject *O.Object,
 		flags T.GConnectFlags, userData T.Gpointer)
 )
 
@@ -225,7 +225,7 @@ var (
 	BuilderNew     func() *Builder
 
 	BuilderErrorGetType func() O.Type
-	BuilderErrorQuark   func() T.GQuark
+	BuilderErrorQuark   func() L.Quark
 )
 
 var (
@@ -235,7 +235,7 @@ var (
 	BuilderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds []string, err **T.GError) uint
 	BuilderConnectSignals       func(b *Builder, userData T.Gpointer)
 	BuilderConnectSignalsFull   func(b *Builder, f BuilderConnectFunc, userData T.Gpointer)
-	BuilderGetObject            func(b *Builder, name string) *T.GObject
+	BuilderGetObject            func(b *Builder, name string) *O.Object
 	BuilderGetObjects           func(b *Builder) *L.SList
 	BuilderGetTranslationDomain func(b *Builder) string
 	BuilderGetTypeFromName      func(b *Builder, typeName string) O.Type
@@ -260,7 +260,7 @@ func (b *Builder) ConnectSignals(userData T.Gpointer) { BuilderConnectSignals(b,
 func (b *Builder) ConnectSignalsFull(f BuilderConnectFunc, userData T.Gpointer) {
 	BuilderConnectSignalsFull(b, f, userData)
 }
-func (b *Builder) GetObject(name string) *T.GObject       { return BuilderGetObject(b, name) }
+func (b *Builder) GetObject(name string) *O.Object        { return BuilderGetObject(b, name) }
 func (b *Builder) GetObjects() *L.SList                   { return BuilderGetObjects(b) }
 func (b *Builder) GetTranslationDomain() string           { return BuilderGetTranslationDomain(b) }
 func (b *Builder) GetTypeFromName(typeName string) O.Type { return BuilderGetTypeFromName(b, typeName) }

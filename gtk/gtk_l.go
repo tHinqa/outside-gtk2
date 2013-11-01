@@ -98,7 +98,7 @@ func (l *Label) GetJustify() Justification     { return LabelGetJustify(l) }
 func (l *Label) GetLabel() string              { return LabelGetLabel(l) }
 func (l *Label) GetLayout() *P.Layout          { return LabelGetLayout(l) }
 func (l *Label) GetLayoutOffsets(x, y *int)    { LabelGetLayoutOffsets(l, x, y) }
-func (l *Label) GetLineWrap() bool       { return LabelGetLineWrap(l) }
+func (l *Label) GetLineWrap() bool             { return LabelGetLineWrap(l) }
 func (l *Label) GetLineWrapMode() P.WrapMode   { return LabelGetLineWrapMode(l) }
 func (l *Label) GetMaxWidthChars() int         { return LabelGetMaxWidthChars(l) }
 func (l *Label) GetMnemonicKeyval() uint       { return LabelGetMnemonicKeyval(l) }
@@ -191,7 +191,7 @@ func (l *Layout) SetVadjustment(adjustment *Adjustment) { LayoutSetVadjustment(l
 func (l *Layout) Thaw()                                 { LayoutThaw(l) }
 
 type ListStore struct {
-	Parent             T.GObject
+	Parent             O.Object
 	Stamp              int
 	Seq                T.Gpointer
 	_                  T.Gpointer

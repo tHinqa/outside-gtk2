@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -16,28 +17,20 @@ var (
 
 	SeekableCanSeek     func(seekable *Seekable) bool
 	SeekableCanTruncate func(seekable *Seekable) bool
-	SeekableSeek        func(seekable *Seekable, offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) bool
+	SeekableSeek        func(seekable *Seekable, offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **T.GError) bool
 	SeekableTell        func(seekable *Seekable) T.Goffset
 	SeekableTruncate    func(seekable *Seekable, offset T.Goffset, cancellable *Cancellable, err **T.GError) bool
 )
 
 func (s *Seekable) CanSeek() bool     { return SeekableCanSeek(s) }
 func (s *Seekable) CanTruncate() bool { return SeekableCanTruncate(s) }
-func (s *Seekable) Seek(offset T.Goffset, typ SeekType, cancellable *Cancellable, err **T.GError) bool {
+func (s *Seekable) Seek(offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **T.GError) bool {
 	return SeekableSeek(s, offset, typ, cancellable, err)
 }
 func (s *Seekable) Tell() T.Goffset { return SeekableTell(s) }
 func (s *Seekable) Truncate(offset T.Goffset, cancellable *Cancellable, err **T.GError) bool {
 	return SeekableTruncate(s, offset, cancellable, err)
 }
-
-type SeekType Enum
-
-const (
-	SEEK_CUR SeekType = iota
-	SEEK_SET
-	SEEK_END
-)
 
 type Settings struct {
 	Parent O.Object
@@ -70,14 +63,14 @@ var (
 	SettingsGetHasUnapplied func(s *Settings) bool
 	SettingsGetInt          func(s *Settings, key string) int
 	SettingsGetMapped       func(s *Settings, key string, mapping SettingsGetMapping, userData T.Gpointer) T.Gpointer
-	SettingsGetRange        func(s *Settings, key string) *T.GVariant
+	SettingsGetRange        func(s *Settings, key string) *L.Variant
 	SettingsGetString       func(s *Settings, key string) string
 	SettingsGetStrv         func(s *Settings, key string) []string
-	SettingsGetValue        func(s *Settings, key string) *T.GVariant
+	SettingsGetValue        func(s *Settings, key string) *L.Variant
 	SettingsIsWritable      func(s *Settings, name string) bool
 	SettingsListKeys        func(s *Settings) []string
 	SettingsListChildren    func(s *Settings) []string
-	SettingsRangeCheck      func(s *Settings, key string, value *T.GVariant) bool
+	SettingsRangeCheck      func(s *Settings, key string, value *L.Variant) bool
 	SettingsReset           func(s *Settings, key string)
 	SettingsRevert          func(s *Settings)
 	SettingsSet             func(s *Settings, key, format string, v ...VArg) bool
@@ -88,7 +81,7 @@ var (
 	SettingsSetInt          func(s *Settings, key string, value int) bool
 	SettingsSetString       func(s *Settings, key, value string) bool
 	SettingsSetStrv         func(s *Settings, key string, value []string) bool
-	SettingsSetValue        func(s *Settings, key string, value *T.GVariant) bool
+	SettingsSetValue        func(s *Settings, key string, value *L.Variant) bool
 )
 
 func (s *Settings) Apply() { SettingsApply(s) }
@@ -113,14 +106,14 @@ func (s *Settings) GetInt(key string) int             { return SettingsGetInt(s,
 func (s *Settings) GetMapped(key string, mapping SettingsGetMapping, userData T.Gpointer) T.Gpointer {
 	return SettingsGetMapped(s, key, mapping, userData)
 }
-func (s *Settings) GetRange(key string) *T.GVariant { return SettingsGetRange(s, key) }
-func (s *Settings) GetString(key string) string     { return SettingsGetString(s, key) }
-func (s *Settings) GetStrv(key string) []string     { return SettingsGetStrv(s, key) }
-func (s *Settings) GetValue(key string) *T.GVariant { return SettingsGetValue(s, key) }
-func (s *Settings) IsWritable(name string) bool     { return SettingsIsWritable(s, name) }
-func (s *Settings) ListKeys() []string              { return SettingsListKeys(s) }
-func (s *Settings) ListChildren() []string          { return SettingsListChildren(s) }
-func (s *Settings) RangeCheck(key string, value *T.GVariant) bool {
+func (s *Settings) GetRange(key string) *L.Variant { return SettingsGetRange(s, key) }
+func (s *Settings) GetString(key string) string    { return SettingsGetString(s, key) }
+func (s *Settings) GetStrv(key string) []string    { return SettingsGetStrv(s, key) }
+func (s *Settings) GetValue(key string) *L.Variant { return SettingsGetValue(s, key) }
+func (s *Settings) IsWritable(name string) bool    { return SettingsIsWritable(s, name) }
+func (s *Settings) ListKeys() []string             { return SettingsListKeys(s) }
+func (s *Settings) ListChildren() []string         { return SettingsListChildren(s) }
+func (s *Settings) RangeCheck(key string, value *L.Variant) bool {
 	return SettingsRangeCheck(s, key, value)
 }
 func (s *Settings) Reset(key string) { SettingsReset(s, key) }
@@ -141,7 +134,7 @@ func (s *Settings) SetString(key, value string) bool     { return SettingsSetStr
 func (s *Settings) SetStrv(key string, value []string) bool {
 	return SettingsSetStrv(s, key, value)
 }
-func (s *Settings) SetValue(key string, value *T.GVariant) bool {
+func (s *Settings) SetValue(key string, value *L.Variant) bool {
 	return SettingsSetValue(s, key, value)
 }
 
@@ -150,12 +143,12 @@ type SettingsBackend struct{}
 var (
 	SettingsBackendGetType func() O.Type
 
-	SettingsBackendFlattenTree func(tree *T.GTree, path []string, keys ***T.Gchar, values ***T.GVariant)
+	SettingsBackendFlattenTree func(tree *L.Tree, path []string, keys ***T.Gchar, values ***L.Variant)
 	SettingsBackendGetDefault  func() *SettingsBackend
 
 	SettingsBackendKeysChanged         func(s *SettingsBackend, path string, items []string, originTag T.Gpointer)
 	SettingsBackendChanged             func(s *SettingsBackend, key string, originTag T.Gpointer)
-	SettingsBackendChangedTree         func(s *SettingsBackend, tree *T.GTree, originTag T.Gpointer)
+	SettingsBackendChangedTree         func(s *SettingsBackend, tree *L.Tree, originTag T.Gpointer)
 	SettingsBackendPathChanged         func(s *SettingsBackend, path string, originTag T.Gpointer)
 	SettingsBackendPathWritableChanged func(s *SettingsBackend, path string)
 	SettingsBackendWritableChanged     func(s *SettingsBackend, key string)
@@ -167,7 +160,7 @@ func (s *SettingsBackend) KeysChanged(path string, items []string, originTag T.G
 func (s *SettingsBackend) Changed(key string, originTag T.Gpointer) {
 	SettingsBackendChanged(s, key, originTag)
 }
-func (s *SettingsBackend) ChangedTree(tree *T.GTree, originTag T.Gpointer) {
+func (s *SettingsBackend) ChangedTree(tree *L.Tree, originTag T.Gpointer) {
 	SettingsBackendChangedTree(s, tree, originTag)
 }
 func (s *SettingsBackend) PathChanged(path string, originTag T.Gpointer) {
@@ -193,16 +186,16 @@ var SettingsBindFlagsGetType func() O.Type
 
 type SettingsBindGetMapping func(
 	value *O.Value,
-	variant *T.GVariant,
+	variant *L.Variant,
 	userData T.Gpointer) bool
 
 type SettingsBindSetMapping func(
 	value *O.Value,
-	expectedType *T.GVariantType,
-	userData T.Gpointer) *T.GVariant
+	expectedType *L.VariantType,
+	userData T.Gpointer) *L.Variant
 
 type SettingsGetMapping func(
-	value *T.GVariant,
+	value *L.Variant,
 	result *T.Gpointer,
 	userData T.Gpointer) bool
 
@@ -213,8 +206,8 @@ type SimpleAction struct {
 
 var (
 	SimpleActionGetType     func() O.Type
-	SimpleActionNew         func(name string, parameterType *T.GVariantType) *SimpleAction
-	SimpleActionNewStateful func(name string, parameterType *T.GVariantType, state *T.GVariant) *SimpleAction
+	SimpleActionNew         func(name string, parameterType *L.VariantType) *SimpleAction
+	SimpleActionNewStateful func(name string, parameterType *L.VariantType, state *L.Variant) *SimpleAction
 
 	SimpleActionSetEnabled func(s *SimpleAction, enabled bool)
 )
@@ -242,7 +235,7 @@ func (s *SimpleActionGroup) Lookup(actionName string) *Action {
 func (s *SimpleActionGroup) Remove(actionName string) { SimpleActionGroupRemove(s, actionName) }
 
 var (
-	SimpleAsyncReportErrorInIdle      func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain T.GQuark, code int, format string, v ...VArg)
+	SimpleAsyncReportErrorInIdle      func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain L.Quark, code int, format string, v ...VArg)
 	SimpleAsyncReportGerrorInIdle     func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError)
 	SimpleAsyncReportTakeGerrorInIdle func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError)
 )
@@ -252,7 +245,7 @@ type SimpleAsyncResult struct{}
 var (
 	SimpleAsyncResultGetType      func() O.Type
 	SimpleAsyncResultNew          func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, sourceTag T.Gpointer) *SimpleAsyncResult
-	SimpleAsyncResultNewError     func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain T.GQuark, code int, format string, v ...VArg) *SimpleAsyncResult
+	SimpleAsyncResultNewError     func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain L.Quark, code int, format string, v ...VArg) *SimpleAsyncResult
 	SimpleAsyncResultNewFromError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
 	SimpleAsyncResultNewTakeError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
 
@@ -266,8 +259,8 @@ var (
 	SimpleAsyncResultGetSourceTag          func(s *SimpleAsyncResult) T.Gpointer
 	SimpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **T.GError) bool
 	SimpleAsyncResultRunInThread           func(s *SimpleAsyncResult, f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable)
-	SimpleAsyncResultSetError              func(s *SimpleAsyncResult, domain T.GQuark, code int, format string, v ...VArg)
-	SimpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain T.GQuark, code int, format string, args T.VaList)
+	SimpleAsyncResultSetError              func(s *SimpleAsyncResult, domain L.Quark, code int, format string, v ...VArg)
+	SimpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain L.Quark, code int, format string, args T.VaList)
 	SimpleAsyncResultSetFromError          func(s *SimpleAsyncResult, err *T.GError)
 	SimpleAsyncResultSetHandleCancellation func(s *SimpleAsyncResult, handleCancellation bool)
 	SimpleAsyncResultSetOpResGboolean      func(s *SimpleAsyncResult, opRes bool)
@@ -288,10 +281,10 @@ func (s *SimpleAsyncResult) PropagateError(dest **T.GError) bool {
 func (s *SimpleAsyncResult) RunInThread(f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable) {
 	SimpleAsyncResultRunInThread(s, f, ioPriority, cancellable)
 }
-func (s *SimpleAsyncResult) SetError(domain T.GQuark, code int, format string, v ...VArg) {
+func (s *SimpleAsyncResult) SetError(domain L.Quark, code int, format string, v ...VArg) {
 	SimpleAsyncResultSetError(s, domain, code, format, v)
 }
-func (s *SimpleAsyncResult) SetErrorVa(domain T.GQuark, code int, format string, args T.VaList) {
+func (s *SimpleAsyncResult) SetErrorVa(domain L.Quark, code int, format string, args T.VaList) {
 	SimpleAsyncResultSetErrorVa(s, domain, code, format, args)
 }
 func (s *SimpleAsyncResult) SetFromError(err *T.GError) { SimpleAsyncResultSetFromError(s, err) }
@@ -345,8 +338,8 @@ var (
 	SocketBind                func(s *Socket, address *SocketAddress, allowReuse bool, err **T.GError) bool
 	SocketConnect             func(s *Socket, address *SocketAddress, cancellable *Cancellable, err **T.GError) bool
 	SocketCheckConnectResult  func(s *Socket, err **T.GError) bool
-	SocketConditionCheck      func(s *Socket, condition T.GIOCondition) T.GIOCondition
-	SocketConditionWait       func(s *Socket, condition T.GIOCondition, cancellable *Cancellable, err **T.GError) bool
+	SocketConditionCheck      func(s *Socket, condition L.IOCondition) L.IOCondition
+	SocketConditionWait       func(s *Socket, condition L.IOCondition, cancellable *Cancellable, err **T.GError) bool
 	SocketAccept              func(s *Socket, cancellable *Cancellable, err **T.GError) *Socket
 	SocketListen              func(s *Socket, err **T.GError) bool
 	SocketReceive             func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
@@ -358,7 +351,7 @@ var (
 	SocketClose               func(s *Socket, err **T.GError) bool
 	SocketShutdown            func(s *Socket, shutdownRead bool, shutdownWrite bool, err **T.GError) bool
 	SocketIsClosed            func(s *Socket) bool
-	SocketCreateSource        func(s *Socket, condition T.GIOCondition, cancellable *Cancellable) *O.Source
+	SocketCreateSource        func(s *Socket, condition L.IOCondition, cancellable *Cancellable) *O.Source
 	SocketSpeaksIpv4          func(s *Socket) bool
 	SocketGetCredentials      func(s *Socket, err **T.GError) *Credentials
 	SocketReceiveWithBlocking func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize
@@ -391,10 +384,10 @@ func (s *Socket) Connect(address *SocketAddress, cancellable *Cancellable, err *
 func (s *Socket) CheckConnectResult(err **T.GError) bool {
 	return SocketCheckConnectResult(s, err)
 }
-func (s *Socket) ConditionCheck(condition T.GIOCondition) T.GIOCondition {
+func (s *Socket) ConditionCheck(condition L.IOCondition) L.IOCondition {
 	return SocketConditionCheck(s, condition)
 }
-func (s *Socket) ConditionWait(condition T.GIOCondition, cancellable *Cancellable, err **T.GError) bool {
+func (s *Socket) ConditionWait(condition L.IOCondition, cancellable *Cancellable, err **T.GError) bool {
 	return SocketConditionWait(s, condition, cancellable, err)
 }
 func (s *Socket) Accept(cancellable *Cancellable, err **T.GError) *Socket {
@@ -424,7 +417,7 @@ func (s *Socket) Shutdown(shutdownRead, shutdownWrite bool, err **T.GError) bool
 	return SocketShutdown(s, shutdownRead, shutdownWrite, err)
 }
 func (s *Socket) IsClosed() bool { return SocketIsClosed(s) }
-func (s *Socket) CreateSource(condition T.GIOCondition, cancellable *Cancellable) *O.Source {
+func (s *Socket) CreateSource(condition L.IOCondition, cancellable *Cancellable) *O.Source {
 	return SocketCreateSource(s, condition, cancellable)
 }
 func (s *Socket) SpeaksIpv4() bool                           { return SocketSpeaksIpv4(s) }

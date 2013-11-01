@@ -462,7 +462,7 @@ var (
 var (
 	ClipboardClear                   func(c *Clipboard)
 	ClipboardGetDisplay              func(c *Clipboard) *D.Display
-	ClipboardGetOwner                func(c *Clipboard) *T.GObject
+	ClipboardGetOwner                func(c *Clipboard) *O.Object
 	ClipboardRequestContents         func(c *Clipboard, target D.Atom, callback ClipboardReceivedFunc, userData T.Gpointer)
 	ClipboardRequestImage            func(c *Clipboard, callback ClipboardImageReceivedFunc, userData T.Gpointer)
 	ClipboardRequestRichText         func(c *Clipboard, buffer *TextBuffer, callback ClipboardRichTextReceivedFunc, userData T.Gpointer)
@@ -473,7 +473,7 @@ var (
 	ClipboardSetImage                func(c *Clipboard, pixbuf *D.Pixbuf)
 	ClipboardSetText                 func(c *Clipboard, text string, len int)
 	ClipboardSetWithData             func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) bool
-	ClipboardSetWithOwner            func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) bool
+	ClipboardSetWithOwner            func(c *Clipboard, targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *O.Object) bool
 	ClipboardStore                   func(c *Clipboard)
 	ClipboardWaitForContents         func(c *Clipboard, target D.Atom) *SelectionData
 	ClipboardWaitForImage            func(c *Clipboard) *D.Pixbuf
@@ -490,7 +490,7 @@ var (
 
 func (c *Clipboard) Clear()                 { ClipboardClear(c) }
 func (c *Clipboard) GetDisplay() *D.Display { return ClipboardGetDisplay(c) }
-func (c *Clipboard) GetOwner() *T.GObject   { return ClipboardGetOwner(c) }
+func (c *Clipboard) GetOwner() *O.Object    { return ClipboardGetOwner(c) }
 func (c *Clipboard) RequestContents(target D.Atom, callback ClipboardReceivedFunc, userData T.Gpointer) {
 	ClipboardRequestContents(c, target, callback, userData)
 }
@@ -517,7 +517,7 @@ func (c *Clipboard) SetText(text string, leng int) { ClipboardSetText(c, text, l
 func (c *Clipboard) SetWithData(targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, userData T.Gpointer) bool {
 	return ClipboardSetWithData(c, targets, nTargets, getFunc, clearFunc, userData)
 }
-func (c *Clipboard) SetWithOwner(targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *T.GObject) bool {
+func (c *Clipboard) SetWithOwner(targets *TargetEntry, nTargets uint, getFunc ClipboardGetFunc, clearFunc ClipboardClearFunc, owner *O.Object) bool {
 	return ClipboardSetWithOwner(c, targets, nTargets, getFunc, clearFunc, owner)
 }
 func (c *Clipboard) Store() { ClipboardStore(c) }
@@ -1247,8 +1247,8 @@ type ContainerClass struct {
 }
 
 var (
-	ContainerClassFindChildProperty   func(cclass *T.GObjectClass, propertyName string) *T.GParamSpec
-	ContainerClassListChildProperties func(cclass *T.GObjectClass, nProperties *uint) **T.GParamSpec
+	ContainerClassFindChildProperty   func(cclass *O.ObjectClass, propertyName string) *T.GParamSpec
+	ContainerClassListChildProperties func(cclass *O.ObjectClass, nProperties *uint) **T.GParamSpec
 
 	ContainerClassInstallChildProperty func(cclass *ContainerClass, propertyId uint, pspec *T.GParamSpec)
 )

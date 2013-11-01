@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -18,7 +19,7 @@ var (
 	ResolverGetType func() O.Type
 
 	ResolverErrorGetType  func() O.Type
-	ResolverErrorQuark    func() T.GQuark
+	ResolverErrorQuark    func() L.Quark
 	ResolverFreeAddresses func(addresses *T.GList)
 	ResolverFreeTargets   func(targets *T.GList)
 	ResolverGetDefault    func() *Resolver

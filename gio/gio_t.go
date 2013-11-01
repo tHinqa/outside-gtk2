@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -172,7 +173,7 @@ func (t *TlsConnection) SetUseSystemCertdb(useSystemCertdb bool) {
 }
 
 var (
-	TlsErrorQuark func() T.GQuark
+	TlsErrorQuark func() L.Quark
 
 	TlsConnectionEmitAcceptCertificate func(t *TlsConnection, peerCert *TlsCertificate, errors TlsCertificateFlags) bool
 )

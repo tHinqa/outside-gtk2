@@ -33,12 +33,6 @@ type (
 	UnsignedLong  uint32 //TODO(t): check  size
 
 	Gboolean               int
-	GCacheDestroyFunc      func(value Gpointer)
-	GCacheDupFunc          func(value Gpointer) Gpointer
-	GCacheNewFunc          func(key Gpointer) Gpointer
-	GDateDay               uint8
-	GDateTime              GInt32
-	GDateYear              uint16
 	GdkAtom                *struct{} // REMOVE
 	GdkBitmap              GdkDrawable
 	GdkNativeWindow        Gpointer
@@ -50,7 +44,7 @@ type (
 	GInitiallyUnownedClass GObjectClass
 	Goffset                int64
 	GPid                   *struct{}
-	GQuark                 GUint32
+	Quark                  GUint32
 	GSignalCMarshaller     GClosureMarshal
 	GTime                  GInt32
 	GTimeSpan              int64
@@ -62,45 +56,25 @@ type (
 
 	GdkDrawable struct{ parent GObject } //REMOVE
 
-	GCache                   struct{}
 	GCancellablePrivate      struct{}
-	GChecksum                struct{}
 	GCond                    struct{}
 	GData                    struct{}
-	GDir                     struct{}
 	GdkXEvent                struct{}
 	GFileInputStreamPrivate  struct{}
-	GHashTable               struct{}
-	GIConv                   struct{}
 	GInputStreamPrivate      struct{}
-	GKeyFile                 struct{}
-	GMainContext             struct{}
-	GMainLoop                struct{}
-	GMappedFile              struct{}
-	GMarkupParseContext      struct{}
+	MainContext              struct{} // chicken/egg
 	GMatchInfo               struct{}
-	GMemChunk                struct{}
 	GMutex                   struct{}
-	GOptionContext           struct{}
-	GOptionGroup             struct{}
 	GPrivate                 struct{}
-	GRand                    struct{}
-	GRegex                   struct{}
-	GRelation                struct{}
 	GResolverPrivate         struct{}
 	GSocketConnectionPrivate struct{}
 	GSocketServicePrivate    struct{}
-	GTestCase                struct{}
-	GTestSuite               struct{}
-	GTimer                   struct{}
-	GTimeZone                struct{}
 	GtkClipboard             struct{}
 	GtkLabelSelectionInfo    struct{}
-	GTree                    struct{}
 	GTypeCValue              struct{}
 	GUnixFDList              struct{}
-	GVariant                 struct{}
-	GVariantType             struct{}
+	Variant                  struct{}
+	VariantType              struct{}
 	Utimbuf                  struct{}
 	Void                     struct{}
 	Dummy                    *struct{}
@@ -139,23 +113,6 @@ const (
 	G_THREAD_ERROR_AGAIN GThreadError = iota
 )
 
-type GThreadPriority Enum
-
-const (
-	G_THREAD_PRIORITY_LOW GThreadPriority = iota
-	G_THREAD_PRIORITY_NORMAL
-	G_THREAD_PRIORITY_HIGH
-	G_THREAD_PRIORITY_URGENT
-)
-
-type GChecksumType Enum
-
-const (
-	G_CHECKSUM_MD5 GChecksumType = iota
-	G_CHECKSUM_SHA1
-	G_CHECKSUM_SHA256
-)
-
 type GOnceStatus Enum
 
 const (
@@ -173,53 +130,6 @@ const (
 	G_CONVERT_ERROR_PARTIAL_INPUT
 	G_CONVERT_ERROR_BAD_URI
 	G_CONVERT_ERROR_NOT_ABSOLUTE_PATH
-)
-
-type GDateDMY Enum
-
-const (
-	G_DATE_DAY GDateDMY = iota
-	G_DATE_MONTH
-	G_DATE_YEAR
-)
-
-type GDateWeekday Enum
-
-const (
-	G_DATE_BAD_WEEKDAY GDateWeekday = iota
-	G_DATE_MONDAY
-	G_DATE_TUESDAY
-	G_DATE_WEDNESDAY
-	G_DATE_THURSDAY
-	G_DATE_FRIDAY
-	G_DATE_SATURDAY
-	G_DATE_SUNDAY
-)
-
-type GDateMonth Enum
-
-const (
-	G_DATE_BAD_MONTH GDateMonth = iota
-	G_DATE_JANUARY
-	G_DATE_FEBRUARY
-	G_DATE_MARCH
-	G_DATE_APRIL
-	G_DATE_MAY
-	G_DATE_JUNE
-	G_DATE_JULY
-	G_DATE_AUGUST
-	G_DATE_SEPTEMBER
-	G_DATE_OCTOBER
-	G_DATE_NOVEMBER
-	G_DATE_DECEMBER
-)
-
-type GTimeType Enum
-
-const (
-	G_TIME_TYPE_STANDARD GTimeType = iota
-	G_TIME_TYPE_DAYLIGHT
-	G_TIME_TYPE_UNIVERSAL
 )
 
 type GFileError Enum
@@ -270,185 +180,6 @@ const (
 	G_HOOK_FLAG_MASK GHookFlagMask = 0x0F
 )
 
-type GUnicodeType Enum
-
-const (
-	G_UNICODE_CONTROL GUnicodeType = iota
-	G_UNICODE_FORMAT
-	G_UNICODE_UNASSIGNED
-	G_UNICODE_PRIVATE_USE
-	G_UNICODE_SURROGATE
-	G_UNICODE_LOWERCASE_LETTER
-	G_UNICODE_MODIFIER_LETTER
-	G_UNICODE_OTHER_LETTER
-	G_UNICODE_TITLECASE_LETTER
-	G_UNICODE_UPPERCASE_LETTER
-	G_UNICODE_COMBINING_MARK
-	G_UNICODE_ENCLOSING_MARK
-	G_UNICODE_NON_SPACING_MARK
-	G_UNICODE_DECIMAL_NUMBER
-	G_UNICODE_LETTER_NUMBER
-	G_UNICODE_OTHER_NUMBER
-	G_UNICODE_CONNECT_PUNCTUATION
-	G_UNICODE_DASH_PUNCTUATION
-	G_UNICODE_CLOSE_PUNCTUATION
-	G_UNICODE_FINAL_PUNCTUATION
-	G_UNICODE_INITIAL_PUNCTUATION
-	G_UNICODE_OTHER_PUNCTUATION
-	G_UNICODE_OPEN_PUNCTUATION
-	G_UNICODE_CURRENCY_SYMBOL
-	G_UNICODE_MODIFIER_SYMBOL
-	G_UNICODE_MATH_SYMBOL
-	G_UNICODE_OTHER_SYMBOL
-	G_UNICODE_LINE_SEPARATOR
-	G_UNICODE_PARAGRAPH_SEPARATOR
-	G_UNICODE_SPACE_SEPARATOR
-)
-
-type GUnicodeBreakType Enum
-
-const (
-	G_UNICODE_BREAK_MANDATORY GUnicodeBreakType = iota
-	G_UNICODE_BREAK_CARRIAGE_RETURN
-	G_UNICODE_BREAK_LINE_FEED
-	G_UNICODE_BREAK_COMBINING_MARK
-	G_UNICODE_BREAK_SURROGATE
-	G_UNICODE_BREAK_ZERO_WIDTH_SPACE
-	G_UNICODE_BREAK_INSEPARABLE
-	G_UNICODE_BREAK_NON_BREAKING_GLUE
-	G_UNICODE_BREAK_CONTINGENT
-	G_UNICODE_BREAK_SPACE
-	G_UNICODE_BREAK_AFTER
-	G_UNICODE_BREAK_BEFORE
-	G_UNICODE_BREAK_BEFORE_AND_AFTER
-	G_UNICODE_BREAK_HYPHEN
-	G_UNICODE_BREAK_NON_STARTER
-	G_UNICODE_BREAK_OPEN_PUNCTUATION
-	G_UNICODE_BREAK_CLOSE_PUNCTUATION
-	G_UNICODE_BREAK_QUOTATION
-	G_UNICODE_BREAK_EXCLAMATION
-	G_UNICODE_BREAK_IDEOGRAPHIC
-	G_UNICODE_BREAK_NUMERIC
-	G_UNICODE_BREAK_INFIX_SEPARATOR
-	G_UNICODE_BREAK_SYMBOL
-	G_UNICODE_BREAK_ALPHABETIC
-	G_UNICODE_BREAK_PREFIX
-	G_UNICODE_BREAK_POSTFIX
-	G_UNICODE_BREAK_COMPLEX_CONTEXT
-	G_UNICODE_BREAK_AMBIGUOUS
-	G_UNICODE_BREAK_UNKNOWN
-	G_UNICODE_BREAK_NEXT_LINE
-	G_UNICODE_BREAK_WORD_JOINER
-	G_UNICODE_BREAK_HANGUL_L_JAMO
-	G_UNICODE_BREAK_HANGUL_V_JAMO
-	G_UNICODE_BREAK_HANGUL_T_JAMO
-	G_UNICODE_BREAK_HANGUL_LV_SYLLABLE
-	G_UNICODE_BREAK_HANGUL_LVT_SYLLABLE
-	G_UNICODE_BREAK_CLOSE_PARANTHESIS
-)
-
-type GUnicodeScript Enum
-
-const (
-	G_UNICODE_SCRIPT_INVALID_CODE GUnicodeScript = iota - 1
-	G_UNICODE_SCRIPT_COMMON
-	G_UNICODE_SCRIPT_INHERITED
-	G_UNICODE_SCRIPT_ARABIC
-	G_UNICODE_SCRIPT_ARMENIAN
-	G_UNICODE_SCRIPT_BENGALI
-	G_UNICODE_SCRIPT_BOPOMOFO
-	G_UNICODE_SCRIPT_CHEROKEE
-	G_UNICODE_SCRIPT_COPTIC
-	G_UNICODE_SCRIPT_CYRILLIC
-	G_UNICODE_SCRIPT_DESERET
-	G_UNICODE_SCRIPT_DEVANAGARI
-	G_UNICODE_SCRIPT_ETHIOPIC
-	G_UNICODE_SCRIPT_GEORGIAN
-	G_UNICODE_SCRIPT_GOTHIC
-	G_UNICODE_SCRIPT_GREEK
-	G_UNICODE_SCRIPT_GUJARATI
-	G_UNICODE_SCRIPT_GURMUKHI
-	G_UNICODE_SCRIPT_HAN
-	G_UNICODE_SCRIPT_HANGUL
-	G_UNICODE_SCRIPT_HEBREW
-	G_UNICODE_SCRIPT_HIRAGANA
-	G_UNICODE_SCRIPT_KANNADA
-	G_UNICODE_SCRIPT_KATAKANA
-	G_UNICODE_SCRIPT_KHMER
-	G_UNICODE_SCRIPT_LAO
-	G_UNICODE_SCRIPT_LATIN
-	G_UNICODE_SCRIPT_MALAYALAM
-	G_UNICODE_SCRIPT_MONGOLIAN
-	G_UNICODE_SCRIPT_MYANMAR
-	G_UNICODE_SCRIPT_OGHAM
-	G_UNICODE_SCRIPT_OLD_ITALIC
-	G_UNICODE_SCRIPT_ORIYA
-	G_UNICODE_SCRIPT_RUNIC
-	G_UNICODE_SCRIPT_SINHALA
-	G_UNICODE_SCRIPT_SYRIAC
-	G_UNICODE_SCRIPT_TAMIL
-	G_UNICODE_SCRIPT_TELUGU
-	G_UNICODE_SCRIPT_THAANA
-	G_UNICODE_SCRIPT_THAI
-	G_UNICODE_SCRIPT_TIBETAN
-	G_UNICODE_SCRIPT_CANADIAN_ABORIGINAL
-	G_UNICODE_SCRIPT_YI
-	G_UNICODE_SCRIPT_TAGALOG
-	G_UNICODE_SCRIPT_HANUNOO
-	G_UNICODE_SCRIPT_BUHID
-	G_UNICODE_SCRIPT_TAGBANWA
-	G_UNICODE_SCRIPT_BRAILLE
-	G_UNICODE_SCRIPT_CYPRIOT
-	G_UNICODE_SCRIPT_LIMBU
-	G_UNICODE_SCRIPT_OSMANYA
-	G_UNICODE_SCRIPT_SHAVIAN
-	G_UNICODE_SCRIPT_LINEAR_B
-	G_UNICODE_SCRIPT_TAI_LE
-	G_UNICODE_SCRIPT_UGARITIC
-	G_UNICODE_SCRIPT_NEW_TAI_LUE
-	G_UNICODE_SCRIPT_BUGINESE
-	G_UNICODE_SCRIPT_GLAGOLITIC
-	G_UNICODE_SCRIPT_TIFINAGH
-	G_UNICODE_SCRIPT_SYLOTI_NAGRI
-	G_UNICODE_SCRIPT_OLD_PERSIAN
-	G_UNICODE_SCRIPT_KHAROSHTHI
-	G_UNICODE_SCRIPT_UNKNOWN
-	G_UNICODE_SCRIPT_BALINESE
-	G_UNICODE_SCRIPT_CUNEIFORM
-	G_UNICODE_SCRIPT_PHOENICIAN
-	G_UNICODE_SCRIPT_PHAGS_PA
-	G_UNICODE_SCRIPT_NKO
-	G_UNICODE_SCRIPT_KAYAH_LI
-	G_UNICODE_SCRIPT_LEPCHA
-	G_UNICODE_SCRIPT_REJANG
-	G_UNICODE_SCRIPT_SUNDANESE
-	G_UNICODE_SCRIPT_SAURASHTRA
-	G_UNICODE_SCRIPT_CHAM
-	G_UNICODE_SCRIPT_OL_CHIKI
-	G_UNICODE_SCRIPT_VAI
-	G_UNICODE_SCRIPT_CARIAN
-	G_UNICODE_SCRIPT_LYCIAN
-	G_UNICODE_SCRIPT_LYDIAN
-	G_UNICODE_SCRIPT_AVESTAN
-	G_UNICODE_SCRIPT_BAMUM
-	G_UNICODE_SCRIPT_EGYPTIAN_HIEROGLYPHS
-	G_UNICODE_SCRIPT_IMPERIAL_ARAMAIC
-	G_UNICODE_SCRIPT_INSCRIPTIONAL_PAHLAVI
-	G_UNICODE_SCRIPT_INSCRIPTIONAL_PARTHIAN
-	G_UNICODE_SCRIPT_JAVANESE
-	G_UNICODE_SCRIPT_KAITHI
-	G_UNICODE_SCRIPT_LISU
-	G_UNICODE_SCRIPT_MEETEI_MAYEK
-	G_UNICODE_SCRIPT_OLD_SOUTH_ARABIAN
-	G_UNICODE_SCRIPT_OLD_TURKIC
-	G_UNICODE_SCRIPT_SAMARITAN
-	G_UNICODE_SCRIPT_TAI_THAM
-	G_UNICODE_SCRIPT_TAI_VIET
-	G_UNICODE_SCRIPT_BATAK
-	G_UNICODE_SCRIPT_BRAHMI
-	G_UNICODE_SCRIPT_MANDAIC
-)
-
 type GNormalizeMode Enum
 
 const (
@@ -462,63 +193,7 @@ const (
 	G_NORMALIZE_NFKC = G_NORMALIZE_ALL_COMPOSE
 )
 
-type GIOError Enum
-
-const (
-	G_IO_ERROR_NONE GIOError = iota
-	G_IO_ERROR_AGAIN
-	G_IO_ERROR_INVAL
-	G_IO_ERROR_UNKNOWN
-)
-
-type GIOChannelError Enum
-
-const (
-	G_IO_CHANNEL_ERROR_FBIG GIOChannelError = iota
-	G_IO_CHANNEL_ERROR_INVAL
-	G_IO_CHANNEL_ERROR_IO
-	G_IO_CHANNEL_ERROR_ISDIR
-	G_IO_CHANNEL_ERROR_NOSPC
-	G_IO_CHANNEL_ERROR_NXIO
-	G_IO_CHANNEL_ERROR_OVERFLOW
-	G_IO_CHANNEL_ERROR_PIPE
-	G_IO_CHANNEL_ERROR_FAILED
-)
-
-type GIOStatus Enum
-
-const (
-	G_IO_STATUS_ERROR GIOStatus = iota
-	G_IO_STATUS_NORMAL
-	G_IO_STATUS_EOF
-	G_IO_STATUS_AGAIN
-)
-
-type GSeekType Enum // REMOVE
-
-type GIOCondition Enum
-
-const (
-	G_IO_IN GIOCondition = 1 << iota
-	G_IO_PRI
-	G_IO_OUT
-	G_IO_ERR
-	G_IO_HUP
-	G_IO_NVAL
-)
-
-type GIOFlags Enum
-
-const (
-	G_IO_FLAG_APPEND GIOFlags = 1 << iota
-	G_IO_FLAG_NONBLOCK
-	G_IO_FLAG_IS_READABLE
-	G_IO_FLAG_IS_WRITEABLE
-	G_IO_FLAG_IS_SEEKABLE
-	G_IO_FLAG_MASK     GIOFlags = (1 << iota) - 1
-	G_IO_FLAG_GET_MASK          = G_IO_FLAG_MASK
-	G_IO_FLAG_SET_MASK          = G_IO_FLAG_APPEND | G_IO_FLAG_NONBLOCK
-)
+// type GSeekType Enum // REMOVE
 
 type GKeyFileError Enum
 
@@ -531,14 +206,6 @@ const (
 	G_KEY_FILE_ERROR_INVALID_VALUE
 )
 
-type GKeyFileFlags Enum
-
-const (
-	G_KEY_FILE_KEEP_COMMENTS GKeyFileFlags = 1 << iota
-	G_KEY_FILE_KEEP_TRANSLATIONS
-	G_KEY_FILE_NONE GKeyFileFlags = 0
-)
-
 type GMarkupError Enum
 
 const (
@@ -549,14 +216,6 @@ const (
 	G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE
 	G_MARKUP_ERROR_INVALID_CONTENT
 	G_MARKUP_ERROR_MISSING_ATTRIBUTE
-)
-
-type GMarkupParseFlags Enum
-
-const (
-	G_MARKUP_DO_NOT_USE_THIS_UNSUPPORTED_FLAG GMarkupParseFlags = 1 << iota
-	G_MARKUP_TREAT_CDATA_AS_TEXT
-	G_MARKUP_PREFIX_ERROR_POSITION
 )
 
 type GMarkupCollectType Enum
@@ -584,26 +243,6 @@ const (
 	G_LOG_LEVEL_MASK = ^(G_LOG_FLAG_RECURSION | G_LOG_FLAG_FATAL)
 )
 
-type GTraverseFlags Enum
-
-const (
-	G_TRAVERSE_LEAVES GTraverseFlags = 1 << iota
-	G_TRAVERSE_NON_LEAVES
-	G_TRAVERSE_ALL       = G_TRAVERSE_LEAVES | G_TRAVERSE_NON_LEAVES
-	G_TRAVERSE_MASK      = G_TRAVERSE_ALL // 0x03
-	G_TRAVERSE_LEAFS     = G_TRAVERSE_LEAVES
-	G_TRAVERSE_NON_LEAFS = G_TRAVERSE_NON_LEAVES
-)
-
-type GTraverseType Enum
-
-const (
-	G_IN_ORDER GTraverseType = iota
-	G_PRE_ORDER
-	G_POST_ORDER
-	G_LEVEL_ORDER
-)
-
 type GOptionFlags Enum
 
 const (
@@ -614,20 +253,6 @@ const (
 	G_OPTION_FLAG_FILENAME
 	G_OPTION_FLAG_OPTIONAL_ARG
 	G_OPTION_FLAG_NOALIAS
-)
-
-type GOptionArg Enum
-
-const (
-	G_OPTION_ARG_NONE GOptionArg = iota
-	G_OPTION_ARG_STRING
-	G_OPTION_ARG_INT
-	G_OPTION_ARG_CALLBACK
-	G_OPTION_ARG_FILENAME
-	G_OPTION_ARG_STRING_ARRAY
-	G_OPTION_ARG_FILENAME_ARRAY
-	G_OPTION_ARG_DOUBLE
-	G_OPTION_ARG_INT64
 )
 
 type GOptionError Enum
@@ -706,60 +331,6 @@ const (
 	G_REGEX_ERROR_DEFINE_REPETION
 	G_REGEX_ERROR_INCONSISTENT_NEWLINE_OPTIONS
 	G_REGEX_ERROR_MISSING_BACK_REFERENCE //157
-)
-
-type GRegexCompileFlags Enum
-
-const (
-	G_REGEX_CASELESS GRegexCompileFlags = 1 << iota
-	G_REGEX_MULTILINE
-	G_REGEX_DOTALL
-	G_REGEX_EXTENDED
-	G_REGEX_ANCHORED
-	G_REGEX_DOLLAR_ENDONLY
-	_
-	_
-	_
-	G_REGEX_UNGREEDY
-	_
-	G_REGEX_RAW
-	G_REGEX_NO_AUTO_CAPTURE
-	G_REGEX_OPTIMIZE
-	_
-	_
-	_
-	_
-	_
-
-	G_REGEX_DUPNAMES
-	G_REGEX_NEWLINE_CR
-	G_REGEX_NEWLINE_LF
-	G_REGEX_NEWLINE_CRLF = G_REGEX_NEWLINE_CR | G_REGEX_NEWLINE_LF
-)
-
-type GRegexMatchFlags Enum
-
-const (
-	G_REGEX_MATCH_ANCHORED GRegexMatchFlags = 1 << (iota + 4)
-	_
-	_
-	G_REGEX_MATCH_NOTBOL
-	G_REGEX_MATCH_NOTEOL
-	_
-	G_REGEX_MATCH_NOTEMPTY
-	_
-	_
-	_
-	_
-	G_REGEX_MATCH_PARTIAL
-	_
-	_
-	_
-	_
-	G_REGEX_MATCH_NEWLINE_CR
-	G_REGEX_MATCH_NEWLINE_LF
-	G_REGEX_MATCH_NEWLINE_ANY
-	G_REGEX_MATCH_NEWLINE_CRLF = G_REGEX_MATCH_NEWLINE_CR | G_REGEX_MATCH_NEWLINE_LF
 )
 
 type GErrorType Enum
@@ -853,52 +424,6 @@ const (
 	G_ASCII_SPACE
 	G_ASCII_UPPER
 	G_ASCII_XDIGIT
-)
-
-type GTestTrapFlags Enum
-
-const (
-	G_TEST_TRAP_SILENCE_STDOUT GTestTrapFlags = 1 << (7 + iota)
-	G_TEST_TRAP_SILENCE_STDERR
-	G_TEST_TRAP_INHERIT_STDIN
-)
-
-type GTestLogType Enum
-
-const (
-	G_TEST_LOG_NONE GTestLogType = iota
-	G_TEST_LOG_ERROR
-	G_TEST_LOG_START_BINARY
-	G_TEST_LOG_LIST_CASE
-	G_TEST_LOG_SKIP_CASE
-	G_TEST_LOG_START_CASE
-	G_TEST_LOG_STOP_CASE
-	G_TEST_LOG_MIN_RESULT
-	G_TEST_LOG_MAX_RESULT
-	G_TEST_LOG_MESSAGE
-)
-
-type GVariantClass Enum
-
-const (
-	G_VARIANT_CLASS_BOOLEAN     GVariantClass = 'b'
-	G_VARIANT_CLASS_BYTE        GVariantClass = 'y'
-	G_VARIANT_CLASS_INT16       GVariantClass = 'n'
-	G_VARIANT_CLASS_UINT16      GVariantClass = 'q'
-	G_VARIANT_CLASS_INT32       GVariantClass = 'i'
-	G_VARIANT_CLASS_UINT32      GVariantClass = 'u'
-	G_VARIANT_CLASS_INT64       GVariantClass = 'x'
-	G_VARIANT_CLASS_UINT64      GVariantClass = 't'
-	G_VARIANT_CLASS_HANDLE      GVariantClass = 'h'
-	G_VARIANT_CLASS_DOUBLE      GVariantClass = 'd'
-	G_VARIANT_CLASS_STRING      GVariantClass = 's'
-	G_VARIANT_CLASS_OBJECT_PATH GVariantClass = 'o'
-	G_VARIANT_CLASS_SIGNATURE   GVariantClass = 'g'
-	G_VARIANT_CLASS_VARIANT     GVariantClass = 'v'
-	G_VARIANT_CLASS_MAYBE       GVariantClass = 'm'
-	G_VARIANT_CLASS_ARRAY       GVariantClass = 'a'
-	G_VARIANT_CLASS_TUPLE       GVariantClass = '('
-	G_VARIANT_CLASS_DICT_ENTRY  GVariantClass = '{'
 )
 
 type GVariantParseError Enum
@@ -1576,40 +1101,16 @@ type (
 
 	GCompareFunc func(a, b Gconstpointer) int
 
-	GCompletionFunc func(Gpointer) string
-
-	GCompletionStrncmpFunc func(s1, s2 string, n Gsize) int
-
 	GCopyFunc func(src Gconstpointer, data Gpointer) Gpointer
 
 	GDataForeachFunc func(
-		key_id GQuark, data Gpointer, user_data Gpointer)
+		keyId Quark, data Gpointer, userData Gpointer)
 
 	GDestroyNotify func(data Gpointer)
 
 	GEqualFunc func(a, b Gconstpointer) Gboolean
 
 	GFunc func(data Gpointer, user_data Gpointer)
-
-	GHashFunc func(key Gconstpointer) uint
-
-	GHFunc func(key, value, user_data Gpointer)
-
-	GHookCheckMarshaller func(
-		hook *GHook, marshal_data Gpointer) Gboolean
-
-	GHookCompareFunc func(new_hook, sibling *GHook) int
-
-	GHookFinalizeFunc func(hook_list *GHookList, hook *GHook)
-
-	GHookFindFunc func(hook *GHook, data Gpointer) Gboolean
-
-	GHookMarshaller func(hook *GHook, marshal_data Gpointer)
-
-	GHRFunc func(key, value, user_data Gpointer) Gboolean
-
-	GIOFunc func(source *GIOChannel,
-		condition GIOCondition, data Gpointer) Gboolean
 
 	GLogFunc func(
 		log_domain string,
@@ -1621,51 +1122,21 @@ type (
 
 	GNodeTraverseFunc func(node *GNode, data Gpointer) Gboolean
 
-	GOptionErrorFunc func(
-		context *GOptionContext,
-		group *GOptionGroup,
-		data Gpointer,
-		err **GError)
-
-	GOptionParseFunc func(
-		context *GOptionContext,
-		group *GOptionGroup,
-		data Gpointer,
-		err **GError) Gboolean
-
 	GPollFunc func(
 		ufds *GPollFD, nfsd uint, timeout int) int
 
 	GPrintFunc func(str string)
 
-	GRegexEvalCallback func(match_info *GMatchInfo,
-		result *GString, user_data Gpointer) Gboolean
-
-	GTestDataFunc func(user_data Gconstpointer)
-
-	GTestFixtureFunc func(
-		fixture Gpointer, user_data Gconstpointer)
-
-	GTestFunc func()
-
-	GTestLogFatalFunc func(
-		log_domain string, log_level GLogLevelFlags,
-		message string, user_data Gpointer) Gboolean
-
-	GThreadFunc func(data Gpointer) Gpointer
-
 	GTranslateFunc func(str string, data Gpointer) string
-
-	GTraverseFunc func(key, value, data Gpointer) Gboolean
 
 	GClosureMarshal func() //REMOVE
 
 	GBaseInitFunc func(
-		g_class Gpointer)
+		gClass Gpointer)
 
 	GInstanceInitFunc func(
 		instance *GTypeInstance,
-		g_class Gpointer)
+		gClass Gpointer)
 
 	GtkWindowKeysForeachFunc func(
 		window *GtkWindow,

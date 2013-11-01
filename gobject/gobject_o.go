@@ -40,7 +40,7 @@ var (
 	ObjectFreezeNotify      func(o *Object)
 	ObjectGetData           func(o *Object, key string) T.Gpointer
 	ObjectGetProperty       func(o *Object, propertyName string, value *Value)
-	ObjectGetQdata          func(o *Object, quark T.GQuark) T.Gpointer
+	ObjectGetQdata          func(o *Object, quark T.Quark) T.Gpointer
 	ObjectGetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
 	ObjectNotify            func(o *Object, propertyName string)
 	ObjectNotifyByPspec     func(o *Object, pspec *ParamSpec)
@@ -50,11 +50,11 @@ var (
 	ObjectSetData           func(o *Object, key string, data T.Gpointer)
 	ObjectSetDataFull       func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
 	ObjectSetProperty       func(o *Object, propertyName string, value *Value)
-	ObjectSetQdata          func(o *Object, quark T.GQuark, data T.Gpointer)
-	ObjectSetQdataFull      func(o *Object, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetQdata          func(o *Object, quark T.Quark, data T.Gpointer)
+	ObjectSetQdataFull      func(o *Object, quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify)
 	ObjectSetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
 	ObjectStealData         func(o *Object, key string) T.Gpointer
-	ObjectStealQdata        func(o *Object, quark T.GQuark) T.Gpointer
+	ObjectStealQdata        func(o *Object, quark T.Quark) T.Gpointer
 	ObjectThawNotify        func(o *Object)
 	ObjectWatchClosure      func(o *Object, closure *Closure)
 	ObjectWeakRef           func(o *Object, notify T.GWeakNotify, data T.Gpointer)
@@ -73,7 +73,7 @@ func (o *Object) GetData(key string) T.Gpointer { return ObjectGetData(o, key) }
 func (o *Object) GetProperty(propertyName string, value *Value) {
 	ObjectGetProperty(o, propertyName, value)
 }
-func (o *Object) GetQdata(quark T.GQuark) T.Gpointer { return ObjectGetQdata(o, quark) }
+func (o *Object) GetQdata(quark T.Quark) T.Gpointer { return ObjectGetQdata(o, quark) }
 func (o *Object) GetValist(firstPropertyName string, varArgs T.VaList) {
 	ObjectGetValist(o, firstPropertyName, varArgs)
 }
@@ -93,15 +93,15 @@ func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNoti
 func (o *Object) SetProperty(propertyName string, value *Value) {
 	ObjectSetProperty(o, propertyName, value)
 }
-func (o *Object) SetQdata(quark T.GQuark, data T.Gpointer) { ObjectSetQdata(o, quark, data) }
-func (o *Object) SetQdataFull(quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) SetQdata(quark T.Quark, data T.Gpointer) { ObjectSetQdata(o, quark, data) }
+func (o *Object) SetQdataFull(quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
 	ObjectSetQdataFull(o, quark, data, destroy)
 }
 func (o *Object) SetValist(firstPropertyName string, varArgs T.VaList) {
 	ObjectSetValist(o, firstPropertyName, varArgs)
 }
 func (o *Object) StealData(key string) T.Gpointer                 { return ObjectStealData(o, key) }
-func (o *Object) StealQdata(quark T.GQuark) T.Gpointer            { return ObjectStealQdata(o, quark) }
+func (o *Object) StealQdata(quark T.Quark) T.Gpointer             { return ObjectStealQdata(o, quark) }
 func (o *Object) ThawNotify()                                     { ObjectThawNotify(o) }
 func (o *Object) WatchClosure(closure *Closure)                   { ObjectWatchClosure(o, closure) }
 func (o *Object) WeakRef(notify T.GWeakNotify, data T.Gpointer)   { ObjectWeakRef(o, notify, data) }
@@ -111,7 +111,7 @@ type ObjectClass struct {
 	TypeClass           TypeClass
 	ConstructProperties *SList
 
-	Constructor               func(Type Type, nConstructProperties uint, constructProperties *T.GObjectConstructParam) *Object
+	Constructor               func(Type Type, nConstructProperties uint, constructProperties *ObjectConstructParam) *Object
 	SetProperty               func(object *Object, propertyId uint, value Value, pspec *ParamSpec)
 	GetProperty               func(object *Object, propertyId uint, value *Value, pspec *ParamSpec)
 	Dispose                   func(object *Object)
@@ -124,11 +124,32 @@ type ObjectClass struct {
 }
 
 var (
-	ObjectClassInstallProperty   func(o *ObjectClass, propertyId uint, pspec *ParamSpec)
 	ObjectClassFindProperty      func(o *ObjectClass, propertyName string) *ParamSpec
+	ObjectClassInstallProperties func(o *ObjectClass, nPspecs uint, pspecs **ParamSpec)
+	ObjectClassInstallProperty   func(o *ObjectClass, propertyId uint, pspec *ParamSpec)
 	ObjectClassListProperties    func(o *ObjectClass, nProperties *uint) **ParamSpec
 	ObjectClassOverrideProperty  func(o *ObjectClass, propertyId uint, name string)
-	ObjectClassInstallProperties func(o *ObjectClass, nPspecs uint, pspecs **ParamSpec)
 )
+
+func (o *ObjectClass) FindProperty(propertyName string) *ParamSpec {
+	return ObjectClassFindProperty(o, propertyName)
+}
+func (o *ObjectClass) InstallProperties(nPspecs uint, pspecs **ParamSpec) {
+	ObjectClassInstallProperties(o, nPspecs, pspecs)
+}
+func (o *ObjectClass) InstallProperty(propertyId uint, pspec *ParamSpec) {
+	ObjectClassInstallProperty(o, propertyId, pspec)
+}
+func (o *ObjectClass) ListProperties(nProperties *uint) **ParamSpec {
+	return ObjectClassListProperties(o, nProperties)
+}
+func (o *ObjectClass) OverrideProperty(propertyId uint, name string) {
+	ObjectClassOverrideProperty(o, propertyId, name)
+}
+
+type ObjectConstructParam struct {
+	Pspec *T.GParamSpec
+	Value *T.GValue
+}
 
 var ObjectTypeInit func()

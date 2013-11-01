@@ -70,7 +70,7 @@ var (
 	AssertionMessageExpr   func(domain, file string, line int, f, expr string)
 	AssertionMessageCmpstr func(domain, file string, line int, f, expr, arg1, cmp, arg2 string)
 	AssertionMessageCmpnum func(domain, file string, line int, f, expr string, arg1 T.LongDouble, cmp string, arg2 T.LongDouble, numtype T.Char)
-	AssertionMessageError  func(domain, file string, line int, f, expr string, e *T.GError, errorDomain T.GQuark, errorCode int)
+	AssertionMessageError  func(domain, file string, line int, f, expr string, e *T.GError, errorDomain Quark, errorCode int)
 )
 
 type AsyncQueue struct{}
@@ -93,8 +93,8 @@ var (
 	AsyncQueuePopUnlocked        func(a *AsyncQueue) T.Gpointer
 	AsyncQueueTryPop             func(a *AsyncQueue) T.Gpointer
 	AsyncQueueTryPopUnlocked     func(a *AsyncQueue) T.Gpointer
-	AsyncQueueTimedPop           func(a *AsyncQueue, endTime *T.GTimeVal) T.Gpointer
-	AsyncQueueTimedPopUnlocked   func(a *AsyncQueue, endTime *T.GTimeVal) T.Gpointer
+	AsyncQueueTimedPop           func(a *AsyncQueue, endTime *TimeVal) T.Gpointer
+	AsyncQueueTimedPopUnlocked   func(a *AsyncQueue, endTime *TimeVal) T.Gpointer
 	AsyncQueueLength             func(a *AsyncQueue) int
 	AsyncQueueLengthUnlocked     func(a *AsyncQueue) int
 	AsyncQueueSort               func(a *AsyncQueue, f T.GCompareDataFunc, userData T.Gpointer)
@@ -115,12 +115,12 @@ func (a *AsyncQueue) PushSorted(data T.Gpointer, f T.GCompareDataFunc, userData 
 func (a *AsyncQueue) PushSortedUnlocked(data T.Gpointer, f T.GCompareDataFunc, userData T.Gpointer) {
 	AsyncQueuePushSortedUnlocked(a, data, f, userData)
 }
-func (a *AsyncQueue) Pop() T.Gpointer                         { return AsyncQueuePop(a) }
-func (a *AsyncQueue) PopUnlocked() T.Gpointer                 { return AsyncQueuePopUnlocked(a) }
-func (a *AsyncQueue) TryPop() T.Gpointer                      { return AsyncQueueTryPop(a) }
-func (a *AsyncQueue) TryPopUnlocked() T.Gpointer              { return AsyncQueueTryPopUnlocked(a) }
-func (a *AsyncQueue) TimedPop(endTime *T.GTimeVal) T.Gpointer { return AsyncQueueTimedPop(a, endTime) }
-func (a *AsyncQueue) TimedPopUnlocked(endTime *T.GTimeVal) T.Gpointer {
+func (a *AsyncQueue) Pop() T.Gpointer                      { return AsyncQueuePop(a) }
+func (a *AsyncQueue) PopUnlocked() T.Gpointer              { return AsyncQueuePopUnlocked(a) }
+func (a *AsyncQueue) TryPop() T.Gpointer                   { return AsyncQueueTryPop(a) }
+func (a *AsyncQueue) TryPopUnlocked() T.Gpointer           { return AsyncQueueTryPopUnlocked(a) }
+func (a *AsyncQueue) TimedPop(endTime *TimeVal) T.Gpointer { return AsyncQueueTimedPop(a, endTime) }
+func (a *AsyncQueue) TimedPopUnlocked(endTime *TimeVal) T.Gpointer {
 	return AsyncQueueTimedPopUnlocked(a, endTime)
 }
 func (a *AsyncQueue) Length() int                                    { return AsyncQueueLength(a) }

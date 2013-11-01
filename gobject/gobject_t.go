@@ -41,7 +41,7 @@ var (
 	TypeDepth                    func(t Type) uint
 	TypeFundamental              func(typeId Type) Type
 	TypeGetPlugin                func(t Type) *TypePlugin
-	TypeGetQdata                 func(t Type, quark T.GQuark) T.Gpointer
+	TypeGetQdata                 func(t Type, quark T.Quark) T.Gpointer
 	TypeInterfaceAddPrerequisite func(interfaceType Type, prerequisiteType Type)
 	TypeInterfaceGetPlugin       func(instanceType Type, interfaceType Type) *TypePlugin
 	TypeInterfacePrerequisites   func(interfaceType Type, nPrerequisites *uint) *Type
@@ -50,13 +50,13 @@ var (
 	TypeName                     func(t Type) string
 	TypeNextBase                 func(leafType, rootType Type) Type
 	TypeParent                   func(t Type) Type
-	TypeQname                    func(t Type) T.GQuark
+	TypeQname                    func(t Type) T.Quark
 	TypeQuery                    func(t Type, query *T.GTypeQuery)
 	TypeRegisterDynamic          func(parentType Type, typeName string, plugin *TypePlugin, flags TypeFlags) Type
 	TypeRegisterFundamental      func(typeId Type, typeName string, info *TypeInfo, finfo *T.GTypeFundamentalInfo, flags TypeFlags) Type
 	TypeRegisterStatic           func(parentType Type, typeName string, info *TypeInfo, flags TypeFlags) Type
 	TypeRegisterStaticSimple     func(parentType Type, typeName string, classSize uint, classInit T.GClassInitFunc, instanceSize uint, instanceInit T.GInstanceInitFunc, flags TypeFlags) Type
-	TypeSetQdata                 func(t Type, quark T.GQuark, data T.Gpointer)
+	TypeSetQdata                 func(t Type, quark T.Quark, data T.Gpointer)
 	TypeTestFlags                func(t Type, flags uint) bool
 	TypeValueTablePeek           func(t Type) *T.GTypeValueTable
 )
@@ -68,17 +68,17 @@ func (t Type) AddInterfaceDynamic(interfaceType Type, plugin *TypePlugin) {
 func (t Type) AddInterfaceStatic(interfaceType Type, info *T.GInterfaceInfo) {
 	TypeAddInterfaceStatic(t, interfaceType, info)
 }
-func (t Type) CheckIsValueType() bool             { return TypeCheckIsValueType(t) }
-func (t Type) Children(nChildren *uint) *Type     { return TypeChildren(t, nChildren) }
-func (t Type) ClassPeek() T.Gpointer              { return TypeClassPeek(t) }
-func (t Type) ClassPeekStatic() T.Gpointer        { return TypeClassPeekStatic(t) }
-func (t Type) ClassRef() T.Gpointer               { return TypeClassRef(t) }
-func (t Type) DefaultInterfacePeek() T.Gpointer   { return TypeDefaultInterfacePeek(t) }
-func (t Type) DefaultInterfaceRef() T.Gpointer    { return TypeDefaultInterfaceRef(t) }
-func (t Type) Depth() uint                        { return TypeDepth(t) }
-func (t Type) Fundamental() Type                  { return TypeFundamental(t) }
-func (t Type) GetPlugin() *TypePlugin             { return TypeGetPlugin(t) }
-func (t Type) GetQdata(quark T.GQuark) T.Gpointer { return TypeGetQdata(t, quark) }
+func (t Type) CheckIsValueType() bool            { return TypeCheckIsValueType(t) }
+func (t Type) Children(nChildren *uint) *Type    { return TypeChildren(t, nChildren) }
+func (t Type) ClassPeek() T.Gpointer             { return TypeClassPeek(t) }
+func (t Type) ClassPeekStatic() T.Gpointer       { return TypeClassPeekStatic(t) }
+func (t Type) ClassRef() T.Gpointer              { return TypeClassRef(t) }
+func (t Type) DefaultInterfacePeek() T.Gpointer  { return TypeDefaultInterfacePeek(t) }
+func (t Type) DefaultInterfaceRef() T.Gpointer   { return TypeDefaultInterfaceRef(t) }
+func (t Type) Depth() uint                       { return TypeDepth(t) }
+func (t Type) Fundamental() Type                 { return TypeFundamental(t) }
+func (t Type) GetPlugin() *TypePlugin            { return TypeGetPlugin(t) }
+func (t Type) GetQdata(quark T.Quark) T.Gpointer { return TypeGetQdata(t, quark) }
 func (t Type) InterfaceAddPrerequisite(prerequisiteType Type) {
 	TypeInterfaceAddPrerequisite(t, prerequisiteType)
 }
@@ -93,7 +93,7 @@ func (t Type) IsA(isAType Type) bool              { return TypeIsA(t, isAType) }
 func (t Type) Name() string                       { return TypeName(t) }
 func (t Type) NextBase(rootType Type) Type        { return TypeNextBase(t, rootType) }
 func (t Type) Parent() Type                       { return TypeParent(t) }
-func (t Type) Qname() T.GQuark                    { return TypeQname(t) }
+func (t Type) Qname() T.Quark                     { return TypeQname(t) }
 func (t Type) Query(query *T.GTypeQuery)          { TypeQuery(t, query) }
 func (t Type) RegisterDynamic(typeName string, plugin *TypePlugin, flags TypeFlags) Type {
 	return TypeRegisterDynamic(t, typeName, plugin, flags)
@@ -107,9 +107,9 @@ func (t Type) RegisterStatic(typeName string, info *TypeInfo, flags TypeFlags) T
 func (t Type) RegisterStaticSimple(typeName string, classSize uint, classInit T.GClassInitFunc, instanceSize uint, instanceInit T.GInstanceInitFunc, flags TypeFlags) Type {
 	return TypeRegisterStaticSimple(t, typeName, classSize, classInit, instanceSize, instanceInit, flags)
 }
-func (t Type) SetQdata(quark T.GQuark, data T.Gpointer) { TypeSetQdata(t, quark, data) }
-func (t Type) TestFlags(flags uint) bool                { return TypeTestFlags(t, flags) }
-func (t Type) ValueTablePeek() *T.GTypeValueTable       { return TypeValueTablePeek(t) }
+func (t Type) SetQdata(quark T.Quark, data T.Gpointer) { TypeSetQdata(t, quark, data) }
+func (t Type) TestFlags(flags uint) bool               { return TypeTestFlags(t, flags) }
+func (t Type) ValueTablePeek() *T.GTypeValueTable      { return TypeValueTablePeek(t) }
 
 type TypeClass struct {
 	Type Type

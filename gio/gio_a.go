@@ -4,6 +4,7 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -16,22 +17,22 @@ var (
 
 	ActionGetName func(a *Action) string
 
-	ActionActivate         func(a *Action, parameter *T.GVariant)
+	ActionActivate         func(a *Action, parameter *L.Variant)
 	ActionGetEnabled       func(a *Action) bool
-	ActionGetParameterType func(a *Action) *T.GVariantType
-	ActionGetState         func(a *Action) *T.GVariant
-	ActionGetStateHint     func(a *Action) *T.GVariant
-	ActionGetStateType     func(a *Action) *T.GVariantType
-	ActionSetState         func(a *Action, value *T.GVariant)
+	ActionGetParameterType func(a *Action) *L.VariantType
+	ActionGetState         func(a *Action) *L.Variant
+	ActionGetStateHint     func(a *Action) *L.Variant
+	ActionGetStateType     func(a *Action) *L.VariantType
+	ActionSetState         func(a *Action, value *L.Variant)
 )
 
-func (a *Action) Activate(parameter *T.GVariant)    { ActionActivate(a, parameter) }
-func (a *Action) GetEnabled() bool                  { return ActionGetEnabled(a) }
-func (a *Action) GetParameterType() *T.GVariantType { return ActionGetParameterType(a) }
-func (a *Action) GetState() *T.GVariant             { return ActionGetState(a) }
-func (a *Action) GetStateHint() *T.GVariant         { return ActionGetStateHint(a) }
-func (a *Action) GetStateType() *T.GVariantType     { return ActionGetStateType(a) }
-func (a *Action) SetState(value *T.GVariant)        { ActionSetState(a, value) }
+func (a *Action) Activate(parameter *L.Variant)    { ActionActivate(a, parameter) }
+func (a *Action) GetEnabled() bool                 { return ActionGetEnabled(a) }
+func (a *Action) GetParameterType() *L.VariantType { return ActionGetParameterType(a) }
+func (a *Action) GetState() *L.Variant             { return ActionGetState(a) }
+func (a *Action) GetStateHint() *L.Variant         { return ActionGetStateHint(a) }
+func (a *Action) GetStateType() *L.VariantType     { return ActionGetStateType(a) }
+func (a *Action) SetState(value *L.Variant)        { ActionSetState(a, value) }
 
 type ActionGroup struct{}
 
@@ -41,14 +42,14 @@ var (
 	ActionGroupActionAdded            func(a *ActionGroup, actionName string)
 	ActionGroupActionEnabledChanged   func(a *ActionGroup, actionName string, enabled bool)
 	ActionGroupActionRemoved          func(a *ActionGroup, actionName string)
-	ActionGroupActionStateChanged     func(a *ActionGroup, actionName string, state *T.GVariant)
-	ActionGroupActivateAction         func(a *ActionGroup, actionName string, parameter *T.GVariant)
-	ActionGroupChangeActionState      func(a *ActionGroup, actionName string, value *T.GVariant)
+	ActionGroupActionStateChanged     func(a *ActionGroup, actionName string, state *L.Variant)
+	ActionGroupActivateAction         func(a *ActionGroup, actionName string, parameter *L.Variant)
+	ActionGroupChangeActionState      func(a *ActionGroup, actionName string, value *L.Variant)
 	ActionGroupGetActionEnabled       func(a *ActionGroup, actionName string) bool
-	ActionGroupGetActionParameterType func(a *ActionGroup, actionName string) *T.GVariantType
-	ActionGroupGetActionState         func(a *ActionGroup, actionName string) *T.GVariant
-	ActionGroupGetActionStateHint     func(a *ActionGroup, actionName string) *T.GVariant
-	ActionGroupGetActionStateType     func(a *ActionGroup, actionName string) *T.GVariantType
+	ActionGroupGetActionParameterType func(a *ActionGroup, actionName string) *L.VariantType
+	ActionGroupGetActionState         func(a *ActionGroup, actionName string) *L.Variant
+	ActionGroupGetActionStateHint     func(a *ActionGroup, actionName string) *L.Variant
+	ActionGroupGetActionStateType     func(a *ActionGroup, actionName string) *L.VariantType
 	ActionGroupHasAction              func(a *ActionGroup, actionName string) bool
 	ActionGroupListActions            func(a *ActionGroup) []string
 )
@@ -58,28 +59,28 @@ func (a *ActionGroup) ActionEnabledChanged(actionName string, enabled bool) {
 	ActionGroupActionEnabledChanged(a, actionName, enabled)
 }
 func (a *ActionGroup) ActionRemoved(actionName string) { ActionGroupActionRemoved(a, actionName) }
-func (a *ActionGroup) ActionStateChanged(actionName string, state *T.GVariant) {
+func (a *ActionGroup) ActionStateChanged(actionName string, state *L.Variant) {
 	ActionGroupActionStateChanged(a, actionName, state)
 }
-func (a *ActionGroup) ActivateAction(actionName string, parameter *T.GVariant) {
+func (a *ActionGroup) ActivateAction(actionName string, parameter *L.Variant) {
 	ActionGroupActivateAction(a, actionName, parameter)
 }
-func (a *ActionGroup) ChangeActionState(actionName string, value *T.GVariant) {
+func (a *ActionGroup) ChangeActionState(actionName string, value *L.Variant) {
 	ActionGroupChangeActionState(a, actionName, value)
 }
 func (a *ActionGroup) GetActionEnabled(actionName string) bool {
 	return ActionGroupGetActionEnabled(a, actionName)
 }
-func (a *ActionGroup) GetActionParameterType(actionName string) *T.GVariantType {
+func (a *ActionGroup) GetActionParameterType(actionName string) *L.VariantType {
 	return ActionGroupGetActionParameterType(a, actionName)
 }
-func (a *ActionGroup) GetActionState(actionName string) *T.GVariant {
+func (a *ActionGroup) GetActionState(actionName string) *L.Variant {
 	return ActionGroupGetActionState(a, actionName)
 }
-func (a *ActionGroup) GetActionStateHint(actionName string) *T.GVariant {
+func (a *ActionGroup) GetActionStateHint(actionName string) *L.Variant {
 	return ActionGroupGetActionStateHint(a, actionName)
 }
-func (a *ActionGroup) GetActionStateType(actionName string) *T.GVariantType {
+func (a *ActionGroup) GetActionStateType(actionName string) *L.VariantType {
 	return ActionGroupGetActionStateType(a, actionName)
 }
 func (a *ActionGroup) HasAction(actionName string) bool {
@@ -92,10 +93,10 @@ type AppInfo struct{}
 var (
 	AppInfoGetType func() O.Type
 
-	AppInfoGetAll                 func() *T.GList
-	AppInfoGetAllForType          func(contentType string) *T.GList
-	AppInfoGetRecommendedForType  func(contentType string) *T.GList
-	AppInfoGetFallbackForType     func(contentType string) *T.GList
+	AppInfoGetAll                 func() *L.List
+	AppInfoGetAllForType          func(contentType string) *L.List
+	AppInfoGetRecommendedForType  func(contentType string) *L.List
+	AppInfoGetFallbackForType     func(contentType string) *L.List
 	AppInfoResetTypeAssociations  func(contentType string)
 	AppInfoGetDefaultForType      func(contentType string, mustSupportUris bool) *AppInfo
 	AppInfoGetDefaultForUriScheme func(uriScheme string) *AppInfo
@@ -115,8 +116,8 @@ var (
 	AppInfoGetIcon                  func(a *AppInfo) *Icon
 	AppInfoGetId                    func(a *AppInfo) string
 	AppInfoGetName                  func(a *AppInfo) string
-	AppInfoLaunch                   func(a *AppInfo, files *T.GList, launchContext *AppLaunchContext, err **T.GError) bool
-	AppInfoLaunchUris               func(a *AppInfo, uris *T.GList, launchContext *AppLaunchContext, err **T.GError) bool
+	AppInfoLaunch                   func(a *AppInfo, files *L.List, launchContext *AppLaunchContext, err **T.GError) bool
+	AppInfoLaunchUris               func(a *AppInfo, uris *L.List, launchContext *AppLaunchContext, err **T.GError) bool
 	AppInfoRemoveSupportsType       func(a *AppInfo, contentType string, err **T.GError) bool
 	AppInfoSetAsDefaultForExtension func(a *AppInfo, extension string, err **T.GError) bool
 	AppInfoSetAsDefaultForType      func(a *AppInfo, contentType string, err **T.GError) bool
@@ -141,10 +142,10 @@ func (a *AppInfo) GetExecutable() string        { return AppInfoGetExecutable(a)
 func (a *AppInfo) GetIcon() *Icon               { return AppInfoGetIcon(a) }
 func (a *AppInfo) GetId() string                { return AppInfoGetId(a) }
 func (a *AppInfo) GetName() string              { return AppInfoGetName(a) }
-func (a *AppInfo) Launch(files *T.GList, launchContext *AppLaunchContext, err **T.GError) bool {
+func (a *AppInfo) Launch(files *L.List, launchContext *AppLaunchContext, err **T.GError) bool {
 	return AppInfoLaunch(a, files, launchContext, err)
 }
-func (a *AppInfo) LaunchUris(uris *T.GList, launchContext *AppLaunchContext, err **T.GError) bool {
+func (a *AppInfo) LaunchUris(uris *L.List, launchContext *AppLaunchContext, err **T.GError) bool {
 	return AppInfoLaunchUris(a, uris, launchContext, err)
 }
 func (a *AppInfo) RemoveSupportsType(contentType string, err **T.GError) bool {
@@ -184,15 +185,15 @@ var (
 
 	AppLaunchContextNew func() *AppLaunchContext
 
-	AppLaunchContextGetDisplay         func(a *AppLaunchContext, info *AppInfo, files *T.GList) string
-	AppLaunchContextGetStartupNotifyId func(a *AppLaunchContext, info *AppInfo, files *T.GList) string
+	AppLaunchContextGetDisplay         func(a *AppLaunchContext, info *AppInfo, files *L.List) string
+	AppLaunchContextGetStartupNotifyId func(a *AppLaunchContext, info *AppInfo, files *L.List) string
 	AppLaunchContextLaunchFailed       func(a *AppLaunchContext, startupNotifyId string)
 )
 
-func (a *AppLaunchContext) GetDisplay(info *AppInfo, files *T.GList) string {
+func (a *AppLaunchContext) GetDisplay(info *AppInfo, files *L.List) string {
 	return AppLaunchContextGetDisplay(a, info, files)
 }
-func (a *AppLaunchContext) GetStartupNotifyId(info *AppInfo, files *T.GList) string {
+func (a *AppLaunchContext) GetStartupNotifyId(info *AppInfo, files *L.List) string {
 	return AppLaunchContextGetStartupNotifyId(a, info, files)
 }
 func (a *AppLaunchContext) LaunchFailed(startupNotifyId string) {
@@ -265,7 +266,7 @@ var (
 	ApplicationCommandLineGetEnviron      func(a *ApplicationCommandLine) []string
 	ApplicationCommandLineGetExitStatus   func(a *ApplicationCommandLine) int
 	ApplicationCommandLineGetIsRemote     func(a *ApplicationCommandLine) bool
-	ApplicationCommandLineGetPlatformData func(a *ApplicationCommandLine) *T.GVariant
+	ApplicationCommandLineGetPlatformData func(a *ApplicationCommandLine) *L.Variant
 	ApplicationCommandLinePrint           func(a *ApplicationCommandLine, format string, v ...VArg)
 	ApplicationCommandLinePrinterr        func(a *ApplicationCommandLine, format string, v ...VArg)
 	ApplicationCommandLineSetExitStatus   func(a *ApplicationCommandLine, exitStatus int)
@@ -281,7 +282,7 @@ func (a *ApplicationCommandLine) Getenv(name string) string {
 func (a *ApplicationCommandLine) GetEnviron() []string { return ApplicationCommandLineGetEnviron(a) }
 func (a *ApplicationCommandLine) GetExitStatus() int   { return ApplicationCommandLineGetExitStatus(a) }
 func (a *ApplicationCommandLine) GetIsRemote() bool    { return ApplicationCommandLineGetIsRemote(a) }
-func (a *ApplicationCommandLine) GetPlatformData() *T.GVariant {
+func (a *ApplicationCommandLine) GetPlatformData() *L.Variant {
 	return ApplicationCommandLineGetPlatformData(a)
 }
 func (a *ApplicationCommandLine) Print(format string, v ...VArg) {

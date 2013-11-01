@@ -308,7 +308,7 @@ var (
 
 	QueryVisualTypes func(visualTypes **VisualType, count *int)
 
-	ListVisuals func() *T.GList
+	ListVisuals func() *L.List
 
 	ParseArgs func(argc *int, argv ***T.Gchar)
 
@@ -316,7 +316,7 @@ var (
 
 	InitCheck func(argc *int, argv ***T.Gchar) bool
 
-	AddOptionEntriesLibgtkOnly func(group *T.GOptionGroup)
+	AddOptionEntriesLibgtkOnly func(group *L.OptionGroup)
 
 	PreParseLibgtkOnly func()
 

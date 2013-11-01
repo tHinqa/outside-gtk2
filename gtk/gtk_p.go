@@ -6,6 +6,7 @@ package gtk
 import (
 	C "github.com/tHinqa/outside-gtk2/cairo"
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -64,7 +65,7 @@ var (
 	PageSetupGetType        func() O.Type
 	PageSetupNew            func() *PageSetup
 	PageSetupNewFromFile    func(fileName string, error **T.GError) *PageSetup
-	PageSetupNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, error **T.GError) *PageSetup
+	PageSetupNewFromKeyFile func(keyFile *L.KeyFile, groupName string, error **T.GError) *PageSetup
 
 	PageSetupCopy                          func(p *PageSetup) *PageSetup
 	PageSetupGetBottomMargin               func(p *PageSetup, unit Unit) float64
@@ -78,7 +79,7 @@ var (
 	PageSetupGetRightMargin                func(p *PageSetup, unit Unit) float64
 	PageSetupGetTopMargin                  func(p *PageSetup, unit Unit) float64
 	PageSetupLoadFile                      func(p *PageSetup, fileName string, error **T.GError) bool
-	PageSetupLoadKeyFile                   func(p *PageSetup, keyFile *T.GKeyFile, groupName string, error **T.GError) bool
+	PageSetupLoadKeyFile                   func(p *PageSetup, keyFile *L.KeyFile, groupName string, error **T.GError) bool
 	PageSetupSetBottomMargin               func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetLeftMargin                 func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetOrientation                func(p *PageSetup, orientation Orientation)
@@ -87,7 +88,7 @@ var (
 	PageSetupSetRightMargin                func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetTopMargin                  func(p *PageSetup, margin float64, unit Unit)
 	PageSetupToFile                        func(p *PageSetup, fileName string, error **T.GError) bool
-	PageSetupToKeyFile                     func(p *PageSetup, keyFile *T.GKeyFile, groupName string)
+	PageSetupToKeyFile                     func(p *PageSetup, keyFile *L.KeyFile, groupName string)
 )
 
 func (p *PageSetup) Copy() *PageSetup                  { return PageSetupCopy(p) }
@@ -104,7 +105,7 @@ func (p *PageSetup) GetTopMargin(unit Unit) float64    { return PageSetupGetTopM
 func (p *PageSetup) LoadFile(fileName string, err **T.GError) bool {
 	return PageSetupLoadFile(p, fileName, err)
 }
-func (p *PageSetup) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) bool {
+func (p *PageSetup) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **T.GError) bool {
 	return PageSetupLoadKeyFile(p, keyFile, groupName, err)
 }
 func (p *PageSetup) SetBottomMargin(margin float64, unit Unit) {
@@ -129,7 +130,7 @@ func (p *PageSetup) SetTopMargin(margin float64, unit Unit) {
 func (p *PageSetup) ToFile(fileName string, err **T.GError) bool {
 	return PageSetupToFile(p, fileName, err)
 }
-func (p *PageSetup) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
+func (p *PageSetup) ToKeyFile(keyFile *L.KeyFile, groupName string) {
 	PageSetupToKeyFile(p, keyFile, groupName)
 }
 
@@ -202,7 +203,7 @@ var (
 	PaperSizeGetType        func() O.Type
 	PaperSizeNew            func(name string) *PaperSize
 	PaperSizeNewCustom      func(name, displayName string, width, height float64, unit Unit) *PaperSize
-	PaperSizeNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, err **T.GError) *PaperSize
+	PaperSizeNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **T.GError) *PaperSize
 	PaperSizeNewFromPpd     func(ppdName, ppdDisplayName string, width, height float64) *PaperSize
 
 	PaperSizeGetDefault    func() string
@@ -222,7 +223,7 @@ var (
 	PaperSizeIsCustom               func(s *PaperSize) bool
 	PaperSizeIsEqual                func(s *PaperSize, size2 *PaperSize) bool
 	PaperSizeSetSize                func(s *PaperSize, width, height float64, unit Unit)
-	PaperSizeToKeyFile              func(s *PaperSize, keyFile *T.GKeyFile, groupName string)
+	PaperSizeToKeyFile              func(s *PaperSize, keyFile *L.KeyFile, groupName string)
 )
 
 func (s *PaperSize) Copy() *PaperSize { return PaperSizeCopy(s) }
@@ -249,7 +250,7 @@ func (s *PaperSize) IsEqual(size2 *PaperSize) bool { return PaperSizeIsEqual(s, 
 func (s *PaperSize) SetSize(width, height float64, unit Unit) {
 	PaperSizeSetSize(s, width, height, unit)
 }
-func (s *PaperSize) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
+func (s *PaperSize) ToKeyFile(keyFile *L.KeyFile, groupName string) {
 	PaperSizeToKeyFile(s, keyFile, groupName)
 }
 
@@ -303,7 +304,7 @@ type Plug struct {
 	SocketWindow   *D.Window
 	ModalityWindow *Widget
 	ModalityGroup  *WindowGroup
-	GrabbedKeys    *T.GHashTable
+	GrabbedKeys    *L.HashTable
 	SameApp        uint // : 1
 }
 
@@ -460,12 +461,12 @@ const (
 var (
 	PrintErrorGetType func() O.Type
 
-	PrintErrorQuark func() T.GQuark
+	PrintErrorQuark func() L.Quark
 )
 
 type PrintOperation struct {
-	Parent_instance T.GObject
-	_               *struct{}
+	Parent O.Object
+	_      *struct{}
 }
 
 var (
@@ -639,7 +640,7 @@ var (
 	PrintSettingsGetType        func() O.Type
 	PrintSettingsNew            func() *PrintSettings
 	PrintSettingsNewFromFile    func(fileName string, err **T.GError) *PrintSettings
-	PrintSettingsNewFromKeyFile func(keyFile *T.GKeyFile, groupName string, err **T.GError) *PrintSettings
+	PrintSettingsNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **T.GError) *PrintSettings
 
 	PrintSettingsCopy                 func(p *PrintSettings) *PrintSettings
 	PrintSettingsForeach              func(p *PrintSettings, f PrintSettingsFunc, userData T.Gpointer)
@@ -678,7 +679,7 @@ var (
 	PrintSettingsGetUseColor          func(p *PrintSettings) bool
 	PrintSettingsHasKey               func(p *PrintSettings, key string) bool
 	PrintSettingsLoadFile             func(p *PrintSettings, fileName string, err **T.GError) bool
-	PrintSettingsLoadKeyFile          func(p *PrintSettings, keyFile *T.GKeyFile, groupName string, err **T.GError) bool
+	PrintSettingsLoadKeyFile          func(p *PrintSettings, keyFile *L.KeyFile, groupName string, err **T.GError) bool
 	PrintSettingsSet                  func(p *PrintSettings, key, value string)
 	PrintSettingsSetBool              func(p *PrintSettings, key string, value bool)
 	PrintSettingsSetCollate           func(p *PrintSettings, collate bool)
@@ -710,7 +711,7 @@ var (
 	PrintSettingsSetScale             func(p *PrintSettings, scale float64)
 	PrintSettingsSetUseColor          func(p *PrintSettings, useColor bool)
 	PrintSettingsToFile               func(p *PrintSettings, fileName string, err **T.GError) bool
-	PrintSettingsToKeyFile            func(p *PrintSettings, keyFile *T.GKeyFile, groupName string)
+	PrintSettingsToKeyFile            func(p *PrintSettings, keyFile *L.KeyFile, groupName string)
 	PrintSettingsUnset                func(p *PrintSettings, key string)
 )
 
@@ -769,7 +770,7 @@ func (p *PrintSettings) HasKey(key string) bool    { return PrintSettingsHasKey(
 func (p *PrintSettings) LoadFile(fileName string, err **T.GError) bool {
 	return PrintSettingsLoadFile(p, fileName, err)
 }
-func (p *PrintSettings) LoadKeyFile(keyFile *T.GKeyFile, groupName string, err **T.GError) bool {
+func (p *PrintSettings) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **T.GError) bool {
 	return PrintSettingsLoadKeyFile(p, keyFile, groupName, err)
 }
 func (p *PrintSettings) Set(key, value string)          { PrintSettingsSet(p, key, value) }
@@ -821,7 +822,7 @@ func (p *PrintSettings) SetUseColor(useColor bool) { PrintSettingsSetUseColor(p,
 func (p *PrintSettings) ToFile(fileName string, err **T.GError) bool {
 	return PrintSettingsToFile(p, fileName, err)
 }
-func (p *PrintSettings) ToKeyFile(keyFile *T.GKeyFile, groupName string) {
+func (p *PrintSettings) ToKeyFile(keyFile *L.KeyFile, groupName string) {
 	PrintSettingsToKeyFile(p, keyFile, groupName)
 }
 func (p *PrintSettings) Unset(key string) { PrintSettingsUnset(p, key) }

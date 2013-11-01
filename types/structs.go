@@ -7,159 +7,18 @@ type (
 		Sec, Min, Hour, Mday, Mon, Year, Wday, Yday, Isdst int
 	}
 
-	GCompletion struct {
-		Items       *GList
-		Fnc         GCompletionFunc
-		Prefix      *Gchar
-		Cache       *GList
-		StrncmpFunc GCompletionStrncmpFunc
-	}
-
-	GDate struct {
-		Bits1, Bits2 uint
-		// JulianDays : 32
-		// Julian : 1
-		// Dmy : 1
-		// Day : 6
-		// Month : 4
-		// Year : 16
-	}
-
 	GDebugKey struct {
 		Key   *Gchar
 		Value uint
 	}
 
 	GError struct {
-		Domain  GQuark
+		Domain  Quark
 		Code    int
 		Message *Gchar
 	}
 
-	GHashTableIter struct {
-		Dummy1 Gpointer
-		Dummy2 Gpointer
-		Dummy3 Gpointer
-		Dummy4 int
-		Dummy5 Gboolean
-		Dummy6 Gpointer
-	}
-
-	GHook struct {
-		Data     Gpointer
-		Next     *GHook
-		Prev     *GHook
-		RefCount uint
-		HookId   Gulong
-		Flags    uint
-		Fnc      Gpointer
-		Destroy  GDestroyNotify
-	}
-
-	GHookList struct {
-		SeqId Gulong
-		Bits  uint
-		// HookSize : 16
-		// IsSetup : 1
-		Hooks        *GHook
-		Dummy3       Gpointer
-		FinalizeHook GHookFinalizeFunc
-		Dummy        [2]Gpointer
-	}
-
-	GIOChannel struct {
-		RefCount        int
-		Funcs           *GIOFuncs
-		Encoding        *Gchar
-		ReadCd          GIConv
-		WriteCd         GIConv
-		LineTerm        *Gchar
-		LineTermLen     uint
-		BufSize         Gsize
-		ReadBuf         *GString
-		EncodedReadBuf  *GString
-		WriteBuf        *GString
-		PartialWriteBuf [6]Gchar
-		Bits            uint
-		// UseBuffer : 1
-		// DoEncode : 1
-		// CloseOnUnref : 1
-		// IsReadable : 1
-		// IsWriteable : 1
-		// IsSeekable : 1
-		_, _ Gpointer
-	}
-
-	GList struct {
-		Data Gpointer
-		Next *GList
-		Prev *GList
-	}
-
-	GIOFuncs struct {
-		IoRead func(
-			channel *GIOChannel,
-			buf *Gchar,
-			count Gsize,
-			bytesRead *Gsize,
-			err **GError) GIOStatus
-		IoWrite func(
-			channel *GIOChannel,
-			buf *Gchar,
-			count Gsize,
-			bytesWritten *Gsize,
-			err **GError) GIOStatus
-		IoSeek func(
-			channel *GIOChannel,
-			offset int64,
-			type_ GSeekType,
-			err **GError) GIOStatus
-		IoClose func(
-			channel *GIOChannel,
-			err **GError) GIOStatus
-		IoCreateWatch func(
-			channel *GIOChannel,
-			condition GIOCondition) *GSource
-		IoFree func(
-			channel *GIOChannel)
-		IoSetFlags func(
-			channel *GIOChannel,
-			flags GIOFlags,
-			err **GError) GIOStatus
-		IoGetFlags func(
-			channel *GIOChannel) GIOFlags
-	}
-
-	GMarkupParser struct {
-		StartElement func(
-			context *GMarkupParseContext,
-			elementName *Gchar,
-			attributeNames **Gchar,
-			attributeValues **Gchar,
-			userData Gpointer,
-			error **GError)
-		EndElement func(
-			context *GMarkupParseContext,
-			elementName *Gchar,
-			userData Gpointer,
-			error **GError)
-		Text func(
-			context *GMarkupParseContext,
-			text *Gchar,
-			textLen Gsize,
-			userData Gpointer,
-			error **GError)
-		Passthrough func(
-			context *GMarkupParseContext,
-			passthroughText *Gchar,
-			textLen Gsize,
-			userData Gpointer,
-			error **GError)
-		Error func(
-			context *GMarkupParseContext,
-			error *GError,
-			userData Gpointer)
-	}
+	GList struct{} //REMOVE
 
 	GNode struct {
 		Data     Gpointer
@@ -174,26 +33,10 @@ type (
 		Retval Gpointer
 	}
 
-	GOptionEntry struct {
-		LongName       *Gchar
-		ShortName      Gchar
-		Flags          int
-		Arg            GOptionArg
-		ArgData        Gpointer
-		Description    *Gchar
-		ArgDescription *Gchar
-	}
-
 	GPollFD struct {
 		Fd      int
 		Events  uint16
 		Revents uint16
-	}
-
-	GQueue struct {
-		Head   *GList
-		Tail   *GList
-		Length uint
 	}
 
 	SList struct { // For functions in gobject and glib (import cycle
@@ -204,76 +47,6 @@ type (
 	GSource struct{} //REMOVE
 
 	GString struct{} // REMOVE
-
-	GTestLogBuffer struct {
-		Data *GString
-		Msgs *SList
-	}
-
-	GTestLogMsg struct {
-		LogType  GTestLogType
-		NStrings uint
-		Strings  **Gchar
-		NNums    uint
-		Nums     *LongDouble
-	}
-
-	GThread struct {
-		Func     GThreadFunc
-		Data     Gpointer
-		Joinable Gboolean
-		Priority GThreadPriority
-	}
-
-	GThreadFunctions struct {
-		MutexNew      func()
-		MutexLock     func(mutex *GMutex) *GMutex
-		MutexTrylock  func(mutex *GMutex) Gboolean
-		MutexUnlock   func(mutex *GMutex)
-		MutexFree     func(mutex *GMutex)
-		CondNew       func() *GCond
-		CondSignal    func(cond *GCond)
-		CondBroadcast func(cond *GCond)
-		CondWait      func(cond *GCond, mutex *GMutex)
-		CondTimedWait func(
-			cond *GCond,
-			mutex *GMutex,
-			endTime *GTimeVal) Gboolean
-		CondFree     func(cond *GCond)
-		PrivateNew   func(destructor GDestroyNotify) *GPrivate
-		PrivateGet   func(privateKey *GPrivate) Gpointer
-		PrivateSet   func(privateKey *GPrivate, data Gpointer)
-		ThreadCreate func(
-			fnc GThreadFunc,
-			data Gpointer,
-			stackSize Gulong,
-			joinable Gboolean,
-			bound Gboolean,
-			priority GThreadPriority,
-			thread Gpointer,
-			error **GError)
-		Threadield        func()
-		ThreadJoin        func(thread Gpointer)
-		ThreadExit        func()
-		ThreadSetPriority func(
-			thread Gpointer,
-			priority GThreadPriority)
-		ThreadSelf  func(thread Gpointer)
-		ThreadEqual func(
-			thread1 Gpointer,
-			thread2 Gpointer) Gboolean
-	}
-
-	GThreadPool struct {
-		Func      GFunc
-		UserData  Gpointer
-		Exclusive Gboolean
-	}
-
-	GTimeVal struct {
-		TvSec  Glong
-		TvUsec Glong
-	}
 
 	GTokenValue struct {
 		// Union
@@ -289,18 +62,6 @@ type (
 		// VComment  *Gchar;
 		// VChar  Guchar;
 		// VError  uint;
-	}
-
-	GTuples struct {
-		Len uint
-	}
-
-	GVariantBuilder struct {
-		X [16]Gsize
-	}
-
-	GVariantIter struct {
-		X [16]Gsize
 	}
 
 	GTypeClass struct{} //REMOVE
@@ -336,7 +97,7 @@ type (
 
 	GSignalInvocationHint struct {
 		SignalId uint
-		Detail   GQuark
+		Detail   Quark
 		RunType  GSignalFlags
 	}
 
@@ -361,14 +122,9 @@ type (
 
 	GParamSpec struct{} //REMOVE
 
-	GObjectConstructParam struct {
-		Pspec *GParamSpec
-		Value *GValue
-	}
-
 	GtkRcProperty struct {
-		TypeName     GQuark
-		PropertyName GQuark
+		TypeName     Quark
+		PropertyName Quark
 		Origin       *Gchar
 		Value        GValue
 	}
@@ -429,10 +185,6 @@ type (
 		Calloc     func(nBlocks Gsize, nBlockBytes Gsize) Gpointer
 		TryMalloc  func(nBytes Gsize) Gpointer
 		TryRealloc func(mem Gpointer, nBytes Gsize) Gpointer
-	}
-
-	GTrashStack struct {
-		Next *GTrashStack
 	}
 
 	GParameter struct {

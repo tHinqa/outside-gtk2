@@ -13,7 +13,7 @@ type Source struct {
 	CallbackFuncs *SourceCallbackFuncs
 	Source_funcs  *SourceFuncs
 	RefCount      uint
-	Context       *T.GMainContext
+	Context       *T.MainContext
 	Priority      int
 	Flags         uint
 	SourceId      uint

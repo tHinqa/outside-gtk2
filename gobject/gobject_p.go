@@ -60,19 +60,19 @@ var (
 	ParamSpecUlong      func(name, nick, blurb string, minimum, maximum, defaultValue T.Gulong, flags ParamFlags) *ParamSpec
 	ParamSpecUnichar    func(name, nick, blurb string, defaultValue T.Gunichar, flags ParamFlags) *ParamSpec
 	ParamSpecValueArray func(name, nick, blurb string, elementSpec *ParamSpec, flags ParamFlags) *ParamSpec
-	ParamSpecVariant    func(name, nick, blurb string, t *T.GVariantType, defaultValue *T.GVariant, flags ParamFlags) *ParamSpec
+	ParamSpecVariant    func(name, nick, blurb string, t *T.VariantType, defaultValue *T.Variant, flags ParamFlags) *ParamSpec
 
 	ParamSpecGetBlurb          func(p *ParamSpec) string
 	ParamSpecGetName           func(p *ParamSpec) string
 	ParamSpecGetNick           func(p *ParamSpec) string
-	ParamSpecGetQdata          func(p *ParamSpec, quark T.GQuark) T.Gpointer
+	ParamSpecGetQdata          func(p *ParamSpec, quark T.Quark) T.Gpointer
 	ParamSpecGetRedirectTarget func(p *ParamSpec) *ParamSpec
 	ParamSpecRef               func(p *ParamSpec) *ParamSpec
 	ParamSpecRefSink           func(p *ParamSpec) *ParamSpec
-	ParamSpecSetQdata          func(p *ParamSpec, quark T.GQuark, data T.Gpointer)
-	ParamSpecSetQdataFull      func(p *ParamSpec, quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify)
+	ParamSpecSetQdata          func(p *ParamSpec, quark T.Quark, data T.Gpointer)
+	ParamSpecSetQdataFull      func(p *ParamSpec, quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify)
 	ParamSpecSink              func(p *ParamSpec)
-	ParamSpecStealQdata        func(p *ParamSpec, quark T.GQuark) T.Gpointer
+	ParamSpecStealQdata        func(p *ParamSpec, quark T.Quark) T.Gpointer
 	ParamSpecUnref             func(p *ParamSpec)
 	ParamValueSetDefault       func(p *ParamSpec, value *Value)
 	ParamValueDefaults         func(p *ParamSpec, value *Value) bool
@@ -84,24 +84,24 @@ var (
 func (p *ParamSpec) Convert(srcValue, destValue *Value, strictValidation bool) bool {
 	return ParamValueConvert(p, srcValue, destValue, strictValidation)
 }
-func (p *ParamSpec) Defaults(value *Value) bool               { return ParamValueDefaults(p, value) }
-func (p *ParamSpec) GetBlurb() string                         { return ParamSpecGetBlurb(p) }
-func (p *ParamSpec) GetName() string                          { return ParamSpecGetName(p) }
-func (p *ParamSpec) GetNick() string                          { return ParamSpecGetNick(p) }
-func (p *ParamSpec) GetQdata(quark T.GQuark) T.Gpointer       { return ParamSpecGetQdata(p, quark) }
-func (p *ParamSpec) GetRedirectTarget() *ParamSpec            { return ParamSpecGetRedirectTarget(p) }
-func (p *ParamSpec) Ref() *ParamSpec                          { return ParamSpecRef(p) }
-func (p *ParamSpec) RefSink() *ParamSpec                      { return ParamSpecRefSink(p) }
-func (p *ParamSpec) SetDefault(value *Value)                  { ParamValueSetDefault(p, value) }
-func (p *ParamSpec) SetQdata(quark T.GQuark, data T.Gpointer) { ParamSpecSetQdata(p, quark, data) }
-func (p *ParamSpec) SetQdataFull(quark T.GQuark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (p *ParamSpec) Defaults(value *Value) bool              { return ParamValueDefaults(p, value) }
+func (p *ParamSpec) GetBlurb() string                        { return ParamSpecGetBlurb(p) }
+func (p *ParamSpec) GetName() string                         { return ParamSpecGetName(p) }
+func (p *ParamSpec) GetNick() string                         { return ParamSpecGetNick(p) }
+func (p *ParamSpec) GetQdata(quark T.Quark) T.Gpointer       { return ParamSpecGetQdata(p, quark) }
+func (p *ParamSpec) GetRedirectTarget() *ParamSpec           { return ParamSpecGetRedirectTarget(p) }
+func (p *ParamSpec) Ref() *ParamSpec                         { return ParamSpecRef(p) }
+func (p *ParamSpec) RefSink() *ParamSpec                     { return ParamSpecRefSink(p) }
+func (p *ParamSpec) SetDefault(value *Value)                 { ParamValueSetDefault(p, value) }
+func (p *ParamSpec) SetQdata(quark T.Quark, data T.Gpointer) { ParamSpecSetQdata(p, quark, data) }
+func (p *ParamSpec) SetQdataFull(quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
 	ParamSpecSetQdataFull(p, quark, data, destroy)
 }
-func (p *ParamSpec) Sink()                                { ParamSpecSink(p) }
-func (p *ParamSpec) StealQdata(quark T.GQuark) T.Gpointer { return ParamSpecStealQdata(p, quark) }
-func (p *ParamSpec) Unref()                               { ParamSpecUnref(p) }
-func (p *ParamSpec) Validate(value *Value) bool           { return ParamValueValidate(p, value) }
-func (p *ParamSpec) ValuesCmp(value1, value2 *Value) int  { return ParamValuesCmp(p, value1, value2) }
+func (p *ParamSpec) Sink()                               { ParamSpecSink(p) }
+func (p *ParamSpec) StealQdata(quark T.Quark) T.Gpointer { return ParamSpecStealQdata(p, quark) }
+func (p *ParamSpec) Unref()                              { ParamSpecUnref(p) }
+func (p *ParamSpec) Validate(value *Value) bool          { return ParamValueValidate(p, value) }
+func (p *ParamSpec) ValuesCmp(value1, value2 *Value) int { return ParamValuesCmp(p, value1, value2) }
 
 type ParamSpecPool struct{}
 

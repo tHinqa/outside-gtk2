@@ -69,7 +69,7 @@ var (
 	PixbufNewFromStreamFinish       func(asyncResult *I.AsyncResult, e **T.GError) *Pixbuf
 	PixbufNewFromXpmData            func(data **T.Char) *Pixbuf
 
-	PixbufErrorQuark         func() T.GQuark
+	PixbufErrorQuark         func() L.Quark
 	PixbufGetFileInfo        func(filename string, width, height *int) *PixbufFormat
 	PixbufGetFormats         func() *L.SList
 	PixbufSaveToStreamFinish func(asyncResult *I.AsyncResult, e **T.GError) bool
@@ -202,7 +202,7 @@ var (
 	PixbufAnimationNewFromFileUtf8 func(filename string, e **T.GError) *PixbufAnimation
 
 	PixbufAnimationGetHeight      func(animation *PixbufAnimation) int
-	PixbufAnimationGetIter        func(animation *PixbufAnimation, startTime *T.GTimeVal) *PixbufAnimationIter
+	PixbufAnimationGetIter        func(animation *PixbufAnimation, startTime *L.TimeVal) *PixbufAnimationIter
 	PixbufAnimationGetStaticImage func(animation *PixbufAnimation) *Pixbuf
 	PixbufAnimationGetWidth       func(animation *PixbufAnimation) int
 	PixbufAnimationIsStaticImage  func(animation *PixbufAnimation) bool
@@ -211,7 +211,7 @@ var (
 )
 
 func (p *PixbufAnimation) GetHeight() int { return PixbufAnimationGetHeight(p) }
-func (p *PixbufAnimation) GetIter(startTime *T.GTimeVal) *PixbufAnimationIter {
+func (p *PixbufAnimation) GetIter(startTime *L.TimeVal) *PixbufAnimationIter {
 	return PixbufAnimationGetIter(p, startTime)
 }
 func (p *PixbufAnimation) GetStaticImage() *Pixbuf { return PixbufAnimationGetStaticImage(p) }
@@ -226,7 +226,7 @@ var (
 	PixbufAnimationIterGetType func() O.Type
 	PixbufAnimationNewFromFile func(filename string, e **T.GError) *PixbufAnimation
 
-	PixbufAnimationIterAdvance                 func(iter *PixbufAnimationIter, currentTime *T.GTimeVal) bool
+	PixbufAnimationIterAdvance                 func(iter *PixbufAnimationIter, currentTime *L.TimeVal) bool
 	PixbufAnimationIterGetDelayTime            func(iter *PixbufAnimationIter) int
 	PixbufAnimationIterGetPixbuf               func(iter *PixbufAnimationIter) *Pixbuf
 	PixbufAnimationIterOnCurrentlyLoadingFrame func(iter *PixbufAnimationIter) bool

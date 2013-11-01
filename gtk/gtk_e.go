@@ -98,12 +98,12 @@ type Entry struct {
 }
 
 type EntryBuffer struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
 type EntryCompletion struct {
-	Parent T.GObject
+	Parent O.Object
 	_      *struct{}
 }
 
@@ -333,7 +333,7 @@ func (e *EntryBuffer) SetText(chars string, nChars int) { EntryBufferSetText(e, 
 
 type (
 	GtkEntryCompletion struct {
-		Parent T.GObject
+		Parent O.Object
 		_      *struct{}
 	}
 

@@ -257,13 +257,13 @@ var (
 	DBusConnectionNewSync             func(d *IOStream, guid string, flags DBusConnectionFlags, observer *DBusAuthObserver, cancellable *Cancellable, err **T.GError) *DBusConnection
 
 	DBusConnectionAddFilter                  func(d *DBusConnection, filterFunction DBusMessageFilterFunction, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
-	DBusConnectionCall                       func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	DBusConnectionCallFinish                 func(d *DBusConnection, res *AsyncResult, err **T.GError) *T.GVariant
-	DBusConnectionCallSync                   func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
+	DBusConnectionCall                       func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *L.Variant, replyType *L.VariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusConnectionCallFinish                 func(d *DBusConnection, res *AsyncResult, err **T.GError) *L.Variant
+	DBusConnectionCallSync                   func(d *DBusConnection, busName, objectPath, interfaceName, methodName string, parameters *L.Variant, replyType *L.VariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *L.Variant
 	DBusConnectionClose                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	DBusConnectionCloseFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
 	DBusConnectionCloseSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
-	DBusConnectionEmitSignal                 func(d *DBusConnection, destinationBusName, objectPath, interfaceName string, signalName string, parameters *T.GVariant, err **T.GError) bool
+	DBusConnectionEmitSignal                 func(d *DBusConnection, destinationBusName, objectPath, interfaceName string, signalName string, parameters *L.Variant, err **T.GError) bool
 	DBusConnectionFlush                      func(d *DBusConnection, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	DBusConnectionFlushFinish                func(d *DBusConnection, res *AsyncResult, err **T.GError) bool
 	DBusConnectionFlushSync                  func(d *DBusConnection, cancellable *Cancellable, err **T.GError) bool
@@ -292,13 +292,13 @@ var (
 func (d *DBusConnection) AddFilter(filterFunction DBusMessageFilterFunction, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
 	return DBusConnectionAddFilter(d, filterFunction, userData, userDataFreeFunc)
 }
-func (d *DBusConnection) Call(busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (d *DBusConnection) Call(busName, objectPath, interfaceName, methodName string, parameters *L.Variant, replyType *L.VariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	DBusConnectionCall(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, callback, userData)
 }
-func (d *DBusConnection) CallFinish(res *AsyncResult, err **T.GError) *T.GVariant {
+func (d *DBusConnection) CallFinish(res *AsyncResult, err **T.GError) *L.Variant {
 	return DBusConnectionCallFinish(d, res, err)
 }
-func (d *DBusConnection) CallSync(busName, objectPath, interfaceName, methodName string, parameters *T.GVariant, replyType *T.GVariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant {
+func (d *DBusConnection) CallSync(busName, objectPath, interfaceName, methodName string, parameters *L.Variant, replyType *L.VariantType, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *L.Variant {
 	return DBusConnectionCallSync(d, busName, objectPath, interfaceName, methodName, parameters, replyType, flags, timeoutMsec, cancellable, err)
 }
 func (d *DBusConnection) Close(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
@@ -310,7 +310,7 @@ func (d *DBusConnection) CloseFinish(res *AsyncResult, err **T.GError) bool {
 func (d *DBusConnection) CloseSync(cancellable *Cancellable, err **T.GError) bool {
 	return DBusConnectionCloseSync(d, cancellable, err)
 }
-func (d *DBusConnection) EmitSignal(destinationBusName, objectPath, interfaceName string, signalName string, parameters *T.GVariant, err **T.GError) bool {
+func (d *DBusConnection) EmitSignal(destinationBusName, objectPath, interfaceName string, signalName string, parameters *L.Variant, err **T.GError) bool {
 	return DBusConnectionEmitSignal(d, destinationBusName, objectPath, interfaceName, signalName, parameters, err)
 }
 func (d *DBusConnection) Flush(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
@@ -397,12 +397,12 @@ type DBusInterfaceGetPropertyFunc func(connection *DBusConnection,
 
 type DBusInterfaceMethodCallFunc func(connection *DBusConnection,
 	sender, objectPath, interfaceName, methodName string,
-	parameters *T.GVariant, invocation *DBusMethodInvocation,
+	parameters *L.Variant, invocation *DBusMethodInvocation,
 	userData T.Gpointer)
 
 type DBusInterfaceSetPropertyFunc func(connection *DBusConnection,
 	sender, objectPath, interfaceName, propertyName string,
-	value *T.GVariant, err **T.GError, userData T.Gpointer)
+	value *L.Variant, err **T.GError, userData T.Gpointer)
 
 type DBusInterfaceVTable struct {
 	MethodCall  DBusInterfaceMethodCallFunc
@@ -421,13 +421,13 @@ var (
 	DBusErrorGetRemoteError      func(err *T.GError) string
 	DBusErrorIsRemoteError       func(err *T.GError) bool
 	DBusErrorNewForDBusError     func(dbusErrorName string, dbusErrorMessage string) *T.GError
-	DBusErrorQuark               func() T.GQuark
-	DBusErrorRegisterError       func(errorDomain T.GQuark, errorCode int, dbusErrorName string) bool
+	DBusErrorQuark               func() L.Quark
+	DBusErrorRegisterError       func(errorDomain L.Quark, errorCode int, dbusErrorName string) bool
 	DBusErrorRegisterErrorDomain func(errorDomainQuarkName string, quarkVolatile *T.Gsize, entries *DBusErrorEntry, numEntries uint)
 	DBusErrorSetDBusError        func(e **T.GError, dbusErrorName, dbusErrorMessage, format string, v ...VArg)
 	DBusErrorSetDBusErrorValist  func(err **T.GError, dbusErrorName string, dbusErrorMessage string, format string, varArgs T.VaList)
 	DBusErrorStripRemoteError    func(err *T.GError) bool
-	DBusErrorUnregisterError     func(errorDomain T.GQuark, errorCode int, dbusErrorName string) bool
+	DBusErrorUnregisterError     func(errorDomain L.Quark, errorCode int, dbusErrorName string) bool
 )
 
 var DBusGenerateGuid func() string
@@ -481,12 +481,12 @@ var (
 
 	DBusMessageCopy                  func(d *DBusMessage, err **T.GError) *DBusMessage
 	DBusMessageGetArg0               func(d *DBusMessage) string
-	DBusMessageGetBody               func(d *DBusMessage) *T.GVariant
+	DBusMessageGetBody               func(d *DBusMessage) *L.Variant
 	DBusMessageGetByteOrder          func(d *DBusMessage) DBusMessageByteOrder
 	DBusMessageGetDestination        func(d *DBusMessage) string
 	DBusMessageGetErrorName          func(d *DBusMessage) string
 	DBusMessageGetFlags              func(d *DBusMessage) DBusMessageFlags
-	DBusMessageGetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField) *T.GVariant
+	DBusMessageGetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField) *L.Variant
 	DBusMessageGetHeaderFields       func(d *DBusMessage) *T.Guchar
 	DBusMessageGetInterface          func(d *DBusMessage) string
 	DBusMessageGetLocked             func(d *DBusMessage) bool
@@ -505,12 +505,12 @@ var (
 	DBusMessageNewMethodErrorValist  func(d *DBusMessage, errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage
 	DBusMessageNewMethodReply        func(d *DBusMessage) *DBusMessage
 	DBusMessagePrint                 func(d *DBusMessage, indent uint) string
-	DBusMessageSetBody               func(d *DBusMessage, body *T.GVariant)
+	DBusMessageSetBody               func(d *DBusMessage, body *L.Variant)
 	DBusMessageSetByteOrder          func(d *DBusMessage, byteOrder DBusMessageByteOrder)
 	DBusMessageSetDestination        func(d *DBusMessage, value string)
 	DBusMessageSetErrorName          func(d *DBusMessage, value string)
 	DBusMessageSetFlags              func(d *DBusMessage, flags DBusMessageFlags)
-	DBusMessageSetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField, value *T.GVariant)
+	DBusMessageSetHeader             func(d *DBusMessage, headerField DBusMessageHeaderField, value *L.Variant)
 	DBusMessageSetInterface          func(d *DBusMessage, value string)
 	DBusMessageSetMember             func(d *DBusMessage, value string)
 	DBusMessageSetMessageType        func(d *DBusMessage, typ DBusMessageType)
@@ -527,12 +527,12 @@ var (
 
 func (d *DBusMessage) Copy(err **T.GError) *DBusMessage   { return DBusMessageCopy(d, err) }
 func (d *DBusMessage) GetArg0() string                    { return DBusMessageGetArg0(d) }
-func (d *DBusMessage) GetBody() *T.GVariant               { return DBusMessageGetBody(d) }
+func (d *DBusMessage) GetBody() *L.Variant                { return DBusMessageGetBody(d) }
 func (d *DBusMessage) GetByteOrder() DBusMessageByteOrder { return DBusMessageGetByteOrder(d) }
 func (d *DBusMessage) GetDestination() string             { return DBusMessageGetDestination(d) }
 func (d *DBusMessage) GetErrorName() string               { return DBusMessageGetErrorName(d) }
 func (d *DBusMessage) GetFlags() DBusMessageFlags         { return DBusMessageGetFlags(d) }
-func (d *DBusMessage) GetHeader(headerField DBusMessageHeaderField) *T.GVariant {
+func (d *DBusMessage) GetHeader(headerField DBusMessageHeaderField) *L.Variant {
 	return DBusMessageGetHeader(d, headerField)
 }
 func (d *DBusMessage) GetHeaderFields() *T.Guchar      { return DBusMessageGetHeaderFields(d) }
@@ -559,14 +559,14 @@ func (d *DBusMessage) NewMethodErrorValist(errorName, errorMessageFormat string,
 }
 func (d *DBusMessage) NewMethodReply() *DBusMessage { return DBusMessageNewMethodReply(d) }
 func (d *DBusMessage) Print(indent uint) string     { return DBusMessagePrint(d, indent) }
-func (d *DBusMessage) SetBody(body *T.GVariant)     { DBusMessageSetBody(d, body) }
+func (d *DBusMessage) SetBody(body *L.Variant)      { DBusMessageSetBody(d, body) }
 func (d *DBusMessage) SetByteOrder(byteOrder DBusMessageByteOrder) {
 	DBusMessageSetByteOrder(d, byteOrder)
 }
 func (d *DBusMessage) SetDestination(value string)     { DBusMessageSetDestination(d, value) }
 func (d *DBusMessage) SetErrorName(value string)       { DBusMessageSetErrorName(d, value) }
 func (d *DBusMessage) SetFlags(flags DBusMessageFlags) { DBusMessageSetFlags(d, flags) }
-func (d *DBusMessage) SetHeader(headerField DBusMessageHeaderField, value *T.GVariant) {
+func (d *DBusMessage) SetHeader(headerField DBusMessageHeaderField, value *L.Variant) {
 	DBusMessageSetHeader(d, headerField, value)
 }
 func (d *DBusMessage) SetInterface(value string)           { DBusMessageSetInterface(d, value) }
@@ -667,15 +667,15 @@ var (
 	DBusMethodInvocationGetMethodInfo      func(d *DBusMethodInvocation) *DBusMethodInfo
 	DBusMethodInvocationGetMethodName      func(d *DBusMethodInvocation) string
 	DBusMethodInvocationGetObjectPath      func(d *DBusMethodInvocation) string
-	DBusMethodInvocationGetParameters      func(d *DBusMethodInvocation) *T.GVariant
+	DBusMethodInvocationGetParameters      func(d *DBusMethodInvocation) *L.Variant
 	DBusMethodInvocationGetSender          func(d *DBusMethodInvocation) string
 	DBusMethodInvocationGetUserData        func(d *DBusMethodInvocation) T.Gpointer
 	DBusMethodInvocationReturnDBusError    func(d *DBusMethodInvocation, errorName, errorMessage string)
-	DBusMethodInvocationReturnError        func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, v ...VArg)
-	DBusMethodInvocationReturnErrorLiteral func(d *DBusMethodInvocation, domain T.GQuark, code int, message string)
-	DBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain T.GQuark, code int, format string, varArgs T.VaList)
+	DBusMethodInvocationReturnError        func(d *DBusMethodInvocation, domain L.Quark, code int, format string, v ...VArg)
+	DBusMethodInvocationReturnErrorLiteral func(d *DBusMethodInvocation, domain L.Quark, code int, message string)
+	DBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain L.Quark, code int, format string, varArgs T.VaList)
 	DBusMethodInvocationReturnGerror       func(d *DBusMethodInvocation, err *T.GError)
-	DBusMethodInvocationReturnValue        func(d *DBusMethodInvocation, parameters *T.GVariant)
+	DBusMethodInvocationReturnValue        func(d *DBusMethodInvocation, parameters *L.Variant)
 )
 
 func (d *DBusMethodInvocation) GetConnection() *DBusConnection {
@@ -690,7 +690,7 @@ func (d *DBusMethodInvocation) GetMethodInfo() *DBusMethodInfo {
 }
 func (d *DBusMethodInvocation) GetMethodName() string { return DBusMethodInvocationGetMethodName(d) }
 func (d *DBusMethodInvocation) GetObjectPath() string { return DBusMethodInvocationGetObjectPath(d) }
-func (d *DBusMethodInvocation) GetParameters() *T.GVariant {
+func (d *DBusMethodInvocation) GetParameters() *L.Variant {
 	return DBusMethodInvocationGetParameters(d)
 }
 func (d *DBusMethodInvocation) GetSender() string       { return DBusMethodInvocationGetSender(d) }
@@ -698,17 +698,17 @@ func (d *DBusMethodInvocation) GetUserData() T.Gpointer { return DBusMethodInvoc
 func (d *DBusMethodInvocation) ReturnDBusError(errorName, errorMessage string) {
 	DBusMethodInvocationReturnDBusError(d, errorName, errorMessage)
 }
-func (d *DBusMethodInvocation) ReturnError(domain T.GQuark, code int, format string, v ...VArg) {
+func (d *DBusMethodInvocation) ReturnError(domain L.Quark, code int, format string, v ...VArg) {
 	DBusMethodInvocationReturnError(d, domain, code, format, v)
 }
-func (d *DBusMethodInvocation) ReturnErrorLiteral(domain T.GQuark, code int, message string) {
+func (d *DBusMethodInvocation) ReturnErrorLiteral(domain L.Quark, code int, message string) {
 	DBusMethodInvocationReturnErrorLiteral(d, domain, code, message)
 }
-func (d *DBusMethodInvocation) ReturnErrorValist(domain T.GQuark, code int, format string, varArgs T.VaList) {
+func (d *DBusMethodInvocation) ReturnErrorValist(domain L.Quark, code int, format string, varArgs T.VaList) {
 	DBusMethodInvocationReturnErrorValist(d, domain, code, format, varArgs)
 }
 func (d *DBusMethodInvocation) ReturnGerror(err *T.GError) { DBusMethodInvocationReturnGerror(d, err) }
-func (d *DBusMethodInvocation) ReturnValue(parameters *T.GVariant) {
+func (d *DBusMethodInvocation) ReturnValue(parameters *L.Variant) {
 	DBusMethodInvocationReturnValue(d, parameters)
 }
 
@@ -781,10 +781,10 @@ var (
 	DBusProxyNewForBusSync   func(busType BusType, flags DBusProxyFlags, info *DBusInterfaceInfo, name string, objectPath string, interfaceName string, cancellable *Cancellable, err **T.GError) *DBusProxy
 	DBusProxyNewSync         func(d *DBusConnection, flags DBusProxyFlags, info *DBusInterfaceInfo, name string, objectPath string, interfaceName string, cancellable *Cancellable, err **T.GError) *DBusProxy
 
-	DBusProxyCall                   func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	DBusProxyCallFinish             func(d *DBusProxy, res *AsyncResult, err **T.GError) *T.GVariant
-	DBusProxyCallSync               func(d *DBusProxy, methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant
-	DBusProxyGetCachedProperty      func(d *DBusProxy, propertyName string) *T.GVariant
+	DBusProxyCall                   func(d *DBusProxy, methodName string, parameters *L.Variant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	DBusProxyCallFinish             func(d *DBusProxy, res *AsyncResult, err **T.GError) *L.Variant
+	DBusProxyCallSync               func(d *DBusProxy, methodName string, parameters *L.Variant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *L.Variant
+	DBusProxyGetCachedProperty      func(d *DBusProxy, propertyName string) *L.Variant
 	DBusProxyGetCachedPropertyNames func(d *DBusProxy) []string
 	DBusProxyGetConnection          func(d *DBusProxy) *DBusConnection
 	DBusProxyGetDefaultTimeout      func(d *DBusProxy) int
@@ -794,21 +794,21 @@ var (
 	DBusProxyGetName                func(d *DBusProxy) string
 	DBusProxyGetNameOwner           func(d *DBusProxy) string
 	DBusProxyGetObjectPath          func(d *DBusProxy) string
-	DBusProxySetCachedProperty      func(d *DBusProxy, propertyName string, value *T.GVariant)
+	DBusProxySetCachedProperty      func(d *DBusProxy, propertyName string, value *L.Variant)
 	DBusProxySetDefaultTimeout      func(d *DBusProxy, timeoutMsec int)
 	DBusProxySetInterfaceInfo       func(d *DBusProxy, info *DBusInterfaceInfo)
 )
 
-func (d *DBusProxy) Call(methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
+func (d *DBusProxy) Call(methodName string, parameters *L.Variant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	DBusProxyCall(d, methodName, parameters, flags, timeoutMsec, cancellable, callback, userData)
 }
-func (d *DBusProxy) CallFinish(res *AsyncResult, err **T.GError) *T.GVariant {
+func (d *DBusProxy) CallFinish(res *AsyncResult, err **T.GError) *L.Variant {
 	return DBusProxyCallFinish(d, res, err)
 }
-func (d *DBusProxy) CallSync(methodName string, parameters *T.GVariant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *T.GVariant {
+func (d *DBusProxy) CallSync(methodName string, parameters *L.Variant, flags DBusCallFlags, timeoutMsec int, cancellable *Cancellable, err **T.GError) *L.Variant {
 	return DBusProxyCallSync(d, methodName, parameters, flags, timeoutMsec, cancellable, err)
 }
-func (d *DBusProxy) GetCachedProperty(propertyName string) *T.GVariant {
+func (d *DBusProxy) GetCachedProperty(propertyName string) *L.Variant {
 	return DBusProxyGetCachedProperty(d, propertyName)
 }
 func (d *DBusProxy) GetCachedPropertyNames() []string     { return DBusProxyGetCachedPropertyNames(d) }
@@ -820,7 +820,7 @@ func (d *DBusProxy) GetInterfaceName() string             { return DBusProxyGetI
 func (d *DBusProxy) GetName() string                      { return DBusProxyGetName(d) }
 func (d *DBusProxy) GetNameOwner() string                 { return DBusProxyGetNameOwner(d) }
 func (d *DBusProxy) GetObjectPath() string                { return DBusProxyGetObjectPath(d) }
-func (d *DBusProxy) SetCachedProperty(propertyName string, value *T.GVariant) {
+func (d *DBusProxy) SetCachedProperty(propertyName string, value *L.Variant) {
 	DBusProxySetCachedProperty(d, propertyName, value)
 }
 func (d *DBusProxy) SetDefaultTimeout(timeoutMsec int)        { DBusProxySetDefaultTimeout(d, timeoutMsec) }
@@ -879,7 +879,7 @@ var DBusServerFlagsGetType func() O.Type
 
 type DBusSignalCallback func(connection *DBusConnection,
 	senderName, objectPath, interfaceName, signalName string,
-	parameters *T.GVariant, userData T.Gpointer)
+	parameters *L.Variant, userData T.Gpointer)
 
 type DBusSignalInfo struct {
 	RefCount    int
