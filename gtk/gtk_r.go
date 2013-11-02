@@ -233,11 +233,11 @@ var (
 	RcGetThemeDir              func() string
 	RcParse                    func(filename string)
 	RcParseString              func(rcString string)
-	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
-	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
-	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
-	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
-	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *L.String, propertyValue *T.GValue) bool
+	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
 	RcReparseAll               func() bool
 	RcReparseAllForSettings    func(settings *Settings, forceLoad bool) bool
 	RcResetStyles              func(settings *Settings)
@@ -252,7 +252,7 @@ var (
 )
 
 type RcPropertyParser func(pspec *T.GParamSpec,
-	rcString *L.String, property_value *T.GValue) bool
+	rcString *L.String, property_value *O.Value) bool
 
 type RcStyle struct {
 	Parent          O.Object
@@ -280,6 +280,13 @@ const (
 	RC_TEXT
 	RC_BASE
 )
+
+type RcProperty struct {
+	TypeName     L.Quark
+	PropertyName L.Quark
+	Origin       *T.Gchar
+	Value        O.Value
+}
 
 var (
 	RcStyleGetType func() O.Type
@@ -347,7 +354,7 @@ var (
 	RecentChooserGetCurrentItem    func(r *RecentChooser) *RecentInfo
 	RecentChooserGetCurrentUri     func(r *RecentChooser) string
 	RecentChooserGetFilter         func(r *RecentChooser) *RecentFilter
-	RecentChooserGetItems          func(r *RecentChooser) *T.GList
+	RecentChooserGetItems          func(r *RecentChooser) *L.List
 	RecentChooserGetLimit          func(r *RecentChooser) int
 	RecentChooserGetLocalOnly      func(r *RecentChooser) bool
 	RecentChooserGetSelectMultiple func(r *RecentChooser) bool
@@ -361,8 +368,8 @@ var (
 	RecentChooserListFilters       func(r *RecentChooser) *L.SList
 	RecentChooserRemoveFilter      func(r *RecentChooser, filter *RecentFilter)
 	RecentChooserSelectAll         func(r *RecentChooser)
-	RecentChooserSelectUri         func(r *RecentChooser, uri string, err **T.GError) bool
-	RecentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **T.GError) bool
+	RecentChooserSelectUri         func(r *RecentChooser, uri string, err **L.Error) bool
+	RecentChooserSetCurrentUri     func(r *RecentChooser, uri string, err **L.Error) bool
 	RecentChooserSetFilter         func(r *RecentChooser, filter *RecentFilter)
 	RecentChooserSetLimit          func(r *RecentChooser, limit int)
 	RecentChooserSetLocalOnly      func(r *RecentChooser, localOnly bool)
@@ -372,7 +379,7 @@ var (
 	RecentChooserSetShowNumbers    func(r *RecentChooser, showNumbers bool)
 	RecentChooserSetShowPrivate    func(r *RecentChooser, showPrivate bool)
 	RecentChooserSetShowTips       func(r *RecentChooser, showTips bool)
-	RecentChooserSetSortFunc       func(r *RecentChooser, sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify)
+	RecentChooserSetSortFunc       func(r *RecentChooser, sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy O.DestroyNotify)
 	RecentChooserSetSortType       func(r *RecentChooser, sortType RecentSortType)
 	RecentChooserUnselectAll       func(r *RecentChooser)
 	RecentChooserUnselectUri       func(r *RecentChooser, uri string)
@@ -382,7 +389,7 @@ func (r *RecentChooser) AddFilter(filter *RecentFilter)    { RecentChooserAddFil
 func (r *RecentChooser) GetCurrentItem() *RecentInfo       { return RecentChooserGetCurrentItem(r) }
 func (r *RecentChooser) GetCurrentUri() string             { return RecentChooserGetCurrentUri(r) }
 func (r *RecentChooser) GetFilter() *RecentFilter          { return RecentChooserGetFilter(r) }
-func (r *RecentChooser) GetItems() *T.GList                { return RecentChooserGetItems(r) }
+func (r *RecentChooser) GetItems() *L.List                 { return RecentChooserGetItems(r) }
 func (r *RecentChooser) GetLimit() int                     { return RecentChooserGetLimit(r) }
 func (r *RecentChooser) GetLocalOnly() bool                { return RecentChooserGetLocalOnly(r) }
 func (r *RecentChooser) GetSelectMultiple() bool           { return RecentChooserGetSelectMultiple(r) }
@@ -396,10 +403,10 @@ func (r *RecentChooser) GetUris(length *T.Gsize) []string  { return RecentChoose
 func (r *RecentChooser) ListFilters() *L.SList             { return RecentChooserListFilters(r) }
 func (r *RecentChooser) RemoveFilter(filter *RecentFilter) { RecentChooserRemoveFilter(r, filter) }
 func (r *RecentChooser) SelectAll()                        { RecentChooserSelectAll(r) }
-func (r *RecentChooser) SelectUri(uri string, err **T.GError) bool {
+func (r *RecentChooser) SelectUri(uri string, err **L.Error) bool {
 	return RecentChooserSelectUri(r, uri, err)
 }
-func (r *RecentChooser) SetCurrentUri(uri string, err **T.GError) bool {
+func (r *RecentChooser) SetCurrentUri(uri string, err **L.Error) bool {
 	return RecentChooserSetCurrentUri(r, uri, err)
 }
 func (r *RecentChooser) SetFilter(filter *RecentFilter) { RecentChooserSetFilter(r, filter) }
@@ -419,7 +426,7 @@ func (r *RecentChooser) SetShowPrivate(showPrivate bool) {
 	RecentChooserSetShowPrivate(r, showPrivate)
 }
 func (r *RecentChooser) SetShowTips(showTips bool) { RecentChooserSetShowTips(r, showTips) }
-func (r *RecentChooser) SetSortFunc(sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy T.GDestroyNotify) {
+func (r *RecentChooser) SetSortFunc(sortFunc RecentSortFunc, sortData T.Gpointer, dataDestroy O.DestroyNotify) {
 	RecentChooserSetSortFunc(r, sortFunc, sortData, dataDestroy)
 }
 func (r *RecentChooser) SetSortType(sortType RecentSortType) { RecentChooserSetSortType(r, sortType) }
@@ -546,7 +553,7 @@ var (
 
 	RecentFilterAddAge           func(r *RecentFilter, days int)
 	RecentFilterAddApplication   func(r *RecentFilter, application string)
-	RecentFilterAddCustom        func(r *RecentFilter, needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy T.GDestroyNotify)
+	RecentFilterAddCustom        func(r *RecentFilter, needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy O.DestroyNotify)
 	RecentFilterAddGroup         func(r *RecentFilter, group string)
 	RecentFilterAddMimeType      func(r *RecentFilter, mimeType string)
 	RecentFilterAddPattern       func(r *RecentFilter, pattern string)
@@ -559,7 +566,7 @@ var (
 
 func (r *RecentFilter) AddAge(days int)                   { RecentFilterAddAge(r, days) }
 func (r *RecentFilter) AddApplication(application string) { RecentFilterAddApplication(r, application) }
-func (r *RecentFilter) AddCustom(needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy T.GDestroyNotify) {
+func (r *RecentFilter) AddCustom(needed RecentFilterFlags, f RecentFilterFunc, data T.Gpointer, dataDestroy O.DestroyNotify) {
 	RecentFilterAddCustom(r, needed, f, data, dataDestroy)
 }
 func (r *RecentFilter) AddGroup(group string)       { RecentFilterAddGroup(r, group) }
@@ -600,13 +607,13 @@ var (
 
 	RecentManagerAddFull    func(r *RecentManager, uri string, recentData *RecentData) bool
 	RecentManagerAddItem    func(r *RecentManager, uri string) bool
-	RecentManagerGetItems   func(r *RecentManager) *T.GList
+	RecentManagerGetItems   func(r *RecentManager) *L.List
 	RecentManagerGetLimit   func(r *RecentManager) int
 	RecentManagerHasItem    func(r *RecentManager, uri string) bool
-	RecentManagerLookupItem func(r *RecentManager, uri string, err **T.GError) *RecentInfo
-	RecentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **T.GError) bool
-	RecentManagerPurgeItems func(r *RecentManager, err **T.GError) int
-	RecentManagerRemoveItem func(r *RecentManager, uri string, err **T.GError) bool
+	RecentManagerLookupItem func(r *RecentManager, uri string, err **L.Error) *RecentInfo
+	RecentManagerMoveItem   func(r *RecentManager, uri string, newUri string, err **L.Error) bool
+	RecentManagerPurgeItems func(r *RecentManager, err **L.Error) int
+	RecentManagerRemoveItem func(r *RecentManager, uri string, err **L.Error) bool
 	RecentManagerSetLimit   func(r *RecentManager, limit int)
 	RecentManagerSetScreen  func(r *RecentManager, screen *D.Screen)
 )
@@ -615,17 +622,17 @@ func (r *RecentManager) AddFull(uri string, recentData *RecentData) bool {
 	return RecentManagerAddFull(r, uri, recentData)
 }
 func (r *RecentManager) AddItem(uri string) bool { return RecentManagerAddItem(r, uri) }
-func (r *RecentManager) GetItems() *T.GList      { return RecentManagerGetItems(r) }
+func (r *RecentManager) GetItems() *L.List       { return RecentManagerGetItems(r) }
 func (r *RecentManager) GetLimit() int           { return RecentManagerGetLimit(r) }
 func (r *RecentManager) HasItem(uri string) bool { return RecentManagerHasItem(r, uri) }
-func (r *RecentManager) LookupItem(uri string, err **T.GError) *RecentInfo {
+func (r *RecentManager) LookupItem(uri string, err **L.Error) *RecentInfo {
 	return RecentManagerLookupItem(r, uri, err)
 }
-func (r *RecentManager) MoveItem(uri string, newUri string, err **T.GError) bool {
+func (r *RecentManager) MoveItem(uri string, newUri string, err **L.Error) bool {
 	return RecentManagerMoveItem(r, uri, newUri, err)
 }
-func (r *RecentManager) PurgeItems(err **T.GError) int { return RecentManagerPurgeItems(r, err) }
-func (r *RecentManager) RemoveItem(uri string, err **T.GError) bool {
+func (r *RecentManager) PurgeItems(err **L.Error) int { return RecentManagerPurgeItems(r, err) }
+func (r *RecentManager) RemoveItem(uri string, err **L.Error) bool {
 	return RecentManagerRemoveItem(r, uri, err)
 }
 func (r *RecentManager) SetLimit(limit int)         { RecentManagerSetLimit(r, limit) }

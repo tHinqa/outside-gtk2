@@ -43,9 +43,9 @@ func (r *Rand) DoubleRange(begin, end float64) float64        { return RandDoubl
 type Regex struct{}
 
 var (
-	RegexNew func(pattern string, compileOptions RegexCompileFlags, matchOptions RegexMatchFlags, e **T.GError) *Regex
+	RegexNew func(pattern string, compileOptions RegexCompileFlags, matchOptions RegexMatchFlags, e **Error) *Regex
 
-	RegexCheckReplacement func(replacement string, hasReferences *bool, e **T.GError) bool
+	RegexCheckReplacement func(replacement string, hasReferences *bool, e **Error) bool
 	RegexEscapeString     func(str string, length int) string
 	RegexMatchSimple      func(pattern, str string, compileOptions RegexCompileFlags, matchOptions RegexMatchFlags) bool
 	RegexSplitSimple      func(pattern string, str string, compileOptions RegexCompileFlags, matchOptions RegexMatchFlags) []string
@@ -58,14 +58,14 @@ var (
 	RegexGetStringNumber func(r *Regex, name string) int
 	RegexMatch           func(r *Regex, str string, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo) bool
 	RegexMatchAll        func(r *Regex, str string, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo) bool
-	RegexMatchAllFull    func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **T.GError) bool
-	RegexMatchFull       func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **T.GError) bool
+	RegexMatchAllFull    func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **Error) bool
+	RegexMatchFull       func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **Error) bool
 	RegexRef             func(r *Regex) *Regex
-	RegexReplace         func(r *Regex, str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **T.GError) string
-	RegexReplaceEval     func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, eval RegexEvalCallback, userData T.Gpointer, e **T.GError) string
-	RegexReplaceLiteral  func(r *Regex, str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **T.GError) string
+	RegexReplace         func(r *Regex, str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **Error) string
+	RegexReplaceEval     func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, eval RegexEvalCallback, userData T.Gpointer, e **Error) string
+	RegexReplaceLiteral  func(r *Regex, str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **Error) string
 	RegexSplit           func(r *Regex, str string, matchOptions RegexMatchFlags) []string
-	RegexSplitFull       func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, maxTokens int, e **T.GError) []string
+	RegexSplitFull       func(r *Regex, str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, maxTokens int, e **Error) []string
 	RegexUnref           func(r *Regex)
 )
 
@@ -81,26 +81,26 @@ func (r *Regex) Match(str string, matchOptions RegexMatchFlags, matchInfo **T.GM
 func (r *Regex) MatchAll(str string, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo) bool {
 	return RegexMatchAll(r, str, matchOptions, matchInfo)
 }
-func (r *Regex) MatchAllFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **T.GError) bool {
+func (r *Regex) MatchAllFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **Error) bool {
 	return RegexMatchAllFull(r, str, stringLen, startPosition, matchOptions, matchInfo, e)
 }
-func (r *Regex) MatchFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **T.GError) bool {
+func (r *Regex) MatchFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, matchInfo **T.GMatchInfo, e **Error) bool {
 	return RegexMatchFull(r, str, stringLen, startPosition, matchOptions, matchInfo, e)
 }
 func (r *Regex) Ref() *Regex { return RegexRef(r) }
-func (r *Regex) Replace(str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **T.GError) string {
+func (r *Regex) Replace(str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **Error) string {
 	return RegexReplace(r, str, stringLen, startPosition, replacement, matchOptions, e)
 }
-func (r *Regex) ReplaceEval(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, eval RegexEvalCallback, userData T.Gpointer, e **T.GError) string {
+func (r *Regex) ReplaceEval(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, eval RegexEvalCallback, userData T.Gpointer, e **Error) string {
 	return RegexReplaceEval(r, str, stringLen, startPosition, matchOptions, eval, userData, e)
 }
-func (r *Regex) ReplaceLiteral(str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **T.GError) string {
+func (r *Regex) ReplaceLiteral(str string, stringLen T.Gssize, startPosition int, replacement string, matchOptions RegexMatchFlags, e **Error) string {
 	return RegexReplaceLiteral(r, str, stringLen, startPosition, replacement, matchOptions, e)
 }
 func (r *Regex) Split(str string, matchOptions RegexMatchFlags) []string {
 	return RegexSplit(r, str, matchOptions)
 }
-func (r *Regex) SplitFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, maxTokens int, e **T.GError) []string {
+func (r *Regex) SplitFull(str string, stringLen T.Gssize, startPosition int, matchOptions RegexMatchFlags, maxTokens int, e **Error) []string {
 	return RegexSplitFull(r, str, stringLen, startPosition, matchOptions, maxTokens, e)
 }
 func (r *Regex) Unref() { RegexUnref(r) }

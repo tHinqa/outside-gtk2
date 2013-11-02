@@ -126,7 +126,7 @@ func (b *Border) Free()         { BorderFree(b) }
 
 type Box struct {
 	Container   Container
-	Children    *T.GList
+	Children    *L.List
 	Spacing     int16
 	Homogeneous uint // : 1
 }
@@ -180,7 +180,7 @@ var (
 	BuildableGetInternalChild     func(b *Buildable, builder *Builder, childname string) *O.Object
 	BuildableGetName              func(b *Buildable) string
 	BuildableParserFinished       func(b *Buildable, builder *Builder)
-	BuildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *T.GValue)
+	BuildableSetBuildableProperty func(b *Buildable, builder *Builder, name string, value *O.Value)
 	BuildableSetName              func(b *Buildable, name string)
 )
 
@@ -204,7 +204,7 @@ func (b *Buildable) GetInternalChild(builder *Builder, childname string) *O.Obje
 }
 func (b *Buildable) GetName() string                 { return BuildableGetName(b) }
 func (b *Buildable) ParserFinished(builder *Builder) { BuildableParserFinished(b, builder) }
-func (b *Buildable) SetBuildableProperty(builder *Builder, name string, value *T.GValue) {
+func (b *Buildable) SetBuildableProperty(builder *Builder, name string, value *O.Value) {
 	BuildableSetBuildableProperty(b, builder, name, value)
 }
 func (b *Buildable) SetName(name string) { BuildableSetName(b, name) }
@@ -229,10 +229,10 @@ var (
 )
 
 var (
-	BuilderAddFromFile          func(b *Builder, filename string, err **T.GError) uint
-	BuilderAddFromString        func(b *Builder, buffer string, length T.Gsize, err **T.GError) uint
-	BuilderAddObjectsFromFile   func(b *Builder, filename string, objectIds []string, err **T.GError) uint
-	BuilderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds []string, err **T.GError) uint
+	BuilderAddFromFile          func(b *Builder, filename string, err **L.Error) uint
+	BuilderAddFromString        func(b *Builder, buffer string, length T.Gsize, err **L.Error) uint
+	BuilderAddObjectsFromFile   func(b *Builder, filename string, objectIds []string, err **L.Error) uint
+	BuilderAddObjectsFromString func(b *Builder, buffer string, length T.Gsize, objectIds []string, err **L.Error) uint
 	BuilderConnectSignals       func(b *Builder, userData T.Gpointer)
 	BuilderConnectSignalsFull   func(b *Builder, f BuilderConnectFunc, userData T.Gpointer)
 	BuilderGetObject            func(b *Builder, name string) *O.Object
@@ -240,20 +240,20 @@ var (
 	BuilderGetTranslationDomain func(b *Builder) string
 	BuilderGetTypeFromName      func(b *Builder, typeName string) O.Type
 	BuilderSetTranslationDomain func(b *Builder, domain string)
-	BuilderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) bool
-	BuilderValueFromStringType  func(b *Builder, t O.Type, str string, value *T.GValue, err **T.GError) bool
+	BuilderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *O.Value, err **L.Error) bool
+	BuilderValueFromStringType  func(b *Builder, t O.Type, str string, value *O.Value, err **L.Error) bool
 )
 
-func (b *Builder) AddFromFile(filename string, err **T.GError) uint {
+func (b *Builder) AddFromFile(filename string, err **L.Error) uint {
 	return BuilderAddFromFile(b, filename, err)
 }
-func (b *Builder) AddFromString(buffer string, length T.Gsize, err **T.GError) uint {
+func (b *Builder) AddFromString(buffer string, length T.Gsize, err **L.Error) uint {
 	return BuilderAddFromString(b, buffer, length, err)
 }
-func (b *Builder) AddObjectsFromFile(filename string, objectIds []string, err **T.GError) uint {
+func (b *Builder) AddObjectsFromFile(filename string, objectIds []string, err **L.Error) uint {
 	return BuilderAddObjectsFromFile(b, filename, objectIds, err)
 }
-func (b *Builder) AddObjectsFromString(buffer string, length T.Gsize, objectIds []string, err **T.GError) uint {
+func (b *Builder) AddObjectsFromString(buffer string, length T.Gsize, objectIds []string, err **L.Error) uint {
 	return BuilderAddObjectsFromString(b, buffer, length, objectIds, err)
 }
 func (b *Builder) ConnectSignals(userData T.Gpointer) { BuilderConnectSignals(b, userData) }
@@ -265,10 +265,10 @@ func (b *Builder) GetObjects() *L.SList                   { return BuilderGetObj
 func (b *Builder) GetTranslationDomain() string           { return BuilderGetTranslationDomain(b) }
 func (b *Builder) GetTypeFromName(typeName string) O.Type { return BuilderGetTypeFromName(b, typeName) }
 func (b *Builder) SetTranslationDomain(domain string)     { BuilderSetTranslationDomain(b, domain) }
-func (b *Builder) ValueFromString(pspec *T.GParamSpec, str string, value *T.GValue, err **T.GError) bool {
+func (b *Builder) ValueFromString(pspec *T.GParamSpec, str string, value *O.Value, err **L.Error) bool {
 	return BuilderValueFromString(b, pspec, str, value, err)
 }
-func (b *Builder) ValueFromStringType(t O.Type, str string, value *T.GValue, err **T.GError) bool {
+func (b *Builder) ValueFromStringType(t O.Type, str string, value *O.Value, err **L.Error) bool {
 	return BuilderValueFromStringType(b, t, str, value, err)
 }
 

@@ -36,7 +36,7 @@ var (
 	CairoContextGetFontOptions   func(c *Context) *C.FontOptions
 	CairoContextSetResolution    func(c *Context, dpi float64)
 	CairoContextGetResolution    func(c *Context) float64
-	CairoContextSetShapeRenderer func(c *Context, f CairoShapeRendererFunc, data T.Gpointer, dnotify T.GDestroyNotify)
+	CairoContextSetShapeRenderer func(c *Context, f CairoShapeRendererFunc, data T.Gpointer, dnotify O.DestroyNotify)
 	CairoContextGetShapeRenderer func(c *Context, data *T.Gpointer) CairoShapeRendererFunc
 )
 

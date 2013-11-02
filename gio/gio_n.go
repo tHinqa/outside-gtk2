@@ -4,24 +4,23 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 var NativeVolumeMonitorGetType func() O.Type
 
 type NetworkAddress struct {
 	Parent O.Object
-	_b     *struct{}
+	_      *struct{}
 }
 
 var (
 	NetworkAddressGetType func() O.Type
 	NetworkAddressNew     func(hostname string, port uint16) *SocketConnectable
 
-	NetworkAddressParse    func(hostAndPort string, defaultPort uint16, err **T.GError) *SocketConnectable
-	NetworkAddressParseUri func(uri string, defaultPort uint16, err **T.GError) *SocketConnectable
+	NetworkAddressParse    func(hostAndPort string, defaultPort uint16, err **L.Error) *SocketConnectable
+	NetworkAddressParseUri func(uri string, defaultPort uint16, err **L.Error) *SocketConnectable
 
 	NetworkAddressGetHostname func(n *NetworkAddress) string
 	NetworkAddressGetPort     func(n *NetworkAddress) uint16

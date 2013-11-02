@@ -28,7 +28,7 @@ var (
 
 	DeviceFreeHistory    func(events **T.GdkTimeCoord, nEvents int)
 	DeviceGetCorePointer func() *Device
-	DevicesList          func() *T.GList
+	DevicesList          func() *L.List
 
 	DeviceGetAxis      func(d *Device, axes *float64, use T.GdkAxisUse, value *float64) bool
 	DeviceGetAxisUse   func(d *Device, index uint) T.GdkAxisUse
@@ -86,8 +86,8 @@ type DeviceAxis struct {
 
 type Display struct {
 	Parent          O.Object
-	QueuedEvents    *T.GList
-	QueuedTail      *T.GList
+	QueuedEvents    *L.List
+	QueuedTail      *L.List
 	ButtonClickTime [2]T.GUint32
 	ButtonWindow    [2]*Window
 	ButtonNumber    [2]int
@@ -100,7 +100,7 @@ type Display struct {
 	DoubleClickDistance uint
 	ButtonX             [2]int
 	ButtonY             [2]int
-	PointerGrabs        *T.GList
+	PointerGrabs        *L.List
 	KeyboardGrab        T.GdkKeyboardGrabInfo
 	PointerInfo         T.GdkPointerWindowInfo
 	LastEventTime       T.GUint32
@@ -130,7 +130,7 @@ var (
 	DisplayGetWindowAtPointer            func(d *Display, winX, winY *int) *Window
 	DisplayIsClosed                      func(d *Display) bool
 	DisplayKeyboardUngrab                func(d *Display, time T.GUint32)
-	DisplayListDevices                   func(d *Display) *T.GList
+	DisplayListDevices                   func(d *Display) *L.List
 	DisplayPeekEvent                     func(d *Display) *Event
 	DisplayPointerIsGrabbed              func(d *Display) bool
 	DisplayPointerUngrab                 func(d *Display, time T.GUint32)
@@ -176,7 +176,7 @@ func (d *Display) GetWindowAtPointer(winX, winY *int) *Window {
 }
 func (d *Display) IsClosed() bool                { return DisplayIsClosed(d) }
 func (d *Display) KeyboardUngrab(time T.GUint32) { DisplayKeyboardUngrab(d, time) }
-func (d *Display) ListDevices() *T.GList         { return DisplayListDevices(d) }
+func (d *Display) ListDevices() *L.List          { return DisplayListDevices(d) }
 func (d *Display) PeekEvent() *Event             { return DisplayPeekEvent(d) }
 func (d *Display) PointerIsGrabbed() bool        { return DisplayPointerIsGrabbed(d) }
 func (d *Display) PointerUngrab(time T.GUint32)  { DisplayPointerUngrab(d, time) }
@@ -230,7 +230,7 @@ var (
 )
 
 func (d *DisplayManager) GetDefaultDisplay() *Display { return DisplayManagerGetDefaultDisplay(d) }
-func (d *DisplayManager) ListDisplays() *L.SList     { return DisplayManagerListDisplays(d) }
+func (d *DisplayManager) ListDisplays() *L.SList      { return DisplayManagerListDisplays(d) }
 func (d *DisplayManager) SetDefaultDisplay(display *Display) {
 	DisplayManagerSetDefaultDisplay(d, display)
 }
@@ -254,7 +254,7 @@ type DragContext struct {
 	Is_source       bool
 	SourceWindow    *Window
 	DestWindow      *Window
-	Targets         *T.GList
+	Targets         *L.List
 	Actions         DragAction
 	SuggestedAction DragAction
 	Action          DragAction
@@ -267,7 +267,7 @@ var (
 	DragContextNew     func() *DragContext
 
 	DragAbort                 func(context *DragContext, time T.GUint32)
-	DragBegin                 func(window *Window, targets *T.GList) *DragContext
+	DragBegin                 func(window *Window, targets *L.List) *DragContext
 	DragGetProtocol           func(xid T.GdkNativeWindow, protocol *DragProtocol) T.GdkNativeWindow
 	DragGetProtocolForDisplay func(display *Display, xid T.GdkNativeWindow, protocol *DragProtocol) T.GdkNativeWindow
 
@@ -287,7 +287,7 @@ var (
 	DragContextGetSelectedAction  func(context *DragContext) DragAction
 	DragContextGetSourceWindow    func(context *DragContext) *Window
 	DragContextGetSuggestedAction func(context *DragContext) DragAction
-	DragContextListTargets        func(context *DragContext) *T.GList
+	DragContextListTargets        func(context *DragContext) *L.List
 	DragContextRef                func(context *DragContext)
 	DragContextUnref              func(context *DragContext)
 )
@@ -298,7 +298,7 @@ func (d *DragContext) GetProtocol() DragProtocol      { return DragContextGetPro
 func (d *DragContext) GetSelectedAction() DragAction  { return DragContextGetSelectedAction(d) }
 func (d *DragContext) GetSourceWindow() *Window       { return DragContextGetSourceWindow(d) }
 func (d *DragContext) GetSuggestedAction() DragAction { return DragContextGetSuggestedAction(d) }
-func (d *DragContext) ListTargets() *T.GList          { return DragContextListTargets(d) }
+func (d *DragContext) ListTargets() *L.List           { return DragContextListTargets(d) }
 func (d *DragContext) Ref()                           { DragContextRef(d) }
 func (d *DragContext) Unref()                         { DragContextUnref(d) }
 
@@ -362,7 +362,7 @@ var (
 	DrawableGetVisual        func(d *Drawable) *Visual
 	DrawableRef              func(d *Drawable) *Drawable
 	DrawableSetColormap      func(d *Drawable, colormap *Colormap)
-	DrawableSetData          func(d *Drawable, key string, data T.Gpointer, destroyFunc T.GDestroyNotify)
+	DrawableSetData          func(d *Drawable, key string, data T.Gpointer, destroyFunc O.DestroyNotify)
 	DrawableUnref            func(d *Drawable)
 )
 
@@ -383,7 +383,7 @@ func (d *Drawable) GetVisibleRegion() *Region      { return DrawableGetVisibleRe
 func (d *Drawable) GetVisual() *Visual             { return DrawableGetVisual(d) }
 func (d *Drawable) Ref() *Drawable                 { return DrawableRef(d) }
 func (d *Drawable) SetColormap(colormap *Colormap) { DrawableSetColormap(d, colormap) }
-func (d *Drawable) SetData(key string, data T.Gpointer, destroyFunc T.GDestroyNotify) {
+func (d *Drawable) SetData(key string, data T.Gpointer, destroyFunc O.DestroyNotify) {
 	DrawableSetData(d, key, data, destroyFunc)
 }
 func (d *Drawable) Unref() { DrawableUnref(d) }

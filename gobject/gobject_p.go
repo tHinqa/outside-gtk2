@@ -8,6 +8,11 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+type Parameter struct {
+	Name  string
+	Value Value
+}
+
 type ParamFlags Enum
 
 const (
@@ -58,7 +63,7 @@ var (
 	ParamSpecUint       func(name, nick, blurb string, minimum, maximum, defaultValue uint, flags ParamFlags) *ParamSpec
 	ParamSpecUint64     func(name, nick, blurb string, minimum, maximum, defaultValue uint64, flags ParamFlags) *ParamSpec
 	ParamSpecUlong      func(name, nick, blurb string, minimum, maximum, defaultValue T.Gulong, flags ParamFlags) *ParamSpec
-	ParamSpecUnichar    func(name, nick, blurb string, defaultValue T.Gunichar, flags ParamFlags) *ParamSpec
+	ParamSpecUnichar    func(name, nick, blurb string, defaultValue T.Unichar, flags ParamFlags) *ParamSpec
 	ParamSpecValueArray func(name, nick, blurb string, elementSpec *ParamSpec, flags ParamFlags) *ParamSpec
 	ParamSpecVariant    func(name, nick, blurb string, t *T.VariantType, defaultValue *T.Variant, flags ParamFlags) *ParamSpec
 
@@ -70,7 +75,7 @@ var (
 	ParamSpecRef               func(p *ParamSpec) *ParamSpec
 	ParamSpecRefSink           func(p *ParamSpec) *ParamSpec
 	ParamSpecSetQdata          func(p *ParamSpec, quark T.Quark, data T.Gpointer)
-	ParamSpecSetQdataFull      func(p *ParamSpec, quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify)
+	ParamSpecSetQdataFull      func(p *ParamSpec, quark T.Quark, data T.Gpointer, destroy DestroyNotify)
 	ParamSpecSink              func(p *ParamSpec)
 	ParamSpecStealQdata        func(p *ParamSpec, quark T.Quark) T.Gpointer
 	ParamSpecUnref             func(p *ParamSpec)
@@ -94,7 +99,7 @@ func (p *ParamSpec) Ref() *ParamSpec                         { return ParamSpecR
 func (p *ParamSpec) RefSink() *ParamSpec                     { return ParamSpecRefSink(p) }
 func (p *ParamSpec) SetDefault(value *Value)                 { ParamValueSetDefault(p, value) }
 func (p *ParamSpec) SetQdata(quark T.Quark, data T.Gpointer) { ParamSpecSetQdata(p, quark, data) }
-func (p *ParamSpec) SetQdataFull(quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (p *ParamSpec) SetQdataFull(quark T.Quark, data T.Gpointer, destroy DestroyNotify) {
 	ParamSpecSetQdataFull(p, quark, data, destroy)
 }
 func (p *ParamSpec) Sink()                               { ParamSpecSink(p) }
@@ -110,7 +115,7 @@ var (
 
 	ParamSpecPoolInsert    func(p *ParamSpecPool, pspec *ParamSpec, ownerType Type)
 	ParamSpecPoolList      func(p *ParamSpecPool, ownerType Type, nPspecsP *uint) **ParamSpec
-	ParamSpecPoolListOwned func(p *ParamSpecPool, ownerType Type) *T.GList
+	ParamSpecPoolListOwned func(p *ParamSpecPool, ownerType Type) *T.List
 	ParamSpecPoolLookup    func(p *ParamSpecPool, paramName string, ownerType Type, walkAncestors bool) *ParamSpec
 	ParamSpecPoolRemove    func(p *ParamSpecPool, pspec *ParamSpec)
 )
@@ -121,7 +126,7 @@ func (p *ParamSpecPool) Insert(pspec *ParamSpec, ownerType Type) {
 func (p *ParamSpecPool) List(ownerType Type, nPspecsP *uint) **ParamSpec {
 	return ParamSpecPoolList(p, ownerType, nPspecsP)
 }
-func (p *ParamSpecPool) ListOwned(ownerType Type) *T.GList {
+func (p *ParamSpecPool) ListOwned(ownerType Type) *T.List {
 	return ParamSpecPoolListOwned(p, ownerType)
 }
 func (p *ParamSpecPool) Lookup(paramName string, ownerType Type, walkAncestors bool) *ParamSpec {
@@ -136,11 +141,11 @@ type ParamSpecTypeInfo struct {
 	ValueType         Type
 	Finalize          func(pspec *ParamSpec)
 	Value_set_default func(
-		pspec *ParamSpec, value *T.GValue)
+		pspec *ParamSpec, value *Value)
 	Value_validate func(
-		pspec *ParamSpec, value *T.GValue) bool
+		pspec *ParamSpec, value *Value) bool
 	Values_cmp func(pspec *ParamSpec,
-		value1 *T.GValue, value2 *T.GValue) int
+		value1 *Value, value2 *Value) int
 }
 
 var (

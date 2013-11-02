@@ -102,7 +102,7 @@ const (
 var (
 	ScriptGetType func() O.Type
 
-	ScriptForUnichar func(ch T.Gunichar) Script
+	ScriptForUnichar func(ch L.Unichar) Script
 
 	ScriptGetSampleLanguage func(s Script) *Language
 )

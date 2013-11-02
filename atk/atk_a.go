@@ -52,7 +52,7 @@ type (
 var (
 	AddFocusTracker func(focusTracker EventListener) uint
 
-	AddGlobalEventListener func(listener T.GSignalEmissionHook, eventType string) uint
+	AddGlobalEventListener func(listener O.SignalEmissionHook, eventType string) uint
 
 	AddKeyEventListener func(listener KeySnoopFunc, data T.Gpointer) uint
 

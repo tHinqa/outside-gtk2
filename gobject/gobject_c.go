@@ -8,6 +8,8 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
+type Callback func() T.Dummy
+
 type Closure struct {
 	Bits uint
 	// RefCount : 15
@@ -22,9 +24,9 @@ type Closure struct {
 	// IsInvalid : 1
 	Marshal func(
 		closure *Closure,
-		returnValue *T.GValue,
+		returnValue *Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *Value,
 		invocationHint T.Gpointer,
 		marshalData T.Gpointer)
 	Data      T.Gpointer
@@ -40,7 +42,7 @@ var (
 	ClosureAddInvalidateNotifier    func(c Closure, notifyData T.Gpointer, notifyFunc ClosureNotify)
 	ClosureAddMarshalGuards         func(c Closure, preMarshalData T.Gpointer, preMarshalNotify ClosureNotify, postMarshalData T.Gpointer, postMarshalNotify ClosureNotify)
 	ClosureInvalidate               func(c Closure)
-	ClosureInvoke                   func(c Closure, returnValue *T.GValue, nParamValues uint, paramValues *T.GValue, invocationHint T.Gpointer)
+	ClosureInvoke                   func(c Closure, returnValue *Value, nParamValues uint, paramValues *Value, invocationHint T.Gpointer)
 	ClosureRef                      func(c Closure) *Closure
 	ClosureRemoveFinalizeNotifier   func(c Closure, notifyData T.Gpointer, notifyFunc ClosureNotify)
 	ClosureRemoveInvalidateNotifier func(c Closure, notifyData T.Gpointer, notifyFunc ClosureNotify)
@@ -60,7 +62,7 @@ func (c Closure) AddMarshalGuards(preMarshalData T.Gpointer, preMarshalNotify Cl
 	ClosureAddMarshalGuards(c, preMarshalData, preMarshalNotify, postMarshalData, postMarshalNotify)
 }
 func (c Closure) Invalidate() { ClosureInvalidate(c) }
-func (c Closure) Invoke(returnValue *T.GValue, nParamValues uint, paramValues *T.GValue, invocationHint T.Gpointer) {
+func (c Closure) Invoke(returnValue *Value, nParamValues uint, paramValues *Value, invocationHint T.Gpointer) {
 	ClosureInvoke(c, returnValue, nParamValues, paramValues, invocationHint)
 }
 func (c Closure) Ref() *Closure { return ClosureRef(c) }
@@ -86,7 +88,7 @@ type ClosureNotifyData struct {
 
 type ClosureMarshal func(
 	Closure *Closure,
-	returnValue *T.GValue,
+	returnValue *Value,
 	nParamValues uint,
-	paramValues *T.GValue,
+	paramValues *Value,
 	invocationHint, marshalData T.Gpointer)

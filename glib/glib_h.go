@@ -4,6 +4,7 @@
 package glib
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
 
@@ -17,15 +18,15 @@ type HashTable struct{}
 
 var (
 	HashTableNew     func(hashFunc HashFunc, keyEqualFunc T.GEqualFunc) *HashTable
-	HashTableNewFull func(hashFunc HashFunc, keyEqualFunc T.GEqualFunc, keyDestroyFunc T.GDestroyNotify, valueDestroyFunc T.GDestroyNotify) *HashTable
+	HashTableNewFull func(hashFunc HashFunc, keyEqualFunc T.GEqualFunc, keyDestroyFunc O.DestroyNotify, valueDestroyFunc O.DestroyNotify) *HashTable
 
 	HashTableDestroy        func(h *HashTable)
 	HashTableFind           func(h *HashTable, predicate HRFunc, userData T.Gpointer) T.Gpointer
 	HashTableForeach        func(h *HashTable, f HFunc, userData T.Gpointer)
 	HashTableForeachRemove  func(h *HashTable, f HRFunc, userData T.Gpointer) uint
 	HashTableForeachSteal   func(h *HashTable, f HRFunc, userData T.Gpointer) uint
-	HashTableGetKeys        func(h *HashTable) *T.GList
-	HashTableGetValues      func(h *HashTable) *T.GList
+	HashTableGetKeys        func(h *HashTable) *List
+	HashTableGetValues      func(h *HashTable) *List
 	HashTableInsert         func(h *HashTable, key T.Gpointer, value T.Gpointer)
 	HashTableLookup         func(h *HashTable, key T.Gconstpointer) T.Gpointer
 	HashTableLookupExtended func(h *HashTable, lookupKey T.Gconstpointer, origKey, value *T.Gpointer) bool
@@ -50,8 +51,8 @@ func (h *HashTable) ForeachRemove(f HRFunc, userData T.Gpointer) uint {
 func (h *HashTable) ForeachSteal(f HRFunc, userData T.Gpointer) uint {
 	return HashTableForeachSteal(h, f, userData)
 }
-func (h *HashTable) GetKeys() *T.GList                       { return HashTableGetKeys(h) }
-func (h *HashTable) GetValues() *T.GList                     { return HashTableGetValues(h) }
+func (h *HashTable) GetKeys() *List                          { return HashTableGetKeys(h) }
+func (h *HashTable) GetValues() *List                        { return HashTableGetValues(h) }
 func (h *HashTable) Insert(key T.Gpointer, value T.Gpointer) { HashTableInsert(h, key, value) }
 func (h *HashTable) Lookup(key T.Gconstpointer) T.Gpointer   { return HashTableLookup(h, key) }
 func (h *HashTable) LookupExtended(lookupKey T.Gconstpointer, origKey, value *T.Gpointer) bool {
@@ -100,7 +101,7 @@ type (
 		HookId   T.Gulong
 		Flags    uint
 		Fnc      T.Gpointer
-		Destroy  T.GDestroyNotify
+		Destroy  O.DestroyNotify
 	}
 
 	HookList struct {

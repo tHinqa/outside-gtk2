@@ -14,7 +14,7 @@ type Icon struct{}
 
 var (
 	IconGetType      func() O.Type
-	IconNewForString func(str string, err **T.GError) *Icon
+	IconNewForString func(str string, err **L.Error) *Icon
 
 	IconHash func(icon T.Gconstpointer) uint
 
@@ -85,14 +85,14 @@ type Initable struct{}
 
 var (
 	InitableGetType   func() O.Type
-	InitableNew       func(objectType O.Type, cancellable *Cancellable, e **T.GError, firstPropertyName string, v ...VArg) T.Gpointer
-	InitableNewv      func(objectType O.Type, nParameters uint, parameters *T.GParameter, cancellable *Cancellable, err **T.GError) T.Gpointer
-	InitableNewValist func(objectType O.Type, firstPropertyName string, varArgs T.VaList, cancellable *Cancellable, err **T.GError) *O.Object
+	InitableNew       func(objectType O.Type, cancellable *Cancellable, e **L.Error, firstPropertyName string, v ...VArg) T.Gpointer
+	InitableNewv      func(objectType O.Type, nParameters uint, parameters *O.Parameter, cancellable *Cancellable, err **L.Error) T.Gpointer
+	InitableNewValist func(objectType O.Type, firstPropertyName string, varArgs T.VaList, cancellable *Cancellable, err **L.Error) *O.Object
 
-	InitableInit func(i *Initable, cancellable *Cancellable, err **T.GError) bool
+	InitableInit func(i *Initable, cancellable *Cancellable, err **L.Error) bool
 )
 
-func (i *Initable) Init(cancellable *Cancellable, err **T.GError) bool {
+func (i *Initable) Init(cancellable *Cancellable, err **L.Error) bool {
 	return InitableInit(i, cancellable, err)
 }
 
@@ -105,53 +105,53 @@ var (
 	InputStreamGetType func() O.Type
 
 	InputStreamClearPending func(i *InputStream)
-	InputStreamClose        func(i *InputStream, cancellable *Cancellable, err **T.GError) bool
+	InputStreamClose        func(i *InputStream, cancellable *Cancellable, err **L.Error) bool
 	InputStreamCloseAsync   func(i *InputStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	InputStreamCloseFinish  func(i *InputStream, result *AsyncResult, err **T.GError) bool
+	InputStreamCloseFinish  func(i *InputStream, result *AsyncResult, err **L.Error) bool
 	InputStreamHasPending   func(i *InputStream) bool
 	InputStreamIsClosed     func(i *InputStream) bool
-	InputStreamRead         func(i *InputStream, buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	InputStreamReadAll      func(i *InputStream, buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **T.GError) bool
+	InputStreamRead         func(i *InputStream, buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
+	InputStreamReadAll      func(i *InputStream, buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **L.Error) bool
 	InputStreamReadAsync    func(i *InputStream, buffer *T.Void, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	InputStreamReadFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
-	InputStreamSetPending   func(i *InputStream, err **T.GError) bool
-	InputStreamSkip         func(i *InputStream, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
+	InputStreamReadFinish   func(i *InputStream, result *AsyncResult, err **L.Error) T.Gssize
+	InputStreamSetPending   func(i *InputStream, err **L.Error) bool
+	InputStreamSkip         func(i *InputStream, count T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
 	InputStreamSkipAsync    func(i *InputStream, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	InputStreamSkipFinish   func(i *InputStream, result *AsyncResult, err **T.GError) T.Gssize
+	InputStreamSkipFinish   func(i *InputStream, result *AsyncResult, err **L.Error) T.Gssize
 )
 
 func (i *InputStream) ClearPending() { InputStreamClearPending(i) }
-func (i *InputStream) Close(cancellable *Cancellable, err **T.GError) bool {
+func (i *InputStream) Close(cancellable *Cancellable, err **L.Error) bool {
 	return InputStreamClose(i, cancellable, err)
 }
 func (i *InputStream) CloseAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	InputStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
 }
-func (i *InputStream) CloseFinish(result *AsyncResult, err **T.GError) bool {
+func (i *InputStream) CloseFinish(result *AsyncResult, err **L.Error) bool {
 	return InputStreamCloseFinish(i, result, err)
 }
 func (i *InputStream) HasPending() bool { return InputStreamHasPending(i) }
 func (i *InputStream) IsClosed() bool   { return InputStreamIsClosed(i) }
-func (i *InputStream) Read(buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (i *InputStream) Read(buffer *T.Void, count T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return InputStreamRead(i, buffer, count, cancellable, err)
 }
-func (i *InputStream) ReadAll(buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **T.GError) bool {
+func (i *InputStream) ReadAll(buffer *T.Void, count T.Gsize, bytesRead *T.Gsize, cancellable *Cancellable, err **L.Error) bool {
 	return InputStreamReadAll(i, buffer, count, bytesRead, cancellable, err)
 }
 func (i *InputStream) ReadAsync(buffer *T.Void, count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	InputStreamReadAsync(i, buffer, count, ioPriority, cancellable, callback, userData)
 }
-func (i *InputStream) ReadFinish(result *AsyncResult, err **T.GError) T.Gssize {
+func (i *InputStream) ReadFinish(result *AsyncResult, err **L.Error) T.Gssize {
 	return InputStreamReadFinish(i, result, err)
 }
-func (i *InputStream) SetPending(err **T.GError) bool { return InputStreamSetPending(i, err) }
-func (i *InputStream) Skip(count T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (i *InputStream) SetPending(err **L.Error) bool { return InputStreamSetPending(i, err) }
+func (i *InputStream) Skip(count T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return InputStreamSkip(i, count, cancellable, err)
 }
 func (i *InputStream) SkipAsync(count T.Gsize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	InputStreamSkipAsync(i, count, ioPriority, cancellable, callback, userData)
 }
-func (i *InputStream) SkipFinish(result *AsyncResult, err **T.GError) T.Gssize {
+func (i *InputStream) SkipFinish(result *AsyncResult, err **L.Error) T.Gssize {
 	return InputStreamSkipFinish(i, result, err)
 }
 
@@ -240,7 +240,7 @@ var (
 	IoExtensionPointImplement func(extensionPointName string, typ O.Type, extensionName string, priority int) *IOExtension
 
 	IoExtensionPointGetExtensionByName func(i *IOExtensionPoint, name string) *IOExtension
-	IoExtensionPointGetExtensions      func(i *IOExtensionPoint) *T.GList
+	IoExtensionPointGetExtensions      func(i *IOExtensionPoint) *L.List
 	IoExtensionPointGetRequiredType    func(i *IOExtensionPoint) O.Type
 	IoExtensionPointSetRequiredType    func(i *IOExtensionPoint, typ O.Type)
 )
@@ -248,7 +248,7 @@ var (
 func (i *IOExtensionPoint) GetExtensionByName(name string) *IOExtension {
 	return IoExtensionPointGetExtensionByName(i, name)
 }
-func (i *IOExtensionPoint) GetExtensions() *T.GList    { return IoExtensionPointGetExtensions(i) }
+func (i *IOExtensionPoint) GetExtensions() *L.List     { return IoExtensionPointGetExtensions(i) }
 func (i *IOExtensionPoint) GetRequiredType() O.Type    { return IoExtensionPointGetRequiredType(i) }
 func (i *IOExtensionPoint) SetRequiredType(typ O.Type) { IoExtensionPointSetRequiredType(i, typ) }
 
@@ -259,7 +259,7 @@ var (
 	IoModuleNew     func(filename string) *IOModule
 
 	IoModuleQuery               func() []string
-	IoModulesLoadAllInDirectory func(dirname string) *T.GList
+	IoModulesLoadAllInDirectory func(dirname string) *L.List
 	IoModulesScanAllInDirectory func(dirname string)
 
 	IoModuleLoad   func(i *IOModule)
@@ -272,7 +272,7 @@ func (i *IOModule) Unload() { IoModuleUnload(i) }
 var (
 	IoSchedulerCancelAllJobs func()
 
-	IoSchedulerPushJob func(i IOSchedulerJobFunc, userData T.Gpointer, notify T.GDestroyNotify, ioPriority int, cancellable *Cancellable)
+	IoSchedulerPushJob func(i IOSchedulerJobFunc, userData T.Gpointer, notify O.DestroyNotify, ioPriority int, cancellable *Cancellable)
 )
 
 type IOSchedulerJobFunc func(
@@ -283,14 +283,14 @@ type IOSchedulerJobFunc func(
 type IOSchedulerJob struct{}
 
 var (
-	IoSchedulerJobSendToMainloop      func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) bool
-	IoSchedulerJobSendToMainloopAsync func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify)
+	IoSchedulerJobSendToMainloop      func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify O.DestroyNotify) bool
+	IoSchedulerJobSendToMainloopAsync func(i *IOSchedulerJob, f O.SourceFunc, userData T.Gpointer, notify O.DestroyNotify)
 )
 
-func (i *IOSchedulerJob) SendToMainloop(f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) bool {
+func (i *IOSchedulerJob) SendToMainloop(f O.SourceFunc, userData T.Gpointer, notify O.DestroyNotify) bool {
 	return IoSchedulerJobSendToMainloop(i, f, userData, notify)
 }
-func (i *IOSchedulerJob) SendToMainloopAsync(f O.SourceFunc, userData T.Gpointer, notify T.GDestroyNotify) {
+func (i *IOSchedulerJob) SendToMainloopAsync(f O.SourceFunc, userData T.Gpointer, notify O.DestroyNotify) {
 	IoSchedulerJobSendToMainloopAsync(i, f, userData, notify)
 }
 
@@ -302,35 +302,35 @@ type IOStream struct {
 var (
 	IoStreamGetType func() O.Type
 
-	IoStreamSpliceFinish func(result *AsyncResult, err **T.GError) bool
+	IoStreamSpliceFinish func(result *AsyncResult, err **L.Error) bool
 
 	IoStreamClearPending    func(i *IOStream)
-	IoStreamClose           func(i *IOStream, cancellable *Cancellable, err **T.GError) bool
+	IoStreamClose           func(i *IOStream, cancellable *Cancellable, err **L.Error) bool
 	IoStreamCloseAsync      func(i *IOStream, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	IoStreamCloseFinish     func(i *IOStream, result *AsyncResult, err **T.GError) bool
+	IoStreamCloseFinish     func(i *IOStream, result *AsyncResult, err **L.Error) bool
 	IoStreamGetInputStream  func(i *IOStream) *InputStream
 	IoStreamGetOutputStream func(i *IOStream) *OutputStream
 	IoStreamHasPending      func(i *IOStream) bool
 	IoStreamIsClosed        func(i *IOStream) bool
-	IoStreamSetPending      func(i *IOStream, err **T.GError) bool
+	IoStreamSetPending      func(i *IOStream, err **L.Error) bool
 	IoStreamSpliceAsync     func(i *IOStream, stream2 *IOStream, flags IOStreamSpliceFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 )
 
 func (i *IOStream) ClearPending() { IoStreamClearPending(i) }
-func (i *IOStream) Close(cancellable *Cancellable, err **T.GError) bool {
+func (i *IOStream) Close(cancellable *Cancellable, err **L.Error) bool {
 	return IoStreamClose(i, cancellable, err)
 }
 func (i *IOStream) CloseAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	IoStreamCloseAsync(i, ioPriority, cancellable, callback, userData)
 }
-func (i *IOStream) CloseFinish(result *AsyncResult, err **T.GError) bool {
+func (i *IOStream) CloseFinish(result *AsyncResult, err **L.Error) bool {
 	return IoStreamCloseFinish(i, result, err)
 }
 func (i *IOStream) GetInputStream() *InputStream   { return IoStreamGetInputStream(i) }
 func (i *IOStream) GetOutputStream() *OutputStream { return IoStreamGetOutputStream(i) }
 func (i *IOStream) HasPending() bool               { return IoStreamHasPending(i) }
 func (i *IOStream) IsClosed() bool                 { return IoStreamIsClosed(i) }
-func (i *IOStream) SetPending(err **T.GError) bool { return IoStreamSetPending(i, err) }
+func (i *IOStream) SetPending(err **L.Error) bool  { return IoStreamSetPending(i, err) }
 func (i *IOStream) SpliceAsync(stream2 *IOStream, flags IOStreamSpliceFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	IoStreamSpliceAsync(i, stream2, flags, ioPriority, cancellable, callback, userData)
 }

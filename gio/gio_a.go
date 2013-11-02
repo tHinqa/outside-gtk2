@@ -100,10 +100,10 @@ var (
 	AppInfoResetTypeAssociations  func(contentType string)
 	AppInfoGetDefaultForType      func(contentType string, mustSupportUris bool) *AppInfo
 	AppInfoGetDefaultForUriScheme func(uriScheme string) *AppInfo
-	AppInfoLaunchDefaultForUri    func(uri string, launchContext *AppLaunchContext, err **T.GError) bool
-	AppInfoCreateFromCommandline  func(commandline string, applicationName string, flags AppInfoCreateFlags, err **T.GError) *AppInfo
+	AppInfoLaunchDefaultForUri    func(uri string, launchContext *AppLaunchContext, err **L.Error) bool
+	AppInfoCreateFromCommandline  func(commandline string, applicationName string, flags AppInfoCreateFlags, err **L.Error) *AppInfo
 
-	AppInfoAddSupportsType          func(a *AppInfo, contentType string, err **T.GError) bool
+	AppInfoAddSupportsType          func(a *AppInfo, contentType string, err **L.Error) bool
 	AppInfoCanDelete                func(a *AppInfo) bool
 	AppInfoCanRemoveSupportsType    func(a *AppInfo) bool
 	AppInfoDelete                   func(a *AppInfo) bool
@@ -116,18 +116,18 @@ var (
 	AppInfoGetIcon                  func(a *AppInfo) *Icon
 	AppInfoGetId                    func(a *AppInfo) string
 	AppInfoGetName                  func(a *AppInfo) string
-	AppInfoLaunch                   func(a *AppInfo, files *L.List, launchContext *AppLaunchContext, err **T.GError) bool
-	AppInfoLaunchUris               func(a *AppInfo, uris *L.List, launchContext *AppLaunchContext, err **T.GError) bool
-	AppInfoRemoveSupportsType       func(a *AppInfo, contentType string, err **T.GError) bool
-	AppInfoSetAsDefaultForExtension func(a *AppInfo, extension string, err **T.GError) bool
-	AppInfoSetAsDefaultForType      func(a *AppInfo, contentType string, err **T.GError) bool
-	AppInfoSetAsLastUsedForType     func(a *AppInfo, contentType string, err **T.GError) bool
+	AppInfoLaunch                   func(a *AppInfo, files *L.List, launchContext *AppLaunchContext, err **L.Error) bool
+	AppInfoLaunchUris               func(a *AppInfo, uris *L.List, launchContext *AppLaunchContext, err **L.Error) bool
+	AppInfoRemoveSupportsType       func(a *AppInfo, contentType string, err **L.Error) bool
+	AppInfoSetAsDefaultForExtension func(a *AppInfo, extension string, err **L.Error) bool
+	AppInfoSetAsDefaultForType      func(a *AppInfo, contentType string, err **L.Error) bool
+	AppInfoSetAsLastUsedForType     func(a *AppInfo, contentType string, err **L.Error) bool
 	AppInfoShouldShow               func(a *AppInfo) bool
 	AppInfoSupportsFiles            func(a *AppInfo) bool
 	AppInfoSupportsUris             func(a *AppInfo) bool
 )
 
-func (a *AppInfo) AddSupportsType(contentType string, err **T.GError) bool {
+func (a *AppInfo) AddSupportsType(contentType string, err **L.Error) bool {
 	return AppInfoAddSupportsType(a, contentType, err)
 }
 func (a *AppInfo) CanDelete() bool              { return AppInfoCanDelete(a) }
@@ -142,22 +142,22 @@ func (a *AppInfo) GetExecutable() string        { return AppInfoGetExecutable(a)
 func (a *AppInfo) GetIcon() *Icon               { return AppInfoGetIcon(a) }
 func (a *AppInfo) GetId() string                { return AppInfoGetId(a) }
 func (a *AppInfo) GetName() string              { return AppInfoGetName(a) }
-func (a *AppInfo) Launch(files *L.List, launchContext *AppLaunchContext, err **T.GError) bool {
+func (a *AppInfo) Launch(files *L.List, launchContext *AppLaunchContext, err **L.Error) bool {
 	return AppInfoLaunch(a, files, launchContext, err)
 }
-func (a *AppInfo) LaunchUris(uris *L.List, launchContext *AppLaunchContext, err **T.GError) bool {
+func (a *AppInfo) LaunchUris(uris *L.List, launchContext *AppLaunchContext, err **L.Error) bool {
 	return AppInfoLaunchUris(a, uris, launchContext, err)
 }
-func (a *AppInfo) RemoveSupportsType(contentType string, err **T.GError) bool {
+func (a *AppInfo) RemoveSupportsType(contentType string, err **L.Error) bool {
 	return AppInfoRemoveSupportsType(a, contentType, err)
 }
-func (a *AppInfo) SetAsDefaultForExtension(extension string, err **T.GError) bool {
+func (a *AppInfo) SetAsDefaultForExtension(extension string, err **L.Error) bool {
 	return AppInfoSetAsDefaultForExtension(a, extension, err)
 }
-func (a *AppInfo) SetAsDefaultForType(contentType string, err **T.GError) bool {
+func (a *AppInfo) SetAsDefaultForType(contentType string, err **L.Error) bool {
 	return AppInfoSetAsDefaultForType(a, contentType, err)
 }
-func (a *AppInfo) SetAsLastUsedForType(contentType string, err **T.GError) bool {
+func (a *AppInfo) SetAsLastUsedForType(contentType string, err **L.Error) bool {
 	return AppInfoSetAsLastUsedForType(a, contentType, err)
 }
 func (a *AppInfo) ShouldShow() bool    { return AppInfoShouldShow(a) }
@@ -219,7 +219,7 @@ var (
 	ApplicationGetIsRemote          func(a *Application) bool
 	ApplicationHold                 func(a *Application)
 	ApplicationOpen                 func(a *Application, files **File, nFiles int, hint string)
-	ApplicationRegister             func(a *Application, cancellable *Cancellable, err **T.GError) bool
+	ApplicationRegister             func(a *Application, cancellable *Cancellable, err **L.Error) bool
 	ApplicationRelease              func(a *Application)
 	ApplicationRun                  func(a *Application, argc int, argv **T.Char) int
 	ApplicationSetActionGroup       func(a *Application, ag *ActionGroup)
@@ -238,7 +238,7 @@ func (a *Application) Hold()                      { ApplicationHold(a) }
 func (a *Application) Open(files **File, nFiles int, hint string) {
 	ApplicationOpen(a, files, nFiles, hint)
 }
-func (a *Application) Register(cancellable *Cancellable, err **T.GError) bool {
+func (a *Application) Register(cancellable *Cancellable, err **L.Error) bool {
 	return ApplicationRegister(a, cancellable, err)
 }
 func (a *Application) Release()                        { ApplicationRelease(a) }
@@ -316,21 +316,21 @@ var (
 	AsyncInitableGetType func() O.Type
 
 	AsyncInitableNewAsync       func(objectType O.Type, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer, firstPropertyName string, v ...VArg)
-	AsyncInitableNewvAsync      func(objectType O.Type, nParameters uint, parameters *T.GParameter, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	AsyncInitableNewvAsync      func(objectType O.Type, nParameters uint, parameters *O.Parameter, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	AsyncInitableNewValistAsync func(objectType O.Type, firstPropertyName string, varArgs T.VaList, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 
 	AsyncInitableInitAsync  func(a *AsyncInitable, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	AsyncInitableInitFinish func(a *AsyncInitable, res *AsyncResult, err **T.GError) bool
-	AsyncInitableNewFinish  func(a *AsyncInitable, res *AsyncResult, err **T.GError) *O.Object
+	AsyncInitableInitFinish func(a *AsyncInitable, res *AsyncResult, err **L.Error) bool
+	AsyncInitableNewFinish  func(a *AsyncInitable, res *AsyncResult, err **L.Error) *O.Object
 )
 
 func (a *AsyncInitable) InitAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	AsyncInitableInitAsync(a, ioPriority, cancellable, callback, userData)
 }
-func (a *AsyncInitable) InitFinish(res *AsyncResult, err **T.GError) bool {
+func (a *AsyncInitable) InitFinish(res *AsyncResult, err **L.Error) bool {
 	return AsyncInitableInitFinish(a, res, err)
 }
-func (a *AsyncInitable) NewFinish(res *AsyncResult, err **T.GError) *O.Object {
+func (a *AsyncInitable) NewFinish(res *AsyncResult, err **L.Error) *O.Object {
 	return AsyncInitableNewFinish(a, res, err)
 }
 

@@ -12,7 +12,7 @@ import (
 var (
 	GetLibSubdirectory     func() string
 	GetLogAttrs            func(text string, length, level int, language *Language, logAttrs *LogAttr, attrsLen int)
-	GetMirrorChar          func(ch T.Gunichar, mirroredCh *T.Gunichar) bool
+	GetMirrorChar          func(ch L.Unichar, mirroredCh *L.Unichar) bool
 	GetSysconfSubdirectory func() string
 )
 

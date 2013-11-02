@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -149,7 +150,7 @@ type LabelClass struct {
 
 type Layout struct {
 	Container    Container
-	Children     *T.GList
+	Children     *L.List
 	Width        uint
 	Height       uint
 	Hadjustment  *Adjustment
@@ -195,7 +196,7 @@ type ListStore struct {
 	Stamp              int
 	Seq                T.Gpointer
 	_                  T.Gpointer
-	SortList           *T.GList
+	SortList           *L.List
 	NColumns           int
 	SortColumnId       int
 	Order              SortType
@@ -203,7 +204,7 @@ type ListStore struct {
 	Length             int
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
-	DefaultSortDestroy T.GDestroyNotify
+	DefaultSortDestroy O.DestroyNotify
 	ColumnsDirty       uint // : 1
 }
 
@@ -228,7 +229,7 @@ var (
 	ListStoreInsertAfter       func(l *ListStore, iter *TreeIter, sibling *TreeIter)
 	ListStoreInsertBefore      func(l *ListStore, iter *TreeIter, sibling *TreeIter)
 	ListStoreInsertWithValues  func(l *ListStore, iter *TreeIter, position int, v ...VArg)
-	ListStoreInsertWithValuesv func(l *ListStore, iter *TreeIter, position int, columns *int, values *T.GValue, nValues int)
+	ListStoreInsertWithValuesv func(l *ListStore, iter *TreeIter, position int, columns *int, values *O.Value, nValues int)
 	ListStoreIterIsValid       func(l *ListStore, iter *TreeIter) bool
 	ListStoreMoveAfter         func(l *ListStore, iter *TreeIter, position *TreeIter)
 	ListStoreMoveBefore        func(l *ListStore, iter *TreeIter, position *TreeIter)
@@ -238,8 +239,8 @@ var (
 	ListStoreSet               func(l *ListStore, iter *TreeIter, v ...VArg)
 	ListStoreSetColumnTypes    func(l *ListStore, nColumns int, types *O.Type)
 	ListStoreSetValist         func(l *ListStore, iter *TreeIter, varArgs T.VaList)
-	ListStoreSetValue          func(l *ListStore, iter *TreeIter, column int, value *T.GValue)
-	ListStoreSetValuesv        func(l *ListStore, iter *TreeIter, columns *int, values *T.GValue, nValues int)
+	ListStoreSetValue          func(l *ListStore, iter *TreeIter, column int, value *O.Value)
+	ListStoreSetValuesv        func(l *ListStore, iter *TreeIter, columns *int, values *O.Value, nValues int)
 	ListStoreSwap              func(l *ListStore, a, b *TreeIter)
 )
 
@@ -255,7 +256,7 @@ func (l *ListStore) InsertBefore(iter *TreeIter, sibling *TreeIter) {
 func (l *ListStore) InsertWithValues(iter *TreeIter, position int, v ...VArg) {
 	ListStoreInsertWithValues(l, iter, position, v)
 }
-func (l *ListStore) InsertWithValuesv(iter *TreeIter, position int, columns *int, values *T.GValue, nValues int) {
+func (l *ListStore) InsertWithValuesv(iter *TreeIter, position int, columns *int, values *O.Value, nValues int) {
 	ListStoreInsertWithValuesv(l, iter, position, columns, values, nValues)
 }
 func (l *ListStore) IterIsValid(iter *TreeIter) bool { return ListStoreIterIsValid(l, iter) }
@@ -275,10 +276,10 @@ func (l *ListStore) SetColumnTypes(nColumns int, types *O.Type) {
 func (l *ListStore) SetValist(iter *TreeIter, varArgs T.VaList) {
 	ListStoreSetValist(l, iter, varArgs)
 }
-func (l *ListStore) SetValue(iter *TreeIter, column int, value *T.GValue) {
+func (l *ListStore) SetValue(iter *TreeIter, column int, value *O.Value) {
 	ListStoreSetValue(l, iter, column, value)
 }
-func (l *ListStore) SetValuesv(iter *TreeIter, columns *int, values *T.GValue, nValues int) {
+func (l *ListStore) SetValuesv(iter *TreeIter, columns *int, values *O.Value, nValues int) {
 	ListStoreSetValuesv(l, iter, columns, values, nValues)
 }
 func (l *ListStore) Swap(a, b *TreeIter) { ListStoreSwap(l, a, b) }
@@ -288,7 +289,7 @@ var (
 	LinkButtonNew          func(uri string) *Widget
 	LinkButtonNewWithLabel func(uri string, label string) *Widget
 
-	LinkButtonSetUriHook func(f LinkButtonUriFunc, data T.Gpointer, destroy T.GDestroyNotify) LinkButtonUriFunc
+	LinkButtonSetUriHook func(f LinkButtonUriFunc, data T.Gpointer, destroy O.DestroyNotify) LinkButtonUriFunc
 
 	LinkButtonGetUri     func(l *LinkButton) string
 	LinkButtonSetUri     func(l *LinkButton, uri string)
@@ -303,10 +304,10 @@ func (l *LinkButton) SetVisited(visited bool) { LinkButtonSetVisited(l, visited)
 
 type List struct {
 	Container         Container
-	Children          *T.GList
-	Selection         *T.GList
-	UndoSelectionList *T.GList // Name ambuiguity with method
-	UndoUnselection   *T.GList
+	Children          *L.List
+	Selection         *L.List
+	UndoSelectionList *L.List // Name ambuiguity with method
+	UndoUnselection   *L.List
 	LastFocusChild    *Widget
 	UndoFocusChild    *Widget
 	Htimer            uint
@@ -325,11 +326,11 @@ var (
 	ListNew              func() *Widget
 	ListItemNewWithLabel func(label string) *Widget
 
-	ListInsertItems        func(l *List, items *T.GList, position int)
-	ListAppendItems        func(l *List, items *T.GList)
-	ListPrependItems       func(l *List, items *T.GList)
-	ListRemoveItems        func(l *List, items *T.GList)
-	ListRemoveItemsNoUnref func(l *List, items *T.GList)
+	ListInsertItems        func(l *List, items *L.List, position int)
+	ListAppendItems        func(l *List, items *L.List)
+	ListPrependItems       func(l *List, items *L.List)
+	ListRemoveItems        func(l *List, items *L.List)
+	ListRemoveItemsNoUnref func(l *List, items *L.List)
 	ListClearItems         func(l *List, start int, end int)
 	ListSelectItem         func(l *List, item int)
 	ListUnselectItem       func(l *List, item int)
@@ -351,7 +352,7 @@ var (
 	ListEndDragSelection   func(l *List)
 )
 
-func (l *List) AppendItems(items *T.GList)      { ListAppendItems(l, items) }
+func (l *List) AppendItems(items *L.List)       { ListAppendItems(l, items) }
 func (l *List) ChildPosition(child *Widget) int { return ListChildPosition(l, child) }
 func (l *List) ClearItems(start int, end int)   { ListClearItems(l, start, end) }
 func (l *List) EndDragSelection()               { ListEndDragSelection(l) }
@@ -359,10 +360,10 @@ func (l *List) EndSelection()                   { ListEndSelection(l) }
 func (l *List) ExtendSelection(scrollType ScrollType, position float32, autoStartSelection bool) {
 	ListExtendSelection(l, scrollType, position, autoStartSelection)
 }
-func (l *List) InsertItems(items *T.GList, position int) { ListInsertItems(l, items, position) }
-func (l *List) PrependItems(items *T.GList)              { ListPrependItems(l, items) }
-func (l *List) RemoveItems(items *T.GList)               { ListRemoveItems(l, items) }
-func (l *List) RemoveItemsNoUnref(items *T.GList)        { ListRemoveItemsNoUnref(l, items) }
+func (l *List) InsertItems(items *L.List, position int) { ListInsertItems(l, items, position) }
+func (l *List) PrependItems(items *L.List)              { ListPrependItems(l, items) }
+func (l *List) RemoveItems(items *L.List)               { ListRemoveItems(l, items) }
+func (l *List) RemoveItemsNoUnref(items *L.List)        { ListRemoveItemsNoUnref(l, items) }
 func (l *List) ScrollHorizontal(scrollType ScrollType, position float32) {
 	ListScrollHorizontal(l, scrollType, position)
 }

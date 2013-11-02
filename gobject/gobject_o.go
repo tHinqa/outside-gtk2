@@ -19,11 +19,11 @@ type Type T.Gsize
 var (
 	ObjectGetType   func() Type
 	ObjectNew       func(objectType Type, firstPropertyName string, v ...VArg) T.Gpointer
-	ObjectNewv      func(objectType Type, nParameters uint, parameters *T.GParameter) T.Gpointer
+	ObjectNewv      func(objectType Type, nParameters uint, parameters *Parameter) T.Gpointer
 	ObjectNewValist func(objectType Type, firstPropertyName string, varArgs T.VaList) *Object
 
 	ObjectBindProperty             func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags) *Binding
-	ObjectBindPropertyFull         func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo BindingTransformFunc, transformFrom BindingTransformFunc, userData T.Gpointer, notify T.GDestroyNotify) *Binding
+	ObjectBindPropertyFull         func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo BindingTransformFunc, transformFrom BindingTransformFunc, userData T.Gpointer, notify DestroyNotify) *Binding
 	ObjectBindPropertyWithClosures func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo *Closure, transformFrom *Closure) *Binding
 	ObjectConnect                  func(object T.Gpointer, signalSpec string, v ...VArg) T.Gpointer
 	ObjectDisconnect               func(object T.Gpointer, signalSpec string, v ...VArg)
@@ -48,10 +48,10 @@ var (
 	ObjectRemoveWeakPointer func(o *Object, weakPointerLocation *T.Gpointer)
 	ObjectRunDispose        func(o *Object)
 	ObjectSetData           func(o *Object, key string, data T.Gpointer)
-	ObjectSetDataFull       func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetDataFull       func(o *Object, key string, data T.Gpointer, destroy DestroyNotify)
 	ObjectSetProperty       func(o *Object, propertyName string, value *Value)
 	ObjectSetQdata          func(o *Object, quark T.Quark, data T.Gpointer)
-	ObjectSetQdataFull      func(o *Object, quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetQdataFull      func(o *Object, quark T.Quark, data T.Gpointer, destroy DestroyNotify)
 	ObjectSetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
 	ObjectStealData         func(o *Object, key string) T.Gpointer
 	ObjectStealQdata        func(o *Object, quark T.Quark) T.Gpointer
@@ -87,14 +87,14 @@ func (o *Object) RemoveWeakPointer(weakPointerLocation *T.Gpointer) {
 }
 func (o *Object) RunDispose()                         { ObjectRunDispose(o) }
 func (o *Object) SetData(key string, data T.Gpointer) { ObjectSetData(o, key, data) }
-func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) SetDataFull(key string, data T.Gpointer, destroy DestroyNotify) {
 	ObjectSetDataFull(o, key, data, destroy)
 }
 func (o *Object) SetProperty(propertyName string, value *Value) {
 	ObjectSetProperty(o, propertyName, value)
 }
 func (o *Object) SetQdata(quark T.Quark, data T.Gpointer) { ObjectSetQdata(o, quark, data) }
-func (o *Object) SetQdataFull(quark T.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) SetQdataFull(quark T.Quark, data T.Gpointer, destroy DestroyNotify) {
 	ObjectSetQdataFull(o, quark, data, destroy)
 }
 func (o *Object) SetValist(firstPropertyName string, varArgs T.VaList) {
@@ -148,8 +148,8 @@ func (o *ObjectClass) OverrideProperty(propertyId uint, name string) {
 }
 
 type ObjectConstructParam struct {
-	Pspec *T.GParamSpec
-	Value *T.GValue
+	Pspec *ParamSpec
+	Value *Value
 }
 
 var ObjectTypeInit func()

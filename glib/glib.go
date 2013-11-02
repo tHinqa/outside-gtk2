@@ -23,6 +23,12 @@ type (
 
 	//TODO(t):Fix (stat/stat32)
 	GStatBuf struct{}
+
+	Error struct {
+		Domain  Quark
+		Code    int
+		Message *T.Gchar
+	}
 )
 
 const (
@@ -45,41 +51,41 @@ var (
 	InternStaticString func(str string) string
 
 	ErrorNew func(domain Quark, code int, format string,
-		v ...VArg) *T.GError
+		v ...VArg) *Error
 
 	ErrorNewLiteral func(domain Quark,
 		code int,
-		message string) *T.GError
+		message string) *Error
 
 	ErrorNewValist func(domain Quark,
 		code int,
 		format string,
-		args T.VaList) *T.GError
+		args T.VaList) *Error
 
-	ErrorFree func(e *T.GError)
+	ErrorFree func(e *Error)
 
-	ErrorCopy func(e *T.GError) *T.GError
+	ErrorCopy func(e *Error) *Error
 
-	ErrorMatches func(e *T.GError,
+	ErrorMatches func(e *Error,
 		domain Quark,
 		code int) bool
 
-	SetError func(err **T.GError, domain Quark, code int,
+	SetError func(err **Error, domain Quark, code int,
 		format string, v ...VArg)
 
-	SetErrorLiteral func(err **T.GError,
+	SetErrorLiteral func(err **Error,
 		domain Quark,
 		code int,
 		message string)
 
-	PropagateError func(dest **T.GError,
-		src *T.GError)
+	PropagateError func(dest **Error,
+		src *Error)
 
-	ClearError func(err **T.GError)
+	ClearError func(err **Error)
 
-	PrefixError func(err **T.GError, format string, v ...VArg)
+	PrefixError func(err **Error, format string, v ...VArg)
 
-	PropagatePrefixedError func(dest **T.GError, src *T.GError,
+	PropagatePrefixedError func(dest **Error, src *Error,
 		format string, v ...VArg)
 
 	GetUserName func() string
@@ -146,24 +152,9 @@ var (
 
 	GetEnviron func() []string //TODO(t):Documented?
 
-	StaticMutexGetMutexImpl func(mutex **T.GMutex) *T.GMutex
+	StaticMutexGetMutexImpl func(mutex **Mutex) *Mutex
 
 	Usleep func(microseconds T.Gulong)
-
-	OnceImpl func(
-		once *T.GOnce,
-		f ThreadFunc,
-		arg T.Gpointer) T.Gpointer
-
-	OnceInitEnter func(
-		valueLocation *T.Gsize) bool
-
-	OnceInitEnterImpl func(
-		valueLocation *T.Gsize) bool
-
-	OnceInitLeave func(
-		valueLocation *T.Gsize,
-		initializationValue T.Gsize)
 
 	OnErrorQuery func(prgName string)
 
@@ -248,33 +239,33 @@ var (
 	Convert func(str string, leng T.Gssize,
 		toCodeset, fromCodeset string,
 		bytesRead, bytesWritten *T.Gsize,
-		e **T.GError) string
+		e **Error) string
 
 	ConvertWithIconv func(str string, leng T.Gssize,
 		converter IConv,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	ConvertWithFallback func(str string, leng T.Gssize,
 		toCodeset, fromCodeset, fallback string,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	LocaleToUtf8 func(opsysstr string, leng T.Gssize,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	LocaleFromUtf8 func(utf8str string, leng T.Gssize,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	FilenameToUtf8 func(opsysstr string, leng T.Gssize,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	FilenameFromUtf8 func(utf8str string, leng T.Gssize,
-		bytesRead, bytesWritten *T.Gsize, e **T.GError) string
+		bytesRead, bytesWritten *T.Gsize, e **Error) string
 
 	FilenameFromUri func(uri string,
-		hostname **T.Gchar, e **T.GError) string
+		hostname **T.Gchar, e **Error) string
 
 	FilenameToUri func(filename, hostname string,
-		e **T.GError) string
+		e **Error) string
 
 	FilenameDisplayName func(filename string) string
 
@@ -294,7 +285,7 @@ var (
 	DatalistIdSetDataFull func(datalist **T.GData,
 		keyId Quark,
 		data T.Gpointer,
-		destroyFunc T.GDestroyNotify)
+		destroyFunc O.DestroyNotify)
 
 	DatalistIdRemoveNoNotify func(datalist **T.GData,
 		keyId Quark) T.Gpointer
@@ -316,7 +307,7 @@ var (
 
 	DatasetIdSetDataFull func(datasetLocation T.Gconstpointer,
 		keyId Quark, data T.Gpointer,
-		destroyFunc T.GDestroyNotify)
+		destroyFunc O.DestroyNotify)
 
 	DatasetIdRemoveNoNotify func(datasetLocation T.Gconstpointer,
 		keyId Quark) T.Gpointer
@@ -331,19 +322,19 @@ var (
 	FileTest func(filename string, test T.GFileTest) bool
 
 	FileGetContents func(filename string, contents **T.Gchar,
-		length *T.Gsize, e **T.GError) bool
+		length *T.Gsize, e **Error) bool
 
 	FileSetContents func(filename, contents string,
-		length T.Gssize, e **T.GError) bool
+		length T.Gssize, e **Error) bool
 
-	FileReadLink func(filename string, e **T.GError) string
+	FileReadLink func(filename string, e **Error) string
 
 	Mkstemp func(tmpl string) int
 
 	MkstempFull func(tmpl string, flags, mode int) int
 
 	FileOpenTmp func(tmpl string, nameUsed **T.Gchar,
-		e **T.GError) int
+		e **Error) int
 
 	FormatSizeForDisplay func(size T.Goffset) string
 
@@ -408,7 +399,7 @@ var (
 		interval uint,
 		function O.SourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		notify O.DestroyNotify) uint
 
 	TimeoutAdd func(interval uint,
 		function O.SourceFunc, data T.Gpointer) uint
@@ -417,7 +408,7 @@ var (
 		interval uint,
 		function O.SourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		notify O.DestroyNotify) uint
 
 	TimeoutAddSeconds func(interval uint,
 		function O.SourceFunc,
@@ -427,7 +418,7 @@ var (
 		pid T.GPid,
 		function T.GChildWatchFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		notify O.DestroyNotify) uint
 
 	ChildWatchAdd func(pid T.GPid,
 		function T.GChildWatchFunc,
@@ -439,16 +430,16 @@ var (
 	IdleAddFull func(priority int,
 		function O.SourceFunc,
 		data T.Gpointer,
-		notify T.GDestroyNotify) uint
+		notify O.DestroyNotify) uint
 
 	IdleRemoveByData func(data T.Gpointer) bool
 
 	GetCharset func(charset **T.Char) bool
 
-	Utf8GetChar func(p string) T.Gunichar
+	Utf8GetChar func(p string) Unichar
 
 	Utf8GetCharValidated func(p string,
-		maxLen T.Gssize) T.Gunichar
+		maxLen T.Gssize) Unichar
 
 	Utf8OffsetToPointer func(str string,
 		offset T.Glong) string
@@ -468,38 +459,38 @@ var (
 
 	Utf8Strncpy func(dest, src string, n T.Gsize) string
 
-	Utf8Strchr func(p string, leng T.Gssize, c T.Gunichar) string
+	Utf8Strchr func(p string, leng T.Gssize, c Unichar) string
 
-	Utf8Strrchr func(p string, leng T.Gssize, c T.Gunichar) string
+	Utf8Strrchr func(p string, leng T.Gssize, c Unichar) string
 
 	Utf8Strreverse func(str string, leng T.Gssize) string
 
 	Utf8ToUtf16 func(str string, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) *T.Gunichar2
+		e **Error) *T.Gunichar2
 
 	Utf8ToUcs4 func(str string, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) *T.Gunichar
+		e **Error) *Unichar
 
 	Utf8ToUcs4Fast func(str string, leng T.Glong,
-		itemsWritten *T.Glong) *T.Gunichar
+		itemsWritten *T.Glong) *Unichar
 
 	Utf16ToUcs4 func(str *T.Gunichar2, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) *T.Gunichar
+		e **Error) *Unichar
 
 	Utf16ToUtf8 func(str *T.Gunichar2, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) string
+		e **Error) string
 
-	Ucs4ToUtf16 func(str *T.Gunichar, leng T.Glong,
+	Ucs4ToUtf16 func(str *Unichar, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) *T.Gunichar2
+		e **Error) *T.Gunichar2
 
-	Ucs4ToUtf8 func(str *T.Gunichar, leng T.Glong,
+	Ucs4ToUtf8 func(str *Unichar, leng T.Glong,
 		itemsRead, itemsWritten *T.Glong,
-		e **T.GError) string
+		e **Error) string
 
 	Utf8Validate func(str string, maxLen T.Gssize,
 		end **T.Gchar) bool
@@ -667,7 +658,7 @@ var (
 	MatchInfoFree func(matchInfo *T.GMatchInfo)
 
 	MatchInfoNext func(matchInfo *T.GMatchInfo,
-		e **T.GError) bool
+		e **Error) bool
 
 	MatchInfoMatches func(matchInfo *T.GMatchInfo) bool
 
@@ -677,7 +668,7 @@ var (
 
 	MatchInfoExpandReferences func(matchInfo *T.GMatchInfo,
 		stringToExpand string,
-		e **T.GError) string
+		e **Error) string
 
 	MatchInfoFetch func(matchInfo *T.GMatchInfo,
 		matchNum int) string
@@ -910,7 +901,7 @@ var (
 
 	MarkupCollectAttributes func(elementName string,
 		attributeNames []string, attributeValues []string,
-		err **T.GError, firstType T.GMarkupCollectType,
+		err **Error, firstType T.GMarkupCollectType,
 		firstAttr string, v ...VArg) bool
 
 	MarkupErrorQuark func() Quark

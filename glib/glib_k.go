@@ -17,35 +17,35 @@ var (
 	KeyFileErrorQuark func() Quark
 
 	KeyFileFree                func(k *KeyFile)
-	KeyFileGetBoolean          func(k *KeyFile, groupName, key string, e **T.GError) bool
-	KeyFileGetBooleanList      func(k *KeyFile, groupName, key string, length *T.Gsize, e **T.GError) *bool
-	KeyFileGetComment          func(k *KeyFile, groupName, key string, e **T.GError) string
-	KeyFileGetDouble           func(k *KeyFile, groupName, key string, e **T.GError) float64
-	KeyFileGetDoubleList       func(k *KeyFile, groupName, key string, length *T.Gsize, e **T.GError) *float64
+	KeyFileGetBoolean          func(k *KeyFile, groupName, key string, e **Error) bool
+	KeyFileGetBooleanList      func(k *KeyFile, groupName, key string, length *T.Gsize, e **Error) *bool
+	KeyFileGetComment          func(k *KeyFile, groupName, key string, e **Error) string
+	KeyFileGetDouble           func(k *KeyFile, groupName, key string, e **Error) float64
+	KeyFileGetDoubleList       func(k *KeyFile, groupName, key string, length *T.Gsize, e **Error) *float64
 	KeyFileGetGroups           func(k *KeyFile, length *T.Gsize) []string
-	KeyFileGetInt64            func(k *KeyFile, groupName, key string, e **T.GError) int64
-	KeyFileGetInteger          func(k *KeyFile, groupName, key string, e **T.GError) int
-	KeyFileGetIntegerList      func(k *KeyFile, groupName, key string, length *T.Gsize, e **T.GError) *int
-	KeyFileGetKeys             func(k *KeyFile, groupName string, length *T.Gsize, e **T.GError) []string
-	KeyFileGetLocaleString     func(k *KeyFile, groupName, key, locale string, e **T.GError) string
-	KeyFileGetLocaleStringList func(k *KeyFile, groupName, key, locale string, length *T.Gsize, e **T.GError) []string
+	KeyFileGetInt64            func(k *KeyFile, groupName, key string, e **Error) int64
+	KeyFileGetInteger          func(k *KeyFile, groupName, key string, e **Error) int
+	KeyFileGetIntegerList      func(k *KeyFile, groupName, key string, length *T.Gsize, e **Error) *int
+	KeyFileGetKeys             func(k *KeyFile, groupName string, length *T.Gsize, e **Error) []string
+	KeyFileGetLocaleString     func(k *KeyFile, groupName, key, locale string, e **Error) string
+	KeyFileGetLocaleStringList func(k *KeyFile, groupName, key, locale string, length *T.Gsize, e **Error) []string
 	KeyFileGetStartGroup       func(k *KeyFile) string
-	KeyFileGetString           func(k *KeyFile, groupName, key string, e **T.GError) string
-	KeyFileGetStringList       func(k *KeyFile, groupName, key string, length *T.Gsize, e **T.GError) []string
-	KeyFileGetUint64           func(k *KeyFile, groupName, key string, e **T.GError) uint64
-	KeyFileGetValue            func(k *KeyFile, groupName, key string, e **T.GError) string
+	KeyFileGetString           func(k *KeyFile, groupName, key string, e **Error) string
+	KeyFileGetStringList       func(k *KeyFile, groupName, key string, length *T.Gsize, e **Error) []string
+	KeyFileGetUint64           func(k *KeyFile, groupName, key string, e **Error) uint64
+	KeyFileGetValue            func(k *KeyFile, groupName, key string, e **Error) string
 	KeyFileHasGroup            func(k *KeyFile, groupName string) bool
-	KeyFileHasKey              func(k *KeyFile, groupName, key string, e **T.GError) bool
-	KeyFileLoadFromData        func(k *KeyFile, data string, length T.Gsize, flags KeyFileFlags, e **T.GError) bool
-	KeyFileLoadFromDataDirs    func(k *KeyFile, file string, fullPath **T.Gchar, flags KeyFileFlags, e **T.GError) bool
-	KeyFileLoadFromDirs        func(k *KeyFile, file string, searchDirs []string, fullPath **T.Gchar, flags KeyFileFlags, e **T.GError) bool
-	KeyFileLoadFromFile        func(k *KeyFile, file string, flags KeyFileFlags, e **T.GError) bool
-	KeyFileRemoveComment       func(k *KeyFile, groupName, key string, e **T.GError) bool
-	KeyFileRemoveGroup         func(k *KeyFile, groupName string, e **T.GError) bool
-	KeyFileRemoveKey           func(k *KeyFile, groupName, key string, e **T.GError) bool
+	KeyFileHasKey              func(k *KeyFile, groupName, key string, e **Error) bool
+	KeyFileLoadFromData        func(k *KeyFile, data string, length T.Gsize, flags KeyFileFlags, e **Error) bool
+	KeyFileLoadFromDataDirs    func(k *KeyFile, file string, fullPath **T.Gchar, flags KeyFileFlags, e **Error) bool
+	KeyFileLoadFromDirs        func(k *KeyFile, file string, searchDirs []string, fullPath **T.Gchar, flags KeyFileFlags, e **Error) bool
+	KeyFileLoadFromFile        func(k *KeyFile, file string, flags KeyFileFlags, e **Error) bool
+	KeyFileRemoveComment       func(k *KeyFile, groupName, key string, e **Error) bool
+	KeyFileRemoveGroup         func(k *KeyFile, groupName string, e **Error) bool
+	KeyFileRemoveKey           func(k *KeyFile, groupName, key string, e **Error) bool
 	KeyFileSetBoolean          func(k *KeyFile, groupName, key string, value bool)
 	KeyFileSetBooleanList      func(k *KeyFile, groupName, key string, list *bool, length T.Gsize)
-	KeyFileSetComment          func(k *KeyFile, groupName, key, comment string, e **T.GError) bool
+	KeyFileSetComment          func(k *KeyFile, groupName, key, comment string, e **Error) bool
 	KeyFileSetDouble           func(k *KeyFile, groupName, key string, value float64)
 	KeyFileSetDoubleList       func(k *KeyFile, groupName, key string, list *float64, length T.Gsize)
 	KeyFileSetInt64            func(k *KeyFile, groupName, key string, value int64)
@@ -58,80 +58,80 @@ var (
 	KeyFileSetStringList       func(k *KeyFile, groupName, key string, list []string, length T.Gsize)
 	KeyFileSetUint64           func(k *KeyFile, groupName, key string, value uint64)
 	KeyFileSetValue            func(k *KeyFile, groupName, key, value string)
-	KeyFileToData              func(k *KeyFile, length *T.Gsize, e **T.GError) string
+	KeyFileToData              func(k *KeyFile, length *T.Gsize, e **Error) string
 )
 
 func (k *KeyFile) Free() { KeyFileFree(k) }
-func (k *KeyFile) GetBoolean(groupName, key string, e **T.GError) bool {
+func (k *KeyFile) GetBoolean(groupName, key string, e **Error) bool {
 	return KeyFileGetBoolean(k, groupName, key, e)
 }
-func (k *KeyFile) GetBooleanList(groupName, key string, length *T.Gsize, e **T.GError) *bool {
+func (k *KeyFile) GetBooleanList(groupName, key string, length *T.Gsize, e **Error) *bool {
 	return KeyFileGetBooleanList(k, groupName, key, length, e)
 }
-func (k *KeyFile) GetComment(groupName, key string, e **T.GError) string {
+func (k *KeyFile) GetComment(groupName, key string, e **Error) string {
 	return KeyFileGetComment(k, groupName, key, e)
 }
-func (k *KeyFile) GetDouble(groupName, key string, e **T.GError) float64 {
+func (k *KeyFile) GetDouble(groupName, key string, e **Error) float64 {
 	return KeyFileGetDouble(k, groupName, key, e)
 }
-func (k *KeyFile) GetDoubleList(groupName, key string, length *T.Gsize, e **T.GError) *float64 {
+func (k *KeyFile) GetDoubleList(groupName, key string, length *T.Gsize, e **Error) *float64 {
 	return KeyFileGetDoubleList(k, groupName, key, length, e)
 }
 func (k *KeyFile) GetGroups(length *T.Gsize) []string { return KeyFileGetGroups(k, length) }
-func (k *KeyFile) GetInt64(groupName, key string, e **T.GError) int64 {
+func (k *KeyFile) GetInt64(groupName, key string, e **Error) int64 {
 	return KeyFileGetInt64(k, groupName, key, e)
 }
-func (k *KeyFile) GetInteger(groupName, key string, e **T.GError) int {
+func (k *KeyFile) GetInteger(groupName, key string, e **Error) int {
 	return KeyFileGetInteger(k, groupName, key, e)
 }
-func (k *KeyFile) GetIntegerList(groupName, key string, length *T.Gsize, e **T.GError) *int {
+func (k *KeyFile) GetIntegerList(groupName, key string, length *T.Gsize, e **Error) *int {
 	return KeyFileGetIntegerList(k, groupName, key, length, e)
 }
-func (k *KeyFile) GetKeys(groupName string, length *T.Gsize, e **T.GError) []string {
+func (k *KeyFile) GetKeys(groupName string, length *T.Gsize, e **Error) []string {
 	return KeyFileGetKeys(k, groupName, length, e)
 }
-func (k *KeyFile) GetLocaleString(groupName, key, locale string, e **T.GError) string {
+func (k *KeyFile) GetLocaleString(groupName, key, locale string, e **Error) string {
 	return KeyFileGetLocaleString(k, groupName, key, locale, e)
 }
-func (k *KeyFile) GetLocaleStringList(groupName, key, locale string, length *T.Gsize, e **T.GError) []string {
+func (k *KeyFile) GetLocaleStringList(groupName, key, locale string, length *T.Gsize, e **Error) []string {
 	return KeyFileGetLocaleStringList(k, groupName, key, locale, length, e)
 }
 func (k *KeyFile) GetStartGroup() string { return KeyFileGetStartGroup(k) }
-func (k *KeyFile) GetString(groupName, key string, e **T.GError) string {
+func (k *KeyFile) GetString(groupName, key string, e **Error) string {
 	return KeyFileGetString(k, groupName, key, e)
 }
-func (k *KeyFile) GetStringList(groupName, key string, length *T.Gsize, e **T.GError) []string {
+func (k *KeyFile) GetStringList(groupName, key string, length *T.Gsize, e **Error) []string {
 	return KeyFileGetStringList(k, groupName, key, length, e)
 }
-func (k *KeyFile) GetUint64(groupName, key string, e **T.GError) uint64 {
+func (k *KeyFile) GetUint64(groupName, key string, e **Error) uint64 {
 	return KeyFileGetUint64(k, groupName, key, e)
 }
-func (k *KeyFile) GetValue(groupName, key string, e **T.GError) string {
+func (k *KeyFile) GetValue(groupName, key string, e **Error) string {
 	return KeyFileGetValue(k, groupName, key, e)
 }
 func (k *KeyFile) HasGroup(groupName string) bool { return KeyFileHasGroup(k, groupName) }
-func (k *KeyFile) HasKey(groupName, key string, e **T.GError) bool {
+func (k *KeyFile) HasKey(groupName, key string, e **Error) bool {
 	return KeyFileHasKey(k, groupName, key, e)
 }
-func (k *KeyFile) LoadFromData(data string, length T.Gsize, flags KeyFileFlags, e **T.GError) bool {
+func (k *KeyFile) LoadFromData(data string, length T.Gsize, flags KeyFileFlags, e **Error) bool {
 	return KeyFileLoadFromData(k, data, length, flags, e)
 }
-func (k *KeyFile) LoadFromDataDirs(file string, fullPath **T.Gchar, flags KeyFileFlags, e **T.GError) bool {
+func (k *KeyFile) LoadFromDataDirs(file string, fullPath **T.Gchar, flags KeyFileFlags, e **Error) bool {
 	return KeyFileLoadFromDataDirs(k, file, fullPath, flags, e)
 }
-func (k *KeyFile) LoadFromDirs(file string, searchDirs []string, fullPath **T.Gchar, flags KeyFileFlags, e **T.GError) bool {
+func (k *KeyFile) LoadFromDirs(file string, searchDirs []string, fullPath **T.Gchar, flags KeyFileFlags, e **Error) bool {
 	return KeyFileLoadFromDirs(k, file, searchDirs, fullPath, flags, e)
 }
-func (k *KeyFile) LoadFromFile(file string, flags KeyFileFlags, e **T.GError) bool {
+func (k *KeyFile) LoadFromFile(file string, flags KeyFileFlags, e **Error) bool {
 	return KeyFileLoadFromFile(k, file, flags, e)
 }
-func (k *KeyFile) RemoveComment(groupName, key string, e **T.GError) bool {
+func (k *KeyFile) RemoveComment(groupName, key string, e **Error) bool {
 	return KeyFileRemoveComment(k, groupName, key, e)
 }
-func (k *KeyFile) RemoveGroup(groupName string, e **T.GError) bool {
+func (k *KeyFile) RemoveGroup(groupName string, e **Error) bool {
 	return KeyFileRemoveGroup(k, groupName, e)
 }
-func (k *KeyFile) RemoveKey(groupName, key string, e **T.GError) bool {
+func (k *KeyFile) RemoveKey(groupName, key string, e **Error) bool {
 	return KeyFileRemoveKey(k, groupName, key, e)
 }
 func (k *KeyFile) SetBoolean(groupName, key string, value bool) {
@@ -140,7 +140,7 @@ func (k *KeyFile) SetBoolean(groupName, key string, value bool) {
 func (k *KeyFile) SetBooleanList(groupName, key string, list *bool, length T.Gsize) {
 	KeyFileSetBooleanList(k, groupName, key, list, length)
 }
-func (k *KeyFile) SetComment(groupName, key, comment string, e **T.GError) bool {
+func (k *KeyFile) SetComment(groupName, key, comment string, e **Error) bool {
 	return KeyFileSetComment(k, groupName, key, comment, e)
 }
 func (k *KeyFile) SetDouble(groupName, key string, value float64) {
@@ -172,8 +172,8 @@ func (k *KeyFile) SetStringList(groupName, key string, list []string, length T.G
 func (k *KeyFile) SetUint64(groupName, key string, value uint64) {
 	KeyFileSetUint64(k, groupName, key, value)
 }
-func (k *KeyFile) SetValue(groupName, key, value string)       { KeyFileSetValue(k, groupName, key, value) }
-func (k *KeyFile) ToData(length *T.Gsize, e **T.GError) string { return KeyFileToData(k, length, e) }
+func (k *KeyFile) SetValue(groupName, key, value string)    { KeyFileSetValue(k, groupName, key, value) }
+func (k *KeyFile) ToData(length *T.Gsize, e **Error) string { return KeyFileToData(k, length, e) }
 
 type KeyFileFlags Enum
 

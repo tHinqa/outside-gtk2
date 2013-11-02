@@ -4,9 +4,8 @@
 package glib
 
 import (
-	// O "github.com/tHinqa/outside-gtk2/gobject"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type Allocator struct{}
@@ -70,14 +69,14 @@ var (
 	AssertionMessageExpr   func(domain, file string, line int, f, expr string)
 	AssertionMessageCmpstr func(domain, file string, line int, f, expr, arg1, cmp, arg2 string)
 	AssertionMessageCmpnum func(domain, file string, line int, f, expr string, arg1 T.LongDouble, cmp string, arg2 T.LongDouble, numtype T.Char)
-	AssertionMessageError  func(domain, file string, line int, f, expr string, e *T.GError, errorDomain Quark, errorCode int)
+	AssertionMessageError  func(domain, file string, line int, f, expr string, e *Error, errorDomain Quark, errorCode int)
 )
 
 type AsyncQueue struct{}
 
 var (
 	AsyncQueueNew     func() *AsyncQueue
-	AsyncQueueNewFull func(itemFreeFunc T.GDestroyNotify) *AsyncQueue
+	AsyncQueueNewFull func(itemFreeFunc O.DestroyNotify) *AsyncQueue
 
 	AsyncQueueLock               func(a *AsyncQueue)
 	AsyncQueueUnlock             func(a *AsyncQueue)

@@ -4,6 +4,7 @@
 package atk
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -91,7 +92,7 @@ var (
 	TextAddSelection         func(t *Text, startOffset, endOffset int) bool
 	TextGetBoundedRanges     func(t *Text, rect *TextRectangle, coordType CoordType, xClipType, yClipType TextClipType) **TextRange
 	TextGetCaretOffset       func(t *Text) int
-	TextGetCharacterAtOffset func(t *Text, offset int) T.Gunichar
+	TextGetCharacterAtOffset func(t *Text, offset int) L.Unichar
 	TextGetCharacterCount    func(t *Text) int
 	TextGetCharacterExtents  func(t *Text, offset int, x, y, width, height *int, coords CoordType)
 	TextGetDefaultAttributes func(t *Text) *AttributeSet
@@ -115,9 +116,9 @@ func (t *Text) AddSelection(startOffset, endOffset int) bool {
 func (t *Text) GetBoundedRanges(rect *TextRectangle, coordType CoordType, xClipType, yClipType TextClipType) **TextRange {
 	return TextGetBoundedRanges(t, rect, coordType, xClipType, yClipType)
 }
-func (t *Text) GetCaretOffset() int                        { return TextGetCaretOffset(t) }
-func (t *Text) GetCharacterAtOffset(offset int) T.Gunichar { return TextGetCharacterAtOffset(t, offset) }
-func (t *Text) GetCharacterCount() int                     { return TextGetCharacterCount(t) }
+func (t *Text) GetCaretOffset() int                       { return TextGetCaretOffset(t) }
+func (t *Text) GetCharacterAtOffset(offset int) L.Unichar { return TextGetCharacterAtOffset(t, offset) }
+func (t *Text) GetCharacterCount() int                    { return TextGetCharacterCount(t) }
 func (t *Text) GetCharacterExtents(offset int, x, y, width, height *int, coords CoordType) {
 	TextGetCharacterExtents(t, offset, x, y, width, height, coords)
 }

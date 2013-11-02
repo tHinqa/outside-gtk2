@@ -124,20 +124,20 @@ var (
 	CompletionGetType    func() O.Type
 	CompletionErrorQuark func() L.Quark
 
-	CompletionAddProvider        func(c *Completion, provider *CompletionProvider, err **T.GError) bool
+	CompletionAddProvider        func(c *Completion, provider *CompletionProvider, err **L.Error) bool
 	CompletionBlockInteractive   func(c *Completion)
 	CompletionCreateContext      func(c *Completion, position *G.TextIter) *CompletionContext
 	CompletionGetInfoWindow      func(c *Completion) *CompletionInfo
-	CompletionGetProviders       func(c *Completion) *T.GList
+	CompletionGetProviders       func(c *Completion) *L.List
 	CompletionGetView            func(c *Completion) *View
 	CompletionHide               func(c *Completion)
 	CompletionMoveWindow         func(c *Completion, iter *G.TextIter)
-	CompletionRemoveProvider     func(c *Completion, provider *CompletionProvider, err **T.GError) bool
-	CompletionShow               func(c *Completion, providers *T.GList, context *CompletionContext) bool
+	CompletionRemoveProvider     func(c *Completion, provider *CompletionProvider, err **L.Error) bool
+	CompletionShow               func(c *Completion, providers *L.List, context *CompletionContext) bool
 	CompletionUnblockInteractive func(c *Completion)
 )
 
-func (c *Completion) AddProvider(provider *CompletionProvider, err **T.GError) bool {
+func (c *Completion) AddProvider(provider *CompletionProvider, err **L.Error) bool {
 	return CompletionAddProvider(c, provider, err)
 }
 func (c *Completion) BlockInteractive() { CompletionBlockInteractive(c) }
@@ -147,11 +147,11 @@ func (c *Completion) CreateContext(position *G.TextIter) *CompletionContext {
 func (c *Completion) Hide()                       { CompletionHide(c) }
 func (c *Completion) InfoWindow() *CompletionInfo { return CompletionGetInfoWindow(c) }
 func (c *Completion) MoveWindow(iter *G.TextIter) { CompletionMoveWindow(c, iter) }
-func (c *Completion) Providers() *T.GList         { return CompletionGetProviders(c) }
-func (c *Completion) RemoveProvider(provider *CompletionProvider, err **T.GError) bool {
+func (c *Completion) Providers() *L.List          { return CompletionGetProviders(c) }
+func (c *Completion) RemoveProvider(provider *CompletionProvider, err **L.Error) bool {
 	return CompletionRemoveProvider(c, provider, err)
 }
-func (c *Completion) Show(providers *T.GList, context *CompletionContext) bool {
+func (c *Completion) Show(providers *L.List, context *CompletionContext) bool {
 	return CompletionShow(c, providers, context)
 }
 func (c *Completion) UnblockInteractive() { CompletionUnblockInteractive(c) }
@@ -175,7 +175,7 @@ type CompletionContext struct {
 var (
 	CompletionContextGetType func() O.Type
 
-	CompletionContextAddProposals  func(c *CompletionContext, provider *CompletionProvider, proposals *T.GList, finished bool)
+	CompletionContextAddProposals  func(c *CompletionContext, provider *CompletionProvider, proposals *L.List, finished bool)
 	CompletionContextGetActivation func(c *CompletionContext) CompletionActivation
 	CompletionContextGetIter       func(c *CompletionContext, iter *G.TextIter)
 )
@@ -183,7 +183,7 @@ var (
 func (c *CompletionContext) Activation() CompletionActivation {
 	return CompletionContextGetActivation(c)
 }
-func (c *CompletionContext) AddProposals(provider *CompletionProvider, proposals *T.GList, finished bool) {
+func (c *CompletionContext) AddProposals(provider *CompletionProvider, proposals *L.List, finished bool) {
 	CompletionContextAddProposals(c, provider, proposals, finished)
 }
 func (c *CompletionContext) Iter(iter *G.TextIter) { CompletionContextGetIter(c, iter) }
@@ -350,8 +350,8 @@ var (
 	GutterQueueDraw       func(g *Gutter)
 	GutterRemove          func(g *Gutter, renderer *G.CellRenderer)
 	GutterReorder         func(g *Gutter, renderer *G.CellRenderer, position int)
-	GutterSetCellDataFunc func(g *Gutter, renderer *G.CellRenderer, f GutterDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
-	GutterSetCellSizeFunc func(g *Gutter, renderer *G.CellRenderer, f GutterSizeFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
+	GutterSetCellDataFunc func(g *Gutter, renderer *G.CellRenderer, f GutterDataFunc, funcData T.Gpointer, destroy O.DestroyNotify)
+	GutterSetCellSizeFunc func(g *Gutter, renderer *G.CellRenderer, f GutterSizeFunc, funcData T.Gpointer, destroy O.DestroyNotify)
 )
 
 func (g *Gutter) Insert(renderer *G.CellRenderer, position int) { GutterInsert(g, renderer, position) }
@@ -360,10 +360,10 @@ func (g *Gutter) Remove(renderer *G.CellRenderer)               { GutterRemove(g
 func (g *Gutter) Reorder(renderer *G.CellRenderer, position int) {
 	GutterReorder(g, renderer, position)
 }
-func (g *Gutter) SetCellDataFunc(renderer *G.CellRenderer, f GutterDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
+func (g *Gutter) SetCellDataFunc(renderer *G.CellRenderer, f GutterDataFunc, funcData T.Gpointer, destroy O.DestroyNotify) {
 	GutterSetCellDataFunc(g, renderer, f, funcData, destroy)
 }
-func (g *Gutter) SetCellSizeFunc(renderer *G.CellRenderer, f GutterSizeFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
+func (g *Gutter) SetCellSizeFunc(renderer *G.CellRenderer, f GutterSizeFunc, funcData T.Gpointer, destroy O.DestroyNotify) {
 	GutterSetCellSizeFunc(g, renderer, f, funcData, destroy)
 }
 func (g *Gutter) Window() *D.Window { return GutterGetWindow(g) }
@@ -726,8 +726,8 @@ var (
 	ViewSetMarkCategoryIconFromStock     func(v *View, category, stockId string)
 	ViewSetMarkCategoryPixbuf            func(v *View, category string, pixbuf *D.Pixbuf)
 	ViewSetMarkCategoryPriority          func(v *View, category string, priority int)
-	ViewSetMarkCategoryTooltipFunc       func(v *View, category string, f ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify)
-	ViewSetMarkCategoryTooltipMarkupFunc func(v *View, category string, markupFunc ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify)
+	ViewSetMarkCategoryTooltipFunc       func(v *View, category string, f ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify O.DestroyNotify)
+	ViewSetMarkCategoryTooltipMarkupFunc func(v *View, category string, markupFunc ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify O.DestroyNotify)
 	ViewSetRightMarginPosition           func(v *View, pos uint)
 	ViewSetShowLineMarks                 func(v *View, show bool)
 	ViewSetShowLineNumbers               func(v *View, show bool)
@@ -780,10 +780,10 @@ func (v *View) SetMarkCategoryPixbuf(category string, pixbuf *D.Pixbuf) {
 func (v *View) SetMarkCategoryPriority(category string, priority int) {
 	ViewSetMarkCategoryPriority(v, category, priority)
 }
-func (v *View) SetMarkCategoryTooltipFunc(category string, f ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify) {
+func (v *View) SetMarkCategoryTooltipFunc(category string, f ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify O.DestroyNotify) {
 	ViewSetMarkCategoryTooltipFunc(v, category, f, userData, userDataNotify)
 }
-func (v *View) SetMarkCategoryTooltipMarkupFunc(category string, markupFunc ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify T.GDestroyNotify) {
+func (v *View) SetMarkCategoryTooltipMarkupFunc(category string, markupFunc ViewMarkTooltipFunc, userData T.Gpointer, userDataNotify O.DestroyNotify) {
 	ViewSetMarkCategoryTooltipMarkupFunc(v, category, markupFunc, userData, userDataNotify)
 }
 func (v *View) SetRightMarginPosition(pos uint)          { ViewSetRightMarginPosition(v, pos) }

@@ -34,7 +34,7 @@ type IOChannel struct {
 var (
 	IoChannelErrorFromErrno   func(en int) IOChannelError
 	IoChannelErrorQuark       func() Quark
-	IoChannelNewFile          func(filename string, mode string, e **T.GError) *IOChannel
+	IoChannelNewFile          func(filename string, mode string, e **Error) *IOChannel
 	IoChannelUnixNew          func(fd int) *IOChannel
 	IoChannelWin32NewFd       func(fd int) *IOChannel
 	IoChannelWin32NewMessages func(hwnd uint) *IOChannel
@@ -42,9 +42,9 @@ var (
 	IoChannelWin32Poll        func(fds *T.GPollFD, nFds int, timeout int) int
 
 	IoAddWatch                  func(i *IOChannel, condition IOCondition, f IOFunc, userData T.Gpointer) uint
-	IoAddWatchFull              func(i *IOChannel, priority int, condition IOCondition, f IOFunc, userData T.Gpointer, notify T.GDestroyNotify) uint
+	IoAddWatchFull              func(i *IOChannel, priority int, condition IOCondition, f IOFunc, userData T.Gpointer, notify O.DestroyNotify) uint
 	IoChannelClose              func(i *IOChannel)
-	IoChannelFlush              func(i *IOChannel, e **T.GError) IOStatus
+	IoChannelFlush              func(i *IOChannel, e **Error) IOStatus
 	IoChannelGetBufferCondition func(i *IOChannel) IOCondition
 	IoChannelGetBuffered        func(i *IOChannel) bool
 	IoChannelGetBufferSize      func(i *IOChannel) T.Gsize
@@ -54,40 +54,40 @@ var (
 	IoChannelGetLineTerm        func(i *IOChannel, length *int) string
 	IoChannelInit               func(i *IOChannel)
 	IoChannelRead               func(i *IOChannel, buf string, count T.Gsize, bytesRead *T.Gsize) IOError
-	IoChannelReadChars          func(i *IOChannel, buf string, count T.Gsize, bytesRead *T.Gsize, e **T.GError) IOStatus
-	IoChannelReadLine           func(i *IOChannel, strReturn **T.Gchar, length, terminatorPos *T.Gsize, e **T.GError) IOStatus
-	IoChannelReadLineString     func(i *IOChannel, buffer *String, terminatorPos *T.Gsize, e **T.GError) IOStatus
-	IoChannelReadToEnd          func(i *IOChannel, strReturn **T.Gchar, length *T.Gsize, e **T.GError) IOStatus
-	IoChannelReadUnichar        func(i *IOChannel, thechar *T.Gunichar, e **T.GError) IOStatus
+	IoChannelReadChars          func(i *IOChannel, buf string, count T.Gsize, bytesRead *T.Gsize, e **Error) IOStatus
+	IoChannelReadLine           func(i *IOChannel, strReturn **T.Gchar, length, terminatorPos *T.Gsize, e **Error) IOStatus
+	IoChannelReadLineString     func(i *IOChannel, buffer *String, terminatorPos *T.Gsize, e **Error) IOStatus
+	IoChannelReadToEnd          func(i *IOChannel, strReturn **T.Gchar, length *T.Gsize, e **Error) IOStatus
+	IoChannelReadUnichar        func(i *IOChannel, thechar *Unichar, e **Error) IOStatus
 	IoChannelRef                func(i *IOChannel) *IOChannel
 	IoChannelSeek               func(i *IOChannel, offset int64, typ SeekType) IOError
-	IoChannelSeekPosition       func(i *IOChannel, offset int64, typ SeekType, e **T.GError) IOStatus
+	IoChannelSeekPosition       func(i *IOChannel, offset int64, typ SeekType, e **Error) IOStatus
 	IoChannelSetBuffered        func(i *IOChannel, buffered bool)
 	IoChannelSetBufferSize      func(i *IOChannel, size T.Gsize)
 	IoChannelSetCloseOnUnref    func(i *IOChannel, doClose bool)
-	IoChannelSetEncoding        func(i *IOChannel, encoding string, e **T.GError) IOStatus
-	IoChannelSetFlags           func(i *IOChannel, flags IOFlags, e **T.GError) IOStatus
+	IoChannelSetEncoding        func(i *IOChannel, encoding string, e **Error) IOStatus
+	IoChannelSetFlags           func(i *IOChannel, flags IOFlags, e **Error) IOStatus
 	IoChannelSetLineTerm        func(i *IOChannel, lineTerm string, length int)
-	IoChannelShutdown           func(i *IOChannel, flush bool, err **T.GError) IOStatus
+	IoChannelShutdown           func(i *IOChannel, flush bool, err **Error) IOStatus
 	IoChannelUnixGetFd          func(i *IOChannel) int
 	IoChannelUnref              func(i *IOChannel)
 	IoChannelWin32GetFd         func(i *IOChannel) int
 	IoChannelWin32MakePollfd    func(i *IOChannel, condition IOCondition, fd *T.GPollFD)
 	IoChannelWrite              func(i *IOChannel, buf string, count T.Gsize, bytesWritten *T.Gsize) IOError
-	IoChannelWriteChars         func(i *IOChannel, buf string, count T.Gssize, bytesWritten *T.Gsize, e **T.GError) IOStatus
-	IoChannelWriteUnichar       func(i *IOChannel, thechar T.Gunichar, e **T.GError) IOStatus
+	IoChannelWriteChars         func(i *IOChannel, buf string, count T.Gssize, bytesWritten *T.Gsize, e **Error) IOStatus
+	IoChannelWriteUnichar       func(i *IOChannel, thechar Unichar, e **Error) IOStatus
 	IoCreateWatch               func(i *IOChannel, condition IOCondition) *O.Source
 )
 
 func (i *IOChannel) AddWatch(condition IOCondition, f IOFunc, userData T.Gpointer) uint {
 	return IoAddWatch(i, condition, f, userData)
 }
-func (i *IOChannel) AddWatchFull(priority int, condition IOCondition, f IOFunc, userData T.Gpointer, notify T.GDestroyNotify) uint {
+func (i *IOChannel) AddWatchFull(priority int, condition IOCondition, f IOFunc, userData T.Gpointer, notify O.DestroyNotify) uint {
 	return IoAddWatchFull(i, priority, condition, f, userData, notify)
 }
 func (i *IOChannel) Close()                                      { IoChannelClose(i) }
 func (i *IOChannel) CreateWatch(condition IOCondition) *O.Source { return IoCreateWatch(i, condition) }
-func (i *IOChannel) Flush(e **T.GError) IOStatus                 { return IoChannelFlush(i, e) }
+func (i *IOChannel) Flush(e **Error) IOStatus                    { return IoChannelFlush(i, e) }
 func (i *IOChannel) GetBufferCondition() IOCondition             { return IoChannelGetBufferCondition(i) }
 func (i *IOChannel) GetBuffered() bool                           { return IoChannelGetBuffered(i) }
 func (i *IOChannel) GetBufferSize() T.Gsize                      { return IoChannelGetBufferSize(i) }
@@ -99,39 +99,39 @@ func (i *IOChannel) Init()                                       { IoChannelInit
 func (i *IOChannel) Read(buf string, count T.Gsize, bytesRead *T.Gsize) IOError {
 	return IoChannelRead(i, buf, count, bytesRead)
 }
-func (i *IOChannel) ReadChars(buf string, count T.Gsize, bytesRead *T.Gsize, e **T.GError) IOStatus {
+func (i *IOChannel) ReadChars(buf string, count T.Gsize, bytesRead *T.Gsize, e **Error) IOStatus {
 	return IoChannelReadChars(i, buf, count, bytesRead, e)
 }
-func (i *IOChannel) ReadLine(strReturn **T.Gchar, length, terminatorPos *T.Gsize, e **T.GError) IOStatus {
+func (i *IOChannel) ReadLine(strReturn **T.Gchar, length, terminatorPos *T.Gsize, e **Error) IOStatus {
 	return IoChannelReadLine(i, strReturn, length, terminatorPos, e)
 }
-func (i *IOChannel) ReadLineString(buffer *String, terminatorPos *T.Gsize, e **T.GError) IOStatus {
+func (i *IOChannel) ReadLineString(buffer *String, terminatorPos *T.Gsize, e **Error) IOStatus {
 	return IoChannelReadLineString(i, buffer, terminatorPos, e)
 }
-func (i *IOChannel) ReadToEnd(strReturn **T.Gchar, length *T.Gsize, e **T.GError) IOStatus {
+func (i *IOChannel) ReadToEnd(strReturn **T.Gchar, length *T.Gsize, e **Error) IOStatus {
 	return IoChannelReadToEnd(i, strReturn, length, e)
 }
-func (i *IOChannel) ReadUnichar(thechar *T.Gunichar, e **T.GError) IOStatus {
+func (i *IOChannel) ReadUnichar(thechar *Unichar, e **Error) IOStatus {
 	return IoChannelReadUnichar(i, thechar, e)
 }
 func (i *IOChannel) Ref() *IOChannel                         { return IoChannelRef(i) }
 func (i *IOChannel) Seek(offset int64, typ SeekType) IOError { return IoChannelSeek(i, offset, typ) }
-func (i *IOChannel) SeekPosition(offset int64, typ SeekType, e **T.GError) IOStatus {
+func (i *IOChannel) SeekPosition(offset int64, typ SeekType, e **Error) IOStatus {
 	return IoChannelSeekPosition(i, offset, typ, e)
 }
 func (i *IOChannel) SetBuffered(buffered bool)    { IoChannelSetBuffered(i, buffered) }
 func (i *IOChannel) SetBufferSize(size T.Gsize)   { IoChannelSetBufferSize(i, size) }
 func (i *IOChannel) SetCloseOnUnref(doClose bool) { IoChannelSetCloseOnUnref(i, doClose) }
-func (i *IOChannel) SetEncoding(encoding string, e **T.GError) IOStatus {
+func (i *IOChannel) SetEncoding(encoding string, e **Error) IOStatus {
 	return IoChannelSetEncoding(i, encoding, e)
 }
-func (i *IOChannel) SetFlags(flags IOFlags, e **T.GError) IOStatus {
+func (i *IOChannel) SetFlags(flags IOFlags, e **Error) IOStatus {
 	return IoChannelSetFlags(i, flags, e)
 }
 func (i *IOChannel) SetLineTerm(lineTerm string, length int) {
 	IoChannelSetLineTerm(i, lineTerm, length)
 }
-func (i *IOChannel) Shutdown(flush bool, err **T.GError) IOStatus {
+func (i *IOChannel) Shutdown(flush bool, err **Error) IOStatus {
 	return IoChannelShutdown(i, flush, err)
 }
 func (i *IOChannel) UnixGetFd() int  { return IoChannelUnixGetFd(i) }
@@ -143,10 +143,10 @@ func (i *IOChannel) Win32MakePollfd(condition IOCondition, fd *T.GPollFD) {
 func (i *IOChannel) Write(buf string, count T.Gsize, bytesWritten *T.Gsize) IOError {
 	return IoChannelWrite(i, buf, count, bytesWritten)
 }
-func (i *IOChannel) WriteChars(buf string, count T.Gssize, bytesWritten *T.Gsize, e **T.GError) IOStatus {
+func (i *IOChannel) WriteChars(buf string, count T.Gssize, bytesWritten *T.Gsize, e **Error) IOStatus {
 	return IoChannelWriteChars(i, buf, count, bytesWritten, e)
 }
-func (i *IOChannel) WriteUnichar(thechar T.Gunichar, e **T.GError) IOStatus {
+func (i *IOChannel) WriteUnichar(thechar Unichar, e **Error) IOStatus {
 	return IoChannelWriteUnichar(i, thechar, e)
 }
 
@@ -212,19 +212,19 @@ type IOFunc func(source *IOChannel,
 type IOFuncs struct {
 	IoRead func(channel *IOChannel, buf *T.Gchar,
 		count T.Gsize, bytesRead *T.Gsize,
-		err **T.GError) IOStatus
+		err **Error) IOStatus
 	IoWrite func(channel *IOChannel, buf *T.Gchar,
 		count T.Gsize, bytesWritten *T.Gsize,
-		err **T.GError) IOStatus
+		err **Error) IOStatus
 	IoSeek func(channel *IOChannel, offset int64,
-		typ SeekType, err **T.GError) IOStatus
+		typ SeekType, err **Error) IOStatus
 	IoClose func(channel *IOChannel,
-		err **T.GError) IOStatus
+		err **Error) IOStatus
 	IoCreateWatch func(channel *IOChannel,
 		condition IOCondition) *Source
 	IoFree     func(channel *IOChannel)
 	IoSetFlags func(channel *IOChannel,
-		flags IOFlags, err **T.GError) IOStatus
+		flags IOFlags, err **Error) IOStatus
 	IoGetFlags func(channel *IOChannel) IOFlags
 }
 

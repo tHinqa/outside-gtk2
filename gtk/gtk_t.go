@@ -16,7 +16,7 @@ import (
 type (
 	Table struct {
 		Container     Container
-		Children      *T.GList
+		Children      *L.List
 		Rows          *TableRowCol
 		Cols          *TableRowCol
 		Nrows         uint16
@@ -97,7 +97,7 @@ const (
 var TargetFlagsGetType func() O.Type
 
 type TargetList struct {
-	List     *T.GList
+	List     *L.List
 	RefCount uint
 }
 
@@ -238,7 +238,7 @@ type (
 		registerBuffer, contentBuffer *TextBuffer,
 		iter *TextIter, data *uint8, length T.Gsize,
 		createTags bool, userData T.Gpointer,
-		e **T.GError) bool
+		e **L.Error) bool
 )
 
 var (
@@ -262,7 +262,7 @@ var (
 	TextBufferDeleteMark                  func(t *TextBuffer, mark *TextMark)
 	TextBufferDeleteMarkByName            func(t *TextBuffer, name string)
 	TextBufferDeleteSelection             func(t *TextBuffer, interactive, defaultEditable bool) bool
-	TextBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, error **T.GError) bool
+	TextBufferDeserialize                 func(t *TextBuffer, contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, error **L.Error) bool
 	TextBufferDeserializeGetCanCreateTags func(t *TextBuffer, format D.Atom) bool
 	TextBufferDeserializeSetCanCreateTags func(t *TextBuffer, format D.Atom, canCreateTags bool)
 	TextBufferEndUserAction               func(t *TextBuffer)
@@ -304,9 +304,9 @@ var (
 	TextBufferMoveMarkByName              func(t *TextBuffer, name string, where *TextIter)
 	TextBufferPasteClipboard              func(t *TextBuffer, clipboard *Clipboard, overrideLocation *TextIter, defaultEditable bool)
 	TextBufferPlaceCursor                 func(t *TextBuffer, where *TextIter)
-	TextBufferRegisterDeserializeFormat   func(t *TextBuffer, mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom
+	TextBufferRegisterDeserializeFormat   func(t *TextBuffer, mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy O.DestroyNotify) D.Atom
 	TextBufferRegisterDeserializeTagset   func(t *TextBuffer, tagsetName string) D.Atom
-	TextBufferRegisterSerializeFormat     func(t *TextBuffer, mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom
+	TextBufferRegisterSerializeFormat     func(t *TextBuffer, mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy O.DestroyNotify) D.Atom
 	TextBufferRegisterSerializeTagset     func(t *TextBuffer, tagsetName string) D.Atom
 	TextBufferRemoveAllTags               func(t *TextBuffer, start, end *TextIter)
 	TextBufferRemoveSelectionClipboard    func(t *TextBuffer, clipboard *Clipboard)
@@ -358,7 +358,7 @@ func (t *TextBuffer) DeleteMarkByName(name string) { TextBufferDeleteMarkByName(
 func (t *TextBuffer) DeleteSelection(interactive, defaultEditable bool) bool {
 	return TextBufferDeleteSelection(t, interactive, defaultEditable)
 }
-func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, err **T.GError) bool {
+func (t *TextBuffer) Deserialize(contentBuffer *TextBuffer, format D.Atom, iter *TextIter, data *uint8, length T.Gsize, err **L.Error) bool {
 	return TextBufferDeserialize(t, contentBuffer, format, iter, data, length, err)
 }
 func (t *TextBuffer) DeserializeGetCanCreateTags(format D.Atom) bool {
@@ -452,13 +452,13 @@ func (t *TextBuffer) PasteClipboard(clipboard *Clipboard, overrideLocation *Text
 	TextBufferPasteClipboard(t, clipboard, overrideLocation, defaultEditable)
 }
 func (t *TextBuffer) PlaceCursor(where *TextIter) { TextBufferPlaceCursor(t, where) }
-func (t *TextBuffer) RegisterDeserializeFormat(mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom {
+func (t *TextBuffer) RegisterDeserializeFormat(mimeType string, function TextBufferDeserializeFunc, userData T.Gpointer, userDataDestroy O.DestroyNotify) D.Atom {
 	return TextBufferRegisterDeserializeFormat(t, mimeType, function, userData, userDataDestroy)
 }
 func (t *TextBuffer) RegisterDeserializeTagset(tagsetName string) D.Atom {
 	return TextBufferRegisterDeserializeTagset(t, tagsetName)
 }
-func (t *TextBuffer) RegisterSerializeFormat(mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy T.GDestroyNotify) D.Atom {
+func (t *TextBuffer) RegisterSerializeFormat(mimeType string, function TextBufferSerializeFunc, userData T.Gpointer, userDataDestroy O.DestroyNotify) D.Atom {
 	return TextBufferRegisterSerializeFormat(t, mimeType, function, userData, userDataDestroy)
 }
 func (t *TextBuffer) RegisterSerializeTagset(tagsetName string) D.Atom {
@@ -488,7 +488,7 @@ func (t *TextBuffer) UnregisterSerializeFormat(format D.Atom) {
 }
 
 type TextCharPredicate func(
-	ch T.Gunichar, userData T.Gpointer) bool
+	ch L.Unichar, userData T.Gpointer) bool
 
 type TextChildAnchor struct {
 	Parent  O.Object
@@ -500,11 +500,11 @@ var (
 	TextChildAnchorNew     func() *TextChildAnchor
 
 	TextChildAnchorGetDeleted func(t *TextChildAnchor) bool
-	TextChildAnchorGetWidgets func(t *TextChildAnchor) *T.GList
+	TextChildAnchorGetWidgets func(t *TextChildAnchor) *L.List
 )
 
-func (t *TextChildAnchor) GetDeleted() bool     { return TextChildAnchorGetDeleted(t) }
-func (t *TextChildAnchor) GetWidgets() *T.GList { return TextChildAnchorGetWidgets(t) }
+func (t *TextChildAnchor) GetDeleted() bool    { return TextChildAnchorGetDeleted(t) }
+func (t *TextChildAnchor) GetWidgets() *L.List { return TextChildAnchorGetWidgets(t) }
 
 var TextDirectionGetType func() O.Type
 
@@ -590,7 +590,7 @@ var (
 	TextIterGetAttributes                  func(t *TextIter, values *TextAttributes) bool
 	TextIterGetBuffer                      func(t *TextIter) *TextBuffer
 	TextIterGetBytesInLine                 func(t *TextIter) int
-	TextIterGetChar                        func(t *TextIter) T.Gunichar
+	TextIterGetChar                        func(t *TextIter) L.Unichar
 	TextIterGetCharsInLine                 func(t *TextIter) int
 	TextIterGetChildAnchor                 func(t *TextIter) *TextChildAnchor
 	TextIterGetLanguage                    func(t *TextIter) *P.Language
@@ -726,7 +726,7 @@ func (t *TextIter) GetAttributes(values *TextAttributes) bool {
 }
 func (t *TextIter) GetBuffer() *TextBuffer           { return TextIterGetBuffer(t) }
 func (t *TextIter) GetBytesInLine() int              { return TextIterGetBytesInLine(t) }
-func (t *TextIter) GetChar() T.Gunichar              { return TextIterGetChar(t) }
+func (t *TextIter) GetChar() L.Unichar               { return TextIterGetChar(t) }
 func (t *TextIter) GetCharsInLine() int              { return TextIterGetCharsInLine(t) }
 func (t *TextIter) GetChildAnchor() *TextChildAnchor { return TextIterGetChildAnchor(t) }
 func (t *TextIter) GetLanguage() *P.Language         { return TextIterGetLanguage(t) }
@@ -1013,7 +1013,7 @@ const (
 
 var (
 	TimeoutAdd     func(interval T.GUint32, function Function, data T.Gpointer) uint
-	TimeoutAddFull func(interval T.GUint32, function Function, marshal CallbackMarshal, data T.Gpointer, destroy T.GDestroyNotify) uint
+	TimeoutAddFull func(interval T.GUint32, function Function, marshal CallbackMarshal, data T.Gpointer, destroy O.DestroyNotify) uint
 	TimeoutRemove  func(timeoutHandlerId uint)
 )
 
@@ -1076,7 +1076,7 @@ type ToggleActionEntry struct {
 	Label       *T.Gchar
 	Accelerator *T.Gchar
 	Tooltip     *T.Gchar
-	Callback    T.GCallback
+	Callback    O.Callback
 	IsActive    T.Gboolean
 }
 
@@ -1132,7 +1132,7 @@ type (
 	Toolbar struct {
 		Container   Container
 		NumChildren int
-		Children    *T.GList
+		Children    *L.List
 		Orientation Orientation
 		Style       ToolbarStyle
 		IconSize    IconSize
@@ -1172,8 +1172,8 @@ var (
 	ToolbarSpaceStyleGetType func() O.Type
 	ToolbarStyleGetType      func() O.Type
 
-	ToolbarAppendElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
-	ToolbarAppendItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
+	ToolbarAppendElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget
+	ToolbarAppendItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget
 	ToolbarAppendSpace          func(t *Toolbar)
 	ToolbarAppendWidget         func(t *Toolbar, widget *Widget, tooltipText, tooltipPrivateText string)
 	ToolbarGetDropIndex         func(t *Toolbar, x, y int) int
@@ -1187,13 +1187,13 @@ var (
 	ToolbarGetStyle             func(t *Toolbar) ToolbarStyle
 	ToolbarGetTooltips          func(t *Toolbar) bool
 	ToolbarInsert               func(t *Toolbar, item *ToolItem, pos int)
-	ToolbarInsertElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget
-	ToolbarInsertItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget
+	ToolbarInsertElement        func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer, position int) *Widget
+	ToolbarInsertItem           func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer, position int) *Widget
 	ToolbarInsertSpace          func(t *Toolbar, position int)
-	ToolbarInsertStock          func(t *Toolbar, stockId, tooltipText, tooltipPrivateText string, callback T.GCallback, userData T.Gpointer, position int) *Widget
+	ToolbarInsertStock          func(t *Toolbar, stockId, tooltipText, tooltipPrivateText string, callback O.Callback, userData T.Gpointer, position int) *Widget
 	ToolbarInsertWidget         func(t *Toolbar, widget *Widget, tooltipText, tooltipPrivateText string, position int)
-	ToolbarPrependElement       func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
-	ToolbarPrependItem          func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget
+	ToolbarPrependElement       func(t *Toolbar, ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget
+	ToolbarPrependItem          func(t *Toolbar, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget
 	ToolbarPrependSpace         func(t *Toolbar)
 	ToolbarPrependWidget        func(t *Toolbar, widget *Widget, tooltipText, tooltipPrivateText string)
 	ToolbarRemoveSpace          func(t *Toolbar, position int)
@@ -1207,10 +1207,10 @@ var (
 	ToolbarUnsetStyle           func(t *Toolbar)
 )
 
-func (t *Toolbar) AppendElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget {
+func (t *Toolbar) AppendElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget {
 	return ToolbarAppendElement(t, ct, widget, text, tooltipText, tooltipPrivateText, icon, callback, userData)
 }
-func (t *Toolbar) AppendItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget {
+func (t *Toolbar) AppendItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget {
 	return ToolbarAppendItem(t, text, tooltipText, tooltipPrivateText, icon, callback, userData)
 }
 func (t *Toolbar) AppendSpace() { ToolbarAppendSpace(t) }
@@ -1228,23 +1228,23 @@ func (t *Toolbar) GetShowArrow() bool              { return ToolbarGetShowArrow(
 func (t *Toolbar) GetStyle() ToolbarStyle          { return ToolbarGetStyle(t) }
 func (t *Toolbar) GetTooltips() bool               { return ToolbarGetTooltips(t) }
 func (t *Toolbar) Insert(item *ToolItem, pos int)  { ToolbarInsert(t, item, pos) }
-func (t *Toolbar) InsertElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget {
+func (t *Toolbar) InsertElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer, position int) *Widget {
 	return ToolbarInsertElement(t, ct, widget, text, tooltipText, tooltipPrivateText, icon, callback, userData, position)
 }
-func (t *Toolbar) InsertItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer, position int) *Widget {
+func (t *Toolbar) InsertItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer, position int) *Widget {
 	return ToolbarInsertItem(t, text, tooltipText, tooltipPrivateText, icon, callback, userData, position)
 }
 func (t *Toolbar) InsertSpace(position int) { ToolbarInsertSpace(t, position) }
-func (t *Toolbar) InsertStock(stockId, tooltipText, tooltipPrivateText string, callback T.GCallback, userData T.Gpointer, position int) *Widget {
+func (t *Toolbar) InsertStock(stockId, tooltipText, tooltipPrivateText string, callback O.Callback, userData T.Gpointer, position int) *Widget {
 	return ToolbarInsertStock(t, stockId, tooltipText, tooltipPrivateText, callback, userData, position)
 }
 func (t *Toolbar) InsertWidget(widget *Widget, tooltipText, tooltipPrivateText string, position int) {
 	ToolbarInsertWidget(t, widget, tooltipText, tooltipPrivateText, position)
 }
-func (t *Toolbar) PrependElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget {
+func (t *Toolbar) PrependElement(ct ToolbarChildType, widget *Widget, text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget {
 	return ToolbarPrependElement(t, ct, widget, text, tooltipText, tooltipPrivateText, icon, callback, userData)
 }
-func (t *Toolbar) PrependItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback T.GCallback, userData T.Gpointer) *Widget {
+func (t *Toolbar) PrependItem(text, tooltipText, tooltipPrivateText string, icon *Widget, callback O.Callback, userData T.Gpointer) *Widget {
 	return ToolbarPrependItem(t, text, tooltipText, tooltipPrivateText, icon, callback, userData)
 }
 func (t *Toolbar) PrependSpace() { ToolbarPrependSpace(t) }
@@ -1579,7 +1579,7 @@ type (
 		TipWindow      *Widget
 		TipLabel       *Widget
 		ActiveTipsData *TooltipsData
-		TipsDataList   *T.GList
+		TipsDataList   *L.List
 		Bits, Bits2    uint //TODO(t): 33 bits Alignment/size?
 		// delay : 30
 		// enabled : 1
@@ -1624,10 +1624,10 @@ type TranslateFunc func(path string, funcData T.Gpointer) string
 type (
 	Tree struct {
 		Container     Container
-		Children      *T.GList
+		Children      *L.List
 		RootTree      *Tree
 		TreeOwner     *Widget
-		Selection     *T.GList
+		Selection     *L.List
 		Level         uint
 		IndentValue   uint
 		CurrentIndent uint
@@ -1648,7 +1648,7 @@ var (
 	TreeInsert           func(t *Tree, treeItem *Widget, position int)
 	TreePrepend          func(t *Tree, treeItem *Widget)
 	TreeRemoveItem       func(t *Tree, child *Widget)
-	TreeRemoveItems      func(t *Tree, items *T.GList)
+	TreeRemoveItems      func(t *Tree, items *L.List)
 	TreeSelectChild      func(t *Tree, treeItem *Widget)
 	TreeSelectItem       func(t *Tree, item int)
 	TreeSetSelectionMode func(t *Tree, mode SelectionMode)
@@ -1664,7 +1664,7 @@ func (t *Tree) ClearItems(start, end int)             { TreeClearItems(t, start,
 func (t *Tree) Insert(treeItem *Widget, position int) { TreeInsert(t, treeItem, position) }
 func (t *Tree) Prepend(treeItem *Widget)              { TreePrepend(t, treeItem) }
 func (t *Tree) RemoveItem(child *Widget)              { TreeRemoveItem(t, child) }
-func (t *Tree) RemoveItems(items *T.GList)            { TreeRemoveItems(t, items) }
+func (t *Tree) RemoveItems(items *L.List)             { TreeRemoveItems(t, items) }
 func (t *Tree) SelectChild(treeItem *Widget)          { TreeSelectChild(t, treeItem) }
 func (t *Tree) SelectItem(item int)                   { TreeSelectItem(t, item) }
 func (t *Tree) SetSelectionMode(mode SelectionMode)   { TreeSetSelectionMode(t, mode) }
@@ -1715,7 +1715,7 @@ type TreeItem struct {
 	Pixmaps_box      *Widget
 	Plus_pix_widget  *Widget
 	Minus_pix_widget *Widget
-	Pixmaps          *T.GList
+	Pixmaps          *L.List
 	Expanded         uint // : 1
 }
 
@@ -1783,7 +1783,7 @@ var (
 	TreeModelGetPath            func(t *TreeModel, iter *TreeIter) *TreePath
 	TreeModelGetStringFromIter  func(t *TreeModel, iter *TreeIter) string
 	TreeModelGetValist          func(t *TreeModel, iter *TreeIter, varArgs T.VaList)
-	TreeModelGetValue           func(t *TreeModel, iter *TreeIter, column int, value *T.GValue)
+	TreeModelGetValue           func(t *TreeModel, iter *TreeIter, column int, value *O.Value)
 	TreeModelIterChildren       func(t *TreeModel, iter *TreeIter, parent *TreeIter) bool
 	TreeModelIterHasChild       func(t *TreeModel, iter *TreeIter) bool
 	TreeModelIterNChildren      func(t *TreeModel, iter *TreeIter) int
@@ -1818,7 +1818,7 @@ func (t *TreeModel) GetStringFromIter(iter *TreeIter) string {
 	return TreeModelGetStringFromIter(t, iter)
 }
 func (t *TreeModel) GetValist(iter *TreeIter, varArgs T.VaList) { TreeModelGetValist(t, iter, varArgs) }
-func (t *TreeModel) GetValue(iter *TreeIter, column int, value *T.GValue) {
+func (t *TreeModel) GetValue(iter *TreeIter, column int, value *O.Value) {
 	TreeModelGetValue(t, iter, column, value)
 }
 func (t *TreeModel) IterChildren(iter *TreeIter, parent *TreeIter) bool {
@@ -1863,7 +1863,7 @@ type (
 	TreeModelFilterModifyFunc func(
 		model *TreeModel,
 		iter *TreeIter,
-		value *T.GValue,
+		value *O.Value,
 		column int,
 		data T.Gpointer)
 )
@@ -1879,9 +1879,9 @@ var (
 	TreeModelFilterConvertPathToChildPath func(t *TreeModelFilter, filterPath *TreePath) *TreePath
 	TreeModelFilterGetModel               func(t *TreeModelFilter) *TreeModel
 	TreeModelFilterRefilter               func(t *TreeModelFilter)
-	TreeModelFilterSetModifyFunc          func(t *TreeModelFilter, nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeModelFilterSetModifyFunc          func(t *TreeModelFilter, nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy O.DestroyNotify)
 	TreeModelFilterSetVisibleColumn       func(t *TreeModelFilter, column int)
-	TreeModelFilterSetVisibleFunc         func(t *TreeModelFilter, f TreeModelFilterVisibleFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeModelFilterSetVisibleFunc         func(t *TreeModelFilter, f TreeModelFilterVisibleFunc, data T.Gpointer, destroy O.DestroyNotify)
 )
 
 func (t *TreeModelFilter) ClearCache() { TreeModelFilterClearCache(t) }
@@ -1899,11 +1899,11 @@ func (t *TreeModelFilter) ConvertPathToChildPath(filterPath *TreePath) *TreePath
 }
 func (t *TreeModelFilter) GetModel() *TreeModel { return TreeModelFilterGetModel(t) }
 func (t *TreeModelFilter) Refilter()            { TreeModelFilterRefilter(t) }
-func (t *TreeModelFilter) SetModifyFunc(nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeModelFilter) SetModifyFunc(nColumns int, types *O.Type, f TreeModelFilterModifyFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeModelFilterSetModifyFunc(t, nColumns, types, f, data, destroy)
 }
 func (t *TreeModelFilter) SetVisibleColumn(column int) { TreeModelFilterSetVisibleColumn(t, column) }
-func (t *TreeModelFilter) SetVisibleFunc(f TreeModelFilterVisibleFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeModelFilter) SetVisibleFunc(f TreeModelFilterVisibleFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeModelFilterSetVisibleFunc(t, f, data, destroy)
 }
 
@@ -1923,12 +1923,12 @@ type TreeModelSort struct {
 	ChildFlags         uint
 	ChildModel         *TreeModel
 	ZeroRefCount       int
-	SortList           *T.GList
+	SortList           *L.List
 	SortColumnId       int
 	Order              SortType
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
-	DefaultSortDestroy T.GDestroyNotify
+	DefaultSortDestroy O.DestroyNotify
 	ChangedId          uint
 	InsertedId         uint
 	HasChildToggledId  uint
@@ -2046,7 +2046,7 @@ type (
 		Type     SelectionMode
 		UserFunc TreeSelectionFunc
 		UserData T.Gpointer
-		Destroy  T.GDestroyNotify
+		Destroy  O.DestroyNotify
 	}
 
 	TreeSelectionForeachFunc func(model *TreeModel,
@@ -2059,7 +2059,7 @@ var (
 	TreeSelectionCountSelectedRows func(t *TreeSelection) int
 	TreeSelectionGetMode           func(t *TreeSelection) SelectionMode
 	TreeSelectionGetSelected       func(t *TreeSelection, model **TreeModel, iter *TreeIter) bool
-	TreeSelectionGetSelectedRows   func(t *TreeSelection, model **TreeModel) *T.GList
+	TreeSelectionGetSelectedRows   func(t *TreeSelection, model **TreeModel) *L.List
 	TreeSelectionGetSelectFunction func(t *TreeSelection) TreeSelectionFunc
 	TreeSelectionGetTreeView       func(t *TreeSelection) *TreeView
 	TreeSelectionGetUserData       func(t *TreeSelection) T.Gpointer
@@ -2071,7 +2071,7 @@ var (
 	TreeSelectionSelectPath        func(t *TreeSelection, path *TreePath)
 	TreeSelectionSelectRange       func(t *TreeSelection, startPath *TreePath, endPath *TreePath)
 	TreeSelectionSetMode           func(t *TreeSelection, typ SelectionMode)
-	TreeSelectionSetSelectFunction func(t *TreeSelection, f TreeSelectionFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeSelectionSetSelectFunction func(t *TreeSelection, f TreeSelectionFunc, data T.Gpointer, destroy O.DestroyNotify)
 	TreeSelectionUnselectAll       func(t *TreeSelection)
 	TreeSelectionUnselectIter      func(t *TreeSelection, iter *TreeIter)
 	TreeSelectionUnselectPath      func(t *TreeSelection, path *TreePath)
@@ -2083,7 +2083,7 @@ func (t *TreeSelection) GetMode() SelectionMode { return TreeSelectionGetMode(t)
 func (t *TreeSelection) GetSelected(model **TreeModel, iter *TreeIter) bool {
 	return TreeSelectionGetSelected(t, model, iter)
 }
-func (t *TreeSelection) GetSelectedRows(model **TreeModel) *T.GList {
+func (t *TreeSelection) GetSelectedRows(model **TreeModel) *L.List {
 	return TreeSelectionGetSelectedRows(t, model)
 }
 func (t *TreeSelection) GetSelectFunction() TreeSelectionFunc {
@@ -2107,7 +2107,7 @@ func (t *TreeSelection) SelectRange(startPath, endPath *TreePath) {
 	TreeSelectionSelectRange(t, startPath, endPath)
 }
 func (t *TreeSelection) SetMode(typ SelectionMode) { TreeSelectionSetMode(t, typ) }
-func (t *TreeSelection) SetSelectFunction(f TreeSelectionFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeSelection) SetSelectFunction(f TreeSelectionFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeSelectionSetSelectFunction(t, f, data, destroy)
 }
 func (t *TreeSelection) UnselectAll()                { TreeSelectionUnselectAll(t) }
@@ -2124,9 +2124,9 @@ var (
 
 	TreeSortableGetSortColumnId    func(t *TreeSortable, sortColumnId *int, order *SortType) bool
 	TreeSortableHasDefaultSortFunc func(t *TreeSortable) bool
-	TreeSortableSetDefaultSortFunc func(t *TreeSortable, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
+	TreeSortableSetDefaultSortFunc func(t *TreeSortable, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy O.DestroyNotify)
 	TreeSortableSetSortColumnId    func(t *TreeSortable, sortColumnId int, order SortType)
-	TreeSortableSetSortFunc        func(t *TreeSortable, sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify)
+	TreeSortableSetSortFunc        func(t *TreeSortable, sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy O.DestroyNotify)
 	TreeSortableSortColumnChanged  func(t *TreeSortable)
 )
 
@@ -2134,13 +2134,13 @@ func (t *TreeSortable) GetSortColumnId(sortColumnId *int, order *SortType) bool 
 	return TreeSortableGetSortColumnId(t, sortColumnId, order)
 }
 func (t *TreeSortable) HasDefaultSortFunc() bool { return TreeSortableHasDefaultSortFunc(t) }
-func (t *TreeSortable) SetDefaultSortFunc(sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeSortable) SetDefaultSortFunc(sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy O.DestroyNotify) {
 	TreeSortableSetDefaultSortFunc(t, sortFunc, userData, destroy)
 }
 func (t *TreeSortable) SetSortColumnId(sortColumnId int, order SortType) {
 	TreeSortableSetSortColumnId(t, sortColumnId, order)
 }
-func (t *TreeSortable) SetSortFunc(sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeSortable) SetSortFunc(sortColumnId int, sortFunc TreeIterCompareFunc, userData T.Gpointer, destroy O.DestroyNotify) {
 	TreeSortableSetSortFunc(t, sortColumnId, sortFunc, userData, destroy)
 }
 func (t *TreeSortable) SortColumnChanged() { TreeSortableSortColumnChanged(t) }
@@ -2152,12 +2152,12 @@ type TreeStore struct {
 	Last               T.Gpointer
 	NColumns           int
 	SortColumnId       int
-	SortList           *T.GList
+	SortList           *L.List
 	Order              SortType
 	ColumnHeaders      *O.Type
 	DefaultSortFunc    TreeIterCompareFunc
 	DefaultSortData    T.Gpointer
-	DefaultSortDestroy T.GDestroyNotify
+	DefaultSortDestroy O.DestroyNotify
 	ColumnsDirty       uint // : 1
 }
 
@@ -2172,7 +2172,7 @@ var (
 	TreeStoreInsertAfter       func(t *TreeStore, iter *TreeIter, parent *TreeIter, sibling *TreeIter)
 	TreeStoreInsertBefore      func(t *TreeStore, iter *TreeIter, parent *TreeIter, sibling *TreeIter)
 	TreeStoreInsertWithValues  func(t *TreeStore, iter *TreeIter, parent *TreeIter, position int, v ...VArg)
-	TreeStoreInsertWithValuesv func(t *TreeStore, iter *TreeIter, parent *TreeIter, position int, columns *int, values *T.GValue, nValues int)
+	TreeStoreInsertWithValuesv func(t *TreeStore, iter *TreeIter, parent *TreeIter, position int, columns *int, values *O.Value, nValues int)
 	TreeStoreIsAncestor        func(t *TreeStore, iter *TreeIter, descendant *TreeIter) bool
 	TreeStoreIterDepth         func(t *TreeStore, iter *TreeIter) int
 	TreeStoreIterIsValid       func(t *TreeStore, iter *TreeIter) bool
@@ -2184,8 +2184,8 @@ var (
 	TreeStoreSet               func(t *TreeStore, iter *TreeIter, v ...VArg)
 	TreeStoreSetColumnTypes    func(t *TreeStore, nColumns int, types *O.Type)
 	TreeStoreSetValist         func(t *TreeStore, iter *TreeIter, varArgs T.VaList)
-	TreeStoreSetValue          func(t *TreeStore, iter *TreeIter, column int, value *T.GValue)
-	TreeStoreSetValuesv        func(t *TreeStore, iter *TreeIter, columns *int, values *T.GValue, nValues int)
+	TreeStoreSetValue          func(t *TreeStore, iter *TreeIter, column int, value *O.Value)
+	TreeStoreSetValuesv        func(t *TreeStore, iter *TreeIter, columns *int, values *O.Value, nValues int)
 	TreeStoreSwap              func(t *TreeStore, a *TreeIter, b *TreeIter)
 )
 
@@ -2203,7 +2203,7 @@ func (t *TreeStore) InsertBefore(iter, parent, sibling *TreeIter) {
 func (t *TreeStore) InsertWithValues(iter, parent *TreeIter, position int, v ...VArg) {
 	TreeStoreInsertWithValues(t, iter, parent, position, v)
 }
-func (t *TreeStore) InsertWithValuesv(iter, parent *TreeIter, position int, columns *int, values *T.GValue, nValues int) {
+func (t *TreeStore) InsertWithValuesv(iter, parent *TreeIter, position int, columns *int, values *O.Value, nValues int) {
 	TreeStoreInsertWithValuesv(t, iter, parent, position, columns, values, nValues)
 }
 func (t *TreeStore) IsAncestor(iter, descendant *TreeIter) bool {
@@ -2221,10 +2221,10 @@ func (t *TreeStore) SetColumnTypes(nColumns int, types *O.Type) {
 	TreeStoreSetColumnTypes(t, nColumns, types)
 }
 func (t *TreeStore) SetValist(iter *TreeIter, varArgs T.VaList) { TreeStoreSetValist(t, iter, varArgs) }
-func (t *TreeStore) SetValue(iter *TreeIter, column int, value *T.GValue) {
+func (t *TreeStore) SetValue(iter *TreeIter, column int, value *O.Value) {
 	TreeStoreSetValue(t, iter, column, value)
 }
-func (t *TreeStore) SetValuesv(iter *TreeIter, columns *int, values *T.GValue, nValues int) {
+func (t *TreeStore) SetValuesv(iter *TreeIter, columns *int, values *O.Value, nValues int) {
 	TreeStoreSetValuesv(t, iter, columns, values, nValues)
 }
 func (t *TreeStore) Swap(a, b *TreeIter) { TreeStoreSwap(t, a, b) }
@@ -2347,7 +2347,7 @@ var (
 	TreeViewGetBinWindow                   func(t *TreeView) *D.Window
 	TreeViewGetCellArea                    func(t *TreeView, path *TreePath, column *TreeViewColumn, rect *D.Rectangle)
 	TreeViewGetColumn                      func(t *TreeView, n int) *TreeViewColumn
-	TreeViewGetColumns                     func(t *TreeView) *T.GList
+	TreeViewGetColumns                     func(t *TreeView) *L.List
 	TreeViewGetCursor                      func(t *TreeView, path **TreePath, focusColumn **TreeViewColumn)
 	TreeViewGetDestRowAtPos                func(t *TreeView, dragX, dragY int, path **TreePath, pos *TreeViewDropPosition) bool
 	TreeViewGetDragDestRow                 func(t *TreeView, path **TreePath, pos *TreeViewDropPosition)
@@ -2381,7 +2381,7 @@ var (
 	TreeViewGetVisibleRect                 func(t *TreeView, visibleRect *D.Rectangle)
 	TreeViewInsertColumn                   func(t *TreeView, column *TreeViewColumn, position int) int
 	TreeViewInsertColumnWithAttributes     func(t *TreeView, position int, title string, cell *CellRenderer, v ...VArg) int
-	TreeViewInsertColumnWithDataFunc       func(t *TreeView, position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify T.GDestroyNotify) int
+	TreeViewInsertColumnWithDataFunc       func(t *TreeView, position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify O.DestroyNotify) int
 	TreeViewIsRubberBandingActive          func(t *TreeView) bool
 	TreeViewMapExpandedRows                func(t *TreeView, f TreeViewMappingFunc, data T.Gpointer)
 	TreeViewMoveColumnAfter                func(t *TreeView, column *TreeViewColumn, baseColumn *TreeViewColumn)
@@ -2390,10 +2390,10 @@ var (
 	TreeViewRowExpanded                    func(t *TreeView, path *TreePath) bool
 	TreeViewScrollToCell                   func(t *TreeView, path *TreePath, column *TreeViewColumn, useAlign bool, rowAlign, colAlign float32)
 	TreeViewScrollToPoint                  func(t *TreeView, treeX, treeY int)
-	TreeViewSetColumnDragFunction          func(t *TreeView, f TreeViewColumnDropFunc, userData T.Gpointer, destroy T.GDestroyNotify)
+	TreeViewSetColumnDragFunction          func(t *TreeView, f TreeViewColumnDropFunc, userData T.Gpointer, destroy O.DestroyNotify)
 	TreeViewSetCursor                      func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, startEditing bool)
 	TreeViewSetCursorOnCell                func(t *TreeView, path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing bool)
-	TreeViewSetDestroyCountFunc            func(t *TreeView, f TreeDestroyCountFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeViewSetDestroyCountFunc            func(t *TreeView, f TreeDestroyCountFunc, data T.Gpointer, destroy O.DestroyNotify)
 	TreeViewSetDragDestRow                 func(t *TreeView, path *TreePath, pos TreeViewDropPosition)
 	TreeViewSetEnableSearch                func(t *TreeView, enableSearch bool)
 	TreeViewSetEnableTreeLines             func(t *TreeView, enabled bool)
@@ -2408,13 +2408,13 @@ var (
 	TreeViewSetLevelIndentation            func(t *TreeView, indentation int)
 	TreeViewSetModel                       func(t *TreeView, model *TreeModel)
 	TreeViewSetReorderable                 func(t *TreeView, reorderable bool)
-	TreeViewSetRowSeparatorFunc            func(t *TreeView, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeViewSetRowSeparatorFunc            func(t *TreeView, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy O.DestroyNotify)
 	TreeViewSetRubberBanding               func(t *TreeView, enable bool)
 	TreeViewSetRulesHint                   func(t *TreeView, setting bool)
 	TreeViewSetSearchColumn                func(t *TreeView, column int)
 	TreeViewSetSearchEntry                 func(t *TreeView, entry *Entry)
-	TreeViewSetSearchEqualFunc             func(t *TreeView, searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy T.GDestroyNotify)
-	TreeViewSetSearchPositionFunc          func(t *TreeView, f TreeViewSearchPositionFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	TreeViewSetSearchEqualFunc             func(t *TreeView, searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy O.DestroyNotify)
+	TreeViewSetSearchPositionFunc          func(t *TreeView, f TreeViewSearchPositionFunc, data T.Gpointer, destroy O.DestroyNotify)
 	TreeViewSetShowExpanders               func(t *TreeView, enabled bool)
 	TreeViewSetTooltipCell                 func(t *TreeView, tooltip *Tooltip, path *TreePath, column *TreeViewColumn, cell *CellRenderer)
 	TreeViewSetTooltipColumn               func(t *TreeView, column int)
@@ -2470,7 +2470,7 @@ func (t *TreeView) GetCellArea(path *TreePath, column *TreeViewColumn, rect *D.R
 	TreeViewGetCellArea(t, path, column, rect)
 }
 func (t *TreeView) GetColumn(n int) *TreeViewColumn { return TreeViewGetColumn(t, n) }
-func (t *TreeView) GetColumns() *T.GList            { return TreeViewGetColumns(t) }
+func (t *TreeView) GetColumns() *L.List             { return TreeViewGetColumns(t) }
 func (t *TreeView) GetCursor(path **TreePath, focusColumn **TreeViewColumn) {
 	TreeViewGetCursor(t, path, focusColumn)
 }
@@ -2528,7 +2528,7 @@ func (t *TreeView) InsertColumn(column *TreeViewColumn, position int) int {
 func (t *TreeView) InsertColumnWithAttributes(position int, title string, cell *CellRenderer, v ...VArg) int {
 	return TreeViewInsertColumnWithAttributes(t, position, title, cell, v)
 }
-func (t *TreeView) InsertColumnWithDataFunc(position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify T.GDestroyNotify) int {
+func (t *TreeView) InsertColumnWithDataFunc(position int, title string, cell *CellRenderer, f TreeCellDataFunc, data T.Gpointer, dnotify O.DestroyNotify) int {
 	return TreeViewInsertColumnWithDataFunc(t, position, title, cell, f, data, dnotify)
 }
 func (t *TreeView) IsRubberBandingActive() bool { return TreeViewIsRubberBandingActive(t) }
@@ -2547,7 +2547,7 @@ func (t *TreeView) ScrollToCell(path *TreePath, column *TreeViewColumn, useAlign
 	TreeViewScrollToCell(t, path, column, useAlign, rowAlign, colAlign)
 }
 func (t *TreeView) ScrollToPoint(treeX, treeY int) { TreeViewScrollToPoint(t, treeX, treeY) }
-func (t *TreeView) SetColumnDragFunction(f TreeViewColumnDropFunc, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeView) SetColumnDragFunction(f TreeViewColumnDropFunc, userData T.Gpointer, destroy O.DestroyNotify) {
 	TreeViewSetColumnDragFunction(t, f, userData, destroy)
 }
 func (t *TreeView) SetCursor(path *TreePath, focusColumn *TreeViewColumn, startEditing bool) {
@@ -2556,7 +2556,7 @@ func (t *TreeView) SetCursor(path *TreePath, focusColumn *TreeViewColumn, startE
 func (t *TreeView) SetCursorOnCell(path *TreePath, focusColumn *TreeViewColumn, focusCell *CellRenderer, startEditing bool) {
 	TreeViewSetCursorOnCell(t, path, focusColumn, focusCell, startEditing)
 }
-func (t *TreeView) SetDestroyCountFunc(f TreeDestroyCountFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeView) SetDestroyCountFunc(f TreeDestroyCountFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeViewSetDestroyCountFunc(t, f, data, destroy)
 }
 func (t *TreeView) SetDragDestRow(path *TreePath, pos TreeViewDropPosition) {
@@ -2577,17 +2577,17 @@ func (t *TreeView) SetHoverSelection(hover bool)        { TreeViewSetHoverSelect
 func (t *TreeView) SetLevelIndentation(indentation int) { TreeViewSetLevelIndentation(t, indentation) }
 func (t *TreeView) SetModel(model *TreeModel)           { TreeViewSetModel(t, model) }
 func (t *TreeView) SetReorderable(reorderable bool)     { TreeViewSetReorderable(t, reorderable) }
-func (t *TreeView) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeView) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeViewSetRowSeparatorFunc(t, f, data, destroy)
 }
 func (t *TreeView) SetRubberBanding(enable bool) { TreeViewSetRubberBanding(t, enable) }
 func (t *TreeView) SetRulesHint(setting bool)    { TreeViewSetRulesHint(t, setting) }
 func (t *TreeView) SetSearchColumn(column int)   { TreeViewSetSearchColumn(t, column) }
 func (t *TreeView) SetSearchEntry(entry *Entry)  { TreeViewSetSearchEntry(t, entry) }
-func (t *TreeView) SetSearchEqualFunc(searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy T.GDestroyNotify) {
+func (t *TreeView) SetSearchEqualFunc(searchEqualFunc TreeViewSearchEqualFunc, searchUserData T.Gpointer, searchDestroy O.DestroyNotify) {
 	TreeViewSetSearchEqualFunc(t, searchEqualFunc, searchUserData, searchDestroy)
 }
-func (t *TreeView) SetSearchPositionFunc(f TreeViewSearchPositionFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeView) SetSearchPositionFunc(f TreeViewSearchPositionFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	TreeViewSetSearchPositionFunc(t, f, data, destroy)
 }
 func (t *TreeView) SetShowExpanders(enabled bool) { TreeViewSetShowExpanders(t, enabled) }
@@ -2631,7 +2631,7 @@ type TreeViewColumn struct {
 	DragX                   int
 	DragY                   int
 	Title                   *T.Gchar
-	CellList                *T.GList
+	CellList                *L.List
 	SortClickedSignal       uint
 	SortColumnChangedSignal uint
 	SortColumnId            int
@@ -2665,7 +2665,7 @@ var (
 	TreeViewColumnClicked          func(t *TreeViewColumn)
 	TreeViewColumnFocusCell        func(t *TreeViewColumn, cell *CellRenderer)
 	TreeViewColumnGetAlignment     func(t *TreeViewColumn) float32
-	TreeViewColumnGetCellRenderers func(t *TreeViewColumn) *T.GList
+	TreeViewColumnGetCellRenderers func(t *TreeViewColumn) *L.List
 	TreeViewColumnGetClickable     func(t *TreeViewColumn) bool
 	TreeViewColumnGetExpand        func(t *TreeViewColumn) bool
 	TreeViewColumnGetFixedWidth    func(t *TreeViewColumn) int
@@ -2688,7 +2688,7 @@ var (
 	TreeViewColumnQueueResize      func(t *TreeViewColumn)
 	TreeViewColumnSetAlignment     func(t *TreeViewColumn, xalign float32)
 	TreeViewColumnSetAttributes    func(t *TreeViewColumn, cellRenderer *CellRenderer, v ...VArg)
-	TreeViewColumnSetCellDataFunc  func(t *TreeViewColumn, cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
+	TreeViewColumnSetCellDataFunc  func(t *TreeViewColumn, cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy O.DestroyNotify)
 	TreeViewColumnSetClickable     func(t *TreeViewColumn, clickable bool)
 	TreeViewColumnSetExpand        func(t *TreeViewColumn, expand bool)
 	TreeViewColumnSetFixedWidth    func(t *TreeViewColumn, fixedWidth int)
@@ -2726,7 +2726,7 @@ func (t *TreeViewColumn) ClearAttributes(cellRenderer *CellRenderer) {
 func (t *TreeViewColumn) Clicked()                        { TreeViewColumnClicked(t) }
 func (t *TreeViewColumn) FocusCell(cell *CellRenderer)    { TreeViewColumnFocusCell(t, cell) }
 func (t *TreeViewColumn) GetAlignment() float32           { return TreeViewColumnGetAlignment(t) }
-func (t *TreeViewColumn) GetCellRenderers() *T.GList      { return TreeViewColumnGetCellRenderers(t) }
+func (t *TreeViewColumn) GetCellRenderers() *L.List       { return TreeViewColumnGetCellRenderers(t) }
 func (t *TreeViewColumn) GetClickable() bool              { return TreeViewColumnGetClickable(t) }
 func (t *TreeViewColumn) GetExpand() bool                 { return TreeViewColumnGetExpand(t) }
 func (t *TreeViewColumn) GetFixedWidth() int              { return TreeViewColumnGetFixedWidth(t) }
@@ -2752,7 +2752,7 @@ func (t *TreeViewColumn) SetAlignment(xalign float32) { TreeViewColumnSetAlignme
 func (t *TreeViewColumn) SetAttributes(cellRenderer *CellRenderer, v ...VArg) {
 	TreeViewColumnSetAttributes(t, cellRenderer, v)
 }
-func (t *TreeViewColumn) SetCellDataFunc(cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
+func (t *TreeViewColumn) SetCellDataFunc(cellRenderer *CellRenderer, f TreeCellDataFunc, funcData T.Gpointer, destroy O.DestroyNotify) {
 	TreeViewColumnSetCellDataFunc(t, cellRenderer, f, funcData, destroy)
 }
 func (t *TreeViewColumn) SetClickable(clickable bool)  { TreeViewColumnSetClickable(t, clickable) }

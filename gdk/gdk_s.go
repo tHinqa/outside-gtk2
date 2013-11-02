@@ -5,9 +5,8 @@ package gdk
 
 import (
 	C "github.com/tHinqa/outside-gtk2/cairo"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type Screen struct {
@@ -47,15 +46,15 @@ var (
 	ScreenGetRgbColormap         func(s *Screen) *Colormap
 	ScreenGetRgbVisual           func(s *Screen) *Visual
 	ScreenGetRootWindow          func(s *Screen) *Window
-	ScreenGetSetting             func(s *Screen, name string, value *T.GValue) bool
+	ScreenGetSetting             func(s *Screen, name string, value *O.Value) bool
 	ScreenGetSystemColormap      func(s *Screen) *Colormap
 	ScreenGetSystemVisual        func(s *Screen) *Visual
-	ScreenGetToplevelWindows     func(s *Screen) *T.GList
+	ScreenGetToplevelWindows     func(s *Screen) *L.List
 	ScreenGetWidth               func(s *Screen) int
 	ScreenGetWidthMm             func(s *Screen) int
-	ScreenGetWindowStack         func(s *Screen) *T.GList
+	ScreenGetWindowStack         func(s *Screen) *L.List
 	ScreenIsComposited           func(s *Screen) bool
-	ScreenListVisuals            func(s *Screen) *T.GList
+	ScreenListVisuals            func(s *Screen) *L.List
 	ScreenMakeDisplayName        func(s *Screen) string
 	ScreenSetDefaultColormap     func(s *Screen, colormap *Colormap)
 	ScreenSetFontOptions         func(s *Screen, options *C.FontOptions)
@@ -92,17 +91,17 @@ func (s *Screen) GetRgbaVisual() *Visual               { return ScreenGetRgbaVis
 func (s *Screen) GetRgbColormap() *Colormap            { return ScreenGetRgbColormap(s) }
 func (s *Screen) GetRgbVisual() *Visual                { return ScreenGetRgbVisual(s) }
 func (s *Screen) GetRootWindow() *Window               { return ScreenGetRootWindow(s) }
-func (s *Screen) GetSetting(name string, value *T.GValue) bool {
+func (s *Screen) GetSetting(name string, value *O.Value) bool {
 	return ScreenGetSetting(s, name, value)
 }
 func (s *Screen) GetSystemColormap() *Colormap          { return ScreenGetSystemColormap(s) }
 func (s *Screen) GetSystemVisual() *Visual              { return ScreenGetSystemVisual(s) }
-func (s *Screen) GetToplevelWindows() *T.GList          { return ScreenGetToplevelWindows(s) }
+func (s *Screen) GetToplevelWindows() *L.List           { return ScreenGetToplevelWindows(s) }
 func (s *Screen) GetWidth() int                         { return ScreenGetWidth(s) }
 func (s *Screen) GetWidthMm() int                       { return ScreenGetWidthMm(s) }
-func (s *Screen) GetWindowStack() *T.GList              { return ScreenGetWindowStack(s) }
+func (s *Screen) GetWindowStack() *L.List               { return ScreenGetWindowStack(s) }
 func (s *Screen) IsComposited() bool                    { return ScreenIsComposited(s) }
-func (s *Screen) ListVisuals() *T.GList                 { return ScreenListVisuals(s) }
+func (s *Screen) ListVisuals() *L.List                  { return ScreenListVisuals(s) }
 func (s *Screen) MakeDisplayName() string               { return ScreenMakeDisplayName(s) }
 func (s *Screen) SetDefaultColormap(colormap *Colormap) { ScreenSetDefaultColormap(s, colormap) }
 func (s *Screen) SetFontOptions(options *C.FontOptions) { ScreenSetFontOptions(s, options) }

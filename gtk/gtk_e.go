@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -93,7 +94,7 @@ type Entry struct {
 	DndPosition    int
 	DragStartC     int
 	DragStartY     int
-	InvisibleChar  T.Gunichar
+	InvisibleChar  L.Unichar
 	WidthChars     int
 }
 
@@ -142,7 +143,7 @@ var (
 	EntryGetIconTooltipText       func(e *Entry, iconPos EntryIconPosition) string
 	EntryGetIconWindow            func(e *Entry, iconPos EntryIconPosition) *D.Window
 	EntryGetInnerBorder           func(e *Entry) *Border
-	EntryGetInvisibleChar         func(e *Entry) T.Gunichar
+	EntryGetInvisibleChar         func(e *Entry) L.Unichar
 	EntryGetLayout                func(e *Entry) *P.Layout
 	EntryGetLayoutOffsets         func(e *Entry, x, y *int)
 	EntryGetMaxLength             func(e *Entry) int
@@ -177,7 +178,7 @@ var (
 	EntrySetIconTooltipMarkup     func(e *Entry, iconPos EntryIconPosition, tooltip string)
 	EntrySetIconTooltipText       func(e *Entry, iconPos EntryIconPosition, tooltip string)
 	EntrySetInnerBorder           func(e *Entry, border *Border)
-	EntrySetInvisibleChar         func(e *Entry, ch T.Gunichar)
+	EntrySetInvisibleChar         func(e *Entry, ch L.Unichar)
 	EntrySetMaxLength             func(e *Entry, max int)
 	EntrySetOverwriteMode         func(e *Entry, overwrite bool)
 	EntrySetPosition              func(e *Entry, position int)
@@ -224,7 +225,7 @@ func (e *Entry) GetIconWindow(iconPos EntryIconPosition) *D.Window {
 	return EntryGetIconWindow(e, iconPos)
 }
 func (e *Entry) GetInnerBorder() *Border       { return EntryGetInnerBorder(e) }
-func (e *Entry) GetInvisibleChar() T.Gunichar  { return EntryGetInvisibleChar(e) }
+func (e *Entry) GetInvisibleChar() L.Unichar   { return EntryGetInvisibleChar(e) }
 func (e *Entry) GetLayout() *P.Layout          { return EntryGetLayout(e) }
 func (e *Entry) GetLayoutOffsets(x, y *int)    { EntryGetLayoutOffsets(e, x, y) }
 func (e *Entry) GetMaxLength() int             { return EntryGetMaxLength(e) }
@@ -281,7 +282,7 @@ func (e *Entry) SetIconTooltipText(iconPos EntryIconPosition, tooltip string) {
 	EntrySetIconTooltipText(e, iconPos, tooltip)
 }
 func (e *Entry) SetInnerBorder(border *Border)         { EntrySetInnerBorder(e, border) }
-func (e *Entry) SetInvisibleChar(ch T.Gunichar)        { EntrySetInvisibleChar(e, ch) }
+func (e *Entry) SetInvisibleChar(ch L.Unichar)         { EntrySetInvisibleChar(e, ch) }
 func (e *Entry) SetMaxLength(max int)                  { EntrySetMaxLength(e, max) }
 func (e *Entry) SetOverwriteMode(overwrite bool)       { EntrySetOverwriteMode(e, overwrite) }
 func (e *Entry) SetPosition(position int)              { EntrySetPosition(e, position) }
@@ -365,7 +366,7 @@ var (
 	EntryCompletionInsertPrefix        func(completion *EntryCompletion)
 	EntryCompletionSetInlineCompletion func(completion *EntryCompletion, inlineCompletion bool)
 	EntryCompletionSetInlineSelection  func(completion *EntryCompletion, inlineSelection bool)
-	EntryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify)
+	EntryCompletionSetMatchFunc        func(completion *EntryCompletion, f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify O.DestroyNotify)
 	EntryCompletionSetMinimumKeyLength func(completion *EntryCompletion, length int)
 	EntryCompletionSetModel            func(completion *EntryCompletion, model *TreeModel)
 	EntryCompletionSetPopupCompletion  func(completion *EntryCompletion, popupCompletion bool)
@@ -403,7 +404,7 @@ func (e *EntryCompletion) SetInlineCompletion(inlineCompletion bool) {
 func (e *EntryCompletion) SetInlineSelection(inlineSelection bool) {
 	EntryCompletionSetInlineSelection(e, inlineSelection)
 }
-func (e *EntryCompletion) SetMatchFunc(f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify T.GDestroyNotify) {
+func (e *EntryCompletion) SetMatchFunc(f EntryCompletionMatchFunc, funcData T.Gpointer, funcNotify O.DestroyNotify) {
 	EntryCompletionSetMatchFunc(e, f, funcData, funcNotify)
 }
 func (e *EntryCompletion) SetMinimumKeyLength(length int) {

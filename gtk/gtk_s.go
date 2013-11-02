@@ -335,7 +335,7 @@ type SettingsPropertyValue struct{}
 
 type SettingsValue struct {
 	Origin *T.Gchar
-	Value  T.GValue
+	Value  O.Value
 }
 
 type ShadowType Enum
@@ -364,12 +364,12 @@ var SideTypeGetType func() O.Type
 type SignalRunType Enum
 
 const (
-	RUN_FIRST      SignalRunType = SignalRunType(T.G_SIGNAL_RUN_FIRST)
-	RUN_LAST                     = SignalRunType(T.G_SIGNAL_RUN_LAST)
+	RUN_FIRST      SignalRunType = SignalRunType(O.SIGNAL_RUN_FIRST)
+	RUN_LAST                     = SignalRunType(O.SIGNAL_RUN_LAST)
 	RUN_BOTH                     = SignalRunType(RUN_FIRST | RUN_LAST)
-	RUN_NO_RECURSE               = SignalRunType(T.G_SIGNAL_NO_RECURSE)
-	RUN_ACTION                   = SignalRunType(T.G_SIGNAL_ACTION)
-	RUN_NO_HOOKS                 = SignalRunType(T.G_SIGNAL_NO_HOOKS)
+	RUN_NO_RECURSE               = SignalRunType(O.SIGNAL_NO_RECURSE)
+	RUN_ACTION                   = SignalRunType(O.SIGNAL_ACTION)
+	RUN_NO_HOOKS                 = SignalRunType(O.SIGNAL_NO_HOOKS)
 )
 
 var SignalRunTypeGetType func() O.Type
@@ -721,7 +721,7 @@ type StockItem struct {
 var (
 	StockListIds          func() *L.SList
 	StockLookup           func(stockId string, item *StockItem) bool
-	StockSetTranslateFunc func(domain string, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+	StockSetTranslateFunc func(domain string, f TranslateFunc, data T.Gpointer, notify O.DestroyNotify)
 
 	StockAdd       func(s *StockItem, nItems uint)
 	StockAddStatic func(s *StockItem, nItems uint)
@@ -776,7 +776,7 @@ var (
 	StyleDetach                 func(s *Style)
 	StyleGet                    func(s *Style, widgetType O.Type, firstPropertyName string, v ...VArg)
 	StyleGetFont                func(s *Style) *D.Font
-	StyleGetStyleProperty       func(s *Style, widgetType O.Type, propertyName string, value *T.GValue)
+	StyleGetStyleProperty       func(s *Style, widgetType O.Type, propertyName string, value *O.Value)
 	StyleGetValist              func(s *Style, widgetType O.Type, firstPropertyName string, varArgs T.VaList)
 	StyleLookupColor            func(s *Style, colorName string, color *D.Color) bool
 	StyleLookupIconSet          func(s *Style, stockId string) *IconSet
@@ -797,7 +797,7 @@ func (s *Style) Get(widgetType O.Type, firstPropertyName string, v ...VArg) {
 	StyleGet(s, widgetType, firstPropertyName, v)
 }
 func (s *Style) GetFont() *D.Font { return StyleGetFont(s) }
-func (s *Style) GetStyleProperty(widgetType O.Type, propertyName string, value *T.GValue) {
+func (s *Style) GetStyleProperty(widgetType O.Type, propertyName string, value *O.Value) {
 	StyleGetStyleProperty(s, widgetType, propertyName, value)
 }
 func (s *Style) GetValist(widgetType O.Type, firstPropertyName string, varArgs T.VaList) {

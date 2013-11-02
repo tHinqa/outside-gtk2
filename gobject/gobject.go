@@ -8,7 +8,6 @@ package gobject
 import (
 	"github.com/tHinqa/outside"
 	T "github.com/tHinqa/outside-gtk2/types"
-	. "github.com/tHinqa/outside/types"
 )
 
 func init() {
@@ -16,7 +15,11 @@ func init() {
 	outside.AddDllData(dll, false, dataList)
 }
 
-type Enum int
+type (
+	Enum int
+
+	DestroyNotify func(data T.Gpointer)
+)
 
 var (
 	GTypeInit func()
@@ -38,186 +41,6 @@ var (
 	VariantGetGtype         func() Type
 	VariantTypeGetGtype     func() Type
 
-	SignalNewv func(
-		signalName string,
-		itype Type,
-		signalFlags T.GSignalFlags,
-		classClosure *Closure,
-		accumulator T.GSignalAccumulator,
-		accuData T.Gpointer,
-		cMarshaller T.GSignalCMarshaller,
-		returnType Type,
-		nParams uint,
-		paramTypes *Type) uint
-
-	SignalNewValist func(
-		signalName string,
-		itype Type,
-		signalFlags T.GSignalFlags,
-		classClosure *Closure,
-		accumulator T.GSignalAccumulator,
-		accuData T.Gpointer,
-		cMarshaller T.GSignalCMarshaller,
-		returnType Type,
-		nParams uint,
-		args T.VaList) uint
-
-	SignalNew func(signalName string, itype Type,
-		signalFlags T.GSignalFlags, classOffset uint,
-		accumulator T.GSignalAccumulator, accuData T.Gpointer,
-		cMarshaller T.GSignalCMarshaller, returnType Type,
-		nParams uint, v ...VArg) uint
-
-	SignalNewClassHandler func(signalName string,
-		itype Type, signalFlags T.GSignalFlags,
-		classHandler T.GCallback, accumulator T.GSignalAccumulator,
-		accuData T.Gpointer, cMarshaller T.GSignalCMarshaller,
-		returnType Type, nParams uint, v ...VArg) uint
-
-	SignalEmitv func(
-		instanceAndParams *Value,
-		signalId uint,
-		detail T.Quark,
-		returnValue *Value)
-
-	SignalEmitValist func(
-		instance T.Gpointer,
-		signalId uint,
-		detail T.Quark,
-		varArgs T.VaList)
-
-	SignalEmit func(instance T.Gpointer, signalId uint,
-		detail T.Quark, v ...VArg)
-
-	SignalEmitByName func(instance T.Gpointer,
-		detailedSignal string, v ...VArg)
-
-	SignalLookup func(name string, itype Type) uint
-
-	SignalName func(signalId uint) string
-
-	SignalQuery func(signalId uint, query *T.GSignalQuery)
-
-	SignalListIds func(itype Type, nIds *uint) *uint
-
-	SignalParseName func(
-		detailedSignal string,
-		itype Type,
-		signalIdP *uint,
-		detailP *T.Quark,
-		forceDetailQuark bool) bool
-
-	SignalGetInvocationHint func(
-		instance T.Gpointer) *T.GSignalInvocationHint
-
-	SignalStopEmission func(
-		instance T.Gpointer, signalId uint, detail T.Quark)
-
-	SignalStopEmissionByName func(
-		instance T.Gpointer, detailedSignal string)
-
-	SignalAddEmissionHook func(
-		signalId uint,
-		detail T.Quark,
-		hookFunc T.GSignalEmissionHook,
-		hookData T.Gpointer,
-		dataDestroy T.GDestroyNotify) T.Gulong
-
-	SignalRemoveEmissionHook func(signalId uint, hookId T.Gulong)
-
-	SignalHasHandlerPending func(
-		instance T.Gpointer,
-		signalId uint,
-		detail T.Quark,
-		mayBeBlocked bool) bool
-
-	SignalConnectClosureById func(
-		instance T.Gpointer,
-		signalId uint,
-		detail T.Quark,
-		closure *Closure,
-		after bool) T.Gulong
-
-	SignalConnectClosure func(
-		instance T.Gpointer,
-		detailedSignal string,
-		closure *Closure,
-		after bool) T.Gulong
-
-	SignalConnectData func(
-		instance T.Gpointer,
-		detailedSignal string,
-		cHandler T.GCallback,
-		data T.Gpointer,
-		destroyData ClosureNotify,
-		connectFlags T.GConnectFlags) T.Gulong
-
-	SignalHandlerBlock func(instance T.Gpointer, handlerId T.Gulong)
-
-	SignalHandlerUnblock func(instance T.Gpointer, handlerId T.Gulong)
-
-	SignalHandlerDisconnect func(
-		instance T.Gpointer, handlerId T.Gulong)
-
-	SignalHandlerIsConnected func(
-		instance T.Gpointer, handlerId T.Gulong) bool
-
-	SignalHandlerFind func(
-		instance T.Gpointer,
-		mask T.GSignalMatchType,
-		signalId uint,
-		detail T.Quark,
-		closure *Closure,
-		fnc T.Gpointer,
-		data T.Gpointer) T.Gulong
-
-	SignalHandlersBlockMatched func(
-		instance T.Gpointer,
-		mask T.GSignalMatchType,
-		signalId uint,
-		detail T.Quark,
-		closure *Closure,
-		fnc T.Gpointer,
-		data T.Gpointer) uint
-
-	SignalHandlersUnblockMatched func(
-		instance T.Gpointer,
-		mask T.GSignalMatchType,
-		signalId uint,
-		detail T.Quark,
-		closure *Closure,
-		fnc T.Gpointer,
-		data T.Gpointer) uint
-
-	SignalHandlersDisconnectMatched func(
-		instance T.Gpointer,
-		mask T.GSignalMatchType,
-		signalId uint,
-		detail T.Quark,
-		closure *Closure,
-		fnc T.Gpointer,
-		data T.Gpointer) uint
-
-	SignalOverrideClassClosure func(
-		signalId uint, instanceType Type, classClosure *Closure)
-
-	SignalOverrideClassHandler func(
-		signalName string, instanceType Type, classHandler T.GCallback)
-
-	SignalChainFromOverridden func(
-		instanceAndParams *Value, returnValue *Value)
-
-	SignalChainFromOverriddenHandler func(
-		instance T.Gpointer, v ...VArg)
-
-	SignalAccumulatorTrueHandled func(ihint *T.GSignalInvocationHint,
-		returnAccu, handlerReturn *Value, dummy T.Gpointer) bool
-
-	SignalAccumulatorFirstWins func(ihint *T.GSignalInvocationHint,
-		returnAccu, handlerReturn *Value, dummy T.Gpointer) bool
-
-	SignalHandlersDestroy func(instance T.Gpointer)
-
 	ObjectInterfaceInstallProperty func(
 		gIface T.Gpointer, pspec *T.GParamSpec)
 
@@ -228,13 +51,13 @@ var (
 		gIface T.Gpointer, nPropertiesP *uint) **T.GParamSpec
 
 	CclosureNewObject func(
-		callbackFunc T.GCallback, object *Object) *Closure
+		callbackFunc Callback, object *Object) *Closure
 
 	CclosureNewObjectSwap func(
-		callbackFunc T.GCallback, object *Object) *Closure
+		callbackFunc Callback, object *Object) *Closure
 
 	SignalConnectObject func(instance T.Gpointer,
-		detailedSignal string, cHandler T.GCallback,
+		detailedSignal string, cHandler Callback,
 		gobject T.Gpointer, connectFlags T.GConnectFlags) T.Gulong
 
 	ObjectCompatControl func(what T.Gsize, data T.Gpointer) T.Gsize
@@ -248,14 +71,11 @@ var (
 	BoxedTypeRegisterStatic func(name string,
 		boxedCopy T.GBoxedCopyFunc, boxedFree T.GBoxedFreeFunc) Type
 
-	CclosureNew func(callbackFunc T.GCallback,
+	CclosureNew func(callbackFunc Callback,
 		userData T.Gpointer, destroyData ClosureNotify) *Closure
 
-	CclosureNewSwap func(callbackFunc T.GCallback,
+	CclosureNewSwap func(callbackFunc Callback,
 		userData T.Gpointer, destroyData ClosureNotify) *Closure
-
-	SignalTypeCclosureNew func(
-		itype Type, structOffset uint) *Closure
 
 	CclosureMarshal_VOID__VOID func(
 		closure *Closure,
@@ -437,7 +257,7 @@ var (
 
 	StrdupValueContents func(value *Value) string
 
-	UnicharValidate func(ch T.Gunichar) bool
+	UnicharValidate func(ch T.Unichar) bool
 
 	SlistRemoveAll func(list *SList, data T.Gconstpointer) *SList
 
@@ -455,7 +275,7 @@ var (
 type SList T.SList
 
 func SignalConnect(i T.Gpointer, s string,
-	cb T.GCallback, d T.Gpointer) T.Gulong {
+	cb Callback, d T.Gpointer) T.Gulong {
 	return SignalConnectData(i, s, cb, d, nil, 0)
 }
 

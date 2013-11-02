@@ -49,7 +49,7 @@ var (
 	IconInfoGetDisplayName    func(i *IconInfo) string
 	IconInfoGetEmbeddedRect   func(i *IconInfo, rectangle *D.Rectangle) bool
 	IconInfoGetFilename       func(i *IconInfo) string
-	IconInfoLoadIcon          func(i *IconInfo, error **T.GError) *D.Pixbuf
+	IconInfoLoadIcon          func(i *IconInfo, error **L.Error) *D.Pixbuf
 	IconInfoSetRawCoordinates func(i *IconInfo, rawCoordinates bool)
 )
 
@@ -65,7 +65,7 @@ func (i *IconInfo) GetEmbeddedRect(rectangle *D.Rectangle) bool {
 	return IconInfoGetEmbeddedRect(i, rectangle)
 }
 func (i *IconInfo) GetFilename() string               { return IconInfoGetFilename(i) }
-func (i *IconInfo) LoadIcon(err **T.GError) *D.Pixbuf { return IconInfoLoadIcon(i, err) }
+func (i *IconInfo) LoadIcon(err **L.Error) *D.Pixbuf { return IconInfoLoadIcon(i, err) }
 func (i *IconInfo) SetRawCoordinates(rawCoordinates bool) {
 	IconInfoSetRawCoordinates(i, rawCoordinates)
 }
@@ -205,9 +205,9 @@ var (
 	IconThemeGetIconSizes       func(i *IconTheme, iconName string) *int
 	IconThemeGetSearchPath      func(i *IconTheme, path ***T.Gchar, nElements *int)
 	IconThemeHasIcon            func(i *IconTheme, iconName string) bool
-	IconThemeListContexts       func(i *IconTheme) *T.GList
-	IconThemeListIcons          func(i *IconTheme, context string) *T.GList
-	IconThemeLoadIcon           func(i *IconTheme, iconName string, size int, flags IconLookupFlags, error **T.GError) *D.Pixbuf
+	IconThemeListContexts       func(i *IconTheme) *L.List
+	IconThemeListIcons          func(i *IconTheme, context string) *L.List
+	IconThemeLoadIcon           func(i *IconTheme, iconName string, size int, flags IconLookupFlags, error **L.Error) *D.Pixbuf
 	IconThemeLookupByGicon      func(i *IconTheme, icon *I.Icon, size int, flags IconLookupFlags) *IconInfo
 	IconThemeLookupIcon         func(i *IconTheme, iconName string, size int, flags IconLookupFlags) *IconInfo
 	IconThemePrependSearchPath  func(i *IconTheme, path string)
@@ -226,10 +226,10 @@ func (i *IconTheme) GetIconSizes(iconName string) *int { return IconThemeGetIcon
 func (i *IconTheme) GetSearchPath(path ***T.Gchar, nElements *int) {
 	IconThemeGetSearchPath(i, path, nElements)
 }
-func (i *IconTheme) HasIcon(iconName string) bool      { return IconThemeHasIcon(i, iconName) }
-func (i *IconTheme) ListContexts() *T.GList            { return IconThemeListContexts(i) }
-func (i *IconTheme) ListIcons(context string) *T.GList { return IconThemeListIcons(i, context) }
-func (i *IconTheme) LoadIcon(iconName string, size int, flags IconLookupFlags, err **T.GError) *D.Pixbuf {
+func (i *IconTheme) HasIcon(iconName string) bool     { return IconThemeHasIcon(i, iconName) }
+func (i *IconTheme) ListContexts() *L.List            { return IconThemeListContexts(i) }
+func (i *IconTheme) ListIcons(context string) *L.List { return IconThemeListIcons(i, context) }
+func (i *IconTheme) LoadIcon(iconName string, size int, flags IconLookupFlags, err **L.Error) *D.Pixbuf {
 	return IconThemeLoadIcon(i, iconName, size, flags, err)
 }
 func (i *IconTheme) LookupByGicon(icon *I.Icon, size int, flags IconLookupFlags) *IconInfo {
@@ -297,7 +297,7 @@ var (
 	IconViewGetPixbufColumn                func(i *IconView) int
 	IconViewGetReorderable                 func(i *IconView) bool
 	IconViewGetRowSpacing                  func(i *IconView) int
-	IconViewGetSelectedItems               func(i *IconView) *T.GList
+	IconViewGetSelectedItems               func(i *IconView) *L.List
 	IconViewGetSelectionMode               func(i *IconView) SelectionMode
 	IconViewGetSpacing                     func(i *IconView) int
 	IconViewGetTextColumn                  func(i *IconView) int
@@ -375,7 +375,7 @@ func (i *IconView) GetPathAtPos(x, y int) *TreePath  { return IconViewGetPathAtP
 func (i *IconView) GetPixbufColumn() int             { return IconViewGetPixbufColumn(i) }
 func (i *IconView) GetReorderable() bool             { return IconViewGetReorderable(i) }
 func (i *IconView) GetRowSpacing() int               { return IconViewGetRowSpacing(i) }
-func (i *IconView) GetSelectedItems() *T.GList       { return IconViewGetSelectedItems(i) }
+func (i *IconView) GetSelectedItems() *L.List        { return IconViewGetSelectedItems(i) }
 func (i *IconView) GetSelectionMode() SelectionMode  { return IconViewGetSelectionMode(i) }
 func (i *IconView) GetSpacing() int                  { return IconViewGetSpacing(i) }
 func (i *IconView) GetTextColumn() int               { return IconViewGetTextColumn(i) }
@@ -643,7 +643,7 @@ type IMContextSimple struct {
 	Object            IMContext
 	Tables            *L.SList
 	ComposeBuffer     [7 + 1]uint //TODO(t):Symbolic
-	TentativeMatch    T.Gunichar
+	TentativeMatch    L.Unichar
 	TentativeMatchLen int
 	Bits              uint
 	// InHexSequence : 1
@@ -776,7 +776,7 @@ type (
 		Items            *L.SList
 		Translate_func   TranslateFunc
 		Translate_data   T.Gpointer
-		Translate_notify T.GDestroyNotify
+		Translate_notify O.DestroyNotify
 	}
 
 	ItemFactoryEntry struct {
@@ -816,8 +816,8 @@ var (
 	ItemFactoryGetWidgetByAction func(i *ItemFactory, action uint) *Widget
 	ItemFactoryPopup             func(i *ItemFactory, x uint, y uint, mouseButton uint, time T.GUint32)
 	ItemFactoryPopupData         func(i *ItemFactory) T.Gpointer
-	ItemFactoryPopupWithData     func(i *ItemFactory, popupData T.Gpointer, destroy T.GDestroyNotify, x uint, y uint, mouseButton uint, time T.GUint32)
-	ItemFactorySetTranslateFunc  func(i *ItemFactory, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+	ItemFactoryPopupWithData     func(i *ItemFactory, popupData T.Gpointer, destroy O.DestroyNotify, x uint, y uint, mouseButton uint, time T.GUint32)
+	ItemFactorySetTranslateFunc  func(i *ItemFactory, f TranslateFunc, data T.Gpointer, notify O.DestroyNotify)
 )
 
 func (i *ItemFactory) Construct(containerType O.Type, path string, accelGroup *AccelGroup) {
@@ -849,9 +849,9 @@ func (i *ItemFactory) Popup(x, y, mouseButton uint, time T.GUint32) {
 	ItemFactoryPopup(i, x, y, mouseButton, time)
 }
 func (i *ItemFactory) PopupData() T.Gpointer { return ItemFactoryPopupData(i) }
-func (i *ItemFactory) PopupWithData(popupData T.Gpointer, destroy T.GDestroyNotify, x, y, mouseButton uint, time T.GUint32) {
+func (i *ItemFactory) PopupWithData(popupData T.Gpointer, destroy O.DestroyNotify, x, y, mouseButton uint, time T.GUint32) {
 	ItemFactoryPopupWithData(i, popupData, destroy, x, y, mouseButton, time)
 }
-func (i *ItemFactory) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (i *ItemFactory) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify O.DestroyNotify) {
 	ItemFactorySetTranslateFunc(i, f, data, notify)
 }

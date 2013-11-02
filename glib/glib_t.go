@@ -4,6 +4,7 @@
 package glib
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
@@ -57,7 +58,7 @@ var (
 
 	TestQueueFree func(gfreePointer T.Gpointer)
 
-	TestQueueDestroy func(destroyFunc T.GDestroyNotify,
+	TestQueueDestroy func(destroyFunc O.DestroyNotify,
 		destroyData T.Gpointer)
 
 	TestTrapFork func(usecTimeout uint64,
@@ -176,7 +177,7 @@ type Thread struct {
 }
 
 var (
-	ThreadCreateFull                func(f ThreadFunc, data T.Gpointer, stackSize T.Gulong, joinable bool, bound bool, priority ThreadPriority, e **T.GError) *Thread
+	ThreadCreateFull                func(f ThreadFunc, data T.Gpointer, stackSize T.Gulong, joinable bool, bound bool, priority ThreadPriority, e **Error) *Thread
 	ThreadErrorQuark                func() Quark
 	ThreadExit                      func(retval T.Gpointer)
 	ThreadForeach                   func(threadFunc T.GFunc, userData T.Gpointer)
@@ -197,22 +198,22 @@ type (
 
 	ThreadFunctions struct {
 		MutexNew      func()
-		MutexLock     func(mutex *T.GMutex) *T.GMutex
-		MutexTrylock  func(mutex *T.GMutex) bool
-		MutexUnlock   func(mutex *T.GMutex)
-		MutexFree     func(mutex *T.GMutex)
-		CondNew       func() *T.GCond
-		CondSignal    func(cond *T.GCond)
-		CondBroadcast func(cond *T.GCond)
-		CondWait      func(cond *T.GCond, mutex *T.GMutex)
+		MutexLock     func(mutex *Mutex) *Mutex
+		MutexTrylock  func(mutex *Mutex) bool
+		MutexUnlock   func(mutex *Mutex)
+		MutexFree     func(mutex *Mutex)
+		CondNew       func() *Cond
+		CondSignal    func(cond *Cond)
+		CondBroadcast func(cond *Cond)
+		CondWait      func(cond *Cond, mutex *Mutex)
 		CondTimedWait func(
-			cond *T.GCond,
-			mutex *T.GMutex,
+			cond *Cond,
+			mutex *Mutex,
 			endTime *TimeVal) bool
-		CondFree     func(cond *T.GCond)
-		PrivateNew   func(destructor T.GDestroyNotify) *T.GPrivate
-		PrivateGet   func(privateKey *T.GPrivate) T.Gpointer
-		PrivateSet   func(privateKey *T.GPrivate, data T.Gpointer)
+		CondFree     func(cond *Cond)
+		PrivateNew   func(destructor O.DestroyNotify) *Private
+		PrivateGet   func(privateKey *Private) T.Gpointer
+		PrivateSet   func(privateKey *Private, data T.Gpointer)
 		ThreadCreate func(
 			fnc ThreadFunc,
 			data T.Gpointer,
@@ -220,7 +221,7 @@ type (
 			joinable, bound bool,
 			priority ThreadPriority,
 			thread T.Gpointer,
-			error **T.GError)
+			error **Error)
 		Threadield        func()
 		ThreadJoin        func(thread T.Gpointer)
 		ThreadExit        func()
@@ -232,6 +233,8 @@ type (
 			thread1 T.Gpointer,
 			thread2 T.Gpointer) T.Gboolean
 	}
+
+	Private struct{}
 )
 
 type ThreadPool struct {
@@ -241,7 +244,7 @@ type ThreadPool struct {
 }
 
 var (
-	ThreadPoolNew func(f T.GFunc, userData T.Gpointer, maxThreads int, exclusive bool, e **T.GError) *ThreadPool
+	ThreadPoolNew func(f T.GFunc, userData T.Gpointer, maxThreads int, exclusive bool, e **Error) *ThreadPool
 
 	ThreadPoolGetMaxIdleTime      func() uint
 	ThreadPoolGetMaxUnusedThreads func() int
@@ -253,17 +256,17 @@ var (
 	ThreadPoolFree            func(t *ThreadPool, immediate, wait bool)
 	ThreadPoolGetMaxThreads   func(t *ThreadPool) int
 	ThreadPoolGetNumThreads   func(t *ThreadPool) uint
-	ThreadPoolPush            func(t *ThreadPool, data T.Gpointer, e **T.GError)
-	ThreadPoolSetMaxThreads   func(t *ThreadPool, maxThreads int, e **T.GError)
+	ThreadPoolPush            func(t *ThreadPool, data T.Gpointer, e **Error)
+	ThreadPoolSetMaxThreads   func(t *ThreadPool, maxThreads int, e **Error)
 	ThreadPoolSetSortFunction func(t *ThreadPool, f T.GCompareDataFunc, userData T.Gpointer)
 	ThreadPoolUnprocessed     func(t *ThreadPool) uint
 )
 
-func (t *ThreadPool) Free(immediate, wait bool)          { ThreadPoolFree(t, immediate, wait) }
-func (t *ThreadPool) GetMaxThreads() int                 { return ThreadPoolGetMaxThreads(t) }
-func (t *ThreadPool) GetNumThreads() uint                { return ThreadPoolGetNumThreads(t) }
-func (t *ThreadPool) Push(data T.Gpointer, e **T.GError) { ThreadPoolPush(t, data, e) }
-func (t *ThreadPool) SetMaxThreads(maxThreads int, e **T.GError) {
+func (t *ThreadPool) Free(immediate, wait bool)       { ThreadPoolFree(t, immediate, wait) }
+func (t *ThreadPool) GetMaxThreads() int              { return ThreadPoolGetMaxThreads(t) }
+func (t *ThreadPool) GetNumThreads() uint             { return ThreadPoolGetNumThreads(t) }
+func (t *ThreadPool) Push(data T.Gpointer, e **Error) { ThreadPoolPush(t, data, e) }
+func (t *ThreadPool) SetMaxThreads(maxThreads int, e **Error) {
 	ThreadPoolSetMaxThreads(t, maxThreads, e)
 }
 func (t *ThreadPool) SetSortFunction(f T.GCompareDataFunc, userData T.Gpointer) {
@@ -386,7 +389,7 @@ type Tree struct{}
 
 var (
 	TreeNew         func(keyCompareFunc T.GCompareFunc) *Tree
-	TreeNewFull     func(keyCompareFunc T.GCompareDataFunc, keyCompareData T.Gpointer, keyDestroyFunc T.GDestroyNotify, valueDestroyFunc T.GDestroyNotify) *Tree
+	TreeNewFull     func(keyCompareFunc T.GCompareDataFunc, keyCompareData T.Gpointer, keyDestroyFunc O.DestroyNotify, valueDestroyFunc O.DestroyNotify) *Tree
 	TreeNewWithData func(keyCompareFunc T.GCompareDataFunc, keyCompareData T.Gpointer) *Tree
 
 	TreeDestroy        func(t *Tree)

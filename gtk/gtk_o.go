@@ -35,13 +35,13 @@ var (
 	ObjectSet                func(o *Object, firstPropertyName string, v ...VArg)
 	ObjectSetData            func(o *Object, key string, data T.Gpointer)
 	ObjectSetDataById        func(o *Object, dataId L.Quark, data T.Gpointer)
-	ObjectSetDataByIdFull    func(o *Object, dataId L.Quark, data T.Gpointer, destroy T.GDestroyNotify)
-	ObjectSetDataFull        func(o *Object, key string, data T.Gpointer, destroy T.GDestroyNotify)
+	ObjectSetDataByIdFull    func(o *Object, dataId L.Quark, data T.Gpointer, destroy O.DestroyNotify)
+	ObjectSetDataFull        func(o *Object, key string, data T.Gpointer, destroy O.DestroyNotify)
 	ObjectSetUserData        func(o *Object, data T.Gpointer)
 	ObjectSink               func(o *Object)
 	ObjectUnref              func(o *Object)
-	ObjectWeakref            func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
-	ObjectWeakunref          func(o *Object, notify T.GDestroyNotify, data T.Gpointer)
+	ObjectWeakref            func(o *Object, notify O.DestroyNotify, data T.Gpointer)
+	ObjectWeakunref          func(o *Object, notify O.DestroyNotify, data T.Gpointer)
 )
 
 func (o *Object) Destroy()                                    { ObjectDestroy(o) }
@@ -57,17 +57,17 @@ func (o *Object) RemoveNoNotifyById(keyId L.Quark)            { ObjectRemoveNoNo
 func (o *Object) Set(firstPropertyName string, v ...VArg)     { ObjectSet(o, firstPropertyName, v) }
 func (o *Object) SetData(key string, data T.Gpointer)         { ObjectSetData(o, key, data) }
 func (o *Object) SetDataById(dataId L.Quark, data T.Gpointer) { ObjectSetDataById(o, dataId, data) }
-func (o *Object) SetDataByIdFull(dataId L.Quark, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) SetDataByIdFull(dataId L.Quark, data T.Gpointer, destroy O.DestroyNotify) {
 	ObjectSetDataByIdFull(o, dataId, data, destroy)
 }
-func (o *Object) SetDataFull(key string, data T.Gpointer, destroy T.GDestroyNotify) {
+func (o *Object) SetDataFull(key string, data T.Gpointer, destroy O.DestroyNotify) {
 	ObjectSetDataFull(o, key, data, destroy)
 }
-func (o *Object) SetUserData(data T.Gpointer)                      { ObjectSetUserData(o, data) }
-func (o *Object) Sink()                                            { ObjectSink(o) }
-func (o *Object) Unref()                                           { ObjectUnref(o) }
-func (o *Object) Weakref(notify T.GDestroyNotify, data T.Gpointer) { ObjectWeakref(o, notify, data) }
-func (o *Object) Weakunref(notify T.GDestroyNotify, data T.Gpointer) {
+func (o *Object) SetUserData(data T.Gpointer)                     { ObjectSetUserData(o, data) }
+func (o *Object) Sink()                                           { ObjectSink(o) }
+func (o *Object) Unref()                                          { ObjectUnref(o) }
+func (o *Object) Weakref(notify O.DestroyNotify, data T.Gpointer) { ObjectWeakref(o, notify, data) }
+func (o *Object) Weakunref(notify O.DestroyNotify, data T.Gpointer) {
 	ObjectWeakunref(o, notify, data)
 }
 

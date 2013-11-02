@@ -5,6 +5,7 @@ package gdk
 
 import (
 	C "github.com/tHinqa/outside-gtk2/cairo"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -16,7 +17,7 @@ var (
 	WindowNew func(parent *Window, attributes *WindowAttr, attributesMask int) *Window
 
 	WindowAtPointer         func(winX *int, winY *int) *Window
-	WindowGetToplevels      func() *T.GList
+	WindowGetToplevels      func() *L.List
 	WindowProcessAllUpdates func()
 
 	WindowAddFilter                       func(w *Window, function T.GdkFilterFunc, data T.Gpointer)
@@ -46,7 +47,7 @@ var (
 	WindowGeometryChanged                 func(w *Window)
 	WindowGetAcceptFocus                  func(w *Window) bool
 	WindowGetBackgroundPattern            func(w *Window) *C.Pattern
-	WindowGetChildren                     func(w *Window) *T.GList
+	WindowGetChildren                     func(w *Window) *L.List
 	WindowGetComposited                   func(w *Window) bool
 	WindowGetCursor                       func(w *Window) *Cursor
 	WindowGetDecorations                  func(w *Window, decorations *T.GdkWMDecoration) bool
@@ -97,7 +98,7 @@ var (
 	WindowMove                            func(w *Window, x, y int)
 	WindowMoveRegion                      func(w *Window, region *Region, dx, dy int)
 	WindowMoveResize                      func(w *Window, x, y, width, height int)
-	WindowPeekChildren                    func(w *Window) *T.GList
+	WindowPeekChildren                    func(w *Window) *L.List
 	WindowProcessUpdates                  func(w *Window, updateChildren bool)
 	WindowRaise                           func(w *Window)
 	WindowRedirectToDrawable              func(w *Window, drawable *Drawable, srcX, srcY, destX, destY, width, height int)
@@ -123,7 +124,7 @@ var (
 	WindowSetGroup                        func(w *Window, leader *Window)
 	WindowSetHints                        func(w *Window, x, y, minWidth, minHeight, maxWidth, maxHeight, flags int)
 	WindowSetIcon                         func(w, iconWindow *Window, pixmap *Pixmap, mask *T.GdkBitmap)
-	WindowSetIconList                     func(w *Window, pixbufs *T.GList)
+	WindowSetIconList                     func(w *Window, pixbufs *L.List)
 	WindowSetIconName                     func(w *Window, name string)
 	WindowSetKeepAbove                    func(w *Window, setting bool)
 	WindowSetKeepBelow                    func(w *Window, setting bool)
@@ -192,7 +193,7 @@ func (w *Window) Fullscreen()                      { WindowFullscreen(w) }
 func (w *Window) GeometryChanged()                 { WindowGeometryChanged(w) }
 func (w *Window) GetAcceptFocus() bool             { return WindowGetAcceptFocus(w) }
 func (w *Window) GetBackgroundPattern() *C.Pattern { return WindowGetBackgroundPattern(w) }
-func (w *Window) GetChildren() *T.GList            { return WindowGetChildren(w) }
+func (w *Window) GetChildren() *L.List             { return WindowGetChildren(w) }
 func (w *Window) GetComposited() bool              { return WindowGetComposited(w) }
 func (w *Window) GetCursor() *Cursor               { return WindowGetCursor(w) }
 func (w *Window) GetDecorations(decorations *T.GdkWMDecoration) bool {
@@ -265,7 +266,7 @@ func (w *Window) MergeChildShapes()                     { WindowMergeChildShapes
 func (w *Window) Move(x, y int)                         { WindowMove(w, x, y) }
 func (w *Window) MoveRegion(region *Region, dx, dy int) { WindowMoveRegion(w, region, dx, dy) }
 func (w *Window) MoveResize(x, y, width, height int)    { WindowMoveResize(w, x, y, width, height) }
-func (w *Window) PeekChildren() *T.GList                { return WindowPeekChildren(w) }
+func (w *Window) PeekChildren() *L.List                 { return WindowPeekChildren(w) }
 func (w *Window) ProcessUpdates(updateChildren bool)    { WindowProcessUpdates(w, updateChildren) }
 func (w *Window) Raise()                                { WindowRaise(w) }
 func (w *Window) RedirectToDrawable(drawable *Drawable, srcX, srcY, destX, destY, width, height int) {
@@ -303,12 +304,12 @@ func (w *Window) SetHints(x, y, minWidth, minHeight, maxWidth, maxHeight, flags 
 func (w *Window) SetIcon(iconWindow *Window, pixmap *Pixmap, mask *T.GdkBitmap) {
 	WindowSetIcon(w, iconWindow, pixmap, mask)
 }
-func (w *Window) SetIconList(pixbufs *T.GList) { WindowSetIconList(w, pixbufs) }
-func (w *Window) SetIconName(name string)      { WindowSetIconName(w, name) }
-func (w *Window) SetKeepAbove(setting bool)    { WindowSetKeepAbove(w, setting) }
-func (w *Window) SetKeepBelow(setting bool)    { WindowSetKeepBelow(w, setting) }
-func (w *Window) SetModalHint(modal bool)      { WindowSetModalHint(w, modal) }
-func (w *Window) SetOpacity(opacity float64)   { WindowSetOpacity(w, opacity) }
+func (w *Window) SetIconList(pixbufs *L.List) { WindowSetIconList(w, pixbufs) }
+func (w *Window) SetIconName(name string)     { WindowSetIconName(w, name) }
+func (w *Window) SetKeepAbove(setting bool)   { WindowSetKeepAbove(w, setting) }
+func (w *Window) SetKeepBelow(setting bool)   { WindowSetKeepBelow(w, setting) }
+func (w *Window) SetModalHint(modal bool)     { WindowSetModalHint(w, modal) }
+func (w *Window) SetOpacity(opacity float64)  { WindowSetOpacity(w, opacity) }
 func (w *Window) SetOverrideRedirect(overrideRedirect bool) {
 	WindowSetOverrideRedirect(w, overrideRedirect)
 }

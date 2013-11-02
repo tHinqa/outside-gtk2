@@ -7,7 +7,6 @@ import (
 	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type File struct{}
@@ -21,35 +20,35 @@ var (
 	FileParseName func(parseName string) *File
 	FileHash      func(file T.Gconstpointer) uint
 
-	FileAppendTo                            func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream
+	FileAppendTo                            func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream
 	FileAppendToAsync                       func(f *File, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileAppendToFinish                      func(f *File, res *AsyncResult, err **T.GError) *FileOutputStream
-	FileCopy                                func(f, destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **T.GError) bool
+	FileAppendToFinish                      func(f *File, res *AsyncResult, err **L.Error) *FileOutputStream
+	FileCopy                                func(f, destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **L.Error) bool
 	FileCopyAsync                           func(f, destination *File, flags FileCopyFlags, ioPriority int, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, callback AsyncReadyCallback, userData T.Gpointer)
-	FileCopyAttributes                      func(f, destination *File, flags FileCopyFlags, cancellable *Cancellable, err **T.GError) bool
-	FileCopyFinish                          func(f *File, res *AsyncResult, err **T.GError) bool
-	FileCreate                              func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream
+	FileCopyAttributes                      func(f, destination *File, flags FileCopyFlags, cancellable *Cancellable, err **L.Error) bool
+	FileCopyFinish                          func(f *File, res *AsyncResult, err **L.Error) bool
+	FileCreate                              func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream
 	FileCreateAsync                         func(f *File, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileCreateFinish                        func(f *File, res *AsyncResult, err **T.GError) *FileOutputStream
-	FileCreateReadwrite                     func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileIOStream
+	FileCreateFinish                        func(f *File, res *AsyncResult, err **L.Error) *FileOutputStream
+	FileCreateReadwrite                     func(f *File, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileIOStream
 	FileCreateReadwriteAsync                func(f *File, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileCreateReadwriteFinish               func(f *File, res *AsyncResult, err **T.GError) *FileIOStream
-	FileDelete                              func(f *File, cancellable *Cancellable, err **T.GError) bool
+	FileCreateReadwriteFinish               func(f *File, res *AsyncResult, err **L.Error) *FileIOStream
+	FileDelete                              func(f *File, cancellable *Cancellable, err **L.Error) bool
 	FileDup                                 func(f *File) *File
 	FileEjectMountable                      func(f *File, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileEjectMountableFinish                func(f *File, result *AsyncResult, err **T.GError) bool
+	FileEjectMountableFinish                func(f *File, result *AsyncResult, err **L.Error) bool
 	FileEjectMountableWithOperation         func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileEjectMountableWithOperationFinish   func(f *File, result *AsyncResult, err **T.GError) bool
-	FileEnumerateChildren                   func(f *File, attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) *FileEnumerator
+	FileEjectMountableWithOperationFinish   func(f *File, result *AsyncResult, err **L.Error) bool
+	FileEnumerateChildren                   func(f *File, attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) *FileEnumerator
 	FileEnumerateChildrenAsync              func(f *File, attributes string, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileEnumerateChildrenFinish             func(f *File, res *AsyncResult, err **T.GError) *FileEnumerator
+	FileEnumerateChildrenFinish             func(f *File, res *AsyncResult, err **L.Error) *FileEnumerator
 	FileEqual                               func(f, file2 *File) bool
-	FileFindEnclosingMount                  func(f *File, cancellable *Cancellable, err **T.GError) *Mount
+	FileFindEnclosingMount                  func(f *File, cancellable *Cancellable, err **L.Error) *Mount
 	FileFindEnclosingMountAsync             func(f *File, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileFindEnclosingMountFinish            func(f *File, res *AsyncResult, err **T.GError) *Mount
+	FileFindEnclosingMountFinish            func(f *File, res *AsyncResult, err **L.Error) *Mount
 	FileGetBasename                         func(f *File) string
 	FileGetChild                            func(f *File, name string) *File
-	FileGetChildForDisplayName              func(f *File, displayName string, err **T.GError) *File
+	FileGetChildForDisplayName              func(f *File, displayName string, err **L.Error) *File
 	FileGetParent                           func(f *File) *File
 	FileGetParseName                        func(f *File) string
 	FileGetPath                             func(f *File) string
@@ -60,153 +59,153 @@ var (
 	FileHasPrefix                           func(f, prefix *File) bool
 	FileHasUriScheme                        func(f *File, uriScheme string) bool
 	FileIsNative                            func(f *File) bool
-	FileLoadContents                        func(f *File, cancellable *Cancellable, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool
+	FileLoadContents                        func(f *File, cancellable *Cancellable, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool
 	FileLoadContentsAsync                   func(f *File, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileLoadContentsFinish                  func(f *File, res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool
+	FileLoadContentsFinish                  func(f *File, res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool
 	FileLoadPartialContentsAsync            func(f *File, cancellable *Cancellable, readMoreCallback FileReadMoreCallback, callback AsyncReadyCallback, userData T.Gpointer)
-	FileLoadPartialContentsFinish           func(f *File, res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool
-	FileMakeDirectory                       func(f *File, cancellable *Cancellable, err **T.GError) bool
-	FileMakeDirectoryWithParents            func(f *File, cancellable *Cancellable, err **T.GError) bool
-	FileMakeSymbolicLink                    func(f *File, symlinkValue string, cancellable *Cancellable, err **T.GError) bool
-	FileMonitor_                            func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor
-	FileMonitorDirectory                    func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor
-	FileMonitorFile                         func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor
+	FileLoadPartialContentsFinish           func(f *File, res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool
+	FileMakeDirectory                       func(f *File, cancellable *Cancellable, err **L.Error) bool
+	FileMakeDirectoryWithParents            func(f *File, cancellable *Cancellable, err **L.Error) bool
+	FileMakeSymbolicLink                    func(f *File, symlinkValue string, cancellable *Cancellable, err **L.Error) bool
+	FileMonitor_                            func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor
+	FileMonitorDirectory                    func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor
+	FileMonitorFile                         func(f *File, flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor
 	FileMountEnclosingVolume                func(f *File, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileMountEnclosingVolumeFinish          func(f *File, result *AsyncResult, err **T.GError) bool
+	FileMountEnclosingVolumeFinish          func(f *File, result *AsyncResult, err **L.Error) bool
 	FileMountMountable                      func(f *File, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileMountMountableFinish                func(f *File, result *AsyncResult, err **T.GError) *File
-	FileMove                                func(f *File, destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **T.GError) bool
-	FileOpenReadwrite                       func(f *File, cancellable *Cancellable, err **T.GError) *FileIOStream
+	FileMountMountableFinish                func(f *File, result *AsyncResult, err **L.Error) *File
+	FileMove                                func(f *File, destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **L.Error) bool
+	FileOpenReadwrite                       func(f *File, cancellable *Cancellable, err **L.Error) *FileIOStream
 	FileOpenReadwriteAsync                  func(f *File, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileOpenReadwriteFinish                 func(f *File, res *AsyncResult, err **T.GError) *FileIOStream
+	FileOpenReadwriteFinish                 func(f *File, res *AsyncResult, err **L.Error) *FileIOStream
 	FilePollMountable                       func(f *File, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FilePollMountableFinish                 func(f *File, result *AsyncResult, err **T.GError) bool
-	FileQueryDefaultHandler                 func(f *File, cancellable *Cancellable, err **T.GError) *AppInfo
+	FilePollMountableFinish                 func(f *File, result *AsyncResult, err **L.Error) bool
+	FileQueryDefaultHandler                 func(f *File, cancellable *Cancellable, err **L.Error) *AppInfo
 	FileQueryExists                         func(f *File, cancellable *Cancellable) bool
-	FileQueryFilesystemInfo                 func(f *File, attributes string, cancellable *Cancellable, err **T.GError) *FileInfo
+	FileQueryFilesystemInfo                 func(f *File, attributes string, cancellable *Cancellable, err **L.Error) *FileInfo
 	FileQueryFilesystemInfoAsync            func(f *File, attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileQueryFilesystemInfoFinish           func(f *File, res *AsyncResult, err **T.GError) *FileInfo
+	FileQueryFilesystemInfoFinish           func(f *File, res *AsyncResult, err **L.Error) *FileInfo
 	FileQueryFileType                       func(f *File, flags FileQueryInfoFlags, cancellable *Cancellable) FileType
-	FileQueryInfo                           func(f *File, attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) *FileInfo
+	FileQueryInfo                           func(f *File, attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) *FileInfo
 	FileQueryInfoAsync                      func(f *File, attributes string, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileQueryInfoFinish                     func(f *File, res *AsyncResult, err **T.GError) *FileInfo
-	FileQuerySettableAttributes             func(f *File, cancellable *Cancellable, err **T.GError) *FileAttributeInfoList
-	FileQueryWritableNamespaces             func(f *File, cancellable *Cancellable, err **T.GError) *FileAttributeInfoList
-	FileRead                                func(f *File, cancellable *Cancellable, err **T.GError) *FileInputStream
+	FileQueryInfoFinish                     func(f *File, res *AsyncResult, err **L.Error) *FileInfo
+	FileQuerySettableAttributes             func(f *File, cancellable *Cancellable, err **L.Error) *FileAttributeInfoList
+	FileQueryWritableNamespaces             func(f *File, cancellable *Cancellable, err **L.Error) *FileAttributeInfoList
+	FileRead                                func(f *File, cancellable *Cancellable, err **L.Error) *FileInputStream
 	FileReadAsync                           func(f *File, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileReadFinish                          func(f *File, res *AsyncResult, err **T.GError) *FileInputStream
-	FileReplace                             func(f *File, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream
+	FileReadFinish                          func(f *File, res *AsyncResult, err **L.Error) *FileInputStream
+	FileReplace                             func(f *File, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream
 	FileReplaceAsync                        func(f *File, etag string, makeBackup bool, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileReplaceContents                     func(f *File, contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, newEtag **T.Char, cancellable *Cancellable, err **T.GError) bool
+	FileReplaceContents                     func(f *File, contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, newEtag **T.Char, cancellable *Cancellable, err **L.Error) bool
 	FileReplaceContentsAsync                func(f *File, contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileReplaceContentsFinish               func(f *File, res *AsyncResult, newEtag **T.Char, err **T.GError) bool
-	FileReplaceFinish                       func(f *File, res *AsyncResult, err **T.GError) *FileOutputStream
-	FileReplaceReadwrite                    func(f *File, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileIOStream
+	FileReplaceContentsFinish               func(f *File, res *AsyncResult, newEtag **T.Char, err **L.Error) bool
+	FileReplaceFinish                       func(f *File, res *AsyncResult, err **L.Error) *FileOutputStream
+	FileReplaceReadwrite                    func(f *File, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileIOStream
 	FileReplaceReadwriteAsync               func(f *File, etag string, makeBackup bool, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileReplaceReadwriteFinish              func(f *File, res *AsyncResult, err **T.GError) *FileIOStream
+	FileReplaceReadwriteFinish              func(f *File, res *AsyncResult, err **L.Error) *FileIOStream
 	FileResolveRelativePath                 func(f *File, relativePath string) *File
-	FileSetAttribute                        func(f *File, attribute string, typ FileAttributeType, valueP T.Gpointer, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeByteString              func(f *File, attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeInt32                   func(f *File, attribute string, value T.GInt32, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeInt64                   func(f *File, attribute string, value int64, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
+	FileSetAttribute                        func(f *File, attribute string, typ FileAttributeType, valueP T.Gpointer, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeByteString              func(f *File, attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeInt32                   func(f *File, attribute string, value T.GInt32, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeInt64                   func(f *File, attribute string, value int64, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
 	FileSetAttributesAsync                  func(f *File, info *FileInfo, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileSetAttributesFinish                 func(f *File, result *AsyncResult, info **FileInfo, err **T.GError) bool
-	FileSetAttributesFromInfo               func(f *File, info *FileInfo, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeString                  func(f *File, attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeUint32                  func(f *File, attribute string, value T.GUint32, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetAttributeUint64                  func(f *File, attribute string, value uint64, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool
-	FileSetDisplayName                      func(f *File, displayName string, cancellable *Cancellable, err **T.GError) *File
+	FileSetAttributesFinish                 func(f *File, result *AsyncResult, info **FileInfo, err **L.Error) bool
+	FileSetAttributesFromInfo               func(f *File, info *FileInfo, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeString                  func(f *File, attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeUint32                  func(f *File, attribute string, value T.GUint32, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetAttributeUint64                  func(f *File, attribute string, value uint64, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool
+	FileSetDisplayName                      func(f *File, displayName string, cancellable *Cancellable, err **L.Error) *File
 	FileSetDisplayNameAsync                 func(f *File, displayName string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileSetDisplayNameFinish                func(f *File, res *AsyncResult, err **T.GError) *File
+	FileSetDisplayNameFinish                func(f *File, res *AsyncResult, err **L.Error) *File
 	FileStartMountable                      func(f *File, flags DriveStartFlags, startOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileStartMountableFinish                func(f *File, result *AsyncResult, err **T.GError) bool
+	FileStartMountableFinish                func(f *File, result *AsyncResult, err **L.Error) bool
 	FileStopMountable                       func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileStopMountableFinish                 func(f *File, result *AsyncResult, err **T.GError) bool
+	FileStopMountableFinish                 func(f *File, result *AsyncResult, err **L.Error) bool
 	FileSupportsThreadContexts              func(f *File) bool
-	FileTrash                               func(f *File, cancellable *Cancellable, err **T.GError) bool
+	FileTrash                               func(f *File, cancellable *Cancellable, err **L.Error) bool
 	FileUnmountMountable                    func(f *File, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileUnmountMountableFinish              func(f *File, result *AsyncResult, err **T.GError) bool
+	FileUnmountMountableFinish              func(f *File, result *AsyncResult, err **L.Error) bool
 	FileUnmountMountableWithOperation       func(f *File, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileUnmountMountableWithOperationFinish func(f *File, result *AsyncResult, err **T.GError) bool
+	FileUnmountMountableWithOperationFinish func(f *File, result *AsyncResult, err **L.Error) bool
 )
 
-func (f *File) AppendTo(flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream {
+func (f *File) AppendTo(flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream {
 	return FileAppendTo(f, flags, cancellable, err)
 }
 func (f *File) AppendToAsync(flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileAppendToAsync(f, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) AppendToFinish(res *AsyncResult, err **T.GError) *FileOutputStream {
+func (f *File) AppendToFinish(res *AsyncResult, err **L.Error) *FileOutputStream {
 	return FileAppendToFinish(f, res, err)
 }
-func (f *File) Copy(destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **T.GError) bool {
+func (f *File) Copy(destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **L.Error) bool {
 	return FileCopy(f, destination, flags, cancellable, progressCallback, progressCallbackData, err)
 }
 func (f *File) CopyAsync(destination *File, flags FileCopyFlags, ioPriority int, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileCopyAsync(f, destination, flags, ioPriority, cancellable, progressCallback, progressCallbackData, callback, userData)
 }
-func (f *File) CopyAttributes(destination *File, flags FileCopyFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) CopyAttributes(destination *File, flags FileCopyFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileCopyAttributes(f, destination, flags, cancellable, err)
 }
-func (f *File) CopyFinish(res *AsyncResult, err **T.GError) bool {
+func (f *File) CopyFinish(res *AsyncResult, err **L.Error) bool {
 	return FileCopyFinish(f, res, err)
 }
-func (f *File) Create(flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream {
+func (f *File) Create(flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream {
 	return FileCreate(f, flags, cancellable, err)
 }
 func (f *File) CreateAsync(flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileCreateAsync(f, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) CreateFinish(res *AsyncResult, err **T.GError) *FileOutputStream {
+func (f *File) CreateFinish(res *AsyncResult, err **L.Error) *FileOutputStream {
 	return FileCreateFinish(f, res, err)
 }
-func (f *File) CreateReadwrite(flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileIOStream {
+func (f *File) CreateReadwrite(flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileIOStream {
 	return FileCreateReadwrite(f, flags, cancellable, err)
 }
 func (f *File) CreateReadwriteAsync(flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileCreateReadwriteAsync(f, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) CreateReadwriteFinish(res *AsyncResult, err **T.GError) *FileIOStream {
+func (f *File) CreateReadwriteFinish(res *AsyncResult, err **L.Error) *FileIOStream {
 	return FileCreateReadwriteFinish(f, res, err)
 }
-func (f *File) Delete(cancellable *Cancellable, err **T.GError) bool {
+func (f *File) Delete(cancellable *Cancellable, err **L.Error) bool {
 	return FileDelete(f, cancellable, err)
 }
 func (f *File) Dup() *File { return FileDup(f) }
 func (f *File) EjectMountable(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileEjectMountable(f, flags, cancellable, callback, userData)
 }
-func (f *File) EjectMountableFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) EjectMountableFinish(result *AsyncResult, err **L.Error) bool {
 	return FileEjectMountableFinish(f, result, err)
 }
 func (f *File) EjectMountableWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileEjectMountableWithOperation(f, flags, mountOperation, cancellable, callback, userData)
 }
-func (f *File) EjectMountableWithOperationFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) EjectMountableWithOperationFinish(result *AsyncResult, err **L.Error) bool {
 	return FileEjectMountableWithOperationFinish(f, result, err)
 }
-func (f *File) EnumerateChildren(attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) *FileEnumerator {
+func (f *File) EnumerateChildren(attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) *FileEnumerator {
 	return FileEnumerateChildren(f, attributes, flags, cancellable, err)
 }
 func (f *File) EnumerateChildrenAsync(attributes string, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileEnumerateChildrenAsync(f, attributes, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) EnumerateChildrenFinish(res *AsyncResult, err **T.GError) *FileEnumerator {
+func (f *File) EnumerateChildrenFinish(res *AsyncResult, err **L.Error) *FileEnumerator {
 	return FileEnumerateChildrenFinish(f, res, err)
 }
 func (f *File) Equal(file2 *File) bool { return FileEqual(f, file2) }
-func (f *File) FindEnclosingMount(cancellable *Cancellable, err **T.GError) *Mount {
+func (f *File) FindEnclosingMount(cancellable *Cancellable, err **L.Error) *Mount {
 	return FileFindEnclosingMount(f, cancellable, err)
 }
 func (f *File) FindEnclosingMountAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileFindEnclosingMountAsync(f, ioPriority, cancellable, callback, userData)
 }
-func (f *File) FindEnclosingMountFinish(res *AsyncResult, err **T.GError) *Mount {
+func (f *File) FindEnclosingMountFinish(res *AsyncResult, err **L.Error) *Mount {
 	return FileFindEnclosingMountFinish(f, res, err)
 }
 func (f *File) GetBasename() string        { return FileGetBasename(f) }
 func (f *File) GetChild(name string) *File { return FileGetChild(f, name) }
-func (f *File) GetChildForDisplayName(displayName string, err **T.GError) *File {
+func (f *File) GetChildForDisplayName(displayName string, err **L.Error) *File {
 	return FileGetChildForDisplayName(f, displayName, err)
 }
 func (f *File) GetParent() *File                        { return FileGetParent(f) }
@@ -219,206 +218,206 @@ func (f *File) HasParent(parent *File) bool             { return FileHasParent(f
 func (f *File) HasPrefix(prefix *File) bool             { return FileHasPrefix(f, prefix) }
 func (f *File) HasUriScheme(uriScheme string) bool      { return FileHasUriScheme(f, uriScheme) }
 func (f *File) IsNative() bool                          { return FileIsNative(f) }
-func (f *File) LoadContents(cancellable *Cancellable, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool {
+func (f *File) LoadContents(cancellable *Cancellable, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool {
 	return FileLoadContents(f, cancellable, contents, length, etagOut, err)
 }
 func (f *File) LoadContentsAsync(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileLoadContentsAsync(f, cancellable, callback, userData)
 }
-func (f *File) LoadContentsFinish(res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool {
+func (f *File) LoadContentsFinish(res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool {
 	return FileLoadContentsFinish(f, res, contents, length, etagOut, err)
 }
 func (f *File) LoadPartialContentsAsync(cancellable *Cancellable, readMoreCallback FileReadMoreCallback, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileLoadPartialContentsAsync(f, cancellable, readMoreCallback, callback, userData)
 }
-func (f *File) LoadPartialContentsFinish(res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **T.GError) bool {
+func (f *File) LoadPartialContentsFinish(res *AsyncResult, contents **T.Char, length *T.Gsize, etagOut **T.Char, err **L.Error) bool {
 	return FileLoadPartialContentsFinish(f, res, contents, length, etagOut, err)
 }
-func (f *File) MakeDirectory(cancellable *Cancellable, err **T.GError) bool {
+func (f *File) MakeDirectory(cancellable *Cancellable, err **L.Error) bool {
 	return FileMakeDirectory(f, cancellable, err)
 }
-func (f *File) MakeDirectoryWithParents(cancellable *Cancellable, err **T.GError) bool {
+func (f *File) MakeDirectoryWithParents(cancellable *Cancellable, err **L.Error) bool {
 	return FileMakeDirectoryWithParents(f, cancellable, err)
 }
-func (f *File) MakeSymbolicLink(symlinkValue string, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) MakeSymbolicLink(symlinkValue string, cancellable *Cancellable, err **L.Error) bool {
 	return FileMakeSymbolicLink(f, symlinkValue, cancellable, err)
 }
-func (f *File) Monitor(flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor {
+func (f *File) Monitor(flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor {
 	return FileMonitor_(f, flags, cancellable, err)
 }
-func (f *File) MonitorDirectory(flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor {
+func (f *File) MonitorDirectory(flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor {
 	return FileMonitorDirectory(f, flags, cancellable, err)
 }
-func (f *File) MonitorFile(flags FileMonitorFlags, cancellable *Cancellable, err **T.GError) *FileMonitor {
+func (f *File) MonitorFile(flags FileMonitorFlags, cancellable *Cancellable, err **L.Error) *FileMonitor {
 	return FileMonitorFile(f, flags, cancellable, err)
 }
 func (f *File) MountEnclosingVolume(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileMountEnclosingVolume(f, flags, mountOperation, cancellable, callback, userData)
 }
-func (f *File) MountEnclosingVolumeFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) MountEnclosingVolumeFinish(result *AsyncResult, err **L.Error) bool {
 	return FileMountEnclosingVolumeFinish(f, result, err)
 }
 func (f *File) MountMountable(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileMountMountable(f, flags, mountOperation, cancellable, callback, userData)
 }
-func (f *File) MountMountableFinish(result *AsyncResult, err **T.GError) *File {
+func (f *File) MountMountableFinish(result *AsyncResult, err **L.Error) *File {
 	return FileMountMountableFinish(f, result, err)
 }
-func (f *File) Move(destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **T.GError) bool {
+func (f *File) Move(destination *File, flags FileCopyFlags, cancellable *Cancellable, progressCallback FileProgressCallback, progressCallbackData T.Gpointer, err **L.Error) bool {
 	return FileMove(f, destination, flags, cancellable, progressCallback, progressCallbackData, err)
 }
-func (f *File) OpenReadwrite(cancellable *Cancellable, err **T.GError) *FileIOStream {
+func (f *File) OpenReadwrite(cancellable *Cancellable, err **L.Error) *FileIOStream {
 	return FileOpenReadwrite(f, cancellable, err)
 }
 func (f *File) OpenReadwriteAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileOpenReadwriteAsync(f, ioPriority, cancellable, callback, userData)
 }
-func (f *File) OpenReadwriteFinish(res *AsyncResult, err **T.GError) *FileIOStream {
+func (f *File) OpenReadwriteFinish(res *AsyncResult, err **L.Error) *FileIOStream {
 	return FileOpenReadwriteFinish(f, res, err)
 }
 func (f *File) PollMountable(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FilePollMountable(f, cancellable, callback, userData)
 }
-func (f *File) PollMountableFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) PollMountableFinish(result *AsyncResult, err **L.Error) bool {
 	return FilePollMountableFinish(f, result, err)
 }
-func (f *File) QueryDefaultHandler(cancellable *Cancellable, err **T.GError) *AppInfo {
+func (f *File) QueryDefaultHandler(cancellable *Cancellable, err **L.Error) *AppInfo {
 	return FileQueryDefaultHandler(f, cancellable, err)
 }
 func (f *File) QueryExists(cancellable *Cancellable) bool {
 	return FileQueryExists(f, cancellable)
 }
-func (f *File) QueryFilesystemInfo(attributes string, cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *File) QueryFilesystemInfo(attributes string, cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileQueryFilesystemInfo(f, attributes, cancellable, err)
 }
 func (f *File) QueryFilesystemInfoAsync(attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileQueryFilesystemInfoAsync(f, attributes, ioPriority, cancellable, callback, userData)
 }
-func (f *File) QueryFilesystemInfoFinish(res *AsyncResult, err **T.GError) *FileInfo {
+func (f *File) QueryFilesystemInfoFinish(res *AsyncResult, err **L.Error) *FileInfo {
 	return FileQueryFilesystemInfoFinish(f, res, err)
 }
 func (f *File) QueryFileType(flags FileQueryInfoFlags, cancellable *Cancellable) FileType {
 	return FileQueryFileType(f, flags, cancellable)
 }
-func (f *File) QueryInfo(attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *File) QueryInfo(attributes string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileQueryInfo(f, attributes, flags, cancellable, err)
 }
 func (f *File) QueryInfoAsync(attributes string, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileQueryInfoAsync(f, attributes, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) QueryInfoFinish(res *AsyncResult, err **T.GError) *FileInfo {
+func (f *File) QueryInfoFinish(res *AsyncResult, err **L.Error) *FileInfo {
 	return FileQueryInfoFinish(f, res, err)
 }
-func (f *File) QuerySettableAttributes(cancellable *Cancellable, err **T.GError) *FileAttributeInfoList {
+func (f *File) QuerySettableAttributes(cancellable *Cancellable, err **L.Error) *FileAttributeInfoList {
 	return FileQuerySettableAttributes(f, cancellable, err)
 }
-func (f *File) QueryWritableNamespaces(cancellable *Cancellable, err **T.GError) *FileAttributeInfoList {
+func (f *File) QueryWritableNamespaces(cancellable *Cancellable, err **L.Error) *FileAttributeInfoList {
 	return FileQueryWritableNamespaces(f, cancellable, err)
 }
-func (f *File) Read(cancellable *Cancellable, err **T.GError) *FileInputStream {
+func (f *File) Read(cancellable *Cancellable, err **L.Error) *FileInputStream {
 	return FileRead(f, cancellable, err)
 }
 func (f *File) ReadAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileReadAsync(f, ioPriority, cancellable, callback, userData)
 }
-func (f *File) ReadFinish(res *AsyncResult, err **T.GError) *FileInputStream {
+func (f *File) ReadFinish(res *AsyncResult, err **L.Error) *FileInputStream {
 	return FileReadFinish(f, res, err)
 }
-func (f *File) Replace(etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileOutputStream {
+func (f *File) Replace(etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileOutputStream {
 	return FileReplace(f, etag, makeBackup, flags, cancellable, err)
 }
 func (f *File) ReplaceAsync(etag string, makeBackup bool, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileReplaceAsync(f, etag, makeBackup, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) ReplaceContents(contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, newEtag **T.Char, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) ReplaceContents(contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, newEtag **T.Char, cancellable *Cancellable, err **L.Error) bool {
 	return FileReplaceContents(f, contents, length, etag, makeBackup, flags, newEtag, cancellable, err)
 }
 func (f *File) ReplaceContentsAsync(contents string, length T.Gsize, etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileReplaceContentsAsync(f, contents, length, etag, makeBackup, flags, cancellable, callback, userData)
 }
-func (f *File) ReplaceContentsFinish(res *AsyncResult, newEtag **T.Char, err **T.GError) bool {
+func (f *File) ReplaceContentsFinish(res *AsyncResult, newEtag **T.Char, err **L.Error) bool {
 	return FileReplaceContentsFinish(f, res, newEtag, err)
 }
-func (f *File) ReplaceFinish(res *AsyncResult, err **T.GError) *FileOutputStream {
+func (f *File) ReplaceFinish(res *AsyncResult, err **L.Error) *FileOutputStream {
 	return FileReplaceFinish(f, res, err)
 }
-func (f *File) ReplaceReadwrite(etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **T.GError) *FileIOStream {
+func (f *File) ReplaceReadwrite(etag string, makeBackup bool, flags FileCreateFlags, cancellable *Cancellable, err **L.Error) *FileIOStream {
 	return FileReplaceReadwrite(f, etag, makeBackup, flags, cancellable, err)
 }
 func (f *File) ReplaceReadwriteAsync(etag string, makeBackup bool, flags FileCreateFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileReplaceReadwriteAsync(f, etag, makeBackup, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) ReplaceReadwriteFinish(res *AsyncResult, err **T.GError) *FileIOStream {
+func (f *File) ReplaceReadwriteFinish(res *AsyncResult, err **L.Error) *FileIOStream {
 	return FileReplaceReadwriteFinish(f, res, err)
 }
 func (f *File) ResolveRelativePath(relativePath string) *File {
 	return FileResolveRelativePath(f, relativePath)
 }
-func (f *File) SetAttribute(attribute string, typ FileAttributeType, valueP T.Gpointer, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttribute(attribute string, typ FileAttributeType, valueP T.Gpointer, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttribute(f, attribute, typ, valueP, flags, cancellable, err)
 }
-func (f *File) SetAttributeByteString(attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeByteString(attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeByteString(f, attribute, value, flags, cancellable, err)
 }
-func (f *File) SetAttributeInt32(attribute string, value T.GInt32, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeInt32(attribute string, value T.GInt32, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeInt32(f, attribute, value, flags, cancellable, err)
 }
-func (f *File) SetAttributeInt64(attribute string, value int64, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeInt64(attribute string, value int64, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeInt64(f, attribute, value, flags, cancellable, err)
 }
 func (f *File) SetAttributesAsync(info *FileInfo, flags FileQueryInfoFlags, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileSetAttributesAsync(f, info, flags, ioPriority, cancellable, callback, userData)
 }
-func (f *File) SetAttributesFinish(result *AsyncResult, info **FileInfo, err **T.GError) bool {
+func (f *File) SetAttributesFinish(result *AsyncResult, info **FileInfo, err **L.Error) bool {
 	return FileSetAttributesFinish(f, result, info, err)
 }
-func (f *File) SetAttributesFromInfo(info *FileInfo, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributesFromInfo(info *FileInfo, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributesFromInfo(f, info, flags, cancellable, err)
 }
-func (f *File) SetAttributeString(attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeString(attribute, value string, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeString(f, attribute, value, flags, cancellable, err)
 }
-func (f *File) SetAttributeUint32(attribute string, value T.GUint32, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeUint32(attribute string, value T.GUint32, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeUint32(f, attribute, value, flags, cancellable, err)
 }
-func (f *File) SetAttributeUint64(attribute string, value uint64, flags FileQueryInfoFlags, cancellable *Cancellable, err **T.GError) bool {
+func (f *File) SetAttributeUint64(attribute string, value uint64, flags FileQueryInfoFlags, cancellable *Cancellable, err **L.Error) bool {
 	return FileSetAttributeUint64(f, attribute, value, flags, cancellable, err)
 }
-func (f *File) SetDisplayName(displayName string, cancellable *Cancellable, err **T.GError) *File {
+func (f *File) SetDisplayName(displayName string, cancellable *Cancellable, err **L.Error) *File {
 	return FileSetDisplayName(f, displayName, cancellable, err)
 }
 func (f *File) SetDisplayNameAsync(displayName string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileSetDisplayNameAsync(f, displayName, ioPriority, cancellable, callback, userData)
 }
-func (f *File) SetDisplayNameFinish(res *AsyncResult, err **T.GError) *File {
+func (f *File) SetDisplayNameFinish(res *AsyncResult, err **L.Error) *File {
 	return FileSetDisplayNameFinish(f, res, err)
 }
 func (f *File) StartMountable(flags DriveStartFlags, startOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileStartMountable(f, flags, startOperation, cancellable, callback, userData)
 }
-func (f *File) StartMountableFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) StartMountableFinish(result *AsyncResult, err **L.Error) bool {
 	return FileStartMountableFinish(f, result, err)
 }
 func (f *File) StopMountable(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileStopMountable(f, flags, mountOperation, cancellable, callback, userData)
 }
-func (f *File) StopMountableFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) StopMountableFinish(result *AsyncResult, err **L.Error) bool {
 	return FileStopMountableFinish(f, result, err)
 }
 func (f *File) SupportsThreadContexts() bool { return FileSupportsThreadContexts(f) }
-func (f *File) Trash(cancellable *Cancellable, err **T.GError) bool {
+func (f *File) Trash(cancellable *Cancellable, err **L.Error) bool {
 	return FileTrash(f, cancellable, err)
 }
 func (f *File) UnmountMountable(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileUnmountMountable(f, flags, cancellable, callback, userData)
 }
-func (f *File) UnmountMountableFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) UnmountMountableFinish(result *AsyncResult, err **L.Error) bool {
 	return FileUnmountMountableFinish(f, result, err)
 }
 func (f *File) UnmountMountableWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileUnmountMountableWithOperation(f, flags, mountOperation, cancellable, callback, userData)
 }
-func (f *File) UnmountMountableWithOperationFinish(result *AsyncResult, err **T.GError) bool {
+func (f *File) UnmountMountableWithOperationFinish(result *AsyncResult, err **L.Error) bool {
 	return FileUnmountMountableWithOperationFinish(f, result, err)
 }
 
@@ -550,34 +549,34 @@ type FileEnumerator struct {
 var (
 	FileEnumeratorGetType func() O.Type
 
-	FileEnumeratorNextFile        func(f *FileEnumerator, cancellable *Cancellable, err **T.GError) *FileInfo
-	FileEnumeratorClose           func(f *FileEnumerator, cancellable *Cancellable, err **T.GError) bool
+	FileEnumeratorNextFile        func(f *FileEnumerator, cancellable *Cancellable, err **L.Error) *FileInfo
+	FileEnumeratorClose           func(f *FileEnumerator, cancellable *Cancellable, err **L.Error) bool
 	FileEnumeratorNextFilesAsync  func(f *FileEnumerator, numFiles, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileEnumeratorNextFilesFinish func(f *FileEnumerator, result *AsyncResult, err **T.GError) *T.GList
+	FileEnumeratorNextFilesFinish func(f *FileEnumerator, result *AsyncResult, err **L.Error) *L.List
 	FileEnumeratorCloseAsync      func(f *FileEnumerator, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileEnumeratorCloseFinish     func(f *FileEnumerator, result *AsyncResult, err **T.GError) bool
+	FileEnumeratorCloseFinish     func(f *FileEnumerator, result *AsyncResult, err **L.Error) bool
 	FileEnumeratorIsClosed        func(f *FileEnumerator) bool
 	FileEnumeratorHasPending      func(f *FileEnumerator) bool
 	FileEnumeratorSetPending      func(f *FileEnumerator, pending bool)
 	FileEnumeratorGetContainer    func(f *FileEnumerator) *File
 )
 
-func (f *FileEnumerator) NextFile(cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *FileEnumerator) NextFile(cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileEnumeratorNextFile(f, cancellable, err)
 }
-func (f *FileEnumerator) Close(cancellable *Cancellable, err **T.GError) bool {
+func (f *FileEnumerator) Close(cancellable *Cancellable, err **L.Error) bool {
 	return FileEnumeratorClose(f, cancellable, err)
 }
 func (f *FileEnumerator) NextFilesAsync(numFiles, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileEnumeratorNextFilesAsync(f, numFiles, ioPriority, cancellable, callback, userData)
 }
-func (f *FileEnumerator) NextFilesFinish(result *AsyncResult, err **T.GError) *T.GList {
+func (f *FileEnumerator) NextFilesFinish(result *AsyncResult, err **L.Error) *L.List {
 	return FileEnumeratorNextFilesFinish(f, result, err)
 }
 func (f *FileEnumerator) CloseAsync(ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileEnumeratorCloseAsync(f, ioPriority, cancellable, callback, userData)
 }
-func (f *FileEnumerator) CloseFinish(result *AsyncResult, err **T.GError) bool {
+func (f *FileEnumerator) CloseFinish(result *AsyncResult, err **L.Error) bool {
 	return FileEnumeratorCloseFinish(f, result, err)
 }
 func (f *FileEnumerator) IsClosed() bool          { return FileEnumeratorIsClosed(f) }
@@ -704,20 +703,20 @@ func (f *FileInfo) GetAttributeUint32(attribute string) T.GUint32 {
 func (f *FileInfo) GetAttributeUint64(attribute string) uint64 {
 	return FileInfoGetAttributeUint64(f, attribute)
 }
-func (f *FileInfo) GetContentType() string                 { return FileInfoGetContentType(f) }
-func (f *FileInfo) GetDisplayName() string                 { return FileInfoGetDisplayName(f) }
-func (f *FileInfo) GetEditName() string                    { return FileInfoGetEditName(f) }
-func (f *FileInfo) GetEtag() string                        { return FileInfoGetEtag(f) }
-func (f *FileInfo) GetFileType() FileType                  { return FileInfoGetFileType(f) }
-func (f *FileInfo) GetIcon() *Icon                         { return FileInfoGetIcon(f) }
-func (f *FileInfo) GetIsBackup() bool                      { return FileInfoGetIsBackup(f) }
-func (f *FileInfo) GetIsHidden() bool                      { return FileInfoGetIsHidden(f) }
-func (f *FileInfo) GetIsSymlink() bool                     { return FileInfoGetIsSymlink(f) }
+func (f *FileInfo) GetContentType() string                { return FileInfoGetContentType(f) }
+func (f *FileInfo) GetDisplayName() string                { return FileInfoGetDisplayName(f) }
+func (f *FileInfo) GetEditName() string                   { return FileInfoGetEditName(f) }
+func (f *FileInfo) GetEtag() string                       { return FileInfoGetEtag(f) }
+func (f *FileInfo) GetFileType() FileType                 { return FileInfoGetFileType(f) }
+func (f *FileInfo) GetIcon() *Icon                        { return FileInfoGetIcon(f) }
+func (f *FileInfo) GetIsBackup() bool                     { return FileInfoGetIsBackup(f) }
+func (f *FileInfo) GetIsHidden() bool                     { return FileInfoGetIsHidden(f) }
+func (f *FileInfo) GetIsSymlink() bool                    { return FileInfoGetIsSymlink(f) }
 func (f *FileInfo) GetModificationTime(result *L.TimeVal) { FileInfoGetModificationTime(f, result) }
-func (f *FileInfo) GetName() string                        { return FileInfoGetName(f) }
-func (f *FileInfo) GetSize() T.Goffset                     { return FileInfoGetSize(f) }
-func (f *FileInfo) GetSortOrder() T.GInt32                 { return FileInfoGetSortOrder(f) }
-func (f *FileInfo) GetSymlinkTarget() string               { return FileInfoGetSymlinkTarget(f) }
+func (f *FileInfo) GetName() string                       { return FileInfoGetName(f) }
+func (f *FileInfo) GetSize() T.Goffset                    { return FileInfoGetSize(f) }
+func (f *FileInfo) GetSortOrder() T.GInt32                { return FileInfoGetSortOrder(f) }
+func (f *FileInfo) GetSymlinkTarget() string              { return FileInfoGetSymlinkTarget(f) }
 func (f *FileInfo) HasAttribute(attribute string) bool {
 	return FileInfoHasAttribute(f, attribute)
 }
@@ -769,7 +768,7 @@ func (f *FileInfo) SetFileType(typ FileType)              { FileInfoSetFileType(
 func (f *FileInfo) SetIcon(icon *Icon)                    { FileInfoSetIcon(f, icon) }
 func (f *FileInfo) SetIsHidden(isHidden bool)             { FileInfoSetIsHidden(f, isHidden) }
 func (f *FileInfo) SetIsSymlink(isSymlink bool)           { FileInfoSetIsSymlink(f, isSymlink) }
-func (f *FileInfo) SetModificationTime(mtime *L.TimeVal) { FileInfoSetModificationTime(f, mtime) }
+func (f *FileInfo) SetModificationTime(mtime *L.TimeVal)  { FileInfoSetModificationTime(f, mtime) }
 func (f *FileInfo) SetName(name string)                   { FileInfoSetName(f, name) }
 func (f *FileInfo) SetSize(size T.Goffset)                { FileInfoSetSize(f, size) }
 func (f *FileInfo) SetSortOrder(sortOrder T.GInt32)       { FileInfoSetSortOrder(f, sortOrder) }
@@ -784,18 +783,18 @@ type FileInputStream struct {
 var (
 	FileInputStreamGetType func() O.Type
 
-	FileInputStreamQueryInfo       func(f *FileInputStream, attributes string, cancellable *Cancellable, err **T.GError) *FileInfo
+	FileInputStreamQueryInfo       func(f *FileInputStream, attributes string, cancellable *Cancellable, err **L.Error) *FileInfo
 	FileInputStreamQueryInfoAsync  func(f *FileInputStream, attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileInputStreamQueryInfoFinish func(f *FileInputStream, result *AsyncResult, err **T.GError) *FileInfo
+	FileInputStreamQueryInfoFinish func(f *FileInputStream, result *AsyncResult, err **L.Error) *FileInfo
 )
 
-func (f *FileInputStream) QueryInfo(attributes string, cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *FileInputStream) QueryInfo(attributes string, cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileInputStreamQueryInfo(f, attributes, cancellable, err)
 }
 func (f *FileInputStream) QueryInfoAsync(attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileInputStreamQueryInfoAsync(f, attributes, ioPriority, cancellable, callback, userData)
 }
-func (f *FileInputStream) QueryInfoFinish(result *AsyncResult, err **T.GError) *FileInfo {
+func (f *FileInputStream) QueryInfoFinish(result *AsyncResult, err **L.Error) *FileInfo {
 	return FileInputStreamQueryInfoFinish(f, result, err)
 }
 
@@ -808,19 +807,19 @@ var (
 	FileIoStreamGetType func() O.Type
 
 	FileIoStreamGetEtag         func(f *FileIOStream) string
-	FileIoStreamQueryInfo       func(f *FileIOStream, attributes string, cancellable *Cancellable, err **T.GError) *FileInfo
+	FileIoStreamQueryInfo       func(f *FileIOStream, attributes string, cancellable *Cancellable, err **L.Error) *FileInfo
 	FileIoStreamQueryInfoAsync  func(f *FileIOStream, attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileIoStreamQueryInfoFinish func(f *FileIOStream, result *AsyncResult, err **T.GError) *FileInfo
+	FileIoStreamQueryInfoFinish func(f *FileIOStream, result *AsyncResult, err **L.Error) *FileInfo
 )
 
 func (f *FileIOStream) GetEtag() string { return FileIoStreamGetEtag(f) }
-func (f *FileIOStream) QueryInfo(attributes string, cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *FileIOStream) QueryInfo(attributes string, cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileIoStreamQueryInfo(f, attributes, cancellable, err)
 }
 func (f *FileIOStream) QueryInfoAsync(attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileIoStreamQueryInfoAsync(f, attributes, ioPriority, cancellable, callback, userData)
 }
-func (f *FileIOStream) QueryInfoFinish(result *AsyncResult, err **T.GError) *FileInfo {
+func (f *FileIOStream) QueryInfoFinish(result *AsyncResult, err **L.Error) *FileInfo {
 	return FileIoStreamQueryInfoFinish(f, result, err)
 }
 
@@ -900,19 +899,19 @@ var (
 	FileOutputStreamGetType func() O.Type
 
 	FileOutputStreamGetEtag         func(f *FileOutputStream) string
-	FileOutputStreamQueryInfo       func(f *FileOutputStream, attributes string, cancellable *Cancellable, err **T.GError) *FileInfo
+	FileOutputStreamQueryInfo       func(f *FileOutputStream, attributes string, cancellable *Cancellable, err **L.Error) *FileInfo
 	FileOutputStreamQueryInfoAsync  func(f *FileOutputStream, attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	FileOutputStreamQueryInfoFinish func(f *FileOutputStream, result *AsyncResult, err **T.GError) *FileInfo
+	FileOutputStreamQueryInfoFinish func(f *FileOutputStream, result *AsyncResult, err **L.Error) *FileInfo
 )
 
 func (f *FileOutputStream) GetEtag() string { return FileOutputStreamGetEtag(f) }
-func (f *FileOutputStream) QueryInfo(attributes string, cancellable *Cancellable, err **T.GError) *FileInfo {
+func (f *FileOutputStream) QueryInfo(attributes string, cancellable *Cancellable, err **L.Error) *FileInfo {
 	return FileOutputStreamQueryInfo(f, attributes, cancellable, err)
 }
 func (f *FileOutputStream) QueryInfoAsync(attributes string, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	FileOutputStreamQueryInfoAsync(f, attributes, ioPriority, cancellable, callback, userData)
 }
-func (f *FileOutputStream) QueryInfoFinish(result *AsyncResult, err **T.GError) *FileInfo {
+func (f *FileOutputStream) QueryInfoFinish(result *AsyncResult, err **L.Error) *FileInfo {
 	return FileOutputStreamQueryInfoFinish(f, result, err)
 }
 

@@ -4,16 +4,11 @@
 package glib
 
 import (
-	// O "github.com/tHinqa/outside-gtk2/gobject"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
-type List struct {
-	Data T.Gpointer
-	Next *List
-	Prev *List
-}
+type List T.List // chicken/egg
 
 var (
 	ListAlloc         func() *List
@@ -30,7 +25,7 @@ var (
 	ListForeach              func(l *List, f T.GFunc, userData T.Gpointer)
 	ListFree                 func(l *List)
 	ListFree1                func(l *List)
-	ListFreeFull             func(l *List, freeFunc T.GDestroyNotify)
+	ListFreeFull             func(l *List, freeFunc O.DestroyNotify)
 	ListIndex                func(l *List, data T.Gconstpointer) int
 	ListInsert               func(l *List, data T.Gpointer, position int) *List
 	ListInsertBefore         func(l *List, sibling *List, data T.Gpointer) *List
@@ -63,7 +58,7 @@ func (l *List) First() *List                               { return ListFirst(l)
 func (l *List) Foreach(f T.GFunc, userData T.Gpointer)     { ListForeach(l, f, userData) }
 func (l *List) Free()                                      { ListFree(l) }
 func (l *List) Free1()                                     { ListFree1(l) }
-func (l *List) FreeFull(freeFunc T.GDestroyNotify)         { ListFreeFull(l, freeFunc) }
+func (l *List) FreeFull(freeFunc O.DestroyNotify)          { ListFreeFull(l, freeFunc) }
 func (l *List) Index(data T.Gconstpointer) int             { return ListIndex(l, data) }
 func (l *List) Insert(data T.Gpointer, position int) *List { return ListInsert(l, data, position) }
 func (l *List) InsertBefore(sibling *List, data T.Gpointer) *List {

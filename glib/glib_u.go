@@ -9,7 +9,7 @@ import (
 	// . "github.com/tHinqa/outside/types"
 )
 
-type Unichar T.Gunichar
+type Unichar T.Unichar
 
 var (
 	UnicodeCanonicalOrdering func(str *Unichar, leng T.Gsize)

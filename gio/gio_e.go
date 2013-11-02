@@ -4,9 +4,8 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type Emblem struct{}
@@ -33,13 +32,13 @@ var (
 	EmblemedIconNew     func(icon *Icon, emblem *Emblem) *Icon
 
 	EmblemedIconGetIcon      func(e *EmblemedIcon) *Icon
-	EmblemedIconGetEmblems   func(e *EmblemedIcon) *T.GList
+	EmblemedIconGetEmblems   func(e *EmblemedIcon) *L.List
 	EmblemedIconAddEmblem    func(e *EmblemedIcon, emblem *Emblem)
 	EmblemedIconClearEmblems func(e *EmblemedIcon)
 )
 
 func (e *EmblemedIcon) GetIcon() *Icon           { return EmblemedIconGetIcon(e) }
-func (e *EmblemedIcon) GetEmblems() *T.GList     { return EmblemedIconGetEmblems(e) }
+func (e *EmblemedIcon) GetEmblems() *L.List      { return EmblemedIconGetEmblems(e) }
 func (e *EmblemedIcon) AddEmblem(emblem *Emblem) { EmblemedIconAddEmblem(e, emblem) }
 func (e *EmblemedIcon) ClearEmblems()            { EmblemedIconClearEmblems(e) }
 

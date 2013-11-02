@@ -6,6 +6,7 @@ package gtk
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
 	I "github.com/tHinqa/outside-gtk2/gio"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
@@ -88,7 +89,7 @@ var (
 	MenuNew     func() *Widget
 
 	MenuDirectionTypeGetType func() O.Type
-	MenuGetForAttachWidget   func(widget *Widget) *T.GList
+	MenuGetForAttachWidget   func(widget *Widget) *L.List
 
 	MenuAttach               func(m *Menu, child *Widget, leftAttach, rightAttach, topAttach, bottomAttach uint)
 	MenuAttachToWidget       func(m *Menu, attachWidget *Widget, detacher MenuDetachFunc)
@@ -232,7 +233,7 @@ func (m *MenuItem) ToggleSizeRequest(requisition *int) { MenuItemToggleSizeReque
 
 type MenuShell struct {
 	Container       Container
-	Children        *T.GList
+	Children        *L.List
 	ActiveMenuItem  *Widget
 	ParentMenuShell *Widget
 	Button          uint

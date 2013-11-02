@@ -4,11 +4,11 @@
 package pango
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
-	T "github.com/tHinqa/outside-gtk2/types"
 )
 
-var IsZeroWidth func(ch T.Gunichar) bool
+var IsZeroWidth func(ch L.Unichar) bool
 
 type Item struct {
 	Offset   int
@@ -31,6 +31,6 @@ func (i *Item) Free()                         { ItemFree(i) }
 func (i *Item) Split(index, offset int) *Item { return ItemSplit(i, index, offset) }
 
 var (
-	Itemize            func(context *Context, text string, startIndex, length int, Attrs *AttrList, cachedIter *AttrIterator) *T.GList
-	ItemizeWithBaseDir func(context *Context, baseDir Direction, text string, startIndex, length int, Attrs *AttrList, cachedIter *AttrIterator) *T.GList
+	Itemize            func(context *Context, text string, startIndex, length int, Attrs *AttrList, cachedIter *AttrIterator) *L.List
+	ItemizeWithBaseDir func(context *Context, baseDir Direction, text string, startIndex, length int, Attrs *AttrList, cachedIter *AttrIterator) *L.List
 )

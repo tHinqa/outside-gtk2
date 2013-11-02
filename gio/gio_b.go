@@ -4,9 +4,9 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type BufferedInputStream struct {
@@ -19,24 +19,24 @@ var (
 	BufferedInputStreamNew      func(baseStream *InputStream) *InputStream
 	BufferedInputStreamNewSized func(baseStream *InputStream, size T.Gsize) *InputStream
 
-	BufferedInputStreamFill          func(b *BufferedInputStream, count T.Gssize, cancellable *Cancellable, err **T.GError) T.Gssize
+	BufferedInputStreamFill          func(b *BufferedInputStream, count T.Gssize, cancellable *Cancellable, err **L.Error) T.Gssize
 	BufferedInputStreamFillAsync     func(b *BufferedInputStream, count T.Gssize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	BufferedInputStreamFillFinish    func(b *BufferedInputStream, result *AsyncResult, err **T.GError) T.Gssize
+	BufferedInputStreamFillFinish    func(b *BufferedInputStream, result *AsyncResult, err **L.Error) T.Gssize
 	BufferedInputStreamGetAvailable  func(b *BufferedInputStream) T.Gsize
 	BufferedInputStreamGetBufferSize func(b *BufferedInputStream) T.Gsize
 	BufferedInputStreamPeek          func(b *BufferedInputStream, buffer *T.Void, offset, count T.Gsize) T.Gsize
 	BufferedInputStreamPeekBuffer    func(b *BufferedInputStream, count *T.Gsize) *T.Void
-	BufferedInputStreamReadByte      func(b *BufferedInputStream, cancellable *Cancellable, err **T.GError) int
+	BufferedInputStreamReadByte      func(b *BufferedInputStream, cancellable *Cancellable, err **L.Error) int
 	BufferedInputStreamSetBufferSize func(b *BufferedInputStream, size T.Gsize)
 )
 
-func (b *BufferedInputStream) Fill(count T.Gssize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (b *BufferedInputStream) Fill(count T.Gssize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return BufferedInputStreamFill(b, count, cancellable, err)
 }
 func (b *BufferedInputStream) FillAsync(count T.Gssize, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	BufferedInputStreamFillAsync(b, count, ioPriority, cancellable, callback, userData)
 }
-func (b *BufferedInputStream) FillFinish(result *AsyncResult, err **T.GError) T.Gssize {
+func (b *BufferedInputStream) FillFinish(result *AsyncResult, err **L.Error) T.Gssize {
 	return BufferedInputStreamFillFinish(b, result, err)
 }
 func (b *BufferedInputStream) GetAvailable() T.Gsize  { return BufferedInputStreamGetAvailable(b) }
@@ -47,7 +47,7 @@ func (b *BufferedInputStream) Peek(buffer *T.Void, offset, count T.Gsize) T.Gsiz
 func (b *BufferedInputStream) PeekBuffer(count *T.Gsize) *T.Void {
 	return BufferedInputStreamPeekBuffer(b, count)
 }
-func (b *BufferedInputStream) ReadByte(cancellable *Cancellable, err **T.GError) int {
+func (b *BufferedInputStream) ReadByte(cancellable *Cancellable, err **L.Error) int {
 	return BufferedInputStreamReadByte(b, cancellable, err)
 }
 func (b *BufferedInputStream) SetBufferSize(size T.Gsize) { BufferedInputStreamSetBufferSize(b, size) }
@@ -123,9 +123,9 @@ const (
 var BusNameWatcherFlagsGetType func() O.Type
 
 var (
-	BusOwnNameOnConnection               func(b *DBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusOwnNameOnConnection               func(b *DBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint
 	BusOwnNameOnConnectionWithClosures   func(b *DBusConnection, name string, flags BusNameOwnerFlags, nameAcquiredClosure, nameLostClosure *O.Closure) uint
-	BusWatchNameOnConnection             func(b *DBusConnection, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusWatchNameOnConnection             func(b *DBusConnection, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint
 	BusWatchNameOnConnectionWithClosures func(b *DBusConnection, name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint
 )
 
@@ -140,31 +140,31 @@ const (
 
 var (
 	BusTypeGetType func() O.Type
-	BusGetFinish   func(res *AsyncResult, err **T.GError) *DBusConnection
+	BusGetFinish   func(res *AsyncResult, err **L.Error) *DBusConnection
 	BusUnownName   func(ownerId uint)
 	BusUnwatchName func(watcherId uint)
 
 	BusGet                   func(b BusType, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	BusGetSync               func(b BusType, cancellable *Cancellable, err **T.GError) *DBusConnection
-	BusOwnName               func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusGetSync               func(b BusType, cancellable *Cancellable, err **L.Error) *DBusConnection
+	BusOwnName               func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint
 	BusOwnNameWithClosures   func(b BusType, name string, flags BusNameOwnerFlags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure *O.Closure) uint
-	BusWatchName             func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint
+	BusWatchName             func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint
 	BusWatchNameWithClosures func(b BusType, name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint
 )
 
 func (b BusType) Get(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	BusGet(b, cancellable, callback, userData)
 }
-func (b BusType) GetSync(cancellable *Cancellable, err **T.GError) *DBusConnection {
+func (b BusType) GetSync(cancellable *Cancellable, err **L.Error) *DBusConnection {
 	return BusGetSync(b, cancellable, err)
 }
-func (b BusType) OwnName(name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
+func (b BusType) OwnName(name string, flags BusNameOwnerFlags, busAcquiredHandler BusAcquiredCallback, nameAcquiredHandler BusNameAcquiredCallback, nameLostHandler BusNameLostCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint {
 	return BusOwnName(b, name, flags, busAcquiredHandler, nameAcquiredHandler, nameLostHandler, userData, userDataFreeFunc)
 }
 func (b BusType) OwnNameWithClosures(name string, flags BusNameOwnerFlags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure *O.Closure) uint {
 	return BusOwnNameWithClosures(b, name, flags, busAcquiredClosure, nameAcquiredClosure, nameLostClosure)
 }
-func (b BusType) WatchName(name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc T.GDestroyNotify) uint {
+func (b BusType) WatchName(name string, flags BusNameWatcherFlags, nameAppearedHandler BusNameAppearedCallback, nameVanishedHandler BusNameVanishedCallback, userData T.Gpointer, userDataFreeFunc O.DestroyNotify) uint {
 	return BusWatchName(b, name, flags, nameAppearedHandler, nameVanishedHandler, userData, userDataFreeFunc)
 }
 func (b BusType) WatchNameWithClosures(name string, flags BusNameWatcherFlags, nameAppearedClosure, nameVanishedClosure *O.Closure) uint {

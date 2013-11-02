@@ -52,13 +52,13 @@ var (
 	UiManagerGetAddTearoffs    func(u *UIManager) bool
 	UiManagerInsertActionGroup func(u *UIManager, actionGroup *ActionGroup, pos int)
 	UiManagerRemoveActionGroup func(u *UIManager, actionGroup *ActionGroup)
-	UiManagerGetActionGroups   func(u *UIManager) *T.GList
+	UiManagerGetActionGroups   func(u *UIManager) *L.List
 	UiManagerGetAccelGroup     func(u *UIManager) *AccelGroup
 	UiManagerGetWidget         func(u *UIManager, path string) *Widget
 	UiManagerGetToplevels      func(u *UIManager, types UIManagerItemType) *L.SList
 	UiManagerGetAction         func(u *UIManager, path string) *Action
-	UiManagerAddUiFromString   func(u *UIManager, buffer string, length T.Gssize, err **T.GError) uint
-	UiManagerAddUiFromFile     func(u *UIManager, filename string, err **T.GError) uint
+	UiManagerAddUiFromString   func(u *UIManager, buffer string, length T.Gssize, err **L.Error) uint
+	UiManagerAddUiFromFile     func(u *UIManager, filename string, err **L.Error) uint
 	UiManagerAddUi             func(u *UIManager, mergeId uint, path, name, action string, t UIManagerItemType, top bool)
 	UiManagerRemoveUi          func(u *UIManager, mergeId uint)
 	UiManagerGetUi             func(u *UIManager) string
@@ -74,17 +74,17 @@ func (u *UIManager) InsertActionGroup(actionGroup *ActionGroup, pos int) {
 func (u *UIManager) RemoveActionGroup(actionGroup *ActionGroup) {
 	UiManagerRemoveActionGroup(u, actionGroup)
 }
-func (u *UIManager) GetActionGroups() *T.GList     { return UiManagerGetActionGroups(u) }
+func (u *UIManager) GetActionGroups() *L.List      { return UiManagerGetActionGroups(u) }
 func (u *UIManager) GetAccelGroup() *AccelGroup    { return UiManagerGetAccelGroup(u) }
 func (u *UIManager) GetWidget(path string) *Widget { return UiManagerGetWidget(u, path) }
 func (u *UIManager) GetToplevels(types UIManagerItemType) *L.SList {
 	return UiManagerGetToplevels(u, types)
 }
 func (u *UIManager) GetAction(path string) *Action { return UiManagerGetAction(u, path) }
-func (u *UIManager) AddUiFromString(buffer string, length T.Gssize, err **T.GError) uint {
+func (u *UIManager) AddUiFromString(buffer string, length T.Gssize, err **L.Error) uint {
 	return UiManagerAddUiFromString(u, buffer, length, err)
 }
-func (u *UIManager) AddUiFromFile(filename string, err **T.GError) uint {
+func (u *UIManager) AddUiFromFile(filename string, err **L.Error) uint {
 	return UiManagerAddUiFromFile(u, filename, err)
 }
 func (u *UIManager) AddUi(mergeId uint, path, name, action string, t UIManagerItemType, top bool) {

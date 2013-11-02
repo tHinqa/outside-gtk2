@@ -7,7 +7,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
-	T "github.com/tHinqa/outside-gtk2/types"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	W "github.com/tHinqa/outside-windows/types"
 )
 
@@ -58,21 +58,21 @@ var (
 
 var (
 	Win32FontDoneFont         func(font *Font)
-	Win32FontGetGlyphIndex    func(font *Font, wc T.Gunichar) int
+	Win32FontGetGlyphIndex    func(font *Font, wc L.Unichar) int
 	Win32FontGetMetricsFactor func(font *Font) float64
 	Win32FontLogfont          func(font *Font) *W.LOGFONTA
 	Win32FontLogfontw         func(font *Font) *W.LOGFONTW
 	Win32FontSelectFont       func(font *Font, hdc W.HDC) bool
-	Win32GetUnknownGlyph      func(font *Font, wc T.Gunichar) Glyph
+	Win32GetUnknownGlyph      func(font *Font, wc L.Unichar) Glyph
 )
 
 func (f *Font) DoneFont()                           { Win32FontDoneFont(f) }
-func (f *Font) GetGlyphIndex(wc T.Gunichar) int     { return Win32FontGetGlyphIndex(f, wc) }
+func (f *Font) GetGlyphIndex(wc L.Unichar) int     { return Win32FontGetGlyphIndex(f, wc) }
 func (f *Font) GetMetricsFactor() float64           { return Win32FontGetMetricsFactor(f) }
 func (f *Font) Logfont() *W.LOGFONTA                { return Win32FontLogfont(f) }
 func (f *Font) Logfontw() *W.LOGFONTW               { return Win32FontLogfontw(f) }
 func (f *Font) SelectFont(hdc W.HDC) bool           { return Win32FontSelectFont(f, hdc) }
-func (f *Font) GetUnknownGlyph(wc T.Gunichar) Glyph { return Win32GetUnknownGlyph(f, wc) }
+func (f *Font) GetUnknownGlyph(wc L.Unichar) Glyph { return Win32GetUnknownGlyph(f, wc) }
 
 var (
 	Win32FontCacheNew func() *Win32FontCache

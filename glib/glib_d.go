@@ -244,7 +244,7 @@ type DateYear uint16
 type Dir struct{}
 
 var (
-	DirOpen func(path string, flags uint, e **T.GError) *Dir
+	DirOpen func(path string, flags uint, e **Error) *Dir
 
 	DirClose    func(d *Dir)
 	DirReadName func(d *Dir) string

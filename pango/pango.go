@@ -7,6 +7,7 @@ package pango
 
 import (
 	"github.com/tHinqa/outside"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 )
@@ -49,7 +50,7 @@ var (
 		Attrs *LogAttr, Attrs_len int)
 
 	BidiTypeForUnichar func(
-		ch T.Gunichar) BidiType
+		ch L.Unichar) BidiType
 )
 
 var DefaultBreak func(text string, length int,
@@ -172,11 +173,11 @@ var (
 	ParseMarkup func(
 		markup_text string,
 		length int,
-		AccelMarker T.Gunichar,
+		AccelMarker L.Unichar,
 		Attr_list **AttrList,
 		text **T.Char,
-		AccelChar *T.Gunichar,
-		error **T.GError) bool
+		AccelChar *L.Unichar,
+		error **L.Error) bool
 
 	ParseStretch func(str string,
 		stretch *Stretch, warn bool) bool
@@ -207,7 +208,7 @@ var UnderlineGetType func() O.Type
 
 var (
 	UnicharDirection func(
-		ch T.Gunichar) Direction
+		ch L.Unichar) Direction
 
 	UnitsFromDouble func(
 		d float64) int

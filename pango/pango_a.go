@@ -69,7 +69,7 @@ var (
 	AttrRiseNew               func(rise int) *Attribute
 	AttrScaleNew              func(scaleFactor float64) *Attribute
 	AttrShapeNew              func(inkRect *Rectangle, logicalRect *Rectangle) *Attribute
-	AttrShapeNewWithData      func(inkRect *Rectangle, logicalRect *Rectangle, data T.Gpointer, copyFunc AttrDataCopyFunc, destroyFunc T.GDestroyNotify) *Attribute
+	AttrShapeNewWithData      func(inkRect *Rectangle, logicalRect *Rectangle, data T.Gpointer, copyFunc AttrDataCopyFunc, destroyFunc O.DestroyNotify) *Attribute
 	AttrSizeNew               func(size int) *Attribute
 	AttrSizeNewAbsolute       func(size int) *Attribute
 	AttrStretchNew            func(stretch Stretch) *Attribute
@@ -146,7 +146,7 @@ type AttrShape struct {
 	LogicalRect Rectangle
 	Data        T.Gpointer
 	CopyFunc    AttrDataCopyFunc
-	DestroyFunc T.GDestroyNotify
+	DestroyFunc O.DestroyNotify
 }
 
 type AttrType Enum

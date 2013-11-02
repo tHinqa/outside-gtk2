@@ -87,7 +87,7 @@ var (
 	LayoutSetIndent              func(l *Layout, indent int)
 	LayoutSetJustify             func(l *Layout, justify bool)
 	LayoutSetMarkup              func(l *Layout, markup string, length int)
-	LayoutSetMarkupWithAccel     func(l *Layout, markup string, length int, AccelMarker T.Gunichar, AccelChar *T.Gunichar)
+	LayoutSetMarkupWithAccel     func(l *Layout, markup string, length int, AccelMarker L.Unichar, AccelChar *L.Unichar)
 	LayoutSetSingleParagraphMode func(l *Layout, setting bool)
 	LayoutSetSpacing             func(l *Layout, spacing int)
 	LayoutSetTabs                func(l *Layout, tabs *TabArray)
@@ -156,7 +156,7 @@ func (l *Layout) SetHeight(height int)                     { LayoutSetHeight(l, 
 func (l *Layout) SetIndent(indent int)                     { LayoutSetIndent(l, indent) }
 func (l *Layout) SetJustify(justify bool)                  { LayoutSetJustify(l, justify) }
 func (l *Layout) SetMarkup(markup string, length int)      { LayoutSetMarkup(l, markup, length) }
-func (l *Layout) SetMarkupWithAccel(markup string, length int, AccelMarker T.Gunichar, AccelChar *T.Gunichar) {
+func (l *Layout) SetMarkupWithAccel(markup string, length int, AccelMarker L.Unichar, AccelChar *L.Unichar) {
 	LayoutSetMarkupWithAccel(l, markup, length, AccelMarker, AccelChar)
 }
 func (l *Layout) SetSingleParagraphMode(setting bool) { LayoutSetSingleParagraphMode(l, setting) }

@@ -45,17 +45,17 @@ var (
 	FcFontGetType                func() O.Type
 	FcFontDescriptionFromPattern func(pattern *F.Pattern, includeSize bool) *FontDescription
 
-	FcFontGetGlyph        func(f *FcFont, wc T.Gunichar) uint
-	FcFontGetUnknownGlyph func(f *FcFont, wc T.Gunichar) Glyph
-	FcFontHasChar         func(f *FcFont, wc T.Gunichar) bool
+	FcFontGetGlyph        func(f *FcFont, wc L.Unichar) uint
+	FcFontGetUnknownGlyph func(f *FcFont, wc L.Unichar) Glyph
+	FcFontHasChar         func(f *FcFont, wc L.Unichar) bool
 	FcFontKernGlyphs      func(f *FcFont, glyphs *GlyphString)
 	FcFontLockFace        func(f *FcFont) FT.Face
 	FcFontUnlockFace      func(f *FcFont)
 )
 
-func (f *FcFont) GetGlyph(wc T.Gunichar) uint         { return FcFontGetGlyph(f, wc) }
-func (f *FcFont) GetUnknownGlyph(wc T.Gunichar) Glyph { return FcFontGetUnknownGlyph(f, wc) }
-func (f *FcFont) HasChar(wc T.Gunichar) bool          { return FcFontHasChar(f, wc) }
+func (f *FcFont) GetGlyph(wc L.Unichar) uint         { return FcFontGetGlyph(f, wc) }
+func (f *FcFont) GetUnknownGlyph(wc L.Unichar) Glyph { return FcFontGetUnknownGlyph(f, wc) }
+func (f *FcFont) HasChar(wc L.Unichar) bool          { return FcFontHasChar(f, wc) }
 func (f *FcFont) KernGlyphs(glyphs *GlyphString)      { FcFontKernGlyphs(f, glyphs) }
 func (f *FcFont) LockFace() FT.Face                   { return FcFontLockFace(f) }
 func (f *FcFont) UnlockFace()                         { FcFontUnlockFace(f) }
@@ -80,14 +80,14 @@ type FcFontMap struct {
 var (
 	FcFontMapGetType func() O.Type
 
-	FcFontMapAddDecoderFindFunc func(f *FcFontMap, findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify)
+	FcFontMapAddDecoderFindFunc func(f *FcFontMap, findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify O.DestroyNotify)
 	FcFontMapCacheClear         func(f *FcFontMap)
 	FcFontMapCreateContext      func(f *FcFontMap) *Context
 	FcFontMapFindDecoder        func(f *FcFontMap, pattern *F.Pattern) *FcDecoder
 	FcFontMapShutdown           func(f *FcFontMap)
 )
 
-func (f *FcFontMap) AddDecoderFindFunc(findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify T.GDestroyNotify) {
+func (f *FcFontMap) AddDecoderFindFunc(findfunc FcDecoderFindFunc, userData T.Gpointer, dnotify O.DestroyNotify) {
 	FcFontMapAddDecoderFindFunc(f, findfunc, userData, dnotify)
 }
 func (f *FcFontMap) CacheClear()             { FcFontMapCacheClear(f) }
@@ -364,13 +364,13 @@ var (
 	Ft2FontMapForDisplay func() *FontMap
 
 	Ft2FontMapCreateContext        func(f *FT2FontMap) *Context
-	Ft2FontMapSetDefaultSubstitute func(f *FT2FontMap, fnc FT2SubstituteFunc, data T.Gpointer, notify T.GDestroyNotify)
+	Ft2FontMapSetDefaultSubstitute func(f *FT2FontMap, fnc FT2SubstituteFunc, data T.Gpointer, notify O.DestroyNotify)
 	Ft2FontMapSetResolution        func(f *FT2FontMap, dpiX, dpiY float64)
 	Ft2FontMapSubstituteChanged    func(f *FT2FontMap)
 )
 
 func (f *FT2FontMap) CreateContext() *Context { return Ft2FontMapCreateContext(f) }
-func (f *FT2FontMap) SetDefaultSubstitute(fnc FT2SubstituteFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (f *FT2FontMap) SetDefaultSubstitute(fnc FT2SubstituteFunc, data T.Gpointer, notify O.DestroyNotify) {
 	Ft2FontMapSetDefaultSubstitute(f, fnc, data, notify)
 }
 func (f *FT2FontMap) SetResolution(dpiX, dpiY float64) {

@@ -44,37 +44,27 @@ type (
 	GInitiallyUnownedClass GObjectClass
 	Goffset                int64
 	GPid                   *struct{}
-	Quark                  GUint32
-	GSignalCMarshaller     GClosureMarshal
 	GTime                  GInt32
 	GTimeSpan              int64
 	GType                  Gsize // REMOVE
 	Gulong                 UnsignedLong
-	Gunichar               GUint32
 	Gunichar2              uint16
 	GVoidFunc              func()
 
 	GdkDrawable struct{ parent GObject } //REMOVE
 
 	GCancellablePrivate      struct{}
-	GCond                    struct{}
 	GData                    struct{}
 	GdkXEvent                struct{}
 	GFileInputStreamPrivate  struct{}
 	GInputStreamPrivate      struct{}
-	MainContext              struct{} // chicken/egg
 	GMatchInfo               struct{}
-	GMutex                   struct{}
-	GPrivate                 struct{}
 	GResolverPrivate         struct{}
 	GSocketConnectionPrivate struct{}
 	GSocketServicePrivate    struct{}
 	GtkClipboard             struct{}
 	GtkLabelSelectionInfo    struct{}
-	GTypeCValue              struct{}
 	GUnixFDList              struct{}
-	Variant                  struct{}
-	VariantType              struct{}
 	Utimbuf                  struct{}
 	Void                     struct{}
 	Dummy                    *struct{}
@@ -111,14 +101,6 @@ type GThreadError Enum
 
 const (
 	G_THREAD_ERROR_AGAIN GThreadError = iota
-)
-
-type GOnceStatus Enum
-
-const (
-	G_ONCE_STATUS_NOTCALLED GOnceStatus = iota
-	G_ONCE_STATUS_PROGRESS
-	G_ONCE_STATUS_READY
 )
 
 type GConvertError Enum
@@ -458,34 +440,11 @@ const (
 	G_TYPE_FLAG_DEEP_DERIVABLE
 )
 
-type GSignalFlags Enum
-
-const (
-	G_SIGNAL_RUN_FIRST GSignalFlags = 1 << iota
-	G_SIGNAL_RUN_LAST
-	G_SIGNAL_RUN_CLEANUP
-	G_SIGNAL_NO_RECURSE
-	G_SIGNAL_DETAILED
-	G_SIGNAL_ACTION
-	G_SIGNAL_NO_HOOKS
-)
-
 type GConnectFlags Enum
 
 const (
 	G_CONNECT_AFTER GConnectFlags = 1 << iota
 	G_CONNECT_SWAPPED
-)
-
-type GSignalMatchType Enum
-
-const (
-	G_SIGNAL_MATCH_ID GSignalMatchType = 1 << iota
-	G_SIGNAL_MATCH_DETAIL
-	G_SIGNAL_MATCH_CLOSURE
-	G_SIGNAL_MATCH_FUNC
-	G_SIGNAL_MATCH_DATA
-	G_SIGNAL_MATCH_UNBLOCKED
 )
 
 type GFilesystemPreviewType Enum
@@ -1091,8 +1050,6 @@ const (
 type (
 	GChildWatchFunc func(pid GPid, status int, data Gpointer)
 
-	GCallback func() Dummy
-
 	GdkInputFunction func(data Gpointer,
 		source int, condition GdkInputCondition)
 
@@ -1105,8 +1062,6 @@ type (
 
 	GDataForeachFunc func(
 		keyId Quark, data Gpointer, userData Gpointer)
-
-	GDestroyNotify func(data Gpointer)
 
 	GEqualFunc func(a, b Gconstpointer) Gboolean
 
@@ -1154,12 +1109,6 @@ type (
 		span *GdkSpan,
 		data Gpointer)
 
-	GSignalEmissionHook func(
-		ihint *GSignalInvocationHint,
-		n_param_values uint,
-		param_values *GValue,
-		data Gpointer) Gboolean
-
 	GBoxedCopyFunc func(boxed Gpointer) Gpointer
 
 	GBoxedFreeFunc func(boxed Gpointer)
@@ -1169,12 +1118,6 @@ type (
 
 	GToggleNotify func(
 		data Gpointer, object *GObject, is_last_ref Gboolean)
-
-	GSignalAccumulator func(
-		ihint *GSignalInvocationHint,
-		return_accu *GValue,
-		handler_return *GValue,
-		data Gpointer) Gboolean
 
 	GReallocFunc func(
 		data Gpointer,

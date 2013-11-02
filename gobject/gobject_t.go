@@ -58,7 +58,7 @@ var (
 	TypeRegisterStaticSimple     func(parentType Type, typeName string, classSize uint, classInit T.GClassInitFunc, instanceSize uint, instanceInit T.GInstanceInitFunc, flags TypeFlags) Type
 	TypeSetQdata                 func(t Type, quark T.Quark, data T.Gpointer)
 	TypeTestFlags                func(t Type, flags uint) bool
-	TypeValueTablePeek           func(t Type) *T.GTypeValueTable
+	TypeValueTablePeek           func(t Type) *TypeValueTable
 )
 
 func (t Type) AddClassPrivate(privateSize T.Gsize) { TypeAddClassPrivate(t, privateSize) }
@@ -109,7 +109,7 @@ func (t Type) RegisterStaticSimple(typeName string, classSize uint, classInit T.
 }
 func (t Type) SetQdata(quark T.Quark, data T.Gpointer) { TypeSetQdata(t, quark, data) }
 func (t Type) TestFlags(flags uint) bool               { return TypeTestFlags(t, flags) }
-func (t Type) ValueTablePeek() *T.GTypeValueTable      { return TypeValueTablePeek(t) }
+func (t Type) ValueTablePeek() *TypeValueTable         { return TypeValueTablePeek(t) }
 
 type TypeClass struct {
 	Type Type
@@ -128,6 +128,8 @@ func (t *TypeClass) GetPrivate(privateType Type) T.Gpointer {
 }
 func (t *TypeClass) IsA(isAType Type) bool { return TypeCheckClassIsA(t, isAType) }
 func (t *TypeClass) Name() string          { return TypeNameFromClass(t) }
+
+type TypeCValue struct{}
 
 type TypeDebugFlags Enum
 
@@ -155,7 +157,7 @@ type TypeInfo struct {
 	InstanceSize  uint16
 	NPreallocs    uint16
 	InstanceInit  T.GInstanceInitFunc
-	ValueTable    *T.GTypeValueTable
+	ValueTable    *TypeValueTable
 }
 
 type TypeInstance struct {
@@ -228,7 +230,7 @@ var (
 	TypePluginGetType func() Type
 
 	TypePluginCompleteInterfaceInfo func(p *TypePlugin, instanceType, interfaceType Type, info *T.GInterfaceInfo)
-	TypePluginCompleteTypeInfo      func(p *TypePlugin, gType Type, info *TypeInfo, valueTable *T.GTypeValueTable)
+	TypePluginCompleteTypeInfo      func(p *TypePlugin, gType Type, info *TypeInfo, valueTable *TypeValueTable)
 	TypePluginUnuse                 func(p *TypePlugin)
 	TypePluginUse                   func(p *TypePlugin)
 )
@@ -236,8 +238,28 @@ var (
 func (p *TypePlugin) CompleteInterfaceInfo(instanceType, interfaceType Type, info *T.GInterfaceInfo) {
 	TypePluginCompleteInterfaceInfo(p, instanceType, interfaceType, info)
 }
-func (p *TypePlugin) CompleteTypeInfo(gType Type, info *TypeInfo, valueTable *T.GTypeValueTable) {
+func (p *TypePlugin) CompleteTypeInfo(gType Type, info *TypeInfo, valueTable *TypeValueTable) {
 	TypePluginCompleteTypeInfo(p, gType, info, valueTable)
 }
 func (p *TypePlugin) Unuse() { TypePluginUnuse(p) }
 func (p *TypePlugin) Use()   { TypePluginUse(p) }
+
+type TypeValueTable struct {
+	ValueInit func(value *Value)
+	ValueFree func(value *Value)
+	ValueCopy func(
+		srcValue *Value, destValue *Value)
+	ValuePeekPointer func(value *Value) T.Gpointer
+	CollectFormat    *T.Gchar
+	CollectValue     func(
+		value *Value,
+		nCollectValues uint,
+		collectValues *TypeCValue,
+		collectFlags uint) *T.Gchar
+	LcopyFormat *T.Gchar
+	LcopyValue  func(
+		value *Value,
+		nCollectValues uint,
+		collectValues *TypeCValue,
+		collectFlags uint) *T.Gchar
+}

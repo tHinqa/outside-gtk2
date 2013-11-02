@@ -90,4 +90,4 @@ const (
 
 var RenderPartGetType func() O.Type
 
-var ReorderItems func(logicalItems *T.GList) *T.GList
+var ReorderItems func(logicalItems *L.List) *L.List

@@ -5,6 +5,7 @@ package gtk
 
 import (
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	// . "github.com/tHinqa/outside/types"
@@ -14,9 +15,9 @@ type (
 	Notebook struct {
 		Container   Container
 		CurPage     *NotebookPage
-		Children    *T.GList
-		FirstTab    *T.GList
-		FocusTab    *T.GList
+		Children    *L.List
+		FirstTab    *L.List
+		FocusTab    *L.List
 		Menu        *Widget
 		EventWindow *D.Window
 		Timer       T.GUint32
@@ -52,7 +53,7 @@ var (
 	NotebookNew        func() *Widget
 	NotebookTabGetType func() O.Type
 
-	NotebookSetWindowCreationHook func(f NotebookWindowCreationFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	NotebookSetWindowCreationHook func(f NotebookWindowCreationFunc, data T.Gpointer, destroy O.DestroyNotify)
 
 	NotebookAppendPage           func(n *Notebook, child, tabLabel *Widget) int
 	NotebookAppendPageMenu       func(n *Notebook, child, tabLabel, menuLabel *Widget) int

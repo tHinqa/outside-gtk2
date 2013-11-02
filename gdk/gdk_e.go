@@ -40,7 +40,7 @@ var (
 
 	EventGet                         func() *Event
 	EventGetGraphicsExpose           func(window *Window) *Event
-	EventHandlerSet                  func(f EventFunc, data T.Gpointer, notify T.GDestroyNotify)
+	EventHandlerSet                  func(f EventFunc, data T.Gpointer, notify O.DestroyNotify)
 	EventPeek                        func() *Event
 	EventRequestMotions              func(event *EventMotion)
 	EventSendClientMessageForDisplay func(display *Display, event *Event, winid T.GdkNativeWindow) bool

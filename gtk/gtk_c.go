@@ -6,6 +6,7 @@ package gtk
 import (
 	A "github.com/tHinqa/outside-gtk2/atk"
 	D "github.com/tHinqa/outside-gtk2/gdk"
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	P "github.com/tHinqa/outside-gtk2/pango"
 	T "github.com/tHinqa/outside-gtk2/types"
@@ -69,7 +70,7 @@ var (
 	CalendarMarkDay             func(c *Calendar, day uint) bool
 	CalendarSelectDay           func(c *Calendar, day uint)
 	CalendarSelectMonth         func(c *Calendar, month, year uint) bool
-	CalendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	CalendarSetDetailFunc       func(c *Calendar, f CalendarDetailFunc, data T.Gpointer, destroy O.DestroyNotify)
 	CalendarSetDetailHeightRows func(c *Calendar, rows int)
 	CalendarSetDetailWidthChars func(c *Calendar, chars int)
 	CalendarSetDisplayOptions   func(c *Calendar, flags CalendarDisplayOptions)
@@ -89,7 +90,7 @@ func (c *Calendar) SelectDay(day uint)                          { CalendarSelect
 func (c *Calendar) SelectMonth(month, year uint) bool {
 	return CalendarSelectMonth(c, month, year)
 }
-func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (c *Calendar) SetDetailFunc(f CalendarDetailFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	CalendarSetDetailFunc(c, f, data, destroy)
 }
 func (c *Calendar) SetDetailHeightRows(rows int)  { CalendarSetDetailHeightRows(c, rows) }
@@ -155,12 +156,12 @@ var (
 	CellLayoutAddAttribute    func(c *CellLayout, cell *CellRenderer, attribute string, column int)
 	CellLayoutClear           func(c *CellLayout)
 	CellLayoutClearAttributes func(c *CellLayout, cell *CellRenderer)
-	CellLayoutGetCells        func(c *CellLayout) *T.GList
+	CellLayoutGetCells        func(c *CellLayout) *L.List
 	CellLayoutPackEnd         func(c *CellLayout, cell *CellRenderer, expand bool)
 	CellLayoutPackStart       func(c *CellLayout, cell *CellRenderer, expand bool)
 	CellLayoutReorder         func(c *CellLayout, cell *CellRenderer, position int)
 	CellLayoutSetAttributes   func(c *CellLayout, cell *CellRenderer, v ...VArg)
-	CellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify)
+	CellLayoutSetCellDataFunc func(c *CellLayout, cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy O.DestroyNotify)
 )
 
 func (c *CellLayout) AddAttribute(cell *CellRenderer, attribute string, column int) {
@@ -168,7 +169,7 @@ func (c *CellLayout) AddAttribute(cell *CellRenderer, attribute string, column i
 }
 func (c *CellLayout) Clear()                             { CellLayoutClear(c) }
 func (c *CellLayout) ClearAttributes(cell *CellRenderer) { CellLayoutClearAttributes(c, cell) }
-func (c *CellLayout) GetCells() *T.GList                 { return CellLayoutGetCells(c) }
+func (c *CellLayout) GetCells() *L.List                  { return CellLayoutGetCells(c) }
 func (c *CellLayout) PackEnd(cell *CellRenderer, expand bool) {
 	CellLayoutPackEnd(c, cell, expand)
 }
@@ -177,7 +178,7 @@ func (c *CellLayout) PackStart(cell *CellRenderer, expand bool) {
 }
 func (c *CellLayout) Reorder(cell *CellRenderer, position int)    { CellLayoutReorder(c, cell, position) }
 func (c *CellLayout) SetAttributes(cell *CellRenderer, v ...VArg) { CellLayoutSetAttributes(c, cell, v) }
-func (c *CellLayout) SetCellDataFunc(cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy T.GDestroyNotify) {
+func (c *CellLayout) SetCellDataFunc(cell *CellRenderer, f CellLayoutDataFunc, funcData T.Gpointer, destroy O.DestroyNotify) {
 	CellLayoutSetCellDataFunc(c, cell, f, funcData, destroy)
 }
 
@@ -365,7 +366,7 @@ var (
 )
 
 var (
-	CellViewGetCellRenderers   func(c *CellView) *T.GList
+	CellViewGetCellRenderers   func(c *CellView) *L.List
 	CellViewGetDisplayedRow    func(c *CellView) *TreePath
 	CellViewGetModel           func(c *CellView) *TreeModel
 	CellViewGetSizeOfRow       func(c *CellView, path *TreePath, requisition *Requisition) bool
@@ -374,7 +375,7 @@ var (
 	CellViewSetModel           func(c *CellView, model *TreeModel)
 )
 
-func (c *CellView) GetCellRenderers() *T.GList { return CellViewGetCellRenderers(c) }
+func (c *CellView) GetCellRenderers() *L.List  { return CellViewGetCellRenderers(c) }
 func (c *CellView) GetDisplayedRow() *TreePath { return CellViewGetDisplayedRow(c) }
 func (c *CellView) GetModel() *TreeModel       { return CellViewGetModel(c) }
 func (c *CellView) GetSizeOfRow(path *TreePath, requisition *Requisition) bool {
@@ -553,8 +554,8 @@ type (
 		InternalAllocation D.Rectangle
 		Rows               int
 		RowHeight          int
-		RowList            *T.GList
-		RowListEnd         *T.GList
+		RowList            *L.List
+		RowListEnd         *L.List
 		Columns            int
 		ColumnTitleArea    D.Rectangle
 		TitleWindow        *D.Window
@@ -566,10 +567,10 @@ type (
 		Voffset            int
 		ShadowType         ShadowType
 		SelectionMode      SelectionMode
-		Selection          *T.GList
-		SelectionWnd       *T.GList
-		UndoSelectionList  *T.GList
-		UndoUnselection    *T.GList
+		Selection          *L.List
+		SelectionWnd       *L.List
+		UndoSelectionList  *L.List
+		UndoUnselection    *L.List
 		UndoAnchor         int
 		ButtonActions      [5]uint8
 		DragButton         uint8
@@ -624,7 +625,7 @@ type (
 		Background D.Color
 		Style      *Style
 		Data       T.Gpointer
-		Destroy    T.GDestroyNotify
+		Destroy    O.DestroyNotify
 		Bits       uint
 		// FgSet : 1
 		// BgSet : 1
@@ -705,7 +706,7 @@ var (
 	ClistSetPixtext             func(c *CList, row, column int, text string, spacing uint8, pixmap, mask *T.GdkBitmap)
 	ClistSetReorderable         func(c *CList, reorderable bool)
 	ClistSetRowData             func(c *CList, row int, data T.Gpointer)
-	ClistSetRowDataFull         func(c *CList, row int, data T.Gpointer, destroy T.GDestroyNotify)
+	ClistSetRowDataFull         func(c *CList, row int, data T.Gpointer, destroy O.DestroyNotify)
 	ClistSetRowHeight           func(c *CList, height uint)
 	ClistSetRowStyle            func(c *CList, row, style *Style)
 	ClistSetSelectable          func(c *CList, row int, selectable bool)
@@ -804,7 +805,7 @@ func (c *CList) SetPixtext(row, column int, text string, spacing uint8, pixmap, 
 }
 func (c *CList) SetReorderable(reorderable bool)     { ClistSetReorderable(c, reorderable) }
 func (c *CList) SetRowData(row int, data T.Gpointer) { ClistSetRowData(c, row, data) }
-func (c *CList) SetRowDataFull(row int, data T.Gpointer, destroy T.GDestroyNotify) {
+func (c *CList) SetRowDataFull(row int, data T.Gpointer, destroy O.DestroyNotify) {
 	ClistSetRowDataFull(c, row, data, destroy)
 }
 func (c *CList) SetRowHeight(height uint)               { ClistSetRowHeight(c, height) }
@@ -971,14 +972,14 @@ var (
 	ComboSetUseArrowsAlways func(c *Combo, val bool)
 	ComboSetCaseSensitive   func(c *Combo, val bool)
 	ComboSetItemString      func(c *Combo, item *Item, itemValue string)
-	ComboSetPopdownStrings  func(c *Combo, strings *T.GList)
+	ComboSetPopdownStrings  func(c *Combo, strings *L.List)
 	ComboDisableActivate    func(c *Combo)
 )
 
 func (c *Combo) DisableActivate()                           { ComboDisableActivate(c) }
 func (c *Combo) SetCaseSensitive(val bool)                  { ComboSetCaseSensitive(c, val) }
 func (c *Combo) SetItemString(item *Item, itemValue string) { ComboSetItemString(c, item, itemValue) }
-func (c *Combo) SetPopdownStrings(strings *T.GList)         { ComboSetPopdownStrings(c, strings) }
+func (c *Combo) SetPopdownStrings(strings *L.List)          { ComboSetPopdownStrings(c, strings) }
 func (c *Combo) SetUseArrows(val bool)                      { ComboSetUseArrows(c, val) }
 func (c *Combo) SetUseArrowsAlways(val bool)                { ComboSetUseArrowsAlways(c, val) }
 func (c *Combo) SetValueInList(val bool, okIfEmpty bool) {
@@ -1049,7 +1050,7 @@ var (
 	ComboBoxSetEntryTextColumn   func(c *ComboBox, textColumn int)
 	ComboBoxSetFocusOnClick      func(c *ComboBox, focusOnClick bool)
 	ComboBoxSetModel             func(c *ComboBox, model *TreeModel)
-	ComboBoxSetRowSeparatorFunc  func(c *ComboBox, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	ComboBoxSetRowSeparatorFunc  func(c *ComboBox, f TreeViewRowSeparatorFunc, data T.Gpointer, destroy O.DestroyNotify)
 	ComboBoxSetRowSpanColumn     func(c *ComboBox, rowSpan int)
 	ComboBoxSetTitle             func(c *ComboBox, title string)
 	ComboBoxSetWrapWidth         func(c *ComboBox, width int)
@@ -1090,7 +1091,7 @@ func (c *ComboBox) SetColumnSpanColumn(columnSpan int) { ComboBoxSetColumnSpanCo
 func (c *ComboBox) SetEntryTextColumn(textColumn int)  { ComboBoxSetEntryTextColumn(c, textColumn) }
 func (c *ComboBox) SetFocusOnClick(focusOnClick bool)  { ComboBoxSetFocusOnClick(c, focusOnClick) }
 func (c *ComboBox) SetModel(model *TreeModel)          { ComboBoxSetModel(c, model) }
-func (c *ComboBox) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (c *ComboBox) SetRowSeparatorFunc(f TreeViewRowSeparatorFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	ComboBoxSetRowSeparatorFunc(c, f, data, destroy)
 }
 func (c *ComboBox) SetRowSpanColumn(rowSpan int) { ComboBoxSetRowSpanColumn(c, rowSpan) }
@@ -1139,18 +1140,18 @@ var (
 	ContainerAddWithProperties    func(c *Container, widget *Widget, firstPropName string, v ...VArg)
 	ContainerCheckResize          func(c *Container)
 	ContainerChildGet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
-	ContainerChildGetProperty     func(c *Container, child *Widget, propertyName string, value *T.GValue)
+	ContainerChildGetProperty     func(c *Container, child *Widget, propertyName string, value *O.Value)
 	ContainerChildGetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
 	ContainerChildSet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
-	ContainerChildSetProperty     func(c *Container, child *Widget, propertyName string, value *T.GValue)
+	ContainerChildSetProperty     func(c *Container, child *Widget, propertyName string, value *O.Value)
 	ContainerChildSetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
 	ContainerChildType            func(c *Container) O.Type
 	ContainerForall               func(c *Container, callback Callback, callbackData T.Gpointer)
 	ContainerForeach              func(c *Container, callback Callback, callbackData T.Gpointer)
-	ContainerForeachFull          func(c *Container, callback Callback, marshal CallbackMarshal, callbackData T.Gpointer, notify T.GDestroyNotify)
+	ContainerForeachFull          func(c *Container, callback Callback, marshal CallbackMarshal, callbackData T.Gpointer, notify O.DestroyNotify)
 	ContainerGetBorderWidth       func(c *Container) uint
-	ContainerGetChildren          func(c *Container) *T.GList
-	ContainerGetFocusChain        func(c *Container, focusableWidgets **T.GList) bool
+	ContainerGetChildren          func(c *Container) *L.List
+	ContainerGetFocusChain        func(c *Container, focusableWidgets **L.List) bool
 	ContainerGetFocusChild        func(c *Container) *Widget
 	ContainerGetFocusHadjustment  func(c *Container) *Adjustment
 	ContainerGetFocusVadjustment  func(c *Container) *Adjustment
@@ -1159,7 +1160,7 @@ var (
 	ContainerRemove               func(c *Container, widget *Widget)
 	ContainerResizeChildren       func(c *Container)
 	ContainerSetBorderWidth       func(c *Container, borderWidth uint)
-	ContainerSetFocusChain        func(c *Container, focusableWidgets *T.GList)
+	ContainerSetFocusChain        func(c *Container, focusableWidgets *L.List)
 	ContainerSetFocusChild        func(c *Container, child *Widget)
 	ContainerSetFocusHadjustment  func(c *Container, adjustment *Adjustment)
 	ContainerSetFocusVadjustment  func(c *Container, adjustment *Adjustment)
@@ -1176,7 +1177,7 @@ func (c *Container) CheckResize() { ContainerCheckResize(c) }
 func (c *Container) ChildGet(child *Widget, firstPropName string, v ...VArg) {
 	ContainerChildGet(c, child, firstPropName, v)
 }
-func (c *Container) ChildGetProperty(child *Widget, propertyName string, value *T.GValue) {
+func (c *Container) ChildGetProperty(child *Widget, propertyName string, value *O.Value) {
 	ContainerChildGetProperty(c, child, propertyName, value)
 }
 func (c *Container) ChildGetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
@@ -1185,7 +1186,7 @@ func (c *Container) ChildGetValist(child *Widget, firstPropertyName string, varA
 func (c *Container) ChildSet(child *Widget, firstPropName string, v ...VArg) {
 	ContainerChildSet(c, child, firstPropName, v)
 }
-func (c *Container) ChildSetProperty(child *Widget, propertyName string, value *T.GValue) {
+func (c *Container) ChildSetProperty(child *Widget, propertyName string, value *O.Value) {
 	ContainerChildSetProperty(c, child, propertyName, value)
 }
 func (c *Container) ChildSetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
@@ -1198,12 +1199,12 @@ func (c *Container) Forall(callback Callback, callbackData T.Gpointer) {
 func (c *Container) Foreach(callback Callback, callbackData T.Gpointer) {
 	ContainerForeach(c, callback, callbackData)
 }
-func (c *Container) ForeachFull(callback Callback, marshal CallbackMarshal, callbackData T.Gpointer, notify T.GDestroyNotify) {
+func (c *Container) ForeachFull(callback Callback, marshal CallbackMarshal, callbackData T.Gpointer, notify O.DestroyNotify) {
 	ContainerForeachFull(c, callback, marshal, callbackData, notify)
 }
-func (c *Container) GetBorderWidth() uint  { return ContainerGetBorderWidth(c) }
-func (c *Container) GetChildren() *T.GList { return ContainerGetChildren(c) }
-func (c *Container) GetFocusChain(focusableWidgets **T.GList) bool {
+func (c *Container) GetBorderWidth() uint { return ContainerGetBorderWidth(c) }
+func (c *Container) GetChildren() *L.List { return ContainerGetChildren(c) }
+func (c *Container) GetFocusChain(focusableWidgets **L.List) bool {
 	return ContainerGetFocusChain(c, focusableWidgets)
 }
 func (c *Container) GetFocusChild() *Widget           { return ContainerGetFocusChild(c) }
@@ -1216,7 +1217,7 @@ func (c *Container) PropagateExpose(child *Widget, event *D.EventExpose) {
 func (c *Container) Remove(widget *Widget)           { ContainerRemove(c, widget) }
 func (c *Container) ResizeChildren()                 { ContainerResizeChildren(c) }
 func (c *Container) SetBorderWidth(borderWidth uint) { ContainerSetBorderWidth(c, borderWidth) }
-func (c *Container) SetFocusChain(focusableWidgets *T.GList) {
+func (c *Container) SetFocusChain(focusableWidgets *L.List) {
 	ContainerSetFocusChain(c, focusableWidgets)
 }
 func (c *Container) SetFocusChild(child *Widget) { ContainerSetFocusChild(c, child) }
@@ -1241,8 +1242,8 @@ type ContainerClass struct {
 	SetFocusChild    func(c *Container, w *Widget)
 	ChildType        func(c *Container) O.Type
 	CompositeName    func(c *Container, child *Widget) *T.Gchar
-	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
-	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *T.GValue, pspec *T.GParamSpec)
+	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *T.GParamSpec)
+	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *T.GParamSpec)
 	_, _, _, _       func()
 }
 
@@ -1283,7 +1284,7 @@ type (
 	}
 
 	CTreeNode struct {
-		List T.GList
+		List L.List
 	}
 
 	CTreeRow struct {
@@ -1351,8 +1352,8 @@ var (
 	CtreeExpandToDepth            func(c *CTree, node *CTreeNode, depth int)
 	CtreeExportToGnode            func(c *CTree, parent, sibling *T.GNode, node *CTreeNode, f CTreeGNodeFunc, data T.Gpointer) *T.GNode
 	CtreeFind                     func(c *CTree, node *CTreeNode, child *CTreeNode) bool
-	CtreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *T.GList
-	CtreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *T.GList
+	CtreeFindAllByRowData         func(c *CTree, node *CTreeNode, data T.Gpointer) *L.List
+	CtreeFindAllByRowDataCustom   func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *L.List
 	CtreeFindByRowData            func(c *CTree, node *CTreeNode, data T.Gpointer) *CTreeNode
 	CtreeFindByRowDataCustom      func(c *CTree, node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *CTreeNode
 	CtreeFindNodePtr              func(c *CTree, ctreeRow *CTreeRow) *CTreeNode
@@ -1381,7 +1382,7 @@ var (
 	CtreeNodeSetPixmap            func(c *CTree, node *CTreeNode, column int, pixmap *D.Pixmap, mask *T.GdkBitmap)
 	CtreeNodeSetPixtext           func(c *CTree, node *CTreeNode, column int, text string, spacing uint8, pixmap *D.Pixmap, mask *T.GdkBitmap)
 	CtreeNodeSetRowData           func(c *CTree, node *CTreeNode, data T.Gpointer)
-	CtreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, data T.Gpointer, destroy T.GDestroyNotify)
+	CtreeNodeSetRowDataFull       func(c *CTree, node *CTreeNode, data T.Gpointer, destroy O.DestroyNotify)
 	CtreeNodeSetRowStyle          func(c *CTree, node *CTreeNode, style *Style)
 	CtreeNodeSetSelectable        func(c *CTree, node *CTreeNode, selectable bool)
 	CtreeNodeSetShift             func(c *CTree, node *CTreeNode, column, vertical, horizontal int)
@@ -1419,10 +1420,10 @@ func (c *CTree) ExportToGnode(parent *T.GNode, sibling *T.GNode, node *CTreeNode
 	return CtreeExportToGnode(c, parent, sibling, node, f, data)
 }
 func (c *CTree) Find(node, child *CTreeNode) bool { return CtreeFind(c, node, child) }
-func (c *CTree) FindAllByRowData(node *CTreeNode, data T.Gpointer) *T.GList {
+func (c *CTree) FindAllByRowData(node *CTreeNode, data T.Gpointer) *L.List {
 	return CtreeFindAllByRowData(c, node, data)
 }
-func (c *CTree) FindAllByRowDataCustom(node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *T.GList {
+func (c *CTree) FindAllByRowDataCustom(node *CTreeNode, data T.Gpointer, f T.GCompareFunc) *L.List {
 	return CtreeFindAllByRowDataCustom(c, node, data, f)
 }
 func (c *CTree) FindByRowData(node *CTreeNode, data T.Gpointer) *CTreeNode {
@@ -1487,7 +1488,7 @@ func (c *CTree) NodeSetPixtext(node *CTreeNode, column int, text string, spacing
 	CtreeNodeSetPixtext(c, node, column, text, spacing, pixmap, mask)
 }
 func (c *CTree) NodeSetRowData(node *CTreeNode, data T.Gpointer) { CtreeNodeSetRowData(c, node, data) }
-func (c *CTree) NodeSetRowDataFull(node *CTreeNode, data T.Gpointer, destroy T.GDestroyNotify) {
+func (c *CTree) NodeSetRowDataFull(node *CTreeNode, data T.Gpointer, destroy O.DestroyNotify) {
 	CtreeNodeSetRowDataFull(c, node, data, destroy)
 }
 func (c *CTree) NodeSetRowStyle(node *CTreeNode, style *Style) {

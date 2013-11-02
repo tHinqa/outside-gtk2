@@ -17,18 +17,18 @@ var (
 
 	SeekableCanSeek     func(seekable *Seekable) bool
 	SeekableCanTruncate func(seekable *Seekable) bool
-	SeekableSeek        func(seekable *Seekable, offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **T.GError) bool
+	SeekableSeek        func(seekable *Seekable, offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **L.Error) bool
 	SeekableTell        func(seekable *Seekable) T.Goffset
-	SeekableTruncate    func(seekable *Seekable, offset T.Goffset, cancellable *Cancellable, err **T.GError) bool
+	SeekableTruncate    func(seekable *Seekable, offset T.Goffset, cancellable *Cancellable, err **L.Error) bool
 )
 
 func (s *Seekable) CanSeek() bool     { return SeekableCanSeek(s) }
 func (s *Seekable) CanTruncate() bool { return SeekableCanTruncate(s) }
-func (s *Seekable) Seek(offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **T.GError) bool {
+func (s *Seekable) Seek(offset T.Goffset, typ L.SeekType, cancellable *Cancellable, err **L.Error) bool {
 	return SeekableSeek(s, offset, typ, cancellable, err)
 }
 func (s *Seekable) Tell() T.Goffset { return SeekableTell(s) }
-func (s *Seekable) Truncate(offset T.Goffset, cancellable *Cancellable, err **T.GError) bool {
+func (s *Seekable) Truncate(offset T.Goffset, cancellable *Cancellable, err **L.Error) bool {
 	return SeekableTruncate(s, offset, cancellable, err)
 }
 
@@ -51,7 +51,7 @@ var (
 
 	SettingsApply           func(s *Settings)
 	SettingsBind            func(s *Settings, key string, object T.Gpointer, property string, flags SettingsBindFlags)
-	SettingsBindWithMapping func(s *Settings, key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy T.GDestroyNotify)
+	SettingsBindWithMapping func(s *Settings, key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy O.DestroyNotify)
 	SettingsBindWritable    func(s *Settings, key string, object T.Gpointer, property string, inverted bool)
 	SettingsDelay           func(s *Settings)
 	SettingsGet             func(s *Settings, key, format string, v ...VArg)
@@ -88,7 +88,7 @@ func (s *Settings) Apply() { SettingsApply(s) }
 func (s *Settings) Bind(key string, object T.Gpointer, property string, flags SettingsBindFlags) {
 	SettingsBind(s, key, object, property, flags)
 }
-func (s *Settings) BindWithMapping(key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (s *Settings) BindWithMapping(key string, object T.Gpointer, property string, flags SettingsBindFlags, getMapping SettingsBindGetMapping, setMapping SettingsBindSetMapping, userData T.Gpointer, destroy O.DestroyNotify) {
 	SettingsBindWithMapping(s, key, object, property, flags, getMapping, setMapping, userData, destroy)
 }
 func (s *Settings) BindWritable(key string, object T.Gpointer, property string, inverted bool) {
@@ -236,8 +236,8 @@ func (s *SimpleActionGroup) Remove(actionName string) { SimpleActionGroupRemove(
 
 var (
 	SimpleAsyncReportErrorInIdle      func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain L.Quark, code int, format string, v ...VArg)
-	SimpleAsyncReportGerrorInIdle     func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError)
-	SimpleAsyncReportTakeGerrorInIdle func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError)
+	SimpleAsyncReportGerrorInIdle     func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *L.Error)
+	SimpleAsyncReportTakeGerrorInIdle func(object *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *L.Error)
 )
 
 type SimpleAsyncResult struct{}
@@ -246,8 +246,8 @@ var (
 	SimpleAsyncResultGetType      func() O.Type
 	SimpleAsyncResultNew          func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, sourceTag T.Gpointer) *SimpleAsyncResult
 	SimpleAsyncResultNewError     func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, domain L.Quark, code int, format string, v ...VArg) *SimpleAsyncResult
-	SimpleAsyncResultNewFromError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
-	SimpleAsyncResultNewTakeError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *T.GError) *SimpleAsyncResult
+	SimpleAsyncResultNewFromError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *L.Error) *SimpleAsyncResult
+	SimpleAsyncResultNewTakeError func(sourceObject *O.Object, callback AsyncReadyCallback, userData T.Gpointer, err *L.Error) *SimpleAsyncResult
 
 	SimpleAsyncResultIsValid func(result *AsyncResult, source *O.Object, sourceTag T.Gpointer) bool
 
@@ -257,16 +257,16 @@ var (
 	SimpleAsyncResultGetOpResGpointer      func(s *SimpleAsyncResult) T.Gpointer
 	SimpleAsyncResultGetOpResGssize        func(s *SimpleAsyncResult) T.Gssize
 	SimpleAsyncResultGetSourceTag          func(s *SimpleAsyncResult) T.Gpointer
-	SimpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **T.GError) bool
+	SimpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **L.Error) bool
 	SimpleAsyncResultRunInThread           func(s *SimpleAsyncResult, f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable)
 	SimpleAsyncResultSetError              func(s *SimpleAsyncResult, domain L.Quark, code int, format string, v ...VArg)
 	SimpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain L.Quark, code int, format string, args T.VaList)
-	SimpleAsyncResultSetFromError          func(s *SimpleAsyncResult, err *T.GError)
+	SimpleAsyncResultSetFromError          func(s *SimpleAsyncResult, err *L.Error)
 	SimpleAsyncResultSetHandleCancellation func(s *SimpleAsyncResult, handleCancellation bool)
 	SimpleAsyncResultSetOpResGboolean      func(s *SimpleAsyncResult, opRes bool)
-	SimpleAsyncResultSetOpResGpointer      func(s *SimpleAsyncResult, opRes T.Gpointer, destroyOpRes T.GDestroyNotify)
+	SimpleAsyncResultSetOpResGpointer      func(s *SimpleAsyncResult, opRes T.Gpointer, destroyOpRes O.DestroyNotify)
 	SimpleAsyncResultSetOpResGssize        func(s *SimpleAsyncResult, opRes T.Gssize)
-	SimpleAsyncResultTakeError             func(s *SimpleAsyncResult, err *T.GError)
+	SimpleAsyncResultTakeError             func(s *SimpleAsyncResult, err *L.Error)
 )
 
 func (s *SimpleAsyncResult) Complete()                    { SimpleAsyncResultComplete(s) }
@@ -275,7 +275,7 @@ func (s *SimpleAsyncResult) GetOpResGboolean() bool       { return SimpleAsyncRe
 func (s *SimpleAsyncResult) GetOpResGpointer() T.Gpointer { return SimpleAsyncResultGetOpResGpointer(s) }
 func (s *SimpleAsyncResult) GetOpResGssize() T.Gssize     { return SimpleAsyncResultGetOpResGssize(s) }
 func (s *SimpleAsyncResult) GetSourceTag() T.Gpointer     { return SimpleAsyncResultGetSourceTag(s) }
-func (s *SimpleAsyncResult) PropagateError(dest **T.GError) bool {
+func (s *SimpleAsyncResult) PropagateError(dest **L.Error) bool {
 	return SimpleAsyncResultPropagateError(s, dest)
 }
 func (s *SimpleAsyncResult) RunInThread(f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable) {
@@ -287,18 +287,18 @@ func (s *SimpleAsyncResult) SetError(domain L.Quark, code int, format string, v 
 func (s *SimpleAsyncResult) SetErrorVa(domain L.Quark, code int, format string, args T.VaList) {
 	SimpleAsyncResultSetErrorVa(s, domain, code, format, args)
 }
-func (s *SimpleAsyncResult) SetFromError(err *T.GError) { SimpleAsyncResultSetFromError(s, err) }
+func (s *SimpleAsyncResult) SetFromError(err *L.Error) { SimpleAsyncResultSetFromError(s, err) }
 func (s *SimpleAsyncResult) SetHandleCancellation(handleCancellation bool) {
 	SimpleAsyncResultSetHandleCancellation(s, handleCancellation)
 }
 func (s *SimpleAsyncResult) SetOpResGboolean(opRes bool) {
 	SimpleAsyncResultSetOpResGboolean(s, opRes)
 }
-func (s *SimpleAsyncResult) SetOpResGpointer(opRes T.Gpointer, destroyOpRes T.GDestroyNotify) {
+func (s *SimpleAsyncResult) SetOpResGpointer(opRes T.Gpointer, destroyOpRes O.DestroyNotify) {
 	SimpleAsyncResultSetOpResGpointer(s, opRes, destroyOpRes)
 }
 func (s *SimpleAsyncResult) SetOpResGssize(opRes T.Gssize) { SimpleAsyncResultSetOpResGssize(s, opRes) }
-func (s *SimpleAsyncResult) TakeError(err *T.GError)       { SimpleAsyncResultTakeError(s, err) }
+func (s *SimpleAsyncResult) TakeError(err *L.Error)        { SimpleAsyncResultTakeError(s, err) }
 
 type SimpleAsyncThreadFunc func(
 	res *SimpleAsyncResult,
@@ -317,15 +317,15 @@ type Socket struct {
 
 var (
 	SocketGetType   func() O.Type
-	SocketNew       func(family SocketFamily, t SocketType, protocol SocketProtocol, err **T.GError) *Socket
-	SocketNewFromFd func(fd int, err **T.GError) *Socket
+	SocketNew       func(family SocketFamily, t SocketType, protocol SocketProtocol, err **L.Error) *Socket
+	SocketNewFromFd func(fd int, err **L.Error) *Socket
 
 	SocketGetFd               func(s *Socket) int
 	SocketGetFamily           func(s *Socket) SocketFamily
 	SocketGetSocketType       func(s *Socket) SocketType
 	SocketGetProtocol         func(s *Socket) SocketProtocol
-	SocketGetLocalAddress     func(s *Socket, err **T.GError) *SocketAddress
-	SocketGetRemoteAddress    func(s *Socket, err **T.GError) *SocketAddress
+	SocketGetLocalAddress     func(s *Socket, err **L.Error) *SocketAddress
+	SocketGetRemoteAddress    func(s *Socket, err **L.Error) *SocketAddress
 	SocketSetBlocking         func(s *Socket, blocking bool)
 	SocketGetBlocking         func(s *Socket) bool
 	SocketSetKeepalive        func(s *Socket, keepalive bool)
@@ -335,35 +335,35 @@ var (
 	SocketGetTimeout          func(s *Socket) uint
 	SocketSetTimeout          func(s *Socket, timeout uint)
 	SocketIsConnected         func(s *Socket) bool
-	SocketBind                func(s *Socket, address *SocketAddress, allowReuse bool, err **T.GError) bool
-	SocketConnect             func(s *Socket, address *SocketAddress, cancellable *Cancellable, err **T.GError) bool
-	SocketCheckConnectResult  func(s *Socket, err **T.GError) bool
+	SocketBind                func(s *Socket, address *SocketAddress, allowReuse bool, err **L.Error) bool
+	SocketConnect             func(s *Socket, address *SocketAddress, cancellable *Cancellable, err **L.Error) bool
+	SocketCheckConnectResult  func(s *Socket, err **L.Error) bool
 	SocketConditionCheck      func(s *Socket, condition L.IOCondition) L.IOCondition
-	SocketConditionWait       func(s *Socket, condition L.IOCondition, cancellable *Cancellable, err **T.GError) bool
-	SocketAccept              func(s *Socket, cancellable *Cancellable, err **T.GError) *Socket
-	SocketListen              func(s *Socket, err **T.GError) bool
-	SocketReceive             func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketReceiveFrom         func(s *Socket, address **SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketSend                func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketSendTo              func(s *Socket, address *SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketReceiveMessage      func(s *Socket, address **SocketAddress, vectors *InputVector, numVectors int, messages ***SocketControlMessage, numMessages *int, flags *int, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketSendMessage         func(s *Socket, address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages int, flags int, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketClose               func(s *Socket, err **T.GError) bool
-	SocketShutdown            func(s *Socket, shutdownRead bool, shutdownWrite bool, err **T.GError) bool
+	SocketConditionWait       func(s *Socket, condition L.IOCondition, cancellable *Cancellable, err **L.Error) bool
+	SocketAccept              func(s *Socket, cancellable *Cancellable, err **L.Error) *Socket
+	SocketListen              func(s *Socket, err **L.Error) bool
+	SocketReceive             func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketReceiveFrom         func(s *Socket, address **SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketSend                func(s *Socket, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketSendTo              func(s *Socket, address *SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketReceiveMessage      func(s *Socket, address **SocketAddress, vectors *InputVector, numVectors int, messages ***SocketControlMessage, numMessages *int, flags *int, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketSendMessage         func(s *Socket, address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages int, flags int, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketClose               func(s *Socket, err **L.Error) bool
+	SocketShutdown            func(s *Socket, shutdownRead bool, shutdownWrite bool, err **L.Error) bool
 	SocketIsClosed            func(s *Socket) bool
 	SocketCreateSource        func(s *Socket, condition L.IOCondition, cancellable *Cancellable) *O.Source
 	SocketSpeaksIpv4          func(s *Socket) bool
-	SocketGetCredentials      func(s *Socket, err **T.GError) *Credentials
-	SocketReceiveWithBlocking func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize
-	SocketSendWithBlocking    func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize
+	SocketGetCredentials      func(s *Socket, err **L.Error) *Credentials
+	SocketReceiveWithBlocking func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **L.Error) T.Gssize
+	SocketSendWithBlocking    func(s *Socket, buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **L.Error) T.Gssize
 )
 
-func (s *Socket) GetFd() int                                    { return SocketGetFd(s) }
-func (s *Socket) GetFamily() SocketFamily                       { return SocketGetFamily(s) }
-func (s *Socket) GetSocketType() SocketType                     { return SocketGetSocketType(s) }
-func (s *Socket) GetProtocol() SocketProtocol                   { return SocketGetProtocol(s) }
-func (s *Socket) GetLocalAddress(err **T.GError) *SocketAddress { return SocketGetLocalAddress(s, err) }
-func (s *Socket) GetRemoteAddress(err **T.GError) *SocketAddress {
+func (s *Socket) GetFd() int                                   { return SocketGetFd(s) }
+func (s *Socket) GetFamily() SocketFamily                      { return SocketGetFamily(s) }
+func (s *Socket) GetSocketType() SocketType                    { return SocketGetSocketType(s) }
+func (s *Socket) GetProtocol() SocketProtocol                  { return SocketGetProtocol(s) }
+func (s *Socket) GetLocalAddress(err **L.Error) *SocketAddress { return SocketGetLocalAddress(s, err) }
+func (s *Socket) GetRemoteAddress(err **L.Error) *SocketAddress {
 	return SocketGetRemoteAddress(s, err)
 }
 func (s *Socket) SetBlocking(blocking bool)    { SocketSetBlocking(s, blocking) }
@@ -375,57 +375,57 @@ func (s *Socket) SetListenBacklog(backlog int) { SocketSetListenBacklog(s, backl
 func (s *Socket) GetTimeout() uint             { return SocketGetTimeout(s) }
 func (s *Socket) SetTimeout(timeout uint)      { SocketSetTimeout(s, timeout) }
 func (s *Socket) IsConnected() bool            { return SocketIsConnected(s) }
-func (s *Socket) Bind(address *SocketAddress, allowReuse bool, err **T.GError) bool {
+func (s *Socket) Bind(address *SocketAddress, allowReuse bool, err **L.Error) bool {
 	return SocketBind(s, address, allowReuse, err)
 }
-func (s *Socket) Connect(address *SocketAddress, cancellable *Cancellable, err **T.GError) bool {
+func (s *Socket) Connect(address *SocketAddress, cancellable *Cancellable, err **L.Error) bool {
 	return SocketConnect(s, address, cancellable, err)
 }
-func (s *Socket) CheckConnectResult(err **T.GError) bool {
+func (s *Socket) CheckConnectResult(err **L.Error) bool {
 	return SocketCheckConnectResult(s, err)
 }
 func (s *Socket) ConditionCheck(condition L.IOCondition) L.IOCondition {
 	return SocketConditionCheck(s, condition)
 }
-func (s *Socket) ConditionWait(condition L.IOCondition, cancellable *Cancellable, err **T.GError) bool {
+func (s *Socket) ConditionWait(condition L.IOCondition, cancellable *Cancellable, err **L.Error) bool {
 	return SocketConditionWait(s, condition, cancellable, err)
 }
-func (s *Socket) Accept(cancellable *Cancellable, err **T.GError) *Socket {
+func (s *Socket) Accept(cancellable *Cancellable, err **L.Error) *Socket {
 	return SocketAccept(s, cancellable, err)
 }
-func (s *Socket) Listen(err **T.GError) bool { return SocketListen(s, err) }
-func (s *Socket) Receive(buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) Listen(err **L.Error) bool { return SocketListen(s, err) }
+func (s *Socket) Receive(buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketReceive(s, buffer, size, cancellable, err)
 }
-func (s *Socket) ReceiveFrom(address **SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) ReceiveFrom(address **SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketReceiveFrom(s, address, buffer, size, cancellable, err)
 }
-func (s *Socket) Send(buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) Send(buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketSend(s, buffer, size, cancellable, err)
 }
-func (s *Socket) SendTo(address *SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) SendTo(address *SocketAddress, buffer string, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketSendTo(s, address, buffer, size, cancellable, err)
 }
-func (s *Socket) ReceiveMessage(address **SocketAddress, vectors *InputVector, numVectors int, messages ***SocketControlMessage, numMessages, flags *int, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) ReceiveMessage(address **SocketAddress, vectors *InputVector, numVectors int, messages ***SocketControlMessage, numMessages, flags *int, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketReceiveMessage(s, address, vectors, numVectors, messages, numMessages, flags, cancellable, err)
 }
-func (s *Socket) SendMessage(address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages, flags int, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) SendMessage(address *SocketAddress, vectors *T.GOutputVector, numVectors int, messages **SocketControlMessage, numMessages, flags int, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketSendMessage(s, address, vectors, numVectors, messages, numMessages, flags, cancellable, err)
 }
-func (s *Socket) Close(err **T.GError) bool { return SocketClose(s, err) }
-func (s *Socket) Shutdown(shutdownRead, shutdownWrite bool, err **T.GError) bool {
+func (s *Socket) Close(err **L.Error) bool { return SocketClose(s, err) }
+func (s *Socket) Shutdown(shutdownRead, shutdownWrite bool, err **L.Error) bool {
 	return SocketShutdown(s, shutdownRead, shutdownWrite, err)
 }
 func (s *Socket) IsClosed() bool { return SocketIsClosed(s) }
 func (s *Socket) CreateSource(condition L.IOCondition, cancellable *Cancellable) *O.Source {
 	return SocketCreateSource(s, condition, cancellable)
 }
-func (s *Socket) SpeaksIpv4() bool                           { return SocketSpeaksIpv4(s) }
-func (s *Socket) GetCredentials(err **T.GError) *Credentials { return SocketGetCredentials(s, err) }
-func (s *Socket) ReceiveWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) SpeaksIpv4() bool                          { return SocketSpeaksIpv4(s) }
+func (s *Socket) GetCredentials(err **L.Error) *Credentials { return SocketGetCredentials(s, err) }
+func (s *Socket) ReceiveWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketReceiveWithBlocking(s, buffer, size, blocking, cancellable, err)
 }
-func (s *Socket) SendWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **T.GError) T.Gssize {
+func (s *Socket) SendWithBlocking(buffer string, size T.Gsize, blocking bool, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return SocketSendWithBlocking(s, buffer, size, blocking, cancellable, err)
 }
 
@@ -439,12 +439,12 @@ var (
 
 	SocketAddressGetFamily     func(s *SocketAddress) SocketFamily
 	SocketAddressGetNativeSize func(s *SocketAddress) T.Gssize
-	SocketAddressToNative      func(s *SocketAddress, dest T.Gpointer, destlen T.Gsize, err **T.GError) bool
+	SocketAddressToNative      func(s *SocketAddress, dest T.Gpointer, destlen T.Gsize, err **L.Error) bool
 )
 
 func (s *SocketAddress) GetFamily() SocketFamily { return SocketAddressGetFamily(s) }
 func (s *SocketAddress) GetNativeSize() T.Gssize { return SocketAddressGetNativeSize(s) }
-func (s *SocketAddress) ToNative(dest T.Gpointer, destlen T.Gsize, err **T.GError) bool {
+func (s *SocketAddress) ToNative(dest T.Gpointer, destlen T.Gsize, err **L.Error) bool {
 	return SocketAddressToNative(s, dest, destlen, err)
 }
 
@@ -455,18 +455,18 @@ type SocketAddressEnumerator struct {
 var (
 	SocketAddressEnumeratorGetType func() O.Type
 
-	SocketAddressEnumeratorNext       func(s *SocketAddressEnumerator, cancellable *Cancellable, err **T.GError) *SocketAddress
+	SocketAddressEnumeratorNext       func(s *SocketAddressEnumerator, cancellable *Cancellable, err **L.Error) *SocketAddress
 	SocketAddressEnumeratorNextAsync  func(s *SocketAddressEnumerator, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketAddressEnumeratorNextFinish func(s *SocketAddressEnumerator, result *AsyncResult, err **T.GError) *SocketAddress
+	SocketAddressEnumeratorNextFinish func(s *SocketAddressEnumerator, result *AsyncResult, err **L.Error) *SocketAddress
 )
 
-func (s *SocketAddressEnumerator) Next(cancellable *Cancellable, err **T.GError) *SocketAddress {
+func (s *SocketAddressEnumerator) Next(cancellable *Cancellable, err **L.Error) *SocketAddress {
 	return SocketAddressEnumeratorNext(s, cancellable, err)
 }
 func (s *SocketAddressEnumerator) NextAsync(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketAddressEnumeratorNextAsync(s, cancellable, callback, userData)
 }
-func (s *SocketAddressEnumerator) NextFinish(result *AsyncResult, err **T.GError) *SocketAddress {
+func (s *SocketAddressEnumerator) NextFinish(result *AsyncResult, err **L.Error) *SocketAddress {
 	return SocketAddressEnumeratorNextFinish(s, result, err)
 }
 
@@ -480,18 +480,18 @@ var (
 	SocketClientNew     func() *SocketClient
 
 	SocketClientAddApplicationProxy    func(s *SocketClient, protocol string)
-	SocketClientConnect                func(s *SocketClient, connectable *SocketConnectable, cancellable *Cancellable, err **T.GError) *SocketConnection
+	SocketClientConnect                func(s *SocketClient, connectable *SocketConnectable, cancellable *Cancellable, err **L.Error) *SocketConnection
 	SocketClientConnectAsync           func(s *SocketClient, connectable *SocketConnectable, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketClientConnectFinish          func(s *SocketClient, result *AsyncResult, err **T.GError) *SocketConnection
-	SocketClientConnectToHost          func(s *SocketClient, hostAndPort string, defaultPort uint16, cancellable *Cancellable, err **T.GError) *SocketConnection
+	SocketClientConnectFinish          func(s *SocketClient, result *AsyncResult, err **L.Error) *SocketConnection
+	SocketClientConnectToHost          func(s *SocketClient, hostAndPort string, defaultPort uint16, cancellable *Cancellable, err **L.Error) *SocketConnection
 	SocketClientConnectToHostAsync     func(s *SocketClient, hostAndPort string, defaultPort uint16, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketClientConnectToHostFinish    func(s *SocketClient, result *AsyncResult, err **T.GError) *SocketConnection
-	SocketClientConnectToService       func(s *SocketClient, domain string, service string, cancellable *Cancellable, err **T.GError) *SocketConnection
+	SocketClientConnectToHostFinish    func(s *SocketClient, result *AsyncResult, err **L.Error) *SocketConnection
+	SocketClientConnectToService       func(s *SocketClient, domain string, service string, cancellable *Cancellable, err **L.Error) *SocketConnection
 	SocketClientConnectToServiceAsync  func(s *SocketClient, domain string, service string, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketClientConnectToServiceFinish func(s *SocketClient, result *AsyncResult, err **T.GError) *SocketConnection
-	SocketClientConnectToUri           func(s *SocketClient, uri string, defaultPort uint16, cancellable *Cancellable, err **T.GError) *SocketConnection
+	SocketClientConnectToServiceFinish func(s *SocketClient, result *AsyncResult, err **L.Error) *SocketConnection
+	SocketClientConnectToUri           func(s *SocketClient, uri string, defaultPort uint16, cancellable *Cancellable, err **L.Error) *SocketConnection
 	SocketClientConnectToUriAsync      func(s *SocketClient, uri string, defaultPort uint16, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketClientConnectToUriFinish     func(s *SocketClient, result *AsyncResult, err **T.GError) *SocketConnection
+	SocketClientConnectToUriFinish     func(s *SocketClient, result *AsyncResult, err **L.Error) *SocketConnection
 	SocketClientGetEnableProxy         func(s *SocketClient) bool
 	SocketClientGetFamily              func(s *SocketClient) SocketFamily
 	SocketClientGetLocalAddress        func(s *SocketClient) *SocketAddress
@@ -513,40 +513,40 @@ var (
 func (s *SocketClient) AddApplicationProxy(protocol string) {
 	SocketClientAddApplicationProxy(s, protocol)
 }
-func (s *SocketClient) Connect(connectable *SocketConnectable, cancellable *Cancellable, err **T.GError) *SocketConnection {
+func (s *SocketClient) Connect(connectable *SocketConnectable, cancellable *Cancellable, err **L.Error) *SocketConnection {
 	return SocketClientConnect(s, connectable, cancellable, err)
 }
 func (s *SocketClient) ConnectAsync(connectable *SocketConnectable, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketClientConnectAsync(s, connectable, cancellable, callback, userData)
 }
-func (s *SocketClient) ConnectFinish(result *AsyncResult, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectFinish(result *AsyncResult, err **L.Error) *SocketConnection {
 	return SocketClientConnectFinish(s, result, err)
 }
-func (s *SocketClient) ConnectToHost(hostAndPort string, defaultPort uint16, cancellable *Cancellable, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToHost(hostAndPort string, defaultPort uint16, cancellable *Cancellable, err **L.Error) *SocketConnection {
 	return SocketClientConnectToHost(s, hostAndPort, defaultPort, cancellable, err)
 }
 func (s *SocketClient) ConnectToHostAsync(hostAndPort string, defaultPort uint16, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketClientConnectToHostAsync(s, hostAndPort, defaultPort, cancellable, callback, userData)
 }
-func (s *SocketClient) ConnectToHostFinish(result *AsyncResult, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToHostFinish(result *AsyncResult, err **L.Error) *SocketConnection {
 	return SocketClientConnectToHostFinish(s, result, err)
 }
-func (s *SocketClient) ConnectToService(domain, service string, cancellable *Cancellable, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToService(domain, service string, cancellable *Cancellable, err **L.Error) *SocketConnection {
 	return SocketClientConnectToService(s, domain, service, cancellable, err)
 }
 func (s *SocketClient) ConnectToServiceAsync(domain, service string, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketClientConnectToServiceAsync(s, domain, service, cancellable, callback, userData)
 }
-func (s *SocketClient) ConnectToServiceFinish(result *AsyncResult, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToServiceFinish(result *AsyncResult, err **L.Error) *SocketConnection {
 	return SocketClientConnectToServiceFinish(s, result, err)
 }
-func (s *SocketClient) ConnectToUri(uri string, defaultPort uint16, cancellable *Cancellable, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToUri(uri string, defaultPort uint16, cancellable *Cancellable, err **L.Error) *SocketConnection {
 	return SocketClientConnectToUri(s, uri, defaultPort, cancellable, err)
 }
 func (s *SocketClient) ConnectToUriAsync(uri string, defaultPort uint16, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketClientConnectToUriAsync(s, uri, defaultPort, cancellable, callback, userData)
 }
-func (s *SocketClient) ConnectToUriFinish(result *AsyncResult, err **T.GError) *SocketConnection {
+func (s *SocketClient) ConnectToUriFinish(result *AsyncResult, err **L.Error) *SocketConnection {
 	return SocketClientConnectToUriFinish(s, result, err)
 }
 func (s *SocketClient) GetEnableProxy() bool            { return SocketClientGetEnableProxy(s) }
@@ -598,15 +598,15 @@ var (
 	SocketConnectionFactoryLookupType       func(family SocketFamily, t SocketType, protocolId int) O.Type
 	SocketConnectionFactoryRegisterType     func(GType O.Type, family SocketFamily, t SocketType, protocol int)
 
-	SocketConnectionGetLocalAddress  func(s *SocketConnection, err **T.GError) *SocketAddress
-	SocketConnectionGetRemoteAddress func(s *SocketConnection, err **T.GError) *SocketAddress
+	SocketConnectionGetLocalAddress  func(s *SocketConnection, err **L.Error) *SocketAddress
+	SocketConnectionGetRemoteAddress func(s *SocketConnection, err **L.Error) *SocketAddress
 	SocketConnectionGetSocket        func(s *SocketConnection) *Socket
 )
 
-func (s *SocketConnection) GetLocalAddress(err **T.GError) *SocketAddress {
+func (s *SocketConnection) GetLocalAddress(err **L.Error) *SocketAddress {
 	return SocketConnectionGetLocalAddress(s, err)
 }
-func (s *SocketConnection) GetRemoteAddress(err **T.GError) *SocketAddress {
+func (s *SocketConnection) GetRemoteAddress(err **L.Error) *SocketAddress {
 	return SocketConnectionGetRemoteAddress(s, err)
 }
 func (s *SocketConnection) GetSocket() *Socket { return SocketConnectionGetSocket(s) }
@@ -652,48 +652,48 @@ var (
 	SocketListenerGetType func() O.Type
 	SocketListenerNew     func() *SocketListener
 
-	SocketListenerAccept             func(s *SocketListener, sourceObject **O.Object, cancellable *Cancellable, err **T.GError) *SocketConnection
+	SocketListenerAccept             func(s *SocketListener, sourceObject **O.Object, cancellable *Cancellable, err **L.Error) *SocketConnection
 	SocketListenerAcceptAsync        func(s *SocketListener, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketListenerAcceptFinish       func(s *SocketListener, result *AsyncResult, sourceObject **O.Object, err **T.GError) *SocketConnection
-	SocketListenerAcceptSocket       func(s *SocketListener, sourceObject **O.Object, cancellable *Cancellable, err **T.GError) *Socket
+	SocketListenerAcceptFinish       func(s *SocketListener, result *AsyncResult, sourceObject **O.Object, err **L.Error) *SocketConnection
+	SocketListenerAcceptSocket       func(s *SocketListener, sourceObject **O.Object, cancellable *Cancellable, err **L.Error) *Socket
 	SocketListenerAcceptSocketAsync  func(s *SocketListener, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	SocketListenerAcceptSocketFinish func(s *SocketListener, result *AsyncResult, sourceObject **O.Object, err **T.GError) *Socket
-	SocketListenerAddAddress         func(s *SocketListener, address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) bool
-	SocketListenerAddAnyInetPort     func(s *SocketListener, sourceObject *O.Object, err **T.GError) uint16
-	SocketListenerAddInetPort        func(s *SocketListener, port uint16, sourceObject *O.Object, err **T.GError) bool
-	SocketListenerAddSocket          func(s *SocketListener, socket *Socket, sourceObject *O.Object, err **T.GError) bool
+	SocketListenerAcceptSocketFinish func(s *SocketListener, result *AsyncResult, sourceObject **O.Object, err **L.Error) *Socket
+	SocketListenerAddAddress         func(s *SocketListener, address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **L.Error) bool
+	SocketListenerAddAnyInetPort     func(s *SocketListener, sourceObject *O.Object, err **L.Error) uint16
+	SocketListenerAddInetPort        func(s *SocketListener, port uint16, sourceObject *O.Object, err **L.Error) bool
+	SocketListenerAddSocket          func(s *SocketListener, socket *Socket, sourceObject *O.Object, err **L.Error) bool
 	SocketListenerClose              func(s *SocketListener)
 	SocketListenerSetBacklog         func(s *SocketListener, listenBacklog int)
 )
 
-func (s *SocketListener) Accept(sourceObject **O.Object, cancellable *Cancellable, err **T.GError) *SocketConnection {
+func (s *SocketListener) Accept(sourceObject **O.Object, cancellable *Cancellable, err **L.Error) *SocketConnection {
 	return SocketListenerAccept(s, sourceObject, cancellable, err)
 }
 func (s *SocketListener) AcceptAsync(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketListenerAcceptAsync(s, cancellable, callback, userData)
 }
-func (s *SocketListener) AcceptFinish(result *AsyncResult, sourceObject **O.Object, err **T.GError) *SocketConnection {
+func (s *SocketListener) AcceptFinish(result *AsyncResult, sourceObject **O.Object, err **L.Error) *SocketConnection {
 	return SocketListenerAcceptFinish(s, result, sourceObject, err)
 }
-func (s *SocketListener) AcceptSocket(sourceObject **O.Object, cancellable *Cancellable, err **T.GError) *Socket {
+func (s *SocketListener) AcceptSocket(sourceObject **O.Object, cancellable *Cancellable, err **L.Error) *Socket {
 	return SocketListenerAcceptSocket(s, sourceObject, cancellable, err)
 }
 func (s *SocketListener) AcceptSocketAsync(cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	SocketListenerAcceptSocketAsync(s, cancellable, callback, userData)
 }
-func (s *SocketListener) AcceptSocketFinish(result *AsyncResult, sourceObject **O.Object, err **T.GError) *Socket {
+func (s *SocketListener) AcceptSocketFinish(result *AsyncResult, sourceObject **O.Object, err **L.Error) *Socket {
 	return SocketListenerAcceptSocketFinish(s, result, sourceObject, err)
 }
-func (s *SocketListener) AddAddress(address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **T.GError) bool {
+func (s *SocketListener) AddAddress(address *SocketAddress, t SocketType, protocol SocketProtocol, sourceObject *O.Object, effectiveAddress **SocketAddress, err **L.Error) bool {
 	return SocketListenerAddAddress(s, address, t, protocol, sourceObject, effectiveAddress, err)
 }
-func (s *SocketListener) AddAnyInetPort(sourceObject *O.Object, err **T.GError) uint16 {
+func (s *SocketListener) AddAnyInetPort(sourceObject *O.Object, err **L.Error) uint16 {
 	return SocketListenerAddAnyInetPort(s, sourceObject, err)
 }
-func (s *SocketListener) AddInetPort(port uint16, sourceObject *O.Object, err **T.GError) bool {
+func (s *SocketListener) AddInetPort(port uint16, sourceObject *O.Object, err **L.Error) bool {
 	return SocketListenerAddInetPort(s, port, sourceObject, err)
 }
-func (s *SocketListener) AddSocket(socket *Socket, sourceObject *O.Object, err **T.GError) bool {
+func (s *SocketListener) AddSocket(socket *Socket, sourceObject *O.Object, err **L.Error) bool {
 	return SocketListenerAddSocket(s, socket, sourceObject, err)
 }
 func (s *SocketListener) Close()                       { SocketListenerClose(s) }
@@ -748,7 +748,7 @@ var (
 	SrvTargetGetType func() O.Type
 	SrvTargetNew     func(hostname string, port uint16, priority uint16, weight uint16) *SrvTarget
 
-	SrvTargetListSort func(targets *T.GList) *T.GList
+	SrvTargetListSort func(targets *L.List) *L.List
 
 	SrvTargetCopy        func(s *SrvTarget) *SrvTarget
 	SrvTargetFree        func(s *SrvTarget)

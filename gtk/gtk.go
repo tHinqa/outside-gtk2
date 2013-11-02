@@ -419,7 +419,7 @@ var (
 		signalFlags SignalRunType,
 		objectType O.Type,
 		functionOffset uint,
-		marshaller T.GSignalCMarshaller,
+		marshaller O.SignalCMarshaller,
 		returnVal O.Type,
 		nArgs uint,
 		args *O.Type) uint
@@ -427,7 +427,7 @@ var (
 	SignalNew func(name string,
 		signalFlags SignalRunType,
 		objectType O.Type, functionOffset uint,
-		marshaller T.GSignalCMarshaller, returnVal O.Type,
+		marshaller O.SignalCMarshaller, returnVal O.Type,
 		nArgs uint, v ...VArg) uint
 
 	SignalEmitStopByName func(object *Object, name string)
@@ -435,23 +435,23 @@ var (
 	SignalConnectObjectWhileAlive func(
 		object *Object,
 		name string,
-		f T.GCallback,
+		f O.Callback,
 		aliveObject *Object)
 
 	SignalConnectWhileAlive func(
 		object *Object,
 		name string,
-		f T.GCallback,
+		f O.Callback,
 		funcData T.Gpointer,
 		aliveObject *Object)
 
 	SignalConnectFull func(
 		object *Object,
 		name string,
-		f T.GCallback,
+		f O.Callback,
 		unsupported CallbackMarshal,
 		data T.Gpointer,
-		destroyFunc T.GDestroyNotify,
+		destroyFunc O.DestroyNotify,
 		objectSignal, after int) T.Gulong
 
 	SignalEmitv func(object *Object, signalId uint, args *Arg)
@@ -464,9 +464,9 @@ var (
 
 	SignalCompatMatched func(
 		object *Object,
-		f T.GCallback,
+		f O.Callback,
 		data T.Gpointer,
-		match T.GSignalMatchType,
+		match O.SignalMatchType,
 		action uint)
 
 	GcGet func(
@@ -493,7 +493,7 @@ var (
 		parameterString string,
 		entries *L.OptionEntry,
 		translationDomain string,
-		error **T.GError) bool
+		error **L.Error) bool
 
 	GetOptionGroup func(
 		openDefaultDisplay bool) *L.OptionGroup
@@ -549,7 +549,7 @@ var (
 		function Function,
 		marshal CallbackMarshal,
 		data T.Gpointer,
-		destroy T.GDestroyNotify) uint
+		destroy O.DestroyNotify) uint
 
 	QuitRemove func(quitHandlerId uint)
 
@@ -565,7 +565,7 @@ var (
 		function Function,
 		marshal CallbackMarshal,
 		data T.Gpointer,
-		destroy T.GDestroyNotify) uint
+		destroy O.DestroyNotify) uint
 
 	IdleRemove func(idleHandlerId uint)
 
@@ -577,7 +577,7 @@ var (
 		function T.GdkInputFunction,
 		marshal CallbackMarshal,
 		data T.Gpointer,
-		destroy T.GDestroyNotify) uint
+		destroy O.DestroyNotify) uint
 
 	InputRemove func(inputHandlerId uint)
 
@@ -600,7 +600,7 @@ var (
 		screen *D.Screen,
 		uri string,
 		timestamp T.GUint32,
-		error **T.GError) bool
+		error **L.Error) bool
 
 	TestInit func(argcp *int, argvp ***T.Char, v ...VArg)
 
@@ -651,183 +651,183 @@ var (
 
 	Marshal_BOOLEAN__VOID func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_POINTER_INT_INT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_INT_INT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_INT_INT_UINT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_BOOLEAN__POINTER_STRING_STRING_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_ENUM__ENUM func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_INT__POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_INT__POINTER_CHAR_CHAR func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__ENUM_FLOAT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__ENUM_FLOAT_BOOLEAN func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__INT_INT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__INT_INT_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_INT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_STRING_STRING func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT_ENUM func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_POINTER_UINT_UINT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_INT_INT_POINTER_UINT_UINT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__POINTER_UINT_UINT func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__STRING_INT_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_POINTER_UINT_ENUM_ENUM_POINTER func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_POINTER_UINT_UINT_ENUM func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 
 	Marshal_VOID__UINT_STRING func(
 		closure *O.Closure,
-		returnValue *T.GValue,
+		returnValue *O.Value,
 		nParamValues uint,
-		paramValues *T.GValue,
+		paramValues *O.Value,
 		invocationHint, marshalData T.Gpointer)
 )

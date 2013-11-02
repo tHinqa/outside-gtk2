@@ -4,9 +4,7 @@
 package glib
 
 import (
-	// O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type (
@@ -89,25 +87,25 @@ type (
 var (
 	CompletionNew func(f CompletionFunc) *Completion
 
-	CompletionAddItems     func(c *Completion, items *T.GList)
+	CompletionAddItems     func(c *Completion, items *List)
 	CompletionClearItems   func(c *Completion)
-	CompletionComplete     func(c *Completion, prefix string, newPrefix **T.Gchar) *T.GList
-	CompletionCompleteUtf8 func(c *Completion, prefix string, newPrefix **T.Gchar) *T.GList
+	CompletionComplete     func(c *Completion, prefix string, newPrefix **T.Gchar) *List
+	CompletionCompleteUtf8 func(c *Completion, prefix string, newPrefix **T.Gchar) *List
 	CompletionFree         func(c *Completion)
-	CompletionRemoveItems  func(c *Completion, items *T.GList)
+	CompletionRemoveItems  func(c *Completion, items *List)
 	CompletionSetCompare   func(c *Completion, strncmpFunc CompletionStrncmpFunc)
 )
 
-func (c *Completion) AddItems(items *T.GList) { CompletionAddItems(c, items) }
-func (c *Completion) ClearItems()             { CompletionClearItems(c) }
-func (c *Completion) Complete(prefix string, newPrefix **T.Gchar) *T.GList {
+func (c *Completion) AddItems(items *List) { CompletionAddItems(c, items) }
+func (c *Completion) ClearItems()          { CompletionClearItems(c) }
+func (c *Completion) Complete(prefix string, newPrefix **T.Gchar) *List {
 	return CompletionComplete(c, prefix, newPrefix)
 }
-func (c *Completion) CompleteUtf8(prefix string, newPrefix **T.Gchar) *T.GList {
+func (c *Completion) CompleteUtf8(prefix string, newPrefix **T.Gchar) *List {
 	return CompletionCompleteUtf8(c, prefix, newPrefix)
 }
-func (c *Completion) Free()                      { CompletionFree(c) }
-func (c *Completion) RemoveItems(items *T.GList) { CompletionRemoveItems(c, items) }
+func (c *Completion) Free()                   { CompletionFree(c) }
+func (c *Completion) RemoveItems(items *List) { CompletionRemoveItems(c, items) }
 func (c *Completion) SetCompare(strncmpFunc CompletionStrncmpFunc) {
 	CompletionSetCompare(c, strncmpFunc)
 }
@@ -119,3 +117,5 @@ var (
 	ComputeChecksumForString func(c ChecksumType,
 		str string, length T.Gssize) string
 )
+
+type Cond struct{}

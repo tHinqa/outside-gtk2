@@ -138,8 +138,8 @@ var (
 	WidgetIsSensitive           func(w *Widget) bool
 	WidgetIsToplevel            func(w *Widget) bool
 	WidgetKeynavFailed          func(w *Widget, direction DirectionType) bool
-	WidgetListAccelClosures     func(w *Widget) *T.GList
-	WidgetListMnemonicLabels    func(w *Widget) *T.GList
+	WidgetListAccelClosures     func(w *Widget) *L.List
+	WidgetListMnemonicLabels    func(w *Widget) *L.List
 	WidgetMap                   func(w *Widget)
 	WidgetMnemonicActivate      func(w *Widget, groupCycling bool) bool
 	WidgetModifyBase            func(w *Widget, state StateType, color *D.Color)
@@ -209,7 +209,7 @@ var (
 	WidgetSizeAllocate          func(w *Widget, allocation *Allocation)
 	WidgetSizeRequest           func(w *Widget, requisition *Requisition)
 	WidgetStyleGet              func(w *Widget, firstPropertyName string, v ...VArg)
-	WidgetStyleGetProperty      func(w *Widget, propertyName string, value *T.GValue)
+	WidgetStyleGetProperty      func(w *Widget, propertyName string, value *O.Value)
 	WidgetStyleGetValist        func(w *Widget, firstPropertyName string, varArgs T.VaList)
 	WidgetThawChildNotify       func(w *Widget)
 	WidgetTriggerTooltipQuery   func(w *Widget)
@@ -323,9 +323,9 @@ func (w *Widget) IsToplevel() bool                 { return WidgetIsToplevel(w) 
 func (w *Widget) KeynavFailed(direction DirectionType) bool {
 	return WidgetKeynavFailed(w, direction)
 }
-func (w *Widget) ListAccelClosures() *T.GList  { return WidgetListAccelClosures(w) }
-func (w *Widget) ListMnemonicLabels() *T.GList { return WidgetListMnemonicLabels(w) }
-func (w *Widget) Map()                         { WidgetMap(w) }
+func (w *Widget) ListAccelClosures() *L.List  { return WidgetListAccelClosures(w) }
+func (w *Widget) ListMnemonicLabels() *L.List { return WidgetListMnemonicLabels(w) }
+func (w *Widget) Map()                        { WidgetMap(w) }
 func (w *Widget) MnemonicActivate(groupCycling bool) bool {
 	return WidgetMnemonicActivate(w, groupCycling)
 }
@@ -424,7 +424,7 @@ func (w *Widget) SizeRequest(requisition *Requisition) { WidgetSizeRequest(w, re
 func (w *Widget) StyleGet(firstPropertyName string, v ...VArg) {
 	WidgetStyleGet(w, firstPropertyName, v)
 }
-func (w *Widget) StyleGetProperty(propertyName string, value *T.GValue) {
+func (w *Widget) StyleGetProperty(propertyName string, value *O.Value) {
 	WidgetStyleGetProperty(w, propertyName, value)
 }
 func (w *Widget) StyleGetValist(firstPropertyName string, varArgs T.VaList) {
@@ -653,13 +653,13 @@ var (
 	WindowGetType func() O.Type
 	WindowNew     func(t WindowType) *Widget
 
-	WindowGetDefaultIconList         func() *T.GList
+	WindowGetDefaultIconList         func() *L.List
 	WindowGetDefaultIconName         func() string // 2.16
-	WindowListToplevels              func() *T.GList
+	WindowListToplevels              func() *L.List
 	WindowSetAutoStartupNotification func(setting bool)                         // 2.2
 	WindowSetDefaultIcon             func(icon *D.Pixbuf)                       // 2.4
-	WindowSetDefaultIconFromFile     func(filename string, err **T.GError) bool // 2.2
-	WindowSetDefaultIconList         func(list *T.GList)
+	WindowSetDefaultIconFromFile     func(filename string, err **L.Error) bool // 2.2
+	WindowSetDefaultIconList         func(list *L.List)
 	WindowSetDefaultIconName         func(name string) // 2.6
 
 	WindowActivateDefault       func(w *Window) bool
@@ -685,7 +685,7 @@ var (
 	WindowGetGroup              func(w *Window) *WindowGroup // 2.10
 	WindowGetHasFrame           func(w *Window) bool
 	WindowGetIcon               func(w *Window) *D.Pixbuf
-	WindowGetIconList           func(w *Window) *T.GList
+	WindowGetIconList           func(w *Window) *L.List
 	WindowGetIconName           func(w *Window) string // 2.6
 	WindowGetMnemonicModifier   func(w *Window) T.GdkModifierType
 	WindowGetMnemonicsVisible   func(w *Window) bool
@@ -732,8 +732,8 @@ var (
 	WindowSetGravity            func(w *Window, gravity D.Gravity)
 	WindowSetHasFrame           func(w *Window, setting bool)
 	WindowSetIcon               func(w *Window, icon *D.Pixbuf)
-	WindowSetIconFromFile       func(w *Window, filename string, err **T.GError) bool // 2.2
-	WindowSetIconList           func(w *Window, list *T.GList)
+	WindowSetIconFromFile       func(w *Window, filename string, err **L.Error) bool // 2.2
+	WindowSetIconList           func(w *Window, list *L.List)
 	WindowSetIconName           func(w *Window, name string)  // 2.6
 	WindowSetKeepAbove          func(w *Window, setting bool) // 2.4
 	WindowSetKeepBelow          func(w *Window, setting bool) // 2.4
@@ -801,7 +801,7 @@ func (w *Window) Gravity() D.Gravity                     { return WindowGetGravi
 func (w *Window) GetGroup() *WindowGroup                 { return WindowGetGroup(w) } //Note(t):removing Get introduces ambiguity
 func (w *Window) HasFrame() bool                         { return WindowGetHasFrame(w) }
 func (w *Window) Icon() *D.Pixbuf                        { return WindowGetIcon(w) }
-func (w *Window) IconList() *T.GList                     { return WindowGetIconList(w) }
+func (w *Window) IconList() *L.List                      { return WindowGetIconList(w) }
 func (w *Window) IconName() string                       { return WindowGetIconName(w) }
 func (w *Window) GetMnemonicModifier() T.GdkModifierType { return WindowGetMnemonicModifier(w) } //Note(t):removing Get introduces ambiguity
 func (w *Window) MnemonicsVisible() bool                 { return WindowGetMnemonicsVisible(w) }
@@ -856,10 +856,10 @@ func (w *Window) SetGeometryHints(geometryWidget *Widget, geometry *D.Geometry, 
 func (w *Window) SetGravity(gravity D.Gravity) { WindowSetGravity(w, gravity) }
 func (w *Window) SetHasFrame(setting bool)     { WindowSetHasFrame(w, setting) }
 func (w *Window) SetIcon(icon *D.Pixbuf)       { WindowSetIcon(w, icon) }
-func (w *Window) SetIconFromFile(filename string, err **T.GError) bool {
+func (w *Window) SetIconFromFile(filename string, err **L.Error) bool {
 	return WindowSetIconFromFile(w, filename, err)
 }
-func (w *Window) SetIconList(list *T.GList) { WindowSetIconList(w, list) }
+func (w *Window) SetIconList(list *L.List)  { WindowSetIconList(w, list) }
 func (w *Window) SetIconName(name string)   { WindowSetIconName(w, name) }
 func (w *Window) SetKeepAbove(setting bool) { WindowSetKeepAbove(w, setting) }
 func (w *Window) SetKeepBelow(setting bool) { WindowSetKeepBelow(w, setting) }
@@ -906,13 +906,13 @@ var (
 
 	WindowGroupAddWindow      func(w *WindowGroup, window *Window)
 	WindowGroupGetCurrentGrab func(w *WindowGroup) *Widget
-	WindowGroupListWindows    func(w *WindowGroup) *T.GList
+	WindowGroupListWindows    func(w *WindowGroup) *L.List
 	WindowGroupRemoveWindow   func(w *WindowGroup, window *Window)
 )
 
 func (w *WindowGroup) AddWindow(window *Window)    { WindowGroupAddWindow(w, window) }
 func (w *WindowGroup) GetCurrentGrab() *Widget     { return WindowGroupGetCurrentGrab(w) }
-func (w *WindowGroup) ListWindows() *T.GList       { return WindowGroupListWindows(w) }
+func (w *WindowGroup) ListWindows() *L.List        { return WindowGroupListWindows(w) }
 func (w *WindowGroup) RemoveWindow(window *Window) { WindowGroupRemoveWindow(w, window) }
 
 type WindowPosition Enum

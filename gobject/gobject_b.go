@@ -34,5 +34,5 @@ var BindingFlagsGetType func() Type
 
 type BindingTransformFunc func(
 	binding *Binding,
-	sourceValue, targetValue *T.GValue,
+	sourceValue, targetValue *Value,
 	userData T.Gpointer) bool

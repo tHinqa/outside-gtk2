@@ -4,9 +4,9 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type Cancellable struct {
@@ -21,7 +21,7 @@ var (
 	CancellableGetCurrent func() *Cancellable
 
 	CancellableCancel              func(c *Cancellable)
-	CancellableConnect             func(c *Cancellable, callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong
+	CancellableConnect             func(c *Cancellable, callback O.Callback, data T.Gpointer, dataDestroyFunc O.DestroyNotify) T.Gulong
 	CancellableDisconnect          func(c *Cancellable, handlerId T.Gulong)
 	CancellableGetFd               func(c *Cancellable) int
 	CancellableIsCancelled         func(c *Cancellable) bool
@@ -30,12 +30,12 @@ var (
 	CancellablePushCurrent         func(c *Cancellable)
 	CancellableReleaseFd           func(c *Cancellable)
 	CancellableReset               func(c *Cancellable)
-	CancellableSetErrorIfCancelled func(c *Cancellable, err **T.GError) bool
+	CancellableSetErrorIfCancelled func(c *Cancellable, err **L.Error) bool
 	CancellableSourceNew           func(c *Cancellable) *T.GSource
 )
 
 func (c *Cancellable) Cancel() { CancellableCancel(c) }
-func (c *Cancellable) Connect(callback T.GCallback, data T.Gpointer, dataDestroyFunc T.GDestroyNotify) T.Gulong {
+func (c *Cancellable) Connect(callback O.Callback, data T.Gpointer, dataDestroyFunc O.DestroyNotify) T.Gulong {
 	return CancellableConnect(c, callback, data, dataDestroyFunc)
 }
 func (c *Cancellable) Disconnect(handlerId T.Gulong) { CancellableDisconnect(c, handlerId) }
@@ -48,7 +48,7 @@ func (c *Cancellable) PopCurrent()  { CancellablePopCurrent(c) }
 func (c *Cancellable) PushCurrent() { CancellablePushCurrent(c) }
 func (c *Cancellable) ReleaseFd()   { CancellableReleaseFd(c) }
 func (c *Cancellable) Reset()       { CancellableReset(c) }
-func (c *Cancellable) SetErrorIfCancelled(err **T.GError) bool {
+func (c *Cancellable) SetErrorIfCancelled(err **L.Error) bool {
 	return CancellableSetErrorIfCancelled(c, err)
 }
 func (c *Cancellable) SourceNew() *T.GSource { return CancellableSourceNew(c) }
@@ -57,7 +57,7 @@ type CharsetConverter struct{}
 
 var (
 	CharsetConverterGetType func() O.Type
-	CharsetConverterNew     func(toCharset string, fromCharset string, err **T.GError) *CharsetConverter
+	CharsetConverterNew     func(toCharset string, fromCharset string, err **L.Error) *CharsetConverter
 
 	CharsetConverterGetNumFallbacks func(c *CharsetConverter) uint
 	CharsetConverterGetUseFallback  func(c *CharsetConverter) bool
@@ -81,7 +81,7 @@ var (
 	ContentTypeGuessForTree    func(root *File) []string
 	ContentTypeIsA             func(typ string, supertype string) bool
 	ContentTypeIsUnknown       func(typ string) bool
-	ContentTypesGetRegistered  func() *T.GList
+	ContentTypesGetRegistered  func() *L.List
 )
 
 type Converter struct{}
@@ -89,11 +89,11 @@ type Converter struct{}
 var (
 	ConverterGetType func() O.Type
 
-	ConverterConvert func(c *Converter, inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **T.GError) ConverterResult
+	ConverterConvert func(c *Converter, inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **L.Error) ConverterResult
 	ConverterReset   func(c *Converter)
 )
 
-func (c *Converter) Convert(inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **T.GError) ConverterResult {
+func (c *Converter) Convert(inbuf *T.Void, inbufSize T.Gsize, outbuf *T.Void, outbufSize T.Gsize, flags ConverterFlags, bytesRead, bytesWritten *T.Gsize, err **L.Error) ConverterResult {
 	return ConverterConvert(c, inbuf, inbufSize, outbuf, outbufSize, flags, bytesRead, bytesWritten, err)
 }
 func (c *Converter) Reset() { ConverterReset(c) }
@@ -154,7 +154,7 @@ var (
 	CredentialsNew     func() *Credentials
 
 	CredentialsGetNative  func(c *Credentials, nativeType CredentialsType) T.Gpointer
-	CredentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **T.GError) bool
+	CredentialsIsSameUser func(c *Credentials, otherCredentials *Credentials, err **L.Error) bool
 	CredentialsSetNative  func(c *Credentials, nativeType CredentialsType, native T.Gpointer)
 	CredentialsToString   func(c *Credentials) string
 )
@@ -162,7 +162,7 @@ var (
 func (c *Credentials) GetNative(nativeType CredentialsType) T.Gpointer {
 	return CredentialsGetNative(c, nativeType)
 }
-func (c *Credentials) IsSameUser(otherCredentials *Credentials, err **T.GError) bool {
+func (c *Credentials) IsSameUser(otherCredentials *Credentials, err **L.Error) bool {
 	return CredentialsIsSameUser(c, otherCredentials, err)
 }
 func (c *Credentials) SetNative(nativeType CredentialsType, native T.Gpointer) {

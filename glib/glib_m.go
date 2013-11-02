@@ -9,7 +9,7 @@ import (
 	. "github.com/tHinqa/outside/types"
 )
 
-type MainContext T.MainContext
+type MainContext T.MainContext // chicken/egg
 
 var (
 	MainContextNew func() *MainContext
@@ -29,7 +29,7 @@ var (
 	MainContextFindSourceByUserData      func(m *MainContext, userData T.Gpointer) *O.Source
 	MainContextGetPollFunc               func(m *MainContext) T.GPollFunc
 	MainContextInvoke                    func(m *MainContext, function O.SourceFunc, data T.Gpointer)
-	MainContextInvokeFull                func(m *MainContext, priority int, function O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify)
+	MainContextInvokeFull                func(m *MainContext, priority int, function O.SourceFunc, data T.Gpointer, notify O.DestroyNotify)
 	MainContextIsOwner                   func(m *MainContext) bool
 	MainContextIteration                 func(m *MainContext, mayBlock bool) bool
 	MainContextPending                   func(m *MainContext) bool
@@ -42,7 +42,7 @@ var (
 	MainContextRemovePoll                func(m *MainContext, fd *T.GPollFD)
 	MainContextSetPollFunc               func(m *MainContext, f T.GPollFunc)
 	MainContextUnref                     func(m *MainContext)
-	MainContextWait                      func(m *MainContext, cond *T.GCond, mutex *T.GMutex) bool
+	MainContextWait                      func(m *MainContext, cond *Cond, mutex *Mutex) bool
 	MainContextWakeup                    func(m *MainContext)
 )
 
@@ -65,7 +65,7 @@ func (m *MainContext) GetPollFunc() T.GPollFunc { return MainContextGetPollFunc(
 func (m *MainContext) Invoke(function O.SourceFunc, data T.Gpointer) {
 	MainContextInvoke(m, function, data)
 }
-func (m *MainContext) InvokeFull(priority int, function O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (m *MainContext) InvokeFull(priority int, function O.SourceFunc, data T.Gpointer, notify O.DestroyNotify) {
 	MainContextInvokeFull(m, priority, function, data, notify)
 }
 func (m *MainContext) IsOwner() bool                { return MainContextIsOwner(m) }
@@ -82,7 +82,7 @@ func (m *MainContext) Release()                  { MainContextRelease(m) }
 func (m *MainContext) RemovePoll(fd *T.GPollFD)  { MainContextRemovePoll(m, fd) }
 func (m *MainContext) SetPollFunc(f T.GPollFunc) { MainContextSetPollFunc(m, f) }
 func (m *MainContext) Unref()                    { MainContextUnref(m) }
-func (m *MainContext) Wait(cond *T.GCond, mutex *T.GMutex) bool {
+func (m *MainContext) Wait(cond *Cond, mutex *Mutex) bool {
 	return MainContextWait(m, cond, mutex)
 }
 func (m *MainContext) Wakeup() { MainContextWakeup(m) }
@@ -110,7 +110,7 @@ func (m *MainLoop) Unref()                   { MainLoopUnref(m) }
 type MappedFile struct{}
 
 var (
-	MappedFileNew func(filename string, writable bool, e **T.GError) *MappedFile
+	MappedFileNew func(filename string, writable bool, e **Error) *MappedFile
 
 	MappedFileFree        func(m *MappedFile)
 	MappedFileGetContents func(m *MappedFile) string
@@ -128,32 +128,32 @@ func (m *MappedFile) Unref()              { MappedFileUnref(m) }
 type MarkupParseContext struct{}
 
 var (
-	MarkupParseContextNew func(parser *MarkupParser, flags MarkupParseFlags, userData T.Gpointer, userDataDnotify T.GDestroyNotify) *MarkupParseContext
+	MarkupParseContextNew func(parser *MarkupParser, flags MarkupParseFlags, userData T.Gpointer, userDataDnotify O.DestroyNotify) *MarkupParseContext
 
 	MarkupEscapeText     func(text string, length T.Gssize) string
 	MarkupPrintfEscaped  func(format string, v ...VArg) string
 	MarkupVprintfEscaped func(format string, args T.VaList) string
 
-	MarkupParseContextEndParse        func(m *MarkupParseContext, e **T.GError) bool
+	MarkupParseContextEndParse        func(m *MarkupParseContext, e **Error) bool
 	MarkupParseContextFree            func(m *MarkupParseContext)
 	MarkupParseContextGetElement      func(m *MarkupParseContext) string
 	MarkupParseContextGetElementStack func(m *MarkupParseContext) *SList
 	MarkupParseContextGetPosition     func(m *MarkupParseContext, lineNumber, charNumber *int)
 	MarkupParseContextGetUserData     func(m *MarkupParseContext) T.Gpointer
-	MarkupParseContextParse           func(m *MarkupParseContext, text string, textLen T.Gssize, e **T.GError) bool
+	MarkupParseContextParse           func(m *MarkupParseContext, text string, textLen T.Gssize, e **Error) bool
 	MarkupParseContextPop             func(m *MarkupParseContext) T.Gpointer
 	MarkupParseContextPush            func(m *MarkupParseContext, parser *MarkupParser, userData T.Gpointer)
 )
 
-func (m *MarkupParseContext) EndParse(e **T.GError) bool { return MarkupParseContextEndParse(m, e) }
-func (m *MarkupParseContext) Free()                      { MarkupParseContextFree(m) }
-func (m *MarkupParseContext) GetElement() string         { return MarkupParseContextGetElement(m) }
-func (m *MarkupParseContext) GetElementStack() *SList    { return MarkupParseContextGetElementStack(m) }
+func (m *MarkupParseContext) EndParse(e **Error) bool { return MarkupParseContextEndParse(m, e) }
+func (m *MarkupParseContext) Free()                   { MarkupParseContextFree(m) }
+func (m *MarkupParseContext) GetElement() string      { return MarkupParseContextGetElement(m) }
+func (m *MarkupParseContext) GetElementStack() *SList { return MarkupParseContextGetElementStack(m) }
 func (m *MarkupParseContext) GetPosition(lineNumber, charNumber *int) {
 	MarkupParseContextGetPosition(m, lineNumber, charNumber)
 }
 func (m *MarkupParseContext) GetUserData() T.Gpointer { return MarkupParseContextGetUserData(m) }
-func (m *MarkupParseContext) Parse(text string, textLen T.Gssize, e **T.GError) bool {
+func (m *MarkupParseContext) Parse(text string, textLen T.Gssize, e **Error) bool {
 	return MarkupParseContextParse(m, text, textLen, e)
 }
 func (m *MarkupParseContext) Pop() T.Gpointer { return MarkupParseContextPop(m) }
@@ -176,27 +176,27 @@ type MarkupParser struct {
 		attributeNames **T.Gchar,
 		attributeValues **T.Gchar,
 		userData T.Gpointer,
-		error **T.GError)
+		error **Error)
 	EndElement func(
 		context *MarkupParseContext,
 		elementName *T.Gchar,
 		userData T.Gpointer,
-		error **T.GError)
+		error **Error)
 	Text func(
 		context *MarkupParseContext,
 		text *T.Gchar,
 		textLen T.Gsize,
 		userData T.Gpointer,
-		error **T.GError)
+		error **Error)
 	Passthrough func(
 		context *MarkupParseContext,
 		passthroughText *T.Gchar,
 		textLen T.Gsize,
 		userData T.Gpointer,
-		error **T.GError)
+		error **Error)
 	Error func(
 		context *MarkupParseContext,
-		error *T.GError,
+		error *Error,
 		userData T.Gpointer)
 }
 
@@ -222,3 +222,5 @@ func (m *MemChunk) Destroy()            { MemChunkDestroy(m) }
 func (m *MemChunk) Free(mem T.Gpointer) { MemChunkFree(m, mem) }
 func (m *MemChunk) Print()              { MemChunkPrint(m) }
 func (m *MemChunk) Reset()              { MemChunkReset(m) }
+
+type Mutex struct{}

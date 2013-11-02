@@ -4,13 +4,13 @@
 package glib
 
 import (
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
 	. "github.com/tHinqa/outside/types"
 )
 
 type (
 	Variant T.Variant // chicken/egg imports gobject/glib
-
 )
 
 type VariantClass Enum
@@ -44,7 +44,7 @@ var (
 	VariantNewBytestring      func(str string) *Variant
 	VariantNewBytestringArray func(strv []string, length T.Gssize) *Variant
 	VariantNewDouble          func(value float64) *Variant
-	VariantNewFromData        func(typ *VariantType, data T.Gconstpointer, size T.Gsize, trusted bool, notify T.GDestroyNotify, userData T.Gpointer) *Variant
+	VariantNewFromData        func(typ *VariantType, data T.Gconstpointer, size T.Gsize, trusted bool, notify O.DestroyNotify, userData T.Gpointer) *Variant
 	VariantNewHandle          func(value T.GInt32) *Variant
 	VariantNewInt16           func(value int16) *Variant
 	VariantNewInt32           func(value T.GInt32) *Variant
@@ -67,7 +67,7 @@ var (
 	VariantHash                func(value T.Gconstpointer) uint
 	VariantIsObjectPath        func(str string) bool
 	VariantIsSignature         func(str string) bool
-	VariantParse               func(typ *VariantType, text, limit string, endptr []string, err **T.GError) *Variant
+	VariantParse               func(typ *VariantType, text, limit string, endptr []string, err **Error) *Variant
 	VariantParserGetErrorQuark func() Quark
 
 	VariantByteswap           func(v *Variant) *Variant

@@ -136,7 +136,7 @@ const (
 type Sequence struct{}
 
 var (
-	SequenceNew func(dataDestroy T.GDestroyNotify) *Sequence
+	SequenceNew func(dataDestroy O.DestroyNotify) *Sequence
 
 	SequenceFree             func(s *Sequence)
 	SequenceGetLength        func(s *Sequence) int
@@ -257,8 +257,8 @@ func (s *SequenceIter) RangeGetMidpoint(end *SequenceIter) *SequenceIter {
 var (
 	ShellErrorQuark func() Quark
 	ShellQuote      func(unquotedString string) string
-	ShellUnquote    func(quotedString string, e **T.GError) string
-	ShellParseArgv  func(commandLine string, argcp *int, argvp ***T.Gchar, e **T.GError) bool
+	ShellUnquote    func(quotedString string, e **Error) string
+	ShellParseArgv  func(commandLine string, argcp *int, argvp ***T.Gchar, e **Error) bool
 )
 
 type SliceConfig Enum
@@ -306,7 +306,7 @@ var (
 	SlistForeach              func(s *SList, f T.GFunc, userData T.Gpointer)
 	SlistFree                 func(s *SList)
 	SlistFree1                func(s *SList)
-	SlistFreeFull             func(s *SList, freeFunc T.GDestroyNotify)
+	SlistFreeFull             func(s *SList, freeFunc O.DestroyNotify)
 	SlistIndex                func(s *SList, data T.Gconstpointer) int
 	SlistInsert               func(s *SList, data T.Gpointer, position int) *SList
 	SlistInsertBefore         func(s *SList, sibling *SList, data T.Gpointer) *SList
@@ -337,7 +337,7 @@ func (s *SList) FindCustom(data T.Gconstpointer, f T.GCompareFunc) *SList {
 func (s *SList) Foreach(f T.GFunc, userData T.Gpointer)      { SlistForeach(s, f, userData) }
 func (s *SList) Free()                                       { SlistFree(s) }
 func (s *SList) Free1()                                      { SlistFree1(s) }
-func (s *SList) FreeFull(freeFunc T.GDestroyNotify)          { SlistFreeFull(s, freeFunc) }
+func (s *SList) FreeFull(freeFunc O.DestroyNotify)           { SlistFreeFull(s, freeFunc) }
 func (s *SList) Index(data T.Gconstpointer) int              { return SlistIndex(s, data) }
 func (s *SList) Insert(data T.Gpointer, position int) *SList { return SlistInsert(s, data, position) }
 func (s *SList) InsertBefore(sibling *SList, data T.Gpointer) *SList {
@@ -388,7 +388,7 @@ var (
 	SourceRef                 func(s *Source) *Source
 	SourceRemoveChildSource   func(s *Source, childSource *Source)
 	SourceRemovePoll          func(s *Source, fd *T.GPollFD)
-	SourceSetCallback         func(s *Source, f O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify)
+	SourceSetCallback         func(s *Source, f O.SourceFunc, data T.Gpointer, notify O.DestroyNotify)
 	SourceSetCallbackIndirect func(s *Source, callbackData T.Gpointer, callbackFuncs *O.SourceCallbackFuncs)
 	SourceSetCanRecurse       func(s *Source, canRecurse bool)
 	SourceSetFuncs            func(s *Source, funcs *O.SourceFuncs)
@@ -412,7 +412,7 @@ func (s *Source) IsDestroyed() bool                     { return SourceIsDestroy
 func (s *Source) Ref() *Source                          { return SourceRef(s) }
 func (s *Source) RemoveChildSource(childSource *Source) { SourceRemoveChildSource(s, childSource) }
 func (s *Source) RemovePoll(fd *T.GPollFD)              { SourceRemovePoll(s, fd) }
-func (s *Source) SetCallback(f O.SourceFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (s *Source) SetCallback(f O.SourceFunc, data T.Gpointer, notify O.DestroyNotify) {
 	SourceSetCallback(s, f, data, notify)
 }
 func (s *Source) SetCallbackIndirect(callbackData T.Gpointer, callbackFuncs *O.SourceCallbackFuncs) {
@@ -439,16 +439,16 @@ const (
 type SpawnChildSetupFunc func(userData T.Gpointer)
 
 var (
-	SpawnAsync            func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, childPid *T.GPid, e **T.GError) bool
-	SpawnAsyncWithPipes   func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, childPid *T.GPid, standardInput *int, standardOutput *int, standardError *int, e **T.GError) bool
+	SpawnAsync            func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, childPid *T.GPid, e **Error) bool
+	SpawnAsyncWithPipes   func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, childPid *T.GPid, standardInput *int, standardOutput *int, standardError *int, e **Error) bool
 	SpawnClosePid         func(pid T.GPid)
-	SpawnCommandLineAsync func(commandLine string, e **T.GError) bool
-	SpawnCommandLineSync  func(commandLine string, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **T.GError) bool
+	SpawnCommandLineAsync func(commandLine string, e **Error) bool
+	SpawnCommandLineSync  func(commandLine string, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **Error) bool
 	SpawnErrorQuark       func() Quark
-	SpawnSync             func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **T.GError) bool
+	SpawnSync             func(workingDirectory string, argv, envp []string, flags SpawnFlags, childSetup SpawnChildSetupFunc, userData T.Gpointer, standardOutput **T.Gchar, standardError **T.Gchar, exitStatus *int, e **Error) bool
 )
 
-type StaticMutex *T.GMutex
+type StaticMutex *Mutex
 
 var (
 	StaticMutexInit func(s *StaticMutex) // Can't methodize **!
@@ -463,13 +463,13 @@ var (
 	StaticPrivateFree func(s *StaticPrivate)
 	StaticPrivateGet  func(s *StaticPrivate) T.Gpointer
 	StaticPrivateInit func(s *StaticPrivate)
-	StaticPrivateSet  func(s *StaticPrivate, data T.Gpointer, notify T.GDestroyNotify)
+	StaticPrivateSet  func(s *StaticPrivate, data T.Gpointer, notify O.DestroyNotify)
 )
 
 func (s *StaticPrivate) Free()           { StaticPrivateFree(s) }
 func (s *StaticPrivate) Get() T.Gpointer { return StaticPrivateGet(s) }
 func (s *StaticPrivate) Init()           { StaticPrivateInit(s) }
-func (s *StaticPrivate) Set(data T.Gpointer, notify T.GDestroyNotify) {
+func (s *StaticPrivate) Set(data T.Gpointer, notify O.DestroyNotify) {
 	StaticPrivateSet(s, data, notify)
 }
 
@@ -499,8 +499,8 @@ func (s *StaticRecMutex) UnlockFull() uint    { return StaticRecMutexUnlockFull(
 
 type StaticRWLock struct {
 	Mutex       StaticMutex
-	ReadCond    *T.GCond
-	WriteCond   *T.GCond
+	ReadCond    *Cond
+	WriteCond   *Cond
 	ReadCounter uint
 	HaveWriter  T.Gboolean
 	WantToRead  uint
@@ -550,7 +550,7 @@ var (
 	StringAppendC          func(s *String, c T.Gchar) *String
 	StringAppendLen        func(s *String, val string, leng T.Gssize) *String
 	StringAppendPrintf     func(s *String, format string, v ...VArg)
-	StringAppendUnichar    func(s *String, wc T.Gunichar) *String
+	StringAppendUnichar    func(s *String, wc Unichar) *String
 	StringAppendUriEscaped func(s *String, unescaped, reservedCharsAllowed string, allowUtf8 bool) *String
 	StringAppendVprintf    func(s *String, format string, args T.VaList)
 	StringAsciiDown        func(s *String) *String
@@ -564,13 +564,13 @@ var (
 	StringInsert           func(s *String, pos T.Gssize, val string) *String
 	StringInsertC          func(s *String, pos T.Gssize, c T.Gchar) *String
 	StringInsertLen        func(s *String, pos T.Gssize, val string, leng T.Gssize) *String
-	StringInsertUnichar    func(s *String, pos T.Gssize, wc T.Gunichar) *String
+	StringInsertUnichar    func(s *String, pos T.Gssize, wc Unichar) *String
 	StringOverwrite        func(s *String, pos T.Gsize, val string) *String
 	StringOverwriteLen     func(s *String, pos T.Gsize, val string, leng T.Gssize) *String
 	StringPrepend          func(s *String, val string) *String
 	StringPrependC         func(s *String, c T.Gchar) *String
 	StringPrependLen       func(s *String, val string, leng T.Gssize) *String
-	StringPrependUnichar   func(s *String, wc T.Gunichar) *String
+	StringPrependUnichar   func(s *String, wc Unichar) *String
 	StringPrintf           func(s *String, format string, v ...VArg)
 	StringSetSize          func(s *String, leng T.Gsize) *String
 	StringTruncate         func(s *String, leng T.Gsize) *String
@@ -582,7 +582,7 @@ func (s *String) Append(val string) *String                   { return StringApp
 func (s *String) AppendC(c T.Gchar) *String                   { return StringAppendC(s, c) }
 func (s *String) AppendLen(val string, leng T.Gssize) *String { return StringAppendLen(s, val, leng) }
 func (s *String) AppendPrintf(format string, v ...VArg)       { StringAppendPrintf(s, format, v) }
-func (s *String) AppendUnichar(wc T.Gunichar) *String         { return StringAppendUnichar(s, wc) }
+func (s *String) AppendUnichar(wc Unichar) *String            { return StringAppendUnichar(s, wc) }
 func (s *String) AppendUriEscaped(unescaped, reservedCharsAllowed string, allowUtf8 bool) *String {
 	return StringAppendUriEscaped(s, unescaped, reservedCharsAllowed, allowUtf8)
 }
@@ -600,7 +600,7 @@ func (s *String) InsertC(pos T.Gssize, c T.Gchar) *String    { return StringInse
 func (s *String) InsertLen(pos T.Gssize, val string, leng T.Gssize) *String {
 	return StringInsertLen(s, pos, val, leng)
 }
-func (s *String) InsertUnichar(pos T.Gssize, wc T.Gunichar) *String {
+func (s *String) InsertUnichar(pos T.Gssize, wc Unichar) *String {
 	return StringInsertUnichar(s, pos, wc)
 }
 func (s *String) Overwrite(pos T.Gsize, val string) *String { return StringOverwrite(s, pos, val) }
@@ -610,7 +610,7 @@ func (s *String) OverwriteLen(pos T.Gsize, val string, leng T.Gssize) *String {
 func (s *String) Prepend(val string) *String                   { return StringPrepend(s, val) }
 func (s *String) PrependC(c T.Gchar) *String                   { return StringPrependC(s, c) }
 func (s *String) PrependLen(val string, leng T.Gssize) *String { return StringPrependLen(s, val, leng) }
-func (s *String) PrependUnichar(wc T.Gunichar) *String         { return StringPrependUnichar(s, wc) }
+func (s *String) PrependUnichar(wc Unichar) *String            { return StringPrependUnichar(s, wc) }
 func (s *String) Printf(format string, v ...VArg)              { StringPrintf(s, format, v) }
 func (s *String) SetSize(leng T.Gsize) *String                 { return StringSetSize(s, leng) }
 func (s *String) Truncate(leng T.Gsize) *String                { return StringTruncate(s, leng) }

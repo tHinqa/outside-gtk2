@@ -28,8 +28,8 @@ var (
 	AboutDialogGetType func() O.Type
 	AboutDialogNew     func() *Widget // 2.6
 
-	AboutDialogSetEmailHook func(f AboutDialogActivateLink, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLink // 2.6
-	AboutDialogSetUrlHook   func(f AboutDialogActivateLink, data T.Gpointer, destroy T.GDestroyNotify) AboutDialogActivateLink // 2.6
+	AboutDialogSetEmailHook func(f AboutDialogActivateLink, data T.Gpointer, destroy O.DestroyNotify) AboutDialogActivateLink // 2.6
+	AboutDialogSetUrlHook   func(f AboutDialogActivateLink, data T.Gpointer, destroy O.DestroyNotify) AboutDialogActivateLink // 2.6
 
 	ShowAboutDialog func(parent *Window, firstPropertyName string, v ...VArg) // 2.6
 
@@ -342,7 +342,7 @@ type ActionEntry struct {
 	Label       *T.Gchar
 	Accelerator *T.Gchar
 	Tooltip     *T.Gchar
-	Callback    T.GCallback
+	Callback    O.Callback
 }
 
 var (
@@ -456,20 +456,20 @@ func (a *Action) UnblockActivateFrom(proxy *Widget) { ActionUnblockActivateFrom(
 var (
 	ActionGroupAddAction            func(a *ActionGroup, action *Action)
 	ActionGroupAddActions           func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer)
-	ActionGroupAddActionsFull       func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
+	ActionGroupAddActionsFull       func(a *ActionGroup, entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy O.DestroyNotify)
 	ActionGroupAddActionWithAccel   func(a *ActionGroup, action *Action, accelerator string)
-	ActionGroupAddRadioActions      func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer)
-	ActionGroupAddRadioActionsFull  func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify)
+	ActionGroupAddRadioActions      func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange O.Callback, userData T.Gpointer)
+	ActionGroupAddRadioActionsFull  func(a *ActionGroup, entries *RadioActionEntry, nEntries uint, value int, onChange O.Callback, userData T.Gpointer, destroy O.DestroyNotify)
 	ActionGroupAddToggleActions     func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer)
-	ActionGroupAddToggleActionsFull func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify)
+	ActionGroupAddToggleActionsFull func(a *ActionGroup, entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy O.DestroyNotify)
 	ActionGroupGetAction            func(a *ActionGroup, actionName string) *Action
 	ActionGroupGetName              func(a *ActionGroup) string
 	ActionGroupGetSensitive         func(a *ActionGroup) bool
 	ActionGroupGetVisible           func(a *ActionGroup) bool
-	ActionGroupListActions          func(a *ActionGroup) *T.GList
+	ActionGroupListActions          func(a *ActionGroup) *L.List
 	ActionGroupRemoveAction         func(a *ActionGroup, action *Action)
 	ActionGroupSetSensitive         func(a *ActionGroup, sensitive bool)
-	ActionGroupSetTranslateFunc     func(a *ActionGroup, f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify)
+	ActionGroupSetTranslateFunc     func(a *ActionGroup, f TranslateFunc, data T.Gpointer, notify O.DestroyNotify)
 	ActionGroupSetTranslationDomain func(a *ActionGroup, domain string)
 	ActionGroupSetVisible           func(a *ActionGroup, visible bool)
 	ActionGroupTranslateString      func(a *ActionGroup, str string) string
@@ -479,32 +479,32 @@ func (a *ActionGroup) AddAction(action *Action) { ActionGroupAddAction(a, action
 func (a *ActionGroup) AddActions(entries *ActionEntry, nEntries uint, userData T.Gpointer) {
 	ActionGroupAddActions(a, entries, nEntries, userData)
 }
-func (a *ActionGroup) AddActionsFull(entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (a *ActionGroup) AddActionsFull(entries *ActionEntry, nEntries uint, userData T.Gpointer, destroy O.DestroyNotify) {
 	ActionGroupAddActionsFull(a, entries, nEntries, userData, destroy)
 }
 func (a *ActionGroup) AddActionWithAccel(action *Action, accelerator string) {
 	ActionGroupAddActionWithAccel(a, action, accelerator)
 }
-func (a *ActionGroup) AddRadioActions(entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer) {
+func (a *ActionGroup) AddRadioActions(entries *RadioActionEntry, nEntries uint, value int, onChange O.Callback, userData T.Gpointer) {
 	ActionGroupAddRadioActions(a, entries, nEntries, value, onChange, userData)
 }
-func (a *ActionGroup) AddRadioActionsFull(entries *RadioActionEntry, nEntries uint, value int, onChange T.GCallback, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (a *ActionGroup) AddRadioActionsFull(entries *RadioActionEntry, nEntries uint, value int, onChange O.Callback, userData T.Gpointer, destroy O.DestroyNotify) {
 	ActionGroupAddRadioActionsFull(a, entries, nEntries, value, onChange, userData, destroy)
 }
 func (a *ActionGroup) AddToggleActions(entries *ToggleActionEntry, nEntries uint, userData T.Gpointer) {
 	ActionGroupAddToggleActions(a, entries, nEntries, userData)
 }
-func (a *ActionGroup) AddToggleActionsFull(entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy T.GDestroyNotify) {
+func (a *ActionGroup) AddToggleActionsFull(entries *ToggleActionEntry, nEntries uint, userData T.Gpointer, destroy O.DestroyNotify) {
 	ActionGroupAddToggleActionsFull(a, entries, nEntries, userData, destroy)
 }
 func (a *ActionGroup) GetAction(actionName string) *Action { return ActionGroupGetAction(a, actionName) }
 func (a *ActionGroup) GetName() string                     { return ActionGroupGetName(a) }
 func (a *ActionGroup) GetSensitive() bool                  { return ActionGroupGetSensitive(a) }
 func (a *ActionGroup) GetVisible() bool                    { return ActionGroupGetVisible(a) }
-func (a *ActionGroup) ListActions() *T.GList               { return ActionGroupListActions(a) }
+func (a *ActionGroup) ListActions() *L.List                { return ActionGroupListActions(a) }
 func (a *ActionGroup) RemoveAction(action *Action)         { ActionGroupRemoveAction(a, action) }
 func (a *ActionGroup) SetSensitive(sensitive bool)         { ActionGroupSetSensitive(a, sensitive) }
-func (a *ActionGroup) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (a *ActionGroup) SetTranslateFunc(f TranslateFunc, data T.Gpointer, notify O.DestroyNotify) {
 	ActionGroupSetTranslateFunc(a, f, data, notify)
 }
 func (a *ActionGroup) SetTranslationDomain(domain string) { ActionGroupSetTranslationDomain(a, domain) }
@@ -662,7 +662,7 @@ type Arg struct { //TODO(t):Fix union
 	// string_data  *Gchar;
 	// object_data  *Object;
 	// pointer_data  Gpointer;
-	// signal_data struct{f GCallback; d Gpointer}
+	// signal_data struct{f O.Callback; d Gpointer}
 }
 
 type ArgFlags Enum
@@ -725,7 +725,7 @@ var (
 	AssistantPrependPage        func(a *Assistant, page *Widget) int
 	AssistantRemoveActionWidget func(a *Assistant, child *Widget)
 	AssistantSetCurrentPage     func(a *Assistant, pageNum int)
-	AssistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify)
+	AssistantSetForwardPageFunc func(a *Assistant, pageFunc AssistantPageFunc, data T.Gpointer, destroy O.DestroyNotify)
 	AssistantSetPageComplete    func(a *Assistant, page *Widget, complete bool)
 	AssistantSetPageHeaderImage func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
 	AssistantSetPageSideImage   func(a *Assistant, page *Widget, pixbuf *D.Pixbuf)
@@ -755,7 +755,7 @@ func (a *Assistant) InsertPage(page *Widget, position int) int {
 func (a *Assistant) PrependPage(page *Widget) int     { return AssistantPrependPage(a, page) }
 func (a *Assistant) RemoveActionWidget(child *Widget) { AssistantRemoveActionWidget(a, child) }
 func (a *Assistant) SetCurrentPage(pageNum int)       { AssistantSetCurrentPage(a, pageNum) }
-func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, data T.Gpointer, destroy T.GDestroyNotify) {
+func (a *Assistant) SetForwardPageFunc(pageFunc AssistantPageFunc, data T.Gpointer, destroy O.DestroyNotify) {
 	AssistantSetForwardPageFunc(a, pageFunc, data, destroy)
 }
 func (a *Assistant) SetPageComplete(page *Widget, complete bool) {

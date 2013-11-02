@@ -4,9 +4,9 @@
 package gio
 
 import (
+	L "github.com/tHinqa/outside-gtk2/glib"
 	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
 )
 
 type Vfs struct {
@@ -40,9 +40,9 @@ var (
 	VolumeCanEject                 func(v *Volume) bool
 	VolumeCanMount                 func(v *Volume) bool
 	VolumeEject                    func(v *Volume, flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	VolumeEjectFinish              func(v *Volume, result *AsyncResult, err **T.GError) bool
+	VolumeEjectFinish              func(v *Volume, result *AsyncResult, err **L.Error) bool
 	VolumeEjectWithOperation       func(v *Volume, flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	VolumeEjectWithOperationFinish func(v *Volume, result *AsyncResult, err **T.GError) bool
+	VolumeEjectWithOperationFinish func(v *Volume, result *AsyncResult, err **L.Error) bool
 	VolumeEnumerateIdentifiers     func(v *Volume) []string
 	VolumeGetActivationRoot        func(v *Volume) *File
 	VolumeGetDrive                 func(v *Volume) *Drive
@@ -52,7 +52,7 @@ var (
 	VolumeGetName                  func(v *Volume) string
 	VolumeGetUuid                  func(v *Volume) string
 	VolumeMount                    func(v *Volume, flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	VolumeMountFinish              func(v *Volume, result *AsyncResult, err **T.GError) bool
+	VolumeMountFinish              func(v *Volume, result *AsyncResult, err **L.Error) bool
 	VolumeShouldAutomount          func(v *Volume) bool
 )
 
@@ -61,13 +61,13 @@ func (v *Volume) CanMount() bool { return VolumeCanMount(v) }
 func (v *Volume) Eject(flags MountUnmountFlags, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	VolumeEject(v, flags, cancellable, callback, userData)
 }
-func (v *Volume) EjectFinish(result *AsyncResult, err **T.GError) bool {
+func (v *Volume) EjectFinish(result *AsyncResult, err **L.Error) bool {
 	return VolumeEjectFinish(v, result, err)
 }
 func (v *Volume) EjectWithOperation(flags MountUnmountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	VolumeEjectWithOperation(v, flags, mountOperation, cancellable, callback, userData)
 }
-func (v *Volume) EjectWithOperationFinish(result *AsyncResult, err **T.GError) bool {
+func (v *Volume) EjectWithOperationFinish(result *AsyncResult, err **L.Error) bool {
 	return VolumeEjectWithOperationFinish(v, result, err)
 }
 func (v *Volume) EnumerateIdentifiers() []string   { return VolumeEnumerateIdentifiers(v) }
@@ -81,7 +81,7 @@ func (v *Volume) GetUuid() string                  { return VolumeGetUuid(v) }
 func (v *Volume) Mount(flags MountMountFlags, mountOperation *MountOperation, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer) {
 	VolumeMount(v, flags, mountOperation, cancellable, callback, userData)
 }
-func (v *Volume) MountFinish(result *AsyncResult, err **T.GError) bool {
+func (v *Volume) MountFinish(result *AsyncResult, err **L.Error) bool {
 	return VolumeMountFinish(v, result, err)
 }
 func (v *Volume) ShouldAutomount() bool { return VolumeShouldAutomount(v) }
@@ -97,19 +97,19 @@ var (
 	VolumeMonitorAdoptOrphanMount func(mount *Mount) *Volume
 	VolumeMonitorGet              func() *VolumeMonitor
 
-	VolumeMonitorGetConnectedDrives func(v *VolumeMonitor) *T.GList
+	VolumeMonitorGetConnectedDrives func(v *VolumeMonitor) *L.List
 	VolumeMonitorGetMountForUuid    func(v *VolumeMonitor, uuid string) *Mount
-	VolumeMonitorGetMounts          func(v *VolumeMonitor) *T.GList
+	VolumeMonitorGetMounts          func(v *VolumeMonitor) *L.List
 	VolumeMonitorGetVolumeForUuid   func(v *VolumeMonitor, uuid string) *Volume
-	VolumeMonitorGetVolumes         func(v *VolumeMonitor) *T.GList
+	VolumeMonitorGetVolumes         func(v *VolumeMonitor) *L.List
 )
 
-func (v *VolumeMonitor) GetConnectedDrives() *T.GList { return VolumeMonitorGetConnectedDrives(v) }
+func (v *VolumeMonitor) GetConnectedDrives() *L.List { return VolumeMonitorGetConnectedDrives(v) }
 func (v *VolumeMonitor) GetMountForUuid(uuid string) *Mount {
 	return VolumeMonitorGetMountForUuid(v, uuid)
 }
-func (v *VolumeMonitor) GetMounts() *T.GList { return VolumeMonitorGetMounts(v) }
+func (v *VolumeMonitor) GetMounts() *L.List { return VolumeMonitorGetMounts(v) }
 func (v *VolumeMonitor) GetVolumeForUuid(uuid string) *Volume {
 	return VolumeMonitorGetVolumeForUuid(v, uuid)
 }
-func (v *VolumeMonitor) GetVolumes() *T.GList { return VolumeMonitorGetVolumes(v) }
+func (v *VolumeMonitor) GetVolumes() *L.List { return VolumeMonitorGetVolumes(v) }

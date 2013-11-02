@@ -42,7 +42,7 @@ var (
 	AddClientMessageFilter func(
 		messageType Atom, f T.GdkFilterFunc, data T.Gpointer)
 
-	SettingGet func(name string, value *T.GValue) bool
+	SettingGet func(name string, value *O.Value) bool
 
 	RgbInit func()
 
@@ -252,17 +252,17 @@ var (
 	SpawnOnScreen func(screen *Screen, workingDirectory string,
 		argv, envp []string, flags L.SpawnFlags,
 		childSetup L.SpawnChildSetupFunc, userData T.Gpointer,
-		childPid *int, e **T.GError) bool
+		childPid *int, e **L.Error) bool
 
 	SpawnOnScreenWithPipes func(screen *Screen,
 		workingDirectory string, argv, envp []string,
 		flags L.SpawnFlags, childSetup L.SpawnChildSetupFunc,
 		userData T.Gpointer, childPid, standardInput,
 		standardOutput, standardError *int,
-		e **T.GError) bool
+		e **L.Error) bool
 
 	SpawnCommandLineOnScreen func(
-		screen *Screen, commandLine string, e **T.GError) bool
+		screen *Screen, commandLine string, e **L.Error) bool
 
 	WindowForeignNew func(anid T.GdkNativeWindow) *Window
 
@@ -342,7 +342,7 @@ var (
 
 	InputAddFull func(source int, condition T.GdkInputCondition,
 		function T.GdkInputFunction, data T.Gpointer,
-		destroy T.GDestroyNotify) int
+		destroy O.DestroyNotify) int
 
 	InputAdd func(source int, condition T.GdkInputCondition,
 		function T.GdkInputFunction, data T.Gpointer) int
@@ -396,24 +396,24 @@ var (
 
 	ThreadsInit func()
 
-	ThreadsSetLockFunctions func(enterFn, leaveFn T.GCallback)
+	ThreadsSetLockFunctions func(enterFn, leaveFn O.Callback)
 
 	ThreadsAddIdleFull func(priority int, function O.SourceFunc,
-		data T.Gpointer, notify T.GDestroyNotify) uint
+		data T.Gpointer, notify O.DestroyNotify) uint
 
 	ThreadsAddIdle func(
 		function O.SourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutFull func(
 		priority int, interval uint, function O.SourceFunc,
-		data T.Gpointer, notify T.GDestroyNotify) uint
+		data T.Gpointer, notify O.DestroyNotify) uint
 
 	ThreadsAddTimeout func(interval uint,
 		function O.SourceFunc, data T.Gpointer) uint
 
 	ThreadsAddTimeoutSecondsFull func(
 		priority int, interval uint, function O.SourceFunc,
-		data T.Gpointer, notify T.GDestroyNotify) uint
+		data T.Gpointer, notify O.DestroyNotify) uint
 
 	ThreadsAddTimeoutSeconds func(interval uint,
 		function O.SourceFunc, data T.Gpointer) uint
@@ -1304,9 +1304,9 @@ var apiListPixbuf = outside.Apis{
 }
 
 var dataList = outside.Data{
-	{"gdk_threads_lock", (*T.GCallback)(nil)},
-	{"gdk_threads_mutex", (*T.GMutex)(nil)},
-	{"gdk_threads_unlock", (*T.GCallback)(nil)},
+	{"gdk_threads_lock", (*O.Callback)(nil)},
+	{"gdk_threads_mutex", (*L.Mutex)(nil)},
+	{"gdk_threads_unlock", (*O.Callback)(nil)},
 }
 
 var dataListPixbuf = outside.Data{

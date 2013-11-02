@@ -57,8 +57,8 @@ var (
 	FileChooserWidgetNewWithBackend func(action FileChooserAction, backend string) *Widget
 
 	FileChooserAddFilter                  func(f *FileChooser, filter *FileFilter)
-	FileChooserAddShortcutFolder          func(f *FileChooser, folder string, error **T.GError) bool
-	FileChooserAddShortcutFolderUri       func(f *FileChooser, uri string, error **T.GError) bool
+	FileChooserAddShortcutFolder          func(f *FileChooser, folder string, error **L.Error) bool
+	FileChooserAddShortcutFolderUri       func(f *FileChooser, uri string, error **L.Error) bool
 	FileChooserGetAction                  func(f *FileChooser) FileChooserAction
 	FileChooserGetCreateFolders           func(f *FileChooser) bool
 	FileChooserGetCurrentFolder           func(f *FileChooser) string
@@ -86,21 +86,21 @@ var (
 	FileChooserListShortcutFolders        func(f *FileChooser) *L.SList
 	FileChooserListShortcutFolderUris     func(f *FileChooser) *L.SList
 	FileChooserRemoveFilter               func(f *FileChooser, filter *FileFilter)
-	FileChooserRemoveShortcutFolder       func(f *FileChooser, folder string, error **T.GError) bool
-	FileChooserRemoveShortcutFolderUri    func(f *FileChooser, uri string, error **T.GError) bool
+	FileChooserRemoveShortcutFolder       func(f *FileChooser, folder string, error **L.Error) bool
+	FileChooserRemoveShortcutFolderUri    func(f *FileChooser, uri string, error **L.Error) bool
 	FileChooserSelectAll                  func(f *FileChooser)
-	FileChooserSelectFile                 func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSelectFile                 func(f *FileChooser, file *I.File, error **L.Error) bool
 	FileChooserSelectFilename             func(f *FileChooser, filename string) bool
 	FileChooserSelectUri                  func(f *FileChooser, uri string) bool
 	FileChooserSetAction                  func(f *FileChooser, action FileChooserAction)
 	FileChooserSetCreateFolders           func(f *FileChooser, createFolders bool)
 	FileChooserSetCurrentFolder           func(f *FileChooser, filename string) bool
-	FileChooserSetCurrentFolderFile       func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSetCurrentFolderFile       func(f *FileChooser, file *I.File, error **L.Error) bool
 	FileChooserSetCurrentFolderUri        func(f *FileChooser, uri string) bool
 	FileChooserSetCurrentName             func(f *FileChooser, name string)
 	FileChooserSetDoOverwriteConfirmation func(f *FileChooser, doOverwriteConfirmation bool)
 	FileChooserSetExtraWidget             func(f *FileChooser, extraWidget *Widget)
-	FileChooserSetFile                    func(f *FileChooser, file *I.File, error **T.GError) bool
+	FileChooserSetFile                    func(f *FileChooser, file *I.File, error **L.Error) bool
 	FileChooserSetFilename                func(f *FileChooser, filename string) bool
 	FileChooserSetFilter                  func(f *FileChooser, filter *FileFilter)
 	FileChooserSetLocalOnly               func(f *FileChooser, localOnly bool)
@@ -117,10 +117,10 @@ var (
 )
 
 func (f *FileChooser) AddFilter(filter *FileFilter) { FileChooserAddFilter(f, filter) }
-func (f *FileChooser) AddShortcutFolder(folder string, err **T.GError) bool {
+func (f *FileChooser) AddShortcutFolder(folder string, err **L.Error) bool {
 	return FileChooserAddShortcutFolder(f, folder, err)
 }
-func (f *FileChooser) AddShortcutFolderUri(uri string, err **T.GError) bool {
+func (f *FileChooser) AddShortcutFolderUri(uri string, err **L.Error) bool {
 	return FileChooserAddShortcutFolderUri(f, uri, err)
 }
 func (f *FileChooser) GetAction() FileChooserAction  { return FileChooserGetAction(f) }
@@ -152,14 +152,14 @@ func (f *FileChooser) ListFilters() *L.SList            { return FileChooserList
 func (f *FileChooser) ListShortcutFolders() *L.SList    { return FileChooserListShortcutFolders(f) }
 func (f *FileChooser) ListShortcutFolderUris() *L.SList { return FileChooserListShortcutFolderUris(f) }
 func (f *FileChooser) RemoveFilter(filter *FileFilter)  { FileChooserRemoveFilter(f, filter) }
-func (f *FileChooser) RemoveShortcutFolder(folder string, err **T.GError) bool {
+func (f *FileChooser) RemoveShortcutFolder(folder string, err **L.Error) bool {
 	return FileChooserRemoveShortcutFolder(f, folder, err)
 }
-func (f *FileChooser) RemoveShortcutFolderUri(uri string, err **T.GError) bool {
+func (f *FileChooser) RemoveShortcutFolderUri(uri string, err **L.Error) bool {
 	return FileChooserRemoveShortcutFolderUri(f, uri, err)
 }
 func (f *FileChooser) SelectAll() { FileChooserSelectAll(f) }
-func (f *FileChooser) SelectFile(file *I.File, err **T.GError) bool {
+func (f *FileChooser) SelectFile(file *I.File, err **L.Error) bool {
 	return FileChooserSelectFile(f, file, err)
 }
 func (f *FileChooser) SelectFilename(filename string) bool {
@@ -173,7 +173,7 @@ func (f *FileChooser) SetCreateFolders(createFolders bool) {
 func (f *FileChooser) SetCurrentFolder(filename string) bool {
 	return FileChooserSetCurrentFolder(f, filename)
 }
-func (f *FileChooser) SetCurrentFolderFile(file *I.File, err **T.GError) bool {
+func (f *FileChooser) SetCurrentFolderFile(file *I.File, err **L.Error) bool {
 	return FileChooserSetCurrentFolderFile(f, file, err)
 }
 func (f *FileChooser) SetCurrentFolderUri(uri string) bool {
@@ -184,7 +184,7 @@ func (f *FileChooser) SetDoOverwriteConfirmation(doOverwriteConfirmation bool) {
 	FileChooserSetDoOverwriteConfirmation(f, doOverwriteConfirmation)
 }
 func (f *FileChooser) SetExtraWidget(extraWidget *Widget) { FileChooserSetExtraWidget(f, extraWidget) }
-func (f *FileChooser) SetFile(file *I.File, err **T.GError) bool {
+func (f *FileChooser) SetFile(file *I.File, err **L.Error) bool {
 	return FileChooserSetFile(f, file, err)
 }
 func (f *FileChooser) SetFilename(filename string) bool {
@@ -269,7 +269,7 @@ var (
 	FileFilterFlagsGetType func() O.Type
 	FileFilterNew          func() *FileFilter
 
-	FileFilterAddCustom        func(filter *FileFilter, needed FileFilterFlags, f FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify)
+	FileFilterAddCustom        func(filter *FileFilter, needed FileFilterFlags, f FileFilterFunc, data T.Gpointer, notify O.DestroyNotify)
 	FileFilterAddMimeType      func(filter *FileFilter, mimeType string)
 	FileFilterAddPattern       func(filter *FileFilter, pattern string)
 	FileFilterAddPixbufFormats func(filter *FileFilter)
@@ -279,7 +279,7 @@ var (
 	FileFilterSetName          func(filter *FileFilter, name string)
 )
 
-func (f *FileFilter) AddCustom(needed FileFilterFlags, fnc FileFilterFunc, data T.Gpointer, notify T.GDestroyNotify) {
+func (f *FileFilter) AddCustom(needed FileFilterFlags, fnc FileFilterFunc, data T.Gpointer, notify O.DestroyNotify) {
 	FileFilterAddCustom(f, needed, fnc, data, notify)
 }
 func (f *FileFilter) AddMimeType(mimeType string) { FileFilterAddMimeType(f, mimeType) }
@@ -304,7 +304,7 @@ type FileSelection struct {
 	Help_button      *Widget
 	History_pulldown *Widget
 	History_menu     *Widget
-	History_list     *T.GList
+	History_list     *L.List
 	Fileop_dialog    *Widget
 	Fileop_entry     *Widget
 	Fileop_file      *T.Gchar
@@ -345,7 +345,7 @@ func (f *FileSelection) ShowFileopButtons() { FileSelectionShowFileopButtons(f) 
 
 type Fixed struct {
 	Container Container
-	Children  *T.GList
+	Children  *L.List
 }
 
 var (

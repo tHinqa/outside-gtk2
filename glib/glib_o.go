@@ -4,9 +4,31 @@
 package glib
 
 import (
-	// O "github.com/tHinqa/outside-gtk2/gobject"
+	O "github.com/tHinqa/outside-gtk2/gobject"
 	T "github.com/tHinqa/outside-gtk2/types"
-	// . "github.com/tHinqa/outside/types"
+)
+
+type Once struct {
+	Status OnceStatus
+	Retval T.Gpointer
+}
+
+var (
+	OnceInitEnter     func(valueLocation *T.Gsize) bool
+	OnceInitEnterImpl func(valueLocation *T.Gsize) bool
+	OnceInitLeave     func(valueLocation *T.Gsize, initializationValue T.Gsize)
+
+	OnceImpl func(o *Once, f ThreadFunc, arg T.Gpointer) T.Gpointer
+)
+
+func (o *Once) Impl(f ThreadFunc, arg T.Gpointer) T.Gpointer { return OnceImpl(o, f, arg) }
+
+type OnceStatus Enum
+
+const (
+	ONCE_STATUS_NOTCALLED OnceStatus = iota
+	ONCE_STATUS_PROGRESS
+	ONCE_STATUS_READY
 )
 
 type OptionArg Enum
@@ -37,13 +59,13 @@ var (
 	OptionContextGetIgnoreUnknownOptions func(o *OptionContext) bool
 	OptionContextGetMainGroup            func(o *OptionContext) *OptionGroup
 	OptionContextGetSummary              func(o *OptionContext) string
-	OptionContextParse                   func(o *OptionContext, argc *int, argv ***T.Gchar, e **T.GError) bool
+	OptionContextParse                   func(o *OptionContext, argc *int, argv ***T.Gchar, e **Error) bool
 	OptionContextSetDescription          func(o *OptionContext, description string)
 	OptionContextSetHelpEnabled          func(o *OptionContext, helpEnabled bool)
 	OptionContextSetIgnoreUnknownOptions func(o *OptionContext, ignoreUnknown bool)
 	OptionContextSetMainGroup            func(o *OptionContext, group *OptionGroup)
 	OptionContextSetSummary              func(o *OptionContext, summary string)
-	OptionContextSetTranslateFunc        func(o *OptionContext, f T.GTranslateFunc, data T.Gpointer, destroyNotify T.GDestroyNotify)
+	OptionContextSetTranslateFunc        func(o *OptionContext, f T.GTranslateFunc, data T.Gpointer, destroyNotify O.DestroyNotify)
 	OptionContextSetTranslationDomain    func(o *OptionContext, domain string)
 )
 
@@ -60,7 +82,7 @@ func (o *OptionContext) GetHelpEnabled() bool          { return OptionContextGet
 func (o *OptionContext) GetIgnoreUnknownOptions() bool { return OptionContextGetIgnoreUnknownOptions(o) }
 func (o *OptionContext) GetMainGroup() *OptionGroup    { return OptionContextGetMainGroup(o) }
 func (o *OptionContext) GetSummary() string            { return OptionContextGetSummary(o) }
-func (o *OptionContext) Parse(argc *int, argv ***T.Gchar, e **T.GError) bool {
+func (o *OptionContext) Parse(argc *int, argv ***T.Gchar, e **Error) bool {
 	return OptionContextParse(o, argc, argv, e)
 }
 func (o *OptionContext) SetDescription(description string) {
@@ -72,7 +94,7 @@ func (o *OptionContext) SetIgnoreUnknownOptions(ignoreUnknown bool) {
 }
 func (o *OptionContext) SetMainGroup(group *OptionGroup) { OptionContextSetMainGroup(o, group) }
 func (o *OptionContext) SetSummary(summary string)       { OptionContextSetSummary(o, summary) }
-func (o *OptionContext) SetTranslateFunc(f T.GTranslateFunc, data T.Gpointer, destroyNotify T.GDestroyNotify) {
+func (o *OptionContext) SetTranslateFunc(f T.GTranslateFunc, data T.Gpointer, destroyNotify O.DestroyNotify) {
 	OptionContextSetTranslateFunc(o, f, data, destroyNotify)
 }
 func (o *OptionContext) SetTranslationDomain(domain string) {
@@ -93,18 +115,18 @@ type OptionErrorFunc func(
 	context *OptionContext,
 	group *OptionGroup,
 	data T.Gpointer,
-	err **T.GError)
+	err **Error)
 
 type OptionGroup struct{}
 
 var (
-	OptionGroupNew func(name string, description string, helpDescription string, userData T.Gpointer, destroy T.GDestroyNotify) *OptionGroup
+	OptionGroupNew func(name string, description string, helpDescription string, userData T.Gpointer, destroy O.DestroyNotify) *OptionGroup
 
 	OptionGroupAddEntries           func(o *OptionGroup, entries *OptionEntry)
 	OptionGroupFree                 func(o *OptionGroup)
 	OptionGroupSetErrorHook         func(o *OptionGroup, errorFunc OptionErrorFunc)
 	OptionGroupSetParseHooks        func(o *OptionGroup, preParseFunc OptionParseFunc, postParseFunc OptionParseFunc)
-	OptionGroupSetTranslateFunc     func(o *OptionGroup, f T.GTranslateFunc, data T.Gpointer, destroyNotify T.GDestroyNotify)
+	OptionGroupSetTranslateFunc     func(o *OptionGroup, f T.GTranslateFunc, data T.Gpointer, destroyNotify O.DestroyNotify)
 	OptionGroupSetTranslationDomain func(o *OptionGroup, domain string)
 )
 
@@ -114,7 +136,7 @@ func (o *OptionGroup) SetErrorHook(errorFunc OptionErrorFunc) { OptionGroupSetEr
 func (o *OptionGroup) SetParseHooks(preParseFunc OptionParseFunc, postParseFunc OptionParseFunc) {
 	OptionGroupSetParseHooks(o, preParseFunc, postParseFunc)
 }
-func (o *OptionGroup) SetTranslateFunc(f T.GTranslateFunc, data T.Gpointer, destroyNotify T.GDestroyNotify) {
+func (o *OptionGroup) SetTranslateFunc(f T.GTranslateFunc, data T.Gpointer, destroyNotify O.DestroyNotify) {
 	OptionGroupSetTranslateFunc(o, f, data, destroyNotify)
 }
 func (o *OptionGroup) SetTranslationDomain(domain string) { OptionGroupSetTranslationDomain(o, domain) }
@@ -123,4 +145,4 @@ type OptionParseFunc func(
 	context *OptionContext,
 	group *OptionGroup,
 	data T.Gpointer,
-	err **T.GError) T.Gboolean
+	err **Error) T.Gboolean

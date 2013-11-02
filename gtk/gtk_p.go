@@ -64,8 +64,8 @@ type PageSetup struct{}
 var (
 	PageSetupGetType        func() O.Type
 	PageSetupNew            func() *PageSetup
-	PageSetupNewFromFile    func(fileName string, error **T.GError) *PageSetup
-	PageSetupNewFromKeyFile func(keyFile *L.KeyFile, groupName string, error **T.GError) *PageSetup
+	PageSetupNewFromFile    func(fileName string, error **L.Error) *PageSetup
+	PageSetupNewFromKeyFile func(keyFile *L.KeyFile, groupName string, error **L.Error) *PageSetup
 
 	PageSetupCopy                          func(p *PageSetup) *PageSetup
 	PageSetupGetBottomMargin               func(p *PageSetup, unit Unit) float64
@@ -78,8 +78,8 @@ var (
 	PageSetupGetPaperWidth                 func(p *PageSetup, unit Unit) float64
 	PageSetupGetRightMargin                func(p *PageSetup, unit Unit) float64
 	PageSetupGetTopMargin                  func(p *PageSetup, unit Unit) float64
-	PageSetupLoadFile                      func(p *PageSetup, fileName string, error **T.GError) bool
-	PageSetupLoadKeyFile                   func(p *PageSetup, keyFile *L.KeyFile, groupName string, error **T.GError) bool
+	PageSetupLoadFile                      func(p *PageSetup, fileName string, error **L.Error) bool
+	PageSetupLoadKeyFile                   func(p *PageSetup, keyFile *L.KeyFile, groupName string, error **L.Error) bool
 	PageSetupSetBottomMargin               func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetLeftMargin                 func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetOrientation                func(p *PageSetup, orientation Orientation)
@@ -87,7 +87,7 @@ var (
 	PageSetupSetPaperSizeAndDefaultMargins func(p *PageSetup, size *PaperSize)
 	PageSetupSetRightMargin                func(p *PageSetup, margin float64, unit Unit)
 	PageSetupSetTopMargin                  func(p *PageSetup, margin float64, unit Unit)
-	PageSetupToFile                        func(p *PageSetup, fileName string, error **T.GError) bool
+	PageSetupToFile                        func(p *PageSetup, fileName string, error **L.Error) bool
 	PageSetupToKeyFile                     func(p *PageSetup, keyFile *L.KeyFile, groupName string)
 )
 
@@ -102,10 +102,10 @@ func (p *PageSetup) GetPaperSize() *PaperSize          { return PageSetupGetPape
 func (p *PageSetup) GetPaperWidth(unit Unit) float64   { return PageSetupGetPaperWidth(p, unit) }
 func (p *PageSetup) GetRightMargin(unit Unit) float64  { return PageSetupGetRightMargin(p, unit) }
 func (p *PageSetup) GetTopMargin(unit Unit) float64    { return PageSetupGetTopMargin(p, unit) }
-func (p *PageSetup) LoadFile(fileName string, err **T.GError) bool {
+func (p *PageSetup) LoadFile(fileName string, err **L.Error) bool {
 	return PageSetupLoadFile(p, fileName, err)
 }
-func (p *PageSetup) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **T.GError) bool {
+func (p *PageSetup) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **L.Error) bool {
 	return PageSetupLoadKeyFile(p, keyFile, groupName, err)
 }
 func (p *PageSetup) SetBottomMargin(margin float64, unit Unit) {
@@ -127,7 +127,7 @@ func (p *PageSetup) SetRightMargin(margin float64, unit Unit) {
 func (p *PageSetup) SetTopMargin(margin float64, unit Unit) {
 	PageSetupSetTopMargin(p, margin, unit)
 }
-func (p *PageSetup) ToFile(fileName string, err **T.GError) bool {
+func (p *PageSetup) ToFile(fileName string, err **L.Error) bool {
 	return PageSetupToFile(p, fileName, err)
 }
 func (p *PageSetup) ToKeyFile(keyFile *L.KeyFile, groupName string) {
@@ -203,11 +203,11 @@ var (
 	PaperSizeGetType        func() O.Type
 	PaperSizeNew            func(name string) *PaperSize
 	PaperSizeNewCustom      func(name, displayName string, width, height float64, unit Unit) *PaperSize
-	PaperSizeNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **T.GError) *PaperSize
+	PaperSizeNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **L.Error) *PaperSize
 	PaperSizeNewFromPpd     func(ppdName, ppdDisplayName string, width, height float64) *PaperSize
 
 	PaperSizeGetDefault    func() string
-	PaperSizeGetPaperSizes func(includeCustom bool) *T.GList
+	PaperSizeGetPaperSizes func(includeCustom bool) *L.List
 
 	PaperSizeCopy                   func(s *PaperSize) *PaperSize
 	PaperSizeFree                   func(s *PaperSize)
@@ -479,7 +479,7 @@ var (
 	PrintOperationDrawPageFinish      func(p *PrintOperation)
 	PrintOperationGetDefaultPageSetup func(p *PrintOperation) *PageSetup
 	PrintOperationGetEmbedPageSetup   func(p *PrintOperation) bool
-	PrintOperationGetError            func(p *PrintOperation, err **T.GError)
+	PrintOperationGetError            func(p *PrintOperation, err **L.Error)
 	PrintOperationGetHasSelection     func(p *PrintOperation) bool
 	PrintOperationGetNPagesToPrint    func(p *PrintOperation) int
 	PrintOperationGetPrintSettings    func(p *PrintOperation) *PrintSettings
@@ -487,7 +487,7 @@ var (
 	PrintOperationGetStatusString     func(p *PrintOperation) string
 	PrintOperationGetSupportSelection func(p *PrintOperation) bool
 	PrintOperationIsFinished          func(p *PrintOperation) bool
-	PrintOperationRun                 func(p *PrintOperation, action PrintOperationAction, parent *Window, err **T.GError) PrintOperationResult
+	PrintOperationRun                 func(p *PrintOperation, action PrintOperationAction, parent *Window, err **L.Error) PrintOperationResult
 	PrintOperationSetAllowAsync       func(p *PrintOperation, allowAsync bool)
 	PrintOperationSetCurrentPage      func(p *PrintOperation, currentPage int)
 	PrintOperationSetCustomTabLabel   func(p *PrintOperation, label string)
@@ -512,7 +512,7 @@ func (p *PrintOperation) GetDefaultPageSetup() *PageSetup {
 	return PrintOperationGetDefaultPageSetup(p)
 }
 func (p *PrintOperation) GetEmbedPageSetup() bool          { return PrintOperationGetEmbedPageSetup(p) }
-func (p *PrintOperation) GetError(err **T.GError)          { PrintOperationGetError(p, err) }
+func (p *PrintOperation) GetError(err **L.Error)          { PrintOperationGetError(p, err) }
 func (p *PrintOperation) GetHasSelection() bool            { return PrintOperationGetHasSelection(p) }
 func (p *PrintOperation) GetNPagesToPrint() int            { return PrintOperationGetNPagesToPrint(p) }
 func (p *PrintOperation) GetPrintSettings() *PrintSettings { return PrintOperationGetPrintSettings(p) }
@@ -520,7 +520,7 @@ func (p *PrintOperation) GetStatus() PrintStatus           { return PrintOperati
 func (p *PrintOperation) GetStatusString() string          { return PrintOperationGetStatusString(p) }
 func (p *PrintOperation) GetSupportSelection() bool        { return PrintOperationGetSupportSelection(p) }
 func (p *PrintOperation) IsFinished() bool                 { return PrintOperationIsFinished(p) }
-func (p *PrintOperation) Run(action PrintOperationAction, parent *Window, err **T.GError) PrintOperationResult {
+func (p *PrintOperation) Run(action PrintOperationAction, parent *Window, err **L.Error) PrintOperationResult {
 	return PrintOperationRun(p, action, parent, err)
 }
 func (p *PrintOperation) SetAllowAsync(allowAsync bool) {
@@ -639,8 +639,8 @@ var (
 var (
 	PrintSettingsGetType        func() O.Type
 	PrintSettingsNew            func() *PrintSettings
-	PrintSettingsNewFromFile    func(fileName string, err **T.GError) *PrintSettings
-	PrintSettingsNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **T.GError) *PrintSettings
+	PrintSettingsNewFromFile    func(fileName string, err **L.Error) *PrintSettings
+	PrintSettingsNewFromKeyFile func(keyFile *L.KeyFile, groupName string, err **L.Error) *PrintSettings
 
 	PrintSettingsCopy                 func(p *PrintSettings) *PrintSettings
 	PrintSettingsForeach              func(p *PrintSettings, f PrintSettingsFunc, userData T.Gpointer)
@@ -678,8 +678,8 @@ var (
 	PrintSettingsGetScale             func(p *PrintSettings) float64
 	PrintSettingsGetUseColor          func(p *PrintSettings) bool
 	PrintSettingsHasKey               func(p *PrintSettings, key string) bool
-	PrintSettingsLoadFile             func(p *PrintSettings, fileName string, err **T.GError) bool
-	PrintSettingsLoadKeyFile          func(p *PrintSettings, keyFile *L.KeyFile, groupName string, err **T.GError) bool
+	PrintSettingsLoadFile             func(p *PrintSettings, fileName string, err **L.Error) bool
+	PrintSettingsLoadKeyFile          func(p *PrintSettings, keyFile *L.KeyFile, groupName string, err **L.Error) bool
 	PrintSettingsSet                  func(p *PrintSettings, key, value string)
 	PrintSettingsSetBool              func(p *PrintSettings, key string, value bool)
 	PrintSettingsSetCollate           func(p *PrintSettings, collate bool)
@@ -710,7 +710,7 @@ var (
 	PrintSettingsSetReverse           func(p *PrintSettings, reverse bool)
 	PrintSettingsSetScale             func(p *PrintSettings, scale float64)
 	PrintSettingsSetUseColor          func(p *PrintSettings, useColor bool)
-	PrintSettingsToFile               func(p *PrintSettings, fileName string, err **T.GError) bool
+	PrintSettingsToFile               func(p *PrintSettings, fileName string, err **L.Error) bool
 	PrintSettingsToKeyFile            func(p *PrintSettings, keyFile *L.KeyFile, groupName string)
 	PrintSettingsUnset                func(p *PrintSettings, key string)
 )
@@ -767,10 +767,10 @@ func (p *PrintSettings) GetReverse() bool          { return PrintSettingsGetReve
 func (p *PrintSettings) GetScale() float64         { return PrintSettingsGetScale(p) }
 func (p *PrintSettings) GetUseColor() bool         { return PrintSettingsGetUseColor(p) }
 func (p *PrintSettings) HasKey(key string) bool    { return PrintSettingsHasKey(p, key) }
-func (p *PrintSettings) LoadFile(fileName string, err **T.GError) bool {
+func (p *PrintSettings) LoadFile(fileName string, err **L.Error) bool {
 	return PrintSettingsLoadFile(p, fileName, err)
 }
-func (p *PrintSettings) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **T.GError) bool {
+func (p *PrintSettings) LoadKeyFile(keyFile *L.KeyFile, groupName string, err **L.Error) bool {
 	return PrintSettingsLoadKeyFile(p, keyFile, groupName, err)
 }
 func (p *PrintSettings) Set(key, value string)          { PrintSettingsSet(p, key, value) }
@@ -819,7 +819,7 @@ func (p *PrintSettings) SetResolutionXy(resolutionX, resolutionY int) {
 func (p *PrintSettings) SetReverse(reverse bool)   { PrintSettingsSetReverse(p, reverse) }
 func (p *PrintSettings) SetScale(scale float64)    { PrintSettingsSetScale(p, scale) }
 func (p *PrintSettings) SetUseColor(useColor bool) { PrintSettingsSetUseColor(p, useColor) }
-func (p *PrintSettings) ToFile(fileName string, err **T.GError) bool {
+func (p *PrintSettings) ToFile(fileName string, err **L.Error) bool {
 	return PrintSettingsToFile(p, fileName, err)
 }
 func (p *PrintSettings) ToKeyFile(keyFile *L.KeyFile, groupName string) {

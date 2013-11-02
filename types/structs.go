@@ -3,6 +3,19 @@ package types
 //TODO(t): add constants for [...]s
 
 type (
+	Quark GUint32
+	List  struct {
+		Data Gpointer
+		Next *List
+		Prev *List
+	}
+	MainContext struct{}
+	Unichar     GUint32
+	Variant     struct{}
+	VariantType struct{}
+)
+
+type (
 	Tm struct {
 		Sec, Min, Hour, Mday, Mon, Year, Wday, Yday, Isdst int
 	}
@@ -12,25 +25,12 @@ type (
 		Value uint
 	}
 
-	GError struct {
-		Domain  Quark
-		Code    int
-		Message *Gchar
-	}
-
-	GList struct{} //REMOVE
-
 	GNode struct {
 		Data     Gpointer
 		Next     *GNode
 		Prev     *GNode
 		Parent   *GNode
 		Children *GNode
-	}
-
-	GOnce struct {
-		Status GOnceStatus
-		Retval Gpointer
 	}
 
 	GPollFD struct {
@@ -74,8 +74,6 @@ type (
 
 	GdkScreen struct{} //REMOVE
 
-	GValue struct{} //REMOVE
-
 	GdkKeyboardGrabInfo struct {
 		Window       *GdkWindow
 		NativeWindow *GdkWindow
@@ -94,12 +92,6 @@ type (
 	}
 
 	GdkEvent struct{} //REMOTE
-
-	GSignalInvocationHint struct {
-		SignalId uint
-		Detail   Quark
-		RunType  GSignalFlags
-	}
 
 	GdkEventOwnerChange struct {
 		Type          GdkEventType
@@ -121,13 +113,6 @@ type (
 	}
 
 	GParamSpec struct{} //REMOVE
-
-	GtkRcProperty struct {
-		TypeName     Quark
-		PropertyName Quark
-		Origin       *Gchar
-		Value        GValue
-	}
 
 	GtkWidgetAuxInfo struct {
 		X      int
@@ -187,21 +172,6 @@ type (
 		TryRealloc func(mem Gpointer, nBytes Gsize) Gpointer
 	}
 
-	GParameter struct {
-		Name  string
-		Value GValue
-	}
-
-	GSignalQuery struct {
-		SignalId    uint
-		SignalName  string
-		Itype       GType
-		SignalFlags GSignalFlags
-		ReturnType  GType
-		NParams     uint
-		ParamTypes  *GType
-	}
-
 	GTypeQuery struct {
 		Type         GType
 		TypeName     string
@@ -212,26 +182,6 @@ type (
 	GOutputVector struct {
 		Buffer Gconstpointer
 		Size   Gsize
-	}
-
-	GTypeValueTable struct {
-		ValueInit func(value *GValue)
-		ValueFree func(value *GValue)
-		ValueCopy func(
-			srcValue *GValue, destValue *GValue)
-		ValuePeekPointer func(value *GValue) Gpointer
-		CollectFormat    *Gchar
-		CollectValue     func(
-			value *GValue,
-			nCollectValues uint,
-			collectValues *GTypeCValue,
-			collectFlags uint) *Gchar
-		LcopyFormat *Gchar
-		LcopyValue  func(
-			value *GValue,
-			nCollectValues uint,
-			collectValues *GTypeCValue,
-			collectFlags uint) *Gchar
 	}
 
 	GTypeFundamentalInfo struct {

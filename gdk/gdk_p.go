@@ -58,21 +58,21 @@ var (
 	PixbufGetType                   func() O.Type
 	PixbufNew                       func(colorspace Colorspace, hasAlpha bool, bitsPerSample, width, height int) *Pixbuf
 	PixbufNewFromData               func(data *T.Guchar, colorspace Colorspace, hasAlpha bool, bitsPerSample, width, height, rowstride int, destroyFn PixbufDestroyNotify, destroyFnData T.Gpointer) *Pixbuf
-	PixbufNewFromFile               func(filename string, e **T.GError) *Pixbuf
-	PixbufNewFromFileAtScale        func(filename string, width, height int, preserveAspectRatio bool, e **T.GError) *Pixbuf
-	PixbufNewFromFileAtSize         func(filename string, width, height int, e **T.GError) *Pixbuf
-	PixbufNewFromInline             func(dataLength int, data *uint8, copyPixels bool, e **T.GError) *Pixbuf
-	PixbufNewFromStream             func(stream *I.InputStream, cancellable *I.Cancellable, e **T.GError) *Pixbuf
+	PixbufNewFromFile               func(filename string, e **L.Error) *Pixbuf
+	PixbufNewFromFileAtScale        func(filename string, width, height int, preserveAspectRatio bool, e **L.Error) *Pixbuf
+	PixbufNewFromFileAtSize         func(filename string, width, height int, e **L.Error) *Pixbuf
+	PixbufNewFromInline             func(dataLength int, data *uint8, copyPixels bool, e **L.Error) *Pixbuf
+	PixbufNewFromStream             func(stream *I.InputStream, cancellable *I.Cancellable, e **L.Error) *Pixbuf
 	PixbufNewFromStreamAsync        func(stream *I.InputStream, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer)
-	PixbufNewFromStreamAtScale      func(stream *I.InputStream, width, height int, preserveAspectRatio bool, cancellable *I.Cancellable, e **T.GError) *Pixbuf
+	PixbufNewFromStreamAtScale      func(stream *I.InputStream, width, height int, preserveAspectRatio bool, cancellable *I.Cancellable, e **L.Error) *Pixbuf
 	PixbufNewFromStreamAtScaleAsync func(stream *I.InputStream, width, height int, preserveAspectRatio bool, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer)
-	PixbufNewFromStreamFinish       func(asyncResult *I.AsyncResult, e **T.GError) *Pixbuf
+	PixbufNewFromStreamFinish       func(asyncResult *I.AsyncResult, e **L.Error) *Pixbuf
 	PixbufNewFromXpmData            func(data **T.Char) *Pixbuf
 
 	PixbufErrorQuark         func() L.Quark
 	PixbufGetFileInfo        func(filename string, width, height *int) *PixbufFormat
 	PixbufGetFormats         func() *L.SList
-	PixbufSaveToStreamFinish func(asyncResult *I.AsyncResult, e **T.GError) bool
+	PixbufSaveToStreamFinish func(asyncResult *I.AsyncResult, e **L.Error) bool
 
 	PixbufGetFromDrawable func(dest *Pixbuf, src *Drawable, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
 	PixbufGetFromImage    func(dest *Pixbuf, src *Image, cmap *Colormap, srcX, srcY, destX, destY, width, height int) *Pixbuf
@@ -99,14 +99,14 @@ var (
 	PixbufRef                      func(pixbuf *Pixbuf) *Pixbuf
 	PixbufRotateSimple             func(src *Pixbuf, angle PixbufRotation) *Pixbuf
 	PixbufSaturateAndPixelate      func(src, dest *Pixbuf, saturation float32, pixelate bool)
-	PixbufSaveToBuffer             func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **T.GError, v ...VArg) bool
-	PixbufSaveToBufferv            func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
-	PixbufSaveToCallback           func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) bool
-	PixbufSaveToCallbackv          func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
-	PixbufSaveToStream             func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **T.GError, v ...VArg) bool
+	PixbufSaveToBuffer             func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **L.Error, v ...VArg) bool
+	PixbufSaveToBufferv            func(pixbuf *Pixbuf, buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool
+	PixbufSaveToCallback           func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **L.Error, v ...VArg) bool
+	PixbufSaveToCallbackv          func(pixbuf *Pixbuf, saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool
+	PixbufSaveToStream             func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **L.Error, v ...VArg) bool
 	PixbufSaveToStreamAsync        func(pixbuf *Pixbuf, stream *I.OutputStream, typ string, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg)
-	PixbufSaveUtf8                 func(pixbuf *Pixbuf, filename, typ string, e **T.GError, v ...VArg) bool
-	PixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool
+	PixbufSaveUtf8                 func(pixbuf *Pixbuf, filename, typ string, e **L.Error, v ...VArg) bool
+	PixbufSavevUtf8                func(pixbuf *Pixbuf, filename, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool
 	PixbufScale                    func(src, dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType)
 	PixbufScaleSimple              func(src *Pixbuf, destWidth, destHeight int, interpType T.GdkInterpType) *Pixbuf
 	PixbufSetOption                func(pixbuf *Pixbuf, key, value string) bool
@@ -149,28 +149,28 @@ func (p *Pixbuf) RotateSimple(angle PixbufRotation) *Pixbuf { return PixbufRotat
 func (p *Pixbuf) SaturateAndPixelate(dest *Pixbuf, saturation float32, pixelate bool) {
 	PixbufSaturateAndPixelate(p, dest, saturation, pixelate)
 }
-func (p *Pixbuf) SaveToBuffer(buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **T.GError, v ...VArg) bool {
+func (p *Pixbuf) SaveToBuffer(buffer **T.Gchar, bufferSize *T.Gsize, typ string, e **L.Error, v ...VArg) bool {
 	return PixbufSaveToBuffer(p, buffer, bufferSize, typ, e, v)
 }
-func (p *Pixbuf) SaveToBufferv(buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
+func (p *Pixbuf) SaveToBufferv(buffer **T.Gchar, bufferSize *T.Gsize, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool {
 	return PixbufSaveToBufferv(p, buffer, bufferSize, typ, optionKeys, optionValues, e)
 }
-func (p *Pixbuf) SaveToCallback(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **T.GError, v ...VArg) bool {
+func (p *Pixbuf) SaveToCallback(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, err **L.Error, v ...VArg) bool {
 	return PixbufSaveToCallback(p, saveFunc, userData, typ, err, v)
 }
-func (p *Pixbuf) SaveToCallbackv(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
+func (p *Pixbuf) SaveToCallbackv(saveFunc PixbufSaveFunc, userData T.Gpointer, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool {
 	return PixbufSaveToCallbackv(p, saveFunc, userData, typ, optionKeys, optionValues, e)
 }
-func (p *Pixbuf) SaveToStream(stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **T.GError, v ...VArg) bool {
+func (p *Pixbuf) SaveToStream(stream *I.OutputStream, typ string, cancellable *I.Cancellable, e **L.Error, v ...VArg) bool {
 	return PixbufSaveToStream(p, stream, typ, cancellable, e, v)
 }
 func (p *Pixbuf) SaveToStreamAsync(stream *I.OutputStream, typ string, cancellable *I.Cancellable, callback I.AsyncReadyCallback, userData T.Gpointer, v ...VArg) {
 	PixbufSaveToStreamAsync(p, stream, typ, cancellable, callback, userData, v)
 }
-func (p *Pixbuf) SaveUtf8(filename, typ string, e **T.GError, v ...VArg) bool {
+func (p *Pixbuf) SaveUtf8(filename, typ string, e **L.Error, v ...VArg) bool {
 	return PixbufSaveUtf8(p, filename, typ, e, v)
 }
-func (p *Pixbuf) SavevUtf8(filename, typ string, optionKeys, optionValues **T.Char, e **T.GError) bool {
+func (p *Pixbuf) SavevUtf8(filename, typ string, optionKeys, optionValues **T.Char, e **L.Error) bool {
 	return PixbufSavevUtf8(p, filename, typ, optionKeys, optionValues, e)
 }
 func (p *Pixbuf) Scale(dest *Pixbuf, destX, destY, destWidth, destHeight int, offsetX, offsetY, scaleX, scaleY float64, interpType T.GdkInterpType) {
@@ -199,7 +199,7 @@ type PixbufAnimation struct{}
 
 var (
 	PixbufAnimationGetType         func() O.Type
-	PixbufAnimationNewFromFileUtf8 func(filename string, e **T.GError) *PixbufAnimation
+	PixbufAnimationNewFromFileUtf8 func(filename string, e **L.Error) *PixbufAnimation
 
 	PixbufAnimationGetHeight      func(animation *PixbufAnimation) int
 	PixbufAnimationGetIter        func(animation *PixbufAnimation, startTime *L.TimeVal) *PixbufAnimationIter
@@ -224,7 +224,7 @@ type PixbufAnimationIter struct{}
 
 var (
 	PixbufAnimationIterGetType func() O.Type
-	PixbufAnimationNewFromFile func(filename string, e **T.GError) *PixbufAnimation
+	PixbufAnimationNewFromFile func(filename string, e **L.Error) *PixbufAnimation
 
 	PixbufAnimationIterAdvance                 func(iter *PixbufAnimationIter, currentTime *L.TimeVal) bool
 	PixbufAnimationIterGetDelayTime            func(iter *PixbufAnimationIter) int
@@ -262,15 +262,15 @@ type PixbufLoader struct {
 var (
 	PixbufLoaderGetType         func() O.Type
 	PixbufLoaderNew             func() *PixbufLoader
-	PixbufLoaderNewWithMimeType func(mimeType string, e **T.GError) *PixbufLoader
-	PixbufLoaderNewWithType     func(imageType string, e **T.GError) *PixbufLoader
+	PixbufLoaderNewWithMimeType func(mimeType string, e **L.Error) *PixbufLoader
+	PixbufLoaderNewWithType     func(imageType string, e **L.Error) *PixbufLoader
 
-	PixbufLoaderClose        func(loader *PixbufLoader, e **T.GError) bool
+	PixbufLoaderClose        func(loader *PixbufLoader, e **L.Error) bool
 	PixbufLoaderGetAnimation func(loader *PixbufLoader) *PixbufAnimation
 	PixbufLoaderGetFormat    func(loader *PixbufLoader) *PixbufFormat
 	PixbufLoaderGetPixbuf    func(loader *PixbufLoader) *Pixbuf
 	PixbufLoaderSetSize      func(loader *PixbufLoader, width, height int)
-	PixbufLoaderWrite        func(loader *PixbufLoader, buf *T.Guchar, count T.Gsize, e **T.GError) bool
+	PixbufLoaderWrite        func(loader *PixbufLoader, buf *T.Guchar, count T.Gsize, e **L.Error) bool
 )
 
 var (
@@ -300,7 +300,7 @@ var PixbufRotationGetType func() O.Type
 type PixbufSaveFunc func(
 	buf string,
 	count T.Gsize,
-	err **T.GError,
+	err **L.Error,
 	data T.Gpointer) bool
 
 type PixbufSimpleAnim struct{}
@@ -331,15 +331,15 @@ type Pixdata struct {
 }
 
 var (
-	PixbufFromPixdata func(p *Pixdata, copyPixels bool, e **T.GError) *Pixbuf
+	PixbufFromPixdata func(p *Pixdata, copyPixels bool, e **L.Error) *Pixbuf
 
-	PixdataDeserialize func(p *Pixdata, streamLength uint, stream *uint8, e **T.GError) bool
+	PixdataDeserialize func(p *Pixdata, streamLength uint, stream *uint8, e **L.Error) bool
 	PixdataFromPixbuf  func(p *Pixdata, pixbuf *Pixbuf, useRle bool) T.Gpointer
 	PixdataSerialize   func(p *Pixdata, streamLengthP *uint) *uint8
 	PixdataToCsource   func(p *Pixdata, name string, dumpType PixdataDumpType) *L.String
 )
 
-func (p *Pixdata) Deserialize(streamLength uint, stream *uint8, e **T.GError) bool {
+func (p *Pixdata) Deserialize(streamLength uint, stream *uint8, e **L.Error) bool {
 	return PixdataDeserialize(p, streamLength, stream, e)
 }
 func (p *Pixdata) FromPixbuf(pixbuf *Pixbuf, useRle bool) T.Gpointer {
