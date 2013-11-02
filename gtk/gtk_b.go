@@ -217,7 +217,7 @@ type (
 
 	BuilderConnectFunc func(builder *Builder, object *O.Object,
 		signalName, handlerName string, connectObject *O.Object,
-		flags T.GConnectFlags, userData T.Gpointer)
+		flags O.ConnectFlags, userData T.Gpointer)
 )
 
 var (
@@ -240,7 +240,7 @@ var (
 	BuilderGetTranslationDomain func(b *Builder) string
 	BuilderGetTypeFromName      func(b *Builder, typeName string) O.Type
 	BuilderSetTranslationDomain func(b *Builder, domain string)
-	BuilderValueFromString      func(b *Builder, pspec *T.GParamSpec, str string, value *O.Value, err **L.Error) bool
+	BuilderValueFromString      func(b *Builder, pspec *O.ParamSpec, str string, value *O.Value, err **L.Error) bool
 	BuilderValueFromStringType  func(b *Builder, t O.Type, str string, value *O.Value, err **L.Error) bool
 )
 
@@ -265,7 +265,7 @@ func (b *Builder) GetObjects() *L.SList                   { return BuilderGetObj
 func (b *Builder) GetTranslationDomain() string           { return BuilderGetTranslationDomain(b) }
 func (b *Builder) GetTypeFromName(typeName string) O.Type { return BuilderGetTypeFromName(b, typeName) }
 func (b *Builder) SetTranslationDomain(domain string)     { BuilderSetTranslationDomain(b, domain) }
-func (b *Builder) ValueFromString(pspec *T.GParamSpec, str string, value *O.Value, err **L.Error) bool {
+func (b *Builder) ValueFromString(pspec *O.ParamSpec, str string, value *O.Value, err **L.Error) bool {
 	return BuilderValueFromString(b, pspec, str, value, err)
 }
 func (b *Builder) ValueFromStringType(t O.Type, str string, value *O.Value, err **L.Error) bool {

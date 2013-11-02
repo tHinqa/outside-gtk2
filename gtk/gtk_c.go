@@ -1242,19 +1242,19 @@ type ContainerClass struct {
 	SetFocusChild    func(c *Container, w *Widget)
 	ChildType        func(c *Container) O.Type
 	CompositeName    func(c *Container, child *Widget) *T.Gchar
-	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *T.GParamSpec)
-	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *T.GParamSpec)
+	SetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *O.ParamSpec)
+	GetChildProperty func(c *Container, child *Widget, propertyId uint, value *O.Value, pspec *O.ParamSpec)
 	_, _, _, _       func()
 }
 
 var (
-	ContainerClassFindChildProperty   func(cclass *O.ObjectClass, propertyName string) *T.GParamSpec
-	ContainerClassListChildProperties func(cclass *O.ObjectClass, nProperties *uint) **T.GParamSpec
+	ContainerClassFindChildProperty   func(cclass *O.ObjectClass, propertyName string) *O.ParamSpec
+	ContainerClassListChildProperties func(cclass *O.ObjectClass, nProperties *uint) **O.ParamSpec
 
-	ContainerClassInstallChildProperty func(cclass *ContainerClass, propertyId uint, pspec *T.GParamSpec)
+	ContainerClassInstallChildProperty func(cclass *ContainerClass, propertyId uint, pspec *O.ParamSpec)
 )
 
-func (c *ContainerClass) InstallChildProperty(propertyId uint, pspec *T.GParamSpec) {
+func (c *ContainerClass) InstallChildProperty(propertyId uint, pspec *O.ParamSpec) {
 	ContainerClassInstallChildProperty(c, propertyId, pspec)
 }
 

@@ -309,8 +309,8 @@ var (
 	SettingsGetDefault func() *Settings
 
 	SettingsGetForScreen          func(screen *D.Screen) *Settings
-	SettingsInstallProperty       func(pspec *T.GParamSpec)
-	SettingsInstallPropertyParser func(pspec *T.GParamSpec, parser RcPropertyParser)
+	SettingsInstallProperty       func(pspec *O.ParamSpec)
+	SettingsInstallPropertyParser func(pspec *O.ParamSpec, parser RcPropertyParser)
 
 	SettingsSetDoubleProperty func(s *Settings, name string, vDouble float64, origin string)
 	SettingsSetLongProperty   func(s *Settings, name string, vLong T.Glong, origin string)

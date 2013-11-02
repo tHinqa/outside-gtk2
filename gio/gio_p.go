@@ -64,20 +64,20 @@ var (
 
 	PollableInputStreamCanPoll         func(p *PollableInputStream) bool
 	PollableInputStreamIsReadable      func(p *PollableInputStream) bool
-	PollableInputStreamCreateSource    func(p *PollableInputStream, cancellable *Cancellable) *T.GSource
+	PollableInputStreamCreateSource    func(p *PollableInputStream, cancellable *Cancellable) *L.Source
 	PollableInputStreamReadNonblocking func(p *PollableInputStream, buffer *T.Void, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
 )
 
 func (p *PollableInputStream) CanPoll() bool    { return PollableInputStreamCanPoll(p) }
 func (p *PollableInputStream) IsReadable() bool { return PollableInputStreamIsReadable(p) }
-func (p *PollableInputStream) CreateSource(cancellable *Cancellable) *T.GSource {
+func (p *PollableInputStream) CreateSource(cancellable *Cancellable) *L.Source {
 	return PollableInputStreamCreateSource(p, cancellable)
 }
 func (p *PollableInputStream) ReadNonblocking(buffer *T.Void, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {
 	return PollableInputStreamReadNonblocking(p, buffer, size, cancellable, err)
 }
 
-var PollableSourceNew func(pollableStream *O.Object) *T.GSource
+var PollableSourceNew func(pollableStream *O.Object) *L.Source
 
 type PollableOutputStream struct{}
 
@@ -86,13 +86,13 @@ var (
 
 	PollableOutputStreamCanPoll          func(p *PollableOutputStream) bool
 	PollableOutputStreamIsWritable       func(p *PollableOutputStream) bool
-	PollableOutputStreamCreateSource     func(p *PollableOutputStream, cancellable *Cancellable) *T.GSource
+	PollableOutputStreamCreateSource     func(p *PollableOutputStream, cancellable *Cancellable) *L.Source
 	PollableOutputStreamWriteNonblocking func(p *PollableOutputStream, buffer *T.Void, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize
 )
 
 func (p *PollableOutputStream) CanPoll() bool    { return PollableOutputStreamCanPoll(p) }
 func (p *PollableOutputStream) IsWritable() bool { return PollableOutputStreamIsWritable(p) }
-func (p *PollableOutputStream) CreateSource(cancellable *Cancellable) *T.GSource {
+func (p *PollableOutputStream) CreateSource(cancellable *Cancellable) *L.Source {
 	return PollableOutputStreamCreateSource(p, cancellable)
 }
 func (p *PollableOutputStream) WriteNonblocking(buffer *T.Void, size T.Gsize, cancellable *Cancellable, err **L.Error) T.Gssize {

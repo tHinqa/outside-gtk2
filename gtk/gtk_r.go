@@ -233,11 +233,11 @@ var (
 	RcGetThemeDir              func() string
 	RcParse                    func(filename string)
 	RcParseString              func(rcString string)
-	RcPropertyParseBorder      func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
-	RcPropertyParseColor       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
-	RcPropertyParseEnum        func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
-	RcPropertyParseFlags       func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
-	RcPropertyParseRequisition func(pspec *T.GParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseBorder      func(pspec *O.ParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseColor       func(pspec *O.ParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseEnum        func(pspec *O.ParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseFlags       func(pspec *O.ParamSpec, gstring *L.String, propertyValue *O.Value) bool
+	RcPropertyParseRequisition func(pspec *O.ParamSpec, gstring *L.String, propertyValue *O.Value) bool
 	RcReparseAll               func() bool
 	RcReparseAllForSettings    func(settings *Settings, forceLoad bool) bool
 	RcResetStyles              func(settings *Settings)
@@ -251,7 +251,7 @@ var (
 	RcParsePriority  func(scanner *L.Scanner, priority *PathPriorityType) uint
 )
 
-type RcPropertyParser func(pspec *T.GParamSpec,
+type RcPropertyParser func(pspec *O.ParamSpec,
 	rcString *L.String, property_value *O.Value) bool
 
 type RcStyle struct {

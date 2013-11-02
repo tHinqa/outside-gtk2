@@ -798,10 +798,12 @@ type (
 		module *Module, name string) *ModuleInterface
 )
 
+const T1_MAX_MM_AXIS = 4
+
 type MultiMaster struct {
 	NumAxis    uint
 	NumDesigns uint
-	Axis       [4]MMAxis
+	Axis       [T1_MAX_MM_AXIS]MMAxis
 }
 
 type Node struct{}

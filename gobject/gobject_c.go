@@ -92,3 +92,10 @@ type ClosureMarshal func(
 	nParamValues uint,
 	paramValues *Value,
 	invocationHint, marshalData T.Gpointer)
+
+type ConnectFlags Enum
+
+const (
+	CONNECT_AFTER ConnectFlags = 1 << iota
+	CONNECT_SWAPPED
+)

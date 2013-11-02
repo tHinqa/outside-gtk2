@@ -2,6 +2,8 @@ package types
 
 //TODO(t): add constants for [...]s
 
+const GDK_MAX_TIMECOORD_AXES = 128
+
 type (
 	Quark GUint32
 	List  struct {
@@ -112,8 +114,6 @@ type (
 		Name      *Char
 	}
 
-	GParamSpec struct{} //REMOVE
-
 	GtkWidgetAuxInfo struct {
 		X      int
 		Y      int
@@ -156,7 +156,7 @@ type (
 
 	GdkTimeCoord struct {
 		Time GUint32
-		Axes [128]float64
+		Axes [GDK_MAX_TIMECOORD_AXES]float64
 	}
 
 	GdkTrapezoid struct {

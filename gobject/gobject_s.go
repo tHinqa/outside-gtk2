@@ -124,7 +124,7 @@ var (
 		cHandler Callback,
 		data T.Gpointer,
 		destroyData ClosureNotify,
-		connectFlags T.GConnectFlags) T.Gulong
+		connectFlags ConnectFlags) T.Gulong
 
 	SignalHandlerBlock func(instance T.Gpointer, handlerId T.Gulong)
 

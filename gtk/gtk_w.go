@@ -444,7 +444,7 @@ type WidgetClass struct {
 	DispatchChildPropertiesChanged func(
 		widget *Widget,
 		nPspecs uint,
-		pspecs **T.GParamSpec)
+		pspecs **O.ParamSpec)
 	Show        func(widget *Widget)
 	ShowAll     func(widget *Widget)
 	Hide        func(widget *Widget)
@@ -470,7 +470,7 @@ type WidgetClass struct {
 	GrabNotify func(widget *Widget,
 		wasGrabbed bool)
 	ChildNotify func(widget *Widget,
-		pspec *T.GParamSpec)
+		pspec *O.ParamSpec)
 	MnemonicActivate func(widget *Widget,
 		groupCycling bool) bool
 	GrabFocus func(widget *Widget)
@@ -578,22 +578,22 @@ type WidgetClass struct {
 }
 
 var (
-	WidgetClassFindStyleProperty          func(w *WidgetClass, propertyName string) *T.GParamSpec
-	WidgetClassInstallStyleProperty       func(w *WidgetClass, pspec *T.GParamSpec)
-	WidgetClassInstallStylePropertyParser func(w *WidgetClass, pspec *T.GParamSpec, parser RcPropertyParser)
-	WidgetClassListStyleProperties        func(w *WidgetClass, nProperties *uint) **T.GParamSpec
+	WidgetClassFindStyleProperty          func(w *WidgetClass, propertyName string) *O.ParamSpec
+	WidgetClassInstallStyleProperty       func(w *WidgetClass, pspec *O.ParamSpec)
+	WidgetClassInstallStylePropertyParser func(w *WidgetClass, pspec *O.ParamSpec, parser RcPropertyParser)
+	WidgetClassListStyleProperties        func(w *WidgetClass, nProperties *uint) **O.ParamSpec
 )
 
-func (w *WidgetClass) FindStyleProperty(propertyName string) *T.GParamSpec {
+func (w *WidgetClass) FindStyleProperty(propertyName string) *O.ParamSpec {
 	return WidgetClassFindStyleProperty(w, propertyName)
 }
-func (w *WidgetClass) InstallStyleProperty(pspec *T.GParamSpec) {
+func (w *WidgetClass) InstallStyleProperty(pspec *O.ParamSpec) {
 	WidgetClassInstallStyleProperty(w, pspec)
 }
-func (w *WidgetClass) InstallStylePropertyParser(pspec *T.GParamSpec, parser RcPropertyParser) {
+func (w *WidgetClass) InstallStylePropertyParser(pspec *O.ParamSpec, parser RcPropertyParser) {
 	WidgetClassInstallStylePropertyParser(w, pspec, parser)
 }
-func (w *WidgetClass) ListStyleProperties(nProperties *uint) **T.GParamSpec {
+func (w *WidgetClass) ListStyleProperties(nProperties *uint) **O.ParamSpec {
 	return WidgetClassListStyleProperties(w, nProperties)
 }
 

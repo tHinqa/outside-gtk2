@@ -42,13 +42,13 @@ var (
 	VariantTypeGetGtype     func() Type
 
 	ObjectInterfaceInstallProperty func(
-		gIface T.Gpointer, pspec *T.GParamSpec)
+		gIface T.Gpointer, pspec *ParamSpec)
 
 	ObjectInterfaceFindProperty func(
-		gIface T.Gpointer, propertyName string) *T.GParamSpec
+		gIface T.Gpointer, propertyName string) *ParamSpec
 
 	ObjectInterfaceListProperties func(
-		gIface T.Gpointer, nPropertiesP *uint) **T.GParamSpec
+		gIface T.Gpointer, nPropertiesP *uint) **ParamSpec
 
 	CclosureNewObject func(
 		callbackFunc Callback, object *Object) *Closure
@@ -58,7 +58,7 @@ var (
 
 	SignalConnectObject func(instance T.Gpointer,
 		detailedSignal string, cHandler Callback,
-		gobject T.Gpointer, connectFlags T.GConnectFlags) T.Gulong
+		gobject T.Gpointer, connectFlags ConnectFlags) T.Gulong
 
 	ObjectCompatControl func(what T.Gsize, data T.Gpointer) T.Gsize
 

@@ -31,7 +31,7 @@ var (
 	CancellableReleaseFd           func(c *Cancellable)
 	CancellableReset               func(c *Cancellable)
 	CancellableSetErrorIfCancelled func(c *Cancellable, err **L.Error) bool
-	CancellableSourceNew           func(c *Cancellable) *T.GSource
+	CancellableSourceNew           func(c *Cancellable) *O.Source
 )
 
 func (c *Cancellable) Cancel() { CancellableCancel(c) }
@@ -51,7 +51,7 @@ func (c *Cancellable) Reset()       { CancellableReset(c) }
 func (c *Cancellable) SetErrorIfCancelled(err **L.Error) bool {
 	return CancellableSetErrorIfCancelled(c, err)
 }
-func (c *Cancellable) SourceNew() *T.GSource { return CancellableSourceNew(c) }
+func (c *Cancellable) SourceNew() *O.Source { return CancellableSourceNew(c) }
 
 type CharsetConverter struct{}
 

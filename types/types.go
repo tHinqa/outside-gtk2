@@ -440,13 +440,6 @@ const (
 	G_TYPE_FLAG_DEEP_DERIVABLE
 )
 
-type GConnectFlags Enum
-
-const (
-	G_CONNECT_AFTER GConnectFlags = 1 << iota
-	G_CONNECT_SWAPPED
-)
-
 type GFilesystemPreviewType Enum
 
 const (
@@ -1118,10 +1111,6 @@ type (
 
 	GToggleNotify func(
 		data Gpointer, object *GObject, is_last_ref Gboolean)
-
-	GReallocFunc func(
-		data Gpointer,
-		size Gsize) Gpointer
 
 	GBaseFinalizeFunc func(g_class Gpointer)
 

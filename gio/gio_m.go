@@ -31,9 +31,11 @@ type MemoryOutputStream struct {
 	Priv   *struct{}
 }
 
+type ReallocFunc func(data T.Gpointer, size T.Gsize) T.Gpointer
+
 var (
 	MemoryOutputStreamGetType func() O.Type
-	MemoryOutputStreamNew     func(data T.Gpointer, size T.Gsize, reallocFunction T.GReallocFunc, destroyFunction O.DestroyNotify) *OutputStream
+	MemoryOutputStreamNew     func(data T.Gpointer, size T.Gsize, reallocFunction ReallocFunc, destroyFunction O.DestroyNotify) *OutputStream
 
 	MemoryOutputStreamGetData     func(m *MemoryOutputStream) T.Gpointer
 	MemoryOutputStreamGetDataSize func(m *MemoryOutputStream) T.Gsize
