@@ -34,7 +34,7 @@ var (
 		cMarshaller SignalCMarshaller,
 		returnType Type,
 		nParams uint,
-		args T.VaList) uint
+		args VAList) uint
 
 	SignalNew func(signalName string, itype Type,
 		signalFlags SignalFlags, classOffset uint,
@@ -58,7 +58,7 @@ var (
 		instance T.Gpointer,
 		signalId uint,
 		detail T.Quark,
-		varArgs T.VaList)
+		varArgs VAList)
 
 	SignalEmit func(instance T.Gpointer, signalId uint,
 		detail T.Quark, v ...VArg)

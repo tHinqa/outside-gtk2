@@ -132,7 +132,7 @@ var (
 
 	MarkupEscapeText     func(text string, length T.Gssize) string
 	MarkupPrintfEscaped  func(format string, v ...VArg) string
-	MarkupVprintfEscaped func(format string, args T.VaList) string
+	MarkupVprintfEscaped func(format string, args VAList) string
 
 	MarkupParseContextEndParse        func(m *MarkupParseContext, e **Error) bool
 	MarkupParseContextFree            func(m *MarkupParseContext)

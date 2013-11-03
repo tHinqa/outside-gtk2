@@ -60,7 +60,7 @@ var (
 	ErrorNewValist func(domain Quark,
 		code int,
 		format string,
-		args T.VaList) *Error
+		args VAList) *Error
 
 	ErrorFree func(e *Error)
 
@@ -125,7 +125,7 @@ var (
 		str T.Gchar, n T.Gulong, format string, v ...VArg) int
 
 	Vsnprintf func(str T.Gchar,
-		n T.Gulong, format string, args T.VaList) int
+		n T.Gulong, format string, args VAList) int
 
 	PathIsAbsolute func(fileName string) bool
 
@@ -534,7 +534,7 @@ var (
 	Logv func(logDomain string,
 		logLevel T.GLogLevelFlags,
 		format string,
-		args T.VaList)
+		args VAList)
 
 	LogSetFatalMask func(logDomain string,
 		fatalMask T.GLogLevelFlags) T.GLogLevelFlags
@@ -766,7 +766,7 @@ var (
 
 	StrdupPrintf func(format string, v ...VArg) Str
 
-	StrdupVprintf func(format string, args T.VaList) Str
+	StrdupVprintf func(format string, args VAList) Str
 
 	Strndup func(str string, n T.Gsize) Str
 
@@ -886,16 +886,16 @@ var (
 
 	Sprintf func(str *T.Gchar, format string, v ...VArg) int
 
-	Vprintf func(format string, args T.VaList) int
+	Vprintf func(format string, args VAList) int
 
 	Vfprintf func(
-		file *T.FILE, format string, args T.VaList) int
+		file *T.FILE, format string, args VAList) int
 
 	Vsprintf func(
-		str T.Gchar, format string, args T.VaList) int
+		str T.Gchar, format string, args VAList) int
 
 	Vasprintf func(
-		str **T.Gchar, format string, args T.VaList) int
+		str **T.Gchar, format string, args VAList) int
 
 	GetUserSpecialDir func(directory T.GUserDirectory) string
 
@@ -911,7 +911,7 @@ var (
 	OptionErrorQuark func() Quark
 
 	PrintfStringUpperBound func(
-		format string, args T.VaList) T.Gsize
+		format string, args VAList) T.Gsize
 
 	RegexErrorQuark func() Quark
 )

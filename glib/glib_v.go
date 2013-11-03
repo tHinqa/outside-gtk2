@@ -52,7 +52,7 @@ var (
 	VariantNewMaybe           func(childType *VariantType, child *Variant) *Variant
 	VariantNewObjectPath      func(objectPath string) *Variant
 	VariantNewParsed          func(format string, v ...VArg) *Variant
-	VariantNewParsedVa        func(format string, app *T.VaList) *Variant
+	VariantNewParsedVa        func(format string, app *VAList) *Variant
 	VariantNewSignature       func(signature string) *Variant
 	VariantNewString          func(str string) *Variant
 	VariantNewStrv            func(strv []string, length T.Gssize) *Variant
@@ -60,7 +60,7 @@ var (
 	VariantNewUint16          func(value uint16) *Variant
 	VariantNewUint32          func(value T.GUint32) *Variant
 	VariantNewUint64          func(value uint64) *Variant
-	VariantNewVa              func(formatString string, endptr []string, app *T.VaList) *Variant
+	VariantNewVa              func(formatString string, endptr []string, app *VAList) *Variant
 
 	VariantCompare             func(one T.Gconstpointer, two T.Gconstpointer) int
 	VariantEqual               func(one T.Gconstpointer, two T.Gconstpointer) bool
@@ -100,7 +100,7 @@ var (
 	VariantGetUint16          func(v *Variant) uint16
 	VariantGetUint32          func(v *Variant) T.GUint32
 	VariantGetUint64          func(v *Variant) uint64
-	VariantGetVa              func(v *Variant, formatString string, endptr []string, app *T.VaList)
+	VariantGetVa              func(v *Variant, formatString string, endptr []string, app *VAList)
 	VariantGetVariant         func(v *Variant) *Variant
 	VariantIsContainer        func(v *Variant) bool
 	VariantIsFloating         func(v *Variant) bool
@@ -157,7 +157,7 @@ func (v *Variant) TypeString() string            { return VariantGetTypeString(v
 func (v *Variant) Uint16() uint16                { return VariantGetUint16(v) }
 func (v *Variant) Uint32() T.GUint32             { return VariantGetUint32(v) }
 func (v *Variant) Uint64() uint64                { return VariantGetUint64(v) }
-func (v *Variant) Va(formatString string, endptr []string, app *T.VaList) {
+func (v *Variant) Va(formatString string, endptr []string, app *VAList) {
 	VariantGetVa(v, formatString, endptr, app)
 }
 func (v *Variant) Variant() *Variant              { return VariantGetVariant(v) }

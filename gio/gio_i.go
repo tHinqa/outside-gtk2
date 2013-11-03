@@ -87,7 +87,7 @@ var (
 	InitableGetType   func() O.Type
 	InitableNew       func(objectType O.Type, cancellable *Cancellable, e **L.Error, firstPropertyName string, v ...VArg) T.Gpointer
 	InitableNewv      func(objectType O.Type, nParameters uint, parameters *O.Parameter, cancellable *Cancellable, err **L.Error) T.Gpointer
-	InitableNewValist func(objectType O.Type, firstPropertyName string, varArgs T.VaList, cancellable *Cancellable, err **L.Error) *O.Object
+	InitableNewValist func(objectType O.Type, firstPropertyName string, varArgs VAList, cancellable *Cancellable, err **L.Error) *O.Object
 
 	InitableInit func(i *Initable, cancellable *Cancellable, err **L.Error) bool
 )

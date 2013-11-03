@@ -64,7 +64,7 @@ func (i *IconInfo) GetDisplayName() string      { return IconInfoGetDisplayName(
 func (i *IconInfo) GetEmbeddedRect(rectangle *D.Rectangle) bool {
 	return IconInfoGetEmbeddedRect(i, rectangle)
 }
-func (i *IconInfo) GetFilename() string               { return IconInfoGetFilename(i) }
+func (i *IconInfo) GetFilename() string              { return IconInfoGetFilename(i) }
 func (i *IconInfo) LoadIcon(err **L.Error) *D.Pixbuf { return IconInfoLoadIcon(i, err) }
 func (i *IconInfo) SetRawCoordinates(rawCoordinates bool) {
 	IconInfoSetRawCoordinates(i, rawCoordinates)
@@ -639,10 +639,12 @@ func (i *IMContext) SetSurrounding(text string, leng int, cursorIndex int) {
 }
 func (i *IMContext) SetUsePreedit(usePreedit bool) { ImContextSetUsePreedit(i, usePreedit) }
 
+const MAX_COMPOSE_LEN = 7
+
 type IMContextSimple struct {
 	Object            IMContext
 	Tables            *L.SList
-	ComposeBuffer     [7 + 1]uint //TODO(t):Symbolic
+	ComposeBuffer     [MAX_COMPOSE_LEN + 1]uint
 	TentativeMatch    L.Unichar
 	TentativeMatchLen int
 	Bits              uint

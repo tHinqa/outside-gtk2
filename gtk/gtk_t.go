@@ -1782,7 +1782,7 @@ var (
 	TreeModelGetNColumns        func(t *TreeModel) int
 	TreeModelGetPath            func(t *TreeModel, iter *TreeIter) *TreePath
 	TreeModelGetStringFromIter  func(t *TreeModel, iter *TreeIter) string
-	TreeModelGetValist          func(t *TreeModel, iter *TreeIter, varArgs T.VaList)
+	TreeModelGetValist          func(t *TreeModel, iter *TreeIter, varArgs VAList)
 	TreeModelGetValue           func(t *TreeModel, iter *TreeIter, column int, value *O.Value)
 	TreeModelIterChildren       func(t *TreeModel, iter *TreeIter, parent *TreeIter) bool
 	TreeModelIterHasChild       func(t *TreeModel, iter *TreeIter) bool
@@ -1817,7 +1817,7 @@ func (t *TreeModel) GetPath(iter *TreeIter) *TreePath { return TreeModelGetPath(
 func (t *TreeModel) GetStringFromIter(iter *TreeIter) string {
 	return TreeModelGetStringFromIter(t, iter)
 }
-func (t *TreeModel) GetValist(iter *TreeIter, varArgs T.VaList) { TreeModelGetValist(t, iter, varArgs) }
+func (t *TreeModel) GetValist(iter *TreeIter, varArgs VAList) { TreeModelGetValist(t, iter, varArgs) }
 func (t *TreeModel) GetValue(iter *TreeIter, column int, value *O.Value) {
 	TreeModelGetValue(t, iter, column, value)
 }
@@ -2183,7 +2183,7 @@ var (
 	TreeStoreReorder           func(t *TreeStore, parent *TreeIter, newOrder *int)
 	TreeStoreSet               func(t *TreeStore, iter *TreeIter, v ...VArg)
 	TreeStoreSetColumnTypes    func(t *TreeStore, nColumns int, types *O.Type)
-	TreeStoreSetValist         func(t *TreeStore, iter *TreeIter, varArgs T.VaList)
+	TreeStoreSetValist         func(t *TreeStore, iter *TreeIter, varArgs VAList)
 	TreeStoreSetValue          func(t *TreeStore, iter *TreeIter, column int, value *O.Value)
 	TreeStoreSetValuesv        func(t *TreeStore, iter *TreeIter, columns *int, values *O.Value, nValues int)
 	TreeStoreSwap              func(t *TreeStore, a *TreeIter, b *TreeIter)
@@ -2220,7 +2220,7 @@ func (t *TreeStore) Set(iter *TreeIter, v ...VArg)           { TreeStoreSet(t, i
 func (t *TreeStore) SetColumnTypes(nColumns int, types *O.Type) {
 	TreeStoreSetColumnTypes(t, nColumns, types)
 }
-func (t *TreeStore) SetValist(iter *TreeIter, varArgs T.VaList) { TreeStoreSetValist(t, iter, varArgs) }
+func (t *TreeStore) SetValist(iter *TreeIter, varArgs VAList) { TreeStoreSetValist(t, iter, varArgs) }
 func (t *TreeStore) SetValue(iter *TreeIter, column int, value *O.Value) {
 	TreeStoreSetValue(t, iter, column, value)
 }

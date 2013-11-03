@@ -552,7 +552,7 @@ var (
 	StringAppendPrintf     func(s *String, format string, v ...VArg)
 	StringAppendUnichar    func(s *String, wc Unichar) *String
 	StringAppendUriEscaped func(s *String, unescaped, reservedCharsAllowed string, allowUtf8 bool) *String
-	StringAppendVprintf    func(s *String, format string, args T.VaList)
+	StringAppendVprintf    func(s *String, format string, args VAList)
 	StringAsciiDown        func(s *String) *String
 	StringAsciiUp          func(s *String) *String
 	StringAssign           func(s *String, rval string) *String
@@ -575,7 +575,7 @@ var (
 	StringSetSize          func(s *String, leng T.Gsize) *String
 	StringTruncate         func(s *String, leng T.Gsize) *String
 	StringUp               func(s *String) *String
-	StringVprintf          func(s *String, format string, args T.VaList)
+	StringVprintf          func(s *String, format string, args VAList)
 )
 
 func (s *String) Append(val string) *String                   { return StringAppend(s, val) }
@@ -586,17 +586,17 @@ func (s *String) AppendUnichar(wc Unichar) *String            { return StringApp
 func (s *String) AppendUriEscaped(unescaped, reservedCharsAllowed string, allowUtf8 bool) *String {
 	return StringAppendUriEscaped(s, unescaped, reservedCharsAllowed, allowUtf8)
 }
-func (s *String) AppendVprintf(format string, args T.VaList) { StringAppendVprintf(s, format, args) }
-func (s *String) AsciiDown() *String                         { return StringAsciiDown(s) }
-func (s *String) AsciiUp() *String                           { return StringAsciiUp(s) }
-func (s *String) Assign(rval string) *String                 { return StringAssign(s, rval) }
-func (s *String) Down() *String                              { return StringDown(s) }
-func (s *String) Equal(s2 *String) bool                      { return StringEqual(s, s2) }
-func (s *String) Erase(pos T.Gssize, leng T.Gssize) *String  { return StringErase(s, pos, leng) }
-func (s *String) Free(freeSegment bool) string               { return StringFree(s, freeSegment) }
-func (s *String) Hash() uint                                 { return StringHash(s) }
-func (s *String) Insert(pos T.Gssize, val string) *String    { return StringInsert(s, pos, val) }
-func (s *String) InsertC(pos T.Gssize, c T.Gchar) *String    { return StringInsertC(s, pos, c) }
+func (s *String) AppendVprintf(format string, args VAList)  { StringAppendVprintf(s, format, args) }
+func (s *String) AsciiDown() *String                        { return StringAsciiDown(s) }
+func (s *String) AsciiUp() *String                          { return StringAsciiUp(s) }
+func (s *String) Assign(rval string) *String                { return StringAssign(s, rval) }
+func (s *String) Down() *String                             { return StringDown(s) }
+func (s *String) Equal(s2 *String) bool                     { return StringEqual(s, s2) }
+func (s *String) Erase(pos T.Gssize, leng T.Gssize) *String { return StringErase(s, pos, leng) }
+func (s *String) Free(freeSegment bool) string              { return StringFree(s, freeSegment) }
+func (s *String) Hash() uint                                { return StringHash(s) }
+func (s *String) Insert(pos T.Gssize, val string) *String   { return StringInsert(s, pos, val) }
+func (s *String) InsertC(pos T.Gssize, c T.Gchar) *String   { return StringInsertC(s, pos, c) }
 func (s *String) InsertLen(pos T.Gssize, val string, leng T.Gssize) *String {
 	return StringInsertLen(s, pos, val, leng)
 }
@@ -615,7 +615,7 @@ func (s *String) Printf(format string, v ...VArg)              { StringPrintf(s,
 func (s *String) SetSize(leng T.Gsize) *String                 { return StringSetSize(s, leng) }
 func (s *String) Truncate(leng T.Gsize) *String                { return StringTruncate(s, leng) }
 func (s *String) Up() *String                                  { return StringUp(s) }
-func (s *String) Vprintf(format string, args T.VaList)         { StringVprintf(s, format, args) }
+func (s *String) Vprintf(format string, args VAList)           { StringVprintf(s, format, args) }
 
 type StringChunk struct{}
 

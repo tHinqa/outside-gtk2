@@ -20,7 +20,7 @@ var (
 	ObjectGetType   func() Type
 	ObjectNew       func(objectType Type, firstPropertyName string, v ...VArg) T.Gpointer
 	ObjectNewv      func(objectType Type, nParameters uint, parameters *Parameter) T.Gpointer
-	ObjectNewValist func(objectType Type, firstPropertyName string, varArgs T.VaList) *Object
+	ObjectNewValist func(objectType Type, firstPropertyName string, varArgs VAList) *Object
 
 	ObjectBindProperty             func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags) *Binding
 	ObjectBindPropertyFull         func(source T.Gpointer, sourceProperty string, target T.Gpointer, targetProperty string, flags BindingFlags, transformTo BindingTransformFunc, transformFrom BindingTransformFunc, userData T.Gpointer, notify DestroyNotify) *Binding
@@ -41,7 +41,7 @@ var (
 	ObjectGetData           func(o *Object, key string) T.Gpointer
 	ObjectGetProperty       func(o *Object, propertyName string, value *Value)
 	ObjectGetQdata          func(o *Object, quark T.Quark) T.Gpointer
-	ObjectGetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
+	ObjectGetValist         func(o *Object, firstPropertyName string, varArgs VAList)
 	ObjectNotify            func(o *Object, propertyName string)
 	ObjectNotifyByPspec     func(o *Object, pspec *ParamSpec)
 	ObjectRemoveToggleRef   func(o *Object, notify T.GToggleNotify, data T.Gpointer)
@@ -52,7 +52,7 @@ var (
 	ObjectSetProperty       func(o *Object, propertyName string, value *Value)
 	ObjectSetQdata          func(o *Object, quark T.Quark, data T.Gpointer)
 	ObjectSetQdataFull      func(o *Object, quark T.Quark, data T.Gpointer, destroy DestroyNotify)
-	ObjectSetValist         func(o *Object, firstPropertyName string, varArgs T.VaList)
+	ObjectSetValist         func(o *Object, firstPropertyName string, varArgs VAList)
 	ObjectStealData         func(o *Object, key string) T.Gpointer
 	ObjectStealQdata        func(o *Object, quark T.Quark) T.Gpointer
 	ObjectThawNotify        func(o *Object)
@@ -74,7 +74,7 @@ func (o *Object) GetProperty(propertyName string, value *Value) {
 	ObjectGetProperty(o, propertyName, value)
 }
 func (o *Object) GetQdata(quark T.Quark) T.Gpointer { return ObjectGetQdata(o, quark) }
-func (o *Object) GetValist(firstPropertyName string, varArgs T.VaList) {
+func (o *Object) GetValist(firstPropertyName string, varArgs VAList) {
 	ObjectGetValist(o, firstPropertyName, varArgs)
 }
 func (o *Object) Notify(propertyName string)     { ObjectNotify(o, propertyName) }
@@ -97,7 +97,7 @@ func (o *Object) SetQdata(quark T.Quark, data T.Gpointer) { ObjectSetQdata(o, qu
 func (o *Object) SetQdataFull(quark T.Quark, data T.Gpointer, destroy DestroyNotify) {
 	ObjectSetQdataFull(o, quark, data, destroy)
 }
-func (o *Object) SetValist(firstPropertyName string, varArgs T.VaList) {
+func (o *Object) SetValist(firstPropertyName string, varArgs VAList) {
 	ObjectSetValist(o, firstPropertyName, varArgs)
 }
 func (o *Object) StealData(key string) T.Gpointer                 { return ObjectStealData(o, key) }

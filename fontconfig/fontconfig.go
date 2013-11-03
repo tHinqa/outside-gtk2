@@ -428,7 +428,7 @@ type ObjectSet struct {
 var (
 	ObjectSetBuild   func(first string, v ...VArg) *ObjectSet
 	ObjectSetCreate  func() *ObjectSet
-	ObjectSetVaBuild func(first string, va T.VaList) *ObjectSet
+	ObjectSetVaBuild func(first string, va VAList) *ObjectSet
 
 	ObjectSetAdd     func(os *ObjectSet, object string) bool
 	ObjectSetDestroy func(os *ObjectSet)
@@ -481,7 +481,7 @@ var (
 	PatternPrint       func(p *Pattern)
 	PatternReference   func(p *Pattern)
 	PatternRemove      func(p *Pattern, object string, id int) bool
-	PatternVaBuild     func(p *Pattern, va T.VaList) *Pattern
+	PatternVaBuild     func(p *Pattern, va VAList) *Pattern
 )
 
 func (p *Pattern) Add(object string, value Value, append bool) bool {
@@ -535,7 +535,7 @@ func (p *Pattern) Hash() Char32                      { return PatternHash(p) }
 func (p *Pattern) Print()                            { PatternPrint(p) }
 func (p *Pattern) Reference()                        { PatternReference(p) }
 func (p *Pattern) Remove(object string, id int) bool { return PatternRemove(p, object, id) }
-func (p *Pattern) VaBuild(va T.VaList) *Pattern      { return PatternVaBuild(p, va) }
+func (p *Pattern) VaBuild(va VAList) *Pattern        { return PatternVaBuild(p, va) }
 
 type Result Enum
 

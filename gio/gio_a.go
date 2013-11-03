@@ -317,7 +317,7 @@ var (
 
 	AsyncInitableNewAsync       func(objectType O.Type, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer, firstPropertyName string, v ...VArg)
 	AsyncInitableNewvAsync      func(objectType O.Type, nParameters uint, parameters *O.Parameter, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
-	AsyncInitableNewValistAsync func(objectType O.Type, firstPropertyName string, varArgs T.VaList, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
+	AsyncInitableNewValistAsync func(objectType O.Type, firstPropertyName string, varArgs VAList, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 
 	AsyncInitableInitAsync  func(a *AsyncInitable, ioPriority int, cancellable *Cancellable, callback AsyncReadyCallback, userData T.Gpointer)
 	AsyncInitableInitFinish func(a *AsyncInitable, res *AsyncResult, err **L.Error) bool

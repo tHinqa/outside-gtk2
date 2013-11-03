@@ -9,7 +9,6 @@ type (
 
 	Long_double fix
 	LongDouble  fix
-	VaList      fix
 	FILE        fix
 	Stat        fix
 

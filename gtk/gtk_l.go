@@ -238,7 +238,7 @@ var (
 	ListStoreReorder           func(l *ListStore, newOrder *int)
 	ListStoreSet               func(l *ListStore, iter *TreeIter, v ...VArg)
 	ListStoreSetColumnTypes    func(l *ListStore, nColumns int, types *O.Type)
-	ListStoreSetValist         func(l *ListStore, iter *TreeIter, varArgs T.VaList)
+	ListStoreSetValist         func(l *ListStore, iter *TreeIter, varArgs VAList)
 	ListStoreSetValue          func(l *ListStore, iter *TreeIter, column int, value *O.Value)
 	ListStoreSetValuesv        func(l *ListStore, iter *TreeIter, columns *int, values *O.Value, nValues int)
 	ListStoreSwap              func(l *ListStore, a, b *TreeIter)
@@ -273,7 +273,7 @@ func (l *ListStore) Set(iter *TreeIter, v ...VArg) { ListStoreSet(l, iter, v) }
 func (l *ListStore) SetColumnTypes(nColumns int, types *O.Type) {
 	ListStoreSetColumnTypes(l, nColumns, types)
 }
-func (l *ListStore) SetValist(iter *TreeIter, varArgs T.VaList) {
+func (l *ListStore) SetValist(iter *TreeIter, varArgs VAList) {
 	ListStoreSetValist(l, iter, varArgs)
 }
 func (l *ListStore) SetValue(iter *TreeIter, column int, value *O.Value) {

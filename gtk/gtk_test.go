@@ -13,7 +13,7 @@ func init() {
 	Init(nil, nil) // Gtk Init prereq
 }
 
-func aTestIni(t *testing.T) {
+func TestIni(t *testing.T) {
 	minor := uint(12)
 	v := CheckVersion(2, minor, 0)
 	if v != "" {
@@ -80,7 +80,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`
 	a.SetLicense(l)
 	a.SetLogoIconName("")
 	G.SignalConnect(aw.AsPointer(), "close", wDestroy, nil)    // [X]
-	G.SignalConnect(aw.AsPointer(), "response", wDestroy, nil) // Close
+	G.SignalConnect(aw.AsPointer(), "response", wDestroy, nil) // [Close]
 
 	// ShowAboutDialog(nil,
 	// 	"program-name", "outside-gtk2",
@@ -101,7 +101,7 @@ func TestWindow(t *testing.T) {
 	wt.Show()
 	w.Move(960, 0)
 	w.Resize(800, 600)
-	w.SetOpacity(.7)
+	w.SetOpacity(.5)
 	w.SetTitle("Go does Gtk+2")
 	G.SignalConnect(wt.AsPointer(), "destroy", wDestroy, nil)
 	Main()

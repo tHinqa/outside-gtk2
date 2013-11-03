@@ -260,7 +260,7 @@ var (
 	SimpleAsyncResultPropagateError        func(s *SimpleAsyncResult, dest **L.Error) bool
 	SimpleAsyncResultRunInThread           func(s *SimpleAsyncResult, f SimpleAsyncThreadFunc, ioPriority int, cancellable *Cancellable)
 	SimpleAsyncResultSetError              func(s *SimpleAsyncResult, domain L.Quark, code int, format string, v ...VArg)
-	SimpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain L.Quark, code int, format string, args T.VaList)
+	SimpleAsyncResultSetErrorVa            func(s *SimpleAsyncResult, domain L.Quark, code int, format string, args VAList)
 	SimpleAsyncResultSetFromError          func(s *SimpleAsyncResult, err *L.Error)
 	SimpleAsyncResultSetHandleCancellation func(s *SimpleAsyncResult, handleCancellation bool)
 	SimpleAsyncResultSetOpResGboolean      func(s *SimpleAsyncResult, opRes bool)
@@ -284,7 +284,7 @@ func (s *SimpleAsyncResult) RunInThread(f SimpleAsyncThreadFunc, ioPriority int,
 func (s *SimpleAsyncResult) SetError(domain L.Quark, code int, format string, v ...VArg) {
 	SimpleAsyncResultSetError(s, domain, code, format, v)
 }
-func (s *SimpleAsyncResult) SetErrorVa(domain L.Quark, code int, format string, args T.VaList) {
+func (s *SimpleAsyncResult) SetErrorVa(domain L.Quark, code int, format string, args VAList) {
 	SimpleAsyncResultSetErrorVa(s, domain, code, format, args)
 }
 func (s *SimpleAsyncResult) SetFromError(err *L.Error) { SimpleAsyncResultSetFromError(s, err) }

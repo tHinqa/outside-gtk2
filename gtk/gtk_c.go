@@ -1141,10 +1141,10 @@ var (
 	ContainerCheckResize          func(c *Container)
 	ContainerChildGet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
 	ContainerChildGetProperty     func(c *Container, child *Widget, propertyName string, value *O.Value)
-	ContainerChildGetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
+	ContainerChildGetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs VAList)
 	ContainerChildSet             func(c *Container, child *Widget, firstPropName string, v ...VArg)
 	ContainerChildSetProperty     func(c *Container, child *Widget, propertyName string, value *O.Value)
-	ContainerChildSetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs T.VaList)
+	ContainerChildSetValist       func(c *Container, child *Widget, firstPropertyName string, varArgs VAList)
 	ContainerChildType            func(c *Container) O.Type
 	ContainerForall               func(c *Container, callback Callback, callbackData T.Gpointer)
 	ContainerForeach              func(c *Container, callback Callback, callbackData T.Gpointer)
@@ -1180,7 +1180,7 @@ func (c *Container) ChildGet(child *Widget, firstPropName string, v ...VArg) {
 func (c *Container) ChildGetProperty(child *Widget, propertyName string, value *O.Value) {
 	ContainerChildGetProperty(c, child, propertyName, value)
 }
-func (c *Container) ChildGetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
+func (c *Container) ChildGetValist(child *Widget, firstPropertyName string, varArgs VAList) {
 	ContainerChildGetValist(c, child, firstPropertyName, varArgs)
 }
 func (c *Container) ChildSet(child *Widget, firstPropName string, v ...VArg) {
@@ -1189,7 +1189,7 @@ func (c *Container) ChildSet(child *Widget, firstPropName string, v ...VArg) {
 func (c *Container) ChildSetProperty(child *Widget, propertyName string, value *O.Value) {
 	ContainerChildSetProperty(c, child, propertyName, value)
 }
-func (c *Container) ChildSetValist(child *Widget, firstPropertyName string, varArgs T.VaList) {
+func (c *Container) ChildSetValist(child *Widget, firstPropertyName string, varArgs VAList) {
 	ContainerChildSetValist(c, child, firstPropertyName, varArgs)
 }
 func (c *Container) ChildType() O.Type { return ContainerChildType(c) }

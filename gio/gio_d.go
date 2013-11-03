@@ -425,7 +425,7 @@ var (
 	DBusErrorRegisterError       func(errorDomain L.Quark, errorCode int, dbusErrorName string) bool
 	DBusErrorRegisterErrorDomain func(errorDomainQuarkName string, quarkVolatile *T.Gsize, entries *DBusErrorEntry, numEntries uint)
 	DBusErrorSetDBusError        func(e **L.Error, dbusErrorName, dbusErrorMessage, format string, v ...VArg)
-	DBusErrorSetDBusErrorValist  func(err **L.Error, dbusErrorName string, dbusErrorMessage string, format string, varArgs T.VaList)
+	DBusErrorSetDBusErrorValist  func(err **L.Error, dbusErrorName string, dbusErrorMessage string, format string, varArgs VAList)
 	DBusErrorStripRemoteError    func(err *L.Error) bool
 	DBusErrorUnregisterError     func(errorDomain L.Quark, errorCode int, dbusErrorName string) bool
 )
@@ -502,7 +502,7 @@ var (
 	DBusMessageLock                  func(d *DBusMessage)
 	DBusMessageNewMethodError        func(d *DBusMessage, errorName, errorMessageFormat string, v ...VArg) *DBusMessage
 	DBusMessageNewMethodErrorLiteral func(d *DBusMessage, errorName, errorMessage string) *DBusMessage
-	DBusMessageNewMethodErrorValist  func(d *DBusMessage, errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage
+	DBusMessageNewMethodErrorValist  func(d *DBusMessage, errorName, errorMessageFormat string, varArgs VAList) *DBusMessage
 	DBusMessageNewMethodReply        func(d *DBusMessage) *DBusMessage
 	DBusMessagePrint                 func(d *DBusMessage, indent uint) string
 	DBusMessageSetBody               func(d *DBusMessage, body *L.Variant)
@@ -554,7 +554,7 @@ func (d *DBusMessage) NewMethodError(errorName, errorMessageFormat string, v ...
 func (d *DBusMessage) NewMethodErrorLiteral(errorName, errorMessage string) *DBusMessage {
 	return DBusMessageNewMethodErrorLiteral(d, errorName, errorMessage)
 }
-func (d *DBusMessage) NewMethodErrorValist(errorName, errorMessageFormat string, varArgs T.VaList) *DBusMessage {
+func (d *DBusMessage) NewMethodErrorValist(errorName, errorMessageFormat string, varArgs VAList) *DBusMessage {
 	return DBusMessageNewMethodErrorValist(d, errorName, errorMessageFormat, varArgs)
 }
 func (d *DBusMessage) NewMethodReply() *DBusMessage { return DBusMessageNewMethodReply(d) }
@@ -673,7 +673,7 @@ var (
 	DBusMethodInvocationReturnDBusError    func(d *DBusMethodInvocation, errorName, errorMessage string)
 	DBusMethodInvocationReturnError        func(d *DBusMethodInvocation, domain L.Quark, code int, format string, v ...VArg)
 	DBusMethodInvocationReturnErrorLiteral func(d *DBusMethodInvocation, domain L.Quark, code int, message string)
-	DBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain L.Quark, code int, format string, varArgs T.VaList)
+	DBusMethodInvocationReturnErrorValist  func(d *DBusMethodInvocation, domain L.Quark, code int, format string, varArgs VAList)
 	DBusMethodInvocationReturnGerror       func(d *DBusMethodInvocation, err *L.Error)
 	DBusMethodInvocationReturnValue        func(d *DBusMethodInvocation, parameters *L.Variant)
 )
@@ -704,7 +704,7 @@ func (d *DBusMethodInvocation) ReturnError(domain L.Quark, code int, format stri
 func (d *DBusMethodInvocation) ReturnErrorLiteral(domain L.Quark, code int, message string) {
 	DBusMethodInvocationReturnErrorLiteral(d, domain, code, message)
 }
-func (d *DBusMethodInvocation) ReturnErrorValist(domain L.Quark, code int, format string, varArgs T.VaList) {
+func (d *DBusMethodInvocation) ReturnErrorValist(domain L.Quark, code int, format string, varArgs VAList) {
 	DBusMethodInvocationReturnErrorValist(d, domain, code, format, varArgs)
 }
 func (d *DBusMethodInvocation) ReturnGerror(err *L.Error) { DBusMethodInvocationReturnGerror(d, err) }

@@ -43,19 +43,19 @@ var (
 
 	Fprintf func(*T.FILE, string, ...VArg) int
 
-	Vfprintf func(*T.FILE, string, T.VaList) int
+	Vfprintf func(*T.FILE, string, VAList) int
 
 	Printf func(string, ...VArg) int
 
-	Vprintf func(string, T.VaList) int
+	Vprintf func(string, VAList) int
 
 	Sprintf func(string, string, ...VArg) int
 
-	Vsprintf func(string, string, T.VaList) int
+	Vsprintf func(string, string, VAList) int
 
 	Snprintf func(string, T.Size_t, string, ...VArg) int
 
-	Vsnprintf func(string, T.Size_t, string, T.VaList) int
+	Vsnprintf func(string, T.Size_t, string, VAList) int
 
 	Setlocale func(int, string) string
 

@@ -210,7 +210,7 @@ var (
 	WidgetSizeRequest           func(w *Widget, requisition *Requisition)
 	WidgetStyleGet              func(w *Widget, firstPropertyName string, v ...VArg)
 	WidgetStyleGetProperty      func(w *Widget, propertyName string, value *O.Value)
-	WidgetStyleGetValist        func(w *Widget, firstPropertyName string, varArgs T.VaList)
+	WidgetStyleGetValist        func(w *Widget, firstPropertyName string, varArgs VAList)
 	WidgetThawChildNotify       func(w *Widget)
 	WidgetTriggerTooltipQuery   func(w *Widget)
 	WidgetUnmap                 func(w *Widget)
@@ -427,7 +427,7 @@ func (w *Widget) StyleGet(firstPropertyName string, v ...VArg) {
 func (w *Widget) StyleGetProperty(propertyName string, value *O.Value) {
 	WidgetStyleGetProperty(w, propertyName, value)
 }
-func (w *Widget) StyleGetValist(firstPropertyName string, varArgs T.VaList) {
+func (w *Widget) StyleGetValist(firstPropertyName string, varArgs VAList) {
 	WidgetStyleGetValist(w, firstPropertyName, varArgs)
 }
 func (w *Widget) ThawChildNotify()     { WidgetThawChildNotify(w) }
@@ -656,8 +656,8 @@ var (
 	WindowGetDefaultIconList         func() *L.List
 	WindowGetDefaultIconName         func() string // 2.16
 	WindowListToplevels              func() *L.List
-	WindowSetAutoStartupNotification func(setting bool)                         // 2.2
-	WindowSetDefaultIcon             func(icon *D.Pixbuf)                       // 2.4
+	WindowSetAutoStartupNotification func(setting bool)                        // 2.2
+	WindowSetDefaultIcon             func(icon *D.Pixbuf)                      // 2.4
 	WindowSetDefaultIconFromFile     func(filename string, err **L.Error) bool // 2.2
 	WindowSetDefaultIconList         func(list *L.List)
 	WindowSetDefaultIconName         func(name string) // 2.6

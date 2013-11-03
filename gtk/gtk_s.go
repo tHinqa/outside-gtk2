@@ -777,7 +777,7 @@ var (
 	StyleGet                    func(s *Style, widgetType O.Type, firstPropertyName string, v ...VArg)
 	StyleGetFont                func(s *Style) *D.Font
 	StyleGetStyleProperty       func(s *Style, widgetType O.Type, propertyName string, value *O.Value)
-	StyleGetValist              func(s *Style, widgetType O.Type, firstPropertyName string, varArgs T.VaList)
+	StyleGetValist              func(s *Style, widgetType O.Type, firstPropertyName string, varArgs VAList)
 	StyleLookupColor            func(s *Style, colorName string, color *D.Color) bool
 	StyleLookupIconSet          func(s *Style, stockId string) *IconSet
 	StyleRef                    func(s *Style) *Style
@@ -800,7 +800,7 @@ func (s *Style) GetFont() *D.Font { return StyleGetFont(s) }
 func (s *Style) GetStyleProperty(widgetType O.Type, propertyName string, value *O.Value) {
 	StyleGetStyleProperty(s, widgetType, propertyName, value)
 }
-func (s *Style) GetValist(widgetType O.Type, firstPropertyName string, varArgs T.VaList) {
+func (s *Style) GetValist(widgetType O.Type, firstPropertyName string, varArgs VAList) {
 	StyleGetValist(s, widgetType, firstPropertyName, varArgs)
 }
 func (s *Style) LookupColor(colorName string, color *D.Color) bool {

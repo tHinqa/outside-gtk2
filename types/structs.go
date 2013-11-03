@@ -1,7 +1,5 @@
 package types
 
-//TODO(t): add constants for [...]s
-
 const GDK_MAX_TIMECOORD_AXES = 128
 
 type (
