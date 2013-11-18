@@ -128,7 +128,7 @@ type (
 
 	Feature struct {
 		Feature FeatureEnum
-		Name    POVString
+		Name    *OVString
 		Value   T.Long
 	}
 )
