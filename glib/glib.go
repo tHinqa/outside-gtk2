@@ -41,9 +41,9 @@ type (
 	Str      string
 )
 
-func (_ StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
+func (StrSlice) Dispose(a **T.Gchar) { Strfreev(a) }
 
-func (_ Str) Dispose(a T.Gpointer) { Free(a) }
+func (Str) Dispose(a T.Gpointer) { Free(a) }
 
 var (
 	InternString func(str string) string
