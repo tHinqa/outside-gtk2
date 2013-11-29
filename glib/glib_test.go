@@ -53,3 +53,14 @@ func Benchmark(b *testing.B) {
 		Listenv()
 	}
 }
+
+func BenchmarkRand(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RandomInt()
+	}
+}
+
+func TestRand(t *testing.T) {
+	RandomSetSeed(0)
+	t.Log(RandomInt())
+}

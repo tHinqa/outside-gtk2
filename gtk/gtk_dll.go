@@ -3,14 +3,21 @@ package gtk
 import (
 	"github.com/tHinqa/outside"
 	P "github.com/tHinqa/outside-gtk2/pango"
+	"runtime"
 )
 
+var dll string
+
 func init() {
+	if runtime.GOOS == "windows" {
+		dll = "libgtk-win32-2.0-0.dll"
+	}
+	if runtime.GOOS == "linux" {
+		dll = "libgtk-x11-2.0.so.0"
+	}
 	outside.AddDllApis(dll, false, apiList)
 	outside.AddDllData(dll, false, dataList)
 }
-
-var dll = "libgtk-win32-2.0-0.dll"
 
 var apiList = outside.Apis{
 	{"gtk_about_dialog_get_artists", &AboutDialogGetArtists},
